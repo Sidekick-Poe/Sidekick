@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Data.Items.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -38,7 +39,7 @@ public class ClusterJewelPassiveCountProperty(
                 continue;
             }
 
-            foreach (var stat in line.ApiInformation)
+            foreach (var stat in line.MatchedPatterns)
             {
                 if (stat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId)
                 {
@@ -59,7 +60,7 @@ public class ClusterJewelPassiveCountProperty(
                 continue;
             }
 
-            foreach (var apiStat in line.ApiInformation)
+            foreach (var apiStat in line.MatchedPatterns)
             {
                 if (apiStat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId)
                 {

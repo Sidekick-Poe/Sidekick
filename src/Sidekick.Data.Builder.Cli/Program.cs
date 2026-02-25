@@ -1,11 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Sidekick.Apis.Poe;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Common;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
+using Sidekick.Data.Languages;
 using Options = Sidekick.Data.Builder.Cli.Options;
 
 #region Services
@@ -20,7 +19,6 @@ services.AddLogging(o =>
 });
 
 services.AddSidekickCommon(SidekickApplicationType.DataBuilder);
-services.AddSidekickPoeApi();
 services.AddSidekickData();
 services.AddSidekickDataBuilder();
 

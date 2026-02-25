@@ -12,12 +12,12 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickDataBuilder(
         this IServiceCollection services)
     {
-        services.TryAddSingleton<ItemStatBuilder>();
-
         services.TryAddSingleton<NinjaDownloader>();
 
         services.TryAddSingleton<RepoeDataProvider>();
         services.TryAddSingleton<RepoeDownloader>();
+
+        services.TryAddSingleton<StatBuilder>();
 
         services.TryAddSingleton<TradeDownloader>();
         services.TryAddSingleton<TradeStatBuilder>();

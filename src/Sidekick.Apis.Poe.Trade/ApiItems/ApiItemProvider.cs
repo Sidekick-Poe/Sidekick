@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStatic;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models.Raw;
 
@@ -54,7 +54,7 @@ public class ApiItemProvider
         {
             foreach (var entry in category.Entries)
             {
-                var information = entry.ToItemApiInformation();
+                var information = ToItemApiInformation(entry);
                 information.Category = category.Id;
 
                 var apiData = apiStaticDataProvider.Get(information.Name, information.Type);
@@ -89,5 +89,18 @@ public class ApiItemProvider
                 }
             }
         }
+
+        return;
+
+
+        ItemApiInformation ToItemApiInformation(RawTradeItem item) => new()
+        {
+            Type = item.Type,
+            Name = item.Name,
+            Category = item.Category,
+            IsUnique = item.IsUnique,
+            Discriminator = item.Discriminator,
+            Text = item.Text,
+        };
     }
 }

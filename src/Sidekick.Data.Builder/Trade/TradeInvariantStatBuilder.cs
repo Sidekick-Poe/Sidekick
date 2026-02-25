@@ -1,6 +1,6 @@
-using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models;
 using Sidekick.Data.Trade.Models.Raw;
@@ -173,9 +173,9 @@ public class TradeInvariantStatBuilder
             foreach (var entry in category.Entries)
             {
                 if (entry.Text != "Added Small Passive Skills grant: #") continue;
-                if (entry.Option == null) continue;
+                if (entry.Options == null) continue;
 
-                return entry.Option.Options.ToDictionary(x => x.Id, x => x.Text!);
+                return entry.Options.Options.ToDictionary(x => x.Id, x => x.Text!);
             }
         }
 

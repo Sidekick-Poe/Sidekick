@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models;
 using Sidekick.Data.Trade.Models.Raw;
@@ -141,11 +141,10 @@ public class TradeStatBuilder(
     {
         entry.Text = entry.Text.RemoveSquareBrackets();
 
-        if (entry.Option?.Options.Count > 0)
+        if (entry.Options?.Options.Count > 0)
         {
-            foreach (var option in entry.Option.Options)
+            foreach (var option in entry.Options.Options)
             {
-                if (option.Text == null) continue;
                 option.Text = option.Text.RemoveSquareBrackets();
                 yield return new TradeStatDefinition()
                 {

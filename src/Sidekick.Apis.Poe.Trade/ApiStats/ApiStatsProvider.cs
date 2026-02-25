@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models;
 

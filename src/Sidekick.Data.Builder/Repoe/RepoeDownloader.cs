@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Languages;
 namespace Sidekick.Data.Builder.Repoe;
 
 public class RepoeDownloader(
@@ -9,7 +9,7 @@ public class RepoeDownloader(
 {
     private sealed record RepoeLanguageInfo(string Code, string LanguageSlug);
 
-    private sealed record RepoeFile(string FileName, string FilePath);
+    public sealed record RepoeFile(string FileName, string FilePath);
 
     private static List<RepoeLanguageInfo> Languages { get; } =
     [
@@ -25,13 +25,22 @@ public class RepoeDownloader(
         new("zh", "Traditional Chinese/"),
     ];
 
-    private static List<RepoeFile> Poe1Files { get; } =
+    public static List<RepoeFile> Poe1Files { get; } =
     [
         new("stat_translations", "stat_translations.min.json"),
     ];
 
-    private static List<RepoeFile> Poe2Files { get; } =
+    public static List<RepoeFile> Poe2Files { get; } =
     [
+        new("stat_translations.advanced", "stat_translations/advanced_mod_stat_descriptions.min.json"),
+        new("stat_translations.endgamemap", "stat_translations/endgame_map_stat_descriptions.min.json"),
+        new("stat_translations.heist", "stat_translations/heist_equipment_stat_descriptions.min.json"),
+        new("stat_translations.leaguestone", "stat_translations/leaguestone_stat_descriptions.min.json"),
+        new("stat_translations.map", "stat_translations/map_stat_descriptions.min.json"),
+        new("stat_translations.sanctum", "stat_translations/sanctum_relic_stat_descriptions.min.json"),
+        new("stat_translations.sentinel", "stat_translations/sentinel_stat_descriptions.min.json"),
+        new("stat_translations.descriptions", "stat_translations/stat_descriptions.min.json"),
+        new("stat_translations.tablet", "stat_translations/tablet_stat_descriptions.min.json"),
     ];
 
     private static string GetFileName(IGameLanguage language, string path)

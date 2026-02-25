@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.ApiStats;
@@ -22,6 +21,8 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Languages;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
@@ -56,7 +57,6 @@ public abstract class ParserFixture : IAsyncLifetime
 
             // Apis
             .AddSidekickCommonApi()
-            .AddSidekickPoeApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoeWikiApi();

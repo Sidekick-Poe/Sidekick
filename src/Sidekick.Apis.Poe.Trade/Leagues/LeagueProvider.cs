@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Exceptions;
 using Sidekick.Data.Builder.Trade;
+using Sidekick.Data.Items.Models;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models;
 

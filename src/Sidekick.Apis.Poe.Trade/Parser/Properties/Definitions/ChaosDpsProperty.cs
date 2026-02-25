@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 

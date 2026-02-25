@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Sidekick.Apis.Poe.Items;
 namespace Sidekick.Data.Trade.Models.Raw;
 
 public class RawTradeItem
@@ -20,14 +19,4 @@ public class RawTradeItem
 
     [JsonIgnore]
     public bool IsUnique => Flags?.Unique ?? false;
-
-    public ItemApiInformation ToItemApiInformation() => new()
-    {
-        Type = Type,
-        Name = Name,
-        Category = Category,
-        IsUnique = IsUnique,
-        Discriminator = Discriminator,
-        Text = Text,
-    };
 }

@@ -43,25 +43,11 @@ public abstract class PseudoDefinition
             {
                 if (!pattern.Pattern.IsMatch(apiStat.Text)) continue;
 
-                Definitions.Add(new PseudoStatDefinition(apiStat.Id, apiStat.Type, apiStat.Text, pattern.Multiplier));
+                Definitions.Add(new PseudoStatDefinition(apiStat.Id, apiStat.Text, pattern.Multiplier));
             }
         }
 
-        Definitions = Definitions.OrderBy(x => x.Type switch
-            {
-                "pseudo" => 0,
-                "explicit" => 1,
-                "implicit" => 2,
-                "crafted" => 3,
-                "enchant" => 4,
-                "fractured" => 5,
-                "veiled" => 6,
-                "desecrated" => 7,
-                _ => 8,
-            })
-            .ThenBy(x => x.Text)
-            .ToList();
-
+        Definitions = Definitions.OrderBy(x => x.Text).ToList();
         Text = localizedPseudoStats?.FirstOrDefault(x => x.Id == StatId)?.Text ?? null;
     }
 
@@ -82,7 +68,7 @@ public abstract class PseudoDefinition
         {
             foreach (var definition in Definitions)
             {
-                if (line.ApiInformation.All(apiStat => definition.Id != apiStat.Id) || line.AverageValue == 0)
+                if (line.MatchedPatterns.All(apiStat => definition.Id != apiStat.Id) || line.AverageValue == 0)
                 {
                     continue;
                 }
@@ -105,7 +91,7 @@ public abstract class PseudoDefinition
         {
             foreach (var line in lines)
             {
-                foreach (var apiStat in line.ApiInformation)
+                foreach (var apiStat in line.MatchedPatterns)
                 {
                     if (apiStat.Id == definition.Id) return true;
                 }

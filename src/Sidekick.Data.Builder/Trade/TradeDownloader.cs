@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Data.Builder.Trade;
 

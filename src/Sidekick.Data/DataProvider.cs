@@ -2,10 +2,10 @@
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
+using Sidekick.Data.Items.Models;
 
 namespace Sidekick.Data;
 

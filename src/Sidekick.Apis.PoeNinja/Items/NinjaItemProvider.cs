@@ -1,8 +1,9 @@
 ﻿using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items.Models;
 using Sidekick.Data.Ninja;
+using Sidekick.Data.Ninja.Models;
 namespace Sidekick.Apis.PoeNinja.Items;
 
 public class NinjaItemProvider(

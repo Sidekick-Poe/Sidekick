@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items.Models;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter, INormalizableFilter
@@ -65,7 +66,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
 
         DefaultAutoSelect = GetDefault(game);
 
-        var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
+        var categories = stat.MatchedPatterns.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))
         {
             PrimaryCategory = categories.FirstOrDefault(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted);
@@ -75,7 +76,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         else
         {
             UsePrimaryCategory = false;
-            PrimaryCategory = Stat.ApiInformation.FirstOrDefault()?.Category ?? StatCategory.Undefined;
+            PrimaryCategory = Stat.MatchedPatterns.FirstOrDefault()?.Category ?? StatCategory.Undefined;
             SecondaryCategory = StatCategory.Undefined;
         }
     }
@@ -109,22 +110,22 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!Checked || Stat.ApiInformation.Count == 0)
+        if (!Checked || Stat.MatchedPatterns.Count == 0)
         {
             return;
         }
 
-        if (Stat.ApiInformation.Count == 1)
+        if (Stat.MatchedPatterns.Count == 1)
         {
             query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
             {
-                Id = Stat.ApiInformation.First().Id,
+                Id = Stat.MatchedPatterns.First().Id,
                 Value = new StatFilterValue(this),
             });
         }
         else
         {
-            var stats = Stat.ApiInformation.ToList();
+            var stats = Stat.MatchedPatterns.ToList();
             if (UsePrimaryCategory)
             {
                 stats = stats.Where(x => x.Category == PrimaryCategory).ToList();

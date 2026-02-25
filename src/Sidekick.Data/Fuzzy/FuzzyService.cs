@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Romanization;
-using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Languages.Implementations;
+using Sidekick.Data.Languages;
+using Sidekick.Data.Languages.Implementations;
 namespace Sidekick.Data.Fuzzy;
 
 public class FuzzyService : IFuzzyService

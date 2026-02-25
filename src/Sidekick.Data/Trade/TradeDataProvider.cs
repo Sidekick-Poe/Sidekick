@@ -1,4 +1,4 @@
-﻿using Sidekick.Apis.Poe.Items;
+﻿using Sidekick.Data.Items.Models;
 using Sidekick.Data.Trade.Models;
 using Sidekick.Data.Trade.Models.Raw;
 

@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Sidekick.Data.Trade.Models.Raw;
 
 public record RawTradeStat
@@ -6,5 +8,6 @@ public record RawTradeStat
     public required string Text { get; set; }
     public required string Type { get; init; }
 
-    public RawTradeStatOptions? Option { get; set; }
+    [JsonPropertyName("option")]
+    public RawTradeStatOptions? Options { get; set; }
 }

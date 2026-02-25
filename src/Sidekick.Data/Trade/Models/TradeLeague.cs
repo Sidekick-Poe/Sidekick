@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items.Models;
 
 namespace Sidekick.Data.Trade.Models;
 

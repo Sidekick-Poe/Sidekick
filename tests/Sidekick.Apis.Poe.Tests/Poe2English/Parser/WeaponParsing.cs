@@ -2,6 +2,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Data.Items.Models;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -419,7 +420,7 @@ Note: ~price 1 mirror");
         Assert.True(fracturedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Fractured, fracturedFilter.PrimaryCategory);
         Assert.Equal(StatCategory.Explicit, fracturedFilter.SecondaryCategory);
-        foreach (var x in fracturedFilter.Stat.ApiInformation)
+        foreach (var x in fracturedFilter.Stat.MatchedPatterns)
         {
             if (x.Category is StatCategory.Fractured or StatCategory.Explicit) continue;
 
@@ -438,7 +439,7 @@ Note: ~price 1 mirror");
         Assert.False(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Desecrated, desecratedFilter.PrimaryCategory);
         Assert.Equal(StatCategory.Explicit, desecratedFilter.SecondaryCategory);
-        foreach (var x in desecratedFilter.Stat.ApiInformation)
+        foreach (var x in desecratedFilter.Stat.MatchedPatterns)
         {
             if (x.Category is StatCategory.Desecrated or StatCategory.Explicit) continue;
 

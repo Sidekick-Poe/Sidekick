@@ -1,5 +1,5 @@
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Trade.Models;
 using Sidekick.Data.Trade.Models.Raw;
 

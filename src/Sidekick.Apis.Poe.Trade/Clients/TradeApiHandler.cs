@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Common.Cloudflare;
 using Sidekick.Apis.Common.Limiter;
 using Sidekick.Apis.Common.States;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Exceptions;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
 

@@ -3,9 +3,10 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.IndexState;
-using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Ninja.Models;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaExchangeProvider(

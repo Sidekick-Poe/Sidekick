@@ -1,5 +1,5 @@
-﻿using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.PoeNinja.Items.Models;
+﻿using Sidekick.Data.Items.Models;
+using Sidekick.Data.Ninja.Models;
 
 namespace Sidekick.Data.Ninja;
 

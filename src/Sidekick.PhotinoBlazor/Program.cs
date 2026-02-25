@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Account;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
@@ -83,7 +82,6 @@ public class Program
             .AddSidekickGitHubApi()
             .AddSidekickCommonApi()
             .AddSidekickPoeAccountApi()
-            .AddSidekickPoeApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoe2ScoutApi()

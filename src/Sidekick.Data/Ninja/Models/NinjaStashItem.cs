@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.PoeNinja.Items.Models;
+﻿namespace Sidekick.Data.Ninja.Models;
 
 public record NinjaStashItem(
     string? Name,

@@ -1,3 +1,4 @@
+using Sidekick.Data.Items.Models;
 namespace Sidekick.Apis.Poe.Items;
 
 public class Item

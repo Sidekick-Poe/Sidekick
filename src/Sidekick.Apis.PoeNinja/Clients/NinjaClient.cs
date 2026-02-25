@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items.Models;
 
 namespace Sidekick.Apis.PoeNinja.Clients;
 

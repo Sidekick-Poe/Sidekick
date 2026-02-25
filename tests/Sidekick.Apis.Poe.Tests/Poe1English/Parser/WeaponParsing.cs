@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items.Models;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -453,7 +454,7 @@ Corrupted");
         // Known parsing issue: #912
         actual.AssertDoesNotHaveModifier(StatCategory.Implicit, "Melee Hits have #% chance to Fortify");
         actual.AssertDoesNotHaveModifier(StatCategory.Implicit, "Melee Hits Fortify");
-        Assert.Equal(1, actual.Stats.Count(x => x.ApiInformation.FirstOrDefault()?.Category == StatCategory.Implicit));
+        Assert.Equal(1, actual.Stats.Count(x => x.MatchedPatterns.FirstOrDefault()?.Category == StatCategory.Implicit));
     }
 
     [Fact]

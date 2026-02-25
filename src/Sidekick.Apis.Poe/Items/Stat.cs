@@ -11,10 +11,7 @@ public class Stat(string text)
     /// </summary>
     public string Text { get; } = text;
 
-    /// <summary>
-    ///     Gets or sets the modifier associated with this line.
-    /// </summary>
-    public List<StatApiInformation> ApiInformation { get; } = [];
+    public List<StatMatchedPatterns> MatchedPatterns { get; } = [];
 
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.

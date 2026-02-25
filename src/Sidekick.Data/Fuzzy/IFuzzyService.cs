@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Languages;
+using Sidekick.Data.Languages;
 namespace Sidekick.Data.Fuzzy;
 
 public interface IFuzzyService

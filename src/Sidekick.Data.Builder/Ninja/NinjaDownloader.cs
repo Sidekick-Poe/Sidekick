@@ -2,8 +2,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items.Models;
 using Sidekick.Data.Trade;
 
 namespace Sidekick.Data.Builder.Ninja;

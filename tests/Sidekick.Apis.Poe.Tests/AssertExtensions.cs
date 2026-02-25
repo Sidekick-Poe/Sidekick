@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Data.Items.Models;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
@@ -16,7 +17,7 @@ public static class AssertExtensions
     public static void AssertHasStat(this Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
         var modifiers = actual.Stats
-            .SelectMany(line => line.ApiInformation.Select(modifier => new
+            .SelectMany(line => line.MatchedPatterns.Select(modifier => new
             {
                 Line = line,
                 Modifier = modifier,
@@ -35,7 +36,7 @@ public static class AssertExtensions
     public static void AssertDoesNotHaveModifier(this Item actual, StatCategory expectedCategory, string expectedText)
     {
         var modifiers = actual.Stats
-            .SelectMany(line => line.ApiInformation.Select(modifier => new
+            .SelectMany(line => line.MatchedPatterns.Select(modifier => new
             {
                 Line = line,
                 Modifier = modifier,
