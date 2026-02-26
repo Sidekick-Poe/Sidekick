@@ -28,7 +28,7 @@ public class StatParser
 {
     public int Priority => 300;
 
-    private List<ItemStatDefinition> Definitions { get; set; } = [];
+    private List<StatDefinition> Definitions { get; set; } = [];
 
     public async Task Initialize()
     {
@@ -65,13 +65,17 @@ public class StatParser
                 var definitions = Match(block, lineIndex).ToList();
                 if (definitions.Count is 0) continue;
 
-                yield return CreateStat(block, lines, definitions, matchFuzzily);
+                var maxLineCount = definitions.Max(x => x.LineCount);
+                var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
+                lines.ForEach(x => x.Parsed = true);
+
+                yield return CreateStat(block, lines, definitions);
             }
         }
 
         yield break;
 
-        IEnumerable<ItemStatDefinition> Match(TextBlock block, int lineIndex)
+        IEnumerable<StatDefinition> Match(TextBlock block, int lineIndex)
         {
             foreach (var definition in Definitions)
             {
@@ -106,7 +110,7 @@ public class StatParser
 
     }
 
-    private Stat CreateStat(TextBlock block, List<TextLine> lines, List<TradeStatDefinition> definitions, bool matchedFuzzily)
+    private Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions)
     {
         var text = string.Join('\n', lines.Select(x => x.Text));
         var category = text.ParseCategory();
@@ -115,7 +119,6 @@ public class StatParser
         {
             BlockIndex = block.Index,
             LineIndex = lines.First().Index,
-            MatchedFuzzily = matchedFuzzily,
         };
 
         var fuzzyLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, text);
@@ -162,7 +165,7 @@ public class StatParser
             }
         }
 
-        ParseStatValue(stat, filteredDefinitions.FirstOrDefault());
+        ParseValues(stat, filteredDefinitions.FirstOrDefault());
 
         var originallyPositive = false;
         var negative = NegativePattern?.IsMatch(text) ?? false;
@@ -181,57 +184,29 @@ public class StatParser
         return stat;
     }
 
-    private static void ParseStatValue(Stat stat, TradeStatDefinition? definition)
+    private static void ParseValues(Stat stat)
     {
-        switch (definition)
+        foreach (var matchedPattern in stat.GetTradePatterns())
         {
-            case
+            if (matchedPattern.Option != null)
             {
-                IsOption: true
-            }:
-                stat.OptionValue = definition.OptionId;
-                return;
-
-            case
-            {
-                OptionId: int value,
-            }:
-                stat.Values.Add(value);
-                return;
-
-            case null: return;
-        }
-
-        // We try to parse the value from the line itself, if that fails we try to parse it from finding numbers in the line.
-        var patternMatch = definition.Pattern.Match(stat.Text);
-        if (patternMatch.Success)
-        {
-            foreach (Group group in patternMatch.Groups)
-            {
-                foreach (Capture capture in group.Captures)
-                {
-                    if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
-                    {
-                        stat.Values.Add(parsedValue);
-                    }
-                }
+                stat.OptionId = matchedPattern.Option.Id;
+                continue;
             }
 
-            return;
-        }
-
-        // Find numbers in the line
-        var lines = stat.Text.Split('\n');
-        foreach (var line in lines)
-        {
-            if (stat.Values.Count != 0) continue;
-
-            var matches = new Regex("([-+0-9,.]+)").Matches(line);
-            foreach (Match match in matches)
+            // We try to parse the value from the line itself, if that fails we try to parse it from finding numbers in the line.
+            var patternMatch = matchedPattern.Pattern.Match(stat.Text);
+            if (patternMatch.Success)
             {
-                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                foreach (Group group in patternMatch.Groups)
                 {
-                    stat.Values.Add(parsedValue);
+                    foreach (Capture capture in group.Captures)
+                    {
+                        if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                        {
+                            stat.Values.Add(parsedValue);
+                        }
+                    }
                 }
             }
         }

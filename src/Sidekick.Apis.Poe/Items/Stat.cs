@@ -1,17 +1,80 @@
+using Sidekick.Data.Items.Models;
+using Sidekick.Data.Stats.Models;
 namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>
 ///     Represents a line of text on an item. With the API being the way it is, each line of text can be represented by one
 ///     or more api modifiers.
 /// </summary>
-public class Stat(string text)
+public class Stat(StatCategory category, string text)
 {
     /// <summary>
     ///     Gets or sets the original line of text as it is in the game.
     /// </summary>
     public string Text { get; } = text;
 
-    public List<StatMatchedPatterns> MatchedPatterns { get; } = [];
+    public StatCategory Category { get; } = category;
+
+    private IReadOnlyList<StatMatchedPattern> matchedPatterns = [];
+    public IReadOnlyList<StatMatchedPattern> MatchedPatterns
+    {
+        get => matchedPatterns;
+        set
+        {
+            tradePatterns = null;
+            matchedPatterns = value;
+        }
+    }
+
+    private IReadOnlyList<TradeStatPattern>? tradePatterns;
+    public IReadOnlyList<TradeStatPattern> TradePatterns
+    {
+        get
+        {
+            tradePatterns ??= GetTradePatterns().ToList();
+            return tradePatterns;
+
+            IEnumerable<TradeStatPattern> GetTradePatterns()
+            {
+                var handledIds = new List<string>();
+                foreach (var matchedPattern in MatchedPatterns)
+                {
+                    if (matchedPattern.GamePattern != null)
+                    {
+                        foreach (var tradePattern in matchedPattern.Definition.TradePatterns)
+                        {
+                            if (handledIds.Contains(tradePattern.Id)) continue;
+
+                            if (OptionId != null)
+                            {
+                                if (OptionId == tradePattern.Option?.Id)
+                                {
+                                    handledIds.Add(tradePattern.Id);
+                                    yield return tradePattern;
+                                }
+                            }
+                            else if (tradePattern.Category == StatCategory.Explicit ||  tradePattern.Category == Category)
+                            {
+                                handledIds.Add(tradePattern.Id);
+                                yield return tradePattern;
+                            }
+                        }
+                    }
+
+                    if (matchedPattern.TradePattern != null && !handledIds.Contains(matchedPattern.TradePattern.Id))
+                    {
+                        if (matchedPattern.TradePattern.Category == StatCategory.Explicit ||  matchedPattern.TradePattern.Category == Category)
+                        {
+                            handledIds.Add(matchedPattern.TradePattern.Id);
+                            yield return matchedPattern.TradePattern;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public bool HasMultipleCategories => TradePatterns.DistinctBy(x => x.Category).Count() > 1;
 
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
@@ -27,18 +90,19 @@ public class Stat(string text)
     /// <summary>
     ///     Gets or sets the option value of this modifier.
     /// </summary>
-    public int? OptionValue { get; set; }
+    public int? OptionId { get; set; }
 
     /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => OptionValue == null && Values.Count > 0;
+    public bool HasValues => OptionId == null && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 
     public int LineIndex { get; init; }
 
-    public bool MatchedFuzzily { get; init; }
+    [Obsolete]
+    public bool MatchedFuzzily { get; }
 
     /// <inheritdoc />
     public override string ToString() => Text;

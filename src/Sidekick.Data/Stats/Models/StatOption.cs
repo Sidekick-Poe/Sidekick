@@ -1,6 +1,6 @@
 ﻿namespace Sidekick.Data.Stats.Models;
 
-public class ItemStatOption
+public class StatOption
 {
     public required int Id { get; set; }
 

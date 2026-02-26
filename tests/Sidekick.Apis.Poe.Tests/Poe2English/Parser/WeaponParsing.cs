@@ -410,17 +410,16 @@ Note: ~price 1 mirror");
 
         var fracturedFilter = modifierFilters
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Fractured);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Fractured);
         fracturedFilter ??= modifierFilters.OfType<ExpandableFilter>()
             .SelectMany(x => x.Filters)
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Fractured);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Fractured);
 
         Assert.NotNull(fracturedFilter);
         Assert.True(fracturedFilter.UsePrimaryCategory);
-        Assert.Equal(StatCategory.Fractured, fracturedFilter.PrimaryCategory);
-        Assert.Equal(StatCategory.Explicit, fracturedFilter.SecondaryCategory);
-        foreach (var x in fracturedFilter.Stat.MatchedPatterns)
+        Assert.Equal(StatCategory.Fractured, fracturedFilter.Stat.Category);
+        foreach (var x in fracturedFilter.Stat.TradePatterns)
         {
             if (x.Category is StatCategory.Fractured or StatCategory.Explicit) continue;
 
@@ -429,17 +428,16 @@ Note: ~price 1 mirror");
 
         var desecratedFilter = modifierFilters
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Desecrated);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Desecrated);
         desecratedFilter ??= modifierFilters.OfType<ExpandableFilter>()
             .SelectMany(x => x.Filters)
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Desecrated);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Desecrated);
 
         Assert.NotNull(desecratedFilter);
         Assert.False(desecratedFilter.UsePrimaryCategory);
-        Assert.Equal(StatCategory.Desecrated, desecratedFilter.PrimaryCategory);
-        Assert.Equal(StatCategory.Explicit, desecratedFilter.SecondaryCategory);
-        foreach (var x in desecratedFilter.Stat.MatchedPatterns)
+        Assert.Equal(StatCategory.Desecrated, desecratedFilter.Stat.Category);
+        foreach (var x in desecratedFilter.Stat.TradePatterns)
         {
             if (x.Category is StatCategory.Desecrated or StatCategory.Explicit) continue;
 

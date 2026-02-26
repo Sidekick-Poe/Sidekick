@@ -4,8 +4,8 @@ namespace Sidekick.Data.Stats;
 
 public class StatDataProvider(DataProvider dataProvider)
 {
-    public async Task<List<ItemStatDefinition>> GetStats(GameType gameType, string language)
+    public async Task<List<StatDefinition>> GetStats(GameType gameType, string language)
     {
-        return await dataProvider.Read<List<ItemStatDefinition>>(gameType, $"items/stats.{language}.json");
+        return await dataProvider.Read<List<StatDefinition>>(gameType, $"items/stats.{language}.json");
     }
 }

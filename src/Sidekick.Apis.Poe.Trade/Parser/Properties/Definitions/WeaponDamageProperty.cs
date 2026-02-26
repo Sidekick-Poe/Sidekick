@@ -105,7 +105,7 @@ public class WeaponDamageProperty(
         damageMods.AddRange(apiStatsProvider.InvariantStats.ColdWeaponDamageIds);
         damageMods.AddRange(apiStatsProvider.InvariantStats.LightningWeaponDamageIds);
 
-        var itemMods = item.Stats.Where(x => x.MatchedPatterns.Any(y => damageMods.Contains(y.Id ?? string.Empty))).ToList();
+        var itemMods = item.Stats.Where(x => x.TradePatterns.Any(y => damageMods.Contains(y.Id))).ToList();
         if (itemMods.Count == 0) return;
 
         // Parse elemental damage for Path of Exile 1.
@@ -126,7 +126,7 @@ public class WeaponDamageProperty(
                 int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
                 var range = new DamageRange(min, max);
 
-                var ids = itemMods[matchIndex].MatchedPatterns.Where(x => x.Id != null).Select(x => x.Id!).ToList();
+                var ids = itemMods[matchIndex].TradePatterns.Select(x => x.Id).ToList();
                 var isFire = apiStatsProvider.InvariantStats.FireWeaponDamageIds.Any(x => ids.Contains(x));
                 var isCold = apiStatsProvider.InvariantStats.ColdWeaponDamageIds.Any(x => ids.Contains(x));
                 var isLightning = apiStatsProvider.InvariantStats.LightningWeaponDamageIds.Any(x => ids.Contains(x));

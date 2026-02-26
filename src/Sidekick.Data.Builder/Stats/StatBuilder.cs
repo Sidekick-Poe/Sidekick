@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Sidekick.Common.Enums;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Poe1;
 using Sidekick.Data.Extensions;
@@ -36,13 +37,13 @@ public class StatBuilder(
         await dataProvider.Write(game, $"items/stats.{language.Code}.json", definitions);
     }
 
-    private async Task<List<ItemStatDefinition>> BuildGameStats(GameType game, IGameLanguage language)
+    private async Task<List<StatDefinition>> BuildGameStats(GameType game, IGameLanguage language)
     {
         var gameStats = await repoeDataProvider.GetStatTranslations(game, language.Code);
-        var definitions = new List<ItemStatDefinition>();
+        var definitions = new List<StatDefinition>();
         foreach (var gameStat in gameStats)
         {
-            definitions.Add(new ItemStatDefinition()
+            definitions.Add(new StatDefinition()
             {
                 GameIds = gameStat.Ids,
                 GamePatterns = GetGamePatterns(gameStat).ToList(),
@@ -53,17 +54,17 @@ public class StatBuilder(
         return definitions;
     }
 
-    private async Task<List<ItemStatDefinition>> BuildTradeStats(GameType game, IGameLanguage language, List<ItemStatDefinition> definitions)
+    private async Task<List<StatDefinition>> BuildTradeStats(GameType game, IGameLanguage language, List<StatDefinition> definitions)
     {
         var apiCategories = await tradeDataProvider.GetRawStats(game, language.Code);
         var apiStats = apiCategories.SelectMany(x => x.Entries);
 
-        var result = new List<ItemStatDefinition>();
+        var result = new List<StatDefinition>();
         foreach (var apiStat in apiStats)
         {
             if (definitions.Any(def => def.TradePatterns.Any(tp => tp.Id == apiStat.Id))) continue;
 
-            result.Add(new ItemStatDefinition()
+            result.Add(new StatDefinition()
             {
                 TradePatterns = GetTradePatterns(apiStat).ToList(),
             });
@@ -72,7 +73,7 @@ public class StatBuilder(
         return result;
     }
 
-    private IEnumerable<ItemStatGamePattern> GetGamePatterns(RepoeStatTranslation gameStat)
+    private IEnumerable<GameStatPattern> GetGamePatterns(RepoeStatTranslation gameStat)
     {
         if (gameStat.Languages == null) yield break;
 
@@ -80,7 +81,7 @@ public class StatBuilder(
         {
             if (string.IsNullOrEmpty(value.Text)) continue;
 
-            yield return new ItemStatGamePattern()
+            yield return new GameStatPattern()
             {
                 Text = GetText(value.Text),
                 Option = GetOption(value),
@@ -107,7 +108,7 @@ public class StatBuilder(
         }
     }
 
-    private IEnumerable<ItemStatTradePattern> GetTradePatterns(RepoeStatTranslation gameStat)
+    private IEnumerable<TradeStatPattern> GetTradePatterns(RepoeStatTranslation gameStat)
     {
         if (gameStat.Languages == null) yield break;
 
@@ -117,10 +118,10 @@ public class StatBuilder(
 
             if (tradeStat.Option == null || tradeStat.Option.Options.Count == 0)
             {
-                yield return new ItemStatTradePattern()
+                yield return new TradeStatPattern()
                 {
                     Text = GetText(tradeStat.Text),
-                    Type = tradeStat.Type,
+                    Category = GetStatCategory(tradeStat.Type),
                     Id = tradeStat.Id,
                     Pattern = GetPattern(tradeStat.Text),
                 };
@@ -129,13 +130,13 @@ public class StatBuilder(
 
             foreach (var option in tradeStat.Option.Options)
             {
-                yield return new ItemStatTradePattern()
+                yield return new TradeStatPattern()
                 {
                     Text = GetText(tradeStat.Text, option.Text),
-                    Type = tradeStat.Type,
+                    Category = GetStatCategory(tradeStat.Type),
                     Id = tradeStat.Id,
                     Pattern = GetPattern(tradeStat.Text, option.Text),
-                    Option = new ItemStatOption()
+                    Option = new StatOption()
                     {
                         Id = option.Id,
                         Text = option.Text,
@@ -145,14 +146,14 @@ public class StatBuilder(
         }
     }
 
-    private IEnumerable<ItemStatTradePattern> GetTradePatterns(RawTradeStat tradeStat)
+    private IEnumerable<TradeStatPattern> GetTradePatterns(RawTradeStat tradeStat)
     {
         if (tradeStat.Options == null || tradeStat.Options.Options.Count == 0)
         {
-            yield return new ItemStatTradePattern()
+            yield return new TradeStatPattern()
             {
                 Text = GetText(tradeStat.Text),
-                Type = tradeStat.Type,
+                Category = GetStatCategory(tradeStat.Type),
                 Id = tradeStat.Id,
                 Pattern = GetPattern(tradeStat.Text),
             };
@@ -161,13 +162,13 @@ public class StatBuilder(
 
         foreach (var option in tradeStat.Options.Options)
         {
-            yield return new ItemStatTradePattern()
+            yield return new TradeStatPattern()
             {
                 Text = GetText(tradeStat.Text, option.Text),
-                Type = tradeStat.Type,
+                Category = GetStatCategory(tradeStat.Type),
                 Id = tradeStat.Id,
                 Pattern = GetPattern(tradeStat.Text, option.Text),
-                Option = new ItemStatOption()
+                Option = new StatOption()
                 {
                     Id = option.Id,
                     Text = option.Text,
@@ -254,12 +255,18 @@ public class StatBuilder(
         return new Regex($"^{patternValue}$", RegexOptions.None);
     }
 
-    private async Task<List<ItemStatDefinition>> RemoveIgnoredStats(GameType game, List<ItemStatDefinition> definitions)
+    private StatCategory GetStatCategory(string? apiId)
+    {
+        var value = apiId?.Split('.').First();
+        return value.GetEnumFromValue<StatCategory>();
+    }
+
+    private async Task<List<StatDefinition>> RemoveIgnoredStats(GameType game, List<StatDefinition> definitions)
     {
         var invariantStats = await tradeDataProvider.GetInvariantStats(game);
         return definitions.Where(IsNotIgnored).ToList();
 
-        bool IsNotIgnored(ItemStatDefinition definition)
+        bool IsNotIgnored(StatDefinition definition)
         {
             return definition.TradePatterns.All(tp => !invariantStats.IgnoreStatIds.Contains(tp.Id));
         }

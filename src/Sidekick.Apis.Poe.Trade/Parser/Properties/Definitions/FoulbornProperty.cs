@@ -29,7 +29,7 @@ public class FoulbornProperty(
         if (game == GameType.PathOfExile2) return;
         if (item.Properties.Rarity != Rarity.Unique) return;
 
-        item.Properties.Foulborn = item.Stats.Any(x => x.MatchedPatterns.Any(y => y.Category == StatCategory.Mutated));
+        item.Properties.Foulborn = item.Stats.Any(x => x.Category == StatCategory.Mutated);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

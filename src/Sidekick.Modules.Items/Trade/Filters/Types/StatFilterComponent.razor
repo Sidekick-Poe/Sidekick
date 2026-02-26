@@ -1,6 +1,4 @@
-@using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@using Sidekick.Data.Items.Models
 @using Sidekick.Modules.Items.Trade.Localization
 
 <FilterWrapper Filter="Filter">
@@ -8,7 +6,7 @@
         <FormCheckbox Value="Filter.Checked"
                       ValueChanged="CheckedChanged">
             <ItemStatText Class="text-left"
-                          Category="Filter.Stat.MatchedPatterns.FirstOrDefault()?.Category">@Filter.Text</ItemStatText>
+                          Category="Filter.Stat.Category">@Filter.Text</ItemStatText>
         </FormCheckbox>
     </div>
 
@@ -18,11 +16,11 @@
         @if (Filter is
                  {
                      Checked: true,
-                     SecondaryCategory: not StatCategory.Undefined
+                     Stat.HasMultipleCategories: true,
                  })
         {
             <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
-                <ItemStatCategoryChip Category="Filter.PrimaryCategory"
+                <ItemStatCategoryChip Category="Filter.Stat.Category"
                                       Checked="Filter.UsePrimaryCategory"
                                       ShowCheckbox="true"
                                       OnClick="() => Filter.UsePrimaryCategory = !Filter.UsePrimaryCategory"/>
@@ -32,10 +30,7 @@
         @if (Filter is
                  {
                      Checked: true,
-                     Stat:
-                     {
-                         HasValues: true
-                     }
+                     Stat.HasValues: true,
                  })
         {
             <FilterRange Filter="Filter"

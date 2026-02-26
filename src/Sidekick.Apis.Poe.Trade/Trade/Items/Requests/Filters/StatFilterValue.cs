@@ -28,7 +28,7 @@ public class StatFilterValue
 
     public StatFilterValue(StatFilter filter)
     {
-        Option = filter.Stat.OptionValue;
+        Option = filter.Stat.OptionId;
         Min = filter.Min;
         Max = filter.Max;
     }

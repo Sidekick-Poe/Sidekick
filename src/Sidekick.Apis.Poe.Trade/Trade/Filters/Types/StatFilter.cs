@@ -65,20 +65,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         Text = stat.Text;
 
         DefaultAutoSelect = GetDefault(game);
-
-        var categories = stat.MatchedPatterns.Select(x => x.Category).Distinct().ToList();
-        if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))
-        {
-            PrimaryCategory = categories.FirstOrDefault(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted);
-            SecondaryCategory = categories.FirstOrDefault(x => x == StatCategory.Explicit);
-            UsePrimaryCategory = PrimaryCategory is StatCategory.Fractured;
-        }
-        else
-        {
-            UsePrimaryCategory = false;
-            PrimaryCategory = Stat.MatchedPatterns.FirstOrDefault()?.Category ?? StatCategory.Undefined;
-            SecondaryCategory = StatCategory.Undefined;
-        }
+        UsePrimaryCategory = stat.Category is StatCategory.Fractured;
     }
 
     public override async Task<AutoSelectResult?> Initialize(Item item, ISettingsService settingsService)
@@ -96,10 +83,6 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
 
     public bool UsePrimaryCategory { get; set; }
 
-    public StatCategory PrimaryCategory { get; init; }
-
-    public StatCategory SecondaryCategory { get; init; }
-
     public double? Min { get; set; }
 
     public double? Max { get; set; }
@@ -115,24 +98,24 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             return;
         }
 
-        if (Stat.MatchedPatterns.Count == 1)
+        var stats = Stat.TradePatterns.ToList();
+        if (stats.Count == 1)
         {
             query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
             {
-                Id = Stat.MatchedPatterns.First().Id,
+                Id = stats.First().Id,
                 Value = new StatFilterValue(this),
             });
         }
         else
         {
-            var stats = Stat.MatchedPatterns.ToList();
             if (UsePrimaryCategory)
             {
-                stats = stats.Where(x => x.Category == PrimaryCategory).ToList();
+                stats = stats.Where(x => x.Category == Stat.Category).ToList();
             }
-            else if (SecondaryCategory != StatCategory.Undefined)
+            else if (stats.Any(x => x.Category == StatCategory.Explicit))
             {
-                stats = stats.Where(x => x.Category == SecondaryCategory).ToList();
+                stats = stats.Where(x => x.Category == StatCategory.Explicit).ToList();
             }
 
             var countGroup = query.GetOrCreateStatGroup(StatType.Count);

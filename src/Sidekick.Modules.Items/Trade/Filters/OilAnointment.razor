@@ -40,7 +40,7 @@
             return;
         }
 
-        if (Filter.Stat.MatchedPatterns.FirstOrDefault()?.Category == StatCategory.Enchant && CurrentGameLanguage.IsEnglish())
+        if (Filter.Stat.Category == StatCategory.Enchant && CurrentGameLanguage.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Stat);
 

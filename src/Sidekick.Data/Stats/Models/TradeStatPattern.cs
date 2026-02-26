@@ -1,14 +1,17 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using Sidekick.Data.Items.Models;
 namespace Sidekick.Data.Stats.Models;
 
-public class ItemStatGamePattern
+public class TradeStatPattern
 {
-    public bool Negate { get; set; }
+    public required string Id { get; set; }
 
     public required string Text { get; set; }
 
-    public int? Option { get; set; }
+    public required StatCategory Category { get; set; }
+
+    public StatOption? Option { get; set; }
 
     [JsonIgnore]
     public required Regex Pattern { get; set; }
@@ -25,7 +28,4 @@ public class ItemStatGamePattern
             Pattern = new Regex(value);
         }
     }
-
-    [JsonIgnore]
-    public int LineCount => Text.Split('\n').Length;
 }

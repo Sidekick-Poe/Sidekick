@@ -39,7 +39,7 @@ public class ClusterJewelPassiveCountProperty(
                 continue;
             }
 
-            foreach (var stat in line.MatchedPatterns)
+            foreach (var stat in line.TradePatterns)
             {
                 if (stat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId)
                 {
@@ -55,16 +55,16 @@ public class ClusterJewelPassiveCountProperty(
     {
         foreach (var line in lines)
         {
-            if (!line.OptionValue.HasValue)
+            if (!line.OptionId.HasValue)
             {
                 continue;
             }
 
-            foreach (var apiStat in line.MatchedPatterns)
+            foreach (var stat in line.TradePatterns)
             {
-                if (apiStat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId)
+                if (stat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId)
                 {
-                    return apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[line.OptionValue.Value].Replace("\n", ", ");
+                    return apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[line.OptionId.Value].Replace("\n", ", ");
                 }
             }
         }

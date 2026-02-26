@@ -2,15 +2,13 @@
 using System.Text.RegularExpressions;
 namespace Sidekick.Data.Stats.Models;
 
-public class ItemStatTradePattern
+public class GameStatPattern
 {
-    public required string Id { get; set; }
+    public bool Negate { get; set; }
 
     public required string Text { get; set; }
 
-    public required string Type { get; set; }
-
-    public ItemStatOption? Option { get; set; }
+    public int? Option { get; set; }
 
     [JsonIgnore]
     public required Regex Pattern { get; set; }
@@ -27,4 +25,7 @@ public class ItemStatTradePattern
             Pattern = new Regex(value);
         }
     }
+
+    [JsonIgnore]
+    public int LineCount => Text.Split('\n').Length;
 }
