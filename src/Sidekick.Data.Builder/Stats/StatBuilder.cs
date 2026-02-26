@@ -34,7 +34,7 @@ public class StatBuilder(
         definitions.AddRange(await BuildTradeStats(game, language, definitions));
         definitions = await RemoveIgnoredStats(game, definitions);
 
-        await dataProvider.Write(game, $"items/stats.{language.Code}.json", definitions);
+        await dataProvider.Write(game, $"stats/{language.Code}.json", definitions);
     }
 
     private async Task<List<StatDefinition>> BuildGameStats(GameType game, IGameLanguage language)
