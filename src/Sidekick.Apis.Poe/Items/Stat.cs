@@ -39,21 +39,30 @@ public class Stat(StatCategory category, string text)
                 var handledIds = new List<string>();
                 foreach (var matchedPattern in MatchedPatterns)
                 {
-                    if (matchedPattern.GamePattern != null)
+                    if (matchedPattern.GamePattern?.Option != null)
+                    {
+                        var tradePattern = matchedPattern.Definition.TradePatterns.FirstOrDefault(x => x.Option?.Id == matchedPattern.GamePattern.Option);
+                        if (tradePattern != null)
+                        {
+                            handledIds.Add(tradePattern.Id);
+                            yield return tradePattern;
+                        }
+                    }
+                    else if (matchedPattern.GamePattern != null)
                     {
                         foreach (var tradePattern in matchedPattern.Definition.TradePatterns)
                         {
                             if (handledIds.Contains(tradePattern.Id)) continue;
 
-                            if (OptionId != null)
+                            if (matchedPattern.GamePattern.Option != null)
                             {
-                                if (OptionId == tradePattern.Option?.Id)
+                                if (matchedPattern.GamePattern.Option == tradePattern.Option?.Id)
                                 {
                                     handledIds.Add(tradePattern.Id);
                                     yield return tradePattern;
                                 }
                             }
-                            else if (tradePattern.Category == StatCategory.Explicit ||  tradePattern.Category == Category)
+                            else if (tradePattern.Category == StatCategory.Explicit || tradePattern.Category == Category)
                             {
                                 handledIds.Add(tradePattern.Id);
                                 yield return tradePattern;
@@ -63,7 +72,7 @@ public class Stat(StatCategory category, string text)
 
                     if (matchedPattern.TradePattern != null && !handledIds.Contains(matchedPattern.TradePattern.Id))
                     {
-                        if (matchedPattern.TradePattern.Category == StatCategory.Explicit ||  matchedPattern.TradePattern.Category == Category)
+                        if (matchedPattern.TradePattern.Category == StatCategory.Explicit || matchedPattern.TradePattern.Category == Category)
                         {
                             handledIds.Add(matchedPattern.TradePattern.Id);
                             yield return matchedPattern.TradePattern;
@@ -79,7 +88,7 @@ public class Stat(StatCategory category, string text)
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
     /// </summary>
-    public List<double> Values { get; } = [];
+    public List<double> Values { get; set; } = [];
 
     /// <summary>
     /// Gets the average value of the numerical values associated with the modifier line.
@@ -88,14 +97,9 @@ public class Stat(StatCategory category, string text)
     public double AverageValue => Values.Count > 0 ? Values.Average() : 0;
 
     /// <summary>
-    ///     Gets or sets the option value of this modifier.
-    /// </summary>
-    public int? OptionId { get; set; }
-
-    /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => OptionId == null && Values.Count > 0;
+    public bool HasValues => TradePatterns.All(x => x.Option == null) && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 

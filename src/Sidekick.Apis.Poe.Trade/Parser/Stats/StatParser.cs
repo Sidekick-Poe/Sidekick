@@ -1,6 +1,6 @@
+using System.Collections.Immutable;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using FuzzySharp;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
@@ -9,12 +9,9 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Items;
-using Sidekick.Data.Items.Models;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.Stats.Models;
-using Sidekick.Data.Trade.Models;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
 public class StatParser
@@ -62,20 +59,20 @@ public class StatParser
             {
                 if (block.Lines[lineIndex].Parsed) continue;
 
-                var definitions = Match(block, lineIndex).ToList();
-                if (definitions.Count is 0) continue;
+                var matchedPatterns = Match(block, lineIndex).ToList();
+                if (matchedPatterns.Count is 0) continue;
 
-                var maxLineCount = definitions.Max(x => x.LineCount);
+                var maxLineCount = matchedPatterns.Select(x => x.GamePattern?.LineCount ?? 0).Max();
                 var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
                 lines.ForEach(x => x.Parsed = true);
 
-                yield return CreateStat(block, lines, definitions);
+                yield return CreateStat(block, lines, matchedPatterns);
             }
         }
 
         yield break;
 
-        IEnumerable<StatDefinition> Match(TextBlock block, int lineIndex)
+        IEnumerable<StatMatchedPattern> Match(TextBlock block, int lineIndex)
         {
             foreach (var definition in Definitions)
             {
@@ -89,112 +86,47 @@ public class StatParser
                     if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
                     {
                         definitionMatched = true;
-                        yield return definition;
+                        yield return new StatMatchedPattern()
+                        {
+                            Definition = definition,
+                            GamePattern = pattern,
+                        };
                     }
 
                     // Single line stats
                     if (!definitionMatched && pattern.Pattern.IsMatch(block.Lines[lineIndex].Text))
                     {
                         definitionMatched = true;
-                        yield return definition;
-                    }
-
-                    if (definitionMatched)
-                    {
-                        var lines = block.Lines.Skip(lineIndex).Take(pattern.LineCount).ToList();
-                        lines.ForEach(x => x.Parsed = true);
-                    }
-                }
-            }
-        }
-
-    }
-
-    private Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions)
-    {
-        var text = string.Join('\n', lines.Select(x => x.Text));
-        var category = text.ParseCategory();
-
-        var stat = new Stat(text.RemoveCategory())
-        {
-            BlockIndex = block.Index,
-            LineIndex = lines.First().Index,
-        };
-
-        var fuzzyLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, text);
-        var filteredDefinitions = definitions
-            .DistinctBy(x => x.Id)
-            .OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText))
-            .ToList();
-
-        if (filteredDefinitions.Any(x => x.Category == StatCategory.Pseudo)
-            && filteredDefinitions.Any(x => x.Category != StatCategory.Pseudo))
-        {
-            filteredDefinitions = filteredDefinitions.Where(x => x.Category != StatCategory.Pseudo).ToList();
-        }
-
-        foreach (var definition in filteredDefinitions)
-        {
-            stat.MatchedPatterns.Add(new(text: definition.Text)
-            {
-                Id = definition.Id,
-                Category = category switch
-                {
-                    StatCategory.Mutated => StatCategory.Mutated,
-                    _ => definition.Category,
-                },
-            });
-
-            if (definition.SecondaryDefinitions != null)
-            {
-                foreach (var secondaryDefinitionId in definition.SecondaryDefinitions)
-                {
-                    var secondaryDefinition = apiStatsProvider.Definitions.FirstOrDefault(x => x.Id == secondaryDefinitionId);
-                    if (secondaryDefinition == null) continue;
-
-                    stat.MatchedPatterns.Add(new(text: secondaryDefinition.Text)
-                    {
-                        Id = secondaryDefinition.Id,
-                        Category = category switch
+                        yield return new StatMatchedPattern()
                         {
-                            StatCategory.Mutated => StatCategory.Mutated,
-                            _ => secondaryDefinition.Category,
-                        },
-                    });
+                            Definition = definition,
+                            GamePattern = pattern,
+                        };
+                    }
                 }
             }
         }
 
-        ParseValues(stat, filteredDefinitions.FirstOrDefault());
-
-        var originallyPositive = false;
-        var negative = NegativePattern?.IsMatch(text) ?? false;
-        foreach (var definition in definitions)
+        Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatMatchedPattern> matchedPatterns)
         {
-            originallyPositive |= PositivePattern?.IsMatch(definition.Text) ?? false;
-        }
+            var text = string.Join('\n', lines.Select(x => x.Text));
+            var category = text.ParseCategory();
 
-        if (negative && originallyPositive)
-        {
-            var nagativeValues = stat.Values.Select(x => x * -1).ToList();
-            stat.Values.Clear();
-            stat.Values.AddRange(nagativeValues);
-        }
+            var stat = new Stat(category, text){
+                BlockIndex = block.Index,
+                LineIndex = lines.First().Index,
+                MatchedPatterns = matchedPatterns,
+            };
 
-        return stat;
+            stat.Values = GetValues(stat).ToList();
+            return stat;
+        }
     }
 
-    private static void ParseValues(Stat stat)
+    private IEnumerable<double> GetValues(Stat stat)
     {
-        foreach (var matchedPattern in stat.GetTradePatterns())
+        foreach (var matchedPattern in stat.TradePatterns)
         {
-            if (matchedPattern.Option != null)
-            {
-                stat.OptionId = matchedPattern.Option.Id;
-                continue;
-            }
-
-            // We try to parse the value from the line itself, if that fails we try to parse it from finding numbers in the line.
             var patternMatch = matchedPattern.Pattern.Match(stat.Text);
             if (patternMatch.Success)
             {
@@ -204,7 +136,9 @@ public class StatParser
                     {
                         if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
                         {
-                            stat.Values.Add(parsedValue);
+                            // TODO negative values
+
+                            yield return parsedValue;
                         }
                     }
                 }
