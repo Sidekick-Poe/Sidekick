@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.TradeStats;
+using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Data.Items.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -9,7 +9,7 @@ public class ClusterJewelPassiveCountProperty(
     GameType game,
     IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private readonly ITradeStatsProvider tradeStatsProvider = serviceProvider.GetRequiredService<ITradeStatsProvider>();
+    private readonly IApiStatsProvider apiStatsProvider = serviceProvider.GetRequiredService<IApiStatsProvider>();
 
     public override string Label => "Cluster Jewel Passives";
 
@@ -39,9 +39,9 @@ public class ClusterJewelPassiveCountProperty(
                 continue;
             }
 
-            foreach (var pattern in line.MatchedPatterns)
+            foreach (var definition in line.Definitions)
             {
-                if (pattern.TradeIds.Contains(tradeStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId))
+                if (definition.TradeIds.Contains(apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId))
                 {
                     return (int)line.AverageValue;
                 }
@@ -53,13 +53,13 @@ public class ClusterJewelPassiveCountProperty(
 
     private string? ParseGrantTexts(List<Stat> lines)
     {
-        foreach (var pattern in lines.SelectMany(x => x.MatchedPatterns))
+        foreach (var definition in lines.SelectMany(x => x.Definitions))
         {
-            if (pattern.Option == null) continue;
+            if (definition.Option == null) continue;
 
-            if (pattern.TradeIds.Contains(tradeStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId))
+            if (definition.TradeIds.Contains(apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId))
             {
-                return tradeStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[pattern.Option.Id].Replace("\n", ", ");
+                return apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[definition.Option.Id].Replace("\n", ", ");
             }
         }
 

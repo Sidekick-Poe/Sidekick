@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using Sidekick.Data.Items.Models;
 namespace Sidekick.Data.Stats.Models;
 
-public class StatPattern
+public class StatDefinition
 {
     public required StatSource Source { get; set; }
 

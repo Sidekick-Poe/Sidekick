@@ -26,7 +26,7 @@ public class StatFilterValue
 
     public StatFilterValue(StatFilter filter)
     {
-        Option = filter.Stat.MatchedPatterns.FirstOrDefault(x => x.Option != null)?.Option!.Id;
+        Option = filter.Stat.Definitions.FirstOrDefault(x => x.Option != null)?.Option!.Id;
         Min = filter.Min;
         Max = filter.Max;
     }

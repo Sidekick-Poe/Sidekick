@@ -17,7 +17,7 @@ public static class AssertExtensions
     public static void AssertDoesNotHaveModifier(this Item actual, StatCategory expectedCategory, string expectedText)
     {
         var actualModifier = actual.Stats
-            .SelectMany(stat => stat.MatchedPatterns.Select(pattern => new
+            .SelectMany(stat => stat.Definitions.Select(pattern => new
             {
                 Stat = stat,
                 Pattern = pattern,

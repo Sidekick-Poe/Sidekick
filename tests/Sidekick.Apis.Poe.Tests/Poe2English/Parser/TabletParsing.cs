@@ -34,7 +34,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
         Assert.Equal(82, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Empowers the Map Boss of a Map \n# use remaining", 10);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Gold found in your Maps", 33);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Gold found in your Maps (Gold Piles)", 33);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Map Bosses grant #% increased Experience", 53);
     }
 }

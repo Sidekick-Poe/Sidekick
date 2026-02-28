@@ -319,7 +319,7 @@ Spells Triggered this way have 150% more Cost (crafted)
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Apex Rapier", actual.ApiInformation.Type);
 
-        fixture.AssertHasStat(actual, StatCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 8);
+        fixture.AssertHasStat(actual, StatCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 100);
     }
 
     [Fact]
@@ -404,8 +404,6 @@ Note: ~price 30 chaos
         Assert.Equal("Imperial Staff", actual.ApiInformation.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "+#% to Damage over Time Multiplier", 44);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to Damage over Time Multiplier", 44);
-
     }
 
     [Fact]

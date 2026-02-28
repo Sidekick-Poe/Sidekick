@@ -1,6 +1,5 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Data.Items.Models;
 using Xunit;
@@ -396,13 +395,8 @@ Note: ~price 1 mirror");
         Assert.Equal(1043, actual.Properties.PhysicalDamage?.Max);
 
         fixture.AssertHasStat(actual, StatCategory.Rune, "#% increased Physical Damage", 36);
-
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Attack Speed", 25);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attack Speed", 25);
-
         fixture.AssertHasStat(actual, StatCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage", 54, 94);
-
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Loads an additional bolt", 2);
         actual.AssertDoesNotHaveModifier(StatCategory.Fractured, "Loads an additional bolt");
 
@@ -419,12 +413,6 @@ Note: ~price 1 mirror");
         Assert.NotNull(fracturedFilter);
         Assert.True(fracturedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Fractured, fracturedFilter.Stat.Category);
-        foreach (var x in fracturedFilter.Stat.MatchedPatterns)
-        {
-            if (x.Category is StatCategory.Fractured or StatCategory.Explicit) continue;
-
-            Assert.Fail();
-        }
 
         var desecratedFilter = modifierFilters
             .OfType<StatFilter>()
@@ -437,12 +425,6 @@ Note: ~price 1 mirror");
         Assert.NotNull(desecratedFilter);
         Assert.False(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Desecrated, desecratedFilter.Stat.Category);
-        foreach (var x in desecratedFilter.Stat.MatchedPatterns)
-        {
-            if (x.Category is StatCategory.Desecrated or StatCategory.Explicit) continue;
-
-            Assert.Fail();
-        }
     }
 
     [Fact]

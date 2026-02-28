@@ -30,8 +30,8 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas
         Assert.Equal("Urn Relic", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
 
-        fixture.AssertHasStat(actual, StatCategory.Sanctum, "Fountains have #% chance to grant double Sacred Water", 6);
-        fixture.AssertHasStat(actual, StatCategory.Sanctum, "#% increased Honour restored", 9);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Fountains have #% chance to grant double Sacred Water", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Honour restored", 9);
     }
 
     [Fact]
@@ -55,7 +55,7 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas");
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
-        fixture.AssertHasStat(actual, StatCategory.Sanctum, "#% increased Defences", 35);
-        fixture.AssertHasStat(actual, StatCategory.Sanctum, "# metre to Dodge Roll distance", 0.7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Defences", 35);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# metre to Dodge Roll distance", 0.7);
     }
 }

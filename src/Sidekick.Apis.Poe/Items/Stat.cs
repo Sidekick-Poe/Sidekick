@@ -15,14 +15,14 @@ public class Stat(StatCategory category, string text)
 
     public StatCategory Category { get; } = category;
 
-    public List<StatPattern> MatchedPatterns { get; set; } = [];
+    public List<StatDefinition> Definitions { get; set; } = [];
 
     public bool HasMultipleCategories
     {
         get
         {
-            if (MatchedPatterns.Any(x => x.Category == StatCategory.Undefined)) return true;
-            return MatchedPatterns.DistinctBy(x => x.Category).Count() > 1;
+            if (Definitions.Any(x => x.Category == StatCategory.Undefined)) return true;
+            return Definitions.DistinctBy(x => x.Category).Count() > 1;
         }
     }
 
@@ -40,14 +40,13 @@ public class Stat(StatCategory category, string text)
     /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => MatchedPatterns.All(x => x.Option == null) && Values.Count > 0;
+    public bool HasValues => Definitions.All(x => x.Option == null) && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 
     public int LineIndex { get; init; }
 
-    [Obsolete]
-    public bool MatchedFuzzily { get; }
+    public bool MatchedFuzzily { get; init; }
 
     /// <inheritdoc />
     public override string ToString() => Text;

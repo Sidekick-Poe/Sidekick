@@ -93,12 +93,12 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!Checked || Stat.MatchedPatterns.Count == 0)
+        if (!Checked || Stat.Definitions.Count == 0)
         {
             return;
         }
 
-        var stats = Stat.MatchedPatterns.ToList();
+        var stats = Stat.Definitions.ToList();
         if (stats.Count > 1)
         {
             if (UsePrimaryCategory)

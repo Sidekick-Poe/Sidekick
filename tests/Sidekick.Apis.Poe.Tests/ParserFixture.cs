@@ -6,13 +6,13 @@ using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.TradeStats;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -39,7 +39,7 @@ public abstract class ParserFixture : IAsyncLifetime
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
-    public ITradeStatsProvider TradeStatsProvider { get; private set; } = null!;
+    public IApiStatsProvider ApiStatsProvider { get; private set; } = null!;
     public IStatParser StatParser { get; private set; } = null!;
     private TestContext TestContext { get; set; } = null!;
 
@@ -85,7 +85,7 @@ public abstract class ParserFixture : IAsyncLifetime
         CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
-        TradeStatsProvider = TestContext.Services.GetRequiredService<ITradeStatsProvider>();
+        ApiStatsProvider = TestContext.Services.GetRequiredService<IApiStatsProvider>();
         StatParser = TestContext.Services.GetRequiredService<IStatParser>();
     }
 
@@ -120,35 +120,54 @@ public abstract class ParserFixture : IAsyncLifetime
         AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
     }
 
-    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? optionText, params double[] expectedValues)
+    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
     {
-#if DEBUG
-        var texts = (from stat in actual.Stats
-            from pattern in stat.MatchedPatterns
-            from tradeId in pattern.TradeIds
-            let tradeDefinition = TradeStatsProvider.Definitions[tradeId]
-            let option = tradeDefinition.Options?.FirstOrDefault(x => x.Id == pattern.Option?.Id)
-            select $"{stat.Category} - {tradeDefinition.Text} - {option?.Text}").ToList();
-#endif
-
-        var actualStat = (from stat in actual.Stats
-            from pattern in stat.MatchedPatterns
-            from tradeId in pattern.TradeIds
-            let tradeDefinition = TradeStatsProvider.Definitions[tradeId]
-            let option = tradeDefinition.Options?.FirstOrDefault(x => x.Id == pattern.Option?.Id)
-            where stat.Category == expectedCategory && tradeDefinition.Text == expectedText && option?.Text == optionText
-            select stat).FirstOrDefault();
-
+        var actualStat = FindStat();
         Assert.NotNull(actualStat);
 
-        if (expectedValues.Length != 0)
+        if (expectedValues.Length == 0) return;
+
+        for (var i = 0; i < expectedValues.Length; i++)
         {
-            for (var i = 0; i < expectedValues.Length; i++)
+            AssertExtensions.AssertCloseEnough(expectedValues[i], actualStat?.Values[i]);
+        }
+
+        AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
+
+        return;
+
+        Stat? FindStat()
+        {
+            foreach (var stat in actual.Stats)
             {
-                AssertExtensions.AssertCloseEnough(expectedValues[i], actualStat?.Values[i]);
+                if (stat.Category != expectedCategory) continue;
+
+                foreach (var definition in stat.Definitions)
+                {
+                    foreach (var tradeId in definition.TradeIds)
+                    {
+                        var tradeStats = ApiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
+                        if (tradeStats == null) continue;
+                        foreach (var tradeStat in tradeStats)
+                        {
+                            if (tradeStat.Text != expectedText) continue;
+                            if (expectedOptionText == null) return stat;
+
+                            if (definition.Option == null) continue;
+                            if (tradeStat.Options == null) continue;
+                            foreach (var option in tradeStat.Options)
+                            {
+                                if (definition.Option.Id != option.Id) continue;
+                                if (option.Text != expectedOptionText) continue;
+
+                                return stat;
+                            }
+                        }
+                    }
+                }
             }
 
-            AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
+            return null;
         }
     }
 

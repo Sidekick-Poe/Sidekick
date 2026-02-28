@@ -68,7 +68,7 @@ public abstract class PseudoDefinition
         {
             foreach (var definition in Definitions)
             {
-                if (line.MatchedPatterns.All(x => !x.TradeIds.Contains(definition.Id))) continue;
+                if (line.Definitions.All(x => !x.TradeIds.Contains(definition.Id))) continue;
 
                 result.Value += line.AverageValue * definition.Multiplier;
                 break;
@@ -88,9 +88,9 @@ public abstract class PseudoDefinition
         {
             foreach (var line in lines)
             {
-                foreach (var pattern in line.MatchedPatterns)
+                foreach (var lineDefinitions in line.Definitions)
                 {
-                    if (pattern.TradeIds.Contains(definition.Id)) return true;
+                    if (lineDefinitions.TradeIds.Contains(definition.Id)) return true;
                 }
             }
         }

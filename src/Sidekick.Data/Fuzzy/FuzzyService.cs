@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Romanization;
+using Sidekick.Data.Extensions;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Languages.Implementations;
 namespace Sidekick.Data.Fuzzy;
@@ -8,14 +9,14 @@ public class FuzzyService : IFuzzyService
 {
     private readonly Regex cleanFuzzyPattern = new("[-+0-9%#]");
     private readonly Regex trimPattern = new(@"\s+");
+    private readonly Regex parenthesesPattern = new(@"\ *\([^\)]*\)");
 
     public string CleanFuzzyText(IGameLanguage language, string text)
     {
-        if (string.IsNullOrEmpty(text))
-        {
-            return text;
-        }
+        if (string.IsNullOrEmpty(text)) return text;
 
+        text = text.RemoveSquareBrackets();
+        text = parenthesesPattern.Replace(text, string.Empty);
         text = cleanFuzzyPattern.Replace(text, string.Empty);
         text = trimPattern.Replace(text, " ").Trim();
 
