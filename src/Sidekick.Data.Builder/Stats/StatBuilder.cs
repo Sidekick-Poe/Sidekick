@@ -4,18 +4,16 @@ using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Poe1;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Stats.Models;
+using Sidekick.Data.Stats;
 using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
-using Sidekick.Data.Trade.Models.Raw;
+using Sidekick.Data.Trade.Raw;
 namespace Sidekick.Data.Builder.Stats;
 
 public class StatBuilder(
-    TradeDataProvider tradeDataProvider,
     DataProvider dataProvider,
-    RepoeDataProvider repoeDataProvider,
+    RepoeDownloader repoeDownloader,
     IFuzzyService fuzzyService)
 {
     private record TradeReplaceEntry(Regex Pattern, string Replacement);
@@ -44,17 +42,17 @@ public class StatBuilder(
         var definitions = await BuildGameStats(game, language);
         definitions.AddRange(await BuildTradeStats(game, language, definitions));
 
-        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, $"trade/stats.invariant.json");
+        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, DataType.TradeStats);
         ComputeSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds);
         RemoveSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds, x => x.Option?.Id == 2);
         ComputeSpecialPseudoPattern(definitions, invariantStats.LogbookFactionStatIds);
 
-        await dataProvider.Write(game, $"stats/{language.Code}.json", definitions);
+        await dataProvider.Write(game, DataType.Stats, language, definitions);
     }
 
     private async Task<List<StatDefinition>> BuildGameStats(GameType game, IGameLanguage language)
     {
-        var gameStats = await repoeDataProvider.GetStatTranslations(game, language.Code);
+        var gameStats = await repoeDownloader.ReadStatTranslations(game, language.Code);
         var definitions = new List<StatDefinition>();
         foreach (var gameStat in gameStats)
         {
@@ -66,8 +64,8 @@ public class StatBuilder(
 
     private async Task<List<StatDefinition>> BuildTradeStats(GameType game, IGameLanguage language, List<StatDefinition> definitions)
     {
-        var apiCategories = await tradeDataProvider.GetRawStats(game, language.Code);
-        var apiStats = apiCategories.SelectMany(x => x.Entries);
+        var apiCategories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, language);
+        var apiStats = apiCategories.Result.SelectMany(x => x.Entries);
 
         var result = new List<StatDefinition>();
         foreach (var apiStat in apiStats)

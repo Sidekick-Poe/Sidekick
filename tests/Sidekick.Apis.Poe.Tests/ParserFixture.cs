@@ -21,7 +21,7 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Xunit;
 

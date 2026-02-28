@@ -1,4 +1,4 @@
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 namespace Sidekick.Data.Languages;
 
 public interface IGameLanguage

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Exceptions;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Tests.Mocks;
 

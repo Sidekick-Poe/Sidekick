@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Exceptions;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 namespace Sidekick.Modules.Items.Trade;
 
 public class TradeService

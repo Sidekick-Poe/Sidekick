@@ -1,6 +1,6 @@
 ﻿using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Initialization;
-using Sidekick.Data.Ninja.Models;
+using Sidekick.Data.Ninja;
 namespace Sidekick.Apis.PoeNinja.Items;
 
 public interface INinjaItemProvider : IInitializableService

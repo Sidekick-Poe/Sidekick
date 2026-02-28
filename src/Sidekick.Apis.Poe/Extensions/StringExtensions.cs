@@ -1,4 +1,4 @@
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Extensions;
 
 /// <summary>

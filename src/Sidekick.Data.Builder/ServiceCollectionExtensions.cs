@@ -14,7 +14,6 @@ public static class ServiceCollectionExtensions
     {
         services.TryAddSingleton<NinjaDownloader>();
 
-        services.TryAddSingleton<RepoeDataProvider>();
         services.TryAddSingleton<RepoeDownloader>();
 
         services.TryAddSingleton<StatBuilder>();

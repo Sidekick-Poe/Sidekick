@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 

@@ -11,9 +11,9 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Stats.Models;
+using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -36,7 +36,7 @@ public class StatParser
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Definitions = await dataProvider.Read<List<StatDefinition>>(game, $"stats/{currentGameLanguage.Language.Code}.json");
+        Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
     }
 
     /// <inheritdoc/>

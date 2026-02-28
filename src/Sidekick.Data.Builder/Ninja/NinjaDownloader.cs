@@ -3,7 +3,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Enums;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
 
 namespace Sidekick.Data.Builder.Ninja;
@@ -11,7 +12,7 @@ namespace Sidekick.Data.Builder.Ninja;
 public class NinjaDownloader(
     ILogger<NinjaDownloader> logger,
     DataProvider dataProvider,
-    TradeDataProvider tradeDataProvider)
+    IGameLanguageProvider languageProvider)
 {
     private static readonly List<NinjaPage> Poe1Pages =
     [
@@ -67,8 +68,6 @@ public class NinjaDownloader(
         new("Breach", "breach-catalyst", true, false)
     ];
 
-    private static string GetFileName(string type) => $"{type}.json";
-
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -78,11 +77,11 @@ public class NinjaDownloader(
 
     public async Task Download()
     {
-        var poe1Leagues = await tradeDataProvider.GetLeagues(GameType.PathOfExile1);
+        var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.TradeLeagues, languageProvider.InvariantLanguage);
         await DownloadForGame(GameType.PathOfExile1,
             poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
 
-        var poe2Leagues = await tradeDataProvider.GetLeagues(GameType.PathOfExile2);
+        var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.TradeLeagues, languageProvider.InvariantLanguage);
         await DownloadForGame(GameType.PathOfExile2,
             poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
 
@@ -135,7 +134,7 @@ public class NinjaDownloader(
                 }
             }));
 
-            await dataProvider.Write(game, $"ninja/{GetFileName("exchange")}", exchangeItems);
+            await dataProvider.Write(game, DataType.NinjaExchange, languageProvider.InvariantLanguage, exchangeItems);
         }
 
         async Task DownloadStash(GameType game, string league)
@@ -181,7 +180,7 @@ public class NinjaDownloader(
                 }
             }));
 
-            await dataProvider.Write(game, $"ninja/{GetFileName("stash")}", stashItems);
+            await dataProvider.Write(game, DataType.NinjaStash, languageProvider.InvariantLanguage, stashItems);
         }
     }
 

@@ -1,8 +1,9 @@
 using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public class ApiStatsProvider
@@ -26,8 +27,8 @@ public class ApiStatsProvider
     {
         var game = await settingsService.GetGame();
 
-        Definitions = await dataProvider.Read<List<TradeStatDefinition>>(game, $"trade/stats.{currentGameLanguage.Language.Code}.json");
-        InvariantStats = await dataProvider.Read<TradeInvariantStats>(game, $"trade/stats.invariant.json");
+        Definitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, currentGameLanguage.Language);
+        InvariantStats = await dataProvider.Read<TradeInvariantStats>(game, DataType.TradeStats);
 
         foreach (var definition in Definitions)
         {

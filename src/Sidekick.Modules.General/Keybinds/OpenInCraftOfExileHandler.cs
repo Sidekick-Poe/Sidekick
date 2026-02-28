@@ -4,7 +4,7 @@ using Sidekick.Common.Browser;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Modules.General.Keybinds;
 

@@ -1,15 +1,13 @@
 using Sidekick.Data.Extensions;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
-using Sidekick.Data.Trade.Models.Raw;
+using Sidekick.Data.Trade.Raw;
 
 namespace Sidekick.Data.Builder.Trade;
 
 public class TradeInvariantStatBuilder
 (
-    TradeDataProvider tradeDataProvider,
     IGameLanguageProvider gameLanguageProvider,
     DataProvider dataProvider
 )
@@ -22,8 +20,8 @@ public class TradeInvariantStatBuilder
 
     private async Task BuildForGame(GameType game)
     {
-        var categories = await tradeDataProvider.GetRawStats(game, gameLanguageProvider.InvariantLanguage.Code);
-        categories.ForEach(category =>
+        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, gameLanguageProvider.InvariantLanguage);
+        categories.Result.ForEach(category =>
         {
             category.Entries.ForEach(entry =>
             {
@@ -33,18 +31,18 @@ public class TradeInvariantStatBuilder
 
         var model = new TradeInvariantStats()
         {
-            IgnoreStatIds = GetIgnoreStatIds(categories).ToList(),
-            FireWeaponDamageIds = GetFireWeaponDamageIds(categories).ToList(),
-            ColdWeaponDamageIds = GetColdWeaponDamageIds(categories).ToList(),
-            LightningWeaponDamageIds = GetLightningWeaponDamageIds(categories).ToList(),
-            IncursionRoomStatIds = GetIncursionRooms(categories).ToList(),
-            LogbookFactionStatIds = GetLogbookFactions(categories).ToList(),
-            ClusterJewelSmallPassiveCountStatId = GetClusterPassiveCountId(categories),
-            ClusterJewelSmallPassiveGrantStatId = GetClusterGrantId(categories),
-            ClusterJewelSmallPassiveGrantOptions = GetClusterJewels(categories),
+            IgnoreStatIds = GetIgnoreStatIds(categories.Result).ToList(),
+            FireWeaponDamageIds = GetFireWeaponDamageIds(categories.Result).ToList(),
+            ColdWeaponDamageIds = GetColdWeaponDamageIds(categories.Result).ToList(),
+            LightningWeaponDamageIds = GetLightningWeaponDamageIds(categories.Result).ToList(),
+            IncursionRoomStatIds = GetIncursionRooms(categories.Result).ToList(),
+            LogbookFactionStatIds = GetLogbookFactions(categories.Result).ToList(),
+            ClusterJewelSmallPassiveCountStatId = GetClusterPassiveCountId(categories.Result),
+            ClusterJewelSmallPassiveGrantStatId = GetClusterGrantId(categories.Result),
+            ClusterJewelSmallPassiveGrantOptions = GetClusterJewels(categories.Result),
         };
 
-        await dataProvider.Write(game, $"trade/stats.invariant.json", model);
+        await dataProvider.Write(game, DataType.TradeStats, model);
     }
 
     private IEnumerable<string> GetIgnoreStatIds(List<RawTradeStatCategory> categories)

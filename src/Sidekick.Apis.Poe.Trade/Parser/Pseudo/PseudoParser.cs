@@ -7,9 +7,10 @@ using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Raw;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
@@ -18,7 +19,7 @@ public class PseudoParser
     IApiStatsProvider apiStatsProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
-    TradeDataProvider tradeDataProvider,
+    DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage
 ) : IPseudoParser
 {
@@ -43,8 +44,8 @@ public class PseudoParser
             new ManaDefinition(game),
         ]);
 
-        var categories = await tradeDataProvider.GetRawStats(game, currentGameLanguage.InvariantLanguage.Code);
-        categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
+        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, currentGameLanguage.InvariantLanguage);
+        categories.Result.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
 
         var pseudoDefinitions = apiStatsProvider.Definitions
             .Where(x => x.Category == StatCategory.Pseudo)
@@ -52,7 +53,7 @@ public class PseudoParser
 
         foreach (var definition in Definitions)
         {
-            definition.InitializeDefinition(categories, pseudoDefinitions);
+            definition.InitializeDefinition(categories.Result, pseudoDefinitions);
         }
     }
 

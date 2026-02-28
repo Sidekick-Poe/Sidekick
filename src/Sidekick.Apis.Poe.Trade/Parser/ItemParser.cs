@@ -9,7 +9,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;

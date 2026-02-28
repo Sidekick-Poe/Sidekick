@@ -12,7 +12,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Trade.Trade.Items;
 

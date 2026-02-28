@@ -1,16 +1,17 @@
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Exceptions;
+using Sidekick.Data;
 using Sidekick.Data.Builder.Trade;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public class LeagueProvider(
-    TradeDataProvider tradeDataProvider,
+    DataProvider dataProvider,
     TradeLeagueBuilder tradeLeagueBuilder,
+    IGameLanguageProvider languageProvider,
     ILogger<LeagueProvider> logger) : ILeagueProvider
 {
     public async Task<List<TradeLeague>> GetList(bool fromCache)
@@ -33,8 +34,8 @@ public class LeagueProvider(
 
         return
         [
-            ..await tradeDataProvider.GetLeagues(GameType.PathOfExile2),
-            ..await tradeDataProvider.GetLeagues(GameType.PathOfExile1),
+            ..await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.TradeLeagues, languageProvider.InvariantLanguage),
+            ..await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.TradeLeagues, languageProvider.InvariantLanguage),
         ];
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
-using Sidekick.Data.Items.Models;
+using Sidekick.Common.Enums;
+using Sidekick.Data.Builder.Repoe.Models.Poe1;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 namespace Sidekick.Data.Builder.Repoe;
 
@@ -9,7 +11,7 @@ public class RepoeDownloader(
 {
     private sealed record RepoeLanguageInfo(string Code, string LanguageSlug);
 
-    public sealed record RepoeFile(string FileName, string FilePath);
+    private sealed record RepoeFile(string FileName, string FilePath);
 
     private static List<RepoeLanguageInfo> Languages { get; } =
     [
@@ -25,12 +27,12 @@ public class RepoeDownloader(
         new("zh", "Traditional Chinese/"),
     ];
 
-    public static List<RepoeFile> Poe1Files { get; } =
+    private static List<RepoeFile> Poe1Files { get; } =
     [
         new("stat_translations", "stat_translations.min.json"),
     ];
 
-    public static List<RepoeFile> Poe2Files { get; } =
+    private static List<RepoeFile> Poe2Files { get; } =
     [
         new("stat_translations.advanced", "stat_translations/advanced_mod_stat_descriptions.min.json"),
         new("stat_translations.endgamemap", "stat_translations/endgame_map_stat_descriptions.min.json"),
@@ -45,6 +47,18 @@ public class RepoeDownloader(
 
     private static string GetFileName(IGameLanguage language, string path)
         => $"{path}.{language.Code}.json";
+
+    public async Task<List<RepoeStatTranslation>> ReadStatTranslations(GameType game, string language)
+    {
+        var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
+        var result = new List<RepoeStatTranslation>();
+        foreach (var file in files)
+        {
+            result.AddRange(await dataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/repoe/{file.FileName}.{language}.json"));
+        }
+
+        return result;
+    }
 
     public async Task Download(IGameLanguage language)
     {
@@ -83,7 +97,7 @@ public class RepoeDownloader(
             logger.LogInformation($"GET {url}");
             using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
-            await dataProvider.Write(game, $"repoe/{fileName}", await response.Content.ReadAsStreamAsync());
+            await dataProvider.Write($"{game.GetValueAttribute()}/repoe/{fileName}", await response.Content.ReadAsStreamAsync());
         }
         catch (Exception ex)
         {

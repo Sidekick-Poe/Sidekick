@@ -1,15 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Extensions;
-using Sidekick.Data.Items.Models;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
-using Sidekick.Data.Trade.Models.Raw;
+using Sidekick.Data.Trade.Raw;
 namespace Sidekick.Data.Builder.Trade;
 
 public class TradeStatBuilder(
-    TradeDataProvider tradeDataProvider,
     DataProvider dataProvider)
 {
     private readonly Regex parseHashPattern = new("\\#");
@@ -23,12 +21,12 @@ public class TradeStatBuilder(
 
     private async Task Build(GameType game, IGameLanguage language)
     {
-        var apiCategories = await tradeDataProvider.GetRawStats(game, language.Code);
-        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, $"trade/stats.invariant.json");
+        var apiCategories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, language);
+        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, DataType.TradeInvariantStats);
 
         var definitions = new List<TradeStatDefinition>();
 
-        foreach (var apiCategory in apiCategories)
+        foreach (var apiCategory in apiCategories.Result)
         {
             var statCategory = GetStatCategory(apiCategory.Entries[0].Id);
             if (apiCategory.Entries.Count == 0 || statCategory == StatCategory.Undefined) continue;
@@ -42,7 +40,7 @@ public class TradeStatBuilder(
             }
         }
 
-        await dataProvider.Write(game, $"trade/stats.{language.Code}.json", definitions);
+        await dataProvider.Write(game, DataType.TradeStats, language, definitions);
     }
 
     private StatCategory GetStatCategory(string? apiId)

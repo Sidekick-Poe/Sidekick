@@ -1,5 +1,5 @@
-using Sidekick.Data.Items.Models;
-using Sidekick.Data.Stats.Models;
+using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>

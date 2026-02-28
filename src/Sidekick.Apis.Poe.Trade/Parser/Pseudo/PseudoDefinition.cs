@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Data.Trade.Models;
-using Sidekick.Data.Trade.Models.Raw;
+using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Raw;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 

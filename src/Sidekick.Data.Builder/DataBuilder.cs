@@ -65,8 +65,8 @@ public class DataBuilder(
         logger.LogInformation("Building invariant data files.");
 
         await tradeLeagueBuilder.Build();
-        await ninjaDownloader.Download();
         await tradeInvariantStatBuilder.Build();
+        await ninjaDownloader.Download();
 
         logger.LogInformation("Invariant data files built.");
     }
