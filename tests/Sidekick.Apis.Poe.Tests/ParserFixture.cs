@@ -170,5 +170,4 @@ public abstract class ParserFixture : IAsyncLifetime
             return null;
         }
     }
-
 }

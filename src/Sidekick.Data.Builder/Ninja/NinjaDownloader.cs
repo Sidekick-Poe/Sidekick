@@ -98,18 +98,18 @@ public class NinjaDownloader(
             var exchangeItems = new List<NinjaExchangeItem>();
             var exchangePages = game == GameType.PathOfExile1 ? Poe1Pages : Poe2Pages;
 
-            await Task.WhenAll(exchangePages.Select(async page =>
+            using var http = new HttpClient();
+            http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Sidekick", "1.0"));
+            http.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+
+            foreach (var page in exchangePages)
             {
-                if (!page.SupportsExchange) return;
+                if (!page.SupportsExchange) continue;
 
                 var url =
                     $"https://poe.ninja/{game.GetValueAttribute()}/api/economy/exchange/current/overview?league={league.Replace(' ', '+')}&type={page.Type}";
                 try
                 {
-                    using var http = new HttpClient();
-                    http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Sidekick", "1.0"));
-                    http.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-
                     logger.LogInformation($"GET {url}");
                     using var response = await http.GetAsync(url);
                     response.EnsureSuccessStatusCode();
@@ -117,13 +117,10 @@ public class NinjaDownloader(
                     var result = await JsonSerializer.DeserializeAsync<ApiExchangeOverview>(s, JsonOptions);
                     if (result?.Items != null)
                     {
-                        lock (exchangeItems)
+                        foreach (var it in result.Items)
                         {
-                            foreach (var it in result.Items)
-                            {
-                                if (string.IsNullOrWhiteSpace(it.Id)) continue;
-                                exchangeItems.Add(new NinjaExchangeItem(it.Id!, it.DetailsId, page));
-                            }
+                            if (string.IsNullOrWhiteSpace(it.Id)) continue;
+                            exchangeItems.Add(new NinjaExchangeItem(it.Id!, it.DetailsId, page));
                         }
                     }
                 }
@@ -132,7 +129,7 @@ public class NinjaDownloader(
                     logger.LogError(ex, $"Failed exchange {url}");
                     throw;
                 }
-            }));
+            }
 
             await dataProvider.Write(game, DataType.NinjaExchange, languageProvider.InvariantLanguage, exchangeItems);
         }
@@ -142,18 +139,18 @@ public class NinjaDownloader(
             var stashItems = new List<NinjaStashItem>();
             var stashPages = game == GameType.PathOfExile1 ? Poe1Pages : Poe2Pages;
 
-            await Task.WhenAll(stashPages.Select(async page =>
+            using var http = new HttpClient();
+            http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Sidekick", "1.0"));
+            http.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+
+            foreach (var page in stashPages)
             {
-                if (!page.SupportsStash || page.SupportsExchange) return;
+                if (!page.SupportsStash || page.SupportsExchange) continue;
 
                 var url =
                     $"https://poe.ninja/{game.GetValueAttribute()}/api/economy/stash/current/item/overview?league={league.Replace(' ', '+')}&type={page.Type}";
                 try
                 {
-                    using var http = new HttpClient();
-                    http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Sidekick", "1.0"));
-                    http.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-
                     logger.LogInformation($"GET {url}");
                     using var response = await http.GetAsync(url);
                     response.EnsureSuccessStatusCode();
@@ -161,15 +158,12 @@ public class NinjaDownloader(
                     var result = await JsonSerializer.DeserializeAsync<ApiStashOverview>(s, JsonOptions);
                     if (result?.Lines != null)
                     {
-                        lock (stashItems)
+                        foreach (var it in result.Lines)
                         {
-                            foreach (var it in result.Lines)
-                            {
-                                if (string.IsNullOrWhiteSpace(it.Name)) continue;
-                                stashItems.Add(new NinjaStashItem(
-                                    it.Name!, it.DetailsId, it.Corrupted, it.GemLevel, it.GemQuality,
-                                    it.MapTier, it.Links, it.LevelRequired, it.Variant, page));
-                            }
+                            if (string.IsNullOrWhiteSpace(it.Name)) continue;
+                            stashItems.Add(new NinjaStashItem(
+                                it.Name!, it.DetailsId, it.Corrupted, it.GemLevel, it.GemQuality,
+                                it.MapTier, it.Links, it.LevelRequired, it.Variant, page));
                         }
                     }
                 }
@@ -178,7 +172,7 @@ public class NinjaDownloader(
                     logger.LogError(ex, $"Failed stash {url}");
                     throw;
                 }
-            }));
+            }
 
             await dataProvider.Write(game, DataType.NinjaStash, languageProvider.InvariantLanguage, stashItems);
         }

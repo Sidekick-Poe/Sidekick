@@ -20,7 +20,7 @@ public class PseudoParser
     ICurrentGameLanguage currentGameLanguage
 ) : IPseudoParser
 {
-    private static readonly Regex ParseHashPattern = new(@"\#");
+    private static readonly Regex ParseHashPattern = new(@"#");
 
     private List<PseudoDefinition> Definitions { get; set; } = [];
 
@@ -67,7 +67,7 @@ public class PseudoParser
             return new ItemPseudoStat
             {
                 Id = definition.PseudoStatId,
-                Text = definition.Text ?? string.Empty,
+                Text = text,
                 Value = (int)value,
             };
         }
