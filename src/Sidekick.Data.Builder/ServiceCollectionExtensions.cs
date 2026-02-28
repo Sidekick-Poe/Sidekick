@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Data.Builder.Ninja;
+using Sidekick.Data.Builder.Pseudo;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Stats;
 using Sidekick.Data.Builder.Trade;
@@ -13,6 +14,8 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.TryAddSingleton<NinjaDownloader>();
+
+        services.TryAddSingleton<PseudoBuilder>();
 
         services.TryAddSingleton<RepoeDownloader>();
 

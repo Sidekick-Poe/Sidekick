@@ -7,7 +7,7 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public class PseudoFilter : TradeFilter, INormalizableFilter
 {
-    public PseudoFilter(PseudoStat stat)
+    public PseudoFilter(ItemPseudoStat stat)
     {
         Stat = stat;
         Text = stat.Text;
@@ -26,7 +26,7 @@ public class PseudoFilter : TradeFilter, INormalizableFilter
         return result;
     }
 
-    public PseudoStat Stat { get; init; }
+    public ItemPseudoStat Stat { get; init; }
 
     public double? Min { get; set; }
 

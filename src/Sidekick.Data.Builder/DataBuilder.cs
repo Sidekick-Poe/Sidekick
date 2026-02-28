@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Sidekick.Data.Builder.Ninja;
+using Sidekick.Data.Builder.Pseudo;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Stats;
 using Sidekick.Data.Builder.Trade;
@@ -10,8 +11,9 @@ namespace Sidekick.Data.Builder;
 public class DataBuilder(
     ILogger<DataBuilder> logger,
     DataProvider dataProvider,
-    StatBuilder statBuilder,
     NinjaDownloader ninjaDownloader,
+    StatBuilder statBuilder,
+    PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
     TradeLeagueBuilder  tradeLeagueBuilder,
     TradeStatBuilder tradeStatBuilder,
@@ -56,6 +58,7 @@ public class DataBuilder(
 
         await tradeStatBuilder.Build(language);
         await statBuilder.Build(language);
+        await pseudoBuilder.Build(language);
 
         logger.LogInformation($"Built {language.Code} data files.");
     }
