@@ -6,12 +6,6 @@ namespace Sidekick.Data.Trade;
 
 public class TradeDataProvider(DataProvider dataProvider)
 {
-    public async Task<List<RawTradeLeague>> GetRawLeagues(GameType gameType)
-    {
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(gameType, "trade/raw/leagues.en.json");
-        return result.Result;
-    }
-
     public async Task<List<TradeLeague>> GetLeagues(GameType gameType)
     {
         return await dataProvider.Read<List<TradeLeague>>(gameType, "trade/leagues.invariant.json");
@@ -35,19 +29,9 @@ public class TradeDataProvider(DataProvider dataProvider)
         return result.Result;
     }
 
-    public async Task<List<TradeStatDefinition>> GetStats(GameType gameType, string language)
-    {
-        return await dataProvider.Read<List<TradeStatDefinition>>(gameType, $"trade/stats.{language}.json");
-    }
-
     public async Task<List<RawTradeFilterCategory>> GetFilters(GameType gameType, string language)
     {
         var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(gameType, $"trade/raw/filters.{language}.json");
         return result.Result;
-    }
-
-    public async Task<TradeInvariantStats> GetInvariantStats(GameType gameType)
-    {
-        return await dataProvider.Read<TradeInvariantStats>(gameType, $"trade/stats.invariant.json");
     }
 }

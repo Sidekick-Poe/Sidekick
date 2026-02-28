@@ -46,7 +46,7 @@ public class PseudoParser
         var categories = await tradeDataProvider.GetRawStats(game, currentGameLanguage.InvariantLanguage.Code);
         categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
 
-        var pseudoDefinitions = apiStatsProvider.Definitions
+        var pseudoDefinitions = apiStatsProvider.Definitions.Values
             .Where(x => x.Category == StatCategory.Pseudo)
             .ToList();
 

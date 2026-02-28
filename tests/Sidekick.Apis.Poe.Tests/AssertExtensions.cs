@@ -14,25 +14,6 @@ public static class AssertExtensions
                     $"Expected {expected}, but got {actual} which is outside the tolerance of {tolerance}");
     }
 
-    public static void AssertHasStat(this Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
-    {
-        var actualModifier = actual.Stats
-            .SelectMany(stat => stat.MatchedPatterns.Select(pattern => new
-            {
-                Stat = stat,
-                Pattern = pattern,
-            }))
-            .FirstOrDefault(x => expectedCategory == x.Stat.Category && expectedText == x.Pattern.Text);
-
-        for (var i = 0; i < expectedValues.Length; i++)
-        {
-            Assert.Equal(expectedValues[i], actualModifier?.Stat.Values[i]);
-        }
-
-        Assert.Equal(expectedValues.Average(), actualModifier?.Stat.AverageValue);
-        Assert.NotNull(actualModifier);
-    }
-
     public static void AssertDoesNotHaveModifier(this Item actual, StatCategory expectedCategory, string expectedText)
     {
         var actualModifier = actual.Stats

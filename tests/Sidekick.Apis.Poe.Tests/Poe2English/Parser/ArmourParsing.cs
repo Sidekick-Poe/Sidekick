@@ -56,12 +56,12 @@ Corrupted
 
         Assert.Equal(36, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Enchant, "#% increased Evasion Rating", 22);
-        actual.AssertHasStat(StatCategory.Rune, "#% to Fire Resistance", 12);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Movement Speed", 10);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Evasion Rating", 41);
-        actual.AssertHasStat(StatCategory.Explicit, "#% to Maximum Lightning Resistance", 5);
-        actual.AssertHasStat(StatCategory.Explicit, "#% to Lightning Resistance", 33);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "#% increased Evasion Rating", 22);
+        fixture.AssertHasStat(actual, StatCategory.Rune, "#% to Fire Resistance", 12);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Movement Speed", 10);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Evasion Rating", 41);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to Maximum Lightning Resistance", 5);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to Lightning Resistance", 33);
 
         Assert.True(actual.Properties.Corrupted);
     }
@@ -98,7 +98,7 @@ Grants Skill: Parry
 
         Assert.Equal(5, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "# to maximum Life", 12);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to maximum Life", 12);
     }
 
     [Fact]
@@ -168,7 +168,7 @@ Item Level: 66
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Desecrated, "# to Armour", 32);
+        fixture.AssertHasStat(actual, StatCategory.Desecrated, "# to Armour", 32);
     }
 
     [Fact]
@@ -214,7 +214,7 @@ Note: ~b/o 980 divine
         Assert.Equal("Atziri's Step", actual.ApiInformation.Name);
         Assert.Equal("Cinched Boots", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "Gain Deflection Rating equal to #% of Evasion Rating", 60);
-        // Issue #985 actual.AssertHasStat(StatCategory.Explicit, "#% to amount of Damage Prevented by Deflection", -9);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Gain Deflection Rating equal to #% of Evasion Rating", 60);
+        // Issue #985 fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to amount of Damage Prevented by Deflection", -9);
     }
 }

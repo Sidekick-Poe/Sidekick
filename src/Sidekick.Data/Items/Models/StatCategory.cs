@@ -72,12 +72,14 @@ public enum StatCategory
     [EnumValue("skill")]
     Skill = 15,
 
+    [EnumValue("mutated")]
+    Mutated = 16,
+
     // Meta modifiers
     Corrupted = 101,
     Unidentified = 102,
     WhiteText = 103,
     GrayText = 104,
-    Mutated = 105,
 
     // Logbook modifiers
     DruidsOfTheBrokenCircle = 201,

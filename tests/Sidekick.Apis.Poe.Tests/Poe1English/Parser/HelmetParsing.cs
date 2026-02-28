@@ -41,7 +41,7 @@ Hunter Item
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Hunter Hood", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
     }
 
     [Fact]
@@ -85,12 +85,12 @@ Note: ~price 1 chaos
         Assert.Equal(63, actual.Properties.ItemLevel);
         Assert.Equal(793, actual.Properties.EvasionRating);
 
-        actual.AssertHasStat(StatCategory.Explicit, "+# to Dexterity", 53);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Damage when on Low Life", -50);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Attack Speed", 10);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Global Critical Strike Chance", 25);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Evasion Rating", 124);
-        actual.AssertHasStat(StatCategory.Explicit, "+# to maximum Life", 80);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Global Evasion Rating when on Low Life", 150);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Dexterity", 53);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Damage when on Low Life", -50);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attack Speed", 10);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Global Critical Strike Chance", 25);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Evasion Rating", 124);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to maximum Life", 80);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Global Evasion Rating when on Low Life", 150);
     }
 }

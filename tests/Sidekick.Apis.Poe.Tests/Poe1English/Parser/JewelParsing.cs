@@ -32,10 +32,10 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
         Assert.Equal("Blight Cut", actual.Name);
         Assert.Equal(68, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "+# to Strength and Intelligence", 8);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Spell Damage while Dual Wielding", 14);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Burning Damage", 19);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Damage with Wands", 15);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Strength and Intelligence", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Spell Damage while Dual Wielding", 14);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Burning Damage", 19);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Damage with Wands", 15);
     }
 
     [Fact]
@@ -70,9 +70,9 @@ Note: ~b/o 1 chaos
         Assert.Equal("Chimeric Sliver", actual.Name);
         Assert.Equal(69, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Enchant, "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments");
-        actual.AssertHasStat(StatCategory.Enchant, "# Added Passive Skills are Jewel Sockets", 2);
-        actual.AssertHasStat(StatCategory.Enchant, "Adds # Passive Skills", 11);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments");
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "# Added Passive Skills are Jewel Sockets", 2);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 11);
     }
 
     [Fact]
@@ -128,10 +128,10 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Crimson Jewel", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Strength", 8);
-        actual.AssertHasStat(StatCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16);
-        actual.AssertHasStat(StatCategory.Explicit, "Enemies you Kill that are affected by Elemental Ailments\ngrant #% increased Flask Charges", 32);
-        actual.AssertHasStat(StatCategory.Explicit, "Cannot take Reflected Elemental Damage");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Strength", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Enemies you Kill that are affected by Elemental Ailments\ngrant #% increased Flask Charges", 32);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Cannot take Reflected Elemental Damage");
     }
 
     [Fact]
@@ -163,10 +163,10 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Prismatic Jewel", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased maximum Energy Shield", 6);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased maximum Life", 6);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased maximum Mana", 6);
-        actual.AssertHasStat(StatCategory.Explicit, "#% of Physical Damage Converted to Cold Damage while affected by Hatred", 32);
-        actual.AssertHasStat(StatCategory.Explicit, "+#% chance to Evade Attack Hits while affected by Grace", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Energy Shield", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Mana", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Physical Damage Converted to Cold Damage while affected by Hatred", 32);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% chance to Evade Attack Hits while affected by Grace", 6);
     }
 }

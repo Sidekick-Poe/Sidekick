@@ -5,7 +5,7 @@ namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public interface IApiStatsProvider : IInitializableService
 {
-    List<TradeStatDefinition> Definitions { get; }
+    Dictionary<StatKey, TradeStatDefinition> Definitions { get; }
 
     TradeInvariantStats InvariantStats { get; }
 }

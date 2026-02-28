@@ -114,4 +114,35 @@ public abstract class ParserFixture : IAsyncLifetime
             await service.Initialize();
         }
     }
+
+    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
+    {
+#if DEBUG
+        var texts = (from stat in actual.Stats
+            from pattern in stat.MatchedPatterns
+            from tradeId in pattern.TradeIds
+            let text = ApiStatsProvider.Definitions[new StatKey(tradeId, pattern.Option?.Id)].Text
+            select $"{stat.Category} - {text}").ToList();
+#endif
+
+        var actualStat = (from stat in actual.Stats
+            from pattern in stat.MatchedPatterns
+            from tradeId in pattern.TradeIds
+            let text = ApiStatsProvider.Definitions[new StatKey(tradeId, pattern.Option?.Id)].Text
+            where stat.Category == expectedCategory && text == expectedText
+            select stat).FirstOrDefault();
+
+        Assert.NotNull(actualStat);
+
+        if (expectedValues.Length != 0)
+        {
+            for (var i = 0; i < expectedValues.Length; i++)
+            {
+                AssertExtensions.AssertCloseEnough(expectedValues[i], actualStat?.Values[i]);
+            }
+
+            AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
+        }
+    }
+
 }

@@ -55,7 +55,7 @@ Unmodifiable
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);
-        actual.AssertHasStat(StatCategory.Sanctum, "+# to Maximum Resolve", 5);
+        fixture.AssertHasStat(actual, StatCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);
+        fixture.AssertHasStat(actual, StatCategory.Sanctum, "+# to Maximum Resolve", 5);
     }
 }

@@ -38,8 +38,8 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% of Recovery applied Instantly", 23);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Charges per use", -26);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Recovery applied Instantly", 23);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Charges per use", -26);
         Assert.False(actual.Stats[1].MatchedFuzzily);
     }
 
@@ -76,8 +76,8 @@ Used automatically when condition is met. Can only hold charges while in belt. R
         Assert.Equal(16, actual.Properties.RequiresLevel);
         Assert.Equal(51, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Duration (Charm)", 21);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Charges per use", -19);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Duration (Charm)", 21);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Charges per use", -19);
         Assert.False(actual.Stats[1].MatchedFuzzily);
     }
 }

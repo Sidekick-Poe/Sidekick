@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
@@ -8,29 +7,31 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Fuzzy;
+using Sidekick.Data;
+using Sidekick.Data.Items.Models;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Stats;
 using Sidekick.Data.Stats.Models;
+
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
 public class StatParser
 (
-    IFuzzyService fuzzyService,
     ISettingsService settingsService,
     ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources,
-    StatDataProvider statDataProvider
+    DataProvider dataProvider
 ) : IStatParser
 {
+    private static readonly Regex ParseCategoryPattern = new(@" \(([a-zA-Z]+)\)$", RegexOptions.Multiline);
+
     public int Priority => 300;
 
-    private List<StatDefinition> Definitions { get; set; } = [];
+    private List<StatPattern> Definitions { get; set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Definitions = await statDataProvider.GetStats(game, currentGameLanguage.Language.Code);
+        Definitions = await dataProvider.Read<List<StatPattern>>(game, $"stats/{currentGameLanguage.Language.Code}.json");
     }
 
     /// <inheritdoc/>
@@ -63,6 +64,8 @@ public class StatParser
                 if (matchedPatterns.Count is 0) continue;
 
                 var maxLineCount = matchedPatterns.Select(x => x.LineCount).Max();
+                matchedPatterns = matchedPatterns.Where(x => x.LineCount == maxLineCount).ToList();
+
                 var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
                 lines.ForEach(x => x.Parsed = true);
 
@@ -74,27 +77,18 @@ public class StatParser
 
         IEnumerable<StatPattern> Match(TextBlock block, int lineIndex)
         {
-            foreach (var definition in Definitions)
+            foreach (var pattern in Definitions)
             {
-                var definitionMatched = false;
-
-                foreach (var pattern in definition.Patterns)
+                // Multiple line stats
+                if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
                 {
-                    if (definitionMatched) continue;
+                    yield return pattern;
+                }
 
-                    // Multiple line stats
-                    if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
-                    {
-                        definitionMatched = true;
-                        yield return pattern;
-                    }
-
-                    // Single line stats
-                    if (!definitionMatched && pattern.Pattern.IsMatch(block.Lines[lineIndex].Text))
-                    {
-                        definitionMatched = true;
-                        yield return pattern;
-                    }
+                // Single line stats
+                if (pattern.Pattern.IsMatch(block.Lines[lineIndex].Text))
+                {
+                    yield return pattern;
                 }
             }
         }
@@ -102,9 +96,11 @@ public class StatParser
         Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatPattern> matchedPatterns)
         {
             var text = string.Join('\n', lines.Select(x => x.Text));
-            var category = text.ParseCategory();
+            var category = ParseCategory(text);
+            text = RemoveCategory(text);
 
-            var stat = new Stat(category, text){
+            var stat = new Stat(category, text)
+            {
                 BlockIndex = block.Index,
                 LineIndex = lines.First().Index,
                 MatchedPatterns = matchedPatterns,
@@ -112,6 +108,23 @@ public class StatParser
 
             stat.Values = GetValues(stat).ToList();
             return stat;
+
+            StatCategory ParseCategory(string value)
+            {
+                var match = ParseCategoryPattern.Match(value);
+                if (!match.Success)
+                {
+                    return StatCategory.Explicit;
+                }
+
+                return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
+            }
+
+            string RemoveCategory(string value)
+            {
+                return ParseCategoryPattern.Replace(value, string.Empty);
+            }
+
         }
     }
 
@@ -134,8 +147,7 @@ public class StatParser
                     {
                         if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
                         {
-                            // TODO negative values
-
+                            if (matchedPattern.Negate) parsedValue *= -1;
                             yield return parsedValue;
                         }
                     }

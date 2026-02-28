@@ -56,12 +56,12 @@ can deny that my work has made quite the splash...""
         Assert.Equal(96, actual.Properties.RequiresDexterity);
         Assert.Equal(111, actual.Properties.RequiresIntelligence);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
-        actual.AssertHasStat(StatCategory.Explicit, "+# to maximum Life", 55);
-        actual.AssertHasStat(StatCategory.Explicit, "+#% to all Elemental Resistances", 12);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Area of Effect", 44);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Area Damage", 47);
-        actual.AssertHasStat(StatCategory.Explicit, "Extra gore");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to maximum Life", 55);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all Elemental Resistances", 12);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Area of Effect", 44);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Area Damage", 47);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Extra gore");
 
         actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
         actual.AssertHasPseudoModifier("+55 total maximum Life", 55);

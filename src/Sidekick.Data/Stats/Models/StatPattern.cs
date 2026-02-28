@@ -9,6 +9,8 @@ public class StatPattern
 
     public required string Text { get; set; }
 
+    public List<string> GameIds { get; set; } = [];
+
     public List<string> TradeIds { get; set; } = [];
 
     public required StatCategory Category { get; set; }
@@ -35,6 +37,7 @@ public class StatPattern
         }
     }
 
-    [JsonIgnore]
-    public int LineCount => Text.Split('\n').Length;
+    public int LineCount { get; set; }
+
+    public override string ToString() => Text;
 }

@@ -22,8 +22,6 @@ public static class ServiceCollectionExtensions
 
         services.TryAddSingleton<NinjaDataProvider>();
 
-        services.TryAddSingleton<StatDataProvider>();
-
         services.TryAddSingleton<TradeDataProvider>();
 
         services.TryAddSingleton<IFuzzyService, FuzzyService>();

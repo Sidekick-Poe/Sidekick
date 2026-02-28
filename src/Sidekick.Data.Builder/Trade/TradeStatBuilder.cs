@@ -32,7 +32,7 @@ public class TradeStatBuilder(
     private async Task Build(GameType game, IGameLanguage language)
     {
         var apiCategories = await tradeDataProvider.GetRawStats(game, language.Code);
-        var invariantStats = await tradeDataProvider.GetInvariantStats(game);
+        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, $"trade/stats.invariant.json");
 
         ReplacementPatterns = BuildReplacementPatterns(language);
         var definitions = new List<TradeStatDefinition>();

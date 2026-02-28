@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 namespace Sidekick.Data.Builder.Repoe.Models.Poe1;
 
 public class RepoeStatTrade
@@ -8,5 +9,6 @@ public class RepoeStatTrade
 
     public required string Type { get; set; }
 
+    [JsonPropertyName("option")]
     public RepoeStatTradeOptions? Options { get; set; }
 }

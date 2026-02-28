@@ -43,7 +43,7 @@ Even the dead serve the Lightless.
         Assert.Equal("Bubonic Trail", actual.ApiInformation.Name);
         Assert.Equal("Murder Boots", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "Has # Abyssal Sockets", 1);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Has # Abyssal Sockets", 1);
     }
 
     [Fact]

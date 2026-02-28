@@ -1,19 +1,19 @@
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public class ApiStatsProvider
 (
-    TradeDataProvider tradeDataProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService
+    ISettingsService settingsService,
+    DataProvider dataProvider
 ) : IApiStatsProvider
 {
-    public List<TradeStatDefinition> Definitions { get; private set; } = [];
+    public Dictionary<StatKey, TradeStatDefinition> Definitions { get; } = [];
 
     public TradeInvariantStats InvariantStats { get; private set; } = new();
 
@@ -24,7 +24,14 @@ public class ApiStatsProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Definitions = await tradeDataProvider.GetStats(game, currentGameLanguage.Language.Code);
-        InvariantStats = await tradeDataProvider.GetInvariantStats(game);
+
+        var definitions = await dataProvider.Read<List<TradeStatDefinition>>(game, $"trade/stats.{currentGameLanguage.Language.Code}.json");
+        Definitions.Clear();
+        foreach (var definition in definitions)
+        {
+            Definitions.TryAdd(new StatKey(definition.Id, definition.OptionId), definition);
+        }
+
+        InvariantStats = await dataProvider.Read<TradeInvariantStats>(game, $"trade/stats.invariant.json");
     }
 }

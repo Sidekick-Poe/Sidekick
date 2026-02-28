@@ -34,8 +34,8 @@ Item Level: 60
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(60, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "# to maximum Mana", 148);
-        actual.AssertHasStat(StatCategory.Explicit, "# to Intelligence", 20);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to maximum Mana", 148);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Intelligence", 20);
     }
 
     [Fact]
@@ -86,14 +86,14 @@ Leeches 4.02% of Physical Damage as Mana
         Assert.Equal(75, actual.Properties.ColdDamage?.Max);
         Assert.Equal(68.4, actual.Properties.ElementalDps);
 
-        actual.AssertHasStat(StatCategory.Rune, "#% increased Physical Damage", 40);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Physical Damage", 73);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Physical Damage", 24, 37);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Attribute Requirements", -35);
+        fixture.AssertHasStat(actual, StatCategory.Rune, "#% increased Physical Damage", 40);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Physical Damage", 73);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage", 24, 37);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attribute Requirements", -35);
         Assert.False(actual.Stats[4].MatchedFuzzily);
-        actual.AssertHasStat(StatCategory.Explicit, "# to Level of all Projectile Skills", 3);
-        actual.AssertHasStat(StatCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Level of all Projectile Skills", 3);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02);
     }
 
     [Fact]
@@ -230,7 +230,7 @@ Grants Skill: Spear Throw
         Assert.Equal("Ironhead Spear", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
 
-        actual.AssertHasStat(StatCategory.Explicit, "# to Accuracy Rating", 32);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Accuracy Rating", 32);
     }
 
     [Fact]
@@ -395,15 +395,15 @@ Note: ~price 1 mirror");
         Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);
         Assert.Equal(1043, actual.Properties.PhysicalDamage?.Max);
 
-        actual.AssertHasStat(StatCategory.Rune, "#% increased Physical Damage", 36);
+        fixture.AssertHasStat(actual, StatCategory.Rune, "#% increased Physical Damage", 36);
 
-        actual.AssertHasStat(StatCategory.Fractured, "#% increased Attack Speed", 25);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Attack Speed", 25);
+        fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Attack Speed", 25);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attack Speed", 25);
 
-        actual.AssertHasStat(StatCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Physical Damage", 54, 94);
+        fixture.AssertHasStat(actual, StatCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage", 54, 94);
 
-        actual.AssertHasStat(StatCategory.Explicit, "Loads an additional bolt", 2);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Loads an additional bolt", 2);
         actual.AssertDoesNotHaveModifier(StatCategory.Fractured, "Loads an additional bolt");
 
         var modifierFilters = await fixture.StatParser.GetFilters(actual);

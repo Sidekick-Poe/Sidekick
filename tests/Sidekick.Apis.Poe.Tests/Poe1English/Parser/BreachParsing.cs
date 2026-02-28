@@ -108,6 +108,6 @@ A net woven to keep safe the bones of the Lords.
         Assert.Equal("Foulborn Skin of the Loyal", actual.Name);
         Assert.True(actual.Properties.Foulborn);
 
-        actual.AssertHasStat(StatCategory.Mutated, "+#% to Quality of Socketed Gems", 20);
+        fixture.AssertHasStat(actual, StatCategory.Mutated, "+#% to Quality of Socketed Gems", 20);
     }
 }
