@@ -6,13 +6,13 @@ using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.TradeStats;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -39,7 +39,7 @@ public abstract class ParserFixture : IAsyncLifetime
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
-    public IApiStatsProvider ApiStatsProvider { get; private set; } = null!;
+    public ITradeStatsProvider TradeStatsProvider { get; private set; } = null!;
     public IStatParser StatParser { get; private set; } = null!;
     private TestContext TestContext { get; set; } = null!;
 
@@ -85,7 +85,7 @@ public abstract class ParserFixture : IAsyncLifetime
         CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
-        ApiStatsProvider = TestContext.Services.GetRequiredService<IApiStatsProvider>();
+        TradeStatsProvider = TestContext.Services.GetRequiredService<ITradeStatsProvider>();
         StatParser = TestContext.Services.GetRequiredService<IStatParser>();
     }
 
@@ -117,19 +117,26 @@ public abstract class ParserFixture : IAsyncLifetime
 
     public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
+        AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+    }
+
+    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? optionText, params double[] expectedValues)
+    {
 #if DEBUG
         var texts = (from stat in actual.Stats
             from pattern in stat.MatchedPatterns
             from tradeId in pattern.TradeIds
-            let text = ApiStatsProvider.Definitions[new StatKey(tradeId, pattern.Option?.Id)].Text
-            select $"{stat.Category} - {text}").ToList();
+            let tradeDefinition = TradeStatsProvider.Definitions[tradeId]
+            let option = tradeDefinition.Options?.FirstOrDefault(x => x.Id == pattern.Option?.Id)
+            select $"{stat.Category} - {tradeDefinition.Text} - {option?.Text}").ToList();
 #endif
 
         var actualStat = (from stat in actual.Stats
             from pattern in stat.MatchedPatterns
             from tradeId in pattern.TradeIds
-            let text = ApiStatsProvider.Definitions[new StatKey(tradeId, pattern.Option?.Id)].Text
-            where stat.Category == expectedCategory && text == expectedText
+            let tradeDefinition = TradeStatsProvider.Definitions[tradeId]
+            let option = tradeDefinition.Options?.FirstOrDefault(x => x.Id == pattern.Option?.Id)
+            where stat.Category == expectedCategory && tradeDefinition.Text == expectedText && option?.Text == optionText
             select stat).FirstOrDefault();
 
         Assert.NotNull(actualStat);

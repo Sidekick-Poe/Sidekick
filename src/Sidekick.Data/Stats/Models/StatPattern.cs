@@ -9,6 +9,8 @@ public class StatPattern
 
     public required string Text { get; set; }
 
+    public string? FuzzyText { get; set; }
+
     public List<string> GameIds { get; set; } = [];
 
     public List<string> TradeIds { get; set; } = [];

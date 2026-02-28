@@ -3,17 +3,20 @@ using Sidekick.Common.Enums;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Poe1;
 using Sidekick.Data.Extensions;
+using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Items.Models;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats.Models;
 using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Models;
 using Sidekick.Data.Trade.Models.Raw;
 namespace Sidekick.Data.Builder.Stats;
 
 public class StatBuilder(
     TradeDataProvider tradeDataProvider,
     DataProvider dataProvider,
-    RepoeDataProvider repoeDataProvider)
+    RepoeDataProvider repoeDataProvider,
+    IFuzzyService fuzzyService)
 {
     private readonly Regex textHashPattern = new(@"\#");
     private readonly Regex textGameHashPattern = new(@"\{\d+}");
@@ -33,6 +36,11 @@ public class StatBuilder(
     {
         var definitions = await BuildGameStats(game, language);
         definitions.AddRange(await BuildTradeStats(game, language, definitions));
+
+        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, $"trade/stats.invariant.json");
+        ComputeSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds);
+        RemoveSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds, x => x.Option?.Id == 2);
+        ComputeSpecialPseudoPattern(definitions, invariantStats.LogbookFactionStatIds);
 
         await dataProvider.Write(game, $"stats/{language.Code}.json", definitions);
     }
@@ -59,7 +67,7 @@ public class StatBuilder(
         {
             if (definitions.Any(def => def.TradeIds.Contains(apiStat.Id))) continue;
 
-            result.AddRange(GetTradePatterns(apiStat));
+            result.AddRange(GetTradePatterns(language, apiStat));
         }
 
         return result;
@@ -83,7 +91,7 @@ public class StatBuilder(
                 Category = GetGameStatCategory(tradeStats),
                 GameIds = gameStat.Ids,
                 TradeIds = tradeStats.Select(x => x.Id).ToList(),
-                Text = GetText(language.Text),
+                Text = text,
                 Option = GetOption(tradeStats, value),
                 Negate = language.Handlers?.Any(x => x.Contains("negate")) ?? false,
                 Pattern = GetPattern(language.Text),
@@ -96,8 +104,15 @@ public class StatBuilder(
 
         IEnumerable<RepoeStatTrade> GetTradeStats(int? value)
         {
+            var hasOptions = gameStat.TradeStats.Any(x => x.Options != null);
             foreach (var tradeStat in gameStat.TradeStats)
             {
+                if (!hasOptions)
+                {
+                    yield return tradeStat;
+                    continue;
+                }
+
                 if (value == null)
                 {
                     if (tradeStat.Options == null) yield return tradeStat;
@@ -149,7 +164,7 @@ public class StatBuilder(
         }
     }
 
-    private IEnumerable<StatPattern> GetTradePatterns(RawTradeStat tradeStat)
+    private IEnumerable<StatPattern> GetTradePatterns(IGameLanguage gameLanguage, RawTradeStat tradeStat)
     {
         if (tradeStat.Options == null || tradeStat.Options.Options.Count == 0)
         {
@@ -159,6 +174,7 @@ public class StatBuilder(
             {
                 Source = StatSource.Trade,
                 Text = text,
+                FuzzyText = GetFuzzyText(gameLanguage, tradeStat.Text),
                 Category = GetStatCategory(tradeStat.Type),
                 TradeIds = [tradeStat.Id],
                 Pattern = GetPattern(tradeStat.Text),
@@ -175,6 +191,7 @@ public class StatBuilder(
             {
                 Source = StatSource.Trade,
                 Text = text,
+                FuzzyText = GetFuzzyText(gameLanguage, tradeStat.Text, option.Text),
                 Category = GetStatCategory(tradeStat.Type),
                 TradeIds = [tradeStat.Id],
                 Pattern = GetPattern(tradeStat.Text, option.Text),
@@ -204,6 +221,26 @@ public class StatBuilder(
         }
 
         return string.Join('\n', optionLines).Trim('\r', '\n');
+    }
+
+    private string GetFuzzyText(IGameLanguage language, string text, string? optionText = null)
+    {
+        text = text.RemoveSquareBrackets();
+        if (optionText != null) optionText = optionText.RemoveSquareBrackets();
+
+        var fuzzyValue = text;
+
+        if (string.IsNullOrEmpty(optionText))
+        {
+            return fuzzyService.CleanFuzzyText(language, fuzzyValue);
+        }
+
+        foreach (var optionLine in newLinePattern.Split(optionText))
+        {
+            fuzzyValue = textHashPattern.Replace(fuzzyValue, optionLine);
+        }
+
+        return fuzzyService.CleanFuzzyText(language, fuzzyValue);
     }
 
     private Regex GetPattern(string text, string? optionText = null)
@@ -242,5 +279,23 @@ public class StatBuilder(
     {
         var value = apiId?.Split('.').First();
         return value.GetEnumFromValue<StatCategory>();
+    }
+
+    private void ComputeSpecialPseudoPattern(List<StatPattern> definitions, List<string> patternIds)
+    {
+        var patterns = (from definition in definitions
+            where definition.Category == StatCategory.Pseudo
+            where definition.TradeIds.Any(patternIds.Contains)
+            select definition);
+
+        foreach (var pattern in patterns)
+        {
+            pattern.Pattern = GetPattern(pattern.Text.Split(':', 2).Last().Trim());
+        }
+    }
+
+    private void RemoveSpecialPseudoPattern(List<StatPattern> definitions, List<string> patternIds, Func<StatPattern, bool> predicate)
+    {
+        definitions.RemoveAll(x => x.TradeIds.Any(patternIds.Contains) && predicate(x));
     }
 }

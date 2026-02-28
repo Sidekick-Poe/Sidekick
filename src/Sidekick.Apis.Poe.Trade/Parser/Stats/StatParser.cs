@@ -61,6 +61,7 @@ public class StatParser
                 if (block.Lines[lineIndex].Parsed) continue;
 
                 var matchedPatterns = Match(block, lineIndex).ToList();
+                // TODO match fuzzily
                 if (matchedPatterns.Count is 0) continue;
 
                 var maxLineCount = matchedPatterns.Select(x => x.LineCount).Max();
@@ -97,6 +98,11 @@ public class StatParser
         {
             var text = string.Join('\n', lines.Select(x => x.Text));
             var category = ParseCategory(text);
+            if (matchedPatterns.DistinctBy(x => x.Category).Count() == 1 && matchedPatterns[0].Category != StatCategory.Undefined)
+            {
+                category = matchedPatterns[0].Category;
+            }
+
             text = RemoveCategory(text);
 
             var stat = new Stat(category, text)
@@ -135,7 +141,7 @@ public class StatParser
             if (matchedPattern.Value.HasValue)
             {
                 yield return matchedPattern.Value.Value;
-                continue;
+                yield break;
             }
 
             var patternMatch = matchedPattern.Pattern.Match(stat.Text);
@@ -148,10 +154,13 @@ public class StatParser
                         if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
                         {
                             if (matchedPattern.Negate) parsedValue *= -1;
+                            // TODO compare with API text, if both have "reduced" or both have very similar texts, then we do not want to negate
                             yield return parsedValue;
                         }
                     }
                 }
+
+                yield break;
             }
         }
     }

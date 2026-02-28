@@ -109,7 +109,7 @@ Note: ~price 2 chaos
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Phantasmagoria Map", actual.ApiInformation.Type);
 
-        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area is influenced by The Elder");
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area is influenced by #", "The Elder");
     }
 
     [Fact]

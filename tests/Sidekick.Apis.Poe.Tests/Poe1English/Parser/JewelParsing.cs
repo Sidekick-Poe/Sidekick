@@ -70,7 +70,7 @@ Note: ~b/o 1 chaos
         Assert.Equal("Chimeric Sliver", actual.Name);
         Assert.Equal(69, actual.Properties.ItemLevel);
 
-        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments");
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: #", "Axe Attacks deal 12% increased Damage with Hits and Ailments\nSword Attacks deal 12% increased Damage with Hits and Ailments");
         fixture.AssertHasStat(actual, StatCategory.Enchant, "# Added Passive Skills are Jewel Sockets", 2);
         fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 11);
     }

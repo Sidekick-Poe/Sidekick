@@ -41,7 +41,7 @@ Hunter Item
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Hunter Hood", actual.ApiInformation.Type);
 
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "You have # Conflux for 3 seconds every 8 seconds", "Shocking");
     }
 
     [Fact]
