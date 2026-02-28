@@ -419,7 +419,7 @@ Note: ~price 1 mirror");
         Assert.NotNull(fracturedFilter);
         Assert.True(fracturedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Fractured, fracturedFilter.Stat.Category);
-        foreach (var x in fracturedFilter.Stat.TradePatterns)
+        foreach (var x in fracturedFilter.Stat.MatchedPatterns)
         {
             if (x.Category is StatCategory.Fractured or StatCategory.Explicit) continue;
 
@@ -437,7 +437,7 @@ Note: ~price 1 mirror");
         Assert.NotNull(desecratedFilter);
         Assert.False(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Desecrated, desecratedFilter.Stat.Category);
-        foreach (var x in desecratedFilter.Stat.TradePatterns)
+        foreach (var x in desecratedFilter.Stat.MatchedPatterns)
         {
             if (x.Category is StatCategory.Desecrated or StatCategory.Explicit) continue;
 

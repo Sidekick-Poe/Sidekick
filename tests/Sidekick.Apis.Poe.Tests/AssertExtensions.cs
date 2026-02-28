@@ -17,7 +17,7 @@ public static class AssertExtensions
     public static void AssertHasStat(this Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
         var actualModifier = actual.Stats
-            .SelectMany(stat => stat.TradePatterns.Select(pattern => new
+            .SelectMany(stat => stat.MatchedPatterns.Select(pattern => new
             {
                 Stat = stat,
                 Pattern = pattern,
@@ -36,7 +36,7 @@ public static class AssertExtensions
     public static void AssertDoesNotHaveModifier(this Item actual, StatCategory expectedCategory, string expectedText)
     {
         var actualModifier = actual.Stats
-            .SelectMany(stat => stat.TradePatterns.Select(pattern => new
+            .SelectMany(stat => stat.MatchedPatterns.Select(pattern => new
             {
                 Stat = stat,
                 Pattern = pattern,

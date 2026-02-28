@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Sidekick.Data.Builder.Items;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Repoe;
+using Sidekick.Data.Builder.Stats;
 using Sidekick.Data.Builder.Trade;
 
 namespace Sidekick.Data.Builder;

@@ -15,75 +15,16 @@ public class Stat(StatCategory category, string text)
 
     public StatCategory Category { get; } = category;
 
-    private IReadOnlyList<StatMatchedPattern> matchedPatterns = [];
-    public IReadOnlyList<StatMatchedPattern> MatchedPatterns
-    {
-        get => matchedPatterns;
-        set
-        {
-            tradePatterns = null;
-            matchedPatterns = value;
-        }
-    }
+    public List<StatPattern> MatchedPatterns { get; set; } = [];
 
-    private IReadOnlyList<TradeStatPattern>? tradePatterns;
-    public IReadOnlyList<TradeStatPattern> TradePatterns
+    public bool HasMultipleCategories
     {
         get
         {
-            tradePatterns ??= GetTradePatterns().ToList();
-            return tradePatterns;
-
-            IEnumerable<TradeStatPattern> GetTradePatterns()
-            {
-                var handledIds = new List<string>();
-                foreach (var matchedPattern in MatchedPatterns)
-                {
-                    if (matchedPattern.GamePattern?.Option != null)
-                    {
-                        var tradePattern = matchedPattern.Definition.TradePatterns.FirstOrDefault(x => x.Option?.Id == matchedPattern.GamePattern.Option);
-                        if (tradePattern != null)
-                        {
-                            handledIds.Add(tradePattern.Id);
-                            yield return tradePattern;
-                        }
-                    }
-                    else if (matchedPattern.GamePattern != null)
-                    {
-                        foreach (var tradePattern in matchedPattern.Definition.TradePatterns)
-                        {
-                            if (handledIds.Contains(tradePattern.Id)) continue;
-
-                            if (matchedPattern.GamePattern.Option != null)
-                            {
-                                if (matchedPattern.GamePattern.Option == tradePattern.Option?.Id)
-                                {
-                                    handledIds.Add(tradePattern.Id);
-                                    yield return tradePattern;
-                                }
-                            }
-                            else if (tradePattern.Category == StatCategory.Explicit || tradePattern.Category == Category)
-                            {
-                                handledIds.Add(tradePattern.Id);
-                                yield return tradePattern;
-                            }
-                        }
-                    }
-
-                    if (matchedPattern.TradePattern != null && !handledIds.Contains(matchedPattern.TradePattern.Id))
-                    {
-                        if (matchedPattern.TradePattern.Category == StatCategory.Explicit || matchedPattern.TradePattern.Category == Category)
-                        {
-                            handledIds.Add(matchedPattern.TradePattern.Id);
-                            yield return matchedPattern.TradePattern;
-                        }
-                    }
-                }
-            }
+            if (MatchedPatterns.Any(x => x.Category == StatCategory.Undefined)) return true;
+            return MatchedPatterns.DistinctBy(x => x.Category).Count() > 1;
         }
     }
-
-    public bool HasMultipleCategories => TradePatterns.DistinctBy(x => x.Category).Count() > 1;
 
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
@@ -99,7 +40,7 @@ public class Stat(StatCategory category, string text)
     /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => TradePatterns.All(x => x.Option == null) && Values.Count > 0;
+    public bool HasValues => MatchedPatterns.All(x => x.Option == null) && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 

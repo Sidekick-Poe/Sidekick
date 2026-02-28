@@ -62,7 +62,7 @@ public class StatParser
                 var matchedPatterns = Match(block, lineIndex).ToList();
                 if (matchedPatterns.Count is 0) continue;
 
-                var maxLineCount = matchedPatterns.Select(x => x.GamePattern?.LineCount ?? 0).Max();
+                var maxLineCount = matchedPatterns.Select(x => x.LineCount).Max();
                 var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
                 lines.ForEach(x => x.Parsed = true);
 
@@ -72,13 +72,13 @@ public class StatParser
 
         yield break;
 
-        IEnumerable<StatMatchedPattern> Match(TextBlock block, int lineIndex)
+        IEnumerable<StatPattern> Match(TextBlock block, int lineIndex)
         {
             foreach (var definition in Definitions)
             {
                 var definitionMatched = false;
 
-                foreach (var pattern in definition.GamePatterns)
+                foreach (var pattern in definition.Patterns)
                 {
                     if (definitionMatched) continue;
 
@@ -86,28 +86,20 @@ public class StatParser
                     if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
                     {
                         definitionMatched = true;
-                        yield return new StatMatchedPattern()
-                        {
-                            Definition = definition,
-                            GamePattern = pattern,
-                        };
+                        yield return pattern;
                     }
 
                     // Single line stats
                     if (!definitionMatched && pattern.Pattern.IsMatch(block.Lines[lineIndex].Text))
                     {
                         definitionMatched = true;
-                        yield return new StatMatchedPattern()
-                        {
-                            Definition = definition,
-                            GamePattern = pattern,
-                        };
+                        yield return pattern;
                     }
                 }
             }
         }
 
-        Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatMatchedPattern> matchedPatterns)
+        Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatPattern> matchedPatterns)
         {
             var text = string.Join('\n', lines.Select(x => x.Text));
             var category = text.ParseCategory();
@@ -125,8 +117,14 @@ public class StatParser
 
     private IEnumerable<double> GetValues(Stat stat)
     {
-        foreach (var matchedPattern in stat.TradePatterns)
+        foreach (var matchedPattern in stat.MatchedPatterns)
         {
+            if (matchedPattern.Value.HasValue)
+            {
+                yield return matchedPattern.Value.Value;
+                continue;
+            }
+
             var patternMatch = matchedPattern.Pattern.Match(stat.Text);
             if (patternMatch.Success)
             {

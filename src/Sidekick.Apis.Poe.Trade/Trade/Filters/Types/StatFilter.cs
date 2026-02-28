@@ -98,16 +98,8 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             return;
         }
 
-        var stats = Stat.TradePatterns.ToList();
-        if (stats.Count == 1)
-        {
-            query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
-            {
-                Id = stats.First().Id,
-                Value = new StatFilterValue(this),
-            });
-        }
-        else
+        var stats = Stat.MatchedPatterns.ToList();
+        if (stats.Count > 1)
         {
             if (UsePrimaryCategory)
             {
@@ -117,13 +109,25 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             {
                 stats = stats.Where(x => x.Category == StatCategory.Explicit).ToList();
             }
+        }
 
+        var tradeIds = stats.SelectMany(x => x.TradeIds).ToList();
+        if (tradeIds.Count == 1)
+        {
+            query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
+            {
+                Id = tradeIds.First(),
+                Value = new StatFilterValue(this),
+            });
+        }
+        else
+        {
             var countGroup = query.GetOrCreateStatGroup(StatType.Count);
-            foreach (var stat in stats)
+            foreach (var tradeId in tradeIds)
             {
                 countGroup.Filters.Add(new StatFilters()
                 {
-                    Id = stat.Id,
+                    Id = tradeId,
                     Value = new StatFilterValue(this),
                 });
             }

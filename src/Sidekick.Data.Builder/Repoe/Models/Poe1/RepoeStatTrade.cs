@@ -8,5 +8,5 @@ public class RepoeStatTrade
 
     public required string Type { get; set; }
 
-    public RepoeStatTradeOptions? Option { get; set; }
+    public RepoeStatTradeOptions? Options { get; set; }
 }

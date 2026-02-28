@@ -454,7 +454,7 @@ Corrupted");
         // Known parsing issue: #912
         actual.AssertDoesNotHaveModifier(StatCategory.Implicit, "Melee Hits have #% chance to Fortify");
         actual.AssertDoesNotHaveModifier(StatCategory.Implicit, "Melee Hits Fortify");
-        Assert.Equal(1, actual.Stats.Count(x => x.TradePatterns.FirstOrDefault()?.Category == StatCategory.Implicit));
+        Assert.Equal(1, actual.Stats.Count(x => x.MatchedPatterns.FirstOrDefault()?.Category == StatCategory.Implicit));
     }
 
     [Fact]
