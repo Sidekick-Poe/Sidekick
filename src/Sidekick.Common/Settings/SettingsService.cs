@@ -17,7 +17,7 @@ public class SettingsService(
 {
     public event Action<string[]>? OnSettingsChanged;
 
-    private static JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         Converters =
         {
@@ -95,7 +95,7 @@ public class SettingsService(
         return GetDefault<DateTimeOffset>(key);
     }
 
-    public async Task<TValue?> GetObject<TValue>(string key, Func<TValue?> defaultFunc)
+    public async Task<TValue?> GetObject<TValue>(string key)
         where TValue : class
     {
         await using var dbContext = new SidekickDbContext(dbContextOptions);
@@ -106,7 +106,7 @@ public class SettingsService(
         {
             try
             {
-                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty, JsonSerializerOptions) ?? defaultFunc.Invoke();
+                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty, JsonSerializerOptions) ?? null;
             }
             catch (Exception e)
             {
@@ -122,7 +122,7 @@ public class SettingsService(
             defaultValue = JsonSerializer.Deserialize<TValue>(serializedDefault, JsonSerializerOptions);
         }
 
-        return defaultValue ?? defaultFunc.Invoke();
+        return defaultValue ?? null;
     }
 
     public async Task<TEnum?> GetEnum<TEnum>(string key)

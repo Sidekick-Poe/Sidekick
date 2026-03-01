@@ -1,0 +1,93 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Data.Items
+@using Sidekick.Modules.Items.Trade.Localization
+
+<div class="flex flex-nowrap gap-2 items-end">
+    <div class="grow">
+        <label class="flex gap-1 mb-1 text-base font-medium dark:text-zinc-300">
+            Select Main Categories
+            <Tooltip Text="@Resources["ForceCategoryHint"]"/>
+        </label>
+
+        <div class="flex flex-wrap items-center gap-2">
+            @foreach (var value in Enum.GetValues<StatCategory>())
+            {
+                if (!value.HasExplicitStat()) continue;
+
+                <ItemStatCategoryChip Category="value"
+                                      Checked="Value.Contains(value)"
+                                      ShowCheckbox="true"
+                                      OnClick="() => Toggle(value)"/>
+            }
+        </div>
+    </div>
+
+    @if (ShowResetButton)
+    {
+        <div class="ml-auto">
+            <ButtonIcon OnClick="Reset"
+                        Svg="@UiIcons.Reset"
+                        title="@UiResources["Reset"]"/>
+        </div>
+    }
+</div>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    private List<StatCategory> Value { get; set; } = [];
+
+    private const string SettingKey = AutoSelectPreferences.DefaultSelectCategoriesSettingKey;
+
+    private bool ShowResetButton { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Value = await SettingsService.GetObject<List<StatCategory>>(SettingKey) ?? [];
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Toggle(StatCategory value)
+    {
+        if (Value.Contains(value))
+        {
+            Value.Remove(value);
+        }
+        else
+        {
+            Value.Add(value);
+        }
+
+        await SettingsService.Set(SettingKey, Value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (!keys.Contains(SettingKey)) return;
+
+        Value = await SettingsService.GetObject<List<StatCategory>>(SettingKey) ?? [];
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task Reset()
+    {
+        await SettingsService.DeleteSetting(SettingKey);
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
+}

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 public class AutoSelectRule
@@ -12,9 +13,6 @@ public class AutoSelectRule
     [JsonPropertyName("checked")]
     public bool? Checked { get; set; }
 
-    [JsonPropertyName("selectedValue")]
-    public string? SelectedValue { get; set; }
-
     [JsonPropertyName("fillMin")]
     public bool? FillMinRange { get; set; }
 
@@ -23,5 +21,8 @@ public class AutoSelectRule
 
     [JsonPropertyName("normalizeBy")]
     public double? NormalizeBy { get; set; }
+
+    [JsonPropertyName("selectCategories")]
+    public List<StatCategory>? SelectCategories { get; set; }
 
 }

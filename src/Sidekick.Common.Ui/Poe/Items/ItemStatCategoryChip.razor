@@ -1,6 +1,7 @@
-@using Sidekick.Apis.Poe.Items
 @using Sidekick.Data.Items
+
 <ChipCustom Class="@Class"
+            Readonly="Readonly"
             OnClick="OnClick">
     <div class="flex items-center flex-nowrap gap-0.5">
         @if (ShowCheckbox)
@@ -38,6 +39,9 @@
 
     [Parameter]
     public bool Checked { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
 
     [Parameter]
     public EventCallback OnClick { get; set; }

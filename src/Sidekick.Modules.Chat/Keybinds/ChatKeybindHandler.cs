@@ -20,7 +20,7 @@ public class ChatKeybindHandler(
 
     protected override async Task<List<string?>> GetKeybinds()
     {
-        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
+        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands);
         return chatCommands?.Select(x => x.Key).ToList() ?? [];
     }
 
@@ -29,7 +29,7 @@ public class ChatKeybindHandler(
 
     public override async Task Execute(string keybind)
     {
-        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
+        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands);
         var chatCommand = chatCommands?.FirstOrDefault(x => x.Key == keybind);
         if (chatCommand == null)
         {

@@ -66,7 +66,6 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         Text = stat.Text;
 
         DefaultAutoSelect = GetDefault(game);
-        UsePrimaryCategory = stat.Category is StatCategory.Fractured;
     }
 
     public override async Task<AutoSelectResult?> Initialize(Item item, ISettingsService settingsService)
@@ -76,6 +75,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
 
         if (result.FillMinRange) Min = ((INormalizableFilter)this).NormalizeMinValue(result.NormalizeBy);
         if (result.FillMaxRange) Max = ((INormalizableFilter)this).NormalizeMaxValue(result.NormalizeBy);
+        if (result.SelectCategory) UsePrimaryCategory = true;
 
         return result;
     }
