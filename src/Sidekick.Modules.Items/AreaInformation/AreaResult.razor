@@ -8,11 +8,13 @@
 <div class="h-2"></div>
 <AreaCheck/>
 
+@* Currently unused after changes made in Path of Exile 3.28. The update removed maps being tied to specific areas
 @if (Item.Game == GameType.PathOfExile1)
 {
     <ItemSeparator Rarity="Item.Properties.Rarity"/>
     <PoeWikiMapInfo Text="@Item.ApiInformation.InvariantText"/>
 }
+*@
 
 @inject IStringLocalizer<AreaResources> Resources
 
