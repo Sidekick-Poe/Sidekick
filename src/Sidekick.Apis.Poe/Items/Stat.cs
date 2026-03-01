@@ -48,6 +48,8 @@ public class Stat(StatCategory category, string text)
 
     public bool MatchedFuzzily { get; init; }
 
+    public bool HasTradeSupport { get; init; } = true;
+
     /// <inheritdoc />
     public override string ToString() => Text;
 }

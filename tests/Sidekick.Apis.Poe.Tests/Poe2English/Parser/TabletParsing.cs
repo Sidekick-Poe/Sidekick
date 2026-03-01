@@ -52,6 +52,7 @@ Empowers the Map Boss of a Map (implicit)
 10 uses remaining (implicit)
 --------
 Rerolling Favours at Ritual Altars in Map costs 28% reduced Tribute
+Fortifying Hits grant 25% reduced Fortification
 --------
 Can be used in a personal Map Device to add modifiers to a Map.");
 

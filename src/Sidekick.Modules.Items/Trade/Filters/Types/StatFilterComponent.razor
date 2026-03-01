@@ -3,10 +3,17 @@
 
 <FilterWrapper Filter="Filter">
     <div class="grow">
-        <FormCheckbox Value="Filter.Checked"
+        <FormCheckbox Readonly="!Filter.Stat.HasTradeSupport"
+                      Value="Filter.Checked"
                       ValueChanged="CheckedChanged">
             <div class="flex flex-nowrap items-center gap-1">
-                @if (Filter.Stat.MatchedFuzzily)
+                @if (!Filter.Stat.HasTradeSupport)
+                {
+                    <Tooltip Text="@Resources["Stat_NoTradeSupport"]">
+                        <Icon Svg="@UiIcons.Warning" Class="text-orange-500 flex self-center cursor-help"/>
+                    </Tooltip>
+                }
+                else if (Filter.Stat.MatchedFuzzily)
                 {
                     <Tooltip Text="@Resources["Stat_Fuzzy"]">
                         <Icon Svg="@UiIcons.Warning" Class="text-violet-500 flex self-center cursor-help"/>
