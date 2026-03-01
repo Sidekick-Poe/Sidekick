@@ -176,7 +176,7 @@ public class DataProvider
         {
             files.Add(new DataFile(
                       Path: file.FullName,
-                      Name: Path.GetRelativePath(DataDirectory, file.FullName),
+                      Name: Path.GetRelativePath(DataDirectory, file.FullName).Replace('\\', '/'),
                       Size: file.Length,
                       LastModified: file.LastWriteTimeUtc
                       ));
