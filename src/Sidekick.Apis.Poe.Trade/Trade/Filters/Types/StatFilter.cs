@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
@@ -98,36 +99,45 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             return;
         }
 
-        var stats = Stat.Definitions.ToList();
+        var stats = Stat.Definitions
+            .SelectMany(definition => definition.TradeIds.Select(tradeId => new
+            {
+                Definition = definition,
+                TradeId = tradeId,
+            }))
+            .DistinctBy(x => x.TradeId)
+            .ToList();
+
         if (stats.Count > 1)
         {
-            if (UsePrimaryCategory)
+            var categoryString = Stat.Category.GetValueAttribute();
+            if (!UsePrimaryCategory && Stat.Category is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted)
             {
-                stats = stats.Where(x => x.Category == Stat.Category).ToList();
+                categoryString = StatCategory.Explicit.GetValueAttribute();
             }
-            else if (stats.Any(x => x.Category == StatCategory.Explicit))
+
+            if (stats.Any(x => x.TradeId.StartsWith(categoryString)))
             {
-                stats = stats.Where(x => x.Category == StatCategory.Explicit).ToList();
+                stats = stats.Where(x => x.TradeId.StartsWith(categoryString)).ToList();
             }
         }
 
-        var tradeIds = stats.SelectMany(x => x.TradeIds).ToList();
-        if (tradeIds.Count == 1)
+        if (stats.Count == 1)
         {
             query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
             {
-                Id = tradeIds.First(),
+                Id = stats.First().TradeId,
                 Value = new StatFilterValue(this),
             });
         }
         else
         {
             var countGroup = query.GetOrCreateStatGroup(StatType.Count);
-            foreach (var tradeId in tradeIds)
+            foreach (var stat in stats)
             {
                 countGroup.Filters.Add(new StatFilters()
                 {
-                    Id = tradeId,
+                    Id = stat.TradeId,
                     Value = new StatFilterValue(this),
                 });
             }
