@@ -96,14 +96,14 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult<TEnum?>(null);
     }
 
-    public Task<TValue?> GetObject<TValue>(string key, Func<TValue?> defaultFunc)
+    public Task<TValue?> GetObject<TValue>(string key)
         where TValue : class
     {
         if (store.TryGetValue(key, out var value))
         {
             try
             {
-                if (!string.IsNullOrEmpty(value)) return Task.FromResult(JsonSerializer.Deserialize<TValue>(value) ?? defaultFunc.Invoke());
+                if (!string.IsNullOrEmpty(value)) return Task.FromResult(JsonSerializer.Deserialize<TValue>(value) ?? null);
             }
             catch
             {
@@ -112,7 +112,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         }
 
         var defaultValue = GetDefault<TValue>(key);
-        return Task.FromResult(defaultValue ?? defaultFunc.Invoke());
+        return Task.FromResult(defaultValue ?? null);
     }
 
     public Task Set(string key, object? value)
