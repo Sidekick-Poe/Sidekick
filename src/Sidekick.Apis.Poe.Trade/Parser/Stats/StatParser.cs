@@ -131,9 +131,9 @@ public class StatParser
 
             if (results.Count == 0) return [];
 
-            results = results.OrderByDescending(x => x.Ratio).ToList();
-            var cutoff = results.First().Ratio - 2;
-            return results.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
+            var orderedResults = results.OrderByDescending(x => x.Ratio).ToList();
+            var cutoff = orderedResults.First().Ratio - 2;
+            return orderedResults.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
         }
 
         Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
@@ -153,6 +153,7 @@ public class StatParser
                 LineIndex = lines.First().Index,
                 Definitions = definitions,
                 MatchedFuzzily = matchedFuzzily,
+                HasTradeSupport = definitions.Any(x => x.TradeIds.Count > 0),
             };
 
             stat.Values = GetValues(stat).ToList();
