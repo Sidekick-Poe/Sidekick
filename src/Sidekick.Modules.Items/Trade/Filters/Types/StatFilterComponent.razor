@@ -5,8 +5,16 @@
     <div class="grow">
         <FormCheckbox Value="Filter.Checked"
                       ValueChanged="CheckedChanged">
-            <ItemStatText Class="text-left"
-                          Category="Filter.Stat.Category">@Filter.Text</ItemStatText>
+            <div class="flex flex-nowrap items-center gap-1">
+                @if (Filter.Stat.MatchedFuzzily)
+                {
+                    <Tooltip Text="@Resources["Stat_Fuzzy"]">
+                        <Icon Svg="@UiIcons.Warning" Class="text-violet-500 flex self-center cursor-help"/>
+                    </Tooltip>
+                }
+                <ItemStatText Class="text-left"
+                              Category="Filter.Stat.Category">@Filter.Text</ItemStatText>
+            </div>
         </FormCheckbox>
     </div>
 
