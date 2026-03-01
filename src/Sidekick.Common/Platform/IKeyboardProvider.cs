@@ -44,5 +44,15 @@ public interface IKeyboardProvider : IInitializableService
     /// </summary>
     void ReleaseAltModifier();
 
+    /// <summary>
+    /// Enables the keyboard provider to begin processing keyboard-related events and interactions.
+    /// </summary>
+    void Enable();
+
+    /// <summary>
+    /// Stops processing keyboard-related events.
+    /// </summary>
+    void Disable();
+
     HashSet<string?> UsedKeybinds { get; }
 }

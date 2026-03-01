@@ -19,8 +19,8 @@
         <input id="@Id"
                @onchange="OnChange"
                @attributes="InputAttributes"
-               @onfocus="OnFocus"
-               @onblur="OnBlur"
+               @onfocus="Focus"
+               @onblur="Blur"
                class="absolute top-0 left-0 right-0 bottom-0 @UiClasses.FocusClasses @Classes @ColorClasses @TransitionClasses"
                value="@Value"/>
     }
@@ -34,5 +34,4 @@
 
     [Parameter]
     public bool Readonly { get; set; }
-
 }
