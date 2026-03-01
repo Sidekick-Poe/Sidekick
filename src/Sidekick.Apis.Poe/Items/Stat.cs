@@ -17,15 +17,6 @@ public class Stat(StatCategory category, string text)
 
     public List<StatDefinition> Definitions { get; set; } = [];
 
-    public bool HasMultipleCategories
-    {
-        get
-        {
-            if (Definitions.Any(x => x.Category == StatCategory.Undefined)) return true;
-            return Definitions.DistinctBy(x => x.Category).Count() > 1;
-        }
-    }
-
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
     /// </summary>

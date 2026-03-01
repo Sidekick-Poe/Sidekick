@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Data.Items
 @using Sidekick.Modules.Items.Trade.Localization
 
 <FilterWrapper Filter="Filter">
@@ -28,11 +29,7 @@
     <OilAnointment Filter="Filter"/>
 
     <div class="flex flex-col items-end justify-between gap-[2px]">
-        @if (Filter is
-                 {
-                     Checked: true,
-                     Stat.HasMultipleCategories: true,
-                 })
+        @if (Filter.Checked && Filter.Stat.Category.HasExplicitStat())
         {
             <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
                 <ItemStatCategoryChip Category="Filter.Stat.Category"

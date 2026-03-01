@@ -13,18 +13,10 @@ public static class StatCategoryExtensions
             _ => false,
         };
     }
-
-    public static List<StatCategory> ExplicitCategories { get; } =
-    [
-        StatCategory.Explicit,
-        StatCategory.Delve,
-        StatCategory.Sanctum,
-    ];
 }
 
 public enum StatCategory
 {
-
     Undefined = 0,
 
     [EnumValue("crafted")]

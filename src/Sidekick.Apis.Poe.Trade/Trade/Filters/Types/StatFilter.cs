@@ -111,7 +111,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         if (stats.Count > 1)
         {
             var categoryString = Stat.Category.GetValueAttribute();
-            if (!UsePrimaryCategory && Stat.Category is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted)
+            if (!UsePrimaryCategory && Stat.Category.HasExplicitStat())
             {
                 categoryString = StatCategory.Explicit.GetValueAttribute();
             }
