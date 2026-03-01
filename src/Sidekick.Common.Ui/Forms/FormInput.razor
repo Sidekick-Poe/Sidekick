@@ -1,3 +1,4 @@
+@using Sidekick.Common.Platform
 <div>
 
     @if (!string.IsNullOrEmpty(Label))
@@ -16,14 +17,16 @@
         <input id="@Id"
                @attributes="InputAttributes"
                @onchange="OnChange"
-               @onfocus="OnFocus"
-               @onblur="OnBlur"
+               @onfocus="Focus"
+               @onblur="Blur"
                value="@Value"
                class="@UiClasses.FormInputClasses p-2 text-base min-w-0 grow @AdditionalClasses" />
         @AdornmentContent
     </div>
 
 </div>
+
+@inject IKeyboardProvider KeyboardProvider
 
 @code {
 
@@ -61,4 +64,15 @@
         await ValueChanged.InvokeAsync(args.Value?.ToString());
     }
 
+    protected async Task Focus()
+    {
+        KeyboardProvider.Disable();
+        await OnFocus.InvokeAsync();
+    }
+
+    protected async Task Blur()
+    {
+        KeyboardProvider.Enable();
+        await OnBlur.InvokeAsync();
+    }
 }
