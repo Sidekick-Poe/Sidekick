@@ -95,6 +95,8 @@ public class PseudoParser
             });
         }
 
+        if (result.Count == 0) return result;
+
         var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], result.ToArray())
         {
             Checked = true,
