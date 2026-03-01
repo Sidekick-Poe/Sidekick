@@ -129,7 +129,11 @@ public class StatParser
                                  }
                              });
 
-            return results.OrderByDescending(x => x.Ratio).Select(x => x.Definition).ToList();
+            if (results.Count == 0) return [];
+
+            results = results.OrderByDescending(x => x.Ratio).ToList();
+            var cutoff = results.First().Ratio - 2;
+            return results.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
         }
 
         Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
