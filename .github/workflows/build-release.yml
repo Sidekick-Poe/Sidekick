@@ -60,7 +60,7 @@ jobs:
       - name: Data - Execute
         shell: bash
         run: |
-          dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.dll
+          dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.Builder.Cli.dll
 
       - name: .NET - Test
         if: matrix.os == 'windows-latest'
