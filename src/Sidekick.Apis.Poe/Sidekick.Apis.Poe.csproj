@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Sidekick.Apis.Common\Sidekick.Apis.Common.csproj" />
       <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
+      <ProjectReference Include="..\Sidekick.Data\Sidekick.Data.csproj" />
     </ItemGroup>
 
 </Project>

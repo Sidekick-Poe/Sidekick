@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -71,10 +72,10 @@ Crusader Item
         Assert.Equal("Miracle Chant", actual.Name);
         Assert.True(actual.Properties.Influences.Crusader);
 
-        actual.AssertHasStat(StatCategory.Implicit, "#% increased Spell Damage", 33);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Fire Damage", 24);
-        actual.AssertHasStat(StatCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Spell Damage", 33);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Fire Damage", 24);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
     }
 
     [Fact]
@@ -105,7 +106,7 @@ Item Level: 50
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Shadow Axe", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
         Assert.False(actual.Stats[0].MatchedFuzzily);
     }
 
@@ -207,7 +208,7 @@ All form and finesse are forgotten when blood first hits the ground.
 
         AssertExtensions.AssertCloseEnough(59.2, actual.Properties.ElementalDps);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Frenzy Charge Duration", -20);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Frenzy Charge Duration", -20);
         Assert.False(actual.Stats[3].MatchedFuzzily);
     }
 
@@ -318,7 +319,7 @@ Spells Triggered this way have 150% more Cost (crafted)
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Apex Rapier", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 8);
+        fixture.AssertHasStat(actual, StatCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 100);
     }
 
     [Fact]
@@ -360,7 +361,7 @@ Adds 10 to 175 Lightning Damage
         Assert.Equal(110.30, actual.Properties.PhysicalDpsWithQuality);
         Assert.Equal(295.90, actual.Properties.ElementalDps);
 
-        actual.AssertHasStat(StatCategory.Crafted, "#% increased Lightning Damage", 9);
+        fixture.AssertHasStat(actual, StatCategory.Crafted, "#% increased Lightning Damage", 9);
     }
 
     [Fact]
@@ -402,9 +403,7 @@ Note: ~price 30 chaos
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Imperial Staff", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Fractured, "+#% to Damage over Time Multiplier", 44);
-        actual.AssertHasStat(StatCategory.Explicit, "+#% to Damage over Time Multiplier", 44);
-
+        fixture.AssertHasStat(actual, StatCategory.Fractured, "+#% to Damage over Time Multiplier", 44);
     }
 
     [Fact]
@@ -450,10 +449,7 @@ Corrupted");
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Decorative Axe", actual.ApiInformation.Type);
 
-        // Known parsing issue: #912
-        actual.AssertDoesNotHaveModifier(StatCategory.Implicit, "Melee Hits have #% chance to Fortify");
-        actual.AssertDoesNotHaveModifier(StatCategory.Implicit, "Melee Hits Fortify");
-        Assert.Equal(1, actual.Stats.Count(x => x.ApiInformation.FirstOrDefault()?.Category == StatCategory.Implicit));
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Melee Hits Fortify", 12);
     }
 
     [Fact]
@@ -493,7 +489,7 @@ Elder Item");
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Prophecy Wand", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Lightning Damage to Attacks with this Weapon per 10 Intelligence", 1, 5);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Spell Damage per 16 Intelligence", 1);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Attacks with this Weapon per 10 Intelligence", 1, 5);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Spell Damage per 16 Intelligence", 1);
     }
 }

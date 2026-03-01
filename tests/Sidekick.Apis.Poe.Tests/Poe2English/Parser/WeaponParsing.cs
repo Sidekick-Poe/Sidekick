@@ -1,7 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -33,8 +33,8 @@ Item Level: 60
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(60, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "# to maximum Mana", 148);
-        actual.AssertHasStat(StatCategory.Explicit, "# to Intelligence", 20);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to maximum Mana", 148);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Intelligence", 20);
     }
 
     [Fact]
@@ -85,14 +85,14 @@ Leeches 4.02% of Physical Damage as Mana
         Assert.Equal(75, actual.Properties.ColdDamage?.Max);
         Assert.Equal(68.4, actual.Properties.ElementalDps);
 
-        actual.AssertHasStat(StatCategory.Rune, "#% increased Physical Damage", 40);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Physical Damage", 73);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Physical Damage", 24, 37);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Attribute Requirements", -35);
+        fixture.AssertHasStat(actual, StatCategory.Rune, "#% increased Physical Damage", 40);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Physical Damage", 73);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage", 24, 37);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attribute Requirements", -35);
         Assert.False(actual.Stats[4].MatchedFuzzily);
-        actual.AssertHasStat(StatCategory.Explicit, "# to Level of all Projectile Skills", 3);
-        actual.AssertHasStat(StatCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Level of all Projectile Skills", 3);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02);
     }
 
     [Fact]
@@ -229,7 +229,7 @@ Grants Skill: Spear Throw
         Assert.Equal("Ironhead Spear", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
 
-        actual.AssertHasStat(StatCategory.Explicit, "# to Accuracy Rating", 32);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Accuracy Rating", 32);
     }
 
     [Fact]
@@ -394,56 +394,37 @@ Note: ~price 1 mirror");
         Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);
         Assert.Equal(1043, actual.Properties.PhysicalDamage?.Max);
 
-        actual.AssertHasStat(StatCategory.Rune, "#% increased Physical Damage", 36);
-
-        actual.AssertHasStat(StatCategory.Fractured, "#% increased Attack Speed", 25);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Attack Speed", 25);
-
-        actual.AssertHasStat(StatCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Physical Damage", 54, 94);
-
-        actual.AssertHasStat(StatCategory.Explicit, "Loads an additional bolt", 2);
+        fixture.AssertHasStat(actual, StatCategory.Rune, "#% increased Physical Damage", 36);
+        fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Attack Speed", 25);
+        fixture.AssertHasStat(actual, StatCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Loads an additional bolt", 2);
         actual.AssertDoesNotHaveModifier(StatCategory.Fractured, "Loads an additional bolt");
 
         var modifierFilters = await fixture.StatParser.GetFilters(actual);
 
         var fracturedFilter = modifierFilters
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Fractured);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Fractured);
         fracturedFilter ??= modifierFilters.OfType<ExpandableFilter>()
             .SelectMany(x => x.Filters)
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Fractured);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Fractured);
 
         Assert.NotNull(fracturedFilter);
         Assert.True(fracturedFilter.UsePrimaryCategory);
-        Assert.Equal(StatCategory.Fractured, fracturedFilter.PrimaryCategory);
-        Assert.Equal(StatCategory.Explicit, fracturedFilter.SecondaryCategory);
-        foreach (var x in fracturedFilter.Stat.ApiInformation)
-        {
-            if (x.Category is StatCategory.Fractured or StatCategory.Explicit) continue;
-
-            Assert.Fail();
-        }
+        Assert.Equal(StatCategory.Fractured, fracturedFilter.Stat.Category);
 
         var desecratedFilter = modifierFilters
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Desecrated);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Desecrated);
         desecratedFilter ??= modifierFilters.OfType<ExpandableFilter>()
             .SelectMany(x => x.Filters)
             .OfType<StatFilter>()
-            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Desecrated);
+            .FirstOrDefault(x => x.Stat.Category == StatCategory.Desecrated);
 
         Assert.NotNull(desecratedFilter);
         Assert.False(desecratedFilter.UsePrimaryCategory);
-        Assert.Equal(StatCategory.Desecrated, desecratedFilter.PrimaryCategory);
-        Assert.Equal(StatCategory.Explicit, desecratedFilter.SecondaryCategory);
-        foreach (var x in desecratedFilter.Stat.ApiInformation)
-        {
-            if (x.Category is StatCategory.Desecrated or StatCategory.Explicit) continue;
-
-            Assert.Fail();
-        }
+        Assert.Equal(StatCategory.Desecrated, desecratedFilter.Stat.Category);
     }
 
     [Fact]

@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -29,8 +30,8 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas
         Assert.Equal("Urn Relic", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
 
-        actual.AssertHasStat(StatCategory.Sanctum, "Fountains have #% chance to grant double Sacred Water", 6);
-        actual.AssertHasStat(StatCategory.Sanctum, "#% increased Honour restored", 9);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Fountains have #% chance to grant double Sacred Water", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Honour restored", 9);
     }
 
     [Fact]
@@ -54,7 +55,7 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas");
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Sanctum, "#% increased Defences", 35);
-        actual.AssertHasStat(StatCategory.Sanctum, "# metre to Dodge Roll distance", 0.7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Defences", 35);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# metre to Dodge Roll distance", 0.7);
     }
 }

@@ -3,9 +3,7 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 public class StatFilterValue
 {
-    public StatFilterValue()
-    {
-    }
+    public StatFilterValue() {}
 
     public StatFilterValue(string? option)
     {
@@ -28,7 +26,7 @@ public class StatFilterValue
 
     public StatFilterValue(StatFilter filter)
     {
-        Option = filter.Stat.OptionValue;
+        Option = filter.Stat.Definitions.FirstOrDefault(x => x.Option != null)?.Option!.Id;
         Min = filter.Min;
         Max = filter.Max;
     }
@@ -38,6 +36,4 @@ public class StatFilterValue
     public double? Min { get; set; }
 
     public double? Max { get; set; }
-
-    public double? Weight { get; set; }
 }

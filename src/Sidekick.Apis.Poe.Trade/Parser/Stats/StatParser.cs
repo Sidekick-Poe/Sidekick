@@ -4,50 +4,39 @@ using FuzzySharp;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
+using Sidekick.Data.Stats;
+
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
 public class StatParser
 (
-    IFuzzyService fuzzyService,
-    IApiStatsProvider apiStatsProvider,
     ISettingsService settingsService,
     ICurrentGameLanguage currentGameLanguage,
-    IStringLocalizer<PoeResources> resources
+    IStringLocalizer<PoeResources> resources,
+    IApiStatsProvider apiStatsProvider,
+    DataProvider dataProvider,
+    IFuzzyService fuzzyService
 ) : IStatParser
 {
+    private static readonly Regex ParseCategoryPattern = new(@" \(([a-zA-Z]+)\)$", RegexOptions.Multiline);
+
     public int Priority => 300;
 
-    private Regex? PositivePattern { get; set; }
+    private List<StatDefinition> Definitions { get; set; } = [];
 
-    private Regex? NegativePattern { get; set; }
-
-    public Task Initialize()
+    public async Task Initialize()
     {
-        List<string> positiveTexts =
-        [
-            ..currentGameLanguage.Language.RegexIncreased.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..currentGameLanguage.Language.RegexMore.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..currentGameLanguage.Language.RegexFaster.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-        ];
-        PositivePattern = positiveTexts.Count != 0 ? new Regex($"(?:{string.Join('|', positiveTexts)})") : null;
-
-        List<string> negativeTexts =
-        [
-            ..currentGameLanguage.Language.RegexReduced.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..currentGameLanguage.Language.RegexLess.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..currentGameLanguage.Language.RegexSlower.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-        ];
-        NegativePattern = negativeTexts.Count != 0 ? new Regex($"(?:{string.Join('|', negativeTexts)})") : null;
-
-        return Task.CompletedTask;
+        var game = await settingsService.GetGame();
+        Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
     }
 
     /// <inheritdoc/>
@@ -55,256 +44,194 @@ public class StatParser
     {
         if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return;
 
-        var stats = MatchStats(item)
-            // Trim stat lines
-            .Where(x => x.ApiInformation.Count > 0)
-
-            // Order the mods by the order they appear on the item.
-            .OrderBy(x => x.BlockIndex)
-            .ThenBy(x => x.LineIndex)
-            .ToList();
-
+        var stats = MatchStats().ToList();
         item.Stats.Clear();
         item.Stats.AddRange(stats);
-    }
 
-    private IEnumerable<Stat> MatchStats(Item item)
-    {
-        var allAvailablePatterns = GetAllAvailablePatterns(item);
-        foreach (var block in item.Text.Blocks.Where(x => !x.AnyParsed))
+        return;
+
+        IEnumerable<Stat> MatchStats()
         {
-            for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
+            foreach (var block in item.Text.Blocks)
             {
-                if (block.Lines[lineIndex].Parsed) continue;
-
-                var definitions = MatchStatPatterns(block, lineIndex, allAvailablePatterns).ToList();
-                var matchFuzzily = definitions.Count == 0;
-                if (matchFuzzily)
+                for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
                 {
-                    // If we reach this point we have not found the stat through traditional Regex means.
-                    // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
-                    definitions = MatchStatFuzzily(block, lineIndex, allAvailablePatterns).ToList();
-                }
+                    if (block.Lines[lineIndex].Parsed) continue;
 
-                if (definitions.Count is 0) continue;
+                    var definitions = MatchDefinitions(block, lineIndex).ToList();
+                    var matchFuzzily = definitions.Sum(x => x.TradeIds.Count) is 0;
+                    if (matchFuzzily) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
+                    if (definitions.Count is 0) continue;
 
-                var maxLineCount = definitions.Max(x => x.LineCount);
-                var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
-                lines.ForEach(x => x.Parsed = true);
+                    var maxLineCount = definitions.Select(x => x.LineCount).Max();
+                    definitions = definitions.Where(x => x.LineCount == maxLineCount).ToList();
 
-                yield return CreateStat(block, lines, definitions, matchFuzzily);
-            }
-        }
-    }
+                    var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
+                    lines.ForEach(x => x.Parsed = true);
 
-    private static IEnumerable<TradeStatDefinition> MatchStatPatterns(TextBlock block, int lineIndex, IReadOnlyCollection<TradeStatDefinition> allAvailablePatterns)
-    {
-        foreach (var pattern in allAvailablePatterns)
-        {
-            // Multiple line stats
-            if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
-            {
-                yield return pattern;
-                continue;
-            }
-
-            // Single line stats
-            if (pattern.Pattern.IsMatch(block.Lines[lineIndex].Text))
-            {
-                yield return pattern;
-            }
-        }
-    }
-
-    private IEnumerable<TradeStatDefinition> MatchStatFuzzily(TextBlock block, int lineIndex, IReadOnlyCollection<TradeStatDefinition> allAvailablePatterns)
-    {
-        var category = block.Lines[lineIndex].Text.ParseCategory();
-        if (category == StatCategory.Mutated) category = StatCategory.Explicit;
-
-        var cleanLine = block.Lines[lineIndex].Text.RemoveCategory();
-        var fuzzySingleLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, cleanLine);
-        string? fuzzyDoubleLine = null;
-        if (lineIndex < block.Lines.Count - 1)
-        {
-            fuzzyDoubleLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, cleanLine + " " + block.Lines[lineIndex + 1].Text);
-        }
-
-        var results = new List<(int Ratio, TradeStatDefinition Pattern)>();
-        var resultsLock = new object();// Lock object to synchronize access to results
-
-        Parallel.ForEach(allAvailablePatterns,
-                         definition =>
-                         {
-                             if (category != StatCategory.Undefined && definition.Category != category) return;
-
-                             if (category == StatCategory.Undefined && !StatCategoryExtensions.ExplicitCategories.Contains(definition.Category)) return;
-
-                             var compareLine = definition.LineCount switch
-                             {
-                                 2 => fuzzyDoubleLine ?? fuzzySingleLine,
-                                 _ => fuzzySingleLine,
-                             };
-
-                             var ratio = Fuzz.Ratio(compareLine, definition.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None);
-                             if (ratio <= 75)
-                             {
-                                 return;
-                             }
-
-                             lock (resultsLock)// Lock before accessing the shared list
-                             {
-                                 results.Add((ratio, definition));
-                             }
-                         });
-
-        foreach (var (_, pattern) in results.OrderByDescending(x => x.Ratio))
-        {
-            yield return pattern;
-        }
-    }
-
-    private IReadOnlyCollection<TradeStatDefinition> GetAllAvailablePatterns(Item item)
-    {
-        return item.Properties.ItemClass switch
-        {
-            ItemClass.SanctumRelic => apiStatsProvider.Definitions
-                .Where(x => x.Category == StatCategory.Sanctum)
-                .ToList(),
-            ItemClass.Tablet => apiStatsProvider.Definitions
-                .Where(x => x.Category == StatCategory.Implicit || x.Category == StatCategory.Explicit)
-                .ToList(),
-            _ => apiStatsProvider.Definitions.ToList(),
-        };
-    }
-
-    private Stat CreateStat(TextBlock block, List<TextLine> lines, List<TradeStatDefinition> definitions, bool matchedFuzzily)
-    {
-        var text = string.Join('\n', lines.Select(x => x.Text));
-        var category = text.ParseCategory();
-
-        var stat = new Stat(text.RemoveCategory())
-        {
-            BlockIndex = block.Index,
-            LineIndex = lines.First().Index,
-            MatchedFuzzily = matchedFuzzily,
-        };
-
-        var fuzzyLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, text);
-        var filteredDefinitions = definitions
-            .DistinctBy(x => x.Id)
-            .OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText))
-            .ToList();
-
-        if (filteredDefinitions.Any(x => x.Category == StatCategory.Pseudo)
-            && filteredDefinitions.Any(x => x.Category != StatCategory.Pseudo))
-        {
-            filteredDefinitions = filteredDefinitions.Where(x => x.Category != StatCategory.Pseudo).ToList();
-        }
-
-        foreach (var definition in filteredDefinitions)
-        {
-            stat.ApiInformation.Add(new(text: definition.Text)
-            {
-                Id = definition.Id,
-                Category = category switch
-                {
-                    StatCategory.Mutated => StatCategory.Mutated,
-                    _ => definition.Category,
-                },
-            });
-
-            if (definition.SecondaryDefinitions != null)
-            {
-                foreach (var secondaryDefinitionId in definition.SecondaryDefinitions)
-                {
-                    var secondaryDefinition = apiStatsProvider.Definitions.FirstOrDefault(x => x.Id == secondaryDefinitionId);
-                    if(secondaryDefinition == null) continue;
-
-                    stat.ApiInformation.Add(new(text: secondaryDefinition.Text)
-                    {
-                        Id = secondaryDefinition.Id,
-                        Category = category switch
-                        {
-                            StatCategory.Mutated => StatCategory.Mutated,
-                            _ => secondaryDefinition.Category,
-                        },
-                    });
+                    yield return CreateStat(block, lines, definitions, matchFuzzily);
                 }
             }
         }
 
-        ParseStatValue(stat, filteredDefinitions.FirstOrDefault());
-
-        var originallyPositive = false;
-        var negative = NegativePattern?.IsMatch(text) ?? false;
-        foreach (var definition in definitions)
+        IEnumerable<StatDefinition> MatchDefinitions(TextBlock block, int lineIndex)
         {
-            originallyPositive |= PositivePattern?.IsMatch(definition.Text) ?? false;
+            foreach (var definition in Definitions)
+            {
+                // Multiple line stats
+                if (definition.LineCount > 1 && definition.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(definition.LineCount))))
+                {
+                    yield return definition;
+                }
+
+                // Single line stats
+                if (definition.Pattern.IsMatch(block.Lines[lineIndex].Text))
+                {
+                    yield return definition;
+                }
+            }
         }
 
-        if (negative && originallyPositive)
+        List<StatDefinition> MatchDefinitionsFuzzily(TextBlock block, int lineIndex)
         {
-            var nagativeValues = stat.Values.Select(x => x * -1).ToList();
-            stat.Values.Clear();
-            stat.Values.AddRange(nagativeValues);
+            var singleText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, block.Lines[lineIndex].Text);
+
+            string? doubleText = null;
+            if (lineIndex < block.Lines.Count - 1)
+            {
+                doubleText = $"{block.Lines[lineIndex].Text} {block.Lines[lineIndex + 1].Text}";
+                doubleText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, doubleText);
+            }
+
+            var results = new List<(int Ratio, StatDefinition Definition)>();
+            var resultsLock = new object();// Lock object to synchronize access to results
+
+            Parallel.ForEach(Definitions,
+                             definition =>
+                             {
+                                 if (string.IsNullOrEmpty(definition.FuzzyText)) return;
+
+                                 var text = definition.LineCount switch
+                                 {
+                                     2 => doubleText ?? singleText,
+                                     _ => singleText,
+                                 };
+
+                                 var ratio = Fuzz.Ratio(text, definition.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None);
+                                 if (ratio <= 75)
+                                 {
+                                     return;
+                                 }
+
+                                 lock (resultsLock)// Lock before accessing the shared list
+                                 {
+                                     results.Add((ratio, definition));
+                                 }
+                             });
+
+            if (results.Count == 0) return [];
+
+            results = results.OrderByDescending(x => x.Ratio).ToList();
+            var cutoff = results.First().Ratio - 2;
+            return results.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
         }
 
-        return stat;
+        Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
+        {
+            var text = string.Join('\n', lines.Select(x => x.Text));
+            var category = ParseCategory(text);
+            if (definitions.DistinctBy(x => x.Category).Count() == 1 && definitions[0].Category != StatCategory.Undefined)
+            {
+                category = definitions[0].Category;
+            }
+
+            text = RemoveCategory(text);
+
+            var stat = new Stat(category, text)
+            {
+                BlockIndex = block.Index,
+                LineIndex = lines.First().Index,
+                Definitions = definitions,
+                MatchedFuzzily = matchedFuzzily,
+            };
+
+            stat.Values = GetValues(stat).ToList();
+            return stat;
+        }
     }
 
-    private static void ParseStatValue(Stat stat, TradeStatDefinition? definition)
+    private StatCategory ParseCategory(string value)
     {
-        switch (definition)
+        var match = ParseCategoryPattern.Match(value);
+        if (!match.Success)
         {
-            case
-            {
-                IsOption: true
-            }:
-                stat.OptionValue = definition.OptionId;
-                return;
-
-            case
-            {
-                OptionId: int value,
-            }:
-                stat.Values.Add(value);
-                return;
-
-            case null: return;
+            return StatCategory.Explicit;
         }
 
-        // We try to parse the value from the line itself, if that fails we try to parse it from finding numbers in the line.
-        var patternMatch = definition.Pattern.Match(stat.Text);
-        if (patternMatch.Success)
+        return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
+    }
+
+    private string RemoveCategory(string value)
+    {
+        return ParseCategoryPattern.Replace(value, string.Empty);
+    }
+
+    private IEnumerable<double> GetValues(Stat stat)
+    {
+        var hardcodedDefinition = stat.Definitions.FirstOrDefault(x => x.Value.HasValue);
+        if (hardcodedDefinition != null)
         {
+            yield return hardcodedDefinition.Value!.Value;
+            yield break;
+        }
+
+        foreach (var definition in stat.Definitions)
+        {
+            var patternMatch = definition.Pattern.Match(stat.Text);
+            if (!patternMatch.Success) continue;
+
+            var hasMatchingDescription = HasMatchingDescriptions(definition);
+            var hasValues = false;
             foreach (Group group in patternMatch.Groups)
             {
                 foreach (Capture capture in group.Captures)
                 {
-                    if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
-                    {
-                        stat.Values.Add(parsedValue);
-                    }
+                    if (!double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value)) continue;
+                    if (!hasMatchingDescription && definition.Negate) value *= -1;
+                    yield return value;
+                    hasValues = true;
                 }
             }
 
-            return;
+            if (hasValues) yield break;
         }
 
         // Find numbers in the line
-        var lines = stat.Text.Split('\n');
-        foreach (var line in lines)
+        if (stat.MatchedFuzzily)
         {
-            if (stat.Values.Count != 0) continue;
-
-            var matches = new Regex("([-+0-9,.]+)").Matches(line);
+            var matches = new Regex("([-+0-9,.]+)").Matches(stat.Text);
             foreach (Match match in matches)
             {
-                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
                 {
-                    stat.Values.Add(parsedValue);
+                    yield return value;
                 }
             }
+        }
+
+        yield break;
+
+        bool HasMatchingDescriptions(StatDefinition definition)
+        {
+            foreach (var tradeId in definition.TradeIds)
+            {
+                var apiStats = apiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
+                if (apiStats == null) continue;
+
+                if (apiStats.Any(apiStat => apiStat.Text == definition.Text)) return true;
+            }
+
+            return false;
         }
     }
 

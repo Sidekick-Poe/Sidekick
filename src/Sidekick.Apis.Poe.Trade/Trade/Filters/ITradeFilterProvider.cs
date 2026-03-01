@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Initialization;
-using Sidekick.Data.Trade.Models.Raw;
+using Sidekick.Data.Trade.Raw;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 
 public interface ITradeFilterProvider : IInitializableService

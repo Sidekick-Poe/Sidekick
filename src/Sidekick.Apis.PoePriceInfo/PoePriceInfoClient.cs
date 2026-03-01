@@ -3,10 +3,10 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.PoePriceInfo;
 

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Trade.Parser.Tokenizers;
+using Sidekick.Data.Extensions;
 namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>

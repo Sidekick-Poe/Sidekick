@@ -1,13 +1,16 @@
 ﻿using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 using Sidekick.Data.Ninja;
 namespace Sidekick.Apis.PoeNinja.Items;
 
 public class NinjaItemProvider(
     ISettingsService settingsService,
-    NinjaDataProvider ninjaDataProvider) : INinjaItemProvider
+    DataProvider dataProvider,
+    IGameLanguageProvider gameLanguageProvider) : INinjaItemProvider
 {
     private List<NinjaExchangeItem> ExchangeItems { get; } = [];
 
@@ -22,11 +25,11 @@ public class NinjaItemProvider(
         Game = await settingsService.GetGame();
 
         StashItems.Clear();
-        var stashItems = await ninjaDataProvider.GetStash(Game);
+        var stashItems = await dataProvider.Read<List<NinjaStashItem>>(Game, DataType.NinjaStash, gameLanguageProvider.InvariantLanguage);
         StashItems.AddRange(stashItems);
 
         ExchangeItems.Clear();
-        var exchangeItems = await ninjaDataProvider.GetExchange(Game);
+        var exchangeItems = await dataProvider.Read<List<NinjaExchangeItem>>(Game, DataType.NinjaExchange, gameLanguageProvider.InvariantLanguage);
         ExchangeItems.AddRange(exchangeItems);
     }
 

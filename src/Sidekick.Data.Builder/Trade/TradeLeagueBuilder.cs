@@ -1,7 +1,7 @@
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
-using Sidekick.Data.Trade.Models;
-using Sidekick.Data.Trade.Models.Raw;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
+using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Raw;
 
 namespace Sidekick.Data.Builder.Trade;
 
@@ -20,8 +20,8 @@ public class TradeLeagueBuilder
 
     private async Task BuildForGame(GameType game)
     {
-        await tradeDownloader.DownloadPath(languageProvider.InvariantLanguage, "leagues");
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, "trade/raw/leagues.en.json");
+        await tradeDownloader.DownloadPath(DataType.TradeRawLeagues, languageProvider.InvariantLanguage, "leagues");
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, DataType.TradeRawLeagues, languageProvider.InvariantLanguage);
 
         var leagues = result.Result.Where(x => x is { Id: not null, Text: not null })
             .Where(x => x.Realm is TradeLeagueRealm.PC or TradeLeagueRealm.Poe2)
@@ -34,6 +34,6 @@ public class TradeLeagueBuilder
             })
             .ToList();
 
-        await dataProvider.Write(game, $"trade/leagues.invariant.json", leagues);
+        await dataProvider.Write(game, DataType.TradeLeagues, languageProvider.InvariantLanguage, leagues);
     }
 }

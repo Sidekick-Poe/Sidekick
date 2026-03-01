@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.ApiStats;
@@ -22,6 +21,8 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
@@ -56,7 +57,6 @@ public abstract class ParserFixture : IAsyncLifetime
 
             // Apis
             .AddSidekickCommonApi()
-            .AddSidekickPoeApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoeWikiApi();
@@ -112,6 +112,62 @@ public abstract class ParserFixture : IAsyncLifetime
         {
             logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
             await service.Initialize();
+        }
+    }
+
+    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
+    {
+        AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+    }
+
+    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
+    {
+        var actualStat = FindStat();
+        Assert.NotNull(actualStat);
+
+        if (expectedValues.Length == 0) return;
+
+        for (var i = 0; i < expectedValues.Length; i++)
+        {
+            AssertExtensions.AssertCloseEnough(expectedValues[i], actualStat?.Values[i]);
+        }
+
+        AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
+
+        return;
+
+        Stat? FindStat()
+        {
+            foreach (var stat in actual.Stats)
+            {
+                if (stat.Category != expectedCategory) continue;
+
+                foreach (var definition in stat.Definitions)
+                {
+                    foreach (var tradeId in definition.TradeIds)
+                    {
+                        var tradeStats = ApiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
+                        if (tradeStats == null) continue;
+                        foreach (var tradeStat in tradeStats)
+                        {
+                            if (tradeStat.Text != expectedText) continue;
+                            if (expectedOptionText == null) return stat;
+
+                            if (definition.Option == null) continue;
+                            if (tradeStat.Options == null) continue;
+                            foreach (var option in tradeStat.Options)
+                            {
+                                if (definition.Option.Id != option.Id) continue;
+                                if (option.Text != expectedOptionText) continue;
+
+                                return stat;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

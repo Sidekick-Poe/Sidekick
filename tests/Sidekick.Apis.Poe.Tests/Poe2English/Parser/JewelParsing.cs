@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -32,10 +33,10 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(26, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Attack Speed", 3);
-        actual.AssertHasStat(StatCategory.Explicit, "Damage Penetrates #% Lightning Resistance", 5);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Magnitude of Ailments you inflict", 7);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Pin Buildup", 14);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attack Speed", 3);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Damage Penetrates #% Lightning Resistance", 5);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Magnitude of Ailments you inflict", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Pin Buildup", 14);
     }
 
     [Fact]
@@ -88,10 +89,10 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(24, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Damage with Crossbows", 8);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Duration of Ignite, Shock and Chill on Enemies", 9);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Magnitude of Poison you inflict", 7);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Crossbow Reload Speed", 13);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Damage with Crossbows", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Duration of Ignite, Shock and Chill on Enemies", 9);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Magnitude of Poison you inflict", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Crossbow Reload Speed", 13);
     }
 
     [Fact]
@@ -114,6 +115,6 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(26, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Melee Damage", 12);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Melee Damage", 12);
     }
 }

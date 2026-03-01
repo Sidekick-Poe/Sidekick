@@ -1,4 +1,4 @@
-using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade;
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public interface ILeagueProvider

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Languages;
-using Sidekick.Data.Builder.Game;
 using Sidekick.Data.Builder.Ninja;
+using Sidekick.Data.Builder.Pseudo;
+using Sidekick.Data.Builder.Repoe;
+using Sidekick.Data.Builder.Stats;
 using Sidekick.Data.Builder.Trade;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Data.Builder;
 
@@ -10,6 +12,8 @@ public class DataBuilder(
     ILogger<DataBuilder> logger,
     DataProvider dataProvider,
     NinjaDownloader ninjaDownloader,
+    StatBuilder statBuilder,
+    PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
     TradeLeagueBuilder  tradeLeagueBuilder,
     TradeStatBuilder tradeStatBuilder,
@@ -22,7 +26,6 @@ public class DataBuilder(
         logger.LogInformation("Building all data files.");
 
         dataProvider.DeleteAll();
-
 
         foreach (var language in gameLanguageProvider.GetList())
         {
@@ -54,6 +57,8 @@ public class DataBuilder(
         logger.LogInformation($"Building {language.Code} data files.");
 
         await tradeStatBuilder.Build(language);
+        await statBuilder.Build(language);
+        await pseudoBuilder.Build(language);
 
         logger.LogInformation($"Built {language.Code} data files.");
     }
@@ -63,8 +68,8 @@ public class DataBuilder(
         logger.LogInformation("Building invariant data files.");
 
         await tradeLeagueBuilder.Build();
-        await ninjaDownloader.Download();
         await tradeInvariantStatBuilder.Build();
+        await ninjaDownloader.Download();
 
         logger.LogInformation("Invariant data files built.");
     }

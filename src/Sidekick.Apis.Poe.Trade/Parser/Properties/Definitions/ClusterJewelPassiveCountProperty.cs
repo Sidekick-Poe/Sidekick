@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -38,9 +39,9 @@ public class ClusterJewelPassiveCountProperty(
                 continue;
             }
 
-            foreach (var stat in line.ApiInformation)
+            foreach (var definition in line.Definitions)
             {
-                if (stat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId)
+                if (definition.TradeIds.Contains(apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId))
                 {
                     return (int)line.AverageValue;
                 }
@@ -52,19 +53,13 @@ public class ClusterJewelPassiveCountProperty(
 
     private string? ParseGrantTexts(List<Stat> lines)
     {
-        foreach (var line in lines)
+        foreach (var definition in lines.SelectMany(x => x.Definitions))
         {
-            if (!line.OptionValue.HasValue)
-            {
-                continue;
-            }
+            if (definition.Option == null) continue;
 
-            foreach (var apiStat in line.ApiInformation)
+            if (definition.TradeIds.Contains(apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId))
             {
-                if (apiStat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId)
-                {
-                    return apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[line.OptionValue.Value].Replace("\n", ", ");
-                }
+                return apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[definition.Option.Id].Replace("\n", ", ");
             }
         }
 

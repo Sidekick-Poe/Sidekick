@@ -1,25 +1,35 @@
+using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>
 ///     Represents a line of text on an item. With the API being the way it is, each line of text can be represented by one
 ///     or more api modifiers.
 /// </summary>
-public class Stat(string text)
+public class Stat(StatCategory category, string text)
 {
     /// <summary>
     ///     Gets or sets the original line of text as it is in the game.
     /// </summary>
     public string Text { get; } = text;
 
-    /// <summary>
-    ///     Gets or sets the modifier associated with this line.
-    /// </summary>
-    public List<StatApiInformation> ApiInformation { get; } = [];
+    public StatCategory Category { get; } = category;
+
+    public List<StatDefinition> Definitions { get; set; } = [];
+
+    public bool HasMultipleCategories
+    {
+        get
+        {
+            if (Definitions.Any(x => x.Category == StatCategory.Undefined)) return true;
+            return Definitions.DistinctBy(x => x.Category).Count() > 1;
+        }
+    }
 
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
     /// </summary>
-    public List<double> Values { get; } = [];
+    public List<double> Values { get; set; } = [];
 
     /// <summary>
     /// Gets the average value of the numerical values associated with the modifier line.
@@ -28,14 +38,9 @@ public class Stat(string text)
     public double AverageValue => Values.Count > 0 ? Values.Average() : 0;
 
     /// <summary>
-    ///     Gets or sets the option value of this modifier.
-    /// </summary>
-    public int? OptionValue { get; set; }
-
-    /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => OptionValue == null && Values.Count > 0;
+    public bool HasValues => Definitions.All(x => x.Option == null) && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 

@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Data.Items;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
@@ -13,35 +14,16 @@ public static class AssertExtensions
                     $"Expected {expected}, but got {actual} which is outside the tolerance of {tolerance}");
     }
 
-    public static void AssertHasStat(this Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
-    {
-        var modifiers = actual.Stats
-            .SelectMany(line => line.ApiInformation.Select(modifier => new
-            {
-                Line = line,
-                Modifier = modifier,
-            }));
-
-        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.Text);
-        for (var i = 0; i < expectedValues.Length; i++)
-        {
-            Assert.Equal(expectedValues[i], actualModifier?.Line.Values[i]);
-        }
-
-        Assert.True(actualModifier?.Line.Values.Count == expectedValues.Length);
-        Assert.NotNull(actualModifier);
-    }
-
     public static void AssertDoesNotHaveModifier(this Item actual, StatCategory expectedCategory, string expectedText)
     {
-        var modifiers = actual.Stats
-            .SelectMany(line => line.ApiInformation.Select(modifier => new
+        var actualModifier = actual.Stats
+            .SelectMany(stat => stat.Definitions.Select(pattern => new
             {
-                Line = line,
-                Modifier = modifier,
-            }));
+                Stat = stat,
+                Pattern = pattern,
+            }))
+            .FirstOrDefault(x => expectedCategory == x.Stat.Category && expectedText == x.Pattern.Text);
 
-        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.Text);
         Assert.Null(actualModifier);
     }
 

@@ -3,7 +3,9 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter, INormalizableFilter
@@ -64,20 +66,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         Text = stat.Text;
 
         DefaultAutoSelect = GetDefault(game);
-
-        var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
-        if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))
-        {
-            PrimaryCategory = categories.FirstOrDefault(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted);
-            SecondaryCategory = categories.FirstOrDefault(x => x == StatCategory.Explicit);
-            UsePrimaryCategory = PrimaryCategory is StatCategory.Fractured;
-        }
-        else
-        {
-            UsePrimaryCategory = false;
-            PrimaryCategory = Stat.ApiInformation.FirstOrDefault()?.Category ?? StatCategory.Undefined;
-            SecondaryCategory = StatCategory.Undefined;
-        }
+        UsePrimaryCategory = stat.Category is StatCategory.Fractured;
     }
 
     public override async Task<AutoSelectResult?> Initialize(Item item, ISettingsService settingsService)
@@ -95,10 +84,6 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
 
     public bool UsePrimaryCategory { get; set; }
 
-    public StatCategory PrimaryCategory { get; init; }
-
-    public StatCategory SecondaryCategory { get; init; }
-
     public double? Min { get; set; }
 
     public double? Max { get; set; }
@@ -109,37 +94,50 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!Checked || Stat.ApiInformation.Count == 0)
+        if (!Checked || Stat.Definitions.Count == 0)
         {
             return;
         }
 
-        if (Stat.ApiInformation.Count == 1)
+        var stats = Stat.Definitions
+            .SelectMany(definition => definition.TradeIds.Select(tradeId => new
+            {
+                Definition = definition,
+                TradeId = tradeId,
+            }))
+            .DistinctBy(x => x.TradeId)
+            .ToList();
+
+        if (stats.Count > 1)
+        {
+            var categoryString = Stat.Category.GetValueAttribute();
+            if (!UsePrimaryCategory && Stat.Category is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted)
+            {
+                categoryString = StatCategory.Explicit.GetValueAttribute();
+            }
+
+            if (stats.Any(x => x.TradeId.StartsWith(categoryString)))
+            {
+                stats = stats.Where(x => x.TradeId.StartsWith(categoryString)).ToList();
+            }
+        }
+
+        if (stats.Count == 1)
         {
             query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
             {
-                Id = Stat.ApiInformation.First().Id,
+                Id = stats.First().TradeId,
                 Value = new StatFilterValue(this),
             });
         }
         else
         {
-            var stats = Stat.ApiInformation.ToList();
-            if (UsePrimaryCategory)
-            {
-                stats = stats.Where(x => x.Category == PrimaryCategory).ToList();
-            }
-            else if (SecondaryCategory != StatCategory.Undefined)
-            {
-                stats = stats.Where(x => x.Category == SecondaryCategory).ToList();
-            }
-
             var countGroup = query.GetOrCreateStatGroup(StatType.Count);
             foreach (var stat in stats)
             {
                 countGroup.Filters.Add(new StatFilters()
                 {
-                    Id = stat.Id,
+                    Id = stat.TradeId,
                     Value = new StatFilterValue(this),
                 });
             }

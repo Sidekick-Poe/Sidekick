@@ -98,7 +98,7 @@ public class AutoSelectPreferences
             AutoSelectConditionType.GemLevel => item.Properties.GemLevel,
             AutoSelectConditionType.AnyStat => string.Join('\n', item.Stats.Select(x => x.Text)),
             AutoSelectConditionType.Text => filter.Text,
-            AutoSelectConditionType.StatCategory when filter is StatFilter statFilter => statFilter.PrimaryCategory,
+            AutoSelectConditionType.StatCategory when filter is StatFilter statFilter => statFilter.Stat.Category,
             AutoSelectConditionType.SocketCount => item.Properties.GetMaximumNumberOfLinks(),
             AutoSelectConditionType.Value when filter is DoublePropertyFilter doubleFilter => doubleFilter.Value,
             AutoSelectConditionType.Value when filter is IntPropertyFilter intFilter => intFilter.Value,
