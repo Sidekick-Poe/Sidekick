@@ -11,9 +11,11 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Items;
 using Sidekick.Common;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade;
 
@@ -44,6 +46,10 @@ public static class StartupExtensions
 
         services.AddSingleton<CurrencyFilterFactory>();
         services.AddSingleton<PlayerStatusFilterFactory>();
+
+        services.SetSidekickDefaultSetting(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
+        services.SetSidekickDefaultSetting(AutoSelectPreferences.DefaultFillMinSettingKey, true);
+        services.SetSidekickDefaultSetting(AutoSelectPreferences.DefaultSelectCategoriesSettingKey, new List<StatCategory> { StatCategory.Fractured });
 
         return services;
     }
