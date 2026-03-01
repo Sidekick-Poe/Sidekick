@@ -97,7 +97,7 @@
 
     private async Task OnShow()
     {
-        var regexes = await SettingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys, () => []) ?? [];
+        var regexes = await SettingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys) ?? [];
         Regexes = regexes;
     }
 

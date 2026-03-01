@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Common;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Items.Keybinds;
@@ -20,8 +19,6 @@ public static class StartupExtensions
 
         services.SetSidekickDefaultSetting(SettingKeys.KeyOpenPriceCheck, "Ctrl+D");
         services.SetSidekickDefaultSetting(SettingKeys.PriceCheckPredictionEnabled, true);
-        services.SetSidekickDefaultSetting(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
-        services.SetSidekickDefaultSetting(AutoSelectPreferences.DefaultFillMinSettingKey, true);
 
         return services;
     }

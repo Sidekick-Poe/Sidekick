@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
@@ -12,6 +13,7 @@ public class AutoSelectPreferences
     public const string DefaultNormalizeBySettingKey = "Trade_Filter_Default_NormalizeBy";
     public const string DefaultFillMinSettingKey = "Trade_Filter_Default_FillMin";
     public const string DefaultFillMaxSettingKey = "Trade_Filter_Default_FillMax";
+    public const string DefaultSelectCategoriesSettingKey = "Trade_Filter_Default_SelectCategories";
 
     public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
@@ -21,7 +23,7 @@ public class AutoSelectPreferences
         },
     };
 
-    public static AutoSelectPreferences Create(bool? isChecked) => new ()
+    public static AutoSelectPreferences Create(bool? isChecked) => new()
     {
         Rules =
         [
@@ -46,9 +48,10 @@ public class AutoSelectPreferences
         var fillMax = await settingsService.GetBool(DefaultFillMaxSettingKey);
 
         var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.Count == 0 || rule.Conditions.All(c => ConditionMatches(c, item, filter)));
+        AutoSelectResult result;
         if (matchingRule == null)
         {
-            return new AutoSelectResult()
+            result = new AutoSelectResult()
             {
                 Checked = false,
                 NormalizeBy = normalizeBy,
@@ -56,14 +59,25 @@ public class AutoSelectPreferences
                 FillMinRange = fillMin,
             };
         }
-
-        return new AutoSelectResult()
+        else
         {
-            Checked = matchingRule.Checked,
-            NormalizeBy = matchingRule.NormalizeBy ?? normalizeBy,
-            FillMaxRange = matchingRule.FillMaxRange ?? fillMax,
-            FillMinRange = matchingRule.FillMinRange ?? fillMin,
-        };
+            result = new AutoSelectResult()
+            {
+                Checked = matchingRule.Checked,
+                NormalizeBy = matchingRule.NormalizeBy ?? normalizeBy,
+                FillMaxRange = matchingRule.FillMaxRange ?? fillMax,
+                FillMinRange = matchingRule.FillMinRange ?? fillMin,
+            };
+        }
+
+        if (filter is StatFilter statFilter)
+        {
+            var selectCategories = await settingsService.GetObject<List<StatCategory>>(DefaultSelectCategoriesSettingKey) ?? [];
+            if (matchingRule?.SelectCategories != null) selectCategories = matchingRule.SelectCategories;
+            result.SelectCategory = statFilter.Stat.Category.HasExplicitStat() && selectCategories.Contains(statFilter.Stat.Category);
+        }
+
+        return result;
     }
 
     private static bool ConditionMatches(AutoSelectCondition condition, Item item, TradeFilter filter)
