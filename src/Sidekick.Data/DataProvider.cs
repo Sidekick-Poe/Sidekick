@@ -16,7 +16,6 @@ public class DataProvider
 {
     private readonly IOptions<SidekickConfiguration> configuration;
     private readonly ILogger<DataProvider> logger;
-    private readonly IGameLanguageProvider gameLanguageProvider;
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -30,20 +29,16 @@ public class DataProvider
 
     public string DataDirectory { get; }
 
-    public DataProvider(IOptions<SidekickConfiguration> configuration,
-        ILogger<DataProvider> logger,
-        IGameLanguageProvider gameLanguageProvider)
+    public DataProvider(IOptions<SidekickConfiguration> configuration, ILogger<DataProvider> logger)
     {
         this.configuration = configuration;
         this.logger = logger;
-        this.gameLanguageProvider = gameLanguageProvider;
         DataDirectory = GetDataDirectory();
 
         return;
 
         string GetDataDirectory()
         {
-#if DEBUG
             if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
             {
                 var solutionDirectory = FindSolutionDirectory();
@@ -52,7 +47,6 @@ public class DataProvider
                     return $"{solutionDirectory}/data";
                 }
             }
-#endif
 
             return Path.Combine(AppContext.BaseDirectory, "wwwroot/data/");
         }
