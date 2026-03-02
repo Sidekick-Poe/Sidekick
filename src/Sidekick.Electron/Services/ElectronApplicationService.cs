@@ -19,12 +19,6 @@ public class ElectronApplicationService
      IUiLanguageProvider uiLanguageProvider
 ) : IApplicationService
 {
-    public bool SupportsKeybinds => true;
-
-    public bool SupportsAuthentication => true;
-
-    public bool SupportsHardwareAcceleration => true;
-
     private bool Initialized { get; set; }
 
     public int Priority => 9000;
