@@ -63,7 +63,7 @@ public class GemLevelFilter : IntPropertyFilter
 {
     public GemLevelFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(true);
+        DefaultAutoSelect = AutoSelectPreferences.Create(true, normalizeBy: 0);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

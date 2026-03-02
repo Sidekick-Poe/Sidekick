@@ -56,7 +56,7 @@ public class RequiresDexterityFilter : IntPropertyFilter
 {
     public RequiresDexterityFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+        DefaultAutoSelect = AutoSelectPreferences.Create(false, normalizeBy: 0);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)
