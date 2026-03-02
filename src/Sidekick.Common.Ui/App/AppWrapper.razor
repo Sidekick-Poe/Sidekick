@@ -12,6 +12,7 @@
 
 @inject IJSRuntime JsRuntime
 @inject ISettingsService SettingsService
+@inject ILogger<AppWrapper> Logger
 @implements IAsyncDisposable
 
 @code {
@@ -56,8 +57,9 @@
                 ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
                 await UpdateZoom();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Logger.LogError(e, "Failed to load javascript module.");
                 // Do nothing if the zoom handler fails to load.
             }
         }

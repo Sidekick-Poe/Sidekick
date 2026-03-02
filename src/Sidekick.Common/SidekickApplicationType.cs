@@ -6,14 +6,14 @@ public enum SidekickApplicationType
     Test,
     Web,
     Photino,
+    Electron,
     Wpf,
     DataBuilder,
 }
 
 public static class SidekickApplicationTypeExtensions
 {
-    public static bool SupportsKeybinds(this SidekickApplicationType type) => type == SidekickApplicationType.Wpf
-                                                                              || type == SidekickApplicationType.Photino;
+    public static bool SupportsKeybinds(this SidekickApplicationType type) => type is SidekickApplicationType.Wpf or SidekickApplicationType.Photino or SidekickApplicationType.Electron;
 
     public static bool SupportsAuthentication(this SidekickApplicationType type) => type == SidekickApplicationType.Wpf;
 

@@ -1,6 +1,8 @@
+@using Microsoft.Extensions.Logging
 @using Microsoft.JSInterop
 @implements IAsyncDisposable
 @inject IJSRuntime JsRuntime
+@inject ILogger<LogStream> Logger
 
 <div @ref="LogContainer" class="flex flex-col overflow-auto max-h-[calc(100vh-120px)] text-nowrap font-mono text-sm p-4 bg-black/20 border border-white/10">
     @foreach (var log in Logs)
@@ -50,7 +52,15 @@
     {
         if (firstRender)
         {
-            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Modules.Logs/LogStream.razor.js");
+            try
+            {
+                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Modules.Logs/LogStream.razor.js");
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to load javascript module.");
+            }
+
             await ScrollToBottom();
         }
     }

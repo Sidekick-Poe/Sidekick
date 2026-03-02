@@ -4,6 +4,7 @@
 </div>
 
 @inject IJSRuntime JsRuntime
+@inject ILogger<FlowbiteComponent> Logger
 @implements IAsyncDisposable
 
 @code {
@@ -28,7 +29,14 @@
     {
         if (firstRender)
         {
-            JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick." + Script, Id, ScriptParameters);
+            try
+            {
+                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick." + Script, Id, ScriptParameters);
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to load javascript module.");
+            }
         }
 
         await base.OnAfterRenderAsync(firstRender);

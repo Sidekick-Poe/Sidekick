@@ -23,6 +23,7 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
 using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
+using Sidekick.Modules.Wealth;
 using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
@@ -73,7 +74,8 @@ builder.Services
     .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
     .AddSidekickItems()
-    .AddSidekickLogs();
+    .AddSidekickLogs()
+    .AddSidekickWealth();
 
 builder.Services.AddApexCharts();
 builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();

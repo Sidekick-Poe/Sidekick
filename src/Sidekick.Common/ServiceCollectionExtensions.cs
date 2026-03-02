@@ -104,7 +104,7 @@ public static class ServiceCollectionExtensions
             configuration.InputHandlers.Add(typeof(TInputHandler));
         });
 
-        if (_applicationType == SidekickApplicationType.Wpf)
+        if (_applicationType.SupportsKeybinds())
         {
             services.AddSingleton<TInputHandler>();
         }

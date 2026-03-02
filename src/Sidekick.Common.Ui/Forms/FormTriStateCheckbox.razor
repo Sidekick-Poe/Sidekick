@@ -10,6 +10,7 @@
 </label>
 
 @inject IJSRuntime JsRuntime
+@inject ILogger<FormTriStateCheckbox> Logger
 
 @code {
 
@@ -33,8 +34,15 @@
     {
         if (firstRender)
         {
-            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormTriStateCheckbox.razor.js");
-            await Module.InvokeVoidAsync("setIndeterminate", ElementId, Value == null);
+            try
+            {
+                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormTriStateCheckbox.razor.js");
+                await Module.InvokeVoidAsync("setIndeterminate", ElementId, Value == null);
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to load javascript module.");
+            }
         }
 
         await base.OnAfterRenderAsync(firstRender);
