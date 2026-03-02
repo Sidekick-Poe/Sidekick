@@ -28,7 +28,8 @@
             }
         </div>
 
-        @if (Filter is StatFilter or PseudoFilter or DoublePropertyFilter or IntPropertyFilter or ExpandableFilter)
+        @if (Filter is StatFilter or PseudoFilter or DoublePropertyFilter or IntPropertyFilter or ExpandableFilter
+             && (!Readonly || OverrideDefaults || Rule.NormalizeBy.HasValue))
         {
             <div class="flex flex-wrap gap-x-2 gap-y-1 items-start bg-stone-700 px-2 py-1 rounded-lg mt-2">
                 @if (!Readonly)
