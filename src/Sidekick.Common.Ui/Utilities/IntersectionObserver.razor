@@ -3,6 +3,7 @@
 </div>
 
 @inject IJSRuntime JsRuntime
+@inject ILogger<IntersectionObserver> Logger
 
 @code {
 
@@ -22,9 +23,16 @@
     {
         if (firstRender)
         {
-            Reference = DotNetObjectReference.Create(this);
-            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Utilities/IntersectionObserver.razor.js");
-            await Module.InvokeVoidAsync("initializeIntersectionObserver", ElementId, Reference);
+            try
+            {
+                Reference = DotNetObjectReference.Create(this);
+                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Utilities/IntersectionObserver.razor.js");
+                await Module.InvokeVoidAsync("initializeIntersectionObserver", ElementId, Reference);
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to load javascript module.");
+            }
         }
 
         await base.OnAfterRenderAsync(firstRender);

@@ -6,6 +6,7 @@
      data-placeholder="@Placeholder">@Value</div>
 
 @inject IJSRuntime JsRuntime
+@inject ILogger<FormContentEditable> Logger
 @implements IAsyncDisposable
 
 @code {
@@ -71,10 +72,17 @@
         // Initialize the IntersectionObserver
         if (firstRender)
         {
-            Reference = DotNetObjectReference.Create(this);
-            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormContentEditable.razor.js");
+            try
+            {
+                Reference = DotNetObjectReference.Create(this);
+                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormContentEditable.razor.js");
+                await Module.InvokeVoidAsync("init", ElementId, Reference);
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to load javascript module.");
+            }
 
-            await Module.InvokeVoidAsync("init", ElementId, Reference);
             await UpdateEditable();
         }
 

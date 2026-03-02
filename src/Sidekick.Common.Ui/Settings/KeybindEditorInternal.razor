@@ -45,6 +45,7 @@
 
 @inject IStringLocalizer<UiResources> Resources
 @inject IKeyboardProvider Keyboard
+@inject ILogger<KeybindEditorInternal> Logger
 @inject IJSRuntime JsRuntime
 
 @code {
@@ -100,8 +101,15 @@
 
     private async Task RemoveFocusAsync()
     {
-        Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Settings/KeybindEditorInternal.razor.js");
-        await Module.InvokeVoidAsync("removeFocus", Id);
+        try
+        {
+            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Settings/KeybindEditorInternal.razor.js");
+            await Module.InvokeVoidAsync("removeFocus", Id);
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e, "Failed to load javascript module.");
+        }
     }
 
     public void Focus()
