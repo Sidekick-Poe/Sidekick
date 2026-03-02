@@ -23,13 +23,15 @@ public class AutoSelectPreferences
         },
     };
 
-    public static AutoSelectPreferences Create(bool? isChecked) => new()
+    public static AutoSelectPreferences Create(bool? isChecked, double? normalizeBy = null) => new()
     {
         Rules =
         [
             new AutoSelectRule
             {
                 Checked = isChecked,
+                NormalizeBy = normalizeBy,
+                FillMinRange = normalizeBy.HasValue ? true : null,
             },
         ],
     };
