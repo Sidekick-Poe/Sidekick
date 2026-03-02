@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -39,11 +40,11 @@ Corrupted
         Assert.False(actual.Properties.Unidentified);
         Assert.True(actual.Properties.Corrupted);
 
-        actual.AssertHasStat(StatCategory.Implicit, "Anger has #% increased Aura Effect", 18);
-        actual.AssertHasStat(StatCategory.Explicit, "+# to all Attributes", 16);
-        actual.AssertHasStat(StatCategory.Explicit, "+# to Intelligence", 31);
-        actual.AssertHasStat(StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 13);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Mana Regeneration Rate", 31);
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Anger has #% increased Aura Effect", 18);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to all Attributes", 16);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Intelligence", 31);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 13);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Mana Regeneration Rate", 31);
     }
 
     [Fact]

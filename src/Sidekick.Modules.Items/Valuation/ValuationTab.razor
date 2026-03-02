@@ -1,8 +1,9 @@
 ﻿@using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Languages
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Modules.Items.Valuation.Localization
+@using Sidekick.Data.Languages
+@using Sidekick.Data.Items
 @using Sidekick.Common.Ui.Tabs
 
 @if (Valid)
@@ -15,7 +16,7 @@
 @inject IStringLocalizer<ValuationResources> Resources
 @inject IScoutItemProvider ScoutItemProvider
 @inject INinjaItemProvider NinjaItemProvider
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
 
@@ -51,7 +52,7 @@
     {
         return Item.Game == GameType.PathOfExile1
                && Item.Properties.Rarity == Rarity.Rare
-               && GameLanguageProvider.IsEnglish();
+               && CurrentGameLanguage.IsEnglish();
     }
 
     private async Task<bool> CheckScout()

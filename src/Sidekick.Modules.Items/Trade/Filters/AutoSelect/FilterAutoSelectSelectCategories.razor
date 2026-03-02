@@ -1,0 +1,58 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Data.Items
+@using Sidekick.Modules.Items.Trade.Localization
+
+@if (Filter is not StatFilter && (Filter is not ExpandableFilter expandableFilter || !expandableFilter.Filters.OfType<StatFilter>().Any()))
+{
+    return;
+}
+
+<div class="flex flex-nowrap gap-2">
+    <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_SelectCategories"]</span>
+    @foreach (var value in Enum.GetValues<StatCategory>())
+    {
+        if (!value.HasExplicitStat()) continue;
+
+        <ItemStatCategoryChip Category="value"
+                              Checked="Value.Contains(value)"
+                              ShowCheckbox="true"
+                              Readonly="Readonly"
+                              OnClick="() => Toggle(value)"/>
+    }
+    <Tooltip Text="@Resources["ForceCategoryHint"]"/>
+</div>
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required TradeFilter Filter { get; set; }
+
+    [Parameter]
+    public List<StatCategory> Value { get; set; } = [];
+
+    [Parameter]
+    public EventCallback<List<StatCategory>> ValueChanged { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    private List<SelectOption> Options { get; set; } = new();
+
+    private async Task Toggle(StatCategory value)
+    {
+        var result = Value.ToList();
+        if (result.Contains(value))
+        {
+            result.Remove(value);
+        }
+        else
+        {
+            result.Add(value);
+        }
+
+        await ValueChanged.InvokeAsync(result);
+    }
+
+}

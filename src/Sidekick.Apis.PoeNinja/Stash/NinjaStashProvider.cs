@@ -2,10 +2,11 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.IndexState;
-using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Apis.PoeNinja.Stash.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
+using Sidekick.Data.Ninja;
 namespace Sidekick.Apis.PoeNinja.Stash;
 
 public class NinjaStashProvider(

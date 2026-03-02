@@ -1,25 +1,26 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class QualityProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionQuality.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionQuality.ToRegexIntCapture();
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionQuality.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionQuality.ToRegexIsAugmented();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionQuality;
+    public override string Label => currentGameLanguage.Language.DescriptionQuality;
 
     public override void Parse(Item item)
     {

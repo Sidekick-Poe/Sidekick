@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe1Korean.Parser;
@@ -33,7 +34,7 @@ public class KoreanParsing(Poe1KoreanFixture fixture)
         Assert.Equal(ItemClass.Belt, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
 
-        actual.AssertHasStat(StatCategory.Mutated, "번개 피해의 #%를 카오스 피해로 전환", 40);
+        fixture.AssertHasStat(actual, StatCategory.Mutated, "번개 피해의 #%를 카오스 피해로 전환", 40);
     }
 
     [Fact]
@@ -63,6 +64,6 @@ public class KoreanParsing(Poe1KoreanFixture fixture)
         Assert.Equal(ItemClass.Amulet, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
 
-        actual.AssertHasStat(StatCategory.Explicit, "지능 +#", 34);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "지능 +#", 34);
     }
 }

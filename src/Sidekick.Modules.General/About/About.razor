@@ -1,5 +1,6 @@
 @page "/about"
 @using Microsoft.Extensions.Localization
+@using Sidekick.Common
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Folder
 @using Sidekick.Common.Ui.App
@@ -28,7 +29,7 @@
                     </div>
                     <div class="flex gap-2">
                         <TextBase>@Resources["Data_Folder"] - </TextBase>
-                        <ButtonLink OnClick="@(() => FolderProvider.OpenDataFolderPath())"><span class="font-mono">@FolderProvider.GetDataFolderPath()</span></ButtonLink>
+                        <ButtonLink OnClick="@(() => FolderProvider.OpenDataFolderPath())"><span class="font-mono">@SidekickPaths.GetDataFilePath()</span></ButtonLink>
                     </div>
                 </div>
             </div>

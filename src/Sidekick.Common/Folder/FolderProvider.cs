@@ -7,12 +7,17 @@ public class FolderProvider(ILogger<FolderProvider> logger) : IFolderProvider
 {
     public void OpenDataFolderPath()
     {
+        OpenFolder(SidekickPaths.GetDataFilePath());
+    }
+
+    public void OpenFolder(string path)
+    {
         try
         {
             using var process = new Process();
             process.StartInfo = new ProcessStartInfo
             {
-                FileName = SidekickPaths.GetDataFilePath(),
+                FileName = path,
                 UseShellExecute = true,
                 Verb = "open"
             };
@@ -22,10 +27,5 @@ public class FolderProvider(ILogger<FolderProvider> logger) : IFolderProvider
         {
             logger.LogError("[Folder] Failed to open data file path.");
         }
-    }
-
-    public string GetDataFolderPath()
-    {
-        return SidekickPaths.GetDataFilePath();
     }
 }

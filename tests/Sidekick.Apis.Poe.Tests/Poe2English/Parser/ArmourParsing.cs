@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -55,12 +56,12 @@ Corrupted
 
         Assert.Equal(36, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Enchant, "#% increased Evasion Rating", 22);
-        actual.AssertHasStat(StatCategory.Rune, "#% to Fire Resistance", 12);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Movement Speed", 10);
-        actual.AssertHasStat(StatCategory.Explicit, "#% increased Evasion Rating", 41);
-        actual.AssertHasStat(StatCategory.Explicit, "#% to Maximum Lightning Resistance", 5);
-        actual.AssertHasStat(StatCategory.Explicit, "#% to Lightning Resistance", 33);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "#% increased Evasion Rating", 22);
+        fixture.AssertHasStat(actual, StatCategory.Rune, "#% to Fire Resistance", 12);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Movement Speed", 10);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Evasion Rating", 41);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to Maximum Lightning Resistance", 5);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to Lightning Resistance", 33);
 
         Assert.True(actual.Properties.Corrupted);
     }
@@ -97,7 +98,7 @@ Grants Skill: Parry
 
         Assert.Equal(5, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Explicit, "# to maximum Life", 12);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to maximum Life", 12);
     }
 
     [Fact]
@@ -167,6 +168,53 @@ Item Level: 66
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
-        actual.AssertHasStat(StatCategory.Desecrated, "# to Armour", 32);
+        fixture.AssertHasStat(actual, StatCategory.Desecrated, "# to Armour", 32);
+    }
+
+    [Fact]
+    public void ParseAtziriStep()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
+Rarity: Unique
+Atziri's Step
+Cinched Boots
+--------
+Quality: +20% (augmented)
+Evasion Rating: 712 (augmented)
+--------
+Requires: Level 65, 86 Dex
+--------
+Sockets: S 
+--------
+Item Level: 83
+--------
++21% to Fire Resistance (enchant)
++20% to Cold Resistance (enchant)
+--------
+18% increased Armour, Evasion and Energy Shield (rune)
+--------
+30% increased Movement Speed
+111% increased Evasion Rating
++93 to Evasion Rating
+Gain Deflection Rating equal to 60% of Evasion Rating
+-9% to amount of Damage Prevented by Deflection
+Cannot be Light Stunned by Deflected Hits — Unscalable Value
+--------
+""Those who dance are considered insane
+by those who cannot hear the music.""
+Atziri, Queen of the Vaal
+--------
+Corrupted
+--------
+Note: ~b/o 980 divine
+");
+
+        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Atziri's Step", actual.ApiInformation.Name);
+        Assert.Equal("Cinched Boots", actual.ApiInformation.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Gain Deflection Rating equal to #% of Evasion Rating", 60);
+        // Issue #985 fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to amount of Damage Prevented by Deflection", -9);
     }
 }

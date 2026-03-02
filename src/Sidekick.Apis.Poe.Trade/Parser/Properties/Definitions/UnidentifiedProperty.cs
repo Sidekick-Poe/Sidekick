@@ -1,21 +1,22 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class UnidentifiedProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionUnidentified.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionUnidentified;
+    public override string Label => currentGameLanguage.Language.DescriptionUnidentified;
 
     public override void Parse(Item item)
     {
@@ -31,7 +32,12 @@ public class UnidentifiedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Unidentified) return Task.FromResult<TradeFilter?>(null);
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new UnidentifiedFilter
         {
@@ -46,7 +52,29 @@ public class UnidentifiedFilter : TriStatePropertyFilter
 {
     public UnidentifiedFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(true);
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Default,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Unidentified,
+                            Comparison = AutoSelectComparisonType.True,
+                        },
+                    ],
+                },
+                new()
+                {
+                    Checked = null,
+                },
+            ],
+        };
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

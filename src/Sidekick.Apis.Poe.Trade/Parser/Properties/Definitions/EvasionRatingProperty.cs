@@ -1,24 +1,25 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EvasionRatingProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionEvasion.ToRegexIntCapture();
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionEvasion.ToRegexIsAugmented();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionEvasion;
+    public override string Label => currentGameLanguage.Language.DescriptionEvasion;
 
     public override void Parse(Item item)
     {

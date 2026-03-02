@@ -5,20 +5,20 @@ namespace Sidekick.Common;
 /// <summary>
 ///     Configuration class for the application.
 /// </summary>
-public static class SidekickConfiguration
+public class SidekickConfiguration
 {
-    private static bool isXselPackageMissing;
+    private bool isXselPackageMissing;
 
     /// <summary>
     /// Occurs when a relevant flag or state within the application configuration changes.
     /// </summary>
-    public static event Action? FlagChanged;
+    public event Action? FlagChanged;
 
     /// <summary>
     /// Gets or sets a value indicating whether the xsel package is missing.
     /// Linux only.
     /// </summary>
-    public static bool IsXselPackageMissing
+    public bool IsXselPackageMissing
     {
         get => isXselPackageMissing;
         set
@@ -31,17 +31,19 @@ public static class SidekickConfiguration
     /// <summary>
     ///     Gets or sets a list of initializable services.
     /// </summary>
-    public static List<Type> InitializableServices { get; } = new();
+    public List<Type> InitializableServices { get; } = new();
 
     /// <summary>
     ///     Gets or sets a list of modules.
     /// </summary>
-    public static List<Assembly> Modules { get; } = new();
+    public List<Assembly> Modules { get; } = new();
 
     /// <summary>
     ///     The list of input handlers handled by this application
     /// </summary>
-    public static List<Type> InputHandlers { get; } = new();
+    public List<Type> InputHandlers { get; } = new();
 
-    public static Dictionary<string, object> DefaultSettings { get; } = new();
+    public Dictionary<string, object> DefaultSettings { get; } = new();
+
+    public SidekickApplicationType ApplicationType { get; set; }
 }

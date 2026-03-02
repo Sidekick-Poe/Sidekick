@@ -1,24 +1,28 @@
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
+using Sidekick.Data.Languages;
+using Sidekick.Data.Pseudo;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
 public class PseudoParser
 (
-    IInvariantStatsProvider invariantStatsProvider,
-    IApiStatsProvider apiStatsProvider,
     ISettingsService settingsService,
-    IStringLocalizer<PoeResources> resources
+    IStringLocalizer<PoeResources> resources,
+    DataProvider dataProvider,
+    ICurrentGameLanguage currentGameLanguage
 ) : IPseudoParser
 {
-    private List<PseudoDefinition> Definitions { get; } = new();
+    private static readonly Regex ParseHashPattern = new(@"#");
+
+    private List<PseudoDefinition> Definitions { get; set; } = [];
 
     /// <inheritdoc/>
     public int Priority => 300;
@@ -27,27 +31,7 @@ public class PseudoParser
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-
-        Definitions.Clear();
-        Definitions.AddRange([
-            new ElementalResistancesDefinition(),
-            new ChaosResistancesDefinition(),
-            new StrengthDefinition(),
-            new IntelligenceDefinition(),
-            new DexterityDefinition(),
-            new LifeDefinition(game),
-            new ManaDefinition(game),
-        ]);
-
-        var categories = await invariantStatsProvider.GetList();
-        categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
-
-        var localizedPseudoStats = apiStatsProvider.Definitions.GetValueOrDefault(StatCategory.Pseudo);
-
-        foreach (var definition in Definitions)
-        {
-            definition.InitializeDefinition(categories, localizedPseudoStats);
-        }
+        Definitions = await dataProvider.Read<List<PseudoDefinition>>(game, DataType.Pseudo, currentGameLanguage.Language);
     }
 
     public void Parse(Item item)
@@ -55,8 +39,46 @@ public class PseudoParser
         item.PseudoStats.Clear();
         foreach (var definition in Definitions)
         {
-            var result = definition.Parse(item.Stats);
+            var result = GetItemPseudoStat(definition, item.Stats);
             if (result != null && !string.IsNullOrEmpty(result.Text)) item.PseudoStats.Add(result);
+        }
+
+        return;
+
+        ItemPseudoStat? GetItemPseudoStat(PseudoDefinition definition, List<Stat> itemStats)
+        {
+            var value = 0d;
+            foreach (var itemStat in itemStats)
+            {
+                foreach (var definitionStat in definition.Stats)
+                {
+                    if (itemStat.Definitions.All(x => !x.TradeIds.Contains(definitionStat.Id))) continue;
+
+                    value += itemStat.AverageValue * definitionStat.Multiplier;
+                    break;
+                }
+            }
+
+            if (value == 0) return null;
+
+            var text = GetText(definition.Text, value);
+            if (string.IsNullOrEmpty(text)) return null;
+
+            return new ItemPseudoStat
+            {
+                Id = definition.PseudoStatId,
+                Text = text,
+                Value = (int)value,
+            };
+        }
+
+        string GetText(string? text, double value)
+        {
+            if (text == null) return string.Empty;
+
+            return ParseHashPattern
+                .Replace(text, ((int)value).ToString(), 1)
+                .Replace("+-", "-");
         }
     }
 
@@ -72,6 +94,8 @@ public class PseudoParser
                 AutoSelectSettingKey = $"Trade_Filter_Pseudo_{item.Game.GetValueAttribute()}_{stat.Id}",
             });
         }
+
+        if (result.Count == 0) return result;
 
         var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], result.ToArray())
         {

@@ -1,34 +1,35 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EnergyShieldProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionEnergyShield.ToRegexIntCapture();
 
     private Regex? AlternatePattern { get; } =
-        !string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate)
-            ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIntCapture()
+        !string.IsNullOrEmpty(currentGameLanguage.Language.DescriptionEnergyShieldAlternate)
+            ? currentGameLanguage.Language.DescriptionEnergyShieldAlternate.ToRegexIntCapture()
             : null;
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionEnergyShield.ToRegexIsAugmented();
 
     private Regex? AlternateIsAugmentedPattern { get; } =
-        !string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate)
-            ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIsAugmented()
+        !string.IsNullOrEmpty(currentGameLanguage.Language.DescriptionEnergyShieldAlternate)
+            ? currentGameLanguage.Language.DescriptionEnergyShieldAlternate.ToRegexIsAugmented()
             : null;
 
-    public override string Label => gameLanguageProvider.Language.DescriptionEnergyShield;
+    public override string Label => currentGameLanguage.Language.DescriptionEnergyShield;
 
     public override void Parse(Item item)
     {

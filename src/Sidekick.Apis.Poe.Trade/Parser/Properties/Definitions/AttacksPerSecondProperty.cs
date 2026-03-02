@@ -1,24 +1,25 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class AttacksPerSecondProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexDoubleCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAttacksPerSecond.ToRegexDoubleCapture();
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionAttacksPerSecond.ToRegexIsAugmented();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionAttacksPerSecond;
+    public override string Label => currentGameLanguage.Language.DescriptionAttacksPerSecond;
 
     public override void Parse(Item item)
     {

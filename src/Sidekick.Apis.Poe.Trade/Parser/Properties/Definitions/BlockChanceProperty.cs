@@ -1,28 +1,29 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlockChanceProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIntCapture()
-        : gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIntCapture();
+        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIntCapture()
+        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIntCapture();
 
     private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
-        ? gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
-        : gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIsAugmented();
+        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
+        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIsAugmented();
 
-    public override string Label => game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
+    public override string Label => game == GameType.PathOfExile1 ? currentGameLanguage.Language.DescriptionChanceToBlock : currentGameLanguage.Language.DescriptionBlockChance;
 
     public override void Parse(Item item)
     {

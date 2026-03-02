@@ -4,6 +4,7 @@
 @using Sidekick.Common.Ui.Localization
 
 @using Sidekick.Common.Ui.Modal
+@using Sidekick.Data.Items
 @using Sidekick.Modules.Items.AreaInformation.Localization
 @using Sidekick.Modules.RegexHotkeys.Settings
 
@@ -96,7 +97,7 @@
 
     private async Task OnShow()
     {
-        var regexes = await SettingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys, () => []) ?? [];
+        var regexes = await SettingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys) ?? [];
         Regexes = regexes;
     }
 

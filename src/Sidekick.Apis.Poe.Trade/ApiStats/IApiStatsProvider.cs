@@ -1,12 +1,12 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Initialization;
+using Sidekick.Data.Trade;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public interface IApiStatsProvider : IInitializableService
 {
-    StatCategory GetStatCategory(string apiId);
+    List<TradeStatDefinition> Definitions { get; }
 
-    bool IsMatch(string id, string text);
+    Dictionary<string, List<TradeStatDefinition>> IdDictionary { get; }
 
-    Dictionary<StatCategory, List<StatDefinition>> Definitions { get; }
+    TradeInvariantStats InvariantStats { get; }
 }

@@ -1,23 +1,24 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RequiresIntelligenceProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionRequiresInt.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionRequiresInt.ToRegexIntCapture();
 
-    private Regex RequiresPattern { get; } = new($@"^{gameLanguageProvider.Language.DescriptionRequires}.*?(\d+)\s*{gameLanguageProvider.Language.DescriptionRequiresInt}");
+    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)\s*{currentGameLanguage.Language.DescriptionRequiresInt}");
 
-    public override string Label => gameLanguageProvider.Language.DescriptionRequiresInt;
+    public override string Label => currentGameLanguage.Language.DescriptionRequiresInt;
 
     public override void Parse(Item item)
     {
@@ -55,7 +56,7 @@ public class RequiresIntelligenceFilter : IntPropertyFilter
 {
     public RequiresIntelligenceFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+        DefaultAutoSelect = AutoSelectPreferences.Create(false, normalizeBy: 0);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

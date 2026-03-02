@@ -8,36 +8,6 @@ namespace Sidekick.Common.Extensions;
 public static class TypeExtensions
 {
     /// <summary>
-    ///     Get the specified attribute from the specified type
-    /// </summary>
-    /// <typeparam name="TAttribute">The attribute to get from the type</typeparam>
-    /// <param name="type">The type from which to find the attribute</param>
-    /// <returns>The attribute, or null</returns>
-    public static TAttribute? GetAttribute<TAttribute>(this Type type)
-    {
-        var attributeType = typeof(TAttribute);
-        return (TAttribute?)type
-                            .GetCustomAttributes(false)
-                            .FirstOrDefault(x => attributeType.IsInstanceOfType(x));
-    }
-
-    /// <summary>
-    ///     Get all instances of the specified attributes from the specified type
-    /// </summary>
-    /// <typeparam name="TAttribute">The attribute to get from the type</typeparam>
-    /// <param name="type">The type from which to find the attributes</param>
-    /// <returns>The list of attributes</returns>
-    public static IList<TAttribute> GetAttributes<TAttribute>(this Type type)
-    {
-        var attributeType = typeof(TAttribute);
-        return type
-               .GetCustomAttributes(false)
-               .Where(x => attributeType.IsInstanceOfType(x))
-               .Select(x => (TAttribute)x)
-               .ToList();
-    }
-
-    /// <summary>
     ///     Get all types implementing the interface
     /// </summary>
     /// <param name="interface">The interface to find on types</param>
@@ -48,19 +18,6 @@ public static class TypeExtensions
             x => x
                  .GetInterfaces()
                  .Contains(@interface));
-    }
-
-    /// <summary>
-    ///     Get all types implementing the attribute
-    /// </summary>
-    /// <param name="attribute">The attribute to find on types</param>
-    /// <returns>The list of types implementing the attribute</returns>
-    public static List<Type> GetTypesImplementingAttribute(this Type attribute)
-    {
-        return FindTypes(
-            x => x
-                 .GetCustomAttributes(false)
-                 .Any(attribute.IsInstanceOfType));
     }
 
     private static List<Type> FindTypes(Func<Type, bool> func)

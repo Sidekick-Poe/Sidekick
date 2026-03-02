@@ -1,9 +1,9 @@
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.ApiStats;
@@ -17,11 +17,14 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 using Xunit;
+
 namespace Sidekick.Apis.Poe.Tests;
 
 public abstract class ParserFixture : IAsyncLifetime
@@ -31,9 +34,8 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private Task? initializationTask;
 
-    public IInvariantStatsProvider InvariantStatsProvider { get; private set; } = null!;
     public IItemParser Parser { get; private set; } = null!;
-    public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
+    public ICurrentGameLanguage CurrentGameLanguage { get; private set; } = null!;
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
@@ -48,13 +50,13 @@ public abstract class ParserFixture : IAsyncLifetime
 
         TestContext.Services
             // Building blocks
-            .AddSidekickCommon()
+            .AddSidekickCommon(SidekickApplicationType.Test)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickData()
 
             // Apis
             .AddSidekickCommonApi()
-            .AddSidekickPoeApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoeWikiApi();
@@ -80,8 +82,7 @@ public abstract class ParserFixture : IAsyncLifetime
         await initializationTask;
 
         Parser = TestContext.Services.GetRequiredService<IItemParser>();
-        InvariantStatsProvider = TestContext.Services.GetRequiredService<IInvariantStatsProvider>();
-        GameLanguageProvider = TestContext.Services.GetRequiredService<IGameLanguageProvider>();
+        CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
         ApiStatsProvider = TestContext.Services.GetRequiredService<IApiStatsProvider>();
@@ -96,12 +97,10 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private static async Task Initialize(IServiceProvider serviceProvider)
     {
-        var cache = serviceProvider.GetRequiredService<ICacheProvider>();
-        await cache.Clear();
-
         var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
+        var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
         List<IInitializableService> services = [];
-        foreach (var serviceType in SidekickConfiguration.InitializableServices)
+        foreach (var serviceType in configuration.Value.InitializableServices)
         {
             var service = serviceProvider.GetRequiredService(serviceType);
             if (service is not IInitializableService initializableService) continue;
@@ -113,6 +112,62 @@ public abstract class ParserFixture : IAsyncLifetime
         {
             logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
             await service.Initialize();
+        }
+    }
+
+    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
+    {
+        AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+    }
+
+    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
+    {
+        var actualStat = FindStat();
+        Assert.NotNull(actualStat);
+
+        if (expectedValues.Length == 0) return;
+
+        for (var i = 0; i < expectedValues.Length; i++)
+        {
+            AssertExtensions.AssertCloseEnough(expectedValues[i], actualStat?.Values[i]);
+        }
+
+        AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
+
+        return;
+
+        Stat? FindStat()
+        {
+            foreach (var stat in actual.Stats)
+            {
+                if (stat.Category != expectedCategory) continue;
+
+                foreach (var definition in stat.Definitions)
+                {
+                    foreach (var tradeId in definition.TradeIds)
+                    {
+                        var tradeStats = ApiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
+                        if (tradeStats == null) continue;
+                        foreach (var tradeStat in tradeStats)
+                        {
+                            if (tradeStat.Text != expectedText) continue;
+                            if (expectedOptionText == null) return stat;
+
+                            if (definition.Option == null) continue;
+                            if (tradeStat.Options == null) continue;
+                            foreach (var option in tradeStat.Options)
+                            {
+                                if (definition.Option.Id != option.Id) continue;
+                                if (option.Text != expectedOptionText) continue;
+
+                                return stat;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

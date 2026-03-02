@@ -1,10 +1,12 @@
 @page "/wealth"
+@using Microsoft.Extensions.Options
 @using Sidekick.Apis.Poe.Account.Clients
 @using Sidekick.Apis.Poe.Extensions
 @using Sidekick.Apis.Poe.Items
+@using Sidekick.Common
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Platform
 @using Sidekick.Common.Ui.Api
+@using Sidekick.Data.Items
 @using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Tabs
 @using Sidekick.Modules.Wealth.Items
@@ -19,7 +21,7 @@
             return;
         }
 
-        @if (!ApplicationService.SupportsKeybinds || !ApplicationService.SupportsAuthentication)
+        @if (!Configuration.Value.ApplicationType.SupportsKeybinds() || !Configuration.Value.ApplicationType.SupportsAuthentication())
         {
             <AlertError>@Resources["Not_Supported"]</AlertError>
             return;
@@ -58,7 +60,7 @@
 
 @inject IStringLocalizer<WealthResources> Resources
 @inject ISettingsService SettingsService
-@inject IApplicationService ApplicationService
+@inject IOptions<SidekickConfiguration> Configuration
 
 @code {
 

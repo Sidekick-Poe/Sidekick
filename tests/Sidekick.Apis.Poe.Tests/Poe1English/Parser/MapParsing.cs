@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -108,7 +109,7 @@ Note: ~price 2 chaos
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Phantasmagoria Map", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Implicit, "Area is influenced by The Elder");
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area is influenced by #", "The Elder");
     }
 
     [Fact]
@@ -155,7 +156,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Burial Chambers Map", actual.ApiInformation.Type);
 
-        actual.AssertHasStat(StatCategory.Explicit, "Monsters have #% increased Area of Effect", 100);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Monsters have #% increased Area of Effect", 100);
     }
 
     [Fact]

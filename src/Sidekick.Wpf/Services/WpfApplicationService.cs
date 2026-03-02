@@ -18,12 +18,6 @@ public class WpfApplicationService
     IBrowserProvider browserProvider
 ) : IApplicationService, IDisposable
 {
-    public bool SupportsKeybinds => true;
-
-    public bool SupportsAuthentication => true;
-
-    public bool SupportsHardwareAcceleration => true;
-
     private bool Initialized { get; set; }
 
     private TaskbarIcon? Icon { get; set; }

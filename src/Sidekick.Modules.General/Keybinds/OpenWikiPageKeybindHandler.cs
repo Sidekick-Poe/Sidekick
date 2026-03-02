@@ -1,5 +1,4 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Common.Browser;
@@ -7,6 +6,8 @@ using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 using Sidekick.Modules.General.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;
@@ -16,7 +17,7 @@ public class OpenWikiPageKeybindHandler(
     ISettingsService settingsService,
     IProcessProvider processProvider,
     IItemParser itemParser,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IBrowserProvider browserProvider,
     IKeyboardProvider keyboard) : KeybindHandler(settingsService, SettingKeys.KeyOpenWiki)
 {
@@ -43,7 +44,7 @@ public class OpenWikiPageKeybindHandler(
         var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
         if (wikiPreferred == WikiSetting.PoeWiki)
         {
-            if (!gameLanguageProvider.IsEnglish())
+            if (!currentGameLanguage.IsEnglish())
             {
                 throw new UnavailableTranslationException();
             }

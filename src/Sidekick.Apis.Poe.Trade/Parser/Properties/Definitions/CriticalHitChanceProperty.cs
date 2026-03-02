@@ -1,28 +1,29 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CriticalHitChanceProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
-        : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
+        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
+        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
 
     private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
-        ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
-        : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
+        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
+        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
 
-    public override string Label => game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
+    public override string Label => game == GameType.PathOfExile1 ? currentGameLanguage.Language.DescriptionCriticalStrikeChance : currentGameLanguage.Language.DescriptionCriticalHitChance;
 
     public override void Parse(Item item)
     {

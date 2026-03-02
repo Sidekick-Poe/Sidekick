@@ -1,3 +1,4 @@
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Items;
 
 public class Item
@@ -29,7 +30,7 @@ public class Item
 
     public List<Stat> Stats { get; } = [];
 
-    public List<PseudoStat> PseudoStats { get; } = [];
+    public List<ItemPseudoStat> PseudoStats { get; } = [];
 
     /// <inheritdoc />
     public override string? ToString()

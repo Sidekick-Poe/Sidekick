@@ -1,0 +1,127 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Enums
+@using Sidekick.Common.Folder
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Typography
+@using Sidekick.Data
+@using Sidekick.Data.Items
+@using Sidekick.Modules.Data.Localization
+
+<LayoutMenu>
+    <AppContainer>
+        <div class="flex flex-nowrap justify-between">
+            <Heading1>@Resources["Data"]</Heading1>
+
+            <div class="flex flex-nowrap gap-2">
+                <ButtonSecondary
+                    OnClick="()=>FolderProvider.OpenFolder(DataProvider.DataDirectory)">@Resources["Open_Folder"]
+                </ButtonSecondary>
+                <DataRefresh OnRefresh="Refresh"/>
+                <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 mt-3 gap-3">
+            <div class="flex flex-col items-stretch gap-2">
+                <Heading2>Path of Exile 1</Heading2>
+                @RenderDataFiles("poe.ninja", PoE1NinjaFiles)
+                @RenderDataFiles("Stats", PoE1StatsFiles)
+                @RenderDataFiles("Pseudo", PoE1PseudoFiles)
+                @RenderDataFiles("Trade", PoE1TradeFiles)
+                @RenderDataFiles("repoe", PoE1RepoeFiles)
+            </div>
+            <div class="flex flex-col items-stretch gap-2">
+                <Heading2>Path of Exile 2</Heading2>
+                @RenderDataFiles("poe.ninja", PoE2NinjaFiles)
+                @RenderDataFiles("Stats", PoE2StatsFiles)
+                @RenderDataFiles("Pseudo", PoE2PseudoFiles)
+                @RenderDataFiles("Trade", PoE2TradeFiles)
+                @RenderDataFiles("repoe", PoE2RepoeFiles)
+            </div>
+        </div>
+    </AppContainer>
+</LayoutMenu>
+
+@page "/data"
+@inject ICacheProvider CacheProvider
+@inject DataProvider DataProvider
+@inject IFolderProvider FolderProvider
+@inject NavigationManager NavigationManager
+@inject IStringLocalizer<DataResources> Resources
+
+@code {
+
+    private List<DataFile> PoE1NinjaFiles { get; set; } = [];
+    private List<DataFile> PoE1StatsFiles { get; set; } = [];
+    private List<DataFile> PoE1PseudoFiles { get; set; } = [];
+    private List<DataFile> PoE1TradeFiles { get; set; } = [];
+    private List<DataFile> PoE1RepoeFiles { get; set; } = [];
+
+    private List<DataFile> PoE2NinjaFiles { get; set; } = [];
+    private List<DataFile> PoE2StatsFiles { get; set; } = [];
+    private List<DataFile> PoE2PseudoFiles { get; set; } = [];
+    private List<DataFile> PoE2TradeFiles { get; set; } = [];
+    private List<DataFile> PoE2RepoeFiles { get; set; } = [];
+
+    private RenderFragment RenderDataFiles(string title, List<DataFile> files) =>
+        @<div class="flex flex-col items-stretch gap-2">
+            <Heading3 Class="mt-4">@title</Heading3>
+            @foreach (var file in files)
+            {
+                <div class="rounded-lg bg-stone-950 px-2 py-1 gap-3">
+                    <div class="text-white">@file.Name</div>
+                    <div class="flex flex-nowrap gap-3 text-neutral-300">
+                        <TextCaption>@(Math.Ceiling(file.Size / 1024d)) @Resources["KB"]</TextCaption>
+                        <div class="flex flex-nowrap gap-1">
+                            <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+                            <TextAge Date="file.LastModified"/>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Refresh();
+        await base.OnInitializedAsync();
+    }
+
+    private void Refresh()
+    {
+        var files = DataProvider.GetFiles();
+
+        PoE1NinjaFiles = GetFiles(files, GameType.PathOfExile1, "ninja");
+        PoE1StatsFiles = GetFiles(files, GameType.PathOfExile1, "stats");
+        PoE1PseudoFiles = GetFiles(files, GameType.PathOfExile1, "pseudo");
+        PoE1TradeFiles = GetFiles(files, GameType.PathOfExile1, "trade");
+        PoE1RepoeFiles = GetFiles(files, GameType.PathOfExile1, "repoe");
+
+        PoE2NinjaFiles = GetFiles(files, GameType.PathOfExile2, "ninja");
+        PoE2StatsFiles = GetFiles(files, GameType.PathOfExile2, "stats");
+        PoE2PseudoFiles = GetFiles(files, GameType.PathOfExile2, "pseudo");
+        PoE2TradeFiles = GetFiles(files, GameType.PathOfExile2, "trade");
+        PoE2RepoeFiles = GetFiles(files, GameType.PathOfExile2, "repoe");
+
+        StateHasChanged();
+    }
+
+    private List<DataFile> GetFiles(List<DataFile> files, GameType game, string name)
+    {
+        return files
+            .Where(x => x.Name.Contains(game.GetValueAttribute()))
+            .Where(x => x.Name.Contains($"/{name}/"))
+            .OrderByDescending(x => x.LastModified)
+            .ToList();
+    }
+
+    private async Task ResetCache()
+    {
+        await CacheProvider.Clear();
+        NavigationManager.NavigateTo("/initialize");
+    }
+
+}

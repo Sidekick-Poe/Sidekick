@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
@@ -12,6 +13,7 @@ public class AutoSelectPreferences
     public const string DefaultNormalizeBySettingKey = "Trade_Filter_Default_NormalizeBy";
     public const string DefaultFillMinSettingKey = "Trade_Filter_Default_FillMin";
     public const string DefaultFillMaxSettingKey = "Trade_Filter_Default_FillMax";
+    public const string DefaultSelectCategoriesSettingKey = "Trade_Filter_Default_SelectCategories";
 
     public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
@@ -21,13 +23,15 @@ public class AutoSelectPreferences
         },
     };
 
-    public static AutoSelectPreferences Create(bool? isChecked) => new ()
+    public static AutoSelectPreferences Create(bool? isChecked, double? normalizeBy = null) => new()
     {
         Rules =
         [
             new AutoSelectRule
             {
                 Checked = isChecked,
+                NormalizeBy = normalizeBy,
+                FillMinRange = normalizeBy.HasValue ? true : null,
             },
         ],
     };
@@ -46,9 +50,10 @@ public class AutoSelectPreferences
         var fillMax = await settingsService.GetBool(DefaultFillMaxSettingKey);
 
         var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.Count == 0 || rule.Conditions.All(c => ConditionMatches(c, item, filter)));
+        AutoSelectResult result;
         if (matchingRule == null)
         {
-            return new AutoSelectResult()
+            result = new AutoSelectResult()
             {
                 Checked = false,
                 NormalizeBy = normalizeBy,
@@ -56,14 +61,25 @@ public class AutoSelectPreferences
                 FillMinRange = fillMin,
             };
         }
-
-        return new AutoSelectResult()
+        else
         {
-            Checked = matchingRule.Checked,
-            NormalizeBy = matchingRule.NormalizeBy ?? normalizeBy,
-            FillMaxRange = matchingRule.FillMaxRange ?? fillMax,
-            FillMinRange = matchingRule.FillMinRange ?? fillMin,
-        };
+            result = new AutoSelectResult()
+            {
+                Checked = matchingRule.Checked,
+                NormalizeBy = matchingRule.NormalizeBy ?? normalizeBy,
+                FillMaxRange = matchingRule.FillMaxRange ?? fillMax,
+                FillMinRange = matchingRule.FillMinRange ?? fillMin,
+            };
+        }
+
+        if (filter is StatFilter statFilter)
+        {
+            var selectCategories = await settingsService.GetObject<List<StatCategory>>(DefaultSelectCategoriesSettingKey) ?? [];
+            if (matchingRule?.SelectCategories != null) selectCategories = matchingRule.SelectCategories;
+            result.SelectCategory = statFilter.Stat.Category.HasExplicitStat() && selectCategories.Contains(statFilter.Stat.Category);
+        }
+
+        return result;
     }
 
     private static bool ConditionMatches(AutoSelectCondition condition, Item item, TradeFilter filter)
@@ -80,6 +96,7 @@ public class AutoSelectPreferences
             AutoSelectConditionType.Quality => item.Properties.Quality,
             AutoSelectConditionType.Rarity => item.Properties.Rarity,
             AutoSelectConditionType.Corrupted => item.Properties.Corrupted,
+            AutoSelectConditionType.Unidentified => item.Properties.Unidentified,
             AutoSelectConditionType.Spirit => item.Properties.Spirit,
             AutoSelectConditionType.Foulborn => item.Properties.Foulborn,
             AutoSelectConditionType.EvasionRating => item.Properties.EvasionRating,
@@ -97,7 +114,7 @@ public class AutoSelectPreferences
             AutoSelectConditionType.GemLevel => item.Properties.GemLevel,
             AutoSelectConditionType.AnyStat => string.Join('\n', item.Stats.Select(x => x.Text)),
             AutoSelectConditionType.Text => filter.Text,
-            AutoSelectConditionType.StatCategory when filter is StatFilter statFilter => statFilter.PrimaryCategory,
+            AutoSelectConditionType.StatCategory when filter is StatFilter statFilter => statFilter.Stat.Category,
             AutoSelectConditionType.SocketCount => item.Properties.GetMaximumNumberOfLinks(),
             AutoSelectConditionType.Value when filter is DoublePropertyFilter doubleFilter => doubleFilter.Value,
             AutoSelectConditionType.Value when filter is IntPropertyFilter intFilter => intFilter.Value,

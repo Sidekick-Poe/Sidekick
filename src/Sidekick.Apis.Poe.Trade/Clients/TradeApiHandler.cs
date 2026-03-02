@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Common.Cloudflare;
 using Sidekick.Apis.Common.Limiter;
 using Sidekick.Apis.Common.States;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Exceptions;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
 
@@ -16,7 +16,7 @@ public class TradeApiHandler
     ICloudflareService cloudflareService,
     ApiLimiterProvider limitProvider,
     IApiStateProvider apiStateProvider,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ILogger<TradeApiHandler> logger
 ) : DelegatingHandler
 {
@@ -66,7 +66,7 @@ public class TradeApiHandler
         var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (responseContent.Contains("<center>cloudflare</center>"))
         {
-            var isChinese = gameLanguageProvider.IsChinese();
+            var isChinese = currentGameLanguage.IsChinese();
             if (isChinese)
             {
                 logger.LogWarning("[PoeTradeHandler] Invalid chinese settings. Throwing exception.");

@@ -2,7 +2,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -10,6 +9,8 @@ using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
@@ -19,7 +20,7 @@ public class ItemParser
     IStatParser statParser,
     IPseudoParser pseudoParser,
     IPropertyParser propertyParser,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IApiInformationParser apiInformationParser,
     ISettingsService settingsService
 ) : IItemParser
@@ -32,7 +33,7 @@ public class ItemParser
 
     public async Task Initialize()
     {
-        var unusableRegex = Regex.Escape(gameLanguageProvider.Language.DescriptionUnusable);
+        var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
         unusableRegex += @"[\n\r]+" + TextItem.SeparatorPattern + @"[\n\r]+";
         UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
         Game = await settingsService.GetGame();

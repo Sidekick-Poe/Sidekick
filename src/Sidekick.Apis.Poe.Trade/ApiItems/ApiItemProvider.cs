@@ -1,22 +1,18 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.ApiItems.Models;
 using Sidekick.Apis.Poe.Trade.ApiStatic;
-using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Apis.Poe.Trade.Clients.Models;
-using Sidekick.Common.Cache;
-using Sidekick.Common.Enums;
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
+using Sidekick.Data.Languages;
+using Sidekick.Data.Trade.Raw;
+
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
 
 public class ApiItemProvider
 (
-    ICacheProvider cacheProvider,
-    ITradeApiClient tradeApiClient,
-    IGameLanguageProvider gameLanguageProvider,
+    DataProvider dataProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
     IApiStaticDataProvider apiStaticDataProvider
 ) : IApiItemProvider
@@ -36,12 +32,9 @@ public class ApiItemProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var cacheKey = $"{game.GetValueAttribute()}_Items";
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeItemCategory>>>(game, DataType.TradeRawItems, currentGameLanguage.Language);
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "items"), (cache) => cache.Result.Any());
-        if (result == null) throw new SidekickException("Could not fetch items from the trade API.");
-
-        InitializeItems(result);
+        InitializeItems(result.Result);
         UniqueItems = NamePatterns.Select(x => x.Item)
             .Where(x => x.IsUnique)
             .OrderByDescending(x => x.Name?.Length)
@@ -51,17 +44,17 @@ public class ApiItemProvider
         TextPatterns = TextPatterns.OrderByDescending(x => x.Item.Text?.Length ?? 0).ToList();
     }
 
-    private void InitializeItems(FetchResult<ApiCategory> result)
+    private void InitializeItems(List<RawTradeItemCategory> result)
     {
         NamePatterns.Clear();
         TypePatterns.Clear();
         TextPatterns.Clear();
 
-        foreach (var category in result.Result)
+        foreach (var category in result)
         {
             foreach (var entry in category.Entries)
             {
-                var information = entry.ToItemApiInformation();
+                var information = ToItemApiInformation(entry);
                 information.Category = category.Id;
 
                 var apiData = apiStaticDataProvider.Get(information.Name, information.Type);
@@ -69,7 +62,7 @@ public class ApiItemProvider
                 information.InvariantText = apiData?.Text;
                 information.Image = apiData?.Image;
 
-                if (gameLanguageProvider.IsEnglish())
+                if (currentGameLanguage.IsEnglish())
                 {
                     information.InvariantName = entry.Name;
                     information.InvariantType = entry.Type;
@@ -96,5 +89,18 @@ public class ApiItemProvider
                 }
             }
         }
+
+        return;
+
+
+        ItemApiInformation ToItemApiInformation(RawTradeItem item) => new()
+        {
+            Type = item.Type,
+            Name = item.Name,
+            Category = item.Category,
+            IsUnique = item.IsUnique,
+            Discriminator = item.Discriminator,
+            Text = item.Text,
+        };
     }
 }

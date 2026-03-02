@@ -1,17 +1,19 @@
 @using Microsoft.Extensions.DependencyInjection
+@using Microsoft.Extensions.Options
+@using Sidekick.Common
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Buttons
 
-<FormFieldset Legend="Keybinds">
-    @if (ApplicationService.SupportsKeybinds)
-    {
+@if (Configuration.Value.ApplicationType.SupportsKeybinds())
+{
+    <FormFieldset Legend="Keybinds">
         <ButtonPrimary OnClick="Register">Bind keyboard hooks</ButtonPrimary>
-    }
-</FormFieldset>
+    </FormFieldset>
+}
 
-@inject IApplicationService ApplicationService
 @inject IServiceProvider ServiceProvider
+@inject IOptions<SidekickConfiguration> Configuration
 
 @code {
 
@@ -19,10 +21,11 @@
 
     protected override void OnInitialized()
     {
-        if (ApplicationService.SupportsKeybinds)
+        if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
             KeyboardProvider = ServiceProvider.GetService<IKeyboardProvider>();
         }
+
         base.OnInitialized();
     }
 

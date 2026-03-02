@@ -8,18 +8,6 @@ namespace Sidekick.Common.Platform;
 public interface IApplicationService : IInitializableService
 {
     /// <summary>
-    /// Gets a value indicating whether the platform supports the use of keybinds.
-    /// </summary>
-    bool SupportsKeybinds { get; }
-
-    /// <summary>
-    /// Gets a value indicating whether the platform supports the use of a browser.
-    /// </summary>
-    bool SupportsAuthentication { get; }
-
-    bool SupportsHardwareAcceleration { get; }
-
-    /// <summary>
     /// Retrieves the current version of the application.
     /// </summary>
     /// <returns>

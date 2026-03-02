@@ -2,7 +2,6 @@ using System.Diagnostics;
 using ApexCharts;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
@@ -15,10 +14,14 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
+using Sidekick.Data;
+using Sidekick.Data.Builder;
 using Sidekick.Modules.Chat;
+using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
+using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Web;
 using Sidekick.Web.Services;
@@ -44,15 +47,18 @@ builder.Services.AddLocalization();
 builder.Services
 
     // Common
-    .AddSidekickCommon()
+    .AddSidekickCommon(SidekickApplicationType.Web)
     .AddSidekickCommonBrowser()
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
     .AddSidekickCommonUi()
 
+    // Data
+    .AddSidekickData()
+    .AddSidekickDataBuilder()
+
     // Apis
     .AddSidekickGitHubApi()
     .AddSidekickCommonApi()
-    .AddSidekickPoeApi()
     .AddSidekickPoeTradeApi()
     .AddSidekickPoeNinjaApi()
     .AddSidekickPoe2ScoutApi()
@@ -62,10 +68,12 @@ builder.Services
 
     // Modules
     .AddSidekickChat()
+    .AddSidekickModuleData()
     .AddSidekickDevelopment()
     .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
-    .AddSidekickItems();
+    .AddSidekickItems()
+    .AddSidekickLogs();
 
 builder.Services.AddApexCharts();
 builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();

@@ -5,16 +5,19 @@
 @using Sidekick.Modules.Items.Trade.Localization
 @implements IDisposable
 
-<div class="flex flex-col items-stretch gap-2 mb-2">
+<div class="flex flex-col items-stretch gap-2 mb-4">
     <DefaultNormalizeByEditor/>
     <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMinSettingKey"
                            Label="@Resources["PriceCheck_FillDefault_Min"]"/>
     <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMaxSettingKey"
                            Label="@Resources["PriceCheck_FillDefault_Max"]"/>
+    <DefaultSelectCategoriesEditor/>
 </div>
 
-<ButtonSecondary Disabled="!AreSettingsModified"
-                 OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonSecondary>
+<div class="text-center">
+    <ButtonSecondary Disabled="!AreSettingsModified"
+                     OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonSecondary>
+</div>
 
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<TradeResources> Resources
@@ -29,6 +32,7 @@
         AutoSelectPreferences.DefaultNormalizeBySettingKey,
         AutoSelectPreferences.DefaultFillMinSettingKey,
         AutoSelectPreferences.DefaultFillMaxSettingKey,
+        AutoSelectPreferences.DefaultSelectCategoriesSettingKey,
     };
 
     protected override async Task OnInitializedAsync()

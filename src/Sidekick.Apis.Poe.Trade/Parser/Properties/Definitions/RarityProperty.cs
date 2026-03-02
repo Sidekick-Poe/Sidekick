@@ -1,44 +1,46 @@
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RarityProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Dictionary<Rarity, Regex> RarityPatterns { get; } = new()
     {
         {
-            Rarity.Normal, gameLanguageProvider.Language.RarityNormal.ToRegexEndOfLine()
+            Rarity.Normal, currentGameLanguage.Language.RarityNormal.ToRegexEndOfLine()
         },
         {
-            Rarity.Magic, gameLanguageProvider.Language.RarityMagic.ToRegexEndOfLine()
+            Rarity.Magic, currentGameLanguage.Language.RarityMagic.ToRegexEndOfLine()
         },
         {
-            Rarity.Rare, gameLanguageProvider.Language.RarityRare.ToRegexEndOfLine()
+            Rarity.Rare, currentGameLanguage.Language.RarityRare.ToRegexEndOfLine()
         },
         {
-            Rarity.Unique, gameLanguageProvider.Language.RarityUnique.ToRegexEndOfLine()
+            Rarity.Unique, currentGameLanguage.Language.RarityUnique.ToRegexEndOfLine()
         },
         {
-            Rarity.Currency, gameLanguageProvider.Language.RarityCurrency.ToRegexEndOfLine()
+            Rarity.Currency, currentGameLanguage.Language.RarityCurrency.ToRegexEndOfLine()
         },
         {
-            Rarity.Gem, gameLanguageProvider.Language.RarityGem.ToRegexEndOfLine()
+            Rarity.Gem, currentGameLanguage.Language.RarityGem.ToRegexEndOfLine()
         },
         {
-            Rarity.DivinationCard, gameLanguageProvider.Language.RarityDivinationCard.ToRegexEndOfLine()
+            Rarity.DivinationCard, currentGameLanguage.Language.RarityDivinationCard.ToRegexEndOfLine()
         }
     };
 
-    public override string Label => gameLanguageProvider.Language.DescriptionRarity;
+    public override string Label => currentGameLanguage.Language.DescriptionRarity;
 
     public override void Parse(Item item)
     {
@@ -85,26 +87,23 @@ public class RarityProperty(
 
         var rarityLabel = item.Properties.Rarity switch
         {
-            Rarity.Currency => gameLanguageProvider.Language.RarityCurrency,
-            Rarity.Normal => gameLanguageProvider.Language.RarityNormal,
-            Rarity.Magic => gameLanguageProvider.Language.RarityMagic,
-            Rarity.Rare => gameLanguageProvider.Language.RarityRare,
-            Rarity.Unique => gameLanguageProvider.Language.RarityUnique,
+            Rarity.Currency => currentGameLanguage.Language.RarityCurrency,
+            Rarity.Normal => currentGameLanguage.Language.RarityNormal,
+            Rarity.Magic => currentGameLanguage.Language.RarityMagic,
+            Rarity.Rare => currentGameLanguage.Language.RarityRare,
+            Rarity.Unique => currentGameLanguage.Language.RarityUnique,
             _ => null
         };
         if (rarityLabel == null) return Task.FromResult<TradeFilter?>(null);
 
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return Task.FromResult<TradeFilter?>(new UniqueRarityFilter
-            {
-                AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
-            });
+            return Task.FromResult<TradeFilter?>(new UniqueRarityFilter());
         }
 
-        var filter = new RarityFilter
+        var filter = new RarityFilter(item.Game)
         {
-            Text = gameLanguageProvider.Language.DescriptionRarity,
+            Text = currentGameLanguage.Language.DescriptionRarity,
             Value = rarityLabel,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
         };
@@ -114,9 +113,40 @@ public class RarityProperty(
 
 public class RarityFilter : StringPropertyFilter
 {
-    public RarityFilter()
+    public RarityFilter(GameType game)
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+        if (game == GameType.PathOfExile1)
+        {
+            DefaultAutoSelect = AutoSelectPreferences.Create(false);
+        }
+        else
+        {
+            DefaultAutoSelect = new AutoSelectPreferences
+            {
+                Mode = AutoSelectMode.Default,
+                Rules =
+                [
+                    new AutoSelectRule()
+                    {
+                        Checked = true,
+                        Conditions =
+                        [
+                            new AutoSelectCondition()
+                            {
+                                Type = AutoSelectConditionType.Rarity,
+                                Comparison = AutoSelectComparisonType.IsContainedIn,
+                                Value = JsonSerializer.Serialize(new List<Rarity>()
+                                {
+                                    Rarity.Normal,
+                                    Rarity.Magic,
+                                }, AutoSelectPreferences.JsonSerializerOptions),
+                            },
+                        ],
+                    },
+                ],
+            };
+
+        }
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

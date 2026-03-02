@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Account;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
@@ -18,10 +17,14 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
+using Sidekick.Data;
+using Sidekick.Data.Builder;
 using Sidekick.Modules.Chat;
+using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
+using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Wealth;
 using Sidekick.PhotinoBlazor.Services;
@@ -66,16 +69,19 @@ public class Program
         services
 
             // Common
-            .AddSidekickCommon()
+            .AddSidekickCommon(SidekickApplicationType.Photino)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
+
+            // Data
+            .AddSidekickData()
+            .AddSidekickDataBuilder()
 
             // Apis
             .AddSidekickGitHubApi()
             .AddSidekickCommonApi()
             .AddSidekickPoeAccountApi()
-            .AddSidekickPoeApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoe2ScoutApi()
@@ -85,10 +91,12 @@ public class Program
 
             // Modules
             .AddSidekickChat()
+            .AddSidekickModuleData()
             .AddSidekickDevelopment()
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
             .AddSidekickItems()
+            .AddSidekickLogs()
             .AddSidekickWealth()
 
             // Platform needs to be at the end

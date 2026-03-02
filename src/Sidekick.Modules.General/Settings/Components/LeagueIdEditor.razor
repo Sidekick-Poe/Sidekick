@@ -1,9 +1,7 @@
 @using Microsoft.Extensions.Localization
 @using Sidekick.Apis.Poe.Extensions
-@using Sidekick.Apis.Poe.Trade
 @using Sidekick.Apis.Poe.Trade.Leagues
 @using Sidekick.Common.Cache
-@using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
 
@@ -16,8 +14,8 @@
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject ILeagueProvider LeagueProvider
-@inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
+@inject ICacheProvider CacheProvider
 
 @code {
 
@@ -39,11 +37,11 @@
     {
         var leagues = await LeagueProvider.GetList(true);
         Options = leagues
-                  .GroupBy(x => x.Id)
+                  .GroupBy(x => x.Value)
                   .Select(
                       x => new SelectOption()
                           {
-                              Value = x.First().Id,
+                              Value = x.First().Value,
                               Label = x.First().Text,
                               Group = Resources[x.First().Game.ToString()]
                           })

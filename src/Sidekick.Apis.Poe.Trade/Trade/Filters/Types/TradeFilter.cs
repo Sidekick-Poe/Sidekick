@@ -11,7 +11,7 @@ public abstract class TradeFilter
     {
         if (string.IsNullOrEmpty(AutoSelectSettingKey)) return null;
 
-        CustomAutoSelect = await settingsService.GetObject<AutoSelectPreferences>(AutoSelectSettingKey, () => null);
+        CustomAutoSelect = await settingsService.GetObject<AutoSelectPreferences>(AutoSelectSettingKey);
         CustomAutoSelect??= new AutoSelectPreferences()
         {
             Mode = AutoSelectMode.Default,

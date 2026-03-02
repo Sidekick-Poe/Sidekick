@@ -9,4 +9,6 @@ public class AutoSelectResult
     public bool FillMaxRange { get; set; }
 
     public double NormalizeBy { get; set; }
+
+    public bool SelectCategory { get; set; }
 }

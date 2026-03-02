@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Enums;
@@ -11,11 +12,12 @@ namespace Sidekick.Common.Settings;
 
 public class SettingsService(
     DbContextOptions<SidekickDbContext> dbContextOptions,
+    IOptions<SidekickConfiguration> sidekickConfiguration,
     ILogger<SettingsService> logger) : ISettingsService
 {
     public event Action<string[]>? OnSettingsChanged;
 
-    private static JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         Converters =
         {
@@ -93,7 +95,7 @@ public class SettingsService(
         return GetDefault<DateTimeOffset>(key);
     }
 
-    public async Task<TValue?> GetObject<TValue>(string key, Func<TValue?> defaultFunc)
+    public async Task<TValue?> GetObject<TValue>(string key)
         where TValue : class
     {
         await using var dbContext = new SidekickDbContext(dbContextOptions);
@@ -104,7 +106,7 @@ public class SettingsService(
         {
             try
             {
-                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty, JsonSerializerOptions) ?? defaultFunc.Invoke();
+                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty, JsonSerializerOptions) ?? null;
             }
             catch (Exception e)
             {
@@ -120,7 +122,7 @@ public class SettingsService(
             defaultValue = JsonSerializer.Deserialize<TValue>(serializedDefault, JsonSerializerOptions);
         }
 
-        return defaultValue ?? defaultFunc.Invoke();
+        return defaultValue ?? null;
     }
 
     public async Task<TEnum?> GetEnum<TEnum>(string key)
@@ -141,7 +143,7 @@ public class SettingsService(
             return enumFromAttribute;
         }
 
-        if (!SidekickConfiguration.DefaultSettings.TryGetValue(key, out var defaultValue))
+        if (!sidekickConfiguration.Value.DefaultSettings.TryGetValue(key, out var defaultValue))
         {
             return null;
         }
@@ -174,7 +176,7 @@ public class SettingsService(
     {
         var stringValue = GetStringValue(value);
 
-        var defaultConfiguration = SidekickConfiguration.DefaultSettings.GetValueOrDefault(key);
+        var defaultConfiguration = sidekickConfiguration.Value.DefaultSettings.GetValueOrDefault(key);
         defaultConfiguration ??= GetDefaultValue(value);
         if (defaultConfiguration != null)
         {
@@ -270,9 +272,9 @@ public class SettingsService(
         };
     }
 
-    private static TValue? GetDefault<TValue>(string key)
+    private TValue? GetDefault<TValue>(string key)
     {
-        if (SidekickConfiguration.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
+        if (sidekickConfiguration.Value.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
         {
             return typedValue;
         }
@@ -288,7 +290,7 @@ public class SettingsService(
             string => string.Empty,
             int => 0,
             double => 0,
-            _ => value == null ? null : JsonSerializer.Serialize(value, JsonSerializerOptions)
+            _ => null,
         };
     }
 }

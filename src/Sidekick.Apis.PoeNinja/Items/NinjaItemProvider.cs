@@ -1,12 +1,16 @@
-﻿using System.Text.Json;
-using Sidekick.Apis.Poe.Extensions;
+﻿using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.PoeNinja.Clients;
-using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
+using Sidekick.Data.Ninja;
 namespace Sidekick.Apis.PoeNinja.Items;
 
-public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemProvider
+public class NinjaItemProvider(
+    ISettingsService settingsService,
+    DataProvider dataProvider,
+    IGameLanguageProvider gameLanguageProvider) : INinjaItemProvider
 {
     private List<NinjaExchangeItem> ExchangeItems { get; } = [];
 
@@ -19,25 +23,14 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
     public async Task Initialize()
     {
         Game = await settingsService.GetGame();
-        await LoadFile(Game, NinjaPageProvider.ExchangeType, ExchangeItems);
-        await LoadFile(Game, NinjaPageProvider.StashType, StashItems);
-    }
 
-    private async Task LoadFile<TItem>(GameType game, string type, List<TItem> items)
-    {
-        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + NinjaPageProvider.GetFileName(game, type));
-        if (!File.Exists(dataFilePath)) return;
+        StashItems.Clear();
+        var stashItems = await dataProvider.Read<List<NinjaStashItem>>(Game, DataType.NinjaStash, gameLanguageProvider.InvariantLanguage);
+        StashItems.AddRange(stashItems);
 
-        items.Clear();
-
-        await using var fileStream = File.OpenRead(dataFilePath);
-        var result = await JsonSerializer.DeserializeAsync<List<TItem>>(fileStream, NinjaClient.JsonSerializerOptions);
-        if (result == null) return;
-
-        foreach (var item in result)
-        {
-            items.Add(item);
-        }
+        ExchangeItems.Clear();
+        var exchangeItems = await dataProvider.Read<List<NinjaExchangeItem>>(Game, DataType.NinjaExchange, gameLanguageProvider.InvariantLanguage);
+        ExchangeItems.AddRange(exchangeItems);
     }
 
     public NinjaExchangeItem? GetExchangeItem(string? invariant)

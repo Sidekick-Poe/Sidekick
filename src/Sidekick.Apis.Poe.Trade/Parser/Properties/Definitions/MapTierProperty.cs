@@ -1,21 +1,22 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class MapTierProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMapTier.ToRegexIntCapture();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionMapTier;
+    public override string Label => currentGameLanguage.Language.DescriptionMapTier;
 
     public override void Parse(Item item)
     {
@@ -45,7 +46,7 @@ public class MapTierFilter : IntPropertyFilter
 {
     public MapTierFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(true);
+        DefaultAutoSelect = AutoSelectPreferences.Create(true, normalizeBy: 0);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

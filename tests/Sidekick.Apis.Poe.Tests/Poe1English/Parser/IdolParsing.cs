@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -33,7 +34,7 @@ Unmodifiable");
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);
-        actual.AssertHasStat(StatCategory.Explicit, "Red Beasts in your Maps have #% increased chance to be from The Sands", 56);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Red Beasts in your Maps have #% increased chance to be from The Sands", 56);
     }
 
     [Fact]

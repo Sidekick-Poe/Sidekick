@@ -55,9 +55,8 @@ public interface ISettingsService
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
-    /// <param name="defaultValue">The default value of the setting if it is not defined.</param>
     /// <returns>The value of the setting.</returns>
-    Task<TValue?> GetObject<TValue>(string key, Func<TValue?> defaultFunc)
+    Task<TValue?> GetObject<TValue>(string key)
         where TValue : class;
 
     /// <summary>

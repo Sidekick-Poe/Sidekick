@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
@@ -8,17 +7,19 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RewardProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IApiItemProvider apiItemProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionReward.ToRegexStringCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringCapture();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionReward;
+    public override string Label => currentGameLanguage.Language.DescriptionReward;
 
     public override void Parse(Item item)
     {

@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using SharpHook;
 using SharpHook.Data;
 using SharpHook.Logging;
@@ -15,8 +16,8 @@ public class KeyboardProvider
 (
     ILogger<KeyboardProvider> logger,
     IServiceProvider serviceProvider,
-    IProcessProvider processProvider
-) : IKeyboardProvider, IDisposable
+    IProcessProvider processProvider,
+    IOptions<SidekickConfiguration> configuration) : IKeyboardProvider, IDisposable
 {
     private static readonly Dictionary<KeyCode, string> keyMappings = new()
     {
@@ -166,6 +167,8 @@ public class KeyboardProvider
 
     public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
 
+    private bool Enabled { get; set; }
+
     /// <inheritdoc/>
     public int Priority => 100;
 
@@ -195,7 +198,7 @@ public class KeyboardProvider
     {
         // Initialize keybindings
         KeybindHandlers.Clear();
-        foreach (var keybindType in SidekickConfiguration.InputHandlers)
+        foreach (var keybindType in configuration.Value.InputHandlers)
         {
             var keybindHandler = serviceProvider.GetRequiredService(keybindType) as KeybindHandler;
             if (keybindHandler == null) continue;
@@ -253,6 +256,8 @@ public class KeyboardProvider
 
     private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
     {
+        if (!Enabled) return;
+
         // Make sure the key is one we recognize and validate the event and keybinds
         if (!keyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
             || modifierKeys.IsMatch(key)
@@ -300,6 +305,8 @@ public class KeyboardProvider
 
     private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)
     {
+        if (!Enabled) return;
+
         var str = new StringBuilder();
         if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
         {
@@ -338,6 +345,8 @@ public class KeyboardProvider
 
     private void OnMouseDragged(object? sender, MouseHookEventArgs args)
     {
+        if (!Enabled) return;
+
         OnMouseDrag?.Invoke(new(args.Data.X, args.Data.Y));
     }
 
@@ -486,5 +495,15 @@ public class KeyboardProvider
         var simulator = new EventSimulator();
         simulator.SimulateKeyRelease(KeyCode.VcLeftAlt);
         simulator.SimulateKeyRelease(KeyCode.VcRightAlt);
+    }
+
+    public void Enable()
+    {
+        Enabled = true;
+    }
+
+    public void Disable()
+    {
+        Enabled = false;
     }
 }

@@ -1,30 +1,25 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Localization;
-using Sidekick.Common.Logging;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
 
-/// <summary>
-///     Startup functions for the Sidekick project
-/// </summary>
 public static class ServiceCollectionExtensions
 {
-    /// <summary>
-    ///     Adds common functionality to the service collection.
-    /// </summary>
-    /// <param name="services">The service collection to add services to.</param>
-    /// <returns>The services collection.</returns>
+    private static SidekickApplicationType _applicationType = SidekickApplicationType.Unknown;
+
     public static IServiceCollection AddSidekickCommon(
-        this IServiceCollection services)
+        this IServiceCollection services,
+        SidekickApplicationType applicationType)
     {
+        _applicationType = applicationType;
+
         services.AddSingleton<IBrowserProvider, BrowserProvider>();
         services.AddSingleton<ICacheProvider, CacheProvider>();
         services.AddSingleton<IFolderProvider, FolderProvider>();
@@ -38,17 +33,10 @@ public static class ServiceCollectionExtensions
         services.SetSidekickDefaultSetting(SettingKeys.RetainClipboard, true);
         services.SetSidekickDefaultSetting(SettingKeys.UseHardwareAcceleration, true);
 
-        return services.AddSidekickLogging();
-    }
-
-    private static IServiceCollection AddSidekickLogging(this IServiceCollection services)
-    {
-        services.AddLogging(
-            builder =>
-            {
-                builder.AddSerilog();
-            });
-        services.AddSingleton(LogHelper.GetLogger("Sidekick_log.log"));
+        services.Configure<SidekickConfiguration>(configuration =>
+        {
+            configuration.ApplicationType = applicationType;
+        });
 
         return services;
     }
@@ -63,7 +51,7 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         Assembly assembly)
     {
-        SidekickConfiguration.Modules.Add(assembly);
+        services.Configure<SidekickConfiguration>(configuration => { configuration.Modules.Add(assembly); });
         return services;
     }
 
@@ -74,12 +62,28 @@ public static class ServiceCollectionExtensions
     /// <typeparam name="TService">The type of service to add to the application.</typeparam>
     /// <typeparam name="TImplementation">The type of the implementation of the service.</typeparam>
     /// <returns>The service collection.</returns>
-    public static IServiceCollection AddSidekickInitializableService<TService, TImplementation>(this IServiceCollection services)
+    public static IServiceCollection AddSidekickInitializableService<TService, TImplementation>(
+        this IServiceCollection services)
         where TService : class, IInitializableService
         where TImplementation : class, TService
     {
         services.AddSingleton<TService, TImplementation>();
-        SidekickConfiguration.InitializableServices.Add(typeof(TService));
+        services.Configure<SidekickConfiguration>(configuration =>
+        {
+            configuration.InitializableServices.Add(typeof(TService));
+        });
+        return services;
+    }
+
+    public static IServiceCollection AddSidekickInitializableService<TService>(
+        this IServiceCollection services)
+        where TService : class, IInitializableService
+    {
+        services.AddSingleton<TService>();
+        services.Configure<SidekickConfiguration>(configuration =>
+        {
+            configuration.InitializableServices.Add(typeof(TService));
+        });
         return services;
     }
 
@@ -90,20 +94,35 @@ public static class ServiceCollectionExtensions
     /// <param name="services">The service collection to add the input handler to</param>
     /// <returns>The service collection</returns>
     public static IServiceCollection AddSidekickInputHandler<TInputHandler>(this IServiceCollection services)
-        where TInputHandler : IInputHandler
+        where TInputHandler : class, IInputHandler
     {
-        SidekickConfiguration.InputHandlers.Add(typeof(TInputHandler));
-        return services;
-    }
-
-    public static IServiceCollection SetSidekickDefaultSetting(this IServiceCollection services, string key, object value)
-    {
-        if (!SidekickConfiguration.DefaultSettings.TryAdd(key, value))
+        services.Configure<SidekickConfiguration>(configuration =>
         {
-            SidekickConfiguration.DefaultSettings[key] = value;
+            if (!configuration.ApplicationType.SupportsKeybinds()) return;
+
+            configuration.InitializableServices.Add(typeof(TInputHandler));
+            configuration.InputHandlers.Add(typeof(TInputHandler));
+        });
+
+        if (_applicationType == SidekickApplicationType.Wpf)
+        {
+            services.AddSingleton<TInputHandler>();
         }
 
         return services;
     }
 
+    public static IServiceCollection SetSidekickDefaultSetting(this IServiceCollection services, string key,
+        object value)
+    {
+        services.Configure<SidekickConfiguration>(configuration =>
+        {
+            if (!configuration.DefaultSettings.TryAdd(key, value))
+            {
+                configuration.DefaultSettings[key] = value;
+            }
+        });
+
+        return services;
+    }
 }

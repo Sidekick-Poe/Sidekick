@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -28,7 +29,7 @@ public class FoulbornProperty(
         if (game == GameType.PathOfExile2) return;
         if (item.Properties.Rarity != Rarity.Unique) return;
 
-        item.Properties.Foulborn = item.Stats.Any(x => x.ApiInformation.Any(y => y.Category == StatCategory.Mutated));
+        item.Properties.Foulborn = item.Stats.Any(x => x.Category == StatCategory.Mutated);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
