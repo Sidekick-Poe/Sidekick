@@ -167,7 +167,7 @@ public class KeyboardProvider
 
     public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
 
-    private bool Enabled { get; set; }
+    private bool Enabled { get; set; } = true;
 
     /// <inheritdoc/>
     public int Priority => 100;
