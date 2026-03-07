@@ -2,6 +2,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
@@ -11,6 +13,7 @@ namespace Sidekick.Data.Builder.Ninja;
 
 public class NinjaDownloader(
     ILogger<NinjaDownloader> logger,
+    IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
     IGameLanguageProvider languageProvider)
 {
@@ -77,13 +80,25 @@ public class NinjaDownloader(
 
     public async Task Download()
     {
-        var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.TradeLeagues, languageProvider.InvariantLanguage);
-        await DownloadForGame(GameType.PathOfExile1,
-            poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
+        try
+        {
+            var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.TradeLeagues, languageProvider.InvariantLanguage);
+            await DownloadForGame(GameType.PathOfExile1,
+                poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
 
-        var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.TradeLeagues, languageProvider.InvariantLanguage);
-        await DownloadForGame(GameType.PathOfExile2,
-            poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
+            var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.TradeLeagues, languageProvider.InvariantLanguage);
+            await DownloadForGame(GameType.PathOfExile2,
+                poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, "Failed to download ninja data.");
+        }
 
         return;
 

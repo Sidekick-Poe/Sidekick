@@ -86,6 +86,7 @@ public class DataProvider : IInitializableService
 
         if (!Directory.Exists(sourceDirectory))
         {
+            logger.LogWarning("Source directory for data files not found at {sourceDirectory}. Skipping data copy.", sourceDirectory);
             return Task.CompletedTask;
         }
 

@@ -15,7 +15,7 @@ public class DataBuilder(
     StatBuilder statBuilder,
     PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
-    TradeLeagueBuilder  tradeLeagueBuilder,
+    TradeLeagueBuilder tradeLeagueBuilder,
     TradeStatBuilder tradeStatBuilder,
     RepoeDownloader repoeDownloader,
     TradeInvariantStatBuilder tradeInvariantStatBuilder,

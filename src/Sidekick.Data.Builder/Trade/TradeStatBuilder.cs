@@ -1,4 +1,7 @@
 ﻿using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
@@ -8,6 +11,8 @@ using Sidekick.Data.Trade.Raw;
 namespace Sidekick.Data.Builder.Trade;
 
 public class TradeStatBuilder(
+    ILogger<TradeStatBuilder> logger,
+    IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider)
 {
     private readonly Regex parseHashPattern = new("\\#");
@@ -15,8 +20,20 @@ public class TradeStatBuilder(
 
     public async Task Build(IGameLanguage language)
     {
-        await Build(GameType.PathOfExile1, language);
-        await Build(GameType.PathOfExile2, language);
+        try
+        {
+            await Build(GameType.PathOfExile1, language);
+            await Build(GameType.PathOfExile2, language);
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, $"Failed to build trade stats for {language.Code}.");
+        }
     }
 
     private async Task Build(GameType game, IGameLanguage language)

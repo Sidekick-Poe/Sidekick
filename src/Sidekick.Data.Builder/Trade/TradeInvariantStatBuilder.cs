@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
@@ -8,14 +11,28 @@ namespace Sidekick.Data.Builder.Trade;
 
 public class TradeInvariantStatBuilder
 (
+    ILogger<TradeInvariantStatBuilder> logger,
+    IOptions<SidekickConfiguration> configuration,
     IGameLanguageProvider gameLanguageProvider,
     DataProvider dataProvider
 )
 {
     public async Task Build()
     {
-        await BuildForGame(GameType.PathOfExile1);
-        await BuildForGame(GameType.PathOfExile2);
+        try
+        {
+            await BuildForGame(GameType.PathOfExile1);
+            await BuildForGame(GameType.PathOfExile2);
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, "Failed to build invariant trade stats.");
+        }
     }
 
     private async Task BuildForGame(GameType game)

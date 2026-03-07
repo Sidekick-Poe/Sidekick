@@ -22,8 +22,8 @@ public class LogSink : ILogEventSink
 
         var logMessage = writer.ToString();
         Entries.Enqueue(logMessage);
-        LogEventEmitted?.Invoke(logMessage);
+        LogEventEmitted?.Invoke(logEvent.Level, logMessage);
     }
 
-    public event Action<string>? LogEventEmitted;
+    public event Action<LogEventLevel, string>? LogEventEmitted;
 }

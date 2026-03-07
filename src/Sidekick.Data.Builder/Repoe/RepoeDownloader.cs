@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Builder.Repoe.Models.Poe1;
 using Sidekick.Data.Items;
@@ -7,6 +9,7 @@ namespace Sidekick.Data.Builder.Repoe;
 
 public class RepoeDownloader(
     ILogger<RepoeDownloader> logger,
+    IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider)
 {
     private sealed record RepoeLanguageInfo(string Code, string LanguageSlug);
@@ -62,8 +65,20 @@ public class RepoeDownloader(
 
     public async Task Download(IGameLanguage language)
     {
-        await DownloadPoe1(language);
-        await DownloadPoe2(language);
+        try
+        {
+            await DownloadPoe1(language);
+            await DownloadPoe2(language);
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, $"Failed to download repoe data for {language.Code}.");
+        }
     }
 
     private async Task DownloadPoe1(IGameLanguage language)
