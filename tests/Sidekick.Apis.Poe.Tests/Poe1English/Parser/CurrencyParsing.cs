@@ -74,4 +74,22 @@ Note: ~price 1 blessed
         Assert.Equal("Clear Oil", actual.ApiInformation.Type);
     }
 
+    [Fact]
+    public void CrystallisedRancour()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Crystallised Rancour
+--------
+Stack Size: 2/10
+--------
+Can be used at the Horticrafting bench in your hideout.
+Shift click to unstack.
+");
+
+        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Crystallised Rancour", actual.ApiInformation.Type);
+    }
+
 }
