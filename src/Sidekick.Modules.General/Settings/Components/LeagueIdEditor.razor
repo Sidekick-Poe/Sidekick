@@ -5,11 +5,21 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
 
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Icons
+
 <FormSelect Label="@Resources["Character_League"]"
             Value="@LeagueId"
             ValueChanged="LeagueChanged"
             Options="Options"
-            Tooltip="@Resources["League_Hint"]" />
+            Tooltip="@Resources["League_Hint"]">
+    <AdornmentContent>
+        <ButtonIcon OnClick="RefreshLeagues"
+                    Disabled="Refreshing"
+                    Svg="@UiIcons.Refresh"
+                    title="@Resources["Refresh"]" />
+    </AdornmentContent>
+</FormSelect>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
@@ -26,6 +36,8 @@
 
     private List<SelectOption> Options { get; set; } = new();
 
+    private bool Refreshing { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
@@ -35,7 +47,7 @@
 
     private async Task RefreshOptions()
     {
-        var leagues = await LeagueProvider.GetList(true);
+        var leagues = await LeagueProvider.GetList(!Refreshing);
         Options = leagues
                   .GroupBy(x => x.Value)
                   .Select(
@@ -46,6 +58,14 @@
                               Group = Resources[x.First().Game.ToString()]
                           })
                   .ToList();
+    }
+
+    private async Task RefreshLeagues()
+    {
+        if (Refreshing) return;
+        Refreshing = true;
+        await RefreshOptions();
+        Refreshing = false;
     }
 
     private async Task LeagueChanged(string? value)
