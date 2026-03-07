@@ -67,6 +67,9 @@ public enum StatCategory
     [EnumValue("mutated")]
     Mutated = 16,
 
+    [EnumValue("imbued")]
+    Imbued = 17,
+
     // Meta modifiers
     Corrupted = 101,
     Unidentified = 102,
