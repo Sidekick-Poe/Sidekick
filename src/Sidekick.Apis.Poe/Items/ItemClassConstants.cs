@@ -103,5 +103,7 @@ public static class ItemClassConstants
         ItemClass.SanctumResearch,
 
         ItemClass.Graft,
+
+        ItemClass.ActiveGem,
     ];
 }

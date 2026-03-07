@@ -46,7 +46,7 @@ public class TradeStatBuilder(
         foreach (var apiCategory in apiCategories.Result)
         {
             var statCategory = GetStatCategory(apiCategory.Entries[0].Id);
-            if (apiCategory.Entries.Count == 0 || statCategory == StatCategory.Undefined) continue;
+            if (apiCategory.Entries.Count == 0) continue;
 
             foreach (var entry in apiCategory.Entries)
             {

@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -213,5 +214,49 @@ Transfigured
         Assert.Equal("Orb of Storms of Squalls", actual.ApiInformation.Text);
         Assert.Equal("Orb of Storms", actual.ApiInformation.Type);
         Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
+    }
+
+    [Fact]
+    public void ImbuedEarthshatter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
+Rarity: Gem
+Earthshatter
+--------
+Attack, AoE, Melee, Slam, Duration
+Level: 20 (Max)
+Cost: 13 Mana
+Attack Speed: 80% of base
+Attack Damage: 329.1% of base
+Effectiveness of Added Damage: 329%
+Quality: +20% (augmented)
+--------
+Requirements:
+Level: 70 (unmet)
+Str: 155 (unmet)
+--------
+Slam the ground, sending out rectangular fissures that deal area damage to enemies and thrust a spike from the ground when they end. Warcries or other Slam Attacks performed by you or allied players near any spike will cause them to shatter, damaging surrounding enemies. Works with Maces, Sceptres, Axes, Staves and Unarmed.
+--------
+Base duration is 6.00 seconds
+19% more Area of Effect
+Shattering Spikes deal 30% less damage
+Maximum 18 Spikes
+Creates 6 fissures
+--------
+Supported by Level 1 Knockback
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+--------
+Corrupted
+--------
+Imbued
+");
+
+        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Null(actual.ApiInformation.Text);
+        Assert.Equal("Earthshatter", actual.ApiInformation.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Imbued, "Supported by Level 1 Knockback");
     }
 }

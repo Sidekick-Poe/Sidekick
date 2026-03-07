@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
@@ -32,6 +33,7 @@ public class ApiStatsProvider
 
         foreach (var definition in Definitions)
         {
+            if (definition.Id == "imbued.pseudo_built_in_support|2003102433") Debugger.Break();
             if (!IdDictionary.TryAdd(definition.Id, [definition]))
             {
                 IdDictionary[definition.Id].Add(definition);
