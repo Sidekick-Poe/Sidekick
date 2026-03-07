@@ -33,7 +33,6 @@ public class ApiStatsProvider
 
         foreach (var definition in Definitions)
         {
-            if (definition.Id == "imbued.pseudo_built_in_support|2003102433") Debugger.Break();
             if (!IdDictionary.TryAdd(definition.Id, [definition]))
             {
                 IdDictionary[definition.Id].Add(definition);
