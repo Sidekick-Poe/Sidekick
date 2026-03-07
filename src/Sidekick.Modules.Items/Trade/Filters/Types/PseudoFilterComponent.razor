@@ -11,23 +11,19 @@
         </FormCheckbox>
     </div>
 
-    <div class="flex flex-col items-end justify-between gap-[2px]">
-        <ItemStatCategoryChip Category="StatCategory.Pseudo"/>
-
-        @if (Filter is
+    @if (Filter is
+             {
+                 Checked: true,
+                 Stat:
                  {
-                     Checked: true,
-                     Stat:
-                     {
-                         Value: not 0
-                     }
-                 })
-        {
-            <FilterRange Filter="Filter"
-                         @bind-Min="@Filter.Min"
-                         @bind-Max="@Filter.Max"/>
-        }
-    </div>
+                     Value: not 0
+                 }
+             })
+    {
+        <FilterRange Filter="Filter"
+                     @bind-Min="@Filter.Min"
+                     @bind-Max="@Filter.Max"/>
+    }
 </FilterWrapper>
 
 @code {
