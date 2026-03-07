@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Data.Builder.Pseudo.Definitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
@@ -7,14 +10,28 @@ namespace Sidekick.Data.Builder.Pseudo;
 
 public class PseudoBuilder
 (
+    ILogger<PseudoBuilder> logger,
+    IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
     IGameLanguageProvider gameLanguageProvider
 )
 {
     public async Task Build(IGameLanguage language)
     {
-        await Build(GameType.PathOfExile1, language);
-        await Build(GameType.PathOfExile2, language);
+        try
+        {
+            await Build(GameType.PathOfExile1, language);
+            await Build(GameType.PathOfExile2, language);
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, $"Failed to build pseudo stats for {language.Code}.");
+        }
     }
 
     public async Task Build(GameType game, IGameLanguage language)

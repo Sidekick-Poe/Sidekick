@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Initialization;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -12,7 +13,7 @@ namespace Sidekick.Data;
 
 public record DataFile(string Path, string Name, long Size, DateTimeOffset LastModified);
 
-public class DataProvider
+public class DataProvider : IInitializableService
 {
     private readonly IOptions<SidekickConfiguration> configuration;
     private readonly ILogger<DataProvider> logger;
@@ -28,6 +29,8 @@ public class DataProvider
     };
 
     public string DataDirectory { get; }
+
+    public int Priority => -100;
 
     public DataProvider(IOptions<SidekickConfiguration> configuration, ILogger<DataProvider> logger)
     {
@@ -48,7 +51,7 @@ public class DataProvider
                 }
             }
 
-            return Path.Combine(AppContext.BaseDirectory, "wwwroot/data/");
+            return SidekickPaths.GetDataFilePath("SidekickData");
         }
 
         string? FindSolutionDirectory(string? startDirectory = null)
@@ -68,6 +71,56 @@ public class DataProvider
             }
 
             return null;
+        }
+    }
+
+    public Task Initialize()
+    {
+        if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+        {
+            return Task.CompletedTask;
+        }
+
+        var sourceDirectory = Path.Combine(AppContext.BaseDirectory, "wwwroot/data");
+        var targetDirectory = DataDirectory;
+
+        if (!Directory.Exists(sourceDirectory))
+        {
+            logger.LogWarning("Source directory for data files not found at {sourceDirectory}. Skipping data copy.", sourceDirectory);
+            return Task.CompletedTask;
+        }
+
+        if (!Directory.Exists(targetDirectory))
+        {
+            Directory.CreateDirectory(targetDirectory);
+        }
+
+        CopyDirectory(sourceDirectory, targetDirectory);
+
+        return Task.CompletedTask;
+
+        void CopyDirectory(string source, string target)
+        {
+            foreach (var sourceFile in Directory.GetFiles(source, "*", SearchOption.AllDirectories))
+            {
+                var relativePath = Path.GetRelativePath(source, sourceFile);
+                var targetFile = Path.Combine(target, relativePath);
+
+                var sourceInfo = new FileInfo(sourceFile);
+                var targetInfo = new FileInfo(targetFile);
+
+                if (!targetInfo.Exists || sourceInfo.LastWriteTimeUtc > targetInfo.LastWriteTimeUtc)
+                {
+                    var targetFileInfo = new FileInfo(targetFile);
+                    if (targetFileInfo.Directory != null && !targetFileInfo.Directory.Exists)
+                    {
+                        targetFileInfo.Directory.Create();
+                    }
+
+                    File.Copy(sourceFile, targetFile, true);
+                    logger.LogInformation($"Copied {relativePath} to user data folder.");
+                }
+            }
         }
     }
 

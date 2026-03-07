@@ -1,4 +1,7 @@
 ﻿using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Poe1;
@@ -12,6 +15,8 @@ using Sidekick.Data.Trade.Raw;
 namespace Sidekick.Data.Builder.Stats;
 
 public class StatBuilder(
+    ILogger<StatBuilder> logger,
+    IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
     RepoeDownloader repoeDownloader,
     IFuzzyService fuzzyService)
@@ -31,10 +36,22 @@ public class StatBuilder(
 
     public async Task Build(IGameLanguage language)
     {
-        TradeReplacePatterns = BuildReplacementPatterns(language);
+        try
+        {
+            TradeReplacePatterns = BuildReplacementPatterns(language);
 
-        await Build(GameType.PathOfExile1, language);
-        await Build(GameType.PathOfExile2, language);
+            await Build(GameType.PathOfExile1, language);
+            await Build(GameType.PathOfExile2, language);
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, $"Failed to build stats for {language.Code}.");
+        }
     }
 
     private async Task Build(GameType game, IGameLanguage language)

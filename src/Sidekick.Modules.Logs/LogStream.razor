@@ -34,7 +34,7 @@
         base.OnInitialized();
     }
 
-    private void OnLogEventEmitted(string log)
+    private void OnLogEventEmitted(Serilog.Events.LogEventLevel level, string log)
     {
         _ = InvokeAsync(async () =>
         {

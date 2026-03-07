@@ -9,6 +9,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
         <ProjectReference Include="..\Sidekick.Data.Builder\Sidekick.Data.Builder.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Logs\Sidekick.Modules.Logs.csproj" />
     </ItemGroup>
 
 </Project>
