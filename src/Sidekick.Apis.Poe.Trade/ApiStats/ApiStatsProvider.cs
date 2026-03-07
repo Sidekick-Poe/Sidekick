@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Languages;
