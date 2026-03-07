@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/refs/heads/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.sidekick-poe.app",
+  "compression": "maximum",
+  "linux": {
+    "icon": "bin/wwwroot/android-chrome-512x512.png",
+    "target": [
+      {
+        "target": "dir",
+        "arch": ["x64"]
+      }
+    ],
+    "executableArgs": [ "--no-sandbox" ],
+    "artifactName": "${name}-${arch}-${version}.${ext}"
+  },
+  "win": {
+    "icon": "bin/wwwroot/android-chrome-512x512.png",
+    "executableName": "Sidekick",
+    "target": [
+      {
+        "target": "dir",
+        "arch": [ "x64" ]
+      }
+    ]
+  }
+}
