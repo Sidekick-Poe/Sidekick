@@ -172,4 +172,46 @@ Transfigured
         Assert.Equal("Kinetic Blast", actual.ApiInformation.Type);
         Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
     }
+
+    [Fact]
+    public void OrbOfStormsOfSqualls()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
+Rarity: Gem
+Orb of Storms of Squalls
+--------
+Lightning, Spell, AoE, Chaining, Orb
+Level: 1
+Cost: 22 Mana
+Cooldown Time: 2.00 sec
+Cast Time: 0.50 sec
+Critical Strike Chance: 5.00%
+Effectiveness of Added Damage: 110%
+--------
+Requirements:
+Level: 4
+Int: 16
+--------
+Creates an electrical orb that will strike enemies in its area of effect with beams of lightning when placed, as well as when you use a lightning skill while within its area. These beams of lightning can then split to hit more enemies. When striking enemies, this orb will teleport to a random enemy struck. Casting this skill again will replace the previous orb.
+--------
+Deals 3 to 10 Lightning Damage
+Strikes every 0.50 seconds while Channelling a Lightning Skill near the Orb
+Base radius is 3.8 metres
+Beams Split towards targets within a base radius of 3.8 metres
+Orb disappears after 6 Strikes
+Beam Splits towards 5 additional targets
+--------
+Experience: 1/841
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+--------
+Transfigured
+");
+
+        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Equal("Orb of Storms of Squalls", actual.ApiInformation.Text);
+        Assert.Equal("Orb of Storms", actual.ApiInformation.Type);
+        Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
+    }
 }
