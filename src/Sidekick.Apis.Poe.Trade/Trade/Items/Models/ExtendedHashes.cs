@@ -36,4 +36,7 @@ public class ExtendedHashes
 
     [JsonPropertyName("sanctum")]
     public List<List<JsonElement>> Sanctum { get; set; } = [];
+
+    [JsonPropertyName("imbued")]
+    public List<List<JsonElement>> Imbued { get; set; } = [];
 }

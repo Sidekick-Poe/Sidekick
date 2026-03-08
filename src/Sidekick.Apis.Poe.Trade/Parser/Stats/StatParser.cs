@@ -74,9 +74,18 @@ public class StatParser
             }
         }
 
+        IEnumerable<StatDefinition> FilterDefinitions()
+        {
+            return item.Properties.ItemClass switch
+            {
+                ItemClass.ActiveGem => Definitions.Where(x => x.Category is StatCategory.Imbued),
+                _ => Definitions,
+            };
+        }
+
         IEnumerable<StatDefinition> MatchDefinitions(TextBlock block, int lineIndex)
         {
-            foreach (var definition in Definitions)
+            foreach (var definition in FilterDefinitions())
             {
                 // Multiple line stats
                 if (definition.LineCount > 1 && definition.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(definition.LineCount))))
@@ -106,7 +115,7 @@ public class StatParser
             var results = new List<(int Ratio, StatDefinition Definition)>();
             var resultsLock = new object();// Lock object to synchronize access to results
 
-            Parallel.ForEach(Definitions,
+            Parallel.ForEach(FilterDefinitions(),
                              definition =>
                              {
                                  if (string.IsNullOrEmpty(definition.FuzzyText)) return;

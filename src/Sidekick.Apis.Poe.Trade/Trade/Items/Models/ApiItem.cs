@@ -57,6 +57,8 @@ public class ApiItem
 
     public string? Note { get; set; }
 
+    public string? BuiltInSupport { get; set; }
+
     public List<ApiItemLineContent> Requirements { get; set; } = [];
 
     public List<ApiItemLineContent> Properties { get; set; } = [];

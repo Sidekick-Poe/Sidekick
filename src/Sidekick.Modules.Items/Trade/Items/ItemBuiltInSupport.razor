@@ -1,0 +1,17 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Items.Results
+@using Sidekick.Data.Items
+
+@if (!string.IsNullOrEmpty(Result.Item.BuiltInSupport))
+{
+    <ItemSeparator Rarity="Result.Item.Rarity"/>
+    <ItemStatText Category="StatCategory.Enchant">@Result.Item.BuiltInSupport</ItemStatText>
+}
+
+@code {
+
+    [Parameter]
+    public required TradeResult Result { get; set; }
+
+    protected override bool ShouldRender() => false;
+
+}
