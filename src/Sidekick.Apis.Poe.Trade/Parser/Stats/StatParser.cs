@@ -149,7 +149,9 @@ public class StatParser
         {
             var text = string.Join('\n', lines.Select(x => x.Text));
             var category = ParseCategory(text);
-            if (definitions.DistinctBy(x => x.Category).Count() == 1 && definitions[0].Category != StatCategory.Undefined)
+            if (category != StatCategory.Mutated
+                && definitions.DistinctBy(x => x.Category).Count() == 1
+                && definitions[0].Category != StatCategory.Undefined)
             {
                 category = definitions[0].Category;
             }
