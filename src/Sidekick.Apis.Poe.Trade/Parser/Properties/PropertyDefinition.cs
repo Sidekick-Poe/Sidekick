@@ -46,6 +46,14 @@ public abstract class PropertyDefinition
         return int.TryParse(match.Groups[1].Value, out var result) ? result : 0;
     }
 
+    protected static int GetInt(Regex pattern, string value)
+    {
+        var match = pattern.Match(value);
+        if (!match.Success) return 0;
+
+        return int.TryParse(match.Groups[1].Value, out var result) ? result : 0;
+    }
+
     protected static double GetDouble(Regex pattern, TextBlock textBlock)
     {
         if (!textBlock.TryParseRegex(pattern, out var match))
