@@ -14,17 +14,15 @@ public class MapTierProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMapTier.ToRegexIntCapture();
+    private Regex Pattern { get; } = new(@"^[^\(]+\([^\d]+(\d+)\)$");
 
     public override string Label => currentGameLanguage.Language.DescriptionMapTier;
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass != ItemClass.Map) return;
+        if (item.Properties.ItemClass != ItemClass.Map || string.IsNullOrEmpty(item.Type)) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.MapTier = GetInt(Pattern, propertyBlock);
-        if (item.Properties.MapTier > 0) propertyBlock.Parsed = true;
+        item.Properties.MapTier = GetInt(Pattern, item.Type);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
