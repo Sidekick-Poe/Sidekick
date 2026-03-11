@@ -20,8 +20,6 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private IJSObjectReference? Module { get; set; }
-
     private IJSObjectReference? ZoomHandler { get; set; }
 
     protected override void OnInitialized()
@@ -53,8 +51,7 @@
         {
             try
             {
-                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/App/AppWrapper.razor.js");
-                ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
+                ZoomHandler = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.app.zoomHandler");
                 await UpdateZoom();
             }
             catch (Exception e)
@@ -72,11 +69,6 @@
         if (ZoomHandler != null)
         {
             await ZoomHandler.DisposeAsync();
-        }
-
-        if (Module != null)
-        {
-            await Module.DisposeAsync();
         }
 
         SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;

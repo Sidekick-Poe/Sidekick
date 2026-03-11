@@ -67,8 +67,6 @@
 
     private bool IsActive { get; set; }
 
-    private IJSObjectReference? Module { get; set; }
-
     private static event Action? CurrentEditorChanged;
 
     private bool ShowClearButton => !string.IsNullOrWhiteSpace(Value);
@@ -103,8 +101,7 @@
     {
         try
         {
-            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Settings/KeybindEditorInternal.razor.js");
-            await Module.InvokeVoidAsync("removeFocus", Id);
+            await JsRuntime.InvokeVoidAsync("sidekick.forms.removeFocus", Id);
         }
         catch (Exception e)
         {

@@ -1,13 +1,14 @@
-﻿export const init = (elementId, dotNetRef) => {
+﻿export default (elementId, dotNetRef) => {
 
     const element = document.getElementById(elementId);
 
-    element.addEventListener("input", function () {
+    const input = () => {
         dotNetRef.invokeMethodAsync("Update", element.innerHTML);
-    });
+    };
+    element.addEventListener("input", input);
 
     // Select all text when the contenteditable element is focused
-    element.addEventListener("focus", function () {
+    const focus = () => {
         if (element.innerHTML === element.dataset.placeholder) {
             element.innerHTML = '';
             element.classList.remove('text-xs');
@@ -18,25 +19,37 @@
         range.selectNodeContents(this); // Select all the content
         selection.removeAllRanges();    // Clear any existing selection
         selection.addRange(range);      // Apply the new range as the selection
-    });
+    };
+    element.addEventListener("focus", focus);
 
-    element.addEventListener("blur", function () {
+    const blur = () => {
         const value = (element.innerHTML ?? '').trim();
         if (value === '' || value === '<br>') {
             element.innerHTML = element.dataset.placeholder;
             element.classList.add('text-xs');
         }
-    });
+    };
+    element.addEventListener("blur", blur);
 
-}
-
-export const setValue = (elementId, value) => {
-    const element = document.getElementById(elementId);
-    element.innerHTML = value;
-    if (value === '' || value === null) {
-        element.innerHTML = element.dataset.placeholder;
-        element.classList.add('text-xs');
-    } else {
-        element.classList.remove('text-xs');
+    const setValue = (value) => {
+        const element = document.getElementById(elementId);
+        element.innerHTML = value;
+        if (value === '' || value === null) {
+            element.innerHTML = element.dataset.placeholder;
+            element.classList.add('text-xs');
+        } else {
+            element.classList.remove('text-xs');
+        }
     }
+
+    const dispose = () => {
+        element.removeEventListener("input", input);
+        element.removeEventListener("focus", focus);
+        element.removeEventListener("blur", blur);
+    }
+
+    return {
+        setValue,
+        dispose,
+    };
 }

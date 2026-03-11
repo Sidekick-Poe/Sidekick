@@ -1,4 +1,4 @@
-export const initializeIntersectionObserver = (elementId, dotNetRef) => {
+export default (elementId, dotNetRef) => {
     const element = document.getElementById(elementId);
     if (!element) {
         return;
@@ -13,4 +13,6 @@ export const initializeIntersectionObserver = (elementId, dotNetRef) => {
     }, { threshold: 1 });
 
     observer.observe(element);
+
+    return observer;
 };

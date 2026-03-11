@@ -26,7 +26,7 @@
     [Parameter]
     public EventCallback<double?> DoubleValueChanged { get; set; }
 
-    private IJSObjectReference? Module { get; set; }
+    private IJSObjectReference? JsObject { get; set; }
 
     private DotNetObjectReference<FormContentEditable>? Reference { get; set; }
 
@@ -59,7 +59,7 @@
             Value = string.Empty;
         }
 
-        if (Module != null && previousValue != Value)
+        if (JsObject != null && previousValue != Value)
         {
             await UpdateEditable();
         }
@@ -75,8 +75,7 @@
             try
             {
                 Reference = DotNetObjectReference.Create(this);
-                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormContentEditable.razor.js");
-                await Module.InvokeVoidAsync("init", ElementId, Reference);
+                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.forms.contentEditable", ElementId, Reference);
             }
             catch (Exception e)
             {
@@ -118,14 +117,15 @@
 
     private async Task UpdateEditable()
     {
-        if (Module != null) await Module.InvokeVoidAsync("setValue", ElementId, Value);
+        if (JsObject != null) await JsObject.InvokeVoidAsync("setValue", Value);
     }
 
     public async ValueTask DisposeAsync()
     {
-        if (Module != null)
+        if (JsObject != null)
         {
-            await Module.DisposeAsync();
+            await JsObject.InvokeVoidAsync("dispose");
+            await JsObject.DisposeAsync();
         }
 
         Reference?.Dispose();

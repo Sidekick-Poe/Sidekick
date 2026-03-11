@@ -1,4 +1,4 @@
-﻿export const initializeZoomHandling = () => {
+﻿export default () => {
     let zoom = 1;
 
     const updateVh = () => {
