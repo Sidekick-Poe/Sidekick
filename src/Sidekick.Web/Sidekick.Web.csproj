@@ -15,14 +15,11 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj"/>
-        <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj"/>
-        <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Logs\Sidekick.Modules.Logs.csproj" />
-        <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -44,4 +41,5 @@
         </ItemGroup>
         <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ProjectDir)wwwroot\data\%(RecursiveDir)"/>
     </Target>
+
 </Project>

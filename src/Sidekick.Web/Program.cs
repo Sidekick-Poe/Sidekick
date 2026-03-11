@@ -16,14 +16,11 @@ using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
-using Sidekick.Modules.Chat;
 using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
 using Sidekick.Modules.Logs;
-using Sidekick.Modules.RegexHotkeys;
-using Sidekick.Modules.Wealth;
 using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
@@ -68,14 +65,11 @@ builder.Services
     .AddSidekickUpdater()
 
     // Modules
-    .AddSidekickChat()
     .AddSidekickModuleData()
     .AddSidekickDevelopment()
-    .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
     .AddSidekickItems()
-    .AddSidekickLogs()
-    .AddSidekickWealth();
+    .AddSidekickLogs();
 
 builder.Services.AddApexCharts();
 builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
