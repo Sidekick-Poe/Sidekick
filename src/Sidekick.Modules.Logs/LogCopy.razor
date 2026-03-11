@@ -1,0 +1,18 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Buttons
+
+<ButtonPrimary OnClick="Copy">@Resources["Copy"]</ButtonPrimary>
+
+@inject IStringLocalizer<LogResources> Resources
+@inject IClipboardProvider ClipboardProvider
+
+@code {
+
+    private async Task Copy()
+    {
+        var text = string.Join("", LogSink.Instance.Entries.ToList());
+        await ClipboardProvider.SetText(text);
+    }
+
+}
