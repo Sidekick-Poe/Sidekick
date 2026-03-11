@@ -1,4 +1,4 @@
-﻿export function scrollToBottom(element) {
+﻿export default (element) => {
     if (element) {
         element.scrollTop = element.scrollHeight;
     }

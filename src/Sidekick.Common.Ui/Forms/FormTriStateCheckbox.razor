@@ -28,16 +28,13 @@
 
     private string ElementId { get; } = UiUtilities.GenerateId();
 
-    private IJSObjectReference? Module { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             try
             {
-                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormTriStateCheckbox.razor.js");
-                await Module.InvokeVoidAsync("setIndeterminate", ElementId, Value == null);
+                await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value == null);
             }
             catch (Exception e)
             {
@@ -58,11 +55,7 @@
         };
 
         await ValueChanged.InvokeAsync(checkboxValue);
-
-        if (Module != null)
-        {
-            await Module.InvokeVoidAsync("setIndeterminate", ElementId, checkboxValue == null);
-        }
+        await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, checkboxValue == null);
     }
 
 }
