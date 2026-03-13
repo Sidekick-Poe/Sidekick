@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configur
 		.github\workflows\build-release.yml = .github\workflows\build-release.yml
 		CONTRIBUTING.md = CONTRIBUTING.md
 		Directory.Packages.props = Directory.Packages.props
-		docker-compose.yml = docker-compose.yml
-		Dockerfile = Dockerfile
 		.github\FUNDING.yml = .github\FUNDING.yml
 		LICENSE = LICENSE
 		README.md = README.md
@@ -94,6 +92,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Data", "src\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj", "{B5C5CEC6-D887-40C8-9D6A-A3F68E518C1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Logs", "src\Sidekick.Modules.Logs\Sidekick.Modules.Logs.csproj", "{05BE989B-4760-4490-99FF-A1DF803C04EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{5B23CFD2-77AC-47E8-AF70-C903CA90089C}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		docker-compose.yml = docker-compose.yml
+		.dockerignore = .dockerignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -384,6 +389,7 @@ Global
 		{1A9308D7-77EF-4409-BFC0-BAC1A7A161FF} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
 		{B5C5CEC6-D887-40C8-9D6A-A3F68E518C1C} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{05BE989B-4760-4490-99FF-A1DF803C04EB} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
+		{5B23CFD2-77AC-47E8-AF70-C903CA90089C} = {9B41443D-4D1E-4DF3-9DA5-522B0AAB40A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

@@ -92,6 +92,13 @@ app.MapFallbackToPage("/_Host");
 
 #endregion Pipeline
 
+var runningInContainer = string.Equals(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), "true", StringComparison.OrdinalIgnoreCase);
+if (runningInContainer)
+{
+    app.Run();
+    return;
+}
+
 // Start the app without blocking.
 var runTask = app.RunAsync();
 

@@ -7,4 +7,4 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./sidekick-data:/app/src/Sidekick.Web/sidekick
+      - ./sidekick:/app/usr
