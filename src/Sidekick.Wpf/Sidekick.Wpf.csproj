@@ -62,6 +62,8 @@
   </Target>
 
   <Target Name="CopyData" BeforeTargets="Build">
+      <RemoveDir Directories="$(ProjectDir)wwwroot\data" />
+      <MakeDir Directories="$(ProjectDir)wwwroot\data" />
     <ItemGroup>
       <DataFiles Include="$(ProjectDir)..\..\data\**\*.*" />
     </ItemGroup>

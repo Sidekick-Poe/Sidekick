@@ -1,14 +1,15 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine
+
+# Dependencies
 RUN apk add nodejs npm
 
+# Build
 WORKDIR /app
 ENV HOME=/app
-COPY . /app/
-RUN sed -i '/Sidekick.Wpf/,+1d' Sidekick.sln
-RUN dotnet build --configuration Release
+COPY . .
+RUN dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -o ./publish
 
-WORKDIR /app/src/Sidekick.Web
-VOLUME /app/src/Sidekick.Web/sidekick
+# Run
 EXPOSE 5000
-ENTRYPOINT ["/usr/bin/dotnet"]
-CMD ["bin/Release/net8.0/Sidekick.dll", "--urls", "http://*:5000"]
+VOLUME /app/sidekick
+ENTRYPOINT ["/usr/bin/dotnet", "/app/publish/Sidekick.dll", "--urls", "http://0.0.0.0:5000"]
