@@ -1,9 +1,10 @@
 ﻿using Sidekick.Common.Enums;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Raw;
+using Sidekick.Data.Stats;
+using Sidekick.Data.StatsInvariant;
 namespace Sidekick.Data.Builder.Trade;
 
 public class TradeStatProvider(DataProvider dataProvider)
@@ -11,7 +12,7 @@ public class TradeStatProvider(DataProvider dataProvider)
     public async Task<List<TradeStatDefinition>> GetDefinitions(GameType game, IGameLanguage language)
     {
         var apiCategories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.RawTradeStats, language);
-        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, DataType.StatsInvariant);
+        var invariantStats = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
 
         var definitions = new List<TradeStatDefinition>();
 

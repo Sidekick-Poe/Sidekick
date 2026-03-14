@@ -5,8 +5,8 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade.Raw;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 
 public class TradeFilterProvider

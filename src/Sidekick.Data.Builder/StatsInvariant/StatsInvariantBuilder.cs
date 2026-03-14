@@ -1,17 +1,16 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Raw;
+using Sidekick.Data.StatsInvariant;
+namespace Sidekick.Data.Builder.StatsInvariant;
 
-namespace Sidekick.Data.Builder.Trade;
-
-public class TradeInvariantStatBuilder
+public class StatsInvariantBuilder
 (
-    ILogger<TradeInvariantStatBuilder> logger,
+    ILogger<StatsInvariantBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
     IGameLanguageProvider gameLanguageProvider,
     DataProvider dataProvider
@@ -48,7 +47,7 @@ public class TradeInvariantStatBuilder
             });
         });
 
-        var model = new TradeInvariantStats()
+        var model = new StatsInvariantDetails()
         {
             IgnoreStatIds = GetIgnoreStatIds(categories.Result).ToList(),
             FireWeaponDamageIds = GetFireWeaponDamageIds(categories.Result).ToList(),

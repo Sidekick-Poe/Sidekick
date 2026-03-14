@@ -4,8 +4,7 @@ using Sidekick.Data;
 using Sidekick.Data.Builder.Leagues;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade;
-
+using Sidekick.Data.Leagues;
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public class LeagueProvider(
@@ -14,7 +13,7 @@ public class LeagueProvider(
     IGameLanguageProvider languageProvider,
     ILogger<LeagueProvider> logger) : ILeagueProvider
 {
-    public async Task<List<TradeLeague>> GetList(bool fromCache)
+    public async Task<List<League>> GetList(bool fromCache)
     {
         if (!fromCache)
         {
@@ -34,8 +33,8 @@ public class LeagueProvider(
 
         return
         [
-            ..await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.Leagues, languageProvider.InvariantLanguage),
-            ..await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.Leagues, languageProvider.InvariantLanguage),
+            ..await dataProvider.Read<List<League>>(GameType.PathOfExile2, DataType.Leagues, languageProvider.InvariantLanguage),
+            ..await dataProvider.Read<List<League>>(GameType.PathOfExile1, DataType.Leagues, languageProvider.InvariantLanguage),
         ];
     }
 }

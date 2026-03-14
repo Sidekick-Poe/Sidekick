@@ -1,9 +1,9 @@
 using System.Text.Json.Serialization;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Items;
-namespace Sidekick.Data.Trade;
+namespace Sidekick.Data.Leagues;
 
-public class TradeLeague
+public class League
 {
     public GameType Game { get; init; }
 
@@ -11,7 +11,7 @@ public class TradeLeague
 
     public string Text { get; init; } = string.Empty;
 
-    public TradeLeagueRealm Realm { get; init; }
+    public LeagueRealm Realm { get; init; }
 
     [JsonIgnore]
     public string Value => $"{Game.GetValueAttribute()}.{Id}";

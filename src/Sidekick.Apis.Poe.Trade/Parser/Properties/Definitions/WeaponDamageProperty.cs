@@ -101,9 +101,9 @@ public class WeaponDamageProperty(
     {
         if (game == GameType.PathOfExile2) return;
 
-        var damageMods = apiStatsProvider.InvariantStats.FireWeaponDamageIds.ToList();
-        damageMods.AddRange(apiStatsProvider.InvariantStats.ColdWeaponDamageIds);
-        damageMods.AddRange(apiStatsProvider.InvariantStats.LightningWeaponDamageIds);
+        var damageMods = apiStatsProvider.InvariantDetails.FireWeaponDamageIds.ToList();
+        damageMods.AddRange(apiStatsProvider.InvariantDetails.ColdWeaponDamageIds);
+        damageMods.AddRange(apiStatsProvider.InvariantDetails.LightningWeaponDamageIds);
 
         var itemMods = item.Stats.Where(x =>
         {
@@ -131,9 +131,9 @@ public class WeaponDamageProperty(
                 var range = new DamageRange(min, max);
 
                 var ids = itemMods[matchIndex].Definitions.SelectMany(x => x.TradeStats).Select(x => x.Id).ToList();
-                var isFire = apiStatsProvider.InvariantStats.FireWeaponDamageIds.Any(x => ids.Contains(x));
-                var isCold = apiStatsProvider.InvariantStats.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-                var isLightning = apiStatsProvider.InvariantStats.LightningWeaponDamageIds.Any(x => ids.Contains(x));
+                var isFire = apiStatsProvider.InvariantDetails.FireWeaponDamageIds.Any(x => ids.Contains(x));
+                var isCold = apiStatsProvider.InvariantDetails.ColdWeaponDamageIds.Any(x => ids.Contains(x));
+                var isLightning = apiStatsProvider.InvariantDetails.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
                 if (isFire) item.Properties.FireDamage = range;
                 else if (isCold) item.Properties.ColdDamage = range;

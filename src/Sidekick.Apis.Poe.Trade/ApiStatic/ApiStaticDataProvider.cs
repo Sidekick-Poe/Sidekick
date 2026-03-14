@@ -1,8 +1,8 @@
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade.Raw;
 
 namespace Sidekick.Apis.Poe.Trade.ApiStatic;
 

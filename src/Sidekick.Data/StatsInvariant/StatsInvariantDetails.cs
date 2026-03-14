@@ -1,6 +1,6 @@
-namespace Sidekick.Data.Trade;
+namespace Sidekick.Data.StatsInvariant;
 
-public class TradeInvariantStats
+public class StatsInvariantDetails
 {
     public List<string> IgnoreStatIds { get; init; } = [];
 

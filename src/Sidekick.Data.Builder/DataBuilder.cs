@@ -4,6 +4,7 @@ using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Pseudo;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Stats;
+using Sidekick.Data.Builder.StatsInvariant;
 using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Languages;
 
@@ -16,7 +17,7 @@ public class DataBuilder(
     StatBuilder statBuilder,
     PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
-    TradeInvariantStatBuilder tradeInvariantStatBuilder,
+    StatsInvariantBuilder statsInvariantBuilder,
     RepoeDownloader repoeDownloader,
     IGameLanguageProvider gameLanguageProvider)
 {
@@ -104,7 +105,7 @@ public class DataBuilder(
         logger.LogInformation($"Downloading {language.Code} trade data.");
         await tradeDownloader.Download(language);
         logger.LogInformation($"Building {language.Code} trade data.");
-        await tradeInvariantStatBuilder.Build(language);
+        await statsInvariantBuilder.Build(language);
         await leagueBuilder.Build(language);
     }
 

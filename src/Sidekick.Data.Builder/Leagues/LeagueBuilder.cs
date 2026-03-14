@@ -2,11 +2,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Trade;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Raw;
-
+using Sidekick.Data.Leagues;
 namespace Sidekick.Data.Builder.Leagues;
 
 public class LeagueBuilder
@@ -44,8 +43,8 @@ public class LeagueBuilder
         var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, DataType.RawTradeLeagues, language);
 
         var leagues = result.Result.Where(x => x is { Id: not null, Text: not null })
-            .Where(x => x.Realm is TradeLeagueRealm.PC or TradeLeagueRealm.Poe2)
-            .Select(x => new TradeLeague()
+            .Where(x => x.Realm is LeagueRealm.PC or LeagueRealm.Poe2)
+            .Select(x => new League()
             {
                 Id = x.Id!,
                 Game = game,

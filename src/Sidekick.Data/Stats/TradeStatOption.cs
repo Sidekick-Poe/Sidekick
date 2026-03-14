@@ -1,4 +1,4 @@
-namespace Sidekick.Data.Trade;
+namespace Sidekick.Data.Stats;
 
 public class TradeStatOption
 {

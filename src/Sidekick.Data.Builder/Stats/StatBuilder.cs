@@ -11,7 +11,7 @@ using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
-using Sidekick.Data.Trade;
+using Sidekick.Data.StatsInvariant;
 namespace Sidekick.Data.Builder.Stats;
 
 public class StatBuilder(
@@ -68,7 +68,7 @@ public class StatBuilder(
         var definitions = await BuildGameStats(game, language, tradeDefinitions);
         definitions.AddRange(BuildTradeStats(language, tradeDefinitions, definitions));
 
-        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, DataType.StatsInvariant);
+        var invariantStats = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
         ComputeSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds);
         ComputeSpecialPseudoPattern(definitions, invariantStats.LogbookFactionStatIds);
 

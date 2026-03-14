@@ -1,5 +1,5 @@
 using Sidekick.Common.Initialization;
-using Sidekick.Data.Trade.Raw;
+using Sidekick.Data.Builder.Trade.Models;
 namespace Sidekick.Apis.Poe.Trade.ApiStatic;
 
 public interface IApiStaticDataProvider : IInitializableService

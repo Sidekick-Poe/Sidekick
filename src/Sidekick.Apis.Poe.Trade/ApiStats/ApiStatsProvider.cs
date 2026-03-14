@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.StatsInvariant;
 using Sidekick.Data.Trade;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
@@ -10,7 +11,7 @@ public class ApiStatsProvider
     DataProvider dataProvider
 ) : IApiStatsProvider
 {
-    public TradeInvariantStats InvariantStats { get; private set; } = new();
+    public StatsInvariantDetails InvariantDetails { get; private set; } = new();
 
     /// <inheritdoc/>
     public int Priority => 200;
@@ -20,6 +21,6 @@ public class ApiStatsProvider
     {
         var game = await settingsService.GetGame();
 
-        InvariantStats = await dataProvider.Read<TradeInvariantStats>(game, DataType.StatsInvariant);
+        InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
     }
 }

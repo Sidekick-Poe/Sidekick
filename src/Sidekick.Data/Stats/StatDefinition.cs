@@ -1,6 +1,5 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using Sidekick.Data.Trade;
 namespace Sidekick.Data.Stats;
 
 public class StatDefinition

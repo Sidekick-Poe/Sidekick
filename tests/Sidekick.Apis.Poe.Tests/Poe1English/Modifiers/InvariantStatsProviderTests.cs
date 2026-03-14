@@ -11,21 +11,21 @@ public class InvariantStatsProviderTests(Poe1EnglishFixture fixture)
     [Fact]
     public void ClusterJewelSmallPassiveCountModifierIdIsDefined()
     {
-        Assert.NotNull(provider.InvariantStats.ClusterJewelSmallPassiveCountStatId);
-        Assert.NotEqual(string.Empty, provider.InvariantStats.ClusterJewelSmallPassiveCountStatId);
+        Assert.NotNull(provider.InvariantDetails.ClusterJewelSmallPassiveCountStatId);
+        Assert.NotEqual(string.Empty, provider.InvariantDetails.ClusterJewelSmallPassiveCountStatId);
     }
 
     [Fact]
     public void ClusterJewelSmallPassiveGrantModifierIdIsDefined()
     {
-        Assert.NotNull(provider.InvariantStats.ClusterJewelSmallPassiveGrantStatId);
-        Assert.NotEqual(string.Empty, provider.InvariantStats.ClusterJewelSmallPassiveGrantStatId);
+        Assert.NotNull(provider.InvariantDetails.ClusterJewelSmallPassiveGrantStatId);
+        Assert.NotEqual(string.Empty, provider.InvariantDetails.ClusterJewelSmallPassiveGrantStatId);
     }
 
     [Fact]
     public void ClusterJewelSmallPassiveGrantOptionsIsDefined()
     {
-        Assert.NotNull(provider.InvariantStats.ClusterJewelSmallPassiveGrantOptions);
-        Assert.NotEmpty(provider.InvariantStats.ClusterJewelSmallPassiveGrantOptions);
+        Assert.NotNull(provider.InvariantDetails.ClusterJewelSmallPassiveGrantOptions);
+        Assert.NotEmpty(provider.InvariantDetails.ClusterJewelSmallPassiveGrantOptions);
     }
 }
