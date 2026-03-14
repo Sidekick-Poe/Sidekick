@@ -15,4 +15,7 @@ public class WebApplicationService : IApplicationService
     {
         Environment.Exit(0);
     }
+
+    /// <inheritdoc />
+    public bool HasInitialized { get; set; }
 }
