@@ -17,12 +17,14 @@ public class TradeLeagueBuilder
     DataProvider dataProvider
 )
 {
-    public async Task Build()
+    public async Task Build(IGameLanguage language)
     {
+        if (language.Code != languageProvider.InvariantLanguage.Code) return;
+
         try
         {
-            await BuildForGame(GameType.PathOfExile1);
-            await BuildForGame(GameType.PathOfExile2);
+            await BuildForGame(GameType.PathOfExile1, language);
+            await BuildForGame(GameType.PathOfExile2, language);
         }
         catch (Exception ex)
         {
@@ -35,10 +37,10 @@ public class TradeLeagueBuilder
         }
     }
 
-    private async Task BuildForGame(GameType game)
+    private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        await tradeDownloader.DownloadPath(DataType.TradeRawLeagues, languageProvider.InvariantLanguage, "leagues");
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, DataType.TradeRawLeagues, languageProvider.InvariantLanguage);
+        await tradeDownloader.DownloadPath(DataType.TradeRawLeagues, language, "leagues");
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, DataType.TradeRawLeagues, language);
 
         var leagues = result.Result.Where(x => x is { Id: not null, Text: not null })
             .Where(x => x.Realm is TradeLeagueRealm.PC or TradeLeagueRealm.Poe2)
@@ -51,6 +53,6 @@ public class TradeLeagueBuilder
             })
             .ToList();
 
-        await dataProvider.Write(game, DataType.TradeLeagues, languageProvider.InvariantLanguage, leagues);
+        await dataProvider.Write(game, DataType.TradeLeagues, language, leagues);
     }
 }

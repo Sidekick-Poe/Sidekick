@@ -73,8 +73,12 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         var result = await base.Initialize(item, settingsService);
         if (result == null) return null;
 
-        if (result.FillMinRange) Min = ((INormalizableFilter)this).NormalizeMinValue(result.NormalizeBy);
-        if (result.FillMaxRange) Max = ((INormalizableFilter)this).NormalizeMaxValue(result.NormalizeBy);
+        if (Stat.HasValues)
+        {
+            if (result.FillMinRange) Min = ((INormalizableFilter)this).NormalizeMinValue(result.NormalizeBy);
+            if (result.FillMaxRange) Max = ((INormalizableFilter)this).NormalizeMaxValue(result.NormalizeBy);
+        }
+
         if (result.SelectCategory) UsePrimaryCategory = true;
 
         return result;

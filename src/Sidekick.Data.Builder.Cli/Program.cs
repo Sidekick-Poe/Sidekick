@@ -5,7 +5,7 @@ using Sidekick.Common;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
 using Sidekick.Data.Languages;
-using Options = Sidekick.Data.Builder.Cli.Options;
+using Options=Sidekick.Data.Builder.Cli.Options;
 
 #region Services
 
@@ -38,6 +38,21 @@ services.Configure<Options>(opt =>
             case "--poe2" when i + 1 < args.Length:
                 opt.Poe2 = args[++i] != "false";
                 break;
+            case "--stats":
+                opt.Stats = true;
+                break;
+            case "--trade":
+                opt.Trade = true;
+                break;
+            case "--repoe":
+                opt.Repoe = true;
+                break;
+            case "--pseudo":
+                opt.Pseudo = true;
+                break;
+            case "--ninja":
+                opt.Ninja = true;
+                break;
         }
     }
 });
@@ -50,25 +65,41 @@ try
 {
     var options = serviceProvider.GetRequiredService<IOptions<Options>>();
     var dataBuilder = serviceProvider.GetRequiredService<DataBuilder>();
+    var dataProvider = serviceProvider.GetRequiredService<DataProvider>();
+
     if (string.IsNullOrEmpty(options.Value.Language))
     {
-        await dataBuilder.DownloadAndBuildAll();
+        if (options.Value.HasSelectiveOptions)
+        {
+            await dataBuilder.DownloadAndBuildAll(stats: options.Value.Stats,
+                                                  trade: options.Value.Trade,
+                                                  repoe: options.Value.Repoe,
+                                                  pseudo: options.Value.Pseudo,
+                                                  ninja: options.Value.Ninja);
+        }
+        else
+        {
+            dataProvider.DeleteAll();
+            await dataBuilder.DownloadAndBuildAll();
+        }
     }
     else
     {
         var gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
-        await dataBuilder.Download(gameLanguageProvider.InvariantLanguage);
-        await dataBuilder.BuildInvariant();
-        await dataBuilder.Build(gameLanguageProvider.InvariantLanguage);
+        var language = gameLanguageProvider.GetList().FirstOrDefault(x => x.Code == options.Value.Language);
+        if (language == null) { throw new Exception($"Language {options.Value.Language} not found."); }
 
-        if (!string.IsNullOrEmpty(options.Value.Language) && options.Value.Language != gameLanguageProvider.InvariantLanguage.Code)
+        if (options.Value.HasSelectiveOptions)
         {
-            var language = gameLanguageProvider.GetList().FirstOrDefault(x => x.Code == options.Value.Language);
-            if (language != null)
-            {
-                await dataBuilder.Download(language);
-                await dataBuilder.Build(language);
-            }
+            await dataBuilder.DownloadAndBuild(language, stats: options.Value.Stats,
+                                               trade: options.Value.Trade,
+                                               repoe: options.Value.Repoe,
+                                               pseudo: options.Value.Pseudo,
+                                               ninja: options.Value.Ninja);
+        }
+        else
+        {
+            await dataBuilder.DownloadAndBuild(language);
         }
     }
 

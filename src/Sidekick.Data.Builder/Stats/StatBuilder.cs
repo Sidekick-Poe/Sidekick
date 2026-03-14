@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
@@ -103,6 +104,11 @@ public class StatBuilder(
         {
             if (string.IsNullOrEmpty(language.Text)) continue;
 
+            if (language.Text == "Maximum number of Summoned Skeletons is Doubled\\nCannot have Minions other than Summoned Skeletons")
+            {
+                Debugger.Break();
+            }
+
             var text = GetText(language.Text);
             var value = GetValue(language);
             var tradeStats = GetTradeStats(value).ToList();
@@ -117,7 +123,7 @@ public class StatBuilder(
                 Option = GetOption(tradeStats, value),
                 Negate = language.Handlers?.Any(x => x.Contains("negate")) ?? false,
                 Pattern = GetPattern(language.Text),
-                Value = value,
+                Value = KeepValue(language, tradeStats) ? value : null,
                 LineCount = text.Split('\n').Length,
             };
         }
@@ -126,7 +132,7 @@ public class StatBuilder(
 
         IEnumerable<RepoeStatTrade> GetTradeStats(int? value)
         {
-            var hasOptions = gameStat.TradeStats.Any(x => x.Options != null);
+            var hasOptions = gameStat.TradeStats.Any(x => x.Options != null || x.OptionValue.HasValue);
             foreach (var tradeStat in gameStat.TradeStats)
             {
                 if (!hasOptions)
@@ -141,9 +147,13 @@ public class StatBuilder(
                     continue;
                 }
 
-                if (tradeStat.Options == null) continue;
+                if (tradeStat.Options != null && tradeStat.Options.Options.Any(x => x.Id == value))
+                {
+                    yield return tradeStat;
+                    continue;
+                }
 
-                if (tradeStat.Options.Options.Any(x => x.Id == value))
+                if (tradeStat.OptionValue == value)
                 {
                     yield return tradeStat;
                 }
@@ -171,18 +181,23 @@ public class StatBuilder(
             return categories.Count != 1 ? StatCategory.Undefined : categories[0];
         }
 
-        int? GetValue(RepoeStatLanguage value)
+        int? GetValue(RepoeStatLanguage entry)
         {
-            if (value.Conditions?.Count != 1) return null;
+            if (entry.Conditions?.Count != 1) return null;
 
-            if (value.Format?.Count != 1) return null;
-            if (value.Format[0] != "ignore") return null;
+            if (entry.Format?.Count != 1) return null;
+            if (entry.Format[0] != "ignore") return null;
 
-            var condition = value.Conditions[0];
+            var condition = entry.Conditions[0];
             if (!condition.Min.HasValue) return null;
             if (condition.Max.HasValue && Math.Abs(condition.Min.Value - condition.Max.Value) > 0.1) return null;
 
             return (int)condition.Min.Value;
+        }
+
+        bool KeepValue(RepoeStatLanguage entry, IList<RepoeStatTrade> tradeStats)
+        {
+            return tradeStats.All(x => x.Text != entry.Text);
         }
     }
 
