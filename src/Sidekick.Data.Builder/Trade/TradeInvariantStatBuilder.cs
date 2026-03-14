@@ -17,12 +17,14 @@ public class TradeInvariantStatBuilder
     DataProvider dataProvider
 )
 {
-    public async Task Build()
+    public async Task Build(IGameLanguage language)
     {
+        if (language.Code != gameLanguageProvider.InvariantLanguage.Code) return;
+
         try
         {
-            await BuildForGame(GameType.PathOfExile1);
-            await BuildForGame(GameType.PathOfExile2);
+            await BuildForGame(GameType.PathOfExile1, language);
+            await BuildForGame(GameType.PathOfExile2, language);
         }
         catch (Exception ex)
         {
@@ -35,9 +37,9 @@ public class TradeInvariantStatBuilder
         }
     }
 
-    private async Task BuildForGame(GameType game)
+    private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, gameLanguageProvider.InvariantLanguage);
+        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, language);
         categories.Result.ForEach(category =>
         {
             category.Entries.ForEach(entry =>
@@ -59,7 +61,7 @@ public class TradeInvariantStatBuilder
             ClusterJewelSmallPassiveGrantOptions = GetClusterJewels(categories.Result),
         };
 
-        await dataProvider.Write(game, DataType.TradeStats, model);
+        await dataProvider.Write(game, DataType.TradeInvariantStats, model);
     }
 
     private IEnumerable<string> GetIgnoreStatIds(List<RawTradeStatCategory> categories)

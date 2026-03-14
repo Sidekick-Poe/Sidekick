@@ -20,7 +20,7 @@ public class LeagueProvider(
         {
             try
             {
-                await tradeLeagueBuilder.Build();
+                await tradeLeagueBuilder.Build(languageProvider.InvariantLanguage);
             }
             catch (Exception e)
             {

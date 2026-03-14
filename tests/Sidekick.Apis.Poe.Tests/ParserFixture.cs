@@ -115,17 +115,17 @@ public abstract class ParserFixture : IAsyncLifetime
         }
     }
 
-    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
+    public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
-        AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+        return AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
     }
 
-    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
+    public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
     {
         var actualStat = FindStat();
         Assert.NotNull(actualStat);
 
-        if (expectedValues.Length == 0) return;
+        if (expectedValues.Length == 0) return actualStat;
 
         for (var i = 0; i < expectedValues.Length; i++)
         {
@@ -134,7 +134,7 @@ public abstract class ParserFixture : IAsyncLifetime
 
         AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
 
-        return;
+        return actualStat;
 
         Stat? FindStat()
         {
