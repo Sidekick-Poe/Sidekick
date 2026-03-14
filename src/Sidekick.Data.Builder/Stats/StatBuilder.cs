@@ -24,6 +24,8 @@ public class StatBuilder(
 {
     private record TradeReplaceEntry(Regex Pattern, string Replacement);
 
+    private readonly List<string> ignoredGameIds = ["map_set_league_category"];
+
     private readonly Regex textHashPattern = new(@"\#");
     private readonly Regex textGameHashPattern = new(@"\{\d+}");
     private readonly Regex textLocalPattern = new(@"\ \(Local\)$");
@@ -98,7 +100,7 @@ public class StatBuilder(
 
     private IEnumerable<StatDefinition> GetGamePatterns(RepoeStatTranslation gameStat)
     {
-        if (gameStat.Languages == null) yield break;
+        if (gameStat.Languages == null || gameStat.Ids.Any(x => ignoredGameIds.Contains(x))) yield break;
 
         foreach (var language in gameStat.Languages)
         {

@@ -169,4 +169,64 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Physical Damage Converted to Cold Damage while affected by Hatred", 32);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% chance to Evade Attack Hits while affected by Grace", 6);
     }
+
+    [Fact]
+    public void AbyssJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Whispering Leer
+Hypnotic Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 52
+--------
+Item Level: 69
+--------
+Adds 12 to 18 Fire Damage to Spells
+Adds 16 to 23 Cold Damage to Spells
+2 to 20 Added Spell Lightning Damage while wielding a Two Handed Weapon
+9 to 15 Added Spell Physical Damage while wielding a Two Handed Weapon
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Note: ~price 1 alch
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Hypnotic Eye Jewel", actual.ApiInformation.Type);
+    }
+
+    [Fact]
+    public void NoAbyssStat()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Hollow Gaze
+Ghastly Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 59
+--------
+Item Level: 80
+--------
++31 to maximum Life
++14% to Fire Resistance
+Minions have 15% chance to Poison Enemies on Hit
+Minions deal 2 to 53 additional Lightning Damage
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ghastly Eye Jewel", actual.ApiInformation.Type);
+
+        actual.AssertDoesNotHaveModifier(StatCategory.Explicit, "Abyss");
+    }
 }

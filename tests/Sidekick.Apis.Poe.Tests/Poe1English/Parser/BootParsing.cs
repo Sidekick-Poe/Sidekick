@@ -37,4 +37,41 @@ Fractured Item
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Movement Speed", 10);
     }
+
+    [Fact]
+    public void BulbonicTrail()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
+Rarity: Unique
+Bubonic Trail
+Murder Boots
+--------
+Evasion Rating: 185
+Energy Shield: 17
+--------
+Requirements:
+Level: 69
+Dex: 82
+Int: 42
+--------
+Sockets: G-G A
+--------
+Item Level: 84
+--------
+Has 1 Abyssal Socket
+Triggers Level 20 Death Walk when Equipped
+6% increased maximum Life
+30% increased Movement Speed
+10% increased Damage for each type of Abyss Jewel affecting you
+--------
+Even the dead serve the Lightless.
+");
+
+        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Bubonic Trail", actual.ApiInformation.Name);
+        Assert.Equal("Murder Boots", actual.ApiInformation.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Has # Abyssal Sockets", 1);
+    }
 }
