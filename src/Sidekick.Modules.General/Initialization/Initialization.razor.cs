@@ -104,6 +104,7 @@ public partial class Initialization
             // If we have a successful initialization, we delay for half a second to show the
             // "Ready" label on the UI before closing the view
             completed = Count;
+            ApplicationService.HasInitialized = true;
 
             await ReportProgress();
             await Task.Delay(200);

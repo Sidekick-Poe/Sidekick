@@ -120,4 +120,7 @@ public class PhotinoBlazorApplicationService
         uiLanguageProvider.OnLanguageChanged -= OnLanguageChanged;
         Icon?.Dispose();
     }
+
+    /// <inheritdoc />
+    public bool HasInitialized { get; set; }
 }
