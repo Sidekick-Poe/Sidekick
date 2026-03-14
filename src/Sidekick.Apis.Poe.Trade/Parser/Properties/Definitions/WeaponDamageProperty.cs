@@ -107,8 +107,8 @@ public class WeaponDamageProperty(
 
         var itemMods = item.Stats.Where(x =>
         {
-            var tradeIds = x.Definitions.SelectMany(y => y.TradeIds).ToList();
-            return tradeIds.Any(tradeId => damageMods.Contains(tradeId));
+            var tradeStats = x.Definitions.SelectMany(y => y.TradeStats).ToList();
+            return tradeStats.Any(tradeStat => damageMods.Contains(tradeStat.Id));
         }).ToList();
         if (itemMods.Count == 0) return;
 
@@ -130,7 +130,7 @@ public class WeaponDamageProperty(
                 int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
                 var range = new DamageRange(min, max);
 
-                var ids = itemMods[matchIndex].Definitions.SelectMany(x => x.TradeIds).ToList();
+                var ids = itemMods[matchIndex].Definitions.SelectMany(x => x.TradeStats).Select(x => x.Id).ToList();
                 var isFire = apiStatsProvider.InvariantStats.FireWeaponDamageIds.Any(x => ids.Contains(x));
                 var isCold = apiStatsProvider.InvariantStats.ColdWeaponDamageIds.Any(x => ids.Contains(x));
                 var isLightning = apiStatsProvider.InvariantStats.LightningWeaponDamageIds.Any(x => ids.Contains(x));

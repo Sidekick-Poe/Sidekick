@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Sidekick.Data.Builder.Leagues;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Pseudo;
 using Sidekick.Data.Builder.Repoe;
@@ -10,11 +11,12 @@ namespace Sidekick.Data.Builder;
 
 public class DataBuilder(
     ILogger<DataBuilder> logger,
+    LeagueBuilder leagueBuilder,
     NinjaDownloader ninjaDownloader,
     StatBuilder statBuilder,
     PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
-    TradeBuilder tradeBuilder,
+    TradeInvariantStatBuilder tradeInvariantStatBuilder,
     RepoeDownloader repoeDownloader,
     IGameLanguageProvider gameLanguageProvider)
 {
@@ -102,7 +104,8 @@ public class DataBuilder(
         logger.LogInformation($"Downloading {language.Code} trade data.");
         await tradeDownloader.Download(language);
         logger.LogInformation($"Building {language.Code} trade data.");
-        await tradeBuilder.Build(language);
+        await tradeInvariantStatBuilder.Build(language);
+        await leagueBuilder.Build(language);
     }
 
     private async Task DownloadRepoe(IGameLanguage language)

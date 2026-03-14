@@ -44,7 +44,7 @@ public class TradeFilterProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(game, DataType.TradeRawFilters, currentGameLanguage.Language);
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(game, DataType.RawTradeFilters, currentGameLanguage.Language);
         Filters = result.Result;
     }
 

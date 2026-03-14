@@ -142,28 +142,13 @@ public abstract class ParserFixture : IAsyncLifetime
             {
                 if (stat.Category != expectedCategory) continue;
 
-                foreach (var definition in stat.Definitions)
+                foreach (var tradeStat in stat.Definitions.SelectMany(x => x.TradeStats))
                 {
-                    foreach (var tradeId in definition.TradeIds)
-                    {
-                        var tradeStats = ApiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
-                        if (tradeStats == null) continue;
-                        foreach (var tradeStat in tradeStats)
-                        {
-                            if (tradeStat.Text != expectedText) continue;
-                            if (expectedOptionText == null) return stat;
+                    if (tradeStat.Text != expectedText) continue;
+                    if (expectedOptionText == null) return stat;
 
-                            if (definition.Option == null) continue;
-                            if (tradeStat.Options == null) continue;
-                            foreach (var option in tradeStat.Options)
-                            {
-                                if (definition.Option.Id != option.Id) continue;
-                                if (option.Text != expectedOptionText) continue;
-
-                                return stat;
-                            }
-                        }
-                    }
+                    if (tradeStat.Option == null) continue;
+                    if (tradeStat.Option.Text == expectedOptionText) return stat;
                 }
             }
 

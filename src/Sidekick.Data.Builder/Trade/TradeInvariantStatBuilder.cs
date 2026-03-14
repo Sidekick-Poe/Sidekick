@@ -39,7 +39,7 @@ public class TradeInvariantStatBuilder
 
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, language);
+        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.RawTradeStats, language);
         categories.Result.ForEach(category =>
         {
             category.Entries.ForEach(entry =>
@@ -61,7 +61,7 @@ public class TradeInvariantStatBuilder
             ClusterJewelSmallPassiveGrantOptions = GetClusterJewels(categories.Result),
         };
 
-        await dataProvider.Write(game, DataType.TradeInvariantStats, model);
+        await dataProvider.Write(game, DataType.StatsInvariant, model);
     }
 
     private IEnumerable<string> GetIgnoreStatIds(List<RawTradeStatCategory> categories)

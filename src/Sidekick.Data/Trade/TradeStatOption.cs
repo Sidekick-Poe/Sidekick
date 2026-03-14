@@ -2,6 +2,8 @@ namespace Sidekick.Data.Trade;
 
 public class TradeStatOption
 {
-    public required int Id { get; set; }
-    public required string Text { get; set; }
+    public required int Id { get; init; }
+    public required string Text { get; init; }
+
+    public override string ToString() => Text;
 }

@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Pseudo.Definitions;
+using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Pseudo;
@@ -13,7 +14,8 @@ public class PseudoBuilder
     ILogger<PseudoBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
-    IGameLanguageProvider gameLanguageProvider
+    IGameLanguageProvider gameLanguageProvider,
+    TradeStatProvider tradeStatProvider
 )
 {
     public async Task Build(IGameLanguage language)
@@ -34,12 +36,12 @@ public class PseudoBuilder
         }
     }
 
-    public async Task Build(GameType game, IGameLanguage language)
+    private async Task Build(GameType game, IGameLanguage language)
     {
-        var invariantStats = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, gameLanguageProvider.InvariantLanguage);
+        var invariantStats = await tradeStatProvider.GetDefinitions(game, gameLanguageProvider.InvariantLanguage);
         invariantStats.RemoveAll(x => x.Id.StartsWith("pseudo"));
 
-        var localizedStats = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, language);
+        var localizedStats = await tradeStatProvider.GetDefinitions(game, language);
         localizedStats = localizedStats
             .Where(x => x.Category == StatCategory.Pseudo)
             .ToList();

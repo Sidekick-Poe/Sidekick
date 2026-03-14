@@ -23,7 +23,7 @@ public class ApiStaticDataProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeStaticItemCategory>>>(game, DataType.TradeRawStatic, currentGameLanguage.Language);
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeStaticItemCategory>>>(game, DataType.RawTradeStatic, currentGameLanguage.Language);
 
         TextDictionary.Clear();
         IdDictionary.Clear();

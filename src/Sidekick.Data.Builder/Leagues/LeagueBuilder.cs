@@ -1,16 +1,17 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
+using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Raw;
 
-namespace Sidekick.Data.Builder.Trade;
+namespace Sidekick.Data.Builder.Leagues;
 
-public class TradeLeagueBuilder
+public class LeagueBuilder
 (
-    ILogger<TradeLeagueBuilder> logger,
+    ILogger<LeagueBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
     TradeDownloader  tradeDownloader,
     IGameLanguageProvider languageProvider,
@@ -39,8 +40,8 @@ public class TradeLeagueBuilder
 
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        await tradeDownloader.DownloadPath(DataType.TradeRawLeagues, language, "leagues");
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, DataType.TradeRawLeagues, language);
+        await tradeDownloader.DownloadPath(DataType.RawTradeLeagues, language, "leagues");
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, DataType.RawTradeLeagues, language);
 
         var leagues = result.Result.Where(x => x is { Id: not null, Text: not null })
             .Where(x => x.Realm is TradeLeagueRealm.PC or TradeLeagueRealm.Poe2)
@@ -53,6 +54,6 @@ public class TradeLeagueBuilder
             })
             .ToList();
 
-        await dataProvider.Write(game, DataType.TradeLeagues, language, leagues);
+        await dataProvider.Write(game, DataType.Leagues, language, leagues);
     }
 }

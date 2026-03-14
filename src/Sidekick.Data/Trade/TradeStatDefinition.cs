@@ -9,5 +9,7 @@ public class TradeStatDefinition
 
     public required string Text { get; init; }
 
-    public List<TradeStatOption>? Options { get; init; } = [];
+    public TradeStatOption? Option { get; init; }
+
+    public override string ToString() => Text;
 }

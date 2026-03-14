@@ -32,7 +32,7 @@ public class ApiItemProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeItemCategory>>>(game, DataType.TradeRawItems, currentGameLanguage.Language);
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeItemCategory>>>(game, DataType.RawTradeItems, currentGameLanguage.Language);
 
         InitializeItems(result.Result);
         UniqueItems = NamePatterns.Select(x => x.Item)

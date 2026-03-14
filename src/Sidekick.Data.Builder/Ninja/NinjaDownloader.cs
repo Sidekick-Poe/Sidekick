@@ -82,11 +82,11 @@ public class NinjaDownloader(
     {
         try
         {
-            var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.TradeLeagues, languageProvider.InvariantLanguage);
+            var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.Leagues, languageProvider.InvariantLanguage);
             await DownloadForGame(GameType.PathOfExile1,
                 poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
 
-            var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.TradeLeagues, languageProvider.InvariantLanguage);
+            var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.Leagues, languageProvider.InvariantLanguage);
             await DownloadForGame(GameType.PathOfExile2,
                 poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
         }

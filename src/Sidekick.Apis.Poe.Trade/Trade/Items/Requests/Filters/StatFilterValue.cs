@@ -26,9 +26,22 @@ public class StatFilterValue
 
     public StatFilterValue(StatFilter filter)
     {
-        Option = filter.Stat.Definitions.FirstOrDefault(x => x.Option != null)?.Option!.Id;
+        Option = GetOption();
         Min = filter.Min;
         Max = filter.Max;
+
+        return;
+
+        int? GetOption()
+        {
+            foreach (var tradeStat in filter.Stat.Definitions.SelectMany(definition => definition.TradeStats))
+            {
+                if (tradeStat.Option == null) continue;
+                return tradeStat.Option.Id;
+            }
+
+            return null;
+        }
     }
 
     public object? Option { get; set; }

@@ -52,7 +52,7 @@ public class PseudoParser
             {
                 foreach (var definitionStat in definition.Stats)
                 {
-                    if (itemStat.Definitions.All(x => !x.TradeIds.Contains(definitionStat.Id))) continue;
+                    if (itemStat.Definitions.All(x => x.TradeStats.All(y => y.Id != definitionStat.Id))) continue;
 
                     value += itemStat.AverageValue * definitionStat.Multiplier;
                     break;

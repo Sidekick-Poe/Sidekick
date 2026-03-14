@@ -16,27 +16,24 @@ public enum DataType
     [EnumValue("pseudo/{0}.json")]
     Pseudo,
 
-    [EnumValue("trade/leagues.invariant.json")]
-    TradeLeagues,
+    [EnumValue("leagues.json")]
+    Leagues,
 
-    [EnumValue("trade/stats.{0}.json")]
-    TradeStats,
+    [EnumValue("stats/invariant.json")]
+    StatsInvariant,
 
-    [EnumValue("trade/stats.invariant.json")]
-    TradeInvariantStats,
+    [EnumValue("raw/trade/filters.{0}.json")]
+    RawTradeFilters,
 
-    [EnumValue("trade/raw/filters.{0}.json")]
-    TradeRawFilters,
+    [EnumValue("raw/trade/items.{0}.json")]
+    RawTradeItems,
 
-    [EnumValue("trade/raw/items.{0}.json")]
-    TradeRawItems,
+    [EnumValue("raw/trade/leagues.{0}.json")]
+    RawTradeLeagues,
 
-    [EnumValue("trade/raw/leagues.{0}.json")]
-    TradeRawLeagues,
+    [EnumValue("raw/trade/static.{0}.json")]
+    RawTradeStatic,
 
-    [EnumValue("trade/raw/static.{0}.json")]
-    TradeRawStatic,
-
-    [EnumValue("trade/raw/stats.{0}.json")]
-    TradeRawStats,
+    [EnumValue("raw/trade/stats.{0}.json")]
+    RawTradeStats,
 }
