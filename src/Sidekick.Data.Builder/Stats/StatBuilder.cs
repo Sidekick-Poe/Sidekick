@@ -24,7 +24,10 @@ public class StatBuilder(
 {
     private record TradeReplaceEntry(Regex Pattern, string Replacement);
 
-    private readonly List<string> ignoredGameIds = ["map_set_league_category"];
+    private readonly List<string> ignoredGameIds = [
+        "map_set_league_category",
+        "map_item_level_override",
+    ];
 
     private readonly Regex textHashPattern = new(@"\#");
     private readonly Regex textGameHashPattern = new(@"\{\d+}");
