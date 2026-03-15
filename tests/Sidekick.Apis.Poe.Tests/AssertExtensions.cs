@@ -1,6 +1,5 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 using Xunit;
 
