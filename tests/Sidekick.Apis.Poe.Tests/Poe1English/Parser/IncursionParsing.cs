@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -42,7 +43,7 @@ Note: ~price 1.29 exalted
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Chronicle of Atzoatl", actual.ApiInformation.Type);
+        Assert.Equal("Chronicle of Atzoatl", actual.Definition.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)", "Open Room");

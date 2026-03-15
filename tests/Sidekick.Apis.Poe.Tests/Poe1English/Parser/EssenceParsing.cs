@@ -35,6 +35,6 @@ Note: ~price 1 fusing
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Weeping Essence of Anger", actual.ApiInformation.Type);
+        Assert.Equal("Weeping Essence of Anger", actual.Definition.Type);
     }
 }

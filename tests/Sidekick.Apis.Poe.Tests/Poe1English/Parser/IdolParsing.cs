@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -29,8 +30,8 @@ Unmodifiable");
 
         Assert.Equal(ItemClass.Idol, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal("Minor Idol", actual.ApiInformation.Type);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Minor Idol", actual.Definition.Type);
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);
@@ -63,8 +64,8 @@ Unmodifiable
 
         Assert.Equal(ItemClass.Idol, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Loved by the Sun", actual.ApiInformation.Name);
-        Assert.Equal("Minor Idol", actual.ApiInformation.Type);
+        Assert.Equal("Loved by the Sun", actual.Definition.Name);
+        Assert.Equal("Minor Idol", actual.Definition.Type);
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);

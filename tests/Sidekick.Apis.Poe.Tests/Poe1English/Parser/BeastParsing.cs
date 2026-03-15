@@ -32,8 +32,8 @@ Right-click to add this to your bestiary.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal("Farric Flame Hellion Alpha", actual.ApiInformation.Type);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Farric Flame Hellion Alpha", actual.Definition.Type);
     }
 
     [Fact]
@@ -54,8 +54,8 @@ Cannot be fully Slowed
 Right-click to add this to your bestiary.");
 
         Assert.Equal(Rarity.Unique, parsedRareBeast.Properties.Rarity);
-        Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.ApiInformation.Type);
-        Assert.Null(parsedRareBeast.ApiInformation.Name);
+        Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Definition.Type);
+        Assert.Null(parsedRareBeast.Definition.Name);
     }
 
     [Fact]
@@ -84,6 +84,6 @@ Right-click to add this to your bestiary.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Farric Chieftain", actual.ApiInformation.Type);
+        Assert.Equal("Farric Chieftain", actual.Definition.Type);
     }
 }

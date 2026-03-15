@@ -31,6 +31,6 @@ Note: ~price 1 chaos
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Divine Vessel", actual.ApiInformation.Type);
+        Assert.Equal("Divine Vessel", actual.Definition.Type);
     }
 }

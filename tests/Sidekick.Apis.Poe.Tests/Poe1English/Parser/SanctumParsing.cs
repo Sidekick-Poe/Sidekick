@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -27,7 +28,7 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
 ");
 
         Assert.Equal(ItemClass.SanctumResearch, actual.Properties.ItemClass);
-        Assert.Equal("Forbidden Tome", actual.ApiInformation.Type);
+        Assert.Equal("Forbidden Tome", actual.Definition.Type);
         Assert.Equal(83, actual.Properties.AreaLevel);
         Assert.Equal(84, actual.Properties.ItemLevel);
     }
@@ -51,8 +52,8 @@ Unmodifiable
 
         Assert.Equal(ItemClass.SanctumRelic, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Urn Relic", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Urn Relic", actual.Definition.Type);
+        Assert.Null(actual.Definition.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);

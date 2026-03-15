@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -28,7 +29,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
 ");
 
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Cobalt Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Cobalt Jewel", actual.Definition.Type);
         Assert.Equal("Blight Cut", actual.Name);
         Assert.Equal(68, actual.Properties.ItemLevel);
 
@@ -66,7 +67,7 @@ Note: ~b/o 1 chaos
 ");
 
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Large Cluster Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Large Cluster Jewel", actual.Definition.Type);
         Assert.Equal("Chimeric Sliver", actual.Name);
         Assert.Equal(69, actual.Properties.ItemLevel);
 
@@ -95,7 +96,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Viridian Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Viridian Jewel", actual.Definition.Type);
     }
 
     [Fact]
@@ -126,7 +127,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Crimson Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Crimson Jewel", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Strength", 8);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16);
@@ -161,7 +162,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Prismatic Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Prismatic Jewel", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Energy Shield", 6);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 6);
@@ -197,7 +198,7 @@ Note: ~price 1 alch
 
         Assert.Equal(ItemClass.AbyssJewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Hypnotic Eye Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Hypnotic Eye Jewel", actual.Definition.Type);
     }
 
     [Fact]
@@ -225,7 +226,7 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
 
         Assert.Equal(ItemClass.AbyssJewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ghastly Eye Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Ghastly Eye Jewel", actual.Definition.Type);
 
         actual.AssertDoesNotHaveModifier(StatCategory.Explicit, "Abyss");
     }

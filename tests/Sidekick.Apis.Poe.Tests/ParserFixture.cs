@@ -23,6 +23,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using Sidekick.Data.Stats;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;

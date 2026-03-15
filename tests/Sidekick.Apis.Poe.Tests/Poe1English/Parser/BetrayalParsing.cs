@@ -27,7 +27,7 @@ Note: ~b/o .50 chaos
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Rusted Reliquary Scarab", actual.ApiInformation.Type);
+        Assert.Equal("Rusted Reliquary Scarab", actual.Definition.Type);
     }
 
 }

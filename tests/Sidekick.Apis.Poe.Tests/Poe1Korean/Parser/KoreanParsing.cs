@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe1Korean.Parser;

@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -33,7 +34,7 @@ Fractured Item
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Iron Greaves", actual.ApiInformation.Type);
+        Assert.Equal("Iron Greaves", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Movement Speed", 10);
     }
@@ -69,8 +70,8 @@ Even the dead serve the Lightless.
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Bubonic Trail", actual.ApiInformation.Name);
-        Assert.Equal("Murder Boots", actual.ApiInformation.Type);
+        Assert.Equal("Bubonic Trail", actual.Definition.Name);
+        Assert.Equal("Murder Boots", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Has # Abyssal Sockets", 1);
     }

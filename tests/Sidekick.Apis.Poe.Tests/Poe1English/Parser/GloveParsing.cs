@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -37,7 +38,7 @@ Item Level: 61
 
         Assert.Equal(ItemClass.Gloves, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Assassin's Mitts", actual.ApiInformation.Type);
+        Assert.Equal("Assassin's Mitts", actual.Definition.Type);
         Assert.Equal("Death Nails", actual.Name);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Single(actual.Properties.Sockets);
@@ -86,7 +87,7 @@ Corrupted
 
         Assert.Equal(ItemClass.Gloves, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Silk Gloves", actual.ApiInformation.Type);
+        Assert.Equal("Silk Gloves", actual.Definition.Type);
         Assert.Equal("Asenath's Gentle Touch", actual.Name);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Single(actual.Properties.Sockets);

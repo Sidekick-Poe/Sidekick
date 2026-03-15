@@ -33,7 +33,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistTool, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Basic Disguise Kit", actual.ApiInformation.Type);
+        Assert.Equal("Basic Disguise Kit", actual.Definition.Type);
     }
 
     [Fact]
@@ -57,7 +57,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistUtility, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Torn Cloak", actual.ApiInformation.Type);
+        Assert.Equal("Torn Cloak", actual.Definition.Type);
     }
 
     [Fact]
@@ -81,7 +81,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistReward, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Silver Brooch", actual.ApiInformation.Type);
+        Assert.Equal("Silver Brooch", actual.Definition.Type);
     }
 
     [Fact]
@@ -112,7 +112,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistWeapon, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Rough Sharpening Stone", actual.ApiInformation.Type);
+        Assert.Equal("Rough Sharpening Stone", actual.Definition.Type);
     }
 
     [Fact]
@@ -131,7 +131,7 @@ Can be exchanged with Faustus, the Fence in The Rogue Harbour
 
         Assert.Equal(ItemClass.HeistObjective, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Golden Napuatzi Idol", actual.ApiInformation.Type);
+        Assert.Equal("Golden Napuatzi Idol", actual.Definition.Type);
     }
 
     [Fact]
@@ -158,7 +158,7 @@ Corrupted
 
         Assert.Equal(ItemClass.Trinket, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Thief's Trinket", actual.ApiInformation.Type);
+        Assert.Equal("Thief's Trinket", actual.Definition.Type);
         Assert.True(actual.Properties.Corrupted);
     }
 

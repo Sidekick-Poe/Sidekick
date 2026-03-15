@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -48,7 +49,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.ApiInformation.Type);
+        Assert.Equal("Expedition Logbook", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
@@ -93,7 +94,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.ApiInformation.Type);
+        Assert.Equal("Expedition Logbook", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
     }
