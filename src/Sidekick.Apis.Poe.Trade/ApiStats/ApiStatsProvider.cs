@@ -2,7 +2,6 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.StatsInvariant;
-using Sidekick.Data.Trade;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public class ApiStatsProvider

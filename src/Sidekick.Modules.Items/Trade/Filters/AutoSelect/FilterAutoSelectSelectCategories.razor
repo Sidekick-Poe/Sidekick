@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Data.Items
+@using Sidekick.Data.Stats
 @using Sidekick.Modules.Items.Trade.Localization
 
 @if (Filter is not StatFilter && (Filter is not ExpandableFilter expandableFilter || !expandableFilter.Filters.OfType<StatFilter>().Any()))

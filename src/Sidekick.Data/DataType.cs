@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Enums;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Data;
 
@@ -9,6 +9,9 @@ public enum DataType
 
     [EnumValue("ninja/stash.json")]
     NinjaStash,
+
+    [EnumValue("items/{0}.json")]
+    Items,
 
     [EnumValue("stats/{0}.json")]
     Stats,

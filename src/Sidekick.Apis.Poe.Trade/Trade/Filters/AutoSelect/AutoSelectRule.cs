@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 public class AutoSelectRule

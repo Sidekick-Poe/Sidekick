@@ -1,15 +1,14 @@
-using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Initialization;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
 
 public interface IApiItemProvider : IInitializableService
 {
-    List<(Regex Regex, ItemApiInformation Item)> NamePatterns { get; }
+    List<ItemDefinition> Definitions { get; }
 
-    List<(Regex Regex, ItemApiInformation Item)> TypePatterns { get; }
+    List<ItemDefinition> UniqueItems { get; }
 
-    List<(Regex Regex, ItemApiInformation Item)> TextPatterns { get; }
+    ItemDefinition? GetById(string? id);
 
-    List<ItemApiInformation> UniqueItems { get; }
+    ItemDefinition? Get(string? name, string? type);
 }

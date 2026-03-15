@@ -38,6 +38,9 @@ services.Configure<Options>(opt =>
             case "--poe2" when i + 1 < args.Length:
                 opt.Poe2 = args[++i] != "false";
                 break;
+            case "--items":
+                opt.Items = true;
+                break;
             case "--stats":
                 opt.Stats = true;
                 break;
@@ -71,7 +74,8 @@ try
     {
         if (options.Value.HasSelectiveOptions)
         {
-            await dataBuilder.DownloadAndBuildAll(stats: options.Value.Stats,
+            await dataBuilder.DownloadAndBuildAll(items: options.Value.Items,
+                                                  stats: options.Value.Stats,
                                                   trade: options.Value.Trade,
                                                   repoe: options.Value.Repoe,
                                                   pseudo: options.Value.Pseudo,
@@ -91,7 +95,9 @@ try
 
         if (options.Value.HasSelectiveOptions)
         {
-            await dataBuilder.DownloadAndBuild(language, stats: options.Value.Stats,
+            await dataBuilder.DownloadAndBuild(language,
+                                               items: options.Value.Items,
+                                               stats: options.Value.Stats,
                                                trade: options.Value.Trade,
                                                repoe: options.Value.Repoe,
                                                pseudo: options.Value.Pseudo,

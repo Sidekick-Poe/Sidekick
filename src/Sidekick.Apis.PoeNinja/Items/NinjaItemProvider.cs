@@ -53,17 +53,17 @@ public class NinjaItemProvider(
     {
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return GetUniqueItem(item.ApiInformation.InvariantName, item.Properties.GetMaximumNumberOfLinks());
+            return GetUniqueItem(item.Definition.InvariantName, item.Properties.GetMaximumNumberOfLinks());
         }
 
         if (item.Properties.ItemClass is ItemClass.ActiveGem or ItemClass.SupportGem)
         {
-            return GetGemItem(item.ApiInformation.InvariantType, item.Properties.GemLevel, item.Properties.Quality, item.Properties.Corrupted);
+            return GetGemItem(item.Definition.InvariantType, item.Properties.GemLevel, item.Properties.Quality, item.Properties.Corrupted);
         }
 
         if (item.Properties.MapTier != 0)
         {
-            var name = item.ApiInformation.InvariantType;
+            var name = item.Definition.InvariantType;
             if (item.Properties.Blighted) name = $"Blighted {name}";
             if (item.Properties.BlightRavaged) name = $"Blight-ravaged {name}";
 
@@ -75,7 +75,7 @@ public class NinjaItemProvider(
             return GetClusterItem(item.Properties.ClusterJewelGrantText, item.Properties.ClusterJewelPassiveCount.Value, item.Properties.ItemLevel);
         }
 
-        return GetBaseTypeItem(item.ApiInformation.InvariantType, item.Properties.ItemLevel, item.Properties.Influences);
+        return GetBaseTypeItem(item.Definition.InvariantType, item.Properties.ItemLevel, item.Properties.Influences);
     }
 
     public NinjaStashItem? GetUniqueItem(string? name, int links)

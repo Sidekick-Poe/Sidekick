@@ -1,5 +1,5 @@
 using Sidekick.Common.Enums;
-namespace Sidekick.Data.Items;
+namespace Sidekick.Data.Stats;
 
 public static class StatCategoryExtensions
 {

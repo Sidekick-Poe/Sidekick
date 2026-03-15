@@ -42,28 +42,28 @@ public class ItemTradeService
 
             var query = new Query();
 
-            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.ApiInformation.Discriminator);
+            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Definition.Discriminator);
             if (hasTypeDiscriminator)
             {
                 query.Type = new TypeDiscriminator()
                 {
-                    Option = item.ApiInformation.Type,
-                    Discriminator = item.ApiInformation.Discriminator,
+                    Option = item.Definition.Type,
+                    Discriminator = item.Definition.Discriminator,
                 };
             }
             else
             {
-                query.Type = item.ApiInformation.Type;
+                query.Type = item.Definition.Type;
             }
 
-            if (item.ApiInformation.Category == "monster" && !string.IsNullOrEmpty(item.ApiInformation.Name))
+            if (item.Definition.Category == "monster" && !string.IsNullOrEmpty(item.Definition.Name))
             {
-                query.Term = item.ApiInformation.Name;
+                query.Term = item.Definition.Name;
                 query.Type = null;
             }
-            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.ApiInformation.Name))
+            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.Definition.Name))
             {
-                query.Name = item.ApiInformation.Name;
+                query.Name = item.Definition.Name;
             }
 
             foreach (var filter in filters ?? [])

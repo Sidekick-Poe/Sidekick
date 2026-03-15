@@ -1,4 +1,5 @@
-@using Sidekick.Apis.Poe.Trade.ApiStatic
+@using Sidekick.Apis.Poe.Trade.ApiItems
+
 @if (Small)
 {
     <div class="flex flex-nowrap gap-0.5 items-center justify-end text-white">
@@ -31,7 +32,7 @@ else
     </div>
 }
 
-@inject IApiStaticDataProvider ApiStaticDataProvider
+@inject IApiItemProvider ApiItemProvider
 
 @code {
 
@@ -44,8 +45,8 @@ else
     [Parameter]
     public bool Small { get; set; }
 
-    private string? ImageUrl => ApiStaticDataProvider.GetById(Currency)?.Image;
+    private string? ImageUrl => ApiItemProvider.GetById(Currency)?.Image;
 
-    private string? CurrencyText => ApiStaticDataProvider.GetById(Currency)?.Text;
+    private string? CurrencyText => ApiItemProvider.GetById(Currency)?.Text;
 
 }

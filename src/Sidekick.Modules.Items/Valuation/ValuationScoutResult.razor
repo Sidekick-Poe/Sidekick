@@ -43,7 +43,7 @@
         Loading = true;
         StateHasChanged();
 
-        ScoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantName);
+        ScoutItem = await ScoutItemProvider.GetItem(Item.Definition.InvariantName);
         if (ScoutItem != null)
         {
             ScoutHistory = await ScoutHistoryProvider.GetItemHistory(ScoutItem.ItemId);

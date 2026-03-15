@@ -1,9 +1,8 @@
-using Sidekick.Data.Items;
 namespace Sidekick.Data.Stats;
 
 public class TradeStatDefinition
 {
-    public required StatCategory Category { get; init; }
+    public StatCategory Category { get; init; }
 
     public required string Id { get; init; }
 

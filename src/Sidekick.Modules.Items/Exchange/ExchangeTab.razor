@@ -39,12 +39,12 @@
 
     private bool CheckNinja()
     {
-        return NinjaItemProvider.GetExchangeItem(Item.ApiInformation.InvariantId) != null;
+        return NinjaItemProvider.GetExchangeItem(Item.Definition.Id) != null;
     }
 
     private async Task<bool> CheckScout()
     {
-        var scoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantText);
+        var scoutItem = await ScoutItemProvider.GetItem(Item.Definition.InvariantText);
         return scoutItem?.IsCurrency ?? false;
     }
 

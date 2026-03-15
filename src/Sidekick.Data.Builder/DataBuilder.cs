@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+using Sidekick.Data.Builder.Items;
 using Sidekick.Data.Builder.Leagues;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Pseudo;
@@ -17,11 +18,13 @@ public class DataBuilder(
     StatBuilder statBuilder,
     PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
+    ItemBuilder itemBuilder,
     StatsInvariantBuilder statsInvariantBuilder,
     RepoeDownloader repoeDownloader,
     IGameLanguageProvider gameLanguageProvider)
 {
     public async Task DownloadAndBuildAll(
+        bool items = true,
         bool stats = true,
         bool trade = true,
         bool repoe = true,
@@ -40,6 +43,11 @@ public class DataBuilder(
             if (repoe)
             {
                 await DownloadRepoe(language);
+            }
+
+            if (items)
+            {
+                await BuildItems(language);
             }
 
             if (pseudo)
@@ -64,6 +72,7 @@ public class DataBuilder(
 
     public async Task DownloadAndBuild(
         IGameLanguage language,
+        bool items = true,
         bool stats = true,
         bool trade = true,
         bool repoe = true,
@@ -80,6 +89,11 @@ public class DataBuilder(
         if (repoe)
         {
             await DownloadRepoe(language);
+        }
+
+        if (items)
+        {
+            await BuildItems(language);
         }
 
         if (pseudo)
@@ -107,6 +121,12 @@ public class DataBuilder(
         logger.LogInformation($"Building {language.Code} trade data.");
         await statsInvariantBuilder.Build(language);
         await leagueBuilder.Build(language);
+    }
+
+    private async Task BuildItems(IGameLanguage language)
+    {
+        logger.LogInformation($"Building {language.Code} items data.");
+        await itemBuilder.Build(language);
     }
 
     private async Task DownloadRepoe(IGameLanguage language)

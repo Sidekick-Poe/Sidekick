@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStatic;
+using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Items;
@@ -23,7 +23,7 @@ internal class WealthProvider
     INinjaItemProvider ninjaItemProvider,
     INinjaExchangeProvider ninjaExchangeProvider,
     INinjaStashProvider ninjaStashProvider,
-    IApiStaticDataProvider apiStaticDataProvider,
+    IApiItemProvider apiItemProvider,
     DbContextOptions<SidekickDbContext> dbContextOptions
 )
 {
@@ -205,7 +205,7 @@ internal class WealthProvider
     {
         decimal price = 0;
         ApiSparkline? sparkLine = null;
-        var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
+        var apiData = apiItemProvider.Get(item.Name, item.Type);
 
         var exchangeItem = ninjaItemProvider.GetExchangeItem(item.Name);
         exchangeItem ??= ninjaItemProvider.GetExchangeItem(item.Type);
