@@ -19,7 +19,7 @@ public class KeyboardProvider
     IProcessProvider processProvider,
     IOptions<SidekickConfiguration> configuration) : IKeyboardProvider, IDisposable
 {
-    private static readonly Dictionary<KeyCode, string> keyMappings = new()
+    private static readonly Dictionary<KeyCode, string> KeyMappings = new()
     {
         { KeyCode.VcEscape, "Esc" },
         { KeyCode.VcF1, "F1" },
@@ -143,7 +143,7 @@ public class KeyboardProvider
         { KeyCode.VcRightAlt, "Alt" },
     };
 
-    private static readonly Regex modifierKeys = new("^(?:Ctrl|Shift|Alt)$");
+    private static readonly Regex ModifierKeys = new("^(?:Ctrl|Shift|Alt)$");
 
     private bool HasInitialized { get; set; }
 
@@ -179,9 +179,9 @@ public class KeyboardProvider
         // We strip the first two characters of the label as all KeyCodes start with 'Vc', and we can strip that part.
         foreach (var keyCode in Enum.GetValues(typeof(KeyCode)))
         {
-            if (!keyMappings.ContainsKey((KeyCode)keyCode))
+            if (!KeyMappings.ContainsKey((KeyCode)keyCode))
             {
-                keyMappings.Add((KeyCode)keyCode, ((KeyCode)keyCode).ToString().Substring(2));
+                KeyMappings.Add((KeyCode)keyCode, ((KeyCode)keyCode).ToString().Substring(2));
             }
         }
 
@@ -259,8 +259,8 @@ public class KeyboardProvider
         if (!Enabled) return;
 
         // Make sure the key is one we recognize and validate the event and keybinds
-        if (!keyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
-            || modifierKeys.IsMatch(key)
+        if (!KeyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
+            || ModifierKeys.IsMatch(key)
             || processProvider is
             {
                 IsPathOfExileInFocus: false,
@@ -297,8 +297,20 @@ public class KeyboardProvider
             args.SuppressEvent = true;
             Task.Run(async () =>
             {
-                await keybindHandler.Execute(keybind);
-                logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+                try
+                {
+                    Enabled = false;
+                    await keybindHandler.Execute(keybind);
+                    logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+                }
+                catch (Exception e)
+                {
+                    logger.LogError(e, $"[Keyboard] Unhandled Exception for {str}.");
+                }
+                finally
+                {
+                    Enabled = true;
+                }
             });
         }
     }
@@ -407,7 +419,7 @@ public class KeyboardProvider
         foreach (var key in stroke.Split('+'))
         {
             // Modifier keys;
-            if (modifierKeys.IsMatch(key))
+            if (ModifierKeys.IsMatch(key))
             {
                 var modifierKey = key switch
                 {
@@ -425,12 +437,12 @@ public class KeyboardProvider
                 continue;
             }
 
-            if (keyMappings.All(x => x.Value != key))
+            if (KeyMappings.All(x => x.Value != key))
             {
                 continue;
             }
 
-            var validKey = keyMappings.First(x => x.Value == key);
+            var validKey = KeyMappings.First(x => x.Value == key);
             keyCodes.Add(validKey.Key);
         }
 
