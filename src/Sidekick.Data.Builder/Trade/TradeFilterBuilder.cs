@@ -11,14 +11,11 @@ public class TradeFilterBuilder
 (
     ILogger<StatsInvariantBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
-    IGameLanguageProvider gameLanguageProvider,
     DataProvider dataProvider
 )
 {
     public async Task Build(IGameLanguage language)
     {
-        if (language.Code != gameLanguageProvider.InvariantLanguage.Code) return;
-
         try
         {
             await BuildForGame(GameType.PathOfExile1, language);
@@ -38,6 +35,6 @@ public class TradeFilterBuilder
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
         var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(game, DataType.RawTradeFilters, language);
-        await dataProvider.Write(game, DataType.TradeFilters, result.Result);
+        await dataProvider.Write(game, DataType.TradeFilters, language, result.Result);
     }
 }
