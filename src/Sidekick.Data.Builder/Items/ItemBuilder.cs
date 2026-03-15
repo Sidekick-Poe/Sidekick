@@ -44,20 +44,22 @@ public class ItemBuilder(
             return data;
         }
 
-
         var list = new List<ItemDefinition>();
         foreach (var category in itemsResult.Result)
         {
             foreach (var entry in category.Entries)
             {
                 var staticItem = GetStatic(entry.Name, entry.Type);
+                var text = staticItem?.Text ?? entry.Text;
+                if (text == entry.Name || text == entry.Type) text = null;
+
                 var item = new ItemDefinition
                 {
                     Id = staticItem?.Id,
                     Image = staticItem?.Image,
                     Name = entry.Name,
                     Type = entry.Type,
-                    Text = staticItem?.Text ?? entry.Text,
+                    Text = text,
                     Category = category.Id,
                     IsUnique = entry.IsUnique,
                     Discriminator = entry.Discriminator,
