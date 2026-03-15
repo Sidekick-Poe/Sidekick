@@ -22,10 +22,7 @@ public class DataProvider : IInitializableService
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-
-#if DEBUG
         WriteIndented = true,
-#endif
         Converters =
         {
             new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)

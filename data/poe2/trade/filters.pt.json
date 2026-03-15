@@ -1,1 +1,976 @@
-[{"id":"status_filters","filters":[{"id":"status","option":{"options":[{"id":"available","text":"Comprar imediatamente e pessoalmente"},{"id":"securable","text":"Comprar imediatamente"},{"id":"onlineleague","text":"Pessoalmente (on-line na liga)"},{"id":"online","text":"Pessoalmente (on-line)"},{"id":"any","text":"Qualquer"}]}}]},{"id":"type_filters","title":"Filtros de Tipo","filters":[{"id":"category","text":"Categoria dos Itens","option":{"options":[{"text":"Qualquer"},{"id":"weapon","text":"Qualquer Arma"},{"id":"weapon.onemelee","text":"Qualquer Arma Corpo a Corpo de Uma M\u00E3o"},{"id":"weapon.unarmed","text":"Desarmado"},{"id":"weapon.claw","text":"Garra"},{"id":"weapon.dagger","text":"Adaga"},{"id":"weapon.onesword","text":"Espada de Uma M\u00E3o"},{"id":"weapon.oneaxe","text":"Machado de Uma M\u00E3o"},{"id":"weapon.onemace","text":"Ma\u00E7a de Uma M\u00E3o"},{"id":"weapon.spear","text":"Lan\u00E7a"},{"id":"weapon.flail","text":"Mangual"},{"id":"weapon.twomelee","text":"Qualquer Arma Corpo a Corpo de Duas M\u00E3os"},{"id":"weapon.twosword","text":"Espada de Duas M\u00E3os"},{"id":"weapon.twoaxe","text":"Machado de Duas M\u00E3os"},{"id":"weapon.twomace","text":"Ma\u00E7a de Duas M\u00E3os"},{"id":"weapon.warstaff","text":"Bast\u00E3o"},{"id":"weapon.talisman","text":"Talisman"},{"id":"weapon.ranged","text":"Qualquer Arma de Longo Alcance"},{"id":"weapon.bow","text":"Arco"},{"id":"weapon.crossbow","text":"Besta"},{"id":"weapon.caster","text":"Qualquer Arma de Conjurador"},{"id":"weapon.wand","text":"Varinha"},{"id":"weapon.sceptre","text":"Cetro"},{"id":"weapon.staff","text":"Equipe"},{"id":"weapon.rod","text":"Vara de Pescar"},{"id":"armour","text":"Qualquer Armadura"},{"id":"armour.helmet","text":"Elmo"},{"id":"armour.chest","text":"Peitoral"},{"id":"armour.gloves","text":"Luvas"},{"id":"armour.boots","text":"Botas"},{"id":"armour.quiver","text":"Aljava"},{"id":"armour.shield","text":"Escudo"},{"id":"armour.focus","text":"Foco"},{"id":"armour.buckler","text":"Broquel"},{"id":"accessory","text":"Qualquer Acess\u00F3rio"},{"id":"accessory.amulet","text":"Amuleto"},{"id":"accessory.belt","text":"Cinto"},{"id":"accessory.ring","text":"Anel"},{"id":"gem","text":"Qualquer Gema"},{"id":"gem.activegem","text":"Qualquer Habilidade"},{"id":"gem.supportgem","text":"Gema de Suporte"},{"id":"gem.metagem","text":"Gema Meta"},{"id":"jewel","text":"Qualquer Joia"},{"id":"flask","text":"Qualquer Frasco"},{"id":"flask.life","text":"Frasco de Vida"},{"id":"flask.mana","text":"Frasco de Mana"},{"id":"map","text":"Qualquer Item do Endgame"},{"id":"map.waystone","text":"Pedra Guia"},{"id":"map.fragment","text":"Fragmento de Mapa"},{"id":"map.logbook","text":"Di\u00E1rio de Bordo"},{"id":"map.breachstone","text":"Pedra de Fenda"},{"id":"map.barya","text":"Moeda"},{"id":"map.bosskey","text":"Chave Suprema"},{"id":"map.ultimatum","text":"Chave de Ultimato"},{"id":"map.tablet","text":"T\u00E1bua"},{"id":"card","text":"Cartas de Adivinha\u00E7\u00E3o"},{"id":"sanctum.relic","text":"Rel\u00EDquia"},{"id":"currency","text":"Qualquer Item Monet\u00E1rio"},{"id":"currency.omen","text":"Press\u00E1gio"},{"id":"currency.socketable","text":"Qualquer Aprimoramento"},{"id":"currency.rune","text":"Runa"},{"id":"currency.soulcore","text":"N\u00FAcleo D\u0027alma"},{"id":"currency.idol","text":"\u00CDdolo"}]}},{"id":"rarity","text":"Raridade do Item","option":{"options":[{"text":"Qualquer"},{"id":"normal","text":"Normal"},{"id":"magic","text":"M\u00E1gico"},{"id":"rare","text":"Raro"},{"id":"unique","text":"\u00DAnico"},{"id":"uniquefoil","text":"\u00DAnico (Laminado)"},{"id":"nonunique","text":"Qualquer N\u00E3o-\u00DAnico"}]}},{"id":"ilvl","text":"N\u00EDvel do Item","option":{"options":[]}},{"id":"quality","text":"Qualidade de Item","option":{"options":[]}}]},{"id":"equipment_filters","title":"Filtros de Equipamento","filters":[{"id":"damage","text":"Dano","option":{"options":[]}},{"id":"aps","text":"Ataques por Segundo","option":{"options":[]}},{"id":"crit","text":"Chance de Cr\u00EDtico","option":{"options":[]}},{"id":"dps","text":"Dano por Segundo","option":{"options":[]}},{"id":"pdps","text":"DPS F\u00EDsico","option":{"options":[]}},{"id":"edps","text":"DPS Elemental","option":{"options":[]}},{"id":"reload_time","text":"Tempo de recarga","option":{"options":[]}},{"id":"ar","text":"Armadura","option":{"options":[]}},{"id":"ev","text":"Evas\u00E3o","option":{"options":[]}},{"id":"es","text":"Escudo de Energia","option":{"options":[]}},{"id":"block","text":"Bloqueio","option":{"options":[]}},{"id":"spirit","text":"Esp\u00EDrito","option":{"options":[]}},{"id":"rune_sockets","text":"Encaixes Aprimor\u00E1veis","option":{"options":[]}}]},{"id":"req_filters","title":"Requerimentos","filters":[{"id":"lvl","text":"N\u00EDvel","option":{"options":[]}},{"id":"str","text":"For\u00E7a","option":{"options":[]}},{"id":"dex","text":"Destreza","option":{"options":[]}},{"id":"int","text":"Intelig\u00EAncia","option":{"options":[]}}]},{"id":"map_filters","title":"Filtros de fim de jogo","filters":[{"id":"map_tier","text":"Tier de Pedras Guia","option":{"options":[]}},{"id":"map_packsize","text":"Tamanho de Grupo da Pedra-guia","option":{"options":[]}},{"id":"map_iiq","text":"Qtd. de I. de Pedra-guia","option":{"options":[]}},{"id":"map_iir","text":"R. de I. de Pedra-guia","option":{"options":[]}},{"id":"map_revives","text":"Ressurrei\u00E7\u00F5es de Pedra-guia","option":{"options":[]}},{"id":"map_bonus","text":"Chance de Queda de Pedras Guia","option":{"options":[]}},{"id":"map_gold","text":"Ouro de Pedra-guia","option":{"options":[]}},{"id":"map_experience","text":"Experi\u00EAncia de Pedra-guia","option":{"options":[]}},{"id":"map_magic_monsters","text":"Monstros M\u00E1gicos de Pedra-guia","option":{"options":[]}},{"id":"map_rare_monsters","text":"Monstros Raros de Pedra-guia","option":{"options":[]}},{"id":"ultimatum_hint","text":"Dica do Desafio do Ultimatum","option":{"options":[{"text":"Qualquer"},{"id":"Victorious","text":"Triunfante"},{"id":"Cowardly","text":"Covardemente"},{"id":"Deadly","text":"Mortalmente"}]}}]},{"id":"misc_filters","title":"Variados","filters":[{"id":"gem_level","text":"N\u00EDvel da Gema","option":{"options":[]}},{"id":"gem_sockets","text":"Encaixes de Gema","option":{"options":[]}},{"id":"area_level","text":"N\u00EDvel da \u00C1rea","option":{"options":[]}},{"id":"stack_size","text":"Tamanho do Agrupamento","option":{"options":[]}},{"id":"identified","text":"Identificado","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"fractured_item","text":"Trincado","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"corrupted","text":"Corrompido","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"sanctified","text":"Santificado","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"twice_corrupted","text":"Corrompido Duas Vezes","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"mutated","text":"\u00DAnico Vaal Cultivado","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"veiled","text":"Oculto","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"desecrated","text":"Profanado","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"foreseeing","text":"Prevendo","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"mirrored","text":"Espelhado","option":{"options":[{"text":"Qualquer"},{"id":"true","text":"Sim"},{"id":"false","text":"N\u00E3o"}]}},{"id":"sanctum_gold","text":"\u00C1gua Sagrada de Moeda","option":{"options":[]}},{"id":"unidentified_tier","text":"Tier n\u00E3o Identificado","option":{"options":[]}}]},{"id":"trade_filters","title":"Filtro de Troca","filters":[{"id":"account","text":"Conta do Vendedor","option":{"options":[]}},{"id":"collapse","text":"Fechar Listagens por Conta","option":{"options":[{"text":"N\u00E3o"},{"id":"true","text":"Sim"}]}},{"id":"indexed","text":"Listado","option":{"options":[{"text":"Qualquer Hora"},{"id":"1hour","text":"At\u00E9 uma Hora Atr\u00E1s"},{"id":"3hours","text":"At\u00E9 3 Horas Atr\u00E1s"},{"id":"12hours","text":"At\u00E9 12 Horas Atr\u00E1s"},{"id":"1day","text":"At\u00E9 um Dia Atr\u00E1s"},{"id":"3days","text":"At\u00E9 3 Dias Atr\u00E1s"},{"id":"1week","text":"At\u00E9 uma Semana Atr\u00E1s"},{"id":"2weeks","text":"At\u00E9 2 Semanas Atr\u00E1s"},{"id":"1month","text":"At\u00E9 1 M\u00EAs Atr\u00E1s"},{"id":"2months","text":"At\u00E9 2 Meses Atr\u00E1s"}]}},{"id":"sale_type","text":"Tipo de Venda","option":{"options":[{"id":"any","text":"Qualquer"},{"text":"Compra ou Pre\u00E7o Fixo"},{"id":"priced_with_info","text":"Pre\u00E7o com Nota:"},{"id":"unpriced","text":"Pre\u00E7o N\u00E3o Listado"}]}},{"id":"fee","text":"Taxa de Ouro","option":{"options":[]}},{"id":"price","text":"Pre\u00E7o de Compra","option":{"options":[{"text":"Equivalente a Orbe Exaltado"},{"id":"exalted_divine","text":"Orbes Exaltado ou Divino"},{"id":"aug","text":"Orbe de Amplia\u00E7\u00E3o"},{"id":"transmute","text":"Orbe de Transmuta\u00E7\u00E3o"},{"id":"exalted","text":"Orbe Exaltado"},{"id":"regal","text":"Orbe Real"},{"id":"chaos","text":"Orbe do Caos"},{"id":"vaal","text":"Orbe Vaal"},{"id":"alch","text":"Orbe da Alquimia"},{"id":"divine","text":"Orbe Divino"},{"id":"annul","text":"Orbe da Anula\u00E7\u00E3o"},{"id":"mirror","text":"Espelho de Kalandra"}]}}]}]
+[
+  {
+    "id": "status_filters",
+    "filters": [
+      {
+        "id": "status",
+        "option": {
+          "options": [
+            {
+              "id": "available",
+              "text": "Comprar imediatamente e pessoalmente"
+            },
+            {
+              "id": "securable",
+              "text": "Comprar imediatamente"
+            },
+            {
+              "id": "onlineleague",
+              "text": "Pessoalmente (on-line na liga)"
+            },
+            {
+              "id": "online",
+              "text": "Pessoalmente (on-line)"
+            },
+            {
+              "id": "any",
+              "text": "Qualquer"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "type_filters",
+    "title": "Filtros de Tipo",
+    "filters": [
+      {
+        "id": "category",
+        "text": "Categoria dos Itens",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "weapon",
+              "text": "Qualquer Arma"
+            },
+            {
+              "id": "weapon.onemelee",
+              "text": "Qualquer Arma Corpo a Corpo de Uma M\u00E3o"
+            },
+            {
+              "id": "weapon.unarmed",
+              "text": "Desarmado"
+            },
+            {
+              "id": "weapon.claw",
+              "text": "Garra"
+            },
+            {
+              "id": "weapon.dagger",
+              "text": "Adaga"
+            },
+            {
+              "id": "weapon.onesword",
+              "text": "Espada de Uma M\u00E3o"
+            },
+            {
+              "id": "weapon.oneaxe",
+              "text": "Machado de Uma M\u00E3o"
+            },
+            {
+              "id": "weapon.onemace",
+              "text": "Ma\u00E7a de Uma M\u00E3o"
+            },
+            {
+              "id": "weapon.spear",
+              "text": "Lan\u00E7a"
+            },
+            {
+              "id": "weapon.flail",
+              "text": "Mangual"
+            },
+            {
+              "id": "weapon.twomelee",
+              "text": "Qualquer Arma Corpo a Corpo de Duas M\u00E3os"
+            },
+            {
+              "id": "weapon.twosword",
+              "text": "Espada de Duas M\u00E3os"
+            },
+            {
+              "id": "weapon.twoaxe",
+              "text": "Machado de Duas M\u00E3os"
+            },
+            {
+              "id": "weapon.twomace",
+              "text": "Ma\u00E7a de Duas M\u00E3os"
+            },
+            {
+              "id": "weapon.warstaff",
+              "text": "Bast\u00E3o"
+            },
+            {
+              "id": "weapon.talisman",
+              "text": "Talisman"
+            },
+            {
+              "id": "weapon.ranged",
+              "text": "Qualquer Arma de Longo Alcance"
+            },
+            {
+              "id": "weapon.bow",
+              "text": "Arco"
+            },
+            {
+              "id": "weapon.crossbow",
+              "text": "Besta"
+            },
+            {
+              "id": "weapon.caster",
+              "text": "Qualquer Arma de Conjurador"
+            },
+            {
+              "id": "weapon.wand",
+              "text": "Varinha"
+            },
+            {
+              "id": "weapon.sceptre",
+              "text": "Cetro"
+            },
+            {
+              "id": "weapon.staff",
+              "text": "Equipe"
+            },
+            {
+              "id": "weapon.rod",
+              "text": "Vara de Pescar"
+            },
+            {
+              "id": "armour",
+              "text": "Qualquer Armadura"
+            },
+            {
+              "id": "armour.helmet",
+              "text": "Elmo"
+            },
+            {
+              "id": "armour.chest",
+              "text": "Peitoral"
+            },
+            {
+              "id": "armour.gloves",
+              "text": "Luvas"
+            },
+            {
+              "id": "armour.boots",
+              "text": "Botas"
+            },
+            {
+              "id": "armour.quiver",
+              "text": "Aljava"
+            },
+            {
+              "id": "armour.shield",
+              "text": "Escudo"
+            },
+            {
+              "id": "armour.focus",
+              "text": "Foco"
+            },
+            {
+              "id": "armour.buckler",
+              "text": "Broquel"
+            },
+            {
+              "id": "accessory",
+              "text": "Qualquer Acess\u00F3rio"
+            },
+            {
+              "id": "accessory.amulet",
+              "text": "Amuleto"
+            },
+            {
+              "id": "accessory.belt",
+              "text": "Cinto"
+            },
+            {
+              "id": "accessory.ring",
+              "text": "Anel"
+            },
+            {
+              "id": "gem",
+              "text": "Qualquer Gema"
+            },
+            {
+              "id": "gem.activegem",
+              "text": "Qualquer Habilidade"
+            },
+            {
+              "id": "gem.supportgem",
+              "text": "Gema de Suporte"
+            },
+            {
+              "id": "gem.metagem",
+              "text": "Gema Meta"
+            },
+            {
+              "id": "jewel",
+              "text": "Qualquer Joia"
+            },
+            {
+              "id": "flask",
+              "text": "Qualquer Frasco"
+            },
+            {
+              "id": "flask.life",
+              "text": "Frasco de Vida"
+            },
+            {
+              "id": "flask.mana",
+              "text": "Frasco de Mana"
+            },
+            {
+              "id": "map",
+              "text": "Qualquer Item do Endgame"
+            },
+            {
+              "id": "map.waystone",
+              "text": "Pedra Guia"
+            },
+            {
+              "id": "map.fragment",
+              "text": "Fragmento de Mapa"
+            },
+            {
+              "id": "map.logbook",
+              "text": "Di\u00E1rio de Bordo"
+            },
+            {
+              "id": "map.breachstone",
+              "text": "Pedra de Fenda"
+            },
+            {
+              "id": "map.barya",
+              "text": "Moeda"
+            },
+            {
+              "id": "map.bosskey",
+              "text": "Chave Suprema"
+            },
+            {
+              "id": "map.ultimatum",
+              "text": "Chave de Ultimato"
+            },
+            {
+              "id": "map.tablet",
+              "text": "T\u00E1bua"
+            },
+            {
+              "id": "card",
+              "text": "Cartas de Adivinha\u00E7\u00E3o"
+            },
+            {
+              "id": "sanctum.relic",
+              "text": "Rel\u00EDquia"
+            },
+            {
+              "id": "currency",
+              "text": "Qualquer Item Monet\u00E1rio"
+            },
+            {
+              "id": "currency.omen",
+              "text": "Press\u00E1gio"
+            },
+            {
+              "id": "currency.socketable",
+              "text": "Qualquer Aprimoramento"
+            },
+            {
+              "id": "currency.rune",
+              "text": "Runa"
+            },
+            {
+              "id": "currency.soulcore",
+              "text": "N\u00FAcleo D\u0027alma"
+            },
+            {
+              "id": "currency.idol",
+              "text": "\u00CDdolo"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rarity",
+        "text": "Raridade do Item",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "normal",
+              "text": "Normal"
+            },
+            {
+              "id": "magic",
+              "text": "M\u00E1gico"
+            },
+            {
+              "id": "rare",
+              "text": "Raro"
+            },
+            {
+              "id": "unique",
+              "text": "\u00DAnico"
+            },
+            {
+              "id": "uniquefoil",
+              "text": "\u00DAnico (Laminado)"
+            },
+            {
+              "id": "nonunique",
+              "text": "Qualquer N\u00E3o-\u00DAnico"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ilvl",
+        "text": "N\u00EDvel do Item",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "quality",
+        "text": "Qualidade de Item",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "equipment_filters",
+    "title": "Filtros de Equipamento",
+    "filters": [
+      {
+        "id": "damage",
+        "text": "Dano",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "aps",
+        "text": "Ataques por Segundo",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crit",
+        "text": "Chance de Cr\u00EDtico",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dps",
+        "text": "Dano por Segundo",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "pdps",
+        "text": "DPS F\u00EDsico",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "edps",
+        "text": "DPS Elemental",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "reload_time",
+        "text": "Tempo de recarga",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ar",
+        "text": "Armadura",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ev",
+        "text": "Evas\u00E3o",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "es",
+        "text": "Escudo de Energia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "block",
+        "text": "Bloqueio",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "spirit",
+        "text": "Esp\u00EDrito",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "rune_sockets",
+        "text": "Encaixes Aprimor\u00E1veis",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "req_filters",
+    "title": "Requerimentos",
+    "filters": [
+      {
+        "id": "lvl",
+        "text": "N\u00EDvel",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "str",
+        "text": "For\u00E7a",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dex",
+        "text": "Destreza",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "int",
+        "text": "Intelig\u00EAncia",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "map_filters",
+    "title": "Filtros de fim de jogo",
+    "filters": [
+      {
+        "id": "map_tier",
+        "text": "Tier de Pedras Guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "Tamanho de Grupo da Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iiq",
+        "text": "Qtd. de I. de Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "R. de I. de Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_revives",
+        "text": "Ressurrei\u00E7\u00F5es de Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "Chance de Queda de Pedras Guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_gold",
+        "text": "Ouro de Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_experience",
+        "text": "Experi\u00EAncia de Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_magic_monsters",
+        "text": "Monstros M\u00E1gicos de Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_rare_monsters",
+        "text": "Monstros Raros de Pedra-guia",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ultimatum_hint",
+        "text": "Dica do Desafio do Ultimatum",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "Victorious",
+              "text": "Triunfante"
+            },
+            {
+              "id": "Cowardly",
+              "text": "Covardemente"
+            },
+            {
+              "id": "Deadly",
+              "text": "Mortalmente"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "misc_filters",
+    "title": "Variados",
+    "filters": [
+      {
+        "id": "gem_level",
+        "text": "N\u00EDvel da Gema",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_sockets",
+        "text": "Encaixes de Gema",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "N\u00EDvel da \u00C1rea",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stack_size",
+        "text": "Tamanho do Agrupamento",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "identified",
+        "text": "Identificado",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fractured_item",
+        "text": "Trincado",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corrupted",
+        "text": "Corrompido",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sanctified",
+        "text": "Santificado",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "twice_corrupted",
+        "text": "Corrompido Duas Vezes",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mutated",
+        "text": "\u00DAnico Vaal Cultivado",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "veiled",
+        "text": "Oculto",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "desecrated",
+        "text": "Profanado",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foreseeing",
+        "text": "Prevendo",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mirrored",
+        "text": "Espelhado",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            },
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sanctum_gold",
+        "text": "\u00C1gua Sagrada de Moeda",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "Tier n\u00E3o Identificado",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "trade_filters",
+    "title": "Filtro de Troca",
+    "filters": [
+      {
+        "id": "account",
+        "text": "Conta do Vendedor",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "collapse",
+        "text": "Fechar Listagens por Conta",
+        "option": {
+          "options": [
+            {
+              "text": "N\u00E3o"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            }
+          ]
+        }
+      },
+      {
+        "id": "indexed",
+        "text": "Listado",
+        "option": {
+          "options": [
+            {
+              "text": "Qualquer Hora"
+            },
+            {
+              "id": "1hour",
+              "text": "At\u00E9 uma Hora Atr\u00E1s"
+            },
+            {
+              "id": "3hours",
+              "text": "At\u00E9 3 Horas Atr\u00E1s"
+            },
+            {
+              "id": "12hours",
+              "text": "At\u00E9 12 Horas Atr\u00E1s"
+            },
+            {
+              "id": "1day",
+              "text": "At\u00E9 um Dia Atr\u00E1s"
+            },
+            {
+              "id": "3days",
+              "text": "At\u00E9 3 Dias Atr\u00E1s"
+            },
+            {
+              "id": "1week",
+              "text": "At\u00E9 uma Semana Atr\u00E1s"
+            },
+            {
+              "id": "2weeks",
+              "text": "At\u00E9 2 Semanas Atr\u00E1s"
+            },
+            {
+              "id": "1month",
+              "text": "At\u00E9 1 M\u00EAs Atr\u00E1s"
+            },
+            {
+              "id": "2months",
+              "text": "At\u00E9 2 Meses Atr\u00E1s"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sale_type",
+        "text": "Tipo de Venda",
+        "option": {
+          "options": [
+            {
+              "id": "any",
+              "text": "Qualquer"
+            },
+            {
+              "text": "Compra ou Pre\u00E7o Fixo"
+            },
+            {
+              "id": "priced_with_info",
+              "text": "Pre\u00E7o com Nota:"
+            },
+            {
+              "id": "unpriced",
+              "text": "Pre\u00E7o N\u00E3o Listado"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fee",
+        "text": "Taxa de Ouro",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "price",
+        "text": "Pre\u00E7o de Compra",
+        "option": {
+          "options": [
+            {
+              "text": "Equivalente a Orbe Exaltado"
+            },
+            {
+              "id": "exalted_divine",
+              "text": "Orbes Exaltado ou Divino"
+            },
+            {
+              "id": "aug",
+              "text": "Orbe de Amplia\u00E7\u00E3o"
+            },
+            {
+              "id": "transmute",
+              "text": "Orbe de Transmuta\u00E7\u00E3o"
+            },
+            {
+              "id": "exalted",
+              "text": "Orbe Exaltado"
+            },
+            {
+              "id": "regal",
+              "text": "Orbe Real"
+            },
+            {
+              "id": "chaos",
+              "text": "Orbe do Caos"
+            },
+            {
+              "id": "vaal",
+              "text": "Orbe Vaal"
+            },
+            {
+              "id": "alch",
+              "text": "Orbe da Alquimia"
+            },
+            {
+              "id": "divine",
+              "text": "Orbe Divino"
+            },
+            {
+              "id": "annul",
+              "text": "Orbe da Anula\u00E7\u00E3o"
+            },
+            {
+              "id": "mirror",
+              "text": "Espelho de Kalandra"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,1 +1,1732 @@
-[{"id":"status_filters","filters":[{"id":"status","option":{"options":[{"id":"available","text":"\u30A4\u30F3\u30B9\u30BF\u30F3\u30C8\u30D0\u30A4\u30A2\u30A6\u30C8\u304A\u3088\u3073\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9"},{"id":"securable","text":"\u30A4\u30F3\u30B9\u30BF\u30F3\u30C8\u30D0\u30A4\u30A2\u30A6\u30C8"},{"id":"onlineleague","text":"\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9 (\u30EA\u30FC\u30B0\u306B\u30AA\u30F3\u30E9\u30A4\u30F3)"},{"id":"online","text":"\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9 (\u30AA\u30F3\u30E9\u30A4\u30F3)"},{"id":"any","text":"\u6307\u5B9A\u306A\u3057"}]}}]},{"id":"type_filters","title":"\u7A2E\u985E\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"category","text":"\u30A2\u30A4\u30C6\u30E0\u30AB\u30C6\u30B4\u30EA\u30FC","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"weapon","text":"\u3044\u305A\u308C\u304B\u306E\u6B66\u5668"},{"id":"weapon.one","text":"\u7247\u624B\u6B66\u5668"},{"id":"weapon.onemelee","text":"\u7247\u624B\u8FD1\u63A5\u6B66\u5668"},{"id":"weapon.twomelee","text":"\u4E21\u624B\u8FD1\u63A5\u6B66\u5668"},{"id":"weapon.bow","text":"\u5F13"},{"id":"weapon.claw","text":"\u9264\u722A"},{"id":"weapon.dagger","text":"\u3044\u305A\u308C\u304B\u306E\u77ED\u5263"},{"id":"weapon.basedagger","text":"\u30D9\u30FC\u30B9\u77ED\u5263"},{"id":"weapon.runedagger","text":"\u30EB\u30FC\u30F3\u306E\u77ED\u5263"},{"id":"weapon.oneaxe","text":"\u7247\u624B\u65A7"},{"id":"weapon.onesword","text":"\u3044\u305A\u308C\u304B\u306E\u7247\u624B\u5263"},{"id":"weapon.basesword","text":"\u57FA\u672C\u7247\u624B\u5263"},{"id":"weapon.rapier","text":"\u30EC\u30A4\u30D4\u30A2"},{"id":"weapon.onemace","text":"\u3044\u305A\u308C\u304B\u306E\u7247\u624B\u30E1\u30A4\u30B9"},{"id":"weapon.basemace","text":"\u30D9\u30FC\u30B9\u7247\u624B\u30E1\u30A4\u30B9"},{"id":"weapon.sceptre","text":"\u30BB\u30D7\u30BF\u30FC"},{"id":"weapon.staff","text":"\u3044\u305A\u308C\u304B\u306E\u30B9\u30BF\u30C3\u30D5"},{"id":"weapon.basestaff","text":"\u30D9\u30FC\u30B9\u30B9\u30BF\u30C3\u30D5"},{"id":"weapon.warstaff","text":"\u30A6\u30A9\u30FC\u30B9\u30BF\u30C3\u30D5"},{"id":"weapon.twoaxe","text":"\u4E21\u624B\u65A7"},{"id":"weapon.twomace","text":"\u4E21\u624B\u30E1\u30A4\u30B9"},{"id":"weapon.twosword","text":"\u4E21\u624B\u5263"},{"id":"weapon.wand","text":"\u30EF\u30F3\u30C9"},{"id":"weapon.rod","text":"\u91E3\u308A\u7AFF"},{"id":"armour","text":"\u3044\u305A\u308C\u304B\u306E\u9632\u5177"},{"id":"armour.chest","text":"\u93A7"},{"id":"armour.boots","text":"\u9774"},{"id":"armour.gloves","text":"\u624B\u888B"},{"id":"armour.helmet","text":"\u515C"},{"id":"armour.shield","text":"\u76FE"},{"id":"armour.quiver","text":"\u77E2\u7B52"},{"id":"accessory","text":"\u3044\u305A\u308C\u304B\u306E\u5B9D\u98FE\u54C1"},{"id":"accessory.amulet","text":"\u30A2\u30DF\u30E5\u30EC\u30C3\u30C8"},{"id":"accessory.belt","text":"\u30D9\u30EB\u30C8"},{"id":"accessory.ring","text":"\u6307\u8F2A"},{"id":"accessory.trinket","text":"\u30C8\u30EA\u30F3\u30B1\u30C3\u30C8"},{"id":"gem","text":"\u3044\u305A\u308C\u304B\u306E\u30B8\u30A7\u30E0"},{"id":"gem.activegem","text":"\u30B9\u30AD\u30EB\u30B8\u30A7\u30E0"},{"id":"gem.supportgem","text":"\u30B5\u30DD\u30FC\u30C8\u30B8\u30A7\u30E0"},{"id":"gem.supportgemplus","text":"\u899A\u9192\u306E\u30B5\u30DD\u30FC\u30C8\u30B8\u30A7\u30E0"},{"id":"jewel","text":"\u3044\u305A\u308C\u304B\u306E\u30B8\u30E5\u30A8\u30EB"},{"id":"jewel.base","text":"\u30D9\u30FC\u30B9\u30B8\u30E5\u30A8\u30EB"},{"id":"jewel.abyss","text":"\u30A2\u30D3\u30B9\u30B8\u30E5\u30A8\u30EB"},{"id":"jewel.cluster","text":"\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB"},{"id":"flask","text":"\u30D5\u30E9\u30B9\u30B3"},{"id":"map","text":"\u30DE\u30C3\u30D7"},{"id":"map.fragment","text":"\u30DE\u30C3\u30D7\u306E\u65AD\u7247"},{"id":"map.breachstone","text":"\u30D6\u30EA\u30FC\u30C1\u30B9\u30C8\u30FC\u30F3"},{"id":"map.invitation","text":"\u30E1\u30A4\u30F4\u30A7\u30F3\u306E\u62DB\u5F85\u72B6"},{"id":"map.scarab","text":"\u30B9\u30AB\u30E9\u30D9"},{"id":"leaguestone","text":"\u30EA\u30FC\u30B0\u30B9\u30C8\u30FC\u30F3"},{"id":"memoryline","text":"\u30E1\u30E2\u30EA\u30FC\u30E9\u30A4\u30F3"},{"id":"card","text":"\u5360\u3044\u30AB\u30FC\u30C9"},{"id":"monster.beast","text":"\u6355\u7372\u3057\u305F\u30D3\u30FC\u30B9\u30C8"},{"id":"monster.yellowbeast","text":"\u9EC4\u8272\u30D3\u30FC\u30B9\u30C8"},{"id":"monster.redbeast","text":"\u8D64\u30D3\u30FC\u30B9\u30C8"},{"id":"heistequipment","text":"\u3044\u305A\u308C\u304B\u306E\u30CF\u30A4\u30B9\u30C8\u88C5\u5099"},{"id":"heistequipment.heistweapon","text":"\u30CF\u30A4\u30B9\u30C8\u30AE\u30A2"},{"id":"heistequipment.heisttool","text":"\u30CF\u30A4\u30B9\u30C8\u30C4\u30FC\u30EB"},{"id":"heistequipment.heistutility","text":"\u30CF\u30A4\u30B9\u30C8\u30AF\u30ED\u30FC\u30AF"},{"id":"heistequipment.heistreward","text":"\u30CF\u30A4\u30B9\u30C8\u30D6\u30ED\u30FC\u30C1"},{"id":"heistmission","text":"\u3044\u305A\u308C\u304B\u306E\u30CF\u30A4\u30B9\u30C8\u30DF\u30C3\u30B7\u30E7\u30F3"},{"id":"heistmission.contract","text":"\u30CF\u30A4\u30B9\u30C8\u4F9D\u983C\u66F8"},{"id":"heistmission.blueprint","text":"\u30CF\u30A4\u30B9\u30C8\u8A08\u753B\u66F8"},{"id":"logbook","text":"\u3044\u305A\u308C\u304B\u306E\u30A8\u30AF\u30B9\u30DA\u30C7\u30A3\u30B7\u30E7\u30F3\u30ED\u30B0\u30D6\u30C3\u30AF"},{"id":"sanctum.research","text":"\u30B5\u30F3\u30AF\u30BF\u30E0\u8ABF\u67FB\u66F8"},{"id":"sanctum.relic","text":"\u30B5\u30F3\u30AF\u30BF\u30E0\u30EC\u30EA\u30C3\u30AF"},{"id":"tincture","text":"\u3044\u305A\u308C\u304B\u306E\u30C1\u30F3\u30AD"},{"id":"corpse","text":"\u3044\u305A\u308C\u304B\u306E\u6B7B\u4F53"},{"id":"idol","text":"\u3044\u305A\u308C\u304B\u306E\u5076\u50CF"},{"id":"graft","text":"\u3044\u305A\u308C\u304B\u306E\u30B0\u30E9\u30D5\u30C8"},{"id":"wombgift","text":"\u3044\u305A\u308C\u304B\u306E\u6BCD\u80CE\u30AE\u30D5\u30C8"},{"id":"currency","text":"\u3044\u305A\u308C\u304B\u306E\u30AB\u30EC\u30F3\u30B7\u30FC"},{"id":"currency.piece","text":"\u30E6\u30CB\u30FC\u30AF\u306E\u65AD\u7247"},{"id":"currency.resonator","text":"\u30EC\u30BE\u30CD\u30FC\u30BF\u30FC"},{"id":"currency.fossil","text":"\u5316\u77F3"},{"id":"currency.incubator","text":"\u30A4\u30F3\u30AD\u30E5\u30D9\u30FC\u30BF\u30FC"},{"id":"currency.heistobjective","text":"\u30CF\u30A4\u30B9\u30C8\u76EE\u6A19"},{"id":"currency.omen","text":"\u304A\u544A\u3052"},{"id":"currency.tattoo","text":"\u30BF\u30C8\u30A5\u30FC"}]}},{"id":"rarity","text":"\u30A2\u30A4\u30C6\u30E0\u30EC\u30A2\u30EA\u30C6\u30A3","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"normal","text":"\u30CE\u30FC\u30DE\u30EB"},{"id":"magic","text":"\u30DE\u30B8\u30C3\u30AF"},{"id":"rare","text":"\u30EC\u30A2"},{"id":"unique","text":"\u30E6\u30CB\u30FC\u30AF"},{"id":"uniquefoil","text":"\u30E6\u30CB\u30FC\u30AF\uFF08\u30D5\u30A9\u30A4\u30EB\uFF09"},{"id":"nonunique","text":"\u3044\u305A\u308C\u304B\u306E\u975E\u30E6\u30CB\u30FC\u30AF"}]}}]},{"id":"weapon_filters","title":"\u6B66\u5668\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"damage","text":"\u30C0\u30E1\u30FC\u30B8","option":{"options":[]}},{"id":"aps","text":"1\u79D2\u3042\u305F\u308A\u306E\u30A2\u30BF\u30C3\u30AF\u56DE\u6570","option":{"options":[]}},{"id":"crit","text":"\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387","option":{"options":[]}},{"id":"dps","text":"1\u79D2\u3042\u305F\u308A\u306E\u30C0\u30E1\u30FC\u30B8","option":{"options":[]}},{"id":"pdps","text":"\u7269\u7406DPS","option":{"options":[]}},{"id":"edps","text":"\u5143\u7D20DPS","option":{"options":[]}}]},{"id":"armour_filters","title":"\u9632\u5177\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"ar","text":"\u30A2\u30FC\u30DE\u30FC","option":{"options":[]}},{"id":"ev","text":"\u56DE\u907F\u529B","option":{"options":[]}},{"id":"es","text":"\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9","option":{"options":[]}},{"id":"ward","text":"\u30A6\u30A9\u30FC\u30C9","option":{"options":[]}},{"id":"block","text":"\u30D6\u30ED\u30C3\u30AF","option":{"options":[]}},{"id":"base_defence_percentile","text":"\u57FA\u790E\u5272\u5408","option":{"options":[]}}]},{"id":"socket_filters","title":"\u30BD\u30B1\u30C3\u30C8\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"sockets","text":"\u30BD\u30B1\u30C3\u30C8","option":{"options":[]}},{"id":"links","text":"\u30EA\u30F3\u30AF","option":{"options":[]}}]},{"id":"req_filters","title":"\u88C5\u5099\u8981\u6C42","filters":[{"id":"lvl","text":"\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"str","text":"\u7B4B\u529B","option":{"options":[]}},{"id":"dex","text":"\u5668\u7528\u3055","option":{"options":[]}},{"id":"int","text":"\u77E5\u6027","option":{"options":[]}},{"id":"class","text":"\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u30AF\u30E9\u30B9","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"scion","text":"\u30B5\u30A4\u30AA\u30F3"},{"id":"marauder","text":"\u30DE\u30ED\u30FC\u30C0\u30FC"},{"id":"ranger","text":"\u30EC\u30F3\u30B8\u30E3\u30FC"},{"id":"witch","text":"\u30A6\u30A3\u30C3\u30C1"},{"id":"duelist","text":"\u30C7\u30E5\u30A8\u30EA\u30B9\u30C8"},{"id":"templar","text":"\u30C6\u30F3\u30D7\u30E9\u30FC"},{"id":"shadow","text":"\u30B7\u30E3\u30C9\u30A6"}]}}]},{"id":"map_filters","title":"\u30DE\u30C3\u30D7\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"map_tier","text":"\u30DE\u30C3\u30D7\u30C6\u30A3\u30A2","option":{"options":[]}},{"id":"map_packsize","text":"\u30DE\u30C3\u30D7\u30D1\u30C3\u30AF\u30B5\u30A4\u30BA","option":{"options":[]}},{"id":"map_iiq","text":"\u30DE\u30C3\u30D7 IIQ","option":{"options":[]}},{"id":"map_iir","text":"\u30DE\u30C3\u30D7 IIR","option":{"options":[]}},{"id":"area_level","text":"\u30A8\u30EA\u30A2\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"map_series","text":"\u30DE\u30C3\u30D7\u30B7\u30EA\u30FC\u30BA","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"current","text":"\u73FE\u5728"},{"id":"keepers","text":"Keepers"},{"id":"mercenary","text":"Mercenaries"},{"id":"settlers","text":"Settlers"},{"id":"necropolis","text":"Necropolis"},{"id":"azmeri","text":"Affliction"},{"id":"ancestor","text":"\u30A2\u30F3\u30BB\u30F3\u30BF\u30FC"},{"id":"crucible","text":"\u30AF\u30EB\u30FC\u30B7\u30D6\u30EB"},{"id":"sanctum","text":"Sanctum"},{"id":"lake","text":"\u30AB\u30E9\u30F3\u30C9\u30E9"},{"id":"sentinel","text":"\u30BB\u30F3\u30C1\u30CD\u30EB"},{"id":"archnemesis","text":"\u30A2\u30FC\u30C1\u30CD\u30E1\u30B7\u30B9"},{"id":"scourge","text":"\u30B9\u30AB\u30FC\u30B8"},{"id":"expedition","text":"\u30A8\u30AF\u30B9\u30DA\u30C7\u30A3\u30B7\u30E7\u30F3"},{"id":"ritual","text":"\u30EA\u30C1\u30E5\u30A2\u30EB"},{"id":"heist","text":"\u30CF\u30A4\u30B9\u30C8"},{"id":"harvest","text":"\u30CF\u30FC\u30D9\u30B9\u30C8"},{"id":"delirium","text":"\u30C7\u30EA\u30EA\u30A6\u30E0"},{"id":"metamorph","text":"\u30E1\u30BF\u30E2\u30EB\u30D5"},{"id":"blight","text":"\u30D6\u30E9\u30A4\u30C8"},{"id":"legion","text":"\u30EA\u30FC\u30B8\u30E7\u30F3"},{"id":"synthesis","text":"\u30B7\u30F3\u30BB\u30B7\u30B9"},{"id":"betrayal","text":"\u30D3\u30C8\u30EC\u30A4\u30A2\u30EB"},{"id":"warfortheatlas","text":"\u30A6\u30A9\u30FC\u30FB\u30D5\u30A9\u30FC\u30FB\u30A2\u30C8\u30E9\u30B9"},{"id":"atlasofworlds","text":"\u30A2\u30C8\u30E9\u30B9\u30FB\u30AA\u30D6\u30FB\u30EF\u30FC\u30EB\u30C9"},{"id":"theawakening","text":"\u30A2\u30A6\u30A7\u30FC\u30AF\u30CB\u30F3\u30B0"},{"id":"original","text":"\u30EC\u30AC\u30B7\u30FC"}]}},{"id":"map_blighted","text":"\u30D6\u30E9\u30A4\u30C8\u30DE\u30C3\u30D7","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"map_uberblighted","text":"\u30D6\u30E9\u30A4\u30C8\u306B\u7834\u58CA\u3055\u308C\u305F\u30DE\u30C3\u30D7","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"map_completion_reward","text":"\u30DE\u30C3\u30D7\u5B8C\u4E86\u5831\u916C","option":{"options":[]}}]},{"id":"heist_filters","title":"\u30CF\u30A4\u30B9\u30C8\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"heist_wings","text":"\u60C5\u5831\u3092\u805E\u3044\u305F\u533A\u753B\u6570","option":{"options":[]}},{"id":"heist_max_wings","text":"\u5408\u8A08\u533A\u753B\u6570","option":{"options":[]}},{"id":"heist_escape_routes","text":"\u60C5\u5831\u3092\u805E\u3044\u305F\u9003\u8D70\u7D4C\u8DEF\u6570","option":{"options":[]}},{"id":"heist_max_escape_routes","text":"\u5408\u8A08\u9003\u8D70\u7D4C\u8DEF\u6570","option":{"options":[]}},{"id":"heist_reward_rooms","text":"\u60C5\u5831\u3092\u805E\u3044\u305F\u5831\u916C\u90E8\u5C4B","option":{"options":[]}},{"id":"heist_max_reward_rooms","text":"\u5408\u8A08\u5831\u916C\u90E8\u5C4B\u6570","option":{"options":[]}},{"id":"heist_objective_value","text":"\u4F9D\u983C\u66F8\u76EE\u6A19\u306E\u4FA1\u5024","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"moderate","text":"\u4E2D\u7A0B\u5EA6\u306E\u4FA1\u5024"},{"id":"high","text":"\u9AD8\u4FA1\u5024"},{"id":"precious","text":"\u8CB4\u91CD"},{"id":"priceless","text":"\u30D7\u30E9\u30A4\u30B9\u30EC\u30B9"}]}},{"id":"heist_lockpicking","text":"\u9320\u524D\u7834\u308A\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_brute_force","text":"\u602A\u529B\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_perception","text":"\u77E5\u899A\u80FD\u529B\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_demolition","text":"\u7206\u7834\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_counter_thaumaturgy","text":"\u5BFE\u9B54\u8853\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_trap_disarmament","text":"\u7F60\u89E3\u9664\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_agility","text":"\u654F\u6377\u6027\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_deception","text":"\u6B3A\u779E\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"heist_engineering","text":"\u5DE5\u4F5C\u30EC\u30D9\u30EB","option":{"options":[]}}]},{"id":"sanctum_filters","title":"\u30B5\u30F3\u30AF\u30BF\u30E0\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"sanctum_resolve","text":"\u6C7A\u5FC3","option":{"options":[]}},{"id":"sanctum_max_resolve","text":"\u6C7A\u5FC3\u306E\u6700\u5927\u5024","option":{"options":[]}},{"id":"sanctum_inspiration","text":"\u52C7\u6C17","option":{"options":[]}},{"id":"sanctum_gold","text":"\u30A2\u30A6\u30EC\u30A6\u30B9","option":{"options":[]}}]},{"id":"ultimatum_filters","title":"\u30A2\u30EB\u30C6\u30A3\u30E1\u30A4\u30BF\u30E0\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"ultimatum_challenge","text":"\u30C1\u30E3\u30EC\u30F3\u30B8\u30BF\u30A4\u30D7","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"Exterminate","text":"\u9023\u7D9A\u3057\u3066\u8972\u3044\u304B\u304B\u308B\u6575\u3092\u5012\u305B"},{"id":"Survival","text":"\u751F\u5B58\u3057\u308D"},{"id":"Defense","text":"\u796D\u58C7\u3092\u5B88\u308C"},{"id":"Conquer","text":"\u30B9\u30C8\u30FC\u30F3\u30B5\u30FC\u30AF\u30EB\u306E\u4E2D\u306B\u7ACB\u3066"}]}},{"id":"ultimatum_reward","text":"\u5831\u916C\u7A2E\u985E","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"DoubleCurrency","text":"\u30AB\u30EC\u30F3\u30B7\u30FC"},{"id":"DoubleDivCards","text":"\u5360\u3044\u30AB\u30FC\u30C9"},{"id":"MirrorRare","text":"\u30DF\u30E9\u30FC\u5316\u30EC\u30A2\u30A2\u30A4\u30C6\u30E0"},{"id":"ExchangeUnique","text":"\u30E6\u30CB\u30FC\u30AF\u30A2\u30A4\u30C6\u30E0"}]}},{"id":"ultimatum_input","text":"\u5FC5\u8981\u306A\u30A2\u30A4\u30C6\u30E0","option":{"options":[]}},{"id":"ultimatum_output","text":"\u30E6\u30CB\u30FC\u30AF\u3092\u5831\u916C\u3068\u3059\u308B","option":{"options":[]}}]},{"id":"misc_filters","title":"\u305D\u306E\u4ED6","filters":[{"id":"quality","text":"\u54C1\u8CEA","option":{"options":[]}},{"id":"ilvl","text":"\u30A2\u30A4\u30C6\u30E0\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"gem_level","text":"\u30B8\u30A7\u30E0\u30EC\u30D9\u30EB","option":{"options":[]}},{"id":"gem_level_progress","text":"\u30B8\u30A7\u30E0\u7D4C\u9A13\u5024 %","option":{"options":[]}},{"id":"gem_transfigured","text":"\u5909\u5BB9\u30B8\u30A7\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"gem_vaal","text":"\u30F4\u30A1\u30FC\u30EB\u30B8\u30A7\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"fractured_item","text":"\u30D5\u30E9\u30AF\u30C1\u30E3\u30FC\u30A2\u30A4\u30C6\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"gem_imbued","text":"\u6CE8\u5165\u30B8\u30A7\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"synthesised_item","text":"\u30B7\u30F3\u30BB\u30B7\u30B9\u30A2\u30A4\u30C6\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"searing_item","text":"\u707C\u71B1\u306E\u4EE3\u884C\u8005\u30A2\u30A4\u30C6\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"tangled_item","text":"\u4E16\u754C\u3092\u55B0\u3089\u3046\u8005\u30A2\u30A4\u30C6\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"memory_level","text":"\u30E1\u30E2\u30EA\u30FC\u30B9\u30C8\u30E9\u30F3\u30C9","option":{"options":[]}},{"id":"identified","text":"\u9451\u5B9A\u6E08\u307F","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"corrupted","text":"\u30B3\u30E9\u30D7\u30C8\u72B6\u614B","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"mirrored","text":"\u30DF\u30E9\u30FC\u5316","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"split","text":"\u30B9\u30D7\u30EA\u30C3\u30C8","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"crafted","text":"\u30AF\u30E9\u30D5\u30C8\u6E08\u307F","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"veiled","text":"\u30F4\u30A7\u30FC\u30EB","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"foreseeing","text":"\u4E88\u898B","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"talisman_tier","text":"\u30BF\u30EA\u30B9\u30DE\u30F3 \u30C6\u30A3\u30A2","option":{"options":[]}},{"id":"stored_experience","text":"\u84C4\u3048\u3089\u308C\u305F\u7D4C\u9A13\u5024","option":{"options":[]}},{"id":"stack_size","text":"\u30B9\u30BF\u30C3\u30AF\u30B5\u30A4\u30BA","option":{"options":[]}},{"id":"alternate_art","text":"\u30AA\u30EB\u30BF\u30CD\u30FC\u30C8\u30A2\u30FC\u30C8","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"foil_variation","text":"\u30D5\u30A9\u30A4\u30EB\u306E\u7A2E\u985E","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"none","text":"\u306A\u3057"},{"id":"0","text":"\u30EC\u30A4\u30F3\u30DC\u30FC\uFF08\u30C7\u30D5\u30A9\u30EB\u30C8\uFF09"},{"id":"voidborn","text":"\u3044\u305A\u308C\u304B\u306E\u30F4\u30A9\u30A4\u30C9\u30DC\u30FC\u30F3"},{"id":"1","text":"\u30A2\u30E1\u30B8\u30B9\u30C8"},{"id":"2","text":"\u30F4\u30A1\u30FC\u30C0\u30F3\u30C8"},{"id":"3","text":"\u30EB\u30D3\u30FC"},{"id":"4","text":"\u30B3\u30D0\u30EB\u30C8"},{"id":"5","text":"\u30B5\u30F3\u30BB\u30C3\u30C8"},{"id":"6","text":"\u30AA\u30FC\u30EA\u30A8\u30A4\u30C8"},{"id":"celestial","text":"\u3044\u305A\u308C\u304B\u306E\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30D0\u30FC\u30B8\u30E7\u30F3"},{"id":"7","text":"\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30AF\u30A9\u30FC\u30AF"},{"id":"8","text":"\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30EB\u30D3\u30FC"},{"id":"9","text":"\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30A8\u30E1\u30E9\u30EB\u30C9"},{"id":"10","text":"\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30AA\u30FC\u30EC\u30A4\u30C8"},{"id":"11","text":"\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30D1\u30FC\u30EB"},{"id":"12","text":"\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30A2\u30E1\u30B8\u30B9\u30C8"}]}},{"id":"corpse_type","text":"\u6B7B\u4F53\u30BF\u30A4\u30D7","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"eldritch","text":"\u30A8\u30EB\u30C9\u30EA\u30C3\u30C1"},{"id":"demon","text":"\u60AA\u9B54"},{"id":"construct","text":"\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30C8"},{"id":"undead","text":"\u30A2\u30F3\u30C7\u30C3\u30C9"},{"id":"beast","text":"\u7363"},{"id":"humanoid","text":"\u30D2\u30E5\u30FC\u30DE\u30CE\u30A4\u30C9"}]}},{"id":"scourge_tier","text":"\u30B9\u30AB\u30FC\u30B8 \u30C6\u30A3\u30A2","option":{"options":[]}},{"id":"crucible_item","text":"\u30AF\u30EB\u30FC\u30B7\u30D6\u30EB\u30A2\u30A4\u30C6\u30E0","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}},{"id":"mutated","text":"\u30D5\u30A1\u30A6\u30EB\u30DC\u30FC\u30F3","option":{"options":[{"text":"\u6307\u5B9A\u306A\u3057"},{"id":"true","text":"\u306F\u3044"},{"id":"false","text":"\u3044\u3044\u3048"}]}}]},{"id":"trade_filters","title":"\u30C8\u30EC\u30FC\u30C9\u30D5\u30A3\u30EB\u30BF\u30FC","filters":[{"id":"account","text":"\u8CA9\u58F2\u8005\u30A2\u30AB\u30A6\u30F3\u30C8","option":{"options":[]}},{"id":"collapse","text":"\u30A2\u30AB\u30A6\u30F3\u30C8\u3054\u3068\u306B\u51FA\u54C1\u3092\u6298\u308A\u305F\u305F\u3080","option":{"options":[{"text":"\u3044\u3044\u3048"},{"id":"true","text":"\u306F\u3044"}]}},{"id":"indexed","text":"\u63B2\u8F09\u65E5\u6642","option":{"options":[{"text":"\u3044\u3064\u3067\u3082"},{"id":"1hour","text":"\u6700\u59271\u6642\u9593\u524D"},{"id":"3hours","text":"\u6700\u59273\u6642\u9593\u524D"},{"id":"12hours","text":"\u6700\u592712\u6642\u9593\u524D"},{"id":"1day","text":"1\u65E5\u524D\u307E\u3067"},{"id":"3days","text":"3\u65E5\u524D\u307E\u3067"},{"id":"1week","text":"1\u9031\u9593\u524D\u307E\u3067"},{"id":"2weeks","text":"2\u9031\u9593\u524D\u307E\u3067"},{"id":"1month","text":"1\u30F6\u6708\u524D\u307E\u3067"},{"id":"2months","text":"2\u30F6\u6708\u524D\u307E\u3067"}]}},{"id":"sale_type","text":"\u8CA9\u58F2\u30BF\u30A4\u30D7","option":{"options":[{"id":"any","text":"\u6307\u5B9A\u306A\u3057"},{"text":"\u30D0\u30A4\u30A2\u30A6\u30C8\u307E\u305F\u306F\u56FA\u5B9A\u4FA1\u683C"},{"id":"priced_with_info","text":"\u30E1\u30E2\u4ED8\u304D\u306E\u4FA1\u683C"},{"id":"unpriced","text":"\u4FA1\u683C\u63D0\u793A\u306A\u3057"}]}},{"id":"fee","text":"\u30B4\u30FC\u30EB\u30C9\u624B\u6570\u6599","option":{"options":[]}},{"id":"price","text":"\u30D0\u30A4\u30A2\u30A6\u30C8\u4FA1\u683C","option":{"options":[{"text":"\u30AB\u30AA\u30B9\u30AA\u30FC\u30D6\u540C\u7B49\u7269"},{"id":"chaos_divine","text":"\u30AB\u30AA\u30B9\u307E\u305F\u306F\u795E\u306E\u30AA\u30FC\u30D6"},{"id":"chaos","text":"\u30AB\u30AA\u30B9\u30AA\u30FC\u30D6"},{"id":"exalted","text":"\u9AD8\u8CB4\u306A\u30AA\u30FC\u30D6"},{"id":"divine","text":"\u795E\u306E\u30AA\u30FC\u30D6"},{"id":"mirror","text":"\u30AB\u30E9\u30F3\u30C9\u30E9\u306E\u93E1"},{"id":"blessed","text":"\u795D\u798F\u306E\u30AA\u30FC\u30D6"},{"id":"chrome","text":"\u8272\u5F69\u306E\u30AA\u30FC\u30D6"},{"id":"gcp","text":"\u5B9D\u77F3\u7D30\u5DE5\u5E2B\u306E\u30D7\u30EA\u30BA\u30E0"},{"id":"jewellers","text":"\u5B9D\u98FE\u8077\u4EBA\u306E\u30AA\u30FC\u30D6"},{"id":"scour","text":"\u6D17\u6D44\u306E\u30AA\u30FC\u30D6"},{"id":"regret","text":"\u5F8C\u6094\u306E\u30AA\u30FC\u30D6"},{"id":"fusing","text":"\u7D50\u5408\u306E\u30AA\u30FC\u30D6"},{"id":"chance","text":"\u53EF\u80FD\u6027\u306E\u30AA\u30FC\u30D6"},{"id":"alt","text":"\u6539\u5909\u306E\u30AA\u30FC\u30D6"},{"id":"alch","text":"\u932C\u91D1\u8853\u306E\u30AA\u30FC\u30D6"},{"id":"regal","text":"\u738B\u8005\u306E\u30AA\u30FC\u30D6"},{"id":"vaal","text":"\u30F4\u30A1\u2015\u30EB\u30AA\u30FC\u30D6"}]}}]}]
+[
+  {
+    "id": "status_filters",
+    "filters": [
+      {
+        "id": "status",
+        "option": {
+          "options": [
+            {
+              "id": "available",
+              "text": "\u30A4\u30F3\u30B9\u30BF\u30F3\u30C8\u30D0\u30A4\u30A2\u30A6\u30C8\u304A\u3088\u3073\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9"
+            },
+            {
+              "id": "securable",
+              "text": "\u30A4\u30F3\u30B9\u30BF\u30F3\u30C8\u30D0\u30A4\u30A2\u30A6\u30C8"
+            },
+            {
+              "id": "onlineleague",
+              "text": "\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9 (\u30EA\u30FC\u30B0\u306B\u30AA\u30F3\u30E9\u30A4\u30F3)"
+            },
+            {
+              "id": "online",
+              "text": "\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9 (\u30AA\u30F3\u30E9\u30A4\u30F3)"
+            },
+            {
+              "id": "any",
+              "text": "\u6307\u5B9A\u306A\u3057"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "type_filters",
+    "title": "\u7A2E\u985E\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "category",
+        "text": "\u30A2\u30A4\u30C6\u30E0\u30AB\u30C6\u30B4\u30EA\u30FC",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "weapon",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u6B66\u5668"
+            },
+            {
+              "id": "weapon.one",
+              "text": "\u7247\u624B\u6B66\u5668"
+            },
+            {
+              "id": "weapon.onemelee",
+              "text": "\u7247\u624B\u8FD1\u63A5\u6B66\u5668"
+            },
+            {
+              "id": "weapon.twomelee",
+              "text": "\u4E21\u624B\u8FD1\u63A5\u6B66\u5668"
+            },
+            {
+              "id": "weapon.bow",
+              "text": "\u5F13"
+            },
+            {
+              "id": "weapon.claw",
+              "text": "\u9264\u722A"
+            },
+            {
+              "id": "weapon.dagger",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u77ED\u5263"
+            },
+            {
+              "id": "weapon.basedagger",
+              "text": "\u30D9\u30FC\u30B9\u77ED\u5263"
+            },
+            {
+              "id": "weapon.runedagger",
+              "text": "\u30EB\u30FC\u30F3\u306E\u77ED\u5263"
+            },
+            {
+              "id": "weapon.oneaxe",
+              "text": "\u7247\u624B\u65A7"
+            },
+            {
+              "id": "weapon.onesword",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u7247\u624B\u5263"
+            },
+            {
+              "id": "weapon.basesword",
+              "text": "\u57FA\u672C\u7247\u624B\u5263"
+            },
+            {
+              "id": "weapon.rapier",
+              "text": "\u30EC\u30A4\u30D4\u30A2"
+            },
+            {
+              "id": "weapon.onemace",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u7247\u624B\u30E1\u30A4\u30B9"
+            },
+            {
+              "id": "weapon.basemace",
+              "text": "\u30D9\u30FC\u30B9\u7247\u624B\u30E1\u30A4\u30B9"
+            },
+            {
+              "id": "weapon.sceptre",
+              "text": "\u30BB\u30D7\u30BF\u30FC"
+            },
+            {
+              "id": "weapon.staff",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30B9\u30BF\u30C3\u30D5"
+            },
+            {
+              "id": "weapon.basestaff",
+              "text": "\u30D9\u30FC\u30B9\u30B9\u30BF\u30C3\u30D5"
+            },
+            {
+              "id": "weapon.warstaff",
+              "text": "\u30A6\u30A9\u30FC\u30B9\u30BF\u30C3\u30D5"
+            },
+            {
+              "id": "weapon.twoaxe",
+              "text": "\u4E21\u624B\u65A7"
+            },
+            {
+              "id": "weapon.twomace",
+              "text": "\u4E21\u624B\u30E1\u30A4\u30B9"
+            },
+            {
+              "id": "weapon.twosword",
+              "text": "\u4E21\u624B\u5263"
+            },
+            {
+              "id": "weapon.wand",
+              "text": "\u30EF\u30F3\u30C9"
+            },
+            {
+              "id": "weapon.rod",
+              "text": "\u91E3\u308A\u7AFF"
+            },
+            {
+              "id": "armour",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u9632\u5177"
+            },
+            {
+              "id": "armour.chest",
+              "text": "\u93A7"
+            },
+            {
+              "id": "armour.boots",
+              "text": "\u9774"
+            },
+            {
+              "id": "armour.gloves",
+              "text": "\u624B\u888B"
+            },
+            {
+              "id": "armour.helmet",
+              "text": "\u515C"
+            },
+            {
+              "id": "armour.shield",
+              "text": "\u76FE"
+            },
+            {
+              "id": "armour.quiver",
+              "text": "\u77E2\u7B52"
+            },
+            {
+              "id": "accessory",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u5B9D\u98FE\u54C1"
+            },
+            {
+              "id": "accessory.amulet",
+              "text": "\u30A2\u30DF\u30E5\u30EC\u30C3\u30C8"
+            },
+            {
+              "id": "accessory.belt",
+              "text": "\u30D9\u30EB\u30C8"
+            },
+            {
+              "id": "accessory.ring",
+              "text": "\u6307\u8F2A"
+            },
+            {
+              "id": "accessory.trinket",
+              "text": "\u30C8\u30EA\u30F3\u30B1\u30C3\u30C8"
+            },
+            {
+              "id": "gem",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30B8\u30A7\u30E0"
+            },
+            {
+              "id": "gem.activegem",
+              "text": "\u30B9\u30AD\u30EB\u30B8\u30A7\u30E0"
+            },
+            {
+              "id": "gem.supportgem",
+              "text": "\u30B5\u30DD\u30FC\u30C8\u30B8\u30A7\u30E0"
+            },
+            {
+              "id": "gem.supportgemplus",
+              "text": "\u899A\u9192\u306E\u30B5\u30DD\u30FC\u30C8\u30B8\u30A7\u30E0"
+            },
+            {
+              "id": "jewel",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30B8\u30E5\u30A8\u30EB"
+            },
+            {
+              "id": "jewel.base",
+              "text": "\u30D9\u30FC\u30B9\u30B8\u30E5\u30A8\u30EB"
+            },
+            {
+              "id": "jewel.abyss",
+              "text": "\u30A2\u30D3\u30B9\u30B8\u30E5\u30A8\u30EB"
+            },
+            {
+              "id": "jewel.cluster",
+              "text": "\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB"
+            },
+            {
+              "id": "flask",
+              "text": "\u30D5\u30E9\u30B9\u30B3"
+            },
+            {
+              "id": "map",
+              "text": "\u30DE\u30C3\u30D7"
+            },
+            {
+              "id": "map.fragment",
+              "text": "\u30DE\u30C3\u30D7\u306E\u65AD\u7247"
+            },
+            {
+              "id": "map.breachstone",
+              "text": "\u30D6\u30EA\u30FC\u30C1\u30B9\u30C8\u30FC\u30F3"
+            },
+            {
+              "id": "map.invitation",
+              "text": "\u30E1\u30A4\u30F4\u30A7\u30F3\u306E\u62DB\u5F85\u72B6"
+            },
+            {
+              "id": "map.scarab",
+              "text": "\u30B9\u30AB\u30E9\u30D9"
+            },
+            {
+              "id": "leaguestone",
+              "text": "\u30EA\u30FC\u30B0\u30B9\u30C8\u30FC\u30F3"
+            },
+            {
+              "id": "memoryline",
+              "text": "\u30E1\u30E2\u30EA\u30FC\u30E9\u30A4\u30F3"
+            },
+            {
+              "id": "card",
+              "text": "\u5360\u3044\u30AB\u30FC\u30C9"
+            },
+            {
+              "id": "monster.beast",
+              "text": "\u6355\u7372\u3057\u305F\u30D3\u30FC\u30B9\u30C8"
+            },
+            {
+              "id": "monster.yellowbeast",
+              "text": "\u9EC4\u8272\u30D3\u30FC\u30B9\u30C8"
+            },
+            {
+              "id": "monster.redbeast",
+              "text": "\u8D64\u30D3\u30FC\u30B9\u30C8"
+            },
+            {
+              "id": "heistequipment",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30CF\u30A4\u30B9\u30C8\u88C5\u5099"
+            },
+            {
+              "id": "heistequipment.heistweapon",
+              "text": "\u30CF\u30A4\u30B9\u30C8\u30AE\u30A2"
+            },
+            {
+              "id": "heistequipment.heisttool",
+              "text": "\u30CF\u30A4\u30B9\u30C8\u30C4\u30FC\u30EB"
+            },
+            {
+              "id": "heistequipment.heistutility",
+              "text": "\u30CF\u30A4\u30B9\u30C8\u30AF\u30ED\u30FC\u30AF"
+            },
+            {
+              "id": "heistequipment.heistreward",
+              "text": "\u30CF\u30A4\u30B9\u30C8\u30D6\u30ED\u30FC\u30C1"
+            },
+            {
+              "id": "heistmission",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30CF\u30A4\u30B9\u30C8\u30DF\u30C3\u30B7\u30E7\u30F3"
+            },
+            {
+              "id": "heistmission.contract",
+              "text": "\u30CF\u30A4\u30B9\u30C8\u4F9D\u983C\u66F8"
+            },
+            {
+              "id": "heistmission.blueprint",
+              "text": "\u30CF\u30A4\u30B9\u30C8\u8A08\u753B\u66F8"
+            },
+            {
+              "id": "logbook",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30A8\u30AF\u30B9\u30DA\u30C7\u30A3\u30B7\u30E7\u30F3\u30ED\u30B0\u30D6\u30C3\u30AF"
+            },
+            {
+              "id": "sanctum.research",
+              "text": "\u30B5\u30F3\u30AF\u30BF\u30E0\u8ABF\u67FB\u66F8"
+            },
+            {
+              "id": "sanctum.relic",
+              "text": "\u30B5\u30F3\u30AF\u30BF\u30E0\u30EC\u30EA\u30C3\u30AF"
+            },
+            {
+              "id": "tincture",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30C1\u30F3\u30AD"
+            },
+            {
+              "id": "corpse",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u6B7B\u4F53"
+            },
+            {
+              "id": "idol",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u5076\u50CF"
+            },
+            {
+              "id": "graft",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30B0\u30E9\u30D5\u30C8"
+            },
+            {
+              "id": "wombgift",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u6BCD\u80CE\u30AE\u30D5\u30C8"
+            },
+            {
+              "id": "currency",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30AB\u30EC\u30F3\u30B7\u30FC"
+            },
+            {
+              "id": "currency.piece",
+              "text": "\u30E6\u30CB\u30FC\u30AF\u306E\u65AD\u7247"
+            },
+            {
+              "id": "currency.resonator",
+              "text": "\u30EC\u30BE\u30CD\u30FC\u30BF\u30FC"
+            },
+            {
+              "id": "currency.fossil",
+              "text": "\u5316\u77F3"
+            },
+            {
+              "id": "currency.incubator",
+              "text": "\u30A4\u30F3\u30AD\u30E5\u30D9\u30FC\u30BF\u30FC"
+            },
+            {
+              "id": "currency.heistobjective",
+              "text": "\u30CF\u30A4\u30B9\u30C8\u76EE\u6A19"
+            },
+            {
+              "id": "currency.omen",
+              "text": "\u304A\u544A\u3052"
+            },
+            {
+              "id": "currency.tattoo",
+              "text": "\u30BF\u30C8\u30A5\u30FC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rarity",
+        "text": "\u30A2\u30A4\u30C6\u30E0\u30EC\u30A2\u30EA\u30C6\u30A3",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "normal",
+              "text": "\u30CE\u30FC\u30DE\u30EB"
+            },
+            {
+              "id": "magic",
+              "text": "\u30DE\u30B8\u30C3\u30AF"
+            },
+            {
+              "id": "rare",
+              "text": "\u30EC\u30A2"
+            },
+            {
+              "id": "unique",
+              "text": "\u30E6\u30CB\u30FC\u30AF"
+            },
+            {
+              "id": "uniquefoil",
+              "text": "\u30E6\u30CB\u30FC\u30AF\uFF08\u30D5\u30A9\u30A4\u30EB\uFF09"
+            },
+            {
+              "id": "nonunique",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u975E\u30E6\u30CB\u30FC\u30AF"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "weapon_filters",
+    "title": "\u6B66\u5668\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "damage",
+        "text": "\u30C0\u30E1\u30FC\u30B8",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "aps",
+        "text": "1\u79D2\u3042\u305F\u308A\u306E\u30A2\u30BF\u30C3\u30AF\u56DE\u6570",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crit",
+        "text": "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dps",
+        "text": "1\u79D2\u3042\u305F\u308A\u306E\u30C0\u30E1\u30FC\u30B8",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "pdps",
+        "text": "\u7269\u7406DPS",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "edps",
+        "text": "\u5143\u7D20DPS",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "armour_filters",
+    "title": "\u9632\u5177\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "ar",
+        "text": "\u30A2\u30FC\u30DE\u30FC",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ev",
+        "text": "\u56DE\u907F\u529B",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "es",
+        "text": "\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ward",
+        "text": "\u30A6\u30A9\u30FC\u30C9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "block",
+        "text": "\u30D6\u30ED\u30C3\u30AF",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "base_defence_percentile",
+        "text": "\u57FA\u790E\u5272\u5408",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "socket_filters",
+    "title": "\u30BD\u30B1\u30C3\u30C8\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "sockets",
+        "text": "\u30BD\u30B1\u30C3\u30C8",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "links",
+        "text": "\u30EA\u30F3\u30AF",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "req_filters",
+    "title": "\u88C5\u5099\u8981\u6C42",
+    "filters": [
+      {
+        "id": "lvl",
+        "text": "\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "str",
+        "text": "\u7B4B\u529B",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dex",
+        "text": "\u5668\u7528\u3055",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "int",
+        "text": "\u77E5\u6027",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "class",
+        "text": "\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u30AF\u30E9\u30B9",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "scion",
+              "text": "\u30B5\u30A4\u30AA\u30F3"
+            },
+            {
+              "id": "marauder",
+              "text": "\u30DE\u30ED\u30FC\u30C0\u30FC"
+            },
+            {
+              "id": "ranger",
+              "text": "\u30EC\u30F3\u30B8\u30E3\u30FC"
+            },
+            {
+              "id": "witch",
+              "text": "\u30A6\u30A3\u30C3\u30C1"
+            },
+            {
+              "id": "duelist",
+              "text": "\u30C7\u30E5\u30A8\u30EA\u30B9\u30C8"
+            },
+            {
+              "id": "templar",
+              "text": "\u30C6\u30F3\u30D7\u30E9\u30FC"
+            },
+            {
+              "id": "shadow",
+              "text": "\u30B7\u30E3\u30C9\u30A6"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "map_filters",
+    "title": "\u30DE\u30C3\u30D7\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "map_tier",
+        "text": "\u30DE\u30C3\u30D7\u30C6\u30A3\u30A2",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "\u30DE\u30C3\u30D7\u30D1\u30C3\u30AF\u30B5\u30A4\u30BA",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iiq",
+        "text": "\u30DE\u30C3\u30D7 IIQ",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "\u30DE\u30C3\u30D7 IIR",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "\u30A8\u30EA\u30A2\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_series",
+        "text": "\u30DE\u30C3\u30D7\u30B7\u30EA\u30FC\u30BA",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "current",
+              "text": "\u73FE\u5728"
+            },
+            {
+              "id": "keepers",
+              "text": "Keepers"
+            },
+            {
+              "id": "mercenary",
+              "text": "Mercenaries"
+            },
+            {
+              "id": "settlers",
+              "text": "Settlers"
+            },
+            {
+              "id": "necropolis",
+              "text": "Necropolis"
+            },
+            {
+              "id": "azmeri",
+              "text": "Affliction"
+            },
+            {
+              "id": "ancestor",
+              "text": "\u30A2\u30F3\u30BB\u30F3\u30BF\u30FC"
+            },
+            {
+              "id": "crucible",
+              "text": "\u30AF\u30EB\u30FC\u30B7\u30D6\u30EB"
+            },
+            {
+              "id": "sanctum",
+              "text": "Sanctum"
+            },
+            {
+              "id": "lake",
+              "text": "\u30AB\u30E9\u30F3\u30C9\u30E9"
+            },
+            {
+              "id": "sentinel",
+              "text": "\u30BB\u30F3\u30C1\u30CD\u30EB"
+            },
+            {
+              "id": "archnemesis",
+              "text": "\u30A2\u30FC\u30C1\u30CD\u30E1\u30B7\u30B9"
+            },
+            {
+              "id": "scourge",
+              "text": "\u30B9\u30AB\u30FC\u30B8"
+            },
+            {
+              "id": "expedition",
+              "text": "\u30A8\u30AF\u30B9\u30DA\u30C7\u30A3\u30B7\u30E7\u30F3"
+            },
+            {
+              "id": "ritual",
+              "text": "\u30EA\u30C1\u30E5\u30A2\u30EB"
+            },
+            {
+              "id": "heist",
+              "text": "\u30CF\u30A4\u30B9\u30C8"
+            },
+            {
+              "id": "harvest",
+              "text": "\u30CF\u30FC\u30D9\u30B9\u30C8"
+            },
+            {
+              "id": "delirium",
+              "text": "\u30C7\u30EA\u30EA\u30A6\u30E0"
+            },
+            {
+              "id": "metamorph",
+              "text": "\u30E1\u30BF\u30E2\u30EB\u30D5"
+            },
+            {
+              "id": "blight",
+              "text": "\u30D6\u30E9\u30A4\u30C8"
+            },
+            {
+              "id": "legion",
+              "text": "\u30EA\u30FC\u30B8\u30E7\u30F3"
+            },
+            {
+              "id": "synthesis",
+              "text": "\u30B7\u30F3\u30BB\u30B7\u30B9"
+            },
+            {
+              "id": "betrayal",
+              "text": "\u30D3\u30C8\u30EC\u30A4\u30A2\u30EB"
+            },
+            {
+              "id": "warfortheatlas",
+              "text": "\u30A6\u30A9\u30FC\u30FB\u30D5\u30A9\u30FC\u30FB\u30A2\u30C8\u30E9\u30B9"
+            },
+            {
+              "id": "atlasofworlds",
+              "text": "\u30A2\u30C8\u30E9\u30B9\u30FB\u30AA\u30D6\u30FB\u30EF\u30FC\u30EB\u30C9"
+            },
+            {
+              "id": "theawakening",
+              "text": "\u30A2\u30A6\u30A7\u30FC\u30AF\u30CB\u30F3\u30B0"
+            },
+            {
+              "id": "original",
+              "text": "\u30EC\u30AC\u30B7\u30FC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_blighted",
+        "text": "\u30D6\u30E9\u30A4\u30C8\u30DE\u30C3\u30D7",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_uberblighted",
+        "text": "\u30D6\u30E9\u30A4\u30C8\u306B\u7834\u58CA\u3055\u308C\u305F\u30DE\u30C3\u30D7",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_completion_reward",
+        "text": "\u30DE\u30C3\u30D7\u5B8C\u4E86\u5831\u916C",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "heist_filters",
+    "title": "\u30CF\u30A4\u30B9\u30C8\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "heist_wings",
+        "text": "\u60C5\u5831\u3092\u805E\u3044\u305F\u533A\u753B\u6570",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_wings",
+        "text": "\u5408\u8A08\u533A\u753B\u6570",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_escape_routes",
+        "text": "\u60C5\u5831\u3092\u805E\u3044\u305F\u9003\u8D70\u7D4C\u8DEF\u6570",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_escape_routes",
+        "text": "\u5408\u8A08\u9003\u8D70\u7D4C\u8DEF\u6570",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_reward_rooms",
+        "text": "\u60C5\u5831\u3092\u805E\u3044\u305F\u5831\u916C\u90E8\u5C4B",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_reward_rooms",
+        "text": "\u5408\u8A08\u5831\u916C\u90E8\u5C4B\u6570",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_objective_value",
+        "text": "\u4F9D\u983C\u66F8\u76EE\u6A19\u306E\u4FA1\u5024",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "moderate",
+              "text": "\u4E2D\u7A0B\u5EA6\u306E\u4FA1\u5024"
+            },
+            {
+              "id": "high",
+              "text": "\u9AD8\u4FA1\u5024"
+            },
+            {
+              "id": "precious",
+              "text": "\u8CB4\u91CD"
+            },
+            {
+              "id": "priceless",
+              "text": "\u30D7\u30E9\u30A4\u30B9\u30EC\u30B9"
+            }
+          ]
+        }
+      },
+      {
+        "id": "heist_lockpicking",
+        "text": "\u9320\u524D\u7834\u308A\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_brute_force",
+        "text": "\u602A\u529B\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_perception",
+        "text": "\u77E5\u899A\u80FD\u529B\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_demolition",
+        "text": "\u7206\u7834\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_counter_thaumaturgy",
+        "text": "\u5BFE\u9B54\u8853\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_trap_disarmament",
+        "text": "\u7F60\u89E3\u9664\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_agility",
+        "text": "\u654F\u6377\u6027\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_deception",
+        "text": "\u6B3A\u779E\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_engineering",
+        "text": "\u5DE5\u4F5C\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "sanctum_filters",
+    "title": "\u30B5\u30F3\u30AF\u30BF\u30E0\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "sanctum_resolve",
+        "text": "\u6C7A\u5FC3",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_max_resolve",
+        "text": "\u6C7A\u5FC3\u306E\u6700\u5927\u5024",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_inspiration",
+        "text": "\u52C7\u6C17",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_gold",
+        "text": "\u30A2\u30A6\u30EC\u30A6\u30B9",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "ultimatum_filters",
+    "title": "\u30A2\u30EB\u30C6\u30A3\u30E1\u30A4\u30BF\u30E0\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "ultimatum_challenge",
+        "text": "\u30C1\u30E3\u30EC\u30F3\u30B8\u30BF\u30A4\u30D7",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "Exterminate",
+              "text": "\u9023\u7D9A\u3057\u3066\u8972\u3044\u304B\u304B\u308B\u6575\u3092\u5012\u305B"
+            },
+            {
+              "id": "Survival",
+              "text": "\u751F\u5B58\u3057\u308D"
+            },
+            {
+              "id": "Defense",
+              "text": "\u796D\u58C7\u3092\u5B88\u308C"
+            },
+            {
+              "id": "Conquer",
+              "text": "\u30B9\u30C8\u30FC\u30F3\u30B5\u30FC\u30AF\u30EB\u306E\u4E2D\u306B\u7ACB\u3066"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_reward",
+        "text": "\u5831\u916C\u7A2E\u985E",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "DoubleCurrency",
+              "text": "\u30AB\u30EC\u30F3\u30B7\u30FC"
+            },
+            {
+              "id": "DoubleDivCards",
+              "text": "\u5360\u3044\u30AB\u30FC\u30C9"
+            },
+            {
+              "id": "MirrorRare",
+              "text": "\u30DF\u30E9\u30FC\u5316\u30EC\u30A2\u30A2\u30A4\u30C6\u30E0"
+            },
+            {
+              "id": "ExchangeUnique",
+              "text": "\u30E6\u30CB\u30FC\u30AF\u30A2\u30A4\u30C6\u30E0"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_input",
+        "text": "\u5FC5\u8981\u306A\u30A2\u30A4\u30C6\u30E0",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ultimatum_output",
+        "text": "\u30E6\u30CB\u30FC\u30AF\u3092\u5831\u916C\u3068\u3059\u308B",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "misc_filters",
+    "title": "\u305D\u306E\u4ED6",
+    "filters": [
+      {
+        "id": "quality",
+        "text": "\u54C1\u8CEA",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ilvl",
+        "text": "\u30A2\u30A4\u30C6\u30E0\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level",
+        "text": "\u30B8\u30A7\u30E0\u30EC\u30D9\u30EB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level_progress",
+        "text": "\u30B8\u30A7\u30E0\u7D4C\u9A13\u5024 %",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_transfigured",
+        "text": "\u5909\u5BB9\u30B8\u30A7\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_vaal",
+        "text": "\u30F4\u30A1\u30FC\u30EB\u30B8\u30A7\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fractured_item",
+        "text": "\u30D5\u30E9\u30AF\u30C1\u30E3\u30FC\u30A2\u30A4\u30C6\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_imbued",
+        "text": "\u6CE8\u5165\u30B8\u30A7\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "synthesised_item",
+        "text": "\u30B7\u30F3\u30BB\u30B7\u30B9\u30A2\u30A4\u30C6\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "searing_item",
+        "text": "\u707C\u71B1\u306E\u4EE3\u884C\u8005\u30A2\u30A4\u30C6\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tangled_item",
+        "text": "\u4E16\u754C\u3092\u55B0\u3089\u3046\u8005\u30A2\u30A4\u30C6\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "memory_level",
+        "text": "\u30E1\u30E2\u30EA\u30FC\u30B9\u30C8\u30E9\u30F3\u30C9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "identified",
+        "text": "\u9451\u5B9A\u6E08\u307F",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corrupted",
+        "text": "\u30B3\u30E9\u30D7\u30C8\u72B6\u614B",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mirrored",
+        "text": "\u30DF\u30E9\u30FC\u5316",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "split",
+        "text": "\u30B9\u30D7\u30EA\u30C3\u30C8",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crafted",
+        "text": "\u30AF\u30E9\u30D5\u30C8\u6E08\u307F",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "veiled",
+        "text": "\u30F4\u30A7\u30FC\u30EB",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foreseeing",
+        "text": "\u4E88\u898B",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "talisman_tier",
+        "text": "\u30BF\u30EA\u30B9\u30DE\u30F3 \u30C6\u30A3\u30A2",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stored_experience",
+        "text": "\u84C4\u3048\u3089\u308C\u305F\u7D4C\u9A13\u5024",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stack_size",
+        "text": "\u30B9\u30BF\u30C3\u30AF\u30B5\u30A4\u30BA",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "alternate_art",
+        "text": "\u30AA\u30EB\u30BF\u30CD\u30FC\u30C8\u30A2\u30FC\u30C8",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foil_variation",
+        "text": "\u30D5\u30A9\u30A4\u30EB\u306E\u7A2E\u985E",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "none",
+              "text": "\u306A\u3057"
+            },
+            {
+              "id": "0",
+              "text": "\u30EC\u30A4\u30F3\u30DC\u30FC\uFF08\u30C7\u30D5\u30A9\u30EB\u30C8\uFF09"
+            },
+            {
+              "id": "voidborn",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30F4\u30A9\u30A4\u30C9\u30DC\u30FC\u30F3"
+            },
+            {
+              "id": "1",
+              "text": "\u30A2\u30E1\u30B8\u30B9\u30C8"
+            },
+            {
+              "id": "2",
+              "text": "\u30F4\u30A1\u30FC\u30C0\u30F3\u30C8"
+            },
+            {
+              "id": "3",
+              "text": "\u30EB\u30D3\u30FC"
+            },
+            {
+              "id": "4",
+              "text": "\u30B3\u30D0\u30EB\u30C8"
+            },
+            {
+              "id": "5",
+              "text": "\u30B5\u30F3\u30BB\u30C3\u30C8"
+            },
+            {
+              "id": "6",
+              "text": "\u30AA\u30FC\u30EA\u30A8\u30A4\u30C8"
+            },
+            {
+              "id": "celestial",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30D0\u30FC\u30B8\u30E7\u30F3"
+            },
+            {
+              "id": "7",
+              "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30AF\u30A9\u30FC\u30AF"
+            },
+            {
+              "id": "8",
+              "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30EB\u30D3\u30FC"
+            },
+            {
+              "id": "9",
+              "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30A8\u30E1\u30E9\u30EB\u30C9"
+            },
+            {
+              "id": "10",
+              "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30AA\u30FC\u30EC\u30A4\u30C8"
+            },
+            {
+              "id": "11",
+              "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30D1\u30FC\u30EB"
+            },
+            {
+              "id": "12",
+              "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30A2\u30E1\u30B8\u30B9\u30C8"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corpse_type",
+        "text": "\u6B7B\u4F53\u30BF\u30A4\u30D7",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "eldritch",
+              "text": "\u30A8\u30EB\u30C9\u30EA\u30C3\u30C1"
+            },
+            {
+              "id": "demon",
+              "text": "\u60AA\u9B54"
+            },
+            {
+              "id": "construct",
+              "text": "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30C8"
+            },
+            {
+              "id": "undead",
+              "text": "\u30A2\u30F3\u30C7\u30C3\u30C9"
+            },
+            {
+              "id": "beast",
+              "text": "\u7363"
+            },
+            {
+              "id": "humanoid",
+              "text": "\u30D2\u30E5\u30FC\u30DE\u30CE\u30A4\u30C9"
+            }
+          ]
+        }
+      },
+      {
+        "id": "scourge_tier",
+        "text": "\u30B9\u30AB\u30FC\u30B8 \u30C6\u30A3\u30A2",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crucible_item",
+        "text": "\u30AF\u30EB\u30FC\u30B7\u30D6\u30EB\u30A2\u30A4\u30C6\u30E0",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mutated",
+        "text": "\u30D5\u30A1\u30A6\u30EB\u30DC\u30FC\u30F3",
+        "option": {
+          "options": [
+            {
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "trade_filters",
+    "title": "\u30C8\u30EC\u30FC\u30C9\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "filters": [
+      {
+        "id": "account",
+        "text": "\u8CA9\u58F2\u8005\u30A2\u30AB\u30A6\u30F3\u30C8",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "collapse",
+        "text": "\u30A2\u30AB\u30A6\u30F3\u30C8\u3054\u3068\u306B\u51FA\u54C1\u3092\u6298\u308A\u305F\u305F\u3080",
+        "option": {
+          "options": [
+            {
+              "text": "\u3044\u3044\u3048"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            }
+          ]
+        }
+      },
+      {
+        "id": "indexed",
+        "text": "\u63B2\u8F09\u65E5\u6642",
+        "option": {
+          "options": [
+            {
+              "text": "\u3044\u3064\u3067\u3082"
+            },
+            {
+              "id": "1hour",
+              "text": "\u6700\u59271\u6642\u9593\u524D"
+            },
+            {
+              "id": "3hours",
+              "text": "\u6700\u59273\u6642\u9593\u524D"
+            },
+            {
+              "id": "12hours",
+              "text": "\u6700\u592712\u6642\u9593\u524D"
+            },
+            {
+              "id": "1day",
+              "text": "1\u65E5\u524D\u307E\u3067"
+            },
+            {
+              "id": "3days",
+              "text": "3\u65E5\u524D\u307E\u3067"
+            },
+            {
+              "id": "1week",
+              "text": "1\u9031\u9593\u524D\u307E\u3067"
+            },
+            {
+              "id": "2weeks",
+              "text": "2\u9031\u9593\u524D\u307E\u3067"
+            },
+            {
+              "id": "1month",
+              "text": "1\u30F6\u6708\u524D\u307E\u3067"
+            },
+            {
+              "id": "2months",
+              "text": "2\u30F6\u6708\u524D\u307E\u3067"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sale_type",
+        "text": "\u8CA9\u58F2\u30BF\u30A4\u30D7",
+        "option": {
+          "options": [
+            {
+              "id": "any",
+              "text": "\u6307\u5B9A\u306A\u3057"
+            },
+            {
+              "text": "\u30D0\u30A4\u30A2\u30A6\u30C8\u307E\u305F\u306F\u56FA\u5B9A\u4FA1\u683C"
+            },
+            {
+              "id": "priced_with_info",
+              "text": "\u30E1\u30E2\u4ED8\u304D\u306E\u4FA1\u683C"
+            },
+            {
+              "id": "unpriced",
+              "text": "\u4FA1\u683C\u63D0\u793A\u306A\u3057"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fee",
+        "text": "\u30B4\u30FC\u30EB\u30C9\u624B\u6570\u6599",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "price",
+        "text": "\u30D0\u30A4\u30A2\u30A6\u30C8\u4FA1\u683C",
+        "option": {
+          "options": [
+            {
+              "text": "\u30AB\u30AA\u30B9\u30AA\u30FC\u30D6\u540C\u7B49\u7269"
+            },
+            {
+              "id": "chaos_divine",
+              "text": "\u30AB\u30AA\u30B9\u307E\u305F\u306F\u795E\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "chaos",
+              "text": "\u30AB\u30AA\u30B9\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "exalted",
+              "text": "\u9AD8\u8CB4\u306A\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "divine",
+              "text": "\u795E\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "mirror",
+              "text": "\u30AB\u30E9\u30F3\u30C9\u30E9\u306E\u93E1"
+            },
+            {
+              "id": "blessed",
+              "text": "\u795D\u798F\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "chrome",
+              "text": "\u8272\u5F69\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "gcp",
+              "text": "\u5B9D\u77F3\u7D30\u5DE5\u5E2B\u306E\u30D7\u30EA\u30BA\u30E0"
+            },
+            {
+              "id": "jewellers",
+              "text": "\u5B9D\u98FE\u8077\u4EBA\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "scour",
+              "text": "\u6D17\u6D44\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "regret",
+              "text": "\u5F8C\u6094\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "fusing",
+              "text": "\u7D50\u5408\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "chance",
+              "text": "\u53EF\u80FD\u6027\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "alt",
+              "text": "\u6539\u5909\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "alch",
+              "text": "\u932C\u91D1\u8853\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "regal",
+              "text": "\u738B\u8005\u306E\u30AA\u30FC\u30D6"
+            },
+            {
+              "id": "vaal",
+              "text": "\u30F4\u30A1\u2015\u30EB\u30AA\u30FC\u30D6"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

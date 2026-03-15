@@ -1,1 +1,976 @@
-[{"id":"status_filters","filters":[{"id":"status","option":{"options":[{"id":"available","text":"Sofort kaufen und pers\u00F6nlicher Handel"},{"id":"securable","text":"Sofort kaufen"},{"id":"onlineleague","text":"Pers\u00F6nlicher Handel (Online in der Liga)"},{"id":"online","text":"Pers\u00F6nlicher Handel (Online)"},{"id":"any","text":"Beliebig"}]}}]},{"id":"type_filters","title":"Filter: Typen","filters":[{"id":"category","text":"Gegenstandskategorie","option":{"options":[{"text":"Beliebig"},{"id":"weapon","text":"Beliebige Waffe"},{"id":"weapon.onemelee","text":"Beliebige Einhand-Nahkampfwaffe"},{"id":"weapon.unarmed","text":"Unbewaffnet"},{"id":"weapon.claw","text":"Klaue"},{"id":"weapon.dagger","text":"Dolch"},{"id":"weapon.onesword","text":"Einhandschwert"},{"id":"weapon.oneaxe","text":"Einhandaxt"},{"id":"weapon.onemace","text":"Einhandstreitkolben"},{"id":"weapon.spear","text":"Speer"},{"id":"weapon.flail","text":"Flegel"},{"id":"weapon.twomelee","text":"Beliebige Zweihand-Nahkampfwaffe"},{"id":"weapon.twosword","text":"Zweihandschwert"},{"id":"weapon.twoaxe","text":"Zweihandaxt"},{"id":"weapon.twomace","text":"Zweihandstreitkolben"},{"id":"weapon.warstaff","text":"Kampfstab"},{"id":"weapon.talisman","text":"Talisman"},{"id":"weapon.ranged","text":"Beliebige Fernkampfwaffe"},{"id":"weapon.bow","text":"Bogen"},{"id":"weapon.crossbow","text":"Armbrust"},{"id":"weapon.caster","text":"Jede Zauberwaffe"},{"id":"weapon.wand","text":"Zauberstab"},{"id":"weapon.sceptre","text":"Zepter"},{"id":"weapon.staff","text":"Stab"},{"id":"weapon.rod","text":"Angelrute"},{"id":"armour","text":"Beliebige R\u00FCstung"},{"id":"armour.helmet","text":"Helm"},{"id":"armour.chest","text":"K\u00F6rperr\u00FCstung"},{"id":"armour.gloves","text":"Handschuhe"},{"id":"armour.boots","text":"Stiefel"},{"id":"armour.quiver","text":"K\u00F6cher"},{"id":"armour.shield","text":"Schild"},{"id":"armour.focus","text":"Fokus"},{"id":"armour.buckler","text":"Faustschild"},{"id":"accessory","text":"Beliebiger Schmuck"},{"id":"accessory.amulet","text":"Amulett"},{"id":"accessory.belt","text":"G\u00FCrtel"},{"id":"accessory.ring","text":"Ring"},{"id":"gem","text":"Beliebige Gemme"},{"id":"gem.activegem","text":"Fertigkeitengemme"},{"id":"gem.supportgem","text":"Unterst\u00FCtzungsgemme"},{"id":"gem.metagem","text":"Meta-Gemme"},{"id":"jewel","text":"Beliebiges Juwel"},{"id":"flask","text":"Beliebiges Fl\u00E4schchen"},{"id":"flask.life","text":"Lebensfl\u00E4schchen"},{"id":"flask.mana","text":"Manafl\u00E4schchen"},{"id":"map","text":"Beliebiger Endgame-Gegenstand"},{"id":"map.waystone","text":"Wegstein"},{"id":"map.fragment","text":"Kartenfragment"},{"id":"map.logbook","text":"Logbuch"},{"id":"map.breachstone","text":"Riss-Stein"},{"id":"map.barya","text":"Barya"},{"id":"map.bosskey","text":"Endgame-Schl\u00FCssel"},{"id":"map.ultimatum","text":"Ultimatum-Schl\u00FCssel"},{"id":"map.tablet","text":"Tafel"},{"id":"card","text":"Weissagungskarte"},{"id":"sanctum.relic","text":"Relikt"},{"id":"currency","text":"Beliebiger W\u00E4hrungsgegenstand"},{"id":"currency.omen","text":"Omen"},{"id":"currency.socketable","text":"Beliebige Augmentation"},{"id":"currency.rune","text":"Rune"},{"id":"currency.soulcore","text":"Seelenkern"},{"id":"currency.idol","text":"G\u00F6tze"}]}},{"id":"rarity","text":"Gegenstandsseltenheit","option":{"options":[{"text":"Beliebig"},{"id":"normal","text":"Normal"},{"id":"magic","text":"Magisch"},{"id":"rare","text":"Selten"},{"id":"unique","text":"Einzigartig"},{"id":"uniquefoil","text":"Einzigartiger Gegenstand (Foil)"},{"id":"nonunique","text":"Beliebig (nicht einzigartig)"}]}},{"id":"ilvl","text":"Gegenstandsstufe","option":{"options":[]}},{"id":"quality","text":"Gegenstandsqualit\u00E4t","option":{"options":[]}}]},{"id":"equipment_filters","title":"Filter: Ausr\u00FCstung","filters":[{"id":"damage","text":"Schaden","option":{"options":[]}},{"id":"aps","text":"Angriffe pro Sekunde","option":{"options":[]}},{"id":"crit","text":"Kritische Trefferchance","option":{"options":[]}},{"id":"dps","text":"Schaden pro Sekunde","option":{"options":[]}},{"id":"pdps","text":"Physischer SPS","option":{"options":[]}},{"id":"edps","text":"Elementarer SPS","option":{"options":[]}},{"id":"reload_time","text":"Nachladezeit","option":{"options":[]}},{"id":"ar","text":"R\u00FCstung","option":{"options":[]}},{"id":"ev","text":"Ausweichen","option":{"options":[]}},{"id":"es","text":"Energieschild","option":{"options":[]}},{"id":"block","text":"Blocken","option":{"options":[]}},{"id":"spirit","text":"Wille","option":{"options":[]}},{"id":"rune_sockets","text":"Augmentations-Fassungen","option":{"options":[]}}]},{"id":"req_filters","title":"Filter: Anforderungen","filters":[{"id":"lvl","text":"Stufe","option":{"options":[]}},{"id":"str","text":"St\u00E4rke","option":{"options":[]}},{"id":"dex","text":"Geschick","option":{"options":[]}},{"id":"int","text":"Intelligenz","option":{"options":[]}}]},{"id":"map_filters","title":"Filter: Endgame","filters":[{"id":"map_tier","text":"Wegstein-Level","option":{"options":[]}},{"id":"map_packsize","text":"Wegstein: Gruppengr\u00F6\u00DFe","option":{"options":[]}},{"id":"map_iiq","text":"Wegstein: Erh. Gegenstandsmenge","option":{"options":[]}},{"id":"map_iir","text":"Wegstein: Erh. Gegenstandsseltenheit","option":{"options":[]}},{"id":"map_revives","text":"Wegstein: Wiederbelebungen","option":{"options":[]}},{"id":"map_bonus","text":"Chance auf fallen gelassene Wegsteine","option":{"options":[]}},{"id":"map_gold","text":"Wegstein: Gold","option":{"options":[]}},{"id":"map_experience","text":"Wegstein: Erfahrung","option":{"options":[]}},{"id":"map_magic_monsters","text":"Wegstein: Magische Monster","option":{"options":[]}},{"id":"map_rare_monsters","text":"Wegstein: Seltene Monster","option":{"options":[]}},{"id":"ultimatum_hint","text":"Ultimatum-Pr\u00FCfungshinweis","option":{"options":[{"text":"Beliebig"},{"id":"Victorious","text":"Siegreich"},{"id":"Cowardly","text":"Feige"},{"id":"Deadly","text":"T\u00F6dlich"}]}}]},{"id":"misc_filters","title":"Filter: Sonstiges","filters":[{"id":"gem_level","text":"Gemmenstufe","option":{"options":[]}},{"id":"gem_sockets","text":"Gemmenfassungen","option":{"options":[]}},{"id":"area_level","text":"Gebietsstufe","option":{"options":[]}},{"id":"stack_size","text":"Stapelgr\u00F6\u00DFe","option":{"options":[]}},{"id":"identified","text":"Identifiziert","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"fractured_item","text":"Br\u00FCchig","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"corrupted","text":"Verderbt","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"sanctified","text":"Geheiligt","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"twice_corrupted","text":"Doppelt verderbt","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"mutated","text":"Einzigartiger Vaal-Gegenstand","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"veiled","text":"Verh\u00FCllt","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"desecrated","text":"Entweiht","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"foreseeing","text":"Vorausschau","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"mirrored","text":"Gespiegelt","option":{"options":[{"text":"Beliebig"},{"id":"true","text":"Ja"},{"id":"false","text":"Nein"}]}},{"id":"sanctum_gold","text":"Barya Heiliges Wasser","option":{"options":[]}},{"id":"unidentified_tier","text":"Nicht identifiziertes Level","option":{"options":[]}}]},{"id":"trade_filters","title":"Filter: Handel","filters":[{"id":"account","text":"Konto des Verk\u00E4ufers","option":{"options":[]}},{"id":"collapse","text":"Ergebnisse nach Konto gruppieren","option":{"options":[{"text":"Nein"},{"id":"true","text":"Ja"}]}},{"id":"indexed","text":"Gelistet","option":{"options":[{"text":"Beliebige Zeit"},{"id":"1hour","text":"Bis vor einer Stunde"},{"id":"3hours","text":"Bis vor 3 Stunden"},{"id":"12hours","text":"Bis vor 12 Stunden"},{"id":"1day","text":"Bis vor einem Tag"},{"id":"3days","text":"Bis vor 3 Tagen"},{"id":"1week","text":"Bis vor einer Woche"},{"id":"2weeks","text":"Bis vor 2 Wochen"},{"id":"1month","text":"Bis vor 1 Monat"},{"id":"2months","text":"Bis vor 2 Monaten"}]}},{"id":"sale_type","text":"Verkaufstyp","option":{"options":[{"id":"any","text":"Beliebig"},{"text":"VHB oder fester Preis"},{"id":"priced_with_info","text":"Preis mit Notiz"},{"id":"unpriced","text":"Kein gelisteter Preis"}]}},{"id":"fee","text":"Goldgeb\u00FChr","option":{"options":[]}},{"id":"price","text":"Preis","option":{"options":[{"text":"Erhabene Sph\u00E4re \u00C4quivalent"},{"id":"exalted_divine","text":"Erhabene oder G\u00F6ttliche Sph\u00E4re"},{"id":"aug","text":"Aufwertungssph\u00E4re"},{"id":"transmute","text":"Umwandlungssph\u00E4re"},{"id":"exalted","text":"Erhabene Sph\u00E4re"},{"id":"regal","text":"Hoheitliche Sph\u00E4re"},{"id":"chaos","text":"Chaossph\u00E4re"},{"id":"vaal","text":"Vaalsph\u00E4re"},{"id":"alch","text":"Sph\u00E4re der Alchemie"},{"id":"divine","text":"G\u00F6ttliche Sph\u00E4re"},{"id":"annul","text":"Sph\u00E4re der Annullierung"},{"id":"mirror","text":"Spiegel von Kalandra"}]}}]}]
+[
+  {
+    "id": "status_filters",
+    "filters": [
+      {
+        "id": "status",
+        "option": {
+          "options": [
+            {
+              "id": "available",
+              "text": "Sofort kaufen und pers\u00F6nlicher Handel"
+            },
+            {
+              "id": "securable",
+              "text": "Sofort kaufen"
+            },
+            {
+              "id": "onlineleague",
+              "text": "Pers\u00F6nlicher Handel (Online in der Liga)"
+            },
+            {
+              "id": "online",
+              "text": "Pers\u00F6nlicher Handel (Online)"
+            },
+            {
+              "id": "any",
+              "text": "Beliebig"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "type_filters",
+    "title": "Filter: Typen",
+    "filters": [
+      {
+        "id": "category",
+        "text": "Gegenstandskategorie",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "weapon",
+              "text": "Beliebige Waffe"
+            },
+            {
+              "id": "weapon.onemelee",
+              "text": "Beliebige Einhand-Nahkampfwaffe"
+            },
+            {
+              "id": "weapon.unarmed",
+              "text": "Unbewaffnet"
+            },
+            {
+              "id": "weapon.claw",
+              "text": "Klaue"
+            },
+            {
+              "id": "weapon.dagger",
+              "text": "Dolch"
+            },
+            {
+              "id": "weapon.onesword",
+              "text": "Einhandschwert"
+            },
+            {
+              "id": "weapon.oneaxe",
+              "text": "Einhandaxt"
+            },
+            {
+              "id": "weapon.onemace",
+              "text": "Einhandstreitkolben"
+            },
+            {
+              "id": "weapon.spear",
+              "text": "Speer"
+            },
+            {
+              "id": "weapon.flail",
+              "text": "Flegel"
+            },
+            {
+              "id": "weapon.twomelee",
+              "text": "Beliebige Zweihand-Nahkampfwaffe"
+            },
+            {
+              "id": "weapon.twosword",
+              "text": "Zweihandschwert"
+            },
+            {
+              "id": "weapon.twoaxe",
+              "text": "Zweihandaxt"
+            },
+            {
+              "id": "weapon.twomace",
+              "text": "Zweihandstreitkolben"
+            },
+            {
+              "id": "weapon.warstaff",
+              "text": "Kampfstab"
+            },
+            {
+              "id": "weapon.talisman",
+              "text": "Talisman"
+            },
+            {
+              "id": "weapon.ranged",
+              "text": "Beliebige Fernkampfwaffe"
+            },
+            {
+              "id": "weapon.bow",
+              "text": "Bogen"
+            },
+            {
+              "id": "weapon.crossbow",
+              "text": "Armbrust"
+            },
+            {
+              "id": "weapon.caster",
+              "text": "Jede Zauberwaffe"
+            },
+            {
+              "id": "weapon.wand",
+              "text": "Zauberstab"
+            },
+            {
+              "id": "weapon.sceptre",
+              "text": "Zepter"
+            },
+            {
+              "id": "weapon.staff",
+              "text": "Stab"
+            },
+            {
+              "id": "weapon.rod",
+              "text": "Angelrute"
+            },
+            {
+              "id": "armour",
+              "text": "Beliebige R\u00FCstung"
+            },
+            {
+              "id": "armour.helmet",
+              "text": "Helm"
+            },
+            {
+              "id": "armour.chest",
+              "text": "K\u00F6rperr\u00FCstung"
+            },
+            {
+              "id": "armour.gloves",
+              "text": "Handschuhe"
+            },
+            {
+              "id": "armour.boots",
+              "text": "Stiefel"
+            },
+            {
+              "id": "armour.quiver",
+              "text": "K\u00F6cher"
+            },
+            {
+              "id": "armour.shield",
+              "text": "Schild"
+            },
+            {
+              "id": "armour.focus",
+              "text": "Fokus"
+            },
+            {
+              "id": "armour.buckler",
+              "text": "Faustschild"
+            },
+            {
+              "id": "accessory",
+              "text": "Beliebiger Schmuck"
+            },
+            {
+              "id": "accessory.amulet",
+              "text": "Amulett"
+            },
+            {
+              "id": "accessory.belt",
+              "text": "G\u00FCrtel"
+            },
+            {
+              "id": "accessory.ring",
+              "text": "Ring"
+            },
+            {
+              "id": "gem",
+              "text": "Beliebige Gemme"
+            },
+            {
+              "id": "gem.activegem",
+              "text": "Fertigkeitengemme"
+            },
+            {
+              "id": "gem.supportgem",
+              "text": "Unterst\u00FCtzungsgemme"
+            },
+            {
+              "id": "gem.metagem",
+              "text": "Meta-Gemme"
+            },
+            {
+              "id": "jewel",
+              "text": "Beliebiges Juwel"
+            },
+            {
+              "id": "flask",
+              "text": "Beliebiges Fl\u00E4schchen"
+            },
+            {
+              "id": "flask.life",
+              "text": "Lebensfl\u00E4schchen"
+            },
+            {
+              "id": "flask.mana",
+              "text": "Manafl\u00E4schchen"
+            },
+            {
+              "id": "map",
+              "text": "Beliebiger Endgame-Gegenstand"
+            },
+            {
+              "id": "map.waystone",
+              "text": "Wegstein"
+            },
+            {
+              "id": "map.fragment",
+              "text": "Kartenfragment"
+            },
+            {
+              "id": "map.logbook",
+              "text": "Logbuch"
+            },
+            {
+              "id": "map.breachstone",
+              "text": "Riss-Stein"
+            },
+            {
+              "id": "map.barya",
+              "text": "Barya"
+            },
+            {
+              "id": "map.bosskey",
+              "text": "Endgame-Schl\u00FCssel"
+            },
+            {
+              "id": "map.ultimatum",
+              "text": "Ultimatum-Schl\u00FCssel"
+            },
+            {
+              "id": "map.tablet",
+              "text": "Tafel"
+            },
+            {
+              "id": "card",
+              "text": "Weissagungskarte"
+            },
+            {
+              "id": "sanctum.relic",
+              "text": "Relikt"
+            },
+            {
+              "id": "currency",
+              "text": "Beliebiger W\u00E4hrungsgegenstand"
+            },
+            {
+              "id": "currency.omen",
+              "text": "Omen"
+            },
+            {
+              "id": "currency.socketable",
+              "text": "Beliebige Augmentation"
+            },
+            {
+              "id": "currency.rune",
+              "text": "Rune"
+            },
+            {
+              "id": "currency.soulcore",
+              "text": "Seelenkern"
+            },
+            {
+              "id": "currency.idol",
+              "text": "G\u00F6tze"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rarity",
+        "text": "Gegenstandsseltenheit",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "normal",
+              "text": "Normal"
+            },
+            {
+              "id": "magic",
+              "text": "Magisch"
+            },
+            {
+              "id": "rare",
+              "text": "Selten"
+            },
+            {
+              "id": "unique",
+              "text": "Einzigartig"
+            },
+            {
+              "id": "uniquefoil",
+              "text": "Einzigartiger Gegenstand (Foil)"
+            },
+            {
+              "id": "nonunique",
+              "text": "Beliebig (nicht einzigartig)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ilvl",
+        "text": "Gegenstandsstufe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "quality",
+        "text": "Gegenstandsqualit\u00E4t",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "equipment_filters",
+    "title": "Filter: Ausr\u00FCstung",
+    "filters": [
+      {
+        "id": "damage",
+        "text": "Schaden",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "aps",
+        "text": "Angriffe pro Sekunde",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crit",
+        "text": "Kritische Trefferchance",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dps",
+        "text": "Schaden pro Sekunde",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "pdps",
+        "text": "Physischer SPS",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "edps",
+        "text": "Elementarer SPS",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "reload_time",
+        "text": "Nachladezeit",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ar",
+        "text": "R\u00FCstung",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ev",
+        "text": "Ausweichen",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "es",
+        "text": "Energieschild",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "block",
+        "text": "Blocken",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "spirit",
+        "text": "Wille",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "rune_sockets",
+        "text": "Augmentations-Fassungen",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "req_filters",
+    "title": "Filter: Anforderungen",
+    "filters": [
+      {
+        "id": "lvl",
+        "text": "Stufe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "str",
+        "text": "St\u00E4rke",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dex",
+        "text": "Geschick",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "int",
+        "text": "Intelligenz",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "map_filters",
+    "title": "Filter: Endgame",
+    "filters": [
+      {
+        "id": "map_tier",
+        "text": "Wegstein-Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "Wegstein: Gruppengr\u00F6\u00DFe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iiq",
+        "text": "Wegstein: Erh. Gegenstandsmenge",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "Wegstein: Erh. Gegenstandsseltenheit",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_revives",
+        "text": "Wegstein: Wiederbelebungen",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "Chance auf fallen gelassene Wegsteine",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_gold",
+        "text": "Wegstein: Gold",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_experience",
+        "text": "Wegstein: Erfahrung",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_magic_monsters",
+        "text": "Wegstein: Magische Monster",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_rare_monsters",
+        "text": "Wegstein: Seltene Monster",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ultimatum_hint",
+        "text": "Ultimatum-Pr\u00FCfungshinweis",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "Victorious",
+              "text": "Siegreich"
+            },
+            {
+              "id": "Cowardly",
+              "text": "Feige"
+            },
+            {
+              "id": "Deadly",
+              "text": "T\u00F6dlich"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "misc_filters",
+    "title": "Filter: Sonstiges",
+    "filters": [
+      {
+        "id": "gem_level",
+        "text": "Gemmenstufe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_sockets",
+        "text": "Gemmenfassungen",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "Gebietsstufe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stack_size",
+        "text": "Stapelgr\u00F6\u00DFe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "identified",
+        "text": "Identifiziert",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fractured_item",
+        "text": "Br\u00FCchig",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corrupted",
+        "text": "Verderbt",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sanctified",
+        "text": "Geheiligt",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "twice_corrupted",
+        "text": "Doppelt verderbt",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mutated",
+        "text": "Einzigartiger Vaal-Gegenstand",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "veiled",
+        "text": "Verh\u00FCllt",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "desecrated",
+        "text": "Entweiht",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foreseeing",
+        "text": "Vorausschau",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mirrored",
+        "text": "Gespiegelt",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sanctum_gold",
+        "text": "Barya Heiliges Wasser",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "Nicht identifiziertes Level",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "trade_filters",
+    "title": "Filter: Handel",
+    "filters": [
+      {
+        "id": "account",
+        "text": "Konto des Verk\u00E4ufers",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "collapse",
+        "text": "Ergebnisse nach Konto gruppieren",
+        "option": {
+          "options": [
+            {
+              "text": "Nein"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            }
+          ]
+        }
+      },
+      {
+        "id": "indexed",
+        "text": "Gelistet",
+        "option": {
+          "options": [
+            {
+              "text": "Beliebige Zeit"
+            },
+            {
+              "id": "1hour",
+              "text": "Bis vor einer Stunde"
+            },
+            {
+              "id": "3hours",
+              "text": "Bis vor 3 Stunden"
+            },
+            {
+              "id": "12hours",
+              "text": "Bis vor 12 Stunden"
+            },
+            {
+              "id": "1day",
+              "text": "Bis vor einem Tag"
+            },
+            {
+              "id": "3days",
+              "text": "Bis vor 3 Tagen"
+            },
+            {
+              "id": "1week",
+              "text": "Bis vor einer Woche"
+            },
+            {
+              "id": "2weeks",
+              "text": "Bis vor 2 Wochen"
+            },
+            {
+              "id": "1month",
+              "text": "Bis vor 1 Monat"
+            },
+            {
+              "id": "2months",
+              "text": "Bis vor 2 Monaten"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sale_type",
+        "text": "Verkaufstyp",
+        "option": {
+          "options": [
+            {
+              "id": "any",
+              "text": "Beliebig"
+            },
+            {
+              "text": "VHB oder fester Preis"
+            },
+            {
+              "id": "priced_with_info",
+              "text": "Preis mit Notiz"
+            },
+            {
+              "id": "unpriced",
+              "text": "Kein gelisteter Preis"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fee",
+        "text": "Goldgeb\u00FChr",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "price",
+        "text": "Preis",
+        "option": {
+          "options": [
+            {
+              "text": "Erhabene Sph\u00E4re \u00C4quivalent"
+            },
+            {
+              "id": "exalted_divine",
+              "text": "Erhabene oder G\u00F6ttliche Sph\u00E4re"
+            },
+            {
+              "id": "aug",
+              "text": "Aufwertungssph\u00E4re"
+            },
+            {
+              "id": "transmute",
+              "text": "Umwandlungssph\u00E4re"
+            },
+            {
+              "id": "exalted",
+              "text": "Erhabene Sph\u00E4re"
+            },
+            {
+              "id": "regal",
+              "text": "Hoheitliche Sph\u00E4re"
+            },
+            {
+              "id": "chaos",
+              "text": "Chaossph\u00E4re"
+            },
+            {
+              "id": "vaal",
+              "text": "Vaalsph\u00E4re"
+            },
+            {
+              "id": "alch",
+              "text": "Sph\u00E4re der Alchemie"
+            },
+            {
+              "id": "divine",
+              "text": "G\u00F6ttliche Sph\u00E4re"
+            },
+            {
+              "id": "annul",
+              "text": "Sph\u00E4re der Annullierung"
+            },
+            {
+              "id": "mirror",
+              "text": "Spiegel von Kalandra"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

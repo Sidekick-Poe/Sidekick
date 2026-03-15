@@ -1,1 +1,1732 @@
-[{"id":"status_filters","filters":[{"id":"status","option":{"options":[{"id":"available","text":"\u5373\u523B\u8CFC\u8CB7\u4EE5\u53CA\u9762\u5C0D\u9762\u4EA4\u6613"},{"id":"securable","text":"\u5373\u523B\u8CFC\u8CB7"},{"id":"onlineleague","text":"\u9762\u5C0D\u9762\u4EA4\u6613(\u806F\u76DF\u5728\u7DDA)"},{"id":"online","text":"\u9762\u5C0D\u9762\u4EA4\u6613(\u5728\u7DDA)"},{"id":"any","text":"\u4EFB\u4F55"}]}}]},{"id":"type_filters","title":"\u985E\u5225\u904E\u6FFE","filters":[{"id":"category","text":"\u9053\u5177\u5206\u985E","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"weapon","text":"\u6B66\u5668"},{"id":"weapon.one","text":"\u55AE\u624B\u6B66\u5668"},{"id":"weapon.onemelee","text":"\u55AE\u624B\u8FD1\u6230\u6B66\u5668"},{"id":"weapon.twomelee","text":"\u96D9\u624B\u8FD1\u6230\u6B66\u5668"},{"id":"weapon.bow","text":"\u5F13"},{"id":"weapon.claw","text":"\u722A"},{"id":"weapon.dagger","text":"\u4EFB\u4E00\u5315\u9996"},{"id":"weapon.basedagger","text":"\u57FA\u790E\u5315\u9996"},{"id":"weapon.runedagger","text":"\u7B26\u7D0B\u5315\u9996"},{"id":"weapon.oneaxe","text":"\u55AE\u624B\u65A7"},{"id":"weapon.onesword","text":"\u4EFB\u4F55\u55AE\u624B\u528D"},{"id":"weapon.basesword","text":"\u57FA\u790E\u55AE\u624B\u528D"},{"id":"weapon.rapier","text":"\u7D30\u528D"},{"id":"weapon.onemace","text":"\u4EFB\u4F55\u55AE\u624B\u9318"},{"id":"weapon.basemace","text":"\u57FA\u790E\u55AE\u624B\u9318"},{"id":"weapon.sceptre","text":"\u6B0A\u6756"},{"id":"weapon.staff","text":"\u4EFB\u4E00\u9577\u6756"},{"id":"weapon.basestaff","text":"\u57FA\u790E\u9577\u6756"},{"id":"weapon.warstaff","text":"\u5F81\u6230\u9577\u6756"},{"id":"weapon.twoaxe","text":"\u96D9\u624B\u65A7"},{"id":"weapon.twomace","text":"\u96D9\u624B\u9318"},{"id":"weapon.twosword","text":"\u96D9\u624B\u528D"},{"id":"weapon.wand","text":"\u6CD5\u6756"},{"id":"weapon.rod","text":"\u91E3\u7AFF"},{"id":"armour","text":"\u4EFB\u610F\u8B77\u7532"},{"id":"armour.chest","text":"\u80F8\u7532"},{"id":"armour.boots","text":"\u978B\u5B50"},{"id":"armour.gloves","text":"\u624B\u5957"},{"id":"armour.helmet","text":"\u982D\u76D4"},{"id":"armour.shield","text":"\u76FE"},{"id":"armour.quiver","text":"\u7BAD\u888B"},{"id":"accessory","text":"\u914D\u4EF6"},{"id":"accessory.amulet","text":"\u9805\u934A"},{"id":"accessory.belt","text":"\u8170\u5E36"},{"id":"accessory.ring","text":"\u6212\u6307"},{"id":"accessory.trinket","text":"\u98FE\u54C1"},{"id":"gem","text":"\u4EFB\u4F55\u5BF6\u77F3"},{"id":"gem.activegem","text":"\u6280\u80FD\u5BF6\u77F3"},{"id":"gem.supportgem","text":"\u8F14\u52A9\u5BF6\u77F3"},{"id":"gem.supportgemplus","text":"\u89BA\u9192\u8F14\u52A9\u5BF6\u77F3"},{"id":"jewel","text":"\u4EFB\u4F55\u73E0\u5BF6"},{"id":"jewel.base","text":"\u57FA\u790E\u73E0\u5BF6"},{"id":"jewel.abyss","text":"\u6DF1\u6DF5\u73E0\u5BF6"},{"id":"jewel.cluster","text":"\u661F\u5718\u73E0\u5BF6"},{"id":"flask","text":"\u85E5\u5291"},{"id":"map","text":"\u5730\u5716"},{"id":"map.fragment","text":"\u5730\u5716\u788E\u7247"},{"id":"map.breachstone","text":"\u88C2\u75D5\u77F3"},{"id":"map.invitation","text":"\u91CB\u754C\u4E4B\u9080"},{"id":"map.scarab","text":"\u8056\u7532\u87F2"},{"id":"leaguestone","text":"\u806F\u76DF\u77F3"},{"id":"memoryline","text":"\u8A18\u61B6\u7DDA"},{"id":"card","text":"\u547D\u904B\u5361"},{"id":"monster.beast","text":"\u5DF2\u6355\u7372\u91CE\u7378"},{"id":"monster.yellowbeast","text":"\u9EC3\u8272\u91CE\u7378"},{"id":"monster.redbeast","text":"\u7D05\u8272\u91CE\u7378"},{"id":"heistequipment","text":"\u4EFB\u4F55\u52AB\u76DC\u88DD\u5099"},{"id":"heistequipment.heistweapon","text":"\u52AB\u76DC\u88DD\u5099"},{"id":"heistequipment.heisttool","text":"\u52AB\u76DC\u5DE5\u5177"},{"id":"heistequipment.heistutility","text":"\u52AB\u76DC\u62AB\u98A8"},{"id":"heistequipment.heistreward","text":"\u52AB\u76DC\u80F8\u91DD"},{"id":"heistmission","text":"\u4EFB\u4F55\u52AB\u76DC\u4EFB\u52D9"},{"id":"heistmission.contract","text":"\u52AB\u76DC\u5951\u7D04\u66F8"},{"id":"heistmission.blueprint","text":"\u52AB\u76DC\u85CD\u5716"},{"id":"logbook","text":"\u4EFB\u4F55\u63A2\u96AA\u65E5\u8A8C"},{"id":"sanctum.research","text":"\u8056\u57DF\u7814\u7A76"},{"id":"sanctum.relic","text":"\u8056\u57DF\u8056\u7269"},{"id":"tincture","text":"\u4EFB\u4F55\u8403\u53D6\u7269"},{"id":"corpse","text":"\u4EFB\u4F55\u5C4D\u9AD4"},{"id":"idol","text":"\u4EFB\u4F55\u9B54\u5076"},{"id":"graft","text":"\u4EFB\u4F55\u63A5\u80A2"},{"id":"wombgift","text":"\u4EFB\u4F55\u80CE\u8D08"},{"id":"currency","text":"\u4EFB\u4F55\u901A\u8CA8"},{"id":"currency.piece","text":"\u50B3\u5947\u788E\u7247"},{"id":"currency.resonator","text":"\u9444\u65B0\u5100"},{"id":"currency.fossil","text":"\u5316\u77F3"},{"id":"currency.incubator","text":"\u57F9\u80B2\u5668"},{"id":"currency.heistobjective","text":"\u52AB\u76DC\u76EE\u6A19"},{"id":"currency.omen","text":"\u9810\u5146"},{"id":"currency.tattoo","text":"\u7D0B\u8EAB"}]}},{"id":"rarity","text":"\u7269\u54C1\u7A00\u6709\u5EA6","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"normal","text":"\u4E00\u822C"},{"id":"magic","text":"\u9B54\u6CD5"},{"id":"rare","text":"\u7A00\u6709"},{"id":"unique","text":"\u50B3\u5947"},{"id":"uniquefoil","text":"\u50B3\u5947 (\u8CBC\u6A21)"},{"id":"nonunique","text":"\u975E\u50B3\u5947\u9053\u5177"}]}}]},{"id":"weapon_filters","title":"\u6B66\u5668\u7BE9\u9078","filters":[{"id":"damage","text":"\u50B7\u5BB3","option":{"options":[]}},{"id":"aps","text":"\u6BCF\u79D2\u653B\u64CA\u901F\u5EA6","option":{"options":[]}},{"id":"crit","text":"\u66B4\u64CA\u6A5F\u7387","option":{"options":[]}},{"id":"dps","text":"\u6BCF\u79D2\u50B7\u5BB3","option":{"options":[]}},{"id":"pdps","text":"\u7269\u7406\u50B7\u5BB3","option":{"options":[]}},{"id":"edps","text":"\u5143\u7D20\u50B7\u5BB3","option":{"options":[]}}]},{"id":"armour_filters","title":"\u8B77\u7532\u7BE9\u9078","filters":[{"id":"ar","text":"\u8B77\u7532","option":{"options":[]}},{"id":"ev","text":"\u9583\u907F","option":{"options":[]}},{"id":"es","text":"\u80FD\u91CF\u8B77\u76FE","option":{"options":[]}},{"id":"ward","text":"\u4FDD\u8B77","option":{"options":[]}},{"id":"block","text":"\u683C\u64CB","option":{"options":[]}},{"id":"base_defence_percentile","text":"\u57FA\u790E\u767E\u5206\u6BD4","option":{"options":[]}}]},{"id":"socket_filters","title":"\u63D2\u69FD\u7BE9\u9078","filters":[{"id":"sockets","text":"\u63D2\u69FD","option":{"options":[]}},{"id":"links","text":"\u9023\u7D50","option":{"options":[]}}]},{"id":"req_filters","title":"\u7269\u54C1\u9700\u6C42","filters":[{"id":"lvl","text":"\u7B49\u7D1A","option":{"options":[]}},{"id":"str","text":"\u529B\u91CF","option":{"options":[]}},{"id":"dex","text":"\u654F\u6377","option":{"options":[]}},{"id":"int","text":"\u667A\u6167","option":{"options":[]}},{"id":"class","text":"\u89D2\u8272","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"scion","text":"\u8CB4\u65CF"},{"id":"marauder","text":"\u91CE\u883B\u4EBA"},{"id":"ranger","text":"\u904A\u4FE0"},{"id":"witch","text":"\u5973\u5DEB"},{"id":"duelist","text":"\u6C7A\u9B25\u8005"},{"id":"templar","text":"\u8056\u9A0E\u58EB"},{"id":"shadow","text":"\u6697\u5F71\u523A\u5BA2"}]}}]},{"id":"map_filters","title":"\u5730\u5716\u7BE9\u9078","filters":[{"id":"map_tier","text":"\u5730\u5716\u968E\u7D1A","option":{"options":[]}},{"id":"map_packsize","text":"\u5730\u5716\u5927\u5C0F","option":{"options":[]}},{"id":"map_iiq","text":"\u5730\u5716\u7269\u54C1\u6389\u843D\u6578\u91CF","option":{"options":[]}},{"id":"map_iir","text":"\u5730\u5716\u7269\u54C1\u7A00\u6709\u5EA6","option":{"options":[]}},{"id":"area_level","text":"\u5340\u57DF\u7B49\u7D1A","option":{"options":[]}},{"id":"map_series","text":"\u5730\u5716\u7CFB\u5217","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"current","text":"\u7576\u524D"},{"id":"keepers","text":"\u770B\u5B88\u8005"},{"id":"mercenary","text":"\u50AD\u5175"},{"id":"settlers","text":"\u5C45\u6C11\u5011"},{"id":"necropolis","text":"\u9B54\u5F71\u5893\u5834"},{"id":"azmeri","text":"\u7981\u5492"},{"id":"ancestor","text":"\u7956\u9748"},{"id":"crucible","text":"\u7194\u706B\u51A5\u7344"},{"id":"sanctum","text":"\u8056\u57DF"},{"id":"lake","text":"\u5361\u862D\u5FB7"},{"id":"sentinel","text":"\u5B88\u671B\u806F\u76DF"},{"id":"archnemesis","text":"\u5BBF\u6575\u806F\u76DF"},{"id":"scourge","text":"\u707D\u9B58\u806F\u76DF"},{"id":"expedition","text":"\u6B7B\u5883\u63A2\u96AA"},{"id":"ritual","text":"\u796D\u7940"},{"id":"heist","text":"\u52AB\u76DC\u540C\u76DF"},{"id":"harvest","text":"\u8C50\u6536\u5FCC\u52AB"},{"id":"delirium","text":"\u8B6B\u5984\u7570\u57DF"},{"id":"metamorph","text":"\u934A\u9B54\u806F\u76DF"},{"id":"blight","text":"\u51CB\u843D\u7981\u5730"},{"id":"legion","text":"\u6230\u4E82\u4E4B\u6BA4"},{"id":"synthesis","text":"\u5C0B\u5922\u8FFD\u61B6"},{"id":"betrayal","text":"\u53CD\u53DB\u806F\u76DF"},{"id":"warfortheatlas","text":"\u70FD\u706B\u8F3F\u5716"},{"id":"atlasofworlds","text":"\u7570\u754C\u8F3F\u5716"},{"id":"theawakening","text":"\u5927\u89BA\u9192"},{"id":"original","text":"\u4E0D\u673D\u806F\u76DF"}]}},{"id":"map_blighted","text":"\u51CB\u843D\u7684\u5730\u5716","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"map_uberblighted","text":"\u51CB\u843D\u8513\u5EF6\u5730\u5716","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"map_completion_reward","text":"\u5B8C\u6210\u5730\u5716\u734E\u52F5","option":{"options":[]}}]},{"id":"heist_filters","title":"\u52AB\u76DC\u7BE9\u9078","filters":[{"id":"heist_wings","text":"\u5DF2\u63ED\u9732\u5074\u5EC2","option":{"options":[]}},{"id":"heist_max_wings","text":"\u7E3D\u5074\u5EC2","option":{"options":[]}},{"id":"heist_escape_routes","text":"\u5DF2\u63ED\u9732\u9003\u812B\u8DEF\u7DDA","option":{"options":[]}},{"id":"heist_max_escape_routes","text":"\u7E3D\u9003\u812B\u8DEF\u7DDA","option":{"options":[]}},{"id":"heist_reward_rooms","text":"\u5DF2\u63ED\u9732\u6697\u623F","option":{"options":[]}},{"id":"heist_max_reward_rooms","text":"\u7E3D\u6697\u623F","option":{"options":[]}},{"id":"heist_objective_value","text":"\u5951\u7D04\u66F8\u6A19\u7684\u50F9\u503C","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"moderate","text":"\u4E2D\u7B49\u50F9\u503C"},{"id":"high","text":"\u9AD8\u7B49\u50F9\u503C"},{"id":"precious","text":"\u73CD\u5BF6"},{"id":"priceless","text":"\u7121\u50F9"}]}},{"id":"heist_lockpicking","text":"\u958B\u9396\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_brute_force","text":"\u883B\u529B\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_perception","text":"\u6D1E\u5BDF\u529B\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_demolition","text":"\u62C6\u9664\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_counter_thaumaturgy","text":"\u89E3\u5492\u5E2B\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_trap_disarmament","text":"\u9677\u9631\u62C6\u9664\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_agility","text":"\u9748\u5DE7\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_deception","text":"\u8A50\u6B3A\u7B49\u7D1A","option":{"options":[]}},{"id":"heist_engineering","text":"\u5DE5\u7A0B\u7B49\u7D1A","option":{"options":[]}}]},{"id":"sanctum_filters","title":"\u8056\u57DF\u7BE9\u9078\u5668","filters":[{"id":"sanctum_resolve","text":"\u6C7A\u5FC3","option":{"options":[]}},{"id":"sanctum_max_resolve","text":"\u6700\u5927\u6C7A\u5FC3","option":{"options":[]}},{"id":"sanctum_inspiration","text":"\u555F\u767C","option":{"options":[]}},{"id":"sanctum_gold","text":"\u5967\u745E\u5384\u65AF\u5E63","option":{"options":[]}}]},{"id":"ultimatum_filters","title":"\u6700\u5F8C\u901A\u7252\u7BE9\u9078","filters":[{"id":"ultimatum_challenge","text":"\u6311\u6230\u985E\u578B","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"Exterminate","text":"\u64CA\u6557\u6578\u6CE2\u6575\u4EBA"},{"id":"Survival","text":"\u5016\u5B58"},{"id":"Defense","text":"\u4FDD\u8B77\u796D\u58C7"},{"id":"Conquer","text":"\u7AD9\u5728\u77F3\u9663\u5167"}]}},{"id":"ultimatum_reward","text":"\u734E\u52F5\u985E\u578B","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"DoubleCurrency","text":"\u901A\u8CA8"},{"id":"DoubleDivCards","text":"\u547D\u904B\u5361"},{"id":"MirrorRare","text":"\u8907\u88FD\u7A00\u6709\u7269\u54C1"},{"id":"ExchangeUnique","text":"\u50B3\u5947\u7269\u54C1"}]}},{"id":"ultimatum_input","text":"\u9700\u6C42\u7269\u54C1","option":{"options":[]}},{"id":"ultimatum_output","text":"\u50B3\u5947\u734E\u52F5","option":{"options":[]}}]},{"id":"misc_filters","title":"\u5176\u5B83","filters":[{"id":"quality","text":"\u54C1\u8CEA","option":{"options":[]}},{"id":"ilvl","text":"\u7269\u54C1\u7B49\u7D1A","option":{"options":[]}},{"id":"gem_level","text":"\u5BF6\u77F3\u7B49\u7D1A","option":{"options":[]}},{"id":"gem_level_progress","text":"\u5BF6\u77F3\u7D93\u9A57 %","option":{"options":[]}},{"id":"gem_transfigured","text":"\u8B8A\u7570\u5BF6\u77F3","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"gem_vaal","text":"\u74E6\u5BF6\u5BF6\u77F3","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"fractured_item","text":"\u7834\u88C2\u4E4B\u7269","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"gem_imbued","text":"\u6CE8\u80FD\u5BF6\u77F3","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"synthesised_item","text":"\u8FFD\u61B6\u4E4B\u7269","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"searing_item","text":"\u707C\u70D9\u7E3D\u7763\u7269\u54C1","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"tangled_item","text":"\u541E\u566C\u5929\u5730\u7269\u54C1","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"memory_level","text":"\u8A18\u61B6\u7D72\u7E37","option":{"options":[]}},{"id":"identified","text":"\u5DF2\u9451\u5B9A","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"corrupted","text":"\u5DF2\u6C59\u67D3","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"mirrored","text":"\u5DF2\u8907\u88FD","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"split","text":"\u5206\u5316","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"crafted","text":"\u5DF2\u5DE5\u85DD","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"veiled","text":"\u96B1\u533F","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"foreseeing","text":"\u9810\u898B","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"talisman_tier","text":"\u9B54\u7B26\u968E\u7D1A","option":{"options":[]}},{"id":"stored_experience","text":"\u5132\u5B58\u7D93\u9A57","option":{"options":[]}},{"id":"stack_size","text":"\u5806\u758A\u6578\u91CF","option":{"options":[]}},{"id":"alternate_art","text":"\u7279\u6B8A\u9020\u578B","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"foil_variation","text":"\u8CBC\u6A21\u7A2E\u985E","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"none","text":"\u7121"},{"id":"0","text":"\u5F69\u8679 (\u9810\u8A2D)"},{"id":"voidborn","text":"\u4EFB\u4F55\u865B\u5843\u602A\u8A95\u7A2E\u985E"},{"id":"1","text":"\u7D2B\u6676"},{"id":"2","text":"\u7FE1\u7FE0"},{"id":"3","text":"\u7D05\u7389"},{"id":"4","text":"\u9237\u85CD"},{"id":"5","text":"\u65E5\u843D"},{"id":"6","text":"\u91D1\u5149"},{"id":"celestial","text":"\u4EFB\u4F55\u773E\u661F\u985E\u578B"},{"id":"7","text":"\u773E\u661F\uFF0E\u77F3\u82F1"},{"id":"8","text":"\u773E\u661F\uFF0E\u7D05\u7389"},{"id":"9","text":"\u773E\u661F\uFF0E\u7FE0\u7DA0"},{"id":"10","text":"\u773E\u661F\uFF0E\u91D1\u5149"},{"id":"11","text":"\u773E\u661F\uFF0E\u73CD\u73E0"},{"id":"12","text":"\u773E\u661F\uFF0E\u7D2B\u6676"}]}},{"id":"corpse_type","text":"\u5C4D\u9AD4\u985E\u578B","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"eldritch","text":"\u7570\u80FD"},{"id":"demon","text":"\u60E1\u9B54"},{"id":"construct","text":"\u751F\u7269"},{"id":"undead","text":"\u4E0D\u6B7B"},{"id":"beast","text":"\u91CE\u7378"},{"id":"humanoid","text":"\u4EBA\u5F62"}]}},{"id":"scourge_tier","text":"\u707D\u9B58\u968E\u7D1A","option":{"options":[]}},{"id":"crucible_item","text":"\u7194\u706B\u7269\u54C1","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}},{"id":"mutated","text":"\u7A62\u751F","option":{"options":[{"text":"\u4EFB\u4F55"},{"id":"true","text":"\u662F"},{"id":"false","text":"\u5426"}]}}]},{"id":"trade_filters","title":"\u4EA4\u6613\u904E\u6FFE","filters":[{"id":"account","text":"\u8CE3\u5BB6\u5E33\u865F","option":{"options":[]}},{"id":"collapse","text":"\u900F\u904E\u5E33\u865F\u647A\u758A\u540D\u55AE","option":{"options":[{"text":"\u5426"},{"id":"true","text":"\u662F"}]}},{"id":"indexed","text":"\u6A19\u793A","option":{"options":[{"text":"\u4EFB\u4F55\u6642\u9593"},{"id":"1hour","text":"1 \u5C0F\u6642\u524D"},{"id":"3hours","text":"3 \u5C0F\u6642\u524D"},{"id":"12hours","text":"12 \u5C0F\u6642\u524D"},{"id":"1day","text":"\u81F3\u591A 1 \u5929\u524D"},{"id":"3days","text":"\u81F3\u591A 3 \u5929\u524D"},{"id":"1week","text":"\u81F3\u591A 1 \u500B\u79AE\u62DC\u524D"},{"id":"2weeks","text":"\u81F3\u591A 2 \u500B\u79AE\u62DC\u524D"},{"id":"1month","text":"\u81F3\u591A 1 \u500B\u6708\u524D"},{"id":"2months","text":"\u81F3\u591A 2 \u500B\u6708\u524D"}]}},{"id":"sale_type","text":"\u8CA9\u552E\u578B\u5F0F","option":{"options":[{"id":"any","text":"\u4EFB\u4F55"},{"text":"\u76F4\u8CFC\u50F9\u6216\u5B9A\u50F9"},{"id":"priced_with_info","text":"\u6A19\u50F9\uFF1A"},{"id":"unpriced","text":"\u7121\u5B9A\u50F9"}]}},{"id":"fee","text":"\u91D1\u5E63\u624B\u7E8C\u8CBB","option":{"options":[]}},{"id":"price","text":"\u76F4\u8CFC\u50F9","option":{"options":[{"text":"\u8207\u6DF7\u6C8C\u77F3\u7B49\u503C"},{"id":"chaos_divine","text":"\u6DF7\u6C8C\u6216\u795E\u8056\u77F3"},{"id":"chaos","text":"\u6DF7\u6C8C\u77F3"},{"id":"exalted","text":"\u5D07\u9AD8\u77F3"},{"id":"divine","text":"\u795E\u8056\u77F3"},{"id":"mirror","text":"\u5361\u862D\u5FB7\u9B54\u93E1"},{"id":"blessed","text":"\u795D\u798F\u77F3"},{"id":"chrome","text":"\u5E7B\u8272\u77F3"},{"id":"gcp","text":"\u73E0\u5BF6\u5320\u7684\u7A1C\u93E1"},{"id":"jewellers","text":"\u5DE5\u5320\u77F3"},{"id":"scour","text":"\u91CD\u9444\u77F3"},{"id":"regret","text":"\u5F8C\u6094\u77F3"},{"id":"fusing","text":"\u93C8\u7D50\u77F3"},{"id":"chance","text":"\u6A5F\u6703\u77F3"},{"id":"alt","text":"\u6539\u9020\u77F3"},{"id":"alch","text":"\u9EDE\u91D1\u77F3"},{"id":"regal","text":"\u5BCC\u8C6A\u77F3"},{"id":"vaal","text":"\u74E6\u723E\u5BF6\u73E0"}]}}]}]
+[
+  {
+    "id": "status_filters",
+    "filters": [
+      {
+        "id": "status",
+        "option": {
+          "options": [
+            {
+              "id": "available",
+              "text": "\u5373\u523B\u8CFC\u8CB7\u4EE5\u53CA\u9762\u5C0D\u9762\u4EA4\u6613"
+            },
+            {
+              "id": "securable",
+              "text": "\u5373\u523B\u8CFC\u8CB7"
+            },
+            {
+              "id": "onlineleague",
+              "text": "\u9762\u5C0D\u9762\u4EA4\u6613(\u806F\u76DF\u5728\u7DDA)"
+            },
+            {
+              "id": "online",
+              "text": "\u9762\u5C0D\u9762\u4EA4\u6613(\u5728\u7DDA)"
+            },
+            {
+              "id": "any",
+              "text": "\u4EFB\u4F55"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "type_filters",
+    "title": "\u985E\u5225\u904E\u6FFE",
+    "filters": [
+      {
+        "id": "category",
+        "text": "\u9053\u5177\u5206\u985E",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "weapon",
+              "text": "\u6B66\u5668"
+            },
+            {
+              "id": "weapon.one",
+              "text": "\u55AE\u624B\u6B66\u5668"
+            },
+            {
+              "id": "weapon.onemelee",
+              "text": "\u55AE\u624B\u8FD1\u6230\u6B66\u5668"
+            },
+            {
+              "id": "weapon.twomelee",
+              "text": "\u96D9\u624B\u8FD1\u6230\u6B66\u5668"
+            },
+            {
+              "id": "weapon.bow",
+              "text": "\u5F13"
+            },
+            {
+              "id": "weapon.claw",
+              "text": "\u722A"
+            },
+            {
+              "id": "weapon.dagger",
+              "text": "\u4EFB\u4E00\u5315\u9996"
+            },
+            {
+              "id": "weapon.basedagger",
+              "text": "\u57FA\u790E\u5315\u9996"
+            },
+            {
+              "id": "weapon.runedagger",
+              "text": "\u7B26\u7D0B\u5315\u9996"
+            },
+            {
+              "id": "weapon.oneaxe",
+              "text": "\u55AE\u624B\u65A7"
+            },
+            {
+              "id": "weapon.onesword",
+              "text": "\u4EFB\u4F55\u55AE\u624B\u528D"
+            },
+            {
+              "id": "weapon.basesword",
+              "text": "\u57FA\u790E\u55AE\u624B\u528D"
+            },
+            {
+              "id": "weapon.rapier",
+              "text": "\u7D30\u528D"
+            },
+            {
+              "id": "weapon.onemace",
+              "text": "\u4EFB\u4F55\u55AE\u624B\u9318"
+            },
+            {
+              "id": "weapon.basemace",
+              "text": "\u57FA\u790E\u55AE\u624B\u9318"
+            },
+            {
+              "id": "weapon.sceptre",
+              "text": "\u6B0A\u6756"
+            },
+            {
+              "id": "weapon.staff",
+              "text": "\u4EFB\u4E00\u9577\u6756"
+            },
+            {
+              "id": "weapon.basestaff",
+              "text": "\u57FA\u790E\u9577\u6756"
+            },
+            {
+              "id": "weapon.warstaff",
+              "text": "\u5F81\u6230\u9577\u6756"
+            },
+            {
+              "id": "weapon.twoaxe",
+              "text": "\u96D9\u624B\u65A7"
+            },
+            {
+              "id": "weapon.twomace",
+              "text": "\u96D9\u624B\u9318"
+            },
+            {
+              "id": "weapon.twosword",
+              "text": "\u96D9\u624B\u528D"
+            },
+            {
+              "id": "weapon.wand",
+              "text": "\u6CD5\u6756"
+            },
+            {
+              "id": "weapon.rod",
+              "text": "\u91E3\u7AFF"
+            },
+            {
+              "id": "armour",
+              "text": "\u4EFB\u610F\u8B77\u7532"
+            },
+            {
+              "id": "armour.chest",
+              "text": "\u80F8\u7532"
+            },
+            {
+              "id": "armour.boots",
+              "text": "\u978B\u5B50"
+            },
+            {
+              "id": "armour.gloves",
+              "text": "\u624B\u5957"
+            },
+            {
+              "id": "armour.helmet",
+              "text": "\u982D\u76D4"
+            },
+            {
+              "id": "armour.shield",
+              "text": "\u76FE"
+            },
+            {
+              "id": "armour.quiver",
+              "text": "\u7BAD\u888B"
+            },
+            {
+              "id": "accessory",
+              "text": "\u914D\u4EF6"
+            },
+            {
+              "id": "accessory.amulet",
+              "text": "\u9805\u934A"
+            },
+            {
+              "id": "accessory.belt",
+              "text": "\u8170\u5E36"
+            },
+            {
+              "id": "accessory.ring",
+              "text": "\u6212\u6307"
+            },
+            {
+              "id": "accessory.trinket",
+              "text": "\u98FE\u54C1"
+            },
+            {
+              "id": "gem",
+              "text": "\u4EFB\u4F55\u5BF6\u77F3"
+            },
+            {
+              "id": "gem.activegem",
+              "text": "\u6280\u80FD\u5BF6\u77F3"
+            },
+            {
+              "id": "gem.supportgem",
+              "text": "\u8F14\u52A9\u5BF6\u77F3"
+            },
+            {
+              "id": "gem.supportgemplus",
+              "text": "\u89BA\u9192\u8F14\u52A9\u5BF6\u77F3"
+            },
+            {
+              "id": "jewel",
+              "text": "\u4EFB\u4F55\u73E0\u5BF6"
+            },
+            {
+              "id": "jewel.base",
+              "text": "\u57FA\u790E\u73E0\u5BF6"
+            },
+            {
+              "id": "jewel.abyss",
+              "text": "\u6DF1\u6DF5\u73E0\u5BF6"
+            },
+            {
+              "id": "jewel.cluster",
+              "text": "\u661F\u5718\u73E0\u5BF6"
+            },
+            {
+              "id": "flask",
+              "text": "\u85E5\u5291"
+            },
+            {
+              "id": "map",
+              "text": "\u5730\u5716"
+            },
+            {
+              "id": "map.fragment",
+              "text": "\u5730\u5716\u788E\u7247"
+            },
+            {
+              "id": "map.breachstone",
+              "text": "\u88C2\u75D5\u77F3"
+            },
+            {
+              "id": "map.invitation",
+              "text": "\u91CB\u754C\u4E4B\u9080"
+            },
+            {
+              "id": "map.scarab",
+              "text": "\u8056\u7532\u87F2"
+            },
+            {
+              "id": "leaguestone",
+              "text": "\u806F\u76DF\u77F3"
+            },
+            {
+              "id": "memoryline",
+              "text": "\u8A18\u61B6\u7DDA"
+            },
+            {
+              "id": "card",
+              "text": "\u547D\u904B\u5361"
+            },
+            {
+              "id": "monster.beast",
+              "text": "\u5DF2\u6355\u7372\u91CE\u7378"
+            },
+            {
+              "id": "monster.yellowbeast",
+              "text": "\u9EC3\u8272\u91CE\u7378"
+            },
+            {
+              "id": "monster.redbeast",
+              "text": "\u7D05\u8272\u91CE\u7378"
+            },
+            {
+              "id": "heistequipment",
+              "text": "\u4EFB\u4F55\u52AB\u76DC\u88DD\u5099"
+            },
+            {
+              "id": "heistequipment.heistweapon",
+              "text": "\u52AB\u76DC\u88DD\u5099"
+            },
+            {
+              "id": "heistequipment.heisttool",
+              "text": "\u52AB\u76DC\u5DE5\u5177"
+            },
+            {
+              "id": "heistequipment.heistutility",
+              "text": "\u52AB\u76DC\u62AB\u98A8"
+            },
+            {
+              "id": "heistequipment.heistreward",
+              "text": "\u52AB\u76DC\u80F8\u91DD"
+            },
+            {
+              "id": "heistmission",
+              "text": "\u4EFB\u4F55\u52AB\u76DC\u4EFB\u52D9"
+            },
+            {
+              "id": "heistmission.contract",
+              "text": "\u52AB\u76DC\u5951\u7D04\u66F8"
+            },
+            {
+              "id": "heistmission.blueprint",
+              "text": "\u52AB\u76DC\u85CD\u5716"
+            },
+            {
+              "id": "logbook",
+              "text": "\u4EFB\u4F55\u63A2\u96AA\u65E5\u8A8C"
+            },
+            {
+              "id": "sanctum.research",
+              "text": "\u8056\u57DF\u7814\u7A76"
+            },
+            {
+              "id": "sanctum.relic",
+              "text": "\u8056\u57DF\u8056\u7269"
+            },
+            {
+              "id": "tincture",
+              "text": "\u4EFB\u4F55\u8403\u53D6\u7269"
+            },
+            {
+              "id": "corpse",
+              "text": "\u4EFB\u4F55\u5C4D\u9AD4"
+            },
+            {
+              "id": "idol",
+              "text": "\u4EFB\u4F55\u9B54\u5076"
+            },
+            {
+              "id": "graft",
+              "text": "\u4EFB\u4F55\u63A5\u80A2"
+            },
+            {
+              "id": "wombgift",
+              "text": "\u4EFB\u4F55\u80CE\u8D08"
+            },
+            {
+              "id": "currency",
+              "text": "\u4EFB\u4F55\u901A\u8CA8"
+            },
+            {
+              "id": "currency.piece",
+              "text": "\u50B3\u5947\u788E\u7247"
+            },
+            {
+              "id": "currency.resonator",
+              "text": "\u9444\u65B0\u5100"
+            },
+            {
+              "id": "currency.fossil",
+              "text": "\u5316\u77F3"
+            },
+            {
+              "id": "currency.incubator",
+              "text": "\u57F9\u80B2\u5668"
+            },
+            {
+              "id": "currency.heistobjective",
+              "text": "\u52AB\u76DC\u76EE\u6A19"
+            },
+            {
+              "id": "currency.omen",
+              "text": "\u9810\u5146"
+            },
+            {
+              "id": "currency.tattoo",
+              "text": "\u7D0B\u8EAB"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rarity",
+        "text": "\u7269\u54C1\u7A00\u6709\u5EA6",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "normal",
+              "text": "\u4E00\u822C"
+            },
+            {
+              "id": "magic",
+              "text": "\u9B54\u6CD5"
+            },
+            {
+              "id": "rare",
+              "text": "\u7A00\u6709"
+            },
+            {
+              "id": "unique",
+              "text": "\u50B3\u5947"
+            },
+            {
+              "id": "uniquefoil",
+              "text": "\u50B3\u5947 (\u8CBC\u6A21)"
+            },
+            {
+              "id": "nonunique",
+              "text": "\u975E\u50B3\u5947\u9053\u5177"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "weapon_filters",
+    "title": "\u6B66\u5668\u7BE9\u9078",
+    "filters": [
+      {
+        "id": "damage",
+        "text": "\u50B7\u5BB3",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "aps",
+        "text": "\u6BCF\u79D2\u653B\u64CA\u901F\u5EA6",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crit",
+        "text": "\u66B4\u64CA\u6A5F\u7387",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dps",
+        "text": "\u6BCF\u79D2\u50B7\u5BB3",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "pdps",
+        "text": "\u7269\u7406\u50B7\u5BB3",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "edps",
+        "text": "\u5143\u7D20\u50B7\u5BB3",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "armour_filters",
+    "title": "\u8B77\u7532\u7BE9\u9078",
+    "filters": [
+      {
+        "id": "ar",
+        "text": "\u8B77\u7532",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ev",
+        "text": "\u9583\u907F",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "es",
+        "text": "\u80FD\u91CF\u8B77\u76FE",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ward",
+        "text": "\u4FDD\u8B77",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "block",
+        "text": "\u683C\u64CB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "base_defence_percentile",
+        "text": "\u57FA\u790E\u767E\u5206\u6BD4",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "socket_filters",
+    "title": "\u63D2\u69FD\u7BE9\u9078",
+    "filters": [
+      {
+        "id": "sockets",
+        "text": "\u63D2\u69FD",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "links",
+        "text": "\u9023\u7D50",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "req_filters",
+    "title": "\u7269\u54C1\u9700\u6C42",
+    "filters": [
+      {
+        "id": "lvl",
+        "text": "\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "str",
+        "text": "\u529B\u91CF",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dex",
+        "text": "\u654F\u6377",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "int",
+        "text": "\u667A\u6167",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "class",
+        "text": "\u89D2\u8272",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "scion",
+              "text": "\u8CB4\u65CF"
+            },
+            {
+              "id": "marauder",
+              "text": "\u91CE\u883B\u4EBA"
+            },
+            {
+              "id": "ranger",
+              "text": "\u904A\u4FE0"
+            },
+            {
+              "id": "witch",
+              "text": "\u5973\u5DEB"
+            },
+            {
+              "id": "duelist",
+              "text": "\u6C7A\u9B25\u8005"
+            },
+            {
+              "id": "templar",
+              "text": "\u8056\u9A0E\u58EB"
+            },
+            {
+              "id": "shadow",
+              "text": "\u6697\u5F71\u523A\u5BA2"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "map_filters",
+    "title": "\u5730\u5716\u7BE9\u9078",
+    "filters": [
+      {
+        "id": "map_tier",
+        "text": "\u5730\u5716\u968E\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "\u5730\u5716\u5927\u5C0F",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iiq",
+        "text": "\u5730\u5716\u7269\u54C1\u6389\u843D\u6578\u91CF",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "\u5730\u5716\u7269\u54C1\u7A00\u6709\u5EA6",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "\u5340\u57DF\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_series",
+        "text": "\u5730\u5716\u7CFB\u5217",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "current",
+              "text": "\u7576\u524D"
+            },
+            {
+              "id": "keepers",
+              "text": "\u770B\u5B88\u8005"
+            },
+            {
+              "id": "mercenary",
+              "text": "\u50AD\u5175"
+            },
+            {
+              "id": "settlers",
+              "text": "\u5C45\u6C11\u5011"
+            },
+            {
+              "id": "necropolis",
+              "text": "\u9B54\u5F71\u5893\u5834"
+            },
+            {
+              "id": "azmeri",
+              "text": "\u7981\u5492"
+            },
+            {
+              "id": "ancestor",
+              "text": "\u7956\u9748"
+            },
+            {
+              "id": "crucible",
+              "text": "\u7194\u706B\u51A5\u7344"
+            },
+            {
+              "id": "sanctum",
+              "text": "\u8056\u57DF"
+            },
+            {
+              "id": "lake",
+              "text": "\u5361\u862D\u5FB7"
+            },
+            {
+              "id": "sentinel",
+              "text": "\u5B88\u671B\u806F\u76DF"
+            },
+            {
+              "id": "archnemesis",
+              "text": "\u5BBF\u6575\u806F\u76DF"
+            },
+            {
+              "id": "scourge",
+              "text": "\u707D\u9B58\u806F\u76DF"
+            },
+            {
+              "id": "expedition",
+              "text": "\u6B7B\u5883\u63A2\u96AA"
+            },
+            {
+              "id": "ritual",
+              "text": "\u796D\u7940"
+            },
+            {
+              "id": "heist",
+              "text": "\u52AB\u76DC\u540C\u76DF"
+            },
+            {
+              "id": "harvest",
+              "text": "\u8C50\u6536\u5FCC\u52AB"
+            },
+            {
+              "id": "delirium",
+              "text": "\u8B6B\u5984\u7570\u57DF"
+            },
+            {
+              "id": "metamorph",
+              "text": "\u934A\u9B54\u806F\u76DF"
+            },
+            {
+              "id": "blight",
+              "text": "\u51CB\u843D\u7981\u5730"
+            },
+            {
+              "id": "legion",
+              "text": "\u6230\u4E82\u4E4B\u6BA4"
+            },
+            {
+              "id": "synthesis",
+              "text": "\u5C0B\u5922\u8FFD\u61B6"
+            },
+            {
+              "id": "betrayal",
+              "text": "\u53CD\u53DB\u806F\u76DF"
+            },
+            {
+              "id": "warfortheatlas",
+              "text": "\u70FD\u706B\u8F3F\u5716"
+            },
+            {
+              "id": "atlasofworlds",
+              "text": "\u7570\u754C\u8F3F\u5716"
+            },
+            {
+              "id": "theawakening",
+              "text": "\u5927\u89BA\u9192"
+            },
+            {
+              "id": "original",
+              "text": "\u4E0D\u673D\u806F\u76DF"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_blighted",
+        "text": "\u51CB\u843D\u7684\u5730\u5716",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_uberblighted",
+        "text": "\u51CB\u843D\u8513\u5EF6\u5730\u5716",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_completion_reward",
+        "text": "\u5B8C\u6210\u5730\u5716\u734E\u52F5",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "heist_filters",
+    "title": "\u52AB\u76DC\u7BE9\u9078",
+    "filters": [
+      {
+        "id": "heist_wings",
+        "text": "\u5DF2\u63ED\u9732\u5074\u5EC2",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_wings",
+        "text": "\u7E3D\u5074\u5EC2",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_escape_routes",
+        "text": "\u5DF2\u63ED\u9732\u9003\u812B\u8DEF\u7DDA",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_escape_routes",
+        "text": "\u7E3D\u9003\u812B\u8DEF\u7DDA",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_reward_rooms",
+        "text": "\u5DF2\u63ED\u9732\u6697\u623F",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_reward_rooms",
+        "text": "\u7E3D\u6697\u623F",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_objective_value",
+        "text": "\u5951\u7D04\u66F8\u6A19\u7684\u50F9\u503C",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "moderate",
+              "text": "\u4E2D\u7B49\u50F9\u503C"
+            },
+            {
+              "id": "high",
+              "text": "\u9AD8\u7B49\u50F9\u503C"
+            },
+            {
+              "id": "precious",
+              "text": "\u73CD\u5BF6"
+            },
+            {
+              "id": "priceless",
+              "text": "\u7121\u50F9"
+            }
+          ]
+        }
+      },
+      {
+        "id": "heist_lockpicking",
+        "text": "\u958B\u9396\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_brute_force",
+        "text": "\u883B\u529B\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_perception",
+        "text": "\u6D1E\u5BDF\u529B\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_demolition",
+        "text": "\u62C6\u9664\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_counter_thaumaturgy",
+        "text": "\u89E3\u5492\u5E2B\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_trap_disarmament",
+        "text": "\u9677\u9631\u62C6\u9664\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_agility",
+        "text": "\u9748\u5DE7\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_deception",
+        "text": "\u8A50\u6B3A\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_engineering",
+        "text": "\u5DE5\u7A0B\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "sanctum_filters",
+    "title": "\u8056\u57DF\u7BE9\u9078\u5668",
+    "filters": [
+      {
+        "id": "sanctum_resolve",
+        "text": "\u6C7A\u5FC3",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_max_resolve",
+        "text": "\u6700\u5927\u6C7A\u5FC3",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_inspiration",
+        "text": "\u555F\u767C",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_gold",
+        "text": "\u5967\u745E\u5384\u65AF\u5E63",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "ultimatum_filters",
+    "title": "\u6700\u5F8C\u901A\u7252\u7BE9\u9078",
+    "filters": [
+      {
+        "id": "ultimatum_challenge",
+        "text": "\u6311\u6230\u985E\u578B",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "Exterminate",
+              "text": "\u64CA\u6557\u6578\u6CE2\u6575\u4EBA"
+            },
+            {
+              "id": "Survival",
+              "text": "\u5016\u5B58"
+            },
+            {
+              "id": "Defense",
+              "text": "\u4FDD\u8B77\u796D\u58C7"
+            },
+            {
+              "id": "Conquer",
+              "text": "\u7AD9\u5728\u77F3\u9663\u5167"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_reward",
+        "text": "\u734E\u52F5\u985E\u578B",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "DoubleCurrency",
+              "text": "\u901A\u8CA8"
+            },
+            {
+              "id": "DoubleDivCards",
+              "text": "\u547D\u904B\u5361"
+            },
+            {
+              "id": "MirrorRare",
+              "text": "\u8907\u88FD\u7A00\u6709\u7269\u54C1"
+            },
+            {
+              "id": "ExchangeUnique",
+              "text": "\u50B3\u5947\u7269\u54C1"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_input",
+        "text": "\u9700\u6C42\u7269\u54C1",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ultimatum_output",
+        "text": "\u50B3\u5947\u734E\u52F5",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "misc_filters",
+    "title": "\u5176\u5B83",
+    "filters": [
+      {
+        "id": "quality",
+        "text": "\u54C1\u8CEA",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ilvl",
+        "text": "\u7269\u54C1\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level",
+        "text": "\u5BF6\u77F3\u7B49\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level_progress",
+        "text": "\u5BF6\u77F3\u7D93\u9A57 %",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_transfigured",
+        "text": "\u8B8A\u7570\u5BF6\u77F3",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_vaal",
+        "text": "\u74E6\u5BF6\u5BF6\u77F3",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fractured_item",
+        "text": "\u7834\u88C2\u4E4B\u7269",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_imbued",
+        "text": "\u6CE8\u80FD\u5BF6\u77F3",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "synthesised_item",
+        "text": "\u8FFD\u61B6\u4E4B\u7269",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "searing_item",
+        "text": "\u707C\u70D9\u7E3D\u7763\u7269\u54C1",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tangled_item",
+        "text": "\u541E\u566C\u5929\u5730\u7269\u54C1",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "memory_level",
+        "text": "\u8A18\u61B6\u7D72\u7E37",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "identified",
+        "text": "\u5DF2\u9451\u5B9A",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corrupted",
+        "text": "\u5DF2\u6C59\u67D3",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mirrored",
+        "text": "\u5DF2\u8907\u88FD",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "split",
+        "text": "\u5206\u5316",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crafted",
+        "text": "\u5DF2\u5DE5\u85DD",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "veiled",
+        "text": "\u96B1\u533F",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foreseeing",
+        "text": "\u9810\u898B",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "talisman_tier",
+        "text": "\u9B54\u7B26\u968E\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stored_experience",
+        "text": "\u5132\u5B58\u7D93\u9A57",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stack_size",
+        "text": "\u5806\u758A\u6578\u91CF",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "alternate_art",
+        "text": "\u7279\u6B8A\u9020\u578B",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foil_variation",
+        "text": "\u8CBC\u6A21\u7A2E\u985E",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "none",
+              "text": "\u7121"
+            },
+            {
+              "id": "0",
+              "text": "\u5F69\u8679 (\u9810\u8A2D)"
+            },
+            {
+              "id": "voidborn",
+              "text": "\u4EFB\u4F55\u865B\u5843\u602A\u8A95\u7A2E\u985E"
+            },
+            {
+              "id": "1",
+              "text": "\u7D2B\u6676"
+            },
+            {
+              "id": "2",
+              "text": "\u7FE1\u7FE0"
+            },
+            {
+              "id": "3",
+              "text": "\u7D05\u7389"
+            },
+            {
+              "id": "4",
+              "text": "\u9237\u85CD"
+            },
+            {
+              "id": "5",
+              "text": "\u65E5\u843D"
+            },
+            {
+              "id": "6",
+              "text": "\u91D1\u5149"
+            },
+            {
+              "id": "celestial",
+              "text": "\u4EFB\u4F55\u773E\u661F\u985E\u578B"
+            },
+            {
+              "id": "7",
+              "text": "\u773E\u661F\uFF0E\u77F3\u82F1"
+            },
+            {
+              "id": "8",
+              "text": "\u773E\u661F\uFF0E\u7D05\u7389"
+            },
+            {
+              "id": "9",
+              "text": "\u773E\u661F\uFF0E\u7FE0\u7DA0"
+            },
+            {
+              "id": "10",
+              "text": "\u773E\u661F\uFF0E\u91D1\u5149"
+            },
+            {
+              "id": "11",
+              "text": "\u773E\u661F\uFF0E\u73CD\u73E0"
+            },
+            {
+              "id": "12",
+              "text": "\u773E\u661F\uFF0E\u7D2B\u6676"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corpse_type",
+        "text": "\u5C4D\u9AD4\u985E\u578B",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "eldritch",
+              "text": "\u7570\u80FD"
+            },
+            {
+              "id": "demon",
+              "text": "\u60E1\u9B54"
+            },
+            {
+              "id": "construct",
+              "text": "\u751F\u7269"
+            },
+            {
+              "id": "undead",
+              "text": "\u4E0D\u6B7B"
+            },
+            {
+              "id": "beast",
+              "text": "\u91CE\u7378"
+            },
+            {
+              "id": "humanoid",
+              "text": "\u4EBA\u5F62"
+            }
+          ]
+        }
+      },
+      {
+        "id": "scourge_tier",
+        "text": "\u707D\u9B58\u968E\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crucible_item",
+        "text": "\u7194\u706B\u7269\u54C1",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mutated",
+        "text": "\u7A62\u751F",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "trade_filters",
+    "title": "\u4EA4\u6613\u904E\u6FFE",
+    "filters": [
+      {
+        "id": "account",
+        "text": "\u8CE3\u5BB6\u5E33\u865F",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "collapse",
+        "text": "\u900F\u904E\u5E33\u865F\u647A\u758A\u540D\u55AE",
+        "option": {
+          "options": [
+            {
+              "text": "\u5426"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            }
+          ]
+        }
+      },
+      {
+        "id": "indexed",
+        "text": "\u6A19\u793A",
+        "option": {
+          "options": [
+            {
+              "text": "\u4EFB\u4F55\u6642\u9593"
+            },
+            {
+              "id": "1hour",
+              "text": "1 \u5C0F\u6642\u524D"
+            },
+            {
+              "id": "3hours",
+              "text": "3 \u5C0F\u6642\u524D"
+            },
+            {
+              "id": "12hours",
+              "text": "12 \u5C0F\u6642\u524D"
+            },
+            {
+              "id": "1day",
+              "text": "\u81F3\u591A 1 \u5929\u524D"
+            },
+            {
+              "id": "3days",
+              "text": "\u81F3\u591A 3 \u5929\u524D"
+            },
+            {
+              "id": "1week",
+              "text": "\u81F3\u591A 1 \u500B\u79AE\u62DC\u524D"
+            },
+            {
+              "id": "2weeks",
+              "text": "\u81F3\u591A 2 \u500B\u79AE\u62DC\u524D"
+            },
+            {
+              "id": "1month",
+              "text": "\u81F3\u591A 1 \u500B\u6708\u524D"
+            },
+            {
+              "id": "2months",
+              "text": "\u81F3\u591A 2 \u500B\u6708\u524D"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sale_type",
+        "text": "\u8CA9\u552E\u578B\u5F0F",
+        "option": {
+          "options": [
+            {
+              "id": "any",
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "text": "\u76F4\u8CFC\u50F9\u6216\u5B9A\u50F9"
+            },
+            {
+              "id": "priced_with_info",
+              "text": "\u6A19\u50F9\uFF1A"
+            },
+            {
+              "id": "unpriced",
+              "text": "\u7121\u5B9A\u50F9"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fee",
+        "text": "\u91D1\u5E63\u624B\u7E8C\u8CBB",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "price",
+        "text": "\u76F4\u8CFC\u50F9",
+        "option": {
+          "options": [
+            {
+              "text": "\u8207\u6DF7\u6C8C\u77F3\u7B49\u503C"
+            },
+            {
+              "id": "chaos_divine",
+              "text": "\u6DF7\u6C8C\u6216\u795E\u8056\u77F3"
+            },
+            {
+              "id": "chaos",
+              "text": "\u6DF7\u6C8C\u77F3"
+            },
+            {
+              "id": "exalted",
+              "text": "\u5D07\u9AD8\u77F3"
+            },
+            {
+              "id": "divine",
+              "text": "\u795E\u8056\u77F3"
+            },
+            {
+              "id": "mirror",
+              "text": "\u5361\u862D\u5FB7\u9B54\u93E1"
+            },
+            {
+              "id": "blessed",
+              "text": "\u795D\u798F\u77F3"
+            },
+            {
+              "id": "chrome",
+              "text": "\u5E7B\u8272\u77F3"
+            },
+            {
+              "id": "gcp",
+              "text": "\u73E0\u5BF6\u5320\u7684\u7A1C\u93E1"
+            },
+            {
+              "id": "jewellers",
+              "text": "\u5DE5\u5320\u77F3"
+            },
+            {
+              "id": "scour",
+              "text": "\u91CD\u9444\u77F3"
+            },
+            {
+              "id": "regret",
+              "text": "\u5F8C\u6094\u77F3"
+            },
+            {
+              "id": "fusing",
+              "text": "\u93C8\u7D50\u77F3"
+            },
+            {
+              "id": "chance",
+              "text": "\u6A5F\u6703\u77F3"
+            },
+            {
+              "id": "alt",
+              "text": "\u6539\u9020\u77F3"
+            },
+            {
+              "id": "alch",
+              "text": "\u9EDE\u91D1\u77F3"
+            },
+            {
+              "id": "regal",
+              "text": "\u5BCC\u8C6A\u77F3"
+            },
+            {
+              "id": "vaal",
+              "text": "\u74E6\u723E\u5BF6\u73E0"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
