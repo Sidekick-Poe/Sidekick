@@ -21,6 +21,7 @@ public class DataBuilder(
     ItemBuilder itemBuilder,
     StatsInvariantBuilder statsInvariantBuilder,
     RepoeDownloader repoeDownloader,
+    TradeFilterBuilder tradeFilterBuilder,
     IGameLanguageProvider gameLanguageProvider)
 {
     public async Task DownloadAndBuildAll(
@@ -121,6 +122,7 @@ public class DataBuilder(
         logger.LogInformation($"Building {language.Code} trade data.");
         await statsInvariantBuilder.Build(language);
         await leagueBuilder.Build(language);
+        await tradeFilterBuilder.Build(language);
     }
 
     private async Task BuildItems(IGameLanguage language)

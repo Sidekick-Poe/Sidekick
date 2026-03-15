@@ -22,6 +22,9 @@ public enum DataType
     [EnumValue("leagues.json")]
     Leagues,
 
+    [EnumValue("trade/filters.{0}.json")]
+    TradeFilters,
+
     [EnumValue("stats/invariant.json")]
     StatsInvariant,
 
