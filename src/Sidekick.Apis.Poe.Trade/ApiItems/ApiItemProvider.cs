@@ -1,106 +1,65 @@
-using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStatic;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade.Raw;
-
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
 
-public class ApiItemProvider
-(
+public class ApiItemProvider(
     DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService,
-    IApiStaticDataProvider apiStaticDataProvider
+    ISettingsService settingsService
 ) : IApiItemProvider
 {
-    public List<(Regex Regex, ItemApiInformation Item)> NamePatterns { get; private set; } = [];
+    private Dictionary<string, ItemDefinition> IdDictionary { get; } = new(StringComparer.Ordinal);
+    private Dictionary<string, ItemDefinition> TextDictionary { get; } = new(StringComparer.Ordinal);
 
-    public List<(Regex Regex, ItemApiInformation Item)> TypePatterns { get; private set; } = [];
+    public List<ItemDefinition> Definitions { get; private set; } = [];
+    public List<ItemDefinition> UniqueItems { get; private set; } = [];
 
-    public List<(Regex Regex, ItemApiInformation Item)> TextPatterns { get; private set; } = [];
+    public int Priority => 100;
 
-    public List<ItemApiInformation> UniqueItems { get; private set; } = [];
-
-    /// <inheritdoc/>
-    public int Priority => 200;
-
-    /// <inheritdoc/>
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeItemCategory>>>(game, DataType.TradeRawItems, currentGameLanguage.Language);
 
-        InitializeItems(result.Result);
-        UniqueItems = NamePatterns.Select(x => x.Item)
-            .Where(x => x.IsUnique)
-            .OrderByDescending(x => x.Name?.Length)
+        Definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.Language);
+
+        UniqueItems = Definitions.Where(x => x.IsUnique)
+            .OrderByDescending(x => x.Name?.Length ?? 0)
             .ToList();
 
-        TypePatterns = TypePatterns.OrderByDescending(x => x.Item.Type?.Length ?? 0).ToList();
-        TextPatterns = TextPatterns.OrderByDescending(x => x.Item.Text?.Length ?? 0).ToList();
+        TextDictionary.Clear();
+        IdDictionary.Clear();
+        foreach (var definition in Definitions)
+        {
+            if (!string.IsNullOrEmpty(definition.Id)) IdDictionary.TryAdd(definition.Id, definition);
+
+            if (!string.IsNullOrEmpty(definition.Name)) TextDictionary.TryAdd(definition.Name, definition);
+            if (!string.IsNullOrEmpty(definition.Type)) TextDictionary.TryAdd(definition.Type, definition);
+        }
     }
 
-    private void InitializeItems(List<RawTradeItemCategory> result)
+    public ItemDefinition? GetById(string? id)
     {
-        NamePatterns.Clear();
-        TypePatterns.Clear();
-        TextPatterns.Clear();
+        if (string.IsNullOrEmpty(id)) return null;
 
-        foreach (var category in result)
+        id = id switch
         {
-            foreach (var entry in category.Entries)
-            {
-                var information = ToItemApiInformation(entry);
-                information.Category = category.Id;
-
-                var apiData = apiStaticDataProvider.Get(information.Name, information.Type);
-                information.InvariantId = apiData?.Id;
-                information.InvariantText = apiData?.Text;
-                information.Image = apiData?.Image;
-
-                if (currentGameLanguage.IsEnglish())
-                {
-                    information.InvariantName = entry.Name;
-                    information.InvariantType = entry.Type;
-                    if (string.IsNullOrEmpty(information.InvariantText)) information.InvariantText = entry.Text;
-                }
-
-                if (!string.IsNullOrEmpty(information.Name))
-                {
-                    var regex = $"^{Regex.Escape(information.Name)}|{Regex.Escape(information.Name)}$";
-                    NamePatterns.Add((new Regex(regex), information));
-                }
-
-                if (!string.IsNullOrEmpty(information.Type) && !information.IsUnique)
-                {
-                    // Match as a whole "word" (not inside other words like "Clashing")
-                    // \p{L} = any unicode letter, so this works across languages too.
-                    var typeRegex = $@"(?<!\p{{L}}){Regex.Escape(information.Type)}(?!\p{{L}})";
-                    TypePatterns.Add((new Regex(typeRegex, RegexOptions.Compiled), information));
-                }
-
-                if (!string.IsNullOrEmpty(information.Text))
-                {
-                    TextPatterns.Add((new Regex(Regex.Escape(information.Text)), information));
-                }
-            }
-        }
-
-        return;
-
-
-        ItemApiInformation ToItemApiInformation(RawTradeItem item) => new()
-        {
-            Type = item.Type,
-            Name = item.Name,
-            Category = item.Category,
-            IsUnique = item.IsUnique,
-            Discriminator = item.Discriminator,
-            Text = item.Text,
+            "exalt" => "exalted",
+            _ => id,
         };
+        if (string.IsNullOrEmpty(id)) return null;
+
+        return IdDictionary.GetValueOrDefault(id);
+    }
+
+    public ItemDefinition? Get(string? name, string? type)
+    {
+        var data = !string.IsNullOrEmpty(name) ? TextDictionary.GetValueOrDefault(name) : null;
+        data ??= !string.IsNullOrEmpty(type) ? TextDictionary.GetValueOrDefault(type) : null;
+        if (data == null) return null;
+
+        return GetById(data.Id);
     }
 }

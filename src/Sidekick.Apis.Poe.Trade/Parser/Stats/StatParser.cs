@@ -4,14 +4,12 @@ using FuzzySharp;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 
@@ -22,7 +20,6 @@ public class StatParser
     ISettingsService settingsService,
     ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources,
-    IApiStatsProvider apiStatsProvider,
     DataProvider dataProvider,
     IFuzzyService fuzzyService
 ) : IStatParser
@@ -59,12 +56,12 @@ public class StatParser
                     if (block.Lines[lineIndex].Parsed) continue;
 
                     var definitions = MatchDefinitions(block, lineIndex).ToList();
-                    var matchFuzzily = definitions.Sum(x => x.TradeIds.Count) is 0;
+                    var matchFuzzily = definitions.Sum(x => x.TradeStats.Count) is 0;
                     if (matchFuzzily) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
                     if (definitions.Count is 0) continue;
 
-                    var maxLineCount = definitions.Select(x => x.LineCount).Max();
-                    definitions = definitions.Where(x => x.LineCount == maxLineCount).ToList();
+                    var maxLineCount = definitions.Select(x => x.Lines).Max();
+                    definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
 
                     var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
                     lines.ForEach(x => x.Parsed = true);
@@ -78,7 +75,7 @@ public class StatParser
         {
             return item.Properties.ItemClass switch
             {
-                ItemClass.ActiveGem => Definitions.Where(x => x.Category is StatCategory.Imbued),
+                ItemClass.ActiveGem => Definitions.Where(x => x.TradeStats.Any(y => y.Category is StatCategory.Imbued)),
                 _ => Definitions,
             };
         }
@@ -88,7 +85,7 @@ public class StatParser
             foreach (var definition in FilterDefinitions())
             {
                 // Multiple line stats
-                if (definition.LineCount > 1 && definition.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(definition.LineCount))))
+                if (definition.Lines > 1 && definition.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(definition.Lines))))
                 {
                     yield return definition;
                 }
@@ -120,7 +117,7 @@ public class StatParser
                              {
                                  if (string.IsNullOrEmpty(definition.FuzzyText)) return;
 
-                                 var text = definition.LineCount switch
+                                 var text = definition.Lines switch
                                  {
                                      2 => doubleText ?? singleText,
                                      _ => singleText,
@@ -149,11 +146,13 @@ public class StatParser
         {
             var text = string.Join('\n', lines.Select(x => x.Text));
             var category = ParseCategory(text);
-            if (category != StatCategory.Mutated
-                && definitions.DistinctBy(x => x.Category).Count() == 1
-                && definitions[0].Category != StatCategory.Undefined)
+            if (category != StatCategory.Mutated)
             {
-                category = definitions[0].Category;
+                var categories = definitions.SelectMany(x => x.TradeStats).Select(x => x.Category).Distinct().ToList();
+                if (categories.Count == 1 && categories[0] != StatCategory.Undefined)
+                {
+                    category = categories[0];
+                }
             }
 
             text = RemoveCategory(text);
@@ -164,7 +163,7 @@ public class StatParser
                 LineIndex = lines.First().Index,
                 Definitions = definitions,
                 MatchedFuzzily = matchedFuzzily,
-                HasTradeSupport = definitions.Any(x => x.TradeIds.Count > 0),
+                HasTradeSupport = definitions.Any(x => x.TradeStats.Count > 0),
             };
 
             stat.Values = GetValues(stat).ToList();
@@ -235,12 +234,9 @@ public class StatParser
 
         bool HasMatchingDescriptions(StatDefinition definition)
         {
-            foreach (var tradeId in definition.TradeIds)
+            foreach (var tradeStat in definition.TradeStats)
             {
-                var apiStats = apiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
-                if (apiStats == null) continue;
-
-                if (apiStats.Any(apiStat => apiStat.Text == definition.Text)) return true;
+                if (tradeStat.Text == definition.Text) return true;
             }
 
             return false;

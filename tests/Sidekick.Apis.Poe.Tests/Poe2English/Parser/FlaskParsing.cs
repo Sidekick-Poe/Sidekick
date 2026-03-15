@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -33,8 +33,8 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
 
         Assert.Equal(ItemClass.LifeFlask, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ultimate Life Flask", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Ultimate Life Flask", actual.Definition.Type);
+        Assert.Null(actual.Definition.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
@@ -70,8 +70,8 @@ Used automatically when condition is met. Can only hold charges while in belt. R
 
         Assert.Equal(ItemClass.Charms, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Stone Charm", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Stone Charm", actual.Definition.Type);
+        Assert.Null(actual.Definition.Name);
 
         Assert.Equal(16, actual.Properties.RequiresLevel);
         Assert.Equal(51, actual.Properties.ItemLevel);

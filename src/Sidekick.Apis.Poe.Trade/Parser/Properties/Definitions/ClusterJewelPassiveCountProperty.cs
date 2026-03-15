@@ -34,17 +34,12 @@ public class ClusterJewelPassiveCountProperty(
     {
         foreach (var line in lines)
         {
-            if (!line.HasValues)
-            {
-                continue;
-            }
+            if (!line.HasValues) continue;
 
-            foreach (var definition in line.Definitions)
+            foreach (var tradeStat in line.Definitions.SelectMany(x => x.TradeStats))
             {
-                if (definition.TradeIds.Contains(apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId))
-                {
-                    return (int)line.AverageValue;
-                }
+                if (tradeStat.Id != apiStatsProvider.InvariantDetails.ClusterJewelSmallPassiveCountStatId) continue;
+                return (int)line.AverageValue;
             }
         }
 
@@ -53,14 +48,11 @@ public class ClusterJewelPassiveCountProperty(
 
     private string? ParseGrantTexts(List<Stat> lines)
     {
-        foreach (var definition in lines.SelectMany(x => x.Definitions))
+        foreach (var tradeStat in lines.SelectMany(x => x.Definitions).SelectMany(x => x.TradeStats))
         {
-            if (definition.Option == null) continue;
-
-            if (definition.TradeIds.Contains(apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId))
-            {
-                return apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[definition.Option.Id].Replace("\n", ", ");
-            }
+            if (tradeStat.Id != apiStatsProvider.InvariantDetails.ClusterJewelSmallPassiveGrantStatId) continue;
+            if (tradeStat.Option == null) continue;
+            return apiStatsProvider.InvariantDetails.ClusterJewelSmallPassiveGrantOptions[tradeStat.Option.Id].Replace("\n", ", ");
         }
 
         return null;

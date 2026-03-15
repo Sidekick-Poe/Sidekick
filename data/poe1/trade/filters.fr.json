@@ -1,0 +1,1732 @@
+[
+  {
+    "id": "status_filters",
+    "filters": [
+      {
+        "id": "status",
+        "option": {
+          "options": [
+            {
+              "id": "available",
+              "text": "Achat instantan\u00E9 et en Personne"
+            },
+            {
+              "id": "securable",
+              "text": "Achat instantan\u00E9"
+            },
+            {
+              "id": "onlineleague",
+              "text": "En Personne (Connect\u00E9 dans la Ligue)"
+            },
+            {
+              "id": "online",
+              "text": "En Personne (Connect\u00E9)"
+            },
+            {
+              "id": "any",
+              "text": "Tous"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "type_filters",
+    "title": "Filtres par type",
+    "filters": [
+      {
+        "id": "category",
+        "text": "Cat\u00E9gorie d\u0027objet",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "weapon",
+              "text": "Armes (toutes)"
+            },
+            {
+              "id": "weapon.one",
+              "text": "Arme \u00E0 une main"
+            },
+            {
+              "id": "weapon.onemelee",
+              "text": "Armes de m\u00EAl\u00E9e \u00E0 une main"
+            },
+            {
+              "id": "weapon.twomelee",
+              "text": "Armes de m\u00EAl\u00E9e \u00E0 deux mains"
+            },
+            {
+              "id": "weapon.bow",
+              "text": "Arcs"
+            },
+            {
+              "id": "weapon.claw",
+              "text": "Griffes"
+            },
+            {
+              "id": "weapon.dagger",
+              "text": "Dagues (toutes)"
+            },
+            {
+              "id": "weapon.basedagger",
+              "text": "Dague de base"
+            },
+            {
+              "id": "weapon.runedagger",
+              "text": "Dagues runiques"
+            },
+            {
+              "id": "weapon.oneaxe",
+              "text": "Haches \u00E0 une main"
+            },
+            {
+              "id": "weapon.onesword",
+              "text": "\u00C9p\u00E9es \u00E0 une main (toutes)"
+            },
+            {
+              "id": "weapon.basesword",
+              "text": "\u00C9p\u00E9e \u00E0 une main de base"
+            },
+            {
+              "id": "weapon.rapier",
+              "text": "Rapi\u00E8re"
+            },
+            {
+              "id": "weapon.onemace",
+              "text": "Masses \u00E0 une main (toutes)"
+            },
+            {
+              "id": "weapon.basemace",
+              "text": "Masse \u00E0 une main de base"
+            },
+            {
+              "id": "weapon.sceptre",
+              "text": "Sceptres"
+            },
+            {
+              "id": "weapon.staff",
+              "text": "B\u00E2tons (tous)"
+            },
+            {
+              "id": "weapon.basestaff",
+              "text": "B\u00E2ton de base"
+            },
+            {
+              "id": "weapon.warstaff",
+              "text": "B\u00E2tons de guerre"
+            },
+            {
+              "id": "weapon.twoaxe",
+              "text": "Haches \u00E0 deux mains"
+            },
+            {
+              "id": "weapon.twomace",
+              "text": "Massues \u00E0 deux mains"
+            },
+            {
+              "id": "weapon.twosword",
+              "text": "\u00C9p\u00E9es \u00E0 deux mains"
+            },
+            {
+              "id": "weapon.wand",
+              "text": "Baguettes"
+            },
+            {
+              "id": "weapon.rod",
+              "text": "Cannes \u00E0 p\u00EAche"
+            },
+            {
+              "id": "armour",
+              "text": "Armures (toutes)"
+            },
+            {
+              "id": "armour.chest",
+              "text": "Armures de torse"
+            },
+            {
+              "id": "armour.boots",
+              "text": "Bottes"
+            },
+            {
+              "id": "armour.gloves",
+              "text": "Gants"
+            },
+            {
+              "id": "armour.helmet",
+              "text": "Casques"
+            },
+            {
+              "id": "armour.shield",
+              "text": "Boucliers"
+            },
+            {
+              "id": "armour.quiver",
+              "text": "Carquois"
+            },
+            {
+              "id": "accessory",
+              "text": "Accessoires (tous)"
+            },
+            {
+              "id": "accessory.amulet",
+              "text": "Amulettes"
+            },
+            {
+              "id": "accessory.belt",
+              "text": "Ceintures"
+            },
+            {
+              "id": "accessory.ring",
+              "text": "Bagues"
+            },
+            {
+              "id": "accessory.trinket",
+              "text": "Babiole"
+            },
+            {
+              "id": "gem",
+              "text": "Toutes les Gemmes"
+            },
+            {
+              "id": "gem.activegem",
+              "text": "Gemme d\u0027aptitude"
+            },
+            {
+              "id": "gem.supportgem",
+              "text": "Gemme de soutien"
+            },
+            {
+              "id": "gem.supportgemplus",
+              "text": "Gemme de soutien \u00E9veill\u00E9e"
+            },
+            {
+              "id": "jewel",
+              "text": "Joyaux (tous)"
+            },
+            {
+              "id": "jewel.base",
+              "text": "Joyau de base"
+            },
+            {
+              "id": "jewel.abyss",
+              "text": "Joyau abyssal"
+            },
+            {
+              "id": "jewel.cluster",
+              "text": "Joyau de ramification"
+            },
+            {
+              "id": "flask",
+              "text": "Flacons"
+            },
+            {
+              "id": "map",
+              "text": "Cartes"
+            },
+            {
+              "id": "map.fragment",
+              "text": "Fragment de Carte"
+            },
+            {
+              "id": "map.breachstone",
+              "text": "Pierre de Br\u00E8che"
+            },
+            {
+              "id": "map.invitation",
+              "text": "Invitation de la Prodige"
+            },
+            {
+              "id": "map.scarab",
+              "text": "Scarab\u00E9e"
+            },
+            {
+              "id": "leaguestone",
+              "text": "Pierres de ligue"
+            },
+            {
+              "id": "memoryline",
+              "text": "Ensemble de Souvenirs"
+            },
+            {
+              "id": "card",
+              "text": "Carte divinatoire"
+            },
+            {
+              "id": "monster.beast",
+              "text": "B\u00EAte captur\u00E9e"
+            },
+            {
+              "id": "monster.yellowbeast",
+              "text": "B\u00EAte jaune"
+            },
+            {
+              "id": "monster.redbeast",
+              "text": "Red Beast"
+            },
+            {
+              "id": "heistequipment",
+              "text": "Objets de Malfaiteurs (tous)"
+            },
+            {
+              "id": "heistequipment.heistweapon",
+              "text": "\u00C9quipement de Malfaiteur"
+            },
+            {
+              "id": "heistequipment.heisttool",
+              "text": "Outil de Malfaiteur"
+            },
+            {
+              "id": "heistequipment.heistutility",
+              "text": "Cape de Malfaiteur"
+            },
+            {
+              "id": "heistequipment.heistreward",
+              "text": "Broche de Malfaiteur"
+            },
+            {
+              "id": "heistmission",
+              "text": "Missions de Heist (toutes)"
+            },
+            {
+              "id": "heistmission.contract",
+              "text": "Contrat de Heist"
+            },
+            {
+              "id": "heistmission.blueprint",
+              "text": "Plan de Heist"
+            },
+            {
+              "id": "logbook",
+              "text": "Journaux de bord d\u0027Exp\u00E9dition (tous)"
+            },
+            {
+              "id": "sanctum.research",
+              "text": "Recherche du Sanctuaire"
+            },
+            {
+              "id": "sanctum.relic",
+              "text": "Relique du Sanctuaire"
+            },
+            {
+              "id": "tincture",
+              "text": "Teintures (toutes)"
+            },
+            {
+              "id": "corpse",
+              "text": "Cadavres (tous)"
+            },
+            {
+              "id": "idol",
+              "text": "Idoles (toutes)"
+            },
+            {
+              "id": "graft",
+              "text": "Greffon (tous)"
+            },
+            {
+              "id": "wombgift",
+              "text": "Don de la matrice (tous)"
+            },
+            {
+              "id": "currency",
+              "text": "Tous les Objets mon\u00E9taires"
+            },
+            {
+              "id": "currency.piece",
+              "text": "Fragment unique"
+            },
+            {
+              "id": "currency.resonator",
+              "text": "R\u00E9sonateur"
+            },
+            {
+              "id": "currency.fossil",
+              "text": "Fossile"
+            },
+            {
+              "id": "currency.incubator",
+              "text": "Incubateur"
+            },
+            {
+              "id": "currency.heistobjective",
+              "text": "Objectif de Heist"
+            },
+            {
+              "id": "currency.omen",
+              "text": "Pr\u00E9sage"
+            },
+            {
+              "id": "currency.tattoo",
+              "text": "Tatouage"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rarity",
+        "text": "Raret\u00E9 de l\u0027objet",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "normal",
+              "text": "Normal"
+            },
+            {
+              "id": "magic",
+              "text": "Magique"
+            },
+            {
+              "id": "rare",
+              "text": "Rare"
+            },
+            {
+              "id": "unique",
+              "text": "Unique"
+            },
+            {
+              "id": "uniquefoil",
+              "text": "Objet unique (en version surbrillante)"
+            },
+            {
+              "id": "nonunique",
+              "text": "Objet non unique"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "weapon_filters",
+    "title": "Filtres d\u0027arme",
+    "filters": [
+      {
+        "id": "damage",
+        "text": "D\u00E9g\u00E2ts",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "aps",
+        "text": "Attaques par seconde",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crit",
+        "text": "Chance de critique",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dps",
+        "text": "D\u00E9g\u00E2ts par seconde",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "pdps",
+        "text": "D\u00E9g\u00E2ts phys. par seconde",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "edps",
+        "text": "D\u00E9g\u00E2ts \u00E9l\u00E9m. par seconde",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "armour_filters",
+    "title": "Filtres d\u0027armure",
+    "filters": [
+      {
+        "id": "ar",
+        "text": "Armure",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ev",
+        "text": "\u00C9vasion",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "es",
+        "text": "Bouclier d\u0027\u00E9nergie",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ward",
+        "text": "Sauvegarde",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "block",
+        "text": "Blocage",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "base_defence_percentile",
+        "text": "Centile de base",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "socket_filters",
+    "title": "Filtres de ch\u00E2sse",
+    "filters": [
+      {
+        "id": "sockets",
+        "text": "Ch\u00E2sses",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "links",
+        "text": "Liaisons",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "req_filters",
+    "title": "Pr\u00E9requis",
+    "filters": [
+      {
+        "id": "lvl",
+        "text": "Niveau",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "str",
+        "text": "Force",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dex",
+        "text": "Dext\u00E9rit\u00E9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "int",
+        "text": "Intelligence",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "class",
+        "text": "Classe de personnage",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "scion",
+              "text": "H\u00E9riti\u00E8re"
+            },
+            {
+              "id": "marauder",
+              "text": "Maraudeur"
+            },
+            {
+              "id": "ranger",
+              "text": "R\u00F4deuse"
+            },
+            {
+              "id": "witch",
+              "text": "Sorci\u00E8re"
+            },
+            {
+              "id": "duelist",
+              "text": "Duelliste"
+            },
+            {
+              "id": "templar",
+              "text": "Templier"
+            },
+            {
+              "id": "shadow",
+              "text": "Ombre"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "map_filters",
+    "title": "Filtres de Cartes",
+    "filters": [
+      {
+        "id": "map_tier",
+        "text": "Palier de la Carte",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "Taille de groupe (Carte)",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iiq",
+        "text": "Quantit\u00E9 d\u0027objets (Carte)",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "Raret\u00E9 d\u0027objets (Carte)",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "Niveau de la zone",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_series",
+        "text": "S\u00E9ries de Cartes",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "current",
+              "text": "Version actuelle"
+            },
+            {
+              "id": "keepers",
+              "text": "Keepers"
+            },
+            {
+              "id": "mercenary",
+              "text": "Mercenaries"
+            },
+            {
+              "id": "settlers",
+              "text": "Settlers"
+            },
+            {
+              "id": "necropolis",
+              "text": "N\u00E9cropole"
+            },
+            {
+              "id": "azmeri",
+              "text": "Affliction"
+            },
+            {
+              "id": "ancestor",
+              "text": "Ancestor"
+            },
+            {
+              "id": "crucible",
+              "text": "Crucible"
+            },
+            {
+              "id": "sanctum",
+              "text": "Sanctuaire"
+            },
+            {
+              "id": "lake",
+              "text": "Kalandra"
+            },
+            {
+              "id": "sentinel",
+              "text": "Sentinel"
+            },
+            {
+              "id": "archnemesis",
+              "text": "Archnemesis"
+            },
+            {
+              "id": "scourge",
+              "text": "Scourge"
+            },
+            {
+              "id": "expedition",
+              "text": "Exp\u00E9dition"
+            },
+            {
+              "id": "ritual",
+              "text": "Rituel"
+            },
+            {
+              "id": "heist",
+              "text": "Heist"
+            },
+            {
+              "id": "harvest",
+              "text": "Harvest"
+            },
+            {
+              "id": "delirium",
+              "text": "D\u00E9lire"
+            },
+            {
+              "id": "metamorph",
+              "text": "Metamorph"
+            },
+            {
+              "id": "blight",
+              "text": "Blight"
+            },
+            {
+              "id": "legion",
+              "text": "Legion"
+            },
+            {
+              "id": "synthesis",
+              "text": "Synthesis"
+            },
+            {
+              "id": "betrayal",
+              "text": "Betrayal"
+            },
+            {
+              "id": "warfortheatlas",
+              "text": "La Guerre de l\u2019Atlas"
+            },
+            {
+              "id": "atlasofworlds",
+              "text": "L\u0027Atlas des Mondes"
+            },
+            {
+              "id": "theawakening",
+              "text": "L\u0027\u00C9veil"
+            },
+            {
+              "id": "original",
+              "text": "H\u00E9ritage"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_blighted",
+        "text": "Carte infest\u00E9e",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_uberblighted",
+        "text": "Carte ravag\u00E9e par l\u0027Infestation",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_completion_reward",
+        "text": "R\u00E9compense de Carte termin\u00E9e",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "heist_filters",
+    "title": "Filtres de Heist",
+    "filters": [
+      {
+        "id": "heist_wings",
+        "text": "Ailes r\u00E9v\u00E9l\u00E9es",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_wings",
+        "text": "Total d\u0027Ailes",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_escape_routes",
+        "text": "\u00C9chappatoires r\u00E9v\u00E9l\u00E9es",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_escape_routes",
+        "text": "Total d\u0027\u00C9chappatoires",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_reward_rooms",
+        "text": "Salles de r\u00E9compenses r\u00E9v\u00E9l\u00E9es",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_reward_rooms",
+        "text": "Total de Salles de r\u00E9compenses",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_objective_value",
+        "text": "Valeur d\u0027objectif de Contrat",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "moderate",
+              "text": "Valeur mod\u00E9r\u00E9e"
+            },
+            {
+              "id": "high",
+              "text": "Valeur \u00E9lev\u00E9e"
+            },
+            {
+              "id": "precious",
+              "text": "Valeur pharamineuse"
+            },
+            {
+              "id": "priceless",
+              "text": "Valeur inestimable"
+            }
+          ]
+        }
+      },
+      {
+        "id": "heist_lockpicking",
+        "text": "Niv. de Crochetage",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_brute_force",
+        "text": "Niv. de Force brute",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_perception",
+        "text": "Niv. de Perception",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_demolition",
+        "text": "Niv. de D\u00E9molition",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_counter_thaumaturgy",
+        "text": "Niv. d\u0027Anti-thaumaturgie",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_trap_disarmament",
+        "text": "Niv. de D\u00E9sam. de pi\u00E8ges",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_agility",
+        "text": "Niv. d\u0027Agilit\u00E9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_deception",
+        "text": "Niv. de Duperie",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_engineering",
+        "text": "Niv. d\u0027Ing\u00E9nierie",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "sanctum_filters",
+    "title": "Filtres de Sanctum",
+    "filters": [
+      {
+        "id": "sanctum_resolve",
+        "text": "R\u00E9solution",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_max_resolve",
+        "text": "R\u00E9solution maximale",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_inspiration",
+        "text": "Inspiration",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_gold",
+        "text": "Aureus",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "ultimatum_filters",
+    "title": "Filtres d\u0027Ultimatum",
+    "filters": [
+      {
+        "id": "ultimatum_challenge",
+        "text": "Type de D\u00E9fi",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "Exterminate",
+              "text": "\u00C9liminez les vagues de monstres"
+            },
+            {
+              "id": "Survival",
+              "text": "Restez en vie"
+            },
+            {
+              "id": "Defense",
+              "text": "Prot\u00E9gez l\u0027Autel"
+            },
+            {
+              "id": "Conquer",
+              "text": "Restez dans les Cercles de pierre"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_reward",
+        "text": "Type de r\u00E9compense",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "DoubleCurrency",
+              "text": "Objets mon\u00E9taires"
+            },
+            {
+              "id": "DoubleDivCards",
+              "text": "Les Cartes divinatoires"
+            },
+            {
+              "id": "MirrorRare",
+              "text": "Objet rare refl\u00E9t\u00E9"
+            },
+            {
+              "id": "ExchangeUnique",
+              "text": "Objet unique"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_input",
+        "text": "Sacrifice demand\u00E9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ultimatum_output",
+        "text": "Unique en r\u00E9compense",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "misc_filters",
+    "title": "Divers",
+    "filters": [
+      {
+        "id": "quality",
+        "text": "Qualit\u00E9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ilvl",
+        "text": "Niveau de l\u0027objet",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level",
+        "text": "Niveau de la gemme",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level_progress",
+        "text": "% d\u0027exp. de la Gemme",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_transfigured",
+        "text": "Gemmes transfigur\u00E9es",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_vaal",
+        "text": "Gemme vaal",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fractured_item",
+        "text": "Objet fissur\u00E9",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_imbued",
+        "text": "Gemme impr\u00E9gn\u00E9e",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "synthesised_item",
+        "text": "Objet synth\u00E9tis\u00E9",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "searing_item",
+        "text": "Objet de l\u0027Exarque ardent",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tangled_item",
+        "text": "Objet du Mangeur de mondes",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "memory_level",
+        "text": "Brins de Souvenir",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "identified",
+        "text": "Identifi\u00E9",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corrupted",
+        "text": "Corrompu",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mirrored",
+        "text": "Refl\u00E9t\u00E9",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "split",
+        "text": "Diviser",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crafted",
+        "text": "Fabriqu\u00E9",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "veiled",
+        "text": "Crypt\u00E9",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foreseeing",
+        "text": "Pr\u00E9voir",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "talisman_tier",
+        "text": "Palier du Talisman",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stored_experience",
+        "text": "Exp\u00E9rience stock\u00E9e",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stack_size",
+        "text": "Taille de l\u0027ensemble",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "alternate_art",
+        "text": "Apparence alternative",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foil_variation",
+        "text": "Variation de version surbrillante",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "none",
+              "text": "Aucune"
+            },
+            {
+              "id": "0",
+              "text": "Arc-en-ciel (par d\u00E9faut)"
+            },
+            {
+              "id": "voidborn",
+              "text": "Variations N\u00E9angendr\u00E9es (toutes)"
+            },
+            {
+              "id": "1",
+              "text": "Am\u00E9thyste"
+            },
+            {
+              "id": "2",
+              "text": "Verdoyant"
+            },
+            {
+              "id": "3",
+              "text": "Rubis"
+            },
+            {
+              "id": "4",
+              "text": "Cobalt"
+            },
+            {
+              "id": "5",
+              "text": "Soleil couchant"
+            },
+            {
+              "id": "6",
+              "text": "Dor\u00E9"
+            },
+            {
+              "id": "celestial",
+              "text": "Variantes c\u00E9lestes (toutes)"
+            },
+            {
+              "id": "7",
+              "text": "Quartz c\u00E9leste"
+            },
+            {
+              "id": "8",
+              "text": "Rubis c\u00E9leste"
+            },
+            {
+              "id": "9",
+              "text": "\u00C9meraude c\u00E9leste"
+            },
+            {
+              "id": "10",
+              "text": "Dor\u00E9 c\u00E9leste"
+            },
+            {
+              "id": "11",
+              "text": "Perle c\u00E9leste"
+            },
+            {
+              "id": "12",
+              "text": "Am\u00E9thyste c\u00E9leste"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corpse_type",
+        "text": "Type de Cadavre",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "eldritch",
+              "text": "Surnaturel"
+            },
+            {
+              "id": "demon",
+              "text": "D\u00E9mon"
+            },
+            {
+              "id": "construct",
+              "text": "Fabrication"
+            },
+            {
+              "id": "undead",
+              "text": "Mort-vivant"
+            },
+            {
+              "id": "beast",
+              "text": "B\u00EAte"
+            },
+            {
+              "id": "humanoid",
+              "text": "Humano\u00EFde"
+            }
+          ]
+        }
+      },
+      {
+        "id": "scourge_tier",
+        "text": "Palier de Souillure",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crucible_item",
+        "text": "Objet du Creuset",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mutated",
+        "text": "Malgendr\u00E9",
+        "option": {
+          "options": [
+            {
+              "text": "Tous"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "false",
+              "text": "Non"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "trade_filters",
+    "title": "Filtres d\u0027\u00E9change",
+    "filters": [
+      {
+        "id": "account",
+        "text": "Compte du vendeur",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "collapse",
+        "text": "R\u00E9duire la classification par compte",
+        "option": {
+          "options": [
+            {
+              "text": "Non"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            }
+          ]
+        }
+      },
+      {
+        "id": "indexed",
+        "text": "Mise en vente",
+        "option": {
+          "options": [
+            {
+              "text": "n\u0027importe quand"
+            },
+            {
+              "id": "1hour",
+              "text": "Il y a moins d\u0027une heure"
+            },
+            {
+              "id": "3hours",
+              "text": "Il y a moins de 3 heures"
+            },
+            {
+              "id": "12hours",
+              "text": "Il y a moins de 12 heures"
+            },
+            {
+              "id": "1day",
+              "text": "au cours de ces derni\u00E8res 24 heures"
+            },
+            {
+              "id": "3days",
+              "text": "au cours de ces 3 derniers jours"
+            },
+            {
+              "id": "1week",
+              "text": "au cours de cette derni\u00E8re semaine"
+            },
+            {
+              "id": "2weeks",
+              "text": "au cours de ces 2 derni\u00E8res semaines"
+            },
+            {
+              "id": "1month",
+              "text": "au cours de ce dernier mois"
+            },
+            {
+              "id": "2months",
+              "text": "au cours de ces 2 derniers mois"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sale_type",
+        "text": "Type de vente",
+        "option": {
+          "options": [
+            {
+              "id": "any",
+              "text": "Tous"
+            },
+            {
+              "text": "Directe ou fixe"
+            },
+            {
+              "id": "priced_with_info",
+              "text": "Prix avec note"
+            },
+            {
+              "id": "unpriced",
+              "text": "Sans prix"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fee",
+        "text": "Co\u00FBt en Or",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "price",
+        "text": "Directe",
+        "option": {
+          "options": [
+            {
+              "text": "\u00C9quivalent en Orbes du chaos"
+            },
+            {
+              "id": "chaos_divine",
+              "text": "Orbes de Chaos ou Divins"
+            },
+            {
+              "id": "chaos",
+              "text": "Orbe du chaos"
+            },
+            {
+              "id": "exalted",
+              "text": "Orbe exalt\u00E9"
+            },
+            {
+              "id": "divine",
+              "text": "Orbe divin"
+            },
+            {
+              "id": "mirror",
+              "text": "Miroir de Kalandra"
+            },
+            {
+              "id": "blessed",
+              "text": "Orbe b\u00E9ni"
+            },
+            {
+              "id": "chrome",
+              "text": "Orbe chromatique"
+            },
+            {
+              "id": "gcp",
+              "text": "Prisme de lapidaire"
+            },
+            {
+              "id": "jewellers",
+              "text": "Orbe de joaillier"
+            },
+            {
+              "id": "scour",
+              "text": "Orbe de suppression"
+            },
+            {
+              "id": "regret",
+              "text": "Orbe de regret"
+            },
+            {
+              "id": "fusing",
+              "text": "Orbe de fusion"
+            },
+            {
+              "id": "chance",
+              "text": "Orb de chance"
+            },
+            {
+              "id": "alt",
+              "text": "Orbe d\u0027alt\u00E9ration"
+            },
+            {
+              "id": "alch",
+              "text": "Orbe d\u0027alchimie"
+            },
+            {
+              "id": "regal",
+              "text": "Orbe royal"
+            },
+            {
+              "id": "vaal",
+              "text": "Orbe vaal"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

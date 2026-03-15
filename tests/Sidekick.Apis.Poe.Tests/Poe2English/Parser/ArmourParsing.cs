@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -45,9 +45,9 @@ Corrupted
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Steeltoe Boots", actual.ApiInformation.Type);
-        Assert.Equal("Thunderstep", actual.ApiInformation.Name);
-        Assert.Equal("Thunderstep Steeltoe Boots", actual.ApiInformation.InvariantText);
+        Assert.Equal("Steeltoe Boots", actual.Definition.Type);
+        Assert.Equal("Thunderstep", actual.Definition.Name);
+        Assert.Equal("Thunderstep Steeltoe Boots", actual.Definition.InvariantText);
 
         Assert.Equal(129, actual.Properties.EvasionRating);
 
@@ -89,8 +89,8 @@ Grants Skill: Parry
 
         Assert.Equal(ItemClass.Buckler, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Wooden Buckler", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Wooden Buckler", actual.Definition.Type);
+        Assert.Null(actual.Definition.Name);
         Assert.Equal(5, actual.Properties.RequiresLevel);
         Assert.Equal(11, actual.Properties.RequiresDexterity);
 
@@ -122,8 +122,8 @@ Can only be equipped if you are wielding a Bow.
 
         Assert.Equal(ItemClass.Quiver, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Fire Quiver", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Fire Quiver", actual.Definition.Type);
+        Assert.Null(actual.Definition.Name);
 
         Assert.Equal(8, actual.Properties.ItemLevel);
     }
@@ -160,8 +160,8 @@ Item Level: 66
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Bastion Sabatons", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Bastion Sabatons", actual.Definition.Type);
+        Assert.Null(actual.Definition.Name);
         Assert.Equal(59, actual.Properties.RequiresLevel);
         Assert.Equal(44, actual.Properties.RequiresStrength);
         Assert.Equal(44, actual.Properties.RequiresDexterity);
@@ -211,8 +211,8 @@ Note: ~b/o 980 divine
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Atziri's Step", actual.ApiInformation.Name);
-        Assert.Equal("Cinched Boots", actual.ApiInformation.Type);
+        Assert.Equal("Atziri's Step", actual.Definition.Name);
+        Assert.Equal("Cinched Boots", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Gain Deflection Rating equal to #% of Evasion Rating", 60);
         // Issue #985 fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to amount of Damage Prevented by Deflection", -9);

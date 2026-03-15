@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -34,7 +34,7 @@ Corrupted
 
         Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ruby Ring", actual.ApiInformation.Type);
+        Assert.Equal("Ruby Ring", actual.Definition.Type);
 
         Assert.Equal(76, actual.Properties.ItemLevel);
         Assert.False(actual.Properties.Unidentified);

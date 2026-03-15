@@ -30,7 +30,7 @@
             _ => CurrentGameLanguage.Language.Code + "/"
         };
 
-        var searchLink = Item.ApiInformation.Name ?? Item.ApiInformation.Type;
+        var searchLink = Item.Definition.Name ?? Item.Definition.Type;
         var wikiLink = searchLink?.Replace(" ", "_");
         var uri = new Uri(baseUrl + languageCodeSuffix + wikiLink);
 

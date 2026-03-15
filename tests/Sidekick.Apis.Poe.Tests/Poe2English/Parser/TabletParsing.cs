@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -10,60 +10,36 @@ public class TabletParsing(Poe2EnglishFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseTablet()
+    public void ParseRitualTablet()
     {
         var actual = parser.ParseItem(
             @"Item Class: Tablet
-Rarity: Magic
-Bountiful Overseer Precursor Tablet of Conquering
---------
-Item Level: 82
---------
-Empowers the Map Boss of a Map (implicit)
-10 uses remaining (implicit)
---------
-33% increased Gold found in Map
-Map Bosses grant 53% increased Experience
---------
-Can be used in a personal Map Device to add modifiers to a Map.");
-
-        Assert.Equal(ItemClass.Tablet, actual.Properties.ItemClass);
-        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Overseer Precursor Tablet", actual.ApiInformation.Type);
-
-        Assert.Equal(82, actual.Properties.ItemLevel);
-
-        fixture.AssertHasStat(actual, StatCategory.Implicit, "Empowers the Map Boss of a Map \n# use remaining", 10);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Gold found in your Maps (Gold Piles)", 33);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "Map Bosses grant #% increased Experience", 53);
-    }
-
-    [Fact]
-    public void ParseReducedTributeTablet()
-    {
-        var actual = parser.ParseItem(
-            @"Item Class: Tablet
-Rarity: Magic
+Rarity: Rare
+Planar Injunction
 Ritual Precursor Tablet
 --------
 Item Level: 77
 --------
-Empowers the Map Boss of a Map (implicit)
+Adds Ritual Altars to a Map (implicit)
 10 uses remaining (implicit)
 --------
-Rerolling Favours at Ritual Altars in Map costs 28% reduced Tribute
-Fortifying Hits grant 25% reduced Fortification
+18% increased Rarity of Items found in Map
+Map has 40% increased number of Rare Monsters
+Monsters Sacrificed at Ritual Altars in Map grant 18% increased Tribute
+Deferring Favours at Ritual Altars in Map costs 25% reduced Tribute
 --------
-Can be used in a personal Map Device to add modifiers to a Map.");
+Can be used in a personal Map Device to add modifiers to a Map.
+");
 
         Assert.Equal(ItemClass.Tablet, actual.Properties.ItemClass);
-        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ritual Precursor Tablet", actual.ApiInformation.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ritual Precursor Tablet", actual.Definition.Type);
 
         Assert.Equal(77, actual.Properties.ItemLevel);
 
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "Rerolling Favours at Ritual Altars in your Maps costs #% increased Tribute", -28);
-        actual.AssertDoesNotHaveModifier(StatCategory.Explicit, "Deferring Favours at Ritual Altars in Area costs #% reduced Tribute");
-        actual.AssertDoesNotHaveModifier(StatCategory.Explicit, "Deferring Favours at Ritual Altars in your Maps costs #% reduced Tribute");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found in your Maps",18);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased number of Rare Monsters", 40);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Monsters Sacrificed at Ritual Altars in Area grant #% increased Tribute", 18);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Deferring Favours at Ritual Altars in Area costs #% increased Tribute", -25);
     }
 }

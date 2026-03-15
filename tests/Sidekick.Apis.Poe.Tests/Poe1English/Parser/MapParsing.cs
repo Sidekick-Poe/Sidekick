@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -32,8 +32,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal("Map", actual.ApiInformation.Type);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
         Assert.Equal(2, actual.Properties.MapTier);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% Monster Physical Damage Reduction", 20);
@@ -67,8 +67,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Olmec's Sanctum", actual.ApiInformation.Name);
-        Assert.Equal("Map", actual.ApiInformation.Type);
+        Assert.Equal("Olmec's Sanctum", actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
         Assert.Equal(6, actual.Properties.MapTier);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% more Monster Life", 42);

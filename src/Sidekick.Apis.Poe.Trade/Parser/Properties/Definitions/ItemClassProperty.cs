@@ -226,14 +226,14 @@ public class ItemClassProperty : PropertyDefinition
         if (item.Properties.ItemClass == ItemClass.Unknown) return Task.FromResult<TradeFilter?>(null);
 
         var classLabel = tradeFilterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
-        if (classLabel == null || item.ApiInformation.Type == null) return Task.FromResult<TradeFilter?>(null);
+        if (classLabel == null || item.Definition.Type == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemClassFilter
         {
             Text = resources["Item_Class"],
             ItemClass = classLabel,
             BaseTypeText = resources["Base_Type"],
-            BaseType = item.ApiInformation.Type,
+            BaseType = item.Definition.Type,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}",
         };
         return Task.FromResult<TradeFilter?>(filter);

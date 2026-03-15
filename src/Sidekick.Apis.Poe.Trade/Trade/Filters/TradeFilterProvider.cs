@@ -5,8 +5,8 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade.Raw;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 
 public class TradeFilterProvider
@@ -44,8 +44,7 @@ public class TradeFilterProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(game, DataType.TradeRawFilters, currentGameLanguage.Language);
-        Filters = result.Result;
+        Filters = await dataProvider.Read<List<RawTradeFilterCategory>>(game, DataType.TradeFilters, currentGameLanguage.Language);
     }
 
     private RawTradeFilterCategory? GetApiFilterCategory(string categoryId)

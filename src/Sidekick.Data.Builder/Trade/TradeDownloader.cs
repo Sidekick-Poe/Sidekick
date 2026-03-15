@@ -21,10 +21,10 @@ public class TradeDownloader(
     {
         try
         {
-            await DownloadPath(DataType.TradeRawItems, language, "items");
-            await DownloadPath(DataType.TradeRawStats, language, "stats");
-            await DownloadPath(DataType.TradeRawStatic, language, "static");
-            await DownloadPath(DataType.TradeRawFilters, language, "filters");
+            await DownloadPath(DataType.RawTradeItems, language, "items");
+            await DownloadPath(DataType.RawTradeStats, language, "stats");
+            await DownloadPath(DataType.RawTradeStatic, language, "static");
+            await DownloadPath(DataType.RawTradeFilters, language, "filters");
         }
         catch (Exception ex)
         {

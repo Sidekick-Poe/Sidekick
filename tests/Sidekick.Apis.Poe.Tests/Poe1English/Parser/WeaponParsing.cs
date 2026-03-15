@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -33,7 +33,7 @@ Unidentified
 ;");
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Jade Hatchet", actual.ApiInformation.Type);
+        Assert.Equal("Jade Hatchet", actual.Definition.Type);
         Assert.True(actual.Properties.Unidentified);
     }
 
@@ -68,7 +68,7 @@ Crusader Item
 ");
 
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Imbued Wand", actual.ApiInformation.Type);
+        Assert.Equal("Imbued Wand", actual.Definition.Type);
         Assert.Equal("Miracle Chant", actual.Name);
         Assert.True(actual.Properties.Influences.Crusader);
 
@@ -104,7 +104,7 @@ Item Level: 50
 ");
 
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Shadow Axe", actual.ApiInformation.Type);
+        Assert.Equal("Shadow Axe", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
         Assert.False(actual.Stats[0].MatchedFuzzily);
@@ -148,8 +148,8 @@ Counts as Dual Wielding
 Fire and Anarchy are the most reliable agents of change.");
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Wings of Entropy", actual.ApiInformation.Name);
-        Assert.Equal("Ezomyte Axe", actual.ApiInformation.Type);
+        Assert.Equal("Wings of Entropy", actual.Definition.Name);
+        Assert.Equal("Ezomyte Axe", actual.Definition.Type);
 
         Assert.Equal(243.7, actual.Properties.PhysicalDps);
         Assert.Equal(172.80, actual.Properties.ElementalDps);
@@ -194,8 +194,8 @@ All form and finesse are forgotten when blood first hits the ground.
 
         Assert.Equal(ItemClass.OneHandSword, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Daresso's Passion", actual.ApiInformation.Name);
-        Assert.Equal("Estoc", actual.ApiInformation.Type);
+        Assert.Equal("Daresso's Passion", actual.Definition.Name);
+        Assert.Equal("Estoc", actual.Definition.Type);
 
         // Verify physical damage
         Assert.Equal(58, actual.Properties.PhysicalDamage?.Min);
@@ -243,8 +243,8 @@ Note: ~price 40 chaos
 
         Assert.Equal(ItemClass.FishingRod, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Reefbane", actual.ApiInformation.Name);
-        Assert.Equal("Fishing Rod", actual.ApiInformation.Type);
+        Assert.Equal("Reefbane", actual.Definition.Name);
+        Assert.Equal("Fishing Rod", actual.Definition.Type);
     }
 
     [Fact]
@@ -275,7 +275,7 @@ Hunter Item");
 
         Assert.Equal(ItemClass.OneHandMace, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ornate Mace", actual.ApiInformation.Type);
+        Assert.Equal("Ornate Mace", actual.Definition.Type);
         Assert.True(actual.Properties.Influences.Hunter);
     }
 
@@ -317,7 +317,7 @@ Spells Triggered this way have 150% more Cost (crafted)
 
         Assert.Equal(ItemClass.OneHandSword, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Apex Rapier", actual.ApiInformation.Type);
+        Assert.Equal("Apex Rapier", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 100);
     }
@@ -356,7 +356,7 @@ Adds 10 to 175 Lightning Damage
 
         Assert.Equal(ItemClass.OneHandSword, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Fancy Foil", actual.ApiInformation.Type);
+        Assert.Equal("Fancy Foil", actual.Definition.Type);
 
         Assert.Equal(110.30, actual.Properties.PhysicalDpsWithQuality);
         Assert.Equal(295.90, actual.Properties.ElementalDps);
@@ -401,7 +401,7 @@ Note: ~price 30 chaos
 
         Assert.Equal(ItemClass.Staff, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Imperial Staff", actual.ApiInformation.Type);
+        Assert.Equal("Imperial Staff", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "+#% to Damage over Time Multiplier", 44);
     }
@@ -447,7 +447,7 @@ Corrupted");
 
         Assert.Equal(ItemClass.OneHandAxe, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Decorative Axe", actual.ApiInformation.Type);
+        Assert.Equal("Decorative Axe", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Melee Hits Fortify", 12);
     }
@@ -487,7 +487,7 @@ Elder Item");
 
         Assert.Equal(ItemClass.Wand, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Prophecy Wand", actual.ApiInformation.Type);
+        Assert.Equal("Prophecy Wand", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Attacks with this Weapon per 10 Intelligence", 1, 5);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Spell Damage per 16 Intelligence", 1);

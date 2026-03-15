@@ -1,8 +1,11 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+using Sidekick.Data.Builder.Items;
+using Sidekick.Data.Builder.Leagues;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Pseudo;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Stats;
+using Sidekick.Data.Builder.StatsInvariant;
 using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Languages;
 
@@ -10,15 +13,19 @@ namespace Sidekick.Data.Builder;
 
 public class DataBuilder(
     ILogger<DataBuilder> logger,
+    LeagueBuilder leagueBuilder,
     NinjaDownloader ninjaDownloader,
     StatBuilder statBuilder,
     PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
-    TradeBuilder tradeBuilder,
+    ItemBuilder itemBuilder,
+    StatsInvariantBuilder statsInvariantBuilder,
     RepoeDownloader repoeDownloader,
+    TradeFilterBuilder tradeFilterBuilder,
     IGameLanguageProvider gameLanguageProvider)
 {
     public async Task DownloadAndBuildAll(
+        bool items = true,
         bool stats = true,
         bool trade = true,
         bool repoe = true,
@@ -37,6 +44,11 @@ public class DataBuilder(
             if (repoe)
             {
                 await DownloadRepoe(language);
+            }
+
+            if (items)
+            {
+                await BuildItems(language);
             }
 
             if (pseudo)
@@ -61,6 +73,7 @@ public class DataBuilder(
 
     public async Task DownloadAndBuild(
         IGameLanguage language,
+        bool items = true,
         bool stats = true,
         bool trade = true,
         bool repoe = true,
@@ -77,6 +90,11 @@ public class DataBuilder(
         if (repoe)
         {
             await DownloadRepoe(language);
+        }
+
+        if (items)
+        {
+            await BuildItems(language);
         }
 
         if (pseudo)
@@ -102,7 +120,15 @@ public class DataBuilder(
         logger.LogInformation($"Downloading {language.Code} trade data.");
         await tradeDownloader.Download(language);
         logger.LogInformation($"Building {language.Code} trade data.");
-        await tradeBuilder.Build(language);
+        await statsInvariantBuilder.Build(language);
+        await leagueBuilder.Build(language);
+        await tradeFilterBuilder.Build(language);
+    }
+
+    private async Task BuildItems(IGameLanguage language)
+    {
+        logger.LogInformation($"Building {language.Code} items data.");
+        await itemBuilder.Build(language);
     }
 
     private async Task DownloadRepoe(IGameLanguage language)

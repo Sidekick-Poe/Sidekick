@@ -1,13 +1,14 @@
-﻿using System.Net.Http.Headers;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using Sidekick.Data.Trade;
+using Sidekick.Data.Leagues;
 
 namespace Sidekick.Data.Builder.Ninja;
 
@@ -82,11 +83,11 @@ public class NinjaDownloader(
     {
         try
         {
-            var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, DataType.TradeLeagues, languageProvider.InvariantLanguage);
+            var poe1Leagues = await dataProvider.Read<List<League>>(GameType.PathOfExile1, DataType.Leagues, languageProvider.InvariantLanguage);
             await DownloadForGame(GameType.PathOfExile1,
                 poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
 
-            var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, DataType.TradeLeagues, languageProvider.InvariantLanguage);
+            var poe2Leagues = await dataProvider.Read<List<League>>(GameType.PathOfExile2, DataType.Leagues, languageProvider.InvariantLanguage);
             await DownloadForGame(GameType.PathOfExile2,
                 poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
         }

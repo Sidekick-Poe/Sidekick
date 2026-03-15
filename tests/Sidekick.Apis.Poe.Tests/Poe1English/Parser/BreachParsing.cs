@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -24,7 +24,7 @@ Shift click to unstack.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Splinter of Tul", actual.ApiInformation.Type);
+        Assert.Equal("Splinter of Tul", actual.Definition.Type);
     }
 
     [Fact]
@@ -44,7 +44,7 @@ Place this item into an allocated currency item womb on the Genesis Tree. Right 
 
         Assert.Equal(ItemClass.Wombgift, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Lavish Wombgift", actual.ApiInformation.Type);
+        Assert.Equal("Lavish Wombgift", actual.Definition.Type);
         Assert.Equal(34, actual.Properties.ItemLevel);
     }
 
@@ -76,7 +76,7 @@ Graft items can only be modified by Implant currencies.
 
         Assert.Equal(ItemClass.Graft, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Freezing Tulgraft", actual.ApiInformation.Type);
+        Assert.Equal("Freezing Tulgraft", actual.Definition.Type);
         Assert.Equal(37, actual.Properties.ItemLevel);
         Assert.Equal(29, actual.Properties.RequiresLevel);
     }
@@ -103,8 +103,8 @@ A net woven to keep safe the bones of the Lords.
 
         Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Simple Robe", actual.ApiInformation.Type);
-        Assert.Equal("Skin of the Loyal", actual.ApiInformation.Name);
+        Assert.Equal("Simple Robe", actual.Definition.Type);
+        Assert.Equal("Skin of the Loyal", actual.Definition.Name);
         Assert.Equal("Foulborn Skin of the Loyal", actual.Name);
         Assert.True(actual.Properties.Foulborn);
 

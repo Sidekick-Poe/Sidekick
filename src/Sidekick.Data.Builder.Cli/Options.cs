@@ -6,11 +6,12 @@ public class Options
     public bool Poe1 { get; set; } = true;
     public bool Poe2 { get; set; } = true;
 
+    public bool Items { get; set; }
     public bool Stats { get; set; }
     public bool Trade { get; set; }
     public bool Repoe { get; set; }
     public bool Pseudo { get; set; }
     public bool Ninja { get; set; }
 
-    public bool HasSelectiveOptions => Stats || Trade || Repoe || Pseudo || Ninja;
+    public bool HasSelectiveOptions => Items || Stats || Trade || Repoe || Pseudo || Ninja;
 }

@@ -29,7 +29,7 @@ Note: ~price 1 chaos
 
         Assert.Equal(ItemClass.Resonator, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Potent Chaotic Resonator", actual.ApiInformation.Type);
+        Assert.Equal("Potent Chaotic Resonator", actual.Definition.Type);
     }
 
     [Fact]
@@ -53,7 +53,7 @@ Note: ~price 4 chaos
 
         Assert.Equal(ItemClass.Resonator, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Powerful Chaotic Resonator", actual.ApiInformation.Type);
+        Assert.Equal("Powerful Chaotic Resonator", actual.Definition.Type);
     }
 
     [Fact]
@@ -73,6 +73,6 @@ Place in a Resonator to influence item crafting.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Opulent Fossil", actual.ApiInformation.Type);
+        Assert.Equal("Opulent Fossil", actual.Definition.Type);
     }
 }

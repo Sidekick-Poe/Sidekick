@@ -3,16 +3,15 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
-using Sidekick.Common.Enums;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Poe1;
+using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
-using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Raw;
+using Sidekick.Data.StatsInvariant;
 namespace Sidekick.Data.Builder.Stats;
 
 public class StatBuilder(
@@ -20,11 +19,13 @@ public class StatBuilder(
     IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
     RepoeDownloader repoeDownloader,
+    TradeStatProvider tradeStatProvider,
     IFuzzyService fuzzyService)
 {
     private record TradeReplaceEntry(Regex Pattern, string Replacement);
 
-    private readonly List<string> ignoredGameIds = [
+    private readonly List<string> ignoredGameIds =
+    [
         "map_set_league_category",
         "map_item_level_override",
     ];
@@ -62,46 +63,71 @@ public class StatBuilder(
 
     private async Task Build(GameType game, IGameLanguage language)
     {
-        var definitions = await BuildGameStats(game, language);
-        definitions.AddRange(await BuildTradeStats(game, language, definitions));
+        var tradeDefinitions = await tradeStatProvider.GetDefinitions(game, language);
 
-        var invariantStats = await dataProvider.Read<TradeInvariantStats>(game, DataType.TradeStats);
+        var definitions = await BuildGameStats(game, language, tradeDefinitions);
+        definitions.AddRange(BuildTradeStats(language, tradeDefinitions, definitions));
+
+        var invariantStats = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
         ComputeSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds);
-        RemoveSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds, x => x.Option?.Id == 2);
         ComputeSpecialPseudoPattern(definitions, invariantStats.LogbookFactionStatIds);
 
+        // Remove 'Closed Room' (2) options. We keep only 'Open Room' (1) options
+        RemoveSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds, x => x.TradeStats.All(y => y.Option?.Id == 2));
         await dataProvider.Write(game, DataType.Stats, language, definitions);
     }
 
-    private async Task<List<StatDefinition>> BuildGameStats(GameType game, IGameLanguage language)
+    private async Task<List<StatDefinition>> BuildGameStats(GameType game, IGameLanguage language, List<TradeStatDefinition> tradeDefinitions)
     {
         var gameStats = await repoeDownloader.ReadStatTranslations(game, language.Code);
         var definitions = new List<StatDefinition>();
         foreach (var gameStat in gameStats)
         {
-            definitions.AddRange(GetGamePatterns(gameStat));
+            definitions.AddRange(GetGamePatterns(gameStat, tradeDefinitions));
         }
 
         return definitions;
     }
 
-    private async Task<List<StatDefinition>> BuildTradeStats(GameType game, IGameLanguage language, List<StatDefinition> definitions)
+    private IEnumerable<StatDefinition> BuildTradeStats(IGameLanguage language, List<TradeStatDefinition> tradeDefinitions, List<StatDefinition> definitions)
     {
-        var apiCategories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.TradeRawStats, language);
-        var apiStats = apiCategories.Result.SelectMany(x => x.Entries);
-
-        var result = new List<StatDefinition>();
-        foreach (var apiStat in apiStats)
+        foreach (var tradeDefinition in tradeDefinitions)
         {
-            if (definitions.Any(def => def.TradeIds.Contains(apiStat.Id))) continue;
+            if (IsDefined(tradeDefinition)) continue;
 
-            result.AddRange(GetTradePatterns(language, apiStat));
+            yield return GetTradePattern(language, tradeDefinition);
         }
 
-        return result;
+        yield break;
+
+        bool IsDefined(TradeStatDefinition tradeStatDefinition)
+        {
+            return (from definition in definitions
+                from tradeStat in definition.TradeStats
+                where tradeStat.Id == tradeStatDefinition.Id
+                where tradeStat.Option?.Id == tradeStatDefinition.Option?.Id
+                select true)
+                .FirstOrDefault();
+
+        }
+
+        StatDefinition GetTradePattern(IGameLanguage gameLanguage, TradeStatDefinition tradeDefinition)
+        {
+            var text = GetText(tradeDefinition.Text, tradeDefinition.Option?.Text);
+
+            return new StatDefinition()
+            {
+                Source = StatSource.Trade,
+                Text = text,
+                FuzzyText = GetFuzzyText(gameLanguage, tradeDefinition.Text, tradeDefinition.Option?.Text),
+                TradeStats = [tradeDefinition],
+                Pattern = GetPattern(tradeDefinition.Text, tradeDefinition.Option?.Text, replacePatterns: true),
+                Lines = text.Split('\n').Length,
+            };
+        }
     }
 
-    private IEnumerable<StatDefinition> GetGamePatterns(RepoeStatTranslation gameStat)
+    private IEnumerable<StatDefinition> GetGamePatterns(RepoeStatTranslation gameStat, List<TradeStatDefinition> tradeDefinitions)
     {
         if (gameStat.Languages == null || gameStat.Ids.Any(x => ignoredGameIds.Contains(x))) yield break;
 
@@ -116,74 +142,44 @@ public class StatBuilder(
 
             var text = GetText(language.Text);
             var value = GetValue(language);
-            var tradeStats = GetTradeStats(value).ToList();
+            var tradeStats = GetTradeStatDefinitions(value).ToList();
 
             yield return new StatDefinition()
             {
                 Source = StatSource.Game,
-                Category = GetGameStatCategory(tradeStats),
                 GameIds = gameStat.Ids,
-                TradeIds = tradeStats.Select(x => x.Id).ToList(),
+                TradeStats = tradeStats,
                 Text = text,
-                Option = GetOption(tradeStats, value),
                 Negate = language.Handlers?.Any(x => x.Contains("negate")) ?? false,
                 Pattern = GetPattern(language.Text),
                 Value = KeepValue(language, tradeStats) ? value : null,
-                LineCount = text.Split('\n').Length,
+                Lines = text.Split('\n').Length,
             };
         }
 
         yield break;
 
-        IEnumerable<RepoeStatTrade> GetTradeStats(int? value)
+        IEnumerable<TradeStatDefinition> GetTradeStatDefinitions(int? value)
         {
-            var hasOptions = gameStat.TradeStats.Any(x => x.Options != null || x.OptionValue.HasValue);
-            foreach (var tradeStat in gameStat.TradeStats)
+            foreach (var repoeStat in gameStat.TradeStats)
             {
-                if (!hasOptions)
+                foreach (var tradeDefinition in tradeDefinitions)
                 {
-                    yield return tradeStat;
-                    continue;
-                }
+                    if (tradeDefinition.Id != repoeStat.Id) continue;
 
-                if (value == null)
-                {
-                    if (tradeStat.Options == null) yield return tradeStat;
-                    continue;
-                }
+                    if (repoeStat.Options is { Options.Count: > 0 })
+                    {
+                        foreach (var repoeStatOption in repoeStat.Options.Options)
+                        {
+                            if (tradeDefinition.Option == null || repoeStatOption.Id != tradeDefinition.Option.Id) continue;
+                            if (repoeStatOption.Id == value) yield return tradeDefinition;
+                        }
+                        continue;
+                    }
 
-                if (tradeStat.Options != null && tradeStat.Options.Options.Any(x => x.Id == value))
-                {
-                    yield return tradeStat;
-                    continue;
-                }
-
-                if (tradeStat.OptionValue == value)
-                {
-                    yield return tradeStat;
+                    if (tradeDefinition.Option?.Id == repoeStat.OptionValue) yield return tradeDefinition;
                 }
             }
-        }
-
-        StatOption? GetOption(List<RepoeStatTrade> tradeStats, int? value)
-        {
-            var tradeOption = tradeStats
-                .Where(x => x.Options != null)
-                .SelectMany(x => x.Options!.Options)
-                .FirstOrDefault(x => x.Id == value);
-            if (tradeOption == null) return null;
-
-            return new StatOption()
-            {
-                Id = tradeOption.Id,
-                Text = tradeOption.Text,
-            };
-        }
-
-        StatCategory GetGameStatCategory(List<RepoeStatTrade> tradeStats)
-        {
-            var categories = tradeStats.Select(x => GetStatCategory(x.Type)).Distinct().ToList();
-            return categories.Count != 1 ? StatCategory.Undefined : categories[0];
         }
 
         int? GetValue(RepoeStatLanguage entry)
@@ -200,50 +196,9 @@ public class StatBuilder(
             return (int)condition.Min.Value;
         }
 
-        bool KeepValue(RepoeStatLanguage entry, IList<RepoeStatTrade> tradeStats)
+        bool KeepValue(RepoeStatLanguage entry, IList<TradeStatDefinition> tradeStats)
         {
             return tradeStats.All(x => x.Text != entry.Text);
-        }
-    }
-
-    private IEnumerable<StatDefinition> GetTradePatterns(IGameLanguage gameLanguage, RawTradeStat tradeStat)
-    {
-        if (tradeStat.Options == null || tradeStat.Options.Options.Count == 0)
-        {
-            var text = GetText(tradeStat.Text);
-
-            yield return new StatDefinition()
-            {
-                Source = StatSource.Trade,
-                Text = text,
-                FuzzyText = GetFuzzyText(gameLanguage, tradeStat.Text),
-                Category = GetStatCategory(tradeStat.Type),
-                TradeIds = [tradeStat.Id],
-                Pattern = GetPattern(tradeStat.Text, replacePatterns: true),
-                LineCount = text.Split('\n').Length,
-            };
-            yield break;
-        }
-
-        foreach (var option in tradeStat.Options.Options)
-        {
-            var text = GetText(tradeStat.Text, option.Text);
-
-            yield return new StatDefinition()
-            {
-                Source = StatSource.Trade,
-                Text = text,
-                FuzzyText = GetFuzzyText(gameLanguage, tradeStat.Text, option.Text),
-                Category = GetStatCategory(tradeStat.Type),
-                TradeIds = [tradeStat.Id],
-                Pattern = GetPattern(tradeStat.Text, option.Text, replacePatterns: true),
-                LineCount = text.Split('\n').Length,
-                Option = new StatOption()
-                {
-                    Id = option.Id,
-                    Text = option.Text,
-                },
-            };
         }
     }
 
@@ -321,12 +276,6 @@ public class StatBuilder(
         return new Regex($"^{patternValue}$", RegexOptions.None);
     }
 
-    private StatCategory GetStatCategory(string? apiId)
-    {
-        var value = apiId?.Split('.').First();
-        return value.GetEnumFromValue<StatCategory>();
-    }
-
     private List<TradeReplaceEntry> BuildReplacementPatterns(IGameLanguage language)
     {
         List<TradeReplaceEntry> result = [];
@@ -357,8 +306,9 @@ public class StatBuilder(
     private void ComputeSpecialPseudoPattern(List<StatDefinition> definitions, List<string> patternIds)
     {
         var patterns = (from definition in definitions
-            where definition.Category == StatCategory.Pseudo
-            where definition.TradeIds.Any(patternIds.Contains)
+            from tradeStat in definition.TradeStats
+            where tradeStat.Category == StatCategory.Pseudo
+            where patternIds.Contains(tradeStat.Id)
             select definition);
 
         foreach (var pattern in patterns)
@@ -369,6 +319,6 @@ public class StatBuilder(
 
     private void RemoveSpecialPseudoPattern(List<StatDefinition> definitions, List<string> patternIds, Func<StatDefinition, bool> predicate)
     {
-        definitions.RemoveAll(x => x.TradeIds.Any(patternIds.Contains) && predicate(x));
+        definitions.RemoveAll(x => x.TradeStats.Any(y => patternIds.Contains(y.Id)) && predicate(x));
     }
 }

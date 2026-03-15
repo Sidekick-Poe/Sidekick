@@ -21,10 +21,8 @@ public class DataProvider : IInitializableService
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-#if DEBUG
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
         WriteIndented = true,
-#endif
         Converters =
         {
             new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)

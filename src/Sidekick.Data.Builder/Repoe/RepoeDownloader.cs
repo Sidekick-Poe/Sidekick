@@ -57,7 +57,7 @@ public class RepoeDownloader(
         var result = new List<RepoeStatTranslation>();
         foreach (var file in files)
         {
-            result.AddRange(await dataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/repoe/{file.FileName}.{language}.json"));
+            result.AddRange(await dataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json"));
         }
 
         return result;
@@ -112,7 +112,7 @@ public class RepoeDownloader(
             logger.LogInformation($"GET {url}");
             using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
-            await dataProvider.Write($"{game.GetValueAttribute()}/repoe/{fileName}", await response.Content.ReadAsStreamAsync());
+            await dataProvider.Write($"{game.GetValueAttribute()}/raw/repoe/{fileName}", await response.Content.ReadAsStreamAsync());
         }
         catch (Exception ex)
         {

@@ -1,4 +1,5 @@
-@using Sidekick.Apis.Poe.Trade.ApiStatic
+@using Sidekick.Apis.Poe.Trade.ApiItems
+
 <div class="flex flex-nowrap gap-1 items-center">
     <Heading2>@Min.ToString("0.#")</Heading2>
     <TextCaption Class="mx-1 text-[#a38d6d]">-</TextCaption>
@@ -13,7 +14,7 @@
     }
 </div>
 
-@inject IApiStaticDataProvider ApiStaticDataProvider
+@inject IApiItemProvider ApiItemProvider
 
 @code {
 
@@ -26,8 +27,8 @@
     [Parameter]
     public double Max { get; set; }
 
-    private string? ImageUrl => ApiStaticDataProvider.GetById(Currency ?? "chaos")?.Image;
+    private string? ImageUrl => ApiItemProvider.GetById(Currency ?? "chaos")?.Image;
 
-    private string? CurrencyText => ApiStaticDataProvider.GetById(Currency ?? "chaos")?.Text;
+    private string? CurrencyText => ApiItemProvider.GetById(Currency ?? "chaos")?.Text;
 
 }

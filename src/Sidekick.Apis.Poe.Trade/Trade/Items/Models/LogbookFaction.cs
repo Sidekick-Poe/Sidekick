@@ -1,4 +1,5 @@
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 namespace Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 
 public class LogbookFaction

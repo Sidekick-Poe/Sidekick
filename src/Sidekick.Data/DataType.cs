@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Enums;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Data;
 
@@ -10,33 +10,36 @@ public enum DataType
     [EnumValue("ninja/stash.json")]
     NinjaStash,
 
+    [EnumValue("items/{0}.json")]
+    Items,
+
     [EnumValue("stats/{0}.json")]
     Stats,
 
     [EnumValue("pseudo/{0}.json")]
     Pseudo,
 
-    [EnumValue("trade/leagues.invariant.json")]
-    TradeLeagues,
+    [EnumValue("leagues.json")]
+    Leagues,
 
-    [EnumValue("trade/stats.{0}.json")]
-    TradeStats,
+    [EnumValue("stats/invariant.json")]
+    StatsInvariant,
 
-    [EnumValue("trade/stats.invariant.json")]
-    TradeInvariantStats,
+    [EnumValue("trade/filters.{0}.json")]
+    TradeFilters,
 
-    [EnumValue("trade/raw/filters.{0}.json")]
-    TradeRawFilters,
+    [EnumValue("raw/trade/filters.{0}.json")]
+    RawTradeFilters,
 
-    [EnumValue("trade/raw/items.{0}.json")]
-    TradeRawItems,
+    [EnumValue("raw/trade/items.{0}.json")]
+    RawTradeItems,
 
-    [EnumValue("trade/raw/leagues.{0}.json")]
-    TradeRawLeagues,
+    [EnumValue("raw/trade/leagues.{0}.json")]
+    RawTradeLeagues,
 
-    [EnumValue("trade/raw/static.{0}.json")]
-    TradeRawStatic,
+    [EnumValue("raw/trade/static.{0}.json")]
+    RawTradeStatic,
 
-    [EnumValue("trade/raw/stats.{0}.json")]
-    TradeRawStats,
+    [EnumValue("raw/trade/stats.{0}.json")]
+    RawTradeStats,
 }

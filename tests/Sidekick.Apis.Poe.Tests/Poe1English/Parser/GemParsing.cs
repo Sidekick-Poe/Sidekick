@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -57,7 +57,7 @@ Note: ~price 2 chaos
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Vaal Double Strike", actual.ApiInformation.Type);
+        Assert.Equal("Vaal Double Strike", actual.Definition.Type);
         Assert.Equal(1, actual.Properties.GemLevel);
         Assert.Equal(0, actual.Properties.Quality);
         Assert.True(actual.Properties.Corrupted);
@@ -93,7 +93,7 @@ This is a Support Gem. It does not grant a bonus to your character, but to skill
 
         Assert.Equal(ItemClass.SupportGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Arcane Surge Support", actual.ApiInformation.Type);
+        Assert.Equal("Arcane Surge Support", actual.Definition.Type);
     }
 
     [Fact]
@@ -130,7 +130,7 @@ Place into an item socket of the right colour to gain this skill. Right click to
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Void Sphere", actual.ApiInformation.Type);
+        Assert.Equal("Void Sphere", actual.Definition.Type);
     }
 
     [Fact]
@@ -169,9 +169,9 @@ Transfigured
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Kinetic Blast of Clustering", actual.ApiInformation.Text);
-        Assert.Equal("Kinetic Blast", actual.ApiInformation.Type);
-        Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
+        Assert.Equal("Kinetic Blast of Clustering", actual.Definition.Text);
+        Assert.Equal("Kinetic Blast", actual.Definition.Type);
+        Assert.Equal("alt_x", actual.Definition.Discriminator);
     }
 
     [Fact]
@@ -211,9 +211,9 @@ Transfigured
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Orb of Storms of Squalls", actual.ApiInformation.Text);
-        Assert.Equal("Orb of Storms", actual.ApiInformation.Type);
-        Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
+        Assert.Equal("Orb of Storms of Squalls", actual.Definition.Text);
+        Assert.Equal("Orb of Storms", actual.Definition.Type);
+        Assert.Equal("alt_x", actual.Definition.Discriminator);
     }
 
     [Fact]
@@ -254,8 +254,8 @@ Imbued
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Null(actual.ApiInformation.Text);
-        Assert.Equal("Earthshatter", actual.ApiInformation.Type);
+        Assert.Null(actual.Definition.Text);
+        Assert.Equal("Earthshatter", actual.Definition.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Imbued, "Supported by Level 1 Knockback");
     }

@@ -31,7 +31,8 @@ public class Stat(StatCategory category, string text)
     /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => Definitions.All(x => x.Option == null) && Values.Count > 0;
+    public bool HasValues => Definitions.All(x => x.TradeStats.All(y => y.Option == null))
+                             && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 

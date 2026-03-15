@@ -1,0 +1,1732 @@
+[
+  {
+    "id": "status_filters",
+    "filters": [
+      {
+        "id": "status",
+        "option": {
+          "options": [
+            {
+              "id": "available",
+              "text": "Instant Buyout and In Person"
+            },
+            {
+              "id": "securable",
+              "text": "Instant Buyout"
+            },
+            {
+              "id": "onlineleague",
+              "text": "In Person (Online in League)"
+            },
+            {
+              "id": "online",
+              "text": "In Person (Online)"
+            },
+            {
+              "id": "any",
+              "text": "Any"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "type_filters",
+    "title": "Type Filters",
+    "filters": [
+      {
+        "id": "category",
+        "text": "Item Category",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "weapon",
+              "text": "Any Weapon"
+            },
+            {
+              "id": "weapon.one",
+              "text": "One-Handed Weapon"
+            },
+            {
+              "id": "weapon.onemelee",
+              "text": "One-Handed Melee Weapon"
+            },
+            {
+              "id": "weapon.twomelee",
+              "text": "Two-Handed Melee Weapon"
+            },
+            {
+              "id": "weapon.bow",
+              "text": "Bow"
+            },
+            {
+              "id": "weapon.claw",
+              "text": "Claw"
+            },
+            {
+              "id": "weapon.dagger",
+              "text": "Any Dagger"
+            },
+            {
+              "id": "weapon.basedagger",
+              "text": "Base Dagger"
+            },
+            {
+              "id": "weapon.runedagger",
+              "text": "Rune Dagger"
+            },
+            {
+              "id": "weapon.oneaxe",
+              "text": "One-Handed Axe"
+            },
+            {
+              "id": "weapon.onesword",
+              "text": "Any One-Handed Sword"
+            },
+            {
+              "id": "weapon.basesword",
+              "text": "Base One-Handed Sword"
+            },
+            {
+              "id": "weapon.rapier",
+              "text": "Rapier"
+            },
+            {
+              "id": "weapon.onemace",
+              "text": "Any One-Handed Mace"
+            },
+            {
+              "id": "weapon.basemace",
+              "text": "Base One-Handed Mace"
+            },
+            {
+              "id": "weapon.sceptre",
+              "text": "Sceptre"
+            },
+            {
+              "id": "weapon.staff",
+              "text": "Any Staff"
+            },
+            {
+              "id": "weapon.basestaff",
+              "text": "Base Staff"
+            },
+            {
+              "id": "weapon.warstaff",
+              "text": "Warstaff"
+            },
+            {
+              "id": "weapon.twoaxe",
+              "text": "Two-Handed Axe"
+            },
+            {
+              "id": "weapon.twomace",
+              "text": "Two-Handed Mace"
+            },
+            {
+              "id": "weapon.twosword",
+              "text": "Two-Handed Sword"
+            },
+            {
+              "id": "weapon.wand",
+              "text": "Wand"
+            },
+            {
+              "id": "weapon.rod",
+              "text": "Fishing Rod"
+            },
+            {
+              "id": "armour",
+              "text": "Any Armour"
+            },
+            {
+              "id": "armour.chest",
+              "text": "Body Armour"
+            },
+            {
+              "id": "armour.boots",
+              "text": "Boots"
+            },
+            {
+              "id": "armour.gloves",
+              "text": "Gloves"
+            },
+            {
+              "id": "armour.helmet",
+              "text": "Helmet"
+            },
+            {
+              "id": "armour.shield",
+              "text": "Shield"
+            },
+            {
+              "id": "armour.quiver",
+              "text": "Quiver"
+            },
+            {
+              "id": "accessory",
+              "text": "Any Accessory"
+            },
+            {
+              "id": "accessory.amulet",
+              "text": "Amulet"
+            },
+            {
+              "id": "accessory.belt",
+              "text": "Belt"
+            },
+            {
+              "id": "accessory.ring",
+              "text": "Ring"
+            },
+            {
+              "id": "accessory.trinket",
+              "text": "Trinket"
+            },
+            {
+              "id": "gem",
+              "text": "Any Gem"
+            },
+            {
+              "id": "gem.activegem",
+              "text": "Skill Gem"
+            },
+            {
+              "id": "gem.supportgem",
+              "text": "Support Gem"
+            },
+            {
+              "id": "gem.supportgemplus",
+              "text": "Awakened Support Gem"
+            },
+            {
+              "id": "jewel",
+              "text": "Any Jewel"
+            },
+            {
+              "id": "jewel.base",
+              "text": "Base Jewel"
+            },
+            {
+              "id": "jewel.abyss",
+              "text": "Abyss Jewel"
+            },
+            {
+              "id": "jewel.cluster",
+              "text": "Cluster Jewel"
+            },
+            {
+              "id": "flask",
+              "text": "Flask"
+            },
+            {
+              "id": "map",
+              "text": "Map"
+            },
+            {
+              "id": "map.fragment",
+              "text": "Map Fragment"
+            },
+            {
+              "id": "map.breachstone",
+              "text": "Breachstone"
+            },
+            {
+              "id": "map.invitation",
+              "text": "Maven\u0027s Invitation"
+            },
+            {
+              "id": "map.scarab",
+              "text": "Scarab"
+            },
+            {
+              "id": "leaguestone",
+              "text": "Leaguestone"
+            },
+            {
+              "id": "memoryline",
+              "text": "Memory Line"
+            },
+            {
+              "id": "card",
+              "text": "Divination Card"
+            },
+            {
+              "id": "monster.beast",
+              "text": "Captured Beast"
+            },
+            {
+              "id": "monster.yellowbeast",
+              "text": "Yellow Beast"
+            },
+            {
+              "id": "monster.redbeast",
+              "text": "Red Beast"
+            },
+            {
+              "id": "heistequipment",
+              "text": "Any Heist Equipment"
+            },
+            {
+              "id": "heistequipment.heistweapon",
+              "text": "Heist Gear"
+            },
+            {
+              "id": "heistequipment.heisttool",
+              "text": "Heist Tool"
+            },
+            {
+              "id": "heistequipment.heistutility",
+              "text": "Heist Cloak"
+            },
+            {
+              "id": "heistequipment.heistreward",
+              "text": "Heist Brooch"
+            },
+            {
+              "id": "heistmission",
+              "text": "Any Heist Mission"
+            },
+            {
+              "id": "heistmission.contract",
+              "text": "Heist Contract"
+            },
+            {
+              "id": "heistmission.blueprint",
+              "text": "Heist Blueprint"
+            },
+            {
+              "id": "logbook",
+              "text": "Any Expedition Logbook"
+            },
+            {
+              "id": "sanctum.research",
+              "text": "Sanctum Research"
+            },
+            {
+              "id": "sanctum.relic",
+              "text": "Sanctum Relic"
+            },
+            {
+              "id": "tincture",
+              "text": "Any Tincture"
+            },
+            {
+              "id": "corpse",
+              "text": "Any Corpse"
+            },
+            {
+              "id": "idol",
+              "text": "Any Idol"
+            },
+            {
+              "id": "graft",
+              "text": "Any Graft"
+            },
+            {
+              "id": "wombgift",
+              "text": "Any Wombgift"
+            },
+            {
+              "id": "currency",
+              "text": "Any Currency"
+            },
+            {
+              "id": "currency.piece",
+              "text": "Unique Fragment"
+            },
+            {
+              "id": "currency.resonator",
+              "text": "Resonator"
+            },
+            {
+              "id": "currency.fossil",
+              "text": "Fossil"
+            },
+            {
+              "id": "currency.incubator",
+              "text": "Incubator"
+            },
+            {
+              "id": "currency.heistobjective",
+              "text": "Heist Target"
+            },
+            {
+              "id": "currency.omen",
+              "text": "Omen"
+            },
+            {
+              "id": "currency.tattoo",
+              "text": "Tattoo"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rarity",
+        "text": "Item Rarity",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "normal",
+              "text": "Normal"
+            },
+            {
+              "id": "magic",
+              "text": "Magic"
+            },
+            {
+              "id": "rare",
+              "text": "Rare"
+            },
+            {
+              "id": "unique",
+              "text": "Unique"
+            },
+            {
+              "id": "uniquefoil",
+              "text": "Unique (Foil)"
+            },
+            {
+              "id": "nonunique",
+              "text": "Any Non-Unique"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "weapon_filters",
+    "title": "Weapon Filters",
+    "filters": [
+      {
+        "id": "damage",
+        "text": "Damage",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "aps",
+        "text": "Attacks per Second",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crit",
+        "text": "Critical Chance",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dps",
+        "text": "Damage per Second",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "pdps",
+        "text": "Physical DPS",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "edps",
+        "text": "Elemental DPS",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "armour_filters",
+    "title": "Armour Filters",
+    "filters": [
+      {
+        "id": "ar",
+        "text": "Armour",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ev",
+        "text": "Evasion",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "es",
+        "text": "Energy Shield",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ward",
+        "text": "Ward",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "block",
+        "text": "Block",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "base_defence_percentile",
+        "text": "Base Percentile",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "socket_filters",
+    "title": "Socket Filters",
+    "filters": [
+      {
+        "id": "sockets",
+        "text": "Sockets",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "links",
+        "text": "Links",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "req_filters",
+    "title": "Requirements",
+    "filters": [
+      {
+        "id": "lvl",
+        "text": "Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "str",
+        "text": "Strength",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dex",
+        "text": "Dexterity",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "int",
+        "text": "Intelligence",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "class",
+        "text": "Character Class",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "scion",
+              "text": "Scion"
+            },
+            {
+              "id": "marauder",
+              "text": "Marauder"
+            },
+            {
+              "id": "ranger",
+              "text": "Ranger"
+            },
+            {
+              "id": "witch",
+              "text": "Witch"
+            },
+            {
+              "id": "duelist",
+              "text": "Duelist"
+            },
+            {
+              "id": "templar",
+              "text": "Templar"
+            },
+            {
+              "id": "shadow",
+              "text": "Shadow"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "map_filters",
+    "title": "Map Filters",
+    "filters": [
+      {
+        "id": "map_tier",
+        "text": "Map Tier",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "Map Packsize",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iiq",
+        "text": "Map IIQ",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "Map IIR",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "Area Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_series",
+        "text": "Map Series",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "current",
+              "text": "Current"
+            },
+            {
+              "id": "keepers",
+              "text": "Keepers"
+            },
+            {
+              "id": "mercenary",
+              "text": "Mercenaries"
+            },
+            {
+              "id": "settlers",
+              "text": "Settlers"
+            },
+            {
+              "id": "necropolis",
+              "text": "Necropolis"
+            },
+            {
+              "id": "azmeri",
+              "text": "Affliction"
+            },
+            {
+              "id": "ancestor",
+              "text": "Ancestor"
+            },
+            {
+              "id": "crucible",
+              "text": "Crucible"
+            },
+            {
+              "id": "sanctum",
+              "text": "Sanctum"
+            },
+            {
+              "id": "lake",
+              "text": "Kalandra"
+            },
+            {
+              "id": "sentinel",
+              "text": "Sentinel"
+            },
+            {
+              "id": "archnemesis",
+              "text": "Archnemesis"
+            },
+            {
+              "id": "scourge",
+              "text": "Scourge"
+            },
+            {
+              "id": "expedition",
+              "text": "Expedition"
+            },
+            {
+              "id": "ritual",
+              "text": "Ritual"
+            },
+            {
+              "id": "heist",
+              "text": "Heist"
+            },
+            {
+              "id": "harvest",
+              "text": "Harvest"
+            },
+            {
+              "id": "delirium",
+              "text": "Delirium"
+            },
+            {
+              "id": "metamorph",
+              "text": "Metamorph"
+            },
+            {
+              "id": "blight",
+              "text": "Blight"
+            },
+            {
+              "id": "legion",
+              "text": "Legion"
+            },
+            {
+              "id": "synthesis",
+              "text": "Synthesis"
+            },
+            {
+              "id": "betrayal",
+              "text": "Betrayal"
+            },
+            {
+              "id": "warfortheatlas",
+              "text": "War for the Atlas"
+            },
+            {
+              "id": "atlasofworlds",
+              "text": "Atlas of Worlds"
+            },
+            {
+              "id": "theawakening",
+              "text": "The Awakening"
+            },
+            {
+              "id": "original",
+              "text": "Legacy"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_blighted",
+        "text": "Blighted Map",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_uberblighted",
+        "text": "Blight-ravaged Map",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_completion_reward",
+        "text": "Map Completion Reward",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "heist_filters",
+    "title": "Heist Filters",
+    "filters": [
+      {
+        "id": "heist_wings",
+        "text": "Wings Revealed",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_wings",
+        "text": "Total Wings",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_escape_routes",
+        "text": "Escape Routes Revealed",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_escape_routes",
+        "text": "Total Escape Routes",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_reward_rooms",
+        "text": "Reward Rooms Revealed",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_max_reward_rooms",
+        "text": "Total Reward Rooms",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_objective_value",
+        "text": "Contract Objective Value",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "moderate",
+              "text": "Moderate Value"
+            },
+            {
+              "id": "high",
+              "text": "High Value"
+            },
+            {
+              "id": "precious",
+              "text": "Precious"
+            },
+            {
+              "id": "priceless",
+              "text": "Priceless"
+            }
+          ]
+        }
+      },
+      {
+        "id": "heist_lockpicking",
+        "text": "Lockpicking Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_brute_force",
+        "text": "Brute Force Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_perception",
+        "text": "Perception Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_demolition",
+        "text": "Demolition Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_counter_thaumaturgy",
+        "text": "Counter-Thaum. Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_trap_disarmament",
+        "text": "Trap Disarmament Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_agility",
+        "text": "Agility Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_deception",
+        "text": "Deception Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "heist_engineering",
+        "text": "Engineering Level",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "sanctum_filters",
+    "title": "Sanctum Filters",
+    "filters": [
+      {
+        "id": "sanctum_resolve",
+        "text": "Resolve",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_max_resolve",
+        "text": "Maximum Resolve",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_inspiration",
+        "text": "Inspiration",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_gold",
+        "text": "Aureus",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "ultimatum_filters",
+    "title": "Ultimatum Filters",
+    "filters": [
+      {
+        "id": "ultimatum_challenge",
+        "text": "Challenge Type",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "Exterminate",
+              "text": "Defeat Waves of Enemies"
+            },
+            {
+              "id": "Survival",
+              "text": "Survive"
+            },
+            {
+              "id": "Defense",
+              "text": "Protect the Altar"
+            },
+            {
+              "id": "Conquer",
+              "text": "Stand in the Stone Circles"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_reward",
+        "text": "Reward Type",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "DoubleCurrency",
+              "text": "Currency"
+            },
+            {
+              "id": "DoubleDivCards",
+              "text": "Divination Cards"
+            },
+            {
+              "id": "MirrorRare",
+              "text": "Mirrored Rare Item"
+            },
+            {
+              "id": "ExchangeUnique",
+              "text": "Unique Item"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ultimatum_input",
+        "text": "Required Item",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ultimatum_output",
+        "text": "Reward Unique",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "misc_filters",
+    "title": "Miscellaneous",
+    "filters": [
+      {
+        "id": "quality",
+        "text": "Quality",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "ilvl",
+        "text": "Item Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level",
+        "text": "Gem Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_level_progress",
+        "text": "Gem Experience %",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "gem_transfigured",
+        "text": "Transfigured Gem",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_vaal",
+        "text": "Vaal Gem",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fractured_item",
+        "text": "Fractured Item",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem_imbued",
+        "text": "Imbued Gem",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "synthesised_item",
+        "text": "Synthesised Item",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "searing_item",
+        "text": "Searing Exarch Item",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tangled_item",
+        "text": "Eater of Worlds Item",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "memory_level",
+        "text": "Memory Strands",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "identified",
+        "text": "Identified",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corrupted",
+        "text": "Corrupted",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mirrored",
+        "text": "Mirrored",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "split",
+        "text": "Split",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crafted",
+        "text": "Crafted",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "veiled",
+        "text": "Veiled",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foreseeing",
+        "text": "Foreseeing",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "talisman_tier",
+        "text": "Talisman Tier",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stored_experience",
+        "text": "Stored Experience",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "stack_size",
+        "text": "Stack Size",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "alternate_art",
+        "text": "Alternate Art",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "foil_variation",
+        "text": "Foil Variation",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "none",
+              "text": "None"
+            },
+            {
+              "id": "0",
+              "text": "Rainbow (Default)"
+            },
+            {
+              "id": "voidborn",
+              "text": "Any Voidborn Variant"
+            },
+            {
+              "id": "1",
+              "text": "Amethyst"
+            },
+            {
+              "id": "2",
+              "text": "Verdant"
+            },
+            {
+              "id": "3",
+              "text": "Ruby"
+            },
+            {
+              "id": "4",
+              "text": "Cobalt"
+            },
+            {
+              "id": "5",
+              "text": "Sunset"
+            },
+            {
+              "id": "6",
+              "text": "Aureate"
+            },
+            {
+              "id": "celestial",
+              "text": "Any Celestial Variant"
+            },
+            {
+              "id": "7",
+              "text": "Celestial Quartz"
+            },
+            {
+              "id": "8",
+              "text": "Celestial Ruby"
+            },
+            {
+              "id": "9",
+              "text": "Celestial Emerald"
+            },
+            {
+              "id": "10",
+              "text": "Celestial Aureate"
+            },
+            {
+              "id": "11",
+              "text": "Celestial Pearl"
+            },
+            {
+              "id": "12",
+              "text": "Celestial Amethyst"
+            }
+          ]
+        }
+      },
+      {
+        "id": "corpse_type",
+        "text": "Corpse Type",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "eldritch",
+              "text": "Eldritch"
+            },
+            {
+              "id": "demon",
+              "text": "Demon"
+            },
+            {
+              "id": "construct",
+              "text": "Construct"
+            },
+            {
+              "id": "undead",
+              "text": "Undead"
+            },
+            {
+              "id": "beast",
+              "text": "Beast"
+            },
+            {
+              "id": "humanoid",
+              "text": "Humanoid"
+            }
+          ]
+        }
+      },
+      {
+        "id": "scourge_tier",
+        "text": "Scourge Tier",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crucible_item",
+        "text": "Crucible Item",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mutated",
+        "text": "Foulborn",
+        "option": {
+          "options": [
+            {
+              "text": "Any"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "trade_filters",
+    "title": "Trade Filters",
+    "filters": [
+      {
+        "id": "account",
+        "text": "Seller Account",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "collapse",
+        "text": "Collapse Listings by Account",
+        "option": {
+          "options": [
+            {
+              "text": "No"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            }
+          ]
+        }
+      },
+      {
+        "id": "indexed",
+        "text": "Listed",
+        "option": {
+          "options": [
+            {
+              "text": "Any Time"
+            },
+            {
+              "id": "1hour",
+              "text": "Up to an Hour Ago"
+            },
+            {
+              "id": "3hours",
+              "text": "Up to 3 Hours Ago"
+            },
+            {
+              "id": "12hours",
+              "text": "Up to 12 Hours Ago"
+            },
+            {
+              "id": "1day",
+              "text": "Up to a Day Ago"
+            },
+            {
+              "id": "3days",
+              "text": "Up to 3 Days Ago"
+            },
+            {
+              "id": "1week",
+              "text": "Up to a Week Ago"
+            },
+            {
+              "id": "2weeks",
+              "text": "Up to 2 Weeks Ago"
+            },
+            {
+              "id": "1month",
+              "text": "Up to 1 Month Ago"
+            },
+            {
+              "id": "2months",
+              "text": "Up to 2 Months Ago"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sale_type",
+        "text": "Sale Type",
+        "option": {
+          "options": [
+            {
+              "id": "any",
+              "text": "Any"
+            },
+            {
+              "text": "Buyout or Fixed Price"
+            },
+            {
+              "id": "priced_with_info",
+              "text": "Price with Note"
+            },
+            {
+              "id": "unpriced",
+              "text": "No Listed Price"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fee",
+        "text": "Gold Fee",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "price",
+        "text": "Buyout Price",
+        "option": {
+          "options": [
+            {
+              "text": "Chaos Orb Equivalent"
+            },
+            {
+              "id": "chaos_divine",
+              "text": "Chaos or Divine Orbs"
+            },
+            {
+              "id": "chaos",
+              "text": "Chaos Orb"
+            },
+            {
+              "id": "exalted",
+              "text": "Exalted Orb"
+            },
+            {
+              "id": "divine",
+              "text": "Divine Orb"
+            },
+            {
+              "id": "mirror",
+              "text": "Mirror of Kalandra"
+            },
+            {
+              "id": "blessed",
+              "text": "Blessed Orb"
+            },
+            {
+              "id": "chrome",
+              "text": "Chromatic Orb"
+            },
+            {
+              "id": "gcp",
+              "text": "Gemcutter\u0027s Prism"
+            },
+            {
+              "id": "jewellers",
+              "text": "Jeweller\u0027s Orb"
+            },
+            {
+              "id": "scour",
+              "text": "Orb of Scouring"
+            },
+            {
+              "id": "regret",
+              "text": "Orb of Regret"
+            },
+            {
+              "id": "fusing",
+              "text": "Orb of Fusing"
+            },
+            {
+              "id": "chance",
+              "text": "Orb of Chance"
+            },
+            {
+              "id": "alt",
+              "text": "Orb of Alteration"
+            },
+            {
+              "id": "alch",
+              "text": "Orb of Alchemy"
+            },
+            {
+              "id": "regal",
+              "text": "Regal Orb"
+            },
+            {
+              "id": "vaal",
+              "text": "Vaal Orb"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
