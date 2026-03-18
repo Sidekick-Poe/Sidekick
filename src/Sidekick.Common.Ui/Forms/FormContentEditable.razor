@@ -92,7 +92,7 @@
     public async Task Update(string? value)
     {
         if (value == Value) return;
-        if (value == Placeholder)
+        if (value == Placeholder || string.IsNullOrEmpty(value))
         {
             Value = null;
             await DoubleValueChanged.InvokeAsync(null);

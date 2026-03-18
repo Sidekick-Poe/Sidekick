@@ -3,7 +3,10 @@
     const element = document.getElementById(elementId);
 
     const input = () => {
-        dotNetRef.invokeMethodAsync("Update", element.innerHTML);
+        let value = (element.innerHTML ?? '').trim();
+        if (value === '<br>') value = '';
+
+        dotNetRef.invokeMethodAsync("Update", value);
     };
     element.addEventListener("input", input);
 
