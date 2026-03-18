@@ -54,6 +54,7 @@ public class GameLanguageEs : IGameLanguage
     public string DescriptionRevivesAvailable => "Resurrecciones disponibles";
     public string DescriptionWaystoneDropChance => "Probabilidad de botín de piedra guía";
     public string DescriptionAreaLevel => "Nivel del área";
+    public string DescriptionMemoryStrands => "Hebras de recuerdos";
     public string DescriptionUnusable => "No puedes usar este objeto. Sus estadísticas serán ignoradas";
     public string DescriptionRequirements => "Requisitos";
     public string DescriptionRequires => "Requiere";

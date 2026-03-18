@@ -74,4 +74,31 @@ Even the dead serve the Lightless.
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Has # Abyssal Sockets", 1);
     }
+
+    [Fact]
+    public void MemoryStrands()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
+Rarity: Normal
+Sorcerer Boots
+--------
+Energy Shield: 54
+Memory Strands: 61
+--------
+Requirements:
+Level: 67
+Int: 123
+--------
+Sockets: B-B B 
+--------
+Item Level: 83
+");
+
+        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Sorcerer Boots", actual.Definition.Type);
+
+        Assert.Equal(61, actual.Properties.MemoryStrands);
+    }
 }

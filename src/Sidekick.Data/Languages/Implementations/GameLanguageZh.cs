@@ -54,6 +54,7 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionRevivesAvailable => "可用的復活數";
     public string DescriptionWaystoneDropChance => "換界石掉落機率";
     public string DescriptionAreaLevel => "區域等級";
+    public string DescriptionMemoryStrands => "";
     public string DescriptionUnusable => "你無法使用這項裝備，它的數值將被忽略";
     public string DescriptionRequirements => "需求";
     public string DescriptionRequires => "需求";
@@ -155,4 +156,3 @@ public class GameLanguageZh : IGameLanguage
     public string ClassTalismans => "魔符";
     public string ClassCharms => "護符";
 }
-

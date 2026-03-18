@@ -54,6 +54,7 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionRevivesAvailable => "Доступно возрождений";
     public string DescriptionWaystoneDropChance => "Шанс выпадения путевого камня";
     public string DescriptionAreaLevel => "Уровень области";
+    public string DescriptionMemoryStrands => "Пряди воспоминаний";
     public string DescriptionUnusable => "Вы не можете использовать этот предмет, его параметры не будут учтены";
     public string DescriptionRequirements => "Требования";
     public string DescriptionRequires => "Требуется";

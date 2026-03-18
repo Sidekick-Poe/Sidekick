@@ -62,6 +62,8 @@ public class ItemProperties
 
     public List<Socket>? Sockets { get; set; }
 
+    public int MemoryStrands { get; set; }
+
     public int RequiresLevel { get; set; }
 
     public int RequiresStrength { get; set; }

@@ -54,6 +54,7 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionRevivesAvailable => "Résurrections disponibles";
     public string DescriptionWaystoneDropChance => "Chances de trouver des Pierres de téléportation";
     public string DescriptionAreaLevel => "Niveau de la zone";
+    public string DescriptionMemoryStrands => "Brins de Souvenir";
     public string DescriptionUnusable => "Vous ne pouvez pas utiliser cet objet ; ses stats sont ignorées.";
     public string DescriptionRequirements => "Prérequis";
     public string DescriptionRequires => "Prérequis";

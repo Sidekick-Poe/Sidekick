@@ -52,6 +52,7 @@ public class PropertyParser
             new TotalDpsProperty(game, resources),
             new CriticalHitChanceProperty(game, currentGameLanguage),
             new AttacksPerSecondProperty(game, currentGameLanguage),
+            new MemoryStrandsProperty(game, currentGameLanguage),
 
             new MapTierProperty(game, currentGameLanguage),
             new RewardProperty(game, currentGameLanguage, apiItemProvider),

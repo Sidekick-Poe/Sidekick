@@ -54,6 +54,7 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionRevivesAvailable => "Revives Available";
     public string DescriptionWaystoneDropChance => "Waystone Drop Chance";
     public string DescriptionAreaLevel => "Area Level";
+    public string DescriptionMemoryStrands => "Memory Strands";
     public string DescriptionUnusable => "You cannot use this item. Its stats will be ignored";
     public string DescriptionRequirements => "Requirements";
     public string DescriptionRequires => "Requires";

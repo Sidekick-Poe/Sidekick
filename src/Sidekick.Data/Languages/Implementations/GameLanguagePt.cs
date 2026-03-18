@@ -54,6 +54,7 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionRevivesAvailable => "Ressurreições";
     public string DescriptionWaystoneDropChance => "Chance de Queda de Pedra Guia";
     public string DescriptionAreaLevel => "Nível da Área";
+    public string DescriptionMemoryStrands => "Fios de Memória";
     public string DescriptionUnusable => "Você não pode utilizar este item. Suas propriedades serão ignoradas";
     public string DescriptionRequirements => "Requisitos";
     public string DescriptionRequires => "Requer";

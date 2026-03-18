@@ -54,6 +54,7 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionRevivesAvailable => "復活が利用可能";
     public string DescriptionWaystoneDropChance => "ウェイストーンドロップ確率";
     public string DescriptionAreaLevel => "エリアレベル";
+    public string DescriptionMemoryStrands => "メモリーストランド";
     public string DescriptionUnusable => "このアイテムを使用できません。アイテムの効果は無視されます";
     public string DescriptionRequirements => "装備要求";
     public string DescriptionRequires => "装備条件";

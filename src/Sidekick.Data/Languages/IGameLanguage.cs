@@ -101,6 +101,8 @@ public interface IGameLanguage
 
     string DescriptionUnusable { get; }
 
+    string DescriptionMemoryStrands { get; }
+
     string DescriptionRequirements { get; }
 
     string DescriptionRequires { get; }
