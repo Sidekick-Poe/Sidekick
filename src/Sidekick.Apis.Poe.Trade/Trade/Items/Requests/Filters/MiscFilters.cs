@@ -57,4 +57,7 @@ public class MiscFilters
 
     [JsonPropertyName("foulborn_item")]
     public SearchFilterOption? Foulborn { get; set; }
+
+    [JsonPropertyName("memory_level")]
+    public StatFilterValue? MemoryStrands { get; set; }
 }

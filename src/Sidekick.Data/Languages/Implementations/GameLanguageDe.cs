@@ -54,6 +54,7 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionRevivesAvailable => "Wiederbelebungen verfügbar";
     public string DescriptionWaystoneDropChance => "Chance auf fallen gelassene Wegsteine";
     public string DescriptionAreaLevel => "Gebietsstufe";
+    public string DescriptionMemoryStrands => "Erinnerungsstränge";
     public string DescriptionUnusable => "Du kannst diesen Gegenstand nicht benutzen. Seine Eigenschaften werden ignoriert.";
     public string DescriptionRequirements => "Anforderungen";
     public string DescriptionRequires => "Erfordert";

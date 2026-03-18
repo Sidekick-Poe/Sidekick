@@ -54,6 +54,7 @@ public class GameLanguageKo : IGameLanguage
     public string DescriptionRevivesAvailable => "부활 횟수";
     public string DescriptionWaystoneDropChance => "경로석 출현 확률";
     public string DescriptionAreaLevel => "지역 레벨";
+    public string DescriptionMemoryStrands => "기억 가닥";
     public string DescriptionUnusable => "아이템 착용 불가. 아이템 효과 미적용";
     public string DescriptionRequirements => "요구사항";
     public string DescriptionRequires => "요구 사항";

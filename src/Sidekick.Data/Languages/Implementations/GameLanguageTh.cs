@@ -54,6 +54,7 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionRevivesAvailable => "จำนวนสิทธิ์คืนชีพ";
     public string DescriptionWaystoneDropChance => "โอกาสดรอปศิลานำทาง";
     public string DescriptionAreaLevel => "ด่านเลเวล";
+    public string DescriptionMemoryStrands => "เส้นความทรงจำ";
     public string DescriptionUnusable => "คุณไม่สามารถใช้ไอเทมชิ้นนี้ได้ Stats ของไอเทมนี้จะไม่มีผล";
     public string DescriptionRequirements => "เงื่อนไข";
     public string DescriptionRequires => "ต้องการ";
