@@ -110,7 +110,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
                 Definition = definition,
                 TradeStat = tradeStat,
             }))
-            .DistinctBy(x => x.TradeStat)
+            .DistinctBy(x => x.TradeStat.Id)
             .ToList();
 
         if (stats.Count > 1)
