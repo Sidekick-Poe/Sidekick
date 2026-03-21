@@ -58,6 +58,17 @@ public class PropertyParser
             new RewardProperty(game, currentGameLanguage, apiItemProvider),
             new RevivesAvailableProperty(game, currentGameLanguage),
             new MonsterPackSizeProperty(game, currentGameLanguage),
+
+            new MoreMapsProperty(game, currentGameLanguage),
+            new MoreScarabsProperty(game, currentGameLanguage),
+            new MoreCurrencyProperty(game, currentGameLanguage),
+            new MoreCardsProperty(game, currentGameLanguage),
+            new QualityCurrencyProperty(game, currentGameLanguage),
+            new QualityScarabsProperty(game, currentGameLanguage),
+            new QualityCardsProperty(game, currentGameLanguage),
+            new QualityPackSizeProperty(game, currentGameLanguage),
+            new QualityRarityProperty(game, currentGameLanguage),
+
             new MagicMonstersProperty(game, currentGameLanguage),
             new RareMonstersProperty(game, currentGameLanguage),
             new ItemQuantityProperty(game, currentGameLanguage),

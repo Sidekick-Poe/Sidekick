@@ -13,7 +13,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Items;
 using Sidekick.Common;
-using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.Poe.Trade;
