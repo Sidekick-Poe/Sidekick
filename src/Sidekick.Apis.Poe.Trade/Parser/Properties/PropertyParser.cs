@@ -59,6 +59,10 @@ public class PropertyParser
             new RevivesAvailableProperty(game, currentGameLanguage),
             new MonsterPackSizeProperty(game, currentGameLanguage),
 
+            new MagicMonstersProperty(game, currentGameLanguage),
+            new RareMonstersProperty(game, currentGameLanguage),
+            new ItemQuantityProperty(game, currentGameLanguage),
+            new ItemRarityProperty(game, currentGameLanguage),
             new MoreMapsProperty(game, currentGameLanguage),
             new MoreScarabsProperty(game, currentGameLanguage),
             new MoreCurrencyProperty(game, currentGameLanguage),
@@ -68,11 +72,6 @@ public class PropertyParser
             new QualityCardsProperty(game, currentGameLanguage),
             new QualityPackSizeProperty(game, currentGameLanguage),
             new QualityRarityProperty(game, currentGameLanguage),
-
-            new MagicMonstersProperty(game, currentGameLanguage),
-            new RareMonstersProperty(game, currentGameLanguage),
-            new ItemQuantityProperty(game, currentGameLanguage),
-            new ItemRarityProperty(game, currentGameLanguage),
             new WaystoneDropChanceProperty(game, currentGameLanguage),
             new AreaLevelProperty(game, currentGameLanguage),
             new BlightedProperty(game, currentGameLanguage),
