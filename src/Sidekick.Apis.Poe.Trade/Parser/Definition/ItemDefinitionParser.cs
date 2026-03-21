@@ -1,11 +1,10 @@
 using FuzzySharp;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiItems;
-using Sidekick.Data.Items;
 using Sidekick.Common.Exceptions;
-namespace Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
+namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 
-public class ApiInformationParser(IApiItemProvider apiItemProvider) : IApiInformationParser
+public class ItemDefinitionParser(IApiItemProvider apiItemProvider) : IItemDefinitionParser
 {
     public void Parse(Item item)
     {
@@ -14,7 +13,7 @@ public class ApiInformationParser(IApiItemProvider apiItemProvider) : IApiInform
 
         return;
 
-        ItemDefinition? GetItemInformation(Rarity rarity, string? name, string? type)
+        Data.Items.ItemDefinition? GetItemInformation(Rarity rarity, string? name, string? type)
         {
             // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
             name = rarity is Rarity.Rare or Rarity.Magic ? null : name;
@@ -42,7 +41,7 @@ public class ApiInformationParser(IApiItemProvider apiItemProvider) : IApiInform
             return null;
         }
 
-        ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> definitionTextFunc, string originalText)
+        Data.Items.ItemDefinition? FindBestMatch(IEnumerable<Data.Items.ItemDefinition> definitions, Func<Data.Items.ItemDefinition, string?> definitionTextFunc, string originalText)
         {
             return definitions
                 .Select(x => new

@@ -4,7 +4,7 @@ using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
@@ -32,9 +32,9 @@ public static class StartupExtensions
 
         services.AddSingleton<IItemTradeService, ItemTradeService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
-        services.AddSingleton<IApiInformationParser, ApiInformationParser>();
+        services.AddSingleton<IItemDefinitionParser, ItemDefinitionParser>();
 
-        services.AddSidekickInitializableService<IItemParser, ItemParser>();
+        services.AddSidekickInitializableService<IItemParser, Parser.ItemParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
         services.Configure<SidekickConfiguration>(c =>

@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
@@ -21,7 +21,7 @@ public class ItemParser
     IPseudoParser pseudoParser,
     IPropertyParser propertyParser,
     ICurrentGameLanguage currentGameLanguage,
-    IApiInformationParser apiInformationParser,
+    IItemDefinitionParser itemDefinitionParser,
     ISettingsService settingsService
 ) : IItemParser
 {
@@ -53,7 +53,7 @@ public class ItemParser
             propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
-            apiInformationParser.Parse(item);
+            itemDefinitionParser.Parse(item);
             propertyParser.Parse(item);
             statParser.Parse(item);
             propertyParser.ParseAfterStats(item);
