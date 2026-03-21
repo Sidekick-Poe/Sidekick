@@ -6,7 +6,6 @@ using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
@@ -40,7 +39,6 @@ public abstract class ParserFixture : IAsyncLifetime
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
-    public IApiStatsProvider ApiStatsProvider { get; private set; } = null!;
     public IStatParser StatParser { get; private set; } = null!;
     private TestContext TestContext { get; set; } = null!;
 
@@ -86,7 +84,6 @@ public abstract class ParserFixture : IAsyncLifetime
         CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
-        ApiStatsProvider = TestContext.Services.GetRequiredService<IApiStatsProvider>();
         StatParser = TestContext.Services.GetRequiredService<IStatParser>();
     }
 

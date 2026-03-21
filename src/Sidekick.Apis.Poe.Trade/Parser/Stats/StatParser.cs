@@ -12,6 +12,7 @@ using Sidekick.Data;
 using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
+using Sidekick.Data.StatsInvariant;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -28,12 +29,15 @@ public class StatParser
 
     public int Priority => 300;
 
+    public StatsInvariantDetails InvariantDetails { get; private set; } = new();
+
     private List<StatDefinition> Definitions { get; set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
         Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
+        InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
     }
 
     /// <inheritdoc/>

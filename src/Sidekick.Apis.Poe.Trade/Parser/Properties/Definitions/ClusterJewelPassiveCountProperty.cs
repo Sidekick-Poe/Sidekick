@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -9,7 +9,7 @@ public class ClusterJewelPassiveCountProperty(
     GameType game,
     IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private readonly IApiStatsProvider apiStatsProvider = serviceProvider.GetRequiredService<IApiStatsProvider>();
+    private readonly IStatParser statParser = serviceProvider.GetRequiredService<IStatParser>();
 
     public override string Label => "Cluster Jewel Passives";
 
@@ -38,7 +38,7 @@ public class ClusterJewelPassiveCountProperty(
 
             foreach (var tradeStat in line.Definitions.SelectMany(x => x.TradeStats))
             {
-                if (tradeStat.Id != apiStatsProvider.InvariantDetails.ClusterJewelSmallPassiveCountStatId) continue;
+                if (tradeStat.Id != statParser.InvariantDetails.ClusterJewelSmallPassiveCountStatId) continue;
                 return (int)line.AverageValue;
             }
         }
@@ -50,9 +50,9 @@ public class ClusterJewelPassiveCountProperty(
     {
         foreach (var tradeStat in lines.SelectMany(x => x.Definitions).SelectMany(x => x.TradeStats))
         {
-            if (tradeStat.Id != apiStatsProvider.InvariantDetails.ClusterJewelSmallPassiveGrantStatId) continue;
+            if (tradeStat.Id != statParser.InvariantDetails.ClusterJewelSmallPassiveGrantStatId) continue;
             if (tradeStat.Option == null) continue;
-            return apiStatsProvider.InvariantDetails.ClusterJewelSmallPassiveGrantOptions[tradeStat.Option.Id].Replace("\n", ", ");
+            return statParser.InvariantDetails.ClusterJewelSmallPassiveGrantOptions[tradeStat.Option.Id].Replace("\n", ", ");
         }
 
         return null;

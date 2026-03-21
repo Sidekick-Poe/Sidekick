@@ -1,11 +1,11 @@
 using FuzzySharp;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiItems;
-using Sidekick.Data.Items;
 using Sidekick.Common.Exceptions;
-namespace Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
+using Sidekick.Data.Items;
+namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 
-public class ApiInformationParser(IApiItemProvider apiItemProvider) : IApiInformationParser
+public class ItemDefinitionParser(IApiItemProvider apiItemProvider) : IItemDefinitionParser
 {
     public void Parse(Item item)
     {
@@ -42,7 +42,7 @@ public class ApiInformationParser(IApiItemProvider apiItemProvider) : IApiInform
             return null;
         }
 
-        ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> definitionTextFunc, string originalText)
+        ItemDefinition? FindBestMatch(IEnumerable<Data.Items.ItemDefinition> definitions, Func<Data.Items.ItemDefinition, string?> definitionTextFunc, string originalText)
         {
             return definitions
                 .Select(x => new
