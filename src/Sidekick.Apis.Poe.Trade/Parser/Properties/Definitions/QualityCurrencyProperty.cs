@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Items;
@@ -60,5 +61,12 @@ public class QualityCurrencyFilter : IntPropertyFilter
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
+        if (!Checked) return;
+
+        query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
+        {
+            Id = "pseudo.pseudo_map_quality_currency",
+            Value = new StatFilterValue(this),
+        });
     }
 }
