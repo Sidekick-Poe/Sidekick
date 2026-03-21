@@ -144,6 +144,10 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(50, actual.Properties.MoreCurrency);
         Assert.Equal(20, actual.Properties.QualityCurrency);
@@ -167,6 +171,10 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(50, actual.Properties.MoreScarabs);
         Assert.Equal(20, actual.Properties.QualityScarabs);
@@ -190,6 +198,10 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(50, actual.Properties.MoreCards);
         Assert.Equal(20, actual.Properties.QualityCards);
@@ -213,6 +225,10 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(10, actual.Properties.MonsterPackSize);
         Assert.Equal(20, actual.Properties.QualityPackSize);
@@ -236,8 +252,181 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(40, actual.Properties.ItemRarity);
         Assert.Equal(20, actual.Properties.QualityRarity);
+    }
+
+    [Fact]
+    public void NightmareMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Terror Grind
+Nightmare Map
+--------
+Item Quantity: +78% (augmented)
+Item Rarity: +45% (augmented)
+Monster Pack Size: +41% (augmented)
+More Currency: +47% (augmented)
+--------
+Item Level: 83
+--------
+Monster Level: 83
+--------
+93% more Monster Life
+Monsters reflect 18% of Physical Damage
+Monsters gain a Power Charge on Hit
+Monsters take 36% reduced Extra Damage from Critical Strikes
+Monsters' Attacks have 60% chance to Impale on Hit
+Rare monsters in area Temporarily Revive on death
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+--------
+Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
+");
+
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Nightmare Map", actual.Definition.Type);
+        Assert.Equal(78, actual.Properties.ItemQuantity);
+        Assert.Equal(45, actual.Properties.ItemRarity);
+        Assert.Equal(41, actual.Properties.MonsterPackSize);
+        Assert.Equal(47, actual.Properties.MoreCurrency);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% more Monster Life", 93);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Monsters reflect #% of Physical Damage", 18);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Monsters have #% chance to gain a Power Charge on Hit");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Monsters take #% reduced Extra Damage from Critical Strikes", 36);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Monsters' Attacks have #% chance to Impale on Hit", 60);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Rare monsters in area Temporarily Revive on death");
+    }
+
+    [Fact]
+    public void OriginatorMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Foe Portent
+Map (Tier 16)
+--------
+Item Quantity: +113% (augmented)
+Item Rarity: +117% (augmented)
+Monster Pack Size: +72% (augmented)
+More Maps: +35% (augmented)
+More Currency: +64% (augmented)
+--------
+Item Level: 85
+--------
+Monster Level: 83
+--------
+Area is Influenced by the Originator's Memories (implicit)
+--------
+Area has patches of Chilled Ground
+Monsters have 100% increased Area of Effect
+34% increased Monster Damage
++50% Monster Physical Damage Reduction
+Monsters gain an Endurance Charge on Hit
+Debuffs on Monsters expire 100% faster
++35% Monster Chaos Resistance
++55% Monster Elemental Resistances
+Rare monsters in area are Shaper-Touched
+Area contains Drowning Orbs
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
+        Assert.Equal(113, actual.Properties.ItemQuantity);
+        Assert.Equal(117, actual.Properties.ItemRarity);
+        Assert.Equal(72, actual.Properties.MonsterPackSize);
+        Assert.Equal(35, actual.Properties.MoreMaps);
+        Assert.Equal(64, actual.Properties.MoreCurrency);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area is Influenced by the Originator's Memories");
+    }
+
+    [Fact]
+    public void ValdoMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Filthy Abode
+Valdo Map
+--------
+Map Area: Arsenal
+Reward: Foil The Dancing Dervish
+Item Rarity: +50% (augmented)
+Monster Pack Size: +26% (augmented)
+--------
+Chance for dropped Maps to convert to:
+Scarab: 18% (augmented)
+--------
+Item Level: 100
+--------
+Monster Level: 84
+--------
+Slaying Enemies in a kill streak grants Rampage bonuses
+All Strongboxes in Area must be opened to claim Reward
+Area contains 12 additional packs of Untainted Wild Animals
+Players gain Rare Monster Modifiers for 20 seconds on Kill
+Rare Monsters each have 3 additional Modifiers
+Area contains 10 additional guarded Exquisite Vaal Vessels
+Area contains enemies of all influence types
+--------
+Travel to this Map by using it in a personal Map Device. Maps can only be used once. Defeat 90% of all monsters in this Map, including all Rare and Unique enemies to obtain the Reward. The area created is not affected by your Atlas Passive Tree, and cannot be augmented via the Map Device.
+--------
+Unmodifiable
+--------
+Foil (Celestial Amethyst)
+");
+
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Valdo Map", actual.Definition.Type);
+        Assert.Equal("Foil The Dancing Dervish", actual.Properties.Reward);
+        Assert.Equal(50, actual.Properties.ItemRarity);
+        Assert.Equal(26, actual.Properties.MonsterPackSize);
+    }
+
+    [Fact]
+    public void BlightedMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Normal
+Blighted Map (Tier 13)
+--------
+Map Area: Necropolis
+--------
+Item Level: 83
+--------
+Monster Level: 80
+--------
+Area is infested with Fungal Growths (implicit)
+Map's Item Quantity Modifiers also affect Blight Chest count at 25% value (implicit)
+Can be Anointed up to 3 times (implicit)
+Natural inhabitants of this area have been removed (implicit)
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+");
+
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Map", actual.Definition.Type);
+        Assert.Equal(13, actual.Properties.MapTier);
+        Assert.True(actual.Properties.Blighted);
     }
 }
