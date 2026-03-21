@@ -49,6 +49,15 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionItemQuantity => "Gegenstandsmenge";
     public string DescriptionItemRarity => "Gegenstandsseltenheit";
     public string DescriptionMonsterPackSize => "Monstergruppengröße";
+    public string DescriptionMoreMaps => "Mehr Karten";
+    public string DescriptionMoreScarabs => "Mehr Skarabäen";
+    public string DescriptionMoreCurrency => "Mehr Währung";
+    public string DescriptionMoreCards => "Mehr Weissagungskarten";
+    public string DescriptionQualityCurrency => "Qualität (Währung)";
+    public string DescriptionQualityScarabs => "Qualität (Skarabäen)";
+    public string DescriptionQualityCards => "Qualität (Weissagungskarten)";
+    public string DescriptionQualityPackSize => "Qualität (Gruppengröße)";
+    public string DescriptionQualityRarity => "Qualität (Seltenheit)";
     public string DescriptionMagicMonsters => "Magische Monster";
     public string DescriptionRareMonsters => "Seltene Monster";
     public string DescriptionRevivesAvailable => "Wiederbelebungen verfügbar";

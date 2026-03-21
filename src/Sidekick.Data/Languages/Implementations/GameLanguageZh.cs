@@ -49,6 +49,15 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionItemQuantity => "物品數量";
     public string DescriptionItemRarity => "物品稀有度";
     public string DescriptionMonsterPackSize => "怪物群大小";
+    public string DescriptionMoreMaps => "";
+    public string DescriptionMoreScarabs => "";
+    public string DescriptionMoreCurrency => "";
+    public string DescriptionMoreCards => "";
+    public string DescriptionQualityCurrency => "";
+    public string DescriptionQualityScarabs => "";
+    public string DescriptionQualityCards => "";
+    public string DescriptionQualityPackSize => "";
+    public string DescriptionQualityRarity => "";
     public string DescriptionMagicMonsters => "魔法怪物";
     public string DescriptionRareMonsters => "稀有怪物";
     public string DescriptionRevivesAvailable => "可用的復活數";
@@ -156,3 +165,4 @@ public class GameLanguageZh : IGameLanguage
     public string ClassTalismans => "魔符";
     public string ClassCharms => "護符";
 }
+

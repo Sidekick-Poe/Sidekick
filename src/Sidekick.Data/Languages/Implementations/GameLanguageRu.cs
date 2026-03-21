@@ -49,6 +49,15 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionItemQuantity => "Количество предметов";
     public string DescriptionItemRarity => "Редкость предметов";
     public string DescriptionMonsterPackSize => "Размер групп монстров";
+    public string DescriptionMoreMaps => "Больше карт";
+    public string DescriptionMoreScarabs => "Больше скарабеев";
+    public string DescriptionMoreCurrency => "Больше валюты";
+    public string DescriptionMoreCards => "Больше гадальных карт";
+    public string DescriptionQualityCurrency => "Качество (валюта)";
+    public string DescriptionQualityScarabs => "Качество (скарабеи)";
+    public string DescriptionQualityCards => "Качество (гадальные карты)";
+    public string DescriptionQualityPackSize => "Качество (размер группы)";
+    public string DescriptionQualityRarity => "Качество (редкость)";
     public string DescriptionMagicMonsters => "Волшебные монстры";
     public string DescriptionRareMonsters => "Редкие монстры";
     public string DescriptionRevivesAvailable => "Доступно возрождений";

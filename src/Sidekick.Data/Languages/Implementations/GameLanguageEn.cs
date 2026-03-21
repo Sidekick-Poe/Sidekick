@@ -49,6 +49,15 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionItemQuantity => "Item Quantity";
     public string DescriptionItemRarity => "Item Rarity";
     public string DescriptionMonsterPackSize => "Monster Pack Size";
+    public string DescriptionMoreMaps => "More Maps";
+    public string DescriptionMoreScarabs => "More Scarabs";
+    public string DescriptionMoreCurrency => "More Currency";
+    public string DescriptionMoreCards => "More Divination Cards";
+    public string DescriptionQualityCurrency => "Quality (Currency)";
+    public string DescriptionQualityScarabs => "Quality (Scarabs)";
+    public string DescriptionQualityCards => "Quality (Divination Cards)";
+    public string DescriptionQualityPackSize => "Quality (Pack Size)";
+    public string DescriptionQualityRarity => "Quality (Rarity)";
     public string DescriptionMagicMonsters => "Magic Monsters";
     public string DescriptionRareMonsters => "Rare Monsters";
     public string DescriptionRevivesAvailable => "Revives Available";

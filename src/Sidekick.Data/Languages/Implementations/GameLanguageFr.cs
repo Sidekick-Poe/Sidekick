@@ -49,6 +49,15 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionItemQuantity => "Quantité d'objets";
     public string DescriptionItemRarity => "Rareté des objets";
     public string DescriptionMonsterPackSize => "Taille des groupes de monstres";
+    public string DescriptionMoreMaps => "Davantage de Cartes";
+    public string DescriptionMoreScarabs => "Davantage de Scarabées";
+    public string DescriptionMoreCurrency => "Davantage d'Objets monétaires";
+    public string DescriptionMoreCards => "Davantage de Cartes divinatoires";
+    public string DescriptionQualityCurrency => "Qualité (Objets monétaires)";
+    public string DescriptionQualityScarabs => "Qualité (Scarabées)";
+    public string DescriptionQualityCards => "Qualité (Cartes divinatoires)";
+    public string DescriptionQualityPackSize => "Qualité (Taille des Groupes)";
+    public string DescriptionQualityRarity => "Qualité (Rareté)";
     public string DescriptionMagicMonsters => "Monstres magiques";
     public string DescriptionRareMonsters => "Monstres rares";
     public string DescriptionRevivesAvailable => "Résurrections disponibles";

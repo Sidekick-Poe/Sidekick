@@ -49,6 +49,15 @@ public class GameLanguageKo : IGameLanguage
     public string DescriptionItemQuantity => "아이템 수량";
     public string DescriptionItemRarity => "아이템 희귀도";
     public string DescriptionMonsterPackSize => "몬스터 무리 규모";
+    public string DescriptionMoreMaps => "지도 더 많음";
+    public string DescriptionMoreScarabs => "갑충석 더 많음";
+    public string DescriptionMoreCurrency => "화폐 더 많음";
+    public string DescriptionMoreCards => "점술 카드 증폭";
+    public string DescriptionQualityCurrency => "퀄리티 (화폐)";
+    public string DescriptionQualityScarabs => "퀄리티 (갑충석)";
+    public string DescriptionQualityCards => "퀄리티 (점술 카드)";
+    public string DescriptionQualityPackSize => "퀄리티 (무리 규모)";
+    public string DescriptionQualityRarity => "퀄리티 (희귀도)";
     public string DescriptionMagicMonsters => "마법 몬스터";
     public string DescriptionRareMonsters => "희귀 몬스터";
     public string DescriptionRevivesAvailable => "부활 횟수";

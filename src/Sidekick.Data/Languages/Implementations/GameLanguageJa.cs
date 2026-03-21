@@ -49,6 +49,15 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionItemQuantity => "アイテム数量";
     public string DescriptionItemRarity => "アイテムレアリティ";
     public string DescriptionMonsterPackSize => "モンスターパックサイズ";
+    public string DescriptionMoreMaps => "マップ量が上昇";
+    public string DescriptionMoreScarabs => "スカラベ量が上昇";
+    public string DescriptionMoreCurrency => "カレンシー量が上昇";
+    public string DescriptionMoreCards => "占いカード増加";
+    public string DescriptionQualityCurrency => "品質 (カレンシー)";
+    public string DescriptionQualityScarabs => "品質 (スカラベ)";
+    public string DescriptionQualityCards => "品質 (占いカード)";
+    public string DescriptionQualityPackSize => "品質 (パックサイズ)";
+    public string DescriptionQualityRarity => "品質 (レアリティ)";
     public string DescriptionMagicMonsters => "マジックモンスター";
     public string DescriptionRareMonsters => "レアモンスター";
     public string DescriptionRevivesAvailable => "復活が利用可能";
