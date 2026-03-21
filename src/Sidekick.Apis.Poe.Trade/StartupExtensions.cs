@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Trade.ApiItems;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
@@ -42,7 +41,6 @@ public static class StartupExtensions
         {
             c.InitializableServices.Add(typeof(IApiItemProvider));
         });
-        services.AddSidekickInitializableService<IApiStatsProvider, ApiStatsProvider>();
         services.AddSidekickInitializableService<IStatParser, StatParser>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<ITradeFilterProvider, TradeFilterProvider>();
