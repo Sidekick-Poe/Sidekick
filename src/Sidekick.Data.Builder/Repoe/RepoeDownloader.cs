@@ -4,7 +4,6 @@ using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Data.Builder.Repoe.Models.Items;
 using Sidekick.Data.Builder.Repoe.Models.Stats;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 namespace Sidekick.Data.Builder.Repoe;
 
@@ -22,6 +21,7 @@ public class RepoeDownloader(
         StatTranslations,
         BaseItems,
         ItemClasses,
+        Uniques,
     }
 
     private static List<RepoeLanguageInfo> Languages { get; } =
@@ -43,6 +43,7 @@ public class RepoeDownloader(
         new(RepoeFileType.StatTranslations, "stat_translations", "stat_translations.json"),
         new(RepoeFileType.BaseItems, "base_items", "base_items.json"),
         new(RepoeFileType.ItemClasses, "item_classes", "item_classes.json"),
+        new(RepoeFileType.Uniques, "uniques", "uniques.json"),
     ];
 
     private static List<RepoeFile> Poe2Files { get; } =
@@ -58,6 +59,7 @@ public class RepoeDownloader(
         new(RepoeFileType.StatTranslations, "stat_translations.tablet", "stat_translations/tablet_stat_descriptions.json"),
         new(RepoeFileType.BaseItems, "base_items", "base_items.json"),
         new(RepoeFileType.ItemClasses, "item_classes", "item_classes.json"),
+        new(RepoeFileType.Uniques, "uniques", "uniques.json"),
     ];
 
     private static string GetFileName(IGameLanguage language, string path)
@@ -86,6 +88,22 @@ public class RepoeDownloader(
         foreach (var file in files.Where(x=>x.Type == RepoeFileType.BaseItems))
         {
             var data = await dataProvider.Read<Dictionary<string, RepoeBaseItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
+            foreach (var entry in data)
+            {
+                result.Add(entry.Key, entry.Value);
+            }
+        }
+
+        return result;
+    }
+
+    public async Task<Dictionary<string, RepoeUniqueItem>> ReadUniques(GameType game, string language)
+    {
+        var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
+        var result = new Dictionary<string, RepoeUniqueItem>();
+        foreach (var file in files.Where(x=>x.Type == RepoeFileType.Uniques))
+        {
+            var data = await dataProvider.Read<Dictionary<string, RepoeUniqueItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
             {
                 result.Add(entry.Key, entry.Value);

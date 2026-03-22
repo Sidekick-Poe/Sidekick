@@ -38,6 +38,7 @@ public class ItemBuilder(
     {
         var tradeItems = await GetTradeItems(game, language);
         var baseItems = await GetBaseItems(game, language);
+        var uniqueItems = await GetUniqueItems(game, language);
 
         var list = new List<ItemDefinition>();
         foreach (var tradeItem in tradeItems)
@@ -45,12 +46,13 @@ public class ItemBuilder(
             var baseItem = baseItems.FirstOrDefault(x => x.Name == tradeItem.Type);
             baseItem ??= baseItems.FirstOrDefault(x => x.Name == tradeItem.Name);
 
-            if (list.Any(x => x.TradeItem == tradeItem)) continue;
+            var uniqueItem = uniqueItems.FirstOrDefault(x => x.Name == tradeItem.Name);
 
             list.Add(new ItemDefinition
             {
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
+                UniqueItem = uniqueItem,
                 NamePattern = GetNamePattern(tradeItem),
                 TypePattern = GetTypePattern(tradeItem),
                 TextPattern = GetTextPattern(tradeItem),
@@ -241,5 +243,40 @@ public class ItemBuilder(
                 Min = property.Min,
             };
         }
+    }
+
+    private async Task<List<UniqueItemDefinition>> GetUniqueItems(GameType game, IGameLanguage language)
+    {
+        var repoeUniqueItems = await repoeDownloader.ReadUniques(game, language.Code);
+        var repoeItemClasses = await GetItemClassDefinitions(game, language);
+
+        var result = new List<UniqueItemDefinition>();
+        foreach (var group in repoeUniqueItems.GroupBy(x => x.Value.Name))
+        {
+            var repoeUniqueItem = group.First();
+            if (group.Count() > 1)
+            {
+                logger.LogDebug("Multiple matches found for '{0}' in game '{1}'.", group.Key, game.GetValueAttribute());
+            }
+
+            if (string.IsNullOrEmpty(repoeUniqueItem.Value.Name)) continue;
+
+            string? image = null;
+            if (!string.IsNullOrEmpty(repoeUniqueItem.Value.Visual?.File))
+            {
+                var gameSlug = game == GameType.PathOfExile1 ? string.Empty : "poe2/";
+                image = $"https://repoe-fork.github.io/{gameSlug}{repoeUniqueItem.Value.Visual.File.Replace(".dds", ".png")}";
+            }
+
+            result.Add(new UniqueItemDefinition()
+            {
+                Id = repoeUniqueItem.Key,
+                ItemClass = repoeUniqueItem.Value.ItemClass != null ? repoeItemClasses.GetValueOrDefault(repoeUniqueItem.Value.ItemClass) : null,
+                Name = repoeUniqueItem.Value.Name,
+                Image = image,
+            });
+        }
+
+        return result;
     }
 }

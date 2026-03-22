@@ -8,6 +8,8 @@ public class ItemDefinition
 
     public BaseItemDefinition? BaseItem { get; init; }
 
+    public UniqueItemDefinition? UniqueItem { get; init; }
+
     [JsonIgnore]
     public Regex? NamePattern { get; init; }
 
