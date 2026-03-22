@@ -8,7 +8,6 @@ using Sidekick.Data.Builder.Repoe.Models.Stats;
 using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
@@ -161,6 +160,8 @@ public class StatBuilder(
 
         IEnumerable<TradeStatDefinition> GetTradeStatDefinitions(int? value)
         {
+            if (gameStat.TradeStats == null) yield break;
+
             foreach (var repoeStat in gameStat.TradeStats)
             {
                 foreach (var tradeDefinition in tradeDefinitions)

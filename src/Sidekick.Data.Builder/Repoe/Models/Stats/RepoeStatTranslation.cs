@@ -6,7 +6,7 @@ public class RepoeStatTranslation
     public List<string> Ids { get; set; } = [];
 
     [JsonPropertyName("trade_stats")]
-    public List<RepoeStatTrade> TradeStats { get; set; } = [];
+    public List<RepoeStatTrade>? TradeStats { get; set; }
 
     [JsonPropertyName("English")]
     public List<RepoeStatLanguage>? English { get; set; }

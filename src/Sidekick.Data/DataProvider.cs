@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -6,7 +7,6 @@ using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Data;
@@ -26,7 +26,7 @@ public class DataProvider : IInitializableService
         Converters =
         {
             new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-        }
+        },
     };
 
     public string DataDirectory { get; }
@@ -43,7 +43,7 @@ public class DataProvider : IInitializableService
 
         string GetDataDirectory()
         {
-            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            if (Debugger.IsAttached || configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
             {
                 var solutionDirectory = FindSolutionDirectory();
                 if (!string.IsNullOrEmpty(solutionDirectory))
@@ -77,10 +77,7 @@ public class DataProvider : IInitializableService
 
     public Task Initialize()
     {
-        if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
-        {
-            return Task.CompletedTask;
-        }
+        if (Debugger.IsAttached || configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test) return Task.CompletedTask;
 
         var sourceDirectory = Path.Combine(AppContext.BaseDirectory, "wwwroot/data");
         var targetDirectory = DataDirectory;

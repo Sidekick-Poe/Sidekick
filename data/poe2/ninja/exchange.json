@@ -1,43 +1,7 @@
 [
   {
-    "id": "chaos",
-    "detailsId": "chaos-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "bauble",
-    "detailsId": "glassblowers-bauble",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "greater-orb-of-transmutation",
-    "detailsId": "greater-orb-of-transmutation",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "divine",
-    "detailsId": "divine-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "crystallised-corruption",
-    "detailsId": "crystallised-corruption",
+    "id": "alch",
+    "detailsId": "orb-of-alchemy",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -54,141 +18,6 @@
     }
   },
   {
-    "id": "whetstone",
-    "detailsId": "blacksmiths-whetstone",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "orb-of-extraction",
-    "detailsId": "orb-of-extraction",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "greater-exalted-orb",
-    "detailsId": "greater-exalted-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "greater-orb-of-augmentation",
-    "detailsId": "greater-orb-of-augmentation",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "regal",
-    "detailsId": "regal-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "etcher",
-    "detailsId": "arcanists-etcher",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "wisdom",
-    "detailsId": "scroll-of-wisdom",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "perfect-jewellers-orb",
-    "detailsId": "perfect-jewellers-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "vaal-cultivation-orb",
-    "detailsId": "vaal-cultivation-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "vaal",
-    "detailsId": "vaal-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "alch",
-    "detailsId": "orb-of-alchemy",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "chance",
-    "detailsId": "orb-of-chance",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "perfect-exalted-orb",
-    "detailsId": "perfect-exalted-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "gcp",
-    "detailsId": "gemcutters-prism",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "fracturing-orb",
-    "detailsId": "fracturing-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "ancient-infuser",
     "detailsId": "ancient-infuser",
     "page": {
@@ -198,8 +27,8 @@
     }
   },
   {
-    "id": "perfect-regal-orb",
-    "detailsId": "perfect-regal-orb",
+    "id": "chaos",
+    "detailsId": "chaos-orb",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -207,125 +36,8 @@
     }
   },
   {
-    "id": "core-destabiliser",
-    "detailsId": "core-destabiliser",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "transmute",
-    "detailsId": "orb-of-transmutation",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "scrap",
-    "detailsId": "armourers-scrap",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "perfect-chaos-orb",
-    "detailsId": "perfect-chaos-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "aug",
-    "detailsId": "orb-of-augmentation",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "vaal-siphoner",
-    "detailsId": "vaal-siphoner",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "vaal-infuser",
-    "detailsId": "vaal-infuser",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "artificers",
-    "detailsId": "artificers-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "greater-jewellers-orb",
-    "detailsId": "greater-jewellers-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "greater-chaos-orb",
-    "detailsId": "greater-chaos-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "perfect-orb-of-transmutation",
-    "detailsId": "perfect-orb-of-transmutation",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "architects-orb",
-    "detailsId": "architects-orb",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "perfect-orb-of-augmentation",
-    "detailsId": "perfect-orb-of-augmentation",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "lesser-jewellers-orb",
-    "detailsId": "lesser-jewellers-orb",
+    "id": "divine",
+    "detailsId": "divine-orb",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -342,8 +54,80 @@
     }
   },
   {
-    "id": "chance-shard",
-    "detailsId": "chance-shard",
+    "id": "architects-orb",
+    "detailsId": "architects-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "artificers",
+    "detailsId": "artificers-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "aug",
+    "detailsId": "orb-of-augmentation",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "bauble",
+    "detailsId": "glassblowers-bauble",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "chance",
+    "detailsId": "orb-of-chance",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "core-destabiliser",
+    "detailsId": "core-destabiliser",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "crystallised-corruption",
+    "detailsId": "crystallised-corruption",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "etcher",
+    "detailsId": "arcanists-etcher",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "fracturing-orb",
+    "detailsId": "fracturing-orb",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -360,8 +144,71 @@
     }
   },
   {
-    "id": "mirror",
-    "detailsId": "mirror-of-kalandra",
+    "id": "perfect-chaos-orb",
+    "detailsId": "perfect-chaos-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "perfect-exalted-orb",
+    "detailsId": "perfect-exalted-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "perfect-jewellers-orb",
+    "detailsId": "perfect-jewellers-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "perfect-regal-orb",
+    "detailsId": "perfect-regal-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "regal",
+    "detailsId": "regal-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "scrap",
+    "detailsId": "armourers-scrap",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "vaal-cultivation-orb",
+    "detailsId": "vaal-cultivation-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "vaal-infuser",
+    "detailsId": "vaal-infuser",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -378,6 +225,168 @@
     }
   },
   {
+    "id": "lesser-jewellers-orb",
+    "detailsId": "lesser-jewellers-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "vaal-siphoner",
+    "detailsId": "vaal-siphoner",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "artificers-shard",
+    "detailsId": "artificers-shard",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "gcp",
+    "detailsId": "gemcutters-prism",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "greater-chaos-orb",
+    "detailsId": "greater-chaos-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "greater-exalted-orb",
+    "detailsId": "greater-exalted-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "greater-jewellers-orb",
+    "detailsId": "greater-jewellers-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "greater-orb-of-augmentation",
+    "detailsId": "greater-orb-of-augmentation",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "greater-orb-of-transmutation",
+    "detailsId": "greater-orb-of-transmutation",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "mirror",
+    "detailsId": "mirror-of-kalandra",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "orb-of-extraction",
+    "detailsId": "orb-of-extraction",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "perfect-orb-of-augmentation",
+    "detailsId": "perfect-orb-of-augmentation",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "perfect-orb-of-transmutation",
+    "detailsId": "perfect-orb-of-transmutation",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "transmutation-shard",
+    "detailsId": "transmutation-shard",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "transmute",
+    "detailsId": "orb-of-transmutation",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "vaal",
+    "detailsId": "vaal-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "whetstone",
+    "detailsId": "blacksmiths-whetstone",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "wisdom",
+    "detailsId": "scroll-of-wisdom",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "ancient-crisis-fragment",
     "detailsId": "ancient-crisis-fragment",
     "page": {
@@ -387,8 +396,8 @@
     }
   },
   {
-    "id": "cowardly-fate",
-    "detailsId": "cowardly-fate",
+    "id": "primary-calamity-fragment",
+    "detailsId": "primary-calamity-fragment",
     "page": {
       "type": "Fragments",
       "url": "fragments",
@@ -405,8 +414,17 @@
     }
   },
   {
-    "id": "secondary-calamity-fragment",
-    "detailsId": "secondary-calamity-fragment",
+    "id": "tertiary-calamity-fragment",
+    "detailsId": "tertiary-calamity-fragment",
+    "page": {
+      "type": "Fragments",
+      "url": "fragments",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "twilight-reliquary-key",
+    "detailsId": "twilight-reliquary-key",
     "page": {
       "type": "Fragments",
       "url": "fragments",
@@ -416,6 +434,15 @@
   {
     "id": "weathered-crisis-fragment",
     "detailsId": "weathered-crisis-fragment",
+    "page": {
+      "type": "Fragments",
+      "url": "fragments",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "cowardly-fate",
+    "detailsId": "cowardly-fate",
     "page": {
       "type": "Fragments",
       "url": "fragments",
@@ -450,8 +477,8 @@
     }
   },
   {
-    "id": "primary-calamity-fragment",
-    "detailsId": "primary-calamity-fragment",
+    "id": "secondary-calamity-fragment",
+    "detailsId": "secondary-calamity-fragment",
     "page": {
       "type": "Fragments",
       "url": "fragments",
@@ -468,26 +495,17 @@
     }
   },
   {
-    "id": "tertiary-calamity-fragment",
-    "detailsId": "tertiary-calamity-fragment",
-    "page": {
-      "type": "Fragments",
-      "url": "fragments",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "twilight-reliquary-key",
-    "detailsId": "twilight-reliquary-key",
-    "page": {
-      "type": "Fragments",
-      "url": "fragments",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "faded-crisis-fragment",
     "detailsId": "faded-crisis-fragment",
+    "page": {
+      "type": "Fragments",
+      "url": "fragments",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "rite-of-passage",
+    "detailsId": "azmeri-reliquary-key",
     "page": {
       "type": "Fragments",
       "url": "fragments",
@@ -585,8 +603,8 @@
     }
   },
   {
-    "id": "ancient-collarbone",
-    "detailsId": "ancient-collarbone",
+    "id": "gnawed-jawbone",
+    "detailsId": "gnawed-jawbone",
     "page": {
       "type": "Abyss",
       "url": "abyssal-bones",
@@ -594,8 +612,8 @@
     }
   },
   {
-    "id": "gnawed-jawbone",
-    "detailsId": "gnawed-jawbone",
+    "id": "kurgals-gaze",
+    "detailsId": "kurgals-gaze",
     "page": {
       "type": "Abyss",
       "url": "abyssal-bones",
@@ -630,6 +648,15 @@
     }
   },
   {
+    "id": "ancient-collarbone",
+    "detailsId": "ancient-collarbone",
+    "page": {
+      "type": "Abyss",
+      "url": "abyssal-bones",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "gnawed-collarbone",
     "detailsId": "gnawed-collarbone",
     "page": {
@@ -641,15 +668,6 @@
   {
     "id": "gnawed-rib",
     "detailsId": "gnawed-rib",
-    "page": {
-      "type": "Abyss",
-      "url": "abyssal-bones",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "kurgals-gaze",
-    "detailsId": "kurgals-gaze",
     "page": {
       "type": "Abyss",
       "url": "abyssal-bones",
@@ -684,15 +702,6 @@
     }
   },
   {
-    "id": "uncut-skill-gem-12",
-    "detailsId": "uncut-skill-gem-level-12",
-    "page": {
-      "type": "UncutGems",
-      "url": "uncut-gems",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "uncut-skill-gem-15",
     "detailsId": "uncut-skill-gem-level-15",
     "page": {
@@ -720,6 +729,24 @@
     }
   },
   {
+    "id": "uncut-skill-gem-9",
+    "detailsId": "uncut-skill-gem-level-9",
+    "page": {
+      "type": "UncutGems",
+      "url": "uncut-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "uncut-spirit-gem-12",
+    "detailsId": "uncut-spirit-gem-level-12",
+    "page": {
+      "type": "UncutGems",
+      "url": "uncut-gems",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "uncut-spirit-gem-15",
     "detailsId": "uncut-spirit-gem-level-15",
     "page": {
@@ -740,6 +767,15 @@
   {
     "id": "uncut-spirit-gem-19",
     "detailsId": "uncut-spirit-gem-level-19",
+    "page": {
+      "type": "UncutGems",
+      "url": "uncut-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "uncut-skill-gem-12",
+    "detailsId": "uncut-skill-gem-level-12",
     "page": {
       "type": "UncutGems",
       "url": "uncut-gems",
@@ -785,24 +821,6 @@
   {
     "id": "uncut-skill-gem-8",
     "detailsId": "uncut-skill-gem-level-8",
-    "page": {
-      "type": "UncutGems",
-      "url": "uncut-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "uncut-skill-gem-9",
-    "detailsId": "uncut-skill-gem-level-9",
-    "page": {
-      "type": "UncutGems",
-      "url": "uncut-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "uncut-spirit-gem-12",
-    "detailsId": "uncut-spirit-gem-level-12",
     "page": {
       "type": "UncutGems",
       "url": "uncut-gems",
@@ -1125,24 +1143,6 @@
     }
   },
   {
-    "id": "arakaalis-lust",
-    "detailsId": "arakaalis-lust",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "ataluis-bloodletting",
-    "detailsId": "ataluis-bloodletting",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "bhatairs-vengeance",
     "detailsId": "bhatairs-vengeance",
     "page": {
@@ -1161,89 +1161,8 @@
     }
   },
   {
-    "id": "oisins-oath",
-    "detailsId": "oisins-oath",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "rathas-assault",
-    "detailsId": "rathas-assault",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "siones-temper",
-    "detailsId": "siones-temper",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "vilentas-propulsion",
-    "detailsId": "vilentas-propulsion",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "xibaquas-rending",
-    "detailsId": "xibaquas-rending",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "zerphis-infamy",
-    "detailsId": "zerphis-infamy",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "cirels-cultivation",
-    "detailsId": "cirels-cultivation",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "daressos-passion",
     "detailsId": "daressos-passion",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "diallas-desire",
-    "detailsId": "diallas-desire",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "dominus-grasp",
-    "detailsId": "dominus-grasp",
     "page": {
       "type": "LineageSupportGems",
       "url": "lineage-support-gems",
@@ -1260,26 +1179,80 @@
     }
   },
   {
-    "id": "ixchels-torment",
-    "detailsId": "ixchels-torment",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "kalisas-crescendo",
-    "detailsId": "kalisas-crescendo",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "kulemaks-dominion",
     "detailsId": "kulemaks-dominion",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "romiras-requital",
+    "detailsId": "romiras-requital",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "siones-temper",
+    "detailsId": "siones-temper",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "cirels-cultivation",
+    "detailsId": "cirels-cultivation",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "diallas-desire",
+    "detailsId": "diallas-desire",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "arakaalis-lust",
+    "detailsId": "arakaalis-lust",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "ataluis-bloodletting",
+    "detailsId": "ataluis-bloodletting",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "dominus-grasp",
+    "detailsId": "dominus-grasp",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "ixchels-torment",
+    "detailsId": "ixchels-torment",
     "page": {
       "type": "LineageSupportGems",
       "url": "lineage-support-gems",
@@ -1305,8 +1278,26 @@
     }
   },
   {
+    "id": "oisins-oath",
+    "detailsId": "oisins-oath",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "rakiatas-flow",
     "detailsId": "rakiatas-flow",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "rathas-assault",
+    "detailsId": "rathas-assault",
     "page": {
       "type": "LineageSupportGems",
       "url": "lineage-support-gems",
@@ -1341,8 +1332,35 @@
     }
   },
   {
+    "id": "vilentas-propulsion",
+    "detailsId": "vilentas-propulsion",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "xibaquas-rending",
+    "detailsId": "xibaquas-rending",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "xophs-pyre",
     "detailsId": "xophs-pyre",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "zerphis-infamy",
+    "detailsId": "zerphis-infamy",
     "page": {
       "type": "LineageSupportGems",
       "url": "lineage-support-gems",
@@ -1386,24 +1404,6 @@
     }
   },
   {
-    "id": "romiras-requital",
-    "detailsId": "romiras-requital",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "varashtas-blessing",
-    "detailsId": "varashtas-blessing",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "guatelitzis-ablation",
     "detailsId": "guatelitzis-ablation",
     "page": {
@@ -1415,6 +1415,15 @@
   {
     "id": "hayoxis-fulmination",
     "detailsId": "hayoxis-fulmination",
+    "page": {
+      "type": "LineageSupportGems",
+      "url": "lineage-support-gems",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "kalisas-crescendo",
+    "detailsId": "kalisas-crescendo",
     "page": {
       "type": "LineageSupportGems",
       "url": "lineage-support-gems",
@@ -1442,15 +1451,6 @@
   {
     "id": "tacatis-ire",
     "detailsId": "tacatis-ire",
-    "page": {
-      "type": "LineageSupportGems",
-      "url": "lineage-support-gems",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "tasalios-rhythm",
-    "detailsId": "tasalios-rhythm",
     "page": {
       "type": "LineageSupportGems",
       "url": "lineage-support-gems",
@@ -1530,8 +1530,8 @@
     }
   },
   {
-    "id": "essence-of-electricity",
-    "detailsId": "essence-of-electricity",
+    "id": "essence-of-delirium",
+    "detailsId": "essence-of-delirium",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1539,8 +1539,8 @@
     }
   },
   {
-    "id": "essence-of-sorcery",
-    "detailsId": "essence-of-sorcery",
+    "id": "greater-essence-of-enhancement",
+    "detailsId": "greater-essence-of-enhancement",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1557,6 +1557,24 @@
     }
   },
   {
+    "id": "greater-essence-of-sorcery",
+    "detailsId": "greater-essence-of-sorcery",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "perfect-essence-of-abrasion",
+    "detailsId": "perfect-essence-of-abrasion",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "perfect-essence-of-battle",
     "detailsId": "perfect-essence-of-battle",
     "page": {
@@ -1566,8 +1584,8 @@
     }
   },
   {
-    "id": "perfect-essence-of-enhancement",
-    "detailsId": "perfect-essence-of-enhancement",
+    "id": "perfect-essence-of-electricity",
+    "detailsId": "perfect-essence-of-electricity",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1602,8 +1620,44 @@
     }
   },
   {
-    "id": "essence-of-delirium",
-    "detailsId": "essence-of-delirium",
+    "id": "perfect-essence-of-the-infinite",
+    "detailsId": "perfect-essence-of-the-infinite",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "essence-of-electricity",
+    "detailsId": "essence-of-electricity",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "essence-of-enhancement",
+    "detailsId": "essence-of-enhancement",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "essence-of-ruin",
+    "detailsId": "essence-of-ruin",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "essence-of-sorcery",
+    "detailsId": "essence-of-sorcery",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1647,8 +1701,8 @@
     }
   },
   {
-    "id": "perfect-essence-of-abrasion",
-    "detailsId": "perfect-essence-of-abrasion",
+    "id": "greater-essence-of-the-body",
+    "detailsId": "greater-essence-of-the-body",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1667,24 +1721,6 @@
   {
     "id": "perfect-essence-of-command",
     "detailsId": "perfect-essence-of-command",
-    "page": {
-      "type": "Essences",
-      "url": "essences",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "perfect-essence-of-electricity",
-    "detailsId": "perfect-essence-of-electricity",
-    "page": {
-      "type": "Essences",
-      "url": "essences",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "perfect-essence-of-thawing",
-    "detailsId": "perfect-essence-of-thawing",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1719,8 +1755,8 @@
     }
   },
   {
-    "id": "essence-of-flames",
-    "detailsId": "essence-of-flames",
+    "id": "essence-of-grounding",
+    "detailsId": "essence-of-grounding",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1748,15 +1784,6 @@
   {
     "id": "essence-of-hysteria",
     "detailsId": "essence-of-hysteria",
-    "page": {
-      "type": "Essences",
-      "url": "essences",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "essence-of-ice",
-    "detailsId": "essence-of-ice",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1818,26 +1845,8 @@
     }
   },
   {
-    "id": "essence-of-the-infinite",
-    "detailsId": "essence-of-the-infinite",
-    "page": {
-      "type": "Essences",
-      "url": "essences",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "essence-of-enhancement",
-    "detailsId": "essence-of-enhancement",
-    "page": {
-      "type": "Essences",
-      "url": "essences",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "essence-of-ruin",
-    "detailsId": "essence-of-ruin",
+    "id": "essence-of-the-mind",
+    "detailsId": "essence-of-the-mind",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1872,17 +1881,8 @@
     }
   },
   {
-    "id": "greater-essence-of-sorcery",
-    "detailsId": "greater-essence-of-sorcery",
-    "page": {
-      "type": "Essences",
-      "url": "essences",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "lesser-essence-of-opulence",
-    "detailsId": "lesser-essence-of-opulence",
+    "id": "lesser-essence-of-alacrity",
+    "detailsId": "lesser-essence-of-alacrity",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1917,15 +1917,6 @@
     }
   },
   {
-    "id": "greater-essence-of-enhancement",
-    "detailsId": "greater-essence-of-enhancement",
-    "page": {
-      "type": "Essences",
-      "url": "essences",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "greater-essence-of-haste",
     "detailsId": "greater-essence-of-haste",
     "page": {
@@ -1953,8 +1944,8 @@
     }
   },
   {
-    "id": "greater-essence-of-the-body",
-    "detailsId": "greater-essence-of-the-body",
+    "id": "greater-essence-of-the-infinite",
+    "detailsId": "greater-essence-of-the-infinite",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1962,8 +1953,8 @@
     }
   },
   {
-    "id": "greater-essence-of-the-infinite",
-    "detailsId": "greater-essence-of-the-infinite",
+    "id": "greater-essence-of-the-mind",
+    "detailsId": "greater-essence-of-the-mind",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -1989,6 +1980,15 @@
     }
   },
   {
+    "id": "lesser-essence-of-enhancement",
+    "detailsId": "lesser-essence-of-enhancement",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "lesser-essence-of-haste",
     "detailsId": "lesser-essence-of-haste",
     "page": {
@@ -1998,8 +1998,8 @@
     }
   },
   {
-    "id": "lesser-essence-of-ice",
-    "detailsId": "lesser-essence-of-ice",
+    "id": "lesser-essence-of-insulation",
+    "detailsId": "lesser-essence-of-insulation",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -2016,8 +2016,8 @@
     }
   },
   {
-    "id": "lesser-essence-of-thawing",
-    "detailsId": "lesser-essence-of-thawing",
+    "id": "perfect-essence-of-enhancement",
+    "detailsId": "perfect-essence-of-enhancement",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -2088,8 +2088,8 @@
     }
   },
   {
-    "id": "perfect-essence-of-the-infinite",
-    "detailsId": "perfect-essence-of-the-infinite",
+    "id": "perfect-essence-of-thawing",
+    "detailsId": "perfect-essence-of-thawing",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -2099,6 +2099,42 @@
   {
     "id": "perfect-essence-of-the-mind",
     "detailsId": "perfect-essence-of-the-mind",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "lesser-essence-of-battle",
+    "detailsId": "lesser-essence-of-battle",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "lesser-essence-of-ruin",
+    "detailsId": "lesser-essence-of-ruin",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "essence-of-ice",
+    "detailsId": "essence-of-ice",
+    "page": {
+      "type": "Essences",
+      "url": "essences",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "lesser-essence-of-seeking",
+    "detailsId": "lesser-essence-of-seeking",
     "page": {
       "type": "Essences",
       "url": "essences",
@@ -2412,8 +2448,8 @@
     }
   },
   {
-    "id": "craiceanns-rune-of-recovery",
-    "detailsId": "craiceanns-rune-of-recovery",
+    "id": "craiceanns-rune-of-warding",
+    "detailsId": "craiceanns-rune-of-warding",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2432,15 +2468,6 @@
   {
     "id": "farruls-rune-of-the-hunt",
     "detailsId": "farruls-rune-of-the-hunt",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "fenumus-rune-of-agony",
-    "detailsId": "fenumus-rune-of-agony",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2475,8 +2502,17 @@
     }
   },
   {
-    "id": "greater-stone-rune",
-    "detailsId": "greater-stone-rune",
+    "id": "greater-desert-rune",
+    "detailsId": "greater-desert-rune",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "greater-inspiration-rune",
+    "detailsId": "greater-inspiration-rune",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2493,44 +2529,8 @@
     }
   },
   {
-    "id": "thane-girts-rune-of-wildness",
-    "detailsId": "thane-girts-rune-of-wildness",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "thane-grannells-rune-of-mastery",
-    "detailsId": "thane-grannells-rune-of-mastery",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "thane-lelds-rune-of-spring",
     "detailsId": "thane-lelds-rune-of-spring",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "the-greatwolfs-rune-of-willpower",
-    "detailsId": "the-greatwolfs-rune-of-willpower",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "craiceanns-rune-of-warding",
-    "detailsId": "craiceanns-rune-of-warding",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2547,6 +2547,24 @@
     }
   },
   {
+    "id": "craiceanns-rune-of-recovery",
+    "detailsId": "craiceanns-rune-of-recovery",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "fenumus-rune-of-agony",
+    "detailsId": "fenumus-rune-of-agony",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "glacial-rune",
     "detailsId": "glacial-rune",
     "page": {
@@ -2556,17 +2574,8 @@
     }
   },
   {
-    "id": "greater-desert-rune",
-    "detailsId": "greater-desert-rune",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "greater-inspiration-rune",
-    "detailsId": "greater-inspiration-rune",
+    "id": "greater-robust-rune",
+    "detailsId": "greater-robust-rune",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2592,6 +2601,33 @@
     }
   },
   {
+    "id": "lesser-resolve-rune",
+    "detailsId": "lesser-resolve-rune",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "resolve-rune",
+    "detailsId": "resolve-rune",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "robust-rune",
+    "detailsId": "robust-rune",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "storm-rune",
     "detailsId": "storm-rune",
     "page": {
@@ -2601,8 +2637,26 @@
     }
   },
   {
-    "id": "greater-robust-rune",
-    "detailsId": "greater-robust-rune",
+    "id": "thane-girts-rune-of-wildness",
+    "detailsId": "thane-girts-rune-of-wildness",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "thane-grannells-rune-of-mastery",
+    "detailsId": "thane-grannells-rune-of-mastery",
+    "page": {
+      "type": "Runes",
+      "url": "runes",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "the-greatwolfs-rune-of-willpower",
+    "detailsId": "the-greatwolfs-rune-of-willpower",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2621,15 +2675,6 @@
   {
     "id": "lesser-desert-rune",
     "detailsId": "lesser-desert-rune",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "resolve-rune",
-    "detailsId": "resolve-rune",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2763,8 +2808,8 @@
     }
   },
   {
-    "id": "lesser-glacial-rune",
-    "detailsId": "lesser-glacial-rune",
+    "id": "lesser-body-rune",
+    "detailsId": "lesser-body-rune",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2772,8 +2817,8 @@
     }
   },
   {
-    "id": "lesser-inspiration-rune",
-    "detailsId": "lesser-inspiration-rune",
+    "id": "lesser-glacial-rune",
+    "detailsId": "lesser-glacial-rune",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2790,8 +2835,8 @@
     }
   },
   {
-    "id": "lesser-resolve-rune",
-    "detailsId": "lesser-resolve-rune",
+    "id": "lesser-mind-rune",
+    "detailsId": "lesser-mind-rune",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2810,15 +2855,6 @@
   {
     "id": "lesser-storm-rune",
     "detailsId": "lesser-storm-rune",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "robust-rune",
-    "detailsId": "robust-rune",
     "page": {
       "type": "Runes",
       "url": "runes",
@@ -2862,15 +2898,6 @@
     }
   },
   {
-    "id": "vision-rune",
-    "detailsId": "vision-rune",
-    "page": {
-      "type": "Runes",
-      "url": "runes",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "omen-of-abyssal-favours",
     "detailsId": "omen-of-abyssal-echoes",
     "page": {
@@ -2907,6 +2934,15 @@
     }
   },
   {
+    "id": "omen-of-refreshment",
+    "detailsId": "omen-of-refreshment",
+    "page": {
+      "type": "Ritual",
+      "url": "omens",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "omen-of-sinistral-crystallisation",
     "detailsId": "omen-of-sinistral-crystallisation",
     "page": {
@@ -2918,6 +2954,15 @@
   {
     "id": "omen-of-sinistral-exaltation",
     "detailsId": "omen-of-sinistral-exaltation",
+    "page": {
+      "type": "Ritual",
+      "url": "omens",
+      "supportsExchange": true
+    }
+  },
+  {
+    "id": "omen-of-sinistral-necromancy",
+    "detailsId": "omen-of-sinistral-necromancy",
     "page": {
       "type": "Ritual",
       "url": "omens",
@@ -2979,15 +3024,6 @@
     }
   },
   {
-    "id": "omen-of-refreshment",
-    "detailsId": "omen-of-refreshment",
-    "page": {
-      "type": "Ritual",
-      "url": "omens",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "omen-of-reinforcements",
     "detailsId": "omen-of-reinforcements",
     "page": {
@@ -2997,8 +3033,8 @@
     }
   },
   {
-    "id": "omen-of-sinistral-annulment",
-    "detailsId": "omen-of-sinistral-annulment",
+    "id": "omen-of-secret-compartments",
+    "detailsId": "omen-of-secret-compartments",
     "page": {
       "type": "Ritual",
       "url": "omens",
@@ -3006,8 +3042,8 @@
     }
   },
   {
-    "id": "omen-of-sinistral-necromancy",
-    "detailsId": "omen-of-sinistral-necromancy",
+    "id": "omen-of-sinistral-annulment",
+    "detailsId": "omen-of-sinistral-annulment",
     "page": {
       "type": "Ritual",
       "url": "omens",
@@ -3141,15 +3177,6 @@
     }
   },
   {
-    "id": "omen-of-secret-compartments",
-    "detailsId": "omen-of-secret-compartments",
-    "page": {
-      "type": "Ritual",
-      "url": "omens",
-      "supportsExchange": true
-    }
-  },
-  {
     "id": "omen-of-sinistral-erasure",
     "detailsId": "omen-of-sinistral-erasure",
     "page": {
@@ -3276,6 +3303,15 @@
     }
   },
   {
+    "id": "diluted-liquid-ire",
+    "detailsId": "diluted-liquid-ire",
+    "page": {
+      "type": "Delirium",
+      "url": "distilled-emotions",
+      "supportsExchange": true
+    }
+  },
+  {
     "id": "liquid-despair",
     "detailsId": "liquid-despair",
     "page": {
@@ -3323,15 +3359,6 @@
   {
     "id": "liquid-paranoia",
     "detailsId": "liquid-paranoia",
-    "page": {
-      "type": "Delirium",
-      "url": "distilled-emotions",
-      "supportsExchange": true
-    }
-  },
-  {
-    "id": "diluted-liquid-ire",
-    "detailsId": "diluted-liquid-ire",
     "page": {
       "type": "Delirium",
       "url": "distilled-emotions",
