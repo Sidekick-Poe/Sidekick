@@ -1,5 +1,4 @@
 @using Sidekick.Apis.Poe.Trade.ApiItems
-@using Sidekick.Common.Exceptions
 @using Sidekick.Data.Items
 
 <div class="flex flex-nowrap gap-0.5 items-center justify-end">
@@ -7,8 +6,8 @@
     <TextBase Class="text-[#a38d6d]">&times;</TextBase>
     @if (Currency != null)
     {
-        <Tooltip Text="@Currency.TradeItem?.Text">
-            <img src="@Currency.TradeItem?.Image" class="max-h-6" alt="chaos"/>
+        <Tooltip Text="@Currency.BaseItem?.Name">
+            <img src="@Currency.TradeItem?.Image" class="max-h-6" alt="@Currency.BaseItem?.Name"/>
         </Tooltip>
     }
 </div>
@@ -24,7 +23,7 @@
 
     protected override void OnParametersSet()
     {
-        Currency = ApiItemProvider.Get("chaos") ?? throw new SidekickException("The currency could not be determined.");
+        Currency = ApiItemProvider.Get("chaos");
         base.OnParametersSet();
     }
 

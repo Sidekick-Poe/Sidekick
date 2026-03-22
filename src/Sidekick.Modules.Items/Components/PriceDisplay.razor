@@ -1,5 +1,4 @@
 @using Sidekick.Apis.Poe.Trade.ApiItems
-@using Sidekick.Common.Exceptions
 @using Sidekick.Data.Items
 
 @if (Small)
@@ -51,7 +50,7 @@ else
 
     protected override void OnParametersSet()
     {
-        Definition = ApiItemProvider.Get(Currency) ?? throw new SidekickException("The currency could not be determined.");
+        Definition = ApiItemProvider.Get(Currency);
         base.OnParametersSet();
     }
 
