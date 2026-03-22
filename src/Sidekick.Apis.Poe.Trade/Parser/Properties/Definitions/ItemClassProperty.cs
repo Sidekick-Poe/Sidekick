@@ -46,15 +46,15 @@ public class ItemClassProperty : PropertyDefinition
 
     public override string Label => resources["Item_Class"];
 
-    private Lazy<List<ItemClassDefinition>> ItemClassDefinitions { get; }
+    private Lazy<List<ItemClassParserDefinition>> ItemClassDefinitions { get; }
 
-    private Lazy<List<ItemClassDefinition>> ApiItemClassDefinitions { get; }
+    private Lazy<List<ItemClassParserDefinition>> ApiItemClassDefinitions { get; }
 
-    private List<ItemClassDefinition> GetApiItemClassDefinitions()
+    private List<ItemClassParserDefinition> GetApiItemClassDefinitions()
     {
         if (tradeFilterProvider.TypeCategory == null) return [];
 
-        return tradeFilterProvider.TypeCategory.Option.Options.ConvertAll(x => new ItemClassDefinition()
+        return tradeFilterProvider.TypeCategory.Option.Options.ConvertAll(x => new ItemClassParserDefinition()
         {
             Id = x.Id,
             Text = x.Text,
@@ -62,9 +62,9 @@ public class ItemClassProperty : PropertyDefinition
         });
     }
 
-    private List<ItemClassDefinition> GetItemClassDefinitions()
+    private List<ItemClassParserDefinition> GetItemClassDefinitions()
     {
-        List<ItemClassDefinition> definitions =
+        List<ItemClassParserDefinition> definitions =
         [
             CreateItemClassDefinition(ItemClass.Amulet, currentGameLanguage.Language.ClassAmulet),
             CreateItemClassDefinition(ItemClass.Belt, currentGameLanguage.Language.ClassBelt),
@@ -172,11 +172,11 @@ public class ItemClassProperty : PropertyDefinition
         return definitions;
     }
 
-    private ItemClassDefinition CreateItemClassDefinition(ItemClass itemClass, params string[] labels)
+    private ItemClassParserDefinition CreateItemClassDefinition(ItemClass itemClass, params string[] labels)
     {
         var text = labels.FirstOrDefault();
 
-        return new ItemClassDefinition()
+        return new ItemClassParserDefinition()
         {
             ItemClass = itemClass,
             Id = itemClass.GetValueAttribute(),
@@ -211,7 +211,7 @@ public class ItemClassProperty : PropertyDefinition
             classLine = currentGameLanguage.Language.ClassMapFragments;
         }
 
-        var categoryToMatch = new ItemClassDefinition()
+        var categoryToMatch = new ItemClassParserDefinition()
         {
             Text = classLine,
             FuzzyText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, classLine)
@@ -227,14 +227,14 @@ public class ItemClassProperty : PropertyDefinition
         if (item.Properties.ItemClass == ItemClass.Unknown) return Task.FromResult<TradeFilter?>(null);
 
         var classLabel = tradeFilterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
-        if (classLabel == null || item.Definition.Type == null) return Task.FromResult<TradeFilter?>(null);
+        if (classLabel == null || item.Definition.TradeItem?.Type == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemClassFilter
         {
             Text = resources["Item_Class"],
             ItemClass = classLabel,
             BaseTypeText = resources["Base_Type"],
-            BaseType = item.Definition.Type,
+            BaseType = item.Definition.TradeItem.Type,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}",
         };
         return Task.FromResult<TradeFilter?>(filter);

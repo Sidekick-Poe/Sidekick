@@ -30,8 +30,8 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 ");
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
-        Assert.Equal("Emerald", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Emerald", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(26, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attack Speed", 3);
@@ -61,8 +61,8 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Time-Lost Ruby", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Time-Lost Ruby", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(64, actual.Properties.ItemLevel);
     }
 
@@ -86,8 +86,8 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Emerald", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Emerald", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(24, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Damage with Crossbows", 8);
@@ -112,8 +112,8 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ruby", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Ruby", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(26, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Melee Damage", 12);

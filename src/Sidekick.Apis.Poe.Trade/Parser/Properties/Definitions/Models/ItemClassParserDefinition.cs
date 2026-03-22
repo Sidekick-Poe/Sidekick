@@ -4,7 +4,7 @@ using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
 
-public class ItemClassDefinition
+public class ItemClassParserDefinition
 {
     public string? Id { get; init; }
 

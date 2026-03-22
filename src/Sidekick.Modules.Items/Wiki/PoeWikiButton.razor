@@ -19,6 +19,7 @@
         var poeWikiBaseUri = "https://www.poewiki.net/";
         var poe2WikiBaseUri = "https://www.poe2wiki.net/";
         var poeWikiSubUrl = "w/index.php?search=";
+        // todo standardise to api projects
         var searchLink = Item.Definition.Name ?? Item.Definition.Type;
         var baseUrl = Item.Game == GameType.PathOfExile1 ? poeWikiBaseUri : poe2WikiBaseUri;
         var wikiLink = poeWikiSubUrl + searchLink?.Replace(" ", "+");

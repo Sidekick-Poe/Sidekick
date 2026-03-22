@@ -40,7 +40,7 @@ Hunter Item
 
         Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Hunter Hood", actual.Definition.Type);
+        Assert.Equal("Hunter Hood", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "You have # Conflux for 3 seconds every 8 seconds", "Shocking");
     }
@@ -79,8 +79,8 @@ Note: ~price 1 chaos
 
         Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Starkonja's Head", actual.Definition.Name);
-        Assert.Equal("Silken Hood", actual.Definition.Type);
+        Assert.Equal("Starkonja's Head", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Silken Hood", actual.Definition.TradeItem?.Type);
 
         Assert.False(actual.Properties.Unidentified);
         Assert.Equal(63, actual.Properties.ItemLevel);
@@ -127,8 +127,8 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
 
         Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("The Dark Monarch", actual.Definition.Name);
-        Assert.Equal("Lich's Circlet", actual.Definition.Type);
+        Assert.Equal("The Dark Monarch", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Lich's Circlet", actual.Definition.TradeItem?.Type);
 
         Assert.False(actual.Properties.Unidentified);
         Assert.Equal(85, actual.Properties.ItemLevel);

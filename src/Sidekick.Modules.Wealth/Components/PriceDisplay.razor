@@ -6,8 +6,8 @@
     @if (ChaosItem != null)
     {
         <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-        <Tooltip Text="@ChaosItem.Text">
-            <img src="@ChaosItem.Image" class="max-h-6" alt="chaos" />
+        <Tooltip Text="@ChaosItem.TradeItem?.Text">
+            <img src="@ChaosItem.TradeItem?.Image" class="max-h-6" alt="chaos" />
         </Tooltip>
     }
 </div>

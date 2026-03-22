@@ -1,6 +1,6 @@
-namespace Sidekick.Data.Items;
+﻿namespace Sidekick.Data.Items;
 
-public class ItemClassDefinition2
+public class ItemClassDefinition
 {
     public string? Id { get; set; }
 

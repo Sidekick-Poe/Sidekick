@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
@@ -32,7 +31,13 @@ public class FindItemKeybindHandler(
         }
 
         var item = itemParser.ParseItem(text);
-        await clipboardProvider.SetText(item.Definition.Name ?? item.Definition.Type);
+
+        string? searchValue = null;
+        if (!string.IsNullOrEmpty(item.Definition.UniqueItem?.Name)) searchValue = item.Definition.UniqueItem.Name;
+        else if (!string.IsNullOrEmpty(item.Definition.BaseItem?.Name)) searchValue = item.Definition.BaseItem.Name;
+        if (string.IsNullOrEmpty(searchValue)) return;
+
+        await clipboardProvider.SetText(searchValue);
         keyboard.ReleaseAltModifier();
         await keyboard.PressKey(
             "Ctrl+F",

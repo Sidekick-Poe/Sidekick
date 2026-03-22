@@ -164,14 +164,14 @@ public class ItemBuilder(
         return result;
     }
 
-    private async Task<Dictionary<string, ItemClassDefinition2>> GetItemClassDefinitions(GameType game, IGameLanguage language)
+    private async Task<Dictionary<string, ItemClassDefinition>> GetItemClassDefinitions(GameType game, IGameLanguage language)
     {
         var raw = await repoeDownloader.ReadItemClasses(game, language.Code);
-        var result = new Dictionary<string, ItemClassDefinition2>();
+        var result = new Dictionary<string, ItemClassDefinition>();
 
         foreach (var entry in raw)
         {
-            var definition = new ItemClassDefinition2()
+            var definition = new ItemClassDefinition()
             {
                 Id = entry.Key,
                 Name = entry.Value.Name,
@@ -208,19 +208,19 @@ public class ItemBuilder(
                 Id = repoeBaseItem.Key,
                 ItemClass = repoeBaseItem.Value.ItemClass != null ? repoeItemClasses.GetValueOrDefault(repoeBaseItem.Value.ItemClass) : null,
                 Name = repoeBaseItem.Value.Name,
-                Requirements = repoeBaseItem.Value.Requirements != null ? new ItemRequirements()
+                Requirements = repoeBaseItem.Value.Requirements != null ? new BaseItemRequirements()
                 {
                     Dexterity = repoeBaseItem.Value.Requirements.Dexterity,
                     Strength = repoeBaseItem.Value.Requirements.Strength,
                     Intelligence = repoeBaseItem.Value.Requirements.Intelligence,
                     Level = repoeBaseItem.Value.Requirements.Level,
                 } : null,
-                Properties = repoeBaseItem.Value.Properties != null ? new ItemProperties()
+                Properties = repoeBaseItem.Value.Properties != null ? new BaseItemProperties()
                 {
                     Armour = GetPropertyValues(repoeBaseItem.Value.Properties.Armour),
                     EnergyShield = GetPropertyValues(repoeBaseItem.Value.Properties.EnergyShield),
                     Evasion = GetPropertyValues(repoeBaseItem.Value.Properties.Evasion),
-                    PhysicalDamage = repoeBaseItem.Value.Properties.PhysicalDamageMin != null ? new ItemPropertyValues()
+                    PhysicalDamage = repoeBaseItem.Value.Properties.PhysicalDamageMin != null ? new BaseItemPropertyValues()
                     {
                         Min = repoeBaseItem.Value.Properties.PhysicalDamageMin,
                         Max = repoeBaseItem.Value.Properties.PhysicalDamageMax,
@@ -234,10 +234,10 @@ public class ItemBuilder(
 
         return result;
 
-        ItemPropertyValues? GetPropertyValues(RepoeBaseItemProperty? property)
+        BaseItemPropertyValues? GetPropertyValues(RepoeBaseItemProperty? property)
         {
             if (property == null) return null;
-            return new ItemPropertyValues()
+            return new BaseItemPropertyValues()
             {
                 Max = property.Max,
                 Min = property.Min,
@@ -270,7 +270,7 @@ public class ItemBuilder(
 
             result.Add(new UniqueItemDefinition()
             {
-                Id = repoeUniqueItem.Key,
+                Id = repoeUniqueItem.Value.Id,
                 ItemClass = repoeUniqueItem.Value.ItemClass != null ? repoeItemClasses.GetValueOrDefault(repoeUniqueItem.Value.ItemClass) : null,
                 Name = repoeUniqueItem.Value.Name,
                 Image = image,

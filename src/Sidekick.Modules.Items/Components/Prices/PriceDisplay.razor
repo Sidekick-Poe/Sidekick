@@ -1,16 +1,18 @@
 @using Sidekick.Apis.Poe.Trade.ApiItems
+@using Sidekick.Common.Exceptions
+@using Sidekick.Data.Items
 
 @if (Small)
 {
     <div class="flex flex-nowrap gap-0.5 items-center justify-end text-white">
         <Heading3>@Value.ToString("0.##")</Heading3>
-        @if (ImageUrl != null)
+        @if (Definition.TradeItem?.Image != null)
         {
             <TextCaption Class="text-[#a38d6d]">&times;</TextCaption>
 
-            <Tooltip Text="@CurrencyText">
+            <Tooltip Text="@Definition.BaseItem?.Name">
                 <ChildContent>
-                    <img src="@ImageUrl" class="max-h-5" alt="@Currency" />
+                    <img src="@Definition.TradeItem?.Image" class="max-h-5" alt="@Definition.BaseItem?.Name" />
                 </ChildContent>
             </Tooltip>
         }
@@ -20,12 +22,12 @@ else
 {
     <div class="flex flex-nowrap gap-1 items-center justify-end text-white">
         <Heading2>@Value.ToString("0.##")</Heading2>
-        @if (ImageUrl != null)
+        @if (Definition.TradeItem?.Image != null)
         {
             <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-            <Tooltip Text="@CurrencyText">
+            <Tooltip Text="@Definition.BaseItem?.Name">
                 <ChildContent>
-                    <img src="@ImageUrl" class="max-h-10" alt="@Currency" />
+                    <img src="@Definition.TradeItem?.Image" class="max-h-10" alt="@Definition.BaseItem?.Name" />
                 </ChildContent>
             </Tooltip>
         }
@@ -37,7 +39,7 @@ else
 @code {
 
     [Parameter]
-    public string Currency { get; set; } = "chaos";
+    public ItemDefinition? Currency { get; set; }
 
     [Parameter]
     public decimal Value { get; set; }
@@ -45,8 +47,6 @@ else
     [Parameter]
     public bool Small { get; set; }
 
-    private string? ImageUrl => ApiItemProvider.GetById(Currency)?.Image;
-
-    private string? CurrencyText => ApiItemProvider.GetById(Currency)?.Text;
+    private ItemDefinition Definition => Currency ?? ApiItemProvider.ChaosOrb ?? throw new SidekickException("The currency could not be determined.");
 
 }

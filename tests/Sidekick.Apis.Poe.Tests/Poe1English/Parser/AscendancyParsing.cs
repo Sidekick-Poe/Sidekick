@@ -57,6 +57,6 @@ Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Tribute to the Goddess", actual.Definition.Type);
+        Assert.Equal("Tribute to the Goddess", actual.Definition.TradeItem?.Type);
     }
 }

@@ -49,7 +49,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.Definition.Type);
+        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
@@ -94,7 +94,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.Definition.Type);
+        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
     }

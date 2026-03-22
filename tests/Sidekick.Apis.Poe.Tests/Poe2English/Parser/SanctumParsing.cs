@@ -28,8 +28,8 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas
 
         Assert.Equal(ItemClass.SanctumRelic, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Urn Relic", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Urn Relic", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
 
         fixture.AssertHasStat(actual, StatCategory.Sanctum, "Fountains have #% chance to grant double Sacred Water", 6);
         fixture.AssertHasStat(actual, StatCategory.Sanctum, "#% increased Honour restored", 9);
@@ -52,8 +52,8 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas");
 
         Assert.Equal(ItemClass.SanctumRelic, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Urn Relic", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Urn Relic", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Sanctum, "#% increased Defences", 35);

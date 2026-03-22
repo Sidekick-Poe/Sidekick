@@ -28,6 +28,8 @@ public class Item
 
     public ItemDefinition Definition { get; set; } = null!;
 
+    public ItemDefinition Invariant { get; set; } = null!;
+
     public ItemProperties Properties { get; } = new();
 
     public List<Stat> Stats { get; } = [];

@@ -45,7 +45,7 @@ public class RarityProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Definition != null! && item.Definition.IsUnique)
+        if (item.Definition?.UniqueItem != null)
         {
             item.Properties.Rarity = Rarity.Unique;
             return;

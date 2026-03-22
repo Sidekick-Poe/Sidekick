@@ -205,11 +205,11 @@ internal class WealthProvider
     {
         decimal price = 0;
         ApiSparkline? sparkLine = null;
-        var apiData = apiItemProvider.Get(item.Name, item.Type);
+        var itemDefinition = apiItemProvider.Get(item.Name, item.Type);
 
         var exchangeItem = ninjaItemProvider.GetExchangeItem(item.Name);
         exchangeItem ??= ninjaItemProvider.GetExchangeItem(item.Type);
-        exchangeItem ??= apiData != null ? ninjaItemProvider.GetExchangeItem(apiData.Id) : null;
+        exchangeItem ??= itemDefinition != null ? ninjaItemProvider.GetExchangeItem(itemDefinition.TradeItem?.Id) : null;
 
         if (exchangeItem != null)
         {

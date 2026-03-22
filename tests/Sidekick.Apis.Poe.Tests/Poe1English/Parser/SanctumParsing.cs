@@ -28,7 +28,7 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
 ");
 
         Assert.Equal(ItemClass.SanctumResearch, actual.Properties.ItemClass);
-        Assert.Equal("Forbidden Tome", actual.Definition.Type);
+        Assert.Equal("Forbidden Tome", actual.Definition.TradeItem?.Type);
         Assert.Equal(83, actual.Properties.AreaLevel);
         Assert.Equal(84, actual.Properties.ItemLevel);
     }
@@ -52,8 +52,8 @@ Unmodifiable
 
         Assert.Equal(ItemClass.SanctumRelic, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Urn Relic", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Urn Relic", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);

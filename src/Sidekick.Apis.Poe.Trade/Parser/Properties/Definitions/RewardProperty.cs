@@ -62,9 +62,9 @@ public class RewardFilter : StringPropertyFilter
     {
         if (!Checked) return;
 
-        var uniqueItem = ApiItemProvider.UniqueItems.FirstOrDefault(x => x.Name != null && Value.Contains(x.Name));
-        if (uniqueItem?.Name == null) return;
+        var uniqueItem = ApiItemProvider.UniqueItems.FirstOrDefault(x => x.UniqueItem?.Name != null && Value.Contains(x.UniqueItem.Name));
+        if (uniqueItem?.UniqueItem?.Name == null) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.Name);
+        query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.UniqueItem.Name);
     }
 }

@@ -26,7 +26,7 @@ Right click this item then left click a normal item to apply it.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Essence of Enhancement", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Essence of Enhancement", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
     }
 }

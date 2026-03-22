@@ -5,6 +5,7 @@ public class ItemProperties
 {
     public Rarity Rarity { get; set; } = Rarity.Unknown;
 
+    // TODO remove
     public ItemClass ItemClass { get; set; }
 
     public bool Unidentified { get; set; }
@@ -42,7 +43,7 @@ public class ItemProperties
     public int RevivesAvailable { get; set; }
 
     public int MonsterPackSize { get; set; }
-    
+
     public int MoreMaps { get; set; }
 
     public int MoreScarabs { get; set; }

@@ -34,7 +34,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 
         Assert.Equal(ItemClass.Tablet, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ritual Precursor Tablet", actual.Definition.Type);
+        Assert.Equal("Ritual Precursor Tablet", actual.Definition.TradeItem?.Type);
 
         Assert.Equal(77, actual.Properties.ItemLevel);
 

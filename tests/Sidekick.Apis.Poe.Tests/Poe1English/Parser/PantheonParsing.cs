@@ -32,6 +32,6 @@ Note: ~price 1 chaos
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Divine Vessel", actual.Definition.Type);
+        Assert.Equal("Divine Vessel", actual.Definition.TradeItem?.Type);
     }
 }

@@ -78,7 +78,7 @@ public class NinjaItemProvider(
         return GetBaseTypeItem(item.Definition.InvariantType, item.Properties.ItemLevel, item.Properties.Influences);
     }
 
-    public NinjaStashItem? GetUniqueItem(string? name, int links)
+    public NinjaStashItem? GetUniqueItem(ItemDefinition item, int links)
     {
         if (name == null) return null;
 
@@ -90,7 +90,7 @@ public class NinjaItemProvider(
             .FirstOrDefault();
     }
 
-    public NinjaStashItem? GetGemItem(string? name, int gemLevel, int gemQuality, bool corrupted)
+    public NinjaStashItem? GetGemItem(ItemDefinition item, int gemLevel, int gemQuality, bool corrupted)
     {
         if (name == null) return null;
 
@@ -109,7 +109,7 @@ public class NinjaItemProvider(
         return items.FirstOrDefault();
     }
 
-    public NinjaStashItem? GetMapItem(string? name, int mapTier)
+    public NinjaStashItem? GetMapItem(ItemDefinition item, int mapTier)
     {
         if (name == null) return null;
 
@@ -120,7 +120,7 @@ public class NinjaItemProvider(
         return items.FirstOrDefault();
     }
 
-    public NinjaStashItem? GetClusterItem(string? grantText, int passiveCount, int itemLevel)
+    public NinjaStashItem? GetClusterItem(ItemDefinition item, string? grantText, int passiveCount, int itemLevel)
     {
         if (grantText == null) return null;
 
@@ -138,7 +138,7 @@ public class NinjaItemProvider(
         return items.FirstOrDefault();
     }
 
-    public NinjaStashItem? GetBaseTypeItem(string? name, int itemLevel, Influences influences)
+    public NinjaStashItem? GetBaseTypeItem(ItemDefinition item, int itemLevel, Influences influences)
     {
         if (name == null) return null;
 

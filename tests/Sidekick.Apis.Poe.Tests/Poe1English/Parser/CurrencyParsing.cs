@@ -27,8 +27,8 @@ Note: ~b/o 2 blessed
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Chaos Orb", actual.Definition.Type);
-        Assert.Equal("chaos", actual.Definition.Id);
+        Assert.Equal("Chaos Orb", actual.Definition.TradeItem?.Type);
+        Assert.Equal("chaos", actual.Definition.TradeItem?.Id);
 
         Assert.Empty(actual.Stats);
     }
@@ -49,8 +49,8 @@ Right click this item then left click a rare item to apply it. Rare items can ha
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Exalted Orb", actual.Definition.Type);
-        Assert.Equal("exalted", actual.Definition.Id);
+        Assert.Equal("Exalted Orb", actual.Definition.TradeItem?.Type);
+        Assert.Equal("exalted", actual.Definition.TradeItem?.Id);
 
         Assert.Empty(actual.Stats);
     }
@@ -72,7 +72,7 @@ Note: ~price 1 blessed
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Clear Oil", actual.Definition.Type);
+        Assert.Equal("Clear Oil", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -90,7 +90,7 @@ Shift click to unstack.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Crystallised Rancour", actual.Definition.Type);
+        Assert.Equal("Crystallised Rancour", actual.Definition.TradeItem?.Type);
     }
 
 }

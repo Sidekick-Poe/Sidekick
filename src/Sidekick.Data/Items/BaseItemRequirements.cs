@@ -1,6 +1,6 @@
 namespace Sidekick.Data.Items;
 
-public class ItemRequirements
+public class BaseItemRequirements
 {
     public int Level { get; init; }
     public int Dexterity { get; init; }
