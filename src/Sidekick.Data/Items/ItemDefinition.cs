@@ -4,6 +4,20 @@ namespace Sidekick.Data.Items;
 
 public class ItemDefinition
 {
+    [JsonIgnore]
+    public string? Key
+    {
+        get
+        {
+            if (!string.IsNullOrEmpty(UniqueItem?.Id)) return UniqueItem.Id;
+            if (!string.IsNullOrEmpty(TradeItem?.Id)) return TradeItem.Id;
+            if (!string.IsNullOrEmpty(BaseItem?.Id)) return BaseItem.Id;
+            return null;
+        }
+    }
+
+    public DataSource Source { get; init; }
+
     public TradeItemDefinition? TradeItem { get; init; }
 
     public BaseItemDefinition? BaseItem { get; init; }

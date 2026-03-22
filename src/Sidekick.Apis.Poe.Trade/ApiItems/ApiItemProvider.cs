@@ -13,13 +13,9 @@ public class ApiItemProvider(
 ) : IApiItemProvider
 {
     private Dictionary<string, ItemDefinition> TextDictionary { get; } = new(StringComparer.Ordinal);
-
-    public ItemDefinition? ExaltedOrb { get; private set; }
-    public ItemDefinition? ChaosOrb { get; private set; }
-    public ItemDefinition? DivineOrb { get; private set; }
+    public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
 
     public List<ItemDefinition> Definitions { get; private set; } = [];
-    public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = [];
     public List<ItemDefinition> UniqueItems { get; private set; } = [];
 
     public int Priority => 100;
@@ -37,21 +33,8 @@ public class ApiItemProvider(
         foreach (var definition in Definitions)
         {
             if (!string.IsNullOrEmpty(definition.TradeItem?.Name)) TextDictionary.TryAdd(definition.TradeItem.Name, definition);
-            if (!string.IsNullOrEmpty(definition.TradeItem?.Type)) TextDictionary.TryAdd(definition.TradeItem.Type, definition);
-
-            switch (definition.TradeItem?.Id)
-            {
-                case "chaos":
-                    ChaosOrb = definition;
-                    break;
-                case "exalted":
-                case "exalt":
-                    ExaltedOrb = definition;
-                    break;
-                case "divine":
-                    DivineOrb = definition;
-                    break;
-            }
+            else if (!string.IsNullOrEmpty(definition.TradeItem?.Type)) TextDictionary.TryAdd(definition.TradeItem.Type, definition);
+            if (!string.IsNullOrEmpty(definition.TradeItem?.Id)) TextDictionary.TryAdd(definition.TradeItem.Id, definition);
         }
 
         await BuildInvariantDictionary(game);
@@ -59,18 +42,14 @@ public class ApiItemProvider(
     private async Task BuildInvariantDictionary(GameType game)
     {
         InvariantDictionary.Clear();
-        // todo
-        // if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return;
+        if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return;
 
         var definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
         foreach (var definition in definitions)
         {
-            var key = definition.UniqueItem?.Name;
-            key ??= definition.BaseItem?.Name;
-            key ??= definition.TradeItem?.Id;
-            if (string.IsNullOrEmpty(key)) continue;
+            if (string.IsNullOrEmpty(definition.Key)) continue;
 
-            InvariantDictionary.Add(key, definition);
+            InvariantDictionary.TryAdd(definition.Key, definition);
         }
     }
 
@@ -79,5 +58,16 @@ public class ApiItemProvider(
         var data = !string.IsNullOrEmpty(apiItem.Name) ? TextDictionary.GetValueOrDefault(apiItem.Name) : null;
         data ??= !string.IsNullOrEmpty(apiItem.Type) ? TextDictionary.GetValueOrDefault(apiItem.Type) : null;
         return data?.TradeItem == null ? null : data;
+    }
+
+    public ItemDefinition? Get(string? text)
+    {
+        if(string.IsNullOrEmpty(text)) return null;
+        text = text switch
+        {
+            "exalt" => "exalted",
+            _ => text,
+        };
+        return TextDictionary.GetValueOrDefault(text);
     }
 }

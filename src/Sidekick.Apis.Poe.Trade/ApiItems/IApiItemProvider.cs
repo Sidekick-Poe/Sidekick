@@ -5,12 +5,6 @@ namespace Sidekick.Apis.Poe.Trade.ApiItems;
 
 public interface IApiItemProvider : IInitializableService
 {
-    ItemDefinition? ExaltedOrb { get; }
-
-    ItemDefinition? ChaosOrb { get; }
-
-    ItemDefinition? DivineOrb { get; }
-
     List<ItemDefinition> Definitions { get; }
 
     List<ItemDefinition> UniqueItems { get; }
@@ -18,4 +12,6 @@ public interface IApiItemProvider : IInitializableService
     Dictionary<string, ItemDefinition> InvariantDictionary { get; }
 
     ItemDefinition? Get(ApiItem apiItem);
+
+    ItemDefinition? Get(string? name);
 }

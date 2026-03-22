@@ -8,5 +8,4 @@ namespace Sidekick.Apis.PoeNinja.Stash;
 public interface INinjaStashProvider
 {
     Task<NinjaStash?> GetInfo(NinjaStashItem item);
-    Task<ApiOverviewResult> FetchOverview(GameType game, string type, string? leagueOverride = null);
 }

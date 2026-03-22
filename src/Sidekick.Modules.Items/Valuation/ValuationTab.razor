@@ -58,7 +58,7 @@
 
     private async Task<bool> CheckScout()
     {
-        var scoutItem = await ScoutItemProvider.GetItem(Item.Definition.InvariantName);
+        var scoutItem = await ScoutItemProvider.GetItem(Item.Invariant);
         return scoutItem != null;
     }
 

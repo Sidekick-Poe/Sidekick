@@ -6,7 +6,7 @@
 {
     <div class="flex flex-nowrap gap-0.5 items-center justify-end text-white">
         <Heading3>@Value.ToString("0.##")</Heading3>
-        @if (Definition.TradeItem?.Image != null)
+        @if (Definition?.TradeItem?.Image != null)
         {
             <TextCaption Class="text-[#a38d6d]">&times;</TextCaption>
 
@@ -22,7 +22,7 @@ else
 {
     <div class="flex flex-nowrap gap-1 items-center justify-end text-white">
         <Heading2>@Value.ToString("0.##")</Heading2>
-        @if (Definition.TradeItem?.Image != null)
+        @if (Definition?.TradeItem?.Image != null)
         {
             <TextBase Class="text-[#a38d6d]">&times;</TextBase>
             <Tooltip Text="@Definition.BaseItem?.Name">
@@ -39,7 +39,7 @@ else
 @code {
 
     [Parameter]
-    public ItemDefinition? Currency { get; set; }
+    public string Currency { get; set; } = "chaos";
 
     [Parameter]
     public decimal Value { get; set; }
@@ -47,6 +47,12 @@ else
     [Parameter]
     public bool Small { get; set; }
 
-    private ItemDefinition Definition => Currency ?? ApiItemProvider.ChaosOrb ?? throw new SidekickException("The currency could not be determined.");
+    private ItemDefinition? Definition { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Definition = ApiItemProvider.Get(Currency) ?? throw new SidekickException("The currency could not be determined.");
+        base.OnParametersSet();
+    }
 
 }

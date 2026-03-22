@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -50,6 +51,7 @@ public class ItemBuilder(
 
             list.Add(new ItemDefinition
             {
+                Source = DataSource.Trade,
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 UniqueItem = uniqueItem,
@@ -69,6 +71,7 @@ public class ItemBuilder(
 
             list.Add(new ItemDefinition
             {
+                Source = DataSource.Game,
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 NamePattern = GetNamePattern(tradeItem),
@@ -147,6 +150,8 @@ public class ItemBuilder(
                 var text = staticItem?.Text ?? entry.Text;
                 if (text == entry.Name || text == entry.Type) text = null;
 
+                if (entry.Discriminator == "legacy") continue;
+
                 result.Add(new TradeItemDefinition()
                 {
                     Id = staticItem?.Id,
@@ -198,7 +203,7 @@ public class ItemBuilder(
                 .First();
             if (group.Count() > 1 && !group.ElementAt(1).Key.Contains("Royale"))
             {
-                logger.LogDebug("Multiple matches found for '{0}' in game '{1}'.", group.Key, game.GetValueAttribute());
+                logger.LogDebug("[ItemBuilder] [BaseItems] Multiple matches found for '{0}' in game '{1}'.", group.Key, game.GetValueAttribute());
             }
 
             if (string.IsNullOrEmpty(repoeBaseItem.Value.Name)) continue;
@@ -254,12 +259,12 @@ public class ItemBuilder(
         foreach (var group in repoeUniqueItems.GroupBy(x => x.Value.Name))
         {
             var repoeUniqueItem = group.First();
+            if (string.IsNullOrEmpty(repoeUniqueItem.Value.Name)) continue;
+
             if (group.Count() > 1)
             {
-                logger.LogDebug("Multiple matches found for '{0}' in game '{1}'.", group.Key, game.GetValueAttribute());
+                logger.LogDebug("[ItemBuilder] [Uniques] Multiple matches found for '{0}' in game '{1}'. Adding first entry.", repoeUniqueItem.Value.Name, game.GetValueAttribute());
             }
-
-            if (string.IsNullOrEmpty(repoeUniqueItem.Value.Name)) continue;
 
             string? image = null;
             if (!string.IsNullOrEmpty(repoeUniqueItem.Value.Visual?.File))

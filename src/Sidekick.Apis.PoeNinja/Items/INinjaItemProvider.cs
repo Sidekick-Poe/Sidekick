@@ -6,12 +6,13 @@ namespace Sidekick.Apis.PoeNinja.Items;
 
 public interface INinjaItemProvider : IInitializableService
 {
-    NinjaExchangeItem? GetExchangeItem(string? invariant);
+    // todo remove
+    NinjaExchangeItem? GetExchangeItem(ItemDefinition item);
 
     NinjaStashItem? GetStashItem(Item item);
     NinjaStashItem? GetUniqueItem(ItemDefinition item, int links);
     NinjaStashItem? GetGemItem(ItemDefinition item, int gemLevel, int gemQuality, bool corrupted);
     NinjaStashItem? GetMapItem(ItemDefinition item, int mapTier);
-    NinjaStashItem? GetClusterItem(ItemDefinition item, string? grantText, int passiveCount, int itemLevel);
+    NinjaStashItem? GetClusterItem(string? grantText, int passiveCount, int itemLevel);
     NinjaStashItem? GetBaseTypeItem(ItemDefinition item, int itemLevel, Influences influences);
 }

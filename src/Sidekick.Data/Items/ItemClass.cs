@@ -170,6 +170,7 @@ public enum ItemClass
 
     [EnumValue("map")]
     [EnumValue("Map", key: "Game")]
+    [EnumValue("InstanceLocalItem", key: "Game")]
     Map,
 
     [EnumValue("memoryline")]
@@ -244,7 +245,6 @@ public enum ItemClass
     Warstaff,
 
     [EnumValue("weapon.spear")]
-    [EnumValue("InstanceLocalItem", key: "Game")]
     Spear,
 
     [EnumValue("tincture")]

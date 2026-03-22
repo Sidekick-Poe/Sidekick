@@ -117,7 +117,7 @@ public class StatBuilder(
 
             return new StatDefinition()
             {
-                Source = StatSource.Trade,
+                Source = DataSource.Trade,
                 Text = text,
                 FuzzyText = GetFuzzyText(gameLanguage, tradeDefinition.Text, tradeDefinition.Option?.Text),
                 TradeStats = [tradeDefinition],
@@ -146,7 +146,7 @@ public class StatBuilder(
 
             yield return new StatDefinition()
             {
-                Source = StatSource.Game,
+                Source = DataSource.Game,
                 GameIds = gameStat.Ids,
                 TradeStats = tradeStats,
                 Text = text,

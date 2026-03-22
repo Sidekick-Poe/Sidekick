@@ -8,5 +8,4 @@ namespace Sidekick.Apis.PoeNinja.Exchange;
 public interface INinjaExchangeProvider
 {
     Task<NinjaCurrency?> GetInfo(NinjaExchangeItem item);
-    Task<ApiOverviewResult> FetchOverview(GameType game, string type, string? leagueOverride = null);
 }

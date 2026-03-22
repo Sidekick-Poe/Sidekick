@@ -74,13 +74,8 @@ public class ItemDefinitionParser(
         ItemDefinition? GetInvariant(ItemDefinition definition)
         {
             if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return definition;
-
-            var key = definition.UniqueItem?.Name;
-            key ??= definition.BaseItem?.Name;
-            key ??= definition.TradeItem?.Id;
-            if (string.IsNullOrEmpty(key)) return null;
-
-            return apiItemProvider.InvariantDictionary.GetValueOrDefault(key);
+            if (string.IsNullOrEmpty(definition.Key)) return null;
+            return apiItemProvider.InvariantDictionary.GetValueOrDefault(definition.Key);
         }
     }
 }
