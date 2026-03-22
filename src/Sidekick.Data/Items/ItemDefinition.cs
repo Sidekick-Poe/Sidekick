@@ -4,25 +4,12 @@ namespace Sidekick.Data.Items;
 
 public class ItemDefinition
 {
-    public string? Id { get; init; }
-    public string? Text { get; init; }
-    public string? Image { get; init; }
-
-    // TODO remove invariant
-    public string? InvariantText { get; set; }
-    public string? InvariantName { get; set; }
-    public string? InvariantType { get; set; }
-
-    public string? Name { get; init; }
-    public string? Type { get; init; }
-    public string? Category { get; init; }
-    public string? Discriminator { get; init; }
-    public bool IsUnique { get; init; }
+    public TradeItemDefinition? TradeItem { get; init; }
 
     public BaseItemDefinition? BaseItem { get; init; }
 
     [JsonIgnore]
-    public Regex? NamePattern { get; set; }
+    public Regex? NamePattern { get; init; }
 
     [JsonPropertyName("namePattern")]
     public string? NamePatternValue
@@ -31,14 +18,14 @@ public class ItemDefinition
         {
             return NamePattern?.ToString();
         }
-        set
+        init
         {
             NamePattern = value == null ? null : new Regex(value);
         }
     }
 
     [JsonIgnore]
-    public Regex? TypePattern { get; set; }
+    public Regex? TypePattern { get; init; }
 
     [JsonPropertyName("typePattern")]
     public string? TypePatternValue
@@ -47,14 +34,14 @@ public class ItemDefinition
         {
             return TypePattern?.ToString();
         }
-        set
+        init
         {
             TypePattern = value == null ? null : new Regex(value);
         }
     }
 
     [JsonIgnore]
-    public Regex? TextPattern { get; set; }
+    public Regex? TextPattern { get; init; }
 
     [JsonPropertyName("textPattern")]
     public string? TextPatternValue
@@ -63,7 +50,7 @@ public class ItemDefinition
         {
             return TextPattern?.ToString();
         }
-        set
+        init
         {
             TextPattern = value == null ? null : new Regex(value);
         }
@@ -72,11 +59,14 @@ public class ItemDefinition
     /// <inheritdoc />
     public override string? ToString()
     {
-        if (!string.IsNullOrEmpty(Type) && !string.IsNullOrEmpty(Name))
+        var type = TradeItem?.Type ?? BaseItem?.Name;
+        var name = TradeItem?.Name;
+
+        if (!string.IsNullOrEmpty(type) && !string.IsNullOrEmpty(name))
         {
-            return $"{Type} - {Name}";
+            return $"{type} - {name}";
         }
 
-        return !string.IsNullOrEmpty(Type) ? Type : Name;
+        return !string.IsNullOrEmpty(type) ? type : name;
     }
 }

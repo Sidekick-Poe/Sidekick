@@ -48,7 +48,7 @@ Corrupted
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Steeltoe Boots", actual.Definition.Type);
         Assert.Equal("Thunderstep", actual.Definition.Name);
-        Assert.Equal("Thunderstep Steeltoe Boots", actual.Definition.InvariantText);
+        Assert.Equal("Thunderstep Steeltoe Boots", actual.Definition.Text);
 
         Assert.Equal(129, actual.Properties.EvasionRating);
 
