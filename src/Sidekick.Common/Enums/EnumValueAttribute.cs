@@ -8,18 +8,13 @@ namespace Sidekick.Common.Enums;
 /// </remarks>
 /// <param name="value">The string value.</param>
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
-public class EnumValueAttribute(string value, bool isDuplicate = false, string key = "default") : Attribute
+public class EnumValueAttribute(string value, string key = "default") : Attribute
 {
 
     /// <summary>
     ///     Gets the value associated with the enum.
     /// </summary>
     public string Value { get; } = value;
-
-    /// <summary>
-    ///     Gets a value indicating whether the value is a duplicate.
-    /// </summary>
-    public bool IsDuplicate { get; } = isDuplicate;
 
     /// <summary>
     ///     Gets the key associated with the enum value.

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Repoe;
-using Sidekick.Data.Builder.Repoe.Models.Poe1;
+using Sidekick.Data.Builder.Repoe.Models.Stats;
 using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;

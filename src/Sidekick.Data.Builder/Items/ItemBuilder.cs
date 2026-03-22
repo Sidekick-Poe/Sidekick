@@ -2,6 +2,9 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
+using Sidekick.Common.Enums;
+using Sidekick.Data.Builder.Repoe;
+using Sidekick.Data.Builder.Repoe.Models.Items;
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
@@ -11,7 +14,8 @@ public class ItemBuilder(
     ILogger<ItemBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
     IGameLanguageProvider languageProvider,
-    DataProvider dataProvider)
+    DataProvider dataProvider,
+    RepoeDownloader repoeDownloader)
 {
     public async Task Build(IGameLanguage language)
     {
@@ -34,7 +38,9 @@ public class ItemBuilder(
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
         var itemsResult = await dataProvider.Read<RawTradeResult<List<RawTradeItemCategory>>>(game, DataType.RawTradeItems, language);
+        // TODO remove
         var invariantItems = await GetInvariantDictionary(game, language);
+        var repoeBaseItems = await GetBaseItems(game, language);
 
         var staticItems = await GetStaticDictionary(game, language);
         StaticItem? GetStatic(string? name, string? type)
@@ -63,6 +69,7 @@ public class ItemBuilder(
                     Category = category.Id,
                     IsUnique = entry.IsUnique,
                     Discriminator = entry.Discriminator,
+                    BaseItem = repoeBaseItems.GetValueOrDefault(entry.Type),
                 };
 
                 FillInvariant(item);
@@ -148,5 +155,87 @@ public class ItemBuilder(
         return raw.Where(x => x.Id != null)
             .DistinctBy(x => x.Id)
             .ToDictionary(x => x.Id!, x => x);
+    }
+
+    private async Task<Dictionary<string, ItemClassDefinition2>> GetItemClassDefinitions(GameType game, IGameLanguage language)
+    {
+        var raw = await repoeDownloader.ReadItemClasses(game, language.Code);
+        var result = new Dictionary<string, ItemClassDefinition2>();
+
+        foreach (var entry in raw)
+        {
+            var definition = new ItemClassDefinition2()
+            {
+                Id = entry.Key,
+                Name = entry.Value.Name,
+                Type = entry.Key.GetEnumFromValue<ItemClass>(),
+            };
+
+            result.Add(definition.Id, definition);
+        }
+
+        return result;
+    }
+
+    private async Task<Dictionary<string, BaseItemDefinition>> GetBaseItems(GameType game, IGameLanguage language)
+    {
+        var repoeBaseItems = await repoeDownloader.ReadBaseItems(game, language.Code);
+        var repoeItemClasses = await GetItemClassDefinitions(game, language);
+
+        var result = new Dictionary<string, BaseItemDefinition>();
+        foreach (var group in repoeBaseItems.GroupBy(x => x.Value.Name))
+        {
+            var repoeBaseItem = group.First();
+            if (group.Count() > 1)
+            {
+                logger.LogWarning("Multiple matches found for '{0}' in game '{1}'.", group.Key, game.GetValueAttribute());
+                repoeBaseItem = group
+                    .OrderBy(x => x.Key.Contains("Royale") ? 1 : 0)
+                    .ThenBy(x => x.Key.Length)
+                    .FirstOrDefault();
+            }
+
+            if (string.IsNullOrEmpty(repoeBaseItem.Value.Name)) continue;
+
+            result.Add(repoeBaseItem.Value.Name, new BaseItemDefinition()
+            {
+                Id = repoeBaseItem.Key,
+                ItemClass = repoeBaseItem.Value.ItemClass != null ? repoeItemClasses.GetValueOrDefault(repoeBaseItem.Value.ItemClass) : null,
+                Name = repoeBaseItem.Value.Name,
+                Requirements = repoeBaseItem.Value.Requirements != null ? new ItemRequirements()
+                {
+                    Dexterity = repoeBaseItem.Value.Requirements.Dexterity,
+                    Strength = repoeBaseItem.Value.Requirements.Strength,
+                    Intelligence = repoeBaseItem.Value.Requirements.Intelligence,
+                    Level = repoeBaseItem.Value.Requirements.Level,
+                } : null,
+                Properties = repoeBaseItem.Value.Properties != null ? new ItemProperties()
+                {
+                    Armour = GetPropertyValues(repoeBaseItem.Value.Properties.Armour),
+                    EnergyShield = GetPropertyValues(repoeBaseItem.Value.Properties.EnergyShield),
+                    Evasion = GetPropertyValues(repoeBaseItem.Value.Properties.Evasion),
+                    PhysicalDamage = repoeBaseItem.Value.Properties.PhysicalDamageMin != null ? new ItemPropertyValues()
+                    {
+                        Min = repoeBaseItem.Value.Properties.PhysicalDamageMin,
+                        Max = repoeBaseItem.Value.Properties.PhysicalDamageMax,
+                    } : null,
+                    Block = repoeBaseItem.Value.Properties.Block,
+                    AttacksPerSecond = repoeBaseItem.Value.Properties.AttackMilliseconds.HasValue ? (repoeBaseItem.Value.Properties.AttackMilliseconds / 1000d) : null,
+                    CriticalHitChance = repoeBaseItem.Value.Properties.CriticalHitChance,
+                } : null,
+            });
+        }
+
+        return result;
+
+        ItemPropertyValues? GetPropertyValues(RepoeBaseItemProperty? property)
+        {
+            if (property == null) return null;
+            return new ItemPropertyValues()
+            {
+                Max = property.Max,
+                Min = property.Min,
+            };
+        }
     }
 }

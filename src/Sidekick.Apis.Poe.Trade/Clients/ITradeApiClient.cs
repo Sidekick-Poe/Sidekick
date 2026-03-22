@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Clients.Models;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 

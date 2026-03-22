@@ -1,5 +1,5 @@
 using Sidekick.Common.Enums;
-namespace Sidekick.Data.Items;
+namespace Sidekick.Data;
 
 public enum GameType
 {

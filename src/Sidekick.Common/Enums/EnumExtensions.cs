@@ -53,7 +53,7 @@ public static class EnumExtensions
 
             foreach (EnumValueAttribute attribute in attributes)
             {
-                if (attribute.Value == value && !attribute.IsDuplicate)
+                if (attribute.Value == value)
                 {
                     return (T?)field.GetValue(null) ?? default;
                 }

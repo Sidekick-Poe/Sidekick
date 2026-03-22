@@ -6,6 +6,7 @@ using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Modules.General.Settings;

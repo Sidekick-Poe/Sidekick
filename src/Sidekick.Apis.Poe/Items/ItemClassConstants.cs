@@ -1,3 +1,4 @@
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Items;
 
 public static class ItemClassConstants

@@ -8,6 +8,7 @@ public class ItemDefinition
     public string? Text { get; init; }
     public string? Image { get; init; }
 
+    // TODO remove invariant
     public string? InvariantText { get; set; }
     public string? InvariantName { get; set; }
     public string? InvariantType { get; set; }
@@ -17,6 +18,8 @@ public class ItemDefinition
     public string? Category { get; init; }
     public string? Discriminator { get; init; }
     public bool IsUnique { get; init; }
+
+    public BaseItemDefinition? BaseItem { get; init; }
 
     [JsonIgnore]
     public Regex? NamePattern { get; set; }
