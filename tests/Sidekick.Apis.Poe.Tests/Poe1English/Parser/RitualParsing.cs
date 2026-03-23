@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -25,7 +26,7 @@ Note: ~price 1 alch
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Ritual Splinter", actual.Definition.Type);
+        Assert.Equal("Ritual Splinter", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -46,7 +47,7 @@ Note: ~price 8 chaos
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Ritual Vessel", actual.Definition.Type);
+        Assert.Equal("Ritual Vessel", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -72,6 +73,6 @@ Note: ~price 3 chaos
 
         Assert.Equal(ItemClass.Corpse, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Perfect Needle Horror", actual.Definition.Type);
+        Assert.Equal("Perfect Needle Horror", actual.Definition.TradeItem?.Type);
     }
 }

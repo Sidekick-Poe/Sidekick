@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
-using Sidekick.Data.Builder.Repoe.Models.Poe1;
-using Sidekick.Data.Items;
+using Sidekick.Data.Builder.Repoe.Models.Items;
+using Sidekick.Data.Builder.Repoe.Models.Stats;
 using Sidekick.Data.Languages;
 namespace Sidekick.Data.Builder.Repoe;
 
@@ -14,7 +14,15 @@ public class RepoeDownloader(
 {
     private sealed record RepoeLanguageInfo(string Code, string LanguageSlug);
 
-    private sealed record RepoeFile(string FileName, string FilePath);
+    private sealed record RepoeFile(RepoeFileType Type, string FileName, string FilePath);
+
+    private enum RepoeFileType
+    {
+        StatTranslations,
+        BaseItems,
+        ItemClasses,
+        Uniques,
+    }
 
     private static List<RepoeLanguageInfo> Languages { get; } =
     [
@@ -32,30 +40,84 @@ public class RepoeDownloader(
 
     private static List<RepoeFile> Poe1Files { get; } =
     [
-        new("stat_translations", "stat_translations.min.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations", "stat_translations.json"),
+        new(RepoeFileType.BaseItems, "base_items", "base_items.json"),
+        new(RepoeFileType.ItemClasses, "item_classes", "item_classes.json"),
+        new(RepoeFileType.Uniques, "uniques", "uniques.json"),
     ];
 
     private static List<RepoeFile> Poe2Files { get; } =
     [
-        new("stat_translations.advanced", "stat_translations/advanced_mod_stat_descriptions.min.json"),
-        new("stat_translations.endgamemap", "stat_translations/endgame_map_stat_descriptions.min.json"),
-        new("stat_translations.heist", "stat_translations/heist_equipment_stat_descriptions.min.json"),
-        new("stat_translations.leaguestone", "stat_translations/leaguestone_stat_descriptions.min.json"),
-        new("stat_translations.map", "stat_translations/map_stat_descriptions.min.json"),
-        new("stat_translations.sanctum", "stat_translations/sanctum_relic_stat_descriptions.min.json"),
-        new("stat_translations.sentinel", "stat_translations/sentinel_stat_descriptions.min.json"),
-        new("stat_translations.descriptions", "stat_translations/stat_descriptions.min.json"),
-        new("stat_translations.tablet", "stat_translations/tablet_stat_descriptions.min.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.advanced", "stat_translations/advanced_mod_stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.endgamemap", "stat_translations/endgame_map_stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.heist", "stat_translations/heist_equipment_stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.leaguestone", "stat_translations/leaguestone_stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.map", "stat_translations/map_stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.sanctum", "stat_translations/sanctum_relic_stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.sentinel", "stat_translations/sentinel_stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.descriptions", "stat_translations/stat_descriptions.json"),
+        new(RepoeFileType.StatTranslations, "stat_translations.tablet", "stat_translations/tablet_stat_descriptions.json"),
+        new(RepoeFileType.BaseItems, "base_items", "base_items.json"),
+        new(RepoeFileType.ItemClasses, "item_classes", "item_classes.json"),
+        new(RepoeFileType.Uniques, "uniques", "uniques.json"),
     ];
 
     private static string GetFileName(IGameLanguage language, string path)
         => $"{path}.{language.Code}.json";
 
+    public async Task<Dictionary<string, RepoeItemClass>> ReadItemClasses(GameType game, string language)
+    {
+        var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
+        var result = new Dictionary<string, RepoeItemClass>();
+        foreach (var file in files.Where(x=>x.Type == RepoeFileType.ItemClasses))
+        {
+            var data = await dataProvider.Read<Dictionary<string, RepoeItemClass>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
+            foreach (var entry in data)
+            {
+                result.Add(entry.Key, entry.Value);
+            }
+        }
+
+        return result;
+    }
+
+    public async Task<Dictionary<string, RepoeBaseItem>> ReadBaseItems(GameType game, string language)
+    {
+        var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
+        var result = new Dictionary<string, RepoeBaseItem>();
+        foreach (var file in files.Where(x=>x.Type == RepoeFileType.BaseItems))
+        {
+            var data = await dataProvider.Read<Dictionary<string, RepoeBaseItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
+            foreach (var entry in data)
+            {
+                result.Add(entry.Key, entry.Value);
+            }
+        }
+
+        return result;
+    }
+
+    public async Task<Dictionary<string, RepoeUniqueItem>> ReadUniques(GameType game, string language)
+    {
+        var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
+        var result = new Dictionary<string, RepoeUniqueItem>();
+        foreach (var file in files.Where(x=>x.Type == RepoeFileType.Uniques))
+        {
+            var data = await dataProvider.Read<Dictionary<string, RepoeUniqueItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
+            foreach (var entry in data)
+            {
+                result.Add(entry.Key, entry.Value);
+            }
+        }
+
+        return result;
+    }
+
     public async Task<List<RepoeStatTranslation>> ReadStatTranslations(GameType game, string language)
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new List<RepoeStatTranslation>();
-        foreach (var file in files)
+        foreach (var file in files.Where(x=>x.Type == RepoeFileType.StatTranslations))
         {
             result.AddRange(await dataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json"));
         }

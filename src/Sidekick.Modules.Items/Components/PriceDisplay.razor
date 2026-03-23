@@ -1,16 +1,17 @@
 @using Sidekick.Apis.Poe.Trade.ApiItems
+@using Sidekick.Data.Items
 
 @if (Small)
 {
     <div class="flex flex-nowrap gap-0.5 items-center justify-end text-white">
         <Heading3>@Value.ToString("0.##")</Heading3>
-        @if (ImageUrl != null)
+        @if (Definition?.TradeItem?.Image != null)
         {
             <TextCaption Class="text-[#a38d6d]">&times;</TextCaption>
 
-            <Tooltip Text="@CurrencyText">
+            <Tooltip Text="@Definition.BaseItem?.Name">
                 <ChildContent>
-                    <img src="@ImageUrl" class="max-h-5" alt="@Currency" />
+                    <img src="@Definition.TradeItem?.Image" class="max-h-5" alt="@Definition.BaseItem?.Name" />
                 </ChildContent>
             </Tooltip>
         }
@@ -20,12 +21,12 @@ else
 {
     <div class="flex flex-nowrap gap-1 items-center justify-end text-white">
         <Heading2>@Value.ToString("0.##")</Heading2>
-        @if (ImageUrl != null)
+        @if (Definition?.TradeItem?.Image != null)
         {
             <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-            <Tooltip Text="@CurrencyText">
+            <Tooltip Text="@Definition.BaseItem?.Name">
                 <ChildContent>
-                    <img src="@ImageUrl" class="max-h-10" alt="@Currency" />
+                    <img src="@Definition.TradeItem?.Image" class="max-h-10" alt="@Definition.BaseItem?.Name" />
                 </ChildContent>
             </Tooltip>
         }
@@ -45,8 +46,12 @@ else
     [Parameter]
     public bool Small { get; set; }
 
-    private string? ImageUrl => ApiItemProvider.GetById(Currency)?.Image;
+    private ItemDefinition? Definition { get; set; }
 
-    private string? CurrencyText => ApiItemProvider.GetById(Currency)?.Text;
+    protected override void OnParametersSet()
+    {
+        Definition = ApiItemProvider.Get(Currency);
+        base.OnParametersSet();
+    }
 
 }

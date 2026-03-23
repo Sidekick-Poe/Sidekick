@@ -12,7 +12,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
+using Sidekick.Data;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Trade.Trade.Items;
 
@@ -42,33 +42,31 @@ public class ItemTradeService
 
             var query = new Query();
 
-            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Definition.Discriminator);
-            if (hasTypeDiscriminator)
+            if (!string.IsNullOrEmpty(item.Definition.TradeItem?.Discriminator))
             {
                 query.Type = new TypeDiscriminator()
                 {
-                    Option = item.Definition.Type,
-                    Discriminator = item.Definition.Discriminator,
+                    Option = item.Definition.TradeItem.Type,
+                    Discriminator = item.Definition.TradeItem.Discriminator,
                 };
             }
             else
             {
-                query.Type = item.Definition.Type;
+                query.Type = item.Definition.TradeItem?.Type;
             }
 
-            if (item.Definition.Category == "monster" && !string.IsNullOrEmpty(item.Definition.Name))
+            if (item.Definition.TradeItem?.Category == "monster" && !string.IsNullOrEmpty(item.Definition.TradeItem?.Name))
             {
-                query.Term = item.Definition.Name;
+                query.Term = item.Definition.TradeItem.Name;
                 query.Type = null;
             }
-            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.Definition.Name))
+            else if (item.Definition.UniqueItem != null && !string.IsNullOrEmpty(item.Definition.TradeItem?.Name))
             {
-                query.Name = item.Definition.Name;
+                query.Name = item.Definition.TradeItem.Name;
             }
 
             foreach (var filter in filters ?? [])
             {
-                if (filter.PrepareTradeRequest == null) continue;
                 filter.PrepareTradeRequest(query, item);
             }
 

@@ -1,9 +1,10 @@
 @using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.ApiItems
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Results
 @using Sidekick.Data.Items
 @using Sidekick.Data.Stats
-@using Sidekick.Modules.Items.Components.Prices
+@using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
@@ -95,6 +96,7 @@ else
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ITradeFilterProvider TradeFilterProvider
+@inject IApiItemProvider ApiItemProvider
 
 @code {
 

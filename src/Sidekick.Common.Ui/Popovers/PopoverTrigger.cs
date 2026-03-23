@@ -8,5 +8,5 @@ public enum PopoverTrigger
     Click,
 
     [EnumValue("hover")]
-    Hover
+    Hover,
 }

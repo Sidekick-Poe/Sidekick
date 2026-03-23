@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;

@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
@@ -44,8 +45,8 @@ can deny that my work has made quite the splash...""
 ");
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Carcass Jack", actual.Definition.Name);
-        Assert.Equal("Varnished Coat", actual.Definition.Type);
+        Assert.Equal("Carcass Jack", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Varnished Coat", actual.Definition.TradeItem?.Type);
         Assert.Equal(20, actual.Properties.Quality);
         Assert.Equal(960, actual.Properties.EvasionRating);
         Assert.Equal(186, actual.Properties.EnergyShield);
@@ -107,7 +108,7 @@ Note: ~price 2 chaos
 
         Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Daresso's Defiance", actual.Definition.Name);
-        Assert.Equal("Full Dragonscale", actual.Definition.Type);
+        Assert.Equal("Daresso's Defiance", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Full Dragonscale", actual.Definition.TradeItem?.Type);
     }
 }

@@ -20,8 +20,8 @@
     }
   },
   {
-    "id": "divine",
-    "detailsId": "divine-orb",
+    "id": "alteration-shard",
+    "detailsId": "alteration-shard",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -32,6 +32,16 @@
   {
     "id": "blessed",
     "detailsId": "blessed-orb",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "divine",
+    "detailsId": "divine-orb",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -292,6 +302,16 @@
   {
     "id": "greater-eldritch-ichor",
     "detailsId": "greater-eldritch-ichor",
+    "page": {
+      "type": "Currency",
+      "url": "currency",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "hinekoras-lock",
+    "detailsId": "hinekoras-lock",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -652,16 +672,6 @@
   {
     "id": "dextral-catalyst",
     "detailsId": "dextral-catalyst",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "hinekoras-lock",
-    "detailsId": "hinekoras-lock",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -1032,16 +1042,6 @@
   {
     "id": "wisdom",
     "detailsId": "scroll-of-wisdom",
-    "page": {
-      "type": "Currency",
-      "url": "currency",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "alteration-shard",
-    "detailsId": "alteration-shard",
     "page": {
       "type": "Currency",
       "url": "currency",
@@ -2170,6 +2170,16 @@
     }
   },
   {
+    "id": "journey-tattoo-of-the-mind",
+    "detailsId": "journey-tattoo-of-the-mind",
+    "page": {
+      "type": "Tattoo",
+      "url": "tattoos",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "journey-tattoo-of-the-soul",
     "detailsId": "journey-tattoo-of-the-soul",
     "page": {
@@ -2512,16 +2522,6 @@
   {
     "id": "tattoo-of-the-valako-warrior",
     "detailsId": "tattoo-of-the-valako-warrior",
-    "page": {
-      "type": "Tattoo",
-      "url": "tattoos",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "journey-tattoo-of-the-mind",
-    "detailsId": "journey-tattoo-of-the-mind",
     "page": {
       "type": "Tattoo",
       "url": "tattoos",
@@ -2940,16 +2940,6 @@
     }
   },
   {
-    "id": "auspicious-ambitions",
-    "detailsId": "auspicious-ambitions",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "azure-rage",
     "detailsId": "azure-rage",
     "page": {
@@ -3012,26 +3002,6 @@
   {
     "id": "brush-paint-and-palette",
     "detailsId": "brush-paint-and-palette",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "buried-treasure",
-    "detailsId": "buried-treasure",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "call-to-the-first-ones",
-    "detailsId": "call-to-the-first-ones",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3120,16 +3090,6 @@
     }
   },
   {
-    "id": "altered-perception",
-    "detailsId": "altered-perception",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "a-modest-request",
     "detailsId": "a-modest-request",
     "page": {
@@ -3152,16 +3112,6 @@
   {
     "id": "anarchys-price",
     "detailsId": "anarchys-price",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "a-note-in-the-wind",
-    "detailsId": "a-note-in-the-wind",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3220,6 +3170,16 @@
     }
   },
   {
+    "id": "auspicious-ambitions",
+    "detailsId": "auspicious-ambitions",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "avian-pursuit",
     "detailsId": "avian-pursuit",
     "page": {
@@ -3240,6 +3200,16 @@
     }
   },
   {
+    "id": "beauty-through-death",
+    "detailsId": "beauty-through-death",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "blind-venture",
     "detailsId": "blind-venture",
     "page": {
@@ -3250,8 +3220,8 @@
     }
   },
   {
-    "id": "boon-of-justice",
-    "detailsId": "boon-of-justice",
+    "id": "bound-by-flame",
+    "detailsId": "bound-by-flame",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3260,8 +3230,8 @@
     }
   },
   {
-    "id": "bound-by-flame",
-    "detailsId": "bound-by-flame",
+    "id": "boundless-realms",
+    "detailsId": "boundless-realms",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3300,8 +3270,28 @@
     }
   },
   {
+    "id": "burning-blood",
+    "detailsId": "burning-blood",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "camerias-cut",
     "detailsId": "camerias-cut",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "cartographers-delight",
+    "detailsId": "cartographers-delight",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3320,8 +3310,28 @@
     }
   },
   {
+    "id": "checkmate",
+    "detailsId": "checkmate",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "council-of-cats",
     "detailsId": "council-of-cats",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "cursed-words",
+    "detailsId": "cursed-words",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3500,6 +3510,16 @@
     }
   },
   {
+    "id": "fire-of-unknown-origin",
+    "detailsId": "fire-of-unknown-origin",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "from-bone-to-ashes",
     "detailsId": "from-bone-to-ashes",
     "page": {
@@ -3600,8 +3620,18 @@
     }
   },
   {
-    "id": "left-to-fate",
-    "detailsId": "left-to-fate",
+    "id": "keepers-corruption",
+    "detailsId": "keepers-corruption",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "lantadors-lost-love",
+    "detailsId": "lantadors-lost-love",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3790,6 +3820,16 @@
     }
   },
   {
+    "id": "prosperity",
+    "detailsId": "prosperity",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "reckless-ambition",
     "detailsId": "reckless-ambition",
     "page": {
@@ -3812,6 +3852,26 @@
   {
     "id": "sambodhis-wisdom",
     "detailsId": "sambodhis-wisdom",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "scholar-of-the-seas",
+    "detailsId": "scholar-of-the-seas",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "silence-and-frost",
+    "detailsId": "silence-and-frost",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3852,16 +3912,6 @@
   {
     "id": "the-academic",
     "detailsId": "the-academic",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-adventuring-spirit",
-    "detailsId": "the-adventuring-spirit",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -3920,16 +3970,6 @@
     }
   },
   {
-    "id": "the-betrayal",
-    "detailsId": "the-betrayal",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "the-bones",
     "detailsId": "the-bones",
     "page": {
@@ -3942,16 +3982,6 @@
   {
     "id": "the-brittle-emperor",
     "detailsId": "the-brittle-emperor",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-card-sharp",
-    "detailsId": "the-card-sharp",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4030,8 +4060,8 @@
     }
   },
   {
-    "id": "the-demoness",
-    "detailsId": "the-demoness",
+    "id": "the-doctor",
+    "detailsId": "the-doctor",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4040,8 +4070,18 @@
     }
   },
   {
-    "id": "the-doctor",
-    "detailsId": "the-doctor",
+    "id": "the-dreamland",
+    "detailsId": "the-dreamland",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-drunken-aristocrat",
+    "detailsId": "the-drunken-aristocrat",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4140,16 +4180,6 @@
     }
   },
   {
-    "id": "the-fathomless-depths",
-    "detailsId": "the-fathomless-depths",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "the-feast",
     "detailsId": "the-feast",
     "page": {
@@ -4162,6 +4192,16 @@
   {
     "id": "the-fiend",
     "detailsId": "the-fiend",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-fletcher",
+    "detailsId": "the-fletcher",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4270,6 +4310,26 @@
     }
   },
   {
+    "id": "the-hale-heart",
+    "detailsId": "the-hale-heart",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-harvester",
+    "detailsId": "the-harvester",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-heroic-shot",
     "detailsId": "the-heroic-shot",
     "page": {
@@ -4330,8 +4390,8 @@
     }
   },
   {
-    "id": "the-journalist",
-    "detailsId": "the-journalist",
+    "id": "the-insatiable",
+    "detailsId": "the-insatiable",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4340,8 +4400,18 @@
     }
   },
   {
-    "id": "the-kings-blade",
-    "detailsId": "the-kings-blade",
+    "id": "the-jewellers-boon",
+    "detailsId": "the-jewellers-boon",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-journalist",
+    "detailsId": "the-journalist",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4390,8 +4460,8 @@
     }
   },
   {
-    "id": "the-lover",
-    "detailsId": "the-lover",
+    "id": "the-lunaris-priestess",
+    "detailsId": "the-lunaris-priestess",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4460,6 +4530,16 @@
     }
   },
   {
+    "id": "the-old-man",
+    "detailsId": "the-old-man",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-one-that-got-away",
     "detailsId": "the-one-that-got-away",
     "page": {
@@ -4482,16 +4562,6 @@
   {
     "id": "the-opulent",
     "detailsId": "the-opulent",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-pack-leader",
-    "detailsId": "the-pack-leader",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4562,16 +4632,6 @@
   {
     "id": "the-professor",
     "detailsId": "the-professor",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-progeny-of-lunaris",
-    "detailsId": "the-progeny-of-lunaris",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4820,6 +4880,16 @@
     }
   },
   {
+    "id": "the-twins",
+    "detailsId": "the-twins",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-vast",
     "detailsId": "the-vast",
     "page": {
@@ -4850,6 +4920,16 @@
     }
   },
   {
+    "id": "the-web",
+    "detailsId": "the-web",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-white-knight",
     "detailsId": "the-white-knight",
     "page": {
@@ -4872,16 +4952,6 @@
   {
     "id": "the-wolf",
     "detailsId": "the-wolf",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-wolven-kings-bite",
-    "detailsId": "the-wolven-kings-bite",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -4940,28 +5010,8 @@
     }
   },
   {
-    "id": "turn-the-other-cheek",
-    "detailsId": "turn-the-other-cheek",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "unchained",
     "detailsId": "unchained",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "vile-power",
-    "detailsId": "vile-power",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5100,16 +5150,6 @@
     }
   },
   {
-    "id": "fire-of-unknown-origin",
-    "detailsId": "fire-of-unknown-origin",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "house-of-mirrors",
     "detailsId": "house-of-mirrors",
     "page": {
@@ -5132,6 +5172,16 @@
   {
     "id": "the-miracle",
     "detailsId": "the-miracle",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-progeny-of-lunaris",
+    "detailsId": "the-progeny-of-lunaris",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5260,16 +5310,6 @@
     }
   },
   {
-    "id": "further-invention",
-    "detailsId": "further-invention",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "gemcutters-promise",
     "detailsId": "gemcutters-promise",
     "page": {
@@ -5350,6 +5390,16 @@
     }
   },
   {
+    "id": "hunters-resolve",
+    "detailsId": "hunters-resolve",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "hunters-reward",
     "detailsId": "hunters-reward",
     "page": {
@@ -5422,16 +5472,6 @@
   {
     "id": "last-hope",
     "detailsId": "last-hope",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "last-stand",
-    "detailsId": "last-stand",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5550,8 +5590,8 @@
     }
   },
   {
-    "id": "rain-of-chaos",
-    "detailsId": "rain-of-chaos",
+    "id": "pride-of-the-first-ones",
+    "detailsId": "pride-of-the-first-ones",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5560,8 +5600,8 @@
     }
   },
   {
-    "id": "rats",
-    "detailsId": "rats",
+    "id": "rain-of-chaos",
+    "detailsId": "rain-of-chaos",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5710,8 +5750,8 @@
     }
   },
   {
-    "id": "the-army-of-blood",
-    "detailsId": "the-army-of-blood",
+    "id": "the-arena-champion",
+    "detailsId": "the-arena-champion",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5730,8 +5770,8 @@
     }
   },
   {
-    "id": "the-battle-born",
-    "detailsId": "the-battle-born",
+    "id": "the-beast",
+    "detailsId": "the-beast",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5792,6 +5832,16 @@
   {
     "id": "the-cache",
     "detailsId": "the-cache",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-calling",
+    "detailsId": "the-calling",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -5880,6 +5930,16 @@
     }
   },
   {
+    "id": "the-deal",
+    "detailsId": "the-deal",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-deep-ones",
     "detailsId": "the-deep-ones",
     "page": {
@@ -5960,6 +6020,16 @@
     }
   },
   {
+    "id": "the-easy-stroll",
+    "detailsId": "the-easy-stroll",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-encroaching-darkness",
     "detailsId": "the-encroaching-darkness",
     "page": {
@@ -5992,6 +6062,16 @@
   {
     "id": "the-everlasting",
     "detailsId": "the-everlasting",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-explorer",
+    "detailsId": "the-explorer",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6240,16 +6320,6 @@
     }
   },
   {
-    "id": "the-lord-in-black",
-    "detailsId": "the-lord-in-black",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
     "id": "the-master-artisan",
     "detailsId": "the-master-artisan",
     "page": {
@@ -6310,8 +6380,8 @@
     }
   },
   {
-    "id": "the-patient",
-    "detailsId": "the-patient",
+    "id": "the-offering",
+    "detailsId": "the-offering",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6320,8 +6390,8 @@
     }
   },
   {
-    "id": "the-penitent",
-    "detailsId": "the-penitent",
+    "id": "the-patient",
+    "detailsId": "the-patient",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6370,6 +6440,16 @@
     }
   },
   {
+    "id": "the-queen",
+    "detailsId": "the-queen",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-reflection-of-the-heart",
     "detailsId": "reflection-of-the-heart",
     "page": {
@@ -6410,8 +6490,8 @@
     }
   },
   {
-    "id": "the-scarred-meadow",
-    "detailsId": "the-scarred-meadow",
+    "id": "the-scavenger",
+    "detailsId": "the-scavenger",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6450,6 +6530,16 @@
     }
   },
   {
+    "id": "the-sigil",
+    "detailsId": "the-sigil",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-skeleton",
     "detailsId": "the-skeleton",
     "page": {
@@ -6462,16 +6552,6 @@
   {
     "id": "the-slumbering-beast",
     "detailsId": "the-slumbering-beast",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-standoff",
-    "detailsId": "the-standoff",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6532,6 +6612,16 @@
   {
     "id": "the-traitor",
     "detailsId": "the-traitor",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-tumbleweed",
+    "detailsId": "the-tumbleweed",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6610,6 +6700,16 @@
     }
   },
   {
+    "id": "the-warden",
+    "detailsId": "the-warden",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "the-warlord",
     "detailsId": "the-warlord",
     "page": {
@@ -6652,26 +6752,6 @@
   {
     "id": "the-wilted-rose",
     "detailsId": "the-wilted-rose",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-witch",
-    "detailsId": "the-witch",
-    "page": {
-      "type": "DivinationCard",
-      "url": "divination-cards",
-      "supportsExchange": true,
-      "supportsStash": true
-    }
-  },
-  {
-    "id": "the-wolfs-legacy",
-    "detailsId": "the-wolfs-legacy",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6780,6 +6860,16 @@
     }
   },
   {
+    "id": "void-of-the-elements",
+    "detailsId": "void-of-the-elements",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
     "id": "volatile-power",
     "detailsId": "volatile-power",
     "page": {
@@ -6810,8 +6900,8 @@
     }
   },
   {
-    "id": "lantadors-lost-love",
-    "detailsId": "lantadors-lost-love",
+    "id": "call-to-the-first-ones",
+    "detailsId": "call-to-the-first-ones",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6820,8 +6910,38 @@
     }
   },
   {
-    "id": "scholar-of-the-seas",
-    "detailsId": "scholar-of-the-seas",
+    "id": "altered-perception",
+    "detailsId": "altered-perception",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "ambitious-obsession",
+    "detailsId": "ambitious-obsession",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "a-note-in-the-wind",
+    "detailsId": "a-note-in-the-wind",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-blazing-fire",
+    "detailsId": "the-blazing-fire",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6840,8 +6960,8 @@
     }
   },
   {
-    "id": "the-dreamland",
-    "detailsId": "the-dreamland",
+    "id": "the-demoness",
+    "detailsId": "the-demoness",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6850,8 +6970,8 @@
     }
   },
   {
-    "id": "the-lord-of-celebration",
-    "detailsId": "the-lord-of-celebration",
+    "id": "the-wolven-kings-bite",
+    "detailsId": "the-wolven-kings-bite",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6860,8 +6980,8 @@
     }
   },
   {
-    "id": "hunters-resolve",
-    "detailsId": "hunters-resolve",
+    "id": "further-invention",
+    "detailsId": "further-invention",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6870,8 +6990,8 @@
     }
   },
   {
-    "id": "the-calling",
-    "detailsId": "the-calling",
+    "id": "rats",
+    "detailsId": "rats",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -6880,8 +7000,38 @@
     }
   },
   {
-    "id": "the-warden",
-    "detailsId": "the-warden",
+    "id": "the-army-of-blood",
+    "detailsId": "the-army-of-blood",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-battle-born",
+    "detailsId": "the-battle-born",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-lord-in-black",
+    "detailsId": "the-lord-in-black",
+    "page": {
+      "type": "DivinationCard",
+      "url": "divination-cards",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "the-penitent",
+    "detailsId": "the-penitent",
     "page": {
       "type": "DivinationCard",
       "url": "divination-cards",
@@ -9702,6 +9852,16 @@
   {
     "id": "weeping-essence-of-greed",
     "detailsId": "weeping-essence-of-greed",
+    "page": {
+      "type": "Essence",
+      "url": "essences",
+      "supportsExchange": true,
+      "supportsStash": true
+    }
+  },
+  {
+    "id": "weeping-essence-of-suffering",
+    "detailsId": "weeping-essence-of-suffering",
     "page": {
       "type": "Essence",
       "url": "essences",

@@ -1,3 +1,4 @@
+using Sidekick.Data;
 using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Items;
@@ -26,6 +27,8 @@ public class Item
     public string? Type { get; set; }
 
     public ItemDefinition Definition { get; set; } = null!;
+
+    public ItemDefinition Invariant { get; set; } = null!;
 
     public ItemProperties Properties { get; } = new();
 

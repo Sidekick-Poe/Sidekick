@@ -1,5 +1,6 @@
 ﻿using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Extensions;
 

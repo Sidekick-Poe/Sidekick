@@ -1,12 +1,11 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
+using Sidekick.Data;
 using Sidekick.Data.Languages;
 using Sidekick.Modules.General.Settings;
 
@@ -44,6 +43,7 @@ public class OpenWikiPageKeybindHandler(
         var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
         if (wikiPreferred == WikiSetting.PoeWiki)
         {
+            // todo
             if (!currentGameLanguage.IsEnglish())
             {
                 throw new UnavailableTranslationException();
@@ -63,9 +63,12 @@ public class OpenWikiPageKeybindHandler(
 
     private void OpenPoeWiki(Item item)
     {
-        var searchLink = item.Definition.Name ?? item.Definition.Type;
+        // todo standardise to api projects
+        var searchValue = GetSearchValue(item);
+        if (string.IsNullOrEmpty(searchValue)) return;
+
         var baseUrl = item.Game == GameType.PathOfExile1 ? PoeWikiBaseUri : Poe2WikiBaseUri;
-        var wikiLink = PoeWikiSubUrl + searchLink?.Replace(" ", "+");
+        var wikiLink = PoeWikiSubUrl + searchValue?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 
         browserProvider.OpenUri(uri);
@@ -77,11 +80,21 @@ public class OpenWikiPageKeybindHandler(
 
     private void OpenPoeDb(Item item)
     {
-        var searchLink = item.Definition.Name ?? item.Definition.Type;
+        var searchValue = GetSearchValue(item);
+        if (string.IsNullOrEmpty(searchValue)) return;
+
         var baseUrl = item.Game == GameType.PathOfExile1 ? PoeDbBaseUri : Poe2DbBaseUri;
-        var wikiLink = PoeDbSubUrl + searchLink?.Replace(" ", "+");
+        var wikiLink = PoeDbSubUrl + searchValue?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 
         browserProvider.OpenUri(uri);
+    }
+
+    private string? GetSearchValue(Item item)
+    {
+        string? searchValue = null;
+        if (!string.IsNullOrEmpty(item.Definition.UniqueItem?.Name)) searchValue = item.Definition.UniqueItem.Name;
+        else if (!string.IsNullOrEmpty(item.Definition.BaseItem?.Name)) searchValue = item.Definition.BaseItem.Name;
+        return searchValue;
     }
 }

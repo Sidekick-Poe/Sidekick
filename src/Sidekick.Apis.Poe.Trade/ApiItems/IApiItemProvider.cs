@@ -1,3 +1,4 @@
+using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Common.Initialization;
 using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
@@ -8,7 +9,9 @@ public interface IApiItemProvider : IInitializableService
 
     List<ItemDefinition> UniqueItems { get; }
 
-    ItemDefinition? GetById(string? id);
+    Dictionary<string, ItemDefinition> InvariantDictionary { get; }
 
-    ItemDefinition? Get(string? name, string? type);
+    ItemDefinition? Get(ApiItem apiItem);
+
+    ItemDefinition? Get(string? name);
 }

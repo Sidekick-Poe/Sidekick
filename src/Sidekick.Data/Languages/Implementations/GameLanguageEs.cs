@@ -49,6 +49,15 @@ public class GameLanguageEs : IGameLanguage
     public string DescriptionItemQuantity => "Cantidad de objetos";
     public string DescriptionItemRarity => "Rareza de objetos";
     public string DescriptionMonsterPackSize => "Tamaño de los grupos de monstruos";
+    public string DescriptionMoreMaps => "Más mapas";
+    public string DescriptionMoreScarabs => "Más escarabajos";
+    public string DescriptionMoreCurrency => "Más objetos monetarios";
+    public string DescriptionMoreCards => "Más cartas de adivinación";
+    public string DescriptionQualityCurrency => "Calidad (objetos monetarios)";
+    public string DescriptionQualityScarabs => "Calidad (escarabajos)";
+    public string DescriptionQualityCards => "Calidad (cartas de adivinación)";
+    public string DescriptionQualityPackSize => "Calidad (tamaño de grupos de monstruos)";
+    public string DescriptionQualityRarity => "Calidad (rareza)";
     public string DescriptionMagicMonsters => "Monstruos mágicos";
     public string DescriptionRareMonsters => "Monstruos raros";
     public string DescriptionRevivesAvailable => "Resurrecciones disponibles";

@@ -10,6 +10,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Fuzzy;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;

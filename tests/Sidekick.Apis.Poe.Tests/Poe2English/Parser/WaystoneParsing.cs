@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -41,8 +42,8 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
 ");
 
         Assert.Equal(ItemClass.Waystone, actual.Properties.ItemClass);
-        Assert.Equal("Waystone (Tier 1)", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Waystone (Tier 1)", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(66, actual.Properties.ItemLevel);
 
         Assert.Equal(2, actual.Properties.RevivesAvailable);
@@ -85,8 +86,8 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
 ");
 
         Assert.Equal(ItemClass.Waystone, actual.Properties.ItemClass);
-        Assert.Equal("Waystone (Tier 13)", actual.Definition.Type);
-        Assert.Null(actual.Definition.Name);
+        Assert.Equal("Waystone (Tier 13)", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         Assert.Equal(1, actual.Properties.RevivesAvailable);

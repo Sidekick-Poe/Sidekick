@@ -76,14 +76,14 @@
 
     private async Task LoadScout()
     {
-        ScoutItem = await ScoutItemProvider.GetItem(Item.Definition.InvariantText);
+        ScoutItem = await ScoutItemProvider.GetItem(Item.Invariant);
         ScoutHistory = (ScoutItem != null) ? await ScoutHistoryProvider.GetCurrencyHistory(ScoutItem.ItemId) : null;
         StateHasChanged();
     }
 
     private async Task LoadNinja()
     {
-        var item = NinjaItemProvider.GetExchangeItem(Item.Definition.Id);
+        var item = NinjaItemProvider.GetExchangeItem(Item.Invariant);
         NinjaCurrency = item != null ? await NinjaExchangeProvider.GetInfo(item) : null;
         StateHasChanged();
     }

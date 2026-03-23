@@ -4,7 +4,7 @@ namespace Sidekick.Data.Stats;
 
 public class StatDefinition
 {
-    public required StatSource Source { get; set; }
+    public required DataSource Source { get; set; }
 
     public required string Text { get; set; }
 

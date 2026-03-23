@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-namespace Sidekick.Data.Builder.Repoe.Models.Poe1;
+namespace Sidekick.Data.Builder.Repoe.Models.Stats;
 
 public class RepoeStatTrade
 {

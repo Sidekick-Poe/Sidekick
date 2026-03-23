@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -32,14 +33,14 @@ Right-click to add this to your bestiary.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.Name);
-        Assert.Equal("Farric Flame Hellion Alpha", actual.Definition.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Farric Flame Hellion Alpha", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
     public void ParseUniqueBeast()
     {
-        var parsedRareBeast = parser.ParseItem(@"Item Class: Stackable Currency
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Unique
 Saqawal, First of the Sky
 --------
@@ -53,9 +54,9 @@ Cannot be fully Slowed
 --------
 Right-click to add this to your bestiary.");
 
-        Assert.Equal(Rarity.Unique, parsedRareBeast.Properties.Rarity);
-        Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Definition.Type);
-        Assert.Null(parsedRareBeast.Definition.Name);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Saqawal, First of the Sky", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
     }
 
     [Fact]
@@ -84,6 +85,6 @@ Right-click to add this to your bestiary.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Farric Chieftain", actual.Definition.Type);
+        Assert.Equal("Farric Chieftain", actual.Definition.TradeItem?.Type);
     }
 }

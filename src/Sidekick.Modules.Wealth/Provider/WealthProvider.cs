@@ -205,12 +205,14 @@ internal class WealthProvider
     {
         decimal price = 0;
         ApiSparkline? sparkLine = null;
-        var apiData = apiItemProvider.Get(item.Name, item.Type);
+        var itemDefinition = apiItemProvider.Get(item);
+        if (itemDefinition == null)
+        {
+            logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
+            return (price, sparkLine);
+        }
 
-        var exchangeItem = ninjaItemProvider.GetExchangeItem(item.Name);
-        exchangeItem ??= ninjaItemProvider.GetExchangeItem(item.Type);
-        exchangeItem ??= apiData != null ? ninjaItemProvider.GetExchangeItem(apiData.Id) : null;
-
+        var exchangeItem = ninjaItemProvider.GetExchangeItem(itemDefinition);
         if (exchangeItem != null)
         {
             var info = await ninjaExchangeProvider.GetInfo(exchangeItem);
@@ -219,7 +221,7 @@ internal class WealthProvider
         }
         else if (item.Rarity == Rarity.Unique)
         {
-            var stashItem = ninjaItemProvider.GetUniqueItem(item.Name, item.MaxLinks ?? 0);
+            var stashItem = ninjaItemProvider.GetUniqueItem(itemDefinition, item.MaxLinks ?? 0);
             if (stashItem != null)
             {
                 var info = await ninjaStashProvider.GetInfo(stashItem);
@@ -229,7 +231,7 @@ internal class WealthProvider
         }
         else if (item.GemLevel > 0)
         {
-            var stashItem = ninjaItemProvider.GetGemItem(item.Name, item.GemLevel ?? 1, item.Quality ?? 0, item.Corrupted);
+            var stashItem = ninjaItemProvider.GetGemItem(itemDefinition, item.GemLevel ?? 1, item.Quality ?? 0, item.Corrupted);
             if (stashItem != null)
             {
                 var info = await ninjaStashProvider.GetInfo(stashItem);
@@ -239,7 +241,7 @@ internal class WealthProvider
         }
         else if (item.MapTier > 0)
         {
-            var stashItem = ninjaItemProvider.GetMapItem(item.Type, item.MapTier ?? 1);
+            var stashItem = ninjaItemProvider.GetMapItem(itemDefinition, item.MapTier ?? 1);
             if (stashItem != null)
             {
                 var info = await ninjaStashProvider.GetInfo(stashItem);

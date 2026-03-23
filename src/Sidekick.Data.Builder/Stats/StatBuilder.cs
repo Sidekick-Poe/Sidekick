@@ -4,11 +4,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Repoe;
-using Sidekick.Data.Builder.Repoe.Models.Poe1;
+using Sidekick.Data.Builder.Repoe.Models.Stats;
 using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
@@ -117,7 +116,7 @@ public class StatBuilder(
 
             return new StatDefinition()
             {
-                Source = StatSource.Trade,
+                Source = DataSource.Trade,
                 Text = text,
                 FuzzyText = GetFuzzyText(gameLanguage, tradeDefinition.Text, tradeDefinition.Option?.Text),
                 TradeStats = [tradeDefinition],
@@ -146,7 +145,7 @@ public class StatBuilder(
 
             yield return new StatDefinition()
             {
-                Source = StatSource.Game,
+                Source = DataSource.Game,
                 GameIds = gameStat.Ids,
                 TradeStats = tradeStats,
                 Text = text,
@@ -161,6 +160,8 @@ public class StatBuilder(
 
         IEnumerable<TradeStatDefinition> GetTradeStatDefinitions(int? value)
         {
+            if (gameStat.TradeStats == null) yield break;
+
             foreach (var repoeStat in gameStat.TradeStats)
             {
                 foreach (var tradeDefinition in tradeDefinitions)

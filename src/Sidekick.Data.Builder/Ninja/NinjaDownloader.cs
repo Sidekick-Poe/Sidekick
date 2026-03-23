@@ -5,10 +5,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
+using Sidekick.Data.Ninja;
 
 namespace Sidekick.Data.Builder.Ninja;
 
@@ -186,7 +185,7 @@ public class NinjaDownloader(
                             if (string.IsNullOrWhiteSpace(it.Name)) continue;
                             stashItems.Add(new NinjaStashItem(
                                 it.Name!, it.DetailsId, it.Corrupted, it.GemLevel, it.GemQuality,
-                                it.MapTier, it.Links, it.LevelRequired, it.Variant, page));
+                                it.Links, it.LevelRequired, it.Variant, page));
                         }
                     }
                 }
@@ -201,6 +200,7 @@ public class NinjaDownloader(
         }
     }
 
+    // todo move to classes
     private sealed record ApiExchangeOverview(ApiOverviewCore? Core, List<ApiExchangeItem> Items);
 
     private sealed record ApiOverviewCore(string? Primary);
@@ -215,7 +215,6 @@ public class NinjaDownloader(
         bool? Corrupted,
         int? GemLevel,
         int? GemQuality,
-        int? MapTier,
         int? Links,
         int? LevelRequired,
         string? Variant);

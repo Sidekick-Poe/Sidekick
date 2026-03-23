@@ -4,9 +4,11 @@ namespace Sidekick.Data;
 
 public enum DataType
 {
+    // todo remove
     [EnumValue("ninja/exchange.json")]
     NinjaExchange,
 
+    // todo remove
     [EnumValue("ninja/stash.json")]
     NinjaStash,
 

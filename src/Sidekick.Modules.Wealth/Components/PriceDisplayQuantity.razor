@@ -1,15 +1,15 @@
 @using Sidekick.Apis.Poe.Trade.ApiItems
+@using Sidekick.Common.Exceptions
 @using Sidekick.Data.Items
 
 <div class="flex flex-nowrap gap-1 leading-3 items-center">
     <div class="font-medium tracking-tight text-sm">@Quantity</div>
     <div class="font-medium text-base">&times;</div>
-    @if (ChaosItem != null)
+    <div class="text-sm opacity-80 text-[#a38d6d]">@Value.ToString("0.##")</div>
+    @if (Currency != null)
     {
-        <div class="text-sm opacity-80 text-[#a38d6d]">@Value.ToString("0.##")</div>
-
-        <Tooltip Text="@ChaosItem.Text">
-            <img src="@ChaosItem.Image" class="max-h-4" alt="chaos"/>
+        <Tooltip Text="@Currency.TradeItem?.Text">
+            <img src="@Currency.TradeItem?.Image" class="max-h-4" alt="chaos"/>
         </Tooltip>
     }
 </div>
@@ -24,6 +24,12 @@
     [Parameter]
     public decimal Value { get; set; }
 
-    private ItemDefinition? ChaosItem => ApiItemProvider.GetById("chaos");
+    private ItemDefinition? Currency { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Currency = ApiItemProvider.Get("chaos") ?? throw new SidekickException("The currency could not be determined.");
+        base.OnParametersSet();
+    }
 
 }

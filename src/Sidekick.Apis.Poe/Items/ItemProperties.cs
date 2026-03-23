@@ -1,9 +1,11 @@
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Items;
 
 public class ItemProperties
 {
     public Rarity Rarity { get; set; } = Rarity.Unknown;
 
+    // TODO remove
     public ItemClass ItemClass { get; set; }
 
     public bool Unidentified { get; set; }
@@ -41,6 +43,24 @@ public class ItemProperties
     public int RevivesAvailable { get; set; }
 
     public int MonsterPackSize { get; set; }
+
+    public int MoreMaps { get; set; }
+
+    public int MoreScarabs { get; set; }
+
+    public int MoreCurrency { get; set; }
+
+    public int MoreCards { get; set; }
+
+    public int QualityCurrency { get; set; }
+
+    public int QualityScarabs { get; set; }
+
+    public int QualityCards { get; set; }
+
+    public int QualityPackSize { get; set; }
+
+    public int QualityRarity { get; set; }
 
     public int MagicMonsters { get; set; }
 

@@ -1,3 +1,4 @@
+using Sidekick.Data;
 using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Tests.Poe1Korean;
 

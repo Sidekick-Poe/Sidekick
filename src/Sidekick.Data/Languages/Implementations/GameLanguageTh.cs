@@ -49,6 +49,15 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionItemQuantity => "จำนวนของไอเทม";
     public string DescriptionItemRarity => "ระดับความหายากของไอเทม";
     public string DescriptionMonsterPackSize => "ขนาดกองมอนสเตอร์";
+    public string DescriptionMoreMaps => "เพิ่มแผนที่ อีก";
+    public string DescriptionMoreScarabs => "เพิ่มสคารับ อีก";
+    public string DescriptionMoreCurrency => "เพิ่มเงินตรา อีก";
+    public string DescriptionMoreCards => "เพิ่มไพ่พยากรณ์";
+    public string DescriptionQualityCurrency => "ค่าคุณภาพ (เงินตรา)";
+    public string DescriptionQualityScarabs => "ค่าคุณภาพ (สคารับ)";
+    public string DescriptionQualityCards => "ค่าคุณภาพ (ไพ่พยากรณ์)";
+    public string DescriptionQualityPackSize => "ค่าคุณภาพ (ขนาดกองมอนสเตอร์)";
+    public string DescriptionQualityRarity => "ค่าคุณภาพ (ระดับความหายาก)";
     public string DescriptionMagicMonsters => "มอนสเตอร์เมจิก";
     public string DescriptionRareMonsters => "มอนสเตอร์แรร์";
     public string DescriptionRevivesAvailable => "จำนวนสิทธิ์คืนชีพ";

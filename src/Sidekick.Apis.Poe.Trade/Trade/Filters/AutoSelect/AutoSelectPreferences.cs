@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;

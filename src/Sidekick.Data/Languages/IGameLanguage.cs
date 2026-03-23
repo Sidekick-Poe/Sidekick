@@ -55,6 +55,16 @@ public interface IGameLanguage
 
     string DescriptionMonsterPackSize { get; }
 
+    string DescriptionMoreMaps { get; }
+    string DescriptionMoreScarabs { get; }
+    string DescriptionMoreCurrency { get; }
+    string DescriptionMoreCards { get; }
+    string DescriptionQualityCurrency { get; }
+    string DescriptionQualityScarabs { get; }
+    string DescriptionQualityCards { get; }
+    string DescriptionQualityPackSize { get; }
+    string DescriptionQualityRarity { get; }
+
     string DescriptionMagicMonsters { get; }
 
     string DescriptionRareMonsters { get; }

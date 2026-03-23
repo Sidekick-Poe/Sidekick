@@ -33,17 +33,17 @@ public class NinjaItemProvider(
         ExchangeItems.AddRange(exchangeItems);
     }
 
-    public NinjaExchangeItem? GetExchangeItem(string? invariant)
+    public NinjaExchangeItem? GetExchangeItem(ItemDefinition item)
     {
-        if (string.IsNullOrEmpty(invariant)) return null;
-        var item = ExchangeItems.FirstOrDefault(x => x.Id == invariant);
-        if (item != null) return item;
+        if (string.IsNullOrEmpty(item.BaseItem?.Name)) return null;
+        var ninjaItem = ExchangeItems.FirstOrDefault(x => x.Id == item.BaseItem.Name);
+        if (ninjaItem != null) return ninjaItem;
 
         // The PoE1 api doesn't have chaos currency, so we need to add it manually.
-        if (Game == GameType.PathOfExile1 && invariant == "chaos")
+        if (Game == GameType.PathOfExile1 && item.BaseItem.Name == "Chaos Orb")
         {
             var page = new NinjaPage("Currency", "currency", true, true);
-            return new NinjaExchangeItem(invariant, "divine-orb", page);
+            return new NinjaExchangeItem("chaos", "divine-orb", page);
         }
 
         return null;
@@ -53,21 +53,17 @@ public class NinjaItemProvider(
     {
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return GetUniqueItem(item.Definition.InvariantName, item.Properties.GetMaximumNumberOfLinks());
+            return GetUniqueItem(item.Invariant, item.Properties.GetMaximumNumberOfLinks());
         }
 
         if (item.Properties.ItemClass is ItemClass.ActiveGem or ItemClass.SupportGem)
         {
-            return GetGemItem(item.Definition.InvariantType, item.Properties.GemLevel, item.Properties.Quality, item.Properties.Corrupted);
+            return GetGemItem(item.Invariant, item.Properties.GemLevel, item.Properties.Quality, item.Properties.Corrupted);
         }
 
         if (item.Properties.MapTier != 0)
         {
-            var name = item.Definition.InvariantType;
-            if (item.Properties.Blighted) name = $"Blighted {name}";
-            if (item.Properties.BlightRavaged) name = $"Blight-ravaged {name}";
-
-            return GetMapItem(name, item.Properties.MapTier);
+            return GetMapItem(item.Invariant, item.Properties.MapTier);
         }
 
         if (item.Properties.ClusterJewelPassiveCount.HasValue && item.Properties.ClusterJewelPassiveCount != 0)
@@ -75,24 +71,26 @@ public class NinjaItemProvider(
             return GetClusterItem(item.Properties.ClusterJewelGrantText, item.Properties.ClusterJewelPassiveCount.Value, item.Properties.ItemLevel);
         }
 
-        return GetBaseTypeItem(item.Definition.InvariantType, item.Properties.ItemLevel, item.Properties.Influences);
+        return GetBaseTypeItem(item.Invariant, item.Properties.ItemLevel, item.Properties.Influences);
     }
 
-    public NinjaStashItem? GetUniqueItem(string? name, int links)
+    public NinjaStashItem? GetUniqueItem(ItemDefinition item, int links)
     {
-        if (name == null) return null;
+        if (string.IsNullOrEmpty(item.UniqueItem?.Name)) return null;
 
         if (links < 5) links = 0;
 
         return StashItems
-            .Where(x => x.Name == name)
+            .Where(x => x.Name == item.UniqueItem.Name)
             .OrderBy(x => x.Links == links || (links == 0 && !x.Links.HasValue) ? 0 : 1)
             .FirstOrDefault();
     }
 
-    public NinjaStashItem? GetGemItem(string? name, int gemLevel, int gemQuality, bool corrupted)
+    public NinjaStashItem? GetGemItem(ItemDefinition item, int gemLevel, int gemQuality, bool corrupted)
     {
-        if (name == null) return null;
+        var name = item.TradeItem?.Text;
+        name ??= item.BaseItem?.Name;
+        if (string.IsNullOrEmpty(name)) return null;
 
         if (gemLevel > 7 && gemLevel < 20) gemLevel = 1;
 
@@ -109,14 +107,15 @@ public class NinjaItemProvider(
         return items.FirstOrDefault();
     }
 
-    public NinjaStashItem? GetMapItem(string? name, int mapTier)
+    public NinjaStashItem? GetMapItem(ItemDefinition item, int mapTier)
     {
-        if (name == null) return null;
+        if (string.IsNullOrEmpty(item.BaseItem?.Name)) return null;
 
-        var items = StashItems
-            .Where(x => x.Name == name)
-            .Where(x => x.MapTier == mapTier || (mapTier == 0 && !x.MapTier.HasValue));
+        var name = item.BaseItem.Name;
+        if (name == "Blighted Map") name = $"Blighted Map (Tier {mapTier})";
+        if (name == "Blight-ravaged Map") name = $"Blight-ravaged Map (Tier {mapTier})";
 
+        var items = StashItems.Where(x => x.Name == name);
         return items.FirstOrDefault();
     }
 
@@ -138,16 +137,16 @@ public class NinjaItemProvider(
         return items.FirstOrDefault();
     }
 
-    public NinjaStashItem? GetBaseTypeItem(string? name, int itemLevel, Influences influences)
+    public NinjaStashItem? GetBaseTypeItem(ItemDefinition item, int itemLevel, Influences influences)
     {
-        if (name == null) return null;
+        if (string.IsNullOrEmpty(item.BaseItem?.Name)) return null;
 
         var variants = GetVariants().ToList();
         if (itemLevel > 86) itemLevel = 86;
         else if (itemLevel < 82) itemLevel = 0;
 
         var items = StashItems
-            .Where(x => x.Name == name)
+            .Where(x => x.Name == item.BaseItem.Name)
             .Where(x => (x.Variant == null && variants.Count == 0) || (x.Variant != null && variants.Contains(x.Variant)))
             .Where(x => x.ItemLevel == itemLevel || (itemLevel == 0 && !x.ItemLevel.HasValue));
 

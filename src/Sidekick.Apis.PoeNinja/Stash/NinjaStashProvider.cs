@@ -1,11 +1,10 @@
 ﻿using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.IndexState;
 using Sidekick.Apis.PoeNinja.Stash.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
+using Sidekick.Data;
 using Sidekick.Data.Ninja;
 namespace Sidekick.Apis.PoeNinja.Stash;
 
@@ -60,29 +59,20 @@ public class NinjaStashProvider(
             return await cacheProvider.GetOrSet(cacheKey, async () =>
             {
                 var game = await settingsService.GetGame();
-                return await FetchOverview(game, type);
+                var query = new Dictionary<string, string?>()
+                {
+                    {
+                        "type", type
+                    },
+                };
+
+                var response = await ninjaClient.Fetch<ApiOverviewResult>(game, "economy/stash/current/item/overview", query);
+                if (response == null) return new();
+
+                response.LastUpdated = DateTimeOffset.Now;
+                return response;
             }, x => x.Lines.Any());
         }
-    }
-
-    public async Task<ApiOverviewResult> FetchOverview(GameType game, string type, string? leagueOverride = null)
-    {
-        var query = new Dictionary<string, string?>()
-        {
-            {
-                "type", type
-            },
-        };
-        if (leagueOverride != null)
-        {
-            query.Add("league", leagueOverride);
-        }
-
-        var result = await ninjaClient.Fetch<ApiOverviewResult>(game, "economy/stash/current/item/overview", query);
-        if (result == null) return new();
-
-        result.LastUpdated = DateTimeOffset.Now;
-        return result;
     }
 
     private async Task<bool> CheckCacheIsValid(string type, ApiOverviewResult? result = null)

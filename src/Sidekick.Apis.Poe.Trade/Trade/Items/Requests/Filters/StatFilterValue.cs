@@ -12,14 +12,14 @@ public class StatFilterValue
 
     public StatFilterValue(IntPropertyFilter filter)
     {
-        Option = filter.Checked ? "true" : "false";
+        Disabled = !filter.Checked;
         Min = filter.Min;
         Max = filter.Max;
     }
 
     public StatFilterValue(DoublePropertyFilter filter)
     {
-        Option = filter.Checked ? "true" : "false";
+        Disabled = !filter.Checked;
         Min = filter.Min;
         Max = filter.Max;
     }
@@ -49,4 +49,6 @@ public class StatFilterValue
     public double? Min { get; set; }
 
     public double? Max { get; set; }
+
+    public bool Disabled { get; set; }
 }

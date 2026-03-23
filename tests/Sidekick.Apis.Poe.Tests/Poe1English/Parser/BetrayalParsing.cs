@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -27,7 +28,7 @@ Note: ~b/o .50 chaos
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Rusted Reliquary Scarab", actual.Definition.Type);
+        Assert.Equal("Rusted Reliquary Scarab", actual.Definition.TradeItem?.Type);
     }
 
 }

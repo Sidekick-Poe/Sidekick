@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -44,7 +45,7 @@ public class RarityProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Definition != null! && item.Definition.IsUnique)
+        if (item.Definition?.UniqueItem != null)
         {
             item.Properties.Rarity = Rarity.Unique;
             return;

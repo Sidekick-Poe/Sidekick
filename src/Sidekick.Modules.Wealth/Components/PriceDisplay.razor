@@ -3,11 +3,11 @@
 
 <div class="flex flex-nowrap gap-0.5 items-center justify-end">
     <Heading3>@Value.ToString("0.##")</Heading3>
-    @if (ChaosItem != null)
+    <TextBase Class="text-[#a38d6d]">&times;</TextBase>
+    @if (Currency != null)
     {
-        <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-        <Tooltip Text="@ChaosItem.Text">
-            <img src="@ChaosItem.Image" class="max-h-6" alt="chaos" />
+        <Tooltip Text="@Currency.BaseItem?.Name">
+            <img src="@Currency.TradeItem?.Image" class="max-h-6" alt="@Currency.BaseItem?.Name"/>
         </Tooltip>
     }
 </div>
@@ -19,6 +19,12 @@
     [Parameter]
     public decimal Value { get; set; }
 
-    private ItemDefinition? ChaosItem => ApiItemProvider.GetById("chaos");
+    private ItemDefinition? Currency { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Currency = ApiItemProvider.Get("chaos");
+        base.OnParametersSet();
+    }
 
 }
