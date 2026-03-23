@@ -12,21 +12,19 @@ public class ItemDefinitionParser(
 {
     public void Parse(Item item)
     {
-        item.Definition = GetDefinition(item.Properties.Rarity, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
+        item.Definition = GetDefinition(item.Type) ?? throw new UnparsableException(item.Text.Text);
         item.Invariant = GetInvariant(item.Definition) ?? throw new UnparsableException(item.Text.Text);
         ParseVaalGem();
 
         return;
 
-        ItemDefinition? GetDefinition(Rarity rarity, string? name, string? type)
+        ItemDefinition? GetDefinition(string? type)
         {
-            // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
-            name = rarity is Rarity.Rare or Rarity.Magic ? null : name;
-            if (!string.IsNullOrEmpty(name))
+            if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.Name))
             {
-                var nameResults = apiItemProvider.Definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name));
-                var nameMatch = FindBestMatch(nameResults, x => x.TradeItem?.Name, name);
-                if (nameMatch != null) return nameMatch;
+                var results = apiItemProvider.Definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(item.Name));
+                var bestMatch = FindBestMatch(results, x => x.TradeItem?.Text ?? x.TradeItem?.Name, $"{item.Name} {item.Type}");
+                if (bestMatch != null) return bestMatch;
             }
 
             if (!string.IsNullOrEmpty(type))
@@ -46,13 +44,20 @@ public class ItemDefinitionParser(
             return null;
         }
 
-        ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> definitionTextFunc, string originalText)
+        ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> compareFunc, string text)
         {
             return definitions
-                .Select(x => new
+                .Select(x =>
                 {
-                    Ratio = Fuzz.Ratio(originalText, definitionTextFunc(x), FuzzySharp.PreProcess.PreprocessMode.None),
-                    Definition = x,
+                    var compare = compareFunc(x);
+                    var ratio = 0;
+                    if (!string.IsNullOrEmpty(compare)) ratio = Fuzz.Ratio(text, compare, FuzzySharp.PreProcess.PreprocessMode.None);
+
+                    return new
+                    {
+                        Ratio = ratio,
+                        Definition = x,
+                    };
                 })
                 .OrderByDescending(x => x.Ratio)
                 .Select(x => x.Definition)
@@ -64,7 +69,7 @@ public class ItemDefinitionParser(
             var canBeVaalGem = item.Properties.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
             if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-            var vaalGem = GetDefinition(Rarity.Gem, null, item.Text.Blocks[5].Lines[0].Text);
+            var vaalGem = GetDefinition(item.Text.Blocks[5].Lines[0].Text);
             if (vaalGem != null)
             {
                 item.Definition = vaalGem;
