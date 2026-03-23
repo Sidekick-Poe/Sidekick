@@ -101,7 +101,7 @@ public class ItemBuilder(
 
         Regex? GetTextPattern(TradeItemDefinition? tradeItem)
         {
-            if (string.IsNullOrEmpty(tradeItem?.Text) || tradeItem.IsUnique) return null;
+            if (string.IsNullOrEmpty(tradeItem?.Text) || tradeItem.Text == tradeItem.Type || tradeItem.IsUnique) return null;
 
             return new Regex(Regex.Escape(tradeItem.Text));
         }
