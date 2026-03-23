@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -102,7 +101,7 @@ public class ItemBuilder(
 
         Regex? GetTextPattern(TradeItemDefinition? tradeItem)
         {
-            if (string.IsNullOrEmpty(tradeItem?.Text)) return null;
+            if (string.IsNullOrEmpty(tradeItem?.Text) || tradeItem.Text == tradeItem.Type || tradeItem.IsUnique) return null;
 
             return new Regex(Regex.Escape(tradeItem.Text));
         }

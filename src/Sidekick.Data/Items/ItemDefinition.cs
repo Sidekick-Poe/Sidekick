@@ -77,12 +77,6 @@ public class ItemDefinition
     {
         var type = TradeItem?.Type ?? BaseItem?.Name;
         var name = TradeItem?.Name;
-
-        if (!string.IsNullOrEmpty(type) && !string.IsNullOrEmpty(name))
-        {
-            return $"{type} - {name}";
-        }
-
-        return !string.IsNullOrEmpty(type) ? type : name;
+        return $"{name} {type}".Trim();
     }
 }

@@ -80,4 +80,70 @@ While Berek slept.""
         Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
         Assert.False(actual.Properties.Unidentified);
     }
+
+    [Fact]
+    public void ParsePrecursorEmblemRuby()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Precursor's Emblem
+Ruby Ring
+--------
+Requirements:
+Level: 49
+--------
+Item Level: 85
+--------
++23% to Fire Resistance (implicit)
+--------
++20 to Strength
+5% increased maximum Energy Shield
+5% increased maximum Life
+Regenerate 0.3% of Life per second per Endurance Charge
+You cannot be Stunned while at maximum Endurance Charges
+1% increased Movement Speed per Endurance Charge
+--------
+History teaches humility.
+--------
+Note: ~b/o 2 chaos
+");
+
+        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void ParsePrecursorEmblemSapphire()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Precursor's Emblem
+Sapphire Ring
+--------
+Requirements:
+Level: 49
+--------
+Item Level: 85
+--------
++29% to Cold Resistance (implicit)
+--------
++20 to Dexterity
+8% increased Evasion Rating per Frenzy Charge
+5% increased maximum Energy Shield
+5% increased maximum Life
+20% increased Frenzy Charge Duration
+5% increased Damage per Frenzy Charge
+--------
+History teaches humility.
+--------
+Note: ~b/o 20 chaos
+");
+
+        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Sapphire Ring", actual.Definition.TradeItem?.Type);
+    }
 }
