@@ -8,7 +8,7 @@ namespace Sidekick.Common.Enums;
 /// </remarks>
 /// <param name="value">The string value.</param>
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
-public class EnumValueAttribute(string value, string key = "default") : Attribute
+public class GameValueAttribute(string value, string key = "default") : Attribute
 {
     /// <summary>
     ///     Gets the value associated with the enum.

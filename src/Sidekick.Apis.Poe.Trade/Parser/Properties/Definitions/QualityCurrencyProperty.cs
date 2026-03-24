@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using ItemProperties = Sidekick.Apis.Poe.Items.ItemProperties;
 
@@ -26,7 +25,7 @@ public class QualityCurrencyProperty(
     public override void Parse(Item item)
     {
         if (game != GameType.PathOfExile1) return;
-        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+        if (!ItemClassConstants.Areas.Contains(item.ItemClass)) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.QualityCurrency = GetInt(Pattern, propertyBlock);

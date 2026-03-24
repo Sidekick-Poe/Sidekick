@@ -35,9 +35,10 @@
         Valid = CheckNinja();
         Valid |= CheckPrediction();
         Valid |= await CheckScout();
-        Valid &= Item.Properties.ItemClass != ItemClass.Map && Item.Properties.ItemClass != ItemClass.Waystone;
 
-        if (Valid) await CurrentTabChanged.InvokeAsync("valuation");
+        var switchTab = Valid;
+        switchTab &= Item.ItemClass != ItemClass.Map && Item.ItemClass != ItemClass.Waystone;
+        if (switchTab) await CurrentTabChanged.InvokeAsync("valuation");
 
         await base.OnInitializedAsync();
     }

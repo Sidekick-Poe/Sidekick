@@ -45,24 +45,6 @@ public class RarityProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Definition?.UniqueItem != null)
-        {
-            item.Properties.Rarity = Rarity.Unique;
-            return;
-        }
-
-        if (item.Properties.ItemClass == ItemClass.DivinationCard)
-        {
-            item.Properties.Rarity = Rarity.DivinationCard;
-            return;
-        }
-
-        if (ItemClassConstants.Gems.Contains(item.Properties.ItemClass))
-        {
-            item.Properties.Rarity = Rarity.Gem;
-            return;
-        }
-
         var propertyBlock = item.Text.Blocks[0];
         foreach (var pattern in RarityPatterns)
         {
@@ -73,13 +55,17 @@ public class RarityProperty(
             return;
         }
 
-        if (item.Properties.ItemClass == ItemClass.Currency)
-        {
-            item.Properties.Rarity = Rarity.Currency;
-            return;
-        }
-
         item.Properties.Rarity = Rarity.Unknown;
+    }
+
+    public override void ParseAfterStats(Item item)
+    {
+        if (item.Definition.UniqueItem != null) item.Properties.Rarity = Rarity.Unique;
+        else if (ItemClassConstants.Gems.Contains(item.ItemClass)) item.Properties.Rarity = Rarity.Gem;
+        else if (item.ItemClass == ItemClass.Currency) item.Properties.Rarity = Rarity.Currency;
+        else if (item.ItemClass == ItemClass.DivinationCard) item.Properties.Rarity = Rarity.DivinationCard;
+
+        base.ParseAfterStats(item);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

@@ -44,7 +44,7 @@ the world hearkens.
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Boots, actual.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Steeltoe Boots", actual.Definition.TradeItem?.Type);
         Assert.Equal("Thunderstep", actual.Definition.TradeItem?.Name);
@@ -88,7 +88,7 @@ Grants Skill: Parry
 
 ");
 
-        Assert.Equal(ItemClass.Buckler, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Buckler, actual.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Wooden Buckler", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -121,7 +121,7 @@ Adds 3 to 5 Fire damage to Attacks (implicit)
 Can only be equipped if you are wielding a Bow.
 ");
 
-        Assert.Equal(ItemClass.Quiver, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Quiver, actual.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Fire Quiver", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -159,7 +159,7 @@ Item Level: 66
 +14 to Evasion Rating (desecrated)
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Boots, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Bastion Sabatons", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -210,7 +210,7 @@ Corrupted
 Note: ~b/o 980 divine
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Boots, actual.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Atziri's Step", actual.Definition.TradeItem?.Name);
         Assert.Equal("Cinched Boots", actual.Definition.TradeItem?.Type);

@@ -10,7 +10,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
@@ -51,7 +50,6 @@ public class ItemParser
             var item = new Item(Game, text);
 
             // These properties are required for later parsing steps
-            propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
             itemDefinitionParser.Parse(item);

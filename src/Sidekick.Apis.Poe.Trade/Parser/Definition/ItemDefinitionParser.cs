@@ -66,7 +66,7 @@ public class ItemDefinitionParser(
 
         void ParseVaalGem()
         {
-            var canBeVaalGem = item.Properties.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
+            var canBeVaalGem = item.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
             if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
             var vaalGem = GetDefinition(item.Text.Blocks[5].Lines[0].Text);

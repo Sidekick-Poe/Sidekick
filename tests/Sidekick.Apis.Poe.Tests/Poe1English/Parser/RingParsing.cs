@@ -33,7 +33,7 @@ Adds 8 to 13 Physical Damage to Attacks
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
 
@@ -77,7 +77,7 @@ While Berek slept.""
 - Berek and the Untamed
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.ItemClass);
         Assert.False(actual.Properties.Unidentified);
     }
 
@@ -108,7 +108,7 @@ History teaches humility.
 Note: ~b/o 2 chaos
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
         Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
@@ -141,7 +141,7 @@ History teaches humility.
 Note: ~b/o 20 chaos
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
         Assert.Equal("Sapphire Ring", actual.Definition.TradeItem?.Type);

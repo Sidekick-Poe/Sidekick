@@ -84,7 +84,7 @@ public class PseudoParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
+        if (!ItemClassConstants.WithStats.Contains(item.ItemClass)) return [];
 
         var result = new List<TradeFilter>();
         foreach (var stat in item.PseudoStats)

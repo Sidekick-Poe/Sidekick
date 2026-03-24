@@ -41,7 +41,7 @@ Can be used in a personal Map Device to open portals to the Temple of Atzoatl in
 Note: ~price 1.29 exalted
 ");
 
-        Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.MapFragment, actual.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Chronicle of Atzoatl", actual.Definition.TradeItem?.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);

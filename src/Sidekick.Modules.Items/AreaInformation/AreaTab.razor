@@ -27,11 +27,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Valid = Item.Properties.ItemClass == ItemClass.Map || Item.Properties.ItemClass == ItemClass.Waystone;
+        Valid = Item.ItemClass == ItemClass.Map || Item.ItemClass == ItemClass.Waystone;
 
         if (Valid) await CurrentTabChanged.InvokeAsync("area");
 
         await base.OnInitializedAsync();
     }
-    
+
 }

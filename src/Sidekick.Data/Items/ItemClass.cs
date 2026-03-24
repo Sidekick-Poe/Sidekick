@@ -5,6 +5,9 @@ public enum ItemClass
 {
     Unknown = 0,
 
+    [EnumValue("RemovedItem", key: "Game")]
+    RemovedItem,
+
     [EnumValue("currency")]
     [EnumValue("Currency", key: "Game")]
     [EnumValue("StackableCurrency", key: "Game")]
@@ -68,7 +71,6 @@ public enum ItemClass
     Trinket,
 
     [EnumValue("currency.heistobjective")]
-    [EnumValue("HeistObjective", key: "Game")]
     HeistObjective,
 
     [EnumValue("currency.omen")]
@@ -81,6 +83,7 @@ public enum ItemClass
 
     [EnumValue("flask")]
     [EnumValue("Flask", key: "Game")]
+    [EnumValue("UtilityFlask", key: "Game")]
     Flask,
 
     [EnumValue("flask.life")]
@@ -206,6 +209,7 @@ public enum ItemClass
 
     [EnumValue("weapon.onesword")]
     [EnumValue("One Hand Sword", key: "Game")]
+    [EnumValue("Thrusting One Hand Sword", key: "Game")]
     OneHandSword,
 
     [EnumValue("weapon.sceptre")]
@@ -268,12 +272,14 @@ public enum ItemClass
     SanctumResearch,
 
     [EnumValue("idol")]
+    [EnumValue("AtlasRelic", key: "Game")]
     Idol,
 
     [EnumValue("graft")]
     Graft,
 
     [EnumValue("wombgift")]
+    [EnumValue("BrequelFruit", key: "Game")]
     Wombgift,
 
     [EnumValue("currency.incubator")]

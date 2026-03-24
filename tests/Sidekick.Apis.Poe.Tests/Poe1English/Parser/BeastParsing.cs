@@ -31,7 +31,7 @@ Aspect of the Hellion
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Farric Flame Hellion Alpha", actual.Definition.TradeItem?.Type);
@@ -83,7 +83,7 @@ Summons Apes from Trees
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Farric Chieftain", actual.Definition.TradeItem?.Type);
     }

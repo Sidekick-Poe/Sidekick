@@ -23,9 +23,9 @@ public class RequiresIntelligenceProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            item.Properties.ItemClass != ItemClass.Graft) return;
+        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
+            item.ItemClass != ItemClass.Graft) return;
 
         foreach (var block in item.Text.Blocks)
         {

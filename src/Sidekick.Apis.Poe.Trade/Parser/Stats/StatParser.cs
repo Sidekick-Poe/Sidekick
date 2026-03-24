@@ -44,7 +44,7 @@ public class StatParser
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return;
+        if (!ItemClassConstants.WithStats.Contains(item.ItemClass)) return;
 
         var stats = MatchStats().ToList();
         item.Stats.Clear();
@@ -78,7 +78,7 @@ public class StatParser
 
         IEnumerable<StatDefinition> FilterDefinitions()
         {
-            return item.Properties.ItemClass switch
+            return item.ItemClass switch
             {
                 ItemClass.ActiveGem => Definitions.Where(x => x.TradeStats.Any(y => y.Category is StatCategory.Imbued)),
                 _ => Definitions,
@@ -250,7 +250,7 @@ public class StatParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
+        if (!ItemClassConstants.WithStats.Contains(item.ItemClass)) return [];
 
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 

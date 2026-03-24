@@ -21,7 +21,7 @@ public class BlightedProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass != ItemClass.Map) return;
+        if (item.ItemClass != ItemClass.Map) return;
 
         item.Properties.Blighted = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
     }

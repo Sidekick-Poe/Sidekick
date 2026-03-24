@@ -63,7 +63,7 @@ public static class EnumExtensions
         return default;
     }
 
-    public static TAttribute? GetEnumValueAttribute<TAttribute>(this Enum value) where TAttribute : Attribute
+    public static TAttribute? FindAttribute<TAttribute>(this Enum value) where TAttribute : Attribute
     {
         var field = value.GetType().GetField(value.ToString());
         return field?.GetCustomAttributes(typeof(TAttribute), false).FirstOrDefault() as TAttribute;

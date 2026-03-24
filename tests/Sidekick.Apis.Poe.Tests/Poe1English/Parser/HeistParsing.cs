@@ -32,7 +32,7 @@ Item Level: 69
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistTool, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.HeistTool, actual.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Basic Disguise Kit", actual.Definition.TradeItem?.Type);
     }
@@ -56,7 +56,7 @@ Item Level: 67
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistUtility, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.HeistUtility, actual.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Torn Cloak", actual.Definition.TradeItem?.Type);
     }
@@ -80,7 +80,7 @@ Item Level: 73
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistReward, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.HeistReward, actual.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Silver Brooch", actual.Definition.TradeItem?.Type);
     }
@@ -111,7 +111,7 @@ Grants Level 10 Anger Skill
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistWeapon, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.HeistWeapon, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Rough Sharpening Stone", actual.Definition.TradeItem?.Type);
     }
@@ -130,7 +130,7 @@ Such a gift will set me apart from all other suitors.""
 Can be exchanged with Faustus, the Fence in The Rogue Harbour
 ");
 
-        Assert.Equal(ItemClass.HeistObjective, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.HeistObjective, actual.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Golden Napuatzi Idol", actual.Definition.TradeItem?.Type);
     }
@@ -157,7 +157,7 @@ You must find the sculpture The Catch in a Smuggler's Den or Underbelly Blueprin
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Trinket, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Trinket, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Thief's Trinket", actual.Definition.TradeItem?.Type);
         Assert.True(actual.Properties.Corrupted);

@@ -22,16 +22,16 @@ public class ItemLevelProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass) &&
-            item.Properties.ItemClass != ItemClass.SanctumRelic &&
-            item.Properties.ItemClass != ItemClass.SanctumResearch &&
-            item.Properties.ItemClass != ItemClass.Wombgift &&
-            item.Properties.ItemClass != ItemClass.Graft) return;
+        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.ItemClass) &&
+            !ItemClassConstants.Areas.Contains(item.ItemClass) &&
+            item.ItemClass != ItemClass.SanctumRelic &&
+            item.ItemClass != ItemClass.SanctumResearch &&
+            item.ItemClass != ItemClass.Wombgift &&
+            item.ItemClass != ItemClass.Graft) return;
 
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }

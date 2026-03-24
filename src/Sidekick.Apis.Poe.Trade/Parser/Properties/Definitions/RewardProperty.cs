@@ -24,7 +24,7 @@ public class RewardProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass != ItemClass.Map) return;
+        if (item.ItemClass != ItemClass.Map) return;
 
         if (game == GameType.PathOfExile2) return;
 

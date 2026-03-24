@@ -106,7 +106,7 @@ Unbridled, overwhelming violence.""
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Daresso's Defiance", actual.Definition.TradeItem?.Name);
         Assert.Equal("Full Dragonscale", actual.Definition.TradeItem?.Type);

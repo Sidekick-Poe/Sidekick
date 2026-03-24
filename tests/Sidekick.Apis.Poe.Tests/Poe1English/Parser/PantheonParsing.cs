@@ -30,7 +30,7 @@ Can be used in a personal Map Device, allowing you to capture the Soul of the Ma
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.MapFragment, actual.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Divine Vessel", actual.Definition.TradeItem?.Type);
     }

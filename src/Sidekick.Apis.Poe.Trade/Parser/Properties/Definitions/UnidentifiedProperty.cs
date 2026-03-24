@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -21,24 +20,24 @@ public class UnidentifiedProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.ItemClass) &&
+            !ItemClassConstants.Areas.Contains(item.ItemClass)) return;
 
         item.Properties.Unidentified = GetBool(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return Task.FromResult<TradeFilter?>(null);
+        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.ItemClass) &&
+            !ItemClassConstants.Areas.Contains(item.ItemClass)) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new UnidentifiedFilter
         {

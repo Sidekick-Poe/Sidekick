@@ -43,7 +43,7 @@ public class NinjaStashProvider(
                                        stats);
         }
 
-        if (item.Properties.MapTier > 0 || item.Properties.ItemClass == ItemClass.Map)
+        if (item.Properties.MapTier > 0 || item.ItemClass == ItemClass.Map)
         {
             return await GetMapInfo(item.Invariant,
                                     item.Properties.MapTier);
