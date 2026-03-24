@@ -1,1732 +1,2487 @@
-[
-  {
-    "id": "status_filters",
-    "filters": [
-      {
-        "id": "status",
-        "option": {
-          "options": [
-            {
-              "id": "available",
-              "text": "Instant Buyout and In Person"
-            },
-            {
-              "id": "securable",
-              "text": "Instant Buyout"
-            },
-            {
-              "id": "onlineleague",
-              "text": "In Person (Online in League)"
-            },
-            {
-              "id": "online",
-              "text": "In Person (Online)"
-            },
-            {
-              "id": "any",
-              "text": "Any"
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "id": "status_filters",
+      "filters": {
+        "$id": "3",
+        "$values": [
+          {
+            "$id": "4",
+            "id": "status",
+            "option": {
+              "$id": "5",
+              "options": {
+                "$id": "6",
+                "$values": [
+                  {
+                    "$id": "7",
+                    "id": "available",
+                    "text": "Instant Buyout and In Person"
+                  },
+                  {
+                    "$id": "8",
+                    "id": "securable",
+                    "text": "Instant Buyout"
+                  },
+                  {
+                    "$id": "9",
+                    "id": "onlineleague",
+                    "text": "In Person (Online in League)"
+                  },
+                  {
+                    "$id": "10",
+                    "id": "online",
+                    "text": "In Person (Online)"
+                  },
+                  {
+                    "$id": "11",
+                    "id": "any",
+                    "text": "Any"
+                  }
+                ]
+              }
             }
-          ]
-        }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "type_filters",
-    "title": "Type Filters",
-    "filters": [
-      {
-        "id": "category",
-        "text": "Item Category",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "weapon",
-              "text": "Any Weapon"
-            },
-            {
-              "id": "weapon.one",
-              "text": "One-Handed Weapon"
-            },
-            {
-              "id": "weapon.onemelee",
-              "text": "One-Handed Melee Weapon"
-            },
-            {
-              "id": "weapon.twomelee",
-              "text": "Two-Handed Melee Weapon"
-            },
-            {
-              "id": "weapon.bow",
-              "text": "Bow"
-            },
-            {
-              "id": "weapon.claw",
-              "text": "Claw"
-            },
-            {
-              "id": "weapon.dagger",
-              "text": "Any Dagger"
-            },
-            {
-              "id": "weapon.basedagger",
-              "text": "Base Dagger"
-            },
-            {
-              "id": "weapon.runedagger",
-              "text": "Rune Dagger"
-            },
-            {
-              "id": "weapon.oneaxe",
-              "text": "One-Handed Axe"
-            },
-            {
-              "id": "weapon.onesword",
-              "text": "Any One-Handed Sword"
-            },
-            {
-              "id": "weapon.basesword",
-              "text": "Base One-Handed Sword"
-            },
-            {
-              "id": "weapon.rapier",
-              "text": "Rapier"
-            },
-            {
-              "id": "weapon.onemace",
-              "text": "Any One-Handed Mace"
-            },
-            {
-              "id": "weapon.basemace",
-              "text": "Base One-Handed Mace"
-            },
-            {
-              "id": "weapon.sceptre",
-              "text": "Sceptre"
-            },
-            {
-              "id": "weapon.staff",
-              "text": "Any Staff"
-            },
-            {
-              "id": "weapon.basestaff",
-              "text": "Base Staff"
-            },
-            {
-              "id": "weapon.warstaff",
-              "text": "Warstaff"
-            },
-            {
-              "id": "weapon.twoaxe",
-              "text": "Two-Handed Axe"
-            },
-            {
-              "id": "weapon.twomace",
-              "text": "Two-Handed Mace"
-            },
-            {
-              "id": "weapon.twosword",
-              "text": "Two-Handed Sword"
-            },
-            {
-              "id": "weapon.wand",
-              "text": "Wand"
-            },
-            {
-              "id": "weapon.rod",
-              "text": "Fishing Rod"
-            },
-            {
-              "id": "armour",
-              "text": "Any Armour"
-            },
-            {
-              "id": "armour.chest",
-              "text": "Body Armour"
-            },
-            {
-              "id": "armour.boots",
-              "text": "Boots"
-            },
-            {
-              "id": "armour.gloves",
-              "text": "Gloves"
-            },
-            {
-              "id": "armour.helmet",
-              "text": "Helmet"
-            },
-            {
-              "id": "armour.shield",
-              "text": "Shield"
-            },
-            {
-              "id": "armour.quiver",
-              "text": "Quiver"
-            },
-            {
-              "id": "accessory",
-              "text": "Any Accessory"
-            },
-            {
-              "id": "accessory.amulet",
-              "text": "Amulet"
-            },
-            {
-              "id": "accessory.belt",
-              "text": "Belt"
-            },
-            {
-              "id": "accessory.ring",
-              "text": "Ring"
-            },
-            {
-              "id": "accessory.trinket",
-              "text": "Trinket"
-            },
-            {
-              "id": "gem",
-              "text": "Any Gem"
-            },
-            {
-              "id": "gem.activegem",
-              "text": "Skill Gem"
-            },
-            {
-              "id": "gem.supportgem",
-              "text": "Support Gem"
-            },
-            {
-              "id": "gem.supportgemplus",
-              "text": "Awakened Support Gem"
-            },
-            {
-              "id": "jewel",
-              "text": "Any Jewel"
-            },
-            {
-              "id": "jewel.base",
-              "text": "Base Jewel"
-            },
-            {
-              "id": "jewel.abyss",
-              "text": "Abyss Jewel"
-            },
-            {
-              "id": "jewel.cluster",
-              "text": "Cluster Jewel"
-            },
-            {
-              "id": "flask",
-              "text": "Flask"
-            },
-            {
-              "id": "map",
-              "text": "Map"
-            },
-            {
-              "id": "map.fragment",
-              "text": "Map Fragment"
-            },
-            {
-              "id": "map.breachstone",
-              "text": "Breachstone"
-            },
-            {
-              "id": "map.invitation",
-              "text": "Maven\u0027s Invitation"
-            },
-            {
-              "id": "map.scarab",
-              "text": "Scarab"
-            },
-            {
-              "id": "leaguestone",
-              "text": "Leaguestone"
-            },
-            {
-              "id": "memoryline",
-              "text": "Memory Line"
-            },
-            {
-              "id": "card",
-              "text": "Divination Card"
-            },
-            {
-              "id": "monster.beast",
-              "text": "Captured Beast"
-            },
-            {
-              "id": "monster.yellowbeast",
-              "text": "Yellow Beast"
-            },
-            {
-              "id": "monster.redbeast",
-              "text": "Red Beast"
-            },
-            {
-              "id": "heistequipment",
-              "text": "Any Heist Equipment"
-            },
-            {
-              "id": "heistequipment.heistweapon",
-              "text": "Heist Gear"
-            },
-            {
-              "id": "heistequipment.heisttool",
-              "text": "Heist Tool"
-            },
-            {
-              "id": "heistequipment.heistutility",
-              "text": "Heist Cloak"
-            },
-            {
-              "id": "heistequipment.heistreward",
-              "text": "Heist Brooch"
-            },
-            {
-              "id": "heistmission",
-              "text": "Any Heist Mission"
-            },
-            {
-              "id": "heistmission.contract",
-              "text": "Heist Contract"
-            },
-            {
-              "id": "heistmission.blueprint",
-              "text": "Heist Blueprint"
-            },
-            {
-              "id": "logbook",
-              "text": "Any Expedition Logbook"
-            },
-            {
-              "id": "sanctum.research",
-              "text": "Sanctum Research"
-            },
-            {
-              "id": "sanctum.relic",
-              "text": "Sanctum Relic"
-            },
-            {
-              "id": "tincture",
-              "text": "Any Tincture"
-            },
-            {
-              "id": "corpse",
-              "text": "Any Corpse"
-            },
-            {
-              "id": "idol",
-              "text": "Any Idol"
-            },
-            {
-              "id": "graft",
-              "text": "Any Graft"
-            },
-            {
-              "id": "wombgift",
-              "text": "Any Wombgift"
-            },
-            {
-              "id": "currency",
-              "text": "Any Currency"
-            },
-            {
-              "id": "currency.piece",
-              "text": "Unique Fragment"
-            },
-            {
-              "id": "currency.resonator",
-              "text": "Resonator"
-            },
-            {
-              "id": "currency.fossil",
-              "text": "Fossil"
-            },
-            {
-              "id": "currency.incubator",
-              "text": "Incubator"
-            },
-            {
-              "id": "currency.heistobjective",
-              "text": "Heist Target"
-            },
-            {
-              "id": "currency.omen",
-              "text": "Omen"
-            },
-            {
-              "id": "currency.tattoo",
-              "text": "Tattoo"
+    },
+    {
+      "$id": "12",
+      "id": "type_filters",
+      "title": "Type Filters",
+      "filters": {
+        "$id": "13",
+        "$values": [
+          {
+            "$id": "14",
+            "id": "category",
+            "text": "Item Category",
+            "option": {
+              "$id": "15",
+              "options": {
+                "$id": "16",
+                "$values": [
+                  {
+                    "$id": "17",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "18",
+                    "id": "weapon",
+                    "text": "Any Weapon"
+                  },
+                  {
+                    "$id": "19",
+                    "id": "weapon.one",
+                    "text": "One-Handed Weapon"
+                  },
+                  {
+                    "$id": "20",
+                    "id": "weapon.onemelee",
+                    "text": "One-Handed Melee Weapon"
+                  },
+                  {
+                    "$id": "21",
+                    "id": "weapon.twomelee",
+                    "text": "Two-Handed Melee Weapon"
+                  },
+                  {
+                    "$id": "22",
+                    "id": "weapon.bow",
+                    "text": "Bow"
+                  },
+                  {
+                    "$id": "23",
+                    "id": "weapon.claw",
+                    "text": "Claw"
+                  },
+                  {
+                    "$id": "24",
+                    "id": "weapon.dagger",
+                    "text": "Any Dagger"
+                  },
+                  {
+                    "$id": "25",
+                    "id": "weapon.basedagger",
+                    "text": "Base Dagger"
+                  },
+                  {
+                    "$id": "26",
+                    "id": "weapon.runedagger",
+                    "text": "Rune Dagger"
+                  },
+                  {
+                    "$id": "27",
+                    "id": "weapon.oneaxe",
+                    "text": "One-Handed Axe"
+                  },
+                  {
+                    "$id": "28",
+                    "id": "weapon.onesword",
+                    "text": "Any One-Handed Sword"
+                  },
+                  {
+                    "$id": "29",
+                    "id": "weapon.basesword",
+                    "text": "Base One-Handed Sword"
+                  },
+                  {
+                    "$id": "30",
+                    "id": "weapon.rapier",
+                    "text": "Rapier"
+                  },
+                  {
+                    "$id": "31",
+                    "id": "weapon.onemace",
+                    "text": "Any One-Handed Mace"
+                  },
+                  {
+                    "$id": "32",
+                    "id": "weapon.basemace",
+                    "text": "Base One-Handed Mace"
+                  },
+                  {
+                    "$id": "33",
+                    "id": "weapon.sceptre",
+                    "text": "Sceptre"
+                  },
+                  {
+                    "$id": "34",
+                    "id": "weapon.staff",
+                    "text": "Any Staff"
+                  },
+                  {
+                    "$id": "35",
+                    "id": "weapon.basestaff",
+                    "text": "Base Staff"
+                  },
+                  {
+                    "$id": "36",
+                    "id": "weapon.warstaff",
+                    "text": "Warstaff"
+                  },
+                  {
+                    "$id": "37",
+                    "id": "weapon.twoaxe",
+                    "text": "Two-Handed Axe"
+                  },
+                  {
+                    "$id": "38",
+                    "id": "weapon.twomace",
+                    "text": "Two-Handed Mace"
+                  },
+                  {
+                    "$id": "39",
+                    "id": "weapon.twosword",
+                    "text": "Two-Handed Sword"
+                  },
+                  {
+                    "$id": "40",
+                    "id": "weapon.wand",
+                    "text": "Wand"
+                  },
+                  {
+                    "$id": "41",
+                    "id": "weapon.rod",
+                    "text": "Fishing Rod"
+                  },
+                  {
+                    "$id": "42",
+                    "id": "armour",
+                    "text": "Any Armour"
+                  },
+                  {
+                    "$id": "43",
+                    "id": "armour.chest",
+                    "text": "Body Armour"
+                  },
+                  {
+                    "$id": "44",
+                    "id": "armour.boots",
+                    "text": "Boots"
+                  },
+                  {
+                    "$id": "45",
+                    "id": "armour.gloves",
+                    "text": "Gloves"
+                  },
+                  {
+                    "$id": "46",
+                    "id": "armour.helmet",
+                    "text": "Helmet"
+                  },
+                  {
+                    "$id": "47",
+                    "id": "armour.shield",
+                    "text": "Shield"
+                  },
+                  {
+                    "$id": "48",
+                    "id": "armour.quiver",
+                    "text": "Quiver"
+                  },
+                  {
+                    "$id": "49",
+                    "id": "accessory",
+                    "text": "Any Accessory"
+                  },
+                  {
+                    "$id": "50",
+                    "id": "accessory.amulet",
+                    "text": "Amulet"
+                  },
+                  {
+                    "$id": "51",
+                    "id": "accessory.belt",
+                    "text": "Belt"
+                  },
+                  {
+                    "$id": "52",
+                    "id": "accessory.ring",
+                    "text": "Ring"
+                  },
+                  {
+                    "$id": "53",
+                    "id": "accessory.trinket",
+                    "text": "Trinket"
+                  },
+                  {
+                    "$id": "54",
+                    "id": "gem",
+                    "text": "Any Gem"
+                  },
+                  {
+                    "$id": "55",
+                    "id": "gem.activegem",
+                    "text": "Skill Gem"
+                  },
+                  {
+                    "$id": "56",
+                    "id": "gem.supportgem",
+                    "text": "Support Gem"
+                  },
+                  {
+                    "$id": "57",
+                    "id": "gem.supportgemplus",
+                    "text": "Awakened Support Gem"
+                  },
+                  {
+                    "$id": "58",
+                    "id": "jewel",
+                    "text": "Any Jewel"
+                  },
+                  {
+                    "$id": "59",
+                    "id": "jewel.base",
+                    "text": "Base Jewel"
+                  },
+                  {
+                    "$id": "60",
+                    "id": "jewel.abyss",
+                    "text": "Abyss Jewel"
+                  },
+                  {
+                    "$id": "61",
+                    "id": "jewel.cluster",
+                    "text": "Cluster Jewel"
+                  },
+                  {
+                    "$id": "62",
+                    "id": "flask",
+                    "text": "Flask"
+                  },
+                  {
+                    "$id": "63",
+                    "id": "map",
+                    "text": "Map"
+                  },
+                  {
+                    "$id": "64",
+                    "id": "map.fragment",
+                    "text": "Map Fragment"
+                  },
+                  {
+                    "$id": "65",
+                    "id": "map.breachstone",
+                    "text": "Breachstone"
+                  },
+                  {
+                    "$id": "66",
+                    "id": "map.invitation",
+                    "text": "Maven\u0027s Invitation"
+                  },
+                  {
+                    "$id": "67",
+                    "id": "map.scarab",
+                    "text": "Scarab"
+                  },
+                  {
+                    "$id": "68",
+                    "id": "leaguestone",
+                    "text": "Leaguestone"
+                  },
+                  {
+                    "$id": "69",
+                    "id": "memoryline",
+                    "text": "Memory Line"
+                  },
+                  {
+                    "$id": "70",
+                    "id": "card",
+                    "text": "Divination Card"
+                  },
+                  {
+                    "$id": "71",
+                    "id": "monster.beast",
+                    "text": "Captured Beast"
+                  },
+                  {
+                    "$id": "72",
+                    "id": "monster.yellowbeast",
+                    "text": "Yellow Beast"
+                  },
+                  {
+                    "$id": "73",
+                    "id": "monster.redbeast",
+                    "text": "Red Beast"
+                  },
+                  {
+                    "$id": "74",
+                    "id": "heistequipment",
+                    "text": "Any Heist Equipment"
+                  },
+                  {
+                    "$id": "75",
+                    "id": "heistequipment.heistweapon",
+                    "text": "Heist Gear"
+                  },
+                  {
+                    "$id": "76",
+                    "id": "heistequipment.heisttool",
+                    "text": "Heist Tool"
+                  },
+                  {
+                    "$id": "77",
+                    "id": "heistequipment.heistutility",
+                    "text": "Heist Cloak"
+                  },
+                  {
+                    "$id": "78",
+                    "id": "heistequipment.heistreward",
+                    "text": "Heist Brooch"
+                  },
+                  {
+                    "$id": "79",
+                    "id": "heistmission",
+                    "text": "Any Heist Mission"
+                  },
+                  {
+                    "$id": "80",
+                    "id": "heistmission.contract",
+                    "text": "Heist Contract"
+                  },
+                  {
+                    "$id": "81",
+                    "id": "heistmission.blueprint",
+                    "text": "Heist Blueprint"
+                  },
+                  {
+                    "$id": "82",
+                    "id": "logbook",
+                    "text": "Any Expedition Logbook"
+                  },
+                  {
+                    "$id": "83",
+                    "id": "sanctum.research",
+                    "text": "Sanctum Research"
+                  },
+                  {
+                    "$id": "84",
+                    "id": "sanctum.relic",
+                    "text": "Sanctum Relic"
+                  },
+                  {
+                    "$id": "85",
+                    "id": "tincture",
+                    "text": "Any Tincture"
+                  },
+                  {
+                    "$id": "86",
+                    "id": "corpse",
+                    "text": "Any Corpse"
+                  },
+                  {
+                    "$id": "87",
+                    "id": "idol",
+                    "text": "Any Idol"
+                  },
+                  {
+                    "$id": "88",
+                    "id": "graft",
+                    "text": "Any Graft"
+                  },
+                  {
+                    "$id": "89",
+                    "id": "wombgift",
+                    "text": "Any Wombgift"
+                  },
+                  {
+                    "$id": "90",
+                    "id": "currency",
+                    "text": "Any Currency"
+                  },
+                  {
+                    "$id": "91",
+                    "id": "currency.piece",
+                    "text": "Unique Fragment"
+                  },
+                  {
+                    "$id": "92",
+                    "id": "currency.resonator",
+                    "text": "Resonator"
+                  },
+                  {
+                    "$id": "93",
+                    "id": "currency.fossil",
+                    "text": "Fossil"
+                  },
+                  {
+                    "$id": "94",
+                    "id": "currency.incubator",
+                    "text": "Incubator"
+                  },
+                  {
+                    "$id": "95",
+                    "id": "currency.heistobjective",
+                    "text": "Heist Target"
+                  },
+                  {
+                    "$id": "96",
+                    "id": "currency.omen",
+                    "text": "Omen"
+                  },
+                  {
+                    "$id": "97",
+                    "id": "currency.tattoo",
+                    "text": "Tattoo"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "rarity",
-        "text": "Item Rarity",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "normal",
-              "text": "Normal"
-            },
-            {
-              "id": "magic",
-              "text": "Magic"
-            },
-            {
-              "id": "rare",
-              "text": "Rare"
-            },
-            {
-              "id": "unique",
-              "text": "Unique"
-            },
-            {
-              "id": "uniquefoil",
-              "text": "Unique (Foil)"
-            },
-            {
-              "id": "nonunique",
-              "text": "Any Non-Unique"
+          },
+          {
+            "$id": "98",
+            "id": "rarity",
+            "text": "Item Rarity",
+            "option": {
+              "$id": "99",
+              "options": {
+                "$id": "100",
+                "$values": [
+                  {
+                    "$id": "101",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "102",
+                    "id": "normal",
+                    "text": "Normal"
+                  },
+                  {
+                    "$id": "103",
+                    "id": "magic",
+                    "text": "Magic"
+                  },
+                  {
+                    "$id": "104",
+                    "id": "rare",
+                    "text": "Rare"
+                  },
+                  {
+                    "$id": "105",
+                    "id": "unique",
+                    "text": "Unique"
+                  },
+                  {
+                    "$id": "106",
+                    "id": "uniquefoil",
+                    "text": "Unique (Foil)"
+                  },
+                  {
+                    "$id": "107",
+                    "id": "nonunique",
+                    "text": "Any Non-Unique"
+                  }
+                ]
+              }
             }
-          ]
-        }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "weapon_filters",
-    "title": "Weapon Filters",
-    "filters": [
-      {
-        "id": "damage",
-        "text": "Damage",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "aps",
-        "text": "Attacks per Second",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "crit",
-        "text": "Critical Chance",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "dps",
-        "text": "Damage per Second",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "pdps",
-        "text": "Physical DPS",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "edps",
-        "text": "Elemental DPS",
-        "option": {
-          "options": []
-        }
+    },
+    {
+      "$id": "108",
+      "id": "weapon_filters",
+      "title": "Weapon Filters",
+      "filters": {
+        "$id": "109",
+        "$values": [
+          {
+            "$id": "110",
+            "id": "damage",
+            "text": "Damage",
+            "option": {
+              "$id": "111",
+              "options": {
+                "$id": "112",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "113",
+            "id": "aps",
+            "text": "Attacks per Second",
+            "option": {
+              "$id": "114",
+              "options": {
+                "$id": "115",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "116",
+            "id": "crit",
+            "text": "Critical Chance",
+            "option": {
+              "$id": "117",
+              "options": {
+                "$id": "118",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "119",
+            "id": "dps",
+            "text": "Damage per Second",
+            "option": {
+              "$id": "120",
+              "options": {
+                "$id": "121",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "122",
+            "id": "pdps",
+            "text": "Physical DPS",
+            "option": {
+              "$id": "123",
+              "options": {
+                "$id": "124",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "125",
+            "id": "edps",
+            "text": "Elemental DPS",
+            "option": {
+              "$id": "126",
+              "options": {
+                "$id": "127",
+                "$values": []
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "armour_filters",
-    "title": "Armour Filters",
-    "filters": [
-      {
-        "id": "ar",
-        "text": "Armour",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "ev",
-        "text": "Evasion",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "es",
-        "text": "Energy Shield",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "ward",
-        "text": "Ward",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "block",
-        "text": "Block",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "base_defence_percentile",
-        "text": "Base Percentile",
-        "option": {
-          "options": []
-        }
+    },
+    {
+      "$id": "128",
+      "id": "armour_filters",
+      "title": "Armour Filters",
+      "filters": {
+        "$id": "129",
+        "$values": [
+          {
+            "$id": "130",
+            "id": "ar",
+            "text": "Armour",
+            "option": {
+              "$id": "131",
+              "options": {
+                "$id": "132",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "133",
+            "id": "ev",
+            "text": "Evasion",
+            "option": {
+              "$id": "134",
+              "options": {
+                "$id": "135",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "136",
+            "id": "es",
+            "text": "Energy Shield",
+            "option": {
+              "$id": "137",
+              "options": {
+                "$id": "138",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "139",
+            "id": "ward",
+            "text": "Ward",
+            "option": {
+              "$id": "140",
+              "options": {
+                "$id": "141",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "142",
+            "id": "block",
+            "text": "Block",
+            "option": {
+              "$id": "143",
+              "options": {
+                "$id": "144",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "145",
+            "id": "base_defence_percentile",
+            "text": "Base Percentile",
+            "option": {
+              "$id": "146",
+              "options": {
+                "$id": "147",
+                "$values": []
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "socket_filters",
-    "title": "Socket Filters",
-    "filters": [
-      {
-        "id": "sockets",
-        "text": "Sockets",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "links",
-        "text": "Links",
-        "option": {
-          "options": []
-        }
+    },
+    {
+      "$id": "148",
+      "id": "socket_filters",
+      "title": "Socket Filters",
+      "filters": {
+        "$id": "149",
+        "$values": [
+          {
+            "$id": "150",
+            "id": "sockets",
+            "text": "Sockets",
+            "option": {
+              "$id": "151",
+              "options": {
+                "$id": "152",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "153",
+            "id": "links",
+            "text": "Links",
+            "option": {
+              "$id": "154",
+              "options": {
+                "$id": "155",
+                "$values": []
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "req_filters",
-    "title": "Requirements",
-    "filters": [
-      {
-        "id": "lvl",
-        "text": "Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "str",
-        "text": "Strength",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "dex",
-        "text": "Dexterity",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "int",
-        "text": "Intelligence",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "class",
-        "text": "Character Class",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "scion",
-              "text": "Scion"
-            },
-            {
-              "id": "marauder",
-              "text": "Marauder"
-            },
-            {
-              "id": "ranger",
-              "text": "Ranger"
-            },
-            {
-              "id": "witch",
-              "text": "Witch"
-            },
-            {
-              "id": "duelist",
-              "text": "Duelist"
-            },
-            {
-              "id": "templar",
-              "text": "Templar"
-            },
-            {
-              "id": "shadow",
-              "text": "Shadow"
+    },
+    {
+      "$id": "156",
+      "id": "req_filters",
+      "title": "Requirements",
+      "filters": {
+        "$id": "157",
+        "$values": [
+          {
+            "$id": "158",
+            "id": "lvl",
+            "text": "Level",
+            "option": {
+              "$id": "159",
+              "options": {
+                "$id": "160",
+                "$values": []
+              }
             }
-          ]
-        }
+          },
+          {
+            "$id": "161",
+            "id": "str",
+            "text": "Strength",
+            "option": {
+              "$id": "162",
+              "options": {
+                "$id": "163",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "164",
+            "id": "dex",
+            "text": "Dexterity",
+            "option": {
+              "$id": "165",
+              "options": {
+                "$id": "166",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "167",
+            "id": "int",
+            "text": "Intelligence",
+            "option": {
+              "$id": "168",
+              "options": {
+                "$id": "169",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "170",
+            "id": "class",
+            "text": "Character Class",
+            "option": {
+              "$id": "171",
+              "options": {
+                "$id": "172",
+                "$values": [
+                  {
+                    "$id": "173",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "174",
+                    "id": "scion",
+                    "text": "Scion"
+                  },
+                  {
+                    "$id": "175",
+                    "id": "marauder",
+                    "text": "Marauder"
+                  },
+                  {
+                    "$id": "176",
+                    "id": "ranger",
+                    "text": "Ranger"
+                  },
+                  {
+                    "$id": "177",
+                    "id": "witch",
+                    "text": "Witch"
+                  },
+                  {
+                    "$id": "178",
+                    "id": "duelist",
+                    "text": "Duelist"
+                  },
+                  {
+                    "$id": "179",
+                    "id": "templar",
+                    "text": "Templar"
+                  },
+                  {
+                    "$id": "180",
+                    "id": "shadow",
+                    "text": "Shadow"
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "map_filters",
-    "title": "Map Filters",
-    "filters": [
-      {
-        "id": "map_tier",
-        "text": "Map Tier",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_packsize",
-        "text": "Map Packsize",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_iiq",
-        "text": "Map IIQ",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_iir",
-        "text": "Map IIR",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "area_level",
-        "text": "Area Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_series",
-        "text": "Map Series",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "current",
-              "text": "Current"
-            },
-            {
-              "id": "keepers",
-              "text": "Keepers"
-            },
-            {
-              "id": "mercenary",
-              "text": "Mercenaries"
-            },
-            {
-              "id": "settlers",
-              "text": "Settlers"
-            },
-            {
-              "id": "necropolis",
-              "text": "Necropolis"
-            },
-            {
-              "id": "azmeri",
-              "text": "Affliction"
-            },
-            {
-              "id": "ancestor",
-              "text": "Ancestor"
-            },
-            {
-              "id": "crucible",
-              "text": "Crucible"
-            },
-            {
-              "id": "sanctum",
-              "text": "Sanctum"
-            },
-            {
-              "id": "lake",
-              "text": "Kalandra"
-            },
-            {
-              "id": "sentinel",
-              "text": "Sentinel"
-            },
-            {
-              "id": "archnemesis",
-              "text": "Archnemesis"
-            },
-            {
-              "id": "scourge",
-              "text": "Scourge"
-            },
-            {
-              "id": "expedition",
-              "text": "Expedition"
-            },
-            {
-              "id": "ritual",
-              "text": "Ritual"
-            },
-            {
-              "id": "heist",
-              "text": "Heist"
-            },
-            {
-              "id": "harvest",
-              "text": "Harvest"
-            },
-            {
-              "id": "delirium",
-              "text": "Delirium"
-            },
-            {
-              "id": "metamorph",
-              "text": "Metamorph"
-            },
-            {
-              "id": "blight",
-              "text": "Blight"
-            },
-            {
-              "id": "legion",
-              "text": "Legion"
-            },
-            {
-              "id": "synthesis",
-              "text": "Synthesis"
-            },
-            {
-              "id": "betrayal",
-              "text": "Betrayal"
-            },
-            {
-              "id": "warfortheatlas",
-              "text": "War for the Atlas"
-            },
-            {
-              "id": "atlasofworlds",
-              "text": "Atlas of Worlds"
-            },
-            {
-              "id": "theawakening",
-              "text": "The Awakening"
-            },
-            {
-              "id": "original",
-              "text": "Legacy"
+    },
+    {
+      "$id": "181",
+      "id": "map_filters",
+      "title": "Map Filters",
+      "filters": {
+        "$id": "182",
+        "$values": [
+          {
+            "$id": "183",
+            "id": "map_tier",
+            "text": "Map Tier",
+            "option": {
+              "$id": "184",
+              "options": {
+                "$id": "185",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "map_blighted",
-        "text": "Blighted Map",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "186",
+            "id": "map_packsize",
+            "text": "Map Packsize",
+            "option": {
+              "$id": "187",
+              "options": {
+                "$id": "188",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "map_uberblighted",
-        "text": "Blight-ravaged Map",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "189",
+            "id": "map_iiq",
+            "text": "Map IIQ",
+            "option": {
+              "$id": "190",
+              "options": {
+                "$id": "191",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "map_completion_reward",
-        "text": "Map Completion Reward",
-        "option": {
-          "options": []
-        }
+          },
+          {
+            "$id": "192",
+            "id": "map_iir",
+            "text": "Map IIR",
+            "option": {
+              "$id": "193",
+              "options": {
+                "$id": "194",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "195",
+            "id": "area_level",
+            "text": "Area Level",
+            "option": {
+              "$id": "196",
+              "options": {
+                "$id": "197",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "198",
+            "id": "map_series",
+            "text": "Map Series",
+            "option": {
+              "$id": "199",
+              "options": {
+                "$id": "200",
+                "$values": [
+                  {
+                    "$id": "201",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "202",
+                    "id": "current",
+                    "text": "Current"
+                  },
+                  {
+                    "$id": "203",
+                    "id": "keepers",
+                    "text": "Keepers"
+                  },
+                  {
+                    "$id": "204",
+                    "id": "mercenary",
+                    "text": "Mercenaries"
+                  },
+                  {
+                    "$id": "205",
+                    "id": "settlers",
+                    "text": "Settlers"
+                  },
+                  {
+                    "$id": "206",
+                    "id": "necropolis",
+                    "text": "Necropolis"
+                  },
+                  {
+                    "$id": "207",
+                    "id": "azmeri",
+                    "text": "Affliction"
+                  },
+                  {
+                    "$id": "208",
+                    "id": "ancestor",
+                    "text": "Ancestor"
+                  },
+                  {
+                    "$id": "209",
+                    "id": "crucible",
+                    "text": "Crucible"
+                  },
+                  {
+                    "$id": "210",
+                    "id": "sanctum",
+                    "text": "Sanctum"
+                  },
+                  {
+                    "$id": "211",
+                    "id": "lake",
+                    "text": "Kalandra"
+                  },
+                  {
+                    "$id": "212",
+                    "id": "sentinel",
+                    "text": "Sentinel"
+                  },
+                  {
+                    "$id": "213",
+                    "id": "archnemesis",
+                    "text": "Archnemesis"
+                  },
+                  {
+                    "$id": "214",
+                    "id": "scourge",
+                    "text": "Scourge"
+                  },
+                  {
+                    "$id": "215",
+                    "id": "expedition",
+                    "text": "Expedition"
+                  },
+                  {
+                    "$id": "216",
+                    "id": "ritual",
+                    "text": "Ritual"
+                  },
+                  {
+                    "$id": "217",
+                    "id": "heist",
+                    "text": "Heist"
+                  },
+                  {
+                    "$id": "218",
+                    "id": "harvest",
+                    "text": "Harvest"
+                  },
+                  {
+                    "$id": "219",
+                    "id": "delirium",
+                    "text": "Delirium"
+                  },
+                  {
+                    "$id": "220",
+                    "id": "metamorph",
+                    "text": "Metamorph"
+                  },
+                  {
+                    "$id": "221",
+                    "id": "blight",
+                    "text": "Blight"
+                  },
+                  {
+                    "$id": "222",
+                    "id": "legion",
+                    "text": "Legion"
+                  },
+                  {
+                    "$id": "223",
+                    "id": "synthesis",
+                    "text": "Synthesis"
+                  },
+                  {
+                    "$id": "224",
+                    "id": "betrayal",
+                    "text": "Betrayal"
+                  },
+                  {
+                    "$id": "225",
+                    "id": "warfortheatlas",
+                    "text": "War for the Atlas"
+                  },
+                  {
+                    "$id": "226",
+                    "id": "atlasofworlds",
+                    "text": "Atlas of Worlds"
+                  },
+                  {
+                    "$id": "227",
+                    "id": "theawakening",
+                    "text": "The Awakening"
+                  },
+                  {
+                    "$id": "228",
+                    "id": "original",
+                    "text": "Legacy"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "229",
+            "id": "map_blighted",
+            "text": "Blighted Map",
+            "option": {
+              "$id": "230",
+              "options": {
+                "$id": "231",
+                "$values": [
+                  {
+                    "$id": "232",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "233",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "234",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "235",
+            "id": "map_uberblighted",
+            "text": "Blight-ravaged Map",
+            "option": {
+              "$id": "236",
+              "options": {
+                "$id": "237",
+                "$values": [
+                  {
+                    "$id": "238",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "239",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "240",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "241",
+            "id": "map_completion_reward",
+            "text": "Map Completion Reward",
+            "option": {
+              "$id": "242",
+              "options": {
+                "$id": "243",
+                "$values": []
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "heist_filters",
-    "title": "Heist Filters",
-    "filters": [
-      {
-        "id": "heist_wings",
-        "text": "Wings Revealed",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_max_wings",
-        "text": "Total Wings",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_escape_routes",
-        "text": "Escape Routes Revealed",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_max_escape_routes",
-        "text": "Total Escape Routes",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_reward_rooms",
-        "text": "Reward Rooms Revealed",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_max_reward_rooms",
-        "text": "Total Reward Rooms",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_objective_value",
-        "text": "Contract Objective Value",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "moderate",
-              "text": "Moderate Value"
-            },
-            {
-              "id": "high",
-              "text": "High Value"
-            },
-            {
-              "id": "precious",
-              "text": "Precious"
-            },
-            {
-              "id": "priceless",
-              "text": "Priceless"
+    },
+    {
+      "$id": "244",
+      "id": "heist_filters",
+      "title": "Heist Filters",
+      "filters": {
+        "$id": "245",
+        "$values": [
+          {
+            "$id": "246",
+            "id": "heist_wings",
+            "text": "Wings Revealed",
+            "option": {
+              "$id": "247",
+              "options": {
+                "$id": "248",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "heist_lockpicking",
-        "text": "Lockpicking Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_brute_force",
-        "text": "Brute Force Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_perception",
-        "text": "Perception Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_demolition",
-        "text": "Demolition Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_counter_thaumaturgy",
-        "text": "Counter-Thaum. Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_trap_disarmament",
-        "text": "Trap Disarmament Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_agility",
-        "text": "Agility Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_deception",
-        "text": "Deception Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "heist_engineering",
-        "text": "Engineering Level",
-        "option": {
-          "options": []
-        }
+          },
+          {
+            "$id": "249",
+            "id": "heist_max_wings",
+            "text": "Total Wings",
+            "option": {
+              "$id": "250",
+              "options": {
+                "$id": "251",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "252",
+            "id": "heist_escape_routes",
+            "text": "Escape Routes Revealed",
+            "option": {
+              "$id": "253",
+              "options": {
+                "$id": "254",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "255",
+            "id": "heist_max_escape_routes",
+            "text": "Total Escape Routes",
+            "option": {
+              "$id": "256",
+              "options": {
+                "$id": "257",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "258",
+            "id": "heist_reward_rooms",
+            "text": "Reward Rooms Revealed",
+            "option": {
+              "$id": "259",
+              "options": {
+                "$id": "260",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "261",
+            "id": "heist_max_reward_rooms",
+            "text": "Total Reward Rooms",
+            "option": {
+              "$id": "262",
+              "options": {
+                "$id": "263",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "264",
+            "id": "heist_objective_value",
+            "text": "Contract Objective Value",
+            "option": {
+              "$id": "265",
+              "options": {
+                "$id": "266",
+                "$values": [
+                  {
+                    "$id": "267",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "268",
+                    "id": "moderate",
+                    "text": "Moderate Value"
+                  },
+                  {
+                    "$id": "269",
+                    "id": "high",
+                    "text": "High Value"
+                  },
+                  {
+                    "$id": "270",
+                    "id": "precious",
+                    "text": "Precious"
+                  },
+                  {
+                    "$id": "271",
+                    "id": "priceless",
+                    "text": "Priceless"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "272",
+            "id": "heist_lockpicking",
+            "text": "Lockpicking Level",
+            "option": {
+              "$id": "273",
+              "options": {
+                "$id": "274",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "275",
+            "id": "heist_brute_force",
+            "text": "Brute Force Level",
+            "option": {
+              "$id": "276",
+              "options": {
+                "$id": "277",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "278",
+            "id": "heist_perception",
+            "text": "Perception Level",
+            "option": {
+              "$id": "279",
+              "options": {
+                "$id": "280",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "281",
+            "id": "heist_demolition",
+            "text": "Demolition Level",
+            "option": {
+              "$id": "282",
+              "options": {
+                "$id": "283",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "284",
+            "id": "heist_counter_thaumaturgy",
+            "text": "Counter-Thaum. Level",
+            "option": {
+              "$id": "285",
+              "options": {
+                "$id": "286",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "287",
+            "id": "heist_trap_disarmament",
+            "text": "Trap Disarmament Level",
+            "option": {
+              "$id": "288",
+              "options": {
+                "$id": "289",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "290",
+            "id": "heist_agility",
+            "text": "Agility Level",
+            "option": {
+              "$id": "291",
+              "options": {
+                "$id": "292",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "293",
+            "id": "heist_deception",
+            "text": "Deception Level",
+            "option": {
+              "$id": "294",
+              "options": {
+                "$id": "295",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "296",
+            "id": "heist_engineering",
+            "text": "Engineering Level",
+            "option": {
+              "$id": "297",
+              "options": {
+                "$id": "298",
+                "$values": []
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "sanctum_filters",
-    "title": "Sanctum Filters",
-    "filters": [
-      {
-        "id": "sanctum_resolve",
-        "text": "Resolve",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "sanctum_max_resolve",
-        "text": "Maximum Resolve",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "sanctum_inspiration",
-        "text": "Inspiration",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "sanctum_gold",
-        "text": "Aureus",
-        "option": {
-          "options": []
-        }
+    },
+    {
+      "$id": "299",
+      "id": "sanctum_filters",
+      "title": "Sanctum Filters",
+      "filters": {
+        "$id": "300",
+        "$values": [
+          {
+            "$id": "301",
+            "id": "sanctum_resolve",
+            "text": "Resolve",
+            "option": {
+              "$id": "302",
+              "options": {
+                "$id": "303",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "304",
+            "id": "sanctum_max_resolve",
+            "text": "Maximum Resolve",
+            "option": {
+              "$id": "305",
+              "options": {
+                "$id": "306",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "307",
+            "id": "sanctum_inspiration",
+            "text": "Inspiration",
+            "option": {
+              "$id": "308",
+              "options": {
+                "$id": "309",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "310",
+            "id": "sanctum_gold",
+            "text": "Aureus",
+            "option": {
+              "$id": "311",
+              "options": {
+                "$id": "312",
+                "$values": []
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "ultimatum_filters",
-    "title": "Ultimatum Filters",
-    "filters": [
-      {
-        "id": "ultimatum_challenge",
-        "text": "Challenge Type",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "Exterminate",
-              "text": "Defeat Waves of Enemies"
-            },
-            {
-              "id": "Survival",
-              "text": "Survive"
-            },
-            {
-              "id": "Defense",
-              "text": "Protect the Altar"
-            },
-            {
-              "id": "Conquer",
-              "text": "Stand in the Stone Circles"
+    },
+    {
+      "$id": "313",
+      "id": "ultimatum_filters",
+      "title": "Ultimatum Filters",
+      "filters": {
+        "$id": "314",
+        "$values": [
+          {
+            "$id": "315",
+            "id": "ultimatum_challenge",
+            "text": "Challenge Type",
+            "option": {
+              "$id": "316",
+              "options": {
+                "$id": "317",
+                "$values": [
+                  {
+                    "$id": "318",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "319",
+                    "id": "Exterminate",
+                    "text": "Defeat Waves of Enemies"
+                  },
+                  {
+                    "$id": "320",
+                    "id": "Survival",
+                    "text": "Survive"
+                  },
+                  {
+                    "$id": "321",
+                    "id": "Defense",
+                    "text": "Protect the Altar"
+                  },
+                  {
+                    "$id": "322",
+                    "id": "Conquer",
+                    "text": "Stand in the Stone Circles"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "ultimatum_reward",
-        "text": "Reward Type",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "DoubleCurrency",
-              "text": "Currency"
-            },
-            {
-              "id": "DoubleDivCards",
-              "text": "Divination Cards"
-            },
-            {
-              "id": "MirrorRare",
-              "text": "Mirrored Rare Item"
-            },
-            {
-              "id": "ExchangeUnique",
-              "text": "Unique Item"
+          },
+          {
+            "$id": "323",
+            "id": "ultimatum_reward",
+            "text": "Reward Type",
+            "option": {
+              "$id": "324",
+              "options": {
+                "$id": "325",
+                "$values": [
+                  {
+                    "$id": "326",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "327",
+                    "id": "DoubleCurrency",
+                    "text": "Currency"
+                  },
+                  {
+                    "$id": "328",
+                    "id": "DoubleDivCards",
+                    "text": "Divination Cards"
+                  },
+                  {
+                    "$id": "329",
+                    "id": "MirrorRare",
+                    "text": "Mirrored Rare Item"
+                  },
+                  {
+                    "$id": "330",
+                    "id": "ExchangeUnique",
+                    "text": "Unique Item"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "ultimatum_input",
-        "text": "Required Item",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "ultimatum_output",
-        "text": "Reward Unique",
-        "option": {
-          "options": []
-        }
+          },
+          {
+            "$id": "331",
+            "id": "ultimatum_input",
+            "text": "Required Item",
+            "option": {
+              "$id": "332",
+              "options": {
+                "$id": "333",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "334",
+            "id": "ultimatum_output",
+            "text": "Reward Unique",
+            "option": {
+              "$id": "335",
+              "options": {
+                "$id": "336",
+                "$values": []
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "misc_filters",
-    "title": "Miscellaneous",
-    "filters": [
-      {
-        "id": "quality",
-        "text": "Quality",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "ilvl",
-        "text": "Item Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "gem_level",
-        "text": "Gem Level",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "gem_level_progress",
-        "text": "Gem Experience %",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "gem_transfigured",
-        "text": "Transfigured Gem",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+    },
+    {
+      "$id": "337",
+      "id": "misc_filters",
+      "title": "Miscellaneous",
+      "filters": {
+        "$id": "338",
+        "$values": [
+          {
+            "$id": "339",
+            "id": "quality",
+            "text": "Quality",
+            "option": {
+              "$id": "340",
+              "options": {
+                "$id": "341",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "gem_vaal",
-        "text": "Vaal Gem",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "342",
+            "id": "ilvl",
+            "text": "Item Level",
+            "option": {
+              "$id": "343",
+              "options": {
+                "$id": "344",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "fractured_item",
-        "text": "Fractured Item",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "345",
+            "id": "gem_level",
+            "text": "Gem Level",
+            "option": {
+              "$id": "346",
+              "options": {
+                "$id": "347",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "gem_imbued",
-        "text": "Imbued Gem",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "348",
+            "id": "gem_level_progress",
+            "text": "Gem Experience %",
+            "option": {
+              "$id": "349",
+              "options": {
+                "$id": "350",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "synthesised_item",
-        "text": "Synthesised Item",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "351",
+            "id": "gem_transfigured",
+            "text": "Transfigured Gem",
+            "option": {
+              "$id": "352",
+              "options": {
+                "$id": "353",
+                "$values": [
+                  {
+                    "$id": "354",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "355",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "356",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "searing_item",
-        "text": "Searing Exarch Item",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "357",
+            "id": "gem_vaal",
+            "text": "Vaal Gem",
+            "option": {
+              "$id": "358",
+              "options": {
+                "$id": "359",
+                "$values": [
+                  {
+                    "$id": "360",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "361",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "362",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "tangled_item",
-        "text": "Eater of Worlds Item",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "363",
+            "id": "fractured_item",
+            "text": "Fractured Item",
+            "option": {
+              "$id": "364",
+              "options": {
+                "$id": "365",
+                "$values": [
+                  {
+                    "$id": "366",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "367",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "368",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "memory_level",
-        "text": "Memory Strands",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "identified",
-        "text": "Identified",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "369",
+            "id": "gem_imbued",
+            "text": "Imbued Gem",
+            "option": {
+              "$id": "370",
+              "options": {
+                "$id": "371",
+                "$values": [
+                  {
+                    "$id": "372",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "373",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "374",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "corrupted",
-        "text": "Corrupted",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "375",
+            "id": "synthesised_item",
+            "text": "Synthesised Item",
+            "option": {
+              "$id": "376",
+              "options": {
+                "$id": "377",
+                "$values": [
+                  {
+                    "$id": "378",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "379",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "380",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "mirrored",
-        "text": "Mirrored",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "381",
+            "id": "searing_item",
+            "text": "Searing Exarch Item",
+            "option": {
+              "$id": "382",
+              "options": {
+                "$id": "383",
+                "$values": [
+                  {
+                    "$id": "384",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "385",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "386",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "split",
-        "text": "Split",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "387",
+            "id": "tangled_item",
+            "text": "Eater of Worlds Item",
+            "option": {
+              "$id": "388",
+              "options": {
+                "$id": "389",
+                "$values": [
+                  {
+                    "$id": "390",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "391",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "392",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "crafted",
-        "text": "Crafted",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "393",
+            "id": "memory_level",
+            "text": "Memory Strands",
+            "option": {
+              "$id": "394",
+              "options": {
+                "$id": "395",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "veiled",
-        "text": "Veiled",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "396",
+            "id": "identified",
+            "text": "Identified",
+            "option": {
+              "$id": "397",
+              "options": {
+                "$id": "398",
+                "$values": [
+                  {
+                    "$id": "399",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "400",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "401",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "foreseeing",
-        "text": "Foreseeing",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "402",
+            "id": "corrupted",
+            "text": "Corrupted",
+            "option": {
+              "$id": "403",
+              "options": {
+                "$id": "404",
+                "$values": [
+                  {
+                    "$id": "405",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "406",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "407",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "talisman_tier",
-        "text": "Talisman Tier",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "stored_experience",
-        "text": "Stored Experience",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "stack_size",
-        "text": "Stack Size",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "alternate_art",
-        "text": "Alternate Art",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "408",
+            "id": "mirrored",
+            "text": "Mirrored",
+            "option": {
+              "$id": "409",
+              "options": {
+                "$id": "410",
+                "$values": [
+                  {
+                    "$id": "411",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "412",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "413",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "foil_variation",
-        "text": "Foil Variation",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "none",
-              "text": "None"
-            },
-            {
-              "id": "0",
-              "text": "Rainbow (Default)"
-            },
-            {
-              "id": "voidborn",
-              "text": "Any Voidborn Variant"
-            },
-            {
-              "id": "1",
-              "text": "Amethyst"
-            },
-            {
-              "id": "2",
-              "text": "Verdant"
-            },
-            {
-              "id": "3",
-              "text": "Ruby"
-            },
-            {
-              "id": "4",
-              "text": "Cobalt"
-            },
-            {
-              "id": "5",
-              "text": "Sunset"
-            },
-            {
-              "id": "6",
-              "text": "Aureate"
-            },
-            {
-              "id": "celestial",
-              "text": "Any Celestial Variant"
-            },
-            {
-              "id": "7",
-              "text": "Celestial Quartz"
-            },
-            {
-              "id": "8",
-              "text": "Celestial Ruby"
-            },
-            {
-              "id": "9",
-              "text": "Celestial Emerald"
-            },
-            {
-              "id": "10",
-              "text": "Celestial Aureate"
-            },
-            {
-              "id": "11",
-              "text": "Celestial Pearl"
-            },
-            {
-              "id": "12",
-              "text": "Celestial Amethyst"
+          },
+          {
+            "$id": "414",
+            "id": "split",
+            "text": "Split",
+            "option": {
+              "$id": "415",
+              "options": {
+                "$id": "416",
+                "$values": [
+                  {
+                    "$id": "417",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "418",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "419",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "corpse_type",
-        "text": "Corpse Type",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "eldritch",
-              "text": "Eldritch"
-            },
-            {
-              "id": "demon",
-              "text": "Demon"
-            },
-            {
-              "id": "construct",
-              "text": "Construct"
-            },
-            {
-              "id": "undead",
-              "text": "Undead"
-            },
-            {
-              "id": "beast",
-              "text": "Beast"
-            },
-            {
-              "id": "humanoid",
-              "text": "Humanoid"
+          },
+          {
+            "$id": "420",
+            "id": "crafted",
+            "text": "Crafted",
+            "option": {
+              "$id": "421",
+              "options": {
+                "$id": "422",
+                "$values": [
+                  {
+                    "$id": "423",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "424",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "425",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "scourge_tier",
-        "text": "Scourge Tier",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "crucible_item",
-        "text": "Crucible Item",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "426",
+            "id": "veiled",
+            "text": "Veiled",
+            "option": {
+              "$id": "427",
+              "options": {
+                "$id": "428",
+                "$values": [
+                  {
+                    "$id": "429",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "430",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "431",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "mutated",
-        "text": "Foulborn",
-        "option": {
-          "options": [
-            {
-              "text": "Any"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
-            },
-            {
-              "id": "false",
-              "text": "No"
+          },
+          {
+            "$id": "432",
+            "id": "foreseeing",
+            "text": "Foreseeing",
+            "option": {
+              "$id": "433",
+              "options": {
+                "$id": "434",
+                "$values": [
+                  {
+                    "$id": "435",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "436",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "437",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
             }
-          ]
-        }
+          },
+          {
+            "$id": "438",
+            "id": "talisman_tier",
+            "text": "Talisman Tier",
+            "option": {
+              "$id": "439",
+              "options": {
+                "$id": "440",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "441",
+            "id": "stored_experience",
+            "text": "Stored Experience",
+            "option": {
+              "$id": "442",
+              "options": {
+                "$id": "443",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "444",
+            "id": "stack_size",
+            "text": "Stack Size",
+            "option": {
+              "$id": "445",
+              "options": {
+                "$id": "446",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "447",
+            "id": "alternate_art",
+            "text": "Alternate Art",
+            "option": {
+              "$id": "448",
+              "options": {
+                "$id": "449",
+                "$values": [
+                  {
+                    "$id": "450",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "451",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "452",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "453",
+            "id": "foil_variation",
+            "text": "Foil Variation",
+            "option": {
+              "$id": "454",
+              "options": {
+                "$id": "455",
+                "$values": [
+                  {
+                    "$id": "456",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "457",
+                    "id": "none",
+                    "text": "None"
+                  },
+                  {
+                    "$id": "458",
+                    "id": "0",
+                    "text": "Rainbow (Default)"
+                  },
+                  {
+                    "$id": "459",
+                    "id": "voidborn",
+                    "text": "Any Voidborn Variant"
+                  },
+                  {
+                    "$id": "460",
+                    "id": "1",
+                    "text": "Amethyst"
+                  },
+                  {
+                    "$id": "461",
+                    "id": "2",
+                    "text": "Verdant"
+                  },
+                  {
+                    "$id": "462",
+                    "id": "3",
+                    "text": "Ruby"
+                  },
+                  {
+                    "$id": "463",
+                    "id": "4",
+                    "text": "Cobalt"
+                  },
+                  {
+                    "$id": "464",
+                    "id": "5",
+                    "text": "Sunset"
+                  },
+                  {
+                    "$id": "465",
+                    "id": "6",
+                    "text": "Aureate"
+                  },
+                  {
+                    "$id": "466",
+                    "id": "celestial",
+                    "text": "Any Celestial Variant"
+                  },
+                  {
+                    "$id": "467",
+                    "id": "7",
+                    "text": "Celestial Quartz"
+                  },
+                  {
+                    "$id": "468",
+                    "id": "8",
+                    "text": "Celestial Ruby"
+                  },
+                  {
+                    "$id": "469",
+                    "id": "9",
+                    "text": "Celestial Emerald"
+                  },
+                  {
+                    "$id": "470",
+                    "id": "10",
+                    "text": "Celestial Aureate"
+                  },
+                  {
+                    "$id": "471",
+                    "id": "11",
+                    "text": "Celestial Pearl"
+                  },
+                  {
+                    "$id": "472",
+                    "id": "12",
+                    "text": "Celestial Amethyst"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "473",
+            "id": "corpse_type",
+            "text": "Corpse Type",
+            "option": {
+              "$id": "474",
+              "options": {
+                "$id": "475",
+                "$values": [
+                  {
+                    "$id": "476",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "477",
+                    "id": "eldritch",
+                    "text": "Eldritch"
+                  },
+                  {
+                    "$id": "478",
+                    "id": "demon",
+                    "text": "Demon"
+                  },
+                  {
+                    "$id": "479",
+                    "id": "construct",
+                    "text": "Construct"
+                  },
+                  {
+                    "$id": "480",
+                    "id": "undead",
+                    "text": "Undead"
+                  },
+                  {
+                    "$id": "481",
+                    "id": "beast",
+                    "text": "Beast"
+                  },
+                  {
+                    "$id": "482",
+                    "id": "humanoid",
+                    "text": "Humanoid"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "483",
+            "id": "scourge_tier",
+            "text": "Scourge Tier",
+            "option": {
+              "$id": "484",
+              "options": {
+                "$id": "485",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "486",
+            "id": "crucible_item",
+            "text": "Crucible Item",
+            "option": {
+              "$id": "487",
+              "options": {
+                "$id": "488",
+                "$values": [
+                  {
+                    "$id": "489",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "490",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "491",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "492",
+            "id": "mutated",
+            "text": "Foulborn",
+            "option": {
+              "$id": "493",
+              "options": {
+                "$id": "494",
+                "$values": [
+                  {
+                    "$id": "495",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "496",
+                    "id": "true",
+                    "text": "Yes"
+                  },
+                  {
+                    "$id": "497",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
-    ]
-  },
-  {
-    "id": "trade_filters",
-    "title": "Trade Filters",
-    "filters": [
-      {
-        "id": "account",
-        "text": "Seller Account",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "collapse",
-        "text": "Collapse Listings by Account",
-        "option": {
-          "options": [
-            {
-              "text": "No"
-            },
-            {
-              "id": "true",
-              "text": "Yes"
+    },
+    {
+      "$id": "498",
+      "id": "trade_filters",
+      "title": "Trade Filters",
+      "filters": {
+        "$id": "499",
+        "$values": [
+          {
+            "$id": "500",
+            "id": "account",
+            "text": "Seller Account",
+            "option": {
+              "$id": "501",
+              "options": {
+                "$id": "502",
+                "$values": []
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "indexed",
-        "text": "Listed",
-        "option": {
-          "options": [
-            {
-              "text": "Any Time"
-            },
-            {
-              "id": "1hour",
-              "text": "Up to an Hour Ago"
-            },
-            {
-              "id": "3hours",
-              "text": "Up to 3 Hours Ago"
-            },
-            {
-              "id": "12hours",
-              "text": "Up to 12 Hours Ago"
-            },
-            {
-              "id": "1day",
-              "text": "Up to a Day Ago"
-            },
-            {
-              "id": "3days",
-              "text": "Up to 3 Days Ago"
-            },
-            {
-              "id": "1week",
-              "text": "Up to a Week Ago"
-            },
-            {
-              "id": "2weeks",
-              "text": "Up to 2 Weeks Ago"
-            },
-            {
-              "id": "1month",
-              "text": "Up to 1 Month Ago"
-            },
-            {
-              "id": "2months",
-              "text": "Up to 2 Months Ago"
+          },
+          {
+            "$id": "503",
+            "id": "collapse",
+            "text": "Collapse Listings by Account",
+            "option": {
+              "$id": "504",
+              "options": {
+                "$id": "505",
+                "$values": [
+                  {
+                    "$id": "506",
+                    "text": "No"
+                  },
+                  {
+                    "$id": "507",
+                    "id": "true",
+                    "text": "Yes"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "sale_type",
-        "text": "Sale Type",
-        "option": {
-          "options": [
-            {
-              "id": "any",
-              "text": "Any"
-            },
-            {
-              "text": "Buyout or Fixed Price"
-            },
-            {
-              "id": "priced_with_info",
-              "text": "Price with Note"
-            },
-            {
-              "id": "unpriced",
-              "text": "No Listed Price"
+          },
+          {
+            "$id": "508",
+            "id": "indexed",
+            "text": "Listed",
+            "option": {
+              "$id": "509",
+              "options": {
+                "$id": "510",
+                "$values": [
+                  {
+                    "$id": "511",
+                    "text": "Any Time"
+                  },
+                  {
+                    "$id": "512",
+                    "id": "1hour",
+                    "text": "Up to an Hour Ago"
+                  },
+                  {
+                    "$id": "513",
+                    "id": "3hours",
+                    "text": "Up to 3 Hours Ago"
+                  },
+                  {
+                    "$id": "514",
+                    "id": "12hours",
+                    "text": "Up to 12 Hours Ago"
+                  },
+                  {
+                    "$id": "515",
+                    "id": "1day",
+                    "text": "Up to a Day Ago"
+                  },
+                  {
+                    "$id": "516",
+                    "id": "3days",
+                    "text": "Up to 3 Days Ago"
+                  },
+                  {
+                    "$id": "517",
+                    "id": "1week",
+                    "text": "Up to a Week Ago"
+                  },
+                  {
+                    "$id": "518",
+                    "id": "2weeks",
+                    "text": "Up to 2 Weeks Ago"
+                  },
+                  {
+                    "$id": "519",
+                    "id": "1month",
+                    "text": "Up to 1 Month Ago"
+                  },
+                  {
+                    "$id": "520",
+                    "id": "2months",
+                    "text": "Up to 2 Months Ago"
+                  }
+                ]
+              }
             }
-          ]
-        }
-      },
-      {
-        "id": "fee",
-        "text": "Gold Fee",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "price",
-        "text": "Buyout Price",
-        "option": {
-          "options": [
-            {
-              "text": "Chaos Orb Equivalent"
-            },
-            {
-              "id": "chaos_divine",
-              "text": "Chaos or Divine Orbs"
-            },
-            {
-              "id": "chaos",
-              "text": "Chaos Orb"
-            },
-            {
-              "id": "exalted",
-              "text": "Exalted Orb"
-            },
-            {
-              "id": "divine",
-              "text": "Divine Orb"
-            },
-            {
-              "id": "mirror",
-              "text": "Mirror of Kalandra"
-            },
-            {
-              "id": "blessed",
-              "text": "Blessed Orb"
-            },
-            {
-              "id": "chrome",
-              "text": "Chromatic Orb"
-            },
-            {
-              "id": "gcp",
-              "text": "Gemcutter\u0027s Prism"
-            },
-            {
-              "id": "jewellers",
-              "text": "Jeweller\u0027s Orb"
-            },
-            {
-              "id": "scour",
-              "text": "Orb of Scouring"
-            },
-            {
-              "id": "regret",
-              "text": "Orb of Regret"
-            },
-            {
-              "id": "fusing",
-              "text": "Orb of Fusing"
-            },
-            {
-              "id": "chance",
-              "text": "Orb of Chance"
-            },
-            {
-              "id": "alt",
-              "text": "Orb of Alteration"
-            },
-            {
-              "id": "alch",
-              "text": "Orb of Alchemy"
-            },
-            {
-              "id": "regal",
-              "text": "Regal Orb"
-            },
-            {
-              "id": "vaal",
-              "text": "Vaal Orb"
+          },
+          {
+            "$id": "521",
+            "id": "sale_type",
+            "text": "Sale Type",
+            "option": {
+              "$id": "522",
+              "options": {
+                "$id": "523",
+                "$values": [
+                  {
+                    "$id": "524",
+                    "id": "any",
+                    "text": "Any"
+                  },
+                  {
+                    "$id": "525",
+                    "text": "Buyout or Fixed Price"
+                  },
+                  {
+                    "$id": "526",
+                    "id": "priced_with_info",
+                    "text": "Price with Note"
+                  },
+                  {
+                    "$id": "527",
+                    "id": "unpriced",
+                    "text": "No Listed Price"
+                  }
+                ]
+              }
             }
-          ]
-        }
+          },
+          {
+            "$id": "528",
+            "id": "fee",
+            "text": "Gold Fee",
+            "option": {
+              "$id": "529",
+              "options": {
+                "$id": "530",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "531",
+            "id": "price",
+            "text": "Buyout Price",
+            "option": {
+              "$id": "532",
+              "options": {
+                "$id": "533",
+                "$values": [
+                  {
+                    "$id": "534",
+                    "text": "Chaos Orb Equivalent"
+                  },
+                  {
+                    "$id": "535",
+                    "id": "chaos_divine",
+                    "text": "Chaos or Divine Orbs"
+                  },
+                  {
+                    "$id": "536",
+                    "id": "chaos",
+                    "text": "Chaos Orb"
+                  },
+                  {
+                    "$id": "537",
+                    "id": "exalted",
+                    "text": "Exalted Orb"
+                  },
+                  {
+                    "$id": "538",
+                    "id": "divine",
+                    "text": "Divine Orb"
+                  },
+                  {
+                    "$id": "539",
+                    "id": "mirror",
+                    "text": "Mirror of Kalandra"
+                  },
+                  {
+                    "$id": "540",
+                    "id": "blessed",
+                    "text": "Blessed Orb"
+                  },
+                  {
+                    "$id": "541",
+                    "id": "chrome",
+                    "text": "Chromatic Orb"
+                  },
+                  {
+                    "$id": "542",
+                    "id": "gcp",
+                    "text": "Gemcutter\u0027s Prism"
+                  },
+                  {
+                    "$id": "543",
+                    "id": "jewellers",
+                    "text": "Jeweller\u0027s Orb"
+                  },
+                  {
+                    "$id": "544",
+                    "id": "scour",
+                    "text": "Orb of Scouring"
+                  },
+                  {
+                    "$id": "545",
+                    "id": "regret",
+                    "text": "Orb of Regret"
+                  },
+                  {
+                    "$id": "546",
+                    "id": "fusing",
+                    "text": "Orb of Fusing"
+                  },
+                  {
+                    "$id": "547",
+                    "id": "chance",
+                    "text": "Orb of Chance"
+                  },
+                  {
+                    "$id": "548",
+                    "id": "alt",
+                    "text": "Orb of Alteration"
+                  },
+                  {
+                    "$id": "549",
+                    "id": "alch",
+                    "text": "Orb of Alchemy"
+                  },
+                  {
+                    "$id": "550",
+                    "id": "regal",
+                    "text": "Regal Orb"
+                  },
+                  {
+                    "$id": "551",
+                    "id": "vaal",
+                    "text": "Vaal Orb"
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
-    ]
-  }
-]
+    }
+  ]
+}

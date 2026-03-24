@@ -1,42 +1,53 @@
-[
-  {
-    "game": "pathOfExile1",
-    "id": "Mirage",
-    "text": "Mirage"
-  },
-  {
-    "game": "pathOfExile1",
-    "id": "Hardcore Mirage",
-    "text": "Hardcore Mirage"
-  },
-  {
-    "game": "pathOfExile1",
-    "id": "Ruthless Mirage",
-    "text": "Ruthless Mirage"
-  },
-  {
-    "game": "pathOfExile1",
-    "id": "HC Ruthless Mirage",
-    "text": "HC Ruthless Mirage"
-  },
-  {
-    "game": "pathOfExile1",
-    "id": "Standard",
-    "text": "Standard"
-  },
-  {
-    "game": "pathOfExile1",
-    "id": "Hardcore",
-    "text": "Hardcore"
-  },
-  {
-    "game": "pathOfExile1",
-    "id": "Ruthless",
-    "text": "Ruthless"
-  },
-  {
-    "game": "pathOfExile1",
-    "id": "Hardcore Ruthless",
-    "text": "Hardcore Ruthless"
-  }
-]
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "game": "pathOfExile1",
+      "id": "Mirage",
+      "text": "Mirage"
+    },
+    {
+      "$id": "3",
+      "game": "pathOfExile1",
+      "id": "Hardcore Mirage",
+      "text": "Hardcore Mirage"
+    },
+    {
+      "$id": "4",
+      "game": "pathOfExile1",
+      "id": "Ruthless Mirage",
+      "text": "Ruthless Mirage"
+    },
+    {
+      "$id": "5",
+      "game": "pathOfExile1",
+      "id": "HC Ruthless Mirage",
+      "text": "HC Ruthless Mirage"
+    },
+    {
+      "$id": "6",
+      "game": "pathOfExile1",
+      "id": "Standard",
+      "text": "Standard"
+    },
+    {
+      "$id": "7",
+      "game": "pathOfExile1",
+      "id": "Hardcore",
+      "text": "Hardcore"
+    },
+    {
+      "$id": "8",
+      "game": "pathOfExile1",
+      "id": "Ruthless",
+      "text": "Ruthless"
+    },
+    {
+      "$id": "9",
+      "game": "pathOfExile1",
+      "id": "Hardcore Ruthless",
+      "text": "Hardcore Ruthless"
+    }
+  ]
+}
