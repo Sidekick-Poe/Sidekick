@@ -7,11 +7,6 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "RemovedItem")]
     RemovedItem,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "currency")]
-    [ItemClassGameId(GameType.PathOfExile1, "Currency")]
-    [ItemClassGameId(GameType.PathOfExile1, "StackableCurrency")]
-    Currency,
-
     [ItemClassTradeId(GameType.PathOfExile1, "accessory.amulet")]
     [ItemClassGameId(GameType.PathOfExile1, "Amulet")]
     Amulet,
@@ -60,25 +55,12 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "DivinationCard")]
     DivinationCard,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "currency.resonator")]
-    [ItemClassGameId(GameType.PathOfExile1, "DelveSocketableCurrency")]
-    [ItemClassGameId(GameType.PathOfExile1, "DelveStackableSocketableCurrency")]
-    Resonator,
-
     [ItemClassTradeId(GameType.PathOfExile1, "accessory.trinket")]
     [ItemClassGameId(GameType.PathOfExile1, "Trinket")]
     Trinket,
 
     [ItemClassTradeId(GameType.PathOfExile1, "currency.heistobjective")]
     HeistObjective,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "currency.omen")]
-    [ItemClassGameId(GameType.PathOfExile1, "Omen")]
-    Omen,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "currency.socketable")]
-    [ItemClassGameId(GameType.PathOfExile1, "Socketable")]
-    Socketable,
 
     [ItemClassTradeId(GameType.PathOfExile1, "flask")]
     [ItemClassGameId(GameType.PathOfExile1, "Flask")]
@@ -96,20 +78,6 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "AnimalCharm")]
     Charms,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "gem.activegem")]
-    [ItemClassGameId(GameType.PathOfExile1, "Active Skill Gem")]
-    ActiveGem,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "gem.supportgem")]
-    [ItemClassGameId(GameType.PathOfExile1, "Support Skill Gem")]
-    SupportGem,
-
-    UncutSkillGem,
-
-    UncutSupportGem,
-
-    UncutSpiritGem,
-
     [ItemClassTradeId(GameType.PathOfExile1, "heistmission.blueprint")]
     [ItemClassGameId(GameType.PathOfExile1, "HeistBlueprint")]
     Blueprint,
@@ -121,6 +89,12 @@ public enum ItemClass
     [ItemClassTradeId(GameType.PathOfExile1, "heistequipment.heistreward")]
     [ItemClassGameId(GameType.PathOfExile1, "HeistEquipmentReward")]
     HeistReward,
+
+    [ItemClassTradeId(GameType.PathOfExile1, "heistequipment")]
+    HeistEquipment,
+
+    [ItemClassTradeId(GameType.PathOfExile1, "heistmission")]
+    HeistMission,
 
     [ItemClassTradeId(GameType.PathOfExile1, "heistequipment.heistutility")]
     [ItemClassGameId(GameType.PathOfExile1, "HeistEquipmentUtility")]
@@ -146,7 +120,7 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "ExpeditionLogbook")]
     Logbook,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "map.waystone")]
+    [ItemClassTradeId(GameType.PathOfExile2, "map.waystone")]
     [ItemClassGameId(GameType.PathOfExile2, "MapKey")]
     Waystone,
 
@@ -166,19 +140,11 @@ public enum ItemClass
     [ItemClassTradeId(GameType.PathOfExile1, "map.tablet")]
     Tablet,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "map.fragment")]
-    [ItemClassGameId(GameType.PathOfExile1, "MapFragment")]
-    MapFragment,
-
     [ItemClassTradeId(GameType.PathOfExile1, "map")]
     [ItemClassGameId(GameType.PathOfExile1, "Map")]
     [ItemClassGameId(GameType.PathOfExile1, "MapKey")]
     [ItemClassGameId(GameType.PathOfExile1, "InstanceLocalItem")]
     Map,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "memoryline")]
-    [ItemClassGameId(GameType.PathOfExile1, "MemoryLine")]
-    MemoryLine,
 
     [ItemClassTradeId(GameType.PathOfExile1, "weapon.bow")]
     [ItemClassGameId(GameType.PathOfExile1, "Bow")]
@@ -193,17 +159,15 @@ public enum ItemClass
 
     [ItemClassTradeId(GameType.PathOfExile1, "weapon.dagger")]
     [ItemClassGameId(GameType.PathOfExile1, "Dagger")]
-    Dagger,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "weapon.runedagger")]
     [ItemClassGameId(GameType.PathOfExile1, "Rune Dagger")]
-    RuneDagger,
+    Dagger,
 
     [ItemClassTradeId(GameType.PathOfExile1, "weapon.oneaxe")]
     [ItemClassGameId(GameType.PathOfExile1, "One Hand Axe")]
     OneHandAxe,
 
     [ItemClassTradeId(GameType.PathOfExile1, "weapon.onemace")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.basemace")]
     [ItemClassGameId(GameType.PathOfExile1, "One Hand Mace")]
     OneHandMace,
 
@@ -224,8 +188,7 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "FishingRod")]
     FishingRod,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "weapon.talisman")]
-    [ItemClassGameId(GameType.PathOfExile1, "VaultKey")]
+    [ItemClassTradeId(GameType.PathOfExile2, "weapon.talisman")]
     Talisman,
 
     [ItemClassTradeId(GameType.PathOfExile1, "weapon.twoaxe")]
@@ -248,16 +211,12 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "Warstaff")]
     Warstaff,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "weapon.spear")]
+    [ItemClassTradeId(GameType.PathOfExile2, "weapon.spear")]
     Spear,
 
     [ItemClassTradeId(GameType.PathOfExile1, "tincture")]
     [ItemClassGameId(GameType.PathOfExile1, "Tincture")]
     Tincture,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "corpse")]
-    [ItemClassGameId(GameType.PathOfExile1, "ItemisedCorpse")]
-    Corpse,
 
     [ItemClassTradeId(GameType.PathOfExile1, "sanctum.relic")]
     [ItemClassGameId(GameType.PathOfExile1, "Relic")]
@@ -267,22 +226,7 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "LargeRelic")]
     SanctumRelic,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "sanctum.research")]
-    [ItemClassGameId(GameType.PathOfExile1, "ItemisedSanctum")]
-    SanctumResearch,
-
     [ItemClassTradeId(GameType.PathOfExile1, "idol")]
     [ItemClassGameId(GameType.PathOfExile1, "AtlasRelic")]
     Idol,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "graft")]
-    Graft,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "wombgift")]
-    [ItemClassGameId(GameType.PathOfExile1, "BrequelFruit")]
-    Wombgift,
-
-    [ItemClassTradeId(GameType.PathOfExile1, "currency.incubator")]
-    [ItemClassGameId(GameType.PathOfExile1, "IncubatorStackable")]
-    Incubator,
 }
