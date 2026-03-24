@@ -200,7 +200,6 @@ internal class WealthProvider
 
     private async Task<(decimal Value, NinjaSparkline? SparkLine)?> GetItemPrice(ApiItem item)
     {
-        // todo test
         decimal price = 0;
         NinjaSparkline? sparkLine = null;
         var itemDefinition = apiItemProvider.Get(item);

@@ -33,12 +33,14 @@ public class ApiItemProvider(
         foreach (var definition in Definitions)
         {
             if (!string.IsNullOrEmpty(definition.TradeItem?.Name)) TextDictionary.TryAdd(definition.TradeItem.Name, definition);
+            else if (!string.IsNullOrEmpty(definition.TradeItem?.Text)) TextDictionary.TryAdd(definition.TradeItem.Text, definition);
             else if (!string.IsNullOrEmpty(definition.TradeItem?.Type)) TextDictionary.TryAdd(definition.TradeItem.Type, definition);
             if (!string.IsNullOrEmpty(definition.TradeItem?.Id)) TextDictionary.TryAdd(definition.TradeItem.Id, definition);
         }
 
         await BuildInvariantDictionary(game);
     }
+
     private async Task BuildInvariantDictionary(GameType game)
     {
         InvariantDictionary.Clear();

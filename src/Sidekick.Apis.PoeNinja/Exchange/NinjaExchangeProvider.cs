@@ -24,18 +24,6 @@ public class NinjaExchangeProvider(
         var bestMatch = FindBestMatch();
         if (bestMatch?.Exchange == null) return null;
 
-        // todo test chaos in poe1
-        /*
-         *
-        // The PoE1 api doesn't have chaos currency, so we need to add it manually.
-        if (Game == GameType.PathOfExile1 && item.BaseItem.Name == "Chaos Orb")
-        {
-            var page = new NinjaPage("Currency", "currency", true, true);
-            return new NinjaExchangeItem("chaos", "divine-orb", page);
-        }
-
-         */
-
         var result = await GetExchangeResult(bestMatch.Type);
         if (result?.Core == null) return null;
 

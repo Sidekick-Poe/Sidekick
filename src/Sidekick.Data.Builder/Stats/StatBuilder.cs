@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
@@ -107,7 +106,6 @@ public class StatBuilder(
                 where tradeStat.Option?.Id == tradeStatDefinition.Option?.Id
                 select true)
                 .FirstOrDefault();
-
         }
 
         StatDefinition GetTradePattern(IGameLanguage gameLanguage, TradeStatDefinition tradeDefinition)
@@ -133,11 +131,6 @@ public class StatBuilder(
         foreach (var language in gameStat.Languages)
         {
             if (string.IsNullOrEmpty(language.Text)) continue;
-
-            if (language.Text == "Maximum number of Summoned Skeletons is Doubled\\nCannot have Minions other than Summoned Skeletons")
-            {
-                Debugger.Break();
-            }
 
             var text = GetText(language.Text);
             var value = GetValue(language);

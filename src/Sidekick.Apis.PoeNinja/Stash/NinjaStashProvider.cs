@@ -11,7 +11,6 @@ using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.PoeNinja.Stash;
 
-// todo tests
 public class NinjaStashProvider(
     INinjaClient ninjaClient,
     ISettingsService settingsService,
@@ -72,21 +71,23 @@ public class NinjaStashProvider(
 
     public async Task<NinjaStash?> GetInfo(ItemDefinition item, ApiItem apiItem)
     {
-        // Unsupported due to foulborn modifiers. We would need to create some logic to get the trade stat id from the ApiItem. This isn't something that is done currently.
+        // TODO #1061 Unsupported due to foulborn modifiers. We would need to create some logic to get the trade stat id from the ApiItem. This isn't something that is done currently.
         if (apiItem.Rarity == Rarity.Unique) return null;
+
+        if (apiItem.GemLevel > 0)
+        {
+            // TODO #1060 Unsupported due to transfigured gems being parsed wrong.
+            return null;
+            return await GetGemInfo(item,
+                                    apiItem.Corrupted,
+                                    apiItem.GemLevel.Value,
+                                    apiItem.Quality.GetValueOrDefault());
+        }
 
         if (apiItem.MapTier > 0)
         {
             return await GetMapInfo(item,
                                     apiItem.MapTier.Value);
-        }
-
-        if (apiItem.GemLevel > 0)
-        {
-            return await GetGemInfo(item,
-                                    apiItem.Corrupted,
-                                    apiItem.GemLevel.Value,
-                                    apiItem.Quality.GetValueOrDefault());
         }
 
         return await GetBaseTypeInfo(item,
