@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -55,7 +56,8 @@ Note: ~b/o 1 chance
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Small Cluster Jewel", actual.Definition.TradeItem?.Type);
 
-        Assert.Equal(2, actual.Properties.ClusterJewelPassiveCount);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 2);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: #", "15% increased Evasion Rating");
     }
 
 }

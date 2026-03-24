@@ -57,11 +57,12 @@ public class NinjaStashProvider(
                                     item.Properties.Quality);
         }
 
-        if (item.Properties.ClusterJewelPassiveCount > 0)
+        if (IsClusterJewel(item.Invariant))
         {
             return await GetClusterJewelInfo(item.Invariant,
                                              item.Properties.ItemLevel,
                                              stats);
+
         }
 
         return await GetBaseTypeInfo(item.Invariant,
@@ -174,6 +175,12 @@ public class NinjaStashProvider(
         }
     }
 
+    private bool IsClusterJewel(ItemDefinition item)
+    {
+        if (item.NinjaItems == null) return false;
+        return item.BaseItem?.Name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel";
+    }
+
     private async Task<NinjaStash?> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<CompareStat>? stats)
     {
         var bestMatch = FindBestMatch();
@@ -181,14 +188,14 @@ public class NinjaStashProvider(
 
         NinjaItemDefinition? FindBestMatch()
         {
-            if (item.NinjaItems == null) return null;
-            if (item.BaseItem?.Name != "Small Cluster Jewel" &&
-                item.BaseItem?.Name != "Medium Cluster Jewel" &&
-                item.BaseItem?.Name != "Large Cluster Jewel") return null;
+            if (!IsClusterJewel(item)) return null;
 
             if (stats != null)
             {
-                stats = stats.Where(x => x.Category == StatCategory.Enchant).ToList();
+                stats = stats
+                    .Where(x => x.Category == StatCategory.Enchant)
+                    .Where(x => x.Id.StartsWith("enchant."))
+                    .ToList();
                 if (stats.Count == 0) stats = null;
             }
 
@@ -201,7 +208,7 @@ public class NinjaStashProvider(
                 _ => 84,
             };
 
-            return item.NinjaItems
+            return item.NinjaItems!
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
                 .FirstOrDefault(ninjaDefinition => ValidateNinjaStats(stats, ninjaDefinition));
