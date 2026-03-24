@@ -1,108 +1,107 @@
-using Sidekick.Common.Enums;
 namespace Sidekick.Data.Items;
 
 public enum ItemClass
 {
     Unknown = 0,
 
-    [EnumValue("RemovedItem", key: "Game")]
+    [ItemClassGameId(GameType.PathOfExile1, "RemovedItem")]
     RemovedItem,
 
-    [EnumValue("currency")]
-    [EnumValue("Currency", key: "Game")]
-    [EnumValue("StackableCurrency", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "currency")]
+    [ItemClassGameId(GameType.PathOfExile1, "Currency")]
+    [ItemClassGameId(GameType.PathOfExile1, "StackableCurrency")]
     Currency,
 
-    [EnumValue("accessory.amulet")]
-    [EnumValue("Amulet", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "accessory.amulet")]
+    [ItemClassGameId(GameType.PathOfExile1, "Amulet")]
     Amulet,
 
-    [EnumValue("accessory.belt")]
-    [EnumValue("Belt", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "accessory.belt")]
+    [ItemClassGameId(GameType.PathOfExile1, "Belt")]
     Belt,
 
-    [EnumValue("accessory.ring")]
-    [EnumValue("Ring", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "accessory.ring")]
+    [ItemClassGameId(GameType.PathOfExile1, "Ring")]
     Ring,
 
-    [EnumValue("armour.chest")]
-    [EnumValue("Body Armour", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.chest")]
+    [ItemClassGameId(GameType.PathOfExile1, "Body Armour")]
     BodyArmour,
 
-    [EnumValue("armour.boots")]
-    [EnumValue("Boots", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.boots")]
+    [ItemClassGameId(GameType.PathOfExile1, "Boots")]
     Boots,
 
-    [EnumValue("armour.gloves")]
-    [EnumValue("Gloves", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.gloves")]
+    [ItemClassGameId(GameType.PathOfExile1, "Gloves")]
     Gloves,
 
-    [EnumValue("armour.helmet")]
-    [EnumValue("Helmet", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.helmet")]
+    [ItemClassGameId(GameType.PathOfExile1, "Helmet")]
     Helmet,
 
-    [EnumValue("armour.quiver")]
-    [EnumValue("Quiver", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.quiver")]
+    [ItemClassGameId(GameType.PathOfExile1, "Quiver")]
     Quiver,
 
-    [EnumValue("armour.shield")]
-    [EnumValue("Shield", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.shield")]
+    [ItemClassGameId(GameType.PathOfExile1, "Shield")]
     Shield,
 
-    [EnumValue("armour.focus")]
-    [EnumValue("Focus", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.focus")]
+    [ItemClassGameId(GameType.PathOfExile2, "Focus")]
     Focus,
 
-    [EnumValue("armour.buckler")]
-    [EnumValue("Buckler", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "armour.buckler")]
+    [ItemClassGameId(GameType.PathOfExile2, "Buckler")]
     Buckler,
 
-    [EnumValue("card")]
-    [EnumValue("DivinationCard", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "card")]
+    [ItemClassGameId(GameType.PathOfExile1, "DivinationCard")]
     DivinationCard,
 
-    [EnumValue("currency.resonator")]
-    [EnumValue("DelveSocketableCurrency", key: "Game")]
-    [EnumValue("DelveStackableSocketableCurrency", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "currency.resonator")]
+    [ItemClassGameId(GameType.PathOfExile1, "DelveSocketableCurrency")]
+    [ItemClassGameId(GameType.PathOfExile1, "DelveStackableSocketableCurrency")]
     Resonator,
 
-    [EnumValue("accessory.trinket")]
-    [EnumValue("Trinket", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "accessory.trinket")]
+    [ItemClassGameId(GameType.PathOfExile1, "Trinket")]
     Trinket,
 
-    [EnumValue("currency.heistobjective")]
+    [ItemClassTradeId(GameType.PathOfExile1, "currency.heistobjective")]
     HeistObjective,
 
-    [EnumValue("currency.omen")]
-    [EnumValue("Omen", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "currency.omen")]
+    [ItemClassGameId(GameType.PathOfExile1, "Omen")]
     Omen,
 
-    [EnumValue("currency.socketable")]
-    [EnumValue("Socketable", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "currency.socketable")]
+    [ItemClassGameId(GameType.PathOfExile1, "Socketable")]
     Socketable,
 
-    [EnumValue("flask")]
-    [EnumValue("Flask", key: "Game")]
-    [EnumValue("UtilityFlask", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "flask")]
+    [ItemClassGameId(GameType.PathOfExile1, "Flask")]
+    [ItemClassGameId(GameType.PathOfExile1, "UtilityFlask")]
     Flask,
 
-    [EnumValue("flask.life")]
-    [EnumValue("LifeFlask", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "flask.life")]
+    [ItemClassGameId(GameType.PathOfExile1, "LifeFlask")]
     LifeFlask,
 
-    [EnumValue("flask.mana")]
-    [EnumValue("ManaFlask", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "flask.mana")]
+    [ItemClassGameId(GameType.PathOfExile1, "ManaFlask")]
     ManaFlask,
 
-    [EnumValue("AnimalCharm", key: "Game")]
+    [ItemClassGameId(GameType.PathOfExile1, "AnimalCharm")]
     Charms,
 
-    [EnumValue("gem.activegem")]
-    [EnumValue("Active Skill Gem", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "gem.activegem")]
+    [ItemClassGameId(GameType.PathOfExile1, "Active Skill Gem")]
     ActiveGem,
 
-    [EnumValue("gem.supportgem")]
-    [EnumValue("Support Skill Gem", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "gem.supportgem")]
+    [ItemClassGameId(GameType.PathOfExile1, "Support Skill Gem")]
     SupportGem,
 
     UncutSkillGem,
@@ -111,178 +110,179 @@ public enum ItemClass
 
     UncutSpiritGem,
 
-    [EnumValue("heistmission.blueprint")]
-    [EnumValue("HeistBlueprint", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "heistmission.blueprint")]
+    [ItemClassGameId(GameType.PathOfExile1, "HeistBlueprint")]
     Blueprint,
 
-    [EnumValue("heistmission.contract")]
-    [EnumValue("HeistContract", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "heistmission.contract")]
+    [ItemClassGameId(GameType.PathOfExile1, "HeistContract")]
     Contract,
 
-    [EnumValue("heistequipment.heistreward")]
-    [EnumValue("HeistEquipmentReward", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "heistequipment.heistreward")]
+    [ItemClassGameId(GameType.PathOfExile1, "HeistEquipmentReward")]
     HeistReward,
 
-    [EnumValue("heistequipment.heistutility")]
-    [EnumValue("HeistEquipmentUtility", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "heistequipment.heistutility")]
+    [ItemClassGameId(GameType.PathOfExile1, "HeistEquipmentUtility")]
     HeistUtility,
 
-    [EnumValue("heistequipment.heistweapon")]
-    [EnumValue("HeistEquipmentWeapon", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "heistequipment.heistweapon")]
+    [ItemClassGameId(GameType.PathOfExile1, "HeistEquipmentWeapon")]
     HeistWeapon,
 
-    [EnumValue("heistequipment.heisttool")]
-    [EnumValue("HeistEquipmentTool", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "heistequipment.heisttool")]
+    [ItemClassGameId(GameType.PathOfExile1, "HeistEquipmentTool")]
     HeistTool,
 
-    [EnumValue("jewel")]
-    [EnumValue("Jewel", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "jewel")]
+    [ItemClassGameId(GameType.PathOfExile1, "Jewel")]
     Jewel,
 
-    [EnumValue("jewel.abyss")]
-    [EnumValue("AbyssJewel", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "jewel.abyss")]
+    [ItemClassGameId(GameType.PathOfExile1, "AbyssJewel")]
     AbyssJewel,
 
-    [EnumValue("logbook")]
-    [EnumValue("ExpeditionLogbook", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "logbook")]
+    [ItemClassGameId(GameType.PathOfExile1, "ExpeditionLogbook")]
     Logbook,
 
-    [EnumValue("map.waystone")]
-    [EnumValue("MapKey", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map.waystone")]
+    [ItemClassGameId(GameType.PathOfExile2, "MapKey")]
     Waystone,
 
-    [EnumValue("map.breachstone")]
-    [EnumValue("Breachstone", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map.breachstone")]
+    [ItemClassGameId(GameType.PathOfExile1, "Breachstone")]
     Breachstone,
 
-    [EnumValue("map.barya")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map.barya")]
     Barya,
 
-    [EnumValue("map.bosskey")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map.bosskey")]
     BossKey,
 
-    [EnumValue("map.ultimatum")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map.ultimatum")]
     Ultimatum,
 
-    [EnumValue("map.tablet")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map.tablet")]
     Tablet,
 
-    [EnumValue("map.fragment")]
-    [EnumValue("MapFragment", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map.fragment")]
+    [ItemClassGameId(GameType.PathOfExile1, "MapFragment")]
     MapFragment,
 
-    [EnumValue("map")]
-    [EnumValue("Map", key: "Game")]
-    [EnumValue("InstanceLocalItem", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "map")]
+    [ItemClassGameId(GameType.PathOfExile1, "Map")]
+    [ItemClassGameId(GameType.PathOfExile1, "MapKey")]
+    [ItemClassGameId(GameType.PathOfExile1, "InstanceLocalItem")]
     Map,
 
-    [EnumValue("memoryline")]
-    [EnumValue("MemoryLine", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "memoryline")]
+    [ItemClassGameId(GameType.PathOfExile1, "MemoryLine")]
     MemoryLine,
 
-    [EnumValue("weapon.bow")]
-    [EnumValue("Bow", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.bow")]
+    [ItemClassGameId(GameType.PathOfExile1, "Bow")]
     Bow,
 
-    [EnumValue("weapon.crossbow")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.crossbow")]
     Crossbow,
 
-    [EnumValue("weapon.claw")]
-    [EnumValue("Claw", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.claw")]
+    [ItemClassGameId(GameType.PathOfExile1, "Claw")]
     Claw,
 
-    [EnumValue("weapon.dagger")]
-    [EnumValue("Dagger", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.dagger")]
+    [ItemClassGameId(GameType.PathOfExile1, "Dagger")]
     Dagger,
 
-    [EnumValue("weapon.runedagger")]
-    [EnumValue("Rune Dagger", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.runedagger")]
+    [ItemClassGameId(GameType.PathOfExile1, "Rune Dagger")]
     RuneDagger,
 
-    [EnumValue("weapon.oneaxe")]
-    [EnumValue("One Hand Axe", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.oneaxe")]
+    [ItemClassGameId(GameType.PathOfExile1, "One Hand Axe")]
     OneHandAxe,
 
-    [EnumValue("weapon.onemace")]
-    [EnumValue("One Hand Mace", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.onemace")]
+    [ItemClassGameId(GameType.PathOfExile1, "One Hand Mace")]
     OneHandMace,
 
-    [EnumValue("weapon.onesword")]
-    [EnumValue("One Hand Sword", key: "Game")]
-    [EnumValue("Thrusting One Hand Sword", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.onesword")]
+    [ItemClassGameId(GameType.PathOfExile1, "One Hand Sword")]
+    [ItemClassGameId(GameType.PathOfExile1, "Thrusting One Hand Sword")]
     OneHandSword,
 
-    [EnumValue("weapon.sceptre")]
-    [EnumValue("Sceptre", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.sceptre")]
+    [ItemClassGameId(GameType.PathOfExile1, "Sceptre")]
     Sceptre,
 
-    [EnumValue("weapon.staff")]
-    [EnumValue("Staff", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.staff")]
+    [ItemClassGameId(GameType.PathOfExile1, "Staff")]
     Staff,
 
-    [EnumValue("weapon.rod")]
-    [EnumValue("FishingRod", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.rod")]
+    [ItemClassGameId(GameType.PathOfExile1, "FishingRod")]
     FishingRod,
 
-    [EnumValue("weapon.talisman")]
-    [EnumValue("VaultKey", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.talisman")]
+    [ItemClassGameId(GameType.PathOfExile1, "VaultKey")]
     Talisman,
 
-    [EnumValue("weapon.twoaxe")]
-    [EnumValue("Two Hand Axe", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.twoaxe")]
+    [ItemClassGameId(GameType.PathOfExile1, "Two Hand Axe")]
     TwoHandAxe,
 
-    [EnumValue("weapon.twomace")]
-    [EnumValue("Two Hand Mace", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.twomace")]
+    [ItemClassGameId(GameType.PathOfExile1, "Two Hand Mace")]
     TwoHandMace,
 
-    [EnumValue("weapon.twosword")]
-    [EnumValue("Two Hand Sword", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.twosword")]
+    [ItemClassGameId(GameType.PathOfExile1, "Two Hand Sword")]
     TwoHandSword,
 
-    [EnumValue("weapon.wand")]
-    [EnumValue("Wand", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.wand")]
+    [ItemClassGameId(GameType.PathOfExile1, "Wand")]
     Wand,
 
-    [EnumValue("weapon.warstaff")]
-    [EnumValue("Warstaff", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.warstaff")]
+    [ItemClassGameId(GameType.PathOfExile1, "Warstaff")]
     Warstaff,
 
-    [EnumValue("weapon.spear")]
+    [ItemClassTradeId(GameType.PathOfExile1, "weapon.spear")]
     Spear,
 
-    [EnumValue("tincture")]
-    [EnumValue("Tincture", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "tincture")]
+    [ItemClassGameId(GameType.PathOfExile1, "Tincture")]
     Tincture,
 
-    [EnumValue("corpse")]
-    [EnumValue("ItemisedCorpse", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "corpse")]
+    [ItemClassGameId(GameType.PathOfExile1, "ItemisedCorpse")]
     Corpse,
 
-    [EnumValue("sanctum.relic")]
-    [EnumValue("Relic", key: "Game")]
-    [EnumValue("SanctumSpecialRelic", key: "Game")]
-    [EnumValue("SmallRelic", key: "Game")]
-    [EnumValue("MediumRelic", key: "Game")]
-    [EnumValue("LargeRelic", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "sanctum.relic")]
+    [ItemClassGameId(GameType.PathOfExile1, "Relic")]
+    [ItemClassGameId(GameType.PathOfExile1, "SanctumSpecialRelic")]
+    [ItemClassGameId(GameType.PathOfExile1, "SmallRelic")]
+    [ItemClassGameId(GameType.PathOfExile1, "MediumRelic")]
+    [ItemClassGameId(GameType.PathOfExile1, "LargeRelic")]
     SanctumRelic,
 
-    [EnumValue("sanctum.research")]
-    [EnumValue("ItemisedSanctum", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "sanctum.research")]
+    [ItemClassGameId(GameType.PathOfExile1, "ItemisedSanctum")]
     SanctumResearch,
 
-    [EnumValue("idol")]
-    [EnumValue("AtlasRelic", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "idol")]
+    [ItemClassGameId(GameType.PathOfExile1, "AtlasRelic")]
     Idol,
 
-    [EnumValue("graft")]
+    [ItemClassTradeId(GameType.PathOfExile1, "graft")]
     Graft,
 
-    [EnumValue("wombgift")]
-    [EnumValue("BrequelFruit", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "wombgift")]
+    [ItemClassGameId(GameType.PathOfExile1, "BrequelFruit")]
     Wombgift,
 
-    [EnumValue("currency.incubator")]
-    [EnumValue("IncubatorStackable", key: "Game")]
+    [ItemClassTradeId(GameType.PathOfExile1, "currency.incubator")]
+    [ItemClassGameId(GameType.PathOfExile1, "IncubatorStackable")]
     Incubator,
 }
