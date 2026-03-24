@@ -6,6 +6,7 @@ public class NinjaStash
 {
     public NinjaStash(NinjaStashLine line, NinjaStashOverview result)
     {
+        DetailsId = line.DetailsId;
         LastUpdated = result.LastUpdated;
         ChaosValue = line.ChaosValue;
         DivineValue = line.DivineValue;
@@ -13,6 +14,8 @@ public class NinjaStash
         ListingCount = line.ListingCount;
         Sparkline = line.SparkLine;
     }
+
+    public string? DetailsId { get; set; }
 
     public DateTimeOffset LastUpdated { get; set; }
 
