@@ -26,4 +26,20 @@ public class RepoeBaseItemProperties
 
     [JsonPropertyName("physical_damage_min")]
     public int? PhysicalDamageMin { get; init; }
+
+    [JsonIgnore]
+    public bool HasValues
+    {
+        get
+        {
+            return Armour != null
+                   || EnergyShield != null
+                   || Evasion != null
+                   || Block.HasValue
+                   || AttackMilliseconds.HasValue
+                   || CriticalHitChance.HasValue
+                   || PhysicalDamageMax.HasValue
+                   || PhysicalDamageMin.HasValue;
+        }
+    }
 }

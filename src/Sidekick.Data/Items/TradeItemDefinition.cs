@@ -10,5 +10,4 @@ public class TradeItemDefinition
     public string? Type { get; init; }
     public string? Category { get; init; }
     public string? Discriminator { get; init; }
-    public bool IsUnique { get; init; }
 }

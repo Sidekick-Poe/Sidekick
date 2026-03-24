@@ -2,11 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
-using Sidekick.Apis.PoeNinja.Items;
 using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
@@ -20,7 +18,6 @@ internal class WealthProvider
     ILogger<WealthProvider> logger,
     ISettingsService settingsService,
     IStashService stashService,
-    INinjaItemProvider ninjaItemProvider,
     INinjaExchangeProvider ninjaExchangeProvider,
     INinjaStashProvider ninjaStashProvider,
     IApiItemProvider apiItemProvider,
@@ -201,10 +198,11 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<(decimal Value, ApiSparkline? SparkLine)?> GetItemPrice(ApiItem item)
+    private async Task<(decimal Value, NinjaSparkline? SparkLine)?> GetItemPrice(ApiItem item)
     {
+        // todo test
         decimal price = 0;
-        ApiSparkline? sparkLine = null;
+        NinjaSparkline? sparkLine = null;
         var itemDefinition = apiItemProvider.Get(item);
         if (itemDefinition == null)
         {
@@ -212,42 +210,18 @@ internal class WealthProvider
             return (price, sparkLine);
         }
 
-        var exchangeItem = ninjaItemProvider.GetExchangeItem(itemDefinition);
-        if (exchangeItem != null)
+        var invariantDefinition = itemDefinition.Key != null ? apiItemProvider.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
+        if (invariantDefinition?.NinjaItems?.Any(x => x.Exchange != null) ?? false)
         {
-            var info = await ninjaExchangeProvider.GetInfo(exchangeItem);
+            var info = await ninjaExchangeProvider.GetInfo(invariantDefinition);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
             sparkLine = info?.Sparkline;
         }
-        else if (item.Rarity == Rarity.Unique)
+        else
         {
-            var stashItem = ninjaItemProvider.GetUniqueItem(itemDefinition, item.MaxLinks ?? 0);
-            if (stashItem != null)
-            {
-                var info = await ninjaStashProvider.GetInfo(stashItem);
-                price = info?.ChaosValue ?? 0;
-                sparkLine = info?.Sparkline;
-            }
-        }
-        else if (item.GemLevel > 0)
-        {
-            var stashItem = ninjaItemProvider.GetGemItem(itemDefinition, item.GemLevel ?? 1, item.Quality ?? 0, item.Corrupted);
-            if (stashItem != null)
-            {
-                var info = await ninjaStashProvider.GetInfo(stashItem);
-                price = info?.ChaosValue ?? 0;
-                sparkLine = info?.Sparkline;
-            }
-        }
-        else if (item.MapTier > 0)
-        {
-            var stashItem = ninjaItemProvider.GetMapItem(itemDefinition, item.MapTier ?? 1);
-            if (stashItem != null)
-            {
-                var info = await ninjaStashProvider.GetInfo(stashItem);
-                price = info?.ChaosValue ?? 0;
-                sparkLine = info?.Sparkline;
-            }
+            var info = await ninjaStashProvider.GetInfo(itemDefinition, item);
+            price = info?.ChaosValue ?? 0;
+            sparkLine = info?.Sparkline;
         }
 
         if (price == 0)

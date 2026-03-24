@@ -1,0 +1,7 @@
+﻿namespace Sidekick.Data.Items;
+
+public class NinjaExchangeDefinition
+{
+    public string? Id { get; init; }
+    public string? DetailsId { get; init; }
+}

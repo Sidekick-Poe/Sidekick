@@ -1,9 +1,10 @@
 ﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
-namespace Sidekick.Apis.PoeNinja.Stash.Models;
+using Sidekick.Apis.PoeNinja.Stash.Models;
+namespace Sidekick.Apis.PoeNinja.Stash;
 
 public class NinjaStash
 {
-    public NinjaStash(ApiLine line, ApiOverviewResult result)
+    public NinjaStash(NinjaStashLine line, NinjaStashOverview result)
     {
         LastUpdated = result.LastUpdated;
         ChaosValue = line.ChaosValue;
@@ -20,7 +21,7 @@ public class NinjaStash
     public decimal ExaltedValue { get; set; }
     public int ListingCount { get; set; }
 
-    public ApiSparkline? Sparkline { get; set; }
+    public NinjaSparkline? Sparkline { get; set; }
 
     public required Uri? DetailsUrl { get; set; }
 }

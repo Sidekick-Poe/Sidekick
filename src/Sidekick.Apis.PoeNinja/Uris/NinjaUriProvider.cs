@@ -1,16 +1,31 @@
-using Sidekick.Apis.Poe.Extensions;
+﻿using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.PoeNinja.Clients;
-using Sidekick.Apis.PoeNinja.IndexState.Models;
+using Sidekick.Apis.PoeNinja.Uris.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-namespace Sidekick.Apis.PoeNinja.IndexState;
+using Sidekick.Data;
+using Sidekick.Data.Items;
+namespace Sidekick.Apis.PoeNinja.Uris;
 
-public class NinjaIndexStateProvider(
+public class NinjaUriProvider(
     INinjaClient ninjaClient,
     ICacheProvider cacheProvider,
-    ISettingsService settingsService) : INinjaIndexStateProvider
+    ISettingsService settingsService)
 {
+    public async Task<Uri?> GetDetailsUri(NinjaItemDefinition item)
+    {
+        string? detailsId = null;
+        if (item.Exchange != null) detailsId = item.Exchange.Id;
+        else if (item.Stash != null) detailsId = item.Stash.DetailsId;
+        if (string.IsNullOrEmpty(detailsId)) return null;
+
+        var game = await settingsService.GetGame();
+        var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
+        var league = await GetLeague();
+        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{detailsId}");
+    }
+
     private async Task<string> GetCacheKey()
     {
         var game = await settingsService.GetGame();

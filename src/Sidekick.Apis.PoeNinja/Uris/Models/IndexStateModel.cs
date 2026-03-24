@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.PoeNinja.IndexState.Models;
+namespace Sidekick.Apis.PoeNinja.Uris.Models;
 
 public class IndexStateModel
 {

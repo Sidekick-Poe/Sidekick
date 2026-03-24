@@ -1,8 +1,9 @@
-﻿namespace Sidekick.Apis.PoeNinja.Exchange.Models;
+﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
+namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaCurrencyTrade
 {
-    public NinjaCurrencyTrade(ApiLine line, ApiCore core, string? exchangeId)
+    public NinjaCurrencyTrade(NinjaExchangeLine line, NinjaExchangeCore core, string? exchangeId)
     {
         decimal rate = 1;
         if (exchangeId != null && core.Rates.TryGetValue(exchangeId, out var coreRate)) rate = coreRate;

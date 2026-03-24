@@ -32,6 +32,7 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<StatsInvariantBuilder>();
         services.TryAddSingleton<TradeFilterBuilder>();
 
+        services.TryAddSingleton<RawDataProvider>();
         services.TryAddSingleton<DataBuilder>();
 
         return services;
