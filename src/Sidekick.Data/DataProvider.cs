@@ -11,7 +11,7 @@ using Sidekick.Data.Languages;
 
 namespace Sidekick.Data;
 
-public record DataFile(string Path, string Name, long Size, DateTimeOffset LastModified);
+public record DataFile(string Name, long Size, DateTimeOffset LastModified);
 
 public class DataProvider : IInitializableService
 {
@@ -23,6 +23,7 @@ public class DataProvider : IInitializableService
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
         WriteIndented = true,
+        ReferenceHandler = ReferenceHandler.Preserve,
         Converters =
         {
             new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
@@ -101,6 +102,8 @@ public class DataProvider : IInitializableService
         {
             foreach (var sourceFile in Directory.GetFiles(source, "*", SearchOption.AllDirectories))
             {
+                if (sourceFile.Replace('\\', '/').Contains("/raw/")) continue;
+
                 var relativePath = Path.GetRelativePath(source, sourceFile);
                 var targetFile = Path.Combine(target, relativePath);
 
@@ -122,28 +125,6 @@ public class DataProvider : IInitializableService
         }
     }
 
-    public async Task Write(string filePath, object data)
-    {
-        Directory.CreateDirectory(DataDirectory);
-
-        var path = Path.Combine(DataDirectory, filePath);
-        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-        await using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
-        await JsonSerializer.SerializeAsync(fs, data, JsonOptions);
-        logger.LogInformation($"Saved {path}");
-    }
-
-    public async Task Write(string filePath, Stream stream)
-    {
-        Directory.CreateDirectory(DataDirectory);
-
-        var path = Path.Combine(DataDirectory, filePath);
-        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-        await using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
-        await stream.CopyToAsync(fs);
-        logger.LogInformation($"Saved {path}");
-    }
-
     public Task Write(GameType game, DataType type, IGameLanguage language, object data)
     {
         return Write(GetFilePath(game, type, language.Code), data);
@@ -159,22 +140,26 @@ public class DataProvider : IInitializableService
         return Write(GetFilePath(game, type, "invariant"), data);
     }
 
-    public Task Write(GameType game, DataType type, Stream stream)
-    {
-        return Write(GetFilePath(game, type, "invariant"), stream);
-    }
-
-    public async Task<TResult> Read<TResult>(string filePath)
-        where TResult : class
+    private async Task Write(string filePath, object data)
     {
         Directory.CreateDirectory(DataDirectory);
 
         var path = Path.Combine(DataDirectory, filePath);
-        if (!File.Exists(path)) throw new SidekickException($"The data file does not exist. {filePath}");
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        await using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
+        await JsonSerializer.SerializeAsync(fs, data, JsonOptions);
+        logger.LogInformation($"Saved {path}");
+    }
 
-        await using var fileStream = File.OpenRead(path);
-        return await JsonSerializer.DeserializeAsync<TResult>(fileStream, JsonOptions)
-               ?? throw new SidekickException("The data file could not be read successfully.");
+    private async Task Write(string filePath, Stream stream)
+    {
+        Directory.CreateDirectory(DataDirectory);
+
+        var path = Path.Combine(DataDirectory, filePath);
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        await using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
+        await stream.CopyToAsync(fs);
+        logger.LogInformation($"Saved {path}");
     }
 
     public Task<TResult> Read<TResult>(GameType game, DataType type, IGameLanguage language)
@@ -187,6 +172,19 @@ public class DataProvider : IInitializableService
         where TResult : class
     {
         return Read<TResult>(GetFilePath(game, type, "invariant"));
+    }
+
+    private async Task<TResult> Read<TResult>(string filePath)
+        where TResult : class
+    {
+        Directory.CreateDirectory(DataDirectory);
+
+        var path = Path.Combine(DataDirectory, filePath);
+        if (!File.Exists(path)) throw new SidekickException($"The data file does not exist. {filePath}");
+
+        await using var fileStream = File.OpenRead(path);
+        return await JsonSerializer.DeserializeAsync<TResult>(fileStream, JsonOptions)
+               ?? throw new SidekickException("The data file could not be read successfully.");
     }
 
     private string GetFilePath(GameType game, DataType type, string languageCode)
@@ -219,12 +217,14 @@ public class DataProvider : IInitializableService
         var directoryInfo = new DirectoryInfo(DataDirectory);
         foreach (var file in directoryInfo.GetFiles("*", SearchOption.AllDirectories))
         {
+            if (file.FullName.Replace('\\', '/').Contains("/raw/")) continue;
+
+            var name = Path.GetRelativePath(DataDirectory, file.FullName);
+
             files.Add(new DataFile(
-                      Path: file.FullName,
-                      Name: Path.GetRelativePath(DataDirectory, file.FullName).Replace('\\', '/'),
+                      Name: name,
                       Size: file.Length,
-                      LastModified: file.LastWriteTimeUtc
-                      ));
+                      LastModified: file.LastWriteTimeUtc));
         }
 
         return files;

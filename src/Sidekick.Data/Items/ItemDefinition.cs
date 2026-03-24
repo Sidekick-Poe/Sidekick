@@ -16,13 +16,13 @@ public class ItemDefinition
         }
     }
 
-    public DataSource Source { get; init; }
-
     public TradeItemDefinition? TradeItem { get; init; }
 
     public BaseItemDefinition? BaseItem { get; init; }
 
     public UniqueItemDefinition? UniqueItem { get; init; }
+
+    public List<NinjaItemDefinition>? NinjaItems { get; init; }
 
     [JsonIgnore]
     public Regex? NamePattern { get; init; }
@@ -73,7 +73,7 @@ public class ItemDefinition
     }
 
     /// <inheritdoc />
-    public override string? ToString()
+    public override string ToString()
     {
         var type = TradeItem?.Type ?? BaseItem?.Name;
         var name = TradeItem?.Name;

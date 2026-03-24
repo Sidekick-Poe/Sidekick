@@ -252,10 +252,6 @@ public class ItemProperties
 
     public List<string> AugmentedProperties { get; } = [];
 
-    public string? ClusterJewelGrantText { get; set; }
-
-    public int? ClusterJewelPassiveCount { get; set; }
-
     public int CalculateValueWithQuality(int value)
     {
         if (Quality >= 20)

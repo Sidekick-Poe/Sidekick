@@ -7,7 +7,6 @@
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Data
-@using Sidekick.Data.Items
 @using Sidekick.Modules.Data.Localization
 
 <LayoutMenu>
@@ -27,19 +26,17 @@
         <div class="grid grid-cols-2 mt-3 gap-3">
             <div class="flex flex-col items-stretch gap-2">
                 <Heading2>Path of Exile 1</Heading2>
-                @RenderDataFiles("poe.ninja", PoE1NinjaFiles)
+                @RenderDataFiles("Items", PoE1ItemsFiles)
                 @RenderDataFiles("Stats", PoE1StatsFiles)
                 @RenderDataFiles("Pseudo", PoE1PseudoFiles)
                 @RenderDataFiles("Trade", PoE1TradeFiles)
-                @RenderDataFiles("repoe", PoE1RepoeFiles)
             </div>
             <div class="flex flex-col items-stretch gap-2">
                 <Heading2>Path of Exile 2</Heading2>
-                @RenderDataFiles("poe.ninja", PoE2NinjaFiles)
+                @RenderDataFiles("Items", PoE2ItemsFiles)
                 @RenderDataFiles("Stats", PoE2StatsFiles)
                 @RenderDataFiles("Pseudo", PoE2PseudoFiles)
                 @RenderDataFiles("Trade", PoE2TradeFiles)
-                @RenderDataFiles("repoe", PoE2RepoeFiles)
             </div>
         </div>
     </AppContainer>
@@ -54,17 +51,15 @@
 
 @code {
 
-    private List<DataFile> PoE1NinjaFiles { get; set; } = [];
+    private List<DataFile> PoE1ItemsFiles { get; set; } = [];
     private List<DataFile> PoE1StatsFiles { get; set; } = [];
     private List<DataFile> PoE1PseudoFiles { get; set; } = [];
     private List<DataFile> PoE1TradeFiles { get; set; } = [];
-    private List<DataFile> PoE1RepoeFiles { get; set; } = [];
 
-    private List<DataFile> PoE2NinjaFiles { get; set; } = [];
+    private List<DataFile> PoE2ItemsFiles { get; set; } = [];
     private List<DataFile> PoE2StatsFiles { get; set; } = [];
     private List<DataFile> PoE2PseudoFiles { get; set; } = [];
     private List<DataFile> PoE2TradeFiles { get; set; } = [];
-    private List<DataFile> PoE2RepoeFiles { get; set; } = [];
 
     private RenderFragment RenderDataFiles(string title, List<DataFile> files) =>
         @<div class="flex flex-col items-stretch gap-2">
@@ -94,17 +89,15 @@
     {
         var files = DataProvider.GetFiles();
 
-        PoE1NinjaFiles = GetFiles(files, GameType.PathOfExile1, "ninja");
+        PoE1ItemsFiles = GetFiles(files, GameType.PathOfExile1, "items");
         PoE1StatsFiles = GetFiles(files, GameType.PathOfExile1, "stats");
         PoE1PseudoFiles = GetFiles(files, GameType.PathOfExile1, "pseudo");
         PoE1TradeFiles = GetFiles(files, GameType.PathOfExile1, "trade");
-        PoE1RepoeFiles = GetFiles(files, GameType.PathOfExile1, "repoe");
 
-        PoE2NinjaFiles = GetFiles(files, GameType.PathOfExile2, "ninja");
+        PoE2ItemsFiles = GetFiles(files, GameType.PathOfExile2, "items");
         PoE2StatsFiles = GetFiles(files, GameType.PathOfExile2, "stats");
         PoE2PseudoFiles = GetFiles(files, GameType.PathOfExile2, "pseudo");
         PoE2TradeFiles = GetFiles(files, GameType.PathOfExile2, "trade");
-        PoE2RepoeFiles = GetFiles(files, GameType.PathOfExile2, "repoe");
 
         StateHasChanged();
     }

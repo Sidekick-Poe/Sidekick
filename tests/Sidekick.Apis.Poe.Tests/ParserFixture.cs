@@ -20,7 +20,7 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
-using Sidekick.Data.Items;
+using Sidekick.Data.Builder;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Xunit;
@@ -40,9 +40,9 @@ public abstract class ParserFixture : IAsyncLifetime
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
     public IStatParser StatParser { get; private set; } = null!;
-    private TestContext TestContext { get; set; } = null!;
+    protected TestContext TestContext { get; set; } = null!;
 
-    public async Task InitializeAsync()
+    public virtual async Task InitializeAsync()
     {
         TestContext = new TestContext();
         TestContext.Services.AddLocalization();
@@ -63,6 +63,9 @@ public abstract class ParserFixture : IAsyncLifetime
         // Override the Trade API client in tests to always use local fallback data files
         TestContext.Services.AddTransient<ITradeApiClient, TestTradeApiClient>();
         TestContext.Services.AddSingleton<ISettingsService, TestSettingsService>();
+        TestContext.Services.AddSingleton<RawDataProvider>();
+
+        RegisterServices(TestContext.Services);
 
         SettingsService = TestContext.Services.GetRequiredService<ISettingsService>();
         await SettingsService.Set(SettingKeys.LanguageParser, Language);
@@ -91,6 +94,10 @@ public abstract class ParserFixture : IAsyncLifetime
     {
         TestContext.Dispose();
         return Task.CompletedTask;
+    }
+
+    protected virtual void RegisterServices(IServiceCollection services)
+    {
     }
 
     private static async Task Initialize(IServiceProvider serviceProvider)

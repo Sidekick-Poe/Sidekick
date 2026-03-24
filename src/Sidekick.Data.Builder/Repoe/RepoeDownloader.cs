@@ -10,7 +10,7 @@ namespace Sidekick.Data.Builder.Repoe;
 public class RepoeDownloader(
     ILogger<RepoeDownloader> logger,
     IOptions<SidekickConfiguration> configuration,
-    DataProvider dataProvider)
+    RawDataProvider rawDataProvider)
 {
     private sealed record RepoeLanguageInfo(string Code, string LanguageSlug);
 
@@ -71,7 +71,7 @@ public class RepoeDownloader(
         var result = new Dictionary<string, RepoeItemClass>();
         foreach (var file in files.Where(x=>x.Type == RepoeFileType.ItemClasses))
         {
-            var data = await dataProvider.Read<Dictionary<string, RepoeItemClass>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
+            var data = await rawDataProvider.Read<Dictionary<string, RepoeItemClass>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
             {
                 result.Add(entry.Key, entry.Value);
@@ -87,7 +87,7 @@ public class RepoeDownloader(
         var result = new Dictionary<string, RepoeBaseItem>();
         foreach (var file in files.Where(x=>x.Type == RepoeFileType.BaseItems))
         {
-            var data = await dataProvider.Read<Dictionary<string, RepoeBaseItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
+            var data = await rawDataProvider.Read<Dictionary<string, RepoeBaseItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
             {
                 result.Add(entry.Key, entry.Value);
@@ -103,7 +103,7 @@ public class RepoeDownloader(
         var result = new Dictionary<string, RepoeUniqueItem>();
         foreach (var file in files.Where(x=>x.Type == RepoeFileType.Uniques))
         {
-            var data = await dataProvider.Read<Dictionary<string, RepoeUniqueItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
+            var data = await rawDataProvider.Read<Dictionary<string, RepoeUniqueItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
             {
                 result.Add(entry.Key, entry.Value);
@@ -119,7 +119,7 @@ public class RepoeDownloader(
         var result = new List<RepoeStatTranslation>();
         foreach (var file in files.Where(x=>x.Type == RepoeFileType.StatTranslations))
         {
-            result.AddRange(await dataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json"));
+            result.AddRange(await rawDataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json"));
         }
 
         return result;
@@ -174,7 +174,7 @@ public class RepoeDownloader(
             logger.LogInformation($"GET {url}");
             using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
-            await dataProvider.Write($"{game.GetValueAttribute()}/raw/repoe/{fileName}", await response.Content.ReadAsStreamAsync());
+            await rawDataProvider.Write($"{game.GetValueAttribute()}/raw/repoe/{fileName}", await response.Content.ReadAsStreamAsync());
         }
         catch (Exception ex)
         {

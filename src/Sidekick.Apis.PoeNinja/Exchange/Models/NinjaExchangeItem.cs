@@ -1,0 +1,10 @@
+﻿namespace Sidekick.Apis.PoeNinja.Exchange.Models;
+
+public class NinjaExchangeItem
+{
+    public string? Category { get; set; }
+    public string? DetailsId { get; set; }
+    public string? Id { get; set; }
+    public string? Image { get; set; }
+    public string? Name { get; set; }
+}

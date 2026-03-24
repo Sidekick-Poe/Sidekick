@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Items;
 using Sidekick.Data.Builder.Trade.Models;
@@ -14,7 +15,9 @@ public class ItemBuilder(
     ILogger<ItemBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
-    RepoeDownloader repoeDownloader)
+    IGameLanguageProvider gameLanguageProvider,
+    RepoeDownloader repoeDownloader,
+    NinjaDownloader ninjaDownloader)
 {
     public async Task Build(IGameLanguage language)
     {
@@ -36,27 +39,29 @@ public class ItemBuilder(
 
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
+        var itemClasses = await GetItemClassDefinitions(game, language);
         var tradeItems = await GetTradeItems(game, language);
-        var baseItems = await GetBaseItems(game, language);
-        var uniqueItems = await GetUniqueItems(game, language);
+        var baseItems = await GetBaseItems(game, language, itemClasses);
+        var uniqueItems = await GetUniqueItems(game, language, itemClasses);
+        var ninjaItems = await ninjaDownloader.GetDefinitions(game);
 
         var list = new List<ItemDefinition>();
         foreach (var tradeItem in tradeItems)
         {
-            var baseItem = baseItems.FirstOrDefault(x => x.Name == tradeItem.Type);
-            baseItem ??= baseItems.FirstOrDefault(x => x.Name == tradeItem.Name);
+            var baseItem = baseItems.FirstOrDefault(x => !string.IsNullOrEmpty(tradeItem.Text) && x.Name == tradeItem.Text);
+            baseItem ??= baseItems.FirstOrDefault(x => x.Name == tradeItem.Type);
 
             var uniqueItem = uniqueItems.FirstOrDefault(x => x.Name == tradeItem.Name);
 
             list.Add(new ItemDefinition
             {
-                Source = DataSource.Trade,
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 UniqueItem = uniqueItem,
+                NinjaItems = GetNinjaItems(tradeItem, baseItem, uniqueItem),
                 NamePattern = GetNamePattern(tradeItem),
-                TypePattern = GetTypePattern(tradeItem),
-                TextPattern = GetTextPattern(tradeItem),
+                TypePattern = GetTypePattern(tradeItem, uniqueItem != null),
+                TextPattern = GetTextPattern(tradeItem, uniqueItem != null),
             });
         }
 
@@ -70,12 +75,12 @@ public class ItemBuilder(
 
             list.Add(new ItemDefinition
             {
-                Source = DataSource.Game,
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
+                NinjaItems = GetNinjaItems(tradeItem, baseItem, null),
                 NamePattern = GetNamePattern(tradeItem),
-                TypePattern = GetTypePattern(tradeItem),
-                TextPattern = GetTextPattern(tradeItem),
+                TypePattern = GetTypePattern(tradeItem, false),
+                TextPattern = GetTextPattern(tradeItem, false),
             });
         }
 
@@ -91,19 +96,74 @@ public class ItemBuilder(
             return new Regex(regex);
         }
 
-        Regex? GetTypePattern(TradeItemDefinition? tradeItem)
+        Regex? GetTypePattern(TradeItemDefinition? tradeItem, bool isUnique)
         {
-            if (string.IsNullOrEmpty(tradeItem?.Type) || tradeItem.IsUnique) return null;
+            if (string.IsNullOrEmpty(tradeItem?.Type) || isUnique) return null;
 
             var regex = $@"(?<!\p{{L}}){Regex.Escape(tradeItem.Type)}(?!\p{{L}})";
             return new Regex(regex);
         }
 
-        Regex? GetTextPattern(TradeItemDefinition? tradeItem)
+        Regex? GetTextPattern(TradeItemDefinition? tradeItem, bool isUnique)
         {
-            if (string.IsNullOrEmpty(tradeItem?.Text) || tradeItem.Text == tradeItem.Type || tradeItem.IsUnique) return null;
+            if (string.IsNullOrEmpty(tradeItem?.Text) || tradeItem.Text == tradeItem.Type || isUnique) return null;
 
             return new Regex(Regex.Escape(tradeItem.Text));
+        }
+
+        List<NinjaItemDefinition>? GetNinjaItems(TradeItemDefinition? tradeItem, BaseItemDefinition? baseItem, UniqueItemDefinition? uniqueItem)
+        {
+            if (baseItem == null) return null;
+            if (language.Code != gameLanguageProvider.InvariantLanguage.Code) return null;
+
+            var result = new List<NinjaItemDefinition>();
+            foreach (var ninjaItem in ninjaItems)
+            {
+                // Exchange items
+                if (tradeItem != null &&
+                    ninjaItem.Exchange?.Id != null &&
+                    ninjaItem.Exchange.Id == tradeItem.Id) result.Add(ninjaItem);
+
+                // Unique items, support for foulborn uniques
+                else if (uniqueItem != null)
+                {
+                    if (ninjaItem.Stash?.Name != null &&
+                        (
+                        ninjaItem.Stash.Name == uniqueItem.Name ||
+                        ninjaItem.Stash.Name == $"Foulborn {uniqueItem.Name}"
+                        )) result.Add(ninjaItem);
+                }
+
+                // Text comparison, support for transfigured gems
+                else if (tradeItem is
+                         {
+                             Text: not null,
+                             Name: null,
+                         })
+                {
+                    if (ninjaItem.Stash?.Name != null &&
+                        ninjaItem.Stash.Name == tradeItem.Text) result.Add(ninjaItem);
+                }
+
+                // Base items, support for maps
+                else if (baseItem != null &&
+                         ninjaItem.Stash?.Name != null &&
+                         (
+                         ninjaItem.Stash.Name == baseItem.Name ||
+                         (baseItem.Name == "Map" && ninjaItem.Stash.Name.StartsWith("Map (Tier")) ||
+                         (baseItem.Name == "Blighted Map" && ninjaItem.Stash.Name.StartsWith("Blighted Map (Tier")) ||
+                         (baseItem.Name == "Blight-ravaged Map" && ninjaItem.Stash.Name.StartsWith("Blight-ravaged Map (Tier"))
+                         )) result.Add(ninjaItem);
+
+                // Cluster jewel support
+                else if (baseItem != null &&
+                         ninjaItem.Stash?.BaseType != null &&
+                         ninjaItem.Type != "UniqueJewel" &&
+                         ninjaItem.Stash.BaseType == baseItem.Name &&
+                         baseItem.Name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel") result.Add(ninjaItem);
+            }
+
+            return result.Count == 0 ? null : result;
         }
     }
 
@@ -159,7 +219,6 @@ public class ItemBuilder(
                     Type = entry.Type,
                     Text = text,
                     Category = category.Id,
-                    IsUnique = entry.IsUnique,
                     Discriminator = entry.Discriminator,
                 });
             }
@@ -188,10 +247,9 @@ public class ItemBuilder(
         return result;
     }
 
-    private async Task<List<BaseItemDefinition>> GetBaseItems(GameType game, IGameLanguage language)
+    private async Task<List<BaseItemDefinition>> GetBaseItems(GameType game, IGameLanguage language, Dictionary<string, ItemClassDefinition> itemClasses)
     {
         var repoeBaseItems = await repoeDownloader.ReadBaseItems(game, language.Code);
-        var repoeItemClasses = await GetItemClassDefinitions(game, language);
 
         var result = new List<BaseItemDefinition>();
         foreach (var group in repoeBaseItems.GroupBy(x => x.Value.Name))
@@ -210,7 +268,7 @@ public class ItemBuilder(
             result.Add(new BaseItemDefinition()
             {
                 Id = repoeBaseItem.Key,
-                ItemClass = repoeBaseItem.Value.ItemClass != null ? repoeItemClasses.GetValueOrDefault(repoeBaseItem.Value.ItemClass) : null,
+                ItemClass = repoeBaseItem.Value.ItemClass != null ? itemClasses.GetValueOrDefault(repoeBaseItem.Value.ItemClass) : null,
                 Name = repoeBaseItem.Value.Name,
                 Requirements = repoeBaseItem.Value.Requirements != null ? new BaseItemRequirements()
                 {
@@ -219,7 +277,7 @@ public class ItemBuilder(
                     Intelligence = repoeBaseItem.Value.Requirements.Intelligence,
                     Level = repoeBaseItem.Value.Requirements.Level,
                 } : null,
-                Properties = repoeBaseItem.Value.Properties != null ? new BaseItemProperties()
+                Properties = repoeBaseItem.Value.Properties is { HasValues: true } ? new BaseItemProperties()
                 {
                     Armour = GetPropertyValues(repoeBaseItem.Value.Properties.Armour),
                     EnergyShield = GetPropertyValues(repoeBaseItem.Value.Properties.EnergyShield),
@@ -249,10 +307,9 @@ public class ItemBuilder(
         }
     }
 
-    private async Task<List<UniqueItemDefinition>> GetUniqueItems(GameType game, IGameLanguage language)
+    private async Task<List<UniqueItemDefinition>> GetUniqueItems(GameType game, IGameLanguage language, Dictionary<string, ItemClassDefinition> itemClasses)
     {
         var repoeUniqueItems = await repoeDownloader.ReadUniques(game, language.Code);
-        var repoeItemClasses = await GetItemClassDefinitions(game, language);
 
         var result = new List<UniqueItemDefinition>();
         foreach (var group in repoeUniqueItems.GroupBy(x => x.Value.Name))
@@ -275,7 +332,7 @@ public class ItemBuilder(
             result.Add(new UniqueItemDefinition()
             {
                 Id = repoeUniqueItem.Value.Id,
-                ItemClass = repoeUniqueItem.Value.ItemClass != null ? repoeItemClasses.GetValueOrDefault(repoeUniqueItem.Value.ItemClass) : null,
+                ItemClass = repoeUniqueItem.Value.ItemClass != null ? itemClasses.GetValueOrDefault(repoeUniqueItem.Value.ItemClass) : null,
                 Name = repoeUniqueItem.Value.Name,
                 Image = image,
             });

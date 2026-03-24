@@ -46,6 +46,11 @@ public class DataBuilder(
                 await DownloadRepoe(language);
             }
 
+            if (ninja)
+            {
+                await DownloadNinja(language);
+            }
+
             if (items)
             {
                 await BuildItems(language);
@@ -61,11 +66,6 @@ public class DataBuilder(
                 await BuildStats(language);
             }
 
-        }
-
-        if (ninja)
-        {
-            await DownloadNinja();
         }
 
         logger.LogInformation("Built all data files.");
@@ -92,6 +92,11 @@ public class DataBuilder(
             await DownloadRepoe(language);
         }
 
+        if (ninja)
+        {
+            await DownloadNinja(language);
+        }
+
         if (items)
         {
             await BuildItems(language);
@@ -105,11 +110,6 @@ public class DataBuilder(
         if (stats)
         {
             await BuildStats(language);
-        }
-
-        if (ninja)
-        {
-            await DownloadNinja();
         }
 
         logger.LogInformation($"Built {language.Code} data files.");
@@ -137,8 +137,10 @@ public class DataBuilder(
         await repoeDownloader.Download(language);
     }
 
-    private async Task DownloadNinja()
+    private async Task DownloadNinja(IGameLanguage language)
     {
+        if (language.Code != gameLanguageProvider.InvariantLanguage.Code) return;
+
         logger.LogInformation("Downloading ninja data.");
         await ninjaDownloader.Download();
     }

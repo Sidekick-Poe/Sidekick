@@ -107,8 +107,6 @@ public class PropertyParser
                                    new MirroredProperty(game, serviceProvider),
                                    new FoulbornProperty(game, serviceProvider),
                                    new UnidentifiedProperty(game, currentGameLanguage)),
-
-            new ClusterJewelPassiveCountProperty(game, serviceProvider),
         ]);
     }
 
