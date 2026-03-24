@@ -11,7 +11,7 @@ using Sidekick.Data.Languages;
 
 namespace Sidekick.Data;
 
-public record DataFile(string Path, string Name, long Size, DateTimeOffset LastModified);
+public record DataFile(string Name, long Size, DateTimeOffset LastModified);
 
 public class DataProvider : IInitializableService
 {
@@ -102,6 +102,8 @@ public class DataProvider : IInitializableService
         {
             foreach (var sourceFile in Directory.GetFiles(source, "*", SearchOption.AllDirectories))
             {
+                if (sourceFile.Replace('\\', '/').Contains("/raw/")) continue;
+
                 var relativePath = Path.GetRelativePath(source, sourceFile);
                 var targetFile = Path.Combine(target, relativePath);
 
@@ -215,12 +217,11 @@ public class DataProvider : IInitializableService
         var directoryInfo = new DirectoryInfo(DataDirectory);
         foreach (var file in directoryInfo.GetFiles("*", SearchOption.AllDirectories))
         {
-            var path = file.FullName.Replace('\\', '/');
+            if (file.FullName.Replace('\\', '/').Contains("/raw/")) continue;
+
             var name = Path.GetRelativePath(DataDirectory, file.FullName);
-            if (path.Contains("/raw/")) continue;
 
             files.Add(new DataFile(
-                      Path: path,
                       Name: name,
                       Size: file.Length,
                       LastModified: file.LastWriteTimeUtc));
