@@ -42,7 +42,6 @@ public class ApiItemProvider(
     private async Task BuildInvariantDictionary(GameType game)
     {
         InvariantDictionary.Clear();
-        if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return;
 
         var definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
         foreach (var definition in definitions)
@@ -57,7 +56,7 @@ public class ApiItemProvider(
     {
         var data = !string.IsNullOrEmpty(apiItem.Name) ? TextDictionary.GetValueOrDefault(apiItem.Name) : null;
         data ??= !string.IsNullOrEmpty(apiItem.Type) ? TextDictionary.GetValueOrDefault(apiItem.Type) : null;
-        return data?.TradeItem == null ? null : data;
+        return data;
     }
 
     public ItemDefinition? Get(string? text)

@@ -204,14 +204,14 @@ internal class WealthProvider
         decimal price = 0;
         NinjaSparkline? sparkLine = null;
         var itemDefinition = apiItemProvider.Get(item);
-        if (itemDefinition == null)
+        var invariantDefinition = itemDefinition?.Key != null ? apiItemProvider.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
+        if (itemDefinition == null || invariantDefinition == null)
         {
-            logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
+            logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");
             return (price, sparkLine);
         }
 
-        var invariantDefinition = itemDefinition.Key != null ? apiItemProvider.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
-        if (invariantDefinition?.NinjaItems?.Any(x => x.Exchange != null) ?? false)
+        if (invariantDefinition.NinjaItems?.Any(x => x.Exchange != null) ?? false)
         {
             var info = await ninjaExchangeProvider.GetInfo(invariantDefinition);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
@@ -219,14 +219,14 @@ internal class WealthProvider
         }
         else
         {
-            var info = await ninjaStashProvider.GetInfo(itemDefinition, item);
+            var info = await ninjaStashProvider.GetInfo(invariantDefinition, item);
             price = info?.ChaosValue ?? 0;
             sparkLine = info?.Sparkline;
         }
 
         if (price == 0)
         {
-            logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
+            logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");
         }
 
         return (price, sparkLine);

@@ -134,14 +134,25 @@ public class ItemBuilder(
                         )) result.Add(ninjaItem);
                 }
 
+                // Text comparison, support for transfigured gems
+                else if (tradeItem is
+                         {
+                             Text: not null,
+                             Name: null,
+                         })
+                {
+                    if (ninjaItem.Stash?.Name != null &&
+                        ninjaItem.Stash.Name == tradeItem.Text) result.Add(ninjaItem);
+                }
+
                 // Base items, support for maps
                 else if (baseItem != null &&
                          ninjaItem.Stash?.Name != null &&
                          (
                          ninjaItem.Stash.Name == baseItem.Name ||
-                         (baseItem.Name == "Map" && ninjaItem.Stash.Name.StartsWith("Map")) ||
-                         (baseItem.Name == "Blighted Map" && ninjaItem.Stash.Name.StartsWith("Blighted Map")) ||
-                         (baseItem.Name == "Blight-ravaged Map" && ninjaItem.Stash.Name.StartsWith("Blight-ravaged Map"))
+                         (baseItem.Name == "Map" && ninjaItem.Stash.Name.StartsWith("Map (Tier")) ||
+                         (baseItem.Name == "Blighted Map" && ninjaItem.Stash.Name.StartsWith("Blighted Map (Tier")) ||
+                         (baseItem.Name == "Blight-ravaged Map" && ninjaItem.Stash.Name.StartsWith("Blight-ravaged Map (Tier"))
                          )) result.Add(ninjaItem);
 
                 // Cluster jewel support

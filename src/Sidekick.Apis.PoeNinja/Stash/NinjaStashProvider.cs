@@ -44,7 +44,7 @@ public class NinjaStashProvider(
                                        stats);
         }
 
-        if (item.Properties.MapTier > 0)
+        if (item.Properties.MapTier > 0 || item.Properties.ItemClass == ItemClass.Map)
         {
             return await GetMapInfo(item.Invariant,
                                     item.Properties.MapTier);
@@ -58,7 +58,7 @@ public class NinjaStashProvider(
                                     item.Properties.Quality);
         }
 
-        if (item.Properties.GemLevel > 0)
+        if (item.Properties.ClusterJewelPassiveCount > 0)
         {
             return await GetClusterJewelInfo(item.Invariant,
                                              item.Properties.ItemLevel,
@@ -72,13 +72,8 @@ public class NinjaStashProvider(
 
     public async Task<NinjaStash?> GetInfo(ItemDefinition item, ApiItem apiItem)
     {
-        if (apiItem.Rarity == Rarity.Unique)
-        {
-            return await GetUniqueInfo(item,
-                                       apiItem.Mutated,
-                                       apiItem.MaxLinks,
-                                       []);
-        }
+        // Unsupported due to foulborn modifiers. We would need to create some logic to get the trade stat id from the ApiItem. This isn't something that is done currently.
+        if (apiItem.Rarity == Rarity.Unique) return null;
 
         if (apiItem.MapTier > 0)
         {
@@ -94,7 +89,9 @@ public class NinjaStashProvider(
                                     apiItem.Quality.GetValueOrDefault());
         }
 
-        return null;
+        return await GetBaseTypeInfo(item,
+                                     apiItem.ItemLevel,
+                                     apiItem.Influences);
     }
 
     private async Task<NinjaStash?> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<CompareStat>? stats)
@@ -150,7 +147,9 @@ public class NinjaStashProvider(
         NinjaItemDefinition? FindBestMatch()
         {
             if (item.NinjaItems == null) return null;
-            if (string.IsNullOrEmpty(item.BaseItem?.Name)) return null;
+            var text = item.TradeItem?.Text;
+            text ??= item.BaseItem?.Name;
+            if (string.IsNullOrEmpty(text)) return null;
 
             gemLevel = gemLevel switch
             {
@@ -167,7 +166,7 @@ public class NinjaStashProvider(
 
             return item.NinjaItems
                 .Where(x => x.Stash != null)
-                .Where(x => x.Stash!.Name == item.BaseItem.Name)
+                .Where(x => x.Stash!.Name == text)
                 .Where(x => x.Stash!.GemLevel.GetValueOrDefault() == gemLevel)
                 .Where(x => x.Stash!.GemQuality.GetValueOrDefault() == gemQuality)
                 .FirstOrDefault(x => x.Stash!.Corrupted.GetValueOrDefault() == corrupted);

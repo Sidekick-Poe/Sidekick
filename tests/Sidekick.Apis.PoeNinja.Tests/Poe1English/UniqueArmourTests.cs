@@ -9,7 +9,7 @@ public class UniqueArmourTests(NinjaTestFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task UniqueBodyArmour_FoulbornGhostwrithe()
+    public async Task FoulbornGhostwrithe()
     {
         var item = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
@@ -44,7 +44,7 @@ Note: ~b/o 400 chaos
     }
 
     [Fact]
-    public async Task UniqueBodyArmour_FoulbornRathpithGlobe()
+    public async Task FoulbornRathpithGlobe()
     {
         var item = parser.ParseItem(@"Item Class: Shields
 Rarity: Unique
