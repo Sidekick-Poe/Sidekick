@@ -53,14 +53,14 @@ public class ItemClassFilter : TradeFilter
         if (!Checked) return;
 
         query.Type = null;
-        query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.ItemClass);
+        query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item);
     }
 
-    private static SearchFilterOption? GetCategoryFilter(ItemClass itemClass)
+    private static SearchFilterOption? GetCategoryFilter(Item item)
     {
-        var enumValue = itemClass.GetValueAttribute();
-        if (string.IsNullOrEmpty(enumValue)) return null;
+        var id = item.ItemClass.FindAttribute<ItemClassTradeId>(attr => attr.Game == item.Game)?.Id;
+        if (string.IsNullOrEmpty(id)) return null;
 
-        return new SearchFilterOption(enumValue);
+        return new SearchFilterOption(id);
     }
 }
