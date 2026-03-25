@@ -44,6 +44,8 @@ public class RarityProperty(
 
     public override void Parse(Item item)
     {
+        item.Properties.Rarity = Rarity.Unknown;
+
         var propertyBlock = item.Text.Blocks[0];
         foreach (var pattern in RarityPatterns)
         {
@@ -51,10 +53,8 @@ public class RarityProperty(
 
             item.Text.Blocks[0].Parsed = true;
             item.Properties.Rarity = pattern.Key;
-            return;
+            break;
         }
-
-        item.Properties.Rarity = Rarity.Unknown;
     }
 
     public override void ParseAfterStats(Item item)

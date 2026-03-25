@@ -32,7 +32,7 @@ Item Level: 69
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistTool, actual.ItemClass);
+        Assert.Equal(ItemClass.HeistEquipmentTool, actual.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Basic Disguise Kit", actual.Definition.TradeItem?.Type);
     }
@@ -56,7 +56,7 @@ Item Level: 67
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistUtility, actual.ItemClass);
+        Assert.Equal(ItemClass.HeistEquipmentUtility, actual.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Torn Cloak", actual.Definition.TradeItem?.Type);
     }
@@ -80,7 +80,7 @@ Item Level: 73
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistReward, actual.ItemClass);
+        Assert.Equal(ItemClass.HeistEquipmentReward, actual.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Silver Brooch", actual.Definition.TradeItem?.Type);
     }
@@ -111,7 +111,7 @@ Grants Level 10 Anger Skill
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistWeapon, actual.ItemClass);
+        Assert.Equal(ItemClass.HeistEquipmentWeapon, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Rough Sharpening Stone", actual.Definition.TradeItem?.Type);
     }

@@ -12,7 +12,7 @@ public class WaystoneParsing(Poe2EnglishFixture fixture)
     public void ParseWaystoneProperties()
     {
         var actual = parser.ParseItem(
-            @"Item Class: Waystones
+        @"Item Class: Waystones
 Rarity: Rare
 Forsaken Bearings
 Waystone (Tier 1)
@@ -40,7 +40,7 @@ Monsters have 35% increased Stun Threshold
 Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Waystone, actual.ItemClass);
+        Assert.Equal(ItemClass.Map, actual.ItemClass);
         Assert.Equal("Waystone (Tier 1)", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(66, actual.Properties.ItemLevel);
@@ -57,7 +57,7 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
     public void ParseWaystoneTier13()
     {
         var actual = parser.ParseItem(
-            @"Item Class: Waystones
+        @"Item Class: Waystones
 Rarity: Rare
 Putrid Navigation
 Waystone (Tier 13)
@@ -84,7 +84,7 @@ Rare Monsters have 1 additional Modifier
 Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Waystone, actual.ItemClass);
+        Assert.Equal(ItemClass.Map, actual.ItemClass);
         Assert.Equal("Waystone (Tier 13)", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);

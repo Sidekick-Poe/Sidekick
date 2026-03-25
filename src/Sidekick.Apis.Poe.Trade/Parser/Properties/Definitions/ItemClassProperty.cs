@@ -11,19 +11,10 @@ using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class ItemClassProperty : PropertyDefinition
+public class ItemClassProperty(
+    GameType game,
+    IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
-    private readonly GameType game;
-    private readonly IStringLocalizer<PoeResources> resources;
-
-    public ItemClassProperty(
-        GameType game,
-        IStringLocalizer<PoeResources> resources)
-    {
-        this.game = game;
-        this.resources = resources;
-    }
-
     public override string Label => resources["Item_Class"];
 
     public override Task<TradeFilter?> GetFilter(Item item)

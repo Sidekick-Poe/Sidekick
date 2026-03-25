@@ -9354,7 +9354,7 @@
         "itemClass": {
           "$id": "1388",
           "id": "Active Skill Gem",
-          "type": "activeGem",
+          "type": "activeSkillGem",
           "name": "Fertigkeitengemmen"
         }
       },
@@ -35468,7 +35468,6 @@
         "itemClass": {
           "$id": "5739",
           "id": "DivinationCard",
-          "type": "divinationCard",
           "name": "Weissagungskarten"
         }
       },
@@ -43788,7 +43787,6 @@
         "itemClass": {
           "$id": "7126",
           "id": "StackableCurrency",
-          "type": "currency",
           "name": "Stapelbare W\u00E4hrung"
         }
       },
@@ -50541,7 +50539,6 @@
         "itemClass": {
           "$id": "8210",
           "id": "IncubatorStackable",
-          "type": "incubator",
           "name": "Inkubatoren"
         }
       },
@@ -54213,7 +54210,6 @@
         "itemClass": {
           "$id": "8803",
           "id": "DelveSocketableCurrency",
-          "type": "resonator",
           "name": "Delve: Einfassbare W\u00E4hrung"
         }
       },
@@ -55520,6 +55516,7 @@
         "itemClass": {
           "$id": "9047",
           "id": "HybridFlask",
+          "type": "flask",
           "name": "Hybridfl\u00E4schchen"
         }
       },
@@ -55624,7 +55621,7 @@
         "itemClass": {
           "$id": "9066",
           "id": "LifeFlask",
-          "type": "lifeFlask",
+          "type": "flask",
           "name": "Lebensfl\u00E4schchen"
         }
       },
@@ -55831,7 +55828,7 @@
         "itemClass": {
           "$id": "9103",
           "id": "ManaFlask",
-          "type": "manaFlask",
+          "type": "flask",
           "name": "Manafl\u00E4schchen"
         }
       },
@@ -56038,6 +56035,7 @@
         "itemClass": {
           "$id": "9140",
           "id": "UtilityFlask",
+          "type": "flask",
           "name": "Hilfsfl\u00E4schchen"
         }
       },
@@ -62937,7 +62935,6 @@
         "itemClass": {
           "$id": "10338",
           "id": "Support Skill Gem",
-          "type": "supportGem",
           "name": "Unterst\u00FCtzungsgemmen"
         }
       },
@@ -75745,7 +75742,6 @@
         "itemClass": {
           "$id": "12235",
           "id": "VaultKey",
-          "type": "talisman",
           "name": "Reliquienkammer-Schl\u00FCssel"
         }
       },
@@ -75826,7 +75822,6 @@
         "itemClass": {
           "$id": "12249",
           "id": "MapFragment",
-          "type": "mapFragment",
           "name": "Kartenfragmente"
         }
       },
@@ -75903,7 +75898,6 @@
         "itemClass": {
           "$id": "12262",
           "id": "Breachstone",
-          "type": "breachstone",
           "name": "Riss-Steine"
         }
       },
@@ -77643,7 +77637,7 @@
         "itemClass": {
           "$id": "12542",
           "id": "MapKey",
-          "type": "waystone",
+          "type": "map",
           "name": "Karten"
         }
       },
@@ -86373,7 +86367,7 @@
         "itemClass": {
           "$id": "13973",
           "id": "Rune Dagger",
-          "type": "runeDagger",
+          "type": "dagger",
           "name": "Runendolche"
         },
         "properties": {
@@ -91124,6 +91118,7 @@
         "itemClass": {
           "$id": "14844",
           "id": "Thrusting One Hand Sword",
+          "type": "oneHandSword",
           "name": "Einhandstichschwerter"
         },
         "properties": {
@@ -107316,7 +107311,7 @@
         "itemClass": {
           "$id": "17644",
           "id": "HeistEquipmentTool",
-          "type": "heistTool",
+          "type": "heistEquipmentTool",
           "name": "Heist-Werkzeug"
         }
       },
@@ -107387,7 +107382,7 @@
         "itemClass": {
           "$id": "17657",
           "id": "HeistEquipmentReward",
-          "type": "heistReward",
+          "type": "heistEquipmentReward",
           "name": "Heist-Broschen"
         }
       },
@@ -107526,7 +107521,7 @@
         "itemClass": {
           "$id": "17682",
           "id": "HeistEquipmentWeapon",
-          "type": "heistWeapon",
+          "type": "heistEquipmentWeapon",
           "name": "Heist-Ausr\u00FCstung"
         }
       },
@@ -107597,7 +107592,7 @@
         "itemClass": {
           "$id": "17695",
           "id": "HeistEquipmentUtility",
-          "type": "heistUtility",
+          "type": "heistEquipmentUtility",
           "name": "Heist-Umh\u00E4nge"
         }
       },
@@ -108280,7 +108275,7 @@
         "itemClass": {
           "$id": "17816",
           "id": "HeistBlueprint",
-          "type": "blueprint",
+          "type": "heistBlueprint",
           "name": "Grundrisse"
         }
       },
@@ -108436,7 +108431,7 @@
         "itemClass": {
           "$id": "17844",
           "id": "HeistContract",
-          "type": "contract",
+          "type": "heistContract",
           "name": "Auftr\u00E4ge"
         }
       },
@@ -108792,7 +108787,7 @@
         "itemClass": {
           "$id": "17902",
           "id": "ExpeditionLogbook",
-          "type": "logbook",
+          "type": "expeditionLogbook",
           "name": "Expeditions-Logb\u00FCcher"
         }
       },
@@ -108934,7 +108929,6 @@
         "itemClass": {
           "$id": "17928",
           "id": "ItemisedSanctum",
-          "type": "sanctumResearch",
           "name": "Sanktum-Forschungsauftrag"
         }
       },
@@ -109460,7 +109454,6 @@
         "itemClass": {
           "$id": "18010",
           "id": "ItemisedCorpse",
-          "type": "corpse",
           "name": "Leichen"
         }
       },
@@ -111197,6 +111190,7 @@
         "itemClass": {
           "$id": "18317",
           "id": "AtlasRelic",
+          "type": "idol",
           "name": "G\u00F6tzen"
         }
       },
@@ -111925,6 +111919,7 @@
         "itemClass": {
           "$id": "18414",
           "id": "RemovedItem",
+          "type": "removedItem",
           "name": ""
         }
       },
@@ -117299,7 +117294,6 @@
         "itemClass": {
           "$id": "19390",
           "id": "Currency",
-          "type": "currency",
           "name": "W\u00E4hrung"
         }
       }
@@ -118953,7 +118947,6 @@
         "itemClass": {
           "$id": "19693",
           "id": "MemoryLine",
-          "type": "memoryLine",
           "name": "Erinnerungen"
         }
       }

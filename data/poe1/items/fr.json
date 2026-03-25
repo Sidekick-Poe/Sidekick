@@ -35501,7 +35501,6 @@
         "itemClass": {
           "$id": "5745",
           "id": "DivinationCard",
-          "type": "divinationCard",
           "name": "Cartes divinatoires"
         }
       },
@@ -36584,7 +36583,7 @@
         "itemClass": {
           "$id": "5926",
           "id": "Active Skill Gem",
-          "type": "activeGem",
+          "type": "activeSkillGem",
           "name": "Gemmes d\u0027aptitude"
         }
       },
@@ -43860,7 +43859,6 @@
         "itemClass": {
           "$id": "7139",
           "id": "StackableCurrency",
-          "type": "currency",
           "name": "Objet mon\u00E9taire empilable"
         }
       },
@@ -50613,7 +50611,6 @@
         "itemClass": {
           "$id": "8223",
           "id": "IncubatorStackable",
-          "type": "incubator",
           "name": "Incubateurs"
         }
       },
@@ -54285,7 +54282,6 @@
         "itemClass": {
           "$id": "8816",
           "id": "DelveSocketableCurrency",
-          "type": "resonator",
           "name": "Objets ench\u00E2ssables Delve"
         }
       },
@@ -55592,6 +55588,7 @@
         "itemClass": {
           "$id": "9060",
           "id": "HybridFlask",
+          "type": "flask",
           "name": "Flacons hybrides"
         }
       },
@@ -55696,7 +55693,7 @@
         "itemClass": {
           "$id": "9079",
           "id": "LifeFlask",
-          "type": "lifeFlask",
+          "type": "flask",
           "name": "Flacons de Vie"
         }
       },
@@ -55903,7 +55900,7 @@
         "itemClass": {
           "$id": "9116",
           "id": "ManaFlask",
-          "type": "manaFlask",
+          "type": "flask",
           "name": "Flacons de Mana"
         }
       },
@@ -56110,6 +56107,7 @@
         "itemClass": {
           "$id": "9153",
           "id": "UtilityFlask",
+          "type": "flask",
           "name": "Flacons utilitaires"
         }
       },
@@ -63005,7 +63003,6 @@
         "itemClass": {
           "$id": "10350",
           "id": "Support Skill Gem",
-          "type": "supportGem",
           "name": "Gemmes de soutien"
         }
       },
@@ -75812,7 +75809,6 @@
         "itemClass": {
           "$id": "12247",
           "id": "VaultKey",
-          "type": "talisman",
           "name": "Cl\u00E9s de la Salle des coffres"
         }
       },
@@ -75893,7 +75889,6 @@
         "itemClass": {
           "$id": "12261",
           "id": "MapFragment",
-          "type": "mapFragment",
           "name": "Fragments de carte"
         }
       },
@@ -75970,7 +75965,6 @@
         "itemClass": {
           "$id": "12274",
           "id": "Breachstone",
-          "type": "breachstone",
           "name": "Pierres de Br\u00E8che"
         }
       },
@@ -77710,7 +77704,7 @@
         "itemClass": {
           "$id": "12554",
           "id": "MapKey",
-          "type": "waystone",
+          "type": "map",
           "name": "Cartes"
         }
       },
@@ -86440,7 +86434,7 @@
         "itemClass": {
           "$id": "13985",
           "id": "Rune Dagger",
-          "type": "runeDagger",
+          "type": "dagger",
           "name": "Dagues runiques"
         },
         "properties": {
@@ -91191,6 +91185,7 @@
         "itemClass": {
           "$id": "14856",
           "id": "Thrusting One Hand Sword",
+          "type": "oneHandSword",
           "name": "\u00C9p\u00E9es d\u0027estoc \u00E0 une main"
         },
         "properties": {
@@ -107481,7 +107476,7 @@
         "itemClass": {
           "$id": "17674",
           "id": "HeistEquipmentTool",
-          "type": "heistTool",
+          "type": "heistEquipmentTool",
           "name": "Outils de Malfaiteur"
         }
       },
@@ -107552,7 +107547,7 @@
         "itemClass": {
           "$id": "17687",
           "id": "HeistEquipmentReward",
-          "type": "heistReward",
+          "type": "heistEquipmentReward",
           "name": "Broches de Malfaiteur"
         }
       },
@@ -107691,7 +107686,7 @@
         "itemClass": {
           "$id": "17712",
           "id": "HeistEquipmentWeapon",
-          "type": "heistWeapon",
+          "type": "heistEquipmentWeapon",
           "name": "\u00C9quipements de Malfaiteur"
         }
       },
@@ -107762,7 +107757,7 @@
         "itemClass": {
           "$id": "17725",
           "id": "HeistEquipmentUtility",
-          "type": "heistUtility",
+          "type": "heistEquipmentUtility",
           "name": "Capes de Malfaiteur"
         }
       },
@@ -108445,7 +108440,7 @@
         "itemClass": {
           "$id": "17846",
           "id": "HeistBlueprint",
-          "type": "blueprint",
+          "type": "heistBlueprint",
           "name": "Plans"
         }
       },
@@ -108601,7 +108596,7 @@
         "itemClass": {
           "$id": "17874",
           "id": "HeistContract",
-          "type": "contract",
+          "type": "heistContract",
           "name": "Contrats"
         }
       },
@@ -108957,7 +108952,7 @@
         "itemClass": {
           "$id": "17932",
           "id": "ExpeditionLogbook",
-          "type": "logbook",
+          "type": "expeditionLogbook",
           "name": "Journaux de bord d\u0027Exp\u00E9dition"
         }
       },
@@ -109099,7 +109094,6 @@
         "itemClass": {
           "$id": "17958",
           "id": "ItemisedSanctum",
-          "type": "sanctumResearch",
           "name": "Recherche du Sanctuaire"
         }
       },
@@ -109625,7 +109619,6 @@
         "itemClass": {
           "$id": "18040",
           "id": "ItemisedCorpse",
-          "type": "corpse",
           "name": "Cadavres"
         }
       },
@@ -111362,6 +111355,7 @@
         "itemClass": {
           "$id": "18347",
           "id": "AtlasRelic",
+          "type": "idol",
           "name": "Idoles"
         }
       },
@@ -112090,6 +112084,7 @@
         "itemClass": {
           "$id": "18444",
           "id": "RemovedItem",
+          "type": "removedItem",
           "name": ""
         }
       },
@@ -117480,7 +117475,6 @@
         "itemClass": {
           "$id": "19424",
           "id": "Currency",
-          "type": "currency",
           "name": "Objet mon\u00E9taire"
         }
       }
@@ -119211,7 +119205,6 @@
         "itemClass": {
           "$id": "19741",
           "id": "MemoryLine",
-          "type": "memoryLine",
           "name": "Souvenirs"
         }
       }

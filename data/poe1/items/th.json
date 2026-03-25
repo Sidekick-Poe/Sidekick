@@ -35520,7 +35520,6 @@
         "itemClass": {
           "$id": "5749",
           "id": "DivinationCard",
-          "type": "divinationCard",
           "name": "\u0E44\u0E1E\u0E48\u0E1E\u0E22\u0E32\u0E01\u0E23\u0E13\u0E4C"
         }
       },
@@ -43876,7 +43875,6 @@
         "itemClass": {
           "$id": "7142",
           "id": "StackableCurrency",
-          "type": "currency",
           "name": "\u0E40\u0E07\u0E34\u0E19\u0E15\u0E23\u0E32\u0E23\u0E27\u0E21\u0E01\u0E2D\u0E07\u0E44\u0E14\u0E49"
         }
       },
@@ -50629,7 +50627,6 @@
         "itemClass": {
           "$id": "8226",
           "id": "IncubatorStackable",
-          "type": "incubator",
           "name": "\u0E15\u0E31\u0E27\u0E1A\u0E48\u0E21\u0E1F\u0E31\u0E01"
         }
       },
@@ -54301,7 +54298,6 @@
         "itemClass": {
           "$id": "8819",
           "id": "DelveSocketableCurrency",
-          "type": "resonator",
           "name": "\u0E40\u0E07\u0E34\u0E19\u0E15\u0E23\u0E32\u0E21\u0E35\u0E23\u0E39\u0E02\u0E2D\u0E07\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E07"
         }
       },
@@ -55608,6 +55604,7 @@
         "itemClass": {
           "$id": "9063",
           "id": "HybridFlask",
+          "type": "flask",
           "name": "\u0E02\u0E27\u0E14\u0E22\u0E32\u0E1C\u0E2A\u0E21"
         }
       },
@@ -55712,7 +55709,7 @@
         "itemClass": {
           "$id": "9082",
           "id": "LifeFlask",
-          "type": "lifeFlask",
+          "type": "flask",
           "name": "\u0E02\u0E27\u0E14\u0E22\u0E32\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15"
         }
       },
@@ -55919,7 +55916,7 @@
         "itemClass": {
           "$id": "9119",
           "id": "ManaFlask",
-          "type": "manaFlask",
+          "type": "flask",
           "name": "\u0E02\u0E27\u0E14\u0E22\u0E32\u0E21\u0E32\u0E19\u0E32"
         }
       },
@@ -56126,6 +56123,7 @@
         "itemClass": {
           "$id": "9156",
           "id": "UtilityFlask",
+          "type": "flask",
           "name": "\u0E02\u0E27\u0E14\u0E22\u0E32\u0E0A\u0E48\u0E27\u0E22\u0E40\u0E2B\u0E25\u0E37\u0E2D"
         }
       },
@@ -57194,7 +57192,7 @@
         "itemClass": {
           "$id": "9325",
           "id": "Active Skill Gem",
-          "type": "activeGem",
+          "type": "activeSkillGem",
           "name": "\u0E2B\u0E34\u0E19\u0E2A\u0E01\u0E34\u0E25"
         }
       },
@@ -63028,7 +63026,6 @@
         "itemClass": {
           "$id": "10355",
           "id": "Support Skill Gem",
-          "type": "supportGem",
           "name": "\u0E2B\u0E34\u0E19\u0E40\u0E2A\u0E23\u0E34\u0E21"
         }
       },
@@ -75836,7 +75833,6 @@
         "itemClass": {
           "$id": "12252",
           "id": "VaultKey",
-          "type": "talisman",
           "name": "\u0E01\u0E38\u0E0D\u0E41\u0E08\u0E04\u0E25\u0E31\u0E07\u0E27\u0E31\u0E15\u0E16\u0E38\u0E42\u0E1A\u0E23\u0E32\u0E13"
         }
       },
@@ -75917,7 +75913,6 @@
         "itemClass": {
           "$id": "12266",
           "id": "MapFragment",
-          "type": "mapFragment",
           "name": "\u0E0A\u0E34\u0E49\u0E19\u0E2A\u0E48\u0E27\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48"
         }
       },
@@ -75994,7 +75989,6 @@
         "itemClass": {
           "$id": "12279",
           "id": "Breachstone",
-          "type": "breachstone",
           "name": "\u0E28\u0E34\u0E25\u0E32\u0E1A\u0E23\u0E35\u0E0A"
         }
       },
@@ -77734,7 +77728,7 @@
         "itemClass": {
           "$id": "12559",
           "id": "MapKey",
-          "type": "waystone",
+          "type": "map",
           "name": "\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48"
         }
       },
@@ -86464,7 +86458,7 @@
         "itemClass": {
           "$id": "13990",
           "id": "Rune Dagger",
-          "type": "runeDagger",
+          "type": "dagger",
           "name": "\u0E21\u0E35\u0E14\u0E2D\u0E32\u0E04\u0E21"
         },
         "properties": {
@@ -91234,6 +91228,7 @@
         "itemClass": {
           "$id": "14865",
           "id": "Thrusting One Hand Sword",
+          "type": "oneHandSword",
           "name": "\u0E14\u0E32\u0E1A\u0E41\u0E17\u0E07"
         },
         "properties": {
@@ -107524,7 +107519,7 @@
         "itemClass": {
           "$id": "17683",
           "id": "HeistEquipmentTool",
-          "type": "heistTool",
+          "type": "heistEquipmentTool",
           "name": "\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E21\u0E37\u0E2D\u0E01\u0E2D\u0E07\u0E42\u0E08\u0E23"
         }
       },
@@ -107595,7 +107590,7 @@
         "itemClass": {
           "$id": "17696",
           "id": "HeistEquipmentReward",
-          "type": "heistReward",
+          "type": "heistEquipmentReward",
           "name": "\u0E40\u0E02\u0E47\u0E21\u0E01\u0E25\u0E31\u0E14\u0E01\u0E2D\u0E07\u0E42\u0E08\u0E23"
         }
       },
@@ -107734,7 +107729,7 @@
         "itemClass": {
           "$id": "17721",
           "id": "HeistEquipmentWeapon",
-          "type": "heistWeapon",
+          "type": "heistEquipmentWeapon",
           "name": "\u0E2D\u0E38\u0E1B\u0E01\u0E23\u0E13\u0E4C\u0E2A\u0E27\u0E21\u0E43\u0E2A\u0E48\u0E01\u0E2D\u0E07\u0E42\u0E08\u0E23"
         }
       },
@@ -107805,7 +107800,7 @@
         "itemClass": {
           "$id": "17734",
           "id": "HeistEquipmentUtility",
-          "type": "heistUtility",
+          "type": "heistEquipmentUtility",
           "name": "\u0E1C\u0E49\u0E32\u0E04\u0E25\u0E38\u0E21\u0E01\u0E2D\u0E07\u0E42\u0E08\u0E23"
         }
       },
@@ -108488,7 +108483,7 @@
         "itemClass": {
           "$id": "17855",
           "id": "HeistBlueprint",
-          "type": "blueprint",
+          "type": "heistBlueprint",
           "name": "\u0E1E\u0E34\u0E21\u0E1E\u0E4C\u0E40\u0E02\u0E35\u0E22\u0E27"
         }
       },
@@ -108644,7 +108639,7 @@
         "itemClass": {
           "$id": "17883",
           "id": "HeistContract",
-          "type": "contract",
+          "type": "heistContract",
           "name": "\u0E2A\u0E31\u0E0D\u0E0D\u0E32\u0E08\u0E49\u0E32\u0E07"
         }
       },
@@ -109000,7 +108995,7 @@
         "itemClass": {
           "$id": "17941",
           "id": "ExpeditionLogbook",
-          "type": "logbook",
+          "type": "expeditionLogbook",
           "name": "\u0E2A\u0E21\u0E38\u0E14\u0E1B\u0E39\u0E21\u0E40\u0E14\u0E34\u0E19\u0E17\u0E32\u0E07\u0E01\u0E2D\u0E07\u0E2A\u0E33\u0E23\u0E27\u0E08"
         }
       },
@@ -109142,7 +109137,6 @@
         "itemClass": {
           "$id": "17967",
           "id": "ItemisedSanctum",
-          "type": "sanctumResearch",
           "name": "\u0E1A\u0E17\u0E27\u0E34\u0E08\u0E31\u0E22\u0E40\u0E17\u0E27\u0E2A\u0E16\u0E32\u0E19"
         }
       },
@@ -109668,7 +109662,6 @@
         "itemClass": {
           "$id": "18049",
           "id": "ItemisedCorpse",
-          "type": "corpse",
           "name": "\u0E28\u0E1E"
         }
       },
@@ -111405,6 +111398,7 @@
         "itemClass": {
           "$id": "18356",
           "id": "AtlasRelic",
+          "type": "idol",
           "name": "\u0E40\u0E17\u0E27\u0E23\u0E39\u0E1B"
         }
       },
@@ -112133,6 +112127,7 @@
         "itemClass": {
           "$id": "18453",
           "id": "RemovedItem",
+          "type": "removedItem",
           "name": ""
         }
       },
@@ -117534,7 +117529,6 @@
         "itemClass": {
           "$id": "19435",
           "id": "Currency",
-          "type": "currency",
           "name": "\u0E40\u0E07\u0E34\u0E19\u0E15\u0E23\u0E32"
         }
       }
@@ -119188,7 +119182,6 @@
         "itemClass": {
           "$id": "19738",
           "id": "MemoryLine",
-          "type": "memoryLine",
           "name": "\u0E04\u0E27\u0E32\u0E21\u0E17\u0E23\u0E07\u0E08\u0E33"
         }
       }

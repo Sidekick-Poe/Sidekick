@@ -61,12 +61,11 @@ public static class ItemClassConstants
 
     public static readonly ItemClass[] Areas =
     [
-        ItemClass.Blueprint,
-        ItemClass.Contract,
-        ItemClass.Logbook,
+        ItemClass.HeistBlueprint,
+        ItemClass.HeistContract,
+        ItemClass.ExpeditionLogbook,
         ItemClass.Tablet,
         ItemClass.Map,
-        ItemClass.Waystone,
         ItemClass.Barya,
         ItemClass.Ultimatum,
     ];
@@ -83,10 +82,10 @@ public static class ItemClassConstants
 
         ItemClass.Idol,
 
-        ItemClass.HeistReward,
-        ItemClass.HeistUtility,
-        ItemClass.HeistWeapon,
-        ItemClass.HeistTool,
+        ItemClass.HeistEquipmentReward,
+        ItemClass.HeistEquipmentUtility,
+        ItemClass.HeistEquipmentWeapon,
+        ItemClass.HeistEquipmentTool,
 
         ItemClass.SanctumRelic,
         ItemClass.ActiveSkillGem,

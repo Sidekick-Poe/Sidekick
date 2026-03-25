@@ -18988,6 +18988,7 @@
         "itemClass": {
           "$id": "3587",
           "id": "Spear",
+          "type": "spear",
           "name": "\u9577\u77DB"
         }
       },
@@ -23762,7 +23763,6 @@
         "itemClass": {
           "$id": "4213",
           "id": "StackableCurrency",
-          "type": "currency",
           "name": "\u53EF\u5806\u758A\u901A\u8CA8"
         }
       },
@@ -25323,7 +25323,6 @@
         "itemClass": {
           "$id": "4460",
           "id": "IncubatorStackable",
-          "type": "incubator",
           "name": "\u57F9\u80B2\u5668"
         }
       },
@@ -26884,7 +26883,6 @@
         "itemClass": {
           "$id": "4707",
           "id": "Omen",
-          "type": "omen",
           "name": "\u9810\u5146"
         }
       },
@@ -27789,7 +27787,6 @@
         "itemClass": {
           "$id": "4852",
           "id": "VaultKey",
-          "type": "talisman",
           "name": "\u907A\u9470"
         }
       },
@@ -30205,6 +30202,7 @@
         "itemClass": {
           "$id": "5235",
           "id": "UtilityFlask",
+          "type": "charms",
           "name": "\u8B77\u7B26"
         }
       },
@@ -31043,7 +31041,7 @@
         "itemClass": {
           "$id": "5376",
           "id": "Active Skill Gem",
-          "type": "activeGem",
+          "type": "activeSkillGem",
           "name": "\u6280\u80FD\u5BF6\u77F3"
         }
       },
@@ -34163,7 +34161,6 @@
         "itemClass": {
           "$id": "5923",
           "id": "Support Skill Gem",
-          "type": "supportGem",
           "name": "\u8F14\u52A9\u5BF6\u77F3"
         }
       },
@@ -45993,7 +45990,6 @@
         "itemClass": {
           "$id": "7973",
           "id": "MapFragment",
-          "type": "mapFragment",
           "name": "\u5730\u5716\u788E\u7247"
         }
       },
@@ -46032,7 +46028,7 @@
         "itemClass": {
           "$id": "7980",
           "id": "ExpeditionLogbook",
-          "type": "logbook",
+          "type": "expeditionLogbook",
           "name": "\u63A2\u96AA\u65E5\u8A8C"
         }
       },
@@ -46073,7 +46069,6 @@
         "itemClass": {
           "$id": "7987",
           "id": "Breachstone",
-          "type": "breachstone",
           "name": "\u88C2\u75D5\u77F3"
         }
       },
@@ -46535,7 +46530,6 @@
         "itemClass": {
           "$id": "8062",
           "id": "ItemisedSanctum",
-          "type": "sanctumResearch",
           "name": "\u8A66\u7149\u4EE3\u5E63"
         }
       },
@@ -46606,6 +46600,7 @@
         "itemClass": {
           "$id": "8075",
           "id": "TowerAugmentation",
+          "type": "tablet",
           "name": "\u7891\u724C"
         }
       },
@@ -46947,6 +46942,7 @@
         "itemClass": {
           "$id": "8128",
           "id": "Flail",
+          "type": "flail",
           "name": "\u93C8\u9318"
         },
         "properties": {
@@ -49805,6 +49801,7 @@
         "itemClass": {
           "$id": "8660",
           "id": "Crossbow",
+          "type": "crossbow",
           "name": "\u5341\u5B57\u5F13"
         },
         "properties": {
@@ -51563,6 +51560,7 @@
         "itemClass": {
           "$id": "8981",
           "id": "Talisman",
+          "type": "talisman",
           "name": "\u9B54\u7B26"
         },
         "properties": {
@@ -56643,7 +56641,6 @@
         "itemClass": {
           "$id": "9819",
           "id": "DelveSocketableCurrency",
-          "type": "resonator",
           "name": "\u6398\u7344\u63D2\u69FD\u901A\u8CA8"
         }
       }
@@ -59479,7 +59476,6 @@
         "itemClass": {
           "$id": "10340",
           "id": "Currency",
-          "type": "currency",
           "name": "\u901A\u8CA8"
         }
       }
@@ -60766,7 +60762,6 @@
         "itemClass": {
           "$id": "10576",
           "id": "HeistContract",
-          "type": "contract",
           "name": "\u5951\u7D04\u66F8"
         }
       }
@@ -60868,7 +60863,6 @@
         "itemClass": {
           "$id": "10595",
           "id": "HeistBlueprint",
-          "type": "blueprint",
           "name": "\u85CD\u5716"
         }
       }
@@ -60970,7 +60964,6 @@
         "itemClass": {
           "$id": "10614",
           "id": "HeistEquipmentWeapon",
-          "type": "heistWeapon",
           "name": "\u52AB\u76DC\u88DD\u5099"
         }
       }
@@ -60984,7 +60977,6 @@
         "itemClass": {
           "$id": "10617",
           "id": "HeistEquipmentTool",
-          "type": "heistTool",
           "name": "\u52AB\u76DC\u5DE5\u5177"
         }
       }
@@ -60998,7 +60990,6 @@
         "itemClass": {
           "$id": "10620",
           "id": "HeistEquipmentUtility",
-          "type": "heistUtility",
           "name": "\u52AB\u76DC\u62AB\u98A8"
         }
       }
@@ -61012,7 +61003,6 @@
         "itemClass": {
           "$id": "10623",
           "id": "HeistEquipmentReward",
-          "type": "heistReward",
           "name": "\u52AB\u76DC\u80F8\u91DD"
         }
       }
@@ -63531,7 +63521,6 @@
         "itemClass": {
           "$id": "11083",
           "id": "MemoryLine",
-          "type": "memoryLine",
           "name": "\u8A18\u61B6"
         }
       }
@@ -69857,7 +69846,6 @@
         "itemClass": {
           "$id": "12286",
           "id": "InstanceLocalItem",
-          "type": "map",
           "name": "\u5730\u5340\u7269\u54C1"
         }
       }
@@ -72128,7 +72116,6 @@
         "itemClass": {
           "$id": "12700",
           "id": "DivinationCard",
-          "type": "divinationCard",
           "name": "\u547D\u904B\u5361"
         }
       }
