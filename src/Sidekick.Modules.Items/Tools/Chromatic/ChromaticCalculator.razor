@@ -16,6 +16,10 @@
                 Label="@Resources["Chromatic_Blue"]"/>
 </div>
 
+<div class="text-sm text-stone-400 mb-3">
+    @Resources["Chromatic_CalculatingBasedOn", Requirements.Strength, Requirements.Dexterity, Requirements.Intelligence]
+</div>
+
 <ButtonPrimary OnClick="Calculate">@Resources["Chromatic_Calculate"]</ButtonPrimary>
 
 @if (Error)
@@ -80,6 +84,13 @@
     private double? GreenSockets { get; set; }
     private double? BlueSockets { get; set; }
 
+    private BaseItemRequirements Requirements => Item.Definition.BaseItem?.Requirements ?? new()
+    {
+        Strength = Item.Properties.RequiresStrength,
+        Dexterity = Item.Properties.RequiresDexterity,
+        Intelligence = Item.Properties.RequiresIntelligence,
+    };
+
     private bool Error { get; set; }
 
     // Calculation Results
@@ -119,9 +130,7 @@
     private void Calculate()
     {
         Results = ChromaticProbabilityCalculator.Calculate((int)(NumberOfSockets ?? 0),
-                                                           Item.Properties.RequiresStrength,
-                                                           Item.Properties.RequiresDexterity,
-                                                           Item.Properties.RequiresIntelligence,
+                                                           Requirements,
                                                            (int)(RedSockets ?? 0),
                                                            (int)(GreenSockets ?? 0),
                                                            (int)(BlueSockets ?? 0));

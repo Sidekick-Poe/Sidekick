@@ -62,7 +62,7 @@ public static class EnumExtensions
         return default;
     }
 
-    public static TAttribute? FindAttribute<TAttribute>(this Enum value, Func<TAttribute, bool>? predicate) where TAttribute : Attribute
+    public static TAttribute? FindAttribute<TAttribute>(this Enum value, Func<TAttribute, bool>? predicate = null) where TAttribute : Attribute
     {
         var field = value.GetType().GetField(value.ToString());
         if (field == null) return null;

@@ -1,4 +1,5 @@
-﻿namespace Sidekick.Modules.Items.Tools.Chromatic;
+﻿using Sidekick.Data.Items;
+namespace Sidekick.Modules.Items.Tools.Chromatic;
 
 // This file has been adapted and translated to C# from the original JavaScript implementation
 // available in the following repository: https://github.com/Siveran/siveran.github.io
@@ -6,7 +7,7 @@
 
 public static class ChromaticProbabilityCalculator
 {
-    public static List<ProbabilityResult> Calculate(int totalSockets, int strength, int dexterity, int intelligence, int red, int green, int blue)
+    public static List<ProbabilityResult> Calculate(int totalSockets, BaseItemRequirements baseRequirements, int red, int green, int blue)
     {
         // Validate inputs
         if (totalSockets < 1 || totalSockets > 6 || red < 0 || green < 0 || blue < 0 || red + green + blue > totalSockets)
@@ -15,7 +16,7 @@ public static class ChromaticProbabilityCalculator
         }
 
         // Core logic similar to "Main.getProbabilities" from the JavaScript file
-        var requirements = new ColoredStats(strength, dexterity, intelligence);
+        var requirements = new ColoredStats(baseRequirements.Strength, baseRequirements.Dexterity, baseRequirements.Intelligence);
         var desired = new ColoredStats(red, green, blue);
         var colorChances = GetColorChances(requirements);
 

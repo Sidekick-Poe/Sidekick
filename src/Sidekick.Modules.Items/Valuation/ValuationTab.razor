@@ -37,7 +37,7 @@
         Valid |= await CheckScout();
 
         var switchTab = Valid;
-        switchTab &= Item.ItemClass != ItemClass.Map && Item.ItemClass != ItemClass.Waystone;
+        switchTab &= Item.ItemClass != ItemClass.Map;
         if (switchTab) await CurrentTabChanged.InvokeAsync("valuation");
 
         await base.OnInitializedAsync();
