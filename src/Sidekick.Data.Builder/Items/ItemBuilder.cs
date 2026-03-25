@@ -238,7 +238,7 @@ public class ItemBuilder(
             {
                 Id = entry.Key,
                 Name = entry.Value.Name,
-                Type = entry.Key.GetEnumFromValue<ItemClass>(),
+                Type = EnumExtensions.FindValue<ItemClass>(itemClass => itemClass.FindAttributes<ItemClassGameId>().Any(attr => attr.Id == entry.Key && attr.Game == game)),
             };
 
             result.Add(definition.Id, definition);

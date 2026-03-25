@@ -25,7 +25,6 @@ public class MoreMapsProperty(
     public override void Parse(Item item)
     {
         if (game != GameType.PathOfExile1) return;
-        if (!ItemClassConstants.Areas.Contains(item.ItemClass)) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.MoreMaps = GetInt(Pattern, propertyBlock);

@@ -24,8 +24,6 @@ public class MagicMonstersProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.ItemClass)) return;
-
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.MagicMonsters = GetInt(Pattern, propertyBlock);
         if (item.Properties.MagicMonsters == 0) return;

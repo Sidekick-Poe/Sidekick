@@ -89,14 +89,14 @@ public static class EnumExtensions
     }
 
     public static TEnum? FindValue<TEnum>(Func<TEnum, bool> predicate)
-        where TEnum: Enum
+        where TEnum : Enum
     {
         var type = typeof(TEnum);
-        var fields = type.GetFields();
+        var fields = type.GetFields().Where(field => field.IsLiteral);
         foreach (var field in fields)
         {
             var value = (TEnum?)field.GetValue(null);
-            if(value == null) continue;
+            if (value == null) continue;
 
             if (predicate(value)) return value;
         }

@@ -66,15 +66,14 @@ public class ItemDefinitionParser(
 
         void ParseVaalGem()
         {
-            // todo vaal
-            // var canBeVaalGem = item.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
-            // if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
-//
-            // var vaalGem = GetDefinition(item.Text.Blocks[5].Lines[0].Text);
-            // if (vaalGem != null)
-            // {
-            //     item.Definition = vaalGem;
-            // }
+            var canBeVaalGem = item.ItemClass == ItemClass.ActiveSkillGem && item.Text.Blocks.Count > 7;
+            if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
+
+            var vaalGem = GetDefinition(item.Text.Blocks[5].Lines[0].Text);
+            if (vaalGem != null)
+            {
+                item.Definition = vaalGem;
+            }
         }
 
         ItemDefinition? GetInvariant(ItemDefinition definition)

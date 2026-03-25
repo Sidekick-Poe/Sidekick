@@ -24,7 +24,7 @@ public class RevivesAvailableProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.ItemClass)) return;
+        if (game != GameType.PathOfExile2) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.RevivesAvailable = GetInt(Pattern, propertyBlock);

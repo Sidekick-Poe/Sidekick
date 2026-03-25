@@ -20,8 +20,6 @@ public class AreaLevelProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.ItemClass)) return;
-
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.AreaLevel = GetInt(Pattern, propertyBlock);
         if (item.Properties.AreaLevel > 0) propertyBlock.Parsed = true;

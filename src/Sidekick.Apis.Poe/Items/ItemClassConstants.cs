@@ -71,7 +71,7 @@ public static class ItemClassConstants
         ItemClass.Ultimatum,
     ];
 
-    public static readonly ItemClass[] WithStats =
+    public static readonly ItemClass[] WithStats2 =
     [
         ..Equipment,
         ..Weapons,
@@ -89,5 +89,6 @@ public static class ItemClassConstants
         ItemClass.HeistTool,
 
         ItemClass.SanctumRelic,
+        ItemClass.ActiveSkillGem,
     ];
 }

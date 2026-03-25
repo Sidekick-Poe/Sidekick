@@ -24,8 +24,6 @@ public class RareMonstersProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.ItemClass)) return;
-
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.RareMonsters = GetInt(Pattern, propertyBlock);
         if (item.Properties.RareMonsters == 0) return;

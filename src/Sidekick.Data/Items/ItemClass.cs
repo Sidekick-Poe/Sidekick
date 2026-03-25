@@ -71,16 +71,15 @@ public enum ItemClass
     [ItemClassTradeId(GameType.PathOfExile2, "flask")]
     [ItemClassGameId(GameType.PathOfExile1, "Flask")]
     [ItemClassGameId(GameType.PathOfExile1, "UtilityFlask")]
+    [ItemClassGameId(GameType.PathOfExile1, "HybridFlask")]
+    [ItemClassGameId(GameType.PathOfExile1, "LifeFlask")]
+    [ItemClassGameId(GameType.PathOfExile1, "ManaFlask")]
     Flask,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "flask.life")]
     [ItemClassTradeId(GameType.PathOfExile2, "flask.life")]
-    [ItemClassGameId(GameType.PathOfExile1, "LifeFlask")]
     LifeFlask,
 
-    [ItemClassTradeId(GameType.PathOfExile1, "flask.mana")]
     [ItemClassTradeId(GameType.PathOfExile2, "flask.mana")]
-    [ItemClassGameId(GameType.PathOfExile1, "ManaFlask")]
     ManaFlask,
 
     [ItemClassGameId(GameType.PathOfExile1, "AnimalCharm")]
@@ -255,6 +254,6 @@ public enum ItemClass
 
     [ItemClassTradeId(GameType.PathOfExile1, "gem.activegem")]
     [ItemClassTradeId(GameType.PathOfExile2, "gem.activegem")]
-    [ItemClassTradeId(GameType.PathOfExile1, "Active Skill Gem")]
+    [ItemClassGameId(GameType.PathOfExile1, "Active Skill Gem")]
     ActiveSkillGem,
 }

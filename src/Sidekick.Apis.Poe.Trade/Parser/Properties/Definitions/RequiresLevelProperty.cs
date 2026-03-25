@@ -22,11 +22,6 @@ public class RequiresLevelProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.ItemClass)) return;
-
         var block = item.Text.Blocks.FirstOrDefault(x => x.Type == RawBlockType.Requirements);
         if (block == null) return;
 

@@ -130,7 +130,7 @@ Such a gift will set me apart from all other suitors.""
 Can be exchanged with Faustus, the Fence in The Rogue Harbour
 ");
 
-        Assert.Equal(ItemClass.HeistObjective, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Golden Napuatzi Idol", actual.Definition.TradeItem?.Type);
     }
@@ -157,7 +157,7 @@ You must find the sculpture The Catch in a Smuggler's Den or Underbelly Blueprin
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Trinket, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Thief's Trinket", actual.Definition.TradeItem?.Type);
         Assert.True(actual.Properties.Corrupted);

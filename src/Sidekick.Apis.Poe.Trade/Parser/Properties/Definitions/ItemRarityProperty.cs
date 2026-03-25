@@ -24,8 +24,6 @@ public class ItemRarityProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.ItemClass)) return;
-
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.ItemRarity = GetInt(Pattern, propertyBlock);
         if (item.Properties.ItemRarity == 0) return;
