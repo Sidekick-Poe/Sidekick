@@ -27,7 +27,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Valid = Item.ItemClass == ItemClass.Map || Item.ItemClass == ItemClass.Waystone;
+        Valid = Item.ItemClass == ItemClass.Map;
 
         if (Valid) await CurrentTabChanged.InvokeAsync("area");
 

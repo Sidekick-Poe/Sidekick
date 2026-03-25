@@ -154,6 +154,9 @@
       <value>Average tries</value>
   </data>
   <data name="Chromatic_Deviation" xml:space="preserve">
-      <value>Std. Deviation</value>
+    <value>Std. Deviation</value>
+  </data>
+  <data name="Chromatic_CalculatingBasedOn" xml:space="preserve">
+    <value>Calculating based on {0} Strength, {1} Dexterity, {2} Intelligence requirements</value>
   </data>
 </root>
