@@ -48,7 +48,7 @@
                         <div class="flex flex-nowrap items-center gap-1 w-full">
                             <div class="size-5 -ml-1">
                                 @{
-                                    var imageUrl = stashTab.Type.GetValueAttribute("image");
+                                    var imageUrl = stashTab.Type.FindAttribute<StashTypeImageAttribute>()?.Path;
                                 }
                                 @if (!string.IsNullOrEmpty(imageUrl) && stashTab.Type.ToString() != imageUrl)
                                 {

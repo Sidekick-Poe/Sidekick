@@ -1,11 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>
 /// Represents a single item section seperated by dashes when copying an item in-game.
 /// </summary>
-public partial class TextBlock
+public partial class RawBlock
 {
     [GeneratedRegex(@"[\r\n]+")]
     private static partial Regex NewLinePattern();
@@ -13,22 +14,30 @@ public partial class TextBlock
     /// <summary>
     /// Represents a section of an item description, separated by dashes, as part of the parsing process.
     /// </summary>
-    public TextBlock(string text, int index)
+    public RawBlock(IGameLanguage language, string text, int index)
     {
+        if (index == 0) Type = RawBlockType.Header;
+        else if (text.StartsWith(language.DescriptionRequirements, StringComparison.InvariantCultureIgnoreCase) || text.StartsWith(language.DescriptionRequires, StringComparison.InvariantCultureIgnoreCase)) Type = RawBlockType.Requirements;
+
         Text = text;
         Index = index;
 
         Lines = NewLinePattern()
             .Split(Text)
             .Where(x => !string.IsNullOrEmpty(x))
-            .Select((x, lineIndex) => new TextLine(x, lineIndex))
+            .Select((x, lineIndex) => new RawLine(x, lineIndex))
             .ToList();
     }
 
     /// <summary>
     /// Contains all the lines inside this block
     /// </summary>
-    public List<TextLine> Lines { get; set; }
+    public RawBlockType Type { get; set; }
+
+    /// <summary>
+    /// Contains all the lines inside this block
+    /// </summary>
+    public List<RawLine> Lines { get; set; }
 
     /// <summary>
     /// Indicates if this block has been successfully parsed by the parser

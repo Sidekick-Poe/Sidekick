@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using ItemProperties = Sidekick.Apis.Poe.Items.ItemProperties;
 
@@ -25,8 +24,8 @@ public class SpiritProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Equipment.Contains(item.Properties.ItemClass)) return;
+        if (!ItemClassConstants.Weapons.Contains(item.ItemClass) &&
+            !ItemClassConstants.Equipment.Contains(item.ItemClass)) return;
 
         if (game == GameType.PathOfExile1) return;
         var propertyBlock = item.Text.Blocks[1];

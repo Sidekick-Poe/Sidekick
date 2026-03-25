@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -21,9 +20,9 @@ public class WarlordProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
 
         item.Properties.Influences.Warlord = GetBool(Pattern, item.Text);
     }

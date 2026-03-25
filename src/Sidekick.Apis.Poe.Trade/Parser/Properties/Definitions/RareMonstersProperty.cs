@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using ItemProperties = Sidekick.Apis.Poe.Items.ItemProperties;
 
@@ -25,8 +24,6 @@ public class RareMonstersProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
-
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.RareMonsters = GetInt(Pattern, propertyBlock);
         if (item.Properties.RareMonsters == 0) return;

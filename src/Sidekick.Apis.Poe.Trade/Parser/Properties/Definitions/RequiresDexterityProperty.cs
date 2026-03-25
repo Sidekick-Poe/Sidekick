@@ -23,19 +23,14 @@ public class RequiresDexterityProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            item.Properties.ItemClass != ItemClass.Graft) return;
+        var block = item.Text.Blocks.FirstOrDefault(x => x.Type == RawBlockType.Requirements);
+        if (block == null) return;
 
-        foreach (var block in item.Text.Blocks)
-        {
-            item.Properties.RequiresDexterity = GetInt(Pattern, block);
-            if (item.Properties.RequiresDexterity == 0) item.Properties.RequiresDexterity = GetInt(RequiresPattern, block);
-            if (item.Properties.RequiresDexterity == 0) continue;
+        item.Properties.RequiresDexterity = GetInt(Pattern, block);
+        if (item.Properties.RequiresDexterity == 0) item.Properties.RequiresDexterity = GetInt(RequiresPattern, block);
+        if (item.Properties.RequiresDexterity == 0) return;
 
-            block.Parsed = true;
-            return;
-        }
+        block.Parsed = true;
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

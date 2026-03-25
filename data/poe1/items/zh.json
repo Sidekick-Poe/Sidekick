@@ -35277,7 +35277,6 @@
         "itemClass": {
           "$id": "5705",
           "id": "DivinationCard",
-          "type": "divinationCard",
           "name": "\u547D\u904B\u5361"
         }
       },
@@ -43615,7 +43614,6 @@
         "itemClass": {
           "$id": "7095",
           "id": "StackableCurrency",
-          "type": "currency",
           "name": "\u53EF\u5806\u758A\u901A\u8CA8"
         }
       },
@@ -50402,7 +50400,6 @@
         "itemClass": {
           "$id": "8185",
           "id": "IncubatorStackable",
-          "type": "incubator",
           "name": "\u57F9\u80B2\u5668"
         }
       },
@@ -54363,7 +54360,6 @@
         "itemClass": {
           "$id": "8829",
           "id": "DelveSocketableCurrency",
-          "type": "resonator",
           "name": "\u6398\u7344\u63D2\u69FD\u901A\u8CA8"
         }
       },
@@ -55675,6 +55671,7 @@
         "itemClass": {
           "$id": "9073",
           "id": "HybridFlask",
+          "type": "flask",
           "name": "\u8907\u5408\u85E5\u5291"
         }
       },
@@ -55779,7 +55776,7 @@
         "itemClass": {
           "$id": "9092",
           "id": "LifeFlask",
-          "type": "lifeFlask",
+          "type": "flask",
           "name": "\u751F\u547D\u85E5\u5291"
         }
       },
@@ -55986,7 +55983,7 @@
         "itemClass": {
           "$id": "9129",
           "id": "ManaFlask",
-          "type": "manaFlask",
+          "type": "flask",
           "name": "\u9B54\u529B\u85E5\u5291"
         }
       },
@@ -56193,6 +56190,7 @@
         "itemClass": {
           "$id": "9166",
           "id": "UtilityFlask",
+          "type": "flask",
           "name": "\u529F\u80FD\u85E5\u5291"
         }
       },
@@ -57261,7 +57259,7 @@
         "itemClass": {
           "$id": "9335",
           "id": "Active Skill Gem",
-          "type": "activeGem",
+          "type": "activeSkillGem",
           "name": "\u6280\u80FD\u5BF6\u77F3"
         }
       },
@@ -63095,7 +63093,6 @@
         "itemClass": {
           "$id": "10365",
           "id": "Support Skill Gem",
-          "type": "supportGem",
           "name": "\u8F14\u52A9\u5BF6\u77F3"
         }
       },
@@ -75920,7 +75917,6 @@
         "itemClass": {
           "$id": "12265",
           "id": "VaultKey",
-          "type": "talisman",
           "name": "\u907A\u9470"
         }
       },
@@ -76001,7 +75997,6 @@
         "itemClass": {
           "$id": "12279",
           "id": "MapFragment",
-          "type": "mapFragment",
           "name": "\u5730\u5716\u788E\u7247"
         }
       },
@@ -76078,7 +76073,6 @@
         "itemClass": {
           "$id": "12292",
           "id": "Breachstone",
-          "type": "breachstone",
           "name": "\u88C2\u75D5\u77F3"
         }
       },
@@ -78263,7 +78257,7 @@
         "itemClass": {
           "$id": "12653",
           "id": "MapKey",
-          "type": "waystone",
+          "type": "map",
           "name": "\u5730\u5716"
         }
       },
@@ -86518,7 +86512,7 @@
         "itemClass": {
           "$id": "14005",
           "id": "Rune Dagger",
-          "type": "runeDagger",
+          "type": "dagger",
           "name": "\u7B26\u7D0B\u5315\u9996"
         },
         "properties": {
@@ -91269,6 +91263,7 @@
         "itemClass": {
           "$id": "14876",
           "id": "Thrusting One Hand Sword",
+          "type": "oneHandSword",
           "name": "\u7D30\u528D"
         },
         "properties": {
@@ -109267,7 +109262,7 @@
         "itemClass": {
           "$id": "18068",
           "id": "HeistEquipmentTool",
-          "type": "heistTool",
+          "type": "heistEquipmentTool",
           "name": "\u52AB\u76DC\u5DE5\u5177"
         }
       },
@@ -109338,7 +109333,7 @@
         "itemClass": {
           "$id": "18081",
           "id": "HeistEquipmentReward",
-          "type": "heistReward",
+          "type": "heistEquipmentReward",
           "name": "\u52AB\u76DC\u80F8\u91DD"
         }
       },
@@ -109477,7 +109472,7 @@
         "itemClass": {
           "$id": "18106",
           "id": "HeistEquipmentWeapon",
-          "type": "heistWeapon",
+          "type": "heistEquipmentWeapon",
           "name": "\u52AB\u76DC\u88DD\u5099"
         }
       },
@@ -109548,7 +109543,7 @@
         "itemClass": {
           "$id": "18119",
           "id": "HeistEquipmentUtility",
-          "type": "heistUtility",
+          "type": "heistEquipmentUtility",
           "name": "\u52AB\u76DC\u62AB\u98A8"
         }
       },
@@ -110231,7 +110226,7 @@
         "itemClass": {
           "$id": "18240",
           "id": "HeistBlueprint",
-          "type": "blueprint",
+          "type": "heistBlueprint",
           "name": "\u85CD\u5716"
         }
       },
@@ -110387,7 +110382,7 @@
         "itemClass": {
           "$id": "18268",
           "id": "HeistContract",
-          "type": "contract",
+          "type": "heistContract",
           "name": "\u5951\u7D04\u66F8"
         }
       },
@@ -110743,7 +110738,7 @@
         "itemClass": {
           "$id": "18326",
           "id": "ExpeditionLogbook",
-          "type": "logbook",
+          "type": "expeditionLogbook",
           "name": "\u63A2\u96AA\u65E5\u8A8C"
         }
       },
@@ -110885,7 +110880,6 @@
         "itemClass": {
           "$id": "18352",
           "id": "ItemisedSanctum",
-          "type": "sanctumResearch",
           "name": "\u8056\u57DF\u7814\u7A76"
         }
       },
@@ -111822,7 +111816,6 @@
         "itemClass": {
           "$id": "18498",
           "id": "MemoryLine",
-          "type": "memoryLine",
           "name": "\u8A18\u61B6"
         }
       },
@@ -112181,7 +112174,6 @@
         "itemClass": {
           "$id": "18557",
           "id": "ItemisedCorpse",
-          "type": "corpse",
           "name": "\u5C4D\u9AD4"
         }
       },
@@ -113918,6 +113910,7 @@
         "itemClass": {
           "$id": "18864",
           "id": "AtlasRelic",
+          "type": "idol",
           "name": "\u9B54\u5076"
         }
       },
@@ -114647,6 +114640,7 @@
         "itemClass": {
           "$id": "18961",
           "id": "RemovedItem",
+          "type": "removedItem",
           "name": ""
         }
       },
@@ -119931,7 +119925,6 @@
         "itemClass": {
           "$id": "19922",
           "id": "Currency",
-          "type": "currency",
           "name": "\u901A\u8CA8"
         }
       }

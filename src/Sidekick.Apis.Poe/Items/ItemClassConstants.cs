@@ -3,15 +3,6 @@ namespace Sidekick.Apis.Poe.Items;
 
 public static class ItemClassConstants
 {
-    public static readonly ItemClass[] Gems =
-    [
-        ItemClass.ActiveGem,
-        ItemClass.SupportGem,
-        ItemClass.UncutSkillGem,
-        ItemClass.UncutSupportGem,
-        ItemClass.UncutSpiritGem,
-    ];
-
     public static readonly ItemClass[] Equipment =
     [
         ItemClass.BodyArmour,
@@ -30,7 +21,6 @@ public static class ItemClassConstants
         ItemClass.Crossbow,
         ItemClass.Claw,
         ItemClass.Dagger,
-        ItemClass.RuneDagger,
         ItemClass.OneHandAxe,
         ItemClass.OneHandMace,
         ItemClass.OneHandSword,
@@ -71,19 +61,16 @@ public static class ItemClassConstants
 
     public static readonly ItemClass[] Areas =
     [
-        ItemClass.Blueprint,
-        ItemClass.Contract,
-        ItemClass.Logbook,
+        ItemClass.HeistBlueprint,
+        ItemClass.HeistContract,
+        ItemClass.ExpeditionLogbook,
         ItemClass.Tablet,
         ItemClass.Map,
-        ItemClass.Waystone,
         ItemClass.Barya,
         ItemClass.Ultimatum,
-        ItemClass.SanctumResearch,
-        ItemClass.MapFragment, // Necessary for itemised Atzoatl temples
     ];
 
-    public static readonly ItemClass[] WithStats =
+    public static readonly ItemClass[] WithStats2 =
     [
         ..Equipment,
         ..Weapons,
@@ -95,16 +82,12 @@ public static class ItemClassConstants
 
         ItemClass.Idol,
 
-        ItemClass.HeistReward,
-        ItemClass.HeistUtility,
-        ItemClass.HeistWeapon,
-        ItemClass.HeistTool,
+        ItemClass.HeistEquipmentReward,
+        ItemClass.HeistEquipmentUtility,
+        ItemClass.HeistEquipmentWeapon,
+        ItemClass.HeistEquipmentTool,
 
         ItemClass.SanctumRelic,
-        ItemClass.SanctumResearch,
-
-        ItemClass.Graft,
-
-        ItemClass.ActiveGem,
+        ItemClass.ActiveSkillGem,
     ];
 }

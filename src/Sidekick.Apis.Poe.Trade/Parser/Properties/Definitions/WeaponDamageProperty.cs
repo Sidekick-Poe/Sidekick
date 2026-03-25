@@ -11,7 +11,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using ItemProperties = Sidekick.Apis.Poe.Items.ItemProperties;
 
@@ -31,7 +30,7 @@ public class WeaponDamageProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+        if (!ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
 
         var propertyBlock = item.Text.Blocks[1];
 

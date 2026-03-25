@@ -10,7 +10,6 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Fuzzy;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
@@ -44,7 +43,7 @@ public class StatParser
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return;
+        if (!item.CanHaveStats) return;
 
         var stats = MatchStats().ToList();
         item.Stats.Clear();
@@ -78,14 +77,14 @@ public class StatParser
 
         IEnumerable<StatDefinition> FilterDefinitions()
         {
-            return item.Properties.ItemClass switch
+            return item.Properties.Rarity switch
             {
-                ItemClass.ActiveGem => Definitions.Where(x => x.TradeStats.Any(y => y.Category is StatCategory.Imbued)),
+                Rarity.Gem => Definitions.Where(x => x.TradeStats.Any(y => y.Category is StatCategory.Imbued)),
                 _ => Definitions,
             };
         }
 
-        IEnumerable<StatDefinition> MatchDefinitions(TextBlock block, int lineIndex)
+        IEnumerable<StatDefinition> MatchDefinitions(RawBlock block, int lineIndex)
         {
             foreach (var definition in FilterDefinitions())
             {
@@ -103,7 +102,7 @@ public class StatParser
             }
         }
 
-        List<StatDefinition> MatchDefinitionsFuzzily(TextBlock block, int lineIndex)
+        List<StatDefinition> MatchDefinitionsFuzzily(RawBlock block, int lineIndex)
         {
             var singleText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, block.Lines[lineIndex].Text);
 
@@ -147,7 +146,7 @@ public class StatParser
             return orderedResults.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
         }
 
-        Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
+        Stat CreateStat(RawBlock block, List<RawLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
         {
             var text = string.Join('\n', lines.Select(x => x.Text));
             var category = ParseCategory(text);
@@ -250,7 +249,7 @@ public class StatParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
+        if (!item.CanHaveStats) return [];
 
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 

@@ -2,7 +2,6 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Sidekick.Data;
 using Sidekick.Data.Builder.Leagues;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
 namespace Sidekick.Apis.Poe.Trade.Leagues;

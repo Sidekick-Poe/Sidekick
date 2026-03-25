@@ -1,14 +1,12 @@
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.ApiItems
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Results
-@using Sidekick.Data.Items
 @using Sidekick.Data.Stats
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
-@if (!IsCompact && (Result.Item.HasStats || ItemClassConstants.Gems.Contains(Item.Properties.ItemClass)))
+@if (!IsCompact && (Result.Item.HasStats || Item.Properties.Rarity == Rarity.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Result.Item.Name"
@@ -96,7 +94,6 @@ else
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ITradeFilterProvider TradeFilterProvider
-@inject IApiItemProvider ApiItemProvider
 
 @code {
 

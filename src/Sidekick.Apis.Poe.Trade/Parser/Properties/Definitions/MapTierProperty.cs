@@ -21,7 +21,7 @@ public class MapTierProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass != ItemClass.Map || string.IsNullOrEmpty(item.Type)) return;
+        if (item.ItemClass != ItemClass.Map || string.IsNullOrEmpty(item.Type)) return;
 
         item.Properties.MapTier = GetInt(Pattern, item.Type);
     }

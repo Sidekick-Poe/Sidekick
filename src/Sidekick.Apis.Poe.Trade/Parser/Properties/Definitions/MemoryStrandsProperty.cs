@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using ItemProperties = Sidekick.Apis.Poe.Items.ItemProperties;
 

@@ -38,7 +38,7 @@ You have Shocking Conflux for 3 seconds every 8 seconds
 Hunter Item
 ");
 
-        Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Hunter Hood", actual.Definition.TradeItem?.Type);
 
@@ -77,7 +77,7 @@ but merely a long sleep made eternal.
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Starkonja's Head", actual.Definition.TradeItem?.Name);
         Assert.Equal("Silken Hood", actual.Definition.TradeItem?.Type);
@@ -125,7 +125,7 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
 - Saresh, last words, to Sekhema Orbala
 ");
 
-        Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("The Dark Monarch", actual.Definition.TradeItem?.Name);
         Assert.Equal("Lich's Circlet", actual.Definition.TradeItem?.Type);

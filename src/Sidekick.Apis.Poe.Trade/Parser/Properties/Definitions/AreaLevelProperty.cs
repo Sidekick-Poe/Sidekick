@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -21,8 +20,6 @@ public class AreaLevelProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
-
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.AreaLevel = GetInt(Pattern, propertyBlock);
         if (item.Properties.AreaLevel > 0) propertyBlock.Parsed = true;

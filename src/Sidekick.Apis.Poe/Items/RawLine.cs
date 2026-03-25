@@ -3,7 +3,7 @@ namespace Sidekick.Apis.Poe.Items;
 /// <summary>
 /// Stores data about each line in the parsing process
 /// </summary>
-public class TextLine(string text, int index)
+public class RawLine(string text, int index)
 {
     /// <summary>
     /// Indicates if this line has been successfully parsed

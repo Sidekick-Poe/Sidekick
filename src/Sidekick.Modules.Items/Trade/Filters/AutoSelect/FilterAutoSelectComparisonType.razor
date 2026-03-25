@@ -31,7 +31,7 @@
     {
         Options.Clear();
 
-        var attribute = Condition.Type.GetEnumValueAttribute<AutoSelectComparisonAttribute>();
+        var attribute = Condition.Type.FindAttribute<AutoSelectComparisonAttribute>();
         if (attribute == null) return;
 
         foreach (var value in attribute.AllowedComparisons)

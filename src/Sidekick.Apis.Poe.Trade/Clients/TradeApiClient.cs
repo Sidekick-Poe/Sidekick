@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
