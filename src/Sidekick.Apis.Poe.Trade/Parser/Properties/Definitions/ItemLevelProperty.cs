@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -22,17 +21,6 @@ public class ItemLevelProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.ItemClass) &&
-            !ItemClassConstants.Areas.Contains(item.ItemClass) &&
-            item.ItemClass != ItemClass.SanctumRelic &&
-            item.ItemClass != ItemClass.SanctumResearch &&
-            item.ItemClass != ItemClass.Wombgift &&
-            item.ItemClass != ItemClass.Graft) return;
-
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 

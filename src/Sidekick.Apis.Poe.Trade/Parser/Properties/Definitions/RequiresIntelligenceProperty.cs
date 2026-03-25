@@ -24,18 +24,16 @@ public class RequiresIntelligenceProperty(
     public override void Parse(Item item)
     {
         if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
-            item.ItemClass != ItemClass.Graft) return;
+            !ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
 
-        foreach (var block in item.Text.Blocks)
-        {
-            item.Properties.RequiresIntelligence = GetInt(Pattern, block);
-            if (item.Properties.RequiresIntelligence == 0) item.Properties.RequiresIntelligence = GetInt(RequiresPattern, block);
-            if (item.Properties.RequiresIntelligence == 0) continue;
+        var block = item.Text.Blocks.FirstOrDefault(x => x.Type == RawBlockType.Requirements);
+        if (block == null) return;
 
-            block.Parsed = true;
-            return;
-        }
+        item.Properties.RequiresIntelligence = GetInt(Pattern, block);
+        if (item.Properties.RequiresIntelligence == 0) item.Properties.RequiresIntelligence = GetInt(RequiresPattern, block);
+        if (item.Properties.RequiresIntelligence == 0) return;
+
+        block.Parsed = true;
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

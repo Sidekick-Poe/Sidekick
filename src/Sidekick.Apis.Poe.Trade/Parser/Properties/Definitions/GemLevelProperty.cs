@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -21,23 +20,7 @@ public class GemLevelProperty(
 
     public override void Parse(Item item)
     {
-        if (item.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem
-            or ItemClass.UncutSpiritGem)
-        {
-            return;
-        }
-
-        if (game == GameType.PathOfExile1 &&
-            item.ItemClass != ItemClass.ActiveGem &&
-            item.ItemClass != ItemClass.SupportGem)
-        {
-            return;
-        }
-
-        if (item.Properties.Rarity != Rarity.Gem)
-        {
-            return;
-        }
+        if (item.Properties.Rarity != Rarity.Gem) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.GemLevel = GetInt(Pattern, propertyBlock);

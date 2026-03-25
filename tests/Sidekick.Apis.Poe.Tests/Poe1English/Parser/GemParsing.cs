@@ -56,7 +56,7 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Equal("Vaal Double Strike", actual.Definition.TradeItem?.Type);
         Assert.Equal(1, actual.Properties.GemLevel);
@@ -92,7 +92,7 @@ Experience: 1/70
 This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Skill Gem you wish to augment. Right click to remove from a socket.
 ");
 
-        Assert.Equal(ItemClass.SupportGem, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Equal("Arcane Surge Support", actual.Definition.TradeItem?.Type);
     }
@@ -129,7 +129,7 @@ Experience: 1/252,595
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Equal("Void Sphere", actual.Definition.TradeItem?.Type);
     }
@@ -168,7 +168,7 @@ Place into an item socket of the right colour to gain this skill. Right click to
 Transfigured
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Equal("Kinetic Blast of Clustering", actual.Definition.TradeItem?.Text);
         Assert.Equal("Kinetic Blast", actual.Definition.TradeItem?.Type);
@@ -210,7 +210,7 @@ Place into an item socket of the right colour to gain this skill. Right click to
 Transfigured
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Equal("Orb of Storms of Squalls", actual.Definition.TradeItem?.Text);
         Assert.Equal("Orb of Storms", actual.Definition.TradeItem?.Type);
@@ -253,7 +253,7 @@ Corrupted
 Imbued
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Text);
         Assert.Equal("Earthshatter", actual.Definition.TradeItem?.Type);

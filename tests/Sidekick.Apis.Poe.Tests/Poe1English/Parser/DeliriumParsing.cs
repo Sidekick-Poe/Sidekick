@@ -25,7 +25,7 @@ Shift click to unstack.
 Note: ~price .5 chaos
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Simulacrum Splinter", actual.Definition.TradeItem?.Type);
     }

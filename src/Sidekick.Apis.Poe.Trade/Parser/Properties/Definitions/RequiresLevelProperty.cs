@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
@@ -26,18 +25,16 @@ public class RequiresLevelProperty(
         if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
             !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
             !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.ItemClass) &&
-            item.ItemClass != ItemClass.Graft) return;
+            !ItemClassConstants.Flasks.Contains(item.ItemClass)) return;
 
-        foreach (var block in item.Text.Blocks)
-        {
-            item.Properties.RequiresLevel = GetInt(Pattern, block);
-            if (item.Properties.RequiresLevel == 0) item.Properties.RequiresLevel = GetInt(RequiresPattern, block);
-            if (item.Properties.RequiresLevel == 0) continue;
+        var block = item.Text.Blocks.FirstOrDefault(x => x.Type == RawBlockType.Requirements);
+        if (block == null) return;
 
-            block.Parsed = true;
-            return;
-        }
+        item.Properties.RequiresLevel = GetInt(Pattern, block);
+        if (item.Properties.RequiresLevel == 0) item.Properties.RequiresLevel = GetInt(RequiresPattern, block);
+        if (item.Properties.RequiresLevel == 0) return;
+
+        block.Parsed = true;
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

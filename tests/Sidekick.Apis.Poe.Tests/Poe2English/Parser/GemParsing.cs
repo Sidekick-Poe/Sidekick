@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.Items;
 using Xunit;
@@ -22,7 +21,7 @@ Creates a Persistent Buff Skill Gem or Level an existing gem to Level 16
 Right Click to engrave a Persistent Buff Skill Gem.
 ");
 
-        Assert.Equal(ItemClass.UncutSpiritGem, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal("Uncut Spirit Gem (Level 16)", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
     }
@@ -40,7 +39,7 @@ Creates a Support Gem
 Right Click to engrave a Support Gem.
 ");
 
-        Assert.Equal(ItemClass.UncutSupportGem, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal("Uncut Support Gem (Level 3)", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
     }
@@ -58,7 +57,7 @@ Creates a Skill Gem or Level an existing gem to level 9
 Right Click to engrave a Skill Gem.
 ");
 
-        Assert.Equal(ItemClass.UncutSkillGem, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal("Uncut Skill Gem (Level 9)", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
     }

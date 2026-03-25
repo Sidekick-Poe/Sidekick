@@ -3,15 +3,6 @@ namespace Sidekick.Apis.Poe.Items;
 
 public static class ItemClassConstants
 {
-    public static readonly ItemClass[] Gems =
-    [
-        ItemClass.ActiveGem,
-        ItemClass.SupportGem,
-        ItemClass.UncutSkillGem,
-        ItemClass.UncutSupportGem,
-        ItemClass.UncutSpiritGem,
-    ];
-
     public static readonly ItemClass[] Equipment =
     [
         ItemClass.BodyArmour,
@@ -30,7 +21,6 @@ public static class ItemClassConstants
         ItemClass.Crossbow,
         ItemClass.Claw,
         ItemClass.Dagger,
-        ItemClass.RuneDagger,
         ItemClass.OneHandAxe,
         ItemClass.OneHandMace,
         ItemClass.OneHandSword,
@@ -79,8 +69,6 @@ public static class ItemClassConstants
         ItemClass.Waystone,
         ItemClass.Barya,
         ItemClass.Ultimatum,
-        ItemClass.SanctumResearch,
-        ItemClass.MapFragment, // Necessary for itemised Atzoatl temples
     ];
 
     public static readonly ItemClass[] WithStats =
@@ -101,10 +89,5 @@ public static class ItemClassConstants
         ItemClass.HeistTool,
 
         ItemClass.SanctumRelic,
-        ItemClass.SanctumResearch,
-
-        ItemClass.Graft,
-
-        ItemClass.ActiveGem,
     ];
 }

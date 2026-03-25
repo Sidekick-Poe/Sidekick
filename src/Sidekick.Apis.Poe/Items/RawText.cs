@@ -1,32 +1,31 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Trade.Parser.Tokenizers;
 using Sidekick.Data.Extensions;
+using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>
 /// Stores data about the state of the parsing process for the item
 /// </summary>
-public class TextItem
+public class RawText
 {
     public const string SeparatorPattern = "--------";
 
     /// <summary>
-    /// Stores data about the state of the parsing process for the item
+    /// Represents the raw text of an item, storing its original text and parsed blocks of data.
     /// </summary>
-    /// <param name="text">The original text of the item</param>
-    public TextItem(string text)
+    public RawText(IGameLanguage language, string text)
     {
         Text = new ItemNameTokenizer().CleanString(text);
         Text = Text.RemoveSquareBrackets();
-        Blocks = Text.Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries).Select((x, blockIndex) => new TextBlock(x.Trim('\r', '\n'), blockIndex)).ToList();
+        Blocks = Text.Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries).Select((x, blockIndex) => new RawBlock(language, x.Trim('\r', '\n'), blockIndex)).ToList();
     }
 
     /// <summary>
     /// Item sections seperated by dashes when copying an item in-game.
     /// </summary>
-    public List<TextBlock> Blocks { get; }
+    public List<RawBlock> Blocks { get; }
 
     /// <summary>
     /// The original text of the item

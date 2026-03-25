@@ -1,13 +1,14 @@
 using Sidekick.Data;
 using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Items;
 
 public class Item
 {
-    public Item(GameType game, string text)
+    public Item(GameType game, IGameLanguage language, string text)
     {
-        Text = new TextItem(text);
+        Text = new RawText(language, text);
         Game = game;
 
         if (Text.Blocks[0].Lines.Count >= 2) Type = Text.Blocks[0].Lines[^1].Text;
@@ -18,7 +19,7 @@ public class Item
 
     public Guid Id { get; } = Guid.NewGuid();
 
-    public TextItem Text { get; }
+    public RawText Text { get; }
 
     public GameType Game { get; }
 

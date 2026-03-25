@@ -27,7 +27,7 @@ hunc in sacrarium conicio, ut forte alius viam inveniat...
 Take this item to the Relic Altar in the Forbidden Sanctum to enter.
 ");
 
-        Assert.Equal(ItemClass.SanctumResearch, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal("Forbidden Tome", actual.Definition.TradeItem?.Type);
         Assert.Equal(83, actual.Properties.AreaLevel);
         Assert.Equal(84, actual.Properties.ItemLevel);

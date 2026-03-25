@@ -34,7 +34,7 @@ public class ItemParser
     public async Task Initialize()
     {
         var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
-        unusableRegex += @"[\n\r]+" + TextItem.SeparatorPattern + @"[\n\r]+";
+        unusableRegex += @"[\n\r]+" + RawText.SeparatorPattern + @"[\n\r]+";
         UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
         Game = await settingsService.GetGame();
     }
@@ -47,7 +47,7 @@ public class ItemParser
         {
             text = RemoveUnusableLine(text);
 
-            var item = new Item(Game, text);
+            var item = new Item(Game, currentGameLanguage.Language, text);
 
             // These properties are required for later parsing steps
             propertyParser.GetDefinition<RarityProperty>().Parse(item);

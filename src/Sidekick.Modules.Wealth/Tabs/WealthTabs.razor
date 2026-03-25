@@ -29,7 +29,7 @@
                 <div class="flex flex-nowrap items-center gap-1 w-full">
                     <div class="size-5 -ml-1">
                         @{
-                            var imageUrl = Enum.TryParse<StashType>(stashTab.Type, out var typeEnum) ? typeEnum.GetValueAttribute("image") : null;
+                            var imageUrl = Enum.TryParse<StashType>(stashTab.Type, out var typeEnum) ? typeEnum.FindAttribute<StashTypeImageAttribute>()?.Path : null;
                         }
                         @if (!string.IsNullOrEmpty(imageUrl) && typeEnum.ToString() != imageUrl)
                         {

@@ -9,9 +9,8 @@ public static class EnumExtensions
     ///     Gets the value associated with the enum.
     /// </summary>
     /// <param name="value">The enum to get the value for.</param>
-    /// <param name="key">The key to identify the specific value to return.</param>
     /// <returns>The value associated with the enum.</returns>
-    public static string GetValueAttribute(this Enum value, string key = "default")
+    public static string GetValueAttribute(this Enum value)
     {
         var type = value.GetType();
         var memberInfo = type.GetMember(value.ToString());
@@ -20,7 +19,7 @@ public static class EnumExtensions
         var attributes = memberInfo[0].GetCustomAttributes(typeof(EnumValueAttribute), false);
         foreach (EnumValueAttribute attribute in attributes)
         {
-            if (attribute.Key == key) return attribute.Value;
+            return attribute.Value;
         }
 
         return value.ToString();
@@ -63,9 +62,45 @@ public static class EnumExtensions
         return default;
     }
 
-    public static TAttribute? FindAttribute<TAttribute>(this Enum value) where TAttribute : Attribute
+    public static TAttribute? FindAttribute<TAttribute>(this Enum value, Func<TAttribute, bool>? predicate) where TAttribute : Attribute
     {
         var field = value.GetType().GetField(value.ToString());
-        return field?.GetCustomAttributes(typeof(TAttribute), false).FirstOrDefault() as TAttribute;
+        if (field == null) return null;
+
+        foreach (var attribute in field.GetCustomAttributes(typeof(TAttribute), false).OfType<TAttribute>())
+        {
+            if (predicate != null)
+            {
+                if (predicate(attribute)) return attribute;
+            }
+            else
+            {
+                return attribute;
+            }
+        }
+
+        return null;
+    }
+
+    public static IEnumerable<TAttribute> FindAttributes<TAttribute>(this Enum value) where TAttribute : Attribute
+    {
+        var field = value.GetType().GetField(value.ToString());
+        return field?.GetCustomAttributes(typeof(TAttribute), false).OfType<TAttribute>() ?? [];
+    }
+
+    public static TEnum? FindValue<TEnum>(Func<TEnum, bool> predicate)
+        where TEnum: Enum
+    {
+        var type = typeof(TEnum);
+        var fields = type.GetFields();
+        foreach (var field in fields)
+        {
+            var value = (TEnum?)field.GetValue(null);
+            if(value == null) continue;
+
+            if (predicate(value)) return value;
+        }
+
+        return default;
     }
 }

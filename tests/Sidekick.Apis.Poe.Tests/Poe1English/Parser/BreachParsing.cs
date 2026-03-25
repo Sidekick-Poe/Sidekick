@@ -23,7 +23,7 @@ Combine 100 Splinters to create Tul's Breachstone.
 Shift click to unstack.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Splinter of Tul", actual.Definition.TradeItem?.Type);
     }
@@ -43,7 +43,7 @@ Can grow into a Currency item on the Genesis Tree
 Place this item into an allocated currency item womb on the Genesis Tree. Right click to retrieve from the Genesis Tree.
 ");
 
-        Assert.Equal(ItemClass.Wombgift, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Lavish Wombgift", actual.Definition.TradeItem?.Type);
         Assert.Equal(34, actual.Properties.ItemLevel);
