@@ -18,14 +18,21 @@ public class ScoutItemProvider(
 {
     private List<ScoutItem>? Items { get; set; }
 
-    public async Task<ScoutItem?> GetItem(ItemDefinition itemDefinition)
+    public Task<ScoutItem?> GetItem(ItemDefinition itemDefinition)
+    {
+        var text = itemDefinition.TradeItem?.Name;
+        text ??= itemDefinition.TradeItem?.Text;
+        text ??= itemDefinition.TradeItem?.Type;
+        if (string.IsNullOrEmpty(text)) return Task.FromResult<ScoutItem?>(null);
+
+        return GetItem(text);
+    }
+
+    public async Task<ScoutItem?> GetItem(string text)
     {
         var game = await settingsService.GetGame();
         if (game == GameType.PathOfExile1) return null;
 
-        var text = itemDefinition.TradeItem?.Name;
-        text ??= itemDefinition.TradeItem?.Text;
-        text ??= itemDefinition.TradeItem?.Type;
         if (string.IsNullOrEmpty(text)) return null;
 
         var items = await GetOrFetchItems();

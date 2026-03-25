@@ -37,19 +37,16 @@ public class ScoutHistoryProvider(
 
     public async Task<ScoutHistory?> GetCurrencyHistory(int itemId)
     {
-        // todo
+        var exaltedOrb = await scoutItemProvider.GetItem("Exalted Orb"); // 290
+        var chaosOrb = await scoutItemProvider.GetItem("Chaos Orb"); // 287
+        var divineOrb = await scoutItemProvider.GetItem("Divine Orb"); // 291
 
-        return null;
-        // var exaltedOrb = await scoutItemProvider.GetItem("Exalted Orb"); // 290
-        // var chaosOrb = await scoutItemProvider.GetItem("Chaos Orb"); // 287
-        // var divineOrb = await scoutItemProvider.GetItem("Divine Orb"); // 291
-
-        // return new ScoutHistory()
-        // {
-        //     Exalted = await GetCurrencyLogs(itemId, exaltedOrb?.ItemId),
-        //     Chaos = await GetCurrencyLogs(itemId, chaosOrb?.ItemId),
-        //     Divine = await GetCurrencyLogs(itemId, divineOrb?.ItemId),
-        // };
+        return new ScoutHistory()
+        {
+            Exalted = await GetCurrencyLogs(itemId, exaltedOrb?.ItemId),
+            Chaos = await GetCurrencyLogs(itemId, chaosOrb?.ItemId),
+            Divine = await GetCurrencyLogs(itemId, divineOrb?.ItemId),
+        };
     }
 
     private async Task<List<ScoutHistoryLog>> GetCurrencyLogs(int itemId, int? currencyId)
