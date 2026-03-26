@@ -12,6 +12,7 @@ public interface ITradeFilterProvider : IInitializableService
     RawTradeFilter? Mirrored { get; }
     RawTradeFilter? Foulborn { get; }
     RawTradeFilter? Sanctified { get; }
+    RawTradeFilter? Imbued { get; }
     RawTradeFilterCategory? EquipmentCategory { get; }
     RawTradeFilterCategory? WeaponCategory { get; }
     RawTradeFilterCategory? ArmourCategory { get; }

@@ -8,48 +8,51 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class MirroredProperty(
+public class ImbuedGemProperty(
     GameType game,
     IServiceProvider serviceProvider) : PropertyDefinition
 {
     private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
-    public override string Label => tradeFilterProvider.Mirrored?.Text ?? "Mirrored";
+    public override string Label => tradeFilterProvider.Imbued?.Text ?? "Imbued";
 
-    public override void Parse(Item item) {}
+    public override void ParseAfterStats(Item item)
+    {
+        if (game != GameType.PathOfExile1) return;
+        if (item.ItemClass != ItemClass.ActiveSkillGem) return;
+
+        item.Properties.Imbued = item.Stats.Any(x => x.Category == StatCategory.Imbued);
+    }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (tradeFilterProvider.Mirrored == null) return Task.FromResult<TradeFilter?>(null);
-        if (!item.CanHaveStats || item.ItemClass == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
+        if (game != GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
+        if (item.ItemClass != ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
 
-
-        var filter = new MirroredFilter
+        var filter = new ImbuedGemFilter
         {
             Text = Label,
-            AutoSelectSettingKey = $"Trade_Filter_{nameof(MirroredProperty)}_{game.GetValueAttribute()}",
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(ImbuedGemProperty)}_{game.GetValueAttribute()}",
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
 }
 
-public class MirroredFilter : TriStatePropertyFilter
+public class ImbuedGemFilter : TriStatePropertyFilter
 {
-    public MirroredFilter()
+    public ImbuedGemFilter()
     {
         DefaultAutoSelect = AutoSelectPreferences.Create(null);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (Checked == null)
-        {
-            return;
-        }
+        if (Checked == null) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Mirrored = new SearchFilterOption(this);
+        query.Filters.GetOrCreateMiscFilters().Filters.Imbued = new SearchFilterOption(this);
     }
 }
