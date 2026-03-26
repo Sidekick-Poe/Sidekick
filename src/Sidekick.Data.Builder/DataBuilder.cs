@@ -122,6 +122,7 @@ public class DataBuilder(
         logger.LogInformation($"Building {language.Code} trade data.");
         await leagueBuilder.Build(language);
         await tradeFilterBuilder.Build(language);
+        await statsInvariantBuilder.Build(language);
     }
 
     private async Task BuildItems(IGameLanguage language)
@@ -147,7 +148,6 @@ public class DataBuilder(
     private async Task BuildStats(IGameLanguage language)
     {
         logger.LogInformation($"Building {language.Code} stats data.");
-        await statsInvariantBuilder.Build(language);
         await statBuilder.Build(language);
     }
 
