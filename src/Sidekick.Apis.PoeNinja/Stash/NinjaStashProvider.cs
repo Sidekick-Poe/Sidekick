@@ -108,7 +108,10 @@ public class NinjaStashProvider(
             if (links < 5) links = 0;
             if (stats != null)
             {
-                stats = stats.Where(x => x.Category == StatCategory.Mutated).ToList();
+                stats = stats
+                    .Where(x => x.Category == StatCategory.Mutated && x.Id.StartsWith("explicit"))
+                    .DistinctBy(x => x.Id)
+                    .ToList();
                 if (stats.Count == 0) stats = null;
             }
 
@@ -330,6 +333,7 @@ public class NinjaStashProvider(
         return new NinjaStash(line, result)
         {
             DetailsUrl = await ninjaUriProvider.GetDetailsUri(item),
+            Definition = item,
         };
     }
 

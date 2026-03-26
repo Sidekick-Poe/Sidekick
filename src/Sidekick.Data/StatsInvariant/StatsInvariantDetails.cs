@@ -13,10 +13,4 @@ public class StatsInvariantDetails
     public List<string> ColdWeaponDamageIds { get; init; } = [];
 
     public List<string> LightningWeaponDamageIds { get; init; } = [];
-
-    public string ClusterJewelSmallPassiveCountStatId { get; init; } = string.Empty;
-
-    public string ClusterJewelSmallPassiveGrantStatId { get; init; } = string.Empty;
-
-    public Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; init; } = [];
 }

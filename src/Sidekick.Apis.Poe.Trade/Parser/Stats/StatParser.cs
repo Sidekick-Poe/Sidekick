@@ -33,11 +33,24 @@ public class StatParser
 
     private List<StatDefinition> Definitions { get; set; } = [];
 
+    public Dictionary<string, TradeStatDefinition> TradeDictionary { get; private set; } = [];
+
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
         Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
         InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
+
+        TradeDictionary.Clear();
+        foreach (var tradeDefinition in Definitions.SelectMany(x => x.TradeStats))
+        {
+            TradeDictionary.TryAdd(GetDictionaryKey(tradeDefinition.Id, tradeDefinition.Option?.Id.ToString()), tradeDefinition);
+        }
+    }
+
+    public string GetDictionaryKey(string id, string? option)
+    {
+        return !string.IsNullOrEmpty(option) ? $"{id}:{option}" : id;
     }
 
     /// <inheritdoc/>
