@@ -70,7 +70,7 @@ public static class ItemClassConstants
         ItemClass.Ultimatum,
     ];
 
-    public static readonly ItemClass[] WithStats2 =
+    public static readonly ItemClass[] WithStats =
     [
         ..Equipment,
         ..Weapons,

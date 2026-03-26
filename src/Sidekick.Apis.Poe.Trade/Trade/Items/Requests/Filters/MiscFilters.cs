@@ -58,6 +58,9 @@ public class MiscFilters
     [JsonPropertyName("foulborn_item")]
     public SearchFilterOption? Foulborn { get; set; }
 
+    [JsonPropertyName("gem_imbued")]
+    public SearchFilterOption? Imbued { get; set; }
+
     [JsonPropertyName("memory_level")]
     public StatFilterValue? MemoryStrands { get; set; }
 }

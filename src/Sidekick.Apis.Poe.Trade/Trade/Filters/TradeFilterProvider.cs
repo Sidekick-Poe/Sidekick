@@ -24,6 +24,7 @@ public class TradeFilterProvider
     public RawTradeFilter? Mirrored => GetApiFilter("misc_filters", "mirrored");
     public RawTradeFilter? Foulborn => GetApiFilter("misc_filters", "foulborn_item");
     public RawTradeFilter? Sanctified => GetApiFilter("misc_filters", "sanctified");
+    public RawTradeFilter? Imbued => GetApiFilter("misc_filters", "gem_imbued");
 
     public RawTradeFilterCategory? WeaponCategory => GetApiFilterCategory("weapon_filters");
     public RawTradeFilterCategory? ArmourCategory => GetApiFilterCategory("armour_filters");

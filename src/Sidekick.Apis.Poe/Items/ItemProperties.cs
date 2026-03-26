@@ -74,6 +74,8 @@ public class ItemProperties
 
     public bool Foulborn { get; set; }
 
+    public bool Imbued { get; set; }
+
     public Influences Influences { get; } = new();
 
     public List<Socket>? Sockets { get; set; }

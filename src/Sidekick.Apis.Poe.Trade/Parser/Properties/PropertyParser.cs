@@ -106,6 +106,7 @@ public class PropertyParser
                                    new SanctifiedProperty(game, serviceProvider),
                                    new MirroredProperty(game, serviceProvider),
                                    new FoulbornProperty(game, serviceProvider),
+                                   new ImbuedGemProperty(game, serviceProvider),
                                    new UnidentifiedProperty(game, currentGameLanguage)),
         ]);
     }
