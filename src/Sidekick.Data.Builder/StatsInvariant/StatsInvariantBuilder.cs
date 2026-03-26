@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.StatsInvariant;
 namespace Sidekick.Data.Builder.StatsInvariant;
@@ -55,9 +54,6 @@ public class StatsInvariantBuilder
             LightningWeaponDamageIds = GetLightningWeaponDamageIds(categories.Result).ToList(),
             IncursionRoomStatIds = GetIncursionRooms(categories.Result).ToList(),
             LogbookFactionStatIds = GetLogbookFactions(categories.Result).ToList(),
-            ClusterJewelSmallPassiveCountStatId = GetClusterPassiveCountId(categories.Result),
-            ClusterJewelSmallPassiveGrantStatId = GetClusterGrantId(categories.Result),
-            ClusterJewelSmallPassiveGrantOptions = GetClusterJewels(categories.Result),
         };
 
         await dataProvider.Write(game, DataType.StatsInvariant, model);

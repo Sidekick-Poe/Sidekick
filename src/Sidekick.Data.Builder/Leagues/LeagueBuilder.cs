@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Builder.Trade.Models;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
 namespace Sidekick.Data.Builder.Leagues;
@@ -52,6 +51,8 @@ public class LeagueBuilder
                 Text = x.Text!,
             })
             .ToList();
+
+        if (leagues.Count == 0) return;
 
         await dataProvider.Write(game, DataType.Leagues, language, leagues);
     }

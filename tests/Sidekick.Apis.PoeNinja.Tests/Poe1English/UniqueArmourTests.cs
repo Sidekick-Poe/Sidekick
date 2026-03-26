@@ -44,6 +44,48 @@ Note: ~b/o 400 chaos
     }
 
     [Fact]
+    public async Task FoulbornSquire()
+    {
+        var item = parser.ParseItem(@"Item Class: Shields
+Rarity: Unique
+Foulborn The Squire
+Elegant Round Shield
+--------
+Chance to Block: 29% (augmented)
+Armour: 345 (augmented)
+Evasion Rating: 345 (augmented)
+--------
+Requirements:
+Level: 70
+Str: 85
+Dex: 85
+--------
+Sockets: W-W-W 
+--------
+Item Level: 83
+--------
+120% increased Block Recovery (implicit)
+--------
+Has 3 Sockets
+Socketed Support Gems can also Support Skills from your Main Hand
+113% increased Armour and Evasion
++4% Chance to Block
++1 to Level of Socketed Gems (mutated)
+Ignore Attribute Requirements of Socketed Gems (mutated)
+--------
+Judge not the weak, for
+they empower the strong.
+--------
+Note: ~b/o 280 divine
+");
+
+        var result = await fixture.NinjaStashProvider.GetInfo(item);
+
+        Assert.NotNull(result);
+        Assert.Equal("foulborn-the-squire-gem-level-no-requirements-elegant-round-shield", result.DetailsId);
+    }
+
+    [Fact]
     public async Task FoulbornRathpithGlobe()
     {
         var item = parser.ParseItem(@"Item Class: Shields

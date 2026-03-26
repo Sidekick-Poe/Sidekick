@@ -1,5 +1,6 @@
 ﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Stash.Models;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.PoeNinja.Stash;
 
 public class NinjaStash
@@ -27,4 +28,6 @@ public class NinjaStash
     public NinjaSparkline? Sparkline { get; set; }
 
     public required Uri? DetailsUrl { get; set; }
+
+    public required NinjaItemDefinition Definition { get; set; }
 }
