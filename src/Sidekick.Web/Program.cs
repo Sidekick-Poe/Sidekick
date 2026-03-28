@@ -4,6 +4,7 @@ using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
+using Sidekick.Apis.PoeDb;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
@@ -61,6 +62,7 @@ builder.Services
     .AddSidekickPoeNinjaApi()
     .AddSidekickPoe2ScoutApi()
     .AddSidekickPoePriceInfoApi()
+    .AddSidekickPoeDbApi()
     .AddSidekickPoeWikiApi()
     .AddSidekickUpdater()
 

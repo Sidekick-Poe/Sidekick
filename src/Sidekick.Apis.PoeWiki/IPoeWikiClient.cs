@@ -17,4 +17,6 @@ public interface IPoeWikiClient : IInitializableService
     public void OpenUri(ItemDrop itemDrop);
 
     public void OpenUri(Boss boss);
+
+    void OpenWebsite(Item item);
 }
