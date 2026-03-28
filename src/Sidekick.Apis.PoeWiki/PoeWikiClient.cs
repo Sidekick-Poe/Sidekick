@@ -8,6 +8,7 @@ using Sidekick.Apis.PoeWiki.Extensions;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
+using Sidekick.Data;
 
 namespace Sidekick.Apis.PoeWiki;
 
@@ -29,6 +30,7 @@ public class PoeWikiClient
         PropertyNameCaseInsensitive = true
     };
     private const string PoeWikiBaseUri = "https://www.poewiki.net/";
+    private const string Poe2WikiBaseUri = "https://www.poe2wiki.net/";
     private const string PoeWikiSubUrl = "w/index.php?search=";
 
     /// <summary>
@@ -438,5 +440,25 @@ public class PoeWikiClient
         var uri = new Uri(PoeWikiBaseUri + wikiLink);
 
         browserProvider.OpenUri(uri);
+    }
+
+    public void OpenWebsite(Item item)
+    {
+        var searchValue = GetSearchValue(item)?.Replace(" ", "+");
+        var baseUrl = item.Game == GameType.PathOfExile1 ? PoeWikiBaseUri : Poe2WikiBaseUri;
+        var uri = new Uri(baseUrl + PoeWikiSubUrl + searchValue);
+
+        browserProvider.OpenUri(uri);
+    }
+
+    private string? GetSearchValue(Item item)
+    {
+        string? searchValue = null;
+        if (!string.IsNullOrEmpty(item.Invariant.UniqueItem?.Name)) searchValue = item.Invariant.UniqueItem.Name;
+        else if (!string.IsNullOrEmpty(item.Invariant.TradeItem?.Name)) searchValue = item.Invariant.TradeItem?.Name;
+        else if (!string.IsNullOrEmpty(item.Invariant.TradeItem?.Text)) searchValue = item.Invariant.TradeItem?.Text;
+        else if (!string.IsNullOrEmpty(item.Invariant.TradeItem?.Type)) searchValue = item.Invariant.TradeItem?.Type;
+        else if (!string.IsNullOrEmpty(item.Invariant.BaseItem?.Name)) searchValue = item.Invariant.BaseItem.Name;
+        return searchValue;
     }
 }
