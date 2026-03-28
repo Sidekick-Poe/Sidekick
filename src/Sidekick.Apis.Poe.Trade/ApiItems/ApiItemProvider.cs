@@ -56,14 +56,17 @@ public class ApiItemProvider(
 
     public ItemDefinition? Get(ApiItem apiItem)
     {
-        var data = !string.IsNullOrEmpty(apiItem.Name) ? TextDictionary.GetValueOrDefault(apiItem.Name) : null;
+        var name = apiItem.Name ?? string.Empty;
+        if (name.StartsWith("Foulborn ")) name = name.Replace("Foulborn ", "");
+
+        var data = !string.IsNullOrEmpty(name) ? TextDictionary.GetValueOrDefault(name) : null;
         data ??= !string.IsNullOrEmpty(apiItem.Type) ? TextDictionary.GetValueOrDefault(apiItem.Type) : null;
         return data;
     }
 
     public ItemDefinition? Get(string? text)
     {
-        if(string.IsNullOrEmpty(text)) return null;
+        if (string.IsNullOrEmpty(text)) return null;
         text = text switch
         {
             "exalt" => "exalted",

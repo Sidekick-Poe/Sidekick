@@ -236,20 +236,21 @@ public class NinjaDownloader(
                                        Links = it.Links,
                                        ItemLevel = it.LevelRequired,
                                        Variant = it.Variant,
-                                       Stats = GetTradeInfo(it),
+                                       Stats = GetNinjaStats(it),
                                    },
                                });
             }
 
             return items;
 
-            List<NinjaStashStatDefinition>? GetTradeInfo(NinjaStashLine it)
+            List<NinjaStashStatDefinition>? GetNinjaStats(NinjaStashLine it)
             {
-                var info = it.TradeInfo?.ConvertAll(x => new NinjaStashStatDefinition()
+                var stats = it.TradeInfo?.ConvertAll(x => new NinjaStashStatDefinition()
                 {
                     Value = x.Min == x.Max ? x.Min : throw new SidekickException("Unsupported ninja value detected. Typically min and max always match. The item is {0}", it.Name ?? string.Empty),
                     Id = x.Mod,
                     Option = x.Option,
+                    Text = tradeStatDefinitions.FirstOrDefault(y => y.Id == x.Mod && y.Option?.Id.ToString() == x.Option)?.Text,
                 }) ?? [];
 
                 if (it.MutatedModifiers != null)
@@ -262,19 +263,20 @@ public class NinjaDownloader(
                         var text = numberRegex.Replace(mutatedMod.Text, "#");
                         var tradeMutatedStat = tradeStatDefinitions.FirstOrDefault(x => x.Text == text);
                         if (tradeMutatedStat == null) continue;
-                        if (info.Any(x => x.Id == tradeMutatedStat.Id)) continue;
+                        if (stats.Any(x => x.Id == tradeMutatedStat.Id)) continue;
 
-                        info.Add(new NinjaStashStatDefinition()
+                        stats.Add(new NinjaStashStatDefinition()
                         {
                             Id = tradeMutatedStat.Id,
                             Option = tradeMutatedStat.Option?.Id.ToString(),
+                            Text = tradeMutatedStat.Text,
                         });
                     }
                 }
 
-                if (info.Count == 0) return null;
+                if (stats.Count == 0) return null;
 
-                return info;
+                return stats;
             }
         }
     }

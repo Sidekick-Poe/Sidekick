@@ -122,7 +122,7 @@ public class ApiItem
         get
         {
             if (Sockets.Count == 0) return null;
-            return Sockets.GroupBy(x => x.Group).Max(x => x.Key);
+            return Sockets.GroupBy(x => x.Group).Max(x => x.Count());
         }
     }
 
@@ -144,7 +144,10 @@ public class ApiItem
         if (value == null) return defaultValue;
 
         var stringValue = value.Value.GetString();
-        if (int.TryParse(stringValue?.Trim('-', '+', '%'), out var intValue)) return intValue;
+        if (string.IsNullOrWhiteSpace(stringValue)) return defaultValue;
+
+        var numericPart = stringValue.Trim('-', '+', '%').Split(' ')[0];
+        if (int.TryParse(numericPart, out var intValue)) return intValue;
 
         return defaultValue;
     }

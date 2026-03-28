@@ -72,13 +72,16 @@ public class NinjaStashProvider(
 
     public async Task<List<NinjaStash>> GetInfo(ItemDefinition item, ApiItem apiItem)
     {
-        // TODO #1061 Unsupported due to foulborn modifiers. We would need to create some logic to get the trade stat id from the ApiItem. This isn't something that is done currently.
-        if (apiItem.Rarity == Rarity.Unique) return [];
+        if (apiItem.Rarity == Rarity.Unique)
+        {
+            return await GetUniqueInfo(item,
+                                       apiItem.Mutated,
+                                       apiItem.MaxLinks,
+                                       []); // todo
+        }
 
         if (apiItem.GemLevel > 0)
         {
-            // TODO #1060 Unsupported due to transfigured gems being parsed wrong.
-            return [];
             return await GetGemInfo(item,
                                     apiItem.Corrupted,
                                     apiItem.GemLevel.Value,
@@ -89,6 +92,14 @@ public class NinjaStashProvider(
         {
             return await GetMapInfo(item,
                                     apiItem.MapTier.Value);
+        }
+
+        if (IsClusterJewel(item))
+        {
+            return await GetClusterJewelInfo(item,
+                                             apiItem.ItemLevel,
+                                             []); // todo
+
         }
 
         return await GetBaseTypeInfo(item,

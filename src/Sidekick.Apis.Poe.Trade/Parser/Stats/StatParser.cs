@@ -32,25 +32,17 @@ public class StatParser
     public StatsInvariantDetails InvariantDetails { get; private set; } = new();
 
     private List<StatDefinition> Definitions { get; set; } = [];
-
-    public Dictionary<string, TradeStatDefinition> TradeDictionary { get; private set; } = [];
+    private List<StatDefinition> InvariantDefinitions { get; set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
         Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
+
+        if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) InvariantDefinitions = Definitions;
+        else InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
+
         InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
-
-        TradeDictionary.Clear();
-        foreach (var tradeDefinition in Definitions.SelectMany(x => x.TradeStats))
-        {
-            TradeDictionary.TryAdd(GetDictionaryKey(tradeDefinition.Id, tradeDefinition.Option?.Id.ToString()), tradeDefinition);
-        }
-    }
-
-    public string GetDictionaryKey(string id, string? option)
-    {
-        return !string.IsNullOrEmpty(option) ? $"{id}:{option}" : id;
     }
 
     /// <inheritdoc/>
@@ -172,7 +164,7 @@ public class StatParser
                 }
             }
 
-            text = RemoveCategory(text);
+            text = ParseCategoryPattern.Replace(text, string.Empty);
 
             var stat = new Stat(category, text)
             {
@@ -186,22 +178,21 @@ public class StatParser
             stat.Values = GetValues(stat).ToList();
             return stat;
         }
-    }
 
-    private StatCategory ParseCategory(string value)
-    {
-        var match = ParseCategoryPattern.Match(value);
-        if (!match.Success)
+        StatCategory ParseCategory(string value)
         {
-            return StatCategory.Explicit;
-        }
+            var match = ParseCategoryPattern.Match(value);
+            if (!match.Success) return StatCategory.Explicit;
 
-        return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
+            return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
+        }
     }
 
-    private string RemoveCategory(string value)
+    public Stat? ParseInvariant(string? line)
     {
-        return ParseCategoryPattern.Replace(value, string.Empty);
+        if(string.IsNullOrEmpty(line)) return null;
+
+
     }
 
     private IEnumerable<double> GetValues(Stat stat)

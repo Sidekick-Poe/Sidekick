@@ -1,5 +1,4 @@
-﻿@using Sidekick.Apis.Poe.Trade.Parser.Stats
-@using Sidekick.Apis.PoeNinja.Stash
+﻿@using Sidekick.Apis.PoeNinja.Stash
 @using Sidekick.Data.Languages
 @using Sidekick.Data.Stats
 @using Sidekick.Modules.Items.Components
@@ -56,23 +55,13 @@
             foreach (var stat in Stash.Definition.Stash.Stats)
             {
                 if (string.IsNullOrEmpty(stat.Id)) continue;
-                var key = StatParser.GetDictionaryKey(stat.Id, stat.Option);
-                var tradeStat = StatParser.TradeDictionary.GetValueOrDefault(key);
-                if (tradeStat == null) continue;
+                if (string.IsNullOrEmpty(stat.Text)) continue;
 
                 var category = StatCategory.Explicit;
-                if (tradeStat.Id.StartsWith("explicit")) category = StatCategory.Mutated;
-                if (tradeStat.Id.StartsWith("enchant")) category = StatCategory.Enchant;
+                if (stat.Id.StartsWith("explicit")) category = StatCategory.Mutated;
+                if (stat.Id.StartsWith("enchant")) category = StatCategory.Enchant;
 
-                if (stat.Value > 0)
-                {
-                    <ItemStatText Category="category"
-                                  Class="text-center">@tradeStat.Text.Replace("#", stat.Value.ToString())</ItemStatText>
-                }
-                else
-                {
-                    <ItemStatText Category="category" Class="text-center">@tradeStat.Text</ItemStatText>
-                }
+                <ItemStatText Category="category" Class="text-center">@stat.Text</ItemStatText>
             }
         }
 
@@ -102,7 +91,6 @@
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
 @inject IStringLocalizer<TradeResources> TradeResources
 @inject ICurrentGameLanguage CurrentGameLanguage
-@inject IStatParser StatParser
 
 @code {
 
