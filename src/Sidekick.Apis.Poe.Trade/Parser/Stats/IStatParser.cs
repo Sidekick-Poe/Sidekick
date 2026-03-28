@@ -10,5 +10,7 @@ public interface IStatParser : IInitializableService
 
     void Parse(Item item);
 
+    Stat? ParseInvariant(string? line);
+
     Task<List<TradeFilter>> GetFilters(Item item);
 }

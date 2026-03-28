@@ -45,6 +45,19 @@ public class StatParser
         InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
     }
 
+    public Stat? ParseInvariant(string? line)
+    {
+        if (string.IsNullOrEmpty(line)) return null;
+
+        var definitions = MatchDefinitions(InvariantDefinitions, [line]).ToList();
+        if (definitions.Count == 0) return null;
+
+        var maxLineCount = definitions.Select(x => x.Lines).Max();
+        definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
+
+        return CreateStat(line, definitions, false);
+    }
+
     /// <inheritdoc/>
     public void Parse(Item item)
     {
@@ -64,7 +77,8 @@ public class StatParser
                 {
                     if (block.Lines[lineIndex].Parsed) continue;
 
-                    var definitions = MatchDefinitions(block, lineIndex).ToList();
+                    var lines = block.Lines.Skip(lineIndex).Select(x => x.Text).ToList();
+                    var definitions = MatchDefinitions(FilterDefinitions(), lines).ToList();
                     var matchFuzzily = definitions.Sum(x => x.TradeStats.Count) is 0;
                     if (matchFuzzily) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
                     if (definitions.Count is 0) continue;
@@ -72,10 +86,10 @@ public class StatParser
                     var maxLineCount = definitions.Select(x => x.Lines).Max();
                     definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
 
-                    var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
-                    lines.ForEach(x => x.Parsed = true);
+                    var matchedLines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
+                    matchedLines.ForEach(x => x.Parsed = true);
 
-                    yield return CreateStat(block, lines, definitions, matchFuzzily);
+                    yield return CreateStat(string.Join('\n', matchedLines.Select(x => x.Text)), definitions, matchFuzzily, block.Index, matchedLines.First().Index);
                 }
             }
         }
@@ -87,24 +101,6 @@ public class StatParser
                 Rarity.Gem => Definitions.Where(x => x.TradeStats.Any(y => y.Category is StatCategory.Imbued)),
                 _ => Definitions,
             };
-        }
-
-        IEnumerable<StatDefinition> MatchDefinitions(RawBlock block, int lineIndex)
-        {
-            foreach (var definition in FilterDefinitions())
-            {
-                // Multiple line stats
-                if (definition.Lines > 1 && definition.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(definition.Lines))))
-                {
-                    yield return definition;
-                }
-
-                // Single line stats
-                if (definition.Pattern.IsMatch(block.Lines[lineIndex].Text))
-                {
-                    yield return definition;
-                }
-            }
         }
 
         List<StatDefinition> MatchDefinitionsFuzzily(RawBlock block, int lineIndex)
@@ -150,49 +146,65 @@ public class StatParser
             var cutoff = orderedResults.First().Ratio - 2;
             return orderedResults.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
         }
+    }
 
-        Stat CreateStat(RawBlock block, List<RawLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
+    private IEnumerable<StatDefinition> MatchDefinitions(IEnumerable<StatDefinition> definitions, List<string> lines)
+    {
+        foreach (var definition in definitions)
         {
-            var text = string.Join('\n', lines.Select(x => x.Text));
-            var category = ParseCategory(text);
-            if (category != StatCategory.Mutated)
+            // Multiple line stats
+            if (definition.Lines > 1 && definition.Pattern.IsMatch(string.Join('\n', lines.Take(definition.Lines))))
             {
-                var categories = definitions.SelectMany(x => x.TradeStats).Select(x => x.Category).Distinct().ToList();
-                if (categories.Count == 1 && categories[0] != StatCategory.Undefined)
-                {
-                    category = categories[0];
-                }
+                yield return definition;
             }
 
-            text = ParseCategoryPattern.Replace(text, string.Empty);
-
-            var stat = new Stat(category, text)
+            // Single line stats
+            if (definition.Lines == 1 && definition.Pattern.IsMatch(lines[0]))
             {
-                BlockIndex = block.Index,
-                LineIndex = lines.First().Index,
-                Definitions = definitions,
-                MatchedFuzzily = matchedFuzzily,
-                HasTradeSupport = definitions.Any(x => x.TradeStats.Count > 0),
-            };
-
-            stat.Values = GetValues(stat).ToList();
-            return stat;
-        }
-
-        StatCategory ParseCategory(string value)
-        {
-            var match = ParseCategoryPattern.Match(value);
-            if (!match.Success) return StatCategory.Explicit;
-
-            return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
+                yield return definition;
+            }
         }
     }
 
-    public Stat? ParseInvariant(string? line)
+    private Stat CreateStat(
+        string text,
+        List<StatDefinition> definitions,
+        bool matchedFuzzily,
+        int blockIndex = 0,
+        int lineIndex = 0
+    )
     {
-        if(string.IsNullOrEmpty(line)) return null;
+        var category = ParseCategory(text);
+        if (category != StatCategory.Mutated)
+        {
+            var categories = definitions.SelectMany(x => x.TradeStats).Select(x => x.Category).Distinct().ToList();
+            if (categories.Count == 1 && categories[0] != StatCategory.Undefined)
+            {
+                category = categories[0];
+            }
+        }
 
+        text = ParseCategoryPattern.Replace(text, string.Empty);
 
+        var stat = new Stat(category, text)
+        {
+            BlockIndex = blockIndex,
+            LineIndex = lineIndex,
+            Definitions = definitions,
+            MatchedFuzzily = matchedFuzzily,
+            HasTradeSupport = definitions.Any(x => x.TradeStats.Count > 0),
+        };
+
+        stat.Values = GetValues(stat).ToList();
+        return stat;
+    }
+
+    private StatCategory ParseCategory(string value)
+    {
+        var match = ParseCategoryPattern.Match(value);
+        if (!match.Success) return StatCategory.Explicit;
+
+        return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
     }
 
     private IEnumerable<double> GetValues(Stat stat)
