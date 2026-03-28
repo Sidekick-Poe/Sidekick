@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Data.Items;
+﻿namespace Sidekick.Data.ItemDefinitions;
 
 public class NinjaItemDefinition
 {

@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Data.Builder.Trade;

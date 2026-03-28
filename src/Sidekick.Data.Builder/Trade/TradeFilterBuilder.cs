@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.StatsInvariant;
 using Sidekick.Data.Builder.Trade.Models;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 namespace Sidekick.Data.Builder.Trade;
 

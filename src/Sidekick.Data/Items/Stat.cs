@@ -1,4 +1,3 @@
-using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 namespace Sidekick.Apis.Poe.Items;
 

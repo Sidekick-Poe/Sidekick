@@ -1,4 +1,4 @@
-namespace Sidekick.Data.Items;
+namespace Sidekick.Data.ItemDefinitions;
 
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
 public class ItemClassGameId(GameType game, string id) : Attribute

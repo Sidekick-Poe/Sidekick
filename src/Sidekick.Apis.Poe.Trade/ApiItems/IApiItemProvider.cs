@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Common.Initialization;
-using Sidekick.Data.Items;
+using Sidekick.Data.ItemDefinitions;
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
 
 public interface IApiItemProvider : IInitializableService

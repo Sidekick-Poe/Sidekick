@@ -1,11 +1,11 @@
-﻿using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.PoeNinja.Clients;
+﻿using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Uris.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
-using Sidekick.Data.Items;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.ItemDefinitions;
 namespace Sidekick.Apis.PoeNinja.Uris;
 
 public class NinjaUriProvider(

@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Data.Items;
+﻿namespace Sidekick.Data.ItemDefinitions;
 
 public class NinjaStashStatDefinition {
     public string? Id { get; init; }

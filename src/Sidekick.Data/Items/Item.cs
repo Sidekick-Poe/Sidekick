@@ -1,5 +1,5 @@
 using Sidekick.Data;
-using Sidekick.Data.Items;
+using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Items;

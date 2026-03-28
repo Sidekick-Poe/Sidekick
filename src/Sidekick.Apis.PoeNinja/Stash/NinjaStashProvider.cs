@@ -1,5 +1,4 @@
-﻿using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
+﻿using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Apis.PoeNinja.Clients;
@@ -8,7 +7,8 @@ using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.PoeNinja.Stash;

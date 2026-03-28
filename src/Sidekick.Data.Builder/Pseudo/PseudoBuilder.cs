@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Pseudo.Definitions;
 using Sidekick.Data.Builder.Trade;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Pseudo;
 using Sidekick.Data.Stats;

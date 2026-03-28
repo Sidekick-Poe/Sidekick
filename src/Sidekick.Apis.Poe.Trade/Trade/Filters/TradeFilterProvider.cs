@@ -1,11 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Builder.Trade.Models;
+using Sidekick.Data.Extensions;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 

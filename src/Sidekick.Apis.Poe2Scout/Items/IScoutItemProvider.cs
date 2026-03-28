@@ -1,5 +1,5 @@
 ﻿using Sidekick.Apis.Poe2Scout.Items.Models;
-using Sidekick.Data.Items;
+using Sidekick.Data.ItemDefinitions;
 namespace Sidekick.Apis.Poe2Scout.Items;
 
 public interface IScoutItemProvider

@@ -1,7 +1,6 @@
 ﻿using Sidekick.Common.Enums;
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
