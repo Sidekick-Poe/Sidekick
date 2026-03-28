@@ -2,7 +2,6 @@
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Modules.Items.Valuation.Localization
 @using Sidekick.Data.Languages
-@using Sidekick.Data.Items
 @using Sidekick.Data
 @using Sidekick.Common.Ui.Tabs
 
@@ -37,7 +36,7 @@
         Valid |= await CheckScout();
 
         var switchTab = Valid;
-        switchTab &= Item.ItemClass != ItemClass.Map;
+        switchTab &= !ItemClassConstants.Areas.Contains(Item.ItemClass);
         if (switchTab) await CurrentTabChanged.InvokeAsync("valuation");
 
         await base.OnInitializedAsync();

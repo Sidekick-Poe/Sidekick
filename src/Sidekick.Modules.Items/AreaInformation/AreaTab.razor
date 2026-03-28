@@ -27,7 +27,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Valid = Item.ItemClass == ItemClass.Map;
+        Valid = ItemClassConstants.Areas.Contains(Item.ItemClass);
 
         if (Valid) await CurrentTabChanged.InvokeAsync("area");
 
