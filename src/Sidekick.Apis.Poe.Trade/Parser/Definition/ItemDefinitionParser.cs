@@ -2,7 +2,7 @@ using FuzzySharp;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Common.Exceptions;
-using Sidekick.Data.Items;
+using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 

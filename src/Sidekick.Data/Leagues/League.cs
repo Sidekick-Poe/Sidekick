@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Sidekick.Common.Enums;
-using Sidekick.Data.Items;
 namespace Sidekick.Data.Leagues;
 
 public class League

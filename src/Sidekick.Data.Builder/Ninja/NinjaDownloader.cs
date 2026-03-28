@@ -7,7 +7,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Data.Builder.Ninja.Models;
 using Sidekick.Data.Builder.Trade;
-using Sidekick.Data.Items;
+using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
 

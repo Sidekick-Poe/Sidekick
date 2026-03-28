@@ -7,7 +7,7 @@ using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Items;
 using Sidekick.Data.Builder.Trade.Models;
-using Sidekick.Data.Items;
+using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 namespace Sidekick.Data.Builder.Items;
 

@@ -1,8 +1,8 @@
-using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
-using Sidekick.Data.Items;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
 

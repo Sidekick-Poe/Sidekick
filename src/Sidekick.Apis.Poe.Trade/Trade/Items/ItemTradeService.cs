@@ -2,7 +2,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
@@ -13,6 +12,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Extensions;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Trade.Trade.Items;
 
