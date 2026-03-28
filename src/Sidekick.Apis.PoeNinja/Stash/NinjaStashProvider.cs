@@ -1,10 +1,12 @@
 ﻿using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Stash.Models;
 using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -15,8 +17,14 @@ public class NinjaStashProvider(
     INinjaClient ninjaClient,
     ISettingsService settingsService,
     ICacheProvider cacheProvider,
-    NinjaUriProvider ninjaUriProvider) : INinjaStashProvider
+    NinjaUriProvider ninjaUriProvider,
+    IStatParser statParser) : INinjaStashProvider
 {
+    private static readonly List<string> IgnoreStatTexts =
+    [
+        "# Added Passive Skills are Jewel Sockets",
+    ];
+
     private async Task<string> GetCacheKey(string type)
     {
         var league = await settingsService.GetLeague();
@@ -25,22 +33,12 @@ public class NinjaStashProvider(
 
     public async Task<List<NinjaStash>> GetInfo(Item item)
     {
-        var stats = (
-            from stat in item.Stats
-            from definition in stat.Definitions
-            from tradeStat in definition.TradeStats
-            select new CompareStat(stat.Category,
-                                   tradeStat.Id,
-                                   stat.AverageValue,
-                                   tradeStat.Option?.Id.ToString())
-            ).ToList();
-
         if (item.Properties.Rarity == Rarity.Unique)
         {
             return await GetUniqueInfo(item.Invariant,
                                        item.Properties.Foulborn,
                                        item.Properties.GetMaximumNumberOfLinks(),
-                                       stats);
+                                       item.Stats);
         }
 
         if (item.Properties.MapTier > 0 || item.ItemClass == ItemClass.Map)
@@ -61,7 +59,7 @@ public class NinjaStashProvider(
         {
             return await GetClusterJewelInfo(item.Invariant,
                                              item.Properties.ItemLevel,
-                                             stats);
+                                             item.Stats);
 
         }
 
@@ -72,13 +70,20 @@ public class NinjaStashProvider(
 
     public async Task<List<NinjaStash>> GetInfo(ItemDefinition item, ApiItem apiItem)
     {
-        // TODO #1061 Unsupported due to foulborn modifiers. We would need to create some logic to get the trade stat id from the ApiItem. This isn't something that is done currently.
-        if (apiItem.Rarity == Rarity.Unique) return [];
+        var stats = apiItem.MutatedMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Mutated.GetValueAttribute()})")!).ToList();
+        stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Enchant.GetValueAttribute()})")!).ToList());
+        stats = stats.Where(x => x != null!).ToList();
+
+        if (apiItem.Rarity == Rarity.Unique)
+        {
+            return await GetUniqueInfo(item,
+                                       apiItem.Mutated,
+                                       apiItem.MaxLinks,
+                                       stats);
+        }
 
         if (apiItem.GemLevel > 0)
         {
-            // TODO #1060 Unsupported due to transfigured gems being parsed wrong.
-            return [];
             return await GetGemInfo(item,
                                     apiItem.Corrupted,
                                     apiItem.GemLevel.Value,
@@ -91,12 +96,20 @@ public class NinjaStashProvider(
                                     apiItem.MapTier.Value);
         }
 
+        if (IsClusterJewel(item))
+        {
+            return await GetClusterJewelInfo(item,
+                                             apiItem.ItemLevel,
+                                             stats);
+
+        }
+
         return await GetBaseTypeInfo(item,
                                      apiItem.ItemLevel,
                                      apiItem.Influences);
     }
 
-    private async Task<List<NinjaStash>> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<CompareStat>? stats)
+    private async Task<List<NinjaStash>> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<Stat>? stats)
     {
         var matches = FindMatches();
         return await BuildResult(matches);
@@ -106,20 +119,12 @@ public class NinjaStashProvider(
             if (item.NinjaItems == null) return [];
 
             if (links < 5) links = 0;
-            if (stats != null)
-            {
-                stats = stats
-                    .Where(x => x.Category == StatCategory.Mutated && x.Id.StartsWith("explicit"))
-                    .DistinctBy(x => x.Id)
-                    .ToList();
-                if (stats.Count == 0) stats = null;
-            }
 
             return item.NinjaItems
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.Foulborn.GetValueOrDefault() == foulborn)
                 .Where(x => x.Stash!.Links.GetValueOrDefault() == links.GetValueOrDefault())
-                .Where(ninjaDefinition => ValidateNinjaStats(stats, ninjaDefinition))
+                .Where(ninjaDefinition => ValidateNinjaStats(stats, StatCategory.Mutated, ninjaDefinition))
                 .ToList();
         }
     }
@@ -187,7 +192,7 @@ public class NinjaStashProvider(
         return item.BaseItem?.Name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel";
     }
 
-    private async Task<List<NinjaStash>> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<CompareStat>? stats)
+    private async Task<List<NinjaStash>> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<Stat>? stats)
     {
         var matches = FindMatches();
         return await BuildResult(matches);
@@ -195,15 +200,6 @@ public class NinjaStashProvider(
         List<NinjaItemDefinition> FindMatches()
         {
             if (!IsClusterJewel(item)) return [];
-
-            if (stats != null)
-            {
-                stats = stats
-                    .Where(x => x.Category == StatCategory.Enchant)
-                    .Where(x => x.Id.StartsWith("enchant."))
-                    .ToList();
-                if (stats.Count == 0) stats = null;
-            }
 
             itemLevel = itemLevel switch
             {
@@ -217,7 +213,7 @@ public class NinjaStashProvider(
             return item.NinjaItems!
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-                .Where(ninjaDefinition => ValidateNinjaStats(stats, ninjaDefinition))
+                .Where(ninjaDefinition => ValidateNinjaStats(stats, StatCategory.Enchant, ninjaDefinition))
                 .ToList();
         }
     }
@@ -303,11 +299,27 @@ public class NinjaStashProvider(
         }
     }
 
-    private record CompareStat(StatCategory Category, string Id, double? Value, string? Option);
-
-    private static bool ValidateNinjaStats(List<CompareStat>? stats, NinjaItemDefinition ninjaDefinition)
+    private static bool ValidateNinjaStats(List<Stat>? itemStats, StatCategory statCategory, NinjaItemDefinition ninjaDefinition)
     {
-        if (stats == null) return ninjaDefinition.Stash!.Stats == null;
+        var statStartsWith = statCategory.GetValueAttribute();
+        if (statCategory == StatCategory.Mutated) statStartsWith = "explicit";
+
+        var stats = (
+            from stat in itemStats
+            from definition in stat.Definitions
+            from tradeStat in definition.TradeStats
+            where stat.Category == statCategory && tradeStat.Id.StartsWith(statStartsWith)
+            where !IgnoreStatTexts.Contains(tradeStat.Text)
+            select new
+            {
+                tradeStat.Id,
+                Value = stat.AverageValue,
+                Option = tradeStat.Option?.Id.ToString(),
+            })
+            .DistinctBy(x => x.Id)
+            .ToList();
+
+        if (stats.Count == 0) return ninjaDefinition.Stash!.Stats == null;
         if (ninjaDefinition.Stash!.Stats?.Count != stats.Count) return false;
 
         foreach (var expectedStat in ninjaDefinition.Stash.Stats)
@@ -319,7 +331,7 @@ public class NinjaStashProvider(
                 foundStat.Option != expectedStat.Option) return false;
 
             if (expectedStat.Value != null && expectedStat.Value != 0 &&
-                (int)Math.Round(foundStat.Value ?? 0) != expectedStat.Value) return false;
+                (int)Math.Round(foundStat.Value) != expectedStat.Value) return false;
         }
 
         return true;
@@ -353,7 +365,7 @@ public class NinjaStashProvider(
             }
 
             return results
-                .OrderBy(x=>x.ChaosValue)
+                .OrderBy(x => x.ChaosValue)
                 .ToList();
         }
     }

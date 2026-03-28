@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Tests.Poe1English;
+using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Stash;
@@ -12,6 +13,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
 {
     public INinjaExchangeProvider NinjaExchangeProvider { get; private set; } = null!;
     public INinjaStashProvider NinjaStashProvider { get; private set; } = null!;
+    public IApiItemProvider ApiItemProvider { get; private set; } = null!;
 
     public override async Task InitializeAsync()
     {
@@ -19,6 +21,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
 
         NinjaExchangeProvider = TestContext.Services.GetRequiredService<INinjaExchangeProvider>();
         NinjaStashProvider = TestContext.Services.GetRequiredService<INinjaStashProvider>();
+        ApiItemProvider = TestContext.Services.GetRequiredService<IApiItemProvider>();
     }
 
     protected override void RegisterServices(IServiceCollection services)

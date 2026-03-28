@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 namespace Sidekick.Data.Items;
@@ -5,14 +6,17 @@ namespace Sidekick.Data.Items;
 public class ItemDefinition
 {
     [JsonIgnore]
-    public string? Key
+    public string Key
     {
         get
         {
-            if (!string.IsNullOrEmpty(UniqueItem?.Id)) return UniqueItem.Id;
-            if (!string.IsNullOrEmpty(TradeItem?.Id)) return TradeItem.Id;
-            if (!string.IsNullOrEmpty(BaseItem?.Id)) return BaseItem.Id;
-            return null;
+            var key = new StringBuilder();
+            if (!string.IsNullOrEmpty(UniqueItem?.Id)) key.Append(UniqueItem.Id);
+            if (!string.IsNullOrEmpty(TradeItem?.Id)) key.Append(TradeItem.Id);
+            if (!string.IsNullOrEmpty(TradeItem?.Discriminator)) key.Append(TradeItem.Discriminator);
+            if (!string.IsNullOrEmpty(BaseItem?.Id)) key.Append(BaseItem.Id);
+
+            return key.ToString();
         }
     }
 
