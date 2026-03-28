@@ -1,11 +1,12 @@
-using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Data.Builder.Ninja.Models;
+using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
@@ -17,7 +18,8 @@ public class NinjaDownloader(
     IOptions<SidekickConfiguration> configuration,
     RawDataProvider rawDataProvider,
     DataProvider dataProvider,
-    IGameLanguageProvider languageProvider)
+    IGameLanguageProvider languageProvider,
+    TradeStatProvider tradeStatProvider)
 {
     private record NinjaPage(
         string Type,
@@ -209,6 +211,8 @@ public class NinjaDownloader(
             var items = new List<NinjaItemDefinition>();
             var pages = game == GameType.PathOfExile1 ? Poe1Pages : Poe2Pages;
 
+            var tradeStatDefinitions = await tradeStatProvider.GetDefinitions(game, languageProvider.InvariantLanguage);
+
             foreach (var page in pages)
             {
                 if (!page.SupportsStash || page.SupportsExchange) continue;
@@ -246,9 +250,29 @@ public class NinjaDownloader(
                     Value = x.Min == x.Max ? x.Min : throw new SidekickException("Unsupported ninja value detected. Typically min and max always match. The item is {0}", it.Name ?? string.Empty),
                     Id = x.Mod,
                     Option = x.Option,
-                });
+                }) ?? [];
 
-                if (info == null || info.Count == 0) return null;
+                if (it.MutatedModifiers != null)
+                {
+                    var numberRegex = new Regex(@"\d+");
+
+                    foreach (var mutatedMod in it.MutatedModifiers)
+                    {
+                        if (string.IsNullOrEmpty(mutatedMod.Text) || mutatedMod.Optional) continue;
+                        var text = numberRegex.Replace(mutatedMod.Text, "#");
+                        var tradeMutatedStat = tradeStatDefinitions.FirstOrDefault(x => x.Text == text);
+                        if (tradeMutatedStat == null) continue;
+                        if (info.Any(x => x.Id == tradeMutatedStat.Id)) continue;
+
+                        info.Add(new NinjaStashStatDefinition()
+                        {
+                            Id = tradeMutatedStat.Id,
+                            Option = tradeMutatedStat.Option?.Id.ToString(),
+                        });
+                    }
+                }
+
+                if (info.Count == 0) return null;
 
                 return info;
             }

@@ -23,7 +23,7 @@ public class NinjaStashProvider(
         return $"PoeNinjaStash_{league}_{type}";
     }
 
-    public async Task<NinjaStash?> GetInfo(Item item)
+    public async Task<List<NinjaStash>> GetInfo(Item item)
     {
         var stats = (
             from stat in item.Stats
@@ -70,15 +70,15 @@ public class NinjaStashProvider(
                                      item.Properties.Influences);
     }
 
-    public async Task<NinjaStash?> GetInfo(ItemDefinition item, ApiItem apiItem)
+    public async Task<List<NinjaStash>> GetInfo(ItemDefinition item, ApiItem apiItem)
     {
         // TODO #1061 Unsupported due to foulborn modifiers. We would need to create some logic to get the trade stat id from the ApiItem. This isn't something that is done currently.
-        if (apiItem.Rarity == Rarity.Unique) return null;
+        if (apiItem.Rarity == Rarity.Unique) return [];
 
         if (apiItem.GemLevel > 0)
         {
             // TODO #1060 Unsupported due to transfigured gems being parsed wrong.
-            return null;
+            return [];
             return await GetGemInfo(item,
                                     apiItem.Corrupted,
                                     apiItem.GemLevel.Value,
@@ -96,14 +96,14 @@ public class NinjaStashProvider(
                                      apiItem.Influences);
     }
 
-    private async Task<NinjaStash?> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<CompareStat>? stats)
+    private async Task<List<NinjaStash>> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<CompareStat>? stats)
     {
-        var bestMatch = FindBestMatch();
-        return await BuildResult(bestMatch);
+        var matches = FindMatches();
+        return await BuildResult(matches);
 
-        NinjaItemDefinition? FindBestMatch()
+        List<NinjaItemDefinition> FindMatches()
         {
-            if (item.NinjaItems == null) return null;
+            if (item.NinjaItems == null) return [];
 
             if (links < 5) links = 0;
             if (stats != null)
@@ -119,19 +119,20 @@ public class NinjaStashProvider(
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.Foulborn.GetValueOrDefault() == foulborn)
                 .Where(x => x.Stash!.Links.GetValueOrDefault() == links.GetValueOrDefault())
-                .FirstOrDefault(ninjaDefinition => ValidateNinjaStats(stats, ninjaDefinition));
+                .Where(ninjaDefinition => ValidateNinjaStats(stats, ninjaDefinition))
+                .ToList();
         }
     }
 
-    private async Task<NinjaStash?> GetMapInfo(ItemDefinition item, int mapTier)
+    private async Task<List<NinjaStash>> GetMapInfo(ItemDefinition item, int mapTier)
     {
-        var bestMatch = FindBestMatch();
-        return await BuildResult(bestMatch);
+        var matches = FindMatches();
+        return await BuildResult(matches);
 
-        NinjaItemDefinition? FindBestMatch()
+        List<NinjaItemDefinition> FindMatches()
         {
-            if (item.NinjaItems == null) return null;
-            if (string.IsNullOrEmpty(item.BaseItem?.Name)) return null;
+            if (item.NinjaItems == null) return [];
+            if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
 
             var name = item.BaseItem.Name;
             if (name == "Map") name = $"Map (Tier {mapTier})";
@@ -140,21 +141,22 @@ public class NinjaStashProvider(
 
             return item.NinjaItems
                 .Where(x => x.Stash != null)
-                .FirstOrDefault(x => x.Stash!.Name == name);
+                .Where(x => x.Stash!.Name == name)
+                .ToList();
         }
     }
 
-    private async Task<NinjaStash?> GetGemInfo(ItemDefinition item, bool corrupted, int gemLevel, int gemQuality)
+    private async Task<List<NinjaStash>> GetGemInfo(ItemDefinition item, bool corrupted, int gemLevel, int gemQuality)
     {
-        var bestMatch = FindBestMatch();
-        return await BuildResult(bestMatch);
+        var matches = FindMatches();
+        return await BuildResult(matches);
 
-        NinjaItemDefinition? FindBestMatch()
+        List<NinjaItemDefinition> FindMatches()
         {
-            if (item.NinjaItems == null) return null;
+            if (item.NinjaItems == null) return [];
             var text = item.TradeItem?.Text;
             text ??= item.BaseItem?.Name;
-            if (string.IsNullOrEmpty(text)) return null;
+            if (string.IsNullOrEmpty(text)) return [];
 
             gemLevel = gemLevel switch
             {
@@ -174,7 +176,8 @@ public class NinjaStashProvider(
                 .Where(x => x.Stash!.Name == text)
                 .Where(x => x.Stash!.GemLevel.GetValueOrDefault() == gemLevel)
                 .Where(x => x.Stash!.GemQuality.GetValueOrDefault() == gemQuality)
-                .FirstOrDefault(x => x.Stash!.Corrupted.GetValueOrDefault() == corrupted);
+                .Where(x => x.Stash!.Corrupted.GetValueOrDefault() == corrupted)
+                .ToList();
         }
     }
 
@@ -184,14 +187,14 @@ public class NinjaStashProvider(
         return item.BaseItem?.Name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel";
     }
 
-    private async Task<NinjaStash?> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<CompareStat>? stats)
+    private async Task<List<NinjaStash>> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<CompareStat>? stats)
     {
-        var bestMatch = FindBestMatch();
-        return await BuildResult(bestMatch);
+        var matches = FindMatches();
+        return await BuildResult(matches);
 
-        NinjaItemDefinition? FindBestMatch()
+        List<NinjaItemDefinition> FindMatches()
         {
-            if (!IsClusterJewel(item)) return null;
+            if (!IsClusterJewel(item)) return [];
 
             if (stats != null)
             {
@@ -214,19 +217,20 @@ public class NinjaStashProvider(
             return item.NinjaItems!
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-                .FirstOrDefault(ninjaDefinition => ValidateNinjaStats(stats, ninjaDefinition));
+                .Where(ninjaDefinition => ValidateNinjaStats(stats, ninjaDefinition))
+                .ToList();
         }
     }
 
-    private async Task<NinjaStash?> GetBaseTypeInfo(ItemDefinition item, int itemLevel, Influences influences)
+    private async Task<List<NinjaStash>> GetBaseTypeInfo(ItemDefinition item, int itemLevel, Influences influences)
     {
-        var bestMatch = FindBestMatch();
-        return await BuildResult(bestMatch);
+        var matches = FindMatches();
+        return await BuildResult(matches);
 
-        NinjaItemDefinition? FindBestMatch()
+        List<NinjaItemDefinition> FindMatches()
         {
-            if (item.NinjaItems == null) return null;
-            if (string.IsNullOrEmpty(item.BaseItem?.Name)) return null;
+            if (item.NinjaItems == null) return [];
+            if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
 
             var variants = GetVariants().ToList();
             itemLevel = itemLevel switch
@@ -246,13 +250,14 @@ public class NinjaStashProvider(
                 _ => 0,
             };
 
-            if (itemLevel == 0) return null;
+            if (itemLevel == 0) return [];
 
             return item.NinjaItems
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.Name == item.BaseItem.Name)
                 .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-                .FirstOrDefault(x => (x.Stash!.Variant == null && variants.Count == 0) || (x.Stash!.Variant != null && variants.Contains(x.Stash!.Variant)));
+                .Where(x => (x.Stash!.Variant == null && variants.Count == 0) || (x.Stash!.Variant != null && variants.Contains(x.Stash!.Variant)))
+                .ToList();
         }
 
         IEnumerable<string> GetVariants()
@@ -320,21 +325,37 @@ public class NinjaStashProvider(
         return true;
     }
 
-    private async Task<NinjaStash?> BuildResult(NinjaItemDefinition? item)
+    private async Task<List<NinjaStash>> BuildResult(List<NinjaItemDefinition> items)
     {
-        if (item?.Stash == null) return null;
+        items = items.Where(x => x.Stash != null).ToList();
+        var variants = items.DistinctBy(x => x.Type);
+        if (items.Count == 0 || variants.Count() > 1) return [];
 
-        var result = await GetResult(item.Type);
-        if (result == null) return null;
+        var result = await GetResult(items.First().Type);
+        if (result == null) return [];
 
-        var line = result.Lines.FirstOrDefault(x => x.DetailsId == item.Stash.DetailsId);
-        if (line == null) return null;
+        return await GetNinjaStashes();
 
-        return new NinjaStash(line, result)
+        async Task<List<NinjaStash>> GetNinjaStashes()
         {
-            DetailsUrl = await ninjaUriProvider.GetDetailsUri(item),
-            Definition = item,
-        };
+            var results = new List<NinjaStash>();
+            foreach (var item in items)
+            {
+                if (item.Stash == null) continue;
+                var line = result.Lines.FirstOrDefault(x => x.DetailsId == item.Stash.DetailsId);
+                if (line == null) continue;
+
+                results.Add(new NinjaStash(line, result)
+                {
+                    DetailsUrl = await ninjaUriProvider.GetDetailsUri(item),
+                    Definition = item,
+                });
+            }
+
+            return results
+                .OrderBy(x=>x.ChaosValue)
+                .ToList();
+        }
     }
 
     private async Task<NinjaStashOverview?> GetResult(string type)

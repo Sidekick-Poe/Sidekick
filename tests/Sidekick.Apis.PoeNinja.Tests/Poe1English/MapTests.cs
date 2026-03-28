@@ -40,9 +40,10 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Corrupted
 ");
 
-        var result = await fixture.NinjaStashProvider.GetInfo(item);
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
 
-        Assert.NotNull(result);
+        var result = results[0];
         Assert.Equal("map-tier-16-t0-gen-24", result.DetailsId);
     }
 
@@ -83,9 +84,10 @@ Corrupted
 Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
 ");
 
-        var result = await fixture.NinjaStashProvider.GetInfo(item);
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
 
-        Assert.NotNull(result);
+        var result = results[0];
         Assert.Equal("nightmare-map-t0-gen-24", result.DetailsId);
     }
 }

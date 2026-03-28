@@ -12,4 +12,5 @@ public class NinjaStashLine
     public int? LevelRequired { get; init; }
     public string? Variant { get; init; }
     public List<NinjaStashTradeInfo>? TradeInfo { get; init; }
+    public List<NinjaStashModifier>? MutatedModifiers { get; init; }
 }

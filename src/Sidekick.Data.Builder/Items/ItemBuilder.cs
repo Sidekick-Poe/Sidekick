@@ -121,8 +121,8 @@ public class ItemBuilder(
             {
                 // Exchange items
                 if (tradeItem != null &&
-                    ninjaItem.Exchange?.Id != null &&
-                    ninjaItem.Exchange.Id == tradeItem.Id) result.Add(ninjaItem);
+                         ninjaItem.Exchange?.Id != null &&
+                         ninjaItem.Exchange.Id == tradeItem.Id) result.Add(ninjaItem);
 
                 // Unique items, support for foulborn uniques
                 else if (uniqueItem != null)

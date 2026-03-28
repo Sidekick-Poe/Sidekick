@@ -2,9 +2,9 @@
 @using Sidekick.Modules.Items.PoeNinja.Localization
 @using ApexCharts
 
-@if (Sparkline == null || Sparkline.TotalChange == 0) return;
+@if (Sparkline == null || Sparkline.Data.Sum() == 0) return;
 
-<div class="mb-2 bg-stone-950 rounded-lg px-2 py-1 flex flex-nowrap items-center gap-2">
+<div class="flex flex-nowrap items-center gap-2">
     <div class="flex flex-nowrap items-center gap-2 justify-center grow min-h-[40px]">
         <Heading3>@Resources["Change"]</Heading3>
 
@@ -50,11 +50,10 @@
         if (Sparkline?.Data.Count(x => x.HasValue) > 2)
         {
             Series = Sparkline.Data
-                .Where(x => x.HasValue)
                 .Select((value, index) => new DataPoint
                 {
                     Index = index,
-                    Value = value,
+                    Value = value ?? 0,
                 })
                 .ToList();
             Options = new()
@@ -137,7 +136,7 @@
     {
         public int Index { get; set; }
 
-        public decimal? Value { get; set; }
+        public decimal Value { get; set; }
     }
 
 }

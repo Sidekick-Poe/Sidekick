@@ -31,9 +31,10 @@ Added Small Passive Skills also grant: +7 to Maximum Life
 Place into an allocated Small, Medium or Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
 ");
 
-        var result = await fixture.NinjaStashProvider.GetInfo(item);
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
 
-        Assert.NotNull(result);
+        var result = results[0];
         Assert.Equal("6-increased-mana-reservation-efficiency-of-skills-3-passives-75", result.DetailsId);
     }
 

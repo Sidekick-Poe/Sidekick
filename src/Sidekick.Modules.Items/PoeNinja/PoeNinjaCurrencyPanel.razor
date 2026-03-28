@@ -1,11 +1,10 @@
 ﻿@using Sidekick.Apis.PoeNinja.Exchange
-@using Sidekick.Apis.PoeNinja.Exchange.Models
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
 
 @foreach (var trade in Currency.Trades)
 {
-    <div class="mb-2 bg-stone-950 rounded-lg px-2 py-1">
+    <div class="bg-stone-950 rounded-lg px-2 py-1">
         <div class="flex flex-wrap">
             <div class="flex w-1/2 justify-center">
                 <PriceDisplay Value="trade.Value" Currency="@trade.ExchangeId"/>
@@ -26,7 +25,11 @@
     </div>
 }
 
-<PoeNinjaSparkline Sparkline="Currency.Sparkline"/>
+<div class="bg-stone-950 rounded-lg px-2 py-1">
+    <PoeNinjaSparkline Sparkline="Currency.Sparkline"/>
+</div>
+
+<PoeNinjaWebsite LastUpdated="Currency.LastUpdated" DetailsUrl="Currency.DetailsUrl"/>
 
 @inject IStringLocalizer<PoeNinjaResources> Resources
 

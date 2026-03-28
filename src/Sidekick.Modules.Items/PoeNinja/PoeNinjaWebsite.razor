@@ -1,30 +1,17 @@
 ﻿@using Sidekick.Common.Browser
 @using Sidekick.Modules.Items.Trade.Localization
 
-<div class="flex items-start flex-wrap mb-2">
-    <Heading2>
-        <div class="flex flex-nowrap items-center gap-3">
-            <img alt="PoeNinja" src="/images/external-tools/ninja-logo.png" class="size-6" />
-            <span>Poe.Ninja</span>
-            @if (!string.IsNullOrEmpty(Tooltip))
-            {
-                <Tooltip Text="@Tooltip"/>
-            }
-        </div>
-    </Heading2>
+<div class="flex flex-nowrap justify-between">
+    @if (DetailsUrl != null)
+    {
+        <ButtonLink OnClick="OpenWebsite">
+            <TextCaption>@Resources["Open_Website"]</TextCaption>
+        </ButtonLink>
+    }
 
-    <div class="ml-auto text-right">
-        <div class="flex items-center flex-nowrap gap-1">
-            <TextCaption>@Resources["Last_Updated"]:</TextCaption>
-            <TextCaption>@LastUpdated.ToString("g")</TextCaption>
-        </div>
-
-        @if (DetailsUrl != null)
-        {
-            <ButtonLink OnClick="OpenWebsite">
-                <TextCaption>@Resources["Open_Website"]</TextCaption>
-            </ButtonLink>
-        }
+    <div class="flex items-center flex-nowrap gap-1">
+        <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+        <TextCaption>@LastUpdated.ToString("g")</TextCaption>
     </div>
 </div>
 
@@ -38,9 +25,6 @@
 
     [Parameter]
     public Uri? DetailsUrl { get; set; }
-
-    [Parameter]
-    public string? Tooltip { get; set; }
 
     private void OpenWebsite()
     {

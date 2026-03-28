@@ -43,9 +43,10 @@ Imbued
 Transfigured
 ");
 
-        var result = await fixture.NinjaStashProvider.GetInfo(item);
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
 
-        Assert.NotNull(result);
+        var result = results[0];
         Assert.Equal("shock-nova-of-procession-20-20c", result.DetailsId);
     }
 }

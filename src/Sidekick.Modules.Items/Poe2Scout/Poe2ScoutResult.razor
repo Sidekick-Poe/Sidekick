@@ -1,0 +1,83 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe2Scout.History
+@using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Apis.Poe2Scout.Items.Models
+@using Sidekick.Modules.Items.Poe2Scout.Localization
+@using Sidekick.Data
+
+@if (Item.Game == GameType.PathOfExile1)
+{
+    return;
+}
+
+@if (Loading)
+{
+    <AppLoading Label="Poe2Scout.com"/>
+    return;
+}
+
+@if (ScoutHistory == null)
+{
+
+}
+
+<div class="flex flex-col gap-2">
+    <Heading2>
+        <div class="flex flex-nowrap items-center gap-3">
+            <img alt="Poe2Scout" src="/images/external-tools/scout-logo.png" class="size-6" />
+            <span>Poe2Scout.com</span>
+        </div>
+    </Heading2>
+
+    @if (ScoutHistory == null)
+    {
+        <AlertInfo Flat="true">@Resources["NoCurrencyExchangeData"]</AlertInfo>
+    }
+    else
+    {
+        <Poe2ScoutPanel Currency="exalted" Logs="@ScoutHistory.Exalted"
+                        QuantityLabel="@Resources["VolumeTraded"]"/>
+        <Poe2ScoutPanel Currency="chaos" Logs="@ScoutHistory.Chaos"
+                        QuantityLabel="@Resources["VolumeTraded"]"/>
+        <Poe2ScoutPanel Currency="divine" Logs="@ScoutHistory.Divine"
+                        QuantityLabel="@Resources["VolumeTraded"]"/>
+
+        <Poe2ScoutWebsite History="ScoutHistory" Item="ScoutItem"/>
+    }
+
+</div>
+
+
+@inject IScoutHistoryProvider ScoutHistoryProvider
+@inject IScoutItemProvider ScoutItemProvider
+@inject IStringLocalizer<Poe2ScoutResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private ScoutHistory? ScoutHistory { get; set; }
+
+    private ScoutItem? ScoutItem { get; set; }
+
+    private bool Loading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Loading = true;
+        StateHasChanged();
+
+        ScoutItem = await ScoutItemProvider.GetItem(Item.Invariant);
+        if (ScoutItem != null)
+        {
+            ScoutHistory = await ScoutHistoryProvider.GetItemHistory(ScoutItem.ItemId);
+        }
+
+        Loading = false;
+        StateHasChanged();
+    }
+}

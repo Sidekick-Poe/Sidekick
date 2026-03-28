@@ -218,7 +218,8 @@ internal class WealthProvider
         }
         else
         {
-            var info = await ninjaStashProvider.GetInfo(invariantDefinition, item);
+            var stashes = await ninjaStashProvider.GetInfo(invariantDefinition, item);
+            var info = stashes.FirstOrDefault();
             price = info?.ChaosValue ?? 0;
             sparkLine = info?.Sparkline;
         }

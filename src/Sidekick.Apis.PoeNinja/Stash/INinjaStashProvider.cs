@@ -5,6 +5,6 @@ namespace Sidekick.Apis.PoeNinja.Stash;
 
 public interface INinjaStashProvider
 {
-    Task<NinjaStash?> GetInfo(Item item);
-    Task<NinjaStash?> GetInfo(ItemDefinition item, ApiItem apiItem);
+    Task<List<NinjaStash>> GetInfo(Item item);
+    Task<List<NinjaStash>> GetInfo(ItemDefinition item, ApiItem apiItem);
 }

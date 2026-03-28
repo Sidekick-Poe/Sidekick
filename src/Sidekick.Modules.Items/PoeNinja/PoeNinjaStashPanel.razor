@@ -6,7 +6,7 @@
 @using Sidekick.Modules.Items.PoeNinja.Localization
 @using Sidekick.Modules.Items.Trade.Localization
 
-<div class="mb-2 bg-stone-950 rounded-lg px-2 py-1">
+<div class="bg-stone-950 rounded-lg px-2 py-1">
     <div class="flex flex-wrap mb-1">
         <div class="flex w-1/3 justify-center">
             <PriceDisplay Value="Stash.ChaosValue" Currency="chaos"/>
@@ -19,7 +19,15 @@
         </div>
     </div>
 
-    <TextCaption Class="text-center">@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
+    @if (Stash.ListingCount < 5)
+    {
+        <AlertError IsCritical="true" Flat="true">@NinjaResources["LowConfidence"]</AlertError>
+    }
+    else if (Stash.ListingCount < 10)
+    {
+        <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
+    }
+
     @if (Stash.Definition.Stash != null)
     {
         if (Stash.Definition.Stash.ItemLevel > 0)
@@ -58,7 +66,8 @@
 
                 if (stat.Value > 0)
                 {
-                    <ItemStatText Category="category" Class="text-center">@tradeStat.Text.Replace("#", stat.Value.ToString())</ItemStatText>
+                    <ItemStatText Category="category"
+                                  Class="text-center">@tradeStat.Text.Replace("#", stat.Value.ToString())</ItemStatText>
                 }
                 else
                 {
@@ -69,27 +78,26 @@
 
         if (Stash.Definition.Stash.Corrupted == true)
         {
-            <ItemStatText Category="StatCategory.Corrupted" Class="text-center">@TradeResources["Corrupted"]</ItemStatText>
-        }
-
-        if (!string.IsNullOrEmpty(Stash.Definition.Stash.Variant))
-        {
-            <ItemStatText Category="StatCategory.GrayText"
-                          Class="text-sm text-center">@Stash.Definition.Stash.Variant.Trim(' ', ',')</ItemStatText>
+            <ItemStatText Category="StatCategory.Corrupted"
+                          Class="text-center">@TradeResources["Corrupted"]</ItemStatText>
         }
     }
+
+    <div class="flex flex-nowrap justify-between mt-1">
+        <TextCaption>@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
+
+        @if (!string.IsNullOrEmpty(Stash.Definition.Stash?.Variant))
+        {
+            <TextCaption>@Stash.Definition.Stash.Variant.Trim(' ', ',')</TextCaption>
+        }
+    </div>
+
+    <PoeNinjaWebsite LastUpdated="Stash.LastUpdated" DetailsUrl="Stash.DetailsUrl"/>
+
+    <LayoutDivider Dense="true"/>
+
+    <PoeNinjaSparkline Sparkline="Stash.Sparkline"/>
 </div>
-
-<PoeNinjaSparkline Sparkline="Stash.Sparkline"/>
-
-@if (Stash.ListingCount < 5)
-{
-    <AlertError IsCritical="true" Flat="true">@NinjaResources["LowConfidence"]</AlertError>
-}
-else if (Stash.ListingCount < 10)
-{
-    <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
-}
 
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
 @inject IStringLocalizer<TradeResources> TradeResources

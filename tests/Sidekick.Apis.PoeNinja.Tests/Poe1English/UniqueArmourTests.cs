@@ -37,9 +37,10 @@ Faith springs abundant at the edge of death.
 Note: ~b/o 400 chaos
 ");
 
-        var result = await fixture.NinjaStashProvider.GetInfo(item);
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
 
-        Assert.NotNull(result);
+        var result = results[0];
         Assert.Equal("foulborn-ghostwrithe-chaos-recoup-life-to-shield-silken-vest-6l", result.DetailsId);
     }
 
@@ -79,9 +80,10 @@ they empower the strong.
 Note: ~b/o 280 divine
 ");
 
-        var result = await fixture.NinjaStashProvider.GetInfo(item);
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
 
-        Assert.NotNull(result);
+        var result = results[0];
         Assert.Equal("foulborn-the-squire-gem-level-no-requirements-elegant-round-shield", result.DetailsId);
     }
 
@@ -117,9 +119,10 @@ and left a mountain of twitching dead.
 Note: ~b/o 250 divine
 ");
 
-        var result = await fixture.NinjaStashProvider.GetInfo(item);
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
 
-        Assert.NotNull(result);
+        var result = results[0];
         Assert.Equal("foulborn-rathpith-globe-dot-per-life-titanium-spirit-shield", result.DetailsId);
     }
 }
