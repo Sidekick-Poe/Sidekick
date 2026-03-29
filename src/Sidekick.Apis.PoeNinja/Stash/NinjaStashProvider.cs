@@ -129,7 +129,7 @@ public class NinjaStashProvider(
         }
     }
 
-    private async Task<List<NinjaStash>> GetMapInfo(ItemDefinition item, int mapTier)
+    private async Task<List<NinjaStash>> GetMapInfo(ItemDefinition item, int? mapTier)
     {
         var matches = FindMatches();
         return await BuildResult(matches);
@@ -140,9 +140,12 @@ public class NinjaStashProvider(
             if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
 
             var name = item.BaseItem.Name;
-            if (name == "Map") name = $"Map (Tier {mapTier})";
-            if (name == "Blighted Map") name = $"Blighted Map (Tier {mapTier})";
-            if (name == "Blight-ravaged Map") name = $"Blight-ravaged Map (Tier {mapTier})";
+            if (mapTier.HasValue)
+            {
+                if (name == "Map") name = $"Map (Tier {mapTier})";
+                if (name == "Blighted Map") name = $"Blighted Map (Tier {mapTier})";
+                if (name == "Blight-ravaged Map") name = $"Blight-ravaged Map (Tier {mapTier})";
+            }
 
             return item.NinjaItems
                 .Where(x => x.Stash != null)
@@ -229,12 +232,6 @@ public class NinjaStashProvider(
             if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
 
             var variants = GetVariants().ToList();
-            itemLevel = itemLevel switch
-            {
-                > 86 => 86,
-                < 82 => 0,
-                _ => itemLevel
-            };
 
             itemLevel = itemLevel switch
             {

@@ -90,4 +90,65 @@ Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
         var result = results[0];
         Assert.Equal("nightmare-map-t0-gen-24", result.DetailsId);
     }
+
+    [Fact]
+    public async Task BlightedMapTier3()
+    {
+        var item = parser.ParseItem(@"Item Class: Maps
+Rarity: Normal
+Blighted Map (Tier 3)
+--------
+Map Area: Tropical Island
+--------
+Item Level: 79
+--------
+Monster Level: 70
+--------
+Area is infested with Fungal Growths (implicit)
+Map's Item Quantity Modifiers also affect Blight Chest count at 25% value (implicit)
+Can be Anointed up to 3 times (implicit)
+Natural inhabitants of this area have been removed (implicit)
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+--------
+Note: ~b/o 1 chaos
+");
+
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
+
+        var result = results[0];
+        Assert.Equal("blighted-map-tier-3-t0-gen-24", result.DetailsId);
+    }
+
+    [Fact]
+    public async Task BlightRavagedMap()
+    {
+        var item = parser.ParseItem(@"Item Class: Maps
+Rarity: Normal
+Blight-ravaged Map (Tier 16)
+--------
+Map Area: Relic Chambers
+--------
+Item Level: 83
+--------
+Monster Level: 85
+--------
+Monster Level: 85 (implicit)
+200% more Monster Life (implicit)
+20% increased Monster Movement Speed (implicit)
+Area is infested with Fungal Growths (implicit)
+Map's Item Quantity Modifiers also affect Blight Chest count at 50% value (implicit)
+Can be Anointed up to 9 times (implicit)
+Natural inhabitants of this area have been removed (implicit)
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+");
+
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
+
+        var result = results[0];
+        Assert.Equal("blight-ravaged-map-tier-16-t0-gen-24", result.DetailsId);
+    }
 }
