@@ -23,6 +23,7 @@ public class NinjaStashProvider(
     private static readonly List<string> IgnoreStatTexts =
     [
         "# Added Passive Skills are Jewel Sockets",
+        "Area is influenced by #",
     ];
 
     private async Task<string> GetCacheKey(string type)
@@ -43,8 +44,10 @@ public class NinjaStashProvider(
 
         if (item.Properties.MapTier > 0 || item.ItemClass == ItemClass.Map)
         {
-            return await GetMapInfo(item.Invariant,
-                                    item.Properties.MapTier);
+            return await GetMapInfo(item.Invariant.NinjaItems,
+                                    item.Invariant.BaseItem?.Name,
+                                    item.Properties.MapTier,
+                                    item.Stats);
         }
 
         if (item.Properties.GemLevel > 0)
@@ -72,6 +75,7 @@ public class NinjaStashProvider(
     {
         var stats = apiItem.MutatedMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Mutated.GetValueAttribute()})")!).ToList();
         stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Enchant.GetValueAttribute()})")!).ToList());
+        stats.AddRange(apiItem.ImplicitMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Implicit.GetValueAttribute()})")!).ToList());
         stats = stats.Where(x => x != null!).ToList();
 
         if (apiItem.Rarity == Rarity.Unique)
@@ -90,10 +94,12 @@ public class NinjaStashProvider(
                                     apiItem.Quality.GetValueOrDefault());
         }
 
-        if (apiItem.MapTier > 0)
+        if (apiItem.MapTier > 0 || item.BaseItem?.ItemClass?.Type == ItemClass.Map)
         {
-            return await GetMapInfo(item,
-                                    apiItem.MapTier.Value);
+            return await GetMapInfo(item.NinjaItems,
+                                    apiItem.Type,
+                                    apiItem.MapTier,
+                                    stats);
         }
 
         if (IsClusterJewel(item))
@@ -124,29 +130,40 @@ public class NinjaStashProvider(
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.Foulborn.GetValueOrDefault() == foulborn)
                 .Where(x => x.Stash!.Links.GetValueOrDefault() == links.GetValueOrDefault())
-                .Where(ninjaDefinition => ValidateNinjaStats(stats, StatCategory.Mutated, ninjaDefinition))
+                .Where(x => ValidateNinjaStats(stats, StatCategory.Mutated, x))
                 .ToList();
         }
     }
 
-    private async Task<List<NinjaStash>> GetMapInfo(ItemDefinition item, int mapTier)
+    private async Task<List<NinjaStash>> GetMapInfo(List<NinjaItemDefinition>? ninjaItems, string? type, int? mapTier, List<Stat>? stats)
     {
         var matches = FindMatches();
         return await BuildResult(matches);
 
         List<NinjaItemDefinition> FindMatches()
         {
-            if (item.NinjaItems == null) return [];
-            if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
+            if (ninjaItems == null) return [];
+            if (string.IsNullOrEmpty(type)) return [];
 
-            var name = item.BaseItem.Name;
-            if (name == "Map") name = $"Map (Tier {mapTier})";
-            if (name == "Blighted Map") name = $"Blighted Map (Tier {mapTier})";
-            if (name == "Blight-ravaged Map") name = $"Blight-ravaged Map (Tier {mapTier})";
+            if (stats != null && stats.Any(x => x.Category == StatCategory.Implicit))
+            {
+                var statsResults = ninjaItems
+                    .Where(x => x.Stash != null)
+                    .Where(x => ValidateNinjaStats(stats, StatCategory.Implicit, x))
+                    .ToList();
+                if (statsResults.Count > 0) return statsResults;
+            }
 
-            return item.NinjaItems
+            if (mapTier.HasValue)
+            {
+                if (type == "Map") type = $"Map (Tier {mapTier})";
+                if (type == "Blighted Map") type = $"Blighted Map (Tier {mapTier})";
+                if (type == "Blight-ravaged Map") type = $"Blight-ravaged Map (Tier {mapTier})";
+            }
+
+            return ninjaItems
                 .Where(x => x.Stash != null)
-                .Where(x => x.Stash!.Name == name)
+                .Where(x => x.Stash!.Name == type)
                 .ToList();
         }
     }
@@ -213,7 +230,7 @@ public class NinjaStashProvider(
             return item.NinjaItems!
                 .Where(x => x.Stash != null)
                 .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-                .Where(ninjaDefinition => ValidateNinjaStats(stats, StatCategory.Enchant, ninjaDefinition))
+                .Where(x => ValidateNinjaStats(stats, StatCategory.Enchant, x))
                 .ToList();
         }
     }
@@ -229,12 +246,6 @@ public class NinjaStashProvider(
             if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
 
             var variants = GetVariants().ToList();
-            itemLevel = itemLevel switch
-            {
-                > 86 => 86,
-                < 82 => 0,
-                _ => itemLevel
-            };
 
             itemLevel = itemLevel switch
             {

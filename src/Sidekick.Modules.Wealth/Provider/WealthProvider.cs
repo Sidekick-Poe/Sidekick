@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
-using Sidekick.Apis.Poe.Trade.ApiItems;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Stash;
@@ -20,7 +20,7 @@ internal class WealthProvider
     IStashService stashService,
     INinjaExchangeProvider ninjaExchangeProvider,
     INinjaStashProvider ninjaStashProvider,
-    IApiItemProvider apiItemProvider,
+    IItemDefinitionParser itemDefinitionParser,
     DbContextOptions<SidekickDbContext> dbContextOptions
 )
 {
@@ -202,8 +202,8 @@ internal class WealthProvider
     {
         decimal price = 0;
         NinjaSparkline? sparkLine = null;
-        var itemDefinition = apiItemProvider.Get(item);
-        var invariantDefinition = itemDefinition?.Key != null ? apiItemProvider.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
+        var itemDefinition = itemDefinitionParser.Get(item);
+        var invariantDefinition = itemDefinition?.Key != null ? itemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
         if (itemDefinition == null || invariantDefinition == null)
         {
             logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");

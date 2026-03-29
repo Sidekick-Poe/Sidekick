@@ -1,4 +1,4 @@
-@using Sidekick.Apis.Poe.Trade.ApiItems
+@using Sidekick.Apis.Poe.Trade.Parser.Definition
 @using Sidekick.Data.ItemDefinitions
 
 <div class="flex flex-nowrap gap-1 items-center">
@@ -15,7 +15,7 @@
     }
 </div>
 
-@inject IApiItemProvider ApiItemProvider
+@inject IItemDefinitionParser ItemDefinitionParser
 
 @code {
 
@@ -32,7 +32,7 @@
 
     protected override void OnParametersSet()
     {
-        Definition = ApiItemProvider.Get(Currency);
+        Definition = ItemDefinitionParser.Get(Currency);
         base.OnParametersSet();
     }
 

@@ -430,4 +430,35 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Equal(13, actual.Properties.MapTier);
         Assert.True(actual.Properties.Blighted);
     }
+
+    [Fact]
+    public void BlightedMapTier3()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Normal
+Blighted Map (Tier 3)
+--------
+Map Area: Tropical Island
+--------
+Item Level: 79
+--------
+Monster Level: 70
+--------
+Area is infested with Fungal Growths (implicit)
+Map's Item Quantity Modifiers also affect Blight Chest count at 25% value (implicit)
+Can be Anointed up to 3 times (implicit)
+Natural inhabitants of this area have been removed (implicit)
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+--------
+Note: ~b/o 1 chaos
+");
+
+        Assert.Equal(ItemClass.Map, actual.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Equal(3, actual.Properties.MapTier);
+        Assert.True(actual.Properties.Blighted);
+    }
 }

@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Apis.Poe.Trade.Localization;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
@@ -16,7 +16,7 @@ public class PropertyParser
 (
     IServiceProvider serviceProvider,
     ICurrentGameLanguage currentGameLanguage,
-    IApiItemProvider apiItemProvider,
+    IItemDefinitionParser itemDefinitionParser,
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources
@@ -55,7 +55,7 @@ public class PropertyParser
             new MemoryStrandsProperty(game, currentGameLanguage),
 
             new MapTierProperty(game, currentGameLanguage),
-            new RewardProperty(game, currentGameLanguage, apiItemProvider),
+            new RewardProperty(game, currentGameLanguage, itemDefinitionParser),
             new RevivesAvailableProperty(game, currentGameLanguage),
             new MonsterPackSizeProperty(game, currentGameLanguage),
 

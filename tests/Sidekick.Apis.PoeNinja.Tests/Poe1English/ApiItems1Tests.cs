@@ -50,8 +50,8 @@ public class ApiItems1Tests(NinjaTestFixture fixture)
 
     private async Task AssertItem(ApiItem item, string expectedDetailsId)
     {
-        var itemDefinition = fixture.ApiItemProvider.Get(item);
-        var invariantDefinition = itemDefinition?.Key != null ? fixture.ApiItemProvider.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
+        var itemDefinition = fixture.ItemDefinitionParser.Get(item);
+        var invariantDefinition = itemDefinition?.Key != null ? fixture.ItemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
         Assert.NotNull(invariantDefinition);
 
         var results = await fixture.NinjaStashProvider.GetInfo(invariantDefinition, item);

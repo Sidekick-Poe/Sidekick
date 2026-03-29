@@ -19,6 +19,28 @@ public class ItemBuilder(
     RepoeDownloader repoeDownloader,
     NinjaDownloader ninjaDownloader)
 {
+    private static readonly Dictionary<string, string> BaseItemToTradeItemMappings = new()
+    {
+        { "Metadata/Items/Maps/MapKeyTier1", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier2", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier3", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier4", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier5", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier6", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier7", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier8", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier9", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier10", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier11", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier12", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier13", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier14", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier15", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/Maps/MapKeyTier16", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/TradeProxy/BlightedMap", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Blighted maps are not on the trade, we map them to the main Map item.
+        { "Metadata/Items/TradeProxy/UberBlightedMap", "Metadata/Items/TradeProxy/MapKey" }, // (PoE1) Blight-ravaged maps are not on the trade, we map them to the main Map item.
+    };
+
     public async Task Build(IGameLanguage language)
     {
         try
@@ -60,7 +82,7 @@ public class ItemBuilder(
                 UniqueItem = uniqueItem,
                 NinjaItems = GetNinjaItems(tradeItem, baseItem, uniqueItem),
                 NamePattern = GetNamePattern(tradeItem),
-                TypePattern = GetTypePattern(tradeItem, uniqueItem != null),
+                TypePattern = GetTypePattern(tradeItem.Type, uniqueItem != null),
                 TextPattern = GetTextPattern(tradeItem, uniqueItem != null),
             });
         }
@@ -73,14 +95,23 @@ public class ItemBuilder(
             tradeItem ??= tradeItems.FirstOrDefault(x => x.Name == baseItem.Name);
             tradeItem ??= tradeItems.FirstOrDefault(x => x.Text == baseItem.Name);
 
+            if (tradeItem == null && baseItem.Id != null && BaseItemToTradeItemMappings.TryGetValue(baseItem.Id, out var mapping))
+            {
+                var baseItemMapping = baseItems.FirstOrDefault(x => x.Id == mapping);
+                if (baseItemMapping != null)
+                {
+                    tradeItem ??= tradeItems.FirstOrDefault(x => x.Type == baseItemMapping.Name);
+                    tradeItem ??= tradeItems.FirstOrDefault(x => x.Name == baseItemMapping.Name);
+                    tradeItem ??= tradeItems.FirstOrDefault(x => x.Text == baseItemMapping.Name);
+                }
+            }
+
             list.Add(new ItemDefinition
             {
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 NinjaItems = GetNinjaItems(tradeItem, baseItem, null),
-                NamePattern = GetNamePattern(tradeItem),
-                TypePattern = GetTypePattern(tradeItem, false),
-                TextPattern = GetTextPattern(tradeItem, false),
+                TypePattern = tradeItem == null ? null : GetTypePattern(baseItem.Name, false), // Do not create a pattern if tradeItem is null.
             });
         }
 
@@ -96,11 +127,11 @@ public class ItemBuilder(
             return new Regex(regex);
         }
 
-        Regex? GetTypePattern(TradeItemDefinition? tradeItem, bool isUnique)
+        Regex? GetTypePattern(string? type, bool isUnique)
         {
-            if (string.IsNullOrEmpty(tradeItem?.Type) || isUnique) return null;
+            if (string.IsNullOrEmpty(type) || isUnique) return null;
 
-            var regex = $@"(?<!\p{{L}}){Regex.Escape(tradeItem.Type)}(?!\p{{L}})";
+            var regex = $@"(?<!\p{{L}}){Regex.Escape(type)}(?!\p{{L}})";
             return new Regex(regex);
         }
 
@@ -121,8 +152,8 @@ public class ItemBuilder(
             {
                 // Exchange items
                 if (tradeItem != null &&
-                         ninjaItem.Exchange?.Id != null &&
-                         ninjaItem.Exchange.Id == tradeItem.Id) result.Add(ninjaItem);
+                    ninjaItem.Exchange?.Id != null &&
+                    ninjaItem.Exchange.Id == tradeItem.Id) result.Add(ninjaItem);
 
                 // Unique items, support for foulborn uniques
                 else if (uniqueItem != null)
@@ -150,9 +181,16 @@ public class ItemBuilder(
                          ninjaItem.Stash?.Name != null &&
                          (
                          ninjaItem.Stash.Name == baseItem.Name ||
-                         (baseItem.Name == "Map" && ninjaItem.Stash.Name.StartsWith("Map (Tier")) ||
-                         (baseItem.Name == "Blighted Map" && ninjaItem.Stash.Name.StartsWith("Blighted Map (Tier")) ||
-                         (baseItem.Name == "Blight-ravaged Map" && ninjaItem.Stash.Name.StartsWith("Blight-ravaged Map (Tier"))
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "Al-Hezmin Map (Tier 16)") ||
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "Baran Map (Tier 16)") ||
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "Drox Map (Tier 16)") ||
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "Veritania Map (Tier 16)") ||
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "The Constrictor Map (Tier 16)") ||
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "The Enslaver Map (Tier 16)") ||
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "The Eradicator Map (Tier 16)") ||
+                         (baseItem.Name == "Map (Tier 16)" && ninjaItem.Stash.Name == "The Purifier Map (Tier 16)") ||
+                         (baseItem.Name == "Blighted Map" && ninjaItem.Stash.Name.StartsWith("Blighted Map (Tier ")) ||
+                         (baseItem.Name == "Blight-ravaged Map" && ninjaItem.Stash.Name == "Blight-ravaged Map (Tier 16)")
                          )) result.Add(ninjaItem);
 
                 // Cluster jewel support
