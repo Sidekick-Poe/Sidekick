@@ -19,6 +19,7 @@ public class ItemDefinitionParser(
     public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
 
     public List<ItemDefinition> Definitions { get; private set; } = [];
+    public List<ItemDefinition> InvariantDefinitions { get; private set; } = [];
     public List<ItemDefinition> UniqueItems { get; private set; } = [];
 
     public int Priority => 100;
@@ -28,6 +29,7 @@ public class ItemDefinitionParser(
         var game = await settingsService.GetGame();
 
         Definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.Language);
+        InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
         UniqueItems = Definitions.Where(x => x.UniqueItem != null)
             .OrderByDescending(x => x.UniqueItem?.Name?.Length ?? 0)
             .ToList();
@@ -41,16 +43,15 @@ public class ItemDefinitionParser(
             if (!string.IsNullOrEmpty(definition.TradeItem?.Id)) TextDictionary.TryAdd(definition.TradeItem.Id, definition);
         }
 
-        await BuildInvariantDictionary();
+        BuildInvariantDictionary();
 
         return;
 
-        async Task BuildInvariantDictionary()
+        void BuildInvariantDictionary()
         {
             InvariantDictionary.Clear();
 
-            var definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
-            foreach (var definition in definitions)
+            foreach (var definition in InvariantDefinitions)
             {
                 if (string.IsNullOrEmpty(definition.Key)) continue;
 
@@ -61,64 +62,18 @@ public class ItemDefinitionParser(
 
     public void Parse(Item item)
     {
-        item.Definition = GetDefinition(item.Type) ?? throw new UnparsableException(item.Text.Text);
+        item.Definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name) ?? throw new UnparsableException(item.Text.Text);
         item.Invariant = GetInvariant(item.Definition) ?? throw new UnparsableException(item.Text.Text);
         ParseVaalGem();
 
         return;
-
-        ItemDefinition? GetDefinition(string? type)
-        {
-            if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.Name))
-            {
-                var results = Definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(item.Name));
-                var bestMatch = FindBestMatch(results, x => x.TradeItem?.Text ?? x.TradeItem?.Name, $"{item.Name} {item.Type}");
-                if (bestMatch != null) return bestMatch;
-            }
-
-            if (!string.IsNullOrEmpty(type))
-            {
-                var textResults = Definitions.Where(definition => definition.TextPattern != null && definition.TextPattern.IsMatch(type));
-                var textMatch = FindBestMatch(textResults, x => x.TradeItem?.Text, type);
-                if (textMatch != null) return textMatch;
-            }
-
-            if (!string.IsNullOrEmpty(type))
-            {
-                var typeResults = Definitions.Where(definition => definition.TypePattern != null && definition.TypePattern.IsMatch(type));
-                var typeMatch = FindBestMatch(typeResults, x => x.TradeItem?.Type, type);
-                if (typeMatch != null) return typeMatch;
-            }
-
-            return null;
-        }
-
-        ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> compareFunc, string text)
-        {
-            return definitions
-                .Select(x =>
-                {
-                    var compare = compareFunc(x);
-                    var ratio = 0;
-                    if (!string.IsNullOrEmpty(compare)) ratio = Fuzz.Ratio(text, compare, FuzzySharp.PreProcess.PreprocessMode.None);
-
-                    return new
-                    {
-                        Ratio = ratio,
-                        Definition = x,
-                    };
-                })
-                .OrderByDescending(x => x.Ratio)
-                .Select(x => x.Definition)
-                .FirstOrDefault();
-        }
 
         void ParseVaalGem()
         {
             var canBeVaalGem = item.ItemClass == ItemClass.ActiveSkillGem && item.Text.Blocks.Count > 7;
             if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-            var vaalGem = GetDefinition(item.Text.Blocks[5].Lines[0].Text);
+            var vaalGem = GetDefinition(Definitions, item.Text.Blocks[5].Lines[0].Text, item.Properties.Rarity, item.Name);
             if (vaalGem != null)
             {
                 item.Definition = vaalGem;
@@ -135,13 +90,53 @@ public class ItemDefinitionParser(
 
     public ItemDefinition? Get(ApiItem apiItem)
     {
-        var name = apiItem.Name ?? string.Empty;
-        if (name.StartsWith("Foulborn ")) name = name.Replace("Foulborn ", "");
-        if (name.StartsWith("Foulborn ")) name = name.Replace("Foulborn ", "");
+        return GetDefinition(InvariantDefinitions, apiItem.Type, apiItem.Rarity, apiItem.Name);
+    }
 
-        var data = !string.IsNullOrEmpty(name) ? TextDictionary.GetValueOrDefault(name) : null;
-        data ??= !string.IsNullOrEmpty(apiItem.Type) ? TextDictionary.GetValueOrDefault(apiItem.Type) : null;
-        return data;
+    private ItemDefinition? GetDefinition(List<ItemDefinition> definitions, string? type, Rarity rarity, string? name)
+    {
+        if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name))
+        {
+            var results = definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name));
+            var bestMatch = FindBestMatch(results, x => x.TradeItem?.Text ?? x.TradeItem?.Name, $"{name} {type}");
+            if (bestMatch != null) return bestMatch;
+        }
+
+        if (!string.IsNullOrEmpty(type))
+        {
+            var textResults = definitions.Where(definition => definition.TextPattern != null && definition.TextPattern.IsMatch(type));
+            var textMatch = FindBestMatch(textResults, x => x.TradeItem?.Text, type);
+            if (textMatch != null) return textMatch;
+        }
+
+        if (!string.IsNullOrEmpty(type))
+        {
+            var typeResults = definitions.Where(definition => definition.TypePattern != null && definition.TypePattern.IsMatch(type));
+            var typeMatch = FindBestMatch(typeResults, x => x.BaseItem?.Name ?? x.TradeItem?.Type, type);
+            if (typeMatch != null) return typeMatch;
+        }
+
+        return null;
+    }
+
+    private ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> compareFunc, string text)
+    {
+        return definitions
+            .Select(x =>
+            {
+                var compare = compareFunc(x);
+                var ratio = 0;
+                if (!string.IsNullOrEmpty(compare)) ratio = Fuzz.Ratio(text, compare, FuzzySharp.PreProcess.PreprocessMode.None);
+
+                return new
+                {
+                    Ratio = ratio,
+                    Definition = x,
+                };
+            })
+            .OrderByDescending(x => x.Ratio)
+            .Select(x => x.Definition)
+            .FirstOrDefault();
     }
 
     public ItemDefinition? Get(string? text)

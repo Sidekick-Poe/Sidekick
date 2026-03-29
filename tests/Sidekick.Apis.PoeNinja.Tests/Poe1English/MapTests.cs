@@ -44,7 +44,7 @@ Corrupted
         Assert.Single(results);
 
         var result = results[0];
-        Assert.Equal("map-tier-16-t0-gen-24", result.DetailsId);
+        Assert.Equal($"map-tier-16-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
     }
 
     [Fact]
@@ -88,7 +88,7 @@ Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
         Assert.Single(results);
 
         var result = results[0];
-        Assert.Equal("nightmare-map-t0-gen-24", result.DetailsId);
+        Assert.Equal($"nightmare-map-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
     }
 
     [Fact]
@@ -118,7 +118,7 @@ Note: ~b/o 1 chaos
         Assert.Single(results);
 
         var result = results[0];
-        Assert.Equal("blighted-map-tier-3-t0-gen-24", result.DetailsId);
+        Assert.Equal($"blighted-map-tier-3-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
     }
 
     [Fact]
@@ -149,6 +149,120 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Single(results);
 
         var result = results[0];
-        Assert.Equal("blight-ravaged-map-tier-16-t0-gen-24", result.DetailsId);
+        Assert.Equal($"blight-ravaged-map-tier-16-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+    }
+
+    [Fact]
+    public async Task DroxMap()
+    {
+        var item = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Blood Bearings
+Map (Tier 16)
+--------
+Item Quantity: +68% (augmented)
+Item Rarity: +41% (augmented)
+Monster Pack Size: +26% (augmented)
+--------
+Item Level: 83
+--------
+Monster Level: 83
+--------
+Map contains Drox's Citadel (implicit)
+Item Quantity increases amount of Rewards Drox drops by 20% of its value (implicit)
+--------
+23% increased number of Rare Monsters
+Players have -10% to all maximum Resistances
+Monsters have a 20% chance to Ignite, Freeze and Shock on Hit
+Monsters have +60% chance to Suppress Spell Damage
+Monsters steal Power, Frenzy and Endurance charges on Hit
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+");
+
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
+
+        var result = results[0];
+        Assert.Equal($"drox-map-tier-16-t0--{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+    }
+
+    [Fact]
+    public async Task ShaperGuardian()
+    {
+        var item = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Arcane Artifice
+Shaper Guardian Map
+--------
+Item Quantity: +104% (augmented)
+Item Rarity: +61% (augmented)
+Monster Pack Size: +40% (augmented)
+--------
+Item Level: 83
+--------
+Monster Level: 83
+--------
+Area is influenced by The Shaper (implicit)
+--------
+Players are Cursed with Enfeeble
+Players are Cursed with Elemental Weakness
+Monsters deal 102% extra Physical Damage as Fire
+Monsters deal 106% extra Physical Damage as Cold
+All Monster Damage from Hits always Ignites
+Monsters Maim on Hit with Attacks
+Monsters gain 32% of their Physical Damage as Extra Chaos Damage
+Monsters Hinder on Hit with Spells
+Monsters Inflict Withered for 2 seconds on Hit
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+--------
+Corrupted
+");
+
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
+
+        var result = results[0];
+        Assert.Equal($"shaper-guardian-map-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+    }
+
+    [Fact]
+    public async Task PoorjoyAsylum()
+    {
+        var item = parser.ParseItem(@"Item Class: Maps
+Rarity: Unique
+Poorjoy's Asylum
+Map (Tier 16)
+--------
+Item Quantity: +100% (augmented)
+Item Rarity: +250% (augmented)
+--------
+Item Level: 85
+--------
+Monster Level: 83
+--------
+150% increased Experience gain
+149% more Monster Life
+144% increased Monster Damage
+25% increased Monster Movement Speed
+25% increased Monster Attack Speed
+25% increased Monster Cast Speed
+Area is a large Maze
+Unique Boss drops 13 additional Rare Two Hand Swords
+--------
+Laughs of all the twisted
+Echo through these halls of gold.
+In this cold forgotten void
+They wander, forever uncontrolled.
+--------
+Travel to a Map by using this in a personal Map Device. Maps can only be used once.
+");
+
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
+
+        var result = results[0];
+        Assert.Equal("poorjoys-asylum-t0", result.DetailsId);
     }
 }
