@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;

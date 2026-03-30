@@ -1,7 +1,6 @@
 using System.Text.Json;
 using Sidekick.Apis.Poe.Account.Clients;
 using Sidekick.Apis.Poe.Account.Stash.Models;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Extensions;

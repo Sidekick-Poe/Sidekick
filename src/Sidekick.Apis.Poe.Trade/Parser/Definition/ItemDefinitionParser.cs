@@ -1,5 +1,4 @@
 using FuzzySharp;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;

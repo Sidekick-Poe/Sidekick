@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;

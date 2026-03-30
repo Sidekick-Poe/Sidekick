@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Initialization;
 using Sidekick.Data.Items;

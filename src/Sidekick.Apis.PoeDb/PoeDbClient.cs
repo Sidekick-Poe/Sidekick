@@ -1,5 +1,4 @@
-﻿using Sidekick.Apis.Poe.Items;
-using Sidekick.Common.Browser;
+﻿using Sidekick.Common.Browser;
 using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;

@@ -1,5 +1,4 @@
-﻿using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
+﻿using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Stash.Models;

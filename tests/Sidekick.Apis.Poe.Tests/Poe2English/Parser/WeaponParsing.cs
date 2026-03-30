@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Data.ItemDefinitions;

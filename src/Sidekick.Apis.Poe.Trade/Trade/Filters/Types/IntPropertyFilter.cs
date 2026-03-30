@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Items;

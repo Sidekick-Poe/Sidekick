@@ -43,4 +43,38 @@ The divine truth, however, is that both are one and the same.
         var result = results[0];
         Assert.Equal("atziris-foible-paua-amulet", result.DetailsId);
     }
+
+    [Fact]
+    public async Task FoulbornKhatalWeeping()
+    {
+        var item = parser.ParseItem(@"Item Class: Amulets
+Rarity: Unique
+Foulborn Khatal's Weeping
+Lapis Amulet
+--------
+Requirements:
+Level: 56
+--------
+Item Level: 85
+--------
++21 to Intelligence (implicit)
+--------
+Life Flasks gain 3 Charges every 3 seconds (mutated)
++88 to maximum Life
+Can't use Mana Flasks
+On non-channelling Attack, set a Life Flask with greater than 50% of maximum Charges remaining to 50%
+For each Charge removed this way, that Attack gains +2% to Damage over time Multiplier
+--------
+""We fought the Abyssals, too. That's the part they leave out.
+Khatal was Faridun... and for saving all their lives, the Maraketh
+made him drink the enemy's blood. He melted from the inside out.""
+- Toryal, of the Afarud
+");
+
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Equal(2, results.Count);
+
+        var result = results[1];
+        Assert.Equal("foulborn-khatals-weeping-life-flask-charge-lapis-amulet", result.DetailsId);
+    }
 }
