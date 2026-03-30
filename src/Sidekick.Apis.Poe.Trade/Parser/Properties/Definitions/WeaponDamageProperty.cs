@@ -11,8 +11,9 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
-using ItemProperties = Sidekick.Apis.Poe.Items.ItemProperties;
+using ItemProperties=Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -108,7 +109,10 @@ public class WeaponDamageProperty(
 
         var itemMods = item.Stats.Where(x =>
         {
-            var tradeStats = x.Definitions.SelectMany(y => y.TradeStats).ToList();
+            var tradeStats = x.Definitions
+                .Where(x => x.TradeStats != null)
+                .SelectMany(y => y.TradeStats!)
+                .ToList();
             return tradeStats.Any(tradeStat => damageMods.Contains(tradeStat.Id));
         }).ToList();
         if (itemMods.Count == 0) return;
@@ -131,7 +135,11 @@ public class WeaponDamageProperty(
                 int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
                 var range = new DamageRange(min, max);
 
-                var ids = itemMods[matchIndex].Definitions.SelectMany(x => x.TradeStats).Select(x => x.Id).ToList();
+                var ids = itemMods[matchIndex].Definitions
+                    .Where(x => x.TradeStats != null)
+                    .SelectMany(x => x.TradeStats!)
+                    .Select(x => x.Id)
+                    .ToList();
                 var isFire = statParser.InvariantDetails.FireWeaponDamageIds.Any(x => ids.Contains(x));
                 var isCold = statParser.InvariantDetails.ColdWeaponDamageIds.Any(x => ids.Contains(x));
                 var isLightning = statParser.InvariantDetails.LightningWeaponDamageIds.Any(x => ids.Contains(x));

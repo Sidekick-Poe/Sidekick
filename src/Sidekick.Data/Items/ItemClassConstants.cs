@@ -1,5 +1,5 @@
 using Sidekick.Data.ItemDefinitions;
-namespace Sidekick.Apis.Poe.Items;
+namespace Sidekick.Data.Items;
 
 public static class ItemClassConstants
 {

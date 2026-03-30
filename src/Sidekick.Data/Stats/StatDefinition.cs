@@ -10,9 +10,9 @@ public class StatDefinition
 
     public string? FuzzyText { get; set; }
 
-    public List<string> GameIds { get; set; } = [];
+    public List<string>? GameIds { get; set; }
 
-    public List<TradeStatDefinition> TradeStats { get; set; } = [];
+    public List<TradeStatDefinition>? TradeStats { get; set; }
 
     public bool Negate { get; set; }
 

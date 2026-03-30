@@ -34,7 +34,9 @@ public class StatFilterValue
 
         int? GetOption()
         {
-            foreach (var tradeStat in filter.Stat.Definitions.SelectMany(definition => definition.TradeStats))
+            foreach (var tradeStat in filter.Stat.Definitions
+                         .Where(x => x.TradeStats != null)
+                         .SelectMany(definition => definition.TradeStats!))
             {
                 if (tradeStat.Option == null) continue;
                 return tradeStat.Option.Id;

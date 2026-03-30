@@ -5,6 +5,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Extensions;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Account.Stash;
 

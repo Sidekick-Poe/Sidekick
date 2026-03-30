@@ -21,6 +21,7 @@ using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Xunit;
@@ -96,9 +97,7 @@ public abstract class ParserFixture : IAsyncLifetime
         return Task.CompletedTask;
     }
 
-    protected virtual void RegisterServices(IServiceCollection services)
-    {
-    }
+    protected virtual void RegisterServices(IServiceCollection services) {}
 
     private static async Task Initialize(IServiceProvider serviceProvider)
     {
@@ -147,7 +146,9 @@ public abstract class ParserFixture : IAsyncLifetime
             {
                 if (stat.Category != expectedCategory) continue;
 
-                foreach (var tradeStat in stat.Definitions.SelectMany(x => x.TradeStats))
+                foreach (var tradeStat in stat.Definitions
+                             .Where(x => x.TradeStats != null)
+                             .SelectMany(x => x.TradeStats!))
                 {
                     if (tradeStat.Text != expectedText) continue;
                     if (expectedOptionText == null) return stat;

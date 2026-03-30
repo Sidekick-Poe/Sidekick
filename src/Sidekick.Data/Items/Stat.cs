@@ -1,5 +1,5 @@
 using Sidekick.Data.Stats;
-namespace Sidekick.Apis.Poe.Items;
+namespace Sidekick.Data.Items;
 
 /// <summary>
 ///     Represents a line of text on an item. With the API being the way it is, each line of text can be represented by one
@@ -30,8 +30,7 @@ public class Stat(StatCategory category, string text)
     /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => Definitions.All(x => x.TradeStats.All(y => y.Option == null))
-                             && Values.Count > 0;
+    public bool HasValues => Definitions.All(x => x.TradeStats == null || x.TradeStats.All(y => y.Option == null)) && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 

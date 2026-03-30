@@ -2,6 +2,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
 using Sidekick.Common.Initialization;
 using Sidekick.Data.ItemDefinitions;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 
 public interface IItemDefinitionParser : IInitializableService

@@ -7,6 +7,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Extensions;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Pseudo;
 
@@ -52,7 +53,10 @@ public class PseudoParser
             {
                 foreach (var definitionStat in definition.Stats)
                 {
-                    if (itemStat.Definitions.All(x => x.TradeStats.All(y => y.Id != definitionStat.Id))) continue;
+                    var hasBadId = itemStat.Definitions
+                        .Where(x => x.TradeStats != null)
+                        .All(x => x.TradeStats!.All(y => y.Id != definitionStat.Id));
+                    if (hasBadId) continue;
 
                     value += itemStat.AverageValue * definitionStat.Multiplier;
                     break;

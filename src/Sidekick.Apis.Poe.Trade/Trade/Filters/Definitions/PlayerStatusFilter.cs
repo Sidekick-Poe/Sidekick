@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 
 public class PlayerStatusFilterFactory(

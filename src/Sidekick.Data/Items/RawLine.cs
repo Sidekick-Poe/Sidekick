@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Items;
+namespace Sidekick.Data.Items;
 
 /// <summary>
 /// Stores data about each line in the parsing process

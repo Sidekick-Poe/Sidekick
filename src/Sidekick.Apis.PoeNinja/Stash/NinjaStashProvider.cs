@@ -9,6 +9,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.ItemDefinitions;
+using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.PoeNinja.Stash;
@@ -317,7 +318,7 @@ public class NinjaStashProvider(
 
         var stats = (
             from stat in itemStats
-            from definition in stat.Definitions
+            from definition in stat.Definitions.Where(x => x.TradeStats != null)
             from tradeStat in definition.TradeStats
             where stat.Category == statCategory && tradeStat.Id.StartsWith(statStartsWith)
             where !IgnoreStatTexts.Contains(tradeStat.Text)

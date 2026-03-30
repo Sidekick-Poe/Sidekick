@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public abstract class DoublePropertyFilter : TradeFilter, INormalizableFilter

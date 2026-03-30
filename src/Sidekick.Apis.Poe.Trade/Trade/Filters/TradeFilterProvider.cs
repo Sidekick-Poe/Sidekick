@@ -6,6 +6,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Extensions;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 

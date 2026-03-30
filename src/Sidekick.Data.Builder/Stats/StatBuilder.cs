@@ -71,8 +71,11 @@ public class StatBuilder(
         ComputeSpecialPseudoPattern(definitions, invariantStats.LogbookFactionStatIds);
 
         // Remove 'Closed Room' (2) options. We keep only 'Open Room' (1) options
-        RemoveSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds, x => x.TradeStats.All(y => y.Option?.Id == 2));
+        RemoveSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds, IncursionRoomPredicate);
         await dataProvider.Write(game, DataType.Stats, language, definitions);
+        return;
+
+        bool IncursionRoomPredicate(StatDefinition x) => x.TradeStats != null && x.TradeStats.All(y => y.Option?.Id == 2);
     }
 
     private async Task<List<StatDefinition>> BuildGameStats(GameType game, IGameLanguage language, List<TradeStatDefinition> tradeDefinitions)
@@ -91,7 +94,8 @@ public class StatBuilder(
     private IEnumerable<StatDefinition> BuildTradeStats(IGameLanguage language, List<TradeStatDefinition> tradeDefinitions, List<StatDefinition> definitions)
     {
         var definedTradeStats = definitions
-            .SelectMany(x => x.TradeStats)
+            .Where(x => x.TradeStats != null)
+            .SelectMany(x => x.TradeStats!)
             .Select(x => (x.Id, x.Option?.Id))
             .ToHashSet();
 
@@ -135,8 +139,8 @@ public class StatBuilder(
             yield return new StatDefinition()
             {
                 Source = DataSource.Game,
-                GameIds = gameStat.Ids,
-                TradeStats = tradeStats,
+                GameIds = gameStat.Ids.Count > 0 ? gameStat.Ids : null,
+                TradeStats = tradeStats.Count > 0 ? tradeStats : null,
                 Text = text,
                 Negate = language.Handlers?.Any(x => x.Contains("negate")) ?? false,
                 Pattern = GetPattern(language.Text),
@@ -295,7 +299,7 @@ public class StatBuilder(
 
     private void ComputeSpecialPseudoPattern(List<StatDefinition> definitions, List<string> patternIds)
     {
-        var patterns = (from definition in definitions
+        var patterns = (from definition in definitions.Where(x => x.TradeStats != null)
             from tradeStat in definition.TradeStats
             where tradeStat.Category == StatCategory.Pseudo
             where patternIds.Contains(tradeStat.Id)
@@ -309,6 +313,6 @@ public class StatBuilder(
 
     private void RemoveSpecialPseudoPattern(List<StatDefinition> definitions, List<string> patternIds, Func<StatDefinition, bool> predicate)
     {
-        definitions.RemoveAll(x => x.TradeStats.Any(y => patternIds.Contains(y.Id)) && predicate(x));
+        definitions.RemoveAll(x => x.TradeStats != null && x.TradeStats.Any(y => patternIds.Contains(y.Id)) && predicate(x));
     }
 }

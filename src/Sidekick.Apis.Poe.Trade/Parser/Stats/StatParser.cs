@@ -10,6 +10,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
@@ -79,7 +80,9 @@ public class StatParser
 
                     var lines = block.Lines.Skip(lineIndex).Select(x => x.Text).ToList();
                     var definitions = MatchDefinitions(FilterDefinitions(), lines).ToList();
-                    var matchFuzzily = definitions.Sum(x => x.TradeStats.Count) is 0;
+                    var matchFuzzily = definitions
+                        .Where(x => x.TradeStats != null)
+                        .Sum(x => x.TradeStats!.Count) is 0;
                     if (matchFuzzily) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
                     if (definitions.Count is 0) continue;
 
@@ -98,7 +101,7 @@ public class StatParser
         {
             return item.Properties.Rarity switch
             {
-                Rarity.Gem => Definitions.Where(x => x.TradeStats.Any(y => y.Category is StatCategory.Imbued)),
+                Rarity.Gem => Definitions.Where(x => x.TradeStats?.Any(y => y.Category is StatCategory.Imbued) ?? false),
                 _ => Definitions,
             };
         }
@@ -177,7 +180,12 @@ public class StatParser
         var category = ParseCategory(text);
         if (category != StatCategory.Mutated)
         {
-            var categories = definitions.SelectMany(x => x.TradeStats).Select(x => x.Category).Distinct().ToList();
+            var categories = definitions
+                .Where(x => x.TradeStats != null)
+                .SelectMany(x => x.TradeStats!)
+                .Select(x => x.Category)
+                .Distinct()
+                .ToList();
             if (categories.Count == 1 && categories[0] != StatCategory.Undefined)
             {
                 category = categories[0];
@@ -192,7 +200,7 @@ public class StatParser
             LineIndex = lineIndex,
             Definitions = definitions,
             MatchedFuzzily = matchedFuzzily,
-            HasTradeSupport = definitions.Any(x => x.TradeStats.Count > 0),
+            HasTradeSupport = definitions.Any(x => x.TradeStats is { Count: > 0 }),
         };
 
         stat.Values = GetValues(stat).ToList();
@@ -254,12 +262,9 @@ public class StatParser
 
         bool HasMatchingDescriptions(StatDefinition definition)
         {
-            foreach (var tradeStat in definition.TradeStats)
-            {
-                if (tradeStat.Text == definition.Text) return true;
-            }
+            if (definition.TradeStats == null) return false;
+            return definition.TradeStats.Any(tradeStat => tradeStat.Text == definition.Text);
 
-            return false;
         }
     }
 

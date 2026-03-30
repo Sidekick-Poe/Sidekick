@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Sidekick.Data.Languages;
-namespace Sidekick.Apis.Poe.Items;
+namespace Sidekick.Data.Items;
 
 /// <summary>
 /// Represents a single item section seperated by dashes when copying an item in-game.

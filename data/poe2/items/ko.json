@@ -56384,22 +56384,6 @@
       "$id": "9824",
       "tradeItem": {
         "$id": "9825",
-        "text": "\uBBF8\uC644\uC131 \uB178\uD30C \uB2E8\uB3C4",
-        "name": "\uBBF8\uC644\uC131",
-        "type": "\uB178\uD30C \uB2E8\uB3C4",
-        "category": "weapon"
-      },
-      "baseItem": {
-        "$ref": "8181"
-      },
-      "namePattern": "^\uBBF8\uC644\uC131|\uBBF8\uC644\uC131$",
-      "typePattern": "(?\u003C!\\p{L})\uB178\uD30C\\ \uB2E8\uB3C4(?!\\p{L})",
-      "textPattern": "\uBBF8\uC644\uC131\\ \uB178\uD30C\\ \uB2E8\uB3C4"
-    },
-    {
-      "$id": "9826",
-      "tradeItem": {
-        "$id": "9827",
         "text": "\uBBF8\uC644\uC131 \uB2E8\uC21C\uD55C \uB2E8\uAC80",
         "name": "\uBBF8\uC644\uC131",
         "type": "\uB2E8\uC21C\uD55C \uB2E8\uAC80",
@@ -56413,9 +56397,9 @@
       "textPattern": "\uBBF8\uC644\uC131\\ \uB2E8\uC21C\uD55C\\ \uB2E8\uAC80"
     },
     {
-      "$id": "9828",
+      "$id": "9826",
       "tradeItem": {
-        "$id": "9829",
+        "$id": "9827",
         "text": "\uBBF8\uC644\uC131 \uC218\uC5FC \uB3C4\uB07C",
         "name": "\uBBF8\uC644\uC131",
         "type": "\uC218\uC5FC \uB3C4\uB07C",
@@ -56429,9 +56413,9 @@
       "textPattern": "\uBBF8\uC644\uC131\\ \uC218\uC5FC\\ \uB3C4\uB07C"
     },
     {
-      "$id": "9830",
+      "$id": "9828",
       "tradeItem": {
-        "$id": "9831",
+        "$id": "9829",
         "text": "\uBBF8\uC644\uC131 \uBD84\uD560\uC758 \uB300\uB3C4\uB07C",
         "name": "\uBBF8\uC644\uC131",
         "type": "\uBD84\uD560\uC758 \uB300\uB3C4\uB07C",
@@ -56445,9 +56429,9 @@
       "textPattern": "\uBBF8\uC644\uC131\\ \uBD84\uD560\uC758\\ \uB300\uB3C4\uB07C"
     },
     {
-      "$id": "9832",
+      "$id": "9830",
       "tradeItem": {
-        "$id": "9833",
+        "$id": "9831",
         "text": "\uBBF8\uC644\uC131 \uC544\uCE58\uD615 \uB300\uB3C4\uB07C",
         "name": "\uBBF8\uC644\uC131",
         "type": "\uC544\uCE58\uD615 \uB300\uB3C4\uB07C",
@@ -56459,6 +56443,22 @@
       "namePattern": "^\uBBF8\uC644\uC131|\uBBF8\uC644\uC131$",
       "typePattern": "(?\u003C!\\p{L})\uC544\uCE58\uD615\\ \uB300\uB3C4\uB07C(?!\\p{L})",
       "textPattern": "\uBBF8\uC644\uC131\\ \uC544\uCE58\uD615\\ \uB300\uB3C4\uB07C"
+    },
+    {
+      "$id": "9832",
+      "tradeItem": {
+        "$id": "9833",
+        "text": "\uBBF8\uC644\uC131 \uB178\uD30C \uB2E8\uB3C4",
+        "name": "\uBBF8\uC644\uC131",
+        "type": "\uB178\uD30C \uB2E8\uB3C4",
+        "category": "weapon"
+      },
+      "baseItem": {
+        "$ref": "8181"
+      },
+      "namePattern": "^\uBBF8\uC644\uC131|\uBBF8\uC644\uC131$",
+      "typePattern": "(?\u003C!\\p{L})\uB178\uD30C\\ \uB2E8\uB3C4(?!\\p{L})",
+      "textPattern": "\uBBF8\uC644\uC131\\ \uB178\uD30C\\ \uB2E8\uB3C4"
     },
     {
       "$id": "9834",

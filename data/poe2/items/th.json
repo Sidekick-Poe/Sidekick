@@ -56599,22 +56599,6 @@
       "$id": "9865",
       "tradeItem": {
         "$id": "9866",
-        "text": "INCOMPLETE Crone Knife",
-        "name": "INCOMPLETE",
-        "type": "Crone Knife",
-        "category": "weapon"
-      },
-      "baseItem": {
-        "$ref": "8210"
-      },
-      "namePattern": "^INCOMPLETE|INCOMPLETE$",
-      "typePattern": "(?\u003C!\\p{L})Crone\\ Knife(?!\\p{L})",
-      "textPattern": "INCOMPLETE\\ Crone\\ Knife"
-    },
-    {
-      "$id": "9867",
-      "tradeItem": {
-        "$id": "9868",
         "text": "INCOMPLETE Simple Dagger",
         "name": "INCOMPLETE",
         "type": "Simple Dagger",
@@ -56628,9 +56612,9 @@
       "textPattern": "INCOMPLETE\\ Simple\\ Dagger"
     },
     {
-      "$id": "9869",
+      "$id": "9867",
       "tradeItem": {
-        "$id": "9870",
+        "$id": "9868",
         "text": "INCOMPLETE Bearded Axe",
         "name": "INCOMPLETE",
         "type": "Bearded Axe",
@@ -56644,9 +56628,9 @@
       "textPattern": "INCOMPLETE\\ Bearded\\ Axe"
     },
     {
-      "$id": "9871",
+      "$id": "9869",
       "tradeItem": {
-        "$id": "9872",
+        "$id": "9870",
         "text": "INCOMPLETE Splitting Greataxe",
         "name": "INCOMPLETE",
         "type": "Splitting Greataxe",
@@ -56660,9 +56644,9 @@
       "textPattern": "INCOMPLETE\\ Splitting\\ Greataxe"
     },
     {
-      "$id": "9873",
+      "$id": "9871",
       "tradeItem": {
-        "$id": "9874",
+        "$id": "9872",
         "text": "INCOMPLETE Arched Greataxe",
         "name": "INCOMPLETE",
         "type": "Arched Greataxe",
@@ -56674,6 +56658,22 @@
       "namePattern": "^INCOMPLETE|INCOMPLETE$",
       "typePattern": "(?\u003C!\\p{L})Arched\\ Greataxe(?!\\p{L})",
       "textPattern": "INCOMPLETE\\ Arched\\ Greataxe"
+    },
+    {
+      "$id": "9873",
+      "tradeItem": {
+        "$id": "9874",
+        "text": "INCOMPLETE Crone Knife",
+        "name": "INCOMPLETE",
+        "type": "Crone Knife",
+        "category": "weapon"
+      },
+      "baseItem": {
+        "$ref": "8210"
+      },
+      "namePattern": "^INCOMPLETE|INCOMPLETE$",
+      "typePattern": "(?\u003C!\\p{L})Crone\\ Knife(?!\\p{L})",
+      "textPattern": "INCOMPLETE\\ Crone\\ Knife"
     },
     {
       "$id": "9875",

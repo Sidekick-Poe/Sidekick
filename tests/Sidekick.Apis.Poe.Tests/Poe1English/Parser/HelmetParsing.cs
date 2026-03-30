@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.ItemDefinitions;
+using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
@@ -136,6 +137,8 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
 
         var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "Maximum number of Summoned Skeletons is Doubled\nCannot have Minions other than Summoned Skeletons");
         Assert.NotNull(stat);
-        Assert.Single(stat.Definitions.SelectMany(x => x.TradeStats));
+        Assert.Single(stat.Definitions
+                          .Where(x => x.TradeStats != null)
+                          .SelectMany(x => x.TradeStats!));
     }
 }

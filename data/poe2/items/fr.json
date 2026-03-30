@@ -56334,22 +56334,6 @@
       "$id": "9816",
       "tradeItem": {
         "$id": "9817",
-        "text": "INCOMPLET Couteau de m\u00E9g\u00E8re",
-        "name": "INCOMPLET",
-        "type": "Couteau de m\u00E9g\u00E8re",
-        "category": "weapon"
-      },
-      "baseItem": {
-        "$ref": "8191"
-      },
-      "namePattern": "^INCOMPLET|INCOMPLET$",
-      "typePattern": "(?\u003C!\\p{L})Couteau\\ de\\ m\u00E9g\u00E8re(?!\\p{L})",
-      "textPattern": "INCOMPLET\\ Couteau\\ de\\ m\u00E9g\u00E8re"
-    },
-    {
-      "$id": "9818",
-      "tradeItem": {
-        "$id": "9819",
         "text": "INCOMPLET Dague simple",
         "name": "INCOMPLET",
         "type": "Dague simple",
@@ -56363,9 +56347,9 @@
       "textPattern": "INCOMPLET\\ Dague\\ simple"
     },
     {
-      "$id": "9820",
+      "$id": "9818",
       "tradeItem": {
-        "$id": "9821",
+        "$id": "9819",
         "text": "INCOMPLET Hache barbue",
         "name": "INCOMPLET",
         "type": "Hache barbue",
@@ -56379,9 +56363,9 @@
       "textPattern": "INCOMPLET\\ Hache\\ barbue"
     },
     {
-      "$id": "9822",
+      "$id": "9820",
       "tradeItem": {
-        "$id": "9823",
+        "$id": "9821",
         "text": "INCOMPLET Grande hache \u00E0 fendre",
         "name": "INCOMPLET",
         "type": "Grande hache \u00E0 fendre",
@@ -56395,9 +56379,9 @@
       "textPattern": "INCOMPLET\\ Grande\\ hache\\ \u00E0\\ fendre"
     },
     {
-      "$id": "9824",
+      "$id": "9822",
       "tradeItem": {
-        "$id": "9825",
+        "$id": "9823",
         "text": "INCOMPLET Grande hache arqu\u00E9e",
         "name": "INCOMPLET",
         "type": "Grande hache arqu\u00E9e",
@@ -56409,6 +56393,22 @@
       "namePattern": "^INCOMPLET|INCOMPLET$",
       "typePattern": "(?\u003C!\\p{L})Grande\\ hache\\ arqu\u00E9e(?!\\p{L})",
       "textPattern": "INCOMPLET\\ Grande\\ hache\\ arqu\u00E9e"
+    },
+    {
+      "$id": "9824",
+      "tradeItem": {
+        "$id": "9825",
+        "text": "INCOMPLET Couteau de m\u00E9g\u00E8re",
+        "name": "INCOMPLET",
+        "type": "Couteau de m\u00E9g\u00E8re",
+        "category": "weapon"
+      },
+      "baseItem": {
+        "$ref": "8191"
+      },
+      "namePattern": "^INCOMPLET|INCOMPLET$",
+      "typePattern": "(?\u003C!\\p{L})Couteau\\ de\\ m\u00E9g\u00E8re(?!\\p{L})",
+      "textPattern": "INCOMPLET\\ Couteau\\ de\\ m\u00E9g\u00E8re"
     },
     {
       "$id": "9826",

@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Trade.Parser.Tokenizers;
+namespace Sidekick.Data.Tokenizers;
 
 public enum ItemNameTokenType
 {

@@ -113899,9 +113899,7 @@
           "$ref": "9296"
         }
       },
-      "namePattern": "^Fogo\\ Selvagem|Fogo\\ Selvagem$",
-      "typePattern": "(?\u003C!\\p{L})Joia\\ Carmesim(?!\\p{L})",
-      "textPattern": "Fogo\\ Selvagem\\ Joia\\ Carmesim"
+      "typePattern": "(?\u003C!\\p{L})Fogo\\ Selvagem(?!\\p{L})"
     },
     {
       "$id": "18771",
@@ -120409,6 +120407,9 @@
     },
     {
       "$id": "19958",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "19959",
         "id": "Metadata/Items/TradeProxy/BlightedMap",
@@ -120416,10 +120417,14 @@
         "itemClass": {
           "$ref": "12535"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ Infestado(?!\\p{L})"
     },
     {
       "$id": "19960",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "19961",
         "id": "Metadata/Items/TradeProxy/UberBlightedMap",
@@ -120427,7 +120432,8 @@
         "itemClass": {
           "$ref": "12535"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ Infestado\\ Arruinado(?!\\p{L})"
     },
     {
       "$id": "19962",
@@ -121234,6 +121240,9 @@
     },
     {
       "$id": "20108",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20109",
         "id": "Metadata/Items/Maps/MapKeyTier1",
@@ -121241,10 +121250,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 1\\)(?!\\p{L})"
     },
     {
       "$id": "20110",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20111",
         "id": "Metadata/Items/Maps/MapKeyTier2",
@@ -121252,10 +121265,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 2\\)(?!\\p{L})"
     },
     {
       "$id": "20112",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20113",
         "id": "Metadata/Items/Maps/MapKeyTier3",
@@ -121263,10 +121280,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 3\\)(?!\\p{L})"
     },
     {
       "$id": "20114",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20115",
         "id": "Metadata/Items/Maps/MapKeyTier4",
@@ -121274,10 +121295,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 4\\)(?!\\p{L})"
     },
     {
       "$id": "20116",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20117",
         "id": "Metadata/Items/Maps/MapKeyTier5",
@@ -121285,10 +121310,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 5\\)(?!\\p{L})"
     },
     {
       "$id": "20118",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20119",
         "id": "Metadata/Items/Maps/MapKeyTier6",
@@ -121296,10 +121325,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 6\\)(?!\\p{L})"
     },
     {
       "$id": "20120",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20121",
         "id": "Metadata/Items/Maps/MapKeyTier7",
@@ -121307,10 +121340,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 7\\)(?!\\p{L})"
     },
     {
       "$id": "20122",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20123",
         "id": "Metadata/Items/Maps/MapKeyTier8",
@@ -121318,10 +121355,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 8\\)(?!\\p{L})"
     },
     {
       "$id": "20124",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20125",
         "id": "Metadata/Items/Maps/MapKeyTier9",
@@ -121329,10 +121370,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 9\\)(?!\\p{L})"
     },
     {
       "$id": "20126",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20127",
         "id": "Metadata/Items/Maps/MapKeyTier10",
@@ -121340,10 +121385,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 10\\)(?!\\p{L})"
     },
     {
       "$id": "20128",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20129",
         "id": "Metadata/Items/Maps/MapKeyTier11",
@@ -121351,10 +121400,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 11\\)(?!\\p{L})"
     },
     {
       "$id": "20130",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20131",
         "id": "Metadata/Items/Maps/MapKeyTier12",
@@ -121362,10 +121415,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 12\\)(?!\\p{L})"
     },
     {
       "$id": "20132",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20133",
         "id": "Metadata/Items/Maps/MapKeyTier13",
@@ -121373,10 +121430,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 13\\)(?!\\p{L})"
     },
     {
       "$id": "20134",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20135",
         "id": "Metadata/Items/Maps/MapKeyTier14",
@@ -121384,10 +121445,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 14\\)(?!\\p{L})"
     },
     {
       "$id": "20136",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20137",
         "id": "Metadata/Items/Maps/MapKeyTier15",
@@ -121395,10 +121460,14 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 15\\)(?!\\p{L})"
     },
     {
       "$id": "20138",
+      "tradeItem": {
+        "$ref": "12533"
+      },
       "baseItem": {
         "$id": "20139",
         "id": "Metadata/Items/Maps/MapKeyTier16",
@@ -121406,7 +121475,8 @@
         "itemClass": {
           "$ref": "12525"
         }
-      }
+      },
+      "typePattern": "(?\u003C!\\p{L})Mapa\\ \\(N\u00EDvel\\ 16\\)(?!\\p{L})"
     },
     {
       "$id": "20140",

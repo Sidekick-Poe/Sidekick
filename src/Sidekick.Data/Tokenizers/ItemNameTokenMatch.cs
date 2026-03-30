@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
-
-namespace Sidekick.Apis.Poe.Trade.Parser.Tokenizers;
+namespace Sidekick.Data.Tokenizers;
 
 public class ItemNameTokenMatch
 {

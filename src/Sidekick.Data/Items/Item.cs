@@ -1,8 +1,6 @@
-using Sidekick.Data;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
-
-namespace Sidekick.Apis.Poe.Items;
+namespace Sidekick.Data.Items;
 
 public class Item
 {

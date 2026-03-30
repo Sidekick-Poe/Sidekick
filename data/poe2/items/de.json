@@ -56218,22 +56218,6 @@
       "$id": "9794",
       "tradeItem": {
         "$id": "9795",
-        "text": "INCOMPLETE K\u00FCchenmesser",
-        "name": "INCOMPLETE",
-        "type": "K\u00FCchenmesser",
-        "category": "weapon"
-      },
-      "baseItem": {
-        "$ref": "8174"
-      },
-      "namePattern": "^INCOMPLETE|INCOMPLETE$",
-      "typePattern": "(?\u003C!\\p{L})K\u00FCchenmesser(?!\\p{L})",
-      "textPattern": "INCOMPLETE\\ K\u00FCchenmesser"
-    },
-    {
-      "$id": "9796",
-      "tradeItem": {
-        "$id": "9797",
         "text": "INCOMPLETE Einfacher Dolch",
         "name": "INCOMPLETE",
         "type": "Einfacher Dolch",
@@ -56247,9 +56231,9 @@
       "textPattern": "INCOMPLETE\\ Einfacher\\ Dolch"
     },
     {
-      "$id": "9798",
+      "$id": "9796",
       "tradeItem": {
-        "$id": "9799",
+        "$id": "9797",
         "text": "INCOMPLETE Bartaxt",
         "name": "INCOMPLETE",
         "type": "Bartaxt",
@@ -56263,9 +56247,9 @@
       "textPattern": "INCOMPLETE\\ Bartaxt"
     },
     {
-      "$id": "9800",
+      "$id": "9798",
       "tradeItem": {
-        "$id": "9801",
+        "$id": "9799",
         "text": "INCOMPLETE Spaltende Gro\u00DFaxt",
         "name": "INCOMPLETE",
         "type": "Spaltende Gro\u00DFaxt",
@@ -56279,9 +56263,9 @@
       "textPattern": "INCOMPLETE\\ Spaltende\\ Gro\u00DFaxt"
     },
     {
-      "$id": "9802",
+      "$id": "9800",
       "tradeItem": {
-        "$id": "9803",
+        "$id": "9801",
         "text": "INCOMPLETE Gew\u00F6lbte Gro\u00DFaxt",
         "name": "INCOMPLETE",
         "type": "Gew\u00F6lbte Gro\u00DFaxt",
@@ -56293,6 +56277,22 @@
       "namePattern": "^INCOMPLETE|INCOMPLETE$",
       "typePattern": "(?\u003C!\\p{L})Gew\u00F6lbte\\ Gro\u00DFaxt(?!\\p{L})",
       "textPattern": "INCOMPLETE\\ Gew\u00F6lbte\\ Gro\u00DFaxt"
+    },
+    {
+      "$id": "9802",
+      "tradeItem": {
+        "$id": "9803",
+        "text": "INCOMPLETE K\u00FCchenmesser",
+        "name": "INCOMPLETE",
+        "type": "K\u00FCchenmesser",
+        "category": "weapon"
+      },
+      "baseItem": {
+        "$ref": "8174"
+      },
+      "namePattern": "^INCOMPLETE|INCOMPLETE$",
+      "typePattern": "(?\u003C!\\p{L})K\u00FCchenmesser(?!\\p{L})",
+      "textPattern": "INCOMPLETE\\ K\u00FCchenmesser"
     },
     {
       "$id": "9804",

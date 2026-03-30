@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Trade.Parser.Tokenizers;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Languages;
-namespace Sidekick.Apis.Poe.Items;
+using Sidekick.Data.Tokenizers;
+namespace Sidekick.Data.Items;
 
 /// <summary>
 /// Stores data about the state of the parsing process for the item

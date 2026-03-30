@@ -56283,22 +56283,6 @@
       "$id": "9806",
       "tradeItem": {
         "$id": "9807",
-        "text": "INCOMPLETE Cuchillo de bruja",
-        "name": "INCOMPLETE",
-        "type": "Cuchillo de bruja",
-        "category": "weapon"
-      },
-      "baseItem": {
-        "$ref": "8175"
-      },
-      "namePattern": "^INCOMPLETE|INCOMPLETE$",
-      "typePattern": "(?\u003C!\\p{L})Cuchillo\\ de\\ bruja(?!\\p{L})",
-      "textPattern": "INCOMPLETE\\ Cuchillo\\ de\\ bruja"
-    },
-    {
-      "$id": "9808",
-      "tradeItem": {
-        "$id": "9809",
         "text": "INCOMPLETE Daga simple",
         "name": "INCOMPLETE",
         "type": "Daga simple",
@@ -56312,9 +56296,9 @@
       "textPattern": "INCOMPLETE\\ Daga\\ simple"
     },
     {
-      "$id": "9810",
+      "$id": "9808",
       "tradeItem": {
-        "$id": "9811",
+        "$id": "9809",
         "text": "INCOMPLETE Hacha barbuda",
         "name": "INCOMPLETE",
         "type": "Hacha barbuda",
@@ -56328,9 +56312,9 @@
       "textPattern": "INCOMPLETE\\ Hacha\\ barbuda"
     },
     {
-      "$id": "9812",
+      "$id": "9810",
       "tradeItem": {
-        "$id": "9813",
+        "$id": "9811",
         "text": "INCOMPLETE Gran hacha fragmentadora",
         "name": "INCOMPLETE",
         "type": "Gran hacha fragmentadora",
@@ -56344,9 +56328,9 @@
       "textPattern": "INCOMPLETE\\ Gran\\ hacha\\ fragmentadora"
     },
     {
-      "$id": "9814",
+      "$id": "9812",
       "tradeItem": {
-        "$id": "9815",
+        "$id": "9813",
         "text": "INCOMPLETE Gran hacha arqueada",
         "name": "INCOMPLETE",
         "type": "Gran hacha arqueada",
@@ -56358,6 +56342,22 @@
       "namePattern": "^INCOMPLETE|INCOMPLETE$",
       "typePattern": "(?\u003C!\\p{L})Gran\\ hacha\\ arqueada(?!\\p{L})",
       "textPattern": "INCOMPLETE\\ Gran\\ hacha\\ arqueada"
+    },
+    {
+      "$id": "9814",
+      "tradeItem": {
+        "$id": "9815",
+        "text": "INCOMPLETE Cuchillo de bruja",
+        "name": "INCOMPLETE",
+        "type": "Cuchillo de bruja",
+        "category": "weapon"
+      },
+      "baseItem": {
+        "$ref": "8175"
+      },
+      "namePattern": "^INCOMPLETE|INCOMPLETE$",
+      "typePattern": "(?\u003C!\\p{L})Cuchillo\\ de\\ bruja(?!\\p{L})",
+      "textPattern": "INCOMPLETE\\ Cuchillo\\ de\\ bruja"
     },
     {
       "$id": "9816",

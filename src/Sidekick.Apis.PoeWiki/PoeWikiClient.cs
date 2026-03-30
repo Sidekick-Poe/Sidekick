@@ -9,6 +9,7 @@ using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Data;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.PoeWiki;
 

@@ -55953,22 +55953,6 @@
       "$id": "9742",
       "tradeItem": {
         "$id": "9743",
-        "text": "INCOMPLETO Faca da Bruxa",
-        "name": "INCOMPLETO",
-        "type": "Faca da Bruxa",
-        "category": "weapon"
-      },
-      "baseItem": {
-        "$ref": "8130"
-      },
-      "namePattern": "^INCOMPLETO|INCOMPLETO$",
-      "typePattern": "(?\u003C!\\p{L})Faca\\ da\\ Bruxa(?!\\p{L})",
-      "textPattern": "INCOMPLETO\\ Faca\\ da\\ Bruxa"
-    },
-    {
-      "$id": "9744",
-      "tradeItem": {
-        "$id": "9745",
         "text": "INCOMPLETO Adaga Simples",
         "name": "INCOMPLETO",
         "type": "Adaga Simples",
@@ -55982,9 +55966,9 @@
       "textPattern": "INCOMPLETO\\ Adaga\\ Simples"
     },
     {
-      "$id": "9746",
+      "$id": "9744",
       "tradeItem": {
-        "$id": "9747",
+        "$id": "9745",
         "text": "INCOMPLETO Machado de Barba",
         "name": "INCOMPLETO",
         "type": "Machado de Barba",
@@ -55998,9 +55982,9 @@
       "textPattern": "INCOMPLETO\\ Machado\\ de\\ Barba"
     },
     {
-      "$id": "9748",
+      "$id": "9746",
       "tradeItem": {
-        "$id": "9749",
+        "$id": "9747",
         "text": "INCOMPLETO Grande Machado Rompedor",
         "name": "INCOMPLETO",
         "type": "Grande Machado Rompedor",
@@ -56014,9 +55998,9 @@
       "textPattern": "INCOMPLETO\\ Grande\\ Machado\\ Rompedor"
     },
     {
-      "$id": "9750",
+      "$id": "9748",
       "tradeItem": {
-        "$id": "9751",
+        "$id": "9749",
         "text": "INCOMPLETO Machado Grande Arqueado",
         "name": "INCOMPLETO",
         "type": "Machado Grande Arqueado",
@@ -56028,6 +56012,22 @@
       "namePattern": "^INCOMPLETO|INCOMPLETO$",
       "typePattern": "(?\u003C!\\p{L})Machado\\ Grande\\ Arqueado(?!\\p{L})",
       "textPattern": "INCOMPLETO\\ Machado\\ Grande\\ Arqueado"
+    },
+    {
+      "$id": "9750",
+      "tradeItem": {
+        "$id": "9751",
+        "text": "INCOMPLETO Faca da Bruxa",
+        "name": "INCOMPLETO",
+        "type": "Faca da Bruxa",
+        "category": "weapon"
+      },
+      "baseItem": {
+        "$ref": "8130"
+      },
+      "namePattern": "^INCOMPLETO|INCOMPLETO$",
+      "typePattern": "(?\u003C!\\p{L})Faca\\ da\\ Bruxa(?!\\p{L})",
+      "textPattern": "INCOMPLETO\\ Faca\\ da\\ Bruxa"
     },
     {
       "$id": "9752",
