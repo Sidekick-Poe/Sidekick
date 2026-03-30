@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Initialization;
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Items;

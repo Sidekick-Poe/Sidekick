@@ -274,9 +274,8 @@ public class NinjaDownloader(
                     }
                 }
 
-                if (stats.Count == 0) return null;
-
-                return stats;
+                stats = stats.DistinctBy(x => x.Id).ToList();
+                return stats.Count == 0 ? null : stats;
             }
         }
     }

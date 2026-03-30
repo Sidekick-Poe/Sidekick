@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;

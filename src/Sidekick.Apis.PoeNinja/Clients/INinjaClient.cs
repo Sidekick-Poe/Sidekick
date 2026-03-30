@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Data;
 namespace Sidekick.Apis.PoeNinja.Clients;
 
