@@ -144,7 +144,6 @@ public class ItemBuilder(
 
         List<NinjaItemDefinition>? GetNinjaItems(TradeItemDefinition? tradeItem, BaseItemDefinition? baseItem, UniqueItemDefinition? uniqueItem)
         {
-            if (baseItem == null) return null;
             if (language.Code != gameLanguageProvider.InvariantLanguage.Code) return null;
 
             var result = new List<NinjaItemDefinition>();
@@ -199,6 +198,9 @@ public class ItemBuilder(
                          ninjaItem.Type != "UniqueJewel" &&
                          ninjaItem.Stash.BaseType == baseItem.Name &&
                          baseItem.Name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel") result.Add(ninjaItem);
+
+                // Name match
+                else if (ninjaItem.Stash?.Name == (baseItem?.Name ?? tradeItem?.Type)) result.Add(ninjaItem);
             }
 
             return result.Count == 0 ? null : result;
