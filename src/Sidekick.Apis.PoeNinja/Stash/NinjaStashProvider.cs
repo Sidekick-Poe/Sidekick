@@ -66,6 +66,11 @@ public class NinjaStashProvider(
 
         }
 
+        if (item.Invariant.TradeItem?.Category == "monster")
+        {
+            return await GetBeastInfo(item.Invariant);
+        }
+
         return await GetBaseTypeInfo(item.Invariant,
                                      item.Properties.ItemLevel,
                                      item.Properties.Influences);
@@ -108,6 +113,11 @@ public class NinjaStashProvider(
                                              apiItem.ItemLevel,
                                              stats);
 
+        }
+
+        if (item.TradeItem?.Category == "monster")
+        {
+            return await GetBeastInfo(item);
         }
 
         return await GetBaseTypeInfo(item,
@@ -307,6 +317,23 @@ public class NinjaStashProvider(
                     }
                 }
             }
+        }
+    }
+
+    private async Task<List<NinjaStash>> GetBeastInfo(ItemDefinition item)
+    {
+        var matches = FindMatches();
+        return await BuildResult(matches);
+
+        List<NinjaItemDefinition> FindMatches()
+        {
+            if (item.NinjaItems == null) return [];
+            if (string.IsNullOrEmpty(item.TradeItem?.Type)) return [];
+
+            return item.NinjaItems
+                .Where(x => x.Stash != null)
+                .Where(x => x.Stash!.Name == item.TradeItem?.Type)
+                .ToList();
         }
     }
 
