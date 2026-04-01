@@ -217,9 +217,10 @@ public class DataProvider : IInitializableService
         var directoryInfo = new DirectoryInfo(DataDirectory);
         foreach (var file in directoryInfo.GetFiles("*", SearchOption.AllDirectories))
         {
-            if (file.FullName.Replace('\\', '/').Contains("/raw/")) continue;
+            var path = file.FullName.Replace('\\', '/');
+            if (path.Contains("/raw/")) continue;
 
-            var name = Path.GetRelativePath(DataDirectory, file.FullName);
+            var name = Path.GetRelativePath(DataDirectory, path).Replace('\\', '/');
 
             files.Add(new DataFile(
                       Name: name,
