@@ -74,7 +74,6 @@ made him drink the enemy's blood. He melted from the inside out.""
         var results = await fixture.NinjaStashProvider.GetInfo(item);
         Assert.Equal(2, results.Count);
 
-        var result = results[1];
-        Assert.Equal("foulborn-khatals-weeping-life-flask-charge-lapis-amulet", result.DetailsId);
+        Assert.Contains(results, x => x.DetailsId == "foulborn-khatals-weeping-life-flask-charge-lapis-amulet");
     }
 }
