@@ -10,6 +10,12 @@ public class ItemProperties
 
     public bool Corrupted { get; set; }
 
+    public bool Split { get; set; }
+
+    public bool Mirrored { get; set; }
+
+    public bool Fractured { get; set; }
+
     public int Armour { get; set; }
 
     public int ArmourWithQuality => CalculateValueWithQuality(Armour);

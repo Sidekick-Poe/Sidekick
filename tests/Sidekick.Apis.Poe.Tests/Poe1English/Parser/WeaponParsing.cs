@@ -403,6 +403,7 @@ Note: ~price 30 chaos
         Assert.Equal(ItemClass.Staff, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Imperial Staff", actual.Definition.TradeItem?.Type);
+        Assert.True(actual.Properties.Fractured);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "+#% to Damage over Time Multiplier", 44);
     }

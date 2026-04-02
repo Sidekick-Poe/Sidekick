@@ -10,7 +10,6 @@ public class GameLanguageRu : IGameLanguage
     public string PoeTradeApiBaseUrl => "https://ru.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://ru.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://ru.pathofexile.com/api/trade2/";
-    public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "Уникальный";
     public string RarityRare => "Редкий";
@@ -25,6 +24,8 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionQuality => "Качество";
     public string DescriptionLevel => "Уровень";
     public string DescriptionCorrupted => "Осквернено";
+    public string DescriptionSplit => "Разделено";
+    public string DescriptionMirrored => "Отражено";
     public string DescriptionSockets => "Гнезда";
     public string DescriptionItemLevel => "Уровень предмета";
     public string DescriptionExperience => "Опыт";
@@ -71,6 +72,22 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionRequiresStr => "Сила";
     public string DescriptionRequiresDex => "Ловк";
     public string DescriptionRequiresInt => "Инт";
+    public string DescriptionHeistWings => "Крыльев обнаружено";
+    public string DescriptionHeistRoutes => "Путей отхода обнаружено";
+    public string DescriptionHeistRooms => "Комнат с наградами обнаружено";
+    public string DescriptionHeistLockpicking => "Требуется взлом (# уровень)";
+    public string DescriptionHeistDemolition => "Требуется взрывное дело (# уровень)";
+    public string DescriptionHeistAgility => "Требуется проворство (# уровень)";
+    public string DescriptionHeistCounterThaumaturgy => "Требуется контрмагия (# уровень)";
+    public string DescriptionHeistTrap => "Требуется разминирование (# уровень)";
+    public string DescriptionHeistPerception => "Требуется восприятие (# уровень)";
+    public string DescriptionHeistBruteForce => "Требуется грубая сила (# уровень)";
+    public string DescriptionHeistDeception => "Требуется маскировка (# уровень)";
+    public string DescriptionHeistEngineering => "Требуется инженерное дело (# уровень)";
+    public string DescriptionHeistModerateValue => "средней ценности";
+    public string DescriptionHeistHighValue => "ценный";
+    public string DescriptionHeistPrecious => "драгоценный";
+    public string DescriptionHeistPriceless => "бесценный";
 
     public string AffixSuperior => "высокого качества";
     public string AffixBlighted => "Заражённая";

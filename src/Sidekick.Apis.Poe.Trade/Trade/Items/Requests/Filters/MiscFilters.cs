@@ -16,6 +16,8 @@ public class MiscFilters
 
     public SearchFilterOption? Corrupted { get; set; }
 
+    public SearchFilterOption? Split { get; set; }
+
     [JsonPropertyName("scourge_tier")]
     public StatFilterValue? Scourged { get; set; }
 

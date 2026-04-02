@@ -8,6 +8,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -19,7 +20,13 @@ public class FracturedProperty(
 
     public override string Label => tradeFilterProvider.Fractured?.Text ?? "Fractured";
 
-    public override void Parse(Item item) {}
+    public override void ParseAfterStats(Item item)
+    {
+        if (!item.CanHaveStats) return;
+        if (item.Properties.Rarity != Rarity.Magic && item.Properties.Rarity != Rarity.Rare) return;
+
+        item.Properties.Fractured = item.Stats.Any(x => x.Category == StatCategory.Fractured);
+    }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
@@ -39,7 +46,37 @@ public class FracturedFilter : TriStatePropertyFilter
 {
     public FracturedFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(null);
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Default,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Fractured,
+                            Comparison = AutoSelectComparisonType.True,
+                        },
+                    ],
+                },
+                new()
+                {
+                    Checked = false,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Fractured,
+                            Comparison = AutoSelectComparisonType.False,
+                        },
+                    ],
+                },
+            ],
+        };
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

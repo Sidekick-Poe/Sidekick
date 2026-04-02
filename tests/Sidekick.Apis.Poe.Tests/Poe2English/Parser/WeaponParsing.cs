@@ -390,6 +390,7 @@ Note: ~price 1 mirror");
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Siege Crossbow", actual.Definition.TradeItem?.Type);
         Assert.Equal("Dragon Core", actual.Name);
+        Assert.True(actual.Properties.Fractured);
 
         // Verify physical damage
         Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);

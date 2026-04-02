@@ -146,4 +146,29 @@ Note: ~b/o 20 chaos
         Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
         Assert.Equal("Sapphire Ring", actual.Definition.TradeItem?.Type);
     }
+
+    [Fact]
+    public void KalandraTouch()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Kalandra's Touch
+Ring
+--------
+Item Level: 85
+--------
+Reflects opposite Ring
+--------
+On one hand, you have a choice.
+On the other, you have its twin.
+--------
+Mirrored
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Kalandra's Touch", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Ring", actual.Definition.TradeItem?.Type);
+        Assert.True(actual.Properties.Mirrored);
+    }
 }
