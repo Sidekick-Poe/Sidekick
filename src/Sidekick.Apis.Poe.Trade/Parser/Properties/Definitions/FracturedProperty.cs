@@ -22,16 +22,12 @@ public class FracturedProperty(
 
     public override void ParseAfterStats(Item item)
     {
-        if (!item.CanHaveStats) return;
-        if (item.Properties.Rarity != Rarity.Magic && item.Properties.Rarity != Rarity.Rare) return;
-
         item.Properties.Fractured = item.Stats.Any(x => x.Category == StatCategory.Fractured);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (tradeFilterProvider.Fractured == null) return Task.FromResult<TradeFilter?>(null);
-        if (!item.CanHaveStats || item.ItemClass == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
+        if (!item.ItemClass.CanHaveStats() || item.ItemClass == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FracturedFilter
         {

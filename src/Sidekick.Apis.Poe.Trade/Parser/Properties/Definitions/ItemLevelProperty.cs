@@ -15,7 +15,7 @@ public class ItemLevelProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionItemLevel.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionItemLevel.ToRegexIntProperty();
 
     public override string Label => currentGameLanguage.Language.DescriptionItemLevel;
 

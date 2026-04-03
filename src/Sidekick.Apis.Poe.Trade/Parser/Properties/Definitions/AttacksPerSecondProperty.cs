@@ -16,7 +16,7 @@ public class AttacksPerSecondProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAttacksPerSecond.ToRegexDoubleCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAttacksPerSecond.ToRegexDoubleProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionAttacksPerSecond.ToRegexIsAugmented();
 
@@ -24,7 +24,7 @@ public class AttacksPerSecondProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
+        if (!item.ItemClass.IsWeapon()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.AttacksPerSecond = GetDouble(Pattern, propertyBlock);

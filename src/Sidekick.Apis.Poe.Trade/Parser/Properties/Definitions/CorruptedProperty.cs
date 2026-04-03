@@ -25,6 +25,8 @@ public class CorruptedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
+        if (!item.ItemClass.CanHaveStats()) return Task.FromResult<TradeFilter?>(null);
+
         var filter = new CorruptedFilter
         {
             Text = Label,

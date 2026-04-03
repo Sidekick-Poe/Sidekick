@@ -163,4 +163,64 @@ Corrupted
         Assert.True(actual.Properties.Corrupted);
     }
 
+    [Fact]
+    public void HeistBlueprint()
+    {
+        var actual = parser.ParseItem(@"Item Class: Blueprints
+Rarity: Normal
+Blueprint: Repository
+--------
+Area Level: 83
+Wings Revealed: 1/3
+Escape Routes Revealed: 1/6
+Reward Rooms Revealed: 3/21
+Requires Lockpicking (Level 1 (unmet))
+Requires Demolition (Level 2 (unmet))
+Requires Agility (Level 5 (unmet))
+--------
+Item Level: 83
+--------
+Use Intelligence to Reveal additional Wings and Rooms by talking to certain NPCs in the Rogue Harbour. Give this Blueprint to Adiyah to embark on the Grand Heist.
+");
+
+        Assert.Equal(ItemClass.HeistBlueprint, actual.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal(83, actual.Properties.AreaLevel);
+        Assert.Equal(1, actual.Properties.HeistWingsRevealed);
+        Assert.Equal(3, actual.Properties.HeistWingsTotal);
+        Assert.Equal(1, actual.Properties.HeistRoutesRevealed);
+        Assert.Equal(6, actual.Properties.HeistRoutesTotal);
+        Assert.Equal(3, actual.Properties.HeistRoomsRevealed);
+        Assert.Equal(21, actual.Properties.HeistRoomsTotal);
+        Assert.Equal(1, actual.Properties.HeistLockpickingLevel);
+        Assert.Equal(2, actual.Properties.HeistDemolitionLevel);
+        Assert.Equal(5, actual.Properties.HeistAgilityLevel);
+    }
+
+    [Fact]
+    public void HeistContract()
+    {
+        var actual = parser.ParseItem(@"Item Class: Contracts
+Rarity: Normal
+Contract: Records Office
+--------
+Client: Marcine Clavus
+Heist Target: Enigmatic Assembly C5 (Moderate Value)
+Area Level: 83
+Requires Counter-Thaumaturgy (Level 5 (unmet))
+--------
+Item Level: 84
+--------
+""I have spent my family's entire fortune in the pursuit of this device.
+Assembling it and turning it on is all I have left.""
+--------
+Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.
+");
+
+        Assert.Equal(ItemClass.HeistContract, actual.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal(HeistObjectiveValue.Moderate, actual.Properties.HeistObjectiveValue);
+        Assert.Equal(5, actual.Properties.HeistCounterThaumaturgyLevel);
+    }
+
 }

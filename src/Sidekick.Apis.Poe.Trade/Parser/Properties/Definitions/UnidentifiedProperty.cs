@@ -20,24 +20,17 @@ public class UnidentifiedProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.ItemClass) &&
-            !ItemClassConstants.Areas.Contains(item.ItemClass)) return;
-
         item.Properties.Unidentified = GetBool(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.ItemClass) &&
-            !ItemClassConstants.Areas.Contains(item.ItemClass)) return Task.FromResult<TradeFilter?>(null);
+        if (!item.ItemClass.IsEquipment() &&
+            !item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsAccessory() &&
+            !item.ItemClass.IsFlask() &&
+            !item.ItemClass.IsArea() &&
+            !item.ItemClass.IsJewel()) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new UnidentifiedFilter
         {

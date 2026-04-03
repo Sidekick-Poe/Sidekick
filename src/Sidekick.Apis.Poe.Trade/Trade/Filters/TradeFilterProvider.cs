@@ -35,6 +35,7 @@ public class TradeFilterProvider
     public RawTradeFilterCategory? TradeCategory => GetApiFilterCategory("trade_filters");
     public RawTradeFilterCategory? EndgameCategory => GetApiFilterCategory("map_filters");
     public RawTradeFilterCategory? MapCategory => GetApiFilterCategory("map_filters");
+    public RawTradeFilterCategory? HeistCategory => GetApiFilterCategory("heist_filters");
 
     private List<RawTradeFilterCategory> Filters { get; set; } = [];
 

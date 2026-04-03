@@ -48,4 +48,9 @@ public class SearchFilters
 
     public MapFilterGroup GetOrCreateMapFilters() => MapFilters ??= new();
 
+    [JsonPropertyName("heist_filters")]
+    public HeistFilterGroup? HeistFilters { get; set; }
+
+    public HeistFilterGroup GetOrCreateHeistFilters() => HeistFilters ??= new();
+
 }

@@ -25,6 +25,10 @@ public class SplitProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
+        if (!item.ItemClass.IsEquipment() &&
+            !item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsAccessory()) return Task.FromResult<TradeFilter?>(null);
+
         var filter = new SplitFilter
         {
             Text = Label,

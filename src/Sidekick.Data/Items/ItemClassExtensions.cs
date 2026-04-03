@@ -1,9 +1,9 @@
 using Sidekick.Data.ItemDefinitions;
 namespace Sidekick.Data.Items;
 
-public static class ItemClassConstants
+public static class ItemClassExtensions
 {
-    public static readonly ItemClass[] Equipment =
+    private static readonly ItemClass[] Equipment =
     [
         ItemClass.BodyArmour,
         ItemClass.Boots,
@@ -15,7 +15,9 @@ public static class ItemClassConstants
         ItemClass.Buckler,
     ];
 
-    public static readonly ItemClass[] Weapons =
+    public static bool IsEquipment(this ItemClass value) => Equipment.Contains(value);
+
+    private static readonly ItemClass[] Weapons =
     [
         ItemClass.Bow,
         ItemClass.Crossbow,
@@ -36,7 +38,9 @@ public static class ItemClassConstants
         ItemClass.Spear,
     ];
 
-    public static readonly ItemClass[] Accessories =
+    public static bool IsWeapon(this ItemClass value) => Weapons.Contains(value);
+
+    private static readonly ItemClass[] Accessories =
     [
         ItemClass.Amulet,
         ItemClass.Belt,
@@ -44,13 +48,17 @@ public static class ItemClassConstants
         ItemClass.Trinket,
     ];
 
-    public static readonly ItemClass[] Jewels =
+    public static bool IsAccessory(this ItemClass value) => Accessories.Contains(value);
+
+    private static readonly ItemClass[] Jewels =
     [
         ItemClass.Jewel,
         ItemClass.AbyssJewel,
     ];
 
-    public static readonly ItemClass[] Flasks =
+    public static bool IsJewel(this ItemClass value) => Jewels.Contains(value);
+
+    private static readonly ItemClass[] Flasks =
     [
         ItemClass.Flask,
         ItemClass.LifeFlask,
@@ -59,7 +67,9 @@ public static class ItemClassConstants
         ItemClass.Charms,
     ];
 
-    public static readonly ItemClass[] Areas =
+    public static bool IsFlask(this ItemClass value) => Flasks.Contains(value);
+
+    private static readonly ItemClass[] Areas =
     [
         ItemClass.HeistBlueprint,
         ItemClass.HeistContract,
@@ -70,7 +80,9 @@ public static class ItemClassConstants
         ItemClass.Ultimatum,
     ];
 
-    public static readonly ItemClass[] WithStats =
+    public static bool IsArea(this ItemClass value) => Areas.Contains(value);
+
+    private static readonly ItemClass[] WithStats =
     [
         ..Equipment,
         ..Weapons,
@@ -90,4 +102,6 @@ public static class ItemClassConstants
         ItemClass.SanctumRelic,
         ItemClass.ActiveSkillGem,
     ];
+
+    public static bool CanHaveStats(this ItemClass value) => WithStats.Contains(value);
 }

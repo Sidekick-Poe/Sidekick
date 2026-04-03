@@ -18,7 +18,7 @@ public class RewardProperty(
     ICurrentGameLanguage currentGameLanguage,
     IItemDefinitionParser itemDefinitionParser) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringProperty();
 
     public override string Label => currentGameLanguage.Language.DescriptionReward;
 

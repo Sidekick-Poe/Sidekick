@@ -30,7 +30,7 @@ public class WeaponDamageProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
+        if (!item.ItemClass.IsWeapon()) return;
 
         var propertyBlock = item.Text.Blocks[1];
 

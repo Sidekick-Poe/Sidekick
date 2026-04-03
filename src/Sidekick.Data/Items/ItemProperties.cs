@@ -16,6 +16,8 @@ public class ItemProperties
 
     public bool Fractured { get; set; }
 
+    public bool Desecrated { get; set; }
+
     public int Armour { get; set; }
 
     public int ArmourWithQuality => CalculateValueWithQuality(Armour);
@@ -275,4 +277,40 @@ public class ItemProperties
         if (Sockets == null) return 0;
         return Sockets.Count != 0 ? Sockets.GroupBy(x => x.Group).Max(x => x.Count()) : 0;
     }
+
+    #region Heist
+
+    public int HeistWingsRevealed { get; set; }
+
+    public int HeistWingsTotal { get; set; }
+
+    public int HeistRoutesRevealed { get; set; }
+
+    public int HeistRoutesTotal { get; set; }
+
+    public int HeistRoomsRevealed { get; set; }
+
+    public int HeistRoomsTotal { get; set; }
+
+    public HeistObjectiveValue HeistObjectiveValue { get; set; }
+
+    public int HeistLockpickingLevel { get; set; }
+
+    public int HeistBruteForceLevel { get; set; }
+
+    public int HeistPerceptionLevel { get; set; }
+
+    public int HeistDemolitionLevel { get; set; }
+
+    public int HeistCounterThaumaturgyLevel { get; set; }
+
+    public int HeistTrapDisarmamentLevel { get; set; }
+
+    public int HeistAgilityLevel { get; set; }
+
+    public int HeistDeceptionLevel { get; set; }
+
+    public int HeistEngineeringLevel { get; set; }
+
+    #endregion
 }

@@ -33,8 +33,6 @@ public class Item
 
     public ItemProperties Properties { get; } = new();
 
-    public bool CanHaveStats => ItemClassConstants.WithStats.Contains(ItemClass) || Properties.AreaLevel > 0;
-
     public List<Stat> Stats { get; } = [];
 
     public List<ItemPseudoStat> PseudoStats { get; } = [];

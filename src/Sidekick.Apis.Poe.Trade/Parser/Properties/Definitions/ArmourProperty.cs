@@ -16,7 +16,7 @@ public class ArmourProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionArmour.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionArmour.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionArmour.ToRegexIsAugmented();
 
@@ -24,7 +24,7 @@ public class ArmourProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass)) return;
+        if (!item.ItemClass.IsEquipment()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.Armour = GetInt(Pattern, propertyBlock);

@@ -20,9 +20,9 @@ public class HunterProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
+        if (!item.ItemClass.IsEquipment() &&
+            !item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsAccessory()) return;
 
         item.Properties.Influences.Hunter = GetBool(Pattern, item.Text);
     }

@@ -16,7 +16,7 @@ public class SpiritProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionSpirit.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionSpirit.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionSpirit.ToRegexIsAugmented();
 
@@ -24,8 +24,8 @@ public class SpiritProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.ItemClass) &&
-            !ItemClassConstants.Equipment.Contains(item.ItemClass)) return;
+        if (!item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsEquipment()) return;
 
         if (game == GameType.PathOfExile1) return;
         var propertyBlock = item.Text.Blocks[1];
@@ -38,7 +38,7 @@ public class SpiritProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1 || item.Properties.Spirit <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Spirit <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new SpiritFilter
         {

@@ -26,7 +26,11 @@ public class MirroredProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.CanHaveStats || item.ItemClass == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
+        if (!item.ItemClass.IsEquipment() &&
+            !item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsAccessory()) return Task.FromResult<TradeFilter?>(null);
+
+        if (item.ItemClass == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new MirroredFilter
         {

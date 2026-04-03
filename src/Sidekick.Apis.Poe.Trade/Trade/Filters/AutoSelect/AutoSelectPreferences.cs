@@ -100,6 +100,7 @@ public class AutoSelectPreferences
             AutoSelectConditionType.Spirit => item.Properties.Spirit,
             AutoSelectConditionType.Foulborn => item.Properties.Foulborn,
             AutoSelectConditionType.Fractured => item.Properties.Fractured,
+            AutoSelectConditionType.Desecrated => item.Properties.Desecrated,
             AutoSelectConditionType.Mirrored => item.Properties.Mirrored,
             AutoSelectConditionType.Split => item.Properties.Split,
             AutoSelectConditionType.EvasionRating => item.Properties.EvasionRating,
