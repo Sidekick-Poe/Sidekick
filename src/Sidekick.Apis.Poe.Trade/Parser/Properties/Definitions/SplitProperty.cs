@@ -1,45 +1,42 @@
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
-using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class MirroredProperty(
+public class SplitProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMirrored.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionSplit.ToRegexLine();
 
-    public override string Label => currentGameLanguage.Language.DescriptionMirrored;
+    public override string Label => currentGameLanguage.Language.DescriptionSplit;
 
     public override void Parse(Item item)
     {
-        item.Properties.Mirrored = GetBool(Pattern, item.Text);
+        item.Properties.Split = GetBool(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.CanHaveStats || item.ItemClass == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
-
-        var filter = new MirroredFilter
+        var filter = new SplitFilter
         {
             Text = Label,
-            AutoSelectSettingKey = $"Trade_Filter_{nameof(MirroredProperty)}_{game.GetValueAttribute()}",
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(SplitProperty)}_{game.GetValueAttribute()}",
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
 }
 
-public class MirroredFilter : TriStatePropertyFilter
+public class SplitFilter : TriStatePropertyFilter
 {
-    public MirroredFilter()
+    public SplitFilter()
     {
         DefaultAutoSelect = new AutoSelectPreferences()
         {
@@ -53,7 +50,7 @@ public class MirroredFilter : TriStatePropertyFilter
                     [
                         new()
                         {
-                            Type = AutoSelectConditionType.Mirrored,
+                            Type = AutoSelectConditionType.Split,
                             Comparison = AutoSelectComparisonType.True,
                         },
                     ],
@@ -65,7 +62,7 @@ public class MirroredFilter : TriStatePropertyFilter
                     [
                         new()
                         {
-                            Type = AutoSelectConditionType.Mirrored,
+                            Type = AutoSelectConditionType.Split,
                             Comparison = AutoSelectComparisonType.False,
                         },
                     ],
@@ -81,6 +78,6 @@ public class MirroredFilter : TriStatePropertyFilter
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Mirrored = new SearchFilterOption(this);
+        query.Filters.GetOrCreateMiscFilters().Filters.Split = new SearchFilterOption(this);
     }
 }

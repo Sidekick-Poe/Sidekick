@@ -35,6 +35,7 @@ Fractured Item
         Assert.Equal(ItemClass.Boots, actual.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Iron Greaves", actual.Definition.TradeItem?.Type);
+        Assert.True(actual.Properties.Fractured);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Movement Speed", 10);
     }

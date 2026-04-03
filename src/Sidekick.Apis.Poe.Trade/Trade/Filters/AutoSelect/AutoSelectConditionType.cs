@@ -40,6 +40,14 @@ public enum AutoSelectConditionType
 
     [AutoSelectComparison(AutoSelectComparisonType.True,
                           AutoSelectComparisonType.False)]
+    Split,
+
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
+    Mirrored,
+
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
     Unidentified,
 
     [AutoSelectComparison(AutoSelectComparisonType.Equals,
@@ -53,6 +61,10 @@ public enum AutoSelectConditionType
     [AutoSelectComparison(AutoSelectComparisonType.True,
                           AutoSelectComparisonType.False)]
     Foulborn,
+
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
+    Fractured,
 
     #region Equipment
 

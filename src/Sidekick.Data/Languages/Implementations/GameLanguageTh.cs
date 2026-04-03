@@ -4,13 +4,12 @@ namespace Sidekick.Data.Languages.Implementations;
 public class GameLanguageTh : IGameLanguage
 {
     public string Code => "th";
-    public string Label => "Thai (Unstable)";
+    public string Label => "Thai";
 
     public string PoeTradeBaseUrl => "https://th.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://th.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://th.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://th.pathofexile.com/api/trade2/";
-    public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "ยูนิค";
     public string RarityRare => "แรร์";
@@ -25,6 +24,8 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionQuality => "ค่าคุณภาพ";
     public string DescriptionLevel => "เลเวล";
     public string DescriptionCorrupted => "มีมลทิน";
+    public string DescriptionSplit => "ผ่านการแยก";
+    public string DescriptionMirrored => "ถูกสะท้อน";
     public string DescriptionSockets => "รู";
     public string DescriptionItemLevel => "เลเวลไอเทม";
     public string DescriptionExperience => "ค่าประสบการณ์";
@@ -71,6 +72,22 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionRequiresStr => "Str";
     public string DescriptionRequiresDex => "Dex";
     public string DescriptionRequiresInt => "Int";
+    public string DescriptionHeistWings => "ปีกที่เปิดเผย";
+    public string DescriptionHeistRoutes => "เส้นทางหลบหนีที่เปิดเผย";
+    public string DescriptionHeistRooms => "ห้องของรางวัลที่เปิดเผย";
+    public string DescriptionHeistLockpicking => "ต้องมี สะเดาะกุญแจ (ระดับ #)";
+    public string DescriptionHeistDemolition => "ต้องมี รื้อถอน (ระดับ #)";
+    public string DescriptionHeistAgility => "ต้องมี ความคล่องตัว (ระดับ #)";
+    public string DescriptionHeistCounterThaumaturgy => "ต้องมี โต้มนต์มณี (ระดับ #)";
+    public string DescriptionHeistTrap => "ต้องมี ปลดกับดัก (ระดับ #)";
+    public string DescriptionHeistPerception => "ต้องมี การรับรู้ (ระดับ #)";
+    public string DescriptionHeistBruteForce => "ต้องมี เอากำลังเข้าแลก (ระดับ #)";
+    public string DescriptionHeistDeception => "ต้องมี กลฉ้อฉล (ระดับ #)";
+    public string DescriptionHeistEngineering => "ต้องมี งานช่าง (ระดับ #)";
+    public string DescriptionHeistModerateValue => "มีมูลค่าพอประมาณ";
+    public string DescriptionHeistHighValue => "มีมูลค่าสูง";
+    public string DescriptionHeistPrecious => "มีมูลค่าสูงส่ง";
+    public string DescriptionHeistPriceless => "มีมูลค่าอันมิอาจเทียบ";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";

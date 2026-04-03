@@ -4,13 +4,12 @@ namespace Sidekick.Data.Languages.Implementations;
 public class GameLanguageZh : IGameLanguage
 {
     public string Code => "zh";
-    public string Label => "Traditional Chinese (Unstable)";
+    public string Label => "Traditional Chinese";
 
     public string PoeTradeBaseUrl => "http://www.pathofexile.tw/trade/";
     public string PoeTradeApiBaseUrl => "http://www.pathofexile.tw/api/trade/";
     public string Poe2TradeBaseUrl => "http://www.pathofexile.tw/trade2/";
     public string Poe2TradeApiBaseUrl => "http://www.pathofexile.tw/api/trade2/";
-    public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "傳奇";
     public string RarityRare => "稀有";
@@ -25,6 +24,8 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionQuality => "品質";
     public string DescriptionLevel => "物品等級";
     public string DescriptionCorrupted => "已汙染";
+    public string DescriptionSplit => "";
+    public string DescriptionMirrored => "";
     public string DescriptionSockets => "插槽";
     public string DescriptionItemLevel => "物品等級";
     public string DescriptionExperience => "經驗值";
@@ -71,6 +72,22 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionRequiresStr => "力量";
     public string DescriptionRequiresDex => "敏捷";
     public string DescriptionRequiresInt => "智慧";
+    public string DescriptionHeistWings => "";
+    public string DescriptionHeistRoutes => "";
+    public string DescriptionHeistRooms => "";
+    public string DescriptionHeistLockpicking => "";
+    public string DescriptionHeistDemolition => "";
+    public string DescriptionHeistAgility => "";
+    public string DescriptionHeistCounterThaumaturgy => "";
+    public string DescriptionHeistTrap => "";
+    public string DescriptionHeistPerception => "";
+    public string DescriptionHeistBruteForce => "";
+    public string DescriptionHeistDeception => "";
+    public string DescriptionHeistEngineering => "";
+    public string DescriptionHeistModerateValue => "";
+    public string DescriptionHeistHighValue => "";
+    public string DescriptionHeistPrecious => "";
+    public string DescriptionHeistPriceless => "";
 
     public string AffixSuperior => "精良的";
     public string AffixBlighted => "凋落的";

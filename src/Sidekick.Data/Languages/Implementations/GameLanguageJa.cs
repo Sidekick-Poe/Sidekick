@@ -10,7 +10,6 @@ public class GameLanguageJa : IGameLanguage
     public string PoeTradeApiBaseUrl => "https://jp.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://jp.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://jp.pathofexile.com/api/trade2/";
-    public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "ユニーク";
     public string RarityRare => "レア";
@@ -25,6 +24,8 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionQuality => "品質";
     public string DescriptionLevel => "レベル";
     public string DescriptionCorrupted => "コラプト状態";
+    public string DescriptionSplit => "スプリット";
+    public string DescriptionMirrored => "ミラー状態";
     public string DescriptionSockets => "ソケット";
     public string DescriptionItemLevel => "アイテムレベル";
     public string DescriptionExperience => "経験値";
@@ -71,6 +72,22 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionRequiresStr => "筋力";
     public string DescriptionRequiresDex => "器用さ";
     public string DescriptionRequiresInt => "知性";
+    public string DescriptionHeistWings => "情報を聞いた区画";
+    public string DescriptionHeistRoutes => "情報を聞いた脱出ルート";
+    public string DescriptionHeistRooms => "情報を聞いた報酬部屋";
+    public string DescriptionHeistLockpicking => "必要ジョブ 錠前破り (レベル #)";
+    public string DescriptionHeistDemolition => "必要ジョブ 爆破 (レベル #)";
+    public string DescriptionHeistAgility => "必要ジョブ 敏捷性 (レベル #)";
+    public string DescriptionHeistCounterThaumaturgy => "必要ジョブ 対魔術 (レベル #)";
+    public string DescriptionHeistTrap => "必要ジョブ 罠解除 (レベル #)";
+    public string DescriptionHeistPerception => "必要ジョブ 知覚能力 (レベル #)";
+    public string DescriptionHeistBruteForce => "必要ジョブ 怪力 (レベル #)";
+    public string DescriptionHeistDeception => "必要ジョブ 欺瞞 (レベル #)";
+    public string DescriptionHeistEngineering => "必要ジョブ 工作 (レベル #)";
+    public string DescriptionHeistModerateValue => "中程度な価値";
+    public string DescriptionHeistHighValue => "高価値";
+    public string DescriptionHeistPrecious => "貴重";
+    public string DescriptionHeistPriceless => "プライスレス";
 
     public string AffixSuperior => "上質な";
     public string AffixBlighted => "ブライト";
