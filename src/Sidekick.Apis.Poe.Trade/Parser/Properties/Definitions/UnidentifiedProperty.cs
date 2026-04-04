@@ -25,12 +25,12 @@ public class UnidentifiedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.ItemClass.IsEquipment() &&
-            !item.ItemClass.IsWeapon() &&
-            !item.ItemClass.IsAccessory() &&
-            !item.ItemClass.IsFlask() &&
-            !item.ItemClass.IsArea() &&
-            !item.ItemClass.IsJewel()) return Task.FromResult<TradeFilter?>(null);
+        if (!item.Definition.ItemClass.IsEquipment() &&
+            !item.Definition.ItemClass.IsWeapon() &&
+            !item.Definition.ItemClass.IsAccessory() &&
+            !item.Definition.ItemClass.IsFlask() &&
+            !item.Definition.ItemClass.IsArea() &&
+            !item.Definition.ItemClass.IsJewel()) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new UnidentifiedFilter
         {

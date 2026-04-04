@@ -36,7 +36,7 @@
         Valid |= await CheckScout();
 
         var switchTab = Valid;
-        switchTab &= !Item.ItemClass.IsArea();
+        switchTab &= !Item.Definition.ItemClass.IsArea();
         if (switchTab) await CurrentTabChanged.InvokeAsync("valuation");
 
         await base.OnInitializedAsync();

@@ -21,8 +21,6 @@ public class Item
 
     public GameType Game { get; }
 
-    public ItemClass ItemClass => Definition.BaseItem?.ItemClass?.Type ?? ItemClass.Unknown;
-
     public string? Name { get; set; }
 
     public string? Type { get; set; }

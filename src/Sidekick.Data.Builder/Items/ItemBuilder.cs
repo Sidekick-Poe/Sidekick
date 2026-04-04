@@ -62,8 +62,10 @@ public class ItemBuilder(
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
         var itemClasses = await GetItemClassDefinitions(game, language);
+        var emptyItemClass = new ItemClassDefinition() { Type = ItemClass.Unknown };
+
         var tradeItems = await GetTradeItems(game, language);
-        var baseItems = await GetBaseItems(game, language, itemClasses);
+        var baseItems = await GetBaseItems(game, language);
         var uniqueItems = await GetUniqueItems(game, language, itemClasses);
         var ninjaItems = await ninjaDownloader.GetDefinitions(game);
 
@@ -77,6 +79,7 @@ public class ItemBuilder(
 
             list.Add(new ItemDefinition
             {
+                ItemClass = GetItemClass(tradeItem, baseItem),
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 UniqueItem = uniqueItem,
@@ -108,6 +111,7 @@ public class ItemBuilder(
 
             list.Add(new ItemDefinition
             {
+                ItemClass = GetItemClass(tradeItem, baseItem),
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 NinjaItems = GetNinjaItems(tradeItem, baseItem, null),
@@ -118,6 +122,24 @@ public class ItemBuilder(
         await dataProvider.Write(game, DataType.Items, language, list);
 
         return;
+
+        ItemClassDefinition GetItemClass(TradeItemDefinition? tradeItem, BaseItemDefinition? baseItem)
+        {
+            if (!string.IsNullOrEmpty(baseItem?.ItemClassId) &&
+                itemClasses.TryGetValue(baseItem.ItemClassId, out var baseItemClass)) return baseItemClass;
+
+            if (!string.IsNullOrEmpty(tradeItem?.Category))
+            {
+                var tradeItemClass = tradeItem.Category switch
+                {
+                    "map" => itemClasses.GetValueOrDefault("MapKey"),
+                    _ => null,
+                };
+                if (tradeItemClass != null) return tradeItemClass;
+            }
+
+            return emptyItemClass;
+        }
 
         Regex? GetNamePattern(TradeItemDefinition? tradeItem)
         {
@@ -287,7 +309,7 @@ public class ItemBuilder(
         return result;
     }
 
-    private async Task<List<BaseItemDefinition>> GetBaseItems(GameType game, IGameLanguage language, Dictionary<string, ItemClassDefinition> itemClasses)
+    private async Task<List<BaseItemDefinition>> GetBaseItems(GameType game, IGameLanguage language)
     {
         var repoeBaseItems = await repoeDownloader.ReadBaseItems(game, language.Code);
 
@@ -308,8 +330,8 @@ public class ItemBuilder(
             result.Add(new BaseItemDefinition()
             {
                 Id = repoeBaseItem.Key,
-                ItemClass = repoeBaseItem.Value.ItemClass != null ? itemClasses.GetValueOrDefault(repoeBaseItem.Value.ItemClass) : null,
                 Name = repoeBaseItem.Value.Name,
+                ItemClassId = repoeBaseItem.Value.ItemClass,
                 Requirements = repoeBaseItem.Value.Requirements != null ? new BaseItemRequirements()
                 {
                     Dexterity = repoeBaseItem.Value.Requirements.Dexterity,

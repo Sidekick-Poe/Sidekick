@@ -33,7 +33,7 @@ Adds 8 to 13 Physical Damage to Attacks
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
 
@@ -77,7 +77,7 @@ While Berek slept.""
 - Berek and the Untamed
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.Definition.ItemClass?.Type);
         Assert.False(actual.Properties.Unidentified);
     }
 
@@ -108,7 +108,7 @@ History teaches humility.
 Note: ~b/o 2 chaos
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
         Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
@@ -141,7 +141,7 @@ History teaches humility.
 Note: ~b/o 20 chaos
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
         Assert.Equal("Sapphire Ring", actual.Definition.TradeItem?.Type);
@@ -165,7 +165,7 @@ On the other, you have its twin.
 Mirrored
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Kalandra's Touch", actual.Definition.TradeItem?.Name);
         Assert.Equal("Ring", actual.Definition.TradeItem?.Type);

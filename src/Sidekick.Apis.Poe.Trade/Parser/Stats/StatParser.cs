@@ -61,7 +61,7 @@ public class StatParser
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (!item.ItemClass.CanHaveStats()) return;
+        if (!item.Definition.ItemClass.CanHaveStats()) return;
 
         var stats = MatchStats().ToList();
         item.Stats.Clear();
@@ -269,7 +269,7 @@ public class StatParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (!item.ItemClass.CanHaveStats()) return [];
+        if (!item.Definition.ItemClass.CanHaveStats()) return [];
 
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 

@@ -23,7 +23,7 @@ public class ImbuedGemProperty(
     public override void ParseAfterStats(Item item)
     {
         if (game != GameType.PathOfExile1) return;
-        if (item.ItemClass != ItemClass.ActiveSkillGem) return;
+        if (item.Definition.ItemClass?.Type != ItemClass.ActiveSkillGem) return;
 
         item.Properties.Imbued = item.Stats.Any(x => x.Category == StatCategory.Imbued);
     }
@@ -31,7 +31,7 @@ public class ImbuedGemProperty(
     public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (game != GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
-        if (item.ItemClass != ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
+        if (item.Definition.ItemClass?.Type != ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ImbuedGemFilter
         {

@@ -24,7 +24,7 @@ public class EvasionRatingProperty(
 
     public override void Parse(Item item)
     {
-        if (!item.ItemClass.IsEquipment()) return;
+        if (!item.Definition.ItemClass.IsEquipment()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.EvasionRating = GetInt(Pattern, propertyBlock);

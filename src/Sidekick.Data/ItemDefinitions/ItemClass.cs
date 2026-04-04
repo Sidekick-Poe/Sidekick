@@ -290,4 +290,7 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "ExpeditionLogbook")]
     [ItemClassGameId(GameType.PathOfExile2, "ExpeditionLogbook")]
     ExpeditionLogbook,
+
+    [ItemClassGameId(GameType.PathOfExile1, "ItemisedSanctum")]
+    SanctumResearch,
 }

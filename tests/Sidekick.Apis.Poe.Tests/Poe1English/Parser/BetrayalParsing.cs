@@ -26,7 +26,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 Note: ~b/o .50 chaos
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Rusted Reliquary Scarab", actual.Definition.TradeItem?.Type);
     }

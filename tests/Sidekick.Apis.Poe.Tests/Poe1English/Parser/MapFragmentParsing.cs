@@ -31,7 +31,7 @@ Can be used in a personal Map Device, allowing you to capture the Soul of the Ma
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Divine Vessel", actual.Definition.TradeItem?.Type);
     }
@@ -67,7 +67,7 @@ Can be used in a personal Map Device to open portals to the Temple of Atzoatl in
 Note: ~price 1.29 exalted
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
+        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Chronicle of Atzoatl", actual.Definition.TradeItem?.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
