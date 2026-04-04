@@ -25,7 +25,7 @@ Shift click to unstack.
 Note: ~price .5 chaos
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Simulacrum Splinter", actual.Definition.TradeItem?.Type);
     }
@@ -52,7 +52,7 @@ Place into an allocated Small, Medium or Large Jewel Socket on the Passive Skill
 Note: ~b/o 1 chance
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Small Cluster Jewel", actual.Definition.TradeItem?.Type);
 

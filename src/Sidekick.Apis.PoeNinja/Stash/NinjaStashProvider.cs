@@ -42,7 +42,7 @@ public class NinjaStashProvider(
                                        item.Stats);
         }
 
-        if (item.Properties.MapTier > 0 || item.Definition.ItemClass?.Type == ItemClass.Map)
+        if (item.Properties.MapTier > 0 || item.Definition.ItemClass.Type == ItemClass.Map)
         {
             return await GetMapInfo(item.Invariant.NinjaItems,
                                     item.Invariant.BaseItem?.Name,
@@ -99,7 +99,7 @@ public class NinjaStashProvider(
                                     apiItem.Quality.GetValueOrDefault());
         }
 
-        if (apiItem.MapTier > 0 || item.ItemClass?.Type == ItemClass.Map)
+        if (apiItem.MapTier > 0 || item.ItemClass.Type == ItemClass.Map)
         {
             return await GetMapInfo(item.NinjaItems,
                                     apiItem.Type,

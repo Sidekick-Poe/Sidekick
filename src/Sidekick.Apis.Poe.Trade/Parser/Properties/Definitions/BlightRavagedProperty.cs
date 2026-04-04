@@ -21,7 +21,7 @@ public class BlightRavagedProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Definition.ItemClass?.Type != ItemClass.Map) return;
+        if (item.Definition.ItemClass.Type != ItemClass.Map) return;
 
         item.Properties.BlightRavaged = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
     }

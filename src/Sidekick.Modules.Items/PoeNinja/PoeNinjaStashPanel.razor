@@ -1,9 +1,10 @@
-﻿@using Sidekick.Apis.PoeNinja.Stash
+﻿@using Sidekick.Apis.Poe.Trade.Parser.Properties
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
+@using Sidekick.Apis.PoeNinja.Stash
 @using Sidekick.Data.Languages
 @using Sidekick.Data.Stats
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
-@using Sidekick.Modules.Items.Trade.Localization
 
 <div class="bg-stone-950 rounded-lg px-2 py-1">
     <div class="flex flex-wrap mb-1">
@@ -68,7 +69,7 @@
         if (Stash.Definition.Stash.Corrupted == true)
         {
             <ItemStatText Category="StatCategory.Corrupted"
-                          Class="text-center">@TradeResources["Corrupted"]</ItemStatText>
+                          Class="text-center">@(PropertyParser.GetDefinition<CorruptedProperty>().Label)</ItemStatText>
         }
     }
 
@@ -87,8 +88,8 @@
 </div>
 
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
-@inject IStringLocalizer<TradeResources> TradeResources
 @inject ICurrentGameLanguage CurrentGameLanguage
+@inject IPropertyParser PropertyParser
 
 @code {
 

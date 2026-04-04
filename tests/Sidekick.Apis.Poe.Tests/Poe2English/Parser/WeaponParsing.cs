@@ -29,7 +29,7 @@ Item Level: 60
 +20 to Intelligence
 ");
 
-        Assert.Equal(ItemClass.Staff, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Staff, actual.Definition.ItemClass.Type);
         Assert.Equal("Ashen Staff", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(60, actual.Properties.ItemLevel);
@@ -71,7 +71,7 @@ Adds 39 to 75 Cold Damage
 Leeches 4.02% of Physical Damage as Mana
 ");
 
-        Assert.Equal(ItemClass.Bow, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Bow, actual.Definition.ItemClass.Type);
         Assert.Equal("Composite Bow", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(76, actual.Properties.ItemLevel);
@@ -122,7 +122,7 @@ Adds 2 to 91 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
-        Assert.Equal(ItemClass.Crossbow, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Crossbow, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Bleak Crossbow", actual.Definition.TradeItem?.Type);
         Assert.Equal("Blood Core", actual.Name);
@@ -165,7 +165,7 @@ Item Level: 60
 --------
 Leeches 5.82% of Physical Damage as Mana");
 
-        Assert.Equal(ItemClass.Bow, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Bow, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Cultist Bow", actual.Definition.TradeItem?.Type);
 
@@ -194,7 +194,7 @@ Item Level: 70
 Allies in your Presence deal 9 to 13 additional Attack Fire Damage
 ");
 
-        Assert.Equal(ItemClass.Sceptre, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Sceptre, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Rattling Sceptre", actual.Definition.TradeItem?.Type);
         Assert.Equal(66, actual.Properties.RequiresLevel);
@@ -225,7 +225,7 @@ Grants Skill: Spear Throw
 
 ");
 
-        Assert.Equal(ItemClass.Spear, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Spear, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Ironhead Spear", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -265,7 +265,7 @@ Adds 2 to 47 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
-        Assert.Equal(ItemClass.Spear, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Spear, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Forked Spear", actual.Definition.TradeItem?.Type);
         Assert.Equal("Hypnotic Edge", actual.Name);
@@ -321,7 +321,7 @@ Leeches 5.21% of Physical Damage as Life
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Warstaff, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Warstaff, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Slicing Quarterstaff", actual.Definition.TradeItem?.Type);
         Assert.Equal("Kraken Pillar", actual.Name);
@@ -386,7 +386,7 @@ Fractured Item
 --------
 Note: ~price 1 mirror");
 
-        Assert.Equal(ItemClass.Crossbow, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Crossbow, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Siege Crossbow", actual.Definition.TradeItem?.Type);
         Assert.Equal("Dragon Core", actual.Name);
@@ -447,7 +447,7 @@ Item Level: 77
 Gain 19 Mana per enemy killed
 ");
 
-        Assert.Equal(ItemClass.Talisman, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Talisman, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Lumbering Talisman", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Name);

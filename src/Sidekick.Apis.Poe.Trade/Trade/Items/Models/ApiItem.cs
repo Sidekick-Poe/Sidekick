@@ -30,6 +30,8 @@ public class ApiItem
 
     public bool Corrupted { get; set; }
 
+    public bool Split { get; set; }
+
     public bool Mutated { get; set; }
 
     public ApiItemScourged Scourged { get; set; } = new();

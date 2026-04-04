@@ -40,7 +40,7 @@ Split
 Fractured Item
 ");
 
-        Assert.Equal(ItemClass.Belt, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Belt, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Cord Belt", actual.Definition.TradeItem?.Type);
 

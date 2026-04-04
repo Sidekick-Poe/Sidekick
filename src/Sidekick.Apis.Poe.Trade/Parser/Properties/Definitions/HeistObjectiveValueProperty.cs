@@ -25,7 +25,7 @@ public class HeistObjectiveValueProperty(
     {
         if (item.Text.Blocks.Count < 2) return;
         if (game != GameType.PathOfExile1) return;
-        if (item.Definition.ItemClass?.Type != ItemClass.HeistContract) return;
+        if (item.Definition.ItemClass.Type != ItemClass.HeistContract) return;
 
         foreach (var line in item.Text.Blocks[1].Lines)
         {
