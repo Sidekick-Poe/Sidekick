@@ -257,6 +257,12 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile2, "Active Skill Gem")]
     ActiveSkillGem,
 
+    [ItemClassTradeId(GameType.PathOfExile1, "gem.supportgem")]
+    [ItemClassTradeId(GameType.PathOfExile2, "gem.supportgem")]
+    [ItemClassGameId(GameType.PathOfExile1, "Support Skill Gem")]
+    [ItemClassGameId(GameType.PathOfExile2, "Support Skill Gem")]
+    SupportSkillGem,
+
     [ItemClassTradeId(GameType.PathOfExile1, "heistmission.contract")]
     [ItemClassGameId(GameType.PathOfExile1, "HeistContract")]
     HeistContract,
