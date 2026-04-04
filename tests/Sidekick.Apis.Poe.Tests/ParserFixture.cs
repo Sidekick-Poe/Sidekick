@@ -11,6 +11,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -116,6 +117,33 @@ public abstract class ParserFixture : IAsyncLifetime
             logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
             await service.Initialize();
         }
+    }
+
+    public async Task<List<TradeFilter>> GetPropertyFilters(Item item)
+    {
+        var filters = await PropertyParser.GetFilters(item);
+        return TrimFilters(filters);
+    }
+
+    private List<TradeFilter> TrimFilters(List<TradeFilter> filters)
+    {
+        var results = new List<TradeFilter>();
+        foreach (var filter in filters)
+        {
+            switch (filter)
+            {
+                case SeparatorFilter:
+                    continue;
+                case ExpandableFilter expandableFilter:
+                    results.AddRange(TrimFilters(expandableFilter.Filters));
+                    continue;
+                default:
+                    results.Add(filter);
+                    break;
+            }
+        }
+
+        return results;
     }
 
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)

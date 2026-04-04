@@ -5357,13 +5357,13 @@
       },
       "tradeItem": {
         "$id": "717",
-        "text": "Emblema del precursor Anillo de zafiro",
+        "text": "Emblema del precursor Anillo de topacio",
         "name": "Emblema del precursor",
-        "type": "Anillo de zafiro",
+        "type": "Anillo de topacio",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "226"
+        "$ref": "223"
       },
       "uniqueItem": {
         "$id": "718",
@@ -5383,13 +5383,13 @@
       },
       "tradeItem": {
         "$id": "720",
-        "text": "Emblema del precursor Anillo de topacio",
+        "text": "Emblema del precursor Anillo de zafiro",
         "name": "Emblema del precursor",
-        "type": "Anillo de topacio",
+        "type": "Anillo de zafiro",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "223"
+        "$ref": "226"
       },
       "uniqueItem": {
         "$ref": "718"
@@ -67722,6 +67722,7 @@
       "itemClass": {
         "$id": "10350",
         "id": "Support Skill Gem",
+        "type": "supportSkillGem",
         "name": "Gemas de asistencia "
       },
       "tradeItem": {

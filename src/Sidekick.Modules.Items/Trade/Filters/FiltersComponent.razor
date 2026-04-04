@@ -58,36 +58,32 @@
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
 
-        CleanUpSeparatorFilters(Filters);
-        TradeService.Clear();
-
-        await base.OnParametersSetAsync();
-    }
-
-    private static void CleanUpSeparatorFilters(List<TradeFilter> results)
-    {
         // Remove leading SeparatorProperty filters
-        while (results.Count > 0 && results[0] is SeparatorFilter)
+        while (Filters.Count > 0 && Filters[0] is SeparatorFilter)
         {
-            results.RemoveAt(0);
+            Filters.RemoveAt(0);
         }
 
         // Remove trailing SeparatorProperty filters
-        while (results.Count > 0 && results[^1] is SeparatorFilter)
+        while (Filters.Count > 0 && Filters[^1] is SeparatorFilter)
         {
-            results.RemoveAt(results.Count - 1);
+            Filters.RemoveAt(Filters.Count - 1);
         }
 
         // Remove consecutive SeparatorProperty filters
-        for (var i = 1; i < results.Count; i++)
+        for (var i = 1; i < Filters.Count; i++)
         {
-            if (results[i] is not SeparatorFilter || results[i - 1] is not SeparatorFilter)
+            if (Filters[i] is not SeparatorFilter || Filters[i - 1] is not SeparatorFilter)
             {
                 continue;
             }
 
-            results.RemoveAt(i);
-            i--;// Adjust index to recheck current position
+            Filters.RemoveAt(i);
+            i--; // Adjust index to recheck current position
         }
+
+        TradeService.Clear();
+
+        await base.OnParametersSetAsync();
     }
 }

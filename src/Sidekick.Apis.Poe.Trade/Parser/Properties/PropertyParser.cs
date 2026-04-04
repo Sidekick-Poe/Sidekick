@@ -169,6 +169,18 @@ public class PropertyParser
             await filter.Initialize(item, settingsService);
         }
 
+        // Remove leading SeparatorProperty filters
+        while (results.Count > 0 && results[0] is SeparatorFilter)
+        {
+            results.RemoveAt(0);
+        }
+
+        // Remove trailing SeparatorProperty filters
+        while (results.Count > 0 && results[^1] is SeparatorFilter)
+        {
+            results.RemoveAt(results.Count - 1);
+        }
+
         return results;
     }
 }

@@ -96,6 +96,15 @@ public class ItemClassDefinition
     public bool IsArea() => Areas.Contains(Type);
 
     [JsonIgnore]
+    private static readonly ItemClass[] Gems =
+    [
+        ItemClass.ActiveSkillGem,
+        ItemClass.SupportSkillGem,
+    ];
+
+    public bool IsGem() => Gems.Contains(Type);
+
+    [JsonIgnore]
     private static readonly ItemClass[] WithStats =
     [
         ..Equipment,

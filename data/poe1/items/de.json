@@ -5357,13 +5357,13 @@
       },
       "tradeItem": {
         "$id": "717",
-        "text": "Emblem des Wegbereiters Saphirring",
+        "text": "Emblem des Wegbereiters Topasring",
         "name": "Emblem des Wegbereiters",
-        "type": "Saphirring",
+        "type": "Topasring",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "226"
+        "$ref": "223"
       },
       "uniqueItem": {
         "$id": "718",
@@ -5383,13 +5383,13 @@
       },
       "tradeItem": {
         "$id": "720",
-        "text": "Emblem des Wegbereiters Topasring",
+        "text": "Emblem des Wegbereiters Saphirring",
         "name": "Emblem des Wegbereiters",
-        "type": "Topasring",
+        "type": "Saphirring",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "223"
+        "$ref": "226"
       },
       "uniqueItem": {
         "$ref": "718"
@@ -67651,6 +67651,7 @@
       "itemClass": {
         "$id": "10337",
         "id": "Support Skill Gem",
+        "type": "supportSkillGem",
         "name": "Unterst\u00FCtzungsgemmen"
       },
       "tradeItem": {

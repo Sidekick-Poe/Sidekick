@@ -92,7 +92,7 @@ Experience: 1/70
 This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Skill Gem you wish to augment. Right click to remove from a socket.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.SupportSkillGem, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Equal("Arcane Surge Support", actual.Definition.TradeItem?.Type);
     }
