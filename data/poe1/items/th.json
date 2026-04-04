@@ -5357,13 +5357,13 @@
       },
       "tradeItem": {
         "$id": "717",
-        "text": "Precursor\u0027s Emblem Sapphire Ring",
+        "text": "Precursor\u0027s Emblem Topaz Ring",
         "name": "Precursor\u0027s Emblem",
-        "type": "Sapphire Ring",
+        "type": "Topaz Ring",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "226"
+        "$ref": "223"
       },
       "uniqueItem": {
         "$id": "718",
@@ -5383,13 +5383,13 @@
       },
       "tradeItem": {
         "$id": "720",
-        "text": "Precursor\u0027s Emblem Topaz Ring",
+        "text": "Precursor\u0027s Emblem Sapphire Ring",
         "name": "Precursor\u0027s Emblem",
-        "type": "Topaz Ring",
+        "type": "Sapphire Ring",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "223"
+        "$ref": "226"
       },
       "uniqueItem": {
         "$ref": "718"
@@ -67745,6 +67745,7 @@
       "itemClass": {
         "$id": "10354",
         "id": "Support Skill Gem",
+        "type": "supportSkillGem",
         "name": "\u0E2B\u0E34\u0E19\u0E40\u0E2A\u0E23\u0E34\u0E21"
       },
       "tradeItem": {

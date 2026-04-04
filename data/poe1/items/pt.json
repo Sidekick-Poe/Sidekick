@@ -5339,13 +5339,13 @@
       },
       "tradeItem": {
         "$id": "714",
-        "text": "Emplema do Precursor Anel de Safira",
+        "text": "Emplema do Precursor Anel de Top\u00E1zio",
         "name": "Emplema do Precursor",
-        "type": "Anel de Safira",
+        "type": "Anel de Top\u00E1zio",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "223"
+        "$ref": "220"
       },
       "uniqueItem": {
         "$id": "715",
@@ -5365,13 +5365,13 @@
       },
       "tradeItem": {
         "$id": "717",
-        "text": "Emplema do Precursor Anel de Top\u00E1zio",
+        "text": "Emplema do Precursor Anel de Safira",
         "name": "Emplema do Precursor",
-        "type": "Anel de Top\u00E1zio",
+        "type": "Anel de Safira",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "220"
+        "$ref": "223"
       },
       "uniqueItem": {
         "$ref": "715"
@@ -67568,6 +67568,7 @@
       "itemClass": {
         "$id": "10322",
         "id": "Support Skill Gem",
+        "type": "supportSkillGem",
         "name": "Gemas de Suporte"
       },
       "tradeItem": {

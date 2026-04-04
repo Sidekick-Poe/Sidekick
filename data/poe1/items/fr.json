@@ -5357,13 +5357,13 @@
       },
       "tradeItem": {
         "$id": "717",
-        "text": "Embl\u00E8me pr\u00E9historique Bague de saphir",
+        "text": "Embl\u00E8me pr\u00E9historique Bague de topaze",
         "name": "Embl\u00E8me pr\u00E9historique",
-        "type": "Bague de saphir",
+        "type": "Bague de topaze",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "226"
+        "$ref": "223"
       },
       "uniqueItem": {
         "$id": "718",
@@ -5383,13 +5383,13 @@
       },
       "tradeItem": {
         "$id": "720",
-        "text": "Embl\u00E8me pr\u00E9historique Bague de topaze",
+        "text": "Embl\u00E8me pr\u00E9historique Bague de saphir",
         "name": "Embl\u00E8me pr\u00E9historique",
-        "type": "Bague de topaze",
+        "type": "Bague de saphir",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "223"
+        "$ref": "226"
       },
       "uniqueItem": {
         "$ref": "718"
@@ -67724,6 +67724,7 @@
       "itemClass": {
         "$id": "10349",
         "id": "Support Skill Gem",
+        "type": "supportSkillGem",
         "name": "Gemmes de soutien"
       },
       "tradeItem": {

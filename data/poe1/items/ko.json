@@ -5357,13 +5357,13 @@
       },
       "tradeItem": {
         "$id": "717",
-        "text": "\uC120\uB3C4\uC790\uC758 \uC0C1\uC9D5 \uC0AC\uD30C\uC774\uC5B4 \uBC18\uC9C0",
+        "text": "\uC120\uB3C4\uC790\uC758 \uC0C1\uC9D5 \uD1A0\uD30C\uC988 \uBC18\uC9C0",
         "name": "\uC120\uB3C4\uC790\uC758 \uC0C1\uC9D5",
-        "type": "\uC0AC\uD30C\uC774\uC5B4 \uBC18\uC9C0",
+        "type": "\uD1A0\uD30C\uC988 \uBC18\uC9C0",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "226"
+        "$ref": "223"
       },
       "uniqueItem": {
         "$id": "718",
@@ -5383,13 +5383,13 @@
       },
       "tradeItem": {
         "$id": "720",
-        "text": "\uC120\uB3C4\uC790\uC758 \uC0C1\uC9D5 \uD1A0\uD30C\uC988 \uBC18\uC9C0",
+        "text": "\uC120\uB3C4\uC790\uC758 \uC0C1\uC9D5 \uC0AC\uD30C\uC774\uC5B4 \uBC18\uC9C0",
         "name": "\uC120\uB3C4\uC790\uC758 \uC0C1\uC9D5",
-        "type": "\uD1A0\uD30C\uC988 \uBC18\uC9C0",
+        "type": "\uC0AC\uD30C\uC774\uC5B4 \uBC18\uC9C0",
         "category": "accessory"
       },
       "baseItem": {
-        "$ref": "223"
+        "$ref": "226"
       },
       "uniqueItem": {
         "$ref": "718"
@@ -67734,6 +67734,7 @@
       "itemClass": {
         "$id": "10352",
         "id": "Support Skill Gem",
+        "type": "supportSkillGem",
         "name": "\uBCF4\uC870 \uC82C"
       },
       "tradeItem": {
