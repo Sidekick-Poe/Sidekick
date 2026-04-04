@@ -32,7 +32,7 @@ Item Level: 66
 --------
 Right click to drink. Can only hold charges while in belt. Refill at Wells or by killing monsters.");
 
-        Assert.Equal(ItemClass.LifeFlask, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.LifeFlask, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Ultimate Life Flask", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -69,7 +69,7 @@ Used when you become Stunned (implicit)
 Used automatically when condition is met. Can only hold charges while in belt. Refill at Wells or by killing monsters.
 ");
 
-        Assert.Equal(ItemClass.Charms, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Charms, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Stone Charm", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);

@@ -20,7 +20,7 @@ public class ItemDefinition
         }
     }
 
-    public ItemClassDefinition? ItemClass { get; init; }
+    public required ItemClassDefinition ItemClass { get; init; }
 
     public TradeItemDefinition? TradeItem { get; init; }
 

@@ -23,7 +23,7 @@ Stack Size: 1/10
 Publicly, he lived a pious and chaste life of poverty. Privately, tithes and tributes made him and his lascivious company very comfortable indeed.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("The Saint's Treasure", actual.Definition.TradeItem?.Type);
@@ -43,7 +43,7 @@ Shaper Item
 --------
 Though they were a pack of elite combatants, the Emperor's royal guards were not ready to face one of his notorious parties.");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("The Lord of Celebration", actual.Definition.TradeItem?.Type);
@@ -71,7 +71,7 @@ Some gifts are obligations while others are simply opportunities.
 Note: ~price 1 blessed
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass?.Type);
+        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
         Assert.Equal("Boon of Justice", actual.Definition.TradeItem?.Type);
     }
