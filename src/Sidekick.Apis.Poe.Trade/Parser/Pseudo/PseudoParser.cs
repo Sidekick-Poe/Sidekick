@@ -36,7 +36,7 @@ public class PseudoParser
 
     public void Parse(Item item)
     {
-        if (!item.Definition.ItemClass.CanHaveStats()) return;
+        if (!item.ItemClass.CanHaveStats()) return;
 
         item.PseudoStats.Clear();
         foreach (var definition in Definitions)

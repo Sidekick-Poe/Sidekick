@@ -24,7 +24,7 @@ public class AttacksPerSecondProperty(
 
     public override void Parse(Item item)
     {
-        if (!item.Definition.ItemClass.IsWeapon()) return;
+        if (!item.ItemClass.IsWeapon()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.AttacksPerSecond = GetDouble(Pattern, propertyBlock);

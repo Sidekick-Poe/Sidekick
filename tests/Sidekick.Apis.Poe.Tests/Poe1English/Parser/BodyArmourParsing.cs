@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -106,7 +107,7 @@ Unbridled, overwhelming violence.""
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal(ItemClass.BodyArmour, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Daresso's Defiance", actual.Definition.TradeItem?.Name);
         Assert.Equal("Full Dragonscale", actual.Definition.TradeItem?.Type);

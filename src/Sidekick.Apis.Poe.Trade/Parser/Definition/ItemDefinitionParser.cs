@@ -4,6 +4,7 @@ using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Extensions;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
@@ -17,9 +18,10 @@ public class ItemDefinitionParser(
 {
     private Dictionary<string, ItemDefinition> TextDictionary { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
+    private Dictionary<string, ItemClassDefinition> ItemClassDictionary { get; set; } = [];
 
-    public List<ItemDefinition> Definitions { get; private set; } = [];
-    public List<ItemDefinition> InvariantDefinitions { get; private set; } = [];
+    private List<ItemDefinition> Definitions { get; set; } = [];
+    private List<ItemDefinition> InvariantDefinitions { get; set; } = [];
     public List<ItemDefinition> UniqueItems { get; private set; } = [];
 
     public int Priority => 100;
@@ -27,6 +29,9 @@ public class ItemDefinitionParser(
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
+
+        var itemClassDefinitions = await dataProvider.Read<List<ItemClassDefinition>>(game, DataType.ItemClasses, currentGameLanguage.Language);
+        ItemClassDictionary = itemClassDefinitions.ToDictionary(x => x.Id ?? string.Empty, x => x);
 
         Definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.Language);
         InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
@@ -64,13 +69,15 @@ public class ItemDefinitionParser(
     {
         item.Definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name) ?? throw new UnparsableException(item.Text.Text);
         item.Invariant = GetInvariant(item.Definition) ?? throw new UnparsableException(item.Text.Text);
+        item.ItemClass = GetItemClass(item.Definition);
+
         ParseVaalGem();
 
         return;
 
         void ParseVaalGem()
         {
-            var canBeVaalGem = item.Definition.ItemClass.Type == ItemClass.ActiveSkillGem && item.Text.Blocks.Count > 7;
+            var canBeVaalGem = item.ItemClass.Type == ItemClass.ActiveSkillGem && item.Text.Blocks.Count > 7;
             if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
             var vaalGem = GetDefinition(Definitions, item.Text.Blocks[5].Lines[0].Text, item.Properties.Rarity, item.Name);
@@ -85,6 +92,27 @@ public class ItemDefinitionParser(
             if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return definition;
             if (string.IsNullOrEmpty(definition.Key)) return null;
             return InvariantDictionary.GetValueOrDefault(definition.Key);
+        }
+
+        ItemClassDefinition GetItemClass(ItemDefinition definition)
+        {
+            if (!string.IsNullOrEmpty(definition.BaseItem?.ItemClassId) &&
+                ItemClassDictionary.TryGetValue(definition.BaseItem.ItemClassId, out var baseItemClass)) return baseItemClass;
+
+            if (!string.IsNullOrEmpty(definition.TradeItem?.Category))
+            {
+                var tradeItemClass = definition.TradeItem.Category switch
+                {
+                    "map" => ItemClassDictionary.GetValueOrDefault("MapKey"),
+                    _ => null,
+                };
+                if (tradeItemClass != null) return tradeItemClass;
+            }
+
+            return new ItemClassDefinition()
+            {
+                Type = ItemClass.Unknown,
+            };
         }
     }
 

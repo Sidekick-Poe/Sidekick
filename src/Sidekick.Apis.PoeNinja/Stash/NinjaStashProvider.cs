@@ -7,6 +7,7 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Extensions;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -42,7 +43,7 @@ public class NinjaStashProvider(
                                        item.Stats);
         }
 
-        if (item.Properties.MapTier > 0 || item.Definition.ItemClass.Type == ItemClass.Map)
+        if (item.Properties.MapTier > 0 || item.ItemClass.Type == ItemClass.Map)
         {
             return await GetMapInfo(item.Invariant.NinjaItems,
                                     item.Invariant.BaseItem?.Name,
@@ -99,7 +100,7 @@ public class NinjaStashProvider(
                                     apiItem.Quality.GetValueOrDefault());
         }
 
-        if (apiItem.MapTier > 0 || item.ItemClass.Type == ItemClass.Map)
+        if (apiItem.MapTier > 0 || item.TradeItem?.Category == "map")
         {
             return await GetMapInfo(item.NinjaItems,
                                     apiItem.Type,

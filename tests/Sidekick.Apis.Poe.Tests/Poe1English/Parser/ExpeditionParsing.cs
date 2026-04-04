@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -47,7 +48,7 @@ Monsters' skills Chain 2 additional times
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-        Assert.Equal(ItemClass.ExpeditionLogbook, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 
@@ -92,7 +93,7 @@ Monsters Hinder on Hit with Spells
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-        Assert.Equal(ItemClass.ExpeditionLogbook, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 

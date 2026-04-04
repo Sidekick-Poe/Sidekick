@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Xunit;
@@ -40,7 +41,7 @@ Split
 Fractured Item
 ");
 
-        Assert.Equal(ItemClass.Belt, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Belt, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Cord Belt", actual.Definition.TradeItem?.Type);
 

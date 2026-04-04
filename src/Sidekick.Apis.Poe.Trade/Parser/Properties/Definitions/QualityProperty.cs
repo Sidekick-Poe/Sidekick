@@ -35,10 +35,10 @@ public class QualityProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Definition.ItemClass.IsGem() &&
-            !item.Definition.ItemClass.IsEquipment() &&
-            !item.Definition.ItemClass.IsWeapon() &&
-            !item.Definition.ItemClass.IsFlask()) return Task.FromResult<TradeFilter?>(null);
+        if (!item.ItemClass.IsGem() &&
+            !item.ItemClass.IsEquipment() &&
+            !item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsFlask()) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new QualityFilter
         {

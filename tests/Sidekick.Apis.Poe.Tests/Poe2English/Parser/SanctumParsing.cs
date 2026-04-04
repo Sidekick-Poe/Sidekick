@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -26,7 +27,7 @@ Fountains have 6% chance to grant double Sacred Water
 Place this item on the Relic Altar at the start of the Trial of the Sekhemas
 ");
 
-        Assert.Equal(ItemClass.SanctumRelic, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.SanctumRelic, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Urn Relic", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -50,7 +51,7 @@ Item Level: 80
 --------
 Place this item on the Relic Altar at the start of the Trial of the Sekhemas");
 
-        Assert.Equal(ItemClass.SanctumRelic, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.SanctumRelic, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Urn Relic", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);

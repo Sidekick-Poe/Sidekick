@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Xunit;
@@ -25,7 +26,7 @@ Right click this item then left click a rare item to apply it.
 Note: ~b/o 2 blessed
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Chaos Orb", actual.Definition.TradeItem?.Type);
         Assert.Equal("chaos", actual.Definition.TradeItem?.Id);
@@ -47,7 +48,7 @@ Augments a rare item with a new random modifier
 Right click this item then left click a rare item to apply it. Rare items can have up to six random modifiers.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Exalted Orb", actual.Definition.TradeItem?.Type);
         Assert.Equal("exalted", actual.Definition.TradeItem?.Id);
@@ -70,7 +71,7 @@ Shift click to unstack.
 Note: ~price 1 blessed
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Clear Oil", actual.Definition.TradeItem?.Type);
     }
@@ -88,7 +89,7 @@ Can be used at the Horticrafting bench in your hideout.
 Shift click to unstack.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Crystallised Rancour", actual.Definition.TradeItem?.Type);
     }

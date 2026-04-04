@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using Sidekick.Data.ItemClasses;
 namespace Sidekick.Data.ItemDefinitions;
 
 public class ItemDefinition
@@ -19,8 +20,6 @@ public class ItemDefinition
             return key.ToString();
         }
     }
-
-    public required ItemClassDefinition ItemClass { get; init; }
 
     public TradeItemDefinition? TradeItem { get; init; }
 

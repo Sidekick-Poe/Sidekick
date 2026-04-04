@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Xunit;
@@ -28,7 +29,7 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Potent Chaotic Resonator", actual.Definition.TradeItem?.Type);
     }
@@ -52,7 +53,7 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 4 chaos
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Powerful Chaotic Resonator", actual.Definition.TradeItem?.Type);
     }
@@ -72,7 +73,7 @@ No Tagless modifiers
 Place in a Resonator to influence item crafting.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Opulent Fossil", actual.Definition.TradeItem?.Type);
     }

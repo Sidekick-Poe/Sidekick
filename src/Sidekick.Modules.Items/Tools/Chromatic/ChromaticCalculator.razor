@@ -1,4 +1,5 @@
-﻿@using Sidekick.Data.ItemDefinitions
+﻿@using Sidekick.Data.ItemClasses
+@using Sidekick.Data.ItemDefinitions
 @using Sidekick.Data.Items
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Tools.Localization
@@ -98,7 +99,7 @@
 
     protected override void OnInitialized()
     {
-        NumberOfSockets = Item.Definition.ItemClass.Type switch
+        NumberOfSockets = Item.ItemClass.Type switch
         {
             ItemClass.BodyArmour => 6,
             ItemClass.Boots => 4,

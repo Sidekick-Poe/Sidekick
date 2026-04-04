@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -28,7 +29,7 @@ Place this item into the Idol inventory at a Map Device to affect Maps you open.
 --------
 Unmodifiable");
 
-        Assert.Equal(ItemClass.Idol, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Idol, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Minor Idol", actual.Definition.TradeItem?.Type);
@@ -62,7 +63,7 @@ Place this item into the Idol inventory at a Map Device to affect Maps you open.
 Unmodifiable
 ");
 
-        Assert.Equal(ItemClass.Idol, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Idol, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Loved by the Sun", actual.Definition.TradeItem?.Name);
         Assert.Equal("Minor Idol", actual.Definition.TradeItem?.Type);

@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-namespace Sidekick.Data.ItemDefinitions;
+namespace Sidekick.Data.ItemClasses;
 
 public class ItemClassDefinition
 {

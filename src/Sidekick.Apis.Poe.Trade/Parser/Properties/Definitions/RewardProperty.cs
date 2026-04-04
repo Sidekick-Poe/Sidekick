@@ -7,6 +7,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
@@ -24,7 +25,7 @@ public class RewardProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Definition.ItemClass.Type != ItemClass.Map) return;
+        if (item.ItemClass.Type != ItemClass.Map) return;
         if (game == GameType.PathOfExile2) return;
 
         var propertyBlock = item.Text.Blocks[1];

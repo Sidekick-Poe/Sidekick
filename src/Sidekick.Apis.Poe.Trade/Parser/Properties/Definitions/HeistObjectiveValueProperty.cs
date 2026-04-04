@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
@@ -25,7 +26,7 @@ public class HeistObjectiveValueProperty(
     {
         if (item.Text.Blocks.Count < 2) return;
         if (game != GameType.PathOfExile1) return;
-        if (item.Definition.ItemClass.Type != ItemClass.HeistContract) return;
+        if (item.ItemClass.Type != ItemClass.HeistContract) return;
 
         foreach (var line in item.Text.Blocks[1].Lines)
         {

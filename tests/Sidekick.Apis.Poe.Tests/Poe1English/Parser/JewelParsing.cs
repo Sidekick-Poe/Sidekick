@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -94,7 +95,7 @@ Item Level: 85
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Viridian Jewel", actual.Definition.TradeItem?.Type);
     }
@@ -125,7 +126,7 @@ Faith given under false pretenses still carries the same power.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Crimson Jewel", actual.Definition.TradeItem?.Type);
 
@@ -160,7 +161,7 @@ and one by one, they became a part of it.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Prismatic Jewel", actual.Definition.TradeItem?.Type);
 
@@ -196,7 +197,7 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
 Note: ~price 1 alch
 ");
 
-        Assert.Equal(ItemClass.AbyssJewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Hypnotic Eye Jewel", actual.Definition.TradeItem?.Type);
     }
@@ -224,7 +225,7 @@ Minions deal 2 to 53 additional Lightning Damage
 Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.AbyssJewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Ghastly Eye Jewel", actual.Definition.TradeItem?.Type);
 

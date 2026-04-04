@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -32,7 +33,7 @@ Deferring Favours at Ritual Altars in Map costs 25% reduced Tribute
 Can be used in a personal Map Device to add modifiers to a Map.
 ");
 
-        Assert.Equal(ItemClass.Tablet, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Tablet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Ritual Precursor Tablet", actual.Definition.TradeItem?.Type);
 
