@@ -91,7 +91,7 @@ public class AutoSelectPreferences
             AutoSelectConditionType.AttacksPerSecond => item.Properties.AttacksPerSecond,
             AutoSelectConditionType.Blighted => item.Properties.Blighted,
             AutoSelectConditionType.BlightRavaged => item.Properties.BlightRavaged,
-            AutoSelectConditionType.ItemClass => item.Definition.ItemClass.Type,
+            AutoSelectConditionType.ItemClass => item.ItemClass.Type,
             AutoSelectConditionType.ItemLevel => item.Properties.ItemLevel,
             AutoSelectConditionType.Quality => item.Properties.Quality,
             AutoSelectConditionType.Rarity => item.Properties.Rarity,

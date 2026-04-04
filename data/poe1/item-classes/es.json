@@ -1,0 +1,555 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "id": "LifeFlask",
+      "type": "flask",
+      "name": "Frascos de vida"
+    },
+    {
+      "$id": "3",
+      "id": "ManaFlask",
+      "type": "flask",
+      "name": "Frascos de man\u00E1"
+    },
+    {
+      "$id": "4",
+      "id": "HybridFlask",
+      "type": "flask",
+      "name": "Frascos h\u00EDbridos"
+    },
+    {
+      "$id": "5",
+      "id": "Currency",
+      "name": "Objetos monetarios"
+    },
+    {
+      "$id": "6",
+      "id": "Amulet",
+      "type": "amulet",
+      "name": "Amuletos"
+    },
+    {
+      "$id": "7",
+      "id": "Ring",
+      "type": "ring",
+      "name": "Anillos"
+    },
+    {
+      "$id": "8",
+      "id": "Claw",
+      "type": "claw",
+      "name": "Garras"
+    },
+    {
+      "$id": "9",
+      "id": "Dagger",
+      "type": "dagger",
+      "name": "Dagas"
+    },
+    {
+      "$id": "10",
+      "id": "Wand",
+      "type": "wand",
+      "name": "Varitas"
+    },
+    {
+      "$id": "11",
+      "id": "One Hand Sword",
+      "type": "oneHandSword",
+      "name": "Espadas a una mano"
+    },
+    {
+      "$id": "12",
+      "id": "Thrusting One Hand Sword",
+      "type": "oneHandSword",
+      "name": "Espadas agresivas a una mano"
+    },
+    {
+      "$id": "13",
+      "id": "One Hand Axe",
+      "type": "oneHandAxe",
+      "name": "Hachas a una mano"
+    },
+    {
+      "$id": "14",
+      "id": "One Hand Mace",
+      "type": "oneHandMace",
+      "name": "Mazas a una mano"
+    },
+    {
+      "$id": "15",
+      "id": "Bow",
+      "type": "bow",
+      "name": "Arcos"
+    },
+    {
+      "$id": "16",
+      "id": "Staff",
+      "type": "staff",
+      "name": "B\u00E1culos"
+    },
+    {
+      "$id": "17",
+      "id": "Two Hand Sword",
+      "type": "twoHandSword",
+      "name": "Espadas a dos manos"
+    },
+    {
+      "$id": "18",
+      "id": "Two Hand Axe",
+      "type": "twoHandAxe",
+      "name": "Hachas a dos manos"
+    },
+    {
+      "$id": "19",
+      "id": "Two Hand Mace",
+      "type": "twoHandMace",
+      "name": "Mazas a dos manos"
+    },
+    {
+      "$id": "20",
+      "id": "Active Skill Gem",
+      "type": "activeSkillGem",
+      "name": "Gemas de habilidad"
+    },
+    {
+      "$id": "21",
+      "id": "Support Skill Gem",
+      "type": "supportSkillGem",
+      "name": "Gemas de asistencia "
+    },
+    {
+      "$id": "22",
+      "id": "Quiver",
+      "type": "quiver",
+      "name": "Carcajes"
+    },
+    {
+      "$id": "23",
+      "id": "Belt",
+      "type": "belt",
+      "name": "Cinturones"
+    },
+    {
+      "$id": "24",
+      "id": "Gloves",
+      "type": "gloves",
+      "name": "Guantes"
+    },
+    {
+      "$id": "25",
+      "id": "Boots",
+      "type": "boots",
+      "name": "Botas"
+    },
+    {
+      "$id": "26",
+      "id": "Body Armour",
+      "type": "bodyArmour",
+      "name": "Armaduras corporales"
+    },
+    {
+      "$id": "27",
+      "id": "Helmet",
+      "type": "helmet",
+      "name": "Cascos"
+    },
+    {
+      "$id": "28",
+      "id": "Shield",
+      "type": "shield",
+      "name": "Escudos"
+    },
+    {
+      "$id": "29",
+      "id": "SmallRelic",
+      "type": "sanctumRelic",
+      "name": "Reliquias peque\u00F1as"
+    },
+    {
+      "$id": "30",
+      "id": "MediumRelic",
+      "type": "sanctumRelic",
+      "name": "Reliquias medianas"
+    },
+    {
+      "$id": "31",
+      "id": "LargeRelic",
+      "type": "sanctumRelic",
+      "name": "Reliquias grandes"
+    },
+    {
+      "$id": "32",
+      "id": "StackableCurrency",
+      "name": "Objetos monetarios apilables"
+    },
+    {
+      "$id": "33",
+      "id": "QuestItem",
+      "name": "Objetos de misiones"
+    },
+    {
+      "$id": "34",
+      "id": "Sceptre",
+      "type": "sceptre",
+      "name": "Cetros"
+    },
+    {
+      "$id": "35",
+      "id": "UtilityFlask",
+      "type": "flask",
+      "name": "Frascos de utilidad"
+    },
+    {
+      "$id": "36",
+      "id": "UtilityFlaskCritical",
+      "name": "Frascos de utilidad cr\u00EDtica"
+    },
+    {
+      "$id": "37",
+      "id": "Map",
+      "type": "map",
+      "name": "Mapas"
+    },
+    {
+      "$id": "38",
+      "id": "Unarmed",
+      "name": ""
+    },
+    {
+      "$id": "39",
+      "id": "FishingRod",
+      "type": "fishingRod",
+      "name": "Ca\u00F1as de pescar"
+    },
+    {
+      "$id": "40",
+      "id": "MapFragment",
+      "name": "Fragmentos de mapa"
+    },
+    {
+      "$id": "41",
+      "id": "HideoutDoodad",
+      "name": "Objetos de la guarida"
+    },
+    {
+      "$id": "42",
+      "id": "Microtransaction",
+      "name": "Microtransacciones"
+    },
+    {
+      "$id": "43",
+      "id": "Jewel",
+      "type": "jewel",
+      "name": "Joyas"
+    },
+    {
+      "$id": "44",
+      "id": "DivinationCard",
+      "name": "Cartas de adivinaci\u00F3n"
+    },
+    {
+      "$id": "45",
+      "id": "LabyrinthItem",
+      "name": "Objetos del Laberinto"
+    },
+    {
+      "$id": "46",
+      "id": "LabyrinthTrinket",
+      "name": "Abalorios del Laberinto"
+    },
+    {
+      "$id": "47",
+      "id": "LabyrinthMapItem",
+      "name": "Objetos de mapa del Laberinto"
+    },
+    {
+      "$id": "48",
+      "id": "MiscMapItem",
+      "name": "Objetos miscel\u00E1neos de mapa"
+    },
+    {
+      "$id": "49",
+      "id": "Leaguestone",
+      "name": "Piedras de liga"
+    },
+    {
+      "$id": "50",
+      "id": "PantheonSoul",
+      "name": "Almas del Pante\u00F3n"
+    },
+    {
+      "$id": "51",
+      "id": "UniqueFragment",
+      "name": "Fragmentos"
+    },
+    {
+      "$id": "52",
+      "id": "AbyssJewel",
+      "type": "abyssJewel",
+      "name": "Joyas de abismo"
+    },
+    {
+      "$id": "53",
+      "id": "IncursionItem",
+      "name": "Objetos de Incursi\u00F3n"
+    },
+    {
+      "$id": "54",
+      "id": "DelveSocketableCurrency",
+      "name": "Objetos monetarios engarzables de Delve"
+    },
+    {
+      "$id": "55",
+      "id": "Incubator",
+      "name": "Incubadoras"
+    },
+    {
+      "$id": "56",
+      "id": "UniqueShard",
+      "name": "Esquirlas"
+    },
+    {
+      "$id": "57",
+      "id": "UniqueShardBase",
+      "name": "Corazones de esquirla"
+    },
+    {
+      "$id": "58",
+      "id": "Rune Dagger",
+      "type": "dagger",
+      "name": "Dagas r\u00FAnicas"
+    },
+    {
+      "$id": "59",
+      "id": "Warstaff",
+      "type": "warstaff",
+      "name": "B\u00E1culos de guerra"
+    },
+    {
+      "$id": "60",
+      "id": "DelveStackableSocketableCurrency",
+      "name": "Objetos monetarios apilables y engarzables de Delve"
+    },
+    {
+      "$id": "61",
+      "id": "AtlasUpgradeItem",
+      "name": "Objetos de mejora del Atlas"
+    },
+    {
+      "$id": "62",
+      "id": "MetamorphosisDNA",
+      "name": "Muestras de metamorfo"
+    },
+    {
+      "$id": "63",
+      "id": "HiddenItem",
+      "name": "Objetos ocultos"
+    },
+    {
+      "$id": "64",
+      "id": "DONOTUSE1",
+      "name": ""
+    },
+    {
+      "$id": "65",
+      "id": "DONOTUSE2",
+      "name": ""
+    },
+    {
+      "$id": "66",
+      "id": "DONOTUSE3",
+      "name": ""
+    },
+    {
+      "$id": "67",
+      "id": "HeistContract",
+      "type": "heistContract",
+      "name": "Contratos"
+    },
+    {
+      "$id": "68",
+      "id": "HeistEquipmentWeapon",
+      "type": "heistEquipmentWeapon",
+      "name": "Accesorio de Heist"
+    },
+    {
+      "$id": "69",
+      "id": "HeistEquipmentTool",
+      "type": "heistEquipmentTool",
+      "name": "Herramientas de Heist"
+    },
+    {
+      "$id": "70",
+      "id": "HeistEquipmentUtility",
+      "type": "heistEquipmentUtility",
+      "name": "Capas de Heist"
+    },
+    {
+      "$id": "71",
+      "id": "HeistEquipmentReward",
+      "type": "heistEquipmentReward",
+      "name": "Broches de Heist"
+    },
+    {
+      "$id": "72",
+      "id": "HeistBlueprint",
+      "type": "heistBlueprint",
+      "name": "Planos"
+    },
+    {
+      "$id": "73",
+      "id": "Trinket",
+      "type": "trinket",
+      "name": "Abalorios"
+    },
+    {
+      "$id": "74",
+      "id": "HeistObjective",
+      "type": "heistObjective",
+      "name": "Objetivos de Heist"
+    },
+    {
+      "$id": "75",
+      "id": "ExpeditionLogbook",
+      "type": "expeditionLogbook",
+      "name": "Registros de expedici\u00F3n"
+    },
+    {
+      "$id": "76",
+      "id": "IncubatorStackable",
+      "name": "Incubadoras"
+    },
+    {
+      "$id": "77",
+      "id": "ArchnemesisMod",
+      "name": "Mods. de Archnemesis"
+    },
+    {
+      "$id": "78",
+      "id": "DONOTUSE4",
+      "name": ""
+    },
+    {
+      "$id": "79",
+      "id": "DONOTUSE5",
+      "name": ""
+    },
+    {
+      "$id": "80",
+      "id": "DONOTUSE6",
+      "name": ""
+    },
+    {
+      "$id": "81",
+      "id": "DONOTUSE7",
+      "name": ""
+    },
+    {
+      "$id": "82",
+      "id": "InstanceLocalItem",
+      "type": "map",
+      "name": "Objetos locales de instancia"
+    },
+    {
+      "$id": "83",
+      "id": "SentinelDrone",
+      "name": "Centinelas"
+    },
+    {
+      "$id": "84",
+      "id": "MemoryLine",
+      "name": "Recuerdos"
+    },
+    {
+      "$id": "85",
+      "id": "Relic",
+      "type": "sanctumRelic",
+      "name": "Reliquias"
+    },
+    {
+      "$id": "86",
+      "id": "SanctumSpecialRelic",
+      "type": "sanctumRelic",
+      "name": "Reliquias santificadas"
+    },
+    {
+      "$id": "87",
+      "id": "Breachstone",
+      "name": "Piedras de fisura"
+    },
+    {
+      "$id": "88",
+      "id": "GiftBox",
+      "name": ""
+    },
+    {
+      "$id": "89",
+      "id": "VaultKey",
+      "name": "Llaves de b\u00F3vedas"
+    },
+    {
+      "$id": "90",
+      "id": "ItemisedSanctum",
+      "type": "sanctumResearch",
+      "name": "Investigaci\u00F3n del santuario"
+    },
+    {
+      "$id": "91",
+      "id": "Tincture",
+      "type": "tincture",
+      "name": "Tinturas"
+    },
+    {
+      "$id": "92",
+      "id": "ItemisedCorpse",
+      "name": "Cad\u00E1veres"
+    },
+    {
+      "$id": "93",
+      "id": "AnimalCharm",
+      "type": "charms",
+      "name": "Colgantes"
+    },
+    {
+      "$id": "94",
+      "id": "NecropolisPack",
+      "name": "Brasas de la Llama eterna"
+    },
+    {
+      "$id": "95",
+      "id": "Gold",
+      "name": "Oro"
+    },
+    {
+      "$id": "96",
+      "id": "AtlasRelic",
+      "type": "idol",
+      "name": "\u00CDdolos"
+    },
+    {
+      "$id": "97",
+      "id": "DONOTUSE8",
+      "name": ""
+    },
+    {
+      "$id": "98",
+      "id": "BrequelFruit",
+      "name": "Regalos del vientre"
+    },
+    {
+      "$id": "99",
+      "id": "MapKey",
+      "type": "map",
+      "name": "Mapas"
+    },
+    {
+      "$id": "100",
+      "id": "RemovedItem",
+      "type": "removedItem",
+      "name": ""
+    }
+  ]
+}

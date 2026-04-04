@@ -9,10 +9,10 @@ using Sidekick.Data.Builder.Repoe.Models.Items;
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
-namespace Sidekick.Data.Builder.Items;
+namespace Sidekick.Data.Builder.ItemDefinitions;
 
-public class ItemBuilder(
-    ILogger<ItemBuilder> logger,
+public class ItemDefinitionBuilder(
+    ILogger<ItemDefinitionBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
     IGameLanguageProvider gameLanguageProvider,
@@ -61,12 +61,9 @@ public class ItemBuilder(
 
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        var itemClasses = await GetItemClassDefinitions(game, language);
-        var emptyItemClass = new ItemClassDefinition() { Type = ItemClass.Unknown };
-
         var tradeItems = await GetTradeItems(game, language);
         var baseItems = await GetBaseItems(game, language);
-        var uniqueItems = await GetUniqueItems(game, language, itemClasses);
+        var uniqueItems = await GetUniqueItems(game, language);
         var ninjaItems = await ninjaDownloader.GetDefinitions(game);
 
         var list = new List<ItemDefinition>();
@@ -79,7 +76,6 @@ public class ItemBuilder(
 
             list.Add(new ItemDefinition
             {
-                ItemClass = GetItemClass(tradeItem, baseItem),
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 UniqueItem = uniqueItem,
@@ -111,7 +107,6 @@ public class ItemBuilder(
 
             list.Add(new ItemDefinition
             {
-                ItemClass = GetItemClass(tradeItem, baseItem),
                 TradeItem = tradeItem,
                 BaseItem = baseItem,
                 NinjaItems = GetNinjaItems(tradeItem, baseItem, null),
@@ -122,24 +117,6 @@ public class ItemBuilder(
         await dataProvider.Write(game, DataType.Items, language, list);
 
         return;
-
-        ItemClassDefinition GetItemClass(TradeItemDefinition? tradeItem, BaseItemDefinition? baseItem)
-        {
-            if (!string.IsNullOrEmpty(baseItem?.ItemClassId) &&
-                itemClasses.TryGetValue(baseItem.ItemClassId, out var baseItemClass)) return baseItemClass;
-
-            if (!string.IsNullOrEmpty(tradeItem?.Category))
-            {
-                var tradeItemClass = tradeItem.Category switch
-                {
-                    "map" => itemClasses.GetValueOrDefault("MapKey"),
-                    _ => null,
-                };
-                if (tradeItemClass != null) return tradeItemClass;
-            }
-
-            return emptyItemClass;
-        }
 
         Regex? GetNamePattern(TradeItemDefinition? tradeItem)
         {
@@ -289,26 +266,6 @@ public class ItemBuilder(
         return result;
     }
 
-    private async Task<Dictionary<string, ItemClassDefinition>> GetItemClassDefinitions(GameType game, IGameLanguage language)
-    {
-        var raw = await repoeDownloader.ReadItemClasses(game, language.Code);
-        var result = new Dictionary<string, ItemClassDefinition>();
-
-        foreach (var entry in raw)
-        {
-            var definition = new ItemClassDefinition()
-            {
-                Id = entry.Key,
-                Name = entry.Value.Name,
-                Type = EnumExtensions.FindValue<ItemClass>(itemClass => itemClass.FindAttributes<ItemClassGameId>().Any(attr => attr.Id == entry.Key && attr.Game == game)),
-            };
-
-            result.Add(definition.Id, definition);
-        }
-
-        return result;
-    }
-
     private async Task<List<BaseItemDefinition>> GetBaseItems(GameType game, IGameLanguage language)
     {
         var repoeBaseItems = await repoeDownloader.ReadBaseItems(game, language.Code);
@@ -369,7 +326,7 @@ public class ItemBuilder(
         }
     }
 
-    private async Task<List<UniqueItemDefinition>> GetUniqueItems(GameType game, IGameLanguage language, Dictionary<string, ItemClassDefinition> itemClasses)
+    private async Task<List<UniqueItemDefinition>> GetUniqueItems(GameType game, IGameLanguage language)
     {
         var repoeUniqueItems = await repoeDownloader.ReadUniques(game, language.Code);
 
@@ -394,7 +351,7 @@ public class ItemBuilder(
             result.Add(new UniqueItemDefinition()
             {
                 Id = repoeUniqueItem.Value.Id,
-                ItemClass = repoeUniqueItem.Value.ItemClass != null ? itemClasses.GetValueOrDefault(repoeUniqueItem.Value.ItemClass) : null,
+                ItemClassId = repoeUniqueItem.Value.ItemClass,
                 Name = repoeUniqueItem.Value.Name,
                 Image = image,
             });

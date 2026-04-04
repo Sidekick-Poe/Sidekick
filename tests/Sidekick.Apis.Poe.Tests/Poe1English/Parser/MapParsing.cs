@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -31,7 +32,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -66,7 +67,7 @@ And of this hidden temple, only legends remain.
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Olmec's Sanctum", actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -113,7 +114,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -144,7 +145,7 @@ Monster Level: 83
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -171,7 +172,7 @@ Monster Level: 83
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -198,7 +199,7 @@ Monster Level: 83
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -225,7 +226,7 @@ Monster Level: 83
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -252,7 +253,7 @@ Monster Level: 83
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -291,7 +292,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Nightmare Map", actual.Definition.TradeItem?.Type);
@@ -344,7 +345,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -393,7 +394,7 @@ Unmodifiable
 Foil (Celestial Amethyst)
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Valdo Map", actual.Definition.TradeItem?.Type);
@@ -423,7 +424,7 @@ Natural inhabitants of this area have been removed (implicit)
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);
@@ -454,7 +455,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Note: ~b/o 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Map", actual.Definition.TradeItem?.Type);

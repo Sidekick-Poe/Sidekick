@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 
@@ -20,9 +21,9 @@ public class ItemClassProperty(
     public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return Task.FromResult<TradeFilter?>(null);
-        if (item.Definition.ItemClass.Type == ItemClass.Unknown) return Task.FromResult<TradeFilter?>(null);
+        if (item.ItemClass.Type == ItemClass.Unknown) return Task.FromResult<TradeFilter?>(null);
 
-        var classLabel = item.Definition.ItemClass.Name;
+        var classLabel = item.ItemClass.Name;
         if (classLabel == null || item.Definition.TradeItem?.Type == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemClassFilter
@@ -58,7 +59,7 @@ public class ItemClassFilter : TradeFilter
 
     private static SearchFilterOption? GetCategoryFilter(Item item)
     {
-        var id = item.Definition.ItemClass.Type.FindAttribute<ItemClassTradeId>(attr => attr.Game == item.Game)?.Id;
+        var id = item.ItemClass.Type.FindAttribute<ItemClassTradeId>(attr => attr.Game == item.Game)?.Id;
         if (string.IsNullOrEmpty(id)) return null;
 
         return new SearchFilterOption(id);

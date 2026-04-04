@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -29,7 +30,7 @@ Damage Penetrates 5% Lightning Resistance
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal("Emerald", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(26, actual.Properties.ItemLevel);
@@ -59,7 +60,7 @@ Notable Passive Skills in Radius also grant 7% increased Stun Buildup with Maces
 --------
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Time-Lost Ruby", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -84,7 +85,7 @@ Item Level: 24
 --------
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Emerald", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
@@ -110,7 +111,7 @@ Item Level: 26
 --------
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
 
-        Assert.Equal(ItemClass.Jewel, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Ruby", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);

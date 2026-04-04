@@ -22,7 +22,7 @@ public class RequiresStrengthProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Definition.ItemClass.IsGem()) return;
+        if (item.ItemClass.IsGem()) return;
 
         var block = item.Text.Blocks.FirstOrDefault(x => x.Type == RawBlockType.Requirements);
         if (block == null) return;

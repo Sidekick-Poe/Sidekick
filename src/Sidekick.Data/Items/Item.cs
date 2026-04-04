@@ -1,3 +1,4 @@
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 namespace Sidekick.Data.Items;
@@ -24,6 +25,8 @@ public class Item
     public string? Name { get; set; }
 
     public string? Type { get; set; }
+
+    public ItemClassDefinition ItemClass { get; set; } = null!;
 
     public ItemDefinition Definition { get; set; } = null!;
 

@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -36,7 +37,7 @@ Item Level: 61
 0.23% of Physical Attack Damage Leeched as Mana
 ");
 
-        Assert.Equal(ItemClass.Gloves, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Gloves, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Assassin's Mitts", actual.Definition.TradeItem?.Type);
         Assert.Equal("Death Nails", actual.Name);
@@ -85,7 +86,7 @@ Cool the head and cool the blade.
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Gloves, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Gloves, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Silk Gloves", actual.Definition.TradeItem?.Type);
         Assert.Equal("Asenath's Gentle Touch", actual.Name);

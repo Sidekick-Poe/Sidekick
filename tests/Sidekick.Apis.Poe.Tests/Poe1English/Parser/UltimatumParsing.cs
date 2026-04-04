@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Xunit;
@@ -24,7 +25,7 @@ Replaces other quality types
 Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Noxious Catalyst", actual.Definition.TradeItem?.Type);
     }

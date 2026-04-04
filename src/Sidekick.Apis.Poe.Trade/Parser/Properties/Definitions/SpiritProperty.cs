@@ -24,8 +24,8 @@ public class SpiritProperty(
 
     public override void Parse(Item item)
     {
-        if (!item.Definition.ItemClass.IsWeapon() &&
-            !item.Definition.ItemClass.IsEquipment()) return;
+        if (!item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsEquipment()) return;
 
         if (game == GameType.PathOfExile1) return;
         var propertyBlock = item.Text.Blocks[1];

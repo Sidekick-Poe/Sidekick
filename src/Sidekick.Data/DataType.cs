@@ -7,6 +7,9 @@ public enum DataType
     [EnumValue("items/{0}.json")]
     Items,
 
+    [EnumValue("item-classes/{0}.json")]
+    ItemClasses,
+
     [EnumValue("stats/{0}.json")]
     Stats,
 

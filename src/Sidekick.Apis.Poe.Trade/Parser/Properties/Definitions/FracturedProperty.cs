@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -27,7 +28,7 @@ public class FracturedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Definition.ItemClass.CanHaveStats() || item.Definition.ItemClass.Type == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
+        if (!item.ItemClass.CanHaveStats() || item.ItemClass.Type == ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FracturedFilter
         {

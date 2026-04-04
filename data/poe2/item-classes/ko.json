@@ -1,0 +1,618 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "id": "LifeFlask",
+      "type": "lifeFlask",
+      "name": "\uC0DD\uBA85\uB825 \uD50C\uB77C\uC2A4\uD06C"
+    },
+    {
+      "$id": "3",
+      "id": "ManaFlask",
+      "type": "manaFlask",
+      "name": "\uB9C8\uB098 \uD50C\uB77C\uC2A4\uD06C"
+    },
+    {
+      "$id": "4",
+      "id": "DONOTUSE5",
+      "name": ""
+    },
+    {
+      "$id": "5",
+      "id": "Currency",
+      "name": "\uD654\uD3D0"
+    },
+    {
+      "$id": "6",
+      "id": "Amulet",
+      "type": "amulet",
+      "name": "\uBAA9\uAC78\uC774"
+    },
+    {
+      "$id": "7",
+      "id": "Ring",
+      "type": "ring",
+      "name": "\uBC18\uC9C0"
+    },
+    {
+      "$id": "8",
+      "id": "Claw",
+      "type": "claw",
+      "name": "\uD074\uB85C"
+    },
+    {
+      "$id": "9",
+      "id": "Dagger",
+      "type": "dagger",
+      "name": "\uB2E8\uAC80"
+    },
+    {
+      "$id": "10",
+      "id": "Wand",
+      "type": "wand",
+      "name": "\uB9C8\uBC95\uBD09"
+    },
+    {
+      "$id": "11",
+      "id": "One Hand Sword",
+      "type": "oneHandSword",
+      "name": "\uD55C\uC190 \uAC80"
+    },
+    {
+      "$id": "12",
+      "id": "DONOTUSE6",
+      "name": ""
+    },
+    {
+      "$id": "13",
+      "id": "One Hand Axe",
+      "type": "oneHandAxe",
+      "name": "\uD55C\uC190 \uB3C4\uB07C"
+    },
+    {
+      "$id": "14",
+      "id": "One Hand Mace",
+      "type": "oneHandMace",
+      "name": "\uD55C\uC190 \uCCA0\uD1F4"
+    },
+    {
+      "$id": "15",
+      "id": "Bow",
+      "type": "bow",
+      "name": "\uD65C"
+    },
+    {
+      "$id": "16",
+      "id": "Staff",
+      "type": "staff",
+      "name": "\uC9C0\uD321\uC774"
+    },
+    {
+      "$id": "17",
+      "id": "Two Hand Sword",
+      "type": "twoHandSword",
+      "name": "\uC591\uC190 \uAC80"
+    },
+    {
+      "$id": "18",
+      "id": "Two Hand Axe",
+      "type": "twoHandAxe",
+      "name": "\uC591\uC190 \uB3C4\uB07C"
+    },
+    {
+      "$id": "19",
+      "id": "Two Hand Mace",
+      "type": "twoHandMace",
+      "name": "\uC591\uC190 \uCCA0\uD1F4"
+    },
+    {
+      "$id": "20",
+      "id": "Active Skill Gem",
+      "type": "activeSkillGem",
+      "name": "\uC2A4\uD0AC \uC82C"
+    },
+    {
+      "$id": "21",
+      "id": "Support Skill Gem",
+      "type": "supportSkillGem",
+      "name": "\uBCF4\uC870 \uC82C"
+    },
+    {
+      "$id": "22",
+      "id": "Quiver",
+      "type": "quiver",
+      "name": "\uD654\uC0B4\uD1B5"
+    },
+    {
+      "$id": "23",
+      "id": "Belt",
+      "type": "belt",
+      "name": "\uD5C8\uB9AC\uB760"
+    },
+    {
+      "$id": "24",
+      "id": "Gloves",
+      "type": "gloves",
+      "name": "\uC7A5\uAC11"
+    },
+    {
+      "$id": "25",
+      "id": "Boots",
+      "type": "boots",
+      "name": "\uC7A5\uD654"
+    },
+    {
+      "$id": "26",
+      "id": "Body Armour",
+      "type": "bodyArmour",
+      "name": "\uAC11\uC637"
+    },
+    {
+      "$id": "27",
+      "id": "Helmet",
+      "type": "helmet",
+      "name": "\uD22C\uAD6C"
+    },
+    {
+      "$id": "28",
+      "id": "Shield",
+      "type": "shield",
+      "name": "\uBC29\uD328"
+    },
+    {
+      "$id": "29",
+      "id": "SmallRelic",
+      "type": "sanctumRelic",
+      "name": "\uC18C\uD615 \uC720\uBB3C"
+    },
+    {
+      "$id": "30",
+      "id": "MediumRelic",
+      "type": "sanctumRelic",
+      "name": "\uC911\uD615 \uC720\uBB3C"
+    },
+    {
+      "$id": "31",
+      "id": "LargeRelic",
+      "type": "sanctumRelic",
+      "name": "\uB300\uD615 \uC720\uBB3C"
+    },
+    {
+      "$id": "32",
+      "id": "StackableCurrency",
+      "name": "\uC911\uCCA9 \uAC00\uB2A5 \uD654\uD3D0"
+    },
+    {
+      "$id": "33",
+      "id": "QuestItem",
+      "name": "\uD018\uC2A4\uD2B8 \uC544\uC774\uD15C"
+    },
+    {
+      "$id": "34",
+      "id": "Sceptre",
+      "type": "sceptre",
+      "name": "\uC149\uD130"
+    },
+    {
+      "$id": "35",
+      "id": "UtilityFlask",
+      "type": "charms",
+      "name": "\uD638\uC2E0\uBD80"
+    },
+    {
+      "$id": "36",
+      "id": "DONOTUSE7",
+      "name": ""
+    },
+    {
+      "$id": "37",
+      "id": "Map",
+      "type": "map",
+      "name": "\uACBD\uB85C\uC11D"
+    },
+    {
+      "$id": "38",
+      "id": "Unarmed",
+      "name": ""
+    },
+    {
+      "$id": "39",
+      "id": "FishingRod",
+      "type": "fishingRod",
+      "name": "\uB09A\uC2EF\uB300"
+    },
+    {
+      "$id": "40",
+      "id": "MapFragment",
+      "name": "\uC9C0\uB3C4 \uC870\uAC01"
+    },
+    {
+      "$id": "41",
+      "id": "HideoutDoodad",
+      "name": "\uC740\uC2E0\uCC98 \uC7A5\uC2DD\uBB3C"
+    },
+    {
+      "$id": "42",
+      "id": "Microtransaction",
+      "name": "\uD3EC\uC778\uD2B8 \uC544\uC774\uD15C"
+    },
+    {
+      "$id": "43",
+      "id": "Jewel",
+      "type": "jewel",
+      "name": "\uC8FC\uC5BC"
+    },
+    {
+      "$id": "44",
+      "id": "DivinationCard",
+      "name": "\uC810\uC220 \uCE74\uB4DC"
+    },
+    {
+      "$id": "45",
+      "id": "DONOTUSE8",
+      "name": ""
+    },
+    {
+      "$id": "46",
+      "id": "DONOTUSE9",
+      "name": ""
+    },
+    {
+      "$id": "47",
+      "id": "DONOTUSE10",
+      "name": ""
+    },
+    {
+      "$id": "48",
+      "id": "MiscMapItem",
+      "name": "\uAE30\uD0C0 \uC9C0\uB3C4 \uC544\uC774\uD15C"
+    },
+    {
+      "$id": "49",
+      "id": "Leaguestone",
+      "name": "\uB9AC\uADF8\uC2A4\uD1A4"
+    },
+    {
+      "$id": "50",
+      "id": "PantheonSoul",
+      "name": "\uD310\uD14C\uC628\uC758 \uC601\uD63C"
+    },
+    {
+      "$id": "51",
+      "id": "UniqueFragment",
+      "name": "\uC870\uAC01"
+    },
+    {
+      "$id": "52",
+      "id": "AbyssJewel",
+      "name": "\uC2EC\uC5F0 \uC8FC\uC5BC"
+    },
+    {
+      "$id": "53",
+      "id": "IncursionItem",
+      "name": "\uAE30\uC2B5 \uC544\uC774\uD15C"
+    },
+    {
+      "$id": "54",
+      "id": "DelveSocketableCurrency",
+      "name": "\uD0D0\uAD11 \uACB0\uD569\uD615 \uD654\uD3D0"
+    },
+    {
+      "$id": "55",
+      "id": "Incubator",
+      "name": "\uC778\uD050\uBCA0\uC774\uD130"
+    },
+    {
+      "$id": "56",
+      "id": "UniqueShard",
+      "name": "\uD30C\uD3B8"
+    },
+    {
+      "$id": "57",
+      "id": "UniqueShardBase",
+      "name": "\uD30C\uD3B8 \uC2EC\uC7A5"
+    },
+    {
+      "$id": "58",
+      "id": "DONOTUSE11",
+      "name": ""
+    },
+    {
+      "$id": "59",
+      "id": "Warstaff",
+      "type": "warstaff",
+      "name": "\uC721\uCC99\uBD09"
+    },
+    {
+      "$id": "60",
+      "id": "DelveStackableSocketableCurrency",
+      "name": "\uD0D0\uAD11 \uC911\uCCA9 \uBC0F \uACB0\uD569\uD615 \uD654\uD3D0"
+    },
+    {
+      "$id": "61",
+      "id": "AtlasUpgradeItem",
+      "name": "\uC544\uD2C0\uB77C\uC2A4 \uC5C5\uADF8\uB808\uC774\uB4DC \uC544\uC774\uD15C"
+    },
+    {
+      "$id": "62",
+      "id": "DONOTUSE4",
+      "name": ""
+    },
+    {
+      "$id": "63",
+      "id": "HiddenItem",
+      "name": "\uC228\uACA8\uC9C4 \uC544\uC774\uD15C"
+    },
+    {
+      "$id": "64",
+      "id": "DONOTUSE1",
+      "name": ""
+    },
+    {
+      "$id": "65",
+      "id": "DONOTUSE2",
+      "name": ""
+    },
+    {
+      "$id": "66",
+      "id": "DONOTUSE3",
+      "name": ""
+    },
+    {
+      "$id": "67",
+      "id": "HeistContract",
+      "name": "\uACC4\uC57D"
+    },
+    {
+      "$id": "68",
+      "id": "HeistEquipmentWeapon",
+      "name": "\uAC15\uD0C8 \uC7A5\uBE44"
+    },
+    {
+      "$id": "69",
+      "id": "HeistEquipmentTool",
+      "name": "\uAC15\uD0C8 \uB3C4\uAD6C"
+    },
+    {
+      "$id": "70",
+      "id": "HeistEquipmentUtility",
+      "name": "\uAC15\uD0C8 \uB9DD\uD1A0"
+    },
+    {
+      "$id": "71",
+      "id": "HeistEquipmentReward",
+      "name": "\uAC15\uD0C8 \uBE0C\uB85C\uCE58"
+    },
+    {
+      "$id": "72",
+      "id": "HeistBlueprint",
+      "name": "\uB3C4\uBA74"
+    },
+    {
+      "$id": "73",
+      "id": "Trinket",
+      "name": "\uC7A5\uC2E0\uAD6C"
+    },
+    {
+      "$id": "74",
+      "id": "HeistObjective",
+      "name": "\uAC15\uD0C8 \uB300\uC0C1"
+    },
+    {
+      "$id": "75",
+      "id": "ExpeditionLogbook",
+      "type": "expeditionLogbook",
+      "name": "\uD0D0\uD5D8 \uC77C\uC9C0"
+    },
+    {
+      "$id": "76",
+      "id": "IncubatorStackable",
+      "name": "\uC778\uD050\uBCA0\uC774\uD130"
+    },
+    {
+      "$id": "77",
+      "id": "ArchnemesisMod",
+      "name": "\uAC15\uC801 \uC18D\uC131"
+    },
+    {
+      "$id": "78",
+      "id": "Meta Skill Gem",
+      "name": ""
+    },
+    {
+      "$id": "79",
+      "id": "Spear",
+      "type": "spear",
+      "name": "\uCC3D"
+    },
+    {
+      "$id": "80",
+      "id": "Crossbow",
+      "type": "crossbow",
+      "name": "\uC1E0\uB1CC"
+    },
+    {
+      "$id": "81",
+      "id": "Focus",
+      "type": "focus",
+      "name": "\uC9D1\uC911\uAD6C"
+    },
+    {
+      "$id": "82",
+      "id": "InstanceLocalItem",
+      "name": "\uC778\uC2A4\uD134\uC2A4 \uD2B9\uC815 \uC544\uC774\uD15C"
+    },
+    {
+      "$id": "83",
+      "id": "SentinelDrone",
+      "name": "\uD30C\uC218\uAFBC"
+    },
+    {
+      "$id": "84",
+      "id": "MemoryLine",
+      "name": "\uAE30\uC5B5"
+    },
+    {
+      "$id": "85",
+      "id": "Flail",
+      "type": "flail",
+      "name": "\uB3C4\uB9AC\uAE68"
+    },
+    {
+      "$id": "86",
+      "id": "Relic",
+      "type": "sanctumRelic",
+      "name": "\uC720\uBB3C"
+    },
+    {
+      "$id": "87",
+      "id": "SanctumSpecialRelic",
+      "type": "sanctumRelic",
+      "name": "\uCD95\uC131\uB41C \uC720\uBB3C"
+    },
+    {
+      "$id": "88",
+      "id": "Breachstone",
+      "name": "\uADE0\uC5F4\uC11D"
+    },
+    {
+      "$id": "89",
+      "id": "GiftBox",
+      "name": ""
+    },
+    {
+      "$id": "90",
+      "id": "VaultKey",
+      "name": "\uAE08\uACE0\uC2E4 \uC5F4\uC1E0"
+    },
+    {
+      "$id": "91",
+      "id": "ItemisedSanctum",
+      "name": "\uC2DC\uB828 \uC8FC\uD654"
+    },
+    {
+      "$id": "92",
+      "id": "DONOTUSE12",
+      "name": ""
+    },
+    {
+      "$id": "93",
+      "id": "UncutSkillGem_OLD",
+      "name": ""
+    },
+    {
+      "$id": "94",
+      "id": "Buckler",
+      "type": "buckler",
+      "name": "\uBC84\uD074\uB7EC"
+    },
+    {
+      "$id": "95",
+      "id": "Thrown One Hand Axe",
+      "name": ""
+    },
+    {
+      "$id": "96",
+      "id": "Thrown Two Hand Axe",
+      "name": ""
+    },
+    {
+      "$id": "97",
+      "id": "ConventionTreasure",
+      "name": ""
+    },
+    {
+      "$id": "98",
+      "id": "TrapTool",
+      "name": "\uB36B"
+    },
+    {
+      "$id": "99",
+      "id": "Crossbow Attachment REMOVE",
+      "name": ""
+    },
+    {
+      "$id": "100",
+      "id": "SkillGemToken",
+      "name": "\uD654\uD3D0"
+    },
+    {
+      "$id": "101",
+      "id": "Nothing",
+      "name": ""
+    },
+    {
+      "$id": "102",
+      "id": "UltimatumKey",
+      "name": "\uC0C8\uACA8\uC9C4 \uACB0\uC804"
+    },
+    {
+      "$id": "103",
+      "id": "UncutSupportGem_OLD",
+      "name": ""
+    },
+    {
+      "$id": "104",
+      "id": "UncutReservationGem_OLD",
+      "name": ""
+    },
+    {
+      "$id": "105",
+      "id": "Thrown Shield",
+      "name": ""
+    },
+    {
+      "$id": "106",
+      "id": "SoulCore",
+      "name": "\uC99D\uAC15\uBB3C"
+    },
+    {
+      "$id": "107",
+      "id": "TowerAugmentation",
+      "type": "tablet",
+      "name": "\uC11C\uD310"
+    },
+    {
+      "$id": "108",
+      "id": "Omen",
+      "name": "\uC9D5\uC870"
+    },
+    {
+      "$id": "109",
+      "id": "PinnacleKey",
+      "name": "\uCD5C\uC885 \uC5F4\uC1E0"
+    },
+    {
+      "$id": "110",
+      "id": "Talisman",
+      "type": "talisman",
+      "name": "\uBD80\uC801"
+    },
+    {
+      "$id": "111",
+      "id": "UncutSkillGemStackable",
+      "name": "\uBBF8\uAC00\uACF5 \uC2A4\uD0AC \uC82C"
+    },
+    {
+      "$id": "112",
+      "id": "UncutSupportGemStackable",
+      "name": "\uBBF8\uAC00\uACF5 \uBCF4\uC870 \uC82C"
+    },
+    {
+      "$id": "113",
+      "id": "UncutReservationGemStackable",
+      "name": "\uBBF8\uAC00\uACF5 \uC815\uC2E0\uB825 \uC82C"
+    },
+    {
+      "$id": "114",
+      "id": "IncursionArm",
+      "name": "\uCD08\uC6D4\uC758 \uD314"
+    },
+    {
+      "$id": "115",
+      "id": "IncursionLeg",
+      "name": "\uCD08\uC6D4\uC758 \uB2E4\uB9AC"
+    }
+  ]
+}

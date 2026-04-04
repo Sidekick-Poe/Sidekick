@@ -6,8 +6,6 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 
 public interface IItemDefinitionParser : IInitializableService
 {
-    List<ItemDefinition> Definitions { get; }
-
     List<ItemDefinition> UniqueItems { get; }
 
     Dictionary<string, ItemDefinition> InvariantDictionary { get; }

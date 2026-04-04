@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
@@ -32,7 +33,7 @@ Regenerate 1.9 Life per second
 Fractured Item
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Iron Greaves", actual.Definition.TradeItem?.Type);
         Assert.True(actual.Properties.Fractured);
@@ -69,7 +70,7 @@ Triggers Level 20 Death Walk when Equipped
 Even the dead serve the Lightless.
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Bubonic Trail", actual.Definition.TradeItem?.Name);
         Assert.Equal("Murder Boots", actual.Definition.TradeItem?.Type);
@@ -96,7 +97,7 @@ Sockets: B-B B
 Item Level: 83
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal("Sorcerer Boots", actual.Definition.TradeItem?.Type);

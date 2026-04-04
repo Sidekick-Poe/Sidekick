@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Sidekick.Data.Builder.Items;
+using Sidekick.Data.Builder.ItemClasses;
+using Sidekick.Data.Builder.ItemDefinitions;
 using Sidekick.Data.Builder.Leagues;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Pseudo;
@@ -28,7 +29,8 @@ public static class ServiceCollectionExtensions
 
         services.TryAddSingleton<TradeDownloader>();
         services.TryAddSingleton<TradeStatProvider>();
-        services.TryAddSingleton<ItemBuilder>();
+        services.TryAddSingleton<ItemClassBuilder>();
+        services.TryAddSingleton<ItemDefinitionBuilder>();
         services.TryAddSingleton<StatsInvariantBuilder>();
         services.TryAddSingleton<TradeFilterBuilder>();
 

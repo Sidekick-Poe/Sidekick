@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
@@ -40,7 +41,7 @@ Monsters have 35% increased Stun Threshold
 Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal("Waystone (Tier 1)", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(66, actual.Properties.ItemLevel);
@@ -84,7 +85,7 @@ Rare Monsters have 1 additional Modifier
 Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal("Waystone (Tier 13)", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);

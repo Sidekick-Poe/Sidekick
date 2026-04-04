@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Xunit;
@@ -24,7 +25,7 @@ Upgrades a normal item to Magic with one Defence modifier
 Right click this item then left click a normal item to apply it.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Essence of Enhancement", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Definition.TradeItem?.Name);
