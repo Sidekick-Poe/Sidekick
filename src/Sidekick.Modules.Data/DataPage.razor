@@ -27,6 +27,7 @@
             <div class="flex flex-col items-stretch gap-2">
                 <Heading2>Path of Exile 1</Heading2>
                 @RenderDataFiles("Items", PoE1ItemsFiles)
+                @RenderDataFiles("Item Classes", PoE2ItemClassesFiles)
                 @RenderDataFiles("Stats", PoE1StatsFiles)
                 @RenderDataFiles("Pseudo", PoE1PseudoFiles)
                 @RenderDataFiles("Trade", PoE1TradeFiles)
@@ -34,6 +35,7 @@
             <div class="flex flex-col items-stretch gap-2">
                 <Heading2>Path of Exile 2</Heading2>
                 @RenderDataFiles("Items", PoE2ItemsFiles)
+                @RenderDataFiles("Item Classes", PoE2ItemClassesFiles)
                 @RenderDataFiles("Stats", PoE2StatsFiles)
                 @RenderDataFiles("Pseudo", PoE2PseudoFiles)
                 @RenderDataFiles("Trade", PoE2TradeFiles)
@@ -52,11 +54,13 @@
 @code {
 
     private List<DataFile> PoE1ItemsFiles { get; set; } = [];
+    private List<DataFile> PoE1ItemClassesFiles { get; set; } = [];
     private List<DataFile> PoE1StatsFiles { get; set; } = [];
     private List<DataFile> PoE1PseudoFiles { get; set; } = [];
     private List<DataFile> PoE1TradeFiles { get; set; } = [];
 
     private List<DataFile> PoE2ItemsFiles { get; set; } = [];
+    private List<DataFile> PoE2ItemClassesFiles { get; set; } = [];
     private List<DataFile> PoE2StatsFiles { get; set; } = [];
     private List<DataFile> PoE2PseudoFiles { get; set; } = [];
     private List<DataFile> PoE2TradeFiles { get; set; } = [];
@@ -90,11 +94,13 @@
         var files = DataProvider.GetFiles();
 
         PoE1ItemsFiles = GetFiles(files, GameType.PathOfExile1, "items");
+        PoE1ItemClassesFiles = GetFiles(files, GameType.PathOfExile1, "item-classes");
         PoE1StatsFiles = GetFiles(files, GameType.PathOfExile1, "stats");
         PoE1PseudoFiles = GetFiles(files, GameType.PathOfExile1, "pseudo");
         PoE1TradeFiles = GetFiles(files, GameType.PathOfExile1, "trade");
 
         PoE2ItemsFiles = GetFiles(files, GameType.PathOfExile2, "items");
+        PoE2ItemClassesFiles = GetFiles(files, GameType.PathOfExile2, "item-classes");
         PoE2StatsFiles = GetFiles(files, GameType.PathOfExile2, "stats");
         PoE2PseudoFiles = GetFiles(files, GameType.PathOfExile2, "pseudo");
         PoE2TradeFiles = GetFiles(files, GameType.PathOfExile2, "trade");
