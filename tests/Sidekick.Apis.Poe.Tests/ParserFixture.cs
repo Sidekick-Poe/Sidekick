@@ -135,7 +135,7 @@ public abstract class ParserFixture : IAsyncLifetime
                 case SeparatorFilter:
                     continue;
                 case ExpandableFilter expandableFilter:
-                    results.AddRange(expandableFilter.Filters);
+                    results.AddRange(TrimFilters(expandableFilter.Filters));
                     continue;
                 default:
                     results.Add(filter);
