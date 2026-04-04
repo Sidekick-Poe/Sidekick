@@ -17,8 +17,8 @@ public class CriticalHitChanceProperty(
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
-        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
+        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexDoubleProperty()
+        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexDoubleProperty();
 
     private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
         ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
@@ -28,7 +28,7 @@ public class CriticalHitChanceProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
+        if (!item.Definition.ItemClass.IsWeapon()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.CriticalHitChance = GetDouble(Pattern, propertyBlock);

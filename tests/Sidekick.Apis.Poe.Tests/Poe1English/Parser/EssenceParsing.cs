@@ -34,7 +34,7 @@ Shift click to unstack.
 Note: ~price 1 fusing
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Weeping Essence of Anger", actual.Definition.TradeItem?.Type);
     }

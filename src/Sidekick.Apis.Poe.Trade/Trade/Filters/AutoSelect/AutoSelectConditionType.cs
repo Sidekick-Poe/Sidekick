@@ -66,6 +66,10 @@ public enum AutoSelectConditionType
                           AutoSelectComparisonType.False)]
     Fractured,
 
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
+    Desecrated,
+
     #region Equipment
 
     [AutoSelectComparison(AutoSelectComparisonType.Equals,

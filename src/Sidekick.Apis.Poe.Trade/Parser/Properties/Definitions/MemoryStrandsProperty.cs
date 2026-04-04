@@ -16,7 +16,7 @@ public class MemoryStrandsProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMemoryStrands.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMemoryStrands.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionMemoryStrands.ToRegexIsAugmented();
 

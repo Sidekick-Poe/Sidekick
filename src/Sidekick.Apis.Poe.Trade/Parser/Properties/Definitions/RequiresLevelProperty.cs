@@ -14,7 +14,7 @@ public class RequiresLevelProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionLevel.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionLevel.ToRegexIntProperty();
 
     private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*{currentGameLanguage.Language.DescriptionLevel}\s*(\d+)");
 

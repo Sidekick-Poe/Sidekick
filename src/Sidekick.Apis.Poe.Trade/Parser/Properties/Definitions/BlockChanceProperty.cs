@@ -17,8 +17,8 @@ public class BlockChanceProperty(
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIntCapture()
-        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIntCapture();
+        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIntProperty()
+        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
         ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
@@ -28,7 +28,7 @@ public class BlockChanceProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass)) return;
+        if (!item.Definition.ItemClass.IsEquipment()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.BlockChance = GetInt(Pattern, propertyBlock);

@@ -4,11 +4,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public static class RegexExtensions
 {
-    public static Regex ToRegexIntCapture(this string input) => new($@"^{Regex.Escape(input)}:[^\d]*([\d,\.]+)");
+    public static Regex ToRegexIntProperty(this string input) => new($@"^{Regex.Escape(input)}:[^\d]*([\d,\.]+)");
 
-    public static Regex ToRegexDoubleCapture(this string input) => new($@"^{Regex.Escape(input)}:[^\d]*([\d,\.]+)");
+    public static Regex ToRegexDoubleProperty(this string input) => new($@"^{Regex.Escape(input)}:[^\d]*([\d,\.]+)");
 
-    public static Regex ToRegexStringCapture(this string input) => new($"^{Regex.Escape(input)}: *(.+)$");
+    public static Regex ToRegexStringProperty(this string input) => new($"^{Regex.Escape(input)}: *(.+)$");
 
     public static Regex ToRegexIsAugmented(this string input) => new($"^{Regex.Escape(input)}.*\\)$");
 
@@ -24,10 +24,15 @@ public static class RegexExtensions
         return new($"^(?:{superior} )?{input}.*$|^.*{input}$");
     }
 
-    public static Regex ToRegexStartOfLine(this string input) => new($"^{Regex.Escape(input)}.*$");
-
     public static Regex ToRegexEndOfLine(this string input) => new($"^.*{Regex.Escape(input)}$");
 
     public static Regex ToRegexLine(this string input) => new($"^{Regex.Escape(input)}$");
+
+    public static Regex ToRegexHeistLevelCapture(this string input)
+    {
+        input = Regex.Escape(input);
+        input = input.Replace(@"\#", @"([\d,\.]+)(?: \(unmet\))?");
+        return new($@"^{input}$");
+    }
 
 }

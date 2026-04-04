@@ -21,8 +21,6 @@ public class Item
 
     public GameType Game { get; }
 
-    public ItemClass ItemClass => Definition.BaseItem?.ItemClass?.Type ?? ItemClass.Unknown;
-
     public string? Name { get; set; }
 
     public string? Type { get; set; }
@@ -32,8 +30,6 @@ public class Item
     public ItemDefinition Invariant { get; set; } = null!;
 
     public ItemProperties Properties { get; } = new();
-
-    public bool CanHaveStats => ItemClassConstants.WithStats.Contains(ItemClass) || Properties.AreaLevel > 0;
 
     public List<Stat> Stats { get; } = [];
 

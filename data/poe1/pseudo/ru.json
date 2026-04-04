@@ -94,20 +94,20 @@
           },
           {
             "$id": "18",
+            "id": "implicit.stat_4220027924",
+            "text": "\u002B#% to Cold Resistance",
+            "multiplier": 1
+          },
+          {
+            "$id": "19",
             "id": "implicit.stat_1671376347",
             "text": "\u002B#% to Lightning Resistance",
             "multiplier": 1
           },
           {
-            "$id": "19",
+            "$id": "20",
             "id": "implicit.stat_3372524247",
             "text": "\u002B#% to Fire Resistance",
-            "multiplier": 1
-          },
-          {
-            "$id": "20",
-            "id": "implicit.stat_4220027924",
-            "text": "\u002B#% to Cold Resistance",
             "multiplier": 1
           },
           {
@@ -142,14 +142,14 @@
           },
           {
             "$id": "26",
-            "id": "fractured.stat_2915988346",
-            "text": "\u002B#% to Fire and Cold Resistances",
+            "id": "fractured.stat_4277795662",
+            "text": "\u002B#% to Cold and Lightning Resistances",
             "multiplier": 2
           },
           {
             "$id": "27",
-            "id": "fractured.stat_4277795662",
-            "text": "\u002B#% to Cold and Lightning Resistances",
+            "id": "fractured.stat_2915988346",
+            "text": "\u002B#% to Fire and Cold Resistances",
             "multiplier": 2
           },
           {

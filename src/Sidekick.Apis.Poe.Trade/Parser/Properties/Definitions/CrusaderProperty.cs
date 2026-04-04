@@ -20,10 +20,6 @@ public class CrusaderProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
-
         item.Properties.Influences.Crusader = GetBool(Pattern, item.Text);
     }
 

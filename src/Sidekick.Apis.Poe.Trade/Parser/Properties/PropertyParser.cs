@@ -77,6 +77,23 @@ public class PropertyParser
             new BlightedProperty(game, currentGameLanguage),
             new BlightRavagedProperty(game, currentGameLanguage),
 
+            new HeistWingsRevealedProperty(game, currentGameLanguage, serviceProvider),
+            new HeistWingsTotalProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoutesRevealedProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoutesTotalProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoomsRevealedProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoomsTotalProperty(game, currentGameLanguage, serviceProvider),
+            new HeistObjectiveValueProperty(game, currentGameLanguage, serviceProvider),
+            new HeistLockpickingProperty(game, currentGameLanguage, serviceProvider),
+            new HeistDemolitionProperty(game, currentGameLanguage, serviceProvider),
+            new HeistAgilityProperty(game, currentGameLanguage, serviceProvider),
+            new HeistCounterThaumaturgyProperty(game, currentGameLanguage, serviceProvider),
+            new HeistTrapDisarmamentProperty(game, currentGameLanguage, serviceProvider),
+            new HeistPerceptionProperty(game, currentGameLanguage, serviceProvider),
+            new HeistBruteForceProperty(game, currentGameLanguage, serviceProvider),
+            new HeistDeceptionProperty(game, currentGameLanguage, serviceProvider),
+            new HeistEngineeringProperty(game, currentGameLanguage, serviceProvider),
+
             new SeparatorProperty(),
 
             new GemLevelProperty(game, currentGameLanguage),

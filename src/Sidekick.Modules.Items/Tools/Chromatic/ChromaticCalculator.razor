@@ -98,7 +98,7 @@
 
     protected override void OnInitialized()
     {
-        NumberOfSockets = Item.ItemClass switch
+        NumberOfSockets = Item.Definition.ItemClass?.Type switch
         {
             ItemClass.BodyArmour => 6,
             ItemClass.Boots => 4,

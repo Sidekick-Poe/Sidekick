@@ -21,6 +21,7 @@ public interface ITradeFilterProvider : IInitializableService
     RawTradeFilterCategory? MiscellaneousCategory { get; }
     RawTradeFilterCategory? EndgameCategory { get; }
     RawTradeFilterCategory? MapCategory { get; }
+    RawTradeFilterCategory? HeistCategory { get; }
     RawTradeFilter? GetApiFilter(string categoryId, string filterId);
     Task<List<Types.TradeFilter>> GetFilters(Item item);
 }

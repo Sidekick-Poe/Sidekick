@@ -14,12 +14,14 @@ public class AreaLevelProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAreaLevel.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAreaLevel.ToRegexIntProperty();
 
     public override string Label => currentGameLanguage.Language.DescriptionAreaLevel;
 
     public override void Parse(Item item)
     {
+        if (!item.Definition.ItemClass.IsArea()) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.AreaLevel = GetInt(Pattern, propertyBlock);
         if (item.Properties.AreaLevel > 0) propertyBlock.Parsed = true;

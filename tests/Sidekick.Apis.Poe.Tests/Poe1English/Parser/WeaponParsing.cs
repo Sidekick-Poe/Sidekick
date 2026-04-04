@@ -193,7 +193,7 @@ It doesn't matter how well the young swordsman trains.
 All form and finesse are forgotten when blood first hits the ground.
 ");
 
-        Assert.Equal(ItemClass.OneHandSword, actual.ItemClass);
+        Assert.Equal(ItemClass.OneHandSword, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Daresso's Passion", actual.Definition.TradeItem?.Name);
         Assert.Equal("Estoc", actual.Definition.TradeItem?.Type);
@@ -242,7 +242,7 @@ And tore out her heart.
 Note: ~price 40 chaos
 ");
 
-        Assert.Equal(ItemClass.FishingRod, actual.ItemClass);
+        Assert.Equal(ItemClass.FishingRod, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Reefbane", actual.Definition.TradeItem?.Name);
         Assert.Equal("Fishing Rod", actual.Definition.TradeItem?.Type);
@@ -274,7 +274,7 @@ Unidentified
 --------
 Hunter Item");
 
-        Assert.Equal(ItemClass.OneHandMace, actual.ItemClass);
+        Assert.Equal(ItemClass.OneHandMace, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Ornate Mace", actual.Definition.TradeItem?.Type);
         Assert.True(actual.Properties.Influences.Hunter);
@@ -316,7 +316,7 @@ Trigger a Socketed Spell when you Use a Skill, with a 8 second Cooldown (crafted
 Spells Triggered this way have 150% more Cost (crafted)
 ");
 
-        Assert.Equal(ItemClass.OneHandSword, actual.ItemClass);
+        Assert.Equal(ItemClass.OneHandSword, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Apex Rapier", actual.Definition.TradeItem?.Type);
 
@@ -355,7 +355,7 @@ Adds 10 to 175 Lightning Damage
 28% increased Critical Strike Chance
 9% increased Lightning Damage (crafted)");
 
-        Assert.Equal(ItemClass.OneHandSword, actual.ItemClass);
+        Assert.Equal(ItemClass.OneHandSword, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Fancy Foil", actual.Definition.TradeItem?.Type);
 
@@ -400,7 +400,7 @@ Fractured Item
 Note: ~price 30 chaos
 ");
 
-        Assert.Equal(ItemClass.Staff, actual.ItemClass);
+        Assert.Equal(ItemClass.Staff, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Imperial Staff", actual.Definition.TradeItem?.Type);
         Assert.True(actual.Properties.Fractured);
@@ -447,7 +447,7 @@ Fuel my boiling blood
 --------
 Corrupted");
 
-        Assert.Equal(ItemClass.OneHandAxe, actual.ItemClass);
+        Assert.Equal(ItemClass.OneHandAxe, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Decorative Axe", actual.Definition.TradeItem?.Type);
 
@@ -487,7 +487,7 @@ Adds 43 to 86 Cold Damage to Spells
 Shaper Item
 Elder Item");
 
-        Assert.Equal(ItemClass.Wand, actual.ItemClass);
+        Assert.Equal(ItemClass.Wand, actual.Definition.ItemClass?.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Prophecy Wand", actual.Definition.TradeItem?.Type);
 

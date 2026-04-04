@@ -16,7 +16,7 @@ public class QualityPackSizeProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionQualityPackSize.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionQualityPackSize.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionQualityPackSize.ToRegexIsAugmented();
 

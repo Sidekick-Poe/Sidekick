@@ -16,7 +16,7 @@ public class MonsterPackSizeProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMonsterPackSize.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionMonsterPackSize.ToRegexIsAugmented();
 

@@ -20,6 +20,8 @@ public class ItemDefinition
         }
     }
 
+    public ItemClassDefinition? ItemClass { get; init; }
+
     public TradeItemDefinition? TradeItem { get; init; }
 
     public BaseItemDefinition? BaseItem { get; init; }

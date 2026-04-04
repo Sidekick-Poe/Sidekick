@@ -68,6 +68,10 @@
                 AutoSelectConditionType.GemLevel => PropertyParser.GetDefinition<GemLevelProperty>().Label,
                 AutoSelectConditionType.Blighted => PropertyParser.GetDefinition<BlightedProperty>().Label,
                 AutoSelectConditionType.BlightRavaged => PropertyParser.GetDefinition<BlightRavagedProperty>().Label,
+                AutoSelectConditionType.Mirrored => PropertyParser.GetDefinition<MirroredProperty>().Label,
+                AutoSelectConditionType.Split => PropertyParser.GetDefinition<SplitProperty>().Label,
+                AutoSelectConditionType.Fractured => PropertyParser.GetDefinition<FracturedProperty>().Label,
+                AutoSelectConditionType.Desecrated => PropertyParser.GetDefinition<DesecratedProperty>().Label,
                 _ => ConditionResources[value.ToString()],
             };
 
@@ -104,6 +108,10 @@
                 AutoSelectConditionType.Text => PoeResources["Stat_Filters"],
                 AutoSelectConditionType.StatCategory => PoeResources["Stat_Filters"],
                 AutoSelectConditionType.Value => ConditionResources["Group_Filter"],
+                AutoSelectConditionType.Split => TradeFilterProvider.MiscellaneousCategory?.Title,
+                AutoSelectConditionType.Mirrored => TradeFilterProvider.MiscellaneousCategory?.Title,
+                AutoSelectConditionType.Fractured => TradeFilterProvider.MiscellaneousCategory?.Title,
+                AutoSelectConditionType.Desecrated => TradeFilterProvider.MiscellaneousCategory?.Title,
                 _ => throw new ArgumentOutOfRangeException()
             };
 

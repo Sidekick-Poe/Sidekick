@@ -30,7 +30,7 @@ public class WeaponDamageProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
+        if (!item.Definition.ItemClass.IsWeapon()) return;
 
         var propertyBlock = item.Text.Blocks[1];
 
@@ -109,7 +109,7 @@ public class WeaponDamageProperty(
         var itemMods = item.Stats.Where(x =>
         {
             var tradeStats = x.Definitions
-                .Where(x => x.TradeStats != null)
+                .Where(y => y.TradeStats != null)
                 .SelectMany(y => y.TradeStats!)
                 .ToList();
             return tradeStats.Any(tradeStat => damageMods.Contains(tradeStat.Id));

@@ -16,11 +16,11 @@ public class EnergyShieldProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionEnergyShield.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionEnergyShield.ToRegexIntProperty();
 
     private Regex? AlternatePattern { get; } =
         !string.IsNullOrEmpty(currentGameLanguage.Language.DescriptionEnergyShieldAlternate)
-            ? currentGameLanguage.Language.DescriptionEnergyShieldAlternate.ToRegexIntCapture()
+            ? currentGameLanguage.Language.DescriptionEnergyShieldAlternate.ToRegexIntProperty()
             : null;
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionEnergyShield.ToRegexIsAugmented();
@@ -34,7 +34,7 @@ public class EnergyShieldProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass)) return;
+        if (!item.Definition.ItemClass.IsEquipment()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.EnergyShield = GetInt(Pattern, propertyBlock);

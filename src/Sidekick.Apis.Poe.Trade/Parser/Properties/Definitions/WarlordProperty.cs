@@ -20,9 +20,9 @@ public class WarlordProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass)) return;
+        if (!item.Definition.ItemClass.IsEquipment() &&
+            !item.Definition.ItemClass.IsWeapon() &&
+            !item.Definition.ItemClass.IsAccessory()) return;
 
         item.Properties.Influences.Warlord = GetBool(Pattern, item.Text);
     }

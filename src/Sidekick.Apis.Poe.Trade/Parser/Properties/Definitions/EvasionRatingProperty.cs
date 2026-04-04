@@ -16,7 +16,7 @@ public class EvasionRatingProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionEvasion.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionEvasion.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionEvasion.ToRegexIsAugmented();
 
@@ -24,7 +24,7 @@ public class EvasionRatingProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass)) return;
+        if (!item.Definition.ItemClass.IsEquipment()) return;
 
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.EvasionRating = GetInt(Pattern, propertyBlock);

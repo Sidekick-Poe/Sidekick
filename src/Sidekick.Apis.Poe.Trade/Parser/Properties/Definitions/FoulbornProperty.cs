@@ -21,23 +21,12 @@ public class FoulbornProperty(
 
     public override void ParseAfterStats(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.ItemClass)) return;
-
-        if (game == GameType.PathOfExile2) return;
-        if (item.Properties.Rarity != Rarity.Unique) return;
-
         item.Properties.Foulborn = item.Stats.Any(x => x.Category == StatCategory.Mutated);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2) return Task.FromResult<TradeFilter?>(null);
-        if (tradeFilterProvider.Foulborn == null) return Task.FromResult<TradeFilter?>(null);
-        if (item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.PathOfExile2 || item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FoulbornFilter
         {
