@@ -1,11 +1,10 @@
-﻿using System.Text.RegularExpressions;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Repoe.Models.Stats;
+using Sidekick.Data.Builder.Stats.Hooks;
 using Sidekick.Data.Builder.Trade;
-using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
@@ -20,33 +19,14 @@ public class StatBuilder(
     TradeStatProvider tradeStatProvider,
     IFuzzyService fuzzyService)
 {
-    private record TradeReplaceEntry(Regex Pattern, string Replacement);
-
-    private readonly List<string> ignoredGameIds =
-    [
-        "map_set_league_category",
-        "map_item_level_override",
-    ];
-
-    private static readonly Regex TextHashPattern = new(@"\#", RegexOptions.Compiled);
-    private static readonly Regex TextGameHashPattern = new(@"\{\d+}", RegexOptions.Compiled);
-    private static readonly Regex TextLocalPattern = new(@" \(Local\)$", RegexOptions.Compiled);
-
-    private static readonly Regex NewLinePattern = new(@"(?:\\)*[\r\n]+", RegexOptions.Compiled);
-    private static readonly Regex HashPattern = new(@"\\#", RegexOptions.Compiled);
-    private static readonly Regex GameHashPattern = new(@"\\{\d+}", RegexOptions.Compiled);
-    private static readonly Regex ParenthesesPattern = new(@"(\\\ *\\\([^\(\)]*\\\))", RegexOptions.Compiled);
-
-    private List<TradeReplaceEntry> TradeReplacePatterns { get; set; } = [];
-
     public async Task Build(IGameLanguage language)
     {
         try
         {
-            TradeReplacePatterns = BuildReplacementPatterns(language);
+            var patterns = new StatPatterns(language, fuzzyService);
 
-            await Build(GameType.PathOfExile1, language);
-            await Build(GameType.PathOfExile2, language);
+            await Build(GameType.PathOfExile1, language, patterns);
+            await Build(GameType.PathOfExile2, language, patterns);
         }
         catch (Exception ex)
         {
@@ -59,39 +39,45 @@ public class StatBuilder(
         }
     }
 
-    private async Task Build(GameType game, IGameLanguage language)
+    private async Task Build(GameType game, IGameLanguage language, StatPatterns patterns)
     {
-        var tradeDefinitions = await tradeStatProvider.GetDefinitions(game, language);
+        var context = new StatBuilderContext(Game: game,
+                                             Language: language,
+                                             Patterns: patterns,
+                                             TradeDefinitions: await tradeStatProvider.GetDefinitions(game, language),
+                                             InvariantDetails: await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant));
 
-        var definitions = await BuildGameStats(game, language, tradeDefinitions);
-        definitions.AddRange(BuildTradeStats(language, tradeDefinitions, definitions));
+        List<BaseHook> hooks =
+        [
+            new IgnoreGameIds(),
+            new LogbookBosses(context),
+            new LogbookFactions(context),
+            new IncursionRooms(context),
+        ];
 
-        var invariantStats = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
-        ComputeSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds);
-        ComputeSpecialPseudoPattern(definitions, invariantStats.LogbookFactionStatIds);
+        var definitions = await BuildGameStats(context);
+        foreach (var hook in hooks) hook.OnAfterGameBuild(definitions);
 
-        // Remove 'Closed Room' (2) options. We keep only 'Open Room' (1) options
-        RemoveSpecialPseudoPattern(definitions, invariantStats.IncursionRoomStatIds, IncursionRoomPredicate);
+        definitions.AddRange(BuildTradeStats(context, definitions));
+        foreach (var hook in hooks) hook.OnAfterTradeBuild(definitions);
+
         await dataProvider.Write(game, DataType.Stats, language, definitions);
-        return;
-
-        bool IncursionRoomPredicate(StatDefinition x) => x.TradeStats != null && x.TradeStats.All(y => y.Option?.Id == 2);
     }
 
-    private async Task<List<StatDefinition>> BuildGameStats(GameType game, IGameLanguage language, List<TradeStatDefinition> tradeDefinitions)
+    private async Task<List<StatDefinition>> BuildGameStats(StatBuilderContext context)
     {
-        var gameStats = await repoeDownloader.ReadStatTranslations(game, language.Code);
+        var gameStats = await repoeDownloader.ReadStatTranslations(context.Game, context.Language.Code);
         var definitions = new List<StatDefinition>();
-        var tradeStatsById = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
+        var tradeStatsById = context.TradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
         foreach (var gameStat in gameStats)
         {
-            definitions.AddRange(GetGamePatterns(gameStat, tradeStatsById));
+            definitions.AddRange(GetGamePatterns(context, gameStat, tradeStatsById));
         }
 
         return definitions;
     }
 
-    private IEnumerable<StatDefinition> BuildTradeStats(IGameLanguage language, List<TradeStatDefinition> tradeDefinitions, List<StatDefinition> definitions)
+    private IEnumerable<StatDefinition> BuildTradeStats(StatBuilderContext context, List<StatDefinition> definitions)
     {
         var definedTradeStats = definitions
             .Where(x => x.TradeStats != null)
@@ -99,40 +85,40 @@ public class StatBuilder(
             .Select(x => (x.Id, x.Option?.Id))
             .ToHashSet();
 
-        foreach (var tradeDefinition in tradeDefinitions)
+        foreach (var tradeDefinition in context.TradeDefinitions)
         {
             if (definedTradeStats.Contains((tradeDefinition.Id, tradeDefinition.Option?.Id))) continue;
 
-            yield return GetTradePattern(language, tradeDefinition);
+            yield return GetTradePattern(tradeDefinition);
         }
 
         yield break;
 
-        StatDefinition GetTradePattern(IGameLanguage gameLanguage, TradeStatDefinition tradeDefinition)
+        StatDefinition GetTradePattern(TradeStatDefinition tradeDefinition)
         {
-            var text = GetText(tradeDefinition.Text, tradeDefinition.Option?.Text);
+            var text = context.Patterns.GetText(tradeDefinition.Text, tradeDefinition.Option?.Text);
 
             return new StatDefinition()
             {
                 Source = DataSource.Trade,
                 Text = text,
-                FuzzyText = GetFuzzyText(gameLanguage, tradeDefinition.Text, tradeDefinition.Option?.Text),
+                FuzzyText = context.Patterns.GetFuzzyText(tradeDefinition.Text, tradeDefinition.Option?.Text),
                 TradeStats = [tradeDefinition],
-                Pattern = GetPattern(tradeDefinition.Text, tradeDefinition.Option?.Text, replacePatterns: true),
+                Pattern = context.Patterns.GetPattern(tradeDefinition.Text, tradeDefinition.Option?.Text, replacePatterns: true),
                 Lines = text.Split('\n').Length,
             };
         }
     }
 
-    private IEnumerable<StatDefinition> GetGamePatterns(RepoeStatTranslation gameStat, Dictionary<string, List<TradeStatDefinition>> tradeDefinitionsById)
+    private IEnumerable<StatDefinition> GetGamePatterns(StatBuilderContext context, RepoeStatTranslation gameStat, Dictionary<string, List<TradeStatDefinition>> tradeDefinitionsById)
     {
-        if (gameStat.Languages == null || gameStat.Ids.Any(x => ignoredGameIds.Contains(x))) yield break;
+        if (gameStat.Languages == null) yield break;
 
         foreach (var language in gameStat.Languages)
         {
             if (string.IsNullOrEmpty(language.Text)) continue;
 
-            var text = GetText(language.Text);
+            var text = context.Patterns.GetText(language.Text);
             var value = GetValue(language);
             var tradeStats = GetTradeStatDefinitions(value).ToList();
 
@@ -143,7 +129,7 @@ public class StatBuilder(
                 TradeStats = tradeStats.Count > 0 ? tradeStats : null,
                 Text = text,
                 Negate = language.Handlers?.Any(x => x.Contains("negate")) ?? false,
-                Pattern = GetPattern(language.Text),
+                Pattern = context.Patterns.GetPattern(language.Text),
                 Value = KeepValue(language, tradeStats) ? value : null,
                 Lines = text.Split('\n').Length,
             };
@@ -194,125 +180,5 @@ public class StatBuilder(
         {
             return tradeStats.All(x => x.Text != entry.Text);
         }
-    }
-
-    private string GetText(string text, string? optionText = null)
-    {
-        text = text.RemoveSquareBrackets();
-        text = TextGameHashPattern.Replace(text, "#");
-        text = TextLocalPattern.Replace(text, string.Empty);
-        if (optionText == null) return text;
-
-        optionText = optionText.RemoveSquareBrackets();
-
-        var optionLines = new List<string>();
-        foreach (var optionLine in NewLinePattern.Split(optionText))
-        {
-            optionLines.Add(TextHashPattern.Replace(text, optionLine));
-        }
-
-        return string.Join('\n', optionLines).Trim('\r', '\n');
-    }
-
-    private string GetFuzzyText(IGameLanguage language, string text, string? optionText = null)
-    {
-        if (string.IsNullOrEmpty(optionText))
-        {
-            return fuzzyService.CleanFuzzyText(language, text);
-        }
-
-        foreach (var optionLine in NewLinePattern.Split(optionText))
-        {
-            text = TextHashPattern.Replace(text, optionLine);
-        }
-
-        return fuzzyService.CleanFuzzyText(language, text);
-    }
-
-    private Regex GetPattern(string text, string? optionText = null, bool replacePatterns = false)
-    {
-        text = text.RemoveSquareBrackets();
-        text = TextLocalPattern.Replace(text, string.Empty);
-
-        var suffix = @"(?:\ \([a-z]+\))?";
-
-        var patternValue = Regex.Escape(text);
-        patternValue = NewLinePattern.Replace(patternValue, @"\n");
-        patternValue = ParenthesesPattern.Replace(patternValue, "(?:$1)?");
-
-        if (string.IsNullOrEmpty(optionText))
-        {
-            patternValue = HashPattern.Replace(patternValue, @"([-+0-9,.]+)");
-            patternValue = GameHashPattern.Replace(patternValue, @"([-+0-9,.]+)");
-        }
-        else
-        {
-            var optionLines = new List<string>();
-            foreach (var optionLine in NewLinePattern.Split(optionText))
-            {
-                optionLines.Add(HashPattern.Replace(patternValue, Regex.Escape(optionLine)) + suffix);
-            }
-
-            patternValue = string.Join('\n', optionLines.Where(x => !string.IsNullOrEmpty(x)));
-        }
-
-        if (replacePatterns)
-        {
-            foreach (var replaceEntry in TradeReplacePatterns)
-            {
-                patternValue = replaceEntry.Pattern.Replace(patternValue, replaceEntry.Replacement);
-            }
-        }
-
-        patternValue = patternValue.Replace(@"\n", suffix + @"\n");// For multiline stats, the category can be suffixed on all lines.
-        patternValue += suffix;
-
-        return new Regex($"^{patternValue}$", RegexOptions.Compiled);
-    }
-
-    private List<TradeReplaceEntry> BuildReplacementPatterns(IGameLanguage language)
-    {
-        List<TradeReplaceEntry> result = [];
-        if (!string.IsNullOrEmpty(language.RegexIncreased))
-        {
-            result.Add(new(
-                       new Regex(language.RegexIncreased),
-                       $"(?:{language.RegexIncreased}|{language.RegexReduced})"));
-        }
-
-        if (!string.IsNullOrEmpty(language.RegexMore))
-        {
-            result.Add(new(
-                       new Regex(language.RegexMore),
-                       $"(?:{language.RegexMore}|{language.RegexLess})"));
-        }
-
-        if (!string.IsNullOrEmpty(language.RegexFaster))
-        {
-            result.Add(new(
-                       new Regex(language.RegexFaster),
-                       $"(?:{language.RegexFaster}|{language.RegexSlower})"));
-        }
-
-        return result;
-    }
-
-    private void ComputeSpecialPseudoPattern(List<StatDefinition> definitions, List<string> patternIds)
-    {
-        var patterns = (from definition in definitions.Where(x => x.TradeStats != null)
-            from tradeStat in definition.TradeStats
-            where tradeStat.Category == StatCategory.Pseudo
-            where patternIds.Contains(tradeStat.Id)
-            select definition);
-
-        foreach (var pattern in patterns)
-        {
-            pattern.Pattern = GetPattern(pattern.Text.Split(':', 2).Last().Trim());
-        }
-    }
-
-    private void RemoveSpecialPseudoPattern(List<StatDefinition> definitions, List<string> patternIds, Func<StatDefinition, bool> predicate)
-    {
-        definitions.RemoveAll(x => x.TradeStats != null && x.TradeStats.Any(y => patternIds.Contains(y.Id)) && predicate(x));
     }
 }

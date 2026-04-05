@@ -54,6 +54,7 @@ public class StatsInvariantBuilder
             LightningWeaponDamageIds = GetLightningWeaponDamageIds(categories.Result).ToList(),
             IncursionRoomStatIds = GetIncursionRooms(categories.Result).ToList(),
             LogbookFactionStatIds = GetLogbookFactions(categories.Result).ToList(),
+            LogbookBossesStatId = GetLogbookBosses(categories.Result),
         };
 
         await dataProvider.Write(game, DataType.StatsInvariant, model);
@@ -140,58 +141,19 @@ public class StatsInvariantBuilder
         }
     }
 
-    private string GetClusterPassiveCountId(List<RawTradeStatCategory> categories)
+    private string? GetLogbookBosses(List<RawTradeStatCategory> categories)
     {
         foreach (var category in categories)
         {
-            if (!IsCategory(category, "enchant")) { continue; }
+            if (!IsCategory(category, "implicit")) continue;
 
             foreach (var entry in category.Entries)
             {
-                if (entry.Text == "Adds # Passive Skills")
-                {
-                    return entry.Id;
-                }
+                if (entry.Text == "Area contains an Expedition Boss (#)") return entry.Id;
             }
         }
 
-        return string.Empty;
-    }
-
-    private string GetClusterGrantId(List<RawTradeStatCategory> categories)
-    {
-        foreach (var category in categories)
-        {
-            if (!IsCategory(category, "enchant")) { continue; }
-
-            foreach (var entry in category.Entries)
-            {
-                if (entry.Text == "Added Small Passive Skills grant: #")
-                {
-                    return entry.Id;
-                }
-            }
-        }
-
-        return string.Empty;
-    }
-
-    private Dictionary<int, string> GetClusterJewels(List<RawTradeStatCategory> categories)
-    {
-        foreach (var category in categories)
-        {
-            if (!IsCategory(category, "enchant")) { continue; }
-
-            foreach (var entry in category.Entries)
-            {
-                if (entry.Text != "Added Small Passive Skills grant: #") continue;
-                if (entry.Options == null) continue;
-
-                return entry.Options.Options.ToDictionary(x => x.Id, x => x.Text!);
-            }
-        }
-
-        return [];
+        return null;
     }
 
     private static bool IsCategory(RawTradeStatCategory apiCategory, string? key)
