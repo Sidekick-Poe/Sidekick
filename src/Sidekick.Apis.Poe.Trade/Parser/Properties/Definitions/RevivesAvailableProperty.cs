@@ -26,12 +26,10 @@ public class RevivesAvailableProperty(
     {
         if (game != GameType.PathOfExile2) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.RevivesAvailable = GetInt(Pattern, propertyBlock);
+        item.Properties.RevivesAvailable = GetInt(Pattern, item.Text);
         if (item.Properties.RevivesAvailable == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.RevivesAvailable));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.RevivesAvailable));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

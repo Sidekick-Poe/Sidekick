@@ -25,8 +25,7 @@ public class HeistRoutesTotalProperty(
 
     public override void Parse(Item item)
     {
-        var block = item.Text.Blocks[1];
-        item.Properties.HeistRoutesTotal = GetInt(Pattern, block);
+        item.Properties.HeistRoutesTotal = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

@@ -26,12 +26,10 @@ public class EvasionRatingProperty(
     {
         if (!item.ItemClass.IsEquipment()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.EvasionRating = GetInt(Pattern, propertyBlock);
+        item.Properties.EvasionRating = GetInt(Pattern, item.Text);
         if (item.Properties.EvasionRating == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EvasionRating));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EvasionRating));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

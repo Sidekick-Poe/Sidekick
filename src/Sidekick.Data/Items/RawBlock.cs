@@ -67,14 +67,7 @@ public partial class RawBlock
     {
         foreach (var line in Lines)
         {
-            match = pattern.Match(line.Text);
-            if (!match.Success)
-            {
-                continue;
-            }
-
-            line.Parsed = true;
-            return true;
+            if (line.TryParseRegex(pattern, out match)) return true;
         }
 
         match = null;

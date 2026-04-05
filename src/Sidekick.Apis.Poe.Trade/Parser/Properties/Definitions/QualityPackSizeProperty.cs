@@ -26,12 +26,10 @@ public class QualityPackSizeProperty(
     {
         if (game != GameType.PathOfExile1) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.QualityPackSize = GetInt(Pattern, propertyBlock);
+        item.Properties.QualityPackSize = GetInt(Pattern, item.Text);
         if (item.Properties.QualityPackSize == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.QualityPackSize));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.QualityPackSize));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

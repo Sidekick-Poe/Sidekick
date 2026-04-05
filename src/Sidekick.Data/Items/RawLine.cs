@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 namespace Sidekick.Data.Items;
 
 /// <summary>
@@ -16,6 +18,15 @@ public class RawLine(string text, int index)
     public string Text { get; } = text;
 
     public int Index { get; } = index;
+
+    public bool TryParseRegex(Regex pattern, [NotNullWhen(true)] out Match? match)
+    {
+        match = pattern.Match(Text);
+        if (!match.Success) return false;
+
+        Parsed = true;
+        return true;
+    }
 
     public override string ToString()
     {

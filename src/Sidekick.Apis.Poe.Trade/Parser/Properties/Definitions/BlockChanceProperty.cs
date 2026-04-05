@@ -30,12 +30,10 @@ public class BlockChanceProperty(
     {
         if (!item.ItemClass.IsEquipment()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.BlockChance = GetInt(Pattern, propertyBlock);
+        item.Properties.BlockChance = GetInt(Pattern, item.Text);
         if (item.Properties.BlockChance == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

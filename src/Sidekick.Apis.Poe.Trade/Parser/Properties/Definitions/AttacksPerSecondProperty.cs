@@ -26,12 +26,10 @@ public class AttacksPerSecondProperty(
     {
         if (!item.ItemClass.IsWeapon()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.AttacksPerSecond = GetDouble(Pattern, propertyBlock);
+        item.Properties.AttacksPerSecond = GetDouble(Pattern, item.Text);
         if (item.Properties.AttacksPerSecond == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.AttacksPerSecond));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.AttacksPerSecond));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

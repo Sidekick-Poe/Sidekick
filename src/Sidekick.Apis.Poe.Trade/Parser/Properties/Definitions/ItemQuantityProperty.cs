@@ -24,12 +24,10 @@ public class ItemQuantityProperty(
 
     public override void Parse(Item item)
     {
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.ItemQuantity = GetInt(Pattern, propertyBlock);
+        item.Properties.ItemQuantity = GetInt(Pattern, item.Text);
         if (item.Properties.ItemQuantity == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ItemQuantity));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ItemQuantity));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

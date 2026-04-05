@@ -26,12 +26,10 @@ public class WaystoneDropChanceProperty(
     {
         if (game != GameType.PathOfExile2) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.WaystoneDropChance = GetInt(Pattern, propertyBlock);
+        item.Properties.WaystoneDropChance = GetInt(Pattern, item.Text);
         if (item.Properties.WaystoneDropChance == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.WaystoneDropChance));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.WaystoneDropChance));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

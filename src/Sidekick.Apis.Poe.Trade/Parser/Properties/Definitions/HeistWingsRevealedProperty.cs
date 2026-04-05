@@ -25,8 +25,7 @@ public class HeistWingsRevealedProperty(
 
     public override void Parse(Item item)
     {
-        var block = item.Text.Blocks[1];
-        item.Properties.HeistWingsRevealed = GetInt(Pattern, block);
+        item.Properties.HeistWingsRevealed = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
