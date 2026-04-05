@@ -67,7 +67,6 @@ public class DataBuilder(
             {
                 await BuildStats(language);
             }
-
         }
 
         logger.LogInformation("Built all data files.");

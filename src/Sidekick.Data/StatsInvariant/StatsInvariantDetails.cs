@@ -8,6 +8,8 @@ public class StatsInvariantDetails
 
     public List<string> LogbookFactionStatIds { get; init; } = [];
 
+    public string? LogbookBossesStatId { get; init; }
+
     public List<string> FireWeaponDamageIds { get; init; } = [];
 
     public List<string> ColdWeaponDamageIds { get; init; } = [];
