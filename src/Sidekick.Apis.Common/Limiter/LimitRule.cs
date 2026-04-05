@@ -1,5 +1,3 @@
-using System.Threading.RateLimiting;
-
 namespace Sidekick.Apis.Common.Limiter;
 
 public class LimitRule(string policy, string name, int maxHitCount, int timePeriod)

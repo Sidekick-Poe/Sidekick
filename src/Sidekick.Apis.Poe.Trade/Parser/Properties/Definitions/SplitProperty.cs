@@ -28,6 +28,7 @@ public class SplitProperty(
         if (!item.ItemClass.IsEquipment() &&
             !item.ItemClass.IsWeapon() &&
             !item.ItemClass.IsAccessory()) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity == Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new SplitFilter
         {

@@ -1,7 +1,6 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using Sidekick.Data.ItemClasses;
 namespace Sidekick.Data.ItemDefinitions;
 
 public class ItemDefinition
