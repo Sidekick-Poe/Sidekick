@@ -1,5 +1,4 @@
-﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
-using Sidekick.Data.ItemDefinitions;
+﻿using Sidekick.Data.ItemDefinitions;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public interface INinjaExchangeProvider

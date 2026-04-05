@@ -56,10 +56,11 @@ Note: ~price 2 chaos
 
         var filters = await fixture.GetPropertyFilters(item);
         Assert.Equal(4, filters.Count);
-        Assert.IsType<QualityFilter>(filters[0]);
-        Assert.IsType<GemLevelFilter>(filters[1]);
-        Assert.IsType<CorruptedFilter>(filters[2]);
-        Assert.IsType<ImbuedGemFilter>(filters[3]);
+        var index = -1;
+        Assert.IsType<QualityFilter>(filters[++index]);
+        Assert.IsType<GemLevelFilter>(filters[++index]);
+        Assert.IsType<CorruptedFilter>(filters[++index]);
+        Assert.IsType<ImbuedGemFilter>(filters[++index]);
     }
 
     [Fact]
@@ -89,8 +90,9 @@ Corrupted
 
         var filters = await fixture.GetPropertyFilters(item);
         Assert.Equal(3, filters.Count);
-        Assert.IsType<QualityFilter>(filters[0]);
-        Assert.IsType<GemLevelFilter>(filters[1]);
-        Assert.IsType<CorruptedFilter>(filters[2]);
+        var index = -1;
+        Assert.IsType<QualityFilter>(filters[++index]);
+        Assert.IsType<GemLevelFilter>(filters[++index]);
+        Assert.IsType<CorruptedFilter>(filters[++index]);
     }
 }
