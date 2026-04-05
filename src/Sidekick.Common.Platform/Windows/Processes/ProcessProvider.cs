@@ -1,9 +1,8 @@
-#pragma warning disable CA1806 // Do not ignore method results
-#pragma warning disable CA1416 // Validate platform compatibility
+#pragma warning disable CA1806// Do not ignore method results
+#pragma warning disable CA1416// Validate platform compatibility
 
 using System.Diagnostics;
 using System.Security.Principal;
-using System.Text;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Platform.Localization;
@@ -19,9 +18,7 @@ public class ProcessProvider
     IStringLocalizer<PlatformResources> resources
 ) : IProcessProvider, IDisposable
 {
-    private const string PATH_OF_EXILE_TITLE = "Path of Exile";
-    private const string PATH_OF_EXILE_2_TITLE = "Path of Exile 2";
-    private const string SIDEKICK_TITLE = "Sidekick";
+    private const string POE_PROCESS_STARTS_WITH = "PathOfExile";
 
     private static readonly List<string> PossibleProcessNames = new()
     {
@@ -30,7 +27,7 @@ public class ProcessProvider
         "PathOfExile_KG",
         "PathOfExile_x64_KG",
         "PathOfExileSteam",
-        "PathOfExile_x64Steam"
+        "PathOfExile_x64Steam",
     };
 
     public string? ClientLogPath
@@ -67,25 +64,10 @@ public class ProcessProvider
 
     private CancellationTokenSource? WindowsHook { get; set; }
 
-    private DateTimeOffset PreviousFocusedWindowAttempt { get; set; }
-
-    private string? PreviousFocusedWindow { get; set; }
-
-    private string? GetFocusedWindow()
+    private string? GetFocusedProcessName()
     {
-        if (DateTimeOffset.Now - PreviousFocusedWindowAttempt < TimeSpan.FromSeconds(3))
-        {
-            return PreviousFocusedWindow;
-        }
-
         try
         {
-            // Create the variable
-            const int NChar = 256;
-            var ss = new StringBuilder(NChar);
-
-            // Run GetForeGroundWindows and get active window information
-            // assign them into handle pointer variable
             var hWnd = User32.GetForegroundWindow();
             if (hWnd == IntPtr.Zero)
             {
@@ -93,29 +75,18 @@ public class ProcessProvider
                 return null;
             }
 
-            if (User32.GetWindowText(hWnd, ss, NChar) > 0)
-            {
-                PreviousFocusedWindow = ss.ToString();
+            User32.GetWindowThreadProcessId(hWnd, out var processId);
+            if (processId <= 0) return null;
 
-                // logger.LogDebug("[ProcessProvider] Current focused window title: {0}", PreviousFocusedWindow);
-            }
-            else
-            {
-                // Try to get the process name as a fallback
-                User32.GetWindowThreadProcessId(hWnd, out var processId);
-                var process = Process.GetProcessById(processId);
-                PreviousFocusedWindow = process.ProcessName;
-
-                // logger.LogDebug("[ProcessProvider] Fallback to process name: {0}", PreviousFocusedWindow);
-            }
+            using var process = Process.GetProcessById(processId);
+            // logger.LogInformation("GetForegroundWindow returned " + process.ProcessName);
+            return process.ProcessName;
         }
         catch (Exception e)
         {
-            logger.LogWarning(e, "[ProcessProvider] Failed to grab the focused window: {0}", e.Message);
-            PreviousFocusedWindow = null;
+            logger.LogWarning(e, "[ProcessProvider] Failed to grab the focused process: {0}", e.Message);
+            return null;
         }
-
-        return PreviousFocusedWindow;
     }
 
     /// <inheritdoc/>
@@ -123,13 +94,25 @@ public class ProcessProvider
     {
         get
         {
-            var focusedWindow = GetFocusedWindow();
-            return focusedWindow is PATH_OF_EXILE_TITLE or PATH_OF_EXILE_2_TITLE;
+            var focusedProcessName = GetFocusedProcessName();
+            if (focusedProcessName == null) return false;
+
+            return PossibleProcessNames.Contains(focusedProcessName, StringComparer.OrdinalIgnoreCase) ||
+                   focusedProcessName.StartsWith(POE_PROCESS_STARTS_WITH);
         }
     }
 
     /// <inheritdoc/>
-    public bool IsSidekickInFocus => GetFocusedWindow()?.StartsWith(SIDEKICK_TITLE) ?? false;
+    public bool IsSidekickInFocus
+    {
+        get
+        {
+            var focusedProcessName = GetFocusedProcessName();
+            if (focusedProcessName == null) return false;
+
+            return string.Equals(focusedProcessName, "Sidekick", StringComparison.OrdinalIgnoreCase);
+        }
+    }
 
     /// <inheritdoc/>
     public int Priority => 0;
@@ -255,7 +238,6 @@ public class ProcessProvider
 
     private bool IsPathOfExileRunAsAdmin()
     {
-        var result = false;
         var ph = IntPtr.Zero;
 
         try
@@ -265,32 +247,30 @@ public class ProcessProvider
 
             User32.OpenProcessToken(proc.Handle, TOKEN_ALL_ACCESS, out ph);
             using var windowsIdentity = new WindowsIdentity(ph);
-            if (windowsIdentity.Groups != null)
+            if (windowsIdentity.Groups == null) return false;
+
+            foreach (var role in windowsIdentity.Groups)
             {
-                foreach (var role in windowsIdentity.Groups)
+                if (!role.IsValidTargetType(typeof(SecurityIdentifier)))
                 {
-                    if (!role.IsValidTargetType(typeof(SecurityIdentifier)))
-                    {
-                        continue;
-                    }
-
-                    var sid = role as SecurityIdentifier;
-                    if (sid == null)
-                    {
-                        continue;
-                    }
-
-                    if (!sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) && !sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
-                    {
-                        continue;
-                    }
-
-                    result = true;
-                    break;
+                    continue;
                 }
+
+                var sid = role as SecurityIdentifier;
+                if (sid == null)
+                {
+                    continue;
+                }
+
+                if (!sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) && !sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
+                {
+                    continue;
+                }
+
+                return true;
             }
 
-            return result;
+            return false;
         }
         catch (Exception e)
         {
@@ -300,10 +280,7 @@ public class ProcessProvider
         }
         finally
         {
-            if (ph != IntPtr.Zero)
-            {
-                User32.CloseHandle(ph);
-            }
+            if (ph != IntPtr.Zero) User32.CloseHandle(ph);
         }
     }
 
