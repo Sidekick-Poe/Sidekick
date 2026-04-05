@@ -1,6 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.ItemClasses;
-using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 using Xunit;
@@ -58,7 +57,7 @@ but justice favours only the truly worthy.
 Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth of Fortune.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Tribute to the Goddess", actual.Definition.TradeItem?.Type);
     }

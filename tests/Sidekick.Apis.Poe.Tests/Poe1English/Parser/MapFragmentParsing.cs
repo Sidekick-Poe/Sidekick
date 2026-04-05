@@ -1,6 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Data.ItemClasses;
-using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
 using Xunit;
@@ -32,7 +31,7 @@ Can be used in a personal Map Device, allowing you to capture the Soul of the Ma
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Divine Vessel", actual.Definition.TradeItem?.Type);
     }
