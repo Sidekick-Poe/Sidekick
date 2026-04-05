@@ -67,6 +67,12 @@ public class ItemDefinitionParser(
 
     public void Parse(Item item)
     {
+        item.Type = item.Text.Blocks[0].Lines[^1].Text;
+        if (item.Properties.Rarity is Rarity.Rare or Rarity.Unique)
+        {
+            item.Name = item.Text.Blocks[0].Lines[^2].Text;
+        }
+
         item.Definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name) ?? throw new UnparsableException(item.Text.Text);
         item.Invariant = GetInvariant(item.Definition) ?? throw new UnparsableException(item.Text.Text);
         item.ItemClass = GetItemClass(item.Definition);
