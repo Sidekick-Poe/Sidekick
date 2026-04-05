@@ -22,10 +22,7 @@ public class GemLevelProperty(
     {
         if (item.Properties.Rarity != Rarity.Gem) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.GemLevel = GetInt(Pattern, propertyBlock);
-
-        if (item.Properties.GemLevel > 0) propertyBlock.Parsed = true;
+        item.Properties.GemLevel = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

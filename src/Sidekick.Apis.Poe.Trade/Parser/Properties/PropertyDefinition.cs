@@ -19,24 +19,21 @@ public abstract class PropertyDefinition
 
     protected static bool GetBool(Regex pattern, RawBlock rawBlock) => rawBlock.TryParseRegex(pattern, out _);
 
+    protected static string? GetString(Regex pattern, RawText rawText)
+    {
+        return rawText.TryParseRegex(pattern, out var match) ? match.Groups[1].Value.Trim(' ', ':') : null;
+    }
+
     protected static string? GetString(Regex pattern, RawBlock rawBlock)
     {
-        if (rawBlock.TryParseRegex(pattern, out var match))
-        {
-            return match.Groups[1].Value.Trim(' ', ':');
-        }
-
-        return null;
+        return rawBlock.TryParseRegex(pattern, out var match) ? match.Groups[1].Value.Trim(' ', ':') : null;
     }
 
     protected static int GetInt(Regex pattern, RawText rawText)
     {
-        if (rawText.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
-        {
-            return result;
-        }
+        if (!rawText.TryParseRegex(pattern, out var match)) return 0;
 
-        return 0;
+        return int.TryParse(match.Groups[1].Value, out var result) ? result : 0;
     }
 
     protected static int GetInt(Regex pattern, RawBlock rawBlock)
@@ -54,18 +51,29 @@ public abstract class PropertyDefinition
         return int.TryParse(match.Groups[1].Value, out var result) ? result : 0;
     }
 
-    protected static double GetDouble(Regex pattern, RawBlock rawBlock)
+    protected static double GetDouble(Regex pattern, RawText rawText)
     {
-        if (!rawBlock.TryParseRegex(pattern, out var match))
+        if (!rawText.TryParseRegex(pattern, out var match)) return 0;
+
+        var value = match.Groups[1].Value
+            .Replace(",", ".")
+            .TrimEnd('%');
+
+        if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
         {
-            return 0;
+            return result;
         }
 
-        var value = match.Groups[1].Value.Replace(",", ".");
-        if (value.EndsWith("%"))
-        {
-            value = value.TrimEnd('%');
-        }
+        return 0;
+    }
+
+    protected static double GetDouble(Regex pattern, RawBlock rawBlock)
+    {
+        if (!rawBlock.TryParseRegex(pattern, out var match)) return 0;
+
+        var value = match.Groups[1].Value
+            .Replace(",", ".")
+            .TrimEnd('%');
 
         if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
         {

@@ -24,12 +24,10 @@ public class MemoryStrandsProperty(
 
     public override void Parse(Item item)
     {
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.MemoryStrands = GetInt(Pattern, propertyBlock);
+        item.Properties.MemoryStrands = GetInt(Pattern, item.Text);
         if (item.Properties.MemoryStrands == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MemoryStrands));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MemoryStrands));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

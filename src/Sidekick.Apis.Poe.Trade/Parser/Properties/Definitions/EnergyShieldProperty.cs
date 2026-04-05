@@ -36,14 +36,12 @@ public class EnergyShieldProperty(
     {
         if (!item.ItemClass.IsEquipment()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.EnergyShield = GetInt(Pattern, propertyBlock);
-        if (item.Properties.EnergyShield <= 0 && AlternatePattern != null) item.Properties.EnergyShield = GetInt(AlternatePattern, propertyBlock);
+        item.Properties.EnergyShield = GetInt(Pattern, item.Text);
+        if (item.Properties.EnergyShield <= 0 && AlternatePattern != null) item.Properties.EnergyShield = GetInt(AlternatePattern, item.Text);
         if (item.Properties.EnergyShield == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
-        else if (AlternateIsAugmentedPattern != null && GetBool(AlternateIsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
+        else if (AlternateIsAugmentedPattern != null && GetBool(AlternateIsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

@@ -31,7 +31,7 @@ public class HeistDemolitionProperty(
         if (item.Text.Blocks.Count < 2) return;
         if (game != GameType.PathOfExile1) return;
 
-        item.Properties.HeistDemolitionLevel = GetInt(Pattern, item.Text.Blocks[1]);
+        item.Properties.HeistDemolitionLevel = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

@@ -26,12 +26,10 @@ public class QualityCardsProperty(
     {
         if (game != GameType.PathOfExile1) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.QualityCards = GetInt(Pattern, propertyBlock);
+        item.Properties.QualityCards = GetInt(Pattern, item.Text);
         if (item.Properties.QualityCards == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.QualityCards));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.QualityCards));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

@@ -25,12 +25,10 @@ public class QualityProperty(
 
     public override void Parse(Item item)
     {
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.Quality = GetInt(Pattern, propertyBlock);
+        item.Properties.Quality = GetInt(Pattern, item.Text);
         if (item.Properties.Quality == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

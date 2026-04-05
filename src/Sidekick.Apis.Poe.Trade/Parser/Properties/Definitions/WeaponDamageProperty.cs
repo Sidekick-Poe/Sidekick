@@ -32,10 +32,8 @@ public class WeaponDamageProperty(
     {
         if (!item.ItemClass.IsWeapon()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-
         // Parse damage ranges
-        foreach (var line in propertyBlock.Lines)
+        foreach (var line in item.Text.Blocks.SelectMany(x => x.Lines))
         {
             var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();
 
@@ -75,6 +73,8 @@ public class WeaponDamageProperty(
             if (isFire) item.Properties.FireDamage = range;
             if (isCold) item.Properties.ColdDamage = range;
             if (isLightning) item.Properties.LightningDamage = range;
+
+            line.Parsed = true;
         }
     }
 
@@ -118,7 +118,7 @@ public class WeaponDamageProperty(
 
         // Parse elemental damage for Path of Exile 1.
         // In Path of Exile 1, the elemental damage properties have (augmented) as suffix instead of the easier to parse (fire|cold|lightning).
-        foreach (var line in item.Text.Blocks[1].Lines)
+        foreach (var line in item.Text.Blocks.SelectMany(x => x.Lines))
         {
             var isElemental = line.Text.StartsWith(currentGameLanguage.Language.DescriptionElementalDamage);
             if (!isElemental) continue;
@@ -149,6 +149,8 @@ public class WeaponDamageProperty(
 
                 matchIndex++;
             }
+
+            line.Parsed = true;
         }
     }
 

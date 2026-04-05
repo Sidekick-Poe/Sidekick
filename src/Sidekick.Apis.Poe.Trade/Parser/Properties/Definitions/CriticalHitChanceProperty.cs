@@ -30,12 +30,10 @@ public class CriticalHitChanceProperty(
     {
         if (!item.ItemClass.IsWeapon()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.CriticalHitChance = GetDouble(Pattern, propertyBlock);
+        item.Properties.CriticalHitChance = GetDouble(Pattern, item.Text);
         if (item.Properties.CriticalHitChance == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

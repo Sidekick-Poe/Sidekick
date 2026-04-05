@@ -24,12 +24,10 @@ public class MagicMonstersProperty(
 
     public override void Parse(Item item)
     {
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.MagicMonsters = GetInt(Pattern, propertyBlock);
+        item.Properties.MagicMonsters = GetInt(Pattern, item.Text);
         if (item.Properties.MagicMonsters == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MagicMonsters));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MagicMonsters));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

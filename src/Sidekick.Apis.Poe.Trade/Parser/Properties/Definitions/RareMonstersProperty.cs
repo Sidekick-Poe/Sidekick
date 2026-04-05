@@ -24,12 +24,10 @@ public class RareMonstersProperty(
 
     public override void Parse(Item item)
     {
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.RareMonsters = GetInt(Pattern, propertyBlock);
+        item.Properties.RareMonsters = GetInt(Pattern, item.Text);
         if (item.Properties.RareMonsters == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.RareMonsters));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.RareMonsters));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

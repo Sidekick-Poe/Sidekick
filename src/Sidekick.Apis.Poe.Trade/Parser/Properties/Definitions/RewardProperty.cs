@@ -28,9 +28,7 @@ public class RewardProperty(
         if (item.ItemClass.Type != ItemClass.Map) return;
         if (game == GameType.PathOfExile2) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.Reward = GetString(Pattern, propertyBlock);
-        if (item.Properties.Reward != null) propertyBlock.Parsed = true;
+        item.Properties.Reward = GetString(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

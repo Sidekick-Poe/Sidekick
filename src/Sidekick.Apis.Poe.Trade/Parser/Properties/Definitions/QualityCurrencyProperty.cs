@@ -26,12 +26,10 @@ public class QualityCurrencyProperty(
     {
         if (game != GameType.PathOfExile1) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.QualityCurrency = GetInt(Pattern, propertyBlock);
+        item.Properties.QualityCurrency = GetInt(Pattern, item.Text);
         if (item.Properties.QualityCurrency == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.QualityCurrency));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.QualityCurrency));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

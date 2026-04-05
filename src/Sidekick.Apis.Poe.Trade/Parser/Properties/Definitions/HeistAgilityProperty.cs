@@ -31,7 +31,7 @@ public class HeistAgilityProperty(
         if (item.Text.Blocks.Count < 2) return;
         if (game != GameType.PathOfExile1) return;
 
-        item.Properties.HeistAgilityLevel = GetInt(Pattern, item.Text.Blocks[1]);
+        item.Properties.HeistAgilityLevel = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

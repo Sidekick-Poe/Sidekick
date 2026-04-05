@@ -22,9 +22,7 @@ public class AreaLevelProperty(
     {
         if (!item.ItemClass.IsArea()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.AreaLevel = GetInt(Pattern, propertyBlock);
-        if (item.Properties.AreaLevel > 0) propertyBlock.Parsed = true;
+        item.Properties.AreaLevel = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

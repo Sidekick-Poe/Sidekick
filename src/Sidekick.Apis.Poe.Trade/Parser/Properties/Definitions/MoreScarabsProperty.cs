@@ -26,12 +26,10 @@ public class MoreScarabsProperty(
     {
         if (game != GameType.PathOfExile1) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.MoreScarabs = GetInt(Pattern, propertyBlock);
+        item.Properties.MoreScarabs = GetInt(Pattern, item.Text);
         if (item.Properties.MoreScarabs == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MoreScarabs));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MoreScarabs));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

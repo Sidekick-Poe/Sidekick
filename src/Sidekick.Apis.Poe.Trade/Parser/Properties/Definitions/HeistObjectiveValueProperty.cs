@@ -24,30 +24,33 @@ public class HeistObjectiveValueProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Text.Blocks.Count < 2) return;
         if (game != GameType.PathOfExile1) return;
         if (item.ItemClass.Type != ItemClass.HeistContract) return;
 
-        foreach (var line in item.Text.Blocks[1].Lines)
+        foreach (var line in item.Text.Blocks.SelectMany(x => x.Lines))
         {
             if (line.Text.Contains(currentGameLanguage.Language.DescriptionHeistModerateValue))
             {
                 item.Properties.HeistObjectiveValue = HeistObjectiveValue.Moderate;
+                line.Parsed = true;
                 return;
             }
             if (line.Text.Contains(currentGameLanguage.Language.DescriptionHeistHighValue))
             {
                 item.Properties.HeistObjectiveValue = HeistObjectiveValue.High;
+                line.Parsed = true;
                 return;
             }
             if (line.Text.Contains(currentGameLanguage.Language.DescriptionHeistPriceless))
             {
                 item.Properties.HeistObjectiveValue = HeistObjectiveValue.Priceless;
+                line.Parsed = true;
                 return;
             }
             if (line.Text.Contains(currentGameLanguage.Language.DescriptionHeistPrecious))
             {
                 item.Properties.HeistObjectiveValue = HeistObjectiveValue.Precious;
+                line.Parsed = true;
                 return;
             }
         }
