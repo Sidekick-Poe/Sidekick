@@ -300,4 +300,8 @@ public enum ItemClass
 
     [ItemClassGameId(GameType.PathOfExile1, "ItemisedSanctum")]
     SanctumResearch,
+
+    [ItemClassGameId(GameType.PathOfExile1, "MapFragment")]
+    [ItemClassGameId(GameType.PathOfExile2, "MapFragment")]
+    MapFragments,
 }

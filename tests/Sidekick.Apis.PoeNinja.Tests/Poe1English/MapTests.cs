@@ -265,4 +265,28 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         var result = results[0];
         Assert.Equal("poorjoys-asylum-t0", result.DetailsId);
     }
+
+    [Fact]
+    public async Task IncandescentInvitation()
+    {
+        var item = parser.ParseItem(@"Item Class: Misc Map Items
+Rarity: Normal
+Incandescent Invitation
+--------
+Item Level: 83
+--------
+Modifiers to Item Quantity affect the amount of rewards dropped by the boss (implicit)
+--------
+From the corona of an ancient star,
+the Searing Exarch seeks to master the Atlas.
+--------
+Open portals to Absence of Patience and Wisdom by using this item in a personal Map Device. While viewing your Atlas, Right-click this item to pinpoint its location.
+");
+
+        var results = await fixture.NinjaStashProvider.GetInfo(item);
+        Assert.Single(results);
+
+        var result = results[0];
+        Assert.Equal("incandescent-invitation", result.DetailsId);
+    }
 }

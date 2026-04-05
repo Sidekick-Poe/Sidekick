@@ -96,20 +96,21 @@ public class ItemDefinitionParser(
 
         ItemClassDefinition GetItemClass(ItemDefinition definition)
         {
-            if (!string.IsNullOrEmpty(definition.BaseItem?.ItemClassId) &&
-                ItemClassDictionary.TryGetValue(definition.BaseItem.ItemClassId, out var baseItemClass)) return baseItemClass;
+            ItemClassDefinition? itemClass = null;
 
-            if (!string.IsNullOrEmpty(definition.TradeItem?.Category))
+            if (!string.IsNullOrEmpty(definition.BaseItem?.ItemClassId) &&
+                ItemClassDictionary.TryGetValue(definition.BaseItem.ItemClassId, out var baseItemClass)) itemClass = baseItemClass;
+
+            if ((itemClass == null || itemClass.Type == ItemClass.Unknown) && !string.IsNullOrEmpty(definition.TradeItem?.Category))
             {
-                var tradeItemClass = definition.TradeItem.Category switch
+                itemClass = definition.TradeItem.Category switch
                 {
                     "map" => ItemClassDictionary.GetValueOrDefault("MapKey"),
-                    _ => null,
+                    _ => itemClass,
                 };
-                if (tradeItemClass != null) return tradeItemClass;
             }
 
-            return new ItemClassDefinition()
+            return itemClass ?? new ItemClassDefinition()
             {
                 Type = ItemClass.Unknown,
             };
