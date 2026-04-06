@@ -228,6 +228,6 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Ghastly Eye Jewel", actual.Definition.TradeItem?.Type);
 
-        actual.AssertDoesNotHaveModifier(StatCategory.Explicit, "Abyss");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Explicit, "Abyss");
     }
 }

@@ -494,4 +494,50 @@ Elder Item");
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Attacks with this Weapon per 10 Intelligence", 1, 5);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Spell Damage per 16 Intelligence", 1);
     }
+
+    [Fact]
+    public void ElementalDamage()
+    {
+        var actual = parser.ParseItem(@"Item Class: Two Hand Axes
+Rarity: Rare
+Brood Butcher
+Despot Axe
+--------
+Two Handed Axe
+Physical Damage: 113-170 (augmented)
+Elemental Damage: 14-229 (augmented)
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.40
+Weapon Range: 1.3 metres
+--------
+Requirements:
+Level: 66
+Str: 140
+Dex: 86
+--------
+Sockets: R 
+--------
+Item Level: 85
+--------
++36% to Damage over Time Multiplier (fractured)
++47 to Dexterity
+Adds 23 to 48 Physical Damage
+Adds 14 to 229 Lightning Damage
+15% increased Stun Duration on Enemies
+--------
+Fractured Item
+");
+
+        Assert.Equal(ItemClass.TwoHandAxe, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Despot Axe", actual.Definition.TradeItem?.Type);
+
+        Assert.Equal(14, actual.Properties.LightningDamage?.Min);
+        Assert.Equal(229, actual.Properties.LightningDamage?.Max);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage", 23, 48);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage", 14, 229);
+
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Pseudo, "Adds # to # Elemental Damage");
+    }
 }

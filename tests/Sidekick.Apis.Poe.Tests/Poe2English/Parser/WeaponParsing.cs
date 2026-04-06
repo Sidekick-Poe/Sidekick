@@ -346,7 +346,7 @@ Corrupted
         AssertExtensions.AssertCloseEnough(216.2, actual.Properties.TotalDps);
 
         var statFilters = await fixture.StatParser.GetFilters(actual);
-        var meleeStat = statFilters.FlattenFilters().OfType<StatFilter>().FirstOrDefault(s => s.Text == "+3 to Level of all Melee Skills");
+        var meleeStat = statFilters.Flatten().OfType<StatFilter>().FirstOrDefault(s => s.Text == "+3 to Level of all Melee Skills");
         Assert.NotNull(meleeStat);
         Assert.Equal(3, meleeStat.Min);
     }
@@ -400,7 +400,7 @@ Note: ~price 1 mirror");
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Attack Speed", 25);
         fixture.AssertHasStat(actual, StatCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Loads an additional bolt", 2);
-        actual.AssertDoesNotHaveModifier(StatCategory.Fractured, "Loads an additional bolt");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Fractured, "Loads an additional bolt");
 
         var modifierFilters = await fixture.StatParser.GetFilters(actual);
 

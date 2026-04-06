@@ -122,28 +122,7 @@ public abstract class ParserFixture : IAsyncLifetime
     public async Task<List<TradeFilter>> GetPropertyFilters(Item item)
     {
         var filters = await PropertyParser.GetFilters(item);
-        return TrimFilters(filters);
-    }
-
-    private List<TradeFilter> TrimFilters(List<TradeFilter> filters)
-    {
-        var results = new List<TradeFilter>();
-        foreach (var filter in filters)
-        {
-            switch (filter)
-            {
-                case SeparatorFilter:
-                    continue;
-                case ExpandableFilter expandableFilter:
-                    results.AddRange(TrimFilters(expandableFilter.Filters));
-                    continue;
-                default:
-                    results.Add(filter);
-                    break;
-            }
-        }
-
-        return results;
+        return filters.Flatten();
     }
 
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
@@ -153,7 +132,7 @@ public abstract class ParserFixture : IAsyncLifetime
 
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
     {
-        var actualStat = FindStat();
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
         Assert.NotNull(actualStat);
 
         if (expectedValues.Length == 0) return actualStat;
@@ -166,26 +145,41 @@ public abstract class ParserFixture : IAsyncLifetime
         AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
 
         return actualStat;
+    }
 
-        Stat? FindStat()
+    private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText)
+    {
+        foreach (var stat in actual.Stats)
         {
-            foreach (var stat in actual.Stats)
+            if (stat.Category != expectedCategory) continue;
+
+            foreach (var tradeStat in stat.Definitions
+                         .Where(x => x.TradeStats != null)
+                         .SelectMany(x => x.TradeStats!))
             {
-                if (stat.Category != expectedCategory) continue;
+                if (tradeStat.Text != expectedText) continue;
+                if (expectedOptionText == null) return stat;
 
-                foreach (var tradeStat in stat.Definitions
-                             .Where(x => x.TradeStats != null)
-                             .SelectMany(x => x.TradeStats!))
-                {
-                    if (tradeStat.Text != expectedText) continue;
-                    if (expectedOptionText == null) return stat;
-
-                    if (tradeStat.Option == null) continue;
-                    if (tradeStat.Option.Text == expectedOptionText) return stat;
-                }
+                if (tradeStat.Option == null) continue;
+                if (tradeStat.Option.Text == expectedOptionText) return stat;
             }
-
-            return null;
         }
+
+        return null;
+    }
+
+    public void AssertDoesNotHaveStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText = null)
+    {
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
+        Assert.Null(actualStat);
+    }
+
+    public void AssertHasPseudoStat(Item actual, string expectedText, double? expectedValue = null)
+    {
+        var actualStat = actual.PseudoStats.FirstOrDefault(x => expectedText == x.Text);
+        Assert.NotNull(actualStat);
+        Assert.Equal(expectedText, actualStat.Text);
+
+        if (expectedValue != null) AssertExtensions.AssertCloseEnough(expectedValue.Value, actualStat.Value);
     }
 }
