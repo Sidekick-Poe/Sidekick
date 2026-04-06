@@ -73,6 +73,8 @@ public class StatParser
         {
             foreach (var block in item.Text.Blocks)
             {
+                if (block.AnyParsed) continue;
+
                 for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
                 {
                     if (block.Lines[lineIndex].Parsed) continue;

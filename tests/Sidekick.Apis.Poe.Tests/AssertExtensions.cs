@@ -14,42 +14,25 @@ public static class AssertExtensions
                     $"Expected {expected}, but got {actual} which is outside the tolerance of {tolerance}");
     }
 
-    public static void AssertDoesNotHaveModifier(this Item actual, StatCategory expectedCategory, string expectedText)
+    public static List<TradeFilter> Flatten(this List<TradeFilter> filters)
     {
-        var actualModifier = actual.Stats
-            .SelectMany(stat => stat.Definitions.Select(pattern => new
-            {
-                Stat = stat,
-                Pattern = pattern,
-            }))
-            .FirstOrDefault(x => expectedCategory == x.Stat.Category && expectedText == x.Pattern.Text);
-
-        Assert.Null(actualModifier);
-    }
-
-    public static void AssertHasPseudoModifier(this Item actual, string expectedText, double? expectedValue = null)
-    {
-        var actualModifier = actual.PseudoStats.FirstOrDefault(x => expectedText == x.Text);
-        Assert.Equal(expectedText, actualModifier?.Text);
-
-        if (expectedValue != null)
-        {
-            Assert.Equal(expectedValue, actualModifier?.Value);
-        }
-    }
-
-    public static IEnumerable<TradeFilter> FlattenFilters(this List<TradeFilter> filters)
-    {
+        var results = new List<TradeFilter>();
         foreach (var filter in filters)
         {
-            yield return filter;
-
-            if (filter is not ExpandableFilter expandable) yield break;
-
-            foreach (var subFilter in expandable.Filters)
+            switch (filter)
             {
-                yield return subFilter;
+                case SeparatorFilter:
+                    continue;
+                case ExpandableFilter expandableFilter:
+                    results.AddRange(expandableFilter.Filters.Flatten());
+                    continue;
+                default:
+                    results.Add(filter);
+                    break;
             }
         }
+
+        return results;
     }
+
 }
