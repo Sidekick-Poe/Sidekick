@@ -1,6 +1,6 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;

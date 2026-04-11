@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Models;
+using Sidekick.Apis.Poe.Trade.Trade.Models;
 using Xunit;
 
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;

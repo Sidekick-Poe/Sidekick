@@ -9,7 +9,7 @@ using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
-using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Items.Models.ApiItem;
+using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Models.ApiItem;
 
 namespace Sidekick.Modules.Wealth.Provider;
 

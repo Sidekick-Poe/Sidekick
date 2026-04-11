@@ -1,5 +1,6 @@
 @using Microsoft.Extensions.Localization
 @using Microsoft.Extensions.Options
+@using Sidekick.Apis.Poe.Trade.Trade
 @using Sidekick.Common
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
@@ -16,6 +17,8 @@
         <FormFieldset Legend="@SettingResources["General_Settings"]">
             <LanguageParserEditor/>
             <LeagueIdEditor/>
+            <SettingCheckboxEditor SettingKey="@ItemTradeService.UseInvariantTradeResults"
+                                   Label="@SettingResources["UseEnglishTradeWebsite"]"/>
         </FormFieldset>
 
         <FormFieldset Legend="@SettingResources["Item_Overlay"]">
