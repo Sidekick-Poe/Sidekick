@@ -80,6 +80,6 @@ public class TradeFilterProvider
         }
 
         if (result.Count == 0) return [];
-        return [new ExpandableFilter(TradeCategory.Title, result.ToArray())];
+        return [new ExpandableFilter(TradeCategory.Title, false, result.ToArray())];
     }
 }

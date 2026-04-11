@@ -1,39 +1,33 @@
 ﻿using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Items;
 namespace Sidekick.Apis.Poe.Trade.Filters.Definitions;
 
-public class CurrencyFilterFactory(
-    ITradeFilterProvider tradeFilterProvider,
-    ISettingsService settingsService)
+public class CurrencyFilterFactory(ITradeFilterProvider tradeFilterProvider)
 {
     private const string SettingKeyPoe1 = "Trade_Filter_Currency_Poe1";
     private const string SettingKeyPoe2 = "Trade_Filter_Currency_Poe2";
 
-    public async Task<TradeFilter?> GetFilter(Item item)
+    public Task<TradeFilter?> GetFilter(Item item)
     {
         var priceFilters = tradeFilterProvider.GetApiFilter("trade_filters", "price");
-        var priceKey = item.Game == GameType.PathOfExile1 ? SettingKeyPoe1 : SettingKeyPoe2;
-        if (priceFilters != null)
-        {
-            return new CurrencyFilter(settingsService, priceKey)
-            {
-                Text = priceFilters.Text ?? string.Empty,
-                Value = await settingsService.GetString(priceKey),
-                DefaultValue = null,
-                Options = priceFilters.Option.Options
-                    .Select(x => new OptionFilter.OptionFilterValue(x.Id, x.Text))
-                    .ToList(),
-            };
-        }
+        if (priceFilters == null) return Task.FromResult<TradeFilter?>(null);
 
-        return null;
+        var priceKey = item.Game == GameType.PathOfExile1 ? SettingKeyPoe1 : SettingKeyPoe2;
+
+        return Task.FromResult<TradeFilter?>(new CurrencyFilter(priceKey)
+        {
+            Text = priceFilters.Text ?? string.Empty,
+            DefaultValue = null,
+            Options = priceFilters.Option.Options
+                .Select(x => new OptionFilter.OptionFilterItem(x.Id, x.Text))
+                .ToList(),
+        });
     }
 }
 
-public class CurrencyFilter(ISettingsService settingsService, string settingKey) : OptionFilter
+public class CurrencyFilter(string settingKey) : OptionFilter(settingKey)
 {
     public override void PrepareTradeRequest(Query query, Item item)
     {
@@ -41,15 +35,5 @@ public class CurrencyFilter(ISettingsService settingsService, string settingKey)
         {
             query.Filters.GetOrCreateTradeFilters().Filters.Price = new(Value);
         }
-    }
-
-    public override async Task OnChanged()
-    {
-        if (!string.IsNullOrEmpty(settingKey))
-        {
-            await settingsService.Set(settingKey, Value);
-        }
-
-        await base.OnChanged();
     }
 }

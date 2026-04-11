@@ -43,6 +43,6 @@ public class ExpandableProperty
 
         if (filters.Count == 0) return null;
 
-        return new ExpandableFilter(Label, filters.ToArray());
+        return new ExpandableFilter(Label, false, filters.ToArray());
     }
 }

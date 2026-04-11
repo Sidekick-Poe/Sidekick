@@ -1,7 +1,6 @@
 <label class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-[3px]" : "min-h-5 gap-2")">
     <input id="@ElementId"
            type="checkbox"
-           checked="@Value"
            @onchange="OnChange"
            class="@(Dense ? "w-4 h-4 min-w-4 min-h-4" : "w-5 h-5 min-w-5 min-h-5") border-2 rounded-sm bg-zinc-700 border-zinc-600 text-zinc-600 @UiClasses.FocusClasses">
     <span class="text-zinc-200 font-medium @(Dense ? "text-sm" : "text-base")">
@@ -28,13 +27,27 @@
 
     private string ElementId { get; } = UiUtilities.GenerateId();
 
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value);
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e, "Failed to load javascript module.");
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             try
             {
-                await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value == null);
+                await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value);
             }
             catch (Exception e)
             {
@@ -55,7 +68,7 @@
         };
 
         await ValueChanged.InvokeAsync(checkboxValue);
-        await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, checkboxValue == null);
+        await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, checkboxValue);
     }
 
 }

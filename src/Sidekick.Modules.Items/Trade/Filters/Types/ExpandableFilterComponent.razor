@@ -27,7 +27,7 @@
         var filter = Filter.Filters[index];
         var key = $"{Item.Id}_filter_{index}";
 
-        if (!Expanded)
+        if (!Filter.Checked)
         {
             if (filter is TriStatePropertyFilter triState)
             {
@@ -48,7 +48,5 @@
 
     [Parameter]
     public required ExpandableFilter Filter { get; set; }
-
-    private bool Expanded => Filter.Checked;
 
 }

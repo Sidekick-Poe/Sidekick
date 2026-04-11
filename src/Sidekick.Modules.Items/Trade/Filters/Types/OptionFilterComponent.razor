@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Trade.Filters.Types
+@using Sidekick.Common.Settings
 @using Sidekick.Data.Stats
 
 <FilterWrapper Class="font-caps" Filter="@Filter">
@@ -22,6 +23,8 @@
     </div>
 </FilterWrapper>
 
+@inject ISettingsService SettingsService
+
 @code {
 
     [Parameter]
@@ -36,13 +39,13 @@
     private async Task Changed(string? value)
     {
         Filter.Value = value;
-        await Filter.OnChanged();
+        await Filter.OnChanged(SettingsService);
     }
 
     private async Task ClearSetting()
     {
         Filter.Value = Filter.DefaultValue;
-        await Filter.OnChanged();
+        await Filter.OnChanged(SettingsService);
     }
 
 }
