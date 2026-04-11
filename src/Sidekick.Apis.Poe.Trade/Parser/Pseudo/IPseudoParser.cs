@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Common.Initialization;
 using Sidekick.Data.Items;
 

@@ -1,7 +1,7 @@
-﻿using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+﻿using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;

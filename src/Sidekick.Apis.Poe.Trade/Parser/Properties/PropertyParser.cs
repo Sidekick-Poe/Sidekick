@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Localization;
+using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Extensions;

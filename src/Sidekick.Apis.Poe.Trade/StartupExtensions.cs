@@ -1,5 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Trade.Clients;
+using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser;
@@ -7,10 +10,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
-using Sidekick.Apis.Poe.Trade.Trade.Items;
+using Sidekick.Apis.Poe.Trade.Trade;
 using Sidekick.Common;
 using Sidekick.Data.Stats;
 

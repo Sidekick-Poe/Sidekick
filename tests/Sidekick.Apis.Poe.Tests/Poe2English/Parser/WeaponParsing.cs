@@ -1,5 +1,5 @@
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
 using Sidekick.Data.Stats;
