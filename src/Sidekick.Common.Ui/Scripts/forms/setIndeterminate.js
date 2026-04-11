@@ -1,3 +1,4 @@
 export default (elementId, value) => {
-    document.getElementById(elementId).indeterminate = value;
+    document.getElementById(elementId).checked = value === true;
+    document.getElementById(elementId).indeterminate = value === null;
 };

@@ -100,11 +100,11 @@ public class PseudoParser
 
         if (result.Count == 0) return result;
 
-        var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], result.ToArray())
+        var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], true, result.ToArray())
         {
             Checked = true,
         };
-        await expandableFilter.Initialize(item, settingsService);
+        await expandableFilter.Initialize(item,  settingsService);
         expandableFilter.Checked = true;
 
         return [expandableFilter];

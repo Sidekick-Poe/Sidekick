@@ -3,6 +3,8 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Properties
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
 @using Sidekick.Apis.Poe.Trade.Parser.Stats
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Api
 @using Sidekick.Data.Items
 @using Sidekick.Modules.Items.Trade.Filters.Types
 @using Sidekick.Modules.Items.Trade.Localization
@@ -26,10 +28,15 @@
         }
     </div>
 
-    <div class="flex flex-col items-stretch text-center px-2 pb-2 pt-1">
+    <div class="flex items-center text-center px-2 pb-2 pt-1 gap-2">
         <ButtonPrimary
+            Class="flex-1"
             OnClick="() => TradeService.SearchItems(Item, Filters)"
             Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
+        <ButtonIcon Svg="@UiIcons.Refresh"
+                    Title="@Resources["ResetFilters"]"
+                    OnClick="ResetFilters"
+                    Disabled="TradeService.IsLoading"/>
     </div>
 </div>
 
@@ -39,6 +46,7 @@
 @inject IStatParser StatParser
 @inject IPseudoParser PseudoParser
 @inject ITradeFilterProvider TradeFilterProvider
+@inject ISettingsService SettingsService
 
 @code {
 
@@ -79,11 +87,21 @@
             }
 
             Filters.RemoveAt(i);
-            i--; // Adjust index to recheck current position
+            i--;// Adjust index to recheck current position
         }
 
         TradeService.Clear();
 
         await base.OnParametersSetAsync();
+    }
+
+    private async Task ResetFilters()
+    {
+        foreach (var filter in Filters)
+        {
+            await filter.Initialize(Item, SettingsService);
+        }
+
+        StateHasChanged();
     }
 }

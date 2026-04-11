@@ -291,11 +291,10 @@ public class StatParser
         }
 
         var expandableFilter =
-            new ExpandableFilter(resources["Stat_Filters"], result.ToArray())
+            new ExpandableFilter(resources["Stat_Filters"], true, result.ToArray())
             {
                 AutoSelectSettingKey = autoSelectKey,
                 DefaultAutoSelect = StatFilter.GetDefault(item.Game),
-                Checked = true,
             };
         await expandableFilter.Initialize(item, settingsService);
         expandableFilter.Checked = true;

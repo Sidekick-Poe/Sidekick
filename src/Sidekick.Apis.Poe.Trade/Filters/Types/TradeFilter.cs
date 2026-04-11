@@ -60,6 +60,4 @@ public abstract class TradeFilter
     public AutoSelectPreferences? DefaultAutoSelect { get; init; }
 
     public virtual void PrepareTradeRequest(Query query, Item item) {}
-
-    public virtual Task OnChanged() => Task.CompletedTask;
 }
