@@ -1,5 +1,6 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -33,8 +34,8 @@ Shift click to unstack.
 Note: ~price 1 fusing
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Weeping Essence of Anger", actual.ApiInformation.Type);
+        Assert.Equal("Weeping Essence of Anger", actual.Definition.TradeItem?.Type);
     }
 }

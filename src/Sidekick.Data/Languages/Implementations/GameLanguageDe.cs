@@ -10,7 +10,6 @@ public class GameLanguageDe : IGameLanguage
     public string PoeTradeApiBaseUrl => "https://de.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://de.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://de.pathofexile.com/api/trade2/";
-    public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "Einzigartig";
     public string RarityRare => "Selten";
@@ -25,6 +24,8 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionQuality => "Qualität";
     public string DescriptionLevel => "Stufe";
     public string DescriptionCorrupted => "Verderbt";
+    public string DescriptionSplit => "Geteilt";
+    public string DescriptionMirrored => "Gespiegelt";
     public string DescriptionSockets => "Fassungen";
     public string DescriptionItemLevel => "Gegenstandsstufe";
     public string DescriptionExperience => "Erfahrung";
@@ -49,11 +50,21 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionItemQuantity => "Gegenstandsmenge";
     public string DescriptionItemRarity => "Gegenstandsseltenheit";
     public string DescriptionMonsterPackSize => "Monstergruppengröße";
+    public string DescriptionMoreMaps => "Mehr Karten";
+    public string DescriptionMoreScarabs => "Mehr Skarabäen";
+    public string DescriptionMoreCurrency => "Mehr Währung";
+    public string DescriptionMoreCards => "Mehr Weissagungskarten";
+    public string DescriptionQualityCurrency => "Qualität (Währung)";
+    public string DescriptionQualityScarabs => "Qualität (Skarabäen)";
+    public string DescriptionQualityCards => "Qualität (Weissagungskarten)";
+    public string DescriptionQualityPackSize => "Qualität (Gruppengröße)";
+    public string DescriptionQualityRarity => "Qualität (Seltenheit)";
     public string DescriptionMagicMonsters => "Magische Monster";
     public string DescriptionRareMonsters => "Seltene Monster";
     public string DescriptionRevivesAvailable => "Wiederbelebungen verfügbar";
     public string DescriptionWaystoneDropChance => "Chance auf fallen gelassene Wegsteine";
     public string DescriptionAreaLevel => "Gebietsstufe";
+    public string DescriptionMemoryStrands => "Erinnerungsstränge";
     public string DescriptionUnusable => "Du kannst diesen Gegenstand nicht benutzen. Seine Eigenschaften werden ignoriert.";
     public string DescriptionRequirements => "Anforderungen";
     public string DescriptionRequires => "Erfordert";
@@ -61,6 +72,22 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionRequiresStr => "Str";
     public string DescriptionRequiresDex => "Ges";
     public string DescriptionRequiresInt => "Int";
+    public string DescriptionHeistWings => "Aufgedeckte Gebäudetrakte";
+    public string DescriptionHeistRoutes => "Aufgedeckte Fluchtwege";
+    public string DescriptionHeistRooms => "Aufgedeckte Belohnungsräume";
+    public string DescriptionHeistLockpicking => "Erfordert Schlossknacken (Stufe #)";
+    public string DescriptionHeistDemolition => "Erfordert Sprengung (Stufe #)";
+    public string DescriptionHeistAgility => "Erfordert Agilität (Stufe #)";
+    public string DescriptionHeistCounterThaumaturgy => "Erfordert Thaumaturgie-Abwehr (Stufe #)";
+    public string DescriptionHeistTrap => "Erfordert Fallenentschärfung (Stufe #)";
+    public string DescriptionHeistPerception => "Erfordert Wahrnehmung (Stufe #)";
+    public string DescriptionHeistBruteForce => "Erfordert Brachialgewalt (Stufe #)";
+    public string DescriptionHeistDeception => "Erfordert Täuschung (Stufe #)";
+    public string DescriptionHeistEngineering => "Erfordert Ingenieurwesen (Stufe #)";
+    public string DescriptionHeistModerateValue => "Mäßiger Wert";
+    public string DescriptionHeistHighValue => "Hoher Wert";
+    public string DescriptionHeistPrecious => "Kostbar";
+    public string DescriptionHeistPriceless => "Unschätzbar";
 
     public string AffixSuperior => "(hochwertig)";
     public string AffixBlighted => "Befallene";

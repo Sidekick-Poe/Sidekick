@@ -1,0 +1,2487 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "id": "status_filters",
+      "filters": {
+        "$id": "3",
+        "$values": [
+          {
+            "$id": "4",
+            "id": "status",
+            "option": {
+              "$id": "5",
+              "options": {
+                "$id": "6",
+                "$values": [
+                  {
+                    "$id": "7",
+                    "id": "available",
+                    "text": "\u30A4\u30F3\u30B9\u30BF\u30F3\u30C8\u30D0\u30A4\u30A2\u30A6\u30C8\u304A\u3088\u3073\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9"
+                  },
+                  {
+                    "$id": "8",
+                    "id": "securable",
+                    "text": "\u30A4\u30F3\u30B9\u30BF\u30F3\u30C8\u30D0\u30A4\u30A2\u30A6\u30C8"
+                  },
+                  {
+                    "$id": "9",
+                    "id": "onlineleague",
+                    "text": "\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9 (\u30EA\u30FC\u30B0\u306B\u30AA\u30F3\u30E9\u30A4\u30F3)"
+                  },
+                  {
+                    "$id": "10",
+                    "id": "online",
+                    "text": "\u5BFE\u9762\u30C8\u30EC\u30FC\u30C9 (\u30AA\u30F3\u30E9\u30A4\u30F3)"
+                  },
+                  {
+                    "$id": "11",
+                    "id": "any",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "12",
+      "id": "type_filters",
+      "title": "\u7A2E\u985E\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "13",
+        "$values": [
+          {
+            "$id": "14",
+            "id": "category",
+            "text": "\u30A2\u30A4\u30C6\u30E0\u30AB\u30C6\u30B4\u30EA\u30FC",
+            "option": {
+              "$id": "15",
+              "options": {
+                "$id": "16",
+                "$values": [
+                  {
+                    "$id": "17",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "18",
+                    "id": "weapon",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u6B66\u5668"
+                  },
+                  {
+                    "$id": "19",
+                    "id": "weapon.one",
+                    "text": "\u7247\u624B\u6B66\u5668"
+                  },
+                  {
+                    "$id": "20",
+                    "id": "weapon.onemelee",
+                    "text": "\u7247\u624B\u8FD1\u63A5\u6B66\u5668"
+                  },
+                  {
+                    "$id": "21",
+                    "id": "weapon.twomelee",
+                    "text": "\u4E21\u624B\u8FD1\u63A5\u6B66\u5668"
+                  },
+                  {
+                    "$id": "22",
+                    "id": "weapon.bow",
+                    "text": "\u5F13"
+                  },
+                  {
+                    "$id": "23",
+                    "id": "weapon.claw",
+                    "text": "\u9264\u722A"
+                  },
+                  {
+                    "$id": "24",
+                    "id": "weapon.dagger",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u77ED\u5263"
+                  },
+                  {
+                    "$id": "25",
+                    "id": "weapon.basedagger",
+                    "text": "\u30D9\u30FC\u30B9\u77ED\u5263"
+                  },
+                  {
+                    "$id": "26",
+                    "id": "weapon.runedagger",
+                    "text": "\u30EB\u30FC\u30F3\u306E\u77ED\u5263"
+                  },
+                  {
+                    "$id": "27",
+                    "id": "weapon.oneaxe",
+                    "text": "\u7247\u624B\u65A7"
+                  },
+                  {
+                    "$id": "28",
+                    "id": "weapon.onesword",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u7247\u624B\u5263"
+                  },
+                  {
+                    "$id": "29",
+                    "id": "weapon.basesword",
+                    "text": "\u57FA\u672C\u7247\u624B\u5263"
+                  },
+                  {
+                    "$id": "30",
+                    "id": "weapon.rapier",
+                    "text": "\u30EC\u30A4\u30D4\u30A2"
+                  },
+                  {
+                    "$id": "31",
+                    "id": "weapon.onemace",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u7247\u624B\u30E1\u30A4\u30B9"
+                  },
+                  {
+                    "$id": "32",
+                    "id": "weapon.basemace",
+                    "text": "\u30D9\u30FC\u30B9\u7247\u624B\u30E1\u30A4\u30B9"
+                  },
+                  {
+                    "$id": "33",
+                    "id": "weapon.sceptre",
+                    "text": "\u30BB\u30D7\u30BF\u30FC"
+                  },
+                  {
+                    "$id": "34",
+                    "id": "weapon.staff",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30B9\u30BF\u30C3\u30D5"
+                  },
+                  {
+                    "$id": "35",
+                    "id": "weapon.basestaff",
+                    "text": "\u30D9\u30FC\u30B9\u30B9\u30BF\u30C3\u30D5"
+                  },
+                  {
+                    "$id": "36",
+                    "id": "weapon.warstaff",
+                    "text": "\u30A6\u30A9\u30FC\u30B9\u30BF\u30C3\u30D5"
+                  },
+                  {
+                    "$id": "37",
+                    "id": "weapon.twoaxe",
+                    "text": "\u4E21\u624B\u65A7"
+                  },
+                  {
+                    "$id": "38",
+                    "id": "weapon.twomace",
+                    "text": "\u4E21\u624B\u30E1\u30A4\u30B9"
+                  },
+                  {
+                    "$id": "39",
+                    "id": "weapon.twosword",
+                    "text": "\u4E21\u624B\u5263"
+                  },
+                  {
+                    "$id": "40",
+                    "id": "weapon.wand",
+                    "text": "\u30EF\u30F3\u30C9"
+                  },
+                  {
+                    "$id": "41",
+                    "id": "weapon.rod",
+                    "text": "\u91E3\u308A\u7AFF"
+                  },
+                  {
+                    "$id": "42",
+                    "id": "armour",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u9632\u5177"
+                  },
+                  {
+                    "$id": "43",
+                    "id": "armour.chest",
+                    "text": "\u93A7"
+                  },
+                  {
+                    "$id": "44",
+                    "id": "armour.boots",
+                    "text": "\u9774"
+                  },
+                  {
+                    "$id": "45",
+                    "id": "armour.gloves",
+                    "text": "\u624B\u888B"
+                  },
+                  {
+                    "$id": "46",
+                    "id": "armour.helmet",
+                    "text": "\u515C"
+                  },
+                  {
+                    "$id": "47",
+                    "id": "armour.shield",
+                    "text": "\u76FE"
+                  },
+                  {
+                    "$id": "48",
+                    "id": "armour.quiver",
+                    "text": "\u77E2\u7B52"
+                  },
+                  {
+                    "$id": "49",
+                    "id": "accessory",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u5B9D\u98FE\u54C1"
+                  },
+                  {
+                    "$id": "50",
+                    "id": "accessory.amulet",
+                    "text": "\u30A2\u30DF\u30E5\u30EC\u30C3\u30C8"
+                  },
+                  {
+                    "$id": "51",
+                    "id": "accessory.belt",
+                    "text": "\u30D9\u30EB\u30C8"
+                  },
+                  {
+                    "$id": "52",
+                    "id": "accessory.ring",
+                    "text": "\u6307\u8F2A"
+                  },
+                  {
+                    "$id": "53",
+                    "id": "accessory.trinket",
+                    "text": "\u30C8\u30EA\u30F3\u30B1\u30C3\u30C8"
+                  },
+                  {
+                    "$id": "54",
+                    "id": "gem",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30B8\u30A7\u30E0"
+                  },
+                  {
+                    "$id": "55",
+                    "id": "gem.activegem",
+                    "text": "\u30B9\u30AD\u30EB\u30B8\u30A7\u30E0"
+                  },
+                  {
+                    "$id": "56",
+                    "id": "gem.supportgem",
+                    "text": "\u30B5\u30DD\u30FC\u30C8\u30B8\u30A7\u30E0"
+                  },
+                  {
+                    "$id": "57",
+                    "id": "gem.supportgemplus",
+                    "text": "\u899A\u9192\u306E\u30B5\u30DD\u30FC\u30C8\u30B8\u30A7\u30E0"
+                  },
+                  {
+                    "$id": "58",
+                    "id": "jewel",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30B8\u30E5\u30A8\u30EB"
+                  },
+                  {
+                    "$id": "59",
+                    "id": "jewel.base",
+                    "text": "\u30D9\u30FC\u30B9\u30B8\u30E5\u30A8\u30EB"
+                  },
+                  {
+                    "$id": "60",
+                    "id": "jewel.abyss",
+                    "text": "\u30A2\u30D3\u30B9\u30B8\u30E5\u30A8\u30EB"
+                  },
+                  {
+                    "$id": "61",
+                    "id": "jewel.cluster",
+                    "text": "\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB"
+                  },
+                  {
+                    "$id": "62",
+                    "id": "flask",
+                    "text": "\u30D5\u30E9\u30B9\u30B3"
+                  },
+                  {
+                    "$id": "63",
+                    "id": "map",
+                    "text": "\u30DE\u30C3\u30D7"
+                  },
+                  {
+                    "$id": "64",
+                    "id": "map.fragment",
+                    "text": "\u30DE\u30C3\u30D7\u306E\u65AD\u7247"
+                  },
+                  {
+                    "$id": "65",
+                    "id": "map.breachstone",
+                    "text": "\u30D6\u30EA\u30FC\u30C1\u30B9\u30C8\u30FC\u30F3"
+                  },
+                  {
+                    "$id": "66",
+                    "id": "map.invitation",
+                    "text": "\u30E1\u30A4\u30F4\u30A7\u30F3\u306E\u62DB\u5F85\u72B6"
+                  },
+                  {
+                    "$id": "67",
+                    "id": "map.scarab",
+                    "text": "\u30B9\u30AB\u30E9\u30D9"
+                  },
+                  {
+                    "$id": "68",
+                    "id": "leaguestone",
+                    "text": "\u30EA\u30FC\u30B0\u30B9\u30C8\u30FC\u30F3"
+                  },
+                  {
+                    "$id": "69",
+                    "id": "memoryline",
+                    "text": "\u30E1\u30E2\u30EA\u30FC\u30E9\u30A4\u30F3"
+                  },
+                  {
+                    "$id": "70",
+                    "id": "card",
+                    "text": "\u5360\u3044\u30AB\u30FC\u30C9"
+                  },
+                  {
+                    "$id": "71",
+                    "id": "monster.beast",
+                    "text": "\u6355\u7372\u3057\u305F\u30D3\u30FC\u30B9\u30C8"
+                  },
+                  {
+                    "$id": "72",
+                    "id": "monster.yellowbeast",
+                    "text": "\u9EC4\u8272\u30D3\u30FC\u30B9\u30C8"
+                  },
+                  {
+                    "$id": "73",
+                    "id": "monster.redbeast",
+                    "text": "\u8D64\u30D3\u30FC\u30B9\u30C8"
+                  },
+                  {
+                    "$id": "74",
+                    "id": "heistequipment",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30CF\u30A4\u30B9\u30C8\u88C5\u5099"
+                  },
+                  {
+                    "$id": "75",
+                    "id": "heistequipment.heistweapon",
+                    "text": "\u30CF\u30A4\u30B9\u30C8\u30AE\u30A2"
+                  },
+                  {
+                    "$id": "76",
+                    "id": "heistequipment.heisttool",
+                    "text": "\u30CF\u30A4\u30B9\u30C8\u30C4\u30FC\u30EB"
+                  },
+                  {
+                    "$id": "77",
+                    "id": "heistequipment.heistutility",
+                    "text": "\u30CF\u30A4\u30B9\u30C8\u30AF\u30ED\u30FC\u30AF"
+                  },
+                  {
+                    "$id": "78",
+                    "id": "heistequipment.heistreward",
+                    "text": "\u30CF\u30A4\u30B9\u30C8\u30D6\u30ED\u30FC\u30C1"
+                  },
+                  {
+                    "$id": "79",
+                    "id": "heistmission",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30CF\u30A4\u30B9\u30C8\u30DF\u30C3\u30B7\u30E7\u30F3"
+                  },
+                  {
+                    "$id": "80",
+                    "id": "heistmission.contract",
+                    "text": "\u30CF\u30A4\u30B9\u30C8\u4F9D\u983C\u66F8"
+                  },
+                  {
+                    "$id": "81",
+                    "id": "heistmission.blueprint",
+                    "text": "\u30CF\u30A4\u30B9\u30C8\u8A08\u753B\u66F8"
+                  },
+                  {
+                    "$id": "82",
+                    "id": "logbook",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30A8\u30AF\u30B9\u30DA\u30C7\u30A3\u30B7\u30E7\u30F3\u30ED\u30B0\u30D6\u30C3\u30AF"
+                  },
+                  {
+                    "$id": "83",
+                    "id": "sanctum.research",
+                    "text": "\u30B5\u30F3\u30AF\u30BF\u30E0\u8ABF\u67FB\u66F8"
+                  },
+                  {
+                    "$id": "84",
+                    "id": "sanctum.relic",
+                    "text": "\u30B5\u30F3\u30AF\u30BF\u30E0\u30EC\u30EA\u30C3\u30AF"
+                  },
+                  {
+                    "$id": "85",
+                    "id": "tincture",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30C1\u30F3\u30AD"
+                  },
+                  {
+                    "$id": "86",
+                    "id": "corpse",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u6B7B\u4F53"
+                  },
+                  {
+                    "$id": "87",
+                    "id": "idol",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u5076\u50CF"
+                  },
+                  {
+                    "$id": "88",
+                    "id": "graft",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30B0\u30E9\u30D5\u30C8"
+                  },
+                  {
+                    "$id": "89",
+                    "id": "wombgift",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u6BCD\u80CE\u30AE\u30D5\u30C8"
+                  },
+                  {
+                    "$id": "90",
+                    "id": "currency",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30AB\u30EC\u30F3\u30B7\u30FC"
+                  },
+                  {
+                    "$id": "91",
+                    "id": "currency.piece",
+                    "text": "\u30E6\u30CB\u30FC\u30AF\u306E\u65AD\u7247"
+                  },
+                  {
+                    "$id": "92",
+                    "id": "currency.resonator",
+                    "text": "\u30EC\u30BE\u30CD\u30FC\u30BF\u30FC"
+                  },
+                  {
+                    "$id": "93",
+                    "id": "currency.fossil",
+                    "text": "\u5316\u77F3"
+                  },
+                  {
+                    "$id": "94",
+                    "id": "currency.incubator",
+                    "text": "\u30A4\u30F3\u30AD\u30E5\u30D9\u30FC\u30BF\u30FC"
+                  },
+                  {
+                    "$id": "95",
+                    "id": "currency.heistobjective",
+                    "text": "\u30CF\u30A4\u30B9\u30C8\u76EE\u6A19"
+                  },
+                  {
+                    "$id": "96",
+                    "id": "currency.omen",
+                    "text": "\u304A\u544A\u3052"
+                  },
+                  {
+                    "$id": "97",
+                    "id": "currency.tattoo",
+                    "text": "\u30BF\u30C8\u30A5\u30FC"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "98",
+            "id": "rarity",
+            "text": "\u30A2\u30A4\u30C6\u30E0\u30EC\u30A2\u30EA\u30C6\u30A3",
+            "option": {
+              "$id": "99",
+              "options": {
+                "$id": "100",
+                "$values": [
+                  {
+                    "$id": "101",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "102",
+                    "id": "normal",
+                    "text": "\u30CE\u30FC\u30DE\u30EB"
+                  },
+                  {
+                    "$id": "103",
+                    "id": "magic",
+                    "text": "\u30DE\u30B8\u30C3\u30AF"
+                  },
+                  {
+                    "$id": "104",
+                    "id": "rare",
+                    "text": "\u30EC\u30A2"
+                  },
+                  {
+                    "$id": "105",
+                    "id": "unique",
+                    "text": "\u30E6\u30CB\u30FC\u30AF"
+                  },
+                  {
+                    "$id": "106",
+                    "id": "uniquefoil",
+                    "text": "\u30E6\u30CB\u30FC\u30AF\uFF08\u30D5\u30A9\u30A4\u30EB\uFF09"
+                  },
+                  {
+                    "$id": "107",
+                    "id": "nonunique",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u975E\u30E6\u30CB\u30FC\u30AF"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "108",
+      "id": "weapon_filters",
+      "title": "\u6B66\u5668\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "109",
+        "$values": [
+          {
+            "$id": "110",
+            "id": "damage",
+            "text": "\u30C0\u30E1\u30FC\u30B8",
+            "option": {
+              "$id": "111",
+              "options": {
+                "$id": "112",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "113",
+            "id": "aps",
+            "text": "1\u79D2\u3042\u305F\u308A\u306E\u30A2\u30BF\u30C3\u30AF\u56DE\u6570",
+            "option": {
+              "$id": "114",
+              "options": {
+                "$id": "115",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "116",
+            "id": "crit",
+            "text": "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387",
+            "option": {
+              "$id": "117",
+              "options": {
+                "$id": "118",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "119",
+            "id": "dps",
+            "text": "1\u79D2\u3042\u305F\u308A\u306E\u30C0\u30E1\u30FC\u30B8",
+            "option": {
+              "$id": "120",
+              "options": {
+                "$id": "121",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "122",
+            "id": "pdps",
+            "text": "\u7269\u7406DPS",
+            "option": {
+              "$id": "123",
+              "options": {
+                "$id": "124",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "125",
+            "id": "edps",
+            "text": "\u5143\u7D20DPS",
+            "option": {
+              "$id": "126",
+              "options": {
+                "$id": "127",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "128",
+      "id": "armour_filters",
+      "title": "\u9632\u5177\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "129",
+        "$values": [
+          {
+            "$id": "130",
+            "id": "ar",
+            "text": "\u30A2\u30FC\u30DE\u30FC",
+            "option": {
+              "$id": "131",
+              "options": {
+                "$id": "132",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "133",
+            "id": "ev",
+            "text": "\u56DE\u907F\u529B",
+            "option": {
+              "$id": "134",
+              "options": {
+                "$id": "135",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "136",
+            "id": "es",
+            "text": "\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9",
+            "option": {
+              "$id": "137",
+              "options": {
+                "$id": "138",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "139",
+            "id": "ward",
+            "text": "\u30A6\u30A9\u30FC\u30C9",
+            "option": {
+              "$id": "140",
+              "options": {
+                "$id": "141",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "142",
+            "id": "block",
+            "text": "\u30D6\u30ED\u30C3\u30AF",
+            "option": {
+              "$id": "143",
+              "options": {
+                "$id": "144",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "145",
+            "id": "base_defence_percentile",
+            "text": "\u57FA\u790E\u5272\u5408",
+            "option": {
+              "$id": "146",
+              "options": {
+                "$id": "147",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "148",
+      "id": "socket_filters",
+      "title": "\u30BD\u30B1\u30C3\u30C8\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "149",
+        "$values": [
+          {
+            "$id": "150",
+            "id": "sockets",
+            "text": "\u30BD\u30B1\u30C3\u30C8",
+            "option": {
+              "$id": "151",
+              "options": {
+                "$id": "152",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "153",
+            "id": "links",
+            "text": "\u30EA\u30F3\u30AF",
+            "option": {
+              "$id": "154",
+              "options": {
+                "$id": "155",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "156",
+      "id": "req_filters",
+      "title": "\u88C5\u5099\u8981\u6C42",
+      "filters": {
+        "$id": "157",
+        "$values": [
+          {
+            "$id": "158",
+            "id": "lvl",
+            "text": "\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "159",
+              "options": {
+                "$id": "160",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "161",
+            "id": "str",
+            "text": "\u7B4B\u529B",
+            "option": {
+              "$id": "162",
+              "options": {
+                "$id": "163",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "164",
+            "id": "dex",
+            "text": "\u5668\u7528\u3055",
+            "option": {
+              "$id": "165",
+              "options": {
+                "$id": "166",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "167",
+            "id": "int",
+            "text": "\u77E5\u6027",
+            "option": {
+              "$id": "168",
+              "options": {
+                "$id": "169",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "170",
+            "id": "class",
+            "text": "\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u30AF\u30E9\u30B9",
+            "option": {
+              "$id": "171",
+              "options": {
+                "$id": "172",
+                "$values": [
+                  {
+                    "$id": "173",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "174",
+                    "id": "scion",
+                    "text": "\u30B5\u30A4\u30AA\u30F3"
+                  },
+                  {
+                    "$id": "175",
+                    "id": "marauder",
+                    "text": "\u30DE\u30ED\u30FC\u30C0\u30FC"
+                  },
+                  {
+                    "$id": "176",
+                    "id": "ranger",
+                    "text": "\u30EC\u30F3\u30B8\u30E3\u30FC"
+                  },
+                  {
+                    "$id": "177",
+                    "id": "witch",
+                    "text": "\u30A6\u30A3\u30C3\u30C1"
+                  },
+                  {
+                    "$id": "178",
+                    "id": "duelist",
+                    "text": "\u30C7\u30E5\u30A8\u30EA\u30B9\u30C8"
+                  },
+                  {
+                    "$id": "179",
+                    "id": "templar",
+                    "text": "\u30C6\u30F3\u30D7\u30E9\u30FC"
+                  },
+                  {
+                    "$id": "180",
+                    "id": "shadow",
+                    "text": "\u30B7\u30E3\u30C9\u30A6"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "181",
+      "id": "map_filters",
+      "title": "\u30DE\u30C3\u30D7\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "182",
+        "$values": [
+          {
+            "$id": "183",
+            "id": "map_tier",
+            "text": "\u30DE\u30C3\u30D7\u30C6\u30A3\u30A2",
+            "option": {
+              "$id": "184",
+              "options": {
+                "$id": "185",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "186",
+            "id": "map_packsize",
+            "text": "\u30DE\u30C3\u30D7\u30D1\u30C3\u30AF\u30B5\u30A4\u30BA",
+            "option": {
+              "$id": "187",
+              "options": {
+                "$id": "188",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "189",
+            "id": "map_iiq",
+            "text": "\u30DE\u30C3\u30D7 IIQ",
+            "option": {
+              "$id": "190",
+              "options": {
+                "$id": "191",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "192",
+            "id": "map_iir",
+            "text": "\u30DE\u30C3\u30D7 IIR",
+            "option": {
+              "$id": "193",
+              "options": {
+                "$id": "194",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "195",
+            "id": "area_level",
+            "text": "\u30A8\u30EA\u30A2\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "196",
+              "options": {
+                "$id": "197",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "198",
+            "id": "map_series",
+            "text": "\u30DE\u30C3\u30D7\u30B7\u30EA\u30FC\u30BA",
+            "option": {
+              "$id": "199",
+              "options": {
+                "$id": "200",
+                "$values": [
+                  {
+                    "$id": "201",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "202",
+                    "id": "current",
+                    "text": "\u73FE\u5728"
+                  },
+                  {
+                    "$id": "203",
+                    "id": "keepers",
+                    "text": "Keepers"
+                  },
+                  {
+                    "$id": "204",
+                    "id": "mercenary",
+                    "text": "Mercenaries"
+                  },
+                  {
+                    "$id": "205",
+                    "id": "settlers",
+                    "text": "Settlers"
+                  },
+                  {
+                    "$id": "206",
+                    "id": "necropolis",
+                    "text": "Necropolis"
+                  },
+                  {
+                    "$id": "207",
+                    "id": "azmeri",
+                    "text": "Affliction"
+                  },
+                  {
+                    "$id": "208",
+                    "id": "ancestor",
+                    "text": "\u30A2\u30F3\u30BB\u30F3\u30BF\u30FC"
+                  },
+                  {
+                    "$id": "209",
+                    "id": "crucible",
+                    "text": "\u30AF\u30EB\u30FC\u30B7\u30D6\u30EB"
+                  },
+                  {
+                    "$id": "210",
+                    "id": "sanctum",
+                    "text": "Sanctum"
+                  },
+                  {
+                    "$id": "211",
+                    "id": "lake",
+                    "text": "\u30AB\u30E9\u30F3\u30C9\u30E9"
+                  },
+                  {
+                    "$id": "212",
+                    "id": "sentinel",
+                    "text": "\u30BB\u30F3\u30C1\u30CD\u30EB"
+                  },
+                  {
+                    "$id": "213",
+                    "id": "archnemesis",
+                    "text": "\u30A2\u30FC\u30C1\u30CD\u30E1\u30B7\u30B9"
+                  },
+                  {
+                    "$id": "214",
+                    "id": "scourge",
+                    "text": "\u30B9\u30AB\u30FC\u30B8"
+                  },
+                  {
+                    "$id": "215",
+                    "id": "expedition",
+                    "text": "\u30A8\u30AF\u30B9\u30DA\u30C7\u30A3\u30B7\u30E7\u30F3"
+                  },
+                  {
+                    "$id": "216",
+                    "id": "ritual",
+                    "text": "\u30EA\u30C1\u30E5\u30A2\u30EB"
+                  },
+                  {
+                    "$id": "217",
+                    "id": "heist",
+                    "text": "\u30CF\u30A4\u30B9\u30C8"
+                  },
+                  {
+                    "$id": "218",
+                    "id": "harvest",
+                    "text": "\u30CF\u30FC\u30D9\u30B9\u30C8"
+                  },
+                  {
+                    "$id": "219",
+                    "id": "delirium",
+                    "text": "\u30C7\u30EA\u30EA\u30A6\u30E0"
+                  },
+                  {
+                    "$id": "220",
+                    "id": "metamorph",
+                    "text": "\u30E1\u30BF\u30E2\u30EB\u30D5"
+                  },
+                  {
+                    "$id": "221",
+                    "id": "blight",
+                    "text": "\u30D6\u30E9\u30A4\u30C8"
+                  },
+                  {
+                    "$id": "222",
+                    "id": "legion",
+                    "text": "\u30EA\u30FC\u30B8\u30E7\u30F3"
+                  },
+                  {
+                    "$id": "223",
+                    "id": "synthesis",
+                    "text": "\u30B7\u30F3\u30BB\u30B7\u30B9"
+                  },
+                  {
+                    "$id": "224",
+                    "id": "betrayal",
+                    "text": "\u30D3\u30C8\u30EC\u30A4\u30A2\u30EB"
+                  },
+                  {
+                    "$id": "225",
+                    "id": "warfortheatlas",
+                    "text": "\u30A6\u30A9\u30FC\u30FB\u30D5\u30A9\u30FC\u30FB\u30A2\u30C8\u30E9\u30B9"
+                  },
+                  {
+                    "$id": "226",
+                    "id": "atlasofworlds",
+                    "text": "\u30A2\u30C8\u30E9\u30B9\u30FB\u30AA\u30D6\u30FB\u30EF\u30FC\u30EB\u30C9"
+                  },
+                  {
+                    "$id": "227",
+                    "id": "theawakening",
+                    "text": "\u30A2\u30A6\u30A7\u30FC\u30AF\u30CB\u30F3\u30B0"
+                  },
+                  {
+                    "$id": "228",
+                    "id": "original",
+                    "text": "\u30EC\u30AC\u30B7\u30FC"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "229",
+            "id": "map_blighted",
+            "text": "\u30D6\u30E9\u30A4\u30C8\u30DE\u30C3\u30D7",
+            "option": {
+              "$id": "230",
+              "options": {
+                "$id": "231",
+                "$values": [
+                  {
+                    "$id": "232",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "233",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "234",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "235",
+            "id": "map_uberblighted",
+            "text": "\u30D6\u30E9\u30A4\u30C8\u306B\u7834\u58CA\u3055\u308C\u305F\u30DE\u30C3\u30D7",
+            "option": {
+              "$id": "236",
+              "options": {
+                "$id": "237",
+                "$values": [
+                  {
+                    "$id": "238",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "239",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "240",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "241",
+            "id": "map_completion_reward",
+            "text": "\u30DE\u30C3\u30D7\u5B8C\u4E86\u5831\u916C",
+            "option": {
+              "$id": "242",
+              "options": {
+                "$id": "243",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "244",
+      "id": "heist_filters",
+      "title": "\u30CF\u30A4\u30B9\u30C8\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "245",
+        "$values": [
+          {
+            "$id": "246",
+            "id": "heist_wings",
+            "text": "\u60C5\u5831\u3092\u805E\u3044\u305F\u533A\u753B\u6570",
+            "option": {
+              "$id": "247",
+              "options": {
+                "$id": "248",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "249",
+            "id": "heist_max_wings",
+            "text": "\u5408\u8A08\u533A\u753B\u6570",
+            "option": {
+              "$id": "250",
+              "options": {
+                "$id": "251",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "252",
+            "id": "heist_escape_routes",
+            "text": "\u60C5\u5831\u3092\u805E\u3044\u305F\u9003\u8D70\u7D4C\u8DEF\u6570",
+            "option": {
+              "$id": "253",
+              "options": {
+                "$id": "254",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "255",
+            "id": "heist_max_escape_routes",
+            "text": "\u5408\u8A08\u9003\u8D70\u7D4C\u8DEF\u6570",
+            "option": {
+              "$id": "256",
+              "options": {
+                "$id": "257",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "258",
+            "id": "heist_reward_rooms",
+            "text": "\u60C5\u5831\u3092\u805E\u3044\u305F\u5831\u916C\u90E8\u5C4B",
+            "option": {
+              "$id": "259",
+              "options": {
+                "$id": "260",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "261",
+            "id": "heist_max_reward_rooms",
+            "text": "\u5408\u8A08\u5831\u916C\u90E8\u5C4B\u6570",
+            "option": {
+              "$id": "262",
+              "options": {
+                "$id": "263",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "264",
+            "id": "heist_objective_value",
+            "text": "\u4F9D\u983C\u66F8\u76EE\u6A19\u306E\u4FA1\u5024",
+            "option": {
+              "$id": "265",
+              "options": {
+                "$id": "266",
+                "$values": [
+                  {
+                    "$id": "267",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "268",
+                    "id": "moderate",
+                    "text": "\u4E2D\u7A0B\u5EA6\u306E\u4FA1\u5024"
+                  },
+                  {
+                    "$id": "269",
+                    "id": "high",
+                    "text": "\u9AD8\u4FA1\u5024"
+                  },
+                  {
+                    "$id": "270",
+                    "id": "precious",
+                    "text": "\u8CB4\u91CD"
+                  },
+                  {
+                    "$id": "271",
+                    "id": "priceless",
+                    "text": "\u30D7\u30E9\u30A4\u30B9\u30EC\u30B9"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "272",
+            "id": "heist_lockpicking",
+            "text": "\u9320\u524D\u7834\u308A\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "273",
+              "options": {
+                "$id": "274",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "275",
+            "id": "heist_brute_force",
+            "text": "\u602A\u529B\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "276",
+              "options": {
+                "$id": "277",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "278",
+            "id": "heist_perception",
+            "text": "\u77E5\u899A\u80FD\u529B\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "279",
+              "options": {
+                "$id": "280",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "281",
+            "id": "heist_demolition",
+            "text": "\u7206\u7834\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "282",
+              "options": {
+                "$id": "283",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "284",
+            "id": "heist_counter_thaumaturgy",
+            "text": "\u5BFE\u9B54\u8853\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "285",
+              "options": {
+                "$id": "286",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "287",
+            "id": "heist_trap_disarmament",
+            "text": "\u7F60\u89E3\u9664\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "288",
+              "options": {
+                "$id": "289",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "290",
+            "id": "heist_agility",
+            "text": "\u654F\u6377\u6027\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "291",
+              "options": {
+                "$id": "292",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "293",
+            "id": "heist_deception",
+            "text": "\u6B3A\u779E\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "294",
+              "options": {
+                "$id": "295",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "296",
+            "id": "heist_engineering",
+            "text": "\u5DE5\u4F5C\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "297",
+              "options": {
+                "$id": "298",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "299",
+      "id": "sanctum_filters",
+      "title": "\u30B5\u30F3\u30AF\u30BF\u30E0\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "300",
+        "$values": [
+          {
+            "$id": "301",
+            "id": "sanctum_resolve",
+            "text": "\u6C7A\u5FC3",
+            "option": {
+              "$id": "302",
+              "options": {
+                "$id": "303",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "304",
+            "id": "sanctum_max_resolve",
+            "text": "\u6C7A\u5FC3\u306E\u6700\u5927\u5024",
+            "option": {
+              "$id": "305",
+              "options": {
+                "$id": "306",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "307",
+            "id": "sanctum_inspiration",
+            "text": "\u52C7\u6C17",
+            "option": {
+              "$id": "308",
+              "options": {
+                "$id": "309",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "310",
+            "id": "sanctum_gold",
+            "text": "\u30A2\u30A6\u30EC\u30A6\u30B9",
+            "option": {
+              "$id": "311",
+              "options": {
+                "$id": "312",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "313",
+      "id": "ultimatum_filters",
+      "title": "\u30A2\u30EB\u30C6\u30A3\u30E1\u30A4\u30BF\u30E0\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "314",
+        "$values": [
+          {
+            "$id": "315",
+            "id": "ultimatum_challenge",
+            "text": "\u30C1\u30E3\u30EC\u30F3\u30B8\u30BF\u30A4\u30D7",
+            "option": {
+              "$id": "316",
+              "options": {
+                "$id": "317",
+                "$values": [
+                  {
+                    "$id": "318",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "319",
+                    "id": "Exterminate",
+                    "text": "\u9023\u7D9A\u3057\u3066\u8972\u3044\u304B\u304B\u308B\u6575\u3092\u5012\u305B"
+                  },
+                  {
+                    "$id": "320",
+                    "id": "Survival",
+                    "text": "\u751F\u5B58\u3057\u308D"
+                  },
+                  {
+                    "$id": "321",
+                    "id": "Defense",
+                    "text": "\u796D\u58C7\u3092\u5B88\u308C"
+                  },
+                  {
+                    "$id": "322",
+                    "id": "Conquer",
+                    "text": "\u30B9\u30C8\u30FC\u30F3\u30B5\u30FC\u30AF\u30EB\u306E\u4E2D\u306B\u7ACB\u3066"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "323",
+            "id": "ultimatum_reward",
+            "text": "\u5831\u916C\u7A2E\u985E",
+            "option": {
+              "$id": "324",
+              "options": {
+                "$id": "325",
+                "$values": [
+                  {
+                    "$id": "326",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "327",
+                    "id": "DoubleCurrency",
+                    "text": "\u30AB\u30EC\u30F3\u30B7\u30FC"
+                  },
+                  {
+                    "$id": "328",
+                    "id": "DoubleDivCards",
+                    "text": "\u5360\u3044\u30AB\u30FC\u30C9"
+                  },
+                  {
+                    "$id": "329",
+                    "id": "MirrorRare",
+                    "text": "\u30DF\u30E9\u30FC\u5316\u30EC\u30A2\u30A2\u30A4\u30C6\u30E0"
+                  },
+                  {
+                    "$id": "330",
+                    "id": "ExchangeUnique",
+                    "text": "\u30E6\u30CB\u30FC\u30AF\u30A2\u30A4\u30C6\u30E0"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "331",
+            "id": "ultimatum_input",
+            "text": "\u5FC5\u8981\u306A\u30A2\u30A4\u30C6\u30E0",
+            "option": {
+              "$id": "332",
+              "options": {
+                "$id": "333",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "334",
+            "id": "ultimatum_output",
+            "text": "\u30E6\u30CB\u30FC\u30AF\u3092\u5831\u916C\u3068\u3059\u308B",
+            "option": {
+              "$id": "335",
+              "options": {
+                "$id": "336",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "337",
+      "id": "misc_filters",
+      "title": "\u305D\u306E\u4ED6",
+      "filters": {
+        "$id": "338",
+        "$values": [
+          {
+            "$id": "339",
+            "id": "quality",
+            "text": "\u54C1\u8CEA",
+            "option": {
+              "$id": "340",
+              "options": {
+                "$id": "341",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "342",
+            "id": "ilvl",
+            "text": "\u30A2\u30A4\u30C6\u30E0\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "343",
+              "options": {
+                "$id": "344",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "345",
+            "id": "gem_level",
+            "text": "\u30B8\u30A7\u30E0\u30EC\u30D9\u30EB",
+            "option": {
+              "$id": "346",
+              "options": {
+                "$id": "347",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "348",
+            "id": "gem_level_progress",
+            "text": "\u30B8\u30A7\u30E0\u7D4C\u9A13\u5024 %",
+            "option": {
+              "$id": "349",
+              "options": {
+                "$id": "350",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "351",
+            "id": "gem_transfigured",
+            "text": "\u5909\u5BB9\u30B8\u30A7\u30E0",
+            "option": {
+              "$id": "352",
+              "options": {
+                "$id": "353",
+                "$values": [
+                  {
+                    "$id": "354",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "355",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "356",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "357",
+            "id": "gem_vaal",
+            "text": "\u30F4\u30A1\u30FC\u30EB\u30B8\u30A7\u30E0",
+            "option": {
+              "$id": "358",
+              "options": {
+                "$id": "359",
+                "$values": [
+                  {
+                    "$id": "360",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "361",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "362",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "363",
+            "id": "fractured_item",
+            "text": "\u30D5\u30E9\u30AF\u30C1\u30E3\u30FC\u30A2\u30A4\u30C6\u30E0",
+            "option": {
+              "$id": "364",
+              "options": {
+                "$id": "365",
+                "$values": [
+                  {
+                    "$id": "366",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "367",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "368",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "369",
+            "id": "gem_imbued",
+            "text": "\u6CE8\u5165\u30B8\u30A7\u30E0",
+            "option": {
+              "$id": "370",
+              "options": {
+                "$id": "371",
+                "$values": [
+                  {
+                    "$id": "372",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "373",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "374",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "375",
+            "id": "synthesised_item",
+            "text": "\u30B7\u30F3\u30BB\u30B7\u30B9\u30A2\u30A4\u30C6\u30E0",
+            "option": {
+              "$id": "376",
+              "options": {
+                "$id": "377",
+                "$values": [
+                  {
+                    "$id": "378",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "379",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "380",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "381",
+            "id": "searing_item",
+            "text": "\u707C\u71B1\u306E\u4EE3\u884C\u8005\u30A2\u30A4\u30C6\u30E0",
+            "option": {
+              "$id": "382",
+              "options": {
+                "$id": "383",
+                "$values": [
+                  {
+                    "$id": "384",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "385",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "386",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "387",
+            "id": "tangled_item",
+            "text": "\u4E16\u754C\u3092\u55B0\u3089\u3046\u8005\u30A2\u30A4\u30C6\u30E0",
+            "option": {
+              "$id": "388",
+              "options": {
+                "$id": "389",
+                "$values": [
+                  {
+                    "$id": "390",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "391",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "392",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "393",
+            "id": "memory_level",
+            "text": "\u30E1\u30E2\u30EA\u30FC\u30B9\u30C8\u30E9\u30F3\u30C9",
+            "option": {
+              "$id": "394",
+              "options": {
+                "$id": "395",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "396",
+            "id": "identified",
+            "text": "\u9451\u5B9A\u6E08\u307F",
+            "option": {
+              "$id": "397",
+              "options": {
+                "$id": "398",
+                "$values": [
+                  {
+                    "$id": "399",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "400",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "401",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "402",
+            "id": "corrupted",
+            "text": "\u30B3\u30E9\u30D7\u30C8\u72B6\u614B",
+            "option": {
+              "$id": "403",
+              "options": {
+                "$id": "404",
+                "$values": [
+                  {
+                    "$id": "405",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "406",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "407",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "408",
+            "id": "mirrored",
+            "text": "\u30DF\u30E9\u30FC\u5316",
+            "option": {
+              "$id": "409",
+              "options": {
+                "$id": "410",
+                "$values": [
+                  {
+                    "$id": "411",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "412",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "413",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "414",
+            "id": "split",
+            "text": "\u30B9\u30D7\u30EA\u30C3\u30C8",
+            "option": {
+              "$id": "415",
+              "options": {
+                "$id": "416",
+                "$values": [
+                  {
+                    "$id": "417",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "418",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "419",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "420",
+            "id": "crafted",
+            "text": "\u30AF\u30E9\u30D5\u30C8\u6E08\u307F",
+            "option": {
+              "$id": "421",
+              "options": {
+                "$id": "422",
+                "$values": [
+                  {
+                    "$id": "423",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "424",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "425",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "426",
+            "id": "veiled",
+            "text": "\u30F4\u30A7\u30FC\u30EB",
+            "option": {
+              "$id": "427",
+              "options": {
+                "$id": "428",
+                "$values": [
+                  {
+                    "$id": "429",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "430",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "431",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "432",
+            "id": "foreseeing",
+            "text": "\u4E88\u898B",
+            "option": {
+              "$id": "433",
+              "options": {
+                "$id": "434",
+                "$values": [
+                  {
+                    "$id": "435",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "436",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "437",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "438",
+            "id": "talisman_tier",
+            "text": "\u30BF\u30EA\u30B9\u30DE\u30F3 \u30C6\u30A3\u30A2",
+            "option": {
+              "$id": "439",
+              "options": {
+                "$id": "440",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "441",
+            "id": "stored_experience",
+            "text": "\u84C4\u3048\u3089\u308C\u305F\u7D4C\u9A13\u5024",
+            "option": {
+              "$id": "442",
+              "options": {
+                "$id": "443",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "444",
+            "id": "stack_size",
+            "text": "\u30B9\u30BF\u30C3\u30AF\u30B5\u30A4\u30BA",
+            "option": {
+              "$id": "445",
+              "options": {
+                "$id": "446",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "447",
+            "id": "alternate_art",
+            "text": "\u30AA\u30EB\u30BF\u30CD\u30FC\u30C8\u30A2\u30FC\u30C8",
+            "option": {
+              "$id": "448",
+              "options": {
+                "$id": "449",
+                "$values": [
+                  {
+                    "$id": "450",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "451",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "452",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "453",
+            "id": "foil_variation",
+            "text": "\u30D5\u30A9\u30A4\u30EB\u306E\u7A2E\u985E",
+            "option": {
+              "$id": "454",
+              "options": {
+                "$id": "455",
+                "$values": [
+                  {
+                    "$id": "456",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "457",
+                    "id": "none",
+                    "text": "\u306A\u3057"
+                  },
+                  {
+                    "$id": "458",
+                    "id": "0",
+                    "text": "\u30EC\u30A4\u30F3\u30DC\u30FC\uFF08\u30C7\u30D5\u30A9\u30EB\u30C8\uFF09"
+                  },
+                  {
+                    "$id": "459",
+                    "id": "voidborn",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30F4\u30A9\u30A4\u30C9\u30DC\u30FC\u30F3"
+                  },
+                  {
+                    "$id": "460",
+                    "id": "1",
+                    "text": "\u30A2\u30E1\u30B8\u30B9\u30C8"
+                  },
+                  {
+                    "$id": "461",
+                    "id": "2",
+                    "text": "\u30F4\u30A1\u30FC\u30C0\u30F3\u30C8"
+                  },
+                  {
+                    "$id": "462",
+                    "id": "3",
+                    "text": "\u30EB\u30D3\u30FC"
+                  },
+                  {
+                    "$id": "463",
+                    "id": "4",
+                    "text": "\u30B3\u30D0\u30EB\u30C8"
+                  },
+                  {
+                    "$id": "464",
+                    "id": "5",
+                    "text": "\u30B5\u30F3\u30BB\u30C3\u30C8"
+                  },
+                  {
+                    "$id": "465",
+                    "id": "6",
+                    "text": "\u30AA\u30FC\u30EA\u30A8\u30A4\u30C8"
+                  },
+                  {
+                    "$id": "466",
+                    "id": "celestial",
+                    "text": "\u3044\u305A\u308C\u304B\u306E\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30D0\u30FC\u30B8\u30E7\u30F3"
+                  },
+                  {
+                    "$id": "467",
+                    "id": "7",
+                    "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30AF\u30A9\u30FC\u30AF"
+                  },
+                  {
+                    "$id": "468",
+                    "id": "8",
+                    "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30EB\u30D3\u30FC"
+                  },
+                  {
+                    "$id": "469",
+                    "id": "9",
+                    "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30A8\u30E1\u30E9\u30EB\u30C9"
+                  },
+                  {
+                    "$id": "470",
+                    "id": "10",
+                    "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30AA\u30FC\u30EC\u30A4\u30C8"
+                  },
+                  {
+                    "$id": "471",
+                    "id": "11",
+                    "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30D1\u30FC\u30EB"
+                  },
+                  {
+                    "$id": "472",
+                    "id": "12",
+                    "text": "\u30BB\u30EC\u30B9\u30C6\u30A3\u30A2\u30EB\u30FB\u30A2\u30E1\u30B8\u30B9\u30C8"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "473",
+            "id": "corpse_type",
+            "text": "\u6B7B\u4F53\u30BF\u30A4\u30D7",
+            "option": {
+              "$id": "474",
+              "options": {
+                "$id": "475",
+                "$values": [
+                  {
+                    "$id": "476",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "477",
+                    "id": "eldritch",
+                    "text": "\u30A8\u30EB\u30C9\u30EA\u30C3\u30C1"
+                  },
+                  {
+                    "$id": "478",
+                    "id": "demon",
+                    "text": "\u60AA\u9B54"
+                  },
+                  {
+                    "$id": "479",
+                    "id": "construct",
+                    "text": "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30C8"
+                  },
+                  {
+                    "$id": "480",
+                    "id": "undead",
+                    "text": "\u30A2\u30F3\u30C7\u30C3\u30C9"
+                  },
+                  {
+                    "$id": "481",
+                    "id": "beast",
+                    "text": "\u7363"
+                  },
+                  {
+                    "$id": "482",
+                    "id": "humanoid",
+                    "text": "\u30D2\u30E5\u30FC\u30DE\u30CE\u30A4\u30C9"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "483",
+            "id": "scourge_tier",
+            "text": "\u30B9\u30AB\u30FC\u30B8 \u30C6\u30A3\u30A2",
+            "option": {
+              "$id": "484",
+              "options": {
+                "$id": "485",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "486",
+            "id": "crucible_item",
+            "text": "\u30AF\u30EB\u30FC\u30B7\u30D6\u30EB\u30A2\u30A4\u30C6\u30E0",
+            "option": {
+              "$id": "487",
+              "options": {
+                "$id": "488",
+                "$values": [
+                  {
+                    "$id": "489",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "490",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "491",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "492",
+            "id": "mutated",
+            "text": "\u30D5\u30A1\u30A6\u30EB\u30DC\u30FC\u30F3",
+            "option": {
+              "$id": "493",
+              "options": {
+                "$id": "494",
+                "$values": [
+                  {
+                    "$id": "495",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "496",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  },
+                  {
+                    "$id": "497",
+                    "id": "false",
+                    "text": "\u3044\u3044\u3048"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "498",
+      "id": "trade_filters",
+      "title": "\u30C8\u30EC\u30FC\u30C9\u30D5\u30A3\u30EB\u30BF\u30FC",
+      "filters": {
+        "$id": "499",
+        "$values": [
+          {
+            "$id": "500",
+            "id": "account",
+            "text": "\u8CA9\u58F2\u8005\u30A2\u30AB\u30A6\u30F3\u30C8",
+            "option": {
+              "$id": "501",
+              "options": {
+                "$id": "502",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "503",
+            "id": "collapse",
+            "text": "\u30A2\u30AB\u30A6\u30F3\u30C8\u3054\u3068\u306B\u51FA\u54C1\u3092\u6298\u308A\u305F\u305F\u3080",
+            "option": {
+              "$id": "504",
+              "options": {
+                "$id": "505",
+                "$values": [
+                  {
+                    "$id": "506",
+                    "text": "\u3044\u3044\u3048"
+                  },
+                  {
+                    "$id": "507",
+                    "id": "true",
+                    "text": "\u306F\u3044"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "508",
+            "id": "indexed",
+            "text": "\u63B2\u8F09\u65E5\u6642",
+            "option": {
+              "$id": "509",
+              "options": {
+                "$id": "510",
+                "$values": [
+                  {
+                    "$id": "511",
+                    "text": "\u3044\u3064\u3067\u3082"
+                  },
+                  {
+                    "$id": "512",
+                    "id": "1hour",
+                    "text": "\u6700\u59271\u6642\u9593\u524D"
+                  },
+                  {
+                    "$id": "513",
+                    "id": "3hours",
+                    "text": "\u6700\u59273\u6642\u9593\u524D"
+                  },
+                  {
+                    "$id": "514",
+                    "id": "12hours",
+                    "text": "\u6700\u592712\u6642\u9593\u524D"
+                  },
+                  {
+                    "$id": "515",
+                    "id": "1day",
+                    "text": "1\u65E5\u524D\u307E\u3067"
+                  },
+                  {
+                    "$id": "516",
+                    "id": "3days",
+                    "text": "3\u65E5\u524D\u307E\u3067"
+                  },
+                  {
+                    "$id": "517",
+                    "id": "1week",
+                    "text": "1\u9031\u9593\u524D\u307E\u3067"
+                  },
+                  {
+                    "$id": "518",
+                    "id": "2weeks",
+                    "text": "2\u9031\u9593\u524D\u307E\u3067"
+                  },
+                  {
+                    "$id": "519",
+                    "id": "1month",
+                    "text": "1\u30F6\u6708\u524D\u307E\u3067"
+                  },
+                  {
+                    "$id": "520",
+                    "id": "2months",
+                    "text": "2\u30F6\u6708\u524D\u307E\u3067"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "521",
+            "id": "sale_type",
+            "text": "\u8CA9\u58F2\u30BF\u30A4\u30D7",
+            "option": {
+              "$id": "522",
+              "options": {
+                "$id": "523",
+                "$values": [
+                  {
+                    "$id": "524",
+                    "id": "any",
+                    "text": "\u6307\u5B9A\u306A\u3057"
+                  },
+                  {
+                    "$id": "525",
+                    "text": "\u30D0\u30A4\u30A2\u30A6\u30C8\u307E\u305F\u306F\u56FA\u5B9A\u4FA1\u683C"
+                  },
+                  {
+                    "$id": "526",
+                    "id": "priced_with_info",
+                    "text": "\u30E1\u30E2\u4ED8\u304D\u306E\u4FA1\u683C"
+                  },
+                  {
+                    "$id": "527",
+                    "id": "unpriced",
+                    "text": "\u4FA1\u683C\u63D0\u793A\u306A\u3057"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "528",
+            "id": "fee",
+            "text": "\u30B4\u30FC\u30EB\u30C9\u624B\u6570\u6599",
+            "option": {
+              "$id": "529",
+              "options": {
+                "$id": "530",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "531",
+            "id": "price",
+            "text": "\u30D0\u30A4\u30A2\u30A6\u30C8\u4FA1\u683C",
+            "option": {
+              "$id": "532",
+              "options": {
+                "$id": "533",
+                "$values": [
+                  {
+                    "$id": "534",
+                    "text": "\u30AB\u30AA\u30B9\u30AA\u30FC\u30D6\u540C\u7B49\u7269"
+                  },
+                  {
+                    "$id": "535",
+                    "id": "chaos_divine",
+                    "text": "\u30AB\u30AA\u30B9\u307E\u305F\u306F\u795E\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "536",
+                    "id": "chaos",
+                    "text": "\u30AB\u30AA\u30B9\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "537",
+                    "id": "exalted",
+                    "text": "\u9AD8\u8CB4\u306A\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "538",
+                    "id": "divine",
+                    "text": "\u795E\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "539",
+                    "id": "mirror",
+                    "text": "\u30AB\u30E9\u30F3\u30C9\u30E9\u306E\u93E1"
+                  },
+                  {
+                    "$id": "540",
+                    "id": "blessed",
+                    "text": "\u795D\u798F\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "541",
+                    "id": "chrome",
+                    "text": "\u8272\u5F69\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "542",
+                    "id": "gcp",
+                    "text": "\u5B9D\u77F3\u7D30\u5DE5\u5E2B\u306E\u30D7\u30EA\u30BA\u30E0"
+                  },
+                  {
+                    "$id": "543",
+                    "id": "jewellers",
+                    "text": "\u5B9D\u98FE\u8077\u4EBA\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "544",
+                    "id": "scour",
+                    "text": "\u6D17\u6D44\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "545",
+                    "id": "regret",
+                    "text": "\u5F8C\u6094\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "546",
+                    "id": "fusing",
+                    "text": "\u7D50\u5408\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "547",
+                    "id": "chance",
+                    "text": "\u53EF\u80FD\u6027\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "548",
+                    "id": "alt",
+                    "text": "\u6539\u5909\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "549",
+                    "id": "alch",
+                    "text": "\u932C\u91D1\u8853\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "550",
+                    "id": "regal",
+                    "text": "\u738B\u8005\u306E\u30AA\u30FC\u30D6"
+                  },
+                  {
+                    "$id": "551",
+                    "id": "vaal",
+                    "text": "\u30F4\u30A1\u2015\u30EB\u30AA\u30FC\u30D6"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

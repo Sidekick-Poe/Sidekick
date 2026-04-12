@@ -1,5 +1,6 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -22,10 +23,10 @@ Stack Size: 1/10
 Publicly, he lived a pious and chaste life of poverty. Privately, tithes and tributes made him and his lascivious company very comfortable indeed.
 ");
 
-        Assert.Equal(ItemClass.DivinationCard, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal("The Saint's Treasure", actual.ApiInformation.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("The Saint's Treasure", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -42,10 +43,10 @@ Shaper Item
 --------
 Though they were a pack of elite combatants, the Emperor's royal guards were not ready to face one of his notorious parties.");
 
-        Assert.Equal(ItemClass.DivinationCard, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal("The Lord of Celebration", actual.ApiInformation.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("The Lord of Celebration", actual.Definition.TradeItem?.Type);
         Assert.False(actual.Properties.Influences.Crusader);
         Assert.False(actual.Properties.Influences.Elder);
         Assert.False(actual.Properties.Influences.Hunter);
@@ -70,8 +71,8 @@ Some gifts are obligations while others are simply opportunities.
 Note: ~price 1 blessed
 ");
 
-        Assert.Equal(ItemClass.DivinationCard, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Equal("Boon of Justice", actual.ApiInformation.Type);
+        Assert.Equal("Boon of Justice", actual.Definition.TradeItem?.Type);
     }
 }

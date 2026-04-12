@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -37,9 +38,9 @@ You have Shocking Conflux for 3 seconds every 8 seconds
 Hunter Item
 ");
 
-        Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Hunter Hood", actual.ApiInformation.Type);
+        Assert.Equal("Hunter Hood", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "You have # Conflux for 3 seconds every 8 seconds", "Shocking");
     }
@@ -76,10 +77,10 @@ but merely a long sleep made eternal.
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Starkonja's Head", actual.ApiInformation.Name);
-        Assert.Equal("Silken Hood", actual.ApiInformation.Type);
+        Assert.Equal("Starkonja's Head", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Silken Hood", actual.Definition.TradeItem?.Type);
 
         Assert.False(actual.Properties.Unidentified);
         Assert.Equal(63, actual.Properties.ItemLevel);
@@ -92,5 +93,51 @@ Note: ~price 1 chaos
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Evasion Rating", 124);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to maximum Life", 80);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Global Evasion Rating when on Low Life", 150);
+    }
+
+    [Fact]
+    public void ParseTheDarkMonarch()
+    {
+        var actual = parser.ParseItem(@"Item Class: Helmets
+Rarity: Unique
+The Dark Monarch
+Lich's Circlet
+--------
+Energy Shield: 217 (augmented)
+--------
+Requirements:
+Level: 84
+Int: 224
+--------
+Sockets: B 
+--------
+Item Level: 85
+--------
++87 to maximum Energy Shield
++1 to Level of all Minion Skill Gems
++35% to Chaos Resistance
+50% reduced Light Radius
+Maximum number of Summoned Skeletons is Doubled
+Cannot have Minions other than Summoned Skeletons
+--------
+""Hate? You speak to me of hate? You have no idea what your persecution inflicts.
+How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
+- Saresh, last words, to Sekhema Orbala
+");
+
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("The Dark Monarch", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Lich's Circlet", actual.Definition.TradeItem?.Type);
+
+        Assert.False(actual.Properties.Unidentified);
+        Assert.Equal(85, actual.Properties.ItemLevel);
+        Assert.Equal(217, actual.Properties.EnergyShield);
+
+        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "Maximum number of Summoned Skeletons is Doubled\nCannot have Minions other than Summoned Skeletons");
+        Assert.NotNull(stat);
+        Assert.Single(stat.Definitions
+                          .Where(x => x.TradeStats != null)
+                          .SelectMany(x => x.TradeStats!));
     }
 }

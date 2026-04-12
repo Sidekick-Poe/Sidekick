@@ -1,12 +1,14 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
-using Sidekick.Data.Items;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Data.Builder.Trade;
 
 public class TradeDownloader(
     ILogger<TradeDownloader> logger,
+    IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider)
 {
     private static string GetApiBase(IGameLanguage language, GameType game)
@@ -16,10 +18,22 @@ public class TradeDownloader(
 
     public async Task Download(IGameLanguage language)
     {
-        await DownloadPath(DataType.TradeRawItems, language, "items");
-        await DownloadPath(DataType.TradeRawStats, language, "stats");
-        await DownloadPath(DataType.TradeRawStatic, language, "static");
-        await DownloadPath(DataType.TradeRawFilters, language, "filters");
+        try
+        {
+            await DownloadPath(DataType.RawTradeItems, language, "items");
+            await DownloadPath(DataType.RawTradeStats, language, "stats");
+            await DownloadPath(DataType.RawTradeStatic, language, "static");
+            await DownloadPath(DataType.RawTradeFilters, language, "filters");
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, $"Failed to download trade data for {language.Code}.");
+        }
     }
 
     public async Task DownloadPath(DataType dataType, IGameLanguage language, string path)

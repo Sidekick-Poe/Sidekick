@@ -1,5 +1,6 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -23,9 +24,9 @@ Shift click to unstack.
 Note: ~price 1 alch
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Ritual Splinter", actual.ApiInformation.Type);
+        Assert.Equal("Ritual Splinter", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -44,9 +45,9 @@ Right-click this item then left-click a Ritual Altar to store the monsters from 
 Note: ~price 8 chaos
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Ritual Vessel", actual.ApiInformation.Type);
+        Assert.Equal("Ritual Vessel", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -70,8 +71,8 @@ Right click this item to create this corpse.
 Note: ~price 3 chaos
 ");
 
-        Assert.Equal(ItemClass.Corpse, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Perfect Needle Horror", actual.ApiInformation.Type);
+        Assert.Equal("Perfect Needle Horror", actual.Definition.TradeItem?.Type);
     }
 }

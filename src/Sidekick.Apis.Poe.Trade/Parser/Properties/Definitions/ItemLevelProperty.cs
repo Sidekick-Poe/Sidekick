@@ -1,11 +1,11 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -15,23 +15,12 @@ public class ItemLevelProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionItemLevel.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionItemLevel.ToRegexIntProperty();
 
     public override string Label => currentGameLanguage.Language.DescriptionItemLevel;
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass) &&
-            item.Properties.ItemClass != ItemClass.SanctumRelic &&
-            item.Properties.ItemClass != ItemClass.SanctumResearch &&
-            item.Properties.ItemClass != ItemClass.Wombgift &&
-            item.Properties.ItemClass != ItemClass.Graft) return;
-
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 

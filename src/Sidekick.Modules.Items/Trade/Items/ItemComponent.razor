@@ -1,12 +1,13 @@
-@using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Trade.Filters
-@using Sidekick.Apis.Poe.Trade.Trade.Items.Results
+@using Sidekick.Apis.Poe.Trade.Parser.Properties
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
+@using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Data.Items
-@using Sidekick.Modules.Items.Components.Prices
+@using Sidekick.Data.Stats
+@using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
-@if (!IsCompact && (Result.Item.HasStats || ItemClassConstants.Gems.Contains(Item.Properties.ItemClass)))
+@if (!IsCompact && (Result.Item.HasStats || Item.Properties.Rarity == Rarity.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Result.Item.Name"
@@ -23,6 +24,7 @@
                 <ItemProperties Result="Result"/>
                 <ItemRequirements Result="Result"/>
                 <ItemGrantSkills Result="Result"/>
+                <ItemBuiltInSupport Result="Result"/>
                 <ItemStats Result="Result"/>
 
                 @if (!Result.Item.Identified)
@@ -31,20 +33,25 @@
                     <ItemStatText
                         Category="StatCategory.Unidentified">@Resources["Unidentified"]</ItemStatText>
                 }
-                @if (Result.Item.Sanctified && TradeFilterProvider.Sanctified != null)
+                @if (Result.Item.Sanctified)
                 {
                     <ItemSeparator Rarity="Result.Item.Rarity"/>
-                    <ItemStatText Category="StatCategory.Fractured">@TradeFilterProvider.Sanctified.Text</ItemStatText>
+                    <ItemStatText Category="StatCategory.Fractured">@(PropertyParser.GetDefinition<SanctifiedProperty>().Label)</ItemStatText>
                 }
-                @if (Result.Item.Mirrored && TradeFilterProvider.Mirrored != null)
+                @if (Result.Item.Mirrored)
                 {
                     <ItemSeparator Rarity="Result.Item.Rarity"/>
-                    <ItemStatText Category="StatCategory.Explicit">@TradeFilterProvider.Mirrored.Text</ItemStatText>
+                    <ItemStatText Category="StatCategory.Explicit">@(PropertyParser.GetDefinition<MirroredProperty>().Label)</ItemStatText>
+                }
+                @if (Result.Item.Split)
+                {
+                    <ItemSeparator Rarity="Result.Item.Rarity"/>
+                    <ItemStatText Category="StatCategory.Explicit">@(PropertyParser.GetDefinition<SplitProperty>().Label)</ItemStatText>
                 }
                 @if (Result.Item.Corrupted)
                 {
                     <ItemSeparator Rarity="Result.Item.Rarity"/>
-                    <ItemStatText Category="StatCategory.Corrupted">@Resources["Corrupted"]</ItemStatText>
+                    <ItemStatText Category="StatCategory.Corrupted">@(PropertyParser.GetDefinition<CorruptedProperty>().Label)</ItemStatText>
                 }
                 @if (!string.IsNullOrEmpty(Result.Item.Note))
                 {
@@ -91,8 +98,8 @@ else
     </div>
 }
 
+@inject IPropertyParser PropertyParser
 @inject IStringLocalizer<TradeResources> Resources
-@inject ITradeFilterProvider TradeFilterProvider
 
 @code {
 

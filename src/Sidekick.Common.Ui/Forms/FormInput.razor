@@ -1,3 +1,5 @@
+@using Microsoft.Extensions.DependencyInjection
+@using Microsoft.Extensions.Options
 @using Sidekick.Common.Platform
 <div>
 
@@ -26,7 +28,8 @@
 
 </div>
 
-@inject IKeyboardProvider KeyboardProvider
+@inject IOptions<SidekickConfiguration> Configuration
+@inject IServiceProvider ServiceProvider
 
 @code {
 
@@ -66,13 +69,21 @@
 
     protected async Task Focus()
     {
-        KeyboardProvider.Disable();
+        if (Configuration.Value.ApplicationType.SupportsKeybinds())
+        {
+            var keyboardProvider = ServiceProvider.GetRequiredService<IKeyboardProvider>();
+            keyboardProvider.Disable();
+        }
         await OnFocus.InvokeAsync();
     }
 
     protected async Task Blur()
     {
-        KeyboardProvider.Enable();
+        if (Configuration.Value.ApplicationType.SupportsKeybinds())
+        {
+            var keyboardProvider = ServiceProvider.GetRequiredService<IKeyboardProvider>();
+            keyboardProvider.Enable();
+        }
         await OnBlur.InvokeAsync();
     }
 }

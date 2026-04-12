@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using Sidekick.Data.Items;
 namespace Sidekick.Data.Builder.Pseudo.Definitions;
 
 public class ManaDefinition(GameType game) : PseudoDefinitionBuilder

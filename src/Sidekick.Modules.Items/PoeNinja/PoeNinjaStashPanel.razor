@@ -1,9 +1,13 @@
-﻿@using Sidekick.Apis.PoeNinja.Stash.Models
-@using Sidekick.Modules.Items.Components.Prices
+﻿@using Sidekick.Apis.Poe.Trade.Parser.Properties
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
+@using Sidekick.Apis.PoeNinja.Stash
+@using Sidekick.Data.Languages
+@using Sidekick.Data.Stats
+@using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
 
-<div class="mb-2 bg-stone-950 rounded-lg px-2 py-1">
-    <div class="flex flex-wrap">
+<div class="bg-stone-950 rounded-lg px-2 py-1">
+    <div class="flex flex-wrap mb-1">
         <div class="flex w-1/3 justify-center">
             <PriceDisplay Value="Stash.ChaosValue" Currency="chaos"/>
         </div>
@@ -15,23 +19,77 @@
         </div>
     </div>
 
-    <div class="mt-1">
-        <TextCaption Class="text-center">@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
+    @if (Stash.ListingCount < 5)
+    {
+        <AlertError IsCritical="true" Flat="true">@NinjaResources["LowConfidence"]</AlertError>
+    }
+    else if (Stash.ListingCount < 10)
+    {
+        <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
+    }
+
+    @if (Stash.Definition.Stash != null)
+    {
+        if (Stash.Definition.Stash.ItemLevel > 0)
+        {
+            <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionItemLevel"
+                              Value="@Stash.Definition.Stash.ItemLevel.ToString()"
+                              Class="text-center justify-center"/>
+        }
+
+        if (Stash.Definition.Stash.GemLevel > 0)
+        {
+            <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionLevel"
+                              Value="@Stash.Definition.Stash.GemLevel.ToString()"
+                              Class="text-center justify-center"/>
+        }
+
+        if (Stash.Definition.Stash.GemQuality > 0)
+        {
+            <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionQuality"
+                              Value="@Stash.Definition.Stash.GemQuality.ToString()"
+                              Class="text-center justify-center"/>
+        }
+
+        if (Stash.Definition.Stash.Stats != null)
+        {
+            foreach (var stat in Stash.Definition.Stash.Stats)
+            {
+                if (string.IsNullOrEmpty(stat.Id)) continue;
+                if (string.IsNullOrEmpty(stat.Text)) continue;
+
+                var category = StatCategory.Explicit;
+                if (stat.Id.StartsWith("explicit")) category = StatCategory.Mutated;
+                if (stat.Id.StartsWith("enchant")) category = StatCategory.Enchant;
+
+                <ItemStatText Category="category" Class="text-center">@stat.Text</ItemStatText>
+            }
+        }
+
+        if (Stash.Definition.Stash.Corrupted == true)
+        {
+            <ItemStatText Category="StatCategory.Corrupted"
+                          Class="text-center">@(PropertyParser.GetDefinition<CorruptedProperty>().Label)</ItemStatText>
+        }
+    }
+
+    <div class="flex flex-nowrap justify-between mt-1">
+        <TextCaption>@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
+
+        @if (!string.IsNullOrEmpty(Stash.Definition.Stash?.Variant))
+        {
+            <TextCaption>@Stash.Definition.Stash.Variant.Trim(' ', ',')</TextCaption>
+        }
     </div>
+
+    <PoeNinjaWebsite LastUpdated="Stash.LastUpdated" DetailsUrl="Stash.DetailsUrl"/>
+    <LayoutDivider Dense="true"/>
+    <PoeNinjaSparkline Sparkline="Stash.Sparkline"/>
 </div>
 
-<PoeNinjaSparkline Sparkline="Stash.Sparkline"/>
-
-@if (Stash.ListingCount < 5)
-{
-    <AlertError IsCritical="true" Flat="true">@NinjaResources["LowConfidence"]</AlertError>
-}
-else if (Stash.ListingCount < 10)
-{
-    <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
-}
-
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
+@inject ICurrentGameLanguage CurrentGameLanguage
+@inject IPropertyParser PropertyParser
 
 @code {
 

@@ -1,21 +1,18 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Trade.ApiItems;
-using Sidekick.Apis.Poe.Trade.ApiStatic;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Clients;
+using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
-using Sidekick.Apis.Poe.Trade.Trade.Items;
+using Sidekick.Apis.Poe.Trade.Trade;
 using Sidekick.Common;
-using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.Poe.Trade;
 
@@ -33,13 +30,10 @@ public static class StartupExtensions
 
         services.AddSingleton<IItemTradeService, ItemTradeService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
-        services.AddSingleton<IApiInformationParser, ApiInformationParser>();
+        services.AddSidekickInitializableService<IItemDefinitionParser, ItemDefinitionParser>();
 
         services.AddSidekickInitializableService<IItemParser, ItemParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
-        services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
-        services.AddSidekickInitializableService<IApiStaticDataProvider, ApiStaticDataProvider>();
-        services.AddSidekickInitializableService<IApiStatsProvider, ApiStatsProvider>();
         services.AddSidekickInitializableService<IStatParser, StatParser>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<ITradeFilterProvider, TradeFilterProvider>();

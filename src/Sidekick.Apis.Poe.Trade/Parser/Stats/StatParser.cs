@@ -2,18 +2,17 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using FuzzySharp;
 using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
+using Sidekick.Data.StatsInvariant;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -22,7 +21,6 @@ public class StatParser
     ISettingsService settingsService,
     ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources,
-    IApiStatsProvider apiStatsProvider,
     DataProvider dataProvider,
     IFuzzyService fuzzyService
 ) : IStatParser
@@ -31,18 +29,39 @@ public class StatParser
 
     public int Priority => 300;
 
+    public StatsInvariantDetails InvariantDetails { get; private set; } = new();
+
     private List<StatDefinition> Definitions { get; set; } = [];
+    private List<StatDefinition> InvariantDefinitions { get; set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
         Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
+
+        if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) InvariantDefinitions = Definitions;
+        else InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
+
+        InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
+    }
+
+    public Stat? ParseInvariant(string? line)
+    {
+        if (string.IsNullOrEmpty(line)) return null;
+
+        var definitions = MatchDefinitions(InvariantDefinitions, [line]).ToList();
+        if (definitions.Count == 0) return null;
+
+        var maxLineCount = definitions.Select(x => x.Lines).Max();
+        definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
+
+        return CreateStat(line, definitions, false);
     }
 
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return;
+        if (!item.ItemClass.CanHaveStats()) return;
 
         var stats = MatchStats().ToList();
         item.Stats.Clear();
@@ -54,45 +73,41 @@ public class StatParser
         {
             foreach (var block in item.Text.Blocks)
             {
+                if (block.AnyParsed) continue;
+
                 for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
                 {
                     if (block.Lines[lineIndex].Parsed) continue;
 
-                    var definitions = MatchDefinitions(block, lineIndex).ToList();
-                    var matchFuzzily = definitions.Sum(x => x.TradeIds.Count) is 0;
+                    var lines = block.Lines.Skip(lineIndex).Select(x => x.Text).ToList();
+                    var definitions = MatchDefinitions(FilterDefinitions(), lines).ToList();
+                    var matchFuzzily = definitions
+                        .Where(x => x.TradeStats != null)
+                        .Sum(x => x.TradeStats!.Count) is 0;
                     if (matchFuzzily) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
                     if (definitions.Count is 0) continue;
 
-                    var maxLineCount = definitions.Select(x => x.LineCount).Max();
-                    definitions = definitions.Where(x => x.LineCount == maxLineCount).ToList();
+                    var maxLineCount = definitions.Select(x => x.Lines).Max();
+                    definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
 
-                    var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
-                    lines.ForEach(x => x.Parsed = true);
+                    var matchedLines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
+                    matchedLines.ForEach(x => x.Parsed = true);
 
-                    yield return CreateStat(block, lines, definitions, matchFuzzily);
+                    yield return CreateStat(string.Join('\n', matchedLines.Select(x => x.Text)), definitions, matchFuzzily, block.Index, matchedLines.First().Index);
                 }
             }
         }
 
-        IEnumerable<StatDefinition> MatchDefinitions(TextBlock block, int lineIndex)
+        IEnumerable<StatDefinition> FilterDefinitions()
         {
-            foreach (var definition in Definitions)
+            return item.Properties.Rarity switch
             {
-                // Multiple line stats
-                if (definition.LineCount > 1 && definition.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(definition.LineCount))))
-                {
-                    yield return definition;
-                }
-
-                // Single line stats
-                if (definition.Pattern.IsMatch(block.Lines[lineIndex].Text))
-                {
-                    yield return definition;
-                }
-            }
+                Rarity.Gem => Definitions.Where(x => x.TradeStats?.Any(y => y.Category is StatCategory.Imbued) ?? false),
+                _ => Definitions,
+            };
         }
 
-        List<StatDefinition> MatchDefinitionsFuzzily(TextBlock block, int lineIndex)
+        List<StatDefinition> MatchDefinitionsFuzzily(RawBlock block, int lineIndex)
         {
             var singleText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, block.Lines[lineIndex].Text);
 
@@ -106,12 +121,12 @@ public class StatParser
             var results = new List<(int Ratio, StatDefinition Definition)>();
             var resultsLock = new object();// Lock object to synchronize access to results
 
-            Parallel.ForEach(Definitions,
+            Parallel.ForEach(FilterDefinitions(),
                              definition =>
                              {
                                  if (string.IsNullOrEmpty(definition.FuzzyText)) return;
 
-                                 var text = definition.LineCount switch
+                                 var text = definition.Lines switch
                                  {
                                      2 => doubleText ?? singleText,
                                      _ => singleText,
@@ -135,46 +150,70 @@ public class StatParser
             var cutoff = orderedResults.First().Ratio - 2;
             return orderedResults.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
         }
+    }
 
-        Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
+    private IEnumerable<StatDefinition> MatchDefinitions(IEnumerable<StatDefinition> definitions, List<string> lines)
+    {
+        foreach (var definition in definitions)
         {
-            var text = string.Join('\n', lines.Select(x => x.Text));
-            var category = ParseCategory(text);
-            if (definitions.DistinctBy(x => x.Category).Count() == 1 && definitions[0].Category != StatCategory.Undefined)
+            // Multiple line stats
+            if (definition.Lines > 1 && definition.Pattern.IsMatch(string.Join('\n', lines.Take(definition.Lines))))
             {
-                category = definitions[0].Category;
+                yield return definition;
             }
 
-            text = RemoveCategory(text);
-
-            var stat = new Stat(category, text)
+            // Single line stats
+            if (definition.Lines == 1 && definition.Pattern.IsMatch(lines[0]))
             {
-                BlockIndex = block.Index,
-                LineIndex = lines.First().Index,
-                Definitions = definitions,
-                MatchedFuzzily = matchedFuzzily,
-                HasTradeSupport = definitions.Any(x => x.TradeIds.Count > 0),
-            };
-
-            stat.Values = GetValues(stat).ToList();
-            return stat;
+                yield return definition;
+            }
         }
+    }
+
+    private Stat CreateStat(
+        string text,
+        List<StatDefinition> definitions,
+        bool matchedFuzzily,
+        int blockIndex = 0,
+        int lineIndex = 0
+    )
+    {
+        var category = ParseCategory(text);
+        if (category != StatCategory.Mutated)
+        {
+            var categories = definitions
+                .Where(x => x.TradeStats != null)
+                .SelectMany(x => x.TradeStats!)
+                .Select(x => x.Category)
+                .Distinct()
+                .ToList();
+            if (categories.Count == 1 && categories[0] != StatCategory.Undefined)
+            {
+                category = categories[0];
+            }
+        }
+
+        text = ParseCategoryPattern.Replace(text, string.Empty);
+
+        var stat = new Stat(category, text)
+        {
+            BlockIndex = blockIndex,
+            LineIndex = lineIndex,
+            Definitions = definitions,
+            MatchedFuzzily = matchedFuzzily,
+            HasTradeSupport = definitions.Any(x => x.TradeStats is { Count: > 0 }),
+        };
+
+        stat.Values = GetValues(stat).ToList();
+        return stat;
     }
 
     private StatCategory ParseCategory(string value)
     {
         var match = ParseCategoryPattern.Match(value);
-        if (!match.Success)
-        {
-            return StatCategory.Explicit;
-        }
+        if (!match.Success) return StatCategory.Explicit;
 
         return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
-    }
-
-    private string RemoveCategory(string value)
-    {
-        return ParseCategoryPattern.Replace(value, string.Empty);
     }
 
     private IEnumerable<double> GetValues(Stat stat)
@@ -224,21 +263,15 @@ public class StatParser
 
         bool HasMatchingDescriptions(StatDefinition definition)
         {
-            foreach (var tradeId in definition.TradeIds)
-            {
-                var apiStats = apiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
-                if (apiStats == null) continue;
+            if (definition.TradeStats == null) return false;
+            return definition.TradeStats.Any(tradeStat => tradeStat.Text == definition.Text);
 
-                if (apiStats.Any(apiStat => apiStat.Text == definition.Text)) return true;
-            }
-
-            return false;
         }
     }
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
+        if (!item.ItemClass.CanHaveStats()) return [];
 
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 
@@ -258,11 +291,10 @@ public class StatParser
         }
 
         var expandableFilter =
-            new ExpandableFilter(resources["Stat_Filters"], result.ToArray())
+            new ExpandableFilter(resources["Stat_Filters"], true, result.ToArray())
             {
                 AutoSelectSettingKey = autoSelectKey,
                 DefaultAutoSelect = StatFilter.GetDefault(item.Game),
-                Checked = true,
             };
         await expandableFilter.Initialize(item, settingsService);
         expandableFilter.Checked = true;

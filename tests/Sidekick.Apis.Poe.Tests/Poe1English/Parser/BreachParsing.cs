@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -22,9 +23,9 @@ Combine 100 Splinters to create Tul's Breachstone.
 Shift click to unstack.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Splinter of Tul", actual.ApiInformation.Type);
+        Assert.Equal("Splinter of Tul", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -42,9 +43,9 @@ Can grow into a Currency item on the Genesis Tree
 Place this item into an allocated currency item womb on the Genesis Tree. Right click to retrieve from the Genesis Tree.
 ");
 
-        Assert.Equal(ItemClass.Wombgift, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Lavish Wombgift", actual.ApiInformation.Type);
+        Assert.Equal("Lavish Wombgift", actual.Definition.TradeItem?.Type);
         Assert.Equal(34, actual.Properties.ItemLevel);
     }
 
@@ -74,9 +75,9 @@ Skills used by this Graft deal 56% increased Damage
 Graft items can only be modified by Implant currencies.
 ");
 
-        Assert.Equal(ItemClass.Graft, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.RemovedItem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Freezing Tulgraft", actual.ApiInformation.Type);
+        Assert.Equal("Freezing Tulgraft", actual.Definition.TradeItem?.Type);
         Assert.Equal(37, actual.Properties.ItemLevel);
         Assert.Equal(29, actual.Properties.RequiresLevel);
     }
@@ -101,10 +102,10 @@ We happily give our limbs.
 A net woven to keep safe the bones of the Lords.
 ");
 
-        Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Simple Robe", actual.ApiInformation.Type);
-        Assert.Equal("Skin of the Loyal", actual.ApiInformation.Name);
+        Assert.Equal("Simple Robe", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Skin of the Loyal", actual.Definition.TradeItem?.Name);
         Assert.Equal("Foulborn Skin of the Loyal", actual.Name);
         Assert.True(actual.Properties.Foulborn);
 

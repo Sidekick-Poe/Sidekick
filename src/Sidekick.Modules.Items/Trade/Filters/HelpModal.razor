@@ -1,0 +1,120 @@
+@using Sidekick.Common.Ui.Modal
+@using Sidekick.Common.Ui.Tabs
+
+<Modal Size="ModalSize.Xl">
+    <ActivatorContent>
+        <ButtonIcon Svg="@UiIcons.Help"
+                    Title="Help &amp; Tips"/>
+    </ActivatorContent>
+    <HeaderContent>
+        <Heading2>Help &amp; Tips</Heading2>
+    </HeaderContent>
+    <ChildContent Context="modal">
+        <TabList>
+            <TabItem OnClick="@(() => CurrentTab = "overview")"
+                     Active="@(CurrentTab == "overview")"
+                     Text="Overview"/>
+            <TabItem OnClick="@(() => CurrentTab = "filters")"
+                     Active="@(CurrentTab == "filters")"
+                     Text="Filters"/>
+            <TabItem OnClick="@(() => CurrentTab = "shortcuts")"
+                     Active="@(CurrentTab == "shortcuts")"
+                     Text="Shortcuts"/>
+            <TabItem OnClick="@(() => CurrentTab = "interface")"
+                     Active="@(CurrentTab == "interface")"
+                     Text="Interface"/>
+        </TabList>
+
+        <div class="py-3 space-y-3 text-sm text-stone-300">
+            @switch (CurrentTab)
+            {
+                case "overview":
+                    <p>
+                        Sidekick helps you compare your item against active trade listings.
+                        It is still your job to determine what could have value on your item — the tool makes
+                        the process easier than having to browse the trade website manually.
+                    </p>
+                    <p>
+                        Typically, select <strong class="text-white">2 or 3 high-roll modifiers</strong> to get an
+                        accurate read on the market for your item. Try different combinations of modifiers and
+                        click <strong class="text-white">Search</strong> to find what your item is worth.
+                    </p>
+                    <p class="flex gap-2 rounded border border-stone-600 bg-stone-900 px-3 py-2">
+                        <span class="text-yellow-400">&#9432;</span>
+                        <span>
+                            Price estimation via <strong class="text-white">poeprices.info</strong> is only available for
+                            <strong class="text-white">Path of Exile 1</strong>. No equivalent service currently exists for PoE2.
+                        </span>
+                    </p>
+                    break;
+
+                case "filters":
+                    <p>
+                        Filters appear in the left panel and represent the properties and modifiers of your item.
+                        Enable or adjust filters to narrow your search to listings that match your criteria.
+                    </p>
+                    <div class="space-y-2">
+                        <div>
+                            <span class="font-semibold text-white">Range filters</span>
+                            <p>Set a minimum and/or maximum value. Used for numeric properties like life, resistances, and DPS.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-white">Boolean filters</span>
+                            <p>Toggle on or off. Used for item properties that are either present or absent.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-white">Stat (modifier) filters</span>
+                            <p>Search for specific affixes on the item. Enable the ones most relevant to the item's value.</p>
+                        </div>
+                    </div>
+                    break;
+
+                case "shortcuts":
+                    <p>Mouse shortcuts are available when editing numeric filter values:</p>
+                    <ul class="space-y-2 list-none">
+                        <li class="flex gap-3">
+                            <span class="shrink-0 font-semibold text-white w-40">Mouse wheel</span>
+                            <span>Scroll over a numeric value to increase or decrease it by 1.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="shrink-0 font-semibold text-white w-40">Right-click value</span>
+                            <span>Clears the value. Useful when you care about the affix being present but not its specific value.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="shrink-0 font-semibold text-white w-40">Click condition</span>
+                            <span>Cycles the condition operator between <em>equals</em>, <em>at least</em>, <em>at most</em>, and other options.</span>
+                        </li>
+                    </ul>
+                    break;
+
+                case "interface":
+                    <div class="space-y-2">
+                        <div>
+                            <span class="font-semibold text-white">Compact view</span>
+                            <p>Toggle the compact view button in the results panel to switch between a detailed card layout and a condensed list view.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-white">Resize</span>
+                            <p>Drag the divider between the filter panel and the results panel to resize them to your preference.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-white">Reset Filters</span>
+                            <p>Click the reset button next to Search to restore all filters to their default values.</p>
+                        </div>
+                    </div>
+                    break;
+            }
+        </div>
+    </ChildContent>
+    <FooterContent Context="modal">
+        <div class="flex justify-end">
+            <ButtonPrimary OnClick="modal.Hide">Close</ButtonPrimary>
+        </div>
+    </FooterContent>
+</Modal>
+
+@code {
+
+    private string CurrentTab { get; set; } = "overview";
+
+}

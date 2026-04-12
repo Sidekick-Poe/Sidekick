@@ -111,4 +111,7 @@ public class WpfApplicationService
         uiLanguageProvider.OnLanguageChanged -= OnLanguageChanged;
         Icon?.Dispose();
     }
+
+    /// <inheritdoc />
+    public bool HasInitialized { get; set; }
 }

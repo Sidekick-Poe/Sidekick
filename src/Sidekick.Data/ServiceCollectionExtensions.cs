@@ -11,7 +11,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickData(
         this IServiceCollection services)
     {
-        services.TryAddSingleton<DataProvider>();
+        services.AddSidekickInitializableService<DataProvider>();
 
         services.AddSidekickInitializableService<ICurrentGameLanguage, CurrentGameLanguage>();
         services.AddSingleton<IGameLanguageProvider, GameLanguageProvider>();

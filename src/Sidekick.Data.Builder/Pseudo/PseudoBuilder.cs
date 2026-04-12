@@ -1,28 +1,46 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
 using Sidekick.Data.Builder.Pseudo.Definitions;
-using Sidekick.Data.Items;
+using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Pseudo;
-using Sidekick.Data.Trade;
+using Sidekick.Data.Stats;
 namespace Sidekick.Data.Builder.Pseudo;
 
 public class PseudoBuilder
 (
+    ILogger<PseudoBuilder> logger,
+    IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
-    IGameLanguageProvider gameLanguageProvider
+    IGameLanguageProvider gameLanguageProvider,
+    TradeStatProvider tradeStatProvider
 )
 {
     public async Task Build(IGameLanguage language)
     {
-        await Build(GameType.PathOfExile1, language);
-        await Build(GameType.PathOfExile2, language);
+        try
+        {
+            await Build(GameType.PathOfExile1, language);
+            await Build(GameType.PathOfExile2, language);
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, $"Failed to build pseudo stats for {language.Code}.");
+        }
     }
 
-    public async Task Build(GameType game, IGameLanguage language)
+    private async Task Build(GameType game, IGameLanguage language)
     {
-        var invariantStats = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, gameLanguageProvider.InvariantLanguage);
+        var invariantStats = await tradeStatProvider.GetDefinitions(game, gameLanguageProvider.InvariantLanguage);
         invariantStats.RemoveAll(x => x.Id.StartsWith("pseudo"));
 
-        var localizedStats = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, language);
+        var localizedStats = await tradeStatProvider.GetDefinitions(game, language);
         localizedStats = localizedStats
             .Where(x => x.Category == StatCategory.Pseudo)
             .ToList();

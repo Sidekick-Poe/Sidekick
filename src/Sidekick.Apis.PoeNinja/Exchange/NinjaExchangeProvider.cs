@@ -1,19 +1,17 @@
-﻿using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.PoeNinja.Clients;
+﻿using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
-using Sidekick.Apis.PoeNinja.IndexState;
+using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
-using Sidekick.Data.Ninja;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.ItemDefinitions;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaExchangeProvider(
     INinjaClient ninjaClient,
     ISettingsService settingsService,
     ICacheProvider cacheProvider,
-    INinjaIndexStateProvider indexStateProvider) : INinjaExchangeProvider
+    NinjaUriProvider ninjaUriProvider) : INinjaExchangeProvider
 {
     private async Task<string> GetCacheKey(string type)
     {
@@ -21,20 +19,23 @@ public class NinjaExchangeProvider(
         return $"PoeNinjaExchange_{league}_{type}";
     }
 
-    public async Task<NinjaCurrency?> GetInfo(NinjaExchangeItem item)
+    public async Task<NinjaCurrency?> GetInfo(ItemDefinition item)
     {
-        var result = await GetResult(item.Page.Type);
+        var bestMatch = FindBestMatch();
+        if (bestMatch?.Exchange == null) return null;
+
+        var result = await GetExchangeResult(bestMatch.Type);
         if (result?.Core == null) return null;
 
-        var line = result.Lines.FirstOrDefault(x => x.Id == item.Id);
+        var line = result.Lines.FirstOrDefault(x => x.Id == bestMatch.Exchange.Id);
 
         // In some cases, the currency is not listed in the exchange overview, but is the primary currency.
         // This is the case for Path of Exile 1's Chaos Orb. It is the main comparison currency, but is absent from the lines.
-        if (line == null && item.Page.Type == "Currency" && result.Core.Primary == item.Id)
+        if (line == null && bestMatch.Type == "Currency" && result.Core.Primary == bestMatch.Exchange.Id)
         {
-            line = new ApiLine()
+            line = new NinjaExchangeLine()
             {
-                Id = item.Id,
+                Id = bestMatch.Exchange.Id,
                 PrimaryValue = 1,
             };
         }
@@ -43,19 +44,16 @@ public class NinjaExchangeProvider(
 
         return new NinjaCurrency(line, result)
         {
-            DetailsUrl = await GetDetailsUri(item),
+            DetailsUrl = await ninjaUriProvider.GetDetailsUri(bestMatch),
         };
+
+        NinjaItemDefinition? FindBestMatch()
+        {
+            return item.NinjaItems?.FirstOrDefault();
+        }
     }
 
-    private async Task<Uri> GetDetailsUri(NinjaExchangeItem item)
-    {
-        var game = await settingsService.GetGame();
-        var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
-        var leagueIndexState = await indexStateProvider.GetLeague();
-        return new Uri($"https://poe.ninja/{gamePath}economy/{leagueIndexState?.Url}/{item.Page.Url}/{item.DetailsId}");
-    }
-
-    private async Task<ApiOverviewResult?> GetResult(string type)
+    private async Task<NinjaExchangeOverview?> GetExchangeResult(string type)
     {
         var result = await GetOrUpdateCache();
         if (!await CheckCacheIsValid(type, result))
@@ -65,38 +63,30 @@ public class NinjaExchangeProvider(
 
         return result;
 
-        async Task<ApiOverviewResult?> GetOrUpdateCache()
+        async Task<NinjaExchangeOverview?> GetOrUpdateCache()
         {
             var cacheKey = await GetCacheKey(type);
             return await cacheProvider.GetOrSet(cacheKey, async () =>
             {
                 var game = await settingsService.GetGame();
-                return await FetchOverview(game, type);
+
+                var query = new Dictionary<string, string?>()
+                {
+                    {
+                        "type", type
+                    },
+                };
+
+                var response = await ninjaClient.Fetch<NinjaExchangeOverview>(game, "economy/exchange/current/overview", query);
+                if (response == null) return new();
+
+                response.LastUpdated = DateTimeOffset.Now;
+                return response;
             }, x => x.Lines.Any());
         }
     }
 
-    public async Task<ApiOverviewResult> FetchOverview(GameType game, string type, string? leagueOverride = null)
-    {
-        var query = new Dictionary<string, string?>()
-        {
-            {
-                "type", type
-            },
-        };
-        if (leagueOverride != null)
-        {
-            query.Add("league", leagueOverride);
-        }
-
-        var result = await ninjaClient.Fetch<ApiOverviewResult>(game, "economy/exchange/current/overview", query);
-        if (result == null) return new();
-
-        result.LastUpdated = DateTimeOffset.Now;
-        return result;
-    }
-
-    private async Task<bool> CheckCacheIsValid(string type, ApiOverviewResult? result = null)
+    private async Task<bool> CheckCacheIsValid(string type, NinjaExchangeOverview? result = null)
     {
         var lastUpdate = result?.LastUpdated ?? DateTimeOffset.MinValue;
         var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(1);

@@ -1,7 +1,9 @@
 @using System.Text.Json
-@using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Apis.Poe.Trade.Filters.AutoSelect
+@using Sidekick.Data
+@using Sidekick.Data.ItemClasses
 @using Sidekick.Data.Items
+@using Sidekick.Data.Stats
 @using Sidekick.Data.Languages
 
 @if (Condition.Comparison is AutoSelectComparisonType.True or AutoSelectComparisonType.False)
@@ -138,7 +140,6 @@
                 CreateItemClass(ItemClass.OneHandSword),
                 CreateItemClass(ItemClass.Quiver),
                 CreateItemClass(ItemClass.Ring),
-                CreateItemClass(ItemClass.RuneDagger),
                 CreateItemClass(ItemClass.Sceptre),
                 CreateItemClass(ItemClass.Shield),
                 CreateItemClass(ItemClass.Staff),
@@ -174,7 +175,6 @@
                         ItemClass.OneHandSword => CurrentGameLanguage.Language.ClassOneHandSwords,
                         ItemClass.Quiver => CurrentGameLanguage.Language.ClassQuivers,
                         ItemClass.Ring => CurrentGameLanguage.Language.ClassRing,
-                        ItemClass.RuneDagger => CurrentGameLanguage.Language.ClassRuneDaggers,
                         ItemClass.Sceptre => CurrentGameLanguage.Language.ClassSceptres,
                         ItemClass.Shield => CurrentGameLanguage.Language.ClassShields,
                         ItemClass.Staff => CurrentGameLanguage.Language.ClassStaves,

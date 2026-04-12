@@ -1,13 +1,14 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using ItemProperties = Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -15,7 +16,7 @@ public class SpiritProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionSpirit.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionSpirit.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionSpirit.ToRegexIsAugmented();
 
@@ -23,21 +24,20 @@ public class SpiritProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Equipment.Contains(item.Properties.ItemClass)) return;
+        if (!item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsEquipment()) return;
 
         if (game == GameType.PathOfExile1) return;
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.Spirit = GetInt(Pattern, propertyBlock);
+
+        item.Properties.Spirit = GetInt(Pattern, item.Text);
         if (item.Properties.Spirit == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1 || item.Properties.Spirit <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Spirit <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new SpiritFilter
         {

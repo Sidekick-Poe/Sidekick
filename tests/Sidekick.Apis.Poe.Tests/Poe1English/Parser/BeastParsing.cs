@@ -1,5 +1,6 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -30,16 +31,16 @@ Aspect of the Hellion
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal("Farric Flame Hellion Alpha", actual.ApiInformation.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Farric Flame Hellion Alpha", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
     public void ParseUniqueBeast()
     {
-        var parsedRareBeast = parser.ParseItem(@"Item Class: Stackable Currency
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Unique
 Saqawal, First of the Sky
 --------
@@ -53,9 +54,9 @@ Cannot be fully Slowed
 --------
 Right-click to add this to your bestiary.");
 
-        Assert.Equal(Rarity.Unique, parsedRareBeast.Properties.Rarity);
-        Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.ApiInformation.Type);
-        Assert.Null(parsedRareBeast.ApiInformation.Name);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Saqawal, First of the Sky", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
     }
 
     [Fact]
@@ -82,8 +83,8 @@ Summons Apes from Trees
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Farric Chieftain", actual.ApiInformation.Type);
+        Assert.Equal("Farric Chieftain", actual.Definition.TradeItem?.Type);
     }
 }

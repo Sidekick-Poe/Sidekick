@@ -1,7 +1,8 @@
-using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -28,9 +29,9 @@ Item Level: 60
 +20 to Intelligence
 ");
 
-        Assert.Equal(ItemClass.Staff, actual.Properties.ItemClass);
-        Assert.Equal("Ashen Staff", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal(ItemClass.Staff, actual.ItemClass.Type);
+        Assert.Equal("Ashen Staff", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(60, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "# to maximum Mana", 148);
@@ -70,9 +71,9 @@ Adds 39 to 75 Cold Damage
 Leeches 4.02% of Physical Damage as Mana
 ");
 
-        Assert.Equal(ItemClass.Bow, actual.Properties.ItemClass);
-        Assert.Equal("Composite Bow", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal(ItemClass.Bow, actual.ItemClass.Type);
+        Assert.Equal("Composite Bow", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(76, actual.Properties.ItemLevel);
 
         // Verify physical damage
@@ -121,9 +122,9 @@ Adds 2 to 91 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
-        Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Crossbow, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Bleak Crossbow", actual.ApiInformation.Type);
+        Assert.Equal("Bleak Crossbow", actual.Definition.TradeItem?.Type);
         Assert.Equal("Blood Core", actual.Name);
 
         // Verify physical damage
@@ -164,9 +165,9 @@ Item Level: 60
 --------
 Leeches 5.82% of Physical Damage as Mana");
 
-        Assert.Equal(ItemClass.Bow, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Bow, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Cultist Bow", actual.ApiInformation.Type);
+        Assert.Equal("Cultist Bow", actual.Definition.TradeItem?.Type);
 
         // Verify the chaos damage range is parsed correctly
         Assert.Equal(41, actual.Properties.ChaosDamage?.Min);
@@ -193,9 +194,9 @@ Item Level: 70
 Allies in your Presence deal 9 to 13 additional Attack Fire Damage
 ");
 
-        Assert.Equal(ItemClass.Sceptre, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Sceptre, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Rattling Sceptre", actual.ApiInformation.Type);
+        Assert.Equal("Rattling Sceptre", actual.Definition.TradeItem?.Type);
         Assert.Equal(66, actual.Properties.RequiresLevel);
         Assert.Equal(46, actual.Properties.RequiresStrength);
         Assert.Equal(117, actual.Properties.RequiresIntelligence);
@@ -224,10 +225,10 @@ Grants Skill: Spear Throw
 
 ");
 
-        Assert.Equal(ItemClass.Spear, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Spear, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ironhead Spear", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Ironhead Spear", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Accuracy Rating", 32);
     }
@@ -264,9 +265,9 @@ Adds 2 to 47 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
-        Assert.Equal(ItemClass.Spear, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Spear, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Forked Spear", actual.ApiInformation.Type);
+        Assert.Equal("Forked Spear", actual.Definition.TradeItem?.Type);
         Assert.Equal("Hypnotic Edge", actual.Name);
 
         // Verify physical damage
@@ -320,9 +321,9 @@ Leeches 5.21% of Physical Damage as Life
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Warstaff, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Warstaff, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Slicing Quarterstaff", actual.ApiInformation.Type);
+        Assert.Equal("Slicing Quarterstaff", actual.Definition.TradeItem?.Type);
         Assert.Equal("Kraken Pillar", actual.Name);
 
         // Verify physical damage
@@ -345,7 +346,7 @@ Corrupted
         AssertExtensions.AssertCloseEnough(216.2, actual.Properties.TotalDps);
 
         var statFilters = await fixture.StatParser.GetFilters(actual);
-        var meleeStat = statFilters.FlattenFilters().OfType<StatFilter>().FirstOrDefault(s => s.Text == "+3 to Level of all Melee Skills");
+        var meleeStat = statFilters.Flatten().OfType<StatFilter>().FirstOrDefault(s => s.Text == "+3 to Level of all Melee Skills");
         Assert.NotNull(meleeStat);
         Assert.Equal(3, meleeStat.Min);
     }
@@ -385,10 +386,11 @@ Fractured Item
 --------
 Note: ~price 1 mirror");
 
-        Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Crossbow, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Siege Crossbow", actual.ApiInformation.Type);
+        Assert.Equal("Siege Crossbow", actual.Definition.TradeItem?.Type);
         Assert.Equal("Dragon Core", actual.Name);
+        Assert.True(actual.Properties.Fractured);
 
         // Verify physical damage
         Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);
@@ -398,7 +400,7 @@ Note: ~price 1 mirror");
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Attack Speed", 25);
         fixture.AssertHasStat(actual, StatCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Loads an additional bolt", 2);
-        actual.AssertDoesNotHaveModifier(StatCategory.Fractured, "Loads an additional bolt");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Fractured, "Loads an additional bolt");
 
         var modifierFilters = await fixture.StatParser.GetFilters(actual);
 
@@ -445,9 +447,9 @@ Item Level: 77
 Gain 19 Mana per enemy killed
 ");
 
-        Assert.Equal(ItemClass.Talisman, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Talisman, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Lumbering Talisman", actual.ApiInformation.Type);
+        Assert.Equal("Lumbering Talisman", actual.Definition.TradeItem?.Type);
         Assert.Null(actual.Name);
 
         Assert.Equal(77, actual.Properties.ItemLevel);

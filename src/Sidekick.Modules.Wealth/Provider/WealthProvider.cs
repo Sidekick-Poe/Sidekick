@@ -2,16 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStatic;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
-using Sidekick.Apis.PoeNinja.Items;
 using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
-using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Items.Models.ApiItem;
+using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Models.ApiItem;
 
 namespace Sidekick.Modules.Wealth.Provider;
 
@@ -20,10 +18,9 @@ internal class WealthProvider
     ILogger<WealthProvider> logger,
     ISettingsService settingsService,
     IStashService stashService,
-    INinjaItemProvider ninjaItemProvider,
     INinjaExchangeProvider ninjaExchangeProvider,
     INinjaStashProvider ninjaStashProvider,
-    IApiStaticDataProvider apiStaticDataProvider,
+    IItemDefinitionParser itemDefinitionParser,
     DbContextOptions<SidekickDbContext> dbContextOptions
 )
 {
@@ -201,56 +198,35 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<(decimal Value, ApiSparkline? SparkLine)?> GetItemPrice(ApiItem item)
+    private async Task<(decimal Value, NinjaSparkline? SparkLine)?> GetItemPrice(ApiItem item)
     {
         decimal price = 0;
-        ApiSparkline? sparkLine = null;
-        var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
-
-        var exchangeItem = ninjaItemProvider.GetExchangeItem(item.Name);
-        exchangeItem ??= ninjaItemProvider.GetExchangeItem(item.Type);
-        exchangeItem ??= apiData != null ? ninjaItemProvider.GetExchangeItem(apiData.Id) : null;
-
-        if (exchangeItem != null)
+        NinjaSparkline? sparkLine = null;
+        var itemDefinition = itemDefinitionParser.Get(item);
+        var invariantDefinition = itemDefinition?.Key != null ? itemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
+        if (itemDefinition == null || invariantDefinition == null)
         {
-            var info = await ninjaExchangeProvider.GetInfo(exchangeItem);
+            logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");
+            return (price, sparkLine);
+        }
+
+        if (invariantDefinition.NinjaItems?.Any(x => x.Exchange != null) ?? false)
+        {
+            var info = await ninjaExchangeProvider.GetInfo(invariantDefinition);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
             sparkLine = info?.Sparkline;
         }
-        else if (item.Rarity == Rarity.Unique)
+        else
         {
-            var stashItem = ninjaItemProvider.GetUniqueItem(item.Name, item.MaxLinks ?? 0);
-            if (stashItem != null)
-            {
-                var info = await ninjaStashProvider.GetInfo(stashItem);
-                price = info?.ChaosValue ?? 0;
-                sparkLine = info?.Sparkline;
-            }
-        }
-        else if (item.GemLevel > 0)
-        {
-            var stashItem = ninjaItemProvider.GetGemItem(item.Name, item.GemLevel ?? 1, item.Quality ?? 0, item.Corrupted);
-            if (stashItem != null)
-            {
-                var info = await ninjaStashProvider.GetInfo(stashItem);
-                price = info?.ChaosValue ?? 0;
-                sparkLine = info?.Sparkline;
-            }
-        }
-        else if (item.MapTier > 0)
-        {
-            var stashItem = ninjaItemProvider.GetMapItem(item.Type, item.MapTier ?? 1);
-            if (stashItem != null)
-            {
-                var info = await ninjaStashProvider.GetInfo(stashItem);
-                price = info?.ChaosValue ?? 0;
-                sparkLine = info?.Sparkline;
-            }
+            var stashes = await ninjaStashProvider.GetInfo(invariantDefinition, item);
+            var info = stashes.FirstOrDefault();
+            price = info?.ChaosValue ?? 0;
+            sparkLine = info?.Sparkline;
         }
 
         if (price == 0)
         {
-            logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
+            logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");
         }
 
         return (price, sparkLine);

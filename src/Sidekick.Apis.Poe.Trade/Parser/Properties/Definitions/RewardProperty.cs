@@ -1,12 +1,13 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiItems;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -15,28 +16,25 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 public class RewardProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage,
-    IApiItemProvider apiItemProvider) : PropertyDefinition
+    IItemDefinitionParser itemDefinitionParser) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringProperty();
 
     public override string Label => currentGameLanguage.Language.DescriptionReward;
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass != ItemClass.Map) return;
-
+        if (item.ItemClass.Type != ItemClass.Map) return;
         if (game == GameType.PathOfExile2) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.Reward = GetString(Pattern, propertyBlock);
-        if (item.Properties.Reward != null) propertyBlock.Parsed = true;
+        item.Properties.Reward = GetString(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new RewardFilter(apiItemProvider)
+        var filter = new RewardFilter(itemDefinitionParser)
         {
             Text = Label,
             Value = item.Properties.Reward!,
@@ -49,21 +47,21 @@ public class RewardProperty(
 
 public class RewardFilter : StringPropertyFilter
 {
-    public RewardFilter(IApiItemProvider apiItemProvider)
+    public RewardFilter(IItemDefinitionParser itemDefinitionParser)
     {
-        ApiItemProvider = apiItemProvider;
+        ItemDefinitionParser = itemDefinitionParser;
         DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
-    private IApiItemProvider ApiItemProvider { get; }
+    private IItemDefinitionParser ItemDefinitionParser { get; }
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
 
-        var uniqueItem = ApiItemProvider.UniqueItems.FirstOrDefault(x => x.Name != null && Value.Contains(x.Name));
-        if (uniqueItem?.Name == null) return;
+        var uniqueItem = ItemDefinitionParser.UniqueItems.FirstOrDefault(x => x.UniqueItem?.Name != null && Value.Contains(x.UniqueItem.Name));
+        if (uniqueItem?.UniqueItem?.Name == null) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.Name);
+        query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.UniqueItem.Name);
     }
 }

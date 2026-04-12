@@ -1,9 +1,11 @@
-@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Filters
+@using Sidekick.Apis.Poe.Trade.Filters.Types
 @using Sidekick.Apis.Poe.Trade.Parser.Properties
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
 @using Sidekick.Apis.Poe.Trade.Parser.Stats
-@using Sidekick.Apis.Poe.Trade.Trade.Filters
-@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Api
+@using Sidekick.Data.Items
 @using Sidekick.Modules.Items.Trade.Filters.Types
 @using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
@@ -26,10 +28,16 @@
         }
     </div>
 
-    <div class="flex flex-col items-stretch text-center px-2 pb-2 pt-1">
+    <div class="flex items-center text-center px-2 pb-2 pt-1 gap-2">
+        <HelpModal/>
         <ButtonPrimary
+            Class="flex-1"
             OnClick="() => TradeService.SearchItems(Item, Filters)"
             Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
+        <ButtonIcon Svg="@UiIcons.Refresh"
+                    Title="@Resources["ResetFilters"]"
+                    OnClick="ResetFilters"
+                    Disabled="TradeService.IsLoading"/>
     </div>
 </div>
 
@@ -39,6 +47,7 @@
 @inject IStatParser StatParser
 @inject IPseudoParser PseudoParser
 @inject ITradeFilterProvider TradeFilterProvider
+@inject ISettingsService SettingsService
 
 @code {
 
@@ -58,36 +67,42 @@
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
 
-        CleanUpSeparatorFilters(Filters);
+        // Remove leading SeparatorProperty filters
+        while (Filters.Count > 0 && Filters[0] is SeparatorFilter)
+        {
+            Filters.RemoveAt(0);
+        }
+
+        // Remove trailing SeparatorProperty filters
+        while (Filters.Count > 0 && Filters[^1] is SeparatorFilter)
+        {
+            Filters.RemoveAt(Filters.Count - 1);
+        }
+
+        // Remove consecutive SeparatorProperty filters
+        for (var i = 1; i < Filters.Count; i++)
+        {
+            if (Filters[i] is not SeparatorFilter || Filters[i - 1] is not SeparatorFilter)
+            {
+                continue;
+            }
+
+            Filters.RemoveAt(i);
+            i--;// Adjust index to recheck current position
+        }
+
         TradeService.Clear();
 
         await base.OnParametersSetAsync();
     }
 
-    private static void CleanUpSeparatorFilters(List<TradeFilter> results)
+    private async Task ResetFilters()
     {
-        // Remove leading SeparatorProperty filters
-        while (results.Count > 0 && results[0] is SeparatorFilter)
+        foreach (var filter in Filters)
         {
-            results.RemoveAt(0);
+            await filter.Initialize(Item, SettingsService);
         }
 
-        // Remove trailing SeparatorProperty filters
-        while (results.Count > 0 && results[^1] is SeparatorFilter)
-        {
-            results.RemoveAt(results.Count - 1);
-        }
-
-        // Remove consecutive SeparatorProperty filters
-        for (var i = 1; i < results.Count; i++)
-        {
-            if (results[i] is not SeparatorFilter || results[i - 1] is not SeparatorFilter)
-            {
-                continue;
-            }
-
-            results.RemoveAt(i);
-            i--;// Adjust index to recheck current position
-        }
+        StateHasChanged();
     }
 }

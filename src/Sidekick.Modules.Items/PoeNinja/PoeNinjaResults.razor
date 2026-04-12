@@ -1,0 +1,70 @@
+﻿@using Sidekick.Apis.PoeNinja.Stash
+@using Sidekick.Modules.Items.PoeNinja.Localization
+@using Sidekick.Apis.PoeNinja.Exchange
+@using Sidekick.Data.Items
+
+@if (Item.Invariant.NinjaItems == null || Item.Invariant.NinjaItems.Count == 0)
+{
+    return;
+}
+
+<div class="flex flex-col gap-2">
+    <PoeNinjaHeader
+        Tooltip="@(Item.Properties.Rarity is Rarity.Normal or Rarity.Magic or Rarity.Rare ? Resources["BaseType_Description"] : string.Empty)"/>
+
+    @if (Loading)
+    {
+        <AppLoading/>
+    }
+    else if (Currency == null && Stashes.Count == 0)
+    {
+        <AlertInfo Flat="true">@Resources["NoData"]</AlertInfo>
+    }
+
+    @if (Currency != null)
+    {
+        <PoeNinjaCurrencyPanel Currency="Currency"/>
+    }
+
+    @foreach (var stash in Stashes)
+    {
+        <PoeNinjaStashPanel Stash="stash"/>
+    }
+</div>
+
+@inject INinjaStashProvider NinjaStashProvider
+@inject INinjaExchangeProvider NinjaExchangeProvider
+@inject IStringLocalizer<PoeNinjaResources> Resources
+
+@code {
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private List<NinjaStash> Stashes { get; set; } = [];
+
+    private NinjaCurrency? Currency { get; set; }
+
+    private bool Loading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        if (Item.Invariant.NinjaItems == null) return;
+
+        Loading = true;
+        StateHasChanged();
+
+        if (Item.Invariant.NinjaItems.Any(x => x.Exchange != null))
+        {
+            Currency = await NinjaExchangeProvider.GetInfo(Item.Invariant);
+        }
+
+        if (Item.Invariant.NinjaItems.Any(x => x.Stash != null))
+        {
+            Stashes = await NinjaStashProvider.GetInfo(Item);
+        }
+
+        Loading = false;
+        StateHasChanged();
+    }
+}

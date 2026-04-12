@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -32,9 +33,9 @@ Adds 8 to 13 Physical Damage to Attacks
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ruby Ring", actual.ApiInformation.Type);
+        Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
 
         Assert.Equal(76, actual.Properties.ItemLevel);
         Assert.False(actual.Properties.Unidentified);
@@ -76,7 +77,98 @@ While Berek slept.""
 - Berek and the Untamed
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
         Assert.False(actual.Properties.Unidentified);
+    }
+
+    [Fact]
+    public void ParsePrecursorEmblemRuby()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Precursor's Emblem
+Ruby Ring
+--------
+Requirements:
+Level: 49
+--------
+Item Level: 85
+--------
++23% to Fire Resistance (implicit)
+--------
++20 to Strength
+5% increased maximum Energy Shield
+5% increased maximum Life
+Regenerate 0.3% of Life per second per Endurance Charge
+You cannot be Stunned while at maximum Endurance Charges
+1% increased Movement Speed per Endurance Charge
+--------
+History teaches humility.
+--------
+Note: ~b/o 2 chaos
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void ParsePrecursorEmblemSapphire()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Precursor's Emblem
+Sapphire Ring
+--------
+Requirements:
+Level: 49
+--------
+Item Level: 85
+--------
++29% to Cold Resistance (implicit)
+--------
++20 to Dexterity
+8% increased Evasion Rating per Frenzy Charge
+5% increased maximum Energy Shield
+5% increased maximum Life
+20% increased Frenzy Charge Duration
+5% increased Damage per Frenzy Charge
+--------
+History teaches humility.
+--------
+Note: ~b/o 20 chaos
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Sapphire Ring", actual.Definition.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void KalandraTouch()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Kalandra's Touch
+Ring
+--------
+Item Level: 85
+--------
+Reflects opposite Ring
+--------
+On one hand, you have a choice.
+On the other, you have its twin.
+--------
+Mirrored
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Kalandra's Touch", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Ring", actual.Definition.TradeItem?.Type);
+        Assert.True(actual.Properties.Mirrored);
     }
 }

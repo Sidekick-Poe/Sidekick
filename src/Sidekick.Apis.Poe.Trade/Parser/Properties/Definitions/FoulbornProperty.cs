@@ -1,12 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -20,23 +21,12 @@ public class FoulbornProperty(
 
     public override void ParseAfterStats(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass)) return;
-
-        if (game == GameType.PathOfExile2) return;
-        if (item.Properties.Rarity != Rarity.Unique) return;
-
         item.Properties.Foulborn = item.Stats.Any(x => x.Category == StatCategory.Mutated);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2) return Task.FromResult<TradeFilter?>(null);
-        if (tradeFilterProvider.Foulborn == null) return Task.FromResult<TradeFilter?>(null);
-        if (item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.PathOfExile2 || item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FoulbornFilter
         {

@@ -1,5 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
+using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -23,9 +25,9 @@ Shift click to unstack.
 Note: ~price .5 chaos
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Simulacrum Splinter", actual.ApiInformation.Type);
+        Assert.Equal("Simulacrum Splinter", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -50,11 +52,12 @@ Place into an allocated Small, Medium or Large Jewel Socket on the Passive Skill
 Note: ~b/o 1 chance
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Small Cluster Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Small Cluster Jewel", actual.Definition.TradeItem?.Type);
 
-        Assert.Equal(2, actual.Properties.ClusterJewelPassiveCount);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 2);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: #", "15% increased Evasion Rating");
     }
 
 }

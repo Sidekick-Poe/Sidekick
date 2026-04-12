@@ -1,5 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
+using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -54,9 +56,9 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Vaal Double Strike", actual.ApiInformation.Type);
+        Assert.Equal("Vaal Double Strike", actual.Definition.TradeItem?.Type);
         Assert.Equal(1, actual.Properties.GemLevel);
         Assert.Equal(0, actual.Properties.Quality);
         Assert.True(actual.Properties.Corrupted);
@@ -90,9 +92,9 @@ Experience: 1/70
 This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Skill Gem you wish to augment. Right click to remove from a socket.
 ");
 
-        Assert.Equal(ItemClass.SupportGem, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.SupportSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Arcane Surge Support", actual.ApiInformation.Type);
+        Assert.Equal("Arcane Surge Support", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -127,9 +129,9 @@ Experience: 1/252,595
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Void Sphere", actual.ApiInformation.Type);
+        Assert.Equal("Void Sphere", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -166,10 +168,96 @@ Place into an item socket of the right colour to gain this skill. Right click to
 Transfigured
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Kinetic Blast of Clustering", actual.ApiInformation.Text);
-        Assert.Equal("Kinetic Blast", actual.ApiInformation.Type);
-        Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
+        Assert.Equal("Kinetic Blast of Clustering", actual.Definition.TradeItem?.Text);
+        Assert.Equal("Kinetic Blast", actual.Definition.TradeItem?.Type);
+        Assert.Equal("alt_x", actual.Definition.TradeItem?.Discriminator);
+    }
+
+    [Fact]
+    public void OrbOfStormsOfSqualls()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
+Rarity: Gem
+Orb of Storms of Squalls
+--------
+Lightning, Spell, AoE, Chaining, Orb
+Level: 1
+Cost: 22 Mana
+Cooldown Time: 2.00 sec
+Cast Time: 0.50 sec
+Critical Strike Chance: 5.00%
+Effectiveness of Added Damage: 110%
+--------
+Requirements:
+Level: 4
+Int: 16
+--------
+Creates an electrical orb that will strike enemies in its area of effect with beams of lightning when placed, as well as when you use a lightning skill while within its area. These beams of lightning can then split to hit more enemies. When striking enemies, this orb will teleport to a random enemy struck. Casting this skill again will replace the previous orb.
+--------
+Deals 3 to 10 Lightning Damage
+Strikes every 0.50 seconds while Channelling a Lightning Skill near the Orb
+Base radius is 3.8 metres
+Beams Split towards targets within a base radius of 3.8 metres
+Orb disappears after 6 Strikes
+Beam Splits towards 5 additional targets
+--------
+Experience: 1/841
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+--------
+Transfigured
+");
+
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Equal("Orb of Storms of Squalls", actual.Definition.TradeItem?.Text);
+        Assert.Equal("Orb of Storms", actual.Definition.TradeItem?.Type);
+        Assert.Equal("alt_x", actual.Definition.TradeItem?.Discriminator);
+    }
+
+    [Fact]
+    public void ImbuedEarthshatter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
+Rarity: Gem
+Earthshatter
+--------
+Attack, AoE, Melee, Slam, Duration
+Level: 20 (Max)
+Cost: 13 Mana
+Attack Speed: 80% of base
+Attack Damage: 329.1% of base
+Effectiveness of Added Damage: 329%
+Quality: +20% (augmented)
+--------
+Requirements:
+Level: 70 (unmet)
+Str: 155 (unmet)
+--------
+Slam the ground, sending out rectangular fissures that deal area damage to enemies and thrust a spike from the ground when they end. Warcries or other Slam Attacks performed by you or allied players near any spike will cause them to shatter, damaging surrounding enemies. Works with Maces, Sceptres, Axes, Staves and Unarmed.
+--------
+Base duration is 6.00 seconds
+19% more Area of Effect
+Shattering Spikes deal 30% less damage
+Maximum 18 Spikes
+Creates 6 fissures
+--------
+Supported by Level 1 Knockback
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+--------
+Corrupted
+--------
+Imbued
+");
+
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Text);
+        Assert.Equal("Earthshatter", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Imbued, "Supported by Level 1 Knockback");
     }
 }

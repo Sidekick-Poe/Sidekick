@@ -1,13 +1,14 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using ItemProperties = Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -16,8 +17,8 @@ public class CriticalHitChanceProperty(
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
-        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
+        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexDoubleProperty()
+        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexDoubleProperty();
 
     private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
         ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
@@ -27,14 +28,12 @@ public class CriticalHitChanceProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+        if (!item.ItemClass.IsWeapon()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.CriticalHitChance = GetDouble(Pattern, propertyBlock);
+        item.Properties.CriticalHitChance = GetDouble(Pattern, item.Text);
         if (item.Properties.CriticalHitChance == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

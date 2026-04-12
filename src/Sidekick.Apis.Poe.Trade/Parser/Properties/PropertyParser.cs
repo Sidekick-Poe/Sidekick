@@ -1,13 +1,13 @@
 using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiItems;
+using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
@@ -16,7 +16,7 @@ public class PropertyParser
 (
     IServiceProvider serviceProvider,
     ICurrentGameLanguage currentGameLanguage,
-    IApiItemProvider apiItemProvider,
+    IItemDefinitionParser itemDefinitionParser,
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources
@@ -32,7 +32,7 @@ public class PropertyParser
 
         Definitions.Clear();
         Definitions.AddRange([
-            new ItemClassProperty(game, currentGameLanguage, serviceProvider, resources),
+            new ItemClassProperty(game, resources),
             new RarityProperty(game, currentGameLanguage),
 
             new SeparatorProperty(),
@@ -52,19 +52,47 @@ public class PropertyParser
             new TotalDpsProperty(game, resources),
             new CriticalHitChanceProperty(game, currentGameLanguage),
             new AttacksPerSecondProperty(game, currentGameLanguage),
+            new MemoryStrandsProperty(game, currentGameLanguage),
 
             new MapTierProperty(game, currentGameLanguage),
-            new RewardProperty(game, currentGameLanguage, apiItemProvider),
+            new RewardProperty(game, currentGameLanguage, itemDefinitionParser),
             new RevivesAvailableProperty(game, currentGameLanguage),
             new MonsterPackSizeProperty(game, currentGameLanguage),
+
             new MagicMonstersProperty(game, currentGameLanguage),
             new RareMonstersProperty(game, currentGameLanguage),
             new ItemQuantityProperty(game, currentGameLanguage),
             new ItemRarityProperty(game, currentGameLanguage),
+            new MoreMapsProperty(game, currentGameLanguage),
+            new MoreScarabsProperty(game, currentGameLanguage),
+            new MoreCurrencyProperty(game, currentGameLanguage),
+            new MoreCardsProperty(game, currentGameLanguage),
+            new QualityCurrencyProperty(game, currentGameLanguage),
+            new QualityScarabsProperty(game, currentGameLanguage),
+            new QualityCardsProperty(game, currentGameLanguage),
+            new QualityPackSizeProperty(game, currentGameLanguage),
+            new QualityRarityProperty(game, currentGameLanguage),
             new WaystoneDropChanceProperty(game, currentGameLanguage),
             new AreaLevelProperty(game, currentGameLanguage),
             new BlightedProperty(game, currentGameLanguage),
             new BlightRavagedProperty(game, currentGameLanguage),
+
+            new HeistWingsRevealedProperty(game, currentGameLanguage, serviceProvider),
+            new HeistWingsTotalProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoutesRevealedProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoutesTotalProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoomsRevealedProperty(game, currentGameLanguage, serviceProvider),
+            new HeistRoomsTotalProperty(game, currentGameLanguage, serviceProvider),
+            new HeistObjectiveValueProperty(game, currentGameLanguage, serviceProvider),
+            new HeistLockpickingProperty(game, currentGameLanguage, serviceProvider),
+            new HeistDemolitionProperty(game, currentGameLanguage, serviceProvider),
+            new HeistAgilityProperty(game, currentGameLanguage, serviceProvider),
+            new HeistCounterThaumaturgyProperty(game, currentGameLanguage, serviceProvider),
+            new HeistTrapDisarmamentProperty(game, currentGameLanguage, serviceProvider),
+            new HeistPerceptionProperty(game, currentGameLanguage, serviceProvider),
+            new HeistBruteForceProperty(game, currentGameLanguage, serviceProvider),
+            new HeistDeceptionProperty(game, currentGameLanguage, serviceProvider),
+            new HeistEngineeringProperty(game, currentGameLanguage, serviceProvider),
 
             new SeparatorProperty(),
 
@@ -90,14 +118,14 @@ public class PropertyParser
                                    new RedeemerProperty(game, currentGameLanguage),
                                    new WarlordProperty(game, currentGameLanguage),
                                    new CorruptedProperty(game, currentGameLanguage),
+                                   new SplitProperty(game, currentGameLanguage),
                                    new FracturedProperty(game, serviceProvider),
                                    new DesecratedProperty(game, serviceProvider),
                                    new SanctifiedProperty(game, serviceProvider),
-                                   new MirroredProperty(game, serviceProvider),
+                                   new MirroredProperty(game, currentGameLanguage),
                                    new FoulbornProperty(game, serviceProvider),
+                                   new ImbuedGemProperty(game, serviceProvider),
                                    new UnidentifiedProperty(game, currentGameLanguage)),
-
-            new ClusterJewelPassiveCountProperty(game, serviceProvider),
         ]);
     }
 
@@ -139,6 +167,18 @@ public class PropertyParser
 
             results.Add(filter);
             await filter.Initialize(item, settingsService);
+        }
+
+        // Remove leading SeparatorProperty filters
+        while (results.Count > 0 && results[0] is SeparatorFilter)
+        {
+            results.RemoveAt(0);
+        }
+
+        // Remove trailing SeparatorProperty filters
+        while (results.Count > 0 && results[^1] is SeparatorFilter)
+        {
+            results.RemoveAt(results.Count - 1);
         }
 
         return results;

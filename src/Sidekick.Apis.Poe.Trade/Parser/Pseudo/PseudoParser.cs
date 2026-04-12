@@ -1,12 +1,12 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Pseudo;
 
@@ -36,6 +36,8 @@ public class PseudoParser
 
     public void Parse(Item item)
     {
+        if (!item.ItemClass.CanHaveStats()) return;
+
         item.PseudoStats.Clear();
         foreach (var definition in Definitions)
         {
@@ -52,7 +54,10 @@ public class PseudoParser
             {
                 foreach (var definitionStat in definition.Stats)
                 {
-                    if (itemStat.Definitions.All(x => !x.TradeIds.Contains(definitionStat.Id))) continue;
+                    var hasBadId = itemStat.Definitions
+                        .Where(x => x.TradeStats != null)
+                        .All(x => x.TradeStats!.All(y => y.Id != definitionStat.Id));
+                    if (hasBadId) continue;
 
                     value += itemStat.AverageValue * definitionStat.Multiplier;
                     break;
@@ -84,8 +89,6 @@ public class PseudoParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
-
         var result = new List<TradeFilter>();
         foreach (var stat in item.PseudoStats)
         {
@@ -97,11 +100,11 @@ public class PseudoParser
 
         if (result.Count == 0) return result;
 
-        var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], result.ToArray())
+        var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], true, result.ToArray())
         {
             Checked = true,
         };
-        await expandableFilter.Initialize(item, settingsService);
+        await expandableFilter.Initialize(item,  settingsService);
         expandableFilter.Checked = true;
 
         return [expandableFilter];

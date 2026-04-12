@@ -1,5 +1,6 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
+using Sidekick.Data.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -25,9 +26,9 @@ Can be used in a personal Map Device to add modifiers to a Map.
 Note: ~b/o .50 chaos
 ");
 
-        Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Rusted Reliquary Scarab", actual.ApiInformation.Type);
+        Assert.Equal("Rusted Reliquary Scarab", actual.Definition.TradeItem?.Type);
     }
 
 }

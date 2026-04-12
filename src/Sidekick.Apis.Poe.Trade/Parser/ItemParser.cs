@@ -1,14 +1,14 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
+using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
+using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -21,7 +21,7 @@ public class ItemParser
     IPseudoParser pseudoParser,
     IPropertyParser propertyParser,
     ICurrentGameLanguage currentGameLanguage,
-    IApiInformationParser apiInformationParser,
+    IItemDefinitionParser itemDefinitionParser,
     ISettingsService settingsService
 ) : IItemParser
 {
@@ -34,7 +34,7 @@ public class ItemParser
     public async Task Initialize()
     {
         var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
-        unusableRegex += @"[\n\r]+" + TextItem.SeparatorPattern + @"[\n\r]+";
+        unusableRegex += @"[\n\r]+" + RawText.SeparatorPattern + @"[\n\r]+";
         UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
         Game = await settingsService.GetGame();
     }
@@ -47,13 +47,12 @@ public class ItemParser
         {
             text = RemoveUnusableLine(text);
 
-            var item = new Item(Game, text);
+            var item = new Item(Game, currentGameLanguage.Language, text);
 
             // These properties are required for later parsing steps
-            propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
-            apiInformationParser.Parse(item);
+            itemDefinitionParser.Parse(item);
             propertyParser.Parse(item);
             statParser.Parse(item);
             propertyParser.ParseAfterStats(item);

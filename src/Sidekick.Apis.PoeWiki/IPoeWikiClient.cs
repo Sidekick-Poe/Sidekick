@@ -1,6 +1,6 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Initialization;
+using Sidekick.Data.Items;
 
 namespace Sidekick.Apis.PoeWiki;
 
@@ -17,4 +17,6 @@ public interface IPoeWikiClient : IInitializableService
     public void OpenUri(ItemDrop itemDrop);
 
     public void OpenUri(Boss boss);
+
+    void OpenWebsite(Item item);
 }

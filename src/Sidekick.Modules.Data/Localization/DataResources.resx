@@ -3,7 +3,7 @@
 <root>
     <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
         <xsd:element name="root" msdata:IsDataSet="true">
-            
+
         </xsd:element>
     </xsd:schema>
     <resheader name="resmimetype">
@@ -44,5 +44,8 @@
     </data>
     <data name="Error" xml:space="preserve">
         <value>An error occured while downloading and building data files. Logs may include additional information.</value>
+    </data>
+    <data name="Refresh_Warning" xml:space="preserve">
+        <value>Data files were built with {0} warnings and {1} errors. Check the logs for more details.</value>
     </data>
 </root>

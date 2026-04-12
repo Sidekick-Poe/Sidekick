@@ -1,8 +1,8 @@
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade;
+using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Exceptions;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 namespace Sidekick.Modules.Items.Trade;
 
@@ -19,7 +19,7 @@ public class TradeService
 
     public TradeSearchResult<string>? ItemTradeResult { get; private set; }
 
-    public List<Apis.Poe.Trade.Trade.Items.Results.TradeResult> TradeItems { get; private set; } = [];
+    public List<Apis.Poe.Trade.Trade.Results.TradeResult> TradeItems { get; private set; } = [];
 
     public void Init()
     {

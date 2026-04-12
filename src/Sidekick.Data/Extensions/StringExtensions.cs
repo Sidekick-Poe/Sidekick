@@ -25,4 +25,15 @@ public static class StringExtensions
 
         return SquareBracketPattern.Replace(text, "$1");
     }
+
+    public static GameType GetGameFromLeagueId(this string? leagueId)
+    {
+        return leagueId
+                ?.Split('.')
+                .ElementAtOrDefault(0) switch
+            {
+                "poe2" => GameType.PathOfExile2,
+                _ => GameType.PathOfExile1,
+            };
+    }
 }

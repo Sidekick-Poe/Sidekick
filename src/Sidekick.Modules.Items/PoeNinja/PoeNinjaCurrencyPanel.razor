@@ -1,11 +1,11 @@
-﻿@using Sidekick.Apis.PoeNinja.Exchange.Models
-@using Sidekick.Modules.Items.Components.Prices
+﻿@using Sidekick.Apis.PoeNinja.Exchange
+@using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
 
-@foreach (var trade in Currency.Trades)
-{
-    <div class="mb-2 bg-stone-950 rounded-lg px-2 py-1">
-        <div class="flex flex-wrap">
+<div class="bg-stone-950 rounded-lg px-2 py-1">
+    @foreach (var trade in Currency.Trades)
+    {
+        <div class="flex flex-wrap mb-2">
             <div class="flex w-1/2 justify-center">
                 <PriceDisplay Value="trade.Value" Currency="@trade.ExchangeId"/>
             </div>
@@ -14,18 +14,20 @@
                 <Icon Svg="@UiIcons.ArrowForward" Class="mx-1 text-[#a38d6d]"/>
                 <PriceDisplay Value="(1 / trade.Value)" Currency="@Currency.Id" Small="true"/>
             </div>
+
+            @if (trade.Volume != null)
+            {
+                <div class="w-1/2">
+                    <TextCaption Class="text-center">@trade.Volume @Resources["VolumeTraded"]</TextCaption>
+                </div>
+            }
         </div>
+    }
 
-        @if (trade.Volume != null)
-        {
-            <div class="w-1/2">
-                <TextCaption Class="text-center">@trade.Volume @Resources["VolumeTraded"]</TextCaption>
-            </div>
-        }
-    </div>
-}
-
-<PoeNinjaSparkline Sparkline="Currency.Sparkline"/>
+    <PoeNinjaWebsite LastUpdated="Currency.LastUpdated" DetailsUrl="Currency.DetailsUrl"/>
+    <LayoutDivider Dense="true"/>
+    <PoeNinjaSparkline Sparkline="Currency.Sparkline"/>
+</div>
 
 @inject IStringLocalizer<PoeNinjaResources> Resources
 

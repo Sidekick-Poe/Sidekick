@@ -1,5 +1,5 @@
 ﻿@using Sidekick.Apis.Poe2Scout.History.Models
-@using Sidekick.Modules.Items.Components.Prices
+@using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
 
 @if (LastLog == null || Logs == null)
@@ -7,7 +7,7 @@
     return;
 }
 
-<div class="mb-2 bg-stone-950 rounded-lg">
+<div class="bg-stone-950 rounded-lg">
     <div class="flex flex-nowrap items-center gap-2 pt-1 px-3">
         <PriceDisplay Value="LastLog.Price" Currency="@Currency"/>
         <TextCaption Class="ml-auto">@LastLog.Quantity @(QuantityLabel ?? NinjaResources["Listings"])</TextCaption>

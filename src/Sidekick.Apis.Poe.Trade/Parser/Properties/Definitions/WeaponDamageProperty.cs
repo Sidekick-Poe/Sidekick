@@ -2,16 +2,17 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using ItemProperties=Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -21,7 +22,7 @@ public class WeaponDamageProperty(
     IServiceProvider serviceProvider,
     IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
-    private readonly IApiStatsProvider apiStatsProvider = serviceProvider.GetRequiredService<IApiStatsProvider>();
+    private readonly IStatParser statParser = serviceProvider.GetRequiredService<IStatParser>();
 
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
@@ -29,12 +30,10 @@ public class WeaponDamageProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
-
-        var propertyBlock = item.Text.Blocks[1];
+        if (!item.ItemClass.IsWeapon()) return;
 
         // Parse damage ranges
-        foreach (var line in propertyBlock.Lines)
+        foreach (var line in item.Text.Blocks.SelectMany(x => x.Lines))
         {
             var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();
 
@@ -74,6 +73,8 @@ public class WeaponDamageProperty(
             if (isFire) item.Properties.FireDamage = range;
             if (isCold) item.Properties.ColdDamage = range;
             if (isLightning) item.Properties.LightningDamage = range;
+
+            line.Parsed = true;
         }
     }
 
@@ -101,20 +102,23 @@ public class WeaponDamageProperty(
     {
         if (game == GameType.PathOfExile2) return;
 
-        var damageMods = apiStatsProvider.InvariantStats.FireWeaponDamageIds.ToList();
-        damageMods.AddRange(apiStatsProvider.InvariantStats.ColdWeaponDamageIds);
-        damageMods.AddRange(apiStatsProvider.InvariantStats.LightningWeaponDamageIds);
+        var damageMods = statParser.InvariantDetails.FireWeaponDamageIds.ToList();
+        damageMods.AddRange(statParser.InvariantDetails.ColdWeaponDamageIds);
+        damageMods.AddRange(statParser.InvariantDetails.LightningWeaponDamageIds);
 
         var itemMods = item.Stats.Where(x =>
         {
-            var tradeIds = x.Definitions.SelectMany(y => y.TradeIds).ToList();
-            return tradeIds.Any(tradeId => damageMods.Contains(tradeId));
+            var tradeStats = x.Definitions
+                .Where(y => y.TradeStats != null)
+                .SelectMany(y => y.TradeStats!)
+                .ToList();
+            return tradeStats.Any(tradeStat => damageMods.Contains(tradeStat.Id));
         }).ToList();
         if (itemMods.Count == 0) return;
 
         // Parse elemental damage for Path of Exile 1.
         // In Path of Exile 1, the elemental damage properties have (augmented) as suffix instead of the easier to parse (fire|cold|lightning).
-        foreach (var line in item.Text.Blocks[1].Lines)
+        foreach (var line in item.Text.Blocks.SelectMany(x => x.Lines))
         {
             var isElemental = line.Text.StartsWith(currentGameLanguage.Language.DescriptionElementalDamage);
             if (!isElemental) continue;
@@ -130,10 +134,14 @@ public class WeaponDamageProperty(
                 int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
                 var range = new DamageRange(min, max);
 
-                var ids = itemMods[matchIndex].Definitions.SelectMany(x => x.TradeIds).ToList();
-                var isFire = apiStatsProvider.InvariantStats.FireWeaponDamageIds.Any(x => ids.Contains(x));
-                var isCold = apiStatsProvider.InvariantStats.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-                var isLightning = apiStatsProvider.InvariantStats.LightningWeaponDamageIds.Any(x => ids.Contains(x));
+                var ids = itemMods[matchIndex].Definitions
+                    .Where(x => x.TradeStats != null)
+                    .SelectMany(x => x.TradeStats!)
+                    .Select(x => x.Id)
+                    .ToList();
+                var isFire = statParser.InvariantDetails.FireWeaponDamageIds.Any(x => ids.Contains(x));
+                var isCold = statParser.InvariantDetails.ColdWeaponDamageIds.Any(x => ids.Contains(x));
+                var isLightning = statParser.InvariantDetails.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
                 if (isFire) item.Properties.FireDamage = range;
                 else if (isCold) item.Properties.ColdDamage = range;
@@ -141,6 +149,8 @@ public class WeaponDamageProperty(
 
                 matchIndex++;
             }
+
+            line.Parsed = true;
         }
     }
 

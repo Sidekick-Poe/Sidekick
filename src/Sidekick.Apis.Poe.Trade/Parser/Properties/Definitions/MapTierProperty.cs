@@ -1,10 +1,11 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -14,17 +15,15 @@ public class MapTierProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMapTier.ToRegexIntCapture();
+    private Regex Pattern { get; } = new(@"^[^\(]+\([^\d]+(\d+)\)$");
 
     public override string Label => currentGameLanguage.Language.DescriptionMapTier;
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass != ItemClass.Map) return;
+        if (item.ItemClass.Type != ItemClass.Map || string.IsNullOrEmpty(item.Type)) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.MapTier = GetInt(Pattern, propertyBlock);
-        if (item.Properties.MapTier > 0) propertyBlock.Parsed = true;
+        item.Properties.MapTier = GetInt(Pattern, item.Type);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

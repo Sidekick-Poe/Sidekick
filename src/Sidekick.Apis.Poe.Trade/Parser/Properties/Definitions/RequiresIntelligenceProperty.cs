@@ -1,10 +1,10 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -14,7 +14,7 @@ public class RequiresIntelligenceProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionRequiresInt.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionRequiresInt.ToRegexIntProperty();
 
     private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)\s*{currentGameLanguage.Language.DescriptionRequiresInt}");
 
@@ -22,19 +22,16 @@ public class RequiresIntelligenceProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
-            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
-            item.Properties.ItemClass != ItemClass.Graft) return;
+        if (item.ItemClass.IsGem()) return;
 
-        foreach (var block in item.Text.Blocks)
-        {
-            item.Properties.RequiresIntelligence = GetInt(Pattern, block);
-            if (item.Properties.RequiresIntelligence == 0) item.Properties.RequiresIntelligence = GetInt(RequiresPattern, block);
-            if (item.Properties.RequiresIntelligence == 0) continue;
+        var block = item.Text.Blocks.FirstOrDefault(x => x.Type == RawBlockType.Requirements);
+        if (block == null) return;
 
-            block.Parsed = true;
-            return;
-        }
+        item.Properties.RequiresIntelligence = GetInt(Pattern, block);
+        if (item.Properties.RequiresIntelligence == 0) item.Properties.RequiresIntelligence = GetInt(RequiresPattern, block);
+        if (item.Properties.RequiresIntelligence == 0) return;
+
+        block.Parsed = true;
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

@@ -1,5 +1,5 @@
-﻿@using Sidekick.Apis.Poe.Items
-@using Sidekick.Modules.Items.AreaInformation.Localization
+﻿@using Sidekick.Modules.Items.AreaInformation.Localization
+@using Sidekick.Data.Items
 @using Sidekick.Common.Ui.Tabs
 
 @if (Valid)
@@ -26,11 +26,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Valid = Item.Properties.ItemClass == ItemClass.Map || Item.Properties.ItemClass == ItemClass.Waystone;
+        Valid = Item.ItemClass.IsArea();
 
         if (Valid) await CurrentTabChanged.InvokeAsync("area");
 
         await base.OnInitializedAsync();
     }
-    
+
 }

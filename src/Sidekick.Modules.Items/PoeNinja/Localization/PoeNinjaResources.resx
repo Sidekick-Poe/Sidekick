@@ -135,4 +135,10 @@
   <data name="MediumConfidence" xml:space="preserve">
       <value>Medium confidence. Price is based on a relatively low number of listings.</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+      <value>No poe.ninja data could be found for this item.</value>
+  </data>
+  <data name="BaseType_Description" xml:space="preserve">
+      <value>Poe.ninja only looks at specific information about the item to provide a price. The base type, item level and influences are what poe.ninja currently looks for.</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -31,10 +32,75 @@ Regenerate 1.9 Life per second
 Fractured Item
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Iron Greaves", actual.ApiInformation.Type);
+        Assert.Equal("Iron Greaves", actual.Definition.TradeItem?.Type);
+        Assert.True(actual.Properties.Fractured);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Movement Speed", 10);
+    }
+
+    [Fact]
+    public void BulbonicTrail()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
+Rarity: Unique
+Bubonic Trail
+Murder Boots
+--------
+Evasion Rating: 185
+Energy Shield: 17
+--------
+Requirements:
+Level: 69
+Dex: 82
+Int: 42
+--------
+Sockets: G-G A
+--------
+Item Level: 84
+--------
+Has 1 Abyssal Socket
+Triggers Level 20 Death Walk when Equipped
+6% increased maximum Life
+30% increased Movement Speed
+10% increased Damage for each type of Abyss Jewel affecting you
+--------
+Even the dead serve the Lightless.
+");
+
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Bubonic Trail", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Murder Boots", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Has # Abyssal Sockets", 1);
+    }
+
+    [Fact]
+    public void MemoryStrands()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
+Rarity: Normal
+Sorcerer Boots
+--------
+Energy Shield: 54
+Memory Strands: 61
+--------
+Requirements:
+Level: 67
+Int: 123
+--------
+Sockets: B-B B 
+--------
+Item Level: 83
+");
+
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Sorcerer Boots", actual.Definition.TradeItem?.Type);
+
+        Assert.Equal(61, actual.Properties.MemoryStrands);
     }
 }

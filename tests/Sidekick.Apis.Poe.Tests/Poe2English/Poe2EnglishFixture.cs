@@ -1,4 +1,4 @@
-using Sidekick.Data.Items;
+using Sidekick.Data;
 namespace Sidekick.Apis.Poe.Tests.Poe2English;
 
 public class Poe2EnglishFixture : ParserFixture

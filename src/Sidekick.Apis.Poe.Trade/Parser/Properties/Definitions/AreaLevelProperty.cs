@@ -1,10 +1,10 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -14,17 +14,15 @@ public class AreaLevelProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAreaLevel.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAreaLevel.ToRegexIntProperty();
 
     public override string Label => currentGameLanguage.Language.DescriptionAreaLevel;
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+        if (!item.ItemClass.IsArea()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.AreaLevel = GetInt(Pattern, propertyBlock);
-        if (item.Properties.AreaLevel > 0) propertyBlock.Parsed = true;
+        item.Properties.AreaLevel = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

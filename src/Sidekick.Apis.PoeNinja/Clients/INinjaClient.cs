@@ -1,5 +1,4 @@
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Data.Items;
+using Sidekick.Data;
 namespace Sidekick.Apis.PoeNinja.Clients;
 
 public interface INinjaClient

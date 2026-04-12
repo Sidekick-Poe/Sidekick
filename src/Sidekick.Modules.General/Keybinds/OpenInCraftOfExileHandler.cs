@@ -1,10 +1,9 @@
-using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
+using Sidekick.Data;
+using Sidekick.Data.Extensions;
 
 namespace Sidekick.Modules.General.Keybinds;
 

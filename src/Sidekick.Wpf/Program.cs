@@ -10,6 +10,7 @@ using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe.Account;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
+using Sidekick.Apis.PoeDb;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
@@ -107,6 +108,7 @@ If you need more support consider asking on the official Sidekick discord server
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoe2ScoutApi()
             .AddSidekickPoePriceInfoApi()
+            .AddSidekickPoeDbApi()
             .AddSidekickPoeWikiApi()
             .AddSidekickUpdater()
 

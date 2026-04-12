@@ -1,11 +1,8 @@
 @using System.Text.Json
-@using Sidekick.Apis.Poe.Extensions
-@using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.ApiStats
-@using Sidekick.Apis.Poe.Trade.Trade.Items.Models
-@using Sidekick.Apis.Poe.Trade.Trade.Items.Results
+@using Sidekick.Apis.Poe.Trade.Trade.Models
+@using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Data.Extensions
-@using Sidekick.Data.Items
+@using Sidekick.Data.Stats
 @using Sidekick.Common.Enums
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
@@ -13,8 +10,6 @@
 {
     <ItemStatLineComponent Result="Result" StatLines="Stats" StatLine="line"/>
 }
-
-@inject IApiStatsProvider ApiStatsProvider
 
 @code {
 

@@ -10,7 +10,6 @@ public class GameLanguageFr : IGameLanguage
     public string PoeTradeApiBaseUrl => "https://fr.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://fr.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://fr.pathofexile.com/api/trade2/";
-    public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "Unique";
     public string RarityRare => "Rare";
@@ -25,6 +24,8 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionQuality => "Qualité";
     public string DescriptionLevel => "Niveau";
     public string DescriptionCorrupted => "Corrompu";
+    public string DescriptionSplit => "Scindé";
+    public string DescriptionMirrored => "Reflété";
     public string DescriptionSockets => "Châsses";
     public string DescriptionItemLevel => "Niveau de l'objet";
     public string DescriptionExperience => "Expérience";
@@ -49,11 +50,21 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionItemQuantity => "Quantité d'objets";
     public string DescriptionItemRarity => "Rareté des objets";
     public string DescriptionMonsterPackSize => "Taille des groupes de monstres";
+    public string DescriptionMoreMaps => "Davantage de Cartes";
+    public string DescriptionMoreScarabs => "Davantage de Scarabées";
+    public string DescriptionMoreCurrency => "Davantage d'Objets monétaires";
+    public string DescriptionMoreCards => "Davantage de Cartes divinatoires";
+    public string DescriptionQualityCurrency => "Qualité (Objets monétaires)";
+    public string DescriptionQualityScarabs => "Qualité (Scarabées)";
+    public string DescriptionQualityCards => "Qualité (Cartes divinatoires)";
+    public string DescriptionQualityPackSize => "Qualité (Taille des Groupes)";
+    public string DescriptionQualityRarity => "Qualité (Rareté)";
     public string DescriptionMagicMonsters => "Monstres magiques";
     public string DescriptionRareMonsters => "Monstres rares";
     public string DescriptionRevivesAvailable => "Résurrections disponibles";
     public string DescriptionWaystoneDropChance => "Chances de trouver des Pierres de téléportation";
     public string DescriptionAreaLevel => "Niveau de la zone";
+    public string DescriptionMemoryStrands => "Brins de Souvenir";
     public string DescriptionUnusable => "Vous ne pouvez pas utiliser cet objet ; ses stats sont ignorées.";
     public string DescriptionRequirements => "Prérequis";
     public string DescriptionRequires => "Prérequis";
@@ -61,6 +72,22 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionRequiresStr => "For";
     public string DescriptionRequiresDex => "Dex";
     public string DescriptionRequiresInt => "Int";
+    public string DescriptionHeistWings => "Ailes révélées";
+    public string DescriptionHeistRoutes => "Échappatoires révélées";
+    public string DescriptionHeistRooms => "Salles de récompenses révélées";
+    public string DescriptionHeistLockpicking => "Prérequis : Crochetage au niv. #";
+    public string DescriptionHeistDemolition => "Prérequis : Démolition au niv. #";
+    public string DescriptionHeistAgility => "Prérequis : Agilité au niv. #";
+    public string DescriptionHeistCounterThaumaturgy => "Prérequis : Anti-thaumaturgie au niv. #";
+    public string DescriptionHeistTrap => "Prérequis : Désamorçage de pièges au niv. #";
+    public string DescriptionHeistPerception => "Prérequis : Perception au niv. #";
+    public string DescriptionHeistBruteForce => "Prérequis : Force brute au niv. #";
+    public string DescriptionHeistDeception => "Prérequis : Duperie au niv. #";
+    public string DescriptionHeistEngineering => "Prérequis : Ingénierie au niv. #";
+    public string DescriptionHeistModerateValue => "valeur : moyenne";
+    public string DescriptionHeistHighValue => "valeur : élevée";
+    public string DescriptionHeistPrecious => "valeur : importante";
+    public string DescriptionHeistPriceless => "valeur : inestimable";
 
     public string AffixSuperior => "supérieur";
     public string AffixBlighted => "Carte infestée";

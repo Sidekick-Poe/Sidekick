@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -31,10 +32,10 @@ Item Level: 66
 --------
 Right click to drink. Can only hold charges while in belt. Refill at Wells or by killing monsters.");
 
-        Assert.Equal(ItemClass.LifeFlask, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.LifeFlask, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ultimate Life Flask", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Ultimate Life Flask", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
@@ -68,10 +69,10 @@ Used when you become Stunned (implicit)
 Used automatically when condition is met. Can only hold charges while in belt. Refill at Wells or by killing monsters.
 ");
 
-        Assert.Equal(ItemClass.Charms, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Charms, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Stone Charm", actual.ApiInformation.Type);
-        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Stone Charm", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.Definition.TradeItem?.Name);
 
         Assert.Equal(16, actual.Properties.RequiresLevel);
         Assert.Equal(51, actual.Properties.ItemLevel);

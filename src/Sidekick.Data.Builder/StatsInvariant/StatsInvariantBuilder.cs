@@ -1,0 +1,164 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Common;
+using Sidekick.Data.Builder.Trade.Models;
+using Sidekick.Data.Extensions;
+using Sidekick.Data.Languages;
+using Sidekick.Data.StatsInvariant;
+namespace Sidekick.Data.Builder.StatsInvariant;
+
+public class StatsInvariantBuilder
+(
+    ILogger<StatsInvariantBuilder> logger,
+    IOptions<SidekickConfiguration> configuration,
+    IGameLanguageProvider gameLanguageProvider,
+    DataProvider dataProvider
+)
+{
+    public async Task Build(IGameLanguage language)
+    {
+        if (language.Code != gameLanguageProvider.InvariantLanguage.Code) return;
+
+        try
+        {
+            await BuildForGame(GameType.PathOfExile1, language);
+            await BuildForGame(GameType.PathOfExile2, language);
+        }
+        catch (Exception ex)
+        {
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            {
+                throw;
+            }
+
+            logger.LogError(ex, "Failed to build invariant trade stats.");
+        }
+    }
+
+    private async Task BuildForGame(GameType game, IGameLanguage language)
+    {
+        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.RawTradeStats, language);
+        categories.Result.ForEach(category =>
+        {
+            category.Entries.ForEach(entry =>
+            {
+                entry.Text = entry.Text.RemoveSquareBrackets();
+            });
+        });
+
+        var model = new StatsInvariantDetails()
+        {
+            IgnoreStatIds = GetIgnoreStatIds(categories.Result).ToList(),
+            FireWeaponDamageIds = GetFireWeaponDamageIds(categories.Result).ToList(),
+            ColdWeaponDamageIds = GetColdWeaponDamageIds(categories.Result).ToList(),
+            LightningWeaponDamageIds = GetLightningWeaponDamageIds(categories.Result).ToList(),
+            IncursionRoomStatIds = GetIncursionRooms(categories.Result).ToList(),
+            LogbookFactionStatIds = GetLogbookFactions(categories.Result).ToList(),
+            LogbookBossesStatId = GetLogbookBosses(categories.Result),
+        };
+
+        await dataProvider.Write(game, DataType.StatsInvariant, model);
+    }
+
+    private IEnumerable<string> GetIgnoreStatIds(List<RawTradeStatCategory> categories)
+    {
+        foreach (var category in categories)
+        {
+            if (!IsCategory(category, "pseudo")) continue;
+
+            foreach (var entry in category.Entries)
+            {
+                if (entry.Text.StartsWith("#% chance for dropped Maps to convert to")) yield return entry.Id;
+            }
+        }
+    }
+
+    private IEnumerable<string> GetFireWeaponDamageIds(List<RawTradeStatCategory> categories)
+    {
+        foreach (var category in categories)
+        {
+            if (IsCategory(category, "pseudo")) continue;
+
+            foreach (var entry in category.Entries)
+            {
+                var text = entry.Text.RemoveSquareBrackets();
+                if (text == "Adds # to # Fire Damage") yield return entry.Id;
+            }
+        }
+    }
+
+    private IEnumerable<string> GetColdWeaponDamageIds(List<RawTradeStatCategory> categories)
+    {
+        foreach (var category in categories)
+        {
+            if (IsCategory(category, "pseudo")) continue;
+
+            foreach (var entry in category.Entries)
+            {
+                var text = entry.Text.RemoveSquareBrackets();
+                if (text == "Adds # to # Cold Damage") yield return entry.Id;
+            }
+        }
+    }
+
+    private IEnumerable<string> GetLightningWeaponDamageIds(List<RawTradeStatCategory> categories)
+    {
+        foreach (var category in categories)
+        {
+            if (IsCategory(category, "pseudo")) continue;
+
+            foreach (var entry in category.Entries)
+            {
+                var text = entry.Text.RemoveSquareBrackets();
+                if (text == "Adds # to # Lightning Damage") yield return entry.Id;
+            }
+        }
+    }
+
+    private IEnumerable<string> GetIncursionRooms(List<RawTradeStatCategory> categories)
+    {
+        foreach (var category in categories)
+        {
+            if (!IsCategory(category, "pseudo")) continue;
+
+            foreach (var entry in category.Entries)
+            {
+                if (entry.Text.StartsWith("Has Room: ")) yield return entry.Id;
+            }
+        }
+    }
+
+    private IEnumerable<string> GetLogbookFactions(List<RawTradeStatCategory> categories)
+    {
+        foreach (var category in categories)
+        {
+            if (!IsCategory(category, "pseudo")) continue;
+
+            foreach (var entry in category.Entries)
+            {
+                if (entry.Text.StartsWith("Has Logbook Faction: ")) yield return entry.Id;
+            }
+        }
+    }
+
+    private string? GetLogbookBosses(List<RawTradeStatCategory> categories)
+    {
+        foreach (var category in categories)
+        {
+            if (!IsCategory(category, "implicit")) continue;
+
+            foreach (var entry in category.Entries)
+            {
+                if (entry.Text == "Area contains an Expedition Boss (#)") return entry.Id;
+            }
+        }
+
+        return null;
+    }
+
+    private static bool IsCategory(RawTradeStatCategory apiCategory, string? key)
+    {
+        var first = apiCategory.Entries.FirstOrDefault();
+        return first?.Id.Split('.')[0] == key;
+    }
+}

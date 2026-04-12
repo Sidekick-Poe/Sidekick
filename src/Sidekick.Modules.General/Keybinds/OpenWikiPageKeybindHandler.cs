@@ -1,13 +1,9 @@
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Common.Browser;
-using Sidekick.Common.Exceptions;
+using Sidekick.Apis.PoeDb;
+using Sidekick.Apis.PoeWiki;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
 using Sidekick.Modules.General.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;
@@ -17,9 +13,9 @@ public class OpenWikiPageKeybindHandler(
     ISettingsService settingsService,
     IProcessProvider processProvider,
     IItemParser itemParser,
-    ICurrentGameLanguage currentGameLanguage,
-    IBrowserProvider browserProvider,
-    IKeyboardProvider keyboard) : KeybindHandler(settingsService, SettingKeys.KeyOpenWiki)
+    IKeyboardProvider keyboard,
+    IPoeDbClient poeDbClient,
+    IPoeWikiClient poeWikiClient) : KeybindHandler(settingsService, SettingKeys.KeyOpenWiki)
 {
     private readonly ISettingsService settingsService = settingsService;
 
@@ -42,46 +38,14 @@ public class OpenWikiPageKeybindHandler(
         var item = itemParser.ParseItem(text);
 
         var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
-        if (wikiPreferred == WikiSetting.PoeWiki)
+        switch (wikiPreferred)
         {
-            if (!currentGameLanguage.IsEnglish())
-            {
-                throw new UnavailableTranslationException();
-            }
-
-            OpenPoeWiki(item);
+            case WikiSetting.PoeWiki:
+                poeWikiClient.OpenWebsite(item);
+                break;
+            case WikiSetting.PoeDb:
+                poeDbClient.OpenWebsite(item);
+                break;
         }
-        else if (wikiPreferred == WikiSetting.PoeDb)
-        {
-            OpenPoeDb(item);
-        }
-    }
-
-    private const string PoeWikiBaseUri = "https://www.poewiki.net/";
-    private const string Poe2WikiBaseUri = "https://www.poe2wiki.net/";
-    private const string PoeWikiSubUrl = "w/index.php?search=";
-
-    private void OpenPoeWiki(Item item)
-    {
-        var searchLink = item.ApiInformation.Name ?? item.ApiInformation.Type;
-        var baseUrl = item.Game == GameType.PathOfExile1 ? PoeWikiBaseUri : Poe2WikiBaseUri;
-        var wikiLink = PoeWikiSubUrl + searchLink?.Replace(" ", "+");
-        var uri = new Uri(baseUrl + wikiLink);
-
-        browserProvider.OpenUri(uri);
-    }
-
-    private const string PoeDbBaseUri = "https://poedb.tw/";
-    private const string Poe2DbBaseUri = "https://poe2db.tw/";
-    private const string PoeDbSubUrl = "search?q=";
-
-    private void OpenPoeDb(Item item)
-    {
-        var searchLink = item.ApiInformation.Name ?? item.ApiInformation.Type;
-        var baseUrl = item.Game == GameType.PathOfExile1 ? PoeDbBaseUri : Poe2DbBaseUri;
-        var wikiLink = PoeDbSubUrl + searchLink?.Replace(" ", "+");
-        var uri = new Uri(baseUrl + wikiLink);
-
-        browserProvider.OpenUri(uri);
     }
 }

@@ -1,28 +1,34 @@
-using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
+using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class MirroredProperty(
     GameType game,
-    IServiceProvider serviceProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMirrored.ToRegexLine();
 
-    public override string Label => tradeFilterProvider.Mirrored?.Text ?? "Mirrored";
+    public override string Label => currentGameLanguage.Language.DescriptionMirrored;
 
-    public override void Parse(Item item) {}
+    public override void Parse(Item item)
+    {
+        item.Properties.Mirrored = GetBool(Pattern, item.Text);
+    }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (tradeFilterProvider.Mirrored == null) return Task.FromResult<TradeFilter?>(null);
+        if (!item.ItemClass.IsEquipment() &&
+            !item.ItemClass.IsWeapon() &&
+            !item.ItemClass.IsAccessory()) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity == Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new MirroredFilter
         {
@@ -37,7 +43,37 @@ public class MirroredFilter : TriStatePropertyFilter
 {
     public MirroredFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(null);
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Default,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Mirrored,
+                            Comparison = AutoSelectComparisonType.True,
+                        },
+                    ],
+                },
+                new()
+                {
+                    Checked = false,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Mirrored,
+                            Comparison = AutoSelectComparisonType.False,
+                        },
+                    ],
+                },
+            ],
+        };
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

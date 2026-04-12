@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -28,7 +29,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
 ");
 
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Cobalt Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Cobalt Jewel", actual.Definition.TradeItem?.Type);
         Assert.Equal("Blight Cut", actual.Name);
         Assert.Equal(68, actual.Properties.ItemLevel);
 
@@ -66,7 +67,7 @@ Note: ~b/o 1 chaos
 ");
 
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Large Cluster Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Large Cluster Jewel", actual.Definition.TradeItem?.Type);
         Assert.Equal("Chimeric Sliver", actual.Name);
         Assert.Equal(69, actual.Properties.ItemLevel);
 
@@ -93,9 +94,9 @@ Item Level: 85
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Viridian Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Viridian Jewel", actual.Definition.TradeItem?.Type);
     }
 
     [Fact]
@@ -124,9 +125,9 @@ Faith given under false pretenses still carries the same power.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Crimson Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Crimson Jewel", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Strength", 8);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16);
@@ -159,14 +160,74 @@ and one by one, they became a part of it.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Prismatic Jewel", actual.ApiInformation.Type);
+        Assert.Equal("Prismatic Jewel", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Energy Shield", 6);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 6);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Mana", 6);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Physical Damage Converted to Cold Damage while affected by Hatred", 32);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% chance to Evade Attack Hits while affected by Grace", 6);
+    }
+
+    [Fact]
+    public void AbyssJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Whispering Leer
+Hypnotic Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 52
+--------
+Item Level: 69
+--------
+Adds 12 to 18 Fire Damage to Spells
+Adds 16 to 23 Cold Damage to Spells
+2 to 20 Added Spell Lightning Damage while wielding a Two Handed Weapon
+9 to 15 Added Spell Physical Damage while wielding a Two Handed Weapon
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Note: ~price 1 alch
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Hypnotic Eye Jewel", actual.Definition.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void NoAbyssStat()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Hollow Gaze
+Ghastly Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 59
+--------
+Item Level: 80
+--------
++31 to maximum Life
++14% to Fire Resistance
+Minions have 15% chance to Poison Enemies on Hit
+Minions deal 2 to 53 additional Lightning Damage
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ghastly Eye Jewel", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Explicit, "Abyss");
     }
 }

@@ -10,7 +10,6 @@ public class GameLanguagePt : IGameLanguage
     public string PoeTradeApiBaseUrl => "https://br.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://br.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://br.pathofexile.com/api/trade2/";
-    public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "Único";
     public string RarityRare => "Raro";
@@ -25,6 +24,8 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionQuality => "Qualidade";
     public string DescriptionLevel => "Nível";
     public string DescriptionCorrupted => "Corrompido";
+    public string DescriptionSplit => "Dividido";
+    public string DescriptionMirrored => "Espelhado";
     public string DescriptionSockets => "Encaixes";
     public string DescriptionItemLevel => "Nível do Item";
     public string DescriptionExperience => "Experiência";
@@ -49,11 +50,21 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionItemQuantity => "Quantidade de Itens";
     public string DescriptionItemRarity => "Raridade de Itens";
     public string DescriptionMonsterPackSize => "Tamanho do Grupo de Monstros";
+    public string DescriptionMoreMaps => "Mais Mapas";
+    public string DescriptionMoreScarabs => "Mais Escaravelhos";
+    public string DescriptionMoreCurrency => "Mais Itens Monetários";
+    public string DescriptionMoreCards => "Mais Cartas de Adivinhação";
+    public string DescriptionQualityCurrency => "Qualidade (Moedas)";
+    public string DescriptionQualityScarabs => "Qualidade (Escaravelhos)";
+    public string DescriptionQualityCards => "Qualidade (Cartas de Adivinhação)";
+    public string DescriptionQualityPackSize => "Qualidade (Tamanho de Grupos)";
+    public string DescriptionQualityRarity => "Qualidade (Raridade)";
     public string DescriptionMagicMonsters => "Monstros Mágicos";
     public string DescriptionRareMonsters => "Monstros Raros";
     public string DescriptionRevivesAvailable => "Ressurreições";
     public string DescriptionWaystoneDropChance => "Chance de Queda de Pedra Guia";
     public string DescriptionAreaLevel => "Nível da Área";
+    public string DescriptionMemoryStrands => "Fios de Memória";
     public string DescriptionUnusable => "Você não pode utilizar este item. Suas propriedades serão ignoradas";
     public string DescriptionRequirements => "Requisitos";
     public string DescriptionRequires => "Requer";
@@ -61,6 +72,22 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionRequiresStr => "For";
     public string DescriptionRequiresDex => "Des";
     public string DescriptionRequiresInt => "Int";
+    public string DescriptionHeistWings => "Alas Reveladas";
+    public string DescriptionHeistRoutes => "Rotas de Escape Reveladas";
+    public string DescriptionHeistRooms => "Salas de Recompensas Reveladas";
+    public string DescriptionHeistLockpicking => "Requer Arrombamento (Nível #)";
+    public string DescriptionHeistDemolition => "Requer Demolição (Nível #)";
+    public string DescriptionHeistAgility => "Requer Agilidade (Nível #)";
+    public string DescriptionHeistCounterThaumaturgy => "Requer Contra-Taumaturgia (Nível #)";
+    public string DescriptionHeistTrap => "Requer Desarme de Armadilhas (Nível #)";
+    public string DescriptionHeistPerception => "Requer Percepção (Nível #)";
+    public string DescriptionHeistBruteForce => "Requer Força Bruta (Nível #)";
+    public string DescriptionHeistDeception => "Requer Enganação (Nível #)";
+    public string DescriptionHeistEngineering => "Requer Engenharia (Nível #)";
+    public string DescriptionHeistModerateValue => "Valor Moderado";
+    public string DescriptionHeistHighValue => "Valor Alto";
+    public string DescriptionHeistPrecious => "Precioso";
+    public string DescriptionHeistPriceless => "Sem Preço";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Infestado";

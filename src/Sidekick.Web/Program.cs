@@ -4,6 +4,7 @@ using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
+using Sidekick.Apis.PoeDb;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
@@ -16,14 +17,11 @@ using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
-using Sidekick.Modules.Chat;
 using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
 using Sidekick.Modules.Logs;
-using Sidekick.Modules.RegexHotkeys;
-using Sidekick.Modules.Wealth;
 using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
@@ -64,18 +62,16 @@ builder.Services
     .AddSidekickPoeNinjaApi()
     .AddSidekickPoe2ScoutApi()
     .AddSidekickPoePriceInfoApi()
+    .AddSidekickPoeDbApi()
     .AddSidekickPoeWikiApi()
     .AddSidekickUpdater()
 
     // Modules
-    .AddSidekickChat()
     .AddSidekickModuleData()
     .AddSidekickDevelopment()
-    .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
     .AddSidekickItems()
-    .AddSidekickLogs()
-    .AddSidekickWealth();
+    .AddSidekickLogs();
 
 builder.Services.AddApexCharts();
 builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
@@ -97,6 +93,13 @@ app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
 #endregion Pipeline
+
+var runningInContainer = string.Equals(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), "true", StringComparison.OrdinalIgnoreCase);
+if (runningInContainer)
+{
+    app.Run();
+    return;
+}
 
 // Start the app without blocking.
 var runTask = app.RunAsync();

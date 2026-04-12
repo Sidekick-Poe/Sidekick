@@ -1,0 +1,1419 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "id": "status_filters",
+      "filters": {
+        "$id": "3",
+        "$values": [
+          {
+            "$id": "4",
+            "id": "status",
+            "option": {
+              "$id": "5",
+              "options": {
+                "$id": "6",
+                "$values": [
+                  {
+                    "$id": "7",
+                    "id": "available",
+                    "text": "\u0E0B\u0E37\u0E49\u0E2D\u0E17\u0E31\u0E19\u0E17\u0E35\u0E41\u0E25\u0E30\u0E41\u0E25\u0E01\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E01\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E2D\u0E37\u0E48\u0E19"
+                  },
+                  {
+                    "$id": "8",
+                    "id": "securable",
+                    "text": "\u0E0B\u0E37\u0E49\u0E2D\u0E17\u0E31\u0E19\u0E17\u0E35"
+                  },
+                  {
+                    "$id": "9",
+                    "id": "onlineleague",
+                    "text": "\u0E41\u0E25\u0E01\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E01\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E2D\u0E37\u0E48\u0E19 (\u0E2D\u0E2D\u0E19\u0E44\u0E25\u0E19\u0E4C\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E19\u0E25\u0E35\u0E01)"
+                  },
+                  {
+                    "$id": "10",
+                    "id": "online",
+                    "text": "\u0E41\u0E25\u0E01\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E01\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E2D\u0E37\u0E48\u0E19 (\u0E2D\u0E2D\u0E19\u0E44\u0E25\u0E19\u0E4C)"
+                  },
+                  {
+                    "$id": "11",
+                    "id": "any",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "12",
+      "id": "type_filters",
+      "title": "\u0E15\u0E31\u0E27\u0E01\u0E23\u0E2D\u0E07\u0E1B\u0E23\u0E30\u0E40\u0E20\u0E17",
+      "filters": {
+        "$id": "13",
+        "$values": [
+          {
+            "$id": "14",
+            "id": "category",
+            "text": "\u0E2B\u0E21\u0E27\u0E14\u0E2B\u0E21\u0E39\u0E48\u0E44\u0E2D\u0E40\u0E17\u0E21",
+            "option": {
+              "$id": "15",
+              "options": {
+                "$id": "16",
+                "$values": [
+                  {
+                    "$id": "17",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "18",
+                    "id": "weapon",
+                    "text": "\u0E2D\u0E32\u0E27\u0E38\u0E18\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "19",
+                    "id": "weapon.onemelee",
+                    "text": "\u0E2D\u0E32\u0E27\u0E38\u0E18\u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\u0E21\u0E37\u0E2D\u0E40\u0E14\u0E35\u0E22\u0E27\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "20",
+                    "id": "weapon.unarmed",
+                    "text": "\u0E21\u0E37\u0E2D\u0E40\u0E1B\u0E25\u0E48\u0E32"
+                  },
+                  {
+                    "$id": "21",
+                    "id": "weapon.claw",
+                    "text": "\u0E01\u0E23\u0E07\u0E40\u0E25\u0E47\u0E1A"
+                  },
+                  {
+                    "$id": "22",
+                    "id": "weapon.dagger",
+                    "text": "\u0E21\u0E35\u0E14"
+                  },
+                  {
+                    "$id": "23",
+                    "id": "weapon.onesword",
+                    "text": "\u0E14\u0E32\u0E1A\u0E21\u0E37\u0E2D\u0E40\u0E14\u0E35\u0E22\u0E27"
+                  },
+                  {
+                    "$id": "24",
+                    "id": "weapon.oneaxe",
+                    "text": "\u0E02\u0E27\u0E32\u0E19\u0E21\u0E37\u0E2D\u0E40\u0E14\u0E35\u0E22\u0E27"
+                  },
+                  {
+                    "$id": "25",
+                    "id": "weapon.onemace",
+                    "text": "\u0E01\u0E23\u0E30\u0E1A\u0E2D\u0E07\u0E21\u0E37\u0E2D\u0E40\u0E14\u0E35\u0E22\u0E27"
+                  },
+                  {
+                    "$id": "26",
+                    "id": "weapon.spear",
+                    "text": "\u0E2B\u0E2D\u0E01"
+                  },
+                  {
+                    "$id": "27",
+                    "id": "weapon.flail",
+                    "text": "\u0E25\u0E39\u0E01\u0E15\u0E38\u0E49\u0E21"
+                  },
+                  {
+                    "$id": "28",
+                    "id": "weapon.twomelee",
+                    "text": "\u0E2D\u0E32\u0E27\u0E38\u0E18\u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\u0E2A\u0E2D\u0E07\u0E21\u0E37\u0E2D\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "29",
+                    "id": "weapon.twosword",
+                    "text": "\u0E14\u0E32\u0E1A\u0E2A\u0E2D\u0E07\u0E21\u0E37\u0E2D"
+                  },
+                  {
+                    "$id": "30",
+                    "id": "weapon.twoaxe",
+                    "text": "\u0E02\u0E27\u0E32\u0E19\u0E2A\u0E2D\u0E07\u0E21\u0E37\u0E2D"
+                  },
+                  {
+                    "$id": "31",
+                    "id": "weapon.twomace",
+                    "text": "\u0E01\u0E23\u0E30\u0E1A\u0E2D\u0E07\u0E2A\u0E2D\u0E07\u0E21\u0E37\u0E2D"
+                  },
+                  {
+                    "$id": "32",
+                    "id": "weapon.warstaff",
+                    "text": "\u0E44\u0E21\u0E49\u0E1E\u0E25\u0E2D\u0E07\u0E27\u0E23\u0E22\u0E38\u0E17\u0E18\u0E4C"
+                  },
+                  {
+                    "$id": "33",
+                    "id": "weapon.talisman",
+                    "text": "\u0E2A\u0E23\u0E49\u0E2D\u0E22\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E23\u0E32\u0E07"
+                  },
+                  {
+                    "$id": "34",
+                    "id": "weapon.ranged",
+                    "text": "\u0E2D\u0E32\u0E27\u0E38\u0E18\u0E23\u0E30\u0E22\u0E30\u0E44\u0E01\u0E25\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "35",
+                    "id": "weapon.bow",
+                    "text": "\u0E18\u0E19\u0E39"
+                  },
+                  {
+                    "$id": "36",
+                    "id": "weapon.crossbow",
+                    "text": "\u0E2B\u0E19\u0E49\u0E32\u0E44\u0E21\u0E49"
+                  },
+                  {
+                    "$id": "37",
+                    "id": "weapon.caster",
+                    "text": "\u0E2D\u0E32\u0E27\u0E38\u0E18\u0E19\u0E31\u0E01\u0E40\u0E27\u0E17\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "38",
+                    "id": "weapon.wand",
+                    "text": "\u0E44\u0E21\u0E49\u0E01\u0E32\u0E22\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E4C"
+                  },
+                  {
+                    "$id": "39",
+                    "id": "weapon.sceptre",
+                    "text": "\u0E04\u0E17\u0E32"
+                  },
+                  {
+                    "$id": "40",
+                    "id": "weapon.staff",
+                    "text": "Staff"
+                  },
+                  {
+                    "$id": "41",
+                    "id": "weapon.rod",
+                    "text": "\u0E40\u0E1A\u0E47\u0E14\u0E15\u0E01\u0E1B\u0E25\u0E32"
+                  },
+                  {
+                    "$id": "42",
+                    "id": "armour",
+                    "text": "\u0E40\u0E01\u0E23\u0E32\u0E30\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "43",
+                    "id": "armour.helmet",
+                    "text": "\u0E2B\u0E21\u0E27\u0E01"
+                  },
+                  {
+                    "$id": "44",
+                    "id": "armour.chest",
+                    "text": "\u0E40\u0E2A\u0E37\u0E49\u0E2D\u0E40\u0E01\u0E23\u0E32\u0E30"
+                  },
+                  {
+                    "$id": "45",
+                    "id": "armour.gloves",
+                    "text": "\u0E16\u0E38\u0E07\u0E21\u0E37\u0E2D"
+                  },
+                  {
+                    "$id": "46",
+                    "id": "armour.boots",
+                    "text": "\u0E23\u0E2D\u0E07\u0E40\u0E17\u0E49\u0E32"
+                  },
+                  {
+                    "$id": "47",
+                    "id": "armour.quiver",
+                    "text": "\u0E0B\u0E2D\u0E07\u0E18\u0E19\u0E39"
+                  },
+                  {
+                    "$id": "48",
+                    "id": "armour.shield",
+                    "text": "\u0E42\u0E25\u0E48"
+                  },
+                  {
+                    "$id": "49",
+                    "id": "armour.focus",
+                    "text": "\u0E42\u0E1F\u0E01\u0E31\u0E2A"
+                  },
+                  {
+                    "$id": "50",
+                    "id": "armour.buckler",
+                    "text": "\u0E42\u0E25\u0E48\u0E1A\u0E31\u0E04\u0E40\u0E25\u0E2D\u0E23\u0E4C"
+                  },
+                  {
+                    "$id": "51",
+                    "id": "accessory",
+                    "text": "\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E1B\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "52",
+                    "id": "accessory.amulet",
+                    "text": "\u0E2A\u0E23\u0E49\u0E2D\u0E22"
+                  },
+                  {
+                    "$id": "53",
+                    "id": "accessory.belt",
+                    "text": "\u0E40\u0E02\u0E47\u0E21\u0E02\u0E31\u0E14"
+                  },
+                  {
+                    "$id": "54",
+                    "id": "accessory.ring",
+                    "text": "\u0E41\u0E2B\u0E27\u0E19"
+                  },
+                  {
+                    "$id": "55",
+                    "id": "gem",
+                    "text": "\u0E2B\u0E34\u0E19\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "56",
+                    "id": "gem.activegem",
+                    "text": "\u0E2B\u0E34\u0E19\u0E2A\u0E01\u0E34\u0E25"
+                  },
+                  {
+                    "$id": "57",
+                    "id": "gem.supportgem",
+                    "text": "\u0E2B\u0E34\u0E19\u0E40\u0E2A\u0E23\u0E34\u0E21"
+                  },
+                  {
+                    "$id": "58",
+                    "id": "gem.metagem",
+                    "text": "\u0E2B\u0E34\u0E19\u0E40\u0E21\u0E15\u0E49\u0E32"
+                  },
+                  {
+                    "$id": "59",
+                    "id": "jewel",
+                    "text": "\u0E08\u0E34\u0E27\u0E40\u0E27\u0E25\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "60",
+                    "id": "flask",
+                    "text": "\u0E02\u0E27\u0E14\u0E22\u0E32\u0E0A\u0E19\u0E34\u0E14\u0E43\u0E14\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "61",
+                    "id": "flask.life",
+                    "text": "\u0E02\u0E27\u0E14\u0E22\u0E32\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15"
+                  },
+                  {
+                    "$id": "62",
+                    "id": "flask.mana",
+                    "text": "\u0E02\u0E27\u0E14\u0E22\u0E32\u0E21\u0E32\u0E19\u0E32"
+                  },
+                  {
+                    "$id": "63",
+                    "id": "map",
+                    "text": "\u0E44\u0E2D\u0E40\u0E17\u0E21\u0E0A\u0E48\u0E27\u0E07\u0E17\u0E49\u0E32\u0E22\u0E40\u0E01\u0E21\u0E0A\u0E19\u0E34\u0E14\u0E43\u0E14\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "64",
+                    "id": "map.waystone",
+                    "text": "\u0E28\u0E34\u0E25\u0E32\u0E19\u0E33\u0E17\u0E32\u0E07"
+                  },
+                  {
+                    "$id": "65",
+                    "id": "map.fragment",
+                    "text": "\u0E0A\u0E34\u0E49\u0E19\u0E2A\u0E48\u0E27\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48"
+                  },
+                  {
+                    "$id": "66",
+                    "id": "map.logbook",
+                    "text": "\u0E2A\u0E21\u0E38\u0E14\u0E1B\u0E39\u0E21\u0E40\u0E14\u0E34\u0E19\u0E17\u0E32\u0E07"
+                  },
+                  {
+                    "$id": "67",
+                    "id": "map.breachstone",
+                    "text": "\u0E28\u0E34\u0E25\u0E32\u0E1A\u0E23\u0E35\u0E0A"
+                  },
+                  {
+                    "$id": "68",
+                    "id": "map.barya",
+                    "text": "\u0E1A\u0E32\u0E23\u0E4C\u0E22\u0E48\u0E32"
+                  },
+                  {
+                    "$id": "69",
+                    "id": "map.bosskey",
+                    "text": "\u0E01\u0E38\u0E0D\u0E41\u0E08\u0E2D\u0E20\u0E34\u0E21\u0E2B\u0E32\u0E1A\u0E2D\u0E2A"
+                  },
+                  {
+                    "$id": "70",
+                    "id": "map.ultimatum",
+                    "text": "\u0E01\u0E38\u0E0D\u0E41\u0E08\u0E04\u0E33\u0E02\u0E32\u0E14"
+                  },
+                  {
+                    "$id": "71",
+                    "id": "map.tablet",
+                    "text": "\u0E41\u0E1C\u0E48\u0E19\u0E2B\u0E34\u0E19"
+                  },
+                  {
+                    "$id": "72",
+                    "id": "card",
+                    "text": "\u0E44\u0E1E\u0E48\u0E1E\u0E22\u0E32\u0E01\u0E23\u0E13\u0E4C"
+                  },
+                  {
+                    "$id": "73",
+                    "id": "sanctum.relic",
+                    "text": "Relic"
+                  },
+                  {
+                    "$id": "74",
+                    "id": "currency",
+                    "text": "\u0E40\u0E07\u0E34\u0E19\u0E15\u0E23\u0E32\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
+                  },
+                  {
+                    "$id": "75",
+                    "id": "currency.omen",
+                    "text": "\u0E25\u0E32\u0E07\u0E1A\u0E2D\u0E01\u0E40\u0E2B\u0E15\u0E38"
+                  },
+                  {
+                    "$id": "76",
+                    "id": "currency.socketable",
+                    "text": "\u0E27\u0E31\u0E15\u0E16\u0E38\u0E15\u0E34\u0E14\u0E15\u0E31\u0E49\u0E07\u0E43\u0E14\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "77",
+                    "id": "currency.rune",
+                    "text": "\u0E2D\u0E31\u0E01\u0E02\u0E23\u0E30"
+                  },
+                  {
+                    "$id": "78",
+                    "id": "currency.soulcore",
+                    "text": "\u0E41\u0E01\u0E19\u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13"
+                  },
+                  {
+                    "$id": "79",
+                    "id": "currency.idol",
+                    "text": "\u0E40\u0E17\u0E27\u0E23\u0E39\u0E1B"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "80",
+            "id": "rarity",
+            "text": "\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E2B\u0E32\u0E22\u0E32\u0E01",
+            "option": {
+              "$id": "81",
+              "options": {
+                "$id": "82",
+                "$values": [
+                  {
+                    "$id": "83",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "84",
+                    "id": "normal",
+                    "text": "\u0E18\u0E23\u0E23\u0E21\u0E14\u0E32"
+                  },
+                  {
+                    "$id": "85",
+                    "id": "magic",
+                    "text": "\u0E40\u0E21\u0E08\u0E34\u0E01"
+                  },
+                  {
+                    "$id": "86",
+                    "id": "rare",
+                    "text": "\u0E41\u0E23\u0E23\u0E4C"
+                  },
+                  {
+                    "$id": "87",
+                    "id": "unique",
+                    "text": "\u0E22\u0E39\u0E19\u0E34\u0E04"
+                  },
+                  {
+                    "$id": "88",
+                    "id": "uniquefoil",
+                    "text": "\u0E44\u0E2D\u0E40\u0E17\u0E21\u0E22\u0E39\u0E19\u0E34\u0E04 (\u0E1F\u0E2D\u0E22\u0E25\u0E4C)"
+                  },
+                  {
+                    "$id": "89",
+                    "id": "nonunique",
+                    "text": "\u0E17\u0E38\u0E01\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E17\u0E35\u0E48\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48 \u0E22\u0E39\u0E19\u0E34\u0E04"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "90",
+            "id": "ilvl",
+            "text": "\u0E40\u0E25\u0E40\u0E27\u0E25\u0E44\u0E2D\u0E40\u0E17\u0E21",
+            "option": {
+              "$id": "91",
+              "options": {
+                "$id": "92",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "93",
+            "id": "quality",
+            "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E20\u0E32\u0E1E\u0E44\u0E2D\u0E40\u0E17\u0E21",
+            "option": {
+              "$id": "94",
+              "options": {
+                "$id": "95",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "96",
+      "id": "equipment_filters",
+      "title": "\u0E15\u0E31\u0E27\u0E01\u0E23\u0E2D\u0E07\u0E44\u0E2D\u0E40\u0E17\u0E21\u0E2A\u0E27\u0E21\u0E43\u0E2A\u0E48",
+      "filters": {
+        "$id": "97",
+        "$values": [
+          {
+            "$id": "98",
+            "id": "damage",
+            "text": "\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22",
+            "option": {
+              "$id": "99",
+              "options": {
+                "$id": "100",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "101",
+            "id": "aps",
+            "text": "\u0E42\u0E08\u0E21\u0E15\u0E35\u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
+            "option": {
+              "$id": "102",
+              "options": {
+                "$id": "103",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "104",
+            "id": "crit",
+            "text": "\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25",
+            "option": {
+              "$id": "105",
+              "options": {
+                "$id": "106",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "107",
+            "id": "dps",
+            "text": "DPS",
+            "option": {
+              "$id": "108",
+              "options": {
+                "$id": "109",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "110",
+            "id": "pdps",
+            "text": "DPS \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E",
+            "option": {
+              "$id": "111",
+              "options": {
+                "$id": "112",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "113",
+            "id": "edps",
+            "text": "DPS \u0E18\u0E32\u0E15\u0E38",
+            "option": {
+              "$id": "114",
+              "options": {
+                "$id": "115",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "116",
+            "id": "reload_time",
+            "text": "\u0E40\u0E27\u0E25\u0E32\u0E23\u0E35\u0E42\u0E2B\u0E25\u0E14",
+            "option": {
+              "$id": "117",
+              "options": {
+                "$id": "118",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "119",
+            "id": "ar",
+            "text": "\u0E04\u0E48\u0E32\u0E40\u0E01\u0E23\u0E32\u0E30",
+            "option": {
+              "$id": "120",
+              "options": {
+                "$id": "121",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "122",
+            "id": "ev",
+            "text": "\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01",
+            "option": {
+              "$id": "123",
+              "options": {
+                "$id": "124",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "125",
+            "id": "es",
+            "text": "\u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19",
+            "option": {
+              "$id": "126",
+              "options": {
+                "$id": "127",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "128",
+            "id": "block",
+            "text": "\u0E1A\u0E25\u0E47\u0E2D\u0E04",
+            "option": {
+              "$id": "129",
+              "options": {
+                "$id": "130",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "131",
+            "id": "spirit",
+            "text": "\u0E1E\u0E25\u0E31\u0E07\u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13",
+            "option": {
+              "$id": "132",
+              "options": {
+                "$id": "133",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "134",
+            "id": "rune_sockets",
+            "text": "\u0E23\u0E39\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E27\u0E31\u0E15\u0E16\u0E38\u0E15\u0E34\u0E14\u0E15\u0E31\u0E49\u0E07\u0E44\u0E14\u0E49",
+            "option": {
+              "$id": "135",
+              "options": {
+                "$id": "136",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "137",
+      "id": "req_filters",
+      "title": "\u0E40\u0E07\u0E37\u0E48\u0E2D\u0E19\u0E44\u0E02\u0E01\u0E32\u0E23\u0E43\u0E0A\u0E49\u0E44\u0E2D\u0E40\u0E17\u0E21",
+      "filters": {
+        "$id": "138",
+        "$values": [
+          {
+            "$id": "139",
+            "id": "lvl",
+            "text": "\u0E40\u0E25\u0E40\u0E27\u0E25",
+            "option": {
+              "$id": "140",
+              "options": {
+                "$id": "141",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "142",
+            "id": "str",
+            "text": "Strength",
+            "option": {
+              "$id": "143",
+              "options": {
+                "$id": "144",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "145",
+            "id": "dex",
+            "text": "Dexterity",
+            "option": {
+              "$id": "146",
+              "options": {
+                "$id": "147",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "148",
+            "id": "int",
+            "text": "Intelligence",
+            "option": {
+              "$id": "149",
+              "options": {
+                "$id": "150",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "151",
+      "id": "map_filters",
+      "title": "\u0E1F\u0E34\u0E25\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E17\u0E49\u0E32\u0E22\u0E40\u0E01\u0E21",
+      "filters": {
+        "$id": "152",
+        "$values": [
+          {
+            "$id": "153",
+            "id": "map_tier",
+            "text": "\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E28\u0E34\u0E25\u0E32\u0E19\u0E33\u0E17\u0E32\u0E07",
+            "option": {
+              "$id": "154",
+              "options": {
+                "$id": "155",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "156",
+            "id": "map_packsize",
+            "text": "\u0E02\u0E19\u0E32\u0E14\u0E01\u0E2D\u0E07",
+            "option": {
+              "$id": "157",
+              "options": {
+                "$id": "158",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "159",
+            "id": "map_iiq",
+            "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E08\u0E33\u0E19\u0E27\u0E19\u0E44\u0E2D\u0E40\u0E17\u0E21",
+            "option": {
+              "$id": "160",
+              "options": {
+                "$id": "161",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "162",
+            "id": "map_iir",
+            "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E2B\u0E32\u0E22\u0E32\u0E01\u0E44\u0E2D\u0E40\u0E17\u0E21",
+            "option": {
+              "$id": "163",
+              "options": {
+                "$id": "164",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "165",
+            "id": "map_revives",
+            "text": "\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E4C\u0E04\u0E37\u0E19\u0E0A\u0E35\u0E1E",
+            "option": {
+              "$id": "166",
+              "options": {
+                "$id": "167",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "168",
+            "id": "map_bonus",
+            "text": "\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E28\u0E34\u0E25\u0E32\u0E19\u0E33\u0E17\u0E32\u0E07",
+            "option": {
+              "$id": "169",
+              "options": {
+                "$id": "170",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "171",
+            "id": "map_gold",
+            "text": "\u0E17\u0E2D\u0E07",
+            "option": {
+              "$id": "172",
+              "options": {
+                "$id": "173",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "174",
+            "id": "map_experience",
+            "text": "\u0E04\u0E48\u0E32\u0E1B\u0E23\u0E30\u0E2A\u0E1A\u0E01\u0E32\u0E23\u0E13\u0E4C",
+            "option": {
+              "$id": "175",
+              "options": {
+                "$id": "176",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "177",
+            "id": "map_magic_monsters",
+            "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E40\u0E21\u0E08\u0E34\u0E01",
+            "option": {
+              "$id": "178",
+              "options": {
+                "$id": "179",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "180",
+            "id": "map_rare_monsters",
+            "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E41\u0E23\u0E23\u0E4C",
+            "option": {
+              "$id": "181",
+              "options": {
+                "$id": "182",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "183",
+            "id": "ultimatum_hint",
+            "text": "\u0E04\u0E33\u0E43\u0E1A\u0E49\u0E1A\u0E17\u0E17\u0E14\u0E2A\u0E2D\u0E1A\u0E04\u0E33\u0E02\u0E32\u0E14",
+            "option": {
+              "$id": "184",
+              "options": {
+                "$id": "185",
+                "$values": [
+                  {
+                    "$id": "186",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "187",
+                    "id": "Victorious",
+                    "text": "Victorious"
+                  },
+                  {
+                    "$id": "188",
+                    "id": "Cowardly",
+                    "text": "Cowardly"
+                  },
+                  {
+                    "$id": "189",
+                    "id": "Deadly",
+                    "text": "Deadly"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "190",
+      "id": "misc_filters",
+      "title": "\u0E2D\u0E37\u0E48\u0E19\u0E46",
+      "filters": {
+        "$id": "191",
+        "$values": [
+          {
+            "$id": "192",
+            "id": "gem_level",
+            "text": "\u0E40\u0E25\u0E40\u0E27\u0E25\u0E2B\u0E34\u0E19",
+            "option": {
+              "$id": "193",
+              "options": {
+                "$id": "194",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "195",
+            "id": "gem_sockets",
+            "text": "\u0E23\u0E39\u0E2B\u0E34\u0E19",
+            "option": {
+              "$id": "196",
+              "options": {
+                "$id": "197",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "198",
+            "id": "area_level",
+            "text": "\u0E40\u0E25\u0E40\u0E27\u0E25\u0E02\u0E2D\u0E07\u0E14\u0E48\u0E32\u0E19",
+            "option": {
+              "$id": "199",
+              "options": {
+                "$id": "200",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "201",
+            "id": "stack_size",
+            "text": "\u0E02\u0E19\u0E32\u0E14\u0E01\u0E2D\u0E07",
+            "option": {
+              "$id": "202",
+              "options": {
+                "$id": "203",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "204",
+            "id": "identified",
+            "text": "\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E41\u0E25\u0E49\u0E27",
+            "option": {
+              "$id": "205",
+              "options": {
+                "$id": "206",
+                "$values": [
+                  {
+                    "$id": "207",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "208",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "209",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "210",
+            "id": "fractured_item",
+            "text": "\u0E41\u0E15\u0E01\u0E23\u0E49\u0E32\u0E27",
+            "option": {
+              "$id": "211",
+              "options": {
+                "$id": "212",
+                "$values": [
+                  {
+                    "$id": "213",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "214",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "215",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "216",
+            "id": "corrupted",
+            "text": "\u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19",
+            "option": {
+              "$id": "217",
+              "options": {
+                "$id": "218",
+                "$values": [
+                  {
+                    "$id": "219",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "220",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "221",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "222",
+            "id": "sanctified",
+            "text": "\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C",
+            "option": {
+              "$id": "223",
+              "options": {
+                "$id": "224",
+                "$values": [
+                  {
+                    "$id": "225",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "226",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "227",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "228",
+            "id": "twice_corrupted",
+            "text": "\u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19\u0E04\u0E39\u0E48",
+            "option": {
+              "$id": "229",
+              "options": {
+                "$id": "230",
+                "$values": [
+                  {
+                    "$id": "231",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "232",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "233",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "234",
+            "id": "mutated",
+            "text": "\u0E44\u0E2D\u0E40\u0E17\u0E21\u0E22\u0E39\u0E19\u0E34\u0E04\u0E27\u0E32\u0E25\u0E4C\u0E17\u0E35\u0E48\u0E1A\u0E48\u0E21\u0E40\u0E1E\u0E32\u0E30",
+            "option": {
+              "$id": "235",
+              "options": {
+                "$id": "236",
+                "$values": [
+                  {
+                    "$id": "237",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "238",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "239",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "240",
+            "id": "veiled",
+            "text": "\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E40\u0E1B\u0E34\u0E14\u0E40\u0E1C\u0E22",
+            "option": {
+              "$id": "241",
+              "options": {
+                "$id": "242",
+                "$values": [
+                  {
+                    "$id": "243",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "244",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "245",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "246",
+            "id": "desecrated",
+            "text": "\u0E2A\u0E32\u0E21\u0E32\u0E19\u0E22\u0E4C",
+            "option": {
+              "$id": "247",
+              "options": {
+                "$id": "248",
+                "$values": [
+                  {
+                    "$id": "249",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "250",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "251",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "252",
+            "id": "foreseeing",
+            "text": "\u0E21\u0E35\u0E01\u0E32\u0E23\u0E2B\u0E22\u0E31\u0E48\u0E07\u0E23\u0E39\u0E49",
+            "option": {
+              "$id": "253",
+              "options": {
+                "$id": "254",
+                "$values": [
+                  {
+                    "$id": "255",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "256",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "257",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "258",
+            "id": "mirrored",
+            "text": "\u0E20\u0E32\u0E1E\u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19",
+            "option": {
+              "$id": "259",
+              "options": {
+                "$id": "260",
+                "$values": [
+                  {
+                    "$id": "261",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "262",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "263",
+                    "id": "false",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "264",
+            "id": "sanctum_gold",
+            "text": "\u0E27\u0E32\u0E23\u0E35\u0E28\u0E31\u0E01\u0E14\u0E34\u0E4C\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E4C\u0E02\u0E2D\u0E07\u0E1A\u0E32\u0E23\u0E4C\u0E22\u0E48\u0E32",
+            "option": {
+              "$id": "265",
+              "options": {
+                "$id": "266",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "267",
+            "id": "unidentified_tier",
+            "text": "\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A",
+            "option": {
+              "$id": "268",
+              "options": {
+                "$id": "269",
+                "$values": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$id": "270",
+      "id": "trade_filters",
+      "title": "\u0E15\u0E31\u0E27\u0E01\u0E23\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E02\u0E32\u0E22",
+      "filters": {
+        "$id": "271",
+        "$values": [
+          {
+            "$id": "272",
+            "id": "account",
+            "text": "\u0E1A\u0E31\u0E0D\u0E0A\u0E35\u0E1C\u0E39\u0E49\u0E02\u0E32\u0E22",
+            "option": {
+              "$id": "273",
+              "options": {
+                "$id": "274",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "275",
+            "id": "collapse",
+            "text": "\u0E23\u0E27\u0E21\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E02\u0E32\u0E22\u0E15\u0E32\u0E21\u0E1A\u0E31\u0E0D\u0E0A\u0E35",
+            "option": {
+              "$id": "276",
+              "options": {
+                "$id": "277",
+                "$values": [
+                  {
+                    "$id": "278",
+                    "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+                  },
+                  {
+                    "$id": "279",
+                    "id": "true",
+                    "text": "\u0E43\u0E0A\u0E48"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "280",
+            "id": "indexed",
+            "text": "\u0E15\u0E31\u0E49\u0E07\u0E40\u0E21\u0E37\u0E48\u0E2D",
+            "option": {
+              "$id": "281",
+              "options": {
+                "$id": "282",
+                "$values": [
+                  {
+                    "$id": "283",
+                    "text": "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E44\u0E2B\u0E23\u0E48\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "284",
+                    "id": "1hour",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 1 \u0E0A\u0E31\u0E48\u0E27\u0E42\u0E21\u0E07\u0E01\u0E48\u0E2D\u0E19"
+                  },
+                  {
+                    "$id": "285",
+                    "id": "3hours",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 3 \u0E0A\u0E31\u0E48\u0E27\u0E42\u0E21\u0E07\u0E01\u0E48\u0E2D\u0E19"
+                  },
+                  {
+                    "$id": "286",
+                    "id": "12hours",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 12 \u0E0A\u0E31\u0E48\u0E27\u0E42\u0E21\u0E07\u0E01\u0E48\u0E2D\u0E19"
+                  },
+                  {
+                    "$id": "287",
+                    "id": "1day",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E27\u0E32\u0E19"
+                  },
+                  {
+                    "$id": "288",
+                    "id": "3days",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 3 \u0E27\u0E31\u0E19\u0E01\u0E48\u0E2D\u0E19"
+                  },
+                  {
+                    "$id": "289",
+                    "id": "1week",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19\u0E2A\u0E31\u0E1B\u0E14\u0E32\u0E2B\u0E4C\u0E01\u0E48\u0E2D\u0E19"
+                  },
+                  {
+                    "$id": "290",
+                    "id": "2weeks",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 2 \u0E2A\u0E31\u0E1B\u0E14\u0E32\u0E2B\u0E4C\u0E01\u0E48\u0E2D\u0E19"
+                  },
+                  {
+                    "$id": "291",
+                    "id": "1month",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 1 \u0E40\u0E14\u0E37\u0E2D\u0E19\u0E01\u0E48\u0E2D\u0E19"
+                  },
+                  {
+                    "$id": "292",
+                    "id": "2months",
+                    "text": "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 2 \u0E40\u0E14\u0E37\u0E2D\u0E19\u0E01\u0E48\u0E2D\u0E19"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "293",
+            "id": "sale_type",
+            "text": "\u0E0A\u0E19\u0E34\u0E14\u0E02\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E15\u0E31\u0E49\u0E07\u0E02\u0E32\u0E22",
+            "option": {
+              "$id": "294",
+              "options": {
+                "$id": "295",
+                "$values": [
+                  {
+                    "$id": "296",
+                    "id": "any",
+                    "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+                  },
+                  {
+                    "$id": "297",
+                    "text": "\u0E21\u0E35\u0E23\u0E32\u0E04\u0E32\u0E15\u0E31\u0E49\u0E07\u0E44\u0E27\u0E49"
+                  },
+                  {
+                    "$id": "298",
+                    "id": "priced_with_info",
+                    "text": "\u0E23\u0E32\u0E04\u0E32\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21"
+                  },
+                  {
+                    "$id": "299",
+                    "id": "unpriced",
+                    "text": "\u0E44\u0E21\u0E48\u0E15\u0E31\u0E49\u0E07\u0E23\u0E32\u0E04\u0E32"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "300",
+            "id": "fee",
+            "text": "\u0E23\u0E32\u0E04\u0E32\u0E17\u0E2D\u0E07",
+            "option": {
+              "$id": "301",
+              "options": {
+                "$id": "302",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "303",
+            "id": "price",
+            "text": "\u0E23\u0E32\u0E04\u0E32\u0E02\u0E32\u0E22\u0E17\u0E31\u0E19\u0E17\u0E35",
+            "option": {
+              "$id": "304",
+              "options": {
+                "$id": "305",
+                "$values": [
+                  {
+                    "$id": "306",
+                    "text": "\u0E40\u0E17\u0E35\u0E22\u0E1A\u0E40\u0E1B\u0E47\u0E19 Exalted Orb"
+                  },
+                  {
+                    "$id": "307",
+                    "id": "exalted_divine",
+                    "text": "Exalted \u0E2B\u0E23\u0E37\u0E2D Divine Orb"
+                  },
+                  {
+                    "$id": "308",
+                    "id": "aug",
+                    "text": "Orb of Augmentation"
+                  },
+                  {
+                    "$id": "309",
+                    "id": "transmute",
+                    "text": "Orb of Transmutation"
+                  },
+                  {
+                    "$id": "310",
+                    "id": "exalted",
+                    "text": "Exalted Orb"
+                  },
+                  {
+                    "$id": "311",
+                    "id": "regal",
+                    "text": "Regal Orb"
+                  },
+                  {
+                    "$id": "312",
+                    "id": "chaos",
+                    "text": "Chaos Orb"
+                  },
+                  {
+                    "$id": "313",
+                    "id": "vaal",
+                    "text": "Vaal Orb"
+                  },
+                  {
+                    "$id": "314",
+                    "id": "alch",
+                    "text": "Orb of Alchemy"
+                  },
+                  {
+                    "$id": "315",
+                    "id": "divine",
+                    "text": "Divine Orb"
+                  },
+                  {
+                    "$id": "316",
+                    "id": "annul",
+                    "text": "Orb of Annulment"
+                  },
+                  {
+                    "$id": "317",
+                    "id": "mirror",
+                    "text": "Mirror of Kalandra"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

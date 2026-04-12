@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -46,9 +47,9 @@ Monsters' skills Chain 2 additional times
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-        Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.ApiInformation.Type);
+        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
@@ -91,10 +92,56 @@ Monsters Hinder on Hit with Spells
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-        Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.ApiInformation.Type);
+        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
+    }
+
+    [Fact]
+    public void OlrothStat()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+Rarity: Normal
+Expedition Logbook
+--------
+Area Level: 83
+--------
+Item Level: 83
+--------
+Shipwreck Reef
+Druids of the Broken Circle
+22% increased quantity of Artifacts dropped by Monsters (implicit)
+25% increased number of Explosives (implicit)
+36% increased Explosive Placement Range (implicit)
+Area contains 11% increased number of Monster Markers (implicit)
+--------
+Dried Riverbed
+Knights of the Sun
+40% increased Explosive Radius (implicit)
+42% increased Explosive Placement Range (implicit)
+Area contains 34% increased number of Monster Markers (implicit)
+Area contains Olroth, Origin of the Fall (implicit)
+--------
+Rotting Temple
+Druids of the Broken Circle
+22% increased quantity of Artifacts dropped by Monsters (implicit)
+Area contains 39% increased number of Runic Monster Markers (implicit)
+35% increased Explosive Radius (implicit)
+Remnants have 39% chance to have an additional Suffix Modifier (implicit)
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.
+--------
+Split
+--------
+Note: ~b/o 14 divine
+");
+
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains an Expedition Boss (#)", "Olroth, Origin of the Fall");
     }
 }

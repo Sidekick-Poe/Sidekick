@@ -1,23 +1,18 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using Sidekick.Data.Items;
 namespace Sidekick.Data.Stats;
 
 public class StatDefinition
 {
-    public required StatSource Source { get; set; }
+    public required DataSource Source { get; set; }
 
     public required string Text { get; set; }
 
     public string? FuzzyText { get; set; }
 
-    public List<string> GameIds { get; set; } = [];
+    public List<string>? GameIds { get; set; }
 
-    public List<string> TradeIds { get; set; } = [];
-
-    public required StatCategory Category { get; set; }
-
-    public StatOption? Option { get; set; }
+    public List<TradeStatDefinition>? TradeStats { get; set; }
 
     public bool Negate { get; set; }
 
@@ -39,7 +34,7 @@ public class StatDefinition
         }
     }
 
-    public int LineCount { get; set; }
+    public int Lines { get; set; }
 
     public override string ToString() => Text;
 }

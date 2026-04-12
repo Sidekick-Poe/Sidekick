@@ -1,5 +1,4 @@
-@using Sidekick.Apis.Poe.Items
-@using Sidekick.Data.Items
+@using Sidekick.Data.Stats
 <TextBase Class="@($"{Class} {ColorClass} {LogbookClass} leading-none py-px font-caps")">@ChildContent</TextBase>
 
 @code {
@@ -34,6 +33,7 @@
         StatCategory.KnightsOfTheSun => "text-[#7F7F7F]",
         StatCategory.BlackScytheMercenaries => "text-[#7F7F7F]",
         StatCategory.DruidsOfTheBrokenCircle => "text-[#7F7F7F]",
+        StatCategory.Pseudo => "text-[#A64CC2]",
         _ => "text-[#8888FF]",
     };
 

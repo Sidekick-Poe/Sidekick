@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -44,8 +45,8 @@ can deny that my work has made quite the splash...""
 ");
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Carcass Jack", actual.ApiInformation.Name);
-        Assert.Equal("Varnished Coat", actual.ApiInformation.Type);
+        Assert.Equal("Carcass Jack", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Varnished Coat", actual.Definition.TradeItem?.Type);
         Assert.Equal(20, actual.Properties.Quality);
         Assert.Equal(960, actual.Properties.EvasionRating);
         Assert.Equal(186, actual.Properties.EnergyShield);
@@ -63,8 +64,8 @@ can deny that my work has made quite the splash...""
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Area Damage", 47);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Extra gore");
 
-        actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
-        actual.AssertHasPseudoModifier("+55 total maximum Life", 55);
+        fixture.AssertHasPseudoStat(actual, "+36% total Elemental Resistance", 36);
+        fixture.AssertHasPseudoStat(actual, "+55 total maximum Life", 55);
     }
 
     [Fact]
@@ -105,9 +106,9 @@ Unbridled, overwhelming violence.""
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Daresso's Defiance", actual.ApiInformation.Name);
-        Assert.Equal("Full Dragonscale", actual.ApiInformation.Type);
+        Assert.Equal("Daresso's Defiance", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Full Dragonscale", actual.Definition.TradeItem?.Type);
     }
 }

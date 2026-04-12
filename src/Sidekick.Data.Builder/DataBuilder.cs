@@ -1,8 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+using Sidekick.Data.Builder.ItemClasses;
+using Sidekick.Data.Builder.ItemDefinitions;
+using Sidekick.Data.Builder.Leagues;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Pseudo;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Stats;
+using Sidekick.Data.Builder.StatsInvariant;
 using Sidekick.Data.Builder.Trade;
 using Sidekick.Data.Languages;
 
@@ -10,67 +14,148 @@ namespace Sidekick.Data.Builder;
 
 public class DataBuilder(
     ILogger<DataBuilder> logger,
-    DataProvider dataProvider,
+    LeagueBuilder leagueBuilder,
     NinjaDownloader ninjaDownloader,
     StatBuilder statBuilder,
     PseudoBuilder pseudoBuilder,
     TradeDownloader tradeDownloader,
-    TradeLeagueBuilder  tradeLeagueBuilder,
-    TradeStatBuilder tradeStatBuilder,
+    ItemDefinitionBuilder itemDefinitionBuilder,
+    ItemClassBuilder itemClassBuilder,
+    StatsInvariantBuilder statsInvariantBuilder,
     RepoeDownloader repoeDownloader,
-    TradeInvariantStatBuilder tradeInvariantStatBuilder,
+    TradeFilterBuilder tradeFilterBuilder,
     IGameLanguageProvider gameLanguageProvider)
 {
-    public async Task DownloadAndBuildAll()
+    public async Task DownloadAndBuildAll(
+        bool items = true,
+        bool stats = true,
+        bool trade = true,
+        bool repoe = true,
+        bool pseudo = true,
+        bool ninja = true)
     {
         logger.LogInformation("Building all data files.");
 
-        dataProvider.DeleteAll();
-
         foreach (var language in gameLanguageProvider.GetList())
         {
-            await Download(language);
-        }
+            if (trade)
+            {
+                await DownloadAndBuildTrade(language);
+            }
 
-        await BuildInvariant();
+            if (repoe)
+            {
+                await DownloadRepoe(language);
+            }
 
-        foreach (var language in gameLanguageProvider.GetList())
-        {
-            await Build(language);
+            if (ninja)
+            {
+                await DownloadNinja(language);
+            }
+
+            if (items)
+            {
+                await BuildItems(language);
+            }
+
+            if (pseudo)
+            {
+                await BuildPseudo(language);
+            }
+
+            if (stats)
+            {
+                await BuildStats(language);
+            }
         }
 
         logger.LogInformation("Built all data files.");
     }
 
-    public async Task Download(IGameLanguage language)
-    {
-        logger.LogInformation($"Downloading {language.Code} data files.");
-
-        await tradeDownloader.Download(language);
-        await repoeDownloader.Download(language);
-
-        logger.LogInformation($"Downloaded {language.Code} data file.");
-    }
-
-    public async Task Build(IGameLanguage language)
+    public async Task DownloadAndBuild(
+        IGameLanguage language,
+        bool items = true,
+        bool stats = true,
+        bool trade = true,
+        bool repoe = true,
+        bool pseudo = true,
+        bool ninja = true)
     {
         logger.LogInformation($"Building {language.Code} data files.");
 
-        await tradeStatBuilder.Build(language);
-        await statBuilder.Build(language);
-        await pseudoBuilder.Build(language);
+        if (trade)
+        {
+            await DownloadAndBuildTrade(language);
+        }
+
+        if (repoe)
+        {
+            await DownloadRepoe(language);
+        }
+
+        if (ninja)
+        {
+            await DownloadNinja(language);
+        }
+
+        if (items)
+        {
+            await BuildItems(language);
+        }
+
+        if (pseudo)
+        {
+            await BuildPseudo(language);
+        }
+
+        if (stats)
+        {
+            await BuildStats(language);
+        }
 
         logger.LogInformation($"Built {language.Code} data files.");
     }
 
-    public async Task BuildInvariant()
+    private async Task DownloadAndBuildTrade(IGameLanguage language)
     {
-        logger.LogInformation("Building invariant data files.");
+        logger.LogInformation($"Downloading {language.Code} trade data.");
+        await tradeDownloader.Download(language);
+        logger.LogInformation($"Building {language.Code} trade data.");
+        await leagueBuilder.Build(language);
+        await tradeFilterBuilder.Build(language);
+        await statsInvariantBuilder.Build(language);
+    }
 
-        await tradeLeagueBuilder.Build();
-        await tradeInvariantStatBuilder.Build();
+    private async Task BuildItems(IGameLanguage language)
+    {
+        logger.LogInformation($"Building {language.Code} items data.");
+        await itemClassBuilder.Build(language);
+        await itemDefinitionBuilder.Build(language);
+    }
+
+    private async Task DownloadRepoe(IGameLanguage language)
+    {
+        logger.LogInformation($"Downloading {language.Code} repoe data.");
+        await repoeDownloader.Download(language);
+    }
+
+    private async Task DownloadNinja(IGameLanguage language)
+    {
+        if (language.Code != gameLanguageProvider.InvariantLanguage.Code) return;
+
+        logger.LogInformation("Downloading ninja data.");
         await ninjaDownloader.Download();
+    }
 
-        logger.LogInformation("Invariant data files built.");
+    private async Task BuildStats(IGameLanguage language)
+    {
+        logger.LogInformation($"Building {language.Code} stats data.");
+        await statBuilder.Build(language);
+    }
+
+    private async Task BuildPseudo(IGameLanguage language)
+    {
+        logger.LogInformation($"Building {language.Code} pseudo data.");
+        await pseudoBuilder.Build(language);
     }
 }

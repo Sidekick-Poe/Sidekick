@@ -1,1 +1,9 @@
-<div class="divider [&+.divider]:hidden first:hidden last:hidden w-full border-b border-stone-800 my-4"></div>
+<div
+    class="divider [&+.divider]:hidden first:hidden last:hidden w-full border-b border-stone-800 @(Dense ? "my-2" : "my-4")"></div>
+
+@code{
+
+    [Parameter]
+    public bool Dense { get; set; }
+
+}

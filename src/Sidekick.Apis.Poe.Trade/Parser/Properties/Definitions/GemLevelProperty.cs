@@ -1,10 +1,10 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -14,34 +14,15 @@ public class GemLevelProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionLevel.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionLevel.ToRegexIntProperty();
 
     public override string Label => currentGameLanguage.Language.DescriptionLevel;
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem
-            or ItemClass.UncutSpiritGem)
-        {
-            return;
-        }
+        if (item.Properties.Rarity != Rarity.Gem) return;
 
-        if (game == GameType.PathOfExile1 &&
-            item.Properties.ItemClass != ItemClass.ActiveGem &&
-            item.Properties.ItemClass != ItemClass.SupportGem)
-        {
-            return;
-        }
-
-        if (item.Properties.Rarity != Rarity.Gem)
-        {
-            return;
-        }
-
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.GemLevel = GetInt(Pattern, propertyBlock);
-
-        if (item.Properties.GemLevel > 0) propertyBlock.Parsed = true;
+        item.Properties.GemLevel = GetInt(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

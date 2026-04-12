@@ -1,6 +1,7 @@
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -48,14 +49,16 @@ Split Arrow fires 2 additional Projectiles (enchant)
 Rarity: Normal
 Tribute to the Goddess
 --------
+The Labyrinth's rewards have been enriched.
+--------
 You may appeal to the Goddess for another verdict,
 but justice favours only the truly worthy.
 --------
-Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth of Fortune. You must have completed the six different Trials of Ascendancy found in Maps in order to access this area.
+Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth of Fortune.
 ");
 
-        Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Tribute to the Goddess", actual.ApiInformation.Type);
+        Assert.Equal("Tribute to the Goddess", actual.Definition.TradeItem?.Type);
     }
 }

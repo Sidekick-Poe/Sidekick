@@ -1,13 +1,14 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using ItemProperties = Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -16,8 +17,8 @@ public class BlockChanceProperty(
     ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIntCapture()
-        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIntCapture();
+        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIntProperty()
+        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIntProperty();
 
     private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
         ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
@@ -27,14 +28,12 @@ public class BlockChanceProperty(
 
     public override void Parse(Item item)
     {
-        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass)) return;
+        if (!item.ItemClass.IsEquipment()) return;
 
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.BlockChance = GetInt(Pattern, propertyBlock);
+        item.Properties.BlockChance = GetInt(Pattern, item.Text);
         if (item.Properties.BlockChance == 0) return;
 
-        propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

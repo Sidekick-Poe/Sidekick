@@ -15,8 +15,6 @@
 
     private Guid ElementId { get; } = Guid.NewGuid();
 
-    private IJSObjectReference? Module { get; set; }
-
     private DotNetObjectReference<IntersectionObserver>? Reference { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -26,8 +24,7 @@
             try
             {
                 Reference = DotNetObjectReference.Create(this);
-                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Utilities/IntersectionObserver.razor.js");
-                await Module.InvokeVoidAsync("initializeIntersectionObserver", ElementId, Reference);
+                await JsRuntime.InvokeVoidAsync("sidekick.app.intersectionObserver", ElementId, Reference);
             }
             catch (Exception e)
             {

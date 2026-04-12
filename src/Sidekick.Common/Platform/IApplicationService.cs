@@ -23,4 +23,9 @@ public interface IApplicationService : IInitializableService
     ///     Shutdown the application.
     /// </summary>
     void Shutdown();
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the application has initialized.
+    /// </summary>
+    bool HasInitialized { get; set; }
 }

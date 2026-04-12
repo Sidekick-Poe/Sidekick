@@ -31,7 +31,7 @@
         {
             try
             {
-                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick." + Script, Id, ScriptParameters);
+                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.flowbite." + Script, Id, ScriptParameters);
             }
             catch (Exception e)
             {

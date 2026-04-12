@@ -3,16 +3,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Clients;
+using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -21,8 +20,10 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Builder;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using Sidekick.Data.Stats;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
@@ -39,11 +40,10 @@ public abstract class ParserFixture : IAsyncLifetime
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
-    public IApiStatsProvider ApiStatsProvider { get; private set; } = null!;
     public IStatParser StatParser { get; private set; } = null!;
-    private TestContext TestContext { get; set; } = null!;
+    protected TestContext TestContext { get; set; } = null!;
 
-    public async Task InitializeAsync()
+    public virtual async Task InitializeAsync()
     {
         TestContext = new TestContext();
         TestContext.Services.AddLocalization();
@@ -64,6 +64,9 @@ public abstract class ParserFixture : IAsyncLifetime
         // Override the Trade API client in tests to always use local fallback data files
         TestContext.Services.AddTransient<ITradeApiClient, TestTradeApiClient>();
         TestContext.Services.AddSingleton<ISettingsService, TestSettingsService>();
+        TestContext.Services.AddSingleton<RawDataProvider>();
+
+        RegisterServices(TestContext.Services);
 
         SettingsService = TestContext.Services.GetRequiredService<ISettingsService>();
         await SettingsService.Set(SettingKeys.LanguageParser, Language);
@@ -85,7 +88,6 @@ public abstract class ParserFixture : IAsyncLifetime
         CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
-        ApiStatsProvider = TestContext.Services.GetRequiredService<IApiStatsProvider>();
         StatParser = TestContext.Services.GetRequiredService<IStatParser>();
     }
 
@@ -94,6 +96,8 @@ public abstract class ParserFixture : IAsyncLifetime
         TestContext.Dispose();
         return Task.CompletedTask;
     }
+
+    protected virtual void RegisterServices(IServiceCollection services) {}
 
     private static async Task Initialize(IServiceProvider serviceProvider)
     {
@@ -115,17 +119,23 @@ public abstract class ParserFixture : IAsyncLifetime
         }
     }
 
-    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
+    public async Task<List<TradeFilter>> GetPropertyFilters(Item item)
     {
-        AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+        var filters = await PropertyParser.GetFilters(item);
+        return filters.Flatten();
     }
 
-    public void AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
+    public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
-        var actualStat = FindStat();
+        return AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+    }
+
+    public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
+    {
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
         Assert.NotNull(actualStat);
 
-        if (expectedValues.Length == 0) return;
+        if (expectedValues.Length == 0) return actualStat;
 
         for (var i = 0; i < expectedValues.Length; i++)
         {
@@ -134,40 +144,42 @@ public abstract class ParserFixture : IAsyncLifetime
 
         AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
 
-        return;
+        return actualStat;
+    }
 
-        Stat? FindStat()
+    private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText)
+    {
+        foreach (var stat in actual.Stats)
         {
-            foreach (var stat in actual.Stats)
+            if (stat.Category != expectedCategory) continue;
+
+            foreach (var tradeStat in stat.Definitions
+                         .Where(x => x.TradeStats != null)
+                         .SelectMany(x => x.TradeStats!))
             {
-                if (stat.Category != expectedCategory) continue;
+                if (tradeStat.Text != expectedText) continue;
+                if (expectedOptionText == null) return stat;
 
-                foreach (var definition in stat.Definitions)
-                {
-                    foreach (var tradeId in definition.TradeIds)
-                    {
-                        var tradeStats = ApiStatsProvider.IdDictionary.GetValueOrDefault(tradeId);
-                        if (tradeStats == null) continue;
-                        foreach (var tradeStat in tradeStats)
-                        {
-                            if (tradeStat.Text != expectedText) continue;
-                            if (expectedOptionText == null) return stat;
-
-                            if (definition.Option == null) continue;
-                            if (tradeStat.Options == null) continue;
-                            foreach (var option in tradeStat.Options)
-                            {
-                                if (definition.Option.Id != option.Id) continue;
-                                if (option.Text != expectedOptionText) continue;
-
-                                return stat;
-                            }
-                        }
-                    }
-                }
+                if (tradeStat.Option == null) continue;
+                if (tradeStat.Option.Text == expectedOptionText) return stat;
             }
-
-            return null;
         }
+
+        return null;
+    }
+
+    public void AssertDoesNotHaveStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText = null)
+    {
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
+        Assert.Null(actualStat);
+    }
+
+    public void AssertHasPseudoStat(Item actual, string expectedText, double? expectedValue = null)
+    {
+        var actualStat = actual.PseudoStats.FirstOrDefault(x => expectedText == x.Text);
+        Assert.NotNull(actualStat);
+        Assert.Equal(expectedText, actualStat.Text);
+
+        if (expectedValue != null) AssertExtensions.AssertCloseEnough(expectedValue.Value, actualStat.Value);
     }
 }

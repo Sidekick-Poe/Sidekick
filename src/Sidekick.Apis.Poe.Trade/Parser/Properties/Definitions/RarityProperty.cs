@@ -1,11 +1,11 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 
@@ -44,23 +44,7 @@ public class RarityProperty(
 
     public override void Parse(Item item)
     {
-        if (item.ApiInformation != null! && item.ApiInformation.IsUnique)
-        {
-            item.Properties.Rarity = Rarity.Unique;
-            return;
-        }
-
-        if (item.Properties.ItemClass == ItemClass.DivinationCard)
-        {
-            item.Properties.Rarity = Rarity.DivinationCard;
-            return;
-        }
-
-        if (ItemClassConstants.Gems.Contains(item.Properties.ItemClass))
-        {
-            item.Properties.Rarity = Rarity.Gem;
-            return;
-        }
+        item.Properties.Rarity = Rarity.Unknown;
 
         var propertyBlock = item.Text.Blocks[0];
         foreach (var pattern in RarityPatterns)
@@ -69,16 +53,15 @@ public class RarityProperty(
 
             item.Text.Blocks[0].Parsed = true;
             item.Properties.Rarity = pattern.Key;
-            return;
+            break;
         }
+    }
 
-        if (item.Properties.ItemClass == ItemClass.Currency)
-        {
-            item.Properties.Rarity = Rarity.Currency;
-            return;
-        }
+    public override void ParseAfterStats(Item item)
+    {
+        if (item.Definition.UniqueItem != null) item.Properties.Rarity = Rarity.Unique;
 
-        item.Properties.Rarity = Rarity.Unknown;
+        base.ParseAfterStats(item);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

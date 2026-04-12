@@ -1,0 +1,556 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "id": "LifeFlask",
+      "type": "flask",
+      "name": "Life Flasks"
+    },
+    {
+      "$id": "3",
+      "id": "ManaFlask",
+      "type": "flask",
+      "name": "Mana Flasks"
+    },
+    {
+      "$id": "4",
+      "id": "HybridFlask",
+      "type": "flask",
+      "name": "Hybrid Flasks"
+    },
+    {
+      "$id": "5",
+      "id": "Currency",
+      "name": "Currency"
+    },
+    {
+      "$id": "6",
+      "id": "Amulet",
+      "type": "amulet",
+      "name": "Amulets"
+    },
+    {
+      "$id": "7",
+      "id": "Ring",
+      "type": "ring",
+      "name": "Rings"
+    },
+    {
+      "$id": "8",
+      "id": "Claw",
+      "type": "claw",
+      "name": "Claws"
+    },
+    {
+      "$id": "9",
+      "id": "Dagger",
+      "type": "dagger",
+      "name": "Daggers"
+    },
+    {
+      "$id": "10",
+      "id": "Wand",
+      "type": "wand",
+      "name": "Wands"
+    },
+    {
+      "$id": "11",
+      "id": "One Hand Sword",
+      "type": "oneHandSword",
+      "name": "One Hand Swords"
+    },
+    {
+      "$id": "12",
+      "id": "Thrusting One Hand Sword",
+      "type": "oneHandSword",
+      "name": "Thrusting One Hand Swords"
+    },
+    {
+      "$id": "13",
+      "id": "One Hand Axe",
+      "type": "oneHandAxe",
+      "name": "One Hand Axes"
+    },
+    {
+      "$id": "14",
+      "id": "One Hand Mace",
+      "type": "oneHandMace",
+      "name": "One Hand Maces"
+    },
+    {
+      "$id": "15",
+      "id": "Bow",
+      "type": "bow",
+      "name": "Bows"
+    },
+    {
+      "$id": "16",
+      "id": "Staff",
+      "type": "staff",
+      "name": "Staves"
+    },
+    {
+      "$id": "17",
+      "id": "Two Hand Sword",
+      "type": "twoHandSword",
+      "name": "Two Hand Swords"
+    },
+    {
+      "$id": "18",
+      "id": "Two Hand Axe",
+      "type": "twoHandAxe",
+      "name": "Two Hand Axes"
+    },
+    {
+      "$id": "19",
+      "id": "Two Hand Mace",
+      "type": "twoHandMace",
+      "name": "Two Hand Maces"
+    },
+    {
+      "$id": "20",
+      "id": "Active Skill Gem",
+      "type": "activeSkillGem",
+      "name": "Skill Gems"
+    },
+    {
+      "$id": "21",
+      "id": "Support Skill Gem",
+      "type": "supportSkillGem",
+      "name": "Support Gems"
+    },
+    {
+      "$id": "22",
+      "id": "Quiver",
+      "type": "quiver",
+      "name": "Quivers"
+    },
+    {
+      "$id": "23",
+      "id": "Belt",
+      "type": "belt",
+      "name": "Belts"
+    },
+    {
+      "$id": "24",
+      "id": "Gloves",
+      "type": "gloves",
+      "name": "Gloves"
+    },
+    {
+      "$id": "25",
+      "id": "Boots",
+      "type": "boots",
+      "name": "Boots"
+    },
+    {
+      "$id": "26",
+      "id": "Body Armour",
+      "type": "bodyArmour",
+      "name": "Body Armours"
+    },
+    {
+      "$id": "27",
+      "id": "Helmet",
+      "type": "helmet",
+      "name": "Helmets"
+    },
+    {
+      "$id": "28",
+      "id": "Shield",
+      "type": "shield",
+      "name": "Shields"
+    },
+    {
+      "$id": "29",
+      "id": "SmallRelic",
+      "type": "sanctumRelic",
+      "name": "Small Relics"
+    },
+    {
+      "$id": "30",
+      "id": "MediumRelic",
+      "type": "sanctumRelic",
+      "name": "Medium Relics"
+    },
+    {
+      "$id": "31",
+      "id": "LargeRelic",
+      "type": "sanctumRelic",
+      "name": "Large Relics"
+    },
+    {
+      "$id": "32",
+      "id": "StackableCurrency",
+      "name": "Stackable Currency"
+    },
+    {
+      "$id": "33",
+      "id": "QuestItem",
+      "name": "Quest Items"
+    },
+    {
+      "$id": "34",
+      "id": "Sceptre",
+      "type": "sceptre",
+      "name": "Sceptres"
+    },
+    {
+      "$id": "35",
+      "id": "UtilityFlask",
+      "type": "flask",
+      "name": "Utility Flasks"
+    },
+    {
+      "$id": "36",
+      "id": "UtilityFlaskCritical",
+      "name": "Critical Utility Flasks"
+    },
+    {
+      "$id": "37",
+      "id": "Map",
+      "type": "map",
+      "name": "Maps"
+    },
+    {
+      "$id": "38",
+      "id": "Unarmed",
+      "name": ""
+    },
+    {
+      "$id": "39",
+      "id": "FishingRod",
+      "type": "fishingRod",
+      "name": "Fishing Rods"
+    },
+    {
+      "$id": "40",
+      "id": "MapFragment",
+      "type": "mapFragments",
+      "name": "Map Fragments"
+    },
+    {
+      "$id": "41",
+      "id": "HideoutDoodad",
+      "name": "Hideout Doodads"
+    },
+    {
+      "$id": "42",
+      "id": "Microtransaction",
+      "name": "Microtransactions"
+    },
+    {
+      "$id": "43",
+      "id": "Jewel",
+      "type": "jewel",
+      "name": "Jewels"
+    },
+    {
+      "$id": "44",
+      "id": "DivinationCard",
+      "name": "Divination Cards"
+    },
+    {
+      "$id": "45",
+      "id": "LabyrinthItem",
+      "name": "Labyrinth Items"
+    },
+    {
+      "$id": "46",
+      "id": "LabyrinthTrinket",
+      "name": "Labyrinth Trinkets"
+    },
+    {
+      "$id": "47",
+      "id": "LabyrinthMapItem",
+      "name": "Labyrinth Map Items"
+    },
+    {
+      "$id": "48",
+      "id": "MiscMapItem",
+      "name": "Misc Map Items"
+    },
+    {
+      "$id": "49",
+      "id": "Leaguestone",
+      "name": "Leaguestones"
+    },
+    {
+      "$id": "50",
+      "id": "PantheonSoul",
+      "name": "Pantheon Souls"
+    },
+    {
+      "$id": "51",
+      "id": "UniqueFragment",
+      "name": "Pieces"
+    },
+    {
+      "$id": "52",
+      "id": "AbyssJewel",
+      "type": "abyssJewel",
+      "name": "Abyss Jewels"
+    },
+    {
+      "$id": "53",
+      "id": "IncursionItem",
+      "name": "Incursion Items"
+    },
+    {
+      "$id": "54",
+      "id": "DelveSocketableCurrency",
+      "name": "Delve Socketable Currency"
+    },
+    {
+      "$id": "55",
+      "id": "Incubator",
+      "name": "Incubators"
+    },
+    {
+      "$id": "56",
+      "id": "UniqueShard",
+      "name": "Shards"
+    },
+    {
+      "$id": "57",
+      "id": "UniqueShardBase",
+      "name": "Shard Hearts"
+    },
+    {
+      "$id": "58",
+      "id": "Rune Dagger",
+      "type": "dagger",
+      "name": "Rune Daggers"
+    },
+    {
+      "$id": "59",
+      "id": "Warstaff",
+      "type": "warstaff",
+      "name": "Warstaves"
+    },
+    {
+      "$id": "60",
+      "id": "DelveStackableSocketableCurrency",
+      "name": "Delve Stackable Socketable Currency"
+    },
+    {
+      "$id": "61",
+      "id": "AtlasUpgradeItem",
+      "name": "Atlas Upgrade Items"
+    },
+    {
+      "$id": "62",
+      "id": "MetamorphosisDNA",
+      "name": "Metamorph Samples"
+    },
+    {
+      "$id": "63",
+      "id": "HiddenItem",
+      "name": "Hidden Items"
+    },
+    {
+      "$id": "64",
+      "id": "DONOTUSE1",
+      "name": ""
+    },
+    {
+      "$id": "65",
+      "id": "DONOTUSE2",
+      "name": ""
+    },
+    {
+      "$id": "66",
+      "id": "DONOTUSE3",
+      "name": ""
+    },
+    {
+      "$id": "67",
+      "id": "HeistContract",
+      "type": "heistContract",
+      "name": "Contracts"
+    },
+    {
+      "$id": "68",
+      "id": "HeistEquipmentWeapon",
+      "type": "heistEquipmentWeapon",
+      "name": "Heist Gear"
+    },
+    {
+      "$id": "69",
+      "id": "HeistEquipmentTool",
+      "type": "heistEquipmentTool",
+      "name": "Heist Tools"
+    },
+    {
+      "$id": "70",
+      "id": "HeistEquipmentUtility",
+      "type": "heistEquipmentUtility",
+      "name": "Heist Cloaks"
+    },
+    {
+      "$id": "71",
+      "id": "HeistEquipmentReward",
+      "type": "heistEquipmentReward",
+      "name": "Heist Brooches"
+    },
+    {
+      "$id": "72",
+      "id": "HeistBlueprint",
+      "type": "heistBlueprint",
+      "name": "Blueprints"
+    },
+    {
+      "$id": "73",
+      "id": "Trinket",
+      "type": "trinket",
+      "name": "Trinkets"
+    },
+    {
+      "$id": "74",
+      "id": "HeistObjective",
+      "type": "heistObjective",
+      "name": "Heist Targets"
+    },
+    {
+      "$id": "75",
+      "id": "ExpeditionLogbook",
+      "type": "expeditionLogbook",
+      "name": "Expedition Logbooks"
+    },
+    {
+      "$id": "76",
+      "id": "IncubatorStackable",
+      "name": "Incubators"
+    },
+    {
+      "$id": "77",
+      "id": "ArchnemesisMod",
+      "name": "Archnemesis Mods"
+    },
+    {
+      "$id": "78",
+      "id": "DONOTUSE4",
+      "name": ""
+    },
+    {
+      "$id": "79",
+      "id": "DONOTUSE5",
+      "name": ""
+    },
+    {
+      "$id": "80",
+      "id": "DONOTUSE6",
+      "name": ""
+    },
+    {
+      "$id": "81",
+      "id": "DONOTUSE7",
+      "name": ""
+    },
+    {
+      "$id": "82",
+      "id": "InstanceLocalItem",
+      "type": "map",
+      "name": "Instance Local Items"
+    },
+    {
+      "$id": "83",
+      "id": "SentinelDrone",
+      "name": "Sentinels"
+    },
+    {
+      "$id": "84",
+      "id": "MemoryLine",
+      "name": "Memories"
+    },
+    {
+      "$id": "85",
+      "id": "Relic",
+      "type": "sanctumRelic",
+      "name": "Relics"
+    },
+    {
+      "$id": "86",
+      "id": "SanctumSpecialRelic",
+      "type": "sanctumRelic",
+      "name": "Sanctified Relics"
+    },
+    {
+      "$id": "87",
+      "id": "Breachstone",
+      "name": "Breachstones"
+    },
+    {
+      "$id": "88",
+      "id": "GiftBox",
+      "name": ""
+    },
+    {
+      "$id": "89",
+      "id": "VaultKey",
+      "name": "Vault Keys"
+    },
+    {
+      "$id": "90",
+      "id": "ItemisedSanctum",
+      "type": "sanctumResearch",
+      "name": "Sanctum Research"
+    },
+    {
+      "$id": "91",
+      "id": "Tincture",
+      "type": "tincture",
+      "name": "Tinctures"
+    },
+    {
+      "$id": "92",
+      "id": "ItemisedCorpse",
+      "name": "Corpses"
+    },
+    {
+      "$id": "93",
+      "id": "AnimalCharm",
+      "type": "charms",
+      "name": "Charms"
+    },
+    {
+      "$id": "94",
+      "id": "NecropolisPack",
+      "name": "Embers of the Allflame"
+    },
+    {
+      "$id": "95",
+      "id": "Gold",
+      "name": "Gold"
+    },
+    {
+      "$id": "96",
+      "id": "AtlasRelic",
+      "type": "idol",
+      "name": "Idols"
+    },
+    {
+      "$id": "97",
+      "id": "DONOTUSE8",
+      "name": ""
+    },
+    {
+      "$id": "98",
+      "id": "BrequelFruit",
+      "name": "Wombgifts"
+    },
+    {
+      "$id": "99",
+      "id": "MapKey",
+      "type": "map",
+      "name": "Maps"
+    },
+    {
+      "$id": "100",
+      "id": "RemovedItem",
+      "type": "removedItem",
+      "name": ""
+    }
+  ]
+}
