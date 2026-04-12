@@ -16,6 +16,7 @@ using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
+using Sidekick.Modules.About;
 using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
@@ -67,6 +68,7 @@ builder.Services
     .AddSidekickUpdater()
 
     // Modules
+    .AddSidekickAbout()
     .AddSidekickModuleData()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()

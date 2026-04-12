@@ -102,6 +102,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.PoeNinja.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.PoeDb", "src\Sidekick.Apis.PoeDb\Sidekick.Apis.PoeDb.csproj", "{A9E9245D-0D1F-41D7-AB30-335E53686C6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.About", "src\Sidekick.Modules.About\Sidekick.Modules.About.csproj", "{B379A260-8355-4907-A36B-C4AC0B503928}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -366,6 +368,14 @@ Global
 		{A9E9245D-0D1F-41D7-AB30-335E53686C6A}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
 		{A9E9245D-0D1F-41D7-AB30-335E53686C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9E9245D-0D1F-41D7-AB30-335E53686C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B379A260-8355-4907-A36B-C4AC0B503928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -401,6 +411,7 @@ Global
 		{308E1FD1-708C-46D9-8574-EA9A02A1FEF7} = {1D8BF515-81E9-4769-9B27-24DFB8D8BDCC}
 		{A9E9245D-0D1F-41D7-AB30-335E53686C6A} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{2F2F03B3-213A-40D7-B818-8E618DDF01AF} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
+		{B379A260-8355-4907-A36B-C4AC0B503928} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

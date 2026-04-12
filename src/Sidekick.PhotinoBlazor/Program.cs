@@ -19,6 +19,7 @@ using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
+using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
@@ -92,6 +93,7 @@ public class Program
             .AddSidekickUpdater()
 
             // Modules
+            .AddSidekickAbout()
             .AddSidekickChat()
             .AddSidekickModuleData()
             .AddSidekickDevelopment()
