@@ -1,0 +1,25 @@
+@using Sidekick.Modules.Updater.Localization
+
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+
+    <ChildContent>
+        <AppFullContainer>
+            <Heading3 Class="text-center">@Resources["No_Updates"]</Heading3>
+        </AppFullContainer>
+    </ChildContent>
+
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ExitButton/>
+            <OpenWebsiteButton/>
+        </div>
+    </BottomContent>
+</LayoutSimple>
+
+<ViewOptions Width="@ICurrentView.DialogWidth"
+             Height="@ICurrentView.DialogHeight"/>
+
+@inject IStringLocalizer<UpdateResources> Resources

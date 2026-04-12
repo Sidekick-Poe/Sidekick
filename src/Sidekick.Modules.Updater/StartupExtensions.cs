@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
-
-namespace Sidekick.Common.Updater;
+using Sidekick.Common;
+namespace Sidekick.Modules.Updater;
 
 public static class StartupExtensions
 {

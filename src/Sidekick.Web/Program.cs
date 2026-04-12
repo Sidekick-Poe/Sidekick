@@ -14,14 +14,15 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Common.Updater;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
+using Sidekick.Modules.About;
 using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
 using Sidekick.Modules.Logs;
+using Sidekick.Modules.Updater;
 using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
@@ -67,6 +68,7 @@ builder.Services
     .AddSidekickUpdater()
 
     // Modules
+    .AddSidekickAbout()
     .AddSidekickModuleData()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()

@@ -1,0 +1,16 @@
+@using Sidekick.Common.Browser
+@using Sidekick.Modules.Updater.Localization
+
+<ButtonSecondary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonSecondary>
+
+@inject IStringLocalizer<UpdateResources> Resources
+@inject IBrowserProvider BrowserProvider
+
+@code {
+
+    public void OpenWebsite()
+    {
+        BrowserProvider.OpenUri(BrowserProvider.SidekickWebsite);
+    }
+
+}

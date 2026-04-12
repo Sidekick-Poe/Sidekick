@@ -142,6 +142,12 @@
       <value>Skip Check</value>
   </data>
   <data name="TimedOut" xml:space="preserve">
-      <value>Update check took too long</value>
+      <value>Update check took too long. You can download the latest version from our website.</value>
+  </data>
+  <data name="No_Updates" xml:space="preserve">
+      <value>No updates found. You are on the latest version.</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+      <value>Back</value>
   </data>
 </root>

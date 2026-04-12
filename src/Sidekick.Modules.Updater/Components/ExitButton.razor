@@ -1,0 +1,34 @@
+@using Sidekick.Modules.Updater.Localization
+@using Sidekick.Common.Ui.Extensions
+@using Sidekick.Common.Platform
+
+@if (ShowBackButton)
+{
+    <ButtonSecondary OnClick="Exit">@Resources["Back"]</ButtonSecondary>
+}
+else
+{
+    <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
+}
+
+@inject IStringLocalizer<UpdateResources> Resources
+@inject IApplicationService ApplicationService
+@inject NavigationManager NavigationManager
+
+@code {
+
+    private bool ShowBackButton => NavigationManager.QueryString("back") != null;
+
+    private void Exit()
+    {
+        if (!string.IsNullOrEmpty(NavigationManager.QueryString("back")))
+        {
+            NavigationManager.NavigateTo(NavigationManager.QueryString("back")!);
+        }
+        else
+        {
+            ApplicationService.Shutdown();
+        }
+    }
+
+}

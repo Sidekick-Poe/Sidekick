@@ -21,9 +21,9 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Common.Updater;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
+using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
@@ -31,6 +31,7 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
 using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
+using Sidekick.Modules.Updater;
 using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
 using Velopack;
@@ -113,6 +114,7 @@ If you need more support consider asking on the official Sidekick discord server
             .AddSidekickUpdater()
 
             // Modules
+            .AddSidekickAbout()
             .AddSidekickChat()
             .AddSidekickModuleData()
             .AddSidekickDevelopment()

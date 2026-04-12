@@ -1,8 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Velopack;
-
-namespace Sidekick.Common.Updater;
+namespace Sidekick.Modules.Updater;
 
 public class AutoUpdater : IAutoUpdater
 {
