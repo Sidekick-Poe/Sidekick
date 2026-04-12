@@ -117,15 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Official_Website" xml:space="preserve">
-      <value>Site Officiel</value>
-  </data>
-  <data name="GitHub_Repository" xml:space="preserve">
-    <value>GitHub Repository</value>
-  </data>
-  <data name="Open_Folder" xml:space="preserve">
-      <value>Ouvrir le répertoire des données</value>
-  </data>
   <data name="General_RetainClipboard" xml:space="preserve">
     <value>Conserver la valeur de votre presse-papier (clipboard)</value>
   </data>
@@ -150,12 +141,6 @@
   <data name="Zoom_Hint" xml:space="preserve">
     <value>Si le zoom est modifié, il est recommandé d'ajuster également la taille des fenêtres.</value>
   </data>
-  <data name="UseInvariantForTradeResults" xml:space="preserve">
-    <value>Utiliser le site d'échange anglais</value>
-  </data>
-  <data name="UseInvariantForTradeResultsTip" xml:space="preserve">
-    <value>Ce n'est pas fiable pour certains items uniques, mais c'est une solution de contournement.</value>
-  </data>
   <data name="Wiki_Key_Open" xml:space="preserve">
     <value>Ouvrir le Wiki</value>
   </data>
@@ -176,9 +161,6 @@
   </data>
   <data name="Wiki_Preferred" xml:space="preserve">
     <value>Wiki de préférence</value>
-  </data>
-  <data name="Discord_Server" xml:space="preserve">
-    <value>Serveur Discord</value>
   </data>
   <data name="Data_Folder" xml:space="preserve">
       <value>Répertoire des données Sidekick</value>

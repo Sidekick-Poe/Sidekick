@@ -1,4 +1,4 @@
-<div class="p-3 max-w-[800px] mx-auto">
+<div class="p-3 max-w-[800px] mx-auto @Class">
     @ChildContent
 </div>
 
@@ -6,5 +6,8 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
 
 }

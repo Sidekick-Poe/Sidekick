@@ -14,7 +14,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.Updater\Sidekick.Modules.Updater.csproj" />
         <ProjectReference Include="..\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>

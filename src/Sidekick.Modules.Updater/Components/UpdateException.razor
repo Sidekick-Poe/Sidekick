@@ -1,0 +1,29 @@
+@using Sidekick.Common.Exceptions
+
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+
+    <ChildContent>
+        <AlertException Exception="Exception"/>
+    </ChildContent>
+
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ExitButton/>
+            <OpenWebsiteButton/>
+            <SkipButton/>
+        </div>
+    </BottomContent>
+</LayoutSimple>
+
+<ViewOptions Width="ICurrentView.DialogWidth"
+             Height="ICurrentView.DialogHeight"/>
+
+@code {
+
+    [Parameter]
+    public required SidekickException Exception { get; set; }
+
+}

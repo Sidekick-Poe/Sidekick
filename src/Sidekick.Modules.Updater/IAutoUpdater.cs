@@ -1,6 +1,5 @@
 using Velopack;
-
-namespace Sidekick.Common.Updater;
+namespace Sidekick.Modules.Updater;
 
 /// <summary>
 /// Provides functionality to check for, download, and apply updates.

@@ -125,6 +125,7 @@ public partial class MainWindow
 
             WebView.Visibility = Visibility.Visible;
             SetWebViewDebugging();
+
             if (NextPath != null) NavigationManager.NavigateTo(NextPath);
 
             await NormalizeView();

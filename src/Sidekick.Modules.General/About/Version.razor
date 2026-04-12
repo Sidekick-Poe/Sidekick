@@ -1,0 +1,28 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+
+<FormFieldset Legend="@($"Sidekick - {Title}")">
+    <div class="flex">
+        <ButtonPrimary OnClick="Check">@Resources["Check_For_Updates"]</ButtonPrimary>
+    </div>
+</FormFieldset>
+
+@inject IStringLocalizer<AboutResources> Resources
+@inject NavigationManager NavigationManager
+
+@code
+{
+    private string? Title { get; set; } = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        Title = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version?.ToString();
+        base.OnInitializedAsync();
+    }
+
+    private void Check()
+    {
+        NavigationManager.NavigateTo("/update?back=/about");
+    }
+}

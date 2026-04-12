@@ -1,0 +1,28 @@
+@using Sidekick.Modules.Updater.Localization
+@using Sidekick.Common.Ui.Extensions
+
+@if (ShowButton)
+{
+    <ButtonSecondary OnClick="Skip">@Resources["Skip"]</ButtonSecondary>
+}
+
+@inject IStringLocalizer<UpdateResources> Resources
+@inject NavigationManager NavigationManager
+
+@code {
+
+    private bool ShowButton => NavigationManager.QueryString("back") == null;
+
+    public void Skip()
+    {
+        if (!string.IsNullOrEmpty(NavigationManager.QueryString("back")))
+        {
+            NavigationManager.NavigateTo(NavigationManager.QueryString("back")!);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/setup");
+        }
+    }
+
+}

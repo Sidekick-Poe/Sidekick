@@ -1,0 +1,22 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Typography
+
+<FormFieldset Legend="@Resources["Websites"]" Class="flex flex-col justify-start">
+    <div class="flex items-center gap-3">
+        <TextBase>@Resources["Official_Website"]</TextBase>
+        <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.SidekickWebsite))"
+                    Class="text-sm text-neutral-400">@BrowserProvider.SidekickWebsite</ButtonLink>
+    </div>
+
+    <div class="flex items-center gap-3">
+        <TextBase>@Resources["GitHub_Repository"]</TextBase>
+        <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.GitHubRepository))"
+                    Class="text-sm text-neutral-400">@BrowserProvider.GitHubRepository</ButtonLink>
+    </div>
+</FormFieldset>
+
+@inject IStringLocalizer<AboutResources> Resources
+@inject IBrowserProvider BrowserProvider

@@ -1,53 +1,11 @@
 @page "/about"
-@using Microsoft.Extensions.Localization
-@using Sidekick.Common
-@using Sidekick.Common.Browser
-@using Sidekick.Common.Folder
 @using Sidekick.Common.Ui.App
-@using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Layouts
-@using Sidekick.Common.Ui.Buttons
-@using Sidekick.Modules.General.Localization
-@using Sidekick.Common.Ui.Typography
 
 <LayoutMenu>
-    <AppContainer>
-        <FormFieldset Legend="@($"Sidekick - {Title}")">
-            <div>
-                <div class="flex flex-col gap-2">
-                    <div class="flex gap-2">
-                        <TextBase>@Resources["Official_Website"] - </TextBase>
-                        <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.SidekickWebsite))">@BrowserProvider.SidekickWebsite</ButtonLink>
-                    </div>
-                    <div class="flex gap-2">
-                        <TextBase>@Resources["GitHub_Repository"] - </TextBase>
-                        <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.GitHubRepository))">@BrowserProvider.GitHubRepository</ButtonLink>
-                    </div>
-                    <div class="flex gap-2">
-                        <TextBase>@Resources["Discord_Server"] - </TextBase>
-                        <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.DiscordServer))">@BrowserProvider.DiscordServer</ButtonLink>
-                    </div>
-                    <div class="flex gap-2">
-                        <TextBase>@Resources["Data_Folder"] - </TextBase>
-                        <ButtonLink OnClick="@(() => FolderProvider.OpenDataFolderPath())"><span class="font-mono">@SidekickPaths.GetDataFilePath()</span></ButtonLink>
-                    </div>
-                </div>
-            </div>
-        </FormFieldset>
+    <AppContainer Class="flex flex-col gap-3">
+        <Version/>
+        <Websites/>
+        <Community/>
     </AppContainer>
 </LayoutMenu>
-
-@inject IStringLocalizer<GeneralResources> Resources
-@inject IBrowserProvider BrowserProvider
-@inject IFolderProvider FolderProvider
-
-@code
-{
-    private string? Title { get; set; } = string.Empty;
-
-    protected override void OnInitialized()
-    {
-        Title = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version?.ToString();
-        base.OnInitializedAsync();
-    }
-}

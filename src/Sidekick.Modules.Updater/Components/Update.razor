@@ -1,0 +1,115 @@
+@page "/update"
+@page "/"
+@using Sidekick.Common.Exceptions
+@using Sidekick.Common.Ui.Extensions
+@using Velopack
+
+@if (Exception != null)
+{
+    <UpdateException Exception="Exception"/>
+}
+else if (Updating)
+{
+    <UpdateUpdating/>
+}
+else if (NoUpdates)
+{
+    <UpdateNoUpdates/>
+}
+else if (TimedOut)
+{
+    <UpdateTimedOut/>
+}
+else if (UpdateInfo != null)
+{
+    <UpdateReleaseNotes UpdateInfo="UpdateInfo"
+                        OnDownload="Download"/>
+}
+else
+{
+    <UpdateChecking/>
+}
+
+@inject ILogger<Update> Logger
+@inject IAutoUpdater AutoUpdater
+@inject NavigationManager NavigationManager
+
+@code {
+
+    private bool Updating { get; set; }
+
+    private UpdateInfo? UpdateInfo { get; set; }
+
+    private SidekickException? Exception { get; set; }
+
+    private bool TimedOut { get; set; }
+
+    private bool NoUpdates { get; set; }
+
+    private bool IsInitialization => string.IsNullOrEmpty(NavigationManager.QueryString("back"));
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            if (AutoUpdater.IsUpdaterInstalled())
+            {
+                var checkTask = AutoUpdater.CheckForUpdates();
+                var completedTask = await Task.WhenAny(checkTask, Task.Delay(TimeSpan.FromSeconds(10)));
+                if (completedTask == checkTask)
+                {
+                    // Completed within timeout
+                    UpdateInfo = await checkTask;
+
+                    // There's no available updates
+                    if (UpdateInfo is null)
+                    {
+                        if (IsInitialization) NavigationManager.NavigateTo("/setup");
+                        NoUpdates = true;
+                        StateHasChanged();
+                    }
+                }
+                else
+                {
+                    // Timed out
+                    TimedOut = true;
+                    StateHasChanged();
+                }
+            }
+            else
+            {
+                Logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
+                if (IsInitialization) NavigationManager.NavigateTo("/setup");
+                NoUpdates = true;
+                StateHasChanged();
+            }
+        }
+        catch (SidekickException e)
+        {
+            Exception = e;
+        }
+    }
+
+    public async Task Download()
+    {
+        if (UpdateInfo == null) throw new SidekickException("Could not apply the update successfully.");
+
+        try
+        {
+            Updating = true;
+            StateHasChanged();
+
+            await AutoUpdater.UpdateAndRestart(UpdateInfo);
+            Updating = false;
+            StateHasChanged();
+        }
+        catch (SidekickException e)
+        {
+            Exception = e;
+            StateHasChanged();
+        }
+    }
+
+}
