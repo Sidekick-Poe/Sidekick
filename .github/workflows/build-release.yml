@@ -49,7 +49,7 @@ jobs:
       - name: .NET - Setup
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
 
       - name: Data - Publish
         shell: bash
@@ -96,12 +96,12 @@ jobs:
 
           # Desktop version
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable --releaseNotes $releaseNotesPath --framework webview2,net10.0.5-x64-desktop
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
           # Web version
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net10.0.5-x64-aspnetcore,net10.0.5-x64-runtime
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
       - name: .NET - Publish (Ubuntu)
