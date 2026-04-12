@@ -80,6 +80,8 @@ jobs:
       - name: Velopack (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
@@ -95,14 +97,22 @@ jobs:
           dotnet tool install -g vpk
 
           # Desktop version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel win-desktop
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel win-desktop --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel win-desktop --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+          # Migrate old channel name for existing users
+          Copy-Item "releases.win-desktop.json" -Destination "releases.windows-stable.json"
+          gh release upload "v$version" "releases.windows-stable.json" --clobber
 
           # Web version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel win-web
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel win-web --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel win-web --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+          # Migrate old channel name for existing users
+          Copy-Item "releases.win-web.json" -Destination "releases.windows-web-stable.json"
+          gh release upload "v$version" "releases.windows-web-stable.json" --clobber
 
       - name: .NET - Publish (Ubuntu)
         if: matrix.os == 'ubuntu-latest'
@@ -116,6 +126,8 @@ jobs:
       - name: Velopack (Ubuntu)
         if: matrix.os == 'ubuntu-latest'
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           version="${{ steps.version.outputs.version }}"
           echo "Version: $version"
@@ -132,11 +144,19 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
 
           # Desktop version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel linux-stable --releaseNotes $releaseNotesPath
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-desktop
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel linux-desktop --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-desktop --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+          # Migrate old channel name for existing users
+          cp releases.linux-desktop.json releases.linux-stable.json
+          gh release upload "v$version" releases.linux-stable.json --clobber
 
           # Web version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-stable --releaseNotes $releaseNotesPath
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+          # Migrate old channel name for existing users
+          cp releases.linux-web.json releases.linux-web-stable.json
+          gh release upload "v$version" releases.linux-web-stable.json --clobber

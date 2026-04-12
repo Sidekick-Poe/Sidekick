@@ -34,9 +34,9 @@ sudo dnf install xsel webkit2gtk4.1 dotnet-runtime-8.0
 ### Download and run
 
 ```sh
-wget https://github.com/Sidekick-Poe/Sidekick/releases/latest/download/Sidekick-linux-stable.AppImage
-chmod +x Sidekick-linux-stable.AppImage
-./Sidekick-linux-stable.AppImage
+wget https://github.com/Sidekick-Poe/Sidekick/releases/latest/download/Sidekick-linux-desktop.AppImage
+chmod +x Sidekick-linux-desktop.AppImage
+./Sidekick-linux-desktop.AppImage
 ```
 
 ## Development
