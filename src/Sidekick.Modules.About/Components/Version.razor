@@ -24,6 +24,6 @@
 
     private void Check()
     {
-        NavigationManager.NavigateTo("/update?back=/about");
+        NavigationManager.NavigateTo($"/update?back={Uri.EscapeDataString(NavigationManager.Uri)}");
     }
 }
