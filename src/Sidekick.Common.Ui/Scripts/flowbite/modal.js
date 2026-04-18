@@ -15,7 +15,7 @@ export default (triggerId, targetId) => {
 
         console.log(`[Sidekick] Flowbite modal: initializing for target element #${targetId}`);
         const options = {
-            placement: 'top-left',
+            placement: 'top-center',
             backdrop: 'dynamic',
             backdropClasses: 'bg-stone-500/30 fixed inset-0 z-30',
             closable: false,

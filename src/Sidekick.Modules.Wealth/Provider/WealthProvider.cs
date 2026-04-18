@@ -26,9 +26,11 @@ internal class WealthProvider
 {
     public event Action? OnFilterChanged;
 
-    public event Action? OnStatusChanged;
+    public event Action? OnSelectedStashesChanged;
 
-    public event Action? OnRefreshed;
+    public event Action<string>? OnStashChanged;
+
+    public event Action? OnStatusChanged;
 
     public WealthRunStatus Status { get; set; } = WealthRunStatus.Stopped;
 
@@ -43,6 +45,11 @@ internal class WealthProvider
     public void FiltersChanged()
     {
         OnFilterChanged?.Invoke();
+    }
+
+    public void SelectedStashesChanged()
+    {
+        OnSelectedStashesChanged?.Invoke();
     }
 
     private async Task Run()
@@ -65,7 +72,10 @@ internal class WealthProvider
             var tabs = await database.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
 
             PendingStashIds.AddRange(tabs.Select(x => x.Id));
-            OnStatusChanged?.Invoke();
+            foreach (var stash in PendingStashIds)
+            {
+                OnStashChanged?.Invoke(stash);
+            }
 
             var date = DateTimeOffset.Now;
 
@@ -82,7 +92,7 @@ internal class WealthProvider
 
                 logger.LogInformation($"[WealthProvider] Stash completed {stash.Name}");
                 PendingStashIds.Remove(stash.Id);
-                OnStatusChanged?.Invoke();
+                OnStashChanged?.Invoke(stash.Id);
             }
 
             logger.LogInformation("[WealthProvider] Taking full snapshot");
@@ -90,7 +100,6 @@ internal class WealthProvider
 
             Status = WealthRunStatus.Completed;
             OnStatusChanged?.Invoke();
-            OnRefreshed?.Invoke();
         }
         catch (Exception e)
         {
@@ -294,6 +303,8 @@ internal class WealthProvider
         database.WealthFullSnapshots.RemoveRange(fullSnapshots);
         await database.SaveChangesAsync();
 
-        OnRefreshed?.Invoke();
+        OnStatusChanged?.Invoke();
+        OnFilterChanged?.Invoke();
+        OnSelectedStashesChanged?.Invoke();
     }
 }

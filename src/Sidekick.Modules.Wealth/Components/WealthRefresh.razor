@@ -1,0 +1,57 @@
+﻿@using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Modules.Wealth.Authentication
+@using Sidekick.Modules.Wealth.Localization
+
+<HideIfUnauthenticated>
+    <ChildContent>
+        @if (WealthProvider.Status == WealthRunStatus.Running)
+        {
+            <ButtonCustom Class="border border-blue-500 bg-transparent"
+                          Disabled="true">
+                <div class="text-blue-400">@Resources["Running"]</div>
+            </ButtonCustom>
+        }
+        else if (WealthProvider.Status == WealthRunStatus.Failed)
+        {
+            <ButtonCustom Class="border border-red-500 bg-transparent"
+                          OnClick="WealthProvider.Start">
+                <div class="text-red-400">@Resources["Failed"]</div>
+            </ButtonCustom>
+        }
+        else
+        {
+            <ButtonPrimary OnClick="WealthProvider.Start">@Resources["Refresh"]</ButtonPrimary>
+        }
+    </ChildContent>
+    <UnauthenticatedContent>
+        <ButtonCustom Class="border border-neutral-500 bg-transparent"
+                      Disabled="true">
+            <div class="text-neutral-400">@Resources["Refresh"]</div>
+        </ButtonCustom>
+    </UnauthenticatedContent>
+</HideIfUnauthenticated>
+
+@inject IStringLocalizer<WealthResources> Resources
+@inject WealthProvider WealthProvider
+@implements IDisposable
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        WealthProvider.OnStashChanged += OnStatusChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private void OnStatusChanged(string obj)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        WealthProvider.OnStashChanged -= OnStatusChanged;
+    }
+
+}

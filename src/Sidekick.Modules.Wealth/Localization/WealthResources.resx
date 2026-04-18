@@ -42,9 +42,6 @@
     <data name="Clear_All_Data_Confirmation" xml:space="preserve">
         <value>This will delete all data from the wealth tracker. Are you sure?</value>
     </data>
-    <data name="No_Stash_Selected" xml:space="preserve">
-        <value>Select stashes by clicking 'change' above.</value>
-    </data>
     <data name="Performance_Warning" xml:space="preserve">
         <value>High tab count may impact performance. Unique items and cluster jewels are not supported.</value>
     </data>
@@ -86,5 +83,17 @@
     </data>
     <data name="Not_Supported" xml:space="preserve">
         <value>Wealth Tracker is not supported in this version of Sidekick.</value>
+    </data>
+    <data name="Tabs_Selected" xml:space="preserve">
+        <value>{0} Tabs Selected</value>
+    </data>
+    <data name="No_Tabs_Selected" xml:space="preserve">
+        <value>No Tabs Selected</value>
+    </data>
+    <data name="No_Stash_Selected" xml:space="preserve">
+        <value>No stash tabs found.</value>
+    </data>
+    <data name="Tabs_Selection" xml:space="preserve">
+        <value>Tabs Selection</value>
     </data>
 </root>

@@ -210,4 +210,13 @@
   <data name="Regex_Hint" xml:space="preserve">
     <value>Utilisez le caractère "|" pour séparer les modificateurs. Il n'est pas nécessaire de correspondre exactement au modificateur, et la distinction entre majuscules et minuscules est ignorée. Doit correspondre à la langue du jeu. Ex: "vie maximale|résistance|régénérée"</value>
   </data>
+  <data name="Confirmation_Title" xml:space="preserve">
+      <value>Confirmez</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+      <value>Confirmer</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+      <value>Annuler</value>
+  </data>
 </root>
