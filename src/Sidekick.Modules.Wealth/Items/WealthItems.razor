@@ -47,14 +47,22 @@
     protected override async Task OnInitializedAsync()
     {
         WealthProvider.OnFilterChanged += WealthFilterChanged;
-        WealthProvider.OnStatusChanged += WealthFilterChanged;
-        WealthProvider.OnRefreshed += WealthFilterChanged;
+        WealthProvider.OnStashChanged += WealthStashChanged;
         SettingsService.OnSettingsChanged += SettingsChanged;
         await Refresh();
         await base.OnInitializedAsync();
     }
 
     private void SettingsChanged(string[] obj)
+    {
+        InvokeAsync(async () =>
+        {
+            await Refresh();
+            StateHasChanged();
+        });
+    }
+
+    private void WealthStashChanged(string? id)
     {
         InvokeAsync(async () =>
         {
@@ -91,8 +99,7 @@
     public void Dispose()
     {
         WealthProvider.OnFilterChanged -= WealthFilterChanged;
-        WealthProvider.OnStatusChanged -= WealthFilterChanged;
-        WealthProvider.OnRefreshed -= WealthFilterChanged;
+        WealthProvider.OnStashChanged -= WealthStashChanged;
         SettingsService.OnSettingsChanged -= SettingsChanged;
     }
 

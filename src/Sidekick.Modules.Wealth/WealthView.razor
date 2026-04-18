@@ -7,6 +7,7 @@
 @using Sidekick.Data
 @using Sidekick.Data.Extensions
 @using Sidekick.Modules.Wealth.Authentication
+@using Sidekick.Modules.Wealth.Components
 @using Sidekick.Modules.Wealth.Tabs
 @using Sidekick.Modules.Wealth.Items
 @using Sidekick.Modules.Wealth.Graphs
@@ -30,18 +31,33 @@
             <div class="flex items-start gap-2 mb-3">
                 <Heading1>@Resources["Wealth_Tracker"]</Heading1>
                 <div class="self-center ml-auto">
-                    <WealthSteps/>
+                    <div class="flex flex-nowrap items-center justify-center">
+                        <AuthenticationButton/>
+                        <Icon Svg="@UiIcons.ArrowForward" Class="text-stone-700"/>
+                        <WealthTabSelection/>
+                        <Icon Svg="@UiIcons.ArrowForward" Class="text-stone-700"/>
+                        <WealthRefresh/>
+                        <div class="ml-3">
+                            <WealthSettings/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-3">
+                <div>
+                    <WealthOverTime/>
+                </div>
+                <div>
+                    <StashesOverTime/>
                 </div>
             </div>
 
             <div class="flex flex-nowrap gap-3">
                 <div class="min-w-64 w-64 max-w-64">
-                    <WealthOverTime/>
                     <WealthTabs/>
-                    <StashesOverTime/>
                 </div>
                 <div class="flex-1">
-                    <WealthToolbar/>
                     <WealthItems/>
                 </div>
             </div>
@@ -50,7 +66,7 @@
 
     <BottomContent>
         <div class="px-2 py-0.5 border-t border-stone-700 flex flex-wrap items-center gap-2 justify-end my-1">
-            <AuthenticationStatus/>
+            <WealthLastUpdated/>
             <div class="grow"></div>
             <ApiStatusAndLimits ApiClientName="@AccountApiClient.ClientName"/>
         </div>

@@ -1,49 +1,27 @@
 ﻿@using Microsoft.EntityFrameworkCore
-@using Sidekick.Apis.Poe.Account.Stash.Models
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
-@using Sidekick.Common.Enums
 @using Sidekick.Modules.Wealth.Provider
 @using Sidekick.Modules.Wealth.Localization
 @using Sidekick.Common.Settings
 
-<FormFieldset Legend="Stash Tabs">
+@if (StashTabs.Count == 0)
+{
+    return;
+}
+
+<FormFieldset Legend="@Resources["Stash_Tabs"]">
     @if (Loading)
     {
         <ProgressBar Indeterminate="true"/>
         return;
     }
 
-    @if (StashTabs.Count == 0)
-    {
-        <AlertInfo>@Resources["No_Stash_Selected"]</AlertInfo>
-        return;
-    }
-
     <div class="flex flex-col items-stretch gap-1 -mt-1">
         @foreach (var stashTab in StashTabs)
         {
-            <FormCheckbox @key="stashTab.Id"
-                          Value="stashTab.Selected"
-                          ValueChanged="(v) => Toggle(stashTab, v)">
-                <div class="flex flex-nowrap items-center gap-1 w-full">
-                    <div class="size-5 -ml-1">
-                        @{
-                            var imageUrl = Enum.TryParse<StashType>(stashTab.Type, out var typeEnum) ? typeEnum.FindAttribute<StashTypeImageAttribute>()?.Path : null;
-                        }
-                        @if (!string.IsNullOrEmpty(imageUrl) && typeEnum.ToString() != imageUrl)
-                        {
-                            <img alt="icon" src="@imageUrl" class="w-5 h-5" />
-                        }
-                    </div>
-                    <div class="truncate">@stashTab.Name</div>
-                    @if (WealthProvider.PendingStashIds.Contains(stashTab.Id))
-                    {
-                        <ProgressSpinner/>
-                    }
-                    <div class="ml-auto text-yellow-600">@stashTab.Total.ToString("N0")</div>
-                </div>
-            </FormCheckbox>
+            <WealthTab @key="@stashTab.Id"
+                       StashTab="stashTab"/>
         }
     </div>
 </FormFieldset>
@@ -62,13 +40,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        WealthProvider.OnStatusChanged += WealthProviderOnOnStatusChanged;
-        WealthProvider.OnRefreshed += WealthProviderOnOnRefreshed;;
+        WealthProvider.OnSelectedStashesChanged += UpdateStashes;
+        WealthProvider.OnStashChanged += UpdateStashes;
         await RetrieveStashes();
         await base.OnInitializedAsync();
     }
 
-    public async Task RetrieveStashes()
+    private async Task RetrieveStashes()
     {
         Loading = true;
         StateHasChanged();
@@ -82,34 +60,21 @@
         StateHasChanged();
     }
 
-    private async Task Toggle(WealthStash tab, bool isChecked)
+    private void UpdateStashes()
     {
-        tab.Selected = isChecked;
-
-        await using var database = new SidekickDbContext(DbContextOptions);
-        var dbTab = await database.WealthStashes.Where(x => x.Id == tab.Id).FirstOrDefaultAsync();
-        if (dbTab != null)
+        InvokeAsync(async()=>
         {
-            dbTab.Selected = isChecked;
-            await database.SaveChangesAsync();
-        }
-
-        WealthProvider.FiltersChanged();
+            await RetrieveStashes();
+            StateHasChanged();
+        });
     }
 
-    private void WealthProviderOnOnRefreshed()
-    {
-        InvokeAsync(RetrieveStashes);
-    }
-
-    private void WealthProviderOnOnStatusChanged()
-    {
-        InvokeAsync(StateHasChanged);
-    }
+    private void UpdateStashes(string? id) => UpdateStashes();
 
     public void Dispose()
     {
-        WealthProvider.OnStatusChanged -= WealthProviderOnOnStatusChanged;
+        WealthProvider.OnSelectedStashesChanged -= UpdateStashes;
+        WealthProvider.OnStashChanged += UpdateStashes;
     }
 
 }

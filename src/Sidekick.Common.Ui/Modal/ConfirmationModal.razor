@@ -1,0 +1,71 @@
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Sections
+
+<FlowbiteComponent @ref="Component"
+                   Script="modal"
+                   ScriptParameters="@(new[]
+                                     {
+                                         Id,
+                                     })">
+    <div @onclick="() => Show()"
+         @onclick:preventDefault="true">
+        @ActivatorContent
+    </div>
+</FlowbiteComponent>
+
+<BodySectionContent SectionName="@Id">
+    <div id="@Id" tabindex="-1"
+         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-40 w-full p-4 md:inset-0 h-full max-h-full">
+        <div class="relative p-4 w-full max-w-sm max-h-full">
+            <div class="relative bg-stone-950 border border-stone-700 text-white rounded-lg shadow-sm p-4">
+                <Heading3>@Resources["Confirmation_Title"]</Heading3>
+                <LayoutDivider/>
+                <TextBase>@Message</TextBase>
+                <LayoutDivider/>
+                <div class="px-3 flex justify-center gap-2">
+                    <ButtonSecondary OnClick="No">
+                        @Resources["Cancel"]
+                    </ButtonSecondary>
+                    <ButtonPrimary OnClick="Yes">
+                        @Resources["Confirm"]
+                    </ButtonPrimary>
+                </div>
+            </div>
+        </div>
+    </div>
+</BodySectionContent>
+
+@inject IStringLocalizer<UiResources> Resources
+
+@code {
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    [Parameter]
+    public required RenderFragment ActivatorContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+
+    private string Id { get; } = UiUtilities.GenerateId();
+
+    private FlowbiteComponent? Component { get; set; }
+
+    private async Task Show()
+    {
+        if (Component?.JsObject != null) await Component.JsObject.InvokeVoidAsync("show");
+    }
+
+    private async Task Yes()
+    {
+        await OnConfirm.InvokeAsync();
+        if (Component?.JsObject != null) await Component.JsObject.InvokeVoidAsync("hide");
+    }
+
+    private async Task No()
+    {
+        if (Component?.JsObject != null) await Component.JsObject.InvokeVoidAsync("hide");
+    }
+
+}

@@ -11,77 +11,81 @@
 @using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Provider
 
-<Popover Placement="TooltipPlacement.Bottom"
-         Class="w-80 max-h-96">
-    <ActivatorContent>
-        @if (TrackedTabs.Count > 0)
-        {
-            <ButtonCustom Class="border border-green-500 bg-transparent hover:enabled:bg-green-900">
-                <div class="bg-green-400 rounded-full w-2 h-2"></div>
-                <div class="text-green-400">@TrackedTabs.Count Tabs Selected</div>
-            </ButtonCustom>
-        }
-        else
-        {
-            <ButtonCustom Class="border border-red-500 bg-transparent hover:enabled:bg-red-900">
-                <div class="bg-red-400 rounded-full w-2 h-2"></div>
-                <div class="text-red-400">No Tabs Selected</div>
-            </ButtonCustom>
-        }
-    </ActivatorContent>
+<HideIfUnauthenticated>
     <ChildContent>
-        <Heading3 Class="mb-2">@Resources["Stash_Tabs"]</Heading3>
-
-        @if (Loading)
-        {
-            <ProgressBar Indeterminate="true"/>
-        }
-        else if (StashTabs != null)
-        {
-            <div class="flex flex-col gap-1">
-                <AlertInfo>@Resources["Performance_Warning"]</AlertInfo>
-
-                @foreach (var stashTab in StashTabs)
+        <Popover Placement="TooltipPlacement.Bottom"
+                 Class="w-80 max-h-96"
+                 OnShow="Refresh">
+            <ActivatorContent>
+                @if (TrackedTabs.Count > 0)
                 {
-                    <FormCheckbox Value="IsChecked(stashTab)"
-                                  ValueChanged="(v) => Toggle(stashTab, v)">
-                        <div class="flex flex-nowrap items-center gap-1 w-full">
-                            <div class="size-5 -ml-1">
-                                @{
-                                    var imageUrl = stashTab.Type.FindAttribute<StashTypeImageAttribute>()?.Path;
-                                }
-                                @if (!string.IsNullOrEmpty(imageUrl) && stashTab.Type.ToString() != imageUrl)
-                                {
-                                    <img alt="icon" src="@imageUrl" class="w-5 h-5"/>
-                                }
-                            </div>
-                            <div class="truncate">@stashTab.Name</div>
-                        </div>
-                    </FormCheckbox>
+                    <ButtonCustom Class="border border-green-500 bg-transparent hover:enabled:bg-green-900">
+                        <div class="bg-green-400 rounded-full w-2 h-2"></div>
+                        <div class="text-green-400">@Resources["Tabs_Selected", TrackedTabs.Count]</div>
+                    </ButtonCustom>
                 }
-            </div>
-        }
+                else
+                {
+                    <ButtonCustom Class="border border-red-500 bg-transparent hover:enabled:bg-red-900">
+                        <div class="bg-red-400 rounded-full w-2 h-2"></div>
+                        <div class="text-red-400">@Resources["No_Tabs_Selected"]</div>
+                    </ButtonCustom>
+                }
+            </ActivatorContent>
+            <ChildContent>
+                <Heading3 Class="mb-2">@Resources["Stash_Tabs"]</Heading3>
 
-        <div class="mt-2 pt-2 dark:border-stone-800 border-t">
-            <AuthenticationRequiredOverlay>
-                <ButtonPrimary Class="w-full"
-                               OnClick="Refresh">@Resources["Fetch_Tabs"]</ButtonPrimary>
-            </AuthenticationRequiredOverlay>
-        </div>
+                @if (Loading)
+                {
+                    <ProgressBar Indeterminate="true"/>
+                }
+                else if (StashTabs != null)
+                {
+                    <div class="flex flex-col gap-1">
+                        <AlertInfo>@Resources["Performance_Warning"]</AlertInfo>
+
+                        @foreach (var stashTab in StashTabs)
+                        {
+                            <FormCheckbox @key="stashTab.Id"
+                                          Value="IsChecked(stashTab)"
+                                          ValueChanged="(v) => Toggle(stashTab, v)">
+                                <div class="flex flex-nowrap items-center gap-1 w-full">
+                                    <div class="size-5 -ml-1">
+                                        @{
+                                            var imageUrl = stashTab.Type.FindAttribute<StashTypeImageAttribute>()?.Path;
+                                        }
+                                        @if (!string.IsNullOrEmpty(imageUrl) && stashTab.Type.ToString() != imageUrl)
+                                        {
+                                            <img alt="icon" src="@imageUrl" class="w-5 h-5"/>
+                                        }
+                                    </div>
+                                    <div class="truncate">@stashTab.Name</div>
+                                </div>
+                            </FormCheckbox>
+                        }
+                    </div>
+                }
+            </ChildContent>
+        </Popover>
     </ChildContent>
-</Popover>
+    <UnauthenticatedContent>
+        <ButtonCustom Class="border border-neutral-500 bg-transparent"
+                      Disabled="true">
+            <div class="bg-neutral-400 rounded-full w-2 h-2"></div>
+            <div class="text-neutral-400">@Resources["Tabs_Selection"]</div>
+        </ButtonCustom>
+    </UnauthenticatedContent>
+</HideIfUnauthenticated>
 
 @inject IStringLocalizer<WealthResources> Resources
 @inject ISettingsService SettingsService
 @inject IStashService StashService
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
-@inject WealthProvider WealthProvider
 @inject IAuthenticationService AuthenticationService
+@inject WealthProvider WealthProvider
+@implements IDisposable
 
 @code {
-
-    [Parameter]
-    public EventCallback OnSelected { get; set; }
 
     private List<WealthStash> TrackedTabs { get; set; } = [];
 
@@ -91,18 +95,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        WealthProvider.OnRefreshed += Update;
+        WealthProvider.OnStatusChanged += OnChanged;
         await UpdateTrackedTabs();
         await base.OnInitializedAsync();
-    }
-
-    private void Update()
-    {
-        _ = InvokeAsync(async () =>
-        {
-            await Refresh();
-            StateHasChanged();
-        });
     }
 
     private async Task Refresh()
@@ -128,6 +123,15 @@
 
         Loading = false;
         StateHasChanged();
+    }
+
+    private void OnChanged()
+    {
+        InvokeAsync(async () =>
+        {
+            await UpdateTrackedTabs();
+            StateHasChanged();
+        });
     }
 
     private async Task UpdateTrackedTabs()
@@ -184,12 +188,12 @@
         }
 
         await dbContext.SaveChangesAsync();
-        await OnSelected.InvokeAsync();
+
+        WealthProvider.SelectedStashesChanged();
     }
 
     public void Dispose()
     {
-        WealthProvider.OnRefreshed -= Update;
+        WealthProvider.OnStatusChanged -= OnChanged;
     }
-
 }

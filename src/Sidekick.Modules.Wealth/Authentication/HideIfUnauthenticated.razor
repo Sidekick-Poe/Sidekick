@@ -4,6 +4,10 @@
 {
     @ChildContent
 }
+else
+{
+    @UnauthenticatedContent
+}
 
 @implements IDisposable
 @inject IAuthenticationService AuthenticationService
@@ -12,6 +16,9 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? UnauthenticatedContent { get; set; }
 
     private Timer? refreshTimer;
 

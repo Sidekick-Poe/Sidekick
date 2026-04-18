@@ -7,15 +7,16 @@
 
 <div class="@(Series.Count == 0 ? "hidden" : "")">
     <FormFieldset Legend="@Resources["Stash_Value"]">
-        <div class="h-[128px] relative -mb-3 -mx-3">
+        <div class="h-[128px] relative -m-3">
             <ApexChart @ref="Chart"
                        TItem="DataPoint"
                        Options="DataConstants.GetOptions()"
                        Height="@("128px")"
-                       Width="@("256px")">
+                       Width="@("100%")">
                 @foreach (var serie in Series)
                 {
-                    <ApexPointSeries TItem="DataPoint"
+                    <ApexPointSeries @key="serie.Name"
+                                     TItem="DataPoint"
                                      Items="serie.Points"
                                      Name="@serie.Name"
                                      SeriesType="SeriesType.Line"
@@ -44,11 +45,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        WealthProvider.OnRefreshed += Update;
+        WealthProvider.OnStashChanged += WealthStashChanged;
         WealthProvider.OnFilterChanged += Update;
         await LoadData();
         await base.OnInitializedAsync();
     }
+
+    private void WealthStashChanged(string? id) => Update();
 
     private void Update()
     {
@@ -56,11 +59,7 @@
         {
             await LoadData();
             StateHasChanged();
-
-            if (Chart != null)
-            {
-                await Chart.RenderAsync();
-            }
+            if (Chart != null) await Chart.RenderAsync();
         });
     }
 
@@ -116,7 +115,7 @@
 
     public void Dispose()
     {
-        WealthProvider.OnRefreshed -= Update;
+        WealthProvider.OnStashChanged -= WealthStashChanged;
         WealthProvider.OnFilterChanged -= Update;
     }
 

@@ -1,0 +1,71 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Apis.Poe.Account.Stash.Models
+@using Sidekick.Common.Database
+@using Sidekick.Common.Database.Tables
+@using Sidekick.Common.Enums
+@using Sidekick.Modules.Wealth.Provider
+
+<FormCheckbox @key="StashTab.Id"
+              Value="StashTab.Selected"
+              ValueChanged="(v) => Toggle(StashTab, v)">
+    <div class="flex flex-nowrap items-center gap-1 w-full">
+        <div class="size-5 -ml-1">
+            @{
+                var imageUrl = Enum.TryParse<StashType>(StashTab.Type, out var typeEnum) ? typeEnum.FindAttribute<StashTypeImageAttribute>()?.Path : null;
+            }
+            @if (!string.IsNullOrEmpty(imageUrl) && typeEnum.ToString() != imageUrl)
+            {
+                <img alt="icon" src="@imageUrl" class="w-5 h-5"/>
+            }
+        </div>
+        <div class="truncate">@StashTab.Name</div>
+        @if (WealthProvider.PendingStashIds.Contains(StashTab.Id))
+        {
+            <ProgressSpinner/>
+        }
+        <div class="ml-auto text-yellow-600">@StashTab.Total.ToString("N0")</div>
+    </div>
+</FormCheckbox>
+
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject WealthProvider WealthProvider
+@implements IDisposable
+
+@code {
+
+    [Parameter]
+    public required WealthStash StashTab { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        WealthProvider.OnStashChanged += WealthOnStashChanged;
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Toggle(WealthStash tab, bool isChecked)
+    {
+        tab.Selected = isChecked;
+
+        await using var database = new SidekickDbContext(DbContextOptions);
+        var dbTab = await database.WealthStashes.Where(x => x.Id == tab.Id).FirstOrDefaultAsync();
+        if (dbTab != null)
+        {
+            dbTab.Selected = isChecked;
+            await database.SaveChangesAsync();
+        }
+
+        WealthProvider.FiltersChanged();
+    }
+
+    private void WealthOnStashChanged(string? id)
+    {
+        if (id != StashTab.Id) return;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        WealthProvider.OnStashChanged -= WealthOnStashChanged;
+    }
+
+}

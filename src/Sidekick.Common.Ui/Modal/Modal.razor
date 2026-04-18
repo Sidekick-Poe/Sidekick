@@ -50,9 +50,6 @@
     public required RenderFragment ActivatorContent { get; set; }
 
     [Parameter]
-    public string Class { get; set; } = "max-h-[550px] max-w-[350px]";
-
-    [Parameter]
     public EventCallback OnShow { get; set; }
 
     [Parameter]
@@ -68,7 +65,7 @@
 
     private FlowbiteComponent? Component { get; set; }
 
-    public async Task Show()
+    private async Task Show()
     {
         if (Component?.JsObject == null) return;
 
