@@ -1,0 +1,48 @@
+@using Sidekick.Common.Ui.Views
+@using Sidekick.AvaloniaServer.Services
+@using Sidekick.Common.Platform
+
+<Sidekick.Common.Ui.Main />
+
+@inject ICurrentView CurrentView
+@inject AvaloniaServerViewLocator ViewLocator
+@inject IApplicationService ApplicationService
+@implements IDisposable
+
+@code {
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ViewLocator.Views.Add(this);
+        CurrentView.Minimized += CurrentViewMinimized;
+        CurrentView.Maximized += CurrentViewMaximized;
+        CurrentView.Closed += CurrentViewClosed;
+
+        base.OnInitialized();
+    }
+
+    private void CurrentViewMinimized()
+        => ViewLocator.MinimizeWindow(SidekickViewType.Standard);
+
+    private void CurrentViewMaximized()
+        => ViewLocator.MaximizeWindow(SidekickViewType.Standard);
+
+    private void CurrentViewClosed()
+    {
+        if (new Uri(NavigationManager.Uri).PathAndQuery == "/home")
+            ApplicationService.Shutdown();
+        else
+            NavigationManager.NavigateTo("/home");
+    }
+
+    public void Dispose()
+    {
+        ViewLocator.Views.Remove(this);
+        CurrentView.Minimized -= CurrentViewMinimized;
+        CurrentView.Maximized -= CurrentViewMaximized;
+        CurrentView.Closed -= CurrentViewClosed;
+    }
+}

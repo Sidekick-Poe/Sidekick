@@ -1,0 +1,13 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Sidekick.Avalonia.MainWindow"
+        Title="Sidekick"
+        Width="968"
+        Height="768"
+        Background="Transparent"
+        WindowDecorations="None"
+        WindowStartupLocation="CenterScreen">
+    <Grid Name="Grid">
+        <NativeWebView Name="WebView" IsVisible="False" />
+    </Grid>
+</Window>

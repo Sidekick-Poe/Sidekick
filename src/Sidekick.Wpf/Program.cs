@@ -46,7 +46,7 @@ public class Program
     // In order for this to work, you must also add the following to your .csproj:
     // <StartupObject>Sidekick.Wpf.App</StartupObject>
     [STAThread]
-    public static void Main(string[] args)
+    public static void Main(string[] _)
     {
         try
         {
