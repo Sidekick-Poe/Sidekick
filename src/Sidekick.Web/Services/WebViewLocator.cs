@@ -10,17 +10,19 @@ public class WebViewLocator : IViewLocator
     /// <inheritdoc />
     public bool SupportsMaximize => false;
 
+    public bool SupportsAlwaysOnTop => false;
+
     public List<SidekickWebWrapper> Views { get; } = [];
 
-    public void Open(SidekickViewType type, string url)
+    public bool IsOverlayOpened() => false;
+
+    public void Open(string url, bool alwaysOnTop)
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo(url));
     }
 
-    public void Close(SidekickViewType type)
+    public void Close()
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
-
-    public bool IsOverlayOpened() => false;
 }

@@ -8,7 +8,7 @@
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Typography
 
-<LayoutMenu>
+<LayoutOneColumn>
     <AppContainer>
         <div class="mb-3 flex gap-3">
             <Heading1>@Resources["Logs"]</Heading1>
@@ -24,7 +24,7 @@
 
         <LogStream/>
     </AppContainer>
-</LayoutMenu>
+</LayoutOneColumn>
 
 @inject IStringLocalizer<LogResources> Resources
 @inject IFolderProvider FolderProvider

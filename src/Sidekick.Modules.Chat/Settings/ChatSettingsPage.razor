@@ -10,7 +10,7 @@
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Modules.Chat.Localization
 
-<LayoutMenu>
+<LayoutOneColumn>
     <AppContainer>
         <FormFieldset Legend="@UiResources["Chat_Commands"]">
             <div>
@@ -54,7 +54,7 @@
             <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
         </div>
     </AppContainer>
-</LayoutMenu>
+</LayoutOneColumn>
 
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<ChatResources> Resources

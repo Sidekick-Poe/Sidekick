@@ -4,7 +4,7 @@
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Settings
 
-<LayoutMenu>
+<LayoutOneColumn>
     <AppContainer>
         <FormFieldset Legend="@Resources["Regex_Hotkeys"]">
             <div>
@@ -27,7 +27,7 @@
             <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
         </div>
     </AppContainer>
-</LayoutMenu>
+</LayoutOneColumn>
 
 @inject IStringLocalizer<RegexHotkeysResources> Resources
 @inject IStringLocalizer<UiResources> UiResources

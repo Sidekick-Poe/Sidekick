@@ -4,7 +4,7 @@ namespace Sidekick.Common.Ui.Views;
 
 public interface IViewPreferenceService
 {
-    Task<ViewPreference?> Get(string? key);
+    Task<ViewPreference?> Get();
 
-    Task Set(string? key, int width, int height, int? x, int? y);
+    Task Set(int width, int height, int? x, int? y);
 }

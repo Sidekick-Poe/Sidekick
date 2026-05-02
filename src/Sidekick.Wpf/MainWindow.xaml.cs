@@ -32,9 +32,7 @@ public partial class MainWindow
     private bool CloseOnBlur { get; set; }
     private IntPtr OriginalFocusedWindow { get; set; }
 
-    private SidekickViewType ViewType { get; }
-
-    public MainWindow(SidekickViewType viewType, ILogger logger)
+    public MainWindow(ILogger logger)
     {
         this.logger = logger;
 
@@ -42,7 +40,6 @@ public partial class MainWindow
         Resources.Add("services", scope.ServiceProvider);
 
         Title = "Sidekick";
-        ViewType = viewType;
         Width = 0;
         Height = 0;
         Opacity = 0;
@@ -58,7 +55,36 @@ public partial class MainWindow
         };
     }
 
-    public async Task OpenView(string url)
+    public void BlazorReady(ICurrentView view, NavigationManager navigationManager)
+    {
+        logger.LogInformation("[MainWindow] Blazor ready");
+
+        _ = Dispatch(async () =>
+        {
+            NavigationManager = navigationManager;
+            View = view;
+
+            View.OptionsChanged += CurrentViewOptionsChanged;
+            View.Maximized += MaximizeView;
+            View.Minimized += MinimizeView;
+            View.Closed += CloseView;
+            View.AlwaysOnTopChanged += AlwaysOnTopChanged;
+
+            Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
+            Opacity = 0.01;
+
+            WebView.Visibility = Visibility.Visible;
+            SetWebViewDebugging();
+
+            if (NextPath != null) NavigationManager.NavigateTo(NextPath);
+
+            await NormalizeView();
+
+            IsReady = true;
+        });
+    }
+
+    public async Task OpenView(string url, bool alwaysOnTop)
     {
         logger.LogInformation("[MainWindow] Opening view: " + url);
 
@@ -83,7 +109,7 @@ public partial class MainWindow
             Activate();
 
             // Attempt to set focus back to the original window
-            if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
+            if (alwaysOnTop && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
             {
                 User32.SetForegroundWindow(OriginalFocusedWindow);
             }
@@ -106,32 +132,9 @@ public partial class MainWindow
         });
     }
 
-    public void BlazorReady(ICurrentView view, NavigationManager navigationManager)
+    private void AlwaysOnTopChanged()
     {
-        logger.LogInformation("[MainWindow] Blazor ready");
-
-        _ = Dispatch(async () =>
-        {
-            NavigationManager = navigationManager;
-            View = view;
-
-            View.OptionsChanged += CurrentViewOptionsChanged;
-            View.Maximized += MaximizeView;
-            View.Minimized += MinimizeView;
-            View.Closed += CloseView;
-
-            Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
-            Opacity = 0.01;
-
-            WebView.Visibility = Visibility.Visible;
-            SetWebViewDebugging();
-
-            if (NextPath != null) NavigationManager.NavigateTo(NextPath);
-
-            await NormalizeView();
-
-            IsReady = true;
-        });
+        throw new NotImplementedException();
     }
 
     private void CurrentViewOptionsChanged()
@@ -172,36 +175,22 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Normalizing view");
 
-        switch (ViewType)
+        if (View != null && View.AlwaysOnTop)
         {
-            case SidekickViewType.Overlay:
-                Topmost = false;
+            Topmost = false;
 #if DEBUG
-                ShowInTaskbar = true;
+            ShowInTaskbar = true;
 #else
                 Topmost = true;
                 ShowInTaskbar = false;
 #endif
-                ResizeMode = ResizeMode.CanResize;
-                break;
-
-            case SidekickViewType.Modal:
-                Topmost = false;
-#if DEBUG
-                ShowInTaskbar = true;
-#else
-                Topmost = true;
-                ShowInTaskbar = true;
-#endif
-                ResizeMode = ResizeMode.NoResize;
-                break;
-
-            case SidekickViewType.Standard:
-                Topmost = false;
-                ShowInTaskbar = true;
-                ResizeMode = ResizeMode.CanResize;
-                break;
         }
+        else
+        {
+            Topmost = false;
+            ShowInTaskbar = true;
+        }
+
 
         var viewPreferenceService = scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
         var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
@@ -231,6 +220,8 @@ public partial class MainWindow
 
             IsNormalized = false;
             return;
+        } else {
+            ResizeMode = ResizeMode.CanResize;
         }
 
         if (IsNormalized && WindowState == WindowState.Normal)

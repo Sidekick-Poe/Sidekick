@@ -21,6 +21,4 @@ public class PhotinoBlazorViewLocator : IViewLocator
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
-
-    public bool IsOverlayOpened() => false;
 }

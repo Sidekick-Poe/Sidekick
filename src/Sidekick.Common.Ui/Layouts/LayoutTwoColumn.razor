@@ -1,6 +1,11 @@
 <div class="h-full flex flex-col">
     <div class="dark:bg-stone-950">
-        @TopContent
+        <AppBar>
+            <AppAlwaysOnTop/>
+            <AppMinimize/>
+            <AppMaximize/>
+            <AppClose/>
+        </AppBar>
     </div>
     <div class="grow flex flex-nowrap items-stretch">
         <div id="@LeftContentId"
@@ -52,12 +57,9 @@
     }
 </script>
 
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JsRuntime
 
 @code {
-
-    [Parameter]
-    public RenderFragment? TopContent { get; set; }
 
     [Parameter]
     public RenderFragment? LeftContent { get; set; }
@@ -83,9 +85,12 @@
             try
             {
                 var dotNetReference = DotNetObjectReference.Create(this);
-                await JSRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
+                await JsRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
             }
-            catch {}
+            catch
+            {
+                // Do not fail the view
+            }
         }
     }
 

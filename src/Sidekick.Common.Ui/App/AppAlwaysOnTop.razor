@@ -1,0 +1,11 @@
+@if (!ViewLocator.SupportsAlwaysOnTop)
+{
+    return;
+}
+
+<FormCheckbox Value="CurrentView.AlwaysOnTop"
+              ValueChanged="v => CurrentView.SetAlwaysOnTop(v)">Always on top
+</FormCheckbox>
+
+@inject IViewLocator ViewLocator
+@inject ICurrentView CurrentView

@@ -194,7 +194,7 @@ public class ProcessProvider
 
     private async Task RestartAsAdmin()
     {
-        if (!await dialogService.OpenConfirmationModal(resources["RestartAsAdminText"]))
+        if (!await dialogService.OpenConfirmationDialog(resources["RestartAsAdminText"]))
         {
             return;
         }

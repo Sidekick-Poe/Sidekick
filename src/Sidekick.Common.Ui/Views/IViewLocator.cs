@@ -16,17 +16,21 @@ public interface IViewLocator
     bool SupportsMaximize { get; }
 
     /// <summary>
-    /// Opens a view of the specified type and navigates to the given URL.
+    /// Gets a value indicating whether the view supports the always on top functionality.
     /// </summary>
-    /// <param name="type">The type of view to open.</param>
+    bool SupportsAlwaysOnTop { get; }
+
+    /// <summary>
+    /// Opens a view and navigates to the given URL.
+    /// </summary>
     /// <param name="url">The URL to navigate to within the view.</param>
-    void Open(SidekickViewType type, string url);
+    /// <param name="alwaysOnTop">Indicates if the view should always be on top of other windows.</param>
+    void Open(string url, bool alwaysOnTop);
 
     /// <summary>
     /// Closes a view of the specified type.
     /// </summary>
-    /// <param name="type">The type of view to close.</param>
-    void Close(SidekickViewType type);
+    void Close();
 
     /// <summary>
     /// Check if an overlay is opened

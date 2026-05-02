@@ -13,7 +13,7 @@
 @using Sidekick.Modules.Wealth.Graphs
 @using Sidekick.Modules.Wealth.Localization
 
-<LayoutMenu>
+<LayoutOneColumn>
     <ChildContent>
         @if (Game == GameType.PathOfExile2)
         {
@@ -71,7 +71,7 @@
             <ApiStatusAndLimits ApiClientName="@AccountApiClient.ClientName"/>
         </div>
     </BottomContent>
-</LayoutMenu>
+</LayoutOneColumn>
 
 @inject IStringLocalizer<WealthResources> Resources
 @inject ISettingsService SettingsService

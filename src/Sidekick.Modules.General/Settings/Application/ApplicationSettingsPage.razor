@@ -10,7 +10,7 @@
 @using Sidekick.Modules.General.Localization
 @using Sidekick.Common.Ui.Settings
 
-<LayoutMenu>
+<LayoutOneColumn>
     <AppContainer>
         <FormFieldset Legend="@SettingsResources["General_Settings"]">
             <InterfaceLanguageEditor/>
@@ -38,7 +38,7 @@
                            OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
         </div>
     </AppContainer>
-</LayoutMenu>
+</LayoutOneColumn>
 
 @page "/settings/application"
 @implements IDisposable

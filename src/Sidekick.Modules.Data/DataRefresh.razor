@@ -1,6 +1,5 @@
 ﻿@using Microsoft.Extensions.Localization
 @using Microsoft.Extensions.Logging
-@using Sidekick.Common
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Ui.Alerts
 @using Sidekick.Common.Ui.Buttons
@@ -36,10 +35,6 @@
         {
             <AlertError>@Resources["Error"]</AlertError>
         }
-        else if (WarningMessage != null)
-        {
-            <AlertError IsCritical="false">@WarningMessage</AlertError>
-        }
         else
         {
             <div class="flex flex-wrap gap-x-4 gap-y-1">
@@ -52,7 +47,7 @@
 
                     <FormCheckbox
                         Value="Language == language || language.Code == GameLanguageProvider.InvariantLanguage.Code"
-                        ValueChanged="v => Select(language)"
+                        ValueChanged="_ => Select(language)"
                         Readonly="language.Code == GameLanguageProvider.InvariantLanguage.Code">@language.Label</FormCheckbox>
                 }
             </div>
@@ -66,6 +61,10 @@
     </FooterContent>
 </Modal>
 
+<OkModal @ref="WarningModal"
+         OnClose="Reinitialize"
+         Message="@string.Format(Resources["Refresh_Warning"], WarningCount, ErrorCount)"/>
+
 @inject IStringLocalizer<DataResources> Resources
 @inject IStringLocalizer<UiResources> UiResources
 @inject ICacheProvider CacheProvider
@@ -73,7 +72,6 @@
 @inject IGameLanguageProvider GameLanguageProvider
 @inject NavigationManager NavigationManager
 @inject ILogger<DataRefresh> Logger
-@inject ISidekickDialogs Dialogs
 
 @code {
     [Parameter]
@@ -81,11 +79,15 @@
 
     private Modal? Modal { get; set; }
 
+    private OkModal? WarningModal { get; set; }
+
     private bool Loading { get; set; }
 
     private bool Error { get; set; }
 
-    private string? WarningMessage { get; set; }
+    private int WarningCount { get; set; }
+
+    private int ErrorCount { get; set; }
 
     private IGameLanguage? Language { get; set; }
 
@@ -104,7 +106,8 @@
     {
         Loading = true;
         Error = false;
-        WarningMessage = null;
+        WarningCount = 0;
+        ErrorCount = 0;
         StateHasChanged();
 
         try
@@ -117,15 +120,15 @@
                 await DataBuilder.DownloadAndBuild(Language);
             }
 
-            if (monitor.Warnings > 0 || monitor.Errors > 0)
+            WarningCount = monitor.Warnings;
+            ErrorCount = monitor.Errors;
+            if (WarningCount + ErrorCount > 0 && WarningModal?.Component != null)
             {
-                await Dialogs.OpenOkModal(string.Format(Resources["Refresh_Warning"], monitor.Warnings, monitor.Errors));
+                await WarningModal.Component.Show();
+                return;
             }
 
-            await CacheProvider.Clear();
-            await OnRefresh.InvokeAsync();
-            Modal?.Hide();
-            NavigationManager.NavigateTo("/initialize");
+            await Reinitialize();
         }
         catch (Exception e)
         {
@@ -135,5 +138,13 @@
 
         Loading = false;
         StateHasChanged();
+    }
+
+    private async Task Reinitialize()
+    {
+        await CacheProvider.Clear();
+        await OnRefresh.InvokeAsync();
+        Modal?.Hide();
+        NavigationManager.NavigateTo("/initialize");
     }
 }

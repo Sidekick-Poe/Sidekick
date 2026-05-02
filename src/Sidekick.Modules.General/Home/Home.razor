@@ -14,7 +14,7 @@
 @using Sidekick.Modules.General.Settings
 @using Sidekick.Common.Ui.Settings
 
-<LayoutMenu>
+<LayoutOneColumn>
     <ChildContent>
         <AppContainer>
             <AppLogo/>
@@ -51,7 +51,7 @@
             </div>
         }
     </BottomContent>
-</LayoutMenu>
+</LayoutOneColumn>
 
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<HomeResources> Resources
@@ -79,7 +79,7 @@
     {
         if (ItemText != null)
         {
-            ViewLocator.Open(SidekickViewType.Overlay, $"/item/{ItemText.EncodeBase64Url()}");
+            ViewLocator.Open($"/item/{ItemText.EncodeBase64Url()}", alwaysOnTop: false);
         }
     }
 

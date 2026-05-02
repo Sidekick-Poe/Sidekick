@@ -24,8 +24,19 @@ public class CurrentView : ICurrentView
     /// <inheritdoc/>
     public event Action? DragStopped;
 
+    /// <inheritdoc/>
+    public event Action? AlwaysOnTopChanged;
+
+    /// <inheritdoc/>
     public int? Width  { get; private set; }
+
+    /// <inheritdoc/>
     public int? Height { get; private set; }
+
+    /// <inheritdoc/>
+    public bool AlwaysOnTop { get; private set; }
+
+    private bool IsDragging { get; set; }
 
     public void UpdateOptions(int? width, int? height)
     {
@@ -47,13 +58,19 @@ public class CurrentView : ICurrentView
     }
 
     /// <inheritdoc/>
+    public void SetAlwaysOnTop(bool value)
+    {
+        AlwaysOnTop = value;
+        AlwaysOnTopChanged?.Invoke();
+    }
+
+    /// <inheritdoc/>
     public void Close()
     {
         Closed?.Invoke();
     }
 
-    private bool IsDragging { get; set; }
-    
+    /// <inheritdoc/>
     public void StartDragging(int offsetX, int offsetY)
     {
         if (IsDragging) return;
@@ -62,6 +79,7 @@ public class CurrentView : ICurrentView
         DragStarted?.Invoke(offsetX, offsetY);
     }
 
+    /// <inheritdoc/>
     public void StopDragging()
     {
         IsDragging = false;

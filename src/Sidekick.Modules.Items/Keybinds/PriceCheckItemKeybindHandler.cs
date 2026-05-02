@@ -32,6 +32,6 @@ public class PriceCheckItemKeybindHandler
             return;
         }
 
-        viewLocator.Open(SidekickViewType.Overlay, $"/item/{text.EncodeBase64Url()}");
+        viewLocator.Open($"/item/{text.EncodeBase64Url()}", alwaysOnTop: true);
     }
 }

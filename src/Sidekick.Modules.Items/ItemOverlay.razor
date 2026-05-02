@@ -17,12 +17,6 @@
 @using Sidekick.Modules.Items.Trade
 
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
-    <TopContent>
-        <AppBar>
-            <AppSettings Href="/settings/game"/>
-            <AppClose/>
-        </AppBar>
-    </TopContent>
     <LeftContent>
         @if (Item != null)
         {

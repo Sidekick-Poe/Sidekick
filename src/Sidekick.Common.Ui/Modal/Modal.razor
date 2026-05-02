@@ -2,14 +2,14 @@
 
 <FlowbiteComponent @ref="Component"
                    Script="modal"
-                   ScriptParameters="@(new[]
-                                     {
-                                         Id,
-                                     })">
-    <div @onclick="() => Show()"
-         @onclick:preventDefault="true">
-        @ActivatorContent
-    </div>
+                   ScriptParameters="@([Id])">
+    @if (ActivatorContent != null)
+    {
+        <div @onclick="() => Show()"
+             @onclick:preventDefault="true">
+            @ActivatorContent
+        </div>
+    }
 </FlowbiteComponent>
 
 <BodySectionContent SectionName="@Id">
@@ -37,23 +37,17 @@
 
 @code {
 
-    [Parameter]
-    public RenderFragment<Modal>? HeaderContent { get; set; }
+    [Parameter] public RenderFragment<Modal>? HeaderContent { get; set; }
 
-    [Parameter]
-    public required RenderFragment<Modal> ChildContent { get; set; }
+    [Parameter] public required RenderFragment<Modal> ChildContent { get; set; }
 
-    [Parameter]
-    public RenderFragment<Modal>? FooterContent { get; set; }
+    [Parameter] public RenderFragment<Modal>? FooterContent { get; set; }
 
-    [Parameter]
-    public required RenderFragment ActivatorContent { get; set; }
+    [Parameter] public RenderFragment? ActivatorContent { get; set; }
 
-    [Parameter]
-    public EventCallback OnShow { get; set; }
+    [Parameter] public EventCallback OnShow { get; set; }
 
-    [Parameter]
-    public ModalSize Size { get; set; }
+    [Parameter] public ModalSize Size { get; set; }
 
     private string SizeClass => Size switch
     {
@@ -65,7 +59,7 @@
 
     private FlowbiteComponent? Component { get; set; }
 
-    private async Task Show()
+    public async Task Show()
     {
         if (Component?.JsObject == null) return;
 
@@ -79,4 +73,5 @@
 
         await Component.JsObject.InvokeVoidAsync("hide");
     }
+
 }

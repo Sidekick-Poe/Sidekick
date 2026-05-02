@@ -28,7 +28,7 @@ public class BrowserProvider(ILogger<BrowserProvider> logger, IServiceProvider s
         {
             logger.LogError(ex, "[Browser] Failed to open URL: {uri}", uri.AbsoluteUri);
             var dialogs = serviceProvider.GetService<ISidekickDialogs>();
-            dialogs?.OpenOkModal("Failed to open URL: " + uri.AbsoluteUri);
+            dialogs?.OpenOkDialog("Failed to open URL: " + uri.AbsoluteUri);
         }
     }
 }

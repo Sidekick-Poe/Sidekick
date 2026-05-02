@@ -11,7 +11,7 @@ public class ViewPreferenceService
     ISettingsService settingsService
 ) : IViewPreferenceService
 {
-    public async Task<ViewPreference?> Get(string? key)
+    public async Task<ViewPreference?> Get()
     {
         if (string.IsNullOrEmpty(key))
         {

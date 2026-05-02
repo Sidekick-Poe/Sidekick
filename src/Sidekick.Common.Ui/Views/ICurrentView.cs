@@ -7,7 +7,7 @@ public interface ICurrentView
 {
     public const int DialogWidth = 400;
     public const int DialogHeight = 220;
-    
+
     /// <summary>
     /// An event that is triggered when a view is updated with specific options.
     /// </summary>
@@ -38,12 +38,19 @@ public interface ICurrentView
     /// </summary>
     event Action? DragStopped;
 
+    /// <summary>
+    /// An event that is triggered when the always on top state of the view changes.
+    /// </summary>
+    event Action? AlwaysOnTopChanged;
+
     int? Width { get; }
-    
+
     int? Height { get; }
-    
+
+    bool AlwaysOnTop { get; }
+
     void UpdateOptions(int? width, int? height);
-    
+
     /// <summary>
     /// Minimizes the view.
     /// </summary>
@@ -53,6 +60,11 @@ public interface ICurrentView
     /// Maximizes the view.
     /// </summary>
     void Maximize();
+
+    /// <summary>
+    /// Sets the always on top state of the view.
+    /// </summary>
+    void SetAlwaysOnTop(bool value);
 
     /// <summary>
     /// Closes the view.
