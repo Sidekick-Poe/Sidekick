@@ -19,5 +19,7 @@ public static class SidekickApplicationTypeExtensions
 
     public static bool SupportsAuthentication(this SidekickApplicationType type) => type == SidekickApplicationType.Wpf || type == SidekickApplicationType.Maui || type == SidekickApplicationType.Avalonia;
 
+    public static bool SupportsDesktop(this SidekickApplicationType type) => type is SidekickApplicationType.Wpf or SidekickApplicationType.Photino or SidekickApplicationType.Electron or SidekickApplicationType.Maui or SidekickApplicationType.Avalonia;
+
     public static bool SupportsHardwareAcceleration(this SidekickApplicationType type) => type == SidekickApplicationType.Wpf || type == SidekickApplicationType.Maui || type == SidekickApplicationType.Avalonia;
 }

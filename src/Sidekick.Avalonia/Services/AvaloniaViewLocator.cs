@@ -2,13 +2,12 @@ using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Threading;
 using Microsoft.Extensions.Logging;
-using Sidekick.AvaloniaServer;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia.Services;
 
-public class AvaloniaViewLocator : IViewLocator, IAvaloniaWindowHost, IDisposable
+public class AvaloniaViewLocator : IViewLocator, IDisposable
 {
     private readonly ILogger<AvaloniaViewLocator> logger;
     private readonly IUiLanguageProvider uiLanguageProvider;
@@ -39,10 +38,6 @@ public class AvaloniaViewLocator : IViewLocator, IAvaloniaWindowHost, IDisposabl
             logger.LogWarning(e, "Error while trying to set culture info.");
         }
     }
-
-    public bool SupportsMinimize => true;
-
-    public bool SupportsMaximize => true;
 
     private Dictionary<SidekickViewType, MainWindow> Windows { get; } = [];
 

@@ -1,4 +1,5 @@
 using ApexCharts;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe.Account;
@@ -26,27 +27,27 @@ using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Updater;
 using Sidekick.Modules.Wealth;
+using Sidekick.Web.Services;
 
-namespace Sidekick.AvaloniaServer;
+namespace Sidekick.Web;
 
 /// <summary>
 /// Manages the embedded Blazor Server application for Avalonia desktop host.
 /// Runs on localhost:5000 and serves Blazor components.
 /// </summary>
-public class ServerAppHost : IDisposable
+public class ServerAppHost(SidekickApplicationType applicationType) : IDisposable
 {
     private WebApplication? app;
     private Task? runTask;
     private bool disposed;
 
-    /// <summary>
-    /// Initializes the Blazor Server application with all required services.
-    /// </summary>
-    public IServiceProvider? ServerServices => app?.Services;
+    public WebApplication Application => app ?? throw new InvalidOperationException("Server application has not been started.");
 
-    public async Task StartAsync(IApplicationService applicationService, IViewLocator viewLocator)
+    public Task StartAsync(
+        string? url = null,
+        Action<IServiceCollection>? configureServices = null)
     {
-        if (app != null) return;
+        if (app != null) return Task.CompletedTask;
 
         try
         {
@@ -60,6 +61,8 @@ public class ServerAppHost : IDisposable
 
             #region Services
 
+            configureServices?.Invoke(builder.Services);
+
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddHttpClient();
@@ -68,7 +71,7 @@ public class ServerAppHost : IDisposable
             builder.Services
 
                 // Common
-                .AddSidekickCommon(SidekickApplicationType.Avalonia)
+                .AddSidekickCommon(applicationType)
                 .AddSidekickCommonBrowser()
                 .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
                 .AddSidekickCommonUi()
@@ -101,14 +104,17 @@ public class ServerAppHost : IDisposable
                 .AddSidekickWealth();
 
             builder.Services.AddApexCharts();
-            builder.Services.AddSingleton<IApplicationService>(_ => applicationService);
-            builder.Services.AddSingleton<IViewLocator>(_ => viewLocator);
+            builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
+            builder.Services.TryAddSingleton<IViewLocator, WebViewLocator>();
+            builder.Services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
 
             #endregion Services
 
             app = builder.Build();
 
             #region Pipeline
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseStaticFiles();
             app.UseRouting();
@@ -119,10 +125,8 @@ public class ServerAppHost : IDisposable
             #endregion Pipeline
 
             // Start the server without blocking
-            runTask = app.RunAsync("http://localhost:5000");
-
-            // Give server a moment to start
-            await Task.Delay(500);
+            runTask = app.RunAsync(url);
+            return runTask;
         }
         catch (Exception ex)
         {
@@ -134,7 +138,7 @@ public class ServerAppHost : IDisposable
     /// <summary>
     /// Gracefully stops the Blazor Server application.
     /// </summary>
-    public async Task StopAsync()
+    private async Task StopAsync()
     {
         if (app == null) return;
 

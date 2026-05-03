@@ -8,7 +8,7 @@ using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia;
 
-public class App : Application
+public partial class App : Application
 {
     private ILogger<App>? logger;
 

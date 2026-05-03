@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
@@ -20,10 +21,10 @@ public static class ServiceCollectionExtensions
     {
         _applicationType = applicationType;
 
-        services.AddSingleton<IBrowserProvider, BrowserProvider>();
-        services.AddSingleton<ICacheProvider, CacheProvider>();
-        services.AddSingleton<IFolderProvider, FolderProvider>();
-        services.AddSingleton<ISettingsService, SettingsService>();
+        services.TryAddSingleton<IBrowserProvider, BrowserProvider>();
+        services.TryAddSingleton<ICacheProvider, CacheProvider>();
+        services.TryAddSingleton<IFolderProvider, FolderProvider>();
+        services.TryAddSingleton<ISettingsService, SettingsService>();
 
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
@@ -46,13 +47,11 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <param name="assembly">The assembly of the module.</param>
-    /// <returns>The service collection.</returns>
-    public static IServiceCollection AddSidekickModule(
+    public static void AddSidekickModule(
         this IServiceCollection services,
         Assembly assembly)
     {
         services.Configure<SidekickConfiguration>(configuration => { configuration.Modules.Add(assembly); });
-        return services;
     }
 
     /// <summary>
@@ -62,29 +61,27 @@ public static class ServiceCollectionExtensions
     /// <typeparam name="TService">The type of service to add to the application.</typeparam>
     /// <typeparam name="TImplementation">The type of the implementation of the service.</typeparam>
     /// <returns>The service collection.</returns>
-    public static IServiceCollection AddSidekickInitializableService<TService, TImplementation>(
+    public static void AddSidekickInitializableService<TService, TImplementation>(
         this IServiceCollection services)
         where TService : class, IInitializableService
         where TImplementation : class, TService
     {
-        services.AddSingleton<TService, TImplementation>();
+        services.TryAddSingleton<TService, TImplementation>();
         services.Configure<SidekickConfiguration>(configuration =>
         {
             configuration.InitializableServices.Add(typeof(TService));
         });
-        return services;
     }
 
-    public static IServiceCollection AddSidekickInitializableService<TService>(
+    public static void AddSidekickInitializableService<TService>(
         this IServiceCollection services)
         where TService : class, IInitializableService
     {
-        services.AddSingleton<TService>();
+        services.TryAddSingleton<TService>();
         services.Configure<SidekickConfiguration>(configuration =>
         {
             configuration.InitializableServices.Add(typeof(TService));
         });
-        return services;
     }
 
     /// <summary>
@@ -92,8 +89,7 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <typeparam name="TInputHandler">The type of the input handler.</typeparam>
     /// <param name="services">The service collection to add the input handler to</param>
-    /// <returns>The service collection</returns>
-    public static IServiceCollection AddSidekickInputHandler<TInputHandler>(this IServiceCollection services)
+    public static void AddSidekickInputHandler<TInputHandler>(this IServiceCollection services)
         where TInputHandler : class, IInputHandler
     {
         services.Configure<SidekickConfiguration>(configuration =>
@@ -106,13 +102,12 @@ public static class ServiceCollectionExtensions
 
         if (_applicationType.SupportsKeybinds())
         {
-            services.AddSingleton<TInputHandler>();
+            services.TryAddSingleton<TInputHandler>();
         }
-
-        return services;
     }
 
-    public static IServiceCollection SetSidekickDefaultSetting(this IServiceCollection services, string key,
+    public static void SetSidekickDefaultSetting(this IServiceCollection services,
+        string key,
         object value)
     {
         services.Configure<SidekickConfiguration>(configuration =>
@@ -122,7 +117,5 @@ public static class ServiceCollectionExtensions
                 configuration.DefaultSettings[key] = value;
             }
         });
-
-        return services;
     }
 }

@@ -1,4 +1,6 @@
-@if (!ViewLocator.SupportsMaximize)
+@using Microsoft.Extensions.Options
+
+@if (!Configuration.Value.ApplicationType.SupportsDesktop())
 {
     return;
 }
@@ -15,7 +17,7 @@
     </svg>
 </button>
 
-@inject IViewLocator ViewLocator
+@inject IOptions<SidekickConfiguration> Configuration
 @inject ICurrentView CurrentView
 
 @code {

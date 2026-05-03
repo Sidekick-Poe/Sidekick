@@ -37,10 +37,6 @@ public class WpfViewLocator : IViewLocator, IDisposable
         }
     }
 
-    public bool SupportsMinimize => true;
-
-    public bool SupportsMaximize => true;
-
     private Dictionary<SidekickViewType, MainWindow> Windows { get; } = [];
 
     public void Open(SidekickViewType type, string url)

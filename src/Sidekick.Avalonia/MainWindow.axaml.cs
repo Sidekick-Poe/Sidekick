@@ -31,7 +31,7 @@ public partial class MainWindow : Window, IDisposable
     {
         logger.LogInformation($"[MainWindow] Opening view: {url}");
 
-        var fullUrl = url.StartsWith("http") ? url : $"http://localhost:5000{url}";
+        var fullUrl = url.StartsWith("http") ? url : $"https://localhost:8081{url}";
 
         WebView.IsVisible = true;
         WebView.Navigate(new Uri(fullUrl));
@@ -83,9 +83,8 @@ public partial class MainWindow : Window, IDisposable
         }
 
         // Try to get settings from the Blazor server container (not the host container)
-        var serverServices = Program.ServerAppHost?.ServerServices;
-        var settingsService = serverServices?.GetService<ISettingsService>();
-        var viewPreferenceService = serverServices?.GetService<IViewPreferenceService>();
+        var settingsService = Program.ServiceProvider.GetService<ISettingsService>();
+        var viewPreferenceService = Program.ServiceProvider.GetService<IViewPreferenceService>();
 
         var zoom = 1.0;
         if (settingsService != null)
@@ -142,7 +141,7 @@ public partial class MainWindow : Window, IDisposable
 
         try
         {
-            var viewPreferenceService = Program.ServerAppHost?.ServerServices?.GetService<IViewPreferenceService>();
+            var viewPreferenceService = Program.ServiceProvider.GetService<IViewPreferenceService>();
             if (viewPreferenceService == null) return;
 
             await viewPreferenceService.Set(ViewType.ToString(), (int)Width, (int)Height, Position.X, Position.Y);

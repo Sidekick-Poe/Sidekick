@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Enums;
@@ -29,8 +30,8 @@ public static class StartupExtensions
         services.AddSidekickInputHandler<OpenInCraftOfExileHandler>();
         services.AddSidekickInputHandler<MouseWheelHandler>();
 
-        services.AddTransient<InitializationResources>();
-        services.AddTransient<SettingsResources>();
+        services.TryAddTransient<InitializationResources>();
+        services.TryAddTransient<SettingsResources>();
 
         services.SetSidekickDefaultSetting(SettingKeys.KeyClose, "Space");
         services.SetSidekickDefaultSetting(SettingKeys.KeyOpenWiki, "Alt+W");

@@ -4,12 +4,6 @@ namespace Sidekick.Web.Services;
 
 public class WebViewLocator : IViewLocator
 {
-    /// <inheritdoc />
-    public bool SupportsMinimize => false;
-
-    /// <inheritdoc />
-    public bool SupportsMaximize => false;
-
     public List<SidekickWebWrapper> Views { get; } = [];
 
     public void Open(SidekickViewType type, string url)

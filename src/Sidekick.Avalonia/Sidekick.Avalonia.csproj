@@ -22,11 +22,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sidekick.AvaloniaServer\Sidekick.AvaloniaServer.csproj"/>
     <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj"/>
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj"/>
     <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj"/>
     <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
+    <ProjectReference Include="..\Sidekick.Web\Sidekick.Web.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
