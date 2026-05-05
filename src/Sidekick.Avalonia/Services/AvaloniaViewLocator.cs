@@ -71,7 +71,7 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
         if (window != null) return window;
         if (!create) return null;
 
-        window = new MainWindow(type, logger);
+        window = new MainWindow(type);
         Windows.Add(type, window);
         return window;
     }

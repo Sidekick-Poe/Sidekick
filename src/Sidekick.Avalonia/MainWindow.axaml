@@ -8,6 +8,6 @@
         WindowDecorations="None"
         WindowStartupLocation="CenterScreen">
     <Grid Name="Grid">
-        <NativeWebView Name="WebView" IsVisible="False" />
+        <NativeWebView Name="WebView" />
     </Grid>
 </Window>

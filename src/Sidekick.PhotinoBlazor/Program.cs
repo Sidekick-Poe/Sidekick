@@ -104,11 +104,7 @@ public class Program
             .AddSidekickWealth()
 
             // Platform needs to be at the end
-            .AddSidekickCommonPlatform(o =>
-            {
-                o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-                o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-            })
+            .AddSidekickCommonPlatform()
 
             // Photino.Blazor
             .AddScoped(sp => new HttpClient(new PhotinoHttpHandler(sp.GetService<PhotinoBlazorApp>())) { BaseAddress = new Uri(PhotinoWebViewManager.AppBaseUri) })

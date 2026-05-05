@@ -2,25 +2,12 @@
 @using Sidekick.Common.Platform
 
 <AppWrapper>
-    <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="Configuration.Value.Modules">
+    <Router AppAssembly="@typeof(Main).Assembly"
+            AdditionalAssemblies="Configuration.Value.Modules"
+            NotFoundPage="typeof(NotFound)">
         <Found Context="routeData">
             <RouteView RouteData="@routeData"/>
         </Found>
-        <NotFound>
-            <LayoutView>
-                <LayoutSimple>
-                    <TopContent>
-                        <AppLogo/>
-                    </TopContent>
-
-                    <ChildContent>
-                        <AlertError>
-                            <TextBase Class="text-center">Page not found.</TextBase>
-                        </AlertError>
-                    </ChildContent>
-                </LayoutSimple>
-            </LayoutView>
-        </NotFound>
     </Router>
 </AppWrapper>
 
@@ -29,6 +16,7 @@
 @inject NavigationManager NavigationManager
 
 @code {
+
     protected override async Task OnInitializedAsync()
     {
         if (!ApplicationService.HasInitialized)
@@ -42,4 +30,5 @@
 
         await base.OnInitializedAsync();
     }
+
 }

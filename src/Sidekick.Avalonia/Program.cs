@@ -1,6 +1,7 @@
 using Avalonia;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MsBox.Avalonia;
 using Sidekick.Common;
 using Sidekick.Web;
 using Velopack;
@@ -9,13 +10,13 @@ namespace Sidekick.Avalonia;
 
 internal class Program
 {
-    public static IServiceProvider ServiceProvider =>
-        ServerAppHost?.Application.Services ?? throw new Exception("ServerAppHost is null");
+    // public static IServiceProvider ServiceProvider =>
+    //     ServerAppHost?.Application.Services ?? throw new Exception("ServerAppHost is null");
 
     private static ServerAppHost? ServerAppHost { get; set; }
 
     [STAThread]
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         try
         {
@@ -30,11 +31,12 @@ internal class Program
                     configureServices: services =>
                     {
                         services.AddLogging(builder => { builder.AddConsole(); });
+                        ;
                     })
                 .Wait(TimeSpan.FromSeconds(5));
 
-            var logger = ServiceProvider.GetService<ILogger<Program>>();
-            logger?.LogInformation("[Program] Blazor Server started successfully on localhost:5000");
+            // var logger = ServiceProvider.GetService<ILogger<Program>>();
+            // logger?.LogInformation("[Program] Blazor Server started successfully on localhost:5000");
 
             AppBuilder.Configure<App>()
                 .UsePlatformDetect()
@@ -47,8 +49,10 @@ internal class Program
         }
         catch (Exception ex)
         {
-            var logger = ServiceProvider.GetService<ILogger<Program>>();
-            logger?.LogCritical(ex, "[Program] Unhandled exception.");
+            var exceptionMessage = $"Sidekick encountered an unhandled exception: {ex}";
+            exceptionMessage = exceptionMessage.Length > 3000 ? exceptionMessage[..3000] + "..." : exceptionMessage;
+            var box = MessageBoxManager.GetMessageBoxStandard("Sidekick", exceptionMessage);
+            await box.ShowAsync();
         }
         finally
         {

@@ -1,0 +1,26 @@
+﻿@using Sidekick.Common.Ui
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sidekick</title>
+    <base href="/"/>
+    <ResourcePreloader/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="@Assets["_content/Sidekick.Common.Ui/css/sidekick.css"]" rel="stylesheet"/>
+    <ImportMap/>
+    <link rel="apple-touch-icon" sizes="180x180" href="@Assets["_content/Sidekick.Common.Ui/apple-touch-icon.png"]">
+    <link rel="icon" type="image/png" sizes="32x32" href="@Assets["_content/Sidekick.Common.Ui/favicon-32x32.png"]">
+    <link rel="icon" type="image/png" sizes="16x16" href="@Assets["_content/Sidekick.Common.Ui/favicon-16x16.png"]">
+    <link rel="manifest" href="@Assets["_content/Sidekick.Common.Ui/site.webmanifest"]">
+    <HeadOutlet @rendermode="@InteractiveServer"/>
+</head>
+<body class="dark bg-stone-800">
+<Main @rendermode="@InteractiveServer"/>
+
+<script src="@Assets["_framework/blazor.web.js"]"></script>
+<script src="@Assets["_content/Sidekick.Common.Ui/js/sidekick.js"]"></script>
+</body>
+</html>

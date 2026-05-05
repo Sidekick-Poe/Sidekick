@@ -113,6 +113,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.AvaloniaServer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication1", "AvaloniaApplication1\AvaloniaApplication1.csproj", "{B7486A3B-00AE-4CD2-A0A8-288CD76C171D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{093FB37B-40C5-4624-AC7D-DF4D93B59889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -993,6 +995,30 @@ Global
 		{B7486A3B-00AE-4CD2-A0A8-288CD76C171D}.Release|x64.Build.0 = Release|Any CPU
 		{B7486A3B-00AE-4CD2-A0A8-288CD76C171D}.Release|x86.ActiveCfg = Release|Any CPU
 		{B7486A3B-00AE-4CD2-A0A8-288CD76C171D}.Release|x86.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Debug|x64.Build.0 = Debug|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Debug|x86.Build.0 = Debug|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Debug|Any CPU.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Debug|x64.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Debug|x64.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Debug|x86.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Debug|x86.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Release|x64.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Release|x64.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Release|x86.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Linux-Release|x86.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Release|x64.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Release|x64.Build.0 = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Release|x86.ActiveCfg = Release|Any CPU
+		{093FB37B-40C5-4624-AC7D-DF4D93B59889}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

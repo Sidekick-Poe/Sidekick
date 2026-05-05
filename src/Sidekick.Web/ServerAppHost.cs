@@ -1,5 +1,12 @@
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using ApexCharts;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe.Account;
@@ -27,112 +34,116 @@ using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Updater;
 using Sidekick.Modules.Wealth;
+using Sidekick.Web.Components;
 using Sidekick.Web.Services;
 
 namespace Sidekick.Web;
 
-/// <summary>
-/// Manages the embedded Blazor Server application for Avalonia desktop host.
-/// Runs on localhost:5000 and serves Blazor components.
-/// </summary>
 public class ServerAppHost(SidekickApplicationType applicationType) : IDisposable
 {
+    public const int Port = 5000;
     private WebApplication? app;
     private Task? runTask;
     private bool disposed;
 
-    public WebApplication Application => app ?? throw new InvalidOperationException("Server application has not been started.");
+    public WebApplication Application =>
+        app ?? throw new InvalidOperationException("Server application has not been started.");
 
-    public Task StartAsync(
-        string? url = null,
-        Action<IServiceCollection>? configureServices = null)
+    public Task Start(
+        Action<IServiceCollection>? configureServices = null,
+        CancellationToken cancellationToken = default)
     {
-        if (app != null) return Task.CompletedTask;
-
-        try
+        var assemblyName = typeof(ServerAppHost).Assembly.GetName().Name;
+        var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
-            var builder = WebApplication.CreateBuilder(new WebApplicationOptions
-            {
-                Args = [],
-                ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
-            });
+            ApplicationName = assemblyName,
+            Args = [],
+            ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
+        });
 
-            builder.WebHost.UseStaticWebAssets();
+        // builder.WebHost.ConfigureKestrel((_, serverOptions) => serverOptions.Listen(IPAddress.Any, Port));
+        // builder.WebHost.UseStaticWebAssets();
 
-            #region Services
+        #region Services
 
-            configureServices?.Invoke(builder.Services);
+        configureServices?.Invoke(builder.Services);
 
-            builder.Services.AddRazorPages();
-            builder.Services.AddServerSideBlazor();
-            builder.Services.AddHttpClient();
-            builder.Services.AddLocalization();
+        builder.Services.AddRazorComponents()
+            .AddInteractiveServerComponents();
+        builder.Services.AddHttpClient();
+        builder.Services.AddLocalization();
 
-            builder.Services
+        builder.Services
 
-                // Common
-                .AddSidekickCommon(applicationType)
-                .AddSidekickCommonBrowser()
-                .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-                .AddSidekickCommonUi()
+            // Common
+            .AddSidekickCommon(applicationType)
+            .AddSidekickCommonBrowser()
+            .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickCommonUi()
 
-                // Data
-                .AddSidekickData()
-                .AddSidekickDataBuilder()
+            // Data
+            .AddSidekickData()
+            .AddSidekickDataBuilder()
 
-                // Apis
-                .AddSidekickGitHubApi()
-                .AddSidekickCommonApi()
-                .AddSidekickPoeAccountApi()
-                .AddSidekickPoeTradeApi()
-                .AddSidekickPoeNinjaApi()
-                .AddSidekickPoe2ScoutApi()
-                .AddSidekickPoePriceInfoApi()
-                .AddSidekickPoeDbApi()
-                .AddSidekickPoeWikiApi()
+            // Apis
+            .AddSidekickGitHubApi()
+            .AddSidekickCommonApi()
+            .AddSidekickPoeAccountApi()
+            .AddSidekickPoeTradeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoe2ScoutApi()
+            .AddSidekickPoePriceInfoApi()
+            .AddSidekickPoeDbApi()
+            .AddSidekickPoeWikiApi()
 
-                // Modules
-                .AddSidekickAbout()
-                .AddSidekickModuleData()
-                .AddSidekickDevelopment()
-                .AddSidekickGeneral()
-                .AddSidekickItems()
-                .AddSidekickLogs()
-                .AddSidekickChat()
-                .AddSidekickRegexHotkeys()
-                .AddSidekickUpdater()
-                .AddSidekickWealth();
+            // Modules
+            .AddSidekickAbout()
+            .AddSidekickModuleData()
+            .AddSidekickDevelopment()
+            .AddSidekickGeneral()
+            .AddSidekickItems()
+            .AddSidekickLogs()
+            .AddSidekickChat()
+            .AddSidekickRegexHotkeys()
+            .AddSidekickUpdater()
+            .AddSidekickWealth()
 
-            builder.Services.AddApexCharts();
-            builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
-            builder.Services.TryAddSingleton<IViewLocator, WebViewLocator>();
-            builder.Services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
+            // Platform needs to be at the end
+            .AddSidekickCommonPlatform();
 
-            #endregion Services
+        builder.Services.AddApexCharts();
+        builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
+        builder.Services.TryAddSingleton<IViewLocator, WebViewLocator>();
+        builder.Services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
 
-            app = builder.Build();
+        #endregion Services
 
-            #region Pipeline
+        app = builder.Build();
 
-            app.UseMiddleware<ExceptionHandlingMiddleware>();
+        #region Pipeline
 
-            app.UseStaticFiles();
-            app.UseRouting();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+        app.UseAntiforgery();
 
-            app.MapBlazorHub();
-            app.MapFallbackToPage("/_Host");
+        // Use an embedded file provider to serve static files from the assembly's wwwroot folder
+        // app.UseStaticFiles(new StaticFileOptions
+        // {
+        //     FileProvider = new EmbeddedFileProvider(
+        //         typeof(ServerAppHost).Assembly,
+        //         $"{assemblyName}.wwwroot"
+        //     )
+        // });
+        app.MapStaticAssets();
 
-            #endregion Pipeline
+        var razorApp = app.MapRazorComponents<App>()
+            .AddInteractiveServerRenderMode();
+        var configuration = app.Services.GetRequiredService<IOptions<SidekickConfiguration>>();
+        razorApp.AddAdditionalAssemblies(configuration.Value.Modules.ToArray());
 
-            // Start the server without blocking
-            runTask = app.RunAsync(url);
-            return runTask;
-        }
-        catch (Exception ex)
-        {
-            System.Diagnostics.Debug.WriteLine($"[ServerAppHost] Failed to start: {ex}");
-            throw;
-        }
+        #endregion Pipeline
+
+        app.StartAsync(cancellationToken);
+        return app.WaitForShutdownAsync(cancellationToken);
     }
 
     /// <summary>

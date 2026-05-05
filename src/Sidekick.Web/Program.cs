@@ -6,7 +6,7 @@ using Velopack;
 VelopackApp.Build().Run();
 
 var host = new ServerAppHost(SidekickApplicationType.Web);
-var runTask = host.StartAsync();
+var runTask = host.Start();
 
 // Open the browser
 var applicationLifetime = host.Application.Services.GetRequiredService<IHostApplicationLifetime>();

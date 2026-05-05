@@ -6,14 +6,15 @@
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <FileVersion>1.0.0.0</FileVersion>
         <InformationalVersion>1.0.0.0</InformationalVersion>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <AssemblyName>Sidekick</AssemblyName>
+        <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
         <ApplicationIcon>favicon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
         <ProjectReference Include="..\Sidekick.Modules.About\Sidekick.Modules.About.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
         <ProjectReference Include="..\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj"/>
@@ -26,17 +27,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Update="wwwroot\**">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
+      <_ContentIncludedByDefault Remove="Components\Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Error.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Weather.razor" />
     </ItemGroup>
-
-    <Target Name="Copywwwroot" BeforeTargets="Build">
-        <ItemGroup>
-            <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*"/>
-        </ItemGroup>
-        <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)"/>
-    </Target>
 
     <Target Name="CopyData" BeforeTargets="Build">
         <RemoveDir Directories="$(ProjectDir)wwwroot\data" />

@@ -175,6 +175,8 @@ public class KeyboardProvider
     /// <inheritdoc/>
     public Task Initialize()
     {
+        if (Debugger.IsAttached || !configuration.Value.ApplicationType.SupportsKeybinds()) return Task.CompletedTask;
+
         // Add missing key codes that were not manually curated.
         // We strip the first two characters of the label as all KeyCodes start with 'Vc', and we can strip that part.
         foreach (var keyCode in Enum.GetValues(typeof(KeyCode)))
@@ -183,11 +185,6 @@ public class KeyboardProvider
             {
                 KeyMappings.Add((KeyCode)keyCode, ((KeyCode)keyCode).ToString().Substring(2));
             }
-        }
-
-        if (Debugger.IsAttached)
-        {
-            return Task.CompletedTask;
         }
 
         RegisterHooks();
