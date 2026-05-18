@@ -1,10 +1,11 @@
 using Sidekick.Common.Ui.Views;
+using Sidekick.Web.Components;
 
 namespace Sidekick.Web.Services;
 
 public class WebViewLocator : IViewLocator
 {
-    public List<SidekickWebWrapper> Views { get; } = [];
+    public List<App> Views { get; } = [];
 
     public void Open(SidekickViewType type, string url)
     {

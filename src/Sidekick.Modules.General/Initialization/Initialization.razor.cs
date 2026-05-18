@@ -57,7 +57,6 @@ public partial class Initialization
     {
         InitializationTask = Handle();
         await base.OnInitializedAsync();
-        await InitializationTask;
     }
 
     public async Task Handle()

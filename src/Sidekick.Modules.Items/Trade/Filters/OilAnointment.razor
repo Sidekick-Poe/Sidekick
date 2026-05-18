@@ -14,7 +14,7 @@
     @foreach (var oilName in OilNames)
     {
         <Tooltip Text="@oilName">
-            <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="size-8 min-w-8 min-h-8" alt="@oilName"/>
+            <img src="@Assets[$"_content/Sidekick.Common.Ui/images/blight/{(oilName.Replace(" ", "_"))}.png"]" class="size-8 min-w-8 min-h-8" alt="@oilName"/>
         </Tooltip>
     }
 </div>

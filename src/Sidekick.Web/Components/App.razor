@@ -1,4 +1,6 @@
-﻿@using Sidekick.Common.Ui
+﻿@using Sidekick.Web.Services
+
+@using Sidekick.Common.Ui.Views
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +20,38 @@
     <HeadOutlet @rendermode="@InteractiveServer"/>
 </head>
 <body class="dark bg-stone-800">
-<Main @rendermode="@InteractiveServer"/>
+<Sidekick.Common.Ui.Main @rendermode="@InteractiveServer"/>
 
 <script src="@Assets["_framework/blazor.web.js"]"></script>
 <script src="@Assets["_content/Sidekick.Common.Ui/js/sidekick.js"]"></script>
 </body>
 </html>
+
+@inject ICurrentView CurrentView
+@inject WebViewLocator ViewLocator
+@implements IDisposable
+
+@code {
+
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ViewLocator.Views.Add(this);
+        CurrentView.Closed += CurrentViewClosed;
+
+        base.OnInitialized();
+    }
+
+    private void CurrentViewClosed()
+    {
+        NavigationManager.NavigateTo("/home");
+    }
+
+    public void Dispose()
+    {
+        ViewLocator.Views.Remove(this);
+        CurrentView.Closed -= CurrentViewClosed;
+    }
+
+}

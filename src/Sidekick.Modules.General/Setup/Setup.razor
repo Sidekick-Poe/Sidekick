@@ -1,8 +1,10 @@
 @page "/setup"
 @using System.Text.Json
 @using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Logging
 @using Sidekick.Apis.Poe.Trade.Leagues
 @using Sidekick.Common.Cache
+@using Sidekick.Common.Exceptions
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
@@ -21,7 +23,13 @@
     </TopContent>
 
     <ChildContent>
-        @if (RequiresSetup)
+        @if (Exception != null)
+        {
+            <AppContainer>
+                <AlertException Exception="Exception"/>
+            </AppContainer>
+        }
+        else if (RequiresSetup)
         {
             if (NewLeagues)
             {
@@ -81,6 +89,7 @@
 @inject IStringLocalizer<Setup> Resources
 @inject NavigationManager NavigationManager
 @inject ICurrentView CurrentView
+@inject ILogger<Setup> Logger
 
 @code {
 
@@ -90,36 +99,57 @@
 
     private bool FormInvalid { get; set; }
 
+    private SidekickException? Exception { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        var leagues = await LeagueProvider.GetList(false);
-        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
-        var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
-        if (apiLeaguesHash != settingsLeaguesHash)
-        {
-            NewLeagues = true;
-            await CacheProvider.Clear();
-        }
+        _ = Check();
+        await base.OnInitializedAsync();
+    }
 
-        // Check to see if we should run Setup first before running the rest of the initialization process
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
-        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Value != leagueId) || NewLeagues || parserLanguage == null)
+    public async Task Check()
+    {
+        try
         {
-            RequiresSetup = true;
-        }
-        else
-        {
-            var silentStart = await SettingsService.GetBool(SettingKeys.SilentStart);
-            if (silentStart)
+            var leagues = await LeagueProvider.GetList(false);
+            var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
+            var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
+            if (apiLeaguesHash != settingsLeaguesHash)
             {
-                CurrentView.Close();
+                NewLeagues = true;
+                await CacheProvider.Clear();
             }
 
-            NavigationManager.NavigateTo("/initialize");
+            // Check to see if we should run Setup first before running the rest of the initialization process
+            var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+            var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
+            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Value != leagueId) || NewLeagues || parserLanguage == null)
+            {
+                RequiresSetup = true;
+            }
+            else
+            {
+                var silentStart = await SettingsService.GetBool(SettingKeys.SilentStart);
+                if (silentStart)
+                {
+                    CurrentView.Close();
+                }
+
+                NavigationManager.NavigateTo("/initialize");
+            }
+        }
+        catch (SidekickException e)
+        {
+            Exception = e;
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            Exception = new SidekickException(e.Message);
+            Logger.LogError(e, "[Setup] Error while checking for setup.");
+            StateHasChanged();
         }
 
-        await base.OnInitializedAsync();
     }
 
     public void Exit()
