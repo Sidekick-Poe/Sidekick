@@ -1,11 +1,5 @@
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
 using ApexCharts;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
@@ -60,9 +54,6 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
             Args = [],
             ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
         });
-
-        // builder.WebHost.ConfigureKestrel((_, serverOptions) => serverOptions.Listen(IPAddress.Any, Port));
-        // builder.WebHost.UseStaticWebAssets();
 
         #region Services
 
@@ -124,15 +115,6 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseAntiforgery();
-
-        // Use an embedded file provider to serve static files from the assembly's wwwroot folder
-        // app.UseStaticFiles(new StaticFileOptions
-        // {
-        //     FileProvider = new EmbeddedFileProvider(
-        //         typeof(ServerAppHost).Assembly,
-        //         $"{assemblyName}.wwwroot"
-        //     )
-        // });
         app.MapStaticAssets();
 
         var razorApp = app.MapRazorComponents<App>()
@@ -142,14 +124,14 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
 
         #endregion Pipeline
 
-        app.StartAsync(cancellationToken);
+        runTask = app.StartAsync(cancellationToken);
         return app.WaitForShutdownAsync(cancellationToken);
     }
 
     /// <summary>
     /// Gracefully stops the Blazor Server application.
     /// </summary>
-    private async Task StopAsync()
+    private async Task Stop()
     {
         if (app == null) return;
 
@@ -176,7 +158,7 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
 
         try
         {
-            StopAsync().Wait(TimeSpan.FromSeconds(5));
+            Stop().Wait(TimeSpan.FromSeconds(5));
         }
         catch
         {

@@ -26,13 +26,6 @@
         <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Components\Pages\Counter.razor" />
-      <_ContentIncludedByDefault Remove="Components\Pages\Error.razor" />
-      <_ContentIncludedByDefault Remove="Components\Pages\Home.razor" />
-      <_ContentIncludedByDefault Remove="Components\Pages\Weather.razor" />
-    </ItemGroup>
-
     <Target Name="CopyData" BeforeTargets="Build">
         <RemoveDir Directories="$(ProjectDir)wwwroot\data" />
         <MakeDir Directories="$(ProjectDir)wwwroot\data" />

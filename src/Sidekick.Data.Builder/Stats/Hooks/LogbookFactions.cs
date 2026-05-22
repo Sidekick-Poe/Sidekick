@@ -6,7 +6,7 @@ public class LogbookFactions(StatBuilderContext context) : BaseHook
     public override void OnAfterTradeBuild(List<StatDefinition> definitions)
     {
         var patterns = (from definition in definitions.Where(x => x.TradeStats != null)
-            from tradeStat in definition.TradeStats
+            from tradeStat in definition.TradeStats!
             where tradeStat.Category == StatCategory.Pseudo
             where context.InvariantDetails.LogbookFactionStatIds.Contains(tradeStat.Id)
             select definition);

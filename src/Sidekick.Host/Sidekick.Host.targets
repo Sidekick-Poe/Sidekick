@@ -1,0 +1,95 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <_CleanVNum>$(TargetFramework.Replace('net', ''))</_CleanVNum>
+        <_MajorV>$(_CleanVNum.Split('.')[0])</_MajorV>
+        <_InfraVersion Condition="'$(ManagePackageVersionsCentrally)' != 'true'">$(_MajorV).0.0-*</_InfraVersion>
+        <DotNetSharedPath Condition="'$(DotNetSharedPath)' == ''">C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App</DotNetSharedPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App.Internal.Assets" Version="$(_InfraVersion)" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="$(_InfraVersion)" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(_InfraVersion)" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="$(_InfraVersion)" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <HasRuntimeOutputMetadata>true</HasRuntimeOutputMetadata>
+        <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
+        <AddStaticWebAssetsToEmbeddedResources>true</AddStaticWebAssetsToEmbeddedResources>
+    </PropertyGroup>
+
+    <Target Name="InjectAspNetCoreReferences"
+            BeforeTargets="FindReferenceAssembliesForReferences;ResolveAssemblyReferences;BeforeCompile">
+
+        <ItemGroup>
+            <_PotentialFolders Include="$([System.IO.Directory]::GetDirectories('$(DotNetSharedPath)', '$(_MajorV).*'))" />
+        </ItemGroup>
+
+        <PropertyGroup>
+            <_SelectedDir>%(_PotentialFolders.Identity)</_SelectedDir>
+        </PropertyGroup>
+
+        <ItemGroup Condition="'$(_SelectedDir)' != ''">
+            <Reference Include="$(_SelectedDir)\*.dll">
+                <Private>True</Private>
+            </Reference>
+
+            <Reference Remove="$(_SelectedDir)\aspnetcorev2_inprocess.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.AspNetCore.Server.IIS.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.AspNetCore.Server.IISIntegration.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.AspNetCore.Components.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.AspNetCore.Components.Web.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.AspNetCore.Components.Forms.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.AspNetCore.Components.Routing.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.JSInterop.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.Extensions.DependencyInjection.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.Extensions.Logging.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.Extensions.Options.dll" />
+            <Reference Remove="$(_SelectedDir)\Microsoft.Extensions.Primitives.dll" />
+        </ItemGroup>
+
+        <Message Importance="high" Text="[AspNetCoreHack] Shared Project Injecting Framework $(_MajorV).x from: $(_SelectedDir)" />
+    </Target>
+
+    <ItemGroup>
+        <Content Remove="wwwroot\**"/>
+        <None Remove="wwwroot\**" />
+        <EmbeddedResource Include="wwwroot\**\*" />
+    </ItemGroup>
+
+    <Target Name="SyncAllAssetsToLocalWwwroot" AfterTargets="ResolveStaticWebAssetsInputs">
+        <ItemGroup>
+            <InternalPkgMetadata Include="@(PackageVersion)" Condition="'%(Identity)' == 'Microsoft.AspNetCore.App.Internal.Assets'"/>
+        </ItemGroup>
+        <PropertyGroup>
+            <InternalPkgVersion>%(InternalPkgMetadata.Version)</InternalPkgVersion>
+            <InternalPkgPath>$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\$(InternalPkgVersion)\_framework\</InternalPkgPath>
+        </PropertyGroup>
+        <ItemGroup>
+            <FrameworkFiles Include="$(InternalPkgPath)**\*.web.js"/>
+            <PackageAssets Include="@(StaticWebAsset)" Condition="'%(SourceType)' == 'Package' AND !$([System.String]::new('%(RelativePath)').StartsWith('_framework/'))"/>
+            <LocalAssets Include="@(StaticWebAsset)" Condition="'%(SourceType)' != 'Package' AND '%(SourceId)' == '$(MSBuildProjectName)'"/>
+            <ExternalStaticFiles Include="$(ProjectDir)StaticFiles\**\*.*"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(FrameworkFiles)" DestinationFolder="$(ProjectDir)wwwroot\_framework\%(RecursiveDir)" SkipUnchangedFiles="true" Condition="'$(InternalPkgVersion)' != ''"/>
+        <Copy SourceFiles="%(PackageAssets.FullPath)" DestinationFiles="$(ProjectDir)wwwroot\_content\%(PackageAssets.SourceId)\%(PackageAssets.RelativePath)" SkipUnchangedFiles="true"/>
+        <Copy SourceFiles="%(LocalAssets.FullPath)" DestinationFiles="$(ProjectDir)wwwroot\$([System.Text.RegularExpressions.Regex]::Replace('%(LocalAssets.RelativePath)', '(#\[\..*\]\?)', ''))" SkipUnchangedFiles="true" Condition="!$([System.String]::new('%(LocalAssets.FullPath)').StartsWith('$(ProjectDir)wwwroot'))"/>
+        <Copy SourceFiles="@(ExternalStaticFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" SkipUnchangedFiles="true"/>
+        <ItemGroup>
+            <ManifestFile Include="$(IntermediateOutputPath)*.staticwebassets.endpoints.json"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(ManifestFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true"/>
+        <Message Importance="high" Text="[Sync] Successfully synced Framework and NuGet assets to wwwroot."/>
+    </Target>
+
+    <Target Name="CleanSyncedAssets" BeforeTargets="Clean">
+        <ItemGroup>
+            <FoldersToClean Include="$(ProjectDir)wwwroot\_content;$(ProjectDir)wwwroot\_framework;$(ProjectDir)wwwroot\Components" />
+        </ItemGroup>
+        <RemoveDir Directories="@(FoldersToClean)" />
+        <Message Importance="high" Text="[Clean] Removed old generated content from wwwroot for $(MSBuildProjectName)"/>
+    </Target>
+
+</Project>

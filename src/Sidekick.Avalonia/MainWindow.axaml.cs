@@ -28,19 +28,19 @@ public partial class MainWindow : Window, IDisposable
         // logger.LogInformation($"[MainWindow] Initialized with view type: {viewType}");
     }
 
-    public async Task OpenView(string url)
-    {
-        // logger.LogInformation($"[MainWindow] Opening view: {url}");
-
-        var fullUrl = url.StartsWith("http") ? url : $"http://localhost:5000{url}";
-
-        WebView.IsVisible = true;
-        WebView.Navigate(new Uri(fullUrl));
-
-        Show();
-        await NormalizeView();
-        Activate();
-    }
+    // public async Task OpenView(string url)
+    // {
+    //     // logger.LogInformation($"[MainWindow] Opening view: {url}");
+//
+    //     var fullUrl = url.StartsWith("http") ? url : $"http://localhost:5000{url}";
+//
+    //     WebView.IsVisible = true;
+    //     WebView.Navigate(new Uri(fullUrl));
+//
+    //     Show();
+    //     await NormalizeView();
+    //     Activate();
+    // }
 
     public async Task CloseView()
     {

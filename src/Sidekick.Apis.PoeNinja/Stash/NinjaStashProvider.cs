@@ -346,7 +346,7 @@ public class NinjaStashProvider(
         var stats = (
             from stat in itemStats
             from definition in stat.Definitions.Where(x => x.TradeStats != null)
-            from tradeStat in definition.TradeStats
+            from tradeStat in definition.TradeStats!
             where stat.Category == statCategory && tradeStat.Id.StartsWith(statStartsWith)
             where !IgnoreStatTexts.Contains(tradeStat.Text)
             select new

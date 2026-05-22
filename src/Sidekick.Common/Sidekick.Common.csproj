@@ -10,10 +10,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Localization" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
-    <PackageReference Include="System.IO" />
-    <PackageReference Include="System.IO.FileSystem.Primitives" />
-    <PackageReference Include="System.Runtime.Handles" />
-    <PackageReference Include="System.Text.Encoding.Extensions" />
   </ItemGroup>
 
   <ItemGroup>

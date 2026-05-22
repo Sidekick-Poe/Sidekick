@@ -1,56 +1,52 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-    <InformationalVersion>1.0.0.0</InformationalVersion>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>true</ImplicitUsings>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <Title>Sidekick</Title>
-    <Authors>$(AssemblyName) Collaborators</Authors>
-    <Company>$(AssemblyName)</Company>
-    <Description>A Path of Exile companion tool.</Description>
-    <PackageProjectUrl>https://sidekick-poe.github.io/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Sidekick-Poe/Sidekick</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <StartupObject>Sidekick.Avalonia.Program</StartupObject>
-  </PropertyGroup>
+    <PropertyGroup>
+        <Version>1.0.0.0</Version>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <InformationalVersion>1.0.0.0</InformationalVersion>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <Title>Sidekick</Title>
+        <Authors>$(AssemblyName) Collaborators</Authors>
+        <Company>$(AssemblyName)</Company>
+        <Description>A Path of Exile companion tool.</Description>
+        <PackageProjectUrl>https://sidekick-poe.github.io/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Sidekick-Poe/Sidekick</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <StartupObject>Sidekick.Avalonia.Program</StartupObject>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj"/>
-    <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj"/>
-    <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj"/>
-    <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
-    <ProjectReference Include="..\Sidekick.Web\Sidekick.Web.csproj"/>
-  </ItemGroup>
+    <PropertyGroup>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia"/>
-    <PackageReference Include="Avalonia.Desktop"/>
-    <PackageReference Include="Avalonia.Themes.Fluent"/>
-    <PackageReference Include="Avalonia.Fonts.Inter"/>
-    <PackageReference Include="Avalonia.Controls.WebView"/>
-    <PackageReference Include="AvaloniaUI.DiagnosticsSupport">
-        <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
-        <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="MessageBox.Avalonia" />
-    <PackageReference Include="Velopack"/>
-  </ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Pages\_Host.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj"/>
+        <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj"/>
+        <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
+        <ProjectReference Include="..\Sidekick.Web\Sidekick.Web.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="Pages\_Host.cshtml" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Avalonia.Desktop"/>
+        <PackageReference Include="Avalonia.Themes.Fluent"/>
+        <PackageReference Include="Avalonia.Fonts.Inter"/>
+        <PackageReference Include="Avalonia.Controls.WebView"/>
+        <PackageReference Include="AvaloniaUI.DiagnosticsSupport">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Velopack"/>
+    </ItemGroup>
 
 </Project>

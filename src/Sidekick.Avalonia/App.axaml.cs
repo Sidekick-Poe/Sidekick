@@ -2,18 +2,13 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Sidekick.Common.Platform;
-using Sidekick.Common.Ui.Views;
-using Sidekick.Web;
 
 namespace Sidekick.Avalonia;
 
 public partial class App : Application
 {
-    private readonly CancellationTokenSource _serverTokenSource = new();
-    private ServerAppHost? host;
+    private readonly CancellationTokenSource serverTokenSource = new();
+    // private ServerAppHost? host;
 
     public override void Initialize()
     {
@@ -24,46 +19,55 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            host = new ServerAppHost();
-                host.StartAsync(_serverTokenSource.Token);
+//       host = new ServerAppHost(SidekickApplicationType.Avalonia);
+//       host.Start(configureServices: services => {
+//                      services.AddSingleton<IApplicationService, AvaloniaApplicationService>();
+//                      services.AddSingleton<IViewLocator, AvaloniaViewLocator>();
+//                  },
+//                  cancellationToken: serverTokenSource.Token);
+
+            // desktop.MainWindow = new MainWindow(SidekickViewType.Standard);
+
             desktop.MainWindow = new Window()
             {
                 Content = new NativeWebView()
                 {
-                    Source = new Uri($"localhost:{ServerAppHost.Port}"),
+                    Source = new Uri($"localhost:5000"), // new Uri($"localhost:{ServerAppHost.Port}"),
                 }
             };
-            desktop.ShutdownRequested += (_, _) =>
-            {
-                _serverTokenSource.CancelAsync().ContinueWith(_ =>
-                {
-                    _serverTask.Wait();
-                    _serverTask = null;
-                });
-            };
+
+            // desktop.ShutdownRequested += (_, _) =>
+            // {
+            //     serverTokenSource.CancelAsync().ContinueWith(_ =>
+            //     {
+            //         host.Dispose();
+            //         host = null;
+            //     });
+            // };
         }
 
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            desktop.MainWindow = new MainWindow(SidekickViewType.Standard);
-        }
+        // if (host == null)
+        // {
+        // logger?.LogCritical("[App] Unsupported application type.");
+        // throw new Exception("Unsupported application type.");
+        // }
 
         try
         {
-            // logger = Program.ServiceProvider.GetService<ILogger<App>>();
-            AttachErrorHandlers();
+            // logger = host.Application.Services.GetService<ILogger<App>>();
+            // AttachErrorHandlers();
             // _ = CheckIsAlreadyRunning();
 
             // Initialize host-level services (tray icon, language change listener)
-            // var appService = Program.ServiceProvider.GetRequiredService<IApplicationService>();
+            // var appService = host.Application.Services.GetRequiredService<IApplicationService>();
             // _ = appService.Initialize();
-
-            // var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
+//
+            // var viewLocator = host.Application.Services.GetRequiredService<IViewLocator>();
             // viewLocator.Open(SidekickViewType.Standard, "/");
         }
         catch (Exception ex)
         {
-            logger?.LogCritical(ex, "[App] Error during framework initialization");
+            // logger?.LogCritical(ex, "[App] Error during framework initialization");
         }
 
         base.OnFrameworkInitializationCompleted();
@@ -94,12 +98,12 @@ public partial class App : Application
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
-            logger?.LogCritical((Exception)e.ExceptionObject, "Unhandled exception.");
+            // logger?.LogCritical((Exception)e.ExceptionObject, "Unhandled exception.");
         };
 
         TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            logger?.LogCritical(e.Exception, "Unhandled exception.");
+            // logger?.LogCritical(e.Exception, "Unhandled exception.");
         };
     }
 }

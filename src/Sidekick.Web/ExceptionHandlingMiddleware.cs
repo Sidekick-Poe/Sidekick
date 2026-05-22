@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Ui.Views;
 

@@ -71,8 +71,6 @@ else
                     // There's no available updates
                     if (UpdateInfo is null)
                     {
-                        Logger.LogWarning("[AutoUpdater] Waiting.");
-                        await Task.Delay(TimeSpan.FromSeconds(5));
                         if (IsInitialization) NavigationManager.NavigateTo("/setup");
                         NoUpdates = true;
                         StateHasChanged();
@@ -88,7 +86,6 @@ else
             else
             {
                 Logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
-                await Task.Delay(TimeSpan.FromSeconds(5));
                 if (IsInitialization) NavigationManager.NavigateTo("/setup");
                 NoUpdates = true;
                 StateHasChanged();
