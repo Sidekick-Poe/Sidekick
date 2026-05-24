@@ -15,7 +15,7 @@ public partial class MainWindow : Window, IDisposable
     private bool IsNormalized { get; set; }
     private SidekickViewType ViewType { get; }
 
-    public MainWindow(SidekickViewType viewType)
+    public MainWindow(SidekickViewType viewType, string url)
     {
         ViewType = viewType;
         // scope = Program.ServiceProvider.CreateScope();
@@ -23,7 +23,7 @@ public partial class MainWindow : Window, IDisposable
         Title = "Sidekick";
         InitializeComponent();
 
-        WebView.Navigate(new Uri("http://localhost:5000"));
+        WebView.Navigate(new Uri(url));
 
         // logger.LogInformation($"[MainWindow] Initialized with view type: {viewType}");
     }

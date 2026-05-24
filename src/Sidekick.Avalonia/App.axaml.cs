@@ -1,14 +1,16 @@
+using System.Diagnostics;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia;
 
 public partial class App : Application
 {
-    private readonly CancellationTokenSource serverTokenSource = new();
-    // private ServerAppHost? host;
+    private Process? webProcess;
 
     public override void Initialize()
     {
@@ -19,51 +21,55 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-//       host = new ServerAppHost(SidekickApplicationType.Avalonia);
-//       host.Start(configureServices: services => {
-//                      services.AddSingleton<IApplicationService, AvaloniaApplicationService>();
-//                      services.AddSingleton<IViewLocator, AvaloniaViewLocator>();
-//                  },
-//                  cancellationToken: serverTokenSource.Token);
-
-            // desktop.MainWindow = new MainWindow(SidekickViewType.Standard);
-
-            desktop.MainWindow = new Window()
+            // new Uri($"localhost:{ServerAppHost.Port}"),
+            var url = "http://localhost:5000";
+            var exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sidekick.Web.exe");
+            if (File.Exists(exePath))
             {
-                Content = new NativeWebView()
+                var startInfo = new ProcessStartInfo
                 {
-                    Source = new Uri($"localhost:5000"), // new Uri($"localhost:{ServerAppHost.Port}"),
+                    FileName = exePath,
+                    Arguments = $"--urls {url}",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                };
+
+#if DEBUG
+                startInfo.EnvironmentVariables["ASPNETCORE_ENVIRONMENT"] = "Development";
+#endif
+
+                webProcess = Process.Start(startInfo);
+            }
+
+            desktop.MainWindow = new MainWindow(SidekickViewType.Standard, url);
+
+            desktop.ShutdownRequested += (_, _) =>
+            {
+                if (webProcess is { HasExited: false })
+                {
+                    webProcess.Kill();
                 }
             };
-
-            // desktop.ShutdownRequested += (_, _) =>
-            // {
-            //     serverTokenSource.CancelAsync().ContinueWith(_ =>
-            //     {
-            //         host.Dispose();
-            //         host = null;
-            //     });
-            // };
         }
 
-        // if (host == null)
-        // {
+        if (webProcess == null)
+        {
         // logger?.LogCritical("[App] Unsupported application type.");
         // throw new Exception("Unsupported application type.");
-        // }
+        }
 
         try
         {
-            // logger = host.Application.Services.GetService<ILogger<App>>();
-            // AttachErrorHandlers();
-            // _ = CheckIsAlreadyRunning();
+             // logger = host.Application.Services.GetService<ILogger<App>>();
+             AttachErrorHandlers();
+             // _ = CheckIsAlreadyRunning();
 
-            // Initialize host-level services (tray icon, language change listener)
-            // var appService = host.Application.Services.GetRequiredService<IApplicationService>();
-            // _ = appService.Initialize();
-//
-            // var viewLocator = host.Application.Services.GetRequiredService<IViewLocator>();
-            // viewLocator.Open(SidekickViewType.Standard, "/");
+             // Initialize host-level services (tray icon, language change listener)
+             // var appService = host.Application.Services.GetRequiredService<IApplicationService>();
+             // _ = appService.Initialize();
+
+             // var viewLocator = host.Application.Services.GetRequiredService<IViewLocator>();
+             // viewLocator.Open(SidekickViewType.Standard, "/");
         }
         catch (Exception ex)
         {
