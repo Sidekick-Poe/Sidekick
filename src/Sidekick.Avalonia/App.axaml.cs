@@ -1,16 +1,16 @@
 using System.Diagnostics;
-using System.IO;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Sidekick.Common;
 using Sidekick.Common.Ui.Views;
+using Sidekick.Web;
 
 namespace Sidekick.Avalonia;
 
 public partial class App : Application
 {
-    private Process? webProcess;
+    private ServerAppHost? serverAppHost;
 
     public override void Initialize()
     {
@@ -21,41 +21,32 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // new Uri($"localhost:{ServerAppHost.Port}"),
-            var url = "http://localhost:5000";
-            var exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sidekick.Web.exe");
-            if (File.Exists(exePath))
+            serverAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
+            var tcs = new TaskCompletionSource<string?>();
+
+            _ = Task.Run(async () =>
             {
-                var startInfo = new ProcessStartInfo
-                {
-                    FileName = exePath,
-                    Arguments = $"--urls {url}",
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                };
+                serverAppHost.Start();
+                tcs.TrySetResult(serverAppHost.Application.Urls.FirstOrDefault());
+                await serverAppHost.RunTask;
+            });
 
-#if DEBUG
-                startInfo.EnvironmentVariables["ASPNETCORE_ENVIRONMENT"] = "Development";
-#endif
-
-                webProcess = Process.Start(startInfo);
-            }
-
-            desktop.MainWindow = new MainWindow(SidekickViewType.Standard, url);
+            var url = tcs.Task.GetAwaiter().GetResult();
+                    if (url != null)
+                    {
+                        desktop.MainWindow = new MainWindow(SidekickViewType.Standard, url);
+                    }
 
             desktop.ShutdownRequested += (_, _) =>
             {
-                if (webProcess is { HasExited: false })
-                {
-                    webProcess.Kill();
-                }
+                serverAppHost.Dispose();
             };
         }
 
-        if (webProcess == null)
+        if (serverAppHost == null)
         {
-        // logger?.LogCritical("[App] Unsupported application type.");
-        // throw new Exception("Unsupported application type.");
+            // logger?.LogCritical("[App] Unsupported application type.");
+            // throw new Exception("Unsupported application type.");
         }
 
         try

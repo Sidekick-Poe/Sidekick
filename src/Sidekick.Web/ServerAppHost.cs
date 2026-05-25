@@ -1,5 +1,6 @@
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
@@ -28,39 +29,48 @@ using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Updater;
 using Sidekick.Modules.Wealth;
-using Sidekick.Web.Components;
+using Sidekick.Web.Pages;
 using Sidekick.Web.Services;
 
 namespace Sidekick.Web;
 
 public class ServerAppHost(SidekickApplicationType applicationType) : IDisposable
 {
-    public const int Port = 5000;
     private WebApplication? app;
     private Task? runTask;
     private bool disposed;
 
-    public WebApplication Application =>
-        app ?? throw new InvalidOperationException("Server application has not been started.");
+    public Task RunTask => runTask ?? throw new InvalidOperationException("Server application has not been started.");
+    public WebApplication Application => app ?? throw new InvalidOperationException("Server application has not been started.");
 
-    public Task Start(
+    public void Start(
         Action<IServiceCollection>? configureServices = null,
         CancellationToken cancellationToken = default)
     {
-        var assemblyName = typeof(ServerAppHost).Assembly.GetName().Name;
+        var assembly = typeof(ServerAppHost).Assembly;
+        var assemblyName = assembly.GetName().Name;
+        var assemblyLocation = Path.GetDirectoryName(assembly.Location)
+                               ?? AppDomain.CurrentDomain.BaseDirectory;
+
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
             ApplicationName = assemblyName,
             Args = [],
-            ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
+            ContentRootPath = assemblyLocation,
+            WebRootPath = Path.Combine(assemblyLocation, "wwwroot"),
         });
 
         #region Services
 
         configureServices?.Invoke(builder.Services);
 
-        builder.Services.AddRazorComponents()
-            .AddInteractiveServerComponents();
+        // SERVER
+        builder.Services.AddRazorPages();
+        builder.Services.AddServerSideBlazor();
+
+        // WEB
+        // builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+
         builder.Services.AddHttpClient();
         builder.Services.AddLocalization();
 
@@ -115,17 +125,29 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseAntiforgery();
-        app.MapStaticAssets();
 
-        var razorApp = app.MapRazorComponents<App>()
-            .AddInteractiveServerRenderMode();
-        var configuration = app.Services.GetRequiredService<IOptions<SidekickConfiguration>>();
-        razorApp.AddAdditionalAssemblies(configuration.Value.Modules.ToArray());
+        // SERVER
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/_Host");
+
+        // WEB
+        // // app.MapStaticAssets();
+        // app.UseStaticFiles(new StaticFileOptions
+        // {
+        //     ServeUnknownFileTypes = true,
+        //     FileProvider = new PhysicalFileProvider(builder.Environment.WebRootPath),
+        //     RequestPath = "",
+        // });
+        // var configuration = app.Services.GetRequiredService<IOptions<SidekickConfiguration>>();
+        // app.MapRazorComponents<App>()
+        //     .AddInteractiveServerRenderMode()
+        //     .AddAdditionalAssemblies(configuration.Value.Modules.ToArray());
 
         #endregion Pipeline
 
-        runTask = app.StartAsync(cancellationToken);
-        return app.WaitForShutdownAsync(cancellationToken);
+        runTask = app.RunAsync(cancellationToken);
     }
 
     /// <summary>
