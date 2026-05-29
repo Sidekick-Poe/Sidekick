@@ -73,7 +73,9 @@ public class ItemDefinitionParser(
             item.Name = item.Text.Blocks[0].Lines[^2].Text;
         }
 
-        item.Definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name) ?? throw new UnparsableException(item.Text.Text);
+        item.Definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name)
+                          ?? GetDefinition(InvariantDefinitions, item.Type, item.Properties.Rarity, item.Name)
+                          ?? throw new UnparsableException(item.Text.Text);
         item.Invariant = GetInvariant(item.Definition) ?? throw new UnparsableException(item.Text.Text);
         item.ItemClass = GetItemClass(item.Definition);
 
@@ -128,7 +130,7 @@ public class ItemDefinitionParser(
         return GetDefinition(InvariantDefinitions, apiItem.Type, apiItem.Rarity, apiItem.Name);
     }
 
-    private ItemDefinition? GetDefinition(List<ItemDefinition> definitions, string? type, Rarity rarity, string? name)
+    private static ItemDefinition? GetDefinition(List<ItemDefinition> definitions, string? type, Rarity rarity, string? name)
     {
         if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name))
         {
@@ -154,7 +156,7 @@ public class ItemDefinitionParser(
         return null;
     }
 
-    private ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> compareFunc, string text)
+    private static ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> compareFunc, string text)
     {
         return definitions
             .Select(x =>
