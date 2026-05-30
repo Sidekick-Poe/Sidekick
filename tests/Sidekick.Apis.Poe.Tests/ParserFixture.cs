@@ -163,6 +163,13 @@ public abstract class ParserFixture : IAsyncLifetime
                 if (tradeStat.Option == null) continue;
                 if (tradeStat.Option.Text == expectedOptionText) return stat;
             }
+
+            foreach (var gameStat in stat.Definitions
+                         .Where(x => x.TradeStats == null))
+            {
+                if (gameStat.Text != expectedText) continue;
+                if (expectedOptionText == null) return stat;
+            }
         }
 
         return null;
