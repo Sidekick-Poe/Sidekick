@@ -118,20 +118,20 @@
           },
           {
             "$id": "22",
+            "id": "implicit.stat_3441501978",
+            "text": "#% to Fire and Lightning Resistances",
+            "multiplier": 2
+          },
+          {
+            "$id": "23",
             "id": "implicit.stat_4277795662",
             "text": "#% to Cold and Lightning Resistances",
             "multiplier": 2
           },
           {
-            "$id": "23",
+            "$id": "24",
             "id": "implicit.stat_2915988346",
             "text": "#% to Fire and Cold Resistances",
-            "multiplier": 2
-          },
-          {
-            "$id": "24",
-            "id": "implicit.stat_3441501978",
-            "text": "#% to Fire and Lightning Resistances",
             "multiplier": 2
           },
           {
@@ -172,14 +172,14 @@
           },
           {
             "$id": "31",
-            "id": "crafted.stat_4220027924",
-            "text": "#% to Cold Resistance",
+            "id": "crafted.stat_1671376347",
+            "text": "#% to Lightning Resistance",
             "multiplier": 1
           },
           {
             "$id": "32",
-            "id": "crafted.stat_1671376347",
-            "text": "#% to Lightning Resistance",
+            "id": "crafted.stat_4220027924",
+            "text": "#% to Cold Resistance",
             "multiplier": 1
           },
           {
