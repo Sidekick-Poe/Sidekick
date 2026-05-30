@@ -1114,8 +1114,8 @@
           },
           {
             "$id": "252",
-            "id": "foreseeing",
-            "text": "Pr\u00E9voir",
+            "id": "crafted",
+            "text": "Fabriqu\u00E9",
             "option": {
               "$id": "253",
               "options": {
@@ -1141,8 +1141,8 @@
           },
           {
             "$id": "258",
-            "id": "mirrored",
-            "text": "Refl\u00E9t\u00E9",
+            "id": "foreseeing",
+            "text": "Pr\u00E9voir",
             "option": {
               "$id": "259",
               "options": {
@@ -1168,24 +1168,51 @@
           },
           {
             "$id": "264",
-            "id": "sanctum_gold",
-            "text": "Barya Eaux sacr\u00E9es",
+            "id": "mirrored",
+            "text": "Refl\u00E9t\u00E9",
             "option": {
               "$id": "265",
               "options": {
                 "$id": "266",
+                "$values": [
+                  {
+                    "$id": "267",
+                    "text": "Tous"
+                  },
+                  {
+                    "$id": "268",
+                    "id": "true",
+                    "text": "Oui"
+                  },
+                  {
+                    "$id": "269",
+                    "id": "false",
+                    "text": "Non"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "270",
+            "id": "sanctum_gold",
+            "text": "Barya Eaux sacr\u00E9es",
+            "option": {
+              "$id": "271",
+              "options": {
+                "$id": "272",
                 "$values": []
               }
             }
           },
           {
-            "$id": "267",
+            "$id": "273",
             "id": "unidentified_tier",
             "text": "Palier non identifi\u00E9",
             "option": {
-              "$id": "268",
+              "$id": "274",
               "options": {
-                "$id": "269",
+                "$id": "275",
                 "$values": []
               }
             }
@@ -1194,39 +1221,39 @@
       }
     },
     {
-      "$id": "270",
+      "$id": "276",
       "id": "trade_filters",
       "title": "Filtres d\u0027\u00E9change",
       "filters": {
-        "$id": "271",
+        "$id": "277",
         "$values": [
           {
-            "$id": "272",
+            "$id": "278",
             "id": "account",
             "text": "Compte du vendeur",
             "option": {
-              "$id": "273",
+              "$id": "279",
               "options": {
-                "$id": "274",
+                "$id": "280",
                 "$values": []
               }
             }
           },
           {
-            "$id": "275",
+            "$id": "281",
             "id": "collapse",
             "text": "R\u00E9duire la classification par compte",
             "option": {
-              "$id": "276",
+              "$id": "282",
               "options": {
-                "$id": "277",
+                "$id": "283",
                 "$values": [
                   {
-                    "$id": "278",
+                    "$id": "284",
                     "text": "Non"
                   },
                   {
-                    "$id": "279",
+                    "$id": "285",
                     "id": "true",
                     "text": "Oui"
                   }
@@ -1235,60 +1262,60 @@
             }
           },
           {
-            "$id": "280",
+            "$id": "286",
             "id": "indexed",
             "text": "Mise en vente",
             "option": {
-              "$id": "281",
+              "$id": "287",
               "options": {
-                "$id": "282",
+                "$id": "288",
                 "$values": [
                   {
-                    "$id": "283",
+                    "$id": "289",
                     "text": "n\u0027importe quand"
                   },
                   {
-                    "$id": "284",
+                    "$id": "290",
                     "id": "1hour",
                     "text": "Il y a moins d\u0027une heure"
                   },
                   {
-                    "$id": "285",
+                    "$id": "291",
                     "id": "3hours",
                     "text": "Il y a moins de 3 heures"
                   },
                   {
-                    "$id": "286",
+                    "$id": "292",
                     "id": "12hours",
                     "text": "Il y a moins de 12 heures"
                   },
                   {
-                    "$id": "287",
+                    "$id": "293",
                     "id": "1day",
                     "text": "au cours de ces derni\u00E8res 24 heures"
                   },
                   {
-                    "$id": "288",
+                    "$id": "294",
                     "id": "3days",
                     "text": "au cours de ces 3 derniers jours"
                   },
                   {
-                    "$id": "289",
+                    "$id": "295",
                     "id": "1week",
                     "text": "au cours de cette derni\u00E8re semaine"
                   },
                   {
-                    "$id": "290",
+                    "$id": "296",
                     "id": "2weeks",
                     "text": "au cours de ces 2 derni\u00E8res semaines"
                   },
                   {
-                    "$id": "291",
+                    "$id": "297",
                     "id": "1month",
                     "text": "au cours de ce dernier mois"
                   },
                   {
-                    "$id": "292",
+                    "$id": "298",
                     "id": "2months",
                     "text": "au cours de ces 2 derniers mois"
                   }
@@ -1297,30 +1324,30 @@
             }
           },
           {
-            "$id": "293",
+            "$id": "299",
             "id": "sale_type",
             "text": "Type de vente",
             "option": {
-              "$id": "294",
+              "$id": "300",
               "options": {
-                "$id": "295",
+                "$id": "301",
                 "$values": [
                   {
-                    "$id": "296",
+                    "$id": "302",
                     "id": "any",
                     "text": "Tous"
                   },
                   {
-                    "$id": "297",
+                    "$id": "303",
                     "text": "Directe ou fixe"
                   },
                   {
-                    "$id": "298",
+                    "$id": "304",
                     "id": "priced_with_info",
                     "text": "Prix avec note"
                   },
                   {
-                    "$id": "299",
+                    "$id": "305",
                     "id": "unpriced",
                     "text": "Sans prix"
                   }
@@ -1329,82 +1356,82 @@
             }
           },
           {
-            "$id": "300",
+            "$id": "306",
             "id": "fee",
             "text": "Co\u00FBt en Or",
             "option": {
-              "$id": "301",
+              "$id": "307",
               "options": {
-                "$id": "302",
+                "$id": "308",
                 "$values": []
               }
             }
           },
           {
-            "$id": "303",
+            "$id": "309",
             "id": "price",
             "text": "Directe",
             "option": {
-              "$id": "304",
+              "$id": "310",
               "options": {
-                "$id": "305",
+                "$id": "311",
                 "$values": [
                   {
-                    "$id": "306",
+                    "$id": "312",
                     "text": "\u00C9quivalent en Orbes exalt\u00E9s"
                   },
                   {
-                    "$id": "307",
+                    "$id": "313",
                     "id": "exalted_divine",
                     "text": "Orbes exalt\u00E9s ou divins"
                   },
                   {
-                    "$id": "308",
+                    "$id": "314",
                     "id": "aug",
                     "text": "Orbe d\u0027augmentation"
                   },
                   {
-                    "$id": "309",
+                    "$id": "315",
                     "id": "transmute",
                     "text": "Orbe de transmutation"
                   },
                   {
-                    "$id": "310",
+                    "$id": "316",
                     "id": "exalted",
                     "text": "Orbe exalt\u00E9"
                   },
                   {
-                    "$id": "311",
+                    "$id": "317",
                     "id": "regal",
                     "text": "Orbe royal"
                   },
                   {
-                    "$id": "312",
+                    "$id": "318",
                     "id": "chaos",
                     "text": "Orbe du chaos"
                   },
                   {
-                    "$id": "313",
+                    "$id": "319",
                     "id": "vaal",
                     "text": "Orbe vaal"
                   },
                   {
-                    "$id": "314",
+                    "$id": "320",
                     "id": "alch",
                     "text": "Orbe d\u0027alchimie"
                   },
                   {
-                    "$id": "315",
+                    "$id": "321",
                     "id": "divine",
                     "text": "Orbe divin"
                   },
                   {
-                    "$id": "316",
+                    "$id": "322",
                     "id": "annul",
                     "text": "Orbe d\u0027annulation"
                   },
                   {
-                    "$id": "317",
+                    "$id": "323",
                     "id": "mirror",
                     "text": "Miroir de Kalandra"
                   }
