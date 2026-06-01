@@ -24,54 +24,9 @@ public class DataBuilder(
     StatsInvariantBuilder statsInvariantBuilder,
     RepoeDownloader repoeDownloader,
     TradeFilterBuilder tradeFilterBuilder,
+    TradeStatBuilder tradeStatBuilder,
     IGameLanguageProvider gameLanguageProvider)
 {
-    public async Task DownloadAndBuildAll(
-        bool items = true,
-        bool stats = true,
-        bool trade = true,
-        bool repoe = true,
-        bool pseudo = true,
-        bool ninja = true)
-    {
-        logger.LogInformation("Building all data files.");
-
-        foreach (var language in gameLanguageProvider.GetList())
-        {
-            if (trade)
-            {
-                await DownloadAndBuildTrade(language);
-            }
-
-            if (repoe)
-            {
-                await DownloadRepoe(language);
-            }
-
-            if (ninja)
-            {
-                await DownloadNinja(language);
-            }
-
-            if (items)
-            {
-                await BuildItems(language);
-            }
-
-            if (pseudo)
-            {
-                await BuildPseudo(language);
-            }
-
-            if (stats)
-            {
-                await BuildStats(language);
-            }
-        }
-
-        logger.LogInformation("Built all data files.");
-    }
-
     public async Task DownloadAndBuild(
         IGameLanguage language,
         bool items = true,
@@ -123,6 +78,7 @@ public class DataBuilder(
         logger.LogInformation($"Building {language.Code} trade data.");
         await leagueBuilder.Build(language);
         await tradeFilterBuilder.Build(language);
+        await tradeStatBuilder.Build(language);
         await statsInvariantBuilder.Build(language);
     }
 
@@ -136,7 +92,7 @@ public class DataBuilder(
     private async Task DownloadRepoe(IGameLanguage language)
     {
         logger.LogInformation($"Downloading {language.Code} repoe data.");
-        await repoeDownloader.Download(language);
+        // await repoeDownloader.Download(language);
     }
 
     private async Task DownloadNinja(IGameLanguage language)

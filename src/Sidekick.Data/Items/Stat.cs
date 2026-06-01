@@ -30,7 +30,7 @@ public class Stat(StatCategory category, string text)
     /// <summary>
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
-    public bool HasValues => Definitions.All(x => x.TradeStats == null || x.TradeStats.All(y => y.Option == null)) && Values.Count > 0;
+    public bool HasValues => Definitions.All(x => x.TradeIds == null || x.TradeIds.All(y => !y.Contains('#'))) && Values.Count > 0;
 
     public int BlockIndex { get; init; }
 

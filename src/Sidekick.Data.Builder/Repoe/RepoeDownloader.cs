@@ -69,7 +69,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new Dictionary<string, RepoeItemClass>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.ItemClasses))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.ItemClasses))
         {
             var data = await rawDataProvider.Read<Dictionary<string, RepoeItemClass>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
@@ -85,7 +85,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new Dictionary<string, RepoeBaseItem>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.BaseItems))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.BaseItems))
         {
             var data = await rawDataProvider.Read<Dictionary<string, RepoeBaseItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
@@ -101,7 +101,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new Dictionary<string, RepoeUniqueItem>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.Uniques))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.Uniques))
         {
             var data = await rawDataProvider.Read<Dictionary<string, RepoeUniqueItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
@@ -117,7 +117,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new List<RepoeStatTranslation>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.StatTranslations))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.StatTranslations))
         {
             result.AddRange(await rawDataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json"));
         }

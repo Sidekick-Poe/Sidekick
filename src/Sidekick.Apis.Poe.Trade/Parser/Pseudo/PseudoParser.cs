@@ -55,8 +55,8 @@ public class PseudoParser
                 foreach (var definitionStat in definition.Stats)
                 {
                     var hasBadId = itemStat.Definitions
-                        .Where(x => x.TradeStats != null)
-                        .All(x => x.TradeStats!.All(y => y.Id != definitionStat.Id));
+                        .Where(x => x.TradeIds != null)
+                        .All(x => x.TradeIds!.All(y => y != definitionStat.Id));
                     if (hasBadId) continue;
 
                     value += itemStat.AverageValue * definitionStat.Multiplier;

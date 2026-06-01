@@ -8,6 +8,8 @@ public class BaseItemProperties
 
     public BaseItemPropertyValues? Evasion { get; init; }
 
+    public BaseItemPropertyValues? Ward { get; init; }
+
     public BaseItemPropertyValues? PhysicalDamage { get; init; }
 
     public int? Block { get; init; }

@@ -137,7 +137,7 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
         var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "Maximum number of Summoned Skeletons is Doubled\nCannot have Minions other than Summoned Skeletons");
         Assert.NotNull(stat);
         Assert.Single(stat.Definitions
-                          .Where(x => x.TradeStats != null)
-                          .SelectMany(x => x.TradeStats!));
+                          .Where(x => x.TradeIds != null)
+                          .SelectMany(x => x.TradeIds!));
     }
 }

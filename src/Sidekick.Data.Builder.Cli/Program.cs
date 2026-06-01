@@ -1,11 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
 using Sidekick.Data.Languages;
-using Options=Sidekick.Data.Builder.Cli.Options;
 
 #region Services
 
@@ -22,98 +20,83 @@ services.AddSidekickCommon(SidekickApplicationType.DataBuilder);
 services.AddSidekickData();
 services.AddSidekickDataBuilder();
 
-services.Configure<Options>(opt =>
-{
-    for (var i = 0; i < args.Length; i++)
-    {
-        var a = args[i];
-        switch (a)
-        {
-            case "--language" when i + 1 < args.Length:
-                opt.Language = args[++i];
-                break;
-            case "--poe1" when i + 1 < args.Length:
-                opt.Poe1 = args[++i] != "false";
-                break;
-            case "--poe2" when i + 1 < args.Length:
-                opt.Poe2 = args[++i] != "false";
-                break;
-            case "--items":
-                opt.Items = true;
-                break;
-            case "--stats":
-                opt.Stats = true;
-                break;
-            case "--trade":
-                opt.Trade = true;
-                break;
-            case "--repoe":
-                opt.Repoe = true;
-                break;
-            case "--pseudo":
-                opt.Pseudo = true;
-                break;
-            case "--ninja":
-                opt.Ninja = true;
-                break;
-        }
-    }
-});
+var serviceProvider = services.BuildServiceProvider();
+var dataBuilder = serviceProvider.GetRequiredService<DataBuilder>();
+var dataProvider = serviceProvider.GetRequiredService<DataProvider>();
+var gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
 
 #endregion
 
-var serviceProvider = services.BuildServiceProvider();
+#region Configuration
 
-try
+var runLanguage = string.Empty;
+
+var runItems = false;
+var runStats = false;
+var runTrade = false;
+var runRepoe = false;
+var runPseudo = false;
+var runNinja = false;
+
+for (var i = 0; i < args.Length; i++)
 {
-    var options = serviceProvider.GetRequiredService<IOptions<Options>>();
-    var dataBuilder = serviceProvider.GetRequiredService<DataBuilder>();
-    var dataProvider = serviceProvider.GetRequiredService<DataProvider>();
-
-    if (string.IsNullOrEmpty(options.Value.Language))
+    var a = args[i];
+    switch (a)
     {
-        if (options.Value.HasSelectiveOptions)
-        {
-            await dataBuilder.DownloadAndBuildAll(items: options.Value.Items,
-                                                  stats: options.Value.Stats,
-                                                  trade: options.Value.Trade,
-                                                  repoe: options.Value.Repoe,
-                                                  pseudo: options.Value.Pseudo,
-                                                  ninja: options.Value.Ninja);
-        }
-        else
-        {
-            dataProvider.DeleteAll();
-            await dataBuilder.DownloadAndBuildAll();
-        }
+        case "--language" when i + 1 < args.Length:
+            runLanguage = args[++i];
+            break;
+        case "--items":
+            runItems = true;
+            break;
+        case "--stats":
+            runStats = true;
+            break;
+        case "--trade":
+            runTrade = true;
+            break;
+        case "--repoe":
+            runRepoe = true;
+            break;
+        case "--pseudo":
+            runPseudo = true;
+            break;
+        case "--ninja":
+            runNinja = true;
+            break;
     }
-    else
-    {
-        var gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
-        var language = gameLanguageProvider.GetList().FirstOrDefault(x => x.Code == options.Value.Language);
-        if (language == null) { throw new Exception($"Language {options.Value.Language} not found."); }
-
-        if (options.Value.HasSelectiveOptions)
-        {
-            await dataBuilder.DownloadAndBuild(language,
-                                               items: options.Value.Items,
-                                               stats: options.Value.Stats,
-                                               trade: options.Value.Trade,
-                                               repoe: options.Value.Repoe,
-                                               pseudo: options.Value.Pseudo,
-                                               ninja: options.Value.Ninja);
-        }
-        else
-        {
-            await dataBuilder.DownloadAndBuild(language);
-        }
-    }
-
-    return 0;
 }
-catch (Exception ex)
+
+#endregion
+
+if (!runItems && !runStats && !runTrade && !runRepoe && !runPseudo && !runNinja)
 {
-    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-    logger.LogCritical(ex, "Failed to execute command.");
-    return 2;
+    runItems = true;
+    runStats = true;
+    runTrade = true;
+    runRepoe = true;
+    runPseudo = true;
+    runNinja = true;
+
+    if (runLanguage == string.Empty)
+    {
+        // dataProvider.DeleteAll();
+    }
+}
+
+var languages = gameLanguageProvider.GetList();
+if (!string.IsNullOrEmpty(runLanguage))
+{
+    languages = languages.Where(x => x.Code == runLanguage).ToList();
+}
+
+foreach (var language in languages)
+{
+    await dataBuilder.DownloadAndBuild(language,
+                                       items: runItems,
+                                       stats: runStats,
+                                       trade: runTrade,
+                                       repoe: runRepoe,
+                                       pseudo: runPseudo,
+                                       ninja: runNinja);
 }

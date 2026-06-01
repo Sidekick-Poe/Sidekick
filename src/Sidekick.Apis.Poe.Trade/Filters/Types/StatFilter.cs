@@ -105,13 +105,13 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         }
 
         var stats = Stat.Definitions
-            .Where(x => x.TradeStats != null)
-            .SelectMany(definition => definition.TradeStats!.Select(tradeStat => new
+            .Where(x => x.TradeIds != null)
+            .SelectMany(definition => definition.TradeIds!.Select(tradeStat => new
             {
                 Definition = definition,
-                TradeStat = tradeStat,
+                TradeStatId = tradeStat,
             }))
-            .DistinctBy(x => x.TradeStat.Id)
+            .DistinctBy(x => x.TradeStatId)
             .ToList();
 
         if (stats.Count > 1)
@@ -122,9 +122,9 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
                 categoryString = StatCategory.Explicit.GetValueAttribute();
             }
 
-            if (stats.Any(x => x.TradeStat.Id.StartsWith(categoryString)))
+            if (stats.Any(x => x.TradeStatId.StartsWith(categoryString)))
             {
-                stats = stats.Where(x => x.TradeStat.Id.StartsWith(categoryString)).ToList();
+                stats = stats.Where(x => x.TradeStatId.StartsWith(categoryString)).ToList();
             }
         }
 
@@ -132,7 +132,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         {
             query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
             {
-                Id = stats.First().TradeStat.Id,
+                Id = stats.First().TradeStatId.GetStatId(),
                 Value = new StatFilterValue(this),
             });
         }
@@ -143,7 +143,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             {
                 countGroup.Filters.Add(new StatFilters()
                 {
-                    Id = stat.TradeStat.Id,
+                    Id = stat.TradeStatId.GetStatId(),
                     Value = new StatFilterValue(this),
                 });
             }

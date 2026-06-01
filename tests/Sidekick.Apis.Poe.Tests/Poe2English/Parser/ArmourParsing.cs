@@ -85,7 +85,6 @@ Item Level: 5
 Grants Skill: Parry
 --------
 +12 to maximum Life
-
 ");
 
         Assert.Equal(ItemClass.Buckler, actual.ItemClass.Type);

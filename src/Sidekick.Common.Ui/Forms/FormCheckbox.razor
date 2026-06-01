@@ -1,5 +1,4 @@
-<label @onmouseenter="OnMouseEnter"
-       @onmousedown="OnMouseDown"
+<label @onclick="OnClick"
        @onkeydown="OnKeyDown"
        @onclick:preventDefault="true"
        class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-[3px]" : "min-h-5 gap-1")">
@@ -44,34 +43,18 @@
         }
     }
 
-    private async Task OnMouseEnter(MouseEventArgs args)
+    private async Task OnClick(MouseEventArgs args)
     {
         if (Readonly) return;
 
-        if (args.Buttons == 1)
-        {
-            await ValueChanged.InvokeAsync(!Value);
-        }
-    }
-
-    private async Task OnMouseDown(MouseEventArgs args)
-    {
-        if (Readonly) return;
-
-        if (args.Buttons == 1)
-        {
-            await ValueChanged.InvokeAsync(!Value);
-        }
+        await ValueChanged.InvokeAsync(!Value);
     }
 
     private async Task OnKeyDown(KeyboardEventArgs args)
     {
-        if (Readonly) return;
+        if (Readonly || args.Key != " ") return;
 
-        if (args.Key == " ")
-        {
-            await ValueChanged.InvokeAsync(!Value);
-        }
+        await ValueChanged.InvokeAsync(!Value);
     }
 
 }

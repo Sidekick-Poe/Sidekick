@@ -12,6 +12,9 @@ public class RepoeBaseItemProperties
     [JsonPropertyName("evasion")]
     public RepoeBaseItemProperty? Evasion { get; init; }
 
+    [JsonPropertyName("ward")]
+    public RepoeBaseItemProperty? Ward { get; init; }
+
     [JsonPropertyName("block")]
     public int? Block { get; init; }
 

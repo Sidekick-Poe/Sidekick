@@ -38,7 +38,7 @@ public class LeagueBuilder
 
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        await tradeDownloader.DownloadPath(DataType.RawTradeLeagues, language, "leagues");
+        await tradeDownloader.DownloadPath(DataType.RawTradeLeagues, game, language, "leagues");
         var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(game, DataType.RawTradeLeagues, language);
 
         var leagues = result.Result.Where(x => x is { Id: not null, Text: not null })
