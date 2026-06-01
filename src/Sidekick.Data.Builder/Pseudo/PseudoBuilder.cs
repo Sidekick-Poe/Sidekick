@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Pseudo.Definitions;
-using Sidekick.Data.Builder.Trade;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Pseudo;
 using Sidekick.Data.Stats;
@@ -13,8 +13,7 @@ public class PseudoBuilder
     ILogger<PseudoBuilder> logger,
     IOptions<SidekickConfiguration> configuration,
     DataProvider dataProvider,
-    IGameLanguageProvider gameLanguageProvider,
-    TradeStatProvider tradeStatProvider
+    IGameLanguageProvider gameLanguageProvider
 )
 {
     public async Task Build(IGameLanguage language)
@@ -37,13 +36,11 @@ public class PseudoBuilder
 
     private async Task Build(GameType game, IGameLanguage language)
     {
-        var invariantStats = await tradeStatProvider.GetDefinitions(game, gameLanguageProvider.InvariantLanguage);
-        invariantStats.RemoveAll(x => x.Id.StartsWith("pseudo"));
+        var invariantStats = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, gameLanguageProvider.InvariantLanguage);
+        invariantStats.RemoveAll(x => x.Id.GetStatCategory() == StatCategory.Pseudo);
 
-        var localizedStats = await tradeStatProvider.GetDefinitions(game, language);
-        localizedStats = localizedStats
-            .Where(x => x.Category == StatCategory.Pseudo)
-            .ToList();
+        var localizedStats = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, language);
+        localizedStats = localizedStats.Where(x => x.Id.GetStatCategory() == StatCategory.Pseudo).ToList();
 
         List<PseudoDefinitionBuilder> builders = [
             new ElementalResistancesDefinition(),
@@ -70,7 +67,6 @@ public class PseudoBuilder
                 Text = GetText(builder, localizedStats),
             };
         }
-
     }
 
     private IEnumerable<PseudoStat> GetStats(PseudoDefinitionBuilder builder, List<TradeStatDefinition> invariantStats)
@@ -87,7 +83,6 @@ public class PseudoBuilder
             }
         }
     }
-
 
     private string? GetText(PseudoDefinitionBuilder builder, List<TradeStatDefinition> localizedStats)
     {

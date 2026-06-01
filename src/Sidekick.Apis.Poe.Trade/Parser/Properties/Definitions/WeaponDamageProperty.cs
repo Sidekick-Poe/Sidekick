@@ -109,10 +109,10 @@ public class WeaponDamageProperty(
         var itemMods = item.Stats.Where(x =>
         {
             var tradeStats = x.Definitions
-                .Where(y => y.TradeStats != null)
-                .SelectMany(y => y.TradeStats!)
+                .Where(y => y.TradeIds != null)
+                .SelectMany(y => y.TradeIds!)
                 .ToList();
-            return tradeStats.Any(tradeStat => damageMods.Contains(tradeStat.Id));
+            return tradeStats.Any(damageMods.Contains);
         }).ToList();
         if (itemMods.Count == 0) return;
 
@@ -135,13 +135,12 @@ public class WeaponDamageProperty(
                 var range = new DamageRange(min, max);
 
                 var ids = itemMods[matchIndex].Definitions
-                    .Where(x => x.TradeStats != null)
-                    .SelectMany(x => x.TradeStats!)
-                    .Select(x => x.Id)
+                    .Where(x => x.TradeIds != null)
+                    .SelectMany(x => x.TradeIds!)
                     .ToList();
-                var isFire = statParser.InvariantDetails.FireWeaponDamageIds.Any(x => ids.Contains(x));
-                var isCold = statParser.InvariantDetails.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-                var isLightning = statParser.InvariantDetails.LightningWeaponDamageIds.Any(x => ids.Contains(x));
+                var isFire = statParser.InvariantDetails.FireWeaponDamageIds.Any(ids.Contains);
+                var isCold = statParser.InvariantDetails.ColdWeaponDamageIds.Any(ids.Contains);
+                var isLightning = statParser.InvariantDetails.LightningWeaponDamageIds.Any(ids.Contains);
 
                 if (isFire) item.Properties.FireDamage = range;
                 else if (isCold) item.Properties.ColdDamage = range;

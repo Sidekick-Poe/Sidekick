@@ -9,8 +9,8 @@ public class IgnoreGameIds : BaseHook
         "map_item_level_override",
     ];
 
-    public override void OnAfterGameBuild(List<StatDefinition> definitions)
+    public override void OnAfterGameBuild(List<StatDefinition> statDefinitions)
     {
-        definitions.RemoveAll(x => x.GameIds != null && x.GameIds.Any(y => IgnoredGameIds.Contains(y)));
+        statDefinitions.RemoveAll(x => x.GameIds != null && x.GameIds.Any(y => IgnoredGameIds.Contains(y)));
     }
 }

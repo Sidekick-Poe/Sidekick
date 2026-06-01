@@ -72,7 +72,7 @@ made him drink the enemy's blood. He melted from the inside out.""
 ");
 
         var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Equal(1, results.Count);
+        Assert.Single(results);
 
         Assert.Contains(results, x => x.DetailsId == "foulborn-khatals-weeping-life-flask-charge-lapis-amulet");
     }

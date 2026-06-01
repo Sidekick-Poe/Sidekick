@@ -69,7 +69,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new Dictionary<string, RepoeItemClass>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.ItemClasses))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.ItemClasses))
         {
             var data = await rawDataProvider.Read<Dictionary<string, RepoeItemClass>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
@@ -85,7 +85,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new Dictionary<string, RepoeBaseItem>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.BaseItems))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.BaseItems))
         {
             var data = await rawDataProvider.Read<Dictionary<string, RepoeBaseItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
@@ -101,7 +101,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new Dictionary<string, RepoeUniqueItem>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.Uniques))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.Uniques))
         {
             var data = await rawDataProvider.Read<Dictionary<string, RepoeUniqueItem>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json");
             foreach (var entry in data)
@@ -117,7 +117,7 @@ public class RepoeDownloader(
     {
         var files = game == GameType.PathOfExile1 ? Poe1Files : Poe2Files;
         var result = new List<RepoeStatTranslation>();
-        foreach (var file in files.Where(x=>x.Type == RepoeFileType.StatTranslations))
+        foreach (var file in files.Where(x => x.Type == RepoeFileType.StatTranslations))
         {
             result.AddRange(await rawDataProvider.Read<List<RepoeStatTranslation>>($"{game.GetValueAttribute()}/raw/repoe/{file.FileName}.{language}.json"));
         }
@@ -151,7 +151,20 @@ public class RepoeDownloader(
         foreach (var file in Poe1Files)
         {
             var url = "https://repoe-fork.github.io/" + repoeLanguage.LanguageSlug + file.FilePath;
-            await DownloadToFile(http, url, GameType.PathOfExile1, GetFileName(language, file.FileName));
+            try
+            {
+                logger.LogInformation($"GET {url}");
+
+                using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+
+                await rawDataProvider.Write($"{GameType.PathOfExile1.GetValueAttribute()}/raw/repoe/{GetFileName(language, file.FileName)}", await response.Content.ReadAsStreamAsync());
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Failed for {url}: {ex.Message}");
+                throw;
+            }
         }
     }
 
@@ -163,23 +176,22 @@ public class RepoeDownloader(
         foreach (var file in Poe2Files)
         {
             var url = "https://repoe-fork.github.io/poe2/" + repoeLanguage.LanguageSlug + file.FilePath;
-            await DownloadToFile(http, url, GameType.PathOfExile2, GetFileName(language, file.FileName));
-        }
-    }
+            try
+            {
+                logger.LogInformation($"GET {url}");
 
-    private async Task DownloadToFile(HttpClient http, string url, GameType game, string fileName)
-    {
-        try
-        {
-            logger.LogInformation($"GET {url}");
-            using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
-            response.EnsureSuccessStatusCode();
-            await rawDataProvider.Write($"{game.GetValueAttribute()}/raw/repoe/{fileName}", await response.Content.ReadAsStreamAsync());
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, $"Failed for {url}: {ex.Message}");
-            throw;
+                if (language.Code == "en") return;
+
+                using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+
+                await rawDataProvider.Write($"{GameType.PathOfExile2.GetValueAttribute()}/raw/repoe/{GetFileName(language, file.FileName)}", await response.Content.ReadAsStreamAsync());
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Failed for {url}: {ex.Message}");
+                throw;
+            }
         }
     }
 }

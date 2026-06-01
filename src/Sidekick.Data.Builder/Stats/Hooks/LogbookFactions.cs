@@ -3,17 +3,18 @@ namespace Sidekick.Data.Builder.Stats.Hooks;
 
 public class LogbookFactions(StatBuilderContext context) : BaseHook
 {
-    public override void OnAfterTradeBuild(List<StatDefinition> definitions)
+    public override void OnAfterTradeBuild(List<StatDefinition> statDefinitions)
     {
-        var patterns = (from definition in definitions.Where(x => x.TradeStats != null)
-            from tradeStat in definition.TradeStats
-            where tradeStat.Category == StatCategory.Pseudo
-            where context.InvariantDetails.LogbookFactionStatIds.Contains(tradeStat.Id)
-            select definition);
-
-        foreach (var pattern in patterns)
+        foreach (var statDefinition in statDefinitions)
         {
-            pattern.Pattern = context.Patterns.GetPattern(pattern.Text.Split(':', 2).Last().Trim());
+            if (statDefinition.TradeIds == null) continue;
+
+            foreach (var tradeStat in statDefinition.TradeIds)
+            {
+                if (!context.InvariantDetails.LogbookFactionStatIds.Contains(tradeStat)) continue;
+
+                statDefinition.Pattern = context.PatternBuilder.GetPattern(statDefinition.Text.Split(':', 2).Last().Trim());
+            }
         }
     }
 }

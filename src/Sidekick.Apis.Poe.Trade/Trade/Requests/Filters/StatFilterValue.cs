@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Data.Stats;
 namespace Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 
 public class StatFilterValue
@@ -35,11 +36,12 @@ public class StatFilterValue
         int? GetOption()
         {
             foreach (var tradeStat in filter.Stat.Definitions
-                         .Where(x => x.TradeStats != null)
-                         .SelectMany(definition => definition.TradeStats!))
+                         .Where(x => x.TradeIds != null)
+                         .SelectMany(definition => definition.TradeIds!))
             {
-                if (tradeStat.Option == null) continue;
-                return tradeStat.Option.Id;
+                var option = tradeStat.GetStatOption();
+                if (option == null) continue;
+                return option;
             }
 
             return null;

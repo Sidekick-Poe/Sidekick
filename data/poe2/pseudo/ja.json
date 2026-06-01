@@ -10,14 +10,14 @@
         "$values": [
           {
             "$id": "4",
-            "id": "explicit.stat_3372524247",
-            "text": "#% to Fire Resistance",
+            "id": "explicit.stat_4220027924",
+            "text": "#% to Cold Resistance",
             "multiplier": 1
           },
           {
             "$id": "5",
-            "id": "explicit.stat_4220027924",
-            "text": "#% to Cold Resistance",
+            "id": "explicit.stat_3372524247",
+            "text": "#% to Fire Resistance",
             "multiplier": 1
           },
           {
@@ -40,20 +40,20 @@
           },
           {
             "$id": "9",
+            "id": "explicit.stat_3465022881",
+            "text": "#% to Lightning and Chaos Resistances",
+            "multiplier": 1
+          },
+          {
+            "$id": "10",
             "id": "explicit.stat_3393628375",
             "text": "#% to Cold and Chaos Resistances",
             "multiplier": 1
           },
           {
-            "$id": "10",
+            "$id": "11",
             "id": "explicit.stat_378817135",
             "text": "#% to Fire and Chaos Resistances",
-            "multiplier": 1
-          },
-          {
-            "$id": "11",
-            "id": "explicit.stat_3465022881",
-            "text": "#% to Lightning and Chaos Resistances",
             "multiplier": 1
           },
           {
@@ -142,14 +142,14 @@
           },
           {
             "$id": "26",
-            "id": "fractured.stat_4220027924",
-            "text": "#% to Cold Resistance",
+            "id": "fractured.stat_3372524247",
+            "text": "#% to Fire Resistance",
             "multiplier": 1
           },
           {
             "$id": "27",
-            "id": "fractured.stat_3372524247",
-            "text": "#% to Fire Resistance",
+            "id": "fractured.stat_4220027924",
+            "text": "#% to Cold Resistance",
             "multiplier": 1
           },
           {
@@ -172,14 +172,14 @@
           },
           {
             "$id": "31",
-            "id": "crafted.stat_1671376347",
-            "text": "#% to Lightning Resistance",
+            "id": "crafted.stat_4220027924",
+            "text": "#% to Cold Resistance",
             "multiplier": 1
           },
           {
             "$id": "32",
-            "id": "crafted.stat_4220027924",
-            "text": "#% to Cold Resistance",
+            "id": "crafted.stat_1671376347",
+            "text": "#% to Lightning Resistance",
             "multiplier": 1
           },
           {
@@ -208,14 +208,14 @@
           },
           {
             "$id": "37",
-            "id": "rune.stat_3372524247",
-            "text": "#% to Fire Resistance",
+            "id": "rune.stat_1671376347",
+            "text": "#% to Lightning Resistance",
             "multiplier": 1
           },
           {
             "$id": "38",
-            "id": "rune.stat_1671376347",
-            "text": "#% to Lightning Resistance",
+            "id": "rune.stat_3372524247",
+            "text": "#% to Fire Resistance",
             "multiplier": 1
           },
           {
@@ -244,48 +244,66 @@
           },
           {
             "$id": "43",
+            "id": "rune.stat_3448627618",
+            "text": "Bonded: #% to Cold Resistance",
+            "multiplier": 1
+          },
+          {
+            "$id": "44",
+            "id": "rune.stat_3294435116",
+            "text": "Bonded: #% to Lightning Resistance",
+            "multiplier": 1
+          },
+          {
+            "$id": "45",
+            "id": "rune.stat_1539508682",
+            "text": "Companions in your Presence have #% to all Elemental Resistances",
+            "multiplier": 3
+          },
+          {
+            "$id": "46",
             "id": "desecrated.stat_4220027924",
             "text": "#% to Cold Resistance",
             "multiplier": 1
           },
           {
-            "$id": "44",
-            "id": "desecrated.stat_3372524247",
-            "text": "#% to Fire Resistance",
-            "multiplier": 1
-          },
-          {
-            "$id": "45",
+            "$id": "47",
             "id": "desecrated.stat_1671376347",
             "text": "#% to Lightning Resistance",
             "multiplier": 1
           },
           {
-            "$id": "46",
+            "$id": "48",
+            "id": "desecrated.stat_3372524247",
+            "text": "#% to Fire Resistance",
+            "multiplier": 1
+          },
+          {
+            "$id": "49",
             "id": "desecrated.stat_2901986750",
             "text": "#% to all Elemental Resistances",
             "multiplier": 3
           },
           {
-            "$id": "47",
+            "$id": "50",
             "id": "desecrated.stat_3465022881",
             "text": "#% to Lightning and Chaos Resistances",
             "multiplier": 1
           },
           {
-            "$id": "48",
+            "$id": "51",
             "id": "desecrated.stat_378817135",
             "text": "#% to Fire and Chaos Resistances",
             "multiplier": 1
           },
           {
-            "$id": "49",
+            "$id": "52",
             "id": "desecrated.stat_3393628375",
             "text": "#% to Cold and Chaos Resistances",
             "multiplier": 1
           },
           {
-            "$id": "50",
+            "$id": "53",
             "id": "desecrated.stat_3850614073",
             "text": "Allies in your Presence have #% to all Elemental Resistances",
             "multiplier": 3
@@ -294,416 +312,340 @@
       }
     },
     {
-      "$id": "51",
+      "$id": "54",
       "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
       "text": "\u6DF7\u6C8C\u8010\u6027\u5408\u8A08 \u002B#%",
       "stats": {
-        "$id": "52",
+        "$id": "55",
         "$values": [
           {
-            "$id": "53",
+            "$id": "56",
             "id": "explicit.stat_2923486259",
             "text": "#% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "54",
-            "id": "explicit.stat_3393628375",
-            "text": "#% to Cold and Chaos Resistances",
-            "multiplier": 1
-          },
-          {
-            "$id": "55",
-            "id": "explicit.stat_378817135",
-            "text": "#% to Fire and Chaos Resistances",
-            "multiplier": 1
-          },
-          {
-            "$id": "56",
+            "$id": "57",
             "id": "explicit.stat_3465022881",
             "text": "#% to Lightning and Chaos Resistances",
             "multiplier": 1
           },
           {
-            "$id": "57",
+            "$id": "58",
+            "id": "explicit.stat_3393628375",
+            "text": "#% to Cold and Chaos Resistances",
+            "multiplier": 1
+          },
+          {
+            "$id": "59",
+            "id": "explicit.stat_378817135",
+            "text": "#% to Fire and Chaos Resistances",
+            "multiplier": 1
+          },
+          {
+            "$id": "60",
             "id": "explicit.stat_1404134612",
             "text": "You and Allies in your Presence have #% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "58",
+            "$id": "61",
             "id": "implicit.stat_2923486259",
             "text": "#% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "59",
+            "$id": "62",
             "id": "fractured.stat_2923486259",
             "text": "#% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "60",
+            "$id": "63",
             "id": "crafted.stat_2923486259",
             "text": "#% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "61",
+            "$id": "64",
             "id": "enchant.stat_2923486259",
             "text": "#% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "62",
+            "$id": "65",
             "id": "rune.stat_2923486259",
             "text": "#% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "63",
+            "$id": "66",
             "id": "rune.stat_3351086592",
             "text": "Bonded: #% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "64",
+            "$id": "67",
+            "id": "rune.stat_2342427527",
+            "text": "Bonded: Companions in your Presence have #% to Chaos Resistance",
+            "multiplier": 1
+          },
+          {
+            "$id": "68",
             "id": "desecrated.stat_3465022881",
             "text": "#% to Lightning and Chaos Resistances",
             "multiplier": 1
           },
           {
-            "$id": "65",
+            "$id": "69",
             "id": "desecrated.stat_378817135",
             "text": "#% to Fire and Chaos Resistances",
             "multiplier": 1
           },
           {
-            "$id": "66",
-            "id": "desecrated.stat_3393628375",
-            "text": "#% to Cold and Chaos Resistances",
+            "$id": "70",
+            "id": "desecrated.stat_2923486259",
+            "text": "#% to Chaos Resistance",
             "multiplier": 1
           },
           {
-            "$id": "67",
-            "id": "desecrated.stat_2923486259",
-            "text": "#% to Chaos Resistance",
+            "$id": "71",
+            "id": "desecrated.stat_3393628375",
+            "text": "#% to Cold and Chaos Resistances",
             "multiplier": 1
           }
         ]
       }
     },
     {
-      "$id": "68",
+      "$id": "72",
       "pseudoStatId": "pseudo.pseudo_total_strength",
       "text": "\u7B4B\u529B\u5408\u8A08 \u002B#",
       "stats": {
-        "$id": "69",
+        "$id": "73",
         "$values": [
           {
-            "$id": "70",
+            "$id": "74",
             "id": "explicit.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 1
           },
           {
-            "$id": "71",
+            "$id": "75",
             "id": "explicit.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 1
           },
           {
-            "$id": "72",
+            "$id": "76",
             "id": "explicit.stat_538848803",
             "text": "# to Strength and Dexterity",
             "multiplier": 1
           },
           {
-            "$id": "73",
+            "$id": "77",
             "id": "explicit.stat_1535626285",
             "text": "# to Strength and Intelligence",
             "multiplier": 1
           },
           {
-            "$id": "74",
+            "$id": "78",
+            "id": "explicit.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "79",
             "id": "implicit.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 1
           },
           {
-            "$id": "75",
-            "id": "implicit.stat_4080418644",
-            "text": "# to Strength",
-            "multiplier": 1
-          },
-          {
-            "$id": "76",
-            "id": "fractured.stat_4080418644",
-            "text": "# to Strength",
-            "multiplier": 1
-          },
-          {
-            "$id": "77",
-            "id": "fractured.stat_1379411836",
-            "text": "# to all Attributes",
-            "multiplier": 1
-          },
-          {
-            "$id": "78",
-            "id": "crafted.stat_4080418644",
-            "text": "# to Strength",
-            "multiplier": 1
-          },
-          {
-            "$id": "79",
-            "id": "enchant.stat_4080418644",
-            "text": "# to Strength",
-            "multiplier": 1
-          },
-          {
             "$id": "80",
-            "id": "rune.stat_4080418644",
+            "id": "implicit.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 1
           },
           {
             "$id": "81",
-            "id": "rune.stat_1556124492",
-            "text": "Convert #% of Requirements to Strength",
+            "id": "fractured.stat_4080418644",
+            "text": "# to Strength",
             "multiplier": 1
           },
           {
             "$id": "82",
-            "id": "desecrated.stat_1535626285",
-            "text": "# to Strength and Intelligence",
+            "id": "fractured.stat_1379411836",
+            "text": "# to all Attributes",
             "multiplier": 1
           },
           {
             "$id": "83",
-            "id": "desecrated.stat_4080418644",
+            "id": "crafted.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 1
           },
           {
             "$id": "84",
-            "id": "desecrated.stat_1379411836",
+            "id": "crafted.stat_2897413282",
             "text": "# to all Attributes",
             "multiplier": 1
           },
           {
             "$id": "85",
+            "id": "enchant.stat_4080418644",
+            "text": "# to Strength",
+            "multiplier": 1
+          },
+          {
+            "$id": "86",
+            "id": "rune.stat_4080418644",
+            "text": "# to Strength",
+            "multiplier": 1
+          },
+          {
+            "$id": "87",
+            "id": "rune.stat_1556124492",
+            "text": "Convert #% of Requirements to Strength",
+            "multiplier": 1
+          },
+          {
+            "$id": "88",
+            "id": "desecrated.stat_4080418644",
+            "text": "# to Strength",
+            "multiplier": 1
+          },
+          {
+            "$id": "89",
+            "id": "desecrated.stat_1535626285",
+            "text": "# to Strength and Intelligence",
+            "multiplier": 1
+          },
+          {
+            "$id": "90",
             "id": "desecrated.stat_538848803",
             "text": "# to Strength and Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "91",
+            "id": "desecrated.stat_1379411836",
+            "text": "# to all Attributes",
             "multiplier": 1
           }
         ]
       }
     },
     {
-      "$id": "86",
+      "$id": "92",
       "pseudoStatId": "pseudo.pseudo_total_intelligence",
       "text": "\u77E5\u6027\u5408\u8A08 \u002B#",
       "stats": {
-        "$id": "87",
+        "$id": "93",
         "$values": [
           {
-            "$id": "88",
-            "id": "explicit.stat_328541901",
-            "text": "# to Intelligence",
-            "multiplier": 1
-          },
-          {
-            "$id": "89",
-            "id": "explicit.stat_1379411836",
-            "text": "# to all Attributes",
-            "multiplier": 1
-          },
-          {
-            "$id": "90",
-            "id": "explicit.stat_2300185227",
-            "text": "# to Dexterity and Intelligence",
-            "multiplier": 1
-          },
-          {
-            "$id": "91",
-            "id": "explicit.stat_1535626285",
-            "text": "# to Strength and Intelligence",
-            "multiplier": 1
-          },
-          {
-            "$id": "92",
-            "id": "implicit.stat_1379411836",
-            "text": "# to all Attributes",
-            "multiplier": 1
-          },
-          {
-            "$id": "93",
-            "id": "implicit.stat_328541901",
-            "text": "# to Intelligence",
-            "multiplier": 1
-          },
-          {
             "$id": "94",
-            "id": "fractured.stat_328541901",
+            "id": "explicit.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 1
           },
           {
             "$id": "95",
-            "id": "fractured.stat_1379411836",
+            "id": "explicit.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 1
           },
           {
             "$id": "96",
-            "id": "crafted.stat_328541901",
-            "text": "# to Intelligence",
+            "id": "explicit.stat_2300185227",
+            "text": "# to Dexterity and Intelligence",
             "multiplier": 1
           },
           {
             "$id": "97",
-            "id": "enchant.stat_328541901",
-            "text": "# to Intelligence",
-            "multiplier": 1
-          },
-          {
-            "$id": "98",
-            "id": "rune.stat_328541901",
-            "text": "# to Intelligence",
-            "multiplier": 1
-          },
-          {
-            "$id": "99",
-            "id": "rune.stat_2913012734",
-            "text": "Convert #% of Requirements to Intelligence",
-            "multiplier": 1
-          },
-          {
-            "$id": "100",
-            "id": "desecrated.stat_1535626285",
+            "id": "explicit.stat_1535626285",
             "text": "# to Strength and Intelligence",
             "multiplier": 1
           },
           {
+            "$id": "98",
+            "id": "explicit.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "99",
+            "id": "implicit.stat_1379411836",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "100",
+            "id": "implicit.stat_328541901",
+            "text": "# to Intelligence",
+            "multiplier": 1
+          },
+          {
             "$id": "101",
-            "id": "desecrated.stat_328541901",
+            "id": "fractured.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 1
           },
           {
             "$id": "102",
-            "id": "desecrated.stat_1379411836",
+            "id": "fractured.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 1
           },
           {
             "$id": "103",
-            "id": "desecrated.stat_2300185227",
-            "text": "# to Dexterity and Intelligence",
-            "multiplier": 1
-          }
-        ]
-      }
-    },
-    {
-      "$id": "104",
-      "pseudoStatId": "pseudo.pseudo_total_dexterity",
-      "text": "\u5668\u7528\u3055\u5408\u8A08 \u002B#",
-      "stats": {
-        "$id": "105",
-        "$values": [
-          {
-            "$id": "106",
-            "id": "explicit.stat_3261801346",
-            "text": "# to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "107",
-            "id": "explicit.stat_1379411836",
+            "id": "crafted.stat_2897413282",
             "text": "# to all Attributes",
             "multiplier": 1
           },
           {
+            "$id": "104",
+            "id": "crafted.stat_328541901",
+            "text": "# to Intelligence",
+            "multiplier": 1
+          },
+          {
+            "$id": "105",
+            "id": "enchant.stat_328541901",
+            "text": "# to Intelligence",
+            "multiplier": 1
+          },
+          {
+            "$id": "106",
+            "id": "rune.stat_328541901",
+            "text": "# to Intelligence",
+            "multiplier": 1
+          },
+          {
+            "$id": "107",
+            "id": "rune.stat_2913012734",
+            "text": "Convert #% of Requirements to Intelligence",
+            "multiplier": 1
+          },
+          {
             "$id": "108",
-            "id": "explicit.stat_2300185227",
-            "text": "# to Dexterity and Intelligence",
+            "id": "desecrated.stat_328541901",
+            "text": "# to Intelligence",
             "multiplier": 1
           },
           {
             "$id": "109",
-            "id": "explicit.stat_538848803",
-            "text": "# to Strength and Dexterity",
+            "id": "desecrated.stat_1535626285",
+            "text": "# to Strength and Intelligence",
             "multiplier": 1
           },
           {
             "$id": "110",
-            "id": "implicit.stat_1379411836",
+            "id": "desecrated.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 1
           },
           {
             "$id": "111",
-            "id": "implicit.stat_3261801346",
-            "text": "# to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "112",
-            "id": "fractured.stat_3261801346",
-            "text": "# to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "113",
-            "id": "fractured.stat_1379411836",
-            "text": "# to all Attributes",
-            "multiplier": 1
-          },
-          {
-            "$id": "114",
-            "id": "crafted.stat_3261801346",
-            "text": "# to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "115",
-            "id": "enchant.stat_3261801346",
-            "text": "# to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "116",
-            "id": "rune.stat_3261801346",
-            "text": "# to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "117",
-            "id": "rune.stat_1496740334",
-            "text": "Convert #% of Requirements to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "118",
-            "id": "desecrated.stat_3261801346",
-            "text": "# to Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "119",
-            "id": "desecrated.stat_1379411836",
-            "text": "# to all Attributes",
-            "multiplier": 1
-          },
-          {
-            "$id": "120",
-            "id": "desecrated.stat_538848803",
-            "text": "# to Strength and Dexterity",
-            "multiplier": 1
-          },
-          {
-            "$id": "121",
             "id": "desecrated.stat_2300185227",
             "text": "# to Dexterity and Intelligence",
             "multiplier": 1
@@ -712,306 +654,448 @@
       }
     },
     {
-      "$id": "122",
+      "$id": "112",
+      "pseudoStatId": "pseudo.pseudo_total_dexterity",
+      "text": "\u5668\u7528\u3055\u5408\u8A08 \u002B#",
+      "stats": {
+        "$id": "113",
+        "$values": [
+          {
+            "$id": "114",
+            "id": "explicit.stat_3261801346",
+            "text": "# to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "115",
+            "id": "explicit.stat_1379411836",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "116",
+            "id": "explicit.stat_2300185227",
+            "text": "# to Dexterity and Intelligence",
+            "multiplier": 1
+          },
+          {
+            "$id": "117",
+            "id": "explicit.stat_538848803",
+            "text": "# to Strength and Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "118",
+            "id": "explicit.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "119",
+            "id": "implicit.stat_1379411836",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "120",
+            "id": "implicit.stat_3261801346",
+            "text": "# to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "121",
+            "id": "fractured.stat_3261801346",
+            "text": "# to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "122",
+            "id": "fractured.stat_1379411836",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "123",
+            "id": "crafted.stat_3261801346",
+            "text": "# to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "124",
+            "id": "crafted.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "125",
+            "id": "enchant.stat_3261801346",
+            "text": "# to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "126",
+            "id": "rune.stat_3261801346",
+            "text": "# to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "127",
+            "id": "rune.stat_1496740334",
+            "text": "Convert #% of Requirements to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "128",
+            "id": "desecrated.stat_3261801346",
+            "text": "# to Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "129",
+            "id": "desecrated.stat_538848803",
+            "text": "# to Strength and Dexterity",
+            "multiplier": 1
+          },
+          {
+            "$id": "130",
+            "id": "desecrated.stat_1379411836",
+            "text": "# to all Attributes",
+            "multiplier": 1
+          },
+          {
+            "$id": "131",
+            "id": "desecrated.stat_2300185227",
+            "text": "# to Dexterity and Intelligence",
+            "multiplier": 1
+          }
+        ]
+      }
+    },
+    {
+      "$id": "132",
       "pseudoStatId": "pseudo.pseudo_total_life",
       "text": "\u6700\u5927\u30E9\u30A4\u30D5\u5408\u8A08 \u002B#",
       "stats": {
-        "$id": "123",
+        "$id": "133",
         "$values": [
           {
-            "$id": "124",
+            "$id": "134",
             "id": "explicit.stat_3299347043",
             "text": "# to maximum Life",
             "multiplier": 1
           },
           {
-            "$id": "125",
+            "$id": "135",
             "id": "explicit.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 2
           },
           {
-            "$id": "126",
+            "$id": "136",
             "id": "explicit.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 2
           },
           {
-            "$id": "127",
+            "$id": "137",
             "id": "explicit.stat_538848803",
             "text": "# to Strength and Dexterity",
             "multiplier": 2
           },
           {
-            "$id": "128",
+            "$id": "138",
             "id": "explicit.stat_1535626285",
             "text": "# to Strength and Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "129",
+            "$id": "139",
+            "id": "explicit.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 2
+          },
+          {
+            "$id": "140",
             "id": "implicit.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 2
           },
           {
-            "$id": "130",
+            "$id": "141",
             "id": "implicit.stat_3299347043",
             "text": "# to maximum Life",
             "multiplier": 1
           },
           {
-            "$id": "131",
+            "$id": "142",
             "id": "implicit.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 2
           },
           {
-            "$id": "132",
+            "$id": "143",
             "id": "fractured.stat_3299347043",
             "text": "# to maximum Life",
             "multiplier": 1
           },
           {
-            "$id": "133",
+            "$id": "144",
             "id": "fractured.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 2
           },
           {
-            "$id": "134",
+            "$id": "145",
             "id": "fractured.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 2
           },
           {
-            "$id": "135",
-            "id": "crafted.stat_3299347043",
-            "text": "# to maximum Life",
-            "multiplier": 1
-          },
-          {
-            "$id": "136",
+            "$id": "146",
             "id": "crafted.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 2
           },
           {
-            "$id": "137",
+            "$id": "147",
+            "id": "crafted.stat_3299347043",
+            "text": "# to maximum Life",
+            "multiplier": 1
+          },
+          {
+            "$id": "148",
+            "id": "crafted.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 2
+          },
+          {
+            "$id": "149",
             "id": "enchant.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 2
           },
           {
-            "$id": "138",
+            "$id": "150",
             "id": "enchant.stat_3299347043",
             "text": "# to maximum Life",
             "multiplier": 1
           },
           {
-            "$id": "139",
+            "$id": "151",
             "id": "rune.stat_2280525771",
             "text": "Bonded: # to maximum Life",
             "multiplier": 1
           },
           {
-            "$id": "140",
+            "$id": "152",
             "id": "rune.stat_3299347043",
             "text": "# to maximum Life",
             "multiplier": 1
           },
           {
-            "$id": "141",
+            "$id": "153",
             "id": "rune.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 2
           },
           {
-            "$id": "142",
+            "$id": "154",
             "id": "rune.stat_1556124492",
             "text": "Convert #% of Requirements to Strength",
             "multiplier": 2
           },
           {
-            "$id": "143",
+            "$id": "155",
             "id": "desecrated.stat_3299347043",
             "text": "# to maximum Life",
             "multiplier": 1
           },
           {
-            "$id": "144",
-            "id": "desecrated.stat_1535626285",
-            "text": "# to Strength and Intelligence",
-            "multiplier": 2
-          },
-          {
-            "$id": "145",
+            "$id": "156",
             "id": "desecrated.stat_4080418644",
             "text": "# to Strength",
             "multiplier": 2
           },
           {
-            "$id": "146",
-            "id": "desecrated.stat_1379411836",
-            "text": "# to all Attributes",
+            "$id": "157",
+            "id": "desecrated.stat_1535626285",
+            "text": "# to Strength and Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "147",
+            "$id": "158",
             "id": "desecrated.stat_538848803",
             "text": "# to Strength and Dexterity",
+            "multiplier": 2
+          },
+          {
+            "$id": "159",
+            "id": "desecrated.stat_1379411836",
+            "text": "# to all Attributes",
             "multiplier": 2
           }
         ]
       }
     },
     {
-      "$id": "148",
+      "$id": "160",
       "pseudoStatId": "pseudo.pseudo_total_mana",
       "text": "\u6700\u5927\u30DE\u30CA\u5408\u8A08 \u002B#",
       "stats": {
-        "$id": "149",
+        "$id": "161",
         "$values": [
           {
-            "$id": "150",
+            "$id": "162",
             "id": "explicit.stat_1050105434",
             "text": "# to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "151",
+            "$id": "163",
             "id": "explicit.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "152",
+            "$id": "164",
             "id": "explicit.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 2
           },
           {
-            "$id": "153",
+            "$id": "165",
             "id": "explicit.stat_2300185227",
             "text": "# to Dexterity and Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "154",
+            "$id": "166",
             "id": "explicit.stat_1535626285",
             "text": "# to Strength and Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "155",
+            "$id": "167",
+            "id": "explicit.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 2
+          },
+          {
+            "$id": "168",
             "id": "implicit.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 2
           },
           {
-            "$id": "156",
+            "$id": "169",
             "id": "implicit.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "157",
+            "$id": "170",
             "id": "implicit.stat_1050105434",
             "text": "# to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "158",
+            "$id": "171",
             "id": "fractured.stat_1050105434",
             "text": "# to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "159",
+            "$id": "172",
             "id": "fractured.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "160",
+            "$id": "173",
             "id": "fractured.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 2
           },
           {
-            "$id": "161",
+            "$id": "174",
             "id": "crafted.stat_1050105434",
             "text": "# to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "162",
+            "$id": "175",
+            "id": "crafted.stat_2897413282",
+            "text": "# to all Attributes",
+            "multiplier": 2
+          },
+          {
+            "$id": "176",
             "id": "crafted.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "163",
+            "$id": "177",
             "id": "enchant.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "164",
+            "$id": "178",
             "id": "enchant.stat_1050105434",
             "text": "# to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "165",
+            "$id": "179",
             "id": "rune.stat_2926029365",
             "text": "Bonded: # to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "166",
+            "$id": "180",
             "id": "rune.stat_1050105434",
             "text": "# to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "167",
+            "$id": "181",
             "id": "rune.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "168",
+            "$id": "182",
             "id": "rune.stat_2913012734",
             "text": "Convert #% of Requirements to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "169",
+            "$id": "183",
             "id": "desecrated.stat_1050105434",
             "text": "# to maximum Mana",
             "multiplier": 1
           },
           {
-            "$id": "170",
-            "id": "desecrated.stat_1535626285",
-            "text": "# to Strength and Intelligence",
-            "multiplier": 2
-          },
-          {
-            "$id": "171",
+            "$id": "184",
             "id": "desecrated.stat_328541901",
             "text": "# to Intelligence",
             "multiplier": 2
           },
           {
-            "$id": "172",
+            "$id": "185",
+            "id": "desecrated.stat_1535626285",
+            "text": "# to Strength and Intelligence",
+            "multiplier": 2
+          },
+          {
+            "$id": "186",
             "id": "desecrated.stat_1379411836",
             "text": "# to all Attributes",
             "multiplier": 2
           },
           {
-            "$id": "173",
+            "$id": "187",
             "id": "desecrated.stat_2300185227",
             "text": "# to Dexterity and Intelligence",
             "multiplier": 2

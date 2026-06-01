@@ -1,0 +1,704 @@
+{
+  "LifeFlask": {
+    "category": "[Flask|フラスコ]",
+    "category_id": "Flask",
+    "name": "ライフフラスコ",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "[Flask|フラスコ]",
+    "category_id": "Flask",
+    "name": "マナフラスコ",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "カレンシー",
+    "category_id": "Currency",
+    "name": "カレンシー",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "アミュレット",
+    "category_id": "Amulet",
+    "name": "アミュレット",
+    "influence_tags": null
+  },
+  "Ring": {
+    "category": "指輪",
+    "category_id": "Ring",
+    "name": "指輪",
+    "influence_tags": null
+  },
+  "Claw": {
+    "category": "[Claw|鉤爪]",
+    "category_id": "Claw",
+    "name": "鉤爪",
+    "influence_tags": null
+  },
+  "Dagger": {
+    "category": "[Dagger|短剣]",
+    "category_id": "Dagger",
+    "name": "短剣",
+    "influence_tags": null
+  },
+  "Wand": {
+    "category": "[Wand|ワンド]",
+    "category_id": "Wand",
+    "name": "ワンド",
+    "influence_tags": null
+  },
+  "One Hand Sword": {
+    "category": "[Sword|片手剣]",
+    "category_id": "One Hand Sword",
+    "name": "片手剣",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "One Hand Axe": {
+    "category": "[Axe|片手斧]",
+    "category_id": "One Hand Axe",
+    "name": "片手斧",
+    "influence_tags": null
+  },
+  "One Hand Mace": {
+    "category": "[Mace|片手メイス]",
+    "category_id": "One Hand Mace",
+    "name": "片手メイス",
+    "influence_tags": null
+  },
+  "Bow": {
+    "category": "[Bow|弓]",
+    "category_id": "Bow",
+    "name": "弓",
+    "influence_tags": null
+  },
+  "Staff": {
+    "category": "[Staff|スタッフ]",
+    "category_id": "Staff",
+    "name": "スタッフ",
+    "influence_tags": null
+  },
+  "Two Hand Sword": {
+    "category": "[Sword|両手剣]",
+    "category_id": "Two Hand Sword",
+    "name": "両手剣",
+    "influence_tags": null
+  },
+  "Two Hand Axe": {
+    "category": "[Axe|両手斧]",
+    "category_id": "Two Hand Axe",
+    "name": "両手斧",
+    "influence_tags": null
+  },
+  "Two Hand Mace": {
+    "category": "[Mace|両手メイス]",
+    "category_id": "Two Hand Mace",
+    "name": "両手メイス",
+    "influence_tags": null
+  },
+  "Active Skill Gem": {
+    "category": "スキルジェム",
+    "category_id": "Active Skill Gem",
+    "name": "スキルジェム",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "サポートジェム",
+    "category_id": "Support Skill Gem",
+    "name": "サポートジェム",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "[Quiver|矢筒]",
+    "category_id": "Quiver",
+    "name": "矢筒",
+    "influence_tags": null
+  },
+  "Belt": {
+    "category": "ベルト",
+    "category_id": "Belt",
+    "name": "ベルト",
+    "influence_tags": null
+  },
+  "Gloves": {
+    "category": "手袋",
+    "category_id": "Gloves",
+    "name": "手袋",
+    "influence_tags": null
+  },
+  "Boots": {
+    "category": "靴",
+    "category_id": "Boots",
+    "name": "靴",
+    "influence_tags": null
+  },
+  "Body Armour": {
+    "category": "鎧",
+    "category_id": "Body Armour",
+    "name": "鎧",
+    "influence_tags": null
+  },
+  "Helmet": {
+    "category": "兜",
+    "category_id": "Helmet",
+    "name": "兜",
+    "influence_tags": null
+  },
+  "Shield": {
+    "category": "[Shield|タワーシールド]",
+    "category_id": "Shield",
+    "name": "盾",
+    "influence_tags": null
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "レリック (小 )",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "レリック (中 )",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "レリック (大 )",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "カレンシー",
+    "category_id": "Currency",
+    "name": "スタック可能カレンシー",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "[QuestItem|クエストアイテム]",
+    "category_id": "QuestItem",
+    "name": "クエストアイテム",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "[Sceptre|セプター]",
+    "category_id": "Sceptre",
+    "name": "セプター",
+    "influence_tags": null
+  },
+  "UtilityFlask": {
+    "category": "チャーム",
+    "category_id": "Charm",
+    "name": "チャーム",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "ウェイストーン",
+    "category_id": "Map",
+    "name": "ウェイストーン",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": "[Unarmed|素手状態]",
+    "category_id": "Unarmed",
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "釣り竿",
+    "category_id": "FishingRod",
+    "name": "釣り竿",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "マップフラグメント",
+    "category_id": "MapFragment",
+    "name": "マップのフラグメント",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "隠れ家装飾品",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "マイクロトランザクション",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "[Jewel|ジュエル]",
+    "category_id": "Jewel",
+    "name": "ジュエル",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "占いカード",
+    "category_id": "DivinationCard",
+    "name": "占いカード",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE9": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE10": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "その他マップアイテム",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "リーグストーン",
+    "category_id": "Leaguestone",
+    "name": "リーグストーン",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "捕獲された魂",
+    "category_id": "PantheonSoul",
+    "name": "パンテオンソウル",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "ユニークの欠片",
+    "category_id": "UniqueFragment",
+    "name": "欠片",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "アビスジュエル",
+    "category_id": "AbyssJewel",
+    "name": "アビスジュエル",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "インカージョンアイテム",
+    "category_id": "IncursionItem",
+    "name": "インカージョンアイテム",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "レゾネーター",
+    "category_id": "DelveSocketableCurrency",
+    "name": "デルヴスタック可能カレンシー",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "インキュベーター",
+    "category_id": "Incubator",
+    "name": "インキュベーター",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "シャード",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "欠片の心臓",
+    "influence_tags": null
+  },
+  "DONOTUSE11": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Warstaff": {
+    "category": "[Quarterstaff|クォータースタッフ]",
+    "category_id": "Warstaff",
+    "name": "クォータースタッフ",
+    "influence_tags": null
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "レゾネーター",
+    "category_id": "DelveSocketableCurrency",
+    "name": "デルヴスタック可能ソケット可能カレンシー",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "ウォッチストーン",
+    "category_id": "AtlasUpgradeItem",
+    "name": "アトラスアップグレードアイテム",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "隠しアイテム",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "依頼書",
+    "category_id": "HeistContract",
+    "name": "依頼書",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "ハイストギア",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "ハイストギア",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "ハイストツール",
+    "category_id": "HeistEquipmentTool",
+    "name": "ハイストツール",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "ハイストクローク",
+    "category_id": "HeistEquipmentUtility",
+    "name": "ハイストクローク",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "ハイストブローチ",
+    "category_id": "HeistEquipmentReward",
+    "name": "ハイストブローチ",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "計画書",
+    "category_id": "HeistBlueprint",
+    "name": "計画書",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "トリンケット",
+    "category_id": "Trinket",
+    "name": "トリンケット",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "ハイストターゲット",
+    "category_id": "HeistObjective",
+    "name": "ハイストターゲット",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "エクスペディションログブック",
+    "category_id": "ExpeditionLogbook",
+    "name": "エクスペディションログブック",
+    "influence_tags": null
+  },
+  "Expedition2Logbooks": {
+    "category": "マップフラグメント",
+    "category_id": "MapFragment",
+    "name": "エクスペディションログブック",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "インキュベーター",
+    "category_id": "Incubator",
+    "name": "インキュベーター",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "アーチネメシスモッド",
+    "influence_tags": null
+  },
+  "Meta Skill Gem": {
+    "category": "",
+    "category_id": "MetaSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Spear": {
+    "category": "[Spear|スピア]",
+    "category_id": "Spear",
+    "name": "スピア",
+    "influence_tags": null
+  },
+  "Crossbow": {
+    "category": "[Crossbow|クロスボウ]",
+    "category_id": "Crossbow",
+    "name": "クロスボウ",
+    "influence_tags": null
+  },
+  "Focus": {
+    "category": "[Focus|フォーカス]",
+    "category_id": "Focus",
+    "name": "フォーカス",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "インスタンスローカルアイテム",
+    "category_id": "InstanceLocalItem",
+    "name": "インスタンスローカルアイテム",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "センチネルドローン",
+    "category_id": "SentinelDrone",
+    "name": "センチネル",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "記憶",
+    "category_id": "MemoryLine",
+    "name": "記憶",
+    "influence_tags": null
+  },
+  "Flail": {
+    "category": "[Flail|フレイル]",
+    "category_id": "Flail",
+    "name": "フレイル",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "レリック",
+    "category_id": "Relic",
+    "name": "レリック",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "レリック",
+    "category_id": "Relic",
+    "name": "聖別されたレリック",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "ブリーチストーン",
+    "category_id": "Breachstone",
+    "name": "ブリーチストーン",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "聖廟の鍵",
+    "category_id": "VaultKey",
+    "name": "聖廟の鍵",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "試練のコイン",
+    "influence_tags": null
+  },
+  "DONOTUSE12": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutSkillGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Buckler": {
+    "category": "[Buckler|バックラー]",
+    "category_id": "Buckler",
+    "name": "バックラー",
+    "influence_tags": null
+  },
+  "Thrown One Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Two Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "ConventionTreasure": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "TrapTool": {
+    "category": "[Trap|トラップ]",
+    "category_id": "TrapTool",
+    "name": "トラップ",
+    "influence_tags": null
+  },
+  "Crossbow Attachment REMOVE": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SkillGemToken": {
+    "category": "カレンシー",
+    "category_id": "Currency",
+    "name": "カレンシー",
+    "influence_tags": null
+  },
+  "Nothing": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UltimatumKey": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "刻印されたアルティメイタム",
+    "influence_tags": null
+  },
+  "UncutSupportGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutReservationGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Shield": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SoulCore": {
+    "category": "[Augment|オーグメント]",
+    "category_id": "SoulCore",
+    "name": "オーグメント",
+    "influence_tags": null
+  },
+  "TowerAugmentation": {
+    "category": "石板",
+    "category_id": "TowerAugment",
+    "name": "石板",
+    "influence_tags": null
+  },
+  "Omen": {
+    "category": "お告げ",
+    "category_id": "Omen",
+    "name": "お告げ",
+    "influence_tags": null
+  },
+  "PinnacleKey_OLD": {
+    "category": "ピナクルキー",
+    "category_id": "PinnacleKey",
+    "name": "",
+    "influence_tags": null
+  },
+  "Talisman": {
+    "category": "[Talisman|タリスマン]",
+    "category_id": "Talisman",
+    "name": "タリスマン",
+    "influence_tags": null
+  },
+  "UncutSkillGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "スキルジェムの原石",
+    "influence_tags": null
+  },
+  "UncutSupportGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "サポートジェムの原石",
+    "influence_tags": null
+  },
+  "UncutReservationGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "スピリットジェムの原石",
+    "influence_tags": null
+  },
+  "IncursionArm": {
+    "category": "超越の手足",
+    "category_id": "IncursionLimb",
+    "name": "超越の義手",
+    "influence_tags": null
+  },
+  "IncursionLeg": {
+    "category": "超越の手足",
+    "category_id": "IncursionLimb",
+    "name": "超越の義足",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "母胎ギフト",
+    "category_id": "BrequelFruit",
+    "name": "母胎ギフト",
+    "influence_tags": null
+  },
+  "PinnacleKeyStackable": {
+    "category": "ピナクルキー",
+    "category_id": "PinnacleKey",
+    "name": "ピナクルキー",
+    "influence_tags": null
+  }
+}

@@ -13,6 +13,9 @@ public enum DataType
     [EnumValue("stats/{0}.json")]
     Stats,
 
+    [EnumValue("stats/trade.{0}.json")]
+    TradeStats,
+
     [EnumValue("pseudo/{0}.json")]
     Pseudo,
 

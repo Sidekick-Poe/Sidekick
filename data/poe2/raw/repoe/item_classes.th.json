@@ -1,0 +1,704 @@
+{
+  "LifeFlask": {
+    "category": "[Flask|ขวดยา]",
+    "category_id": "Flask",
+    "name": "ขวดยาพลังชีวิต",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "[Flask|ขวดยา]",
+    "category_id": "Flask",
+    "name": "ขวดยามานา",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "เงินตรา",
+    "category_id": "Currency",
+    "name": "เงินตรา",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "สร้อย",
+    "category_id": "Amulet",
+    "name": "สร้อย",
+    "influence_tags": null
+  },
+  "Ring": {
+    "category": "แหวน",
+    "category_id": "Ring",
+    "name": "แหวน",
+    "influence_tags": null
+  },
+  "Claw": {
+    "category": "[Claw|กรงเล็บ]",
+    "category_id": "Claw",
+    "name": "กรงเล็บ",
+    "influence_tags": null
+  },
+  "Dagger": {
+    "category": "[Dagger|มีด]",
+    "category_id": "Dagger",
+    "name": "มีด",
+    "influence_tags": null
+  },
+  "Wand": {
+    "category": "[Wand|ไม้กายสิทธิ์]",
+    "category_id": "Wand",
+    "name": "ไม้กายสิทธิ์",
+    "influence_tags": null
+  },
+  "One Hand Sword": {
+    "category": "[Sword|ดาบมือเดียว]",
+    "category_id": "One Hand Sword",
+    "name": "ดาบมือเดียว",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "One Hand Axe": {
+    "category": "[Axe|ขวานมือเดียว]",
+    "category_id": "One Hand Axe",
+    "name": "ขวานมือเดียว",
+    "influence_tags": null
+  },
+  "One Hand Mace": {
+    "category": "[Mace|กระบองมือเดียว]",
+    "category_id": "One Hand Mace",
+    "name": "กระบองมือเดียว",
+    "influence_tags": null
+  },
+  "Bow": {
+    "category": "[Bow|ธนู]",
+    "category_id": "Bow",
+    "name": "ธนู",
+    "influence_tags": null
+  },
+  "Staff": {
+    "category": "[Staff|ไม้พลอง]",
+    "category_id": "Staff",
+    "name": "ไม้พลอง",
+    "influence_tags": null
+  },
+  "Two Hand Sword": {
+    "category": "[Sword|ดาบสองมือ]",
+    "category_id": "Two Hand Sword",
+    "name": "ดาบสองมือ",
+    "influence_tags": null
+  },
+  "Two Hand Axe": {
+    "category": "[Axe|ขวานสองมือ]",
+    "category_id": "Two Hand Axe",
+    "name": "ขวานสองมือ",
+    "influence_tags": null
+  },
+  "Two Hand Mace": {
+    "category": "[Mace|กระบองสองมือ]",
+    "category_id": "Two Hand Mace",
+    "name": "กระบองสองมือ",
+    "influence_tags": null
+  },
+  "Active Skill Gem": {
+    "category": "หินสกิล",
+    "category_id": "Active Skill Gem",
+    "name": "หินสกิล",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "หินเสริม",
+    "category_id": "Support Skill Gem",
+    "name": "หินเสริม",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "[Quiver|ซองธนู]",
+    "category_id": "Quiver",
+    "name": "ซองธนู",
+    "influence_tags": null
+  },
+  "Belt": {
+    "category": "เข็มขัด",
+    "category_id": "Belt",
+    "name": "เข็มขัด",
+    "influence_tags": null
+  },
+  "Gloves": {
+    "category": "ถุงมือ",
+    "category_id": "Gloves",
+    "name": "ถุงมือ",
+    "influence_tags": null
+  },
+  "Boots": {
+    "category": "รองเท้า",
+    "category_id": "Boots",
+    "name": "รองเท้า",
+    "influence_tags": null
+  },
+  "Body Armour": {
+    "category": "เสื้อเกราะ",
+    "category_id": "Body Armour",
+    "name": "เสื้อเกราะ",
+    "influence_tags": null
+  },
+  "Helmet": {
+    "category": "หมวก",
+    "category_id": "Helmet",
+    "name": "หมวก",
+    "influence_tags": null
+  },
+  "Shield": {
+    "category": "[Shield|โล่สูง]",
+    "category_id": "Shield",
+    "name": "โล่",
+    "influence_tags": null
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "วัตถุโบราณเล็ก",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "วัตถุโบราณกลาง",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "วัตถุโบราณใหญ่",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "เงินตรา",
+    "category_id": "Currency",
+    "name": "เงินตรารวมกองได้",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "[QuestItem|ไอเทมเควสต์]",
+    "category_id": "QuestItem",
+    "name": "ไอเทมเควสต์",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "[Sceptre|คทา]",
+    "category_id": "Sceptre",
+    "name": "คทา",
+    "influence_tags": null
+  },
+  "UtilityFlask": {
+    "category": "ของขลัง",
+    "category_id": "Charm",
+    "name": "ของขลัง",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "ศิลานำทาง",
+    "category_id": "Map",
+    "name": "ศิลานำทาง",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": "[Unarmed|มือเปล่า]",
+    "category_id": "Unarmed",
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "เบ็ดตกปลา",
+    "category_id": "FishingRod",
+    "name": "เบ็ดตกปลา",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "ชิ้นส่วนแผนที่",
+    "category_id": "MapFragment",
+    "name": "ชิ้นส่วนแผนที่",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "ของตกแต่งที่ซ่อน",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "สินค้าแฟชั่น",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "[Jewel|จิวเวล]",
+    "category_id": "Jewel",
+    "name": "จิวเวล",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "ไพ่พยากรณ์",
+    "category_id": "DivinationCard",
+    "name": "ไพ่พยากรณ์",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE9": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE10": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "ไอเทมแผนที่อื่นๆ",
+    "category_id": "MiscMapItem",
+    "name": "ไอเทมแผนที่อื่นๆ",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "ศิลาลีก",
+    "category_id": "Leaguestone",
+    "name": "ศิลาลีก",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "วิญญาณที่ถูกเก็บ",
+    "category_id": "PantheonSoul",
+    "name": "วิญญาณกลุ่มทวยเทพ",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "ชิ้นส่วนยูนิค",
+    "category_id": "UniqueFragment",
+    "name": "ชิ้นส่วน (Piece)",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "จิวเวลอะบิส",
+    "category_id": "AbyssJewel",
+    "name": "จิวเวลอะบิส",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "ไอเทมย้อนเวลา",
+    "category_id": "IncursionItem",
+    "name": "ไอเทมย้อนเวลา",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "ตัวสั่นพ้อง",
+    "category_id": "DelveSocketableCurrency",
+    "name": "เงินตรามีรูของเหมือง",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "ตัวบ่มฟัก",
+    "category_id": "Incubator",
+    "name": "ตัวบ่มฟัก",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "เศษ",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "ชิ้นส่วนของหัวใจ",
+    "influence_tags": null
+  },
+  "DONOTUSE11": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Warstaff": {
+    "category": "[Quarterstaff|ไม้พลองวรยุทธ์]",
+    "category_id": "Warstaff",
+    "name": "ไม้พลองวรยุทธ์",
+    "influence_tags": null
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "ตัวสั่นพ้อง",
+    "category_id": "DelveSocketableCurrency",
+    "name": "เงินตรามีรูของเหมืองแบบรวมกองได้",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "อัญมณีผู้พิทักษ์",
+    "category_id": "AtlasUpgradeItem",
+    "name": "ไอเทมอัพเกรดแอตลาส",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "ไอเทมซ่อนเร้น",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "สัญญาจ้าง",
+    "category_id": "HeistContract",
+    "name": "สัญญาจ้าง",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "อุปกรณ์สวมใส่กองโจร",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "อุปกรณ์สวมใส่กองโจร",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "เครื่องมือกองโจร",
+    "category_id": "HeistEquipmentTool",
+    "name": "เครื่องมือกองโจร",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "ผ้าคลุมกองโจร",
+    "category_id": "HeistEquipmentUtility",
+    "name": "ผ้าคลุมกองโจร",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "เข็มกลัดกองโจร",
+    "category_id": "HeistEquipmentReward",
+    "name": "เข็มกลัดกองโจร",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "พิมพ์เขียว",
+    "category_id": "HeistBlueprint",
+    "name": "พิมพ์เขียว",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "เครื่องประดับ",
+    "category_id": "Trinket",
+    "name": "เครื่องประดับโจร",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "เป้าหมายโจรกรรม",
+    "category_id": "HeistObjective",
+    "name": "เป้าหมายโจรกรรม",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "สมุดปูมเดินทางกองสำรวจ",
+    "category_id": "ExpeditionLogbook",
+    "name": "สมุดปูมเดินทางกองสำรวจ",
+    "influence_tags": null
+  },
+  "Expedition2Logbooks": {
+    "category": "ชิ้นส่วนแผนที่",
+    "category_id": "MapFragment",
+    "name": "สมุดปูมเดินทางกองสำรวจ",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "ตัวบ่มฟัก",
+    "category_id": "Incubator",
+    "name": "ตัวบ่มฟัก",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "ม็อดอริคู่อาฆาต",
+    "influence_tags": null
+  },
+  "Meta Skill Gem": {
+    "category": "",
+    "category_id": "MetaSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Spear": {
+    "category": "[Spear|หอก]",
+    "category_id": "Spear",
+    "name": "หอก",
+    "influence_tags": null
+  },
+  "Crossbow": {
+    "category": "[Crossbow|หน้าไม้]",
+    "category_id": "Crossbow",
+    "name": "หน้าไม้",
+    "influence_tags": null
+  },
+  "Focus": {
+    "category": "[Focus|โฟกัส]",
+    "category_id": "Focus",
+    "name": "โฟกัส",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "ไอเทมประจำอินสแตนซ์",
+    "category_id": "InstanceLocalItem",
+    "name": "ไอเทมประจำอินสแตนซ์",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "หุ่นอารักษ์",
+    "category_id": "SentinelDrone",
+    "name": "หุ่นอารักษ์",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "ความทรงจำ",
+    "category_id": "MemoryLine",
+    "name": "ความทรงจำ",
+    "influence_tags": null
+  },
+  "Flail": {
+    "category": "[Flail|ลูกตุ้ม]",
+    "category_id": "Flail",
+    "name": "ลูกตุ้ม",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "วัตถุตกทอด",
+    "category_id": "Relic",
+    "name": "วัตถุตกทอด",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "วัตถุตกทอด",
+    "category_id": "Relic",
+    "name": "วัตถุตกทอดบริสุทธิ์",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "ศิลาบรีช",
+    "category_id": "Breachstone",
+    "name": "ศิลาบรีช",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "กุญแจคลังวัตถุโบราณ",
+    "category_id": "VaultKey",
+    "name": "กุญแจคลังวัตถุโบราณ",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "ไอเทมแผนที่อื่นๆ",
+    "category_id": "MiscMapItem",
+    "name": "เหรียญบททดสอบ",
+    "influence_tags": null
+  },
+  "DONOTUSE12": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutSkillGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Buckler": {
+    "category": "[Buckler|บัคเลอร์]",
+    "category_id": "Buckler",
+    "name": "บัคเลอร์",
+    "influence_tags": null
+  },
+  "Thrown One Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Two Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "ConventionTreasure": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "TrapTool": {
+    "category": "[Trap|กับดัก]",
+    "category_id": "TrapTool",
+    "name": "กับดัก",
+    "influence_tags": null
+  },
+  "Crossbow Attachment REMOVE": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SkillGemToken": {
+    "category": "เงินตรา",
+    "category_id": "Currency",
+    "name": "เงินตรา",
+    "influence_tags": null
+  },
+  "Nothing": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UltimatumKey": {
+    "category": "ไอเทมแผนที่อื่นๆ",
+    "category_id": "MiscMapItem",
+    "name": "คำขาดจารึก",
+    "influence_tags": null
+  },
+  "UncutSupportGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutReservationGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Shield": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SoulCore": {
+    "category": "[Augment|วัตถุฝัง]",
+    "category_id": "SoulCore",
+    "name": "วัตถุฝัง",
+    "influence_tags": null
+  },
+  "TowerAugmentation": {
+    "category": "แผ่นหิน",
+    "category_id": "TowerAugment",
+    "name": "แผ่นหิน",
+    "influence_tags": null
+  },
+  "Omen": {
+    "category": "ลางบอกเหตุ",
+    "category_id": "Omen",
+    "name": "ลางบอกเหตุ",
+    "influence_tags": null
+  },
+  "PinnacleKey_OLD": {
+    "category": "กุญแจอภิมหาบอส",
+    "category_id": "PinnacleKey",
+    "name": "",
+    "influence_tags": null
+  },
+  "Talisman": {
+    "category": "[Talisman|เครื่องราง]",
+    "category_id": "Talisman",
+    "name": "เครื่องราง",
+    "influence_tags": null
+  },
+  "UncutSkillGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "หินสกิลหยาบ",
+    "influence_tags": null
+  },
+  "UncutSupportGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "หินเสริมหยาบ",
+    "influence_tags": null
+  },
+  "UncutReservationGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "หินพลังวิญญาณหยาบ",
+    "influence_tags": null
+  },
+  "IncursionArm": {
+    "category": "อวัยวะเหนือมนุษย์",
+    "category_id": "IncursionLimb",
+    "name": "แขนเหนือมนุษย์",
+    "influence_tags": null
+  },
+  "IncursionLeg": {
+    "category": "อวัยวะเหนือมนุษย์",
+    "category_id": "IncursionLimb",
+    "name": "ขาเหนือมนุษย์",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "ผลฝากครรภ์",
+    "category_id": "BrequelFruit",
+    "name": "ผลฝากครรภ์",
+    "influence_tags": null
+  },
+  "PinnacleKeyStackable": {
+    "category": "กุญแจอภิมหาบอส",
+    "category_id": "PinnacleKey",
+    "name": "กุญแจอภิมหาบอส",
+    "influence_tags": null
+  }
+}

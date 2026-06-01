@@ -24,7 +24,8 @@ public class NinjaStashProvider(
     private static readonly List<string> IgnoreStatTexts =
     [
         "# Added Passive Skills are Jewel Sockets",
-        "Area is influenced by #",
+        "Area is influenced by The Shaper",
+        "Area is influenced by The Elder",
     ];
 
     private async Task<string> GetCacheKey(string type)
@@ -345,15 +346,15 @@ public class NinjaStashProvider(
 
         var stats = (
             from stat in itemStats
-            from definition in stat.Definitions.Where(x => x.TradeStats != null)
-            from tradeStat in definition.TradeStats
-            where stat.Category == statCategory && tradeStat.Id.StartsWith(statStartsWith)
-            where !IgnoreStatTexts.Contains(tradeStat.Text)
+            from definition in stat.Definitions
+            where definition?.TradeIds != null
+            where !IgnoreStatTexts.Contains(definition.Text)
+            from tradeStatId in definition.TradeIds!
+            where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
             select new
             {
-                tradeStat.Id,
+                Id = tradeStatId.GetStatOption() != null ? $"{tradeStatId.GetStatId()}#{tradeStatId.GetStatOption()}" : tradeStatId.GetStatId(),
                 Value = stat.AverageValue,
-                Option = tradeStat.Option?.Id.ToString(),
             })
             .DistinctBy(x => x.Id)
             .ToList();
@@ -364,10 +365,7 @@ public class NinjaStashProvider(
         foreach (var expectedStat in ninjaDefinition.Stash.Stats)
         {
             var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
-
             if (foundStat == null) return false;
-            if (!string.IsNullOrEmpty(expectedStat.Option) &&
-                foundStat.Option != expectedStat.Option) return false;
 
             if (expectedStat.Value != null && expectedStat.Value != 0 &&
                 (int)Math.Round(foundStat.Value) != expectedStat.Value) return false;

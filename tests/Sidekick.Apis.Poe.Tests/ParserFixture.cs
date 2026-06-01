@@ -21,6 +21,8 @@ using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
+using Sidekick.Data.Builder.Trade;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
@@ -43,6 +45,8 @@ public abstract class ParserFixture : IAsyncLifetime
     public IStatParser StatParser { get; private set; } = null!;
     protected TestContext TestContext { get; set; } = null!;
 
+    private List<TradeStatDefinition>? TradeStatDefinitions { get; set; }
+
     public virtual async Task InitializeAsync()
     {
         TestContext = new TestContext();
@@ -54,6 +58,7 @@ public abstract class ParserFixture : IAsyncLifetime
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickData()
+            .AddSidekickDataBuilder()
 
             // Apis
             .AddSidekickCommonApi()
@@ -89,6 +94,9 @@ public abstract class ParserFixture : IAsyncLifetime
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
         StatParser = TestContext.Services.GetRequiredService<IStatParser>();
+
+        var dataProvider = TestContext.Services.GetRequiredService<DataProvider>();
+        TradeStatDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(GameType, DataType.TradeStats, CurrentGameLanguage.Language);
     }
 
     public Task DisposeAsync()
@@ -133,12 +141,17 @@ public abstract class ParserFixture : IAsyncLifetime
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
     {
         var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
-        Assert.NotNull(actualStat);
+        if (actualStat == null)
+        {
+            Assert.Fail("The actual stat does not exist. Expected: " + expectedText + " - " + expectedOptionText);
+            return null;
+        }
 
         if (expectedValues.Length == 0) return actualStat;
 
         for (var i = 0; i < expectedValues.Length; i++)
         {
+            if (actualStat?.Values.Count <= i) Assert.Fail("The actual stat does not have enough values");
             AssertExtensions.AssertCloseEnough(expectedValues[i], actualStat?.Values[i]);
         }
 
@@ -149,23 +162,31 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText)
     {
+        if (TradeStatDefinitions == null) return null;
+
         foreach (var stat in actual.Stats)
         {
+            if (stat.MatchedFuzzily) continue;
             if (stat.Category != expectedCategory) continue;
 
-            foreach (var tradeStat in stat.Definitions
-                         .Where(x => x.TradeStats != null)
-                         .SelectMany(x => x.TradeStats!))
+            var tradeStatDefinitions = stat.Definitions
+                .Where(x => x.TradeIds != null)
+                .SelectMany(x => x.TradeIds!)
+                .Distinct()
+                .Select(x => TradeStatDefinitions.FirstOrDefault(y => y.Id == x))
+                .Where(x => x != null)
+                .ToList();
+            foreach (var tradeStatDefinition in tradeStatDefinitions)
             {
-                if (tradeStat.Text != expectedText) continue;
+                if (tradeStatDefinition!.Text != expectedText) continue;
                 if (expectedOptionText == null) return stat;
 
-                if (tradeStat.Option == null) continue;
-                if (tradeStat.Option.Text == expectedOptionText) return stat;
+                if (tradeStatDefinition.OptionText == null) continue;
+                if (tradeStatDefinition.OptionText == expectedOptionText) return stat;
             }
 
             foreach (var gameStat in stat.Definitions
-                         .Where(x => x.TradeStats == null))
+                         .Where(x => x.TradeIds == null))
             {
                 if (gameStat.Text != expectedText) continue;
                 if (expectedOptionText == null) return stat;

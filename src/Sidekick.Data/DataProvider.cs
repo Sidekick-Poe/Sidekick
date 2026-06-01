@@ -192,20 +192,6 @@ public class DataProvider : IInitializableService
         return game.GetValueAttribute() + "/" + string.Format(type.GetValueAttribute(), languageCode);
     }
 
-    public void DeleteAll()
-    {
-        if (configuration.Value.ApplicationType != SidekickApplicationType.DataBuilder)
-        {
-            throw new SidekickException("Can not delete all data except when running in CLI mode.");
-        }
-
-        if (!string.IsNullOrEmpty(DataDirectory))
-        {
-            Directory.Delete(DataDirectory, true);
-            Directory.CreateDirectory(DataDirectory);
-        }
-    }
-
     public List<DataFile> GetFiles()
     {
         var files = new List<DataFile>();
