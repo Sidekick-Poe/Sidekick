@@ -346,15 +346,15 @@ public class NinjaStashProvider(
 
         var stats = (
             from stat in itemStats
-            from definition in stat.Definitions.Where(x => x.TradeIds != null)
+            from definition in stat.Definitions
+            where definition?.TradeIds != null
+            where !IgnoreStatTexts.Contains(definition.Text)
             from tradeStatId in definition.TradeIds!
             where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
-            where !IgnoreStatTexts.Contains(stat.Text)
             select new
             {
-                Id = tradeStatId,
+                Id = tradeStatId.GetStatOption() != null ? $"{tradeStatId.GetStatId()}#{tradeStatId.GetStatOption()}" : tradeStatId.GetStatId(),
                 Value = stat.AverageValue,
-                Option = tradeStatId.GetStatOption(),
             })
             .DistinctBy(x => x.Id)
             .ToList();
@@ -365,6 +365,7 @@ public class NinjaStashProvider(
         foreach (var expectedStat in ninjaDefinition.Stash.Stats)
         {
             var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
+            if (foundStat == null) return false;
 
             if (expectedStat.Value != null && expectedStat.Value != 0 &&
                 (int)Math.Round(foundStat.Value) != expectedStat.Value) return false;
