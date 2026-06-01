@@ -1,0 +1,6288 @@
+{
+  "408": {
+    "id": "The Sunken Vessel",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "가라앉은 함선",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheSunkenVessel.dds",
+      "id": "FourUniqueBodyStrDex14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "0": {
+    "id": "Bramblejack",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "가시나무 갑옷",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Bramblejack.dds",
+      "id": "FourUniqueBodyStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "10": {
+    "id": "Bristleboar",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "가시털멧돼지",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Bristleboar.dds",
+      "id": "FourUniqueBodyDex1___"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "32": {
+    "id": "Enfolding Dawn",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "감싸 안는 여명",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/EnfoldingDawn.dds",
+      "id": "FourUniqueBodyStrInt1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "21": {
+    "id": "Necromantle",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "강령외투",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Necromantle.dds",
+      "id": "FourUniqueBodyInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "4": {
+    "id": "Titanrot Cataphract",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "거신부패 비늘 갑옷",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TitanrotCataphract.dds",
+      "id": "FourUniqueBodyStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "20": {
+    "id": "The Black Doubt",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "검은 의혹",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheBlackDoubt.dds",
+      "id": "FourUniqueBodyInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "1": {
+    "id": "Blackbraid",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "검은끈",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Blackbraid.dds",
+      "id": "FourUniqueBodyStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "25": {
+    "id": "The Covenant",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "계약",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheCovenant.dds",
+      "id": "FourUniqueBodyInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "27": {
+    "id": "The Barrow Dweller",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "고분의 주민",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheBarrowDweller.dds",
+      "id": "FourUniqueBodyStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "293": {
+    "id": "Widow's Reign",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "과부의 치세",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/WidowsReign.dds",
+      "id": "FourUniqueBodyStrDex7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "23": {
+    "id": "Prayers for Rain",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "기우 기도",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/PrayersForRain.dds",
+      "id": "FourUniqueBodyInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "285": {
+    "id": "The Coming Calamity",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "다가오는 대재난",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheComingCalamity.dds",
+      "id": "FourUniqueBodyStrDex11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "3": {
+    "id": "The Immortan",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "도로의 전사",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheRoadWarrior.dds",
+      "id": "FourUniqueBodyStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "31": {
+    "id": "Doryani's Prototype",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "도리아니의 프로토타입",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/DoryanisPrototype.dds",
+      "id": "FourUniqueBodyStrDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "19": {
+    "id": "Bitterbloom",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "독살꽃",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/DarkwoodPerianth.dds",
+      "id": "FourUniqueBodyInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "225": {
+    "id": "Morior Invictus",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "모리오르 인빅투스",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/MoriorInvictus_M.dds",
+      "id": "FourUniquePinnacle1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "284": {
+    "id": "The Fallen Formation",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "몰락자 진형",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/FallenFormation.dds",
+      "id": "FourUniqueBodyStrDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "34": {
+    "id": "Husk of Dreams",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "몽상",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/HuskOfDreams.dds",
+      "id": "FourUniqueBodyStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "5": {
+    "id": "Wandering Reliquary",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "방랑하는 성유물 보관실",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/WanderingReliquary.dds",
+      "id": "FourUniqueBodyStr6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "245": {
+    "id": "Perfidy",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "배반",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Perfidy.dds",
+      "id": "FourUniqueDelirium2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "376": {
+    "id": "Lightning Coil",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "번개 도선",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/LightningCoil.dds",
+      "id": "FourUniqueBodyStrDex8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "287": {
+    "id": "The Mutable Star",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "변이하는 별",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/MutableStar.dds",
+      "id": "FourUniqueBodyStrInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "407": {
+    "id": "The Auspex",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "복점관",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/The Auspex.dds",
+      "id": "FourUniqueBodyDex16_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "35": {
+    "id": "Voll's Protector",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "볼의 보호자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/VollsProtector.dds",
+      "id": "FourUniqueBodyStrInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "29": {
+    "id": "Pariah's Embrace",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "부랑자의 포옹",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/PariahsEmbrace.dds",
+      "id": "FourUniqueBodyStrDex4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "12": {
+    "id": "Ashrend",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "부서진 잿더미",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Ashrend.dds",
+      "id": "FourUniqueBodyDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "26": {
+    "id": "Coat of Red",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "붉은색의 외투",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CoatOfRed.dds",
+      "id": "FourUniqueBodyStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "41": {
+    "id": "Redflare Conduit",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "붉은섬광 도관",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/RedflareConduit.dds",
+      "id": "FourUniqueBodyDexInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "295": {
+    "id": "Vis Mortis",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "비스 모티스",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/VisMortis.dds",
+      "id": "FourUniqueBodyInt12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "288": {
+    "id": "Gloamgown",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "석양법복",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Gloamgown.dds",
+      "id": "FourUniqueBodyInt9_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "38": {
+    "id": "Gloomform",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "순흑체",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/GatheringGloom.dds",
+      "id": "FourUniqueBodyDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "294": {
+    "id": "Silks of Veneration",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "숭배의 비단",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SilksOfVeneration.dds",
+      "id": "FourUniqueBodyInt14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "17": {
+    "id": "Queen of the Forest",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "숲의 여왕",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/QueenOfTheForest.dds",
+      "id": "FourUniqueBodyDex10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "39": {
+    "id": "Sierran Inheritance",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "시에라의 유산",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/MutewindSail.dds",
+      "id": "FourUniqueBodyDexInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "251": {
+    "id": "Pragmatism",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "실용주의",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Pragmatism.dds",
+      "id": "FourUniqueRitual4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "280": {
+    "id": "Sands of Silk",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "실크의 모래",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SandsOfSilk.dds",
+      "id": "FourUniqueBodyDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "396": {
+    "id": "Atziri's Splendour",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "앗지리의 위풍",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/AtzirisSplendour.dds",
+      "id": "FourUniqueBodyStrDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "33": {
+    "id": "Icetomb",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "얼음 묘지",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Icetomb.dds",
+      "id": "FourUniqueBodyStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "2": {
+    "id": "Edyrn's Tusks",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "에디른의 엄니",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/EdyrnsTusks.dds",
+      "id": "FourUniqueBodyStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "37": {
+    "id": "Apron of Emiran",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "에미란의 앞치마",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/ApronOfEmiran.dds",
+      "id": "FourUniqueBodyDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "11": {
+    "id": "Foxshade",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "여우 그림자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Foxform.dds",
+      "id": "FourUniqueBodyDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "281": {
+    "id": "Soul Mantle",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "영혼의 외투",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SoulMantle.dds",
+      "id": "FourUniqueBodyStrInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "6": {
+    "id": "Kingsguard",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "왕의 보호구",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Kingsguard.dds",
+      "id": "FourUniqueBodyStr7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "18": {
+    "id": "Ghostwrithe",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "유령의 몸서리",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Ghostwrithe.dds",
+      "id": "FourUniqueBodyInt1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "283": {
+    "id": "Yriel's Fostering",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "이리엘의 훈육",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/YrielsFostering.dds",
+      "id": "FourUniqueBodyDex11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "413": {
+    "id": "Forgotten Warden",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "잊혀진 간수",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheAncientOrder.dds",
+      "id": "FourUniqueBodyDexInt14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "290": {
+    "id": "Cloak of Defiance",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "저항의 망토",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CloakOfDefiance.dds",
+      "id": "FourUniqueBodyInt13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "282": {
+    "id": "Zerphi's Serape",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "제르피의 모포",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/ZerphisSerape.dds",
+      "id": "FourUniqueBodyDexInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "409": {
+    "id": "Geofri's Sanctuary",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "조프리의 성역",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/GeofrisSanctuary.dds",
+      "id": "FourUniqueBodyStrInt11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "15": {
+    "id": "The Rat Cage",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "쥐덫",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheRatCage.dds",
+      "id": "FourUniqueBodyDex7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "410": {
+    "id": "Loreweave",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "지식의 매듭",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Loreweave.dds",
+      "id": "FourUniqueBodyStrInt14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "36": {
+    "id": "Couture of Crimson",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "진홍의 예복",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CoutureOfCrimson.dds",
+      "id": "FourUniqueBodyStrInt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "30": {
+    "id": "Belly of the Beast",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "짐승의 소굴",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/BellyOfTheBeast.dds",
+      "id": "FourUniqueBodyStrDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "289": {
+    "id": "Sacrosanctum",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "천골성소",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Sacrosanctum.dds",
+      "id": "FourUniqueBodyStrInt12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "28": {
+    "id": "Irongrasp",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "철손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Irongrasp.dds",
+      "id": "FourUniqueBodyStrDex3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "40": {
+    "id": "The Dancing Mirage",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "춤추는 신기루",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheDancingMirage.dds",
+      "id": "FourUniqueBodyDexInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "412": {
+    "id": "Decree of Loyalty",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "충성의 법령",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/UnfalteringFaith.dds",
+      "id": "FourUniqueBodyStrInt16"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "252": {
+    "id": "Skin of the Loyal",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "충신의 가죽",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SkinOfTheLoyal.dds",
+      "id": "FourUniqueBreach1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "9": {
+    "id": "Kaom's Heart",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "카옴의 심장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/KaomsHeart.dds",
+      "id": "FourUniqueBodyStr14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "377": {
+    "id": "Cospri's Will",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "코스프리의 의지",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CosprisWill.dds",
+      "id": "FourUniqueBodyDexInt13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "16": {
+    "id": "Quatl's Molt",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "콰틀의 허물",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/QuatlsMolt.dds",
+      "id": "FourUniqueBodyDex8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "292": {
+    "id": "Tabula Rasa",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "타뷸라 라사",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TabulaRasa.dds",
+      "id": "FourUniqueBodyStrDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "7": {
+    "id": "Greed's Embrace",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "탐욕의 포옹",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/GreedsEmbrace.dds",
+      "id": "FourUniqueBodyStr8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "24": {
+    "id": "Tetzlapokal's Desire",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "테츨라포칼의 갈망",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TetzlapokalsDesire.dds",
+      "id": "FourUniqueBodyInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "230": {
+    "id": "Temporalis",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "템포랄리스",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/PilgrimsImage.dds",
+      "id": "FourUniqueSanctum1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "286": {
+    "id": "Waveshaper",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "파도형성자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Waveshaper.dds",
+      "id": "FourUniqueBodyStrInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "291": {
+    "id": "Hyrri's Ire",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "하이리의 노여움",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/HyrrisIre.dds",
+      "id": "FourUniqueBodyDex15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "411": {
+    "id": "The Unleashed",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "해방된 자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Endurfaedyr.dds",
+      "id": "FourUniqueBodyStrInt15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "22": {
+    "id": "Cloak of Flame",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "화염의 망토",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CloakOfFlame.dds",
+      "id": "FourUniqueBodyInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "13": {
+    "id": "Briskwrap",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "활력의 겉옷",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Briskwrap.dds",
+      "id": "FourUniqueBodyDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "8": {
+    "id": "The Brass Dome",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "황동 철갑",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/BrassDome.dds",
+      "id": "FourUniqueBodyStr12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "14": {
+    "id": "Dustbloom",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "황혼꽃",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Dustbloom.dds",
+      "id": "FourUniqueBodyDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "437": {
+    "id": "Liminal Coil",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "경계 감개",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/CoilOfUndoing.dds",
+      "id": "FourUniqueWand15_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "438": {
+    "id": "Runeseeker's Call",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "룬 탐구자의 소명",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/RunicDiviner.dds",
+      "id": "FourUniqueWand16_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "327": {
+    "id": "The Wicked Quill",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "부도덕한 깃펜",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/TheWickedQuill.dds",
+      "id": "FourUniqueWand1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "208": {
+    "id": "Lifesprig",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "생명의 가지",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/Lifesprig.dds",
+      "id": "FourUniqueWand3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "371": {
+    "id": "Adonia's Ego",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "아도니아의 자아",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/CourtlyDiscord.dds",
+      "id": "FourUniqueWand4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "209": {
+    "id": "Enezun's Charge",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "에네준의 돌진",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/EnezunsCharge.dds",
+      "id": "FourUniqueWand5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "328": {
+    "id": "Cursecarver",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "저주난자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/Clawmark.dds",
+      "id": "FourUniqueWand7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "207": {
+    "id": "Sanguine Diviner",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "핏빛 예언자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/SanguineDiviner.dds",
+      "id": "FourUniqueWand2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "270": {
+    "id": "Yoke of Suffering",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "고통의 멍에",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/YokeOfSuffering.dds",
+      "id": "FourUniqueAmulet14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "146": {
+    "id": "Surefooted Sigil",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "굳건한 부적",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/SurefootedSigil.dds",
+      "id": "FourUniqueAmulet7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "257": {
+    "id": "The Pandemonius",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "대혼란",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ThePandemonius.dds",
+      "id": "FourUniqueBreach4c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "156": {
+    "id": "Serpent's Egg",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "독사의 알",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/TheSerpentsEgg.dds",
+      "id": "FourUniqueAmulet20"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "269": {
+    "id": "Stone of Lazhwar",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "라즈워의 보석",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/StoneOfLazhwar.dds",
+      "id": "FourUniqueAmulet9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "148": {
+    "id": "Ligurium Talisman",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "리구리움 부적",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/LiguriumTalisman.dds",
+      "id": "FourUniqueAmulet10_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "150": {
+    "id": "The Anvil",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "모루",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/TheAnvil.dds",
+      "id": "FourUniqueAmulet13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "268": {
+    "id": "Strugglescream",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "몸부림치는 비명",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/DeliriumAmulet.dds",
+      "id": "FourUniqueDelirium5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "151": {
+    "id": "Astramentis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "별의 보석",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Astramentis.dds",
+      "id": "FourUniqueAmulet15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "144": {
+    "id": "Revered Resin",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "신성한 수지",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ReveredResin.dds",
+      "id": "FourUniqueAmulet5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "153": {
+    "id": "Beacon of Azis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "아지스의 등불",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/BeaconOfAzis.dds",
+      "id": "FourUniqueAmulet17"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "142": {
+    "id": "The Everlasting Gaze",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "영원한 응시",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/TheEverlastingGaze.dds",
+      "id": "FourUniqueAmulet3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "422": {
+    "id": "Immaculate Adherence",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "완전무결한 준수",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ChainsOfAdherence.dds",
+      "id": "FourUniqueAmulet23"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "147": {
+    "id": "Defiance of Destiny",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "운명의 저항",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/DefianceOfDestiny.dds",
+      "id": "FourUniqueAmulet8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "141": {
+    "id": "Idol of Uldurn",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "울던의 우상",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/IdolOfUldurn.dds",
+      "id": "FourUniqueAmulet2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "143": {
+    "id": "Ungil's Harmony",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "웅힐의 조화",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/UngilsHarmony.dds",
+      "id": "FourUniqueAmulet4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "140": {
+    "id": "Igniferis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "이그니페리스",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Igniferis.dds",
+      "id": "FourUniqueAmulet1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "152": {
+    "id": "Fixation of Yix",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "익스의 집착",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/FixationOfYix.dds",
+      "id": "FourUniqueAmulet16"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "255": {
+    "id": "Xoph's Blood",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "조프의 피",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/XophsBlood.dds",
+      "id": "FourUniqueBreach4a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "155": {
+    "id": "Eye of Chayula",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "차율라의 눈",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/EyeOfChayula.dds",
+      "id": "FourUniqueAmulet19_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "256": {
+    "id": "Choir of the Storm",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "태풍의 합창",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ChoirOfTheStorm.dds",
+      "id": "FourUniqueBreach4b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "145": {
+    "id": "Carnage Heart",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "학살 심장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/CarnageHeart.dds",
+      "id": "FourUniqueAmulet6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "421": {
+    "id": "Eventide Petals",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "해거름 꽃잎",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Nattblom.dds",
+      "id": "FourUniqueAmulet22"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "149": {
+    "id": "Rondel of Fragility",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "허약의 론델",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/RondelOfFragility.dds",
+      "id": "FourUniqueAmulet12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "154": {
+    "id": "Fireflower",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "화염꽃",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Fireflower.dds",
+      "id": "FourUniqueAmulet18"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "381": {
+    "id": "Hinekora's Sight",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "히네코라의 통찰력",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/HinekorasSight.dds",
+      "id": "FourUniqueAmulet21"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "275": {
+    "id": "Evergrasping Ring",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "거머쥐는 손아귀의 반지",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/EvergraspingRing.dds",
+      "id": "FourUniqueRing22"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "157": {
+    "id": "Blackheart",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "검은 심장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Blackheart.dds",
+      "id": "FourUniqueRing1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "170": {
+    "id": "Blackflame",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "검은화염",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Blackflame.dds",
+      "id": "FourUniqueRing17"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "274": {
+    "id": "Vigilant View",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "경계하는 시야",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/VigilantView.dds",
+      "id": "FourUniqueRing19"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "167": {
+    "id": "The Burrower",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "굴착자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TheBurrower.dds",
+      "id": "FourUniqueRing14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "273": {
+    "id": "Prized Pain",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "귀한 고통",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/PrizedPain.dds",
+      "id": "FourUniqueRing3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "164": {
+    "id": "Dream Fragments",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "꿈의 조각",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/DreamFragments.dds",
+      "id": "FourUniqueRing11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "160": {
+    "id": "Seed of Cataclysm",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "대재앙의 씨앗",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/SeedOfCataclysm.dds",
+      "id": "FourUniqueRing6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "173": {
+    "id": "Thief's Torment",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "도둑의 고통",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/ThiefsTorment.dds",
+      "id": "FourUniqueRing21"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "159": {
+    "id": "Doedre's Damning",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "도이드리의 파멸",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/DoedresDamning.dds",
+      "id": "FourUniqueRing5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "174": {
+    "id": "Heartbound Loop",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "마음에 묶인 고리",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/HeartboundLoop.dds",
+      "id": "FourUniqueRing23"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "162": {
+    "id": "Blistering Bond",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "물집을 잡는 결속",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BlisteringBond.dds",
+      "id": "FourUniqueRing8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "169": {
+    "id": "Ming's Heart",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "밍의 심장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/MingsHeart.dds",
+      "id": "FourUniqueRing16"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "175": {
+    "id": "Snakepit",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "뱀 구덩이",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Snakepit.dds",
+      "id": "FourUniqueRing24"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "424": {
+    "id": "Berek's Pass",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "베렉의 길",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BereksPass.dds",
+      "id": "FourUniqueRing26b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "423": {
+    "id": "Berek's Grip",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "베렉의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BereksGrip.dds",
+      "id": "FourUniqueRing26a__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "425": {
+    "id": "Berek's Respite",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "베렉의 유예",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BereksRespite.dds",
+      "id": "FourUniqueRing26c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "178": {
+    "id": "Ventor's Gamble",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "벤토의 도박",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/VentorsGamble.dds",
+      "id": "FourUniqueRing30"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "158": {
+    "id": "Glowswarm",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "빛무리",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Glowswarm.dds",
+      "id": "FourUniqueRing4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "233": {
+    "id": "Sekhema's Resolve Fire",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "사프린의 결의",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/EmberheartSeal.dds",
+      "id": "FourUniqueSanctum4a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "161": {
+    "id": "Cracklecreep",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "살금박살",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Cracklecreep.dds",
+      "id": "FourUniqueRing7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "177": {
+    "id": "Andvarius",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "앤드바리우스",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Andvarius.dds",
+      "id": "FourUniqueRing29"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "272": {
+    "id": "Icefang Orbit",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "얼음송곳니의 위력",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/IcefangOrbit.dds",
+      "id": "FourUniqueRing2a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "234": {
+    "id": "Sekhema's Resolve Cold",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "에슈테라의 길",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/RimeveilSeal.dds",
+      "id": "FourUniqueSanctum4b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "171": {
+    "id": "Original Sin",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "원죄",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/OriginalSin.dds",
+      "id": "FourUniqueRing18"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "235": {
+    "id": "Sekhema's Resolve Lightning",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "자이다의 장수",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/StormforgedSeal.dds",
+      "id": "FourUniqueSanctum4c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "427": {
+    "id": "Veilpiercer",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "장막송곳",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Veilpiercer.dds",
+      "id": "FourUniqueRing34_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "166": {
+    "id": "Levinstone",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "전광석",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/StoneOfOndar.dds",
+      "id": "FourUniqueRing13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "426": {
+    "id": "The Taming",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "조련",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TheTaming.dds",
+      "id": "FourUniqueRing27"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "172": {
+    "id": "Death Rush",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "죽음의 재촉",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/DeathRush.dds",
+      "id": "FourUniqueRing20"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "179": {
+    "id": "Kalandra's Touch",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "칼란드라의 손길",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/MirrorRing.dds",
+      "id": "FourUniqueRing32_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "391": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "쿨레막의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage01.dds",
+      "id": "FourUniqueRing33_a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "403": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "쿨레막의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage02.dds",
+      "id": "FourUniqueRing33_b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "404": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "쿨레막의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage03.dds",
+      "id": "FourUniqueRing33_c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "405": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "쿨레막의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage04.dds",
+      "id": "FourUniqueRing33_d"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "406": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "쿨레막의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage05.dds",
+      "id": "FourUniqueRing33__e"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "362": {
+    "id": "Bursting Decay",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "터져 나오는 부패",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BurstingDecay.dds",
+      "id": "FourUniqueCorruption2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "176": {
+    "id": "Perandus Seal",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "페란두스 봉인",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/PerandusSeal.dds",
+      "id": "FourUniqueRing28"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "163": {
+    "id": "Polcirkeln",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "폴시르켈른",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Polcirkeln.dds",
+      "id": "FourUniqueRing10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "276": {
+    "id": "Gifts from Above",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "하늘에서 내려준 선물",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/GiftsFromAbove.dds",
+      "id": "FourUniqueRing25"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "271": {
+    "id": "Venopuncture",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "혈관 관통",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Venopuncture.dds",
+      "id": "FourUniqueRing2b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "168": {
+    "id": "Call of the Brotherhood",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "형제의 부름",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/CallOfTheBrotherhood.dds",
+      "id": "FourUniqueRing15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "165": {
+    "id": "Whisper of the Brotherhood",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "형제의 속삭임",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/WhisperOfTheBrotherhood.dds",
+      "id": "FourUniqueRing12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "126": {
+    "id": "Merit of Service",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "근정훈장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/MeritOfService.dds",
+      "id": "FourUniqueShieldStrDex2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "127": {
+    "id": "Feathered Fortress",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "깃털 달린 요새",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/FeatheredFortress.dds",
+      "id": "FourUniqueShieldStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "316": {
+    "id": "Window to Paradise",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "낙원으로 열린 창",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/WindowToParadise.dds",
+      "id": "FourUniqueShieldStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "123": {
+    "id": "Lycosidae",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "늑대 거미",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Lycosa.dds",
+      "id": "FourUniqueShieldStr6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "120": {
+    "id": "Wulfsbane",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "늑대의 천적",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Wulfsbane.dds",
+      "id": "FourUniqueShieldStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "119": {
+    "id": "Dionadair",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "다이오나데어",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Dionadair.dds",
+      "id": "FourUniqueShieldStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "319": {
+    "id": "Dunkelhalt",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "둥켈할트",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Dunkelhalt.dds",
+      "id": "FourUniqueShieldDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "321": {
+    "id": "Rondel de Ezo",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "론델 데 에소",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/RondelDeEzo.dds",
+      "id": "FourUniqueShieldDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "420": {
+    "id": "Eyes of the Runefather",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "룬 아버지의 눈",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Vindromyr.dds",
+      "id": "FourUniqueShieldStrDex12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "238": {
+    "id": "Mahuxotl's Machination",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "마훅소틀의 계책",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/MahuxotlsMachination.dds",
+      "id": "FourUniqueUltimatum3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "121": {
+    "id": "Doomgate",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "멸망문",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Doomgate.dds",
+      "id": "FourUniqueShieldStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "315": {
+    "id": "Prism Guardian",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "분광의 수호자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/PrismGuardian.dds",
+      "id": "FourUniqueShieldStrInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "132": {
+    "id": "Rise of the Phoenix",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "불사조의 비상",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Crest06.dds",
+      "id": "FourUniqueShieldStrInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "380": {
+    "id": "Kaltenhalt",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "붙잡은 냉기",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Kaltenhalt.dds",
+      "id": "FourUniqueShieldDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "130": {
+    "id": "Saffell's Frame",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "사펠의 골격",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/SaffelsFrame.dds",
+      "id": "FourUniqueShieldStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "240": {
+    "id": "Svalinn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "스발린",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Svalinn.dds",
+      "id": "FourUniqueExpedition1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "131": {
+    "id": "Crest of Ardura",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "아르듀라의 문양",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/CrestOfArdura.dds",
+      "id": "FourUniqueShieldStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "125": {
+    "id": "Arvil's Wheel",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "아르빌의 바퀴",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/ArvilsWheel.dds",
+      "id": "FourUniqueShieldStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "128": {
+    "id": "Alkem Eira",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "알켐 에이라",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/AlkemEira.dds",
+      "id": "FourUniqueShieldStrInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "320": {
+    "id": "Nocturne",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "야상곡",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Nocturne.dds",
+      "id": "FourUniqueShieldDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "122": {
+    "id": "The Wailing Wall",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "울부짖는 벽",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/TheWailingWall.dds",
+      "id": "FourUniqueShieldStr5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "323": {
+    "id": "Silverthorne",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "은빛가시",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Silverthorne.dds",
+      "id": "FourUniqueShieldDex6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "317": {
+    "id": "Redblade Banner",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "적검단 깃발",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/RedbladeBanner.dds",
+      "id": "FourUniqueShieldStr7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "129": {
+    "id": "Oaksworn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "참나무맹세",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Oaksworn.dds",
+      "id": "FourUniqueShieldStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "318": {
+    "id": "Chernobog's Pillar",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "체르노보그의 기둥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/ChernobogsPillar.dds",
+      "id": "FourUniqueShieldStr13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "324": {
+    "id": "Calgyra's Arc",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "칼기라의 원호",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/CalgyrasArc.dds",
+      "id": "FourUniqueShieldDex11_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "325": {
+    "id": "Sunsplinter",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "태양분열자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Sunsplinter.dds",
+      "id": "FourUniqueShieldDex12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "124": {
+    "id": "The Surrender",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "포기",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/TheSurrender.dds",
+      "id": "FourUniqueShieldStr8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "419": {
+    "id": "Nightfall",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "해질녘",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/TulShield.dds",
+      "id": "FourUniqueShieldStr14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "322": {
+    "id": "Bloodbarrier",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "혈장벽",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/BloodBarrier.dds",
+      "id": "FourUniqueShieldDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "445": {
+    "id": "Surge of the Tide",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "밀려드는 파도",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/TawhoasDominion.dds",
+      "id": "FourUniqueTalisman10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "395": {
+    "id": "The Flesh Poppet",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "살점 귀염둥이",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/TheSkinThief.dds",
+      "id": "FourUniqueTalisman8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "394": {
+    "id": "Amor Mandragora",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "아모르 만드라고라",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/AmorMandragora.dds",
+      "id": "FourUniqueTalisman1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "444": {
+    "id": "Spiteful Floret",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "악의에 찬 소화",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/CrimsonChrysalis.dds",
+      "id": "FourUniqueTalisman2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "401": {
+    "id": "Fury of the King",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "왕의 광분",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/VesselOfWrath.dds",
+      "id": "FourUniqueTalisman14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "400": {
+    "id": "Hysseg's Claw",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "히세그의 발톱",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/HandOfTheClan.dds",
+      "id": "FourUniqueTalisman4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "442": {
+    "id": "Redemption",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "구원",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/TheRedemption.dds",
+      "id": "FourUniqueCrossbow14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "219": {
+    "id": "Rampart Raptor",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "성벽 랩터",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/RampartRaptor.dds",
+      "id": "FourUniqueCrossbow2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "218": {
+    "id": "Mist Whisper",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "연무의 속삭임",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/MistWhisper.dds",
+      "id": "FourUniqueCrossbow1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "388": {
+    "id": "Double Vision",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "이중 시각",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/DoubleVision.dds",
+      "id": "FourUniqueCrossbow5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "367": {
+    "id": "The Last Lament",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "최후의 한탄",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/TheGrandDesign.dds",
+      "id": "FourUniqueCrossbow13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "223": {
+    "id": "Guiding Palm of the Eye",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "눈의 인도하는 손바닥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmCold.dds",
+      "id": "FourUniqueSceptre6b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "374": {
+    "id": "Palm of the Dreamer",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "몽상가의 손바닥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/OpenPalmOfTheDreamer.dds",
+      "id": "FourUniqueSceptre6d_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "443": {
+    "id": "Sylvan's Effigy",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "숲의 제웅",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/Packleader.dds",
+      "id": "FourUniqueSceptre14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "229": {
+    "id": "Sacred Flame",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "신성한 불꽃",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/SacredFlame.dds",
+      "id": "FourUniquePinnacle5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "222": {
+    "id": "Guiding Palm of the Heart",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "심장의 인도하는 손바닥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmFire.dds",
+      "id": "FourUniqueSceptre6a__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "220": {
+    "id": "The Dark Defiler",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "어둠의 모독자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/DarkDefiler.dds",
+      "id": "FourUniqueSceptre1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "364": {
+    "id": "Guiding Palm",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "인도하는 손바닥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmFire.dds",
+      "id": "FourUniqueSceptre6a__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "365": {
+    "id": "Guiding Palm",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "인도하는 손바닥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmCold.dds",
+      "id": "FourUniqueSceptre6b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "366": {
+    "id": "Guiding Palm",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "인도하는 손바닥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmLightning.dds",
+      "id": "FourUniqueSceptre6c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "224": {
+    "id": "Guiding Palm of the Mind",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "정신의 인도하는 손바닥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmLightning.dds",
+      "id": "FourUniqueSceptre6c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "221": {
+    "id": "Font of Power",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "힘의 샘",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/FontOfPower.dds",
+      "id": "FourUniqueSceptre4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "203": {
+    "id": "Pillar of the Caged God",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "갇힌 신의 기둥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/PillarOfTheCagedGod.dds",
+      "id": "FourUniqueQuarterstaff2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "206": {
+    "id": "Nazir's Judgement",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "나지르의 심판",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/NazirsJudgement.dds",
+      "id": "FourUniqueQuarterstaff6__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "205": {
+    "id": "Matsya",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "마챠",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/Matsya.dds",
+      "id": "FourUniqueQuarterstaff5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "247": {
+    "id": "Collapsing Horizon",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "무너지는 지평선",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/CollapsingHorizon.dds",
+      "id": "FourUniqueDelirium4__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "204": {
+    "id": "The Sentry",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "보초",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/TheSentry.dds",
+      "id": "FourUniqueQuarterstaff3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "436": {
+    "id": "Duality",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "이중성",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/Stjorvar.dds",
+      "id": "FourUniqueQuarterstaff14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "202": {
+    "id": "The Blood Thorn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "피의 가시",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/TheBloodThorn.dds",
+      "id": "FourUniqueQuarterstaff1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "82": {
+    "id": "Idle Hands",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "게으른 손",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/IdleHands.dds",
+      "id": "FourUniqueGlovesDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "81": {
+    "id": "Grip of Winter",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "겨울의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/GripOfWinter.dds",
+      "id": "FourUniqueGlovesDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "417": {
+    "id": "Horror's Flight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "경악의 비행",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/ChokingMists.dds",
+      "id": "FourUniqueGlovesDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "305": {
+    "id": "Dreadfist",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "공포주먹",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Dreadfist.dds",
+      "id": "FourUniqueGlovesStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "98": {
+    "id": "Killjoy",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "깨진 흥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Killjoy.dds",
+      "id": "FourUniqueGlovesDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "77": {
+    "id": "Treefingers",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "나무손가락",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Treefingers.dds",
+      "id": "FourUniqueGlovesStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "87": {
+    "id": "Doedre's Tenure",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "도이드리의 임기",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/EnraptHands.dds",
+      "id": "FourUniqueGlovesInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "363": {
+    "id": "Death Articulated",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "또렷하게 들려오는 죽음",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/DeathArticulated.dds",
+      "id": "FourUniqueCorruption3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "311": {
+    "id": "Leopold's Applause",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "레오폴드의 갈채",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/LeopoldsApplause.dds",
+      "id": "FourUniqueGlovesInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "78": {
+    "id": "Lochtonial Caress",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "록토니얼의 손길",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/LochtonialCaress.dds",
+      "id": "FourUniqueGlovesStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "84": {
+    "id": "Maligaro's Virtuosity",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "말리가로의 기교",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/MaligarosVirtuosity.dds",
+      "id": "FourUniqueGlovesDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "94": {
+    "id": "Gravebind",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "무덤의 속박",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Gravebind.dds",
+      "id": "FourUniqueGlovesStrInt1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "308": {
+    "id": "Valako's Vice",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "발라코의 악덕",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/ValakosVice.dds",
+      "id": "FourUniqueGlovesStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "306": {
+    "id": "Nightscale",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "밤비늘",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Nightscale.dds",
+      "id": "FourUniqueGlovesInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "83": {
+    "id": "Snakebite",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "뱀 이빨",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Snakebite.dds",
+      "id": "FourUniqueGlovesDex5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "80": {
+    "id": "Northpaw",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "북방발",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Northpaw.dds",
+      "id": "FourUniqueGlovesDex1____"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "95": {
+    "id": "Shackles of the Wretched",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "불운아의 족쇄",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/ShacklesOfTheWretched.dds",
+      "id": "FourUniqueGlovesStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "227": {
+    "id": "Sine Aequo",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "시네 아이쿠오",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/SineAequo.dds",
+      "id": "FourUniquePinnacle3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "91": {
+    "id": "Aurseize",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "아우르시즈",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Aurseize.dds",
+      "id": "FourUniqueGlovesStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "93": {
+    "id": "Aerisvane's Wings",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "아이리스베인의 날개",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/AerisvanesWings.dds",
+      "id": "FourUniqueGlovesStrDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "89": {
+    "id": "Demon Stitcher",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "악마 봉합자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/DemonStitcher.dds",
+      "id": "FourUniqueGlovesInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "79": {
+    "id": "Atziri's Acuity",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "앗지리의 예리함",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/AtzirisAcuity.dds",
+      "id": "FourUniqueGlovesStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "90": {
+    "id": "Jarngreipr",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "야릉그레이프",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Jarngreipr.dds",
+      "id": "FourUniqueGlovesStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "86": {
+    "id": "Candlemaker",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "양초 제작자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Candlemaker.dds",
+      "id": "FourUniqueGlovesInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "97": {
+    "id": "Plaguefinger",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "역병손가락",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Plaguefinger.dds",
+      "id": "FourUniqueGlovesDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "309": {
+    "id": "Empire's Grasp",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "제국의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/EmpiresGrasp.dds",
+      "id": "FourUniqueGlovesStr7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "307": {
+    "id": "The Prisoner's Manacles",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "죄수의 수갑",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/PrisonersManacles.dds",
+      "id": "FourUniqueGlovesStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "92": {
+    "id": "Deathblow",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "죽음의 일격",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Deathblow.dds",
+      "id": "FourUniqueGlovesStrDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "239": {
+    "id": "Hateforge",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "증오의 탄생",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Hateforge.dds",
+      "id": "FourUniqueUltimatum4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "253": {
+    "id": "Hand of Wisdom and Action",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "지혜와 행동의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/HandOfWisdomAndAction.dds",
+      "id": "FourUniqueBreach2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "378": {
+    "id": "Thunderfist",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "천둥 주먹",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Thunderfist.dds",
+      "id": "FourUniqueGlovesDexInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "232": {
+    "id": "Blessed Bonds",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "축복받은 유대",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/BlessedBonds.dds",
+      "id": "FourUniqueSanctum3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "88": {
+    "id": "Kitoko's Current",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "키토코의 흐름",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/GaruksCurrent.dds",
+      "id": "FourUniqueGlovesInt4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "416": {
+    "id": "Facebreaker",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "페이스브레이커",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Facebreaker.dds",
+      "id": "FourUniqueGlovesStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "96": {
+    "id": "Blueflame Bracers",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "푸른불길 팔보호구",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/SunConstrictor.dds",
+      "id": "FourUniqueGlovesStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "310": {
+    "id": "Essentia Sanguis",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "피의 정수",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/EssentiaSanguis.dds",
+      "id": "FourUniqueGlovesDexInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "85": {
+    "id": "Painter's Servant",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "화가의 종",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/PaintersServant.dds",
+      "id": "FourUniqueGlovesInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "104": {
+    "id": "Briarpatch",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "가시밭",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Briarpatch.dds",
+      "id": "FourUniqueBootsDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "103": {
+    "id": "Birth of Fury",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "광분의 탄생",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BirthOfFury.dds",
+      "id": "FourUniqueBootsStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "99": {
+    "id": "Legionstride",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "군단의 보조",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Legionstride.dds",
+      "id": "FourUniqueBootsStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "111": {
+    "id": "Wondertrap",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "기적의 발판",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Wondertrap.dds",
+      "id": "FourUniqueBootsInt4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "101": {
+    "id": "The Infinite Pursuit",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "끝없는 추적",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/TheInfinitePursuit.dds",
+      "id": "FourUniqueBootsStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "107": {
+    "id": "Bushwhack",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "덤불 매복",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Bushwack.dds",
+      "id": "FourUniqueBootsDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "105": {
+    "id": "Gamblesprint",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "도박질주",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Gamblesprint.dds",
+      "id": "FourUniqueBootsDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "249": {
+    "id": "Beetlebite",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "딱정벌레 이빨",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/ChainsOfDeshret.dds",
+      "id": "FourUniqueRitual2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "113": {
+    "id": "The Knight-errant",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "무사 수행 기사",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/KnightErrant.dds",
+      "id": "FourUniqueBootsStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "112": {
+    "id": "Windscream",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "바람의 괴성",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Windscream.dds",
+      "id": "FourUniqueBootsInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "109": {
+    "id": "Wanderlust",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "방랑벽",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Wanderlust.dds",
+      "id": "FourUniqueBootsInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "418": {
+    "id": "Decree of Flight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "비행의 법령",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BoundlessAuthority.dds",
+      "id": "FourUniqueBootsStrInt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "108": {
+    "id": "Luminous Pace",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "빛나는 발걸음",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BatedPace.dds",
+      "id": "FourUniqueBootsInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "100": {
+    "id": "Corpsewade",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "시신걸음",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Corpsewade.dds",
+      "id": "FourUniqueBootsStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "228": {
+    "id": "Ab Aeterno",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "아브 아이테르노",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/AbAeterno.dds",
+      "id": "FourUniquePinnacle4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "397": {
+    "id": "Atziri's Step",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "앗지리의 걸음",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/AtzirisStep.dds",
+      "id": "FourUniqueBootsDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "114": {
+    "id": "Darkray Vectors",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "어두운 빛의 궤적",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/DarkrayVectors.dds",
+      "id": "FourUniqueBootsStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "115": {
+    "id": "Obern's Bastion",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "오베른의 보루",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/ObernsBastion.dds",
+      "id": "FourUniqueBootsStrDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "106": {
+    "id": "Thunderstep",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "우레걸음",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/ThunderousSilence.dds",
+      "id": "FourUniqueBootsDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "110": {
+    "id": "Bones of Ullr",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "울러의 뼈",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BonesOfUllr.dds",
+      "id": "FourUniqueBootsInt3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "118": {
+    "id": "Powertread",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "위세의 발 보호대",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Powertread.dds",
+      "id": "FourUniqueBootsDexInt3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "117": {
+    "id": "Ghostmarch",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "유령의 행진",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Ghostmarch.dds",
+      "id": "FourUniqueBootsDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "379": {
+    "id": "Shankgonne",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "정강이대",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Shankgonne.dds",
+      "id": "FourUniqueBootsStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "102": {
+    "id": "Trampletoe",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "짓발가락",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Trampletoe.dds",
+      "id": "FourUniqueBootsStr4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "116": {
+    "id": "Wake of Destruction",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "파괴의 경야",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/WakeOfDestruction.dds",
+      "id": "FourUniqueBootsStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "261": {
+    "id": "Megalomaniac",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "과대망상",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/DeliriumJewel.dds",
+      "id": "FourUniqueJewel4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "447": {
+    "id": "Voices",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "목소리",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/Voices.dds",
+      "id": "FourUniqueJewel15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "265": {
+    "id": "Prism of Belief",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "믿음의 분광기",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/PrismOfBelief.dds",
+      "id": "FourUniqueJewel8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "402": {
+    "id": "Flesh Crucible",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "살점 도가니",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/Vivisection.dds",
+      "id": "FourUniqueJewel13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "267": {
+    "id": "Against the Darkness",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "어둠 저항",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/SanctumJewel.dds",
+      "id": "FourUniqueJewel10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "262": {
+    "id": "Heroic Tragedy",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "영웅적인 비극",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/ExpeditionJewel.dds",
+      "id": "FourUniqueJewel5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "390": {
+    "id": "Heart of the Well",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "우물의 심장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/ApostatesHeart.dds",
+      "id": "FourUniqueJewel12_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "446": {
+    "id": "Split Personality",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "이중 인격",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/SplitPersonality.dds",
+      "id": "FourUniqueJewel14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "258": {
+    "id": "Grand Spectrum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "장대한 파장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/GrandSpectrum_Ruby.dds",
+      "id": "FourUniqueJewel1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "259": {
+    "id": "Grand Spectrum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "장대한 파장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/GrandSpectrum_Emerald.dds",
+      "id": "FourUniqueJewel2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "260": {
+    "id": "Grand Spectrum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "장대한 파장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/GrandSpectrum_Sapphire.dds",
+      "id": "FourUniqueJewel3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "264": {
+    "id": "Controlled Metamorphosis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "제어된 변형",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/BreachJewel.dds",
+      "id": "FourUniqueJewel7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "389": {
+    "id": "Undying Hate",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "죽지 않는 증오",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/UndyingHatred.dds",
+      "id": "FourUniqueJewel11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "266": {
+    "id": "The Adorned",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "치장한 자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/TrialmasterJewel.dds",
+      "id": "FourUniqueJewel9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "263": {
+    "id": "From Nothing",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "허무의 산물",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/RitualJewel.dds",
+      "id": "FourUniqueJewel6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "248": {
+    "id": "The Burden of Shadows",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "그림자의 짐",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/BurdenOfShadows.dds",
+      "id": "FourUniqueRitual1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "212": {
+    "id": "Earthbound",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "대지결속",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/Earthbound.dds",
+      "id": "FourUniqueStaff3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "372": {
+    "id": "The Whispering Ice",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "속삭이는 얼음",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/WhisperingIce.dds",
+      "id": "FourUniqueStaff14__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "393": {
+    "id": "Atziri's Rule",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "앗지리의 통치",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/AtziriStaff.dds",
+      "id": "FourUniqueStaff17"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "213": {
+    "id": "The Searing Touch",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "이글거리는 손길",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/SearingTouch.dds",
+      "id": "FourUniqueStaff5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "439": {
+    "id": "The Raven's Flock",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "큰까마귀의 떼",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/RoostOfTheRavenKing.dds",
+      "id": "FourUniqueStaff18"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "211": {
+    "id": "Taryn's Shiver",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "타린의 오한",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/TarynsShiver.dds",
+      "id": "FourUniqueStaff2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "386": {
+    "id": "The Unborn Lich",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "태어나지 않은 리치",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/KulemaksBirth.dds",
+      "id": "FourUniqueStaff13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "326": {
+    "id": "Sire of Shards",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "파편의 영주",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/SireOfShards.dds",
+      "id": "FourUniqueStaff6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "210": {
+    "id": "Dusk Vigil",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "황혼의 불침번",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/DuskVigil.dds",
+      "id": "FourUniqueStaff1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "133": {
+    "id": "Deathrattle",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "단말마의 숨소리",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/DeathRattle.dds",
+      "id": "FourUniqueFocus1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "136": {
+    "id": "Serpent's Lesson",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "독사의 교훈",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/TonesOfFate.dds",
+      "id": "FourUniqueFocus5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "314": {
+    "id": "Rathpith Globe",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "래스피스 구체",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/RathpithGlobe.dds",
+      "id": "FourUniqueFocus8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "135": {
+    "id": "Carrion Call",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "부패하는 부름",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/CarrionCall.dds",
+      "id": "FourUniqueFocus4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "134": {
+    "id": "Threaded Light",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "실오라기 같은 빛",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/ThreadedLight.dds",
+      "id": "FourUniqueFocus2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "313": {
+    "id": "Apep's Supremacy",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "아펩의 패권",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/ApepsSupremacy.dds",
+      "id": "FourUniqueFocus7_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "137": {
+    "id": "The Eternal Spark",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "영원한 불꽃",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/EternalSpark.dds",
+      "id": "FourUniqueFocus6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "312": {
+    "id": "Effigy of Cruelty",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "잔혹성의 인형",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/EffigyOfCruelty.dds",
+      "id": "FourUniqueFocus3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "341": {
+    "id": "Tangletongue",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "꼬인혀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/Tangletongue.dds",
+      "id": "FourUniqueSpear6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "343": {
+    "id": "Spire of Ire",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "노여움의 첨탑",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/SpireOfIre.dds",
+      "id": "FourUniqueSpear13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "340": {
+    "id": "Daevata's Wind",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "다이바타의 바람",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/DaevatasWind.dds",
+      "id": "FourUniqueSpear5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "336": {
+    "id": "Splinter of Loratta",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "로라타의 파편",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/SplinterOfLorrata.dds",
+      "id": "FourUniqueSpear1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "435": {
+    "id": "The Ordained",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "명을 받은 자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/TheOrdained.dds",
+      "id": "FourUniqueSpear15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "338": {
+    "id": "Chainsting",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "사슬침",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/Chainsting.dds",
+      "id": "FourUniqueSpear3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "342": {
+    "id": "Saitha's Spear",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "사이타의 창",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/SaithasSpear.dds",
+      "id": "FourUniqueSpear7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "399": {
+    "id": "Atziri's Contempt",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "앗지리의 경멸",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/AtziriStaffBlood.dds",
+      "id": "FourUniqueSpear14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "337": {
+    "id": "Tyranny's Grip",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "폭정의 손아귀",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/ArmsLength.dds",
+      "id": "FourUniqueSpear2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "339": {
+    "id": "Skysliver",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "하늘의 편린",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/Skysliver.dds",
+      "id": "FourUniqueSpear4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "432": {
+    "id": "Sadist's Mercy",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "가학자의 자비",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Murkmaw.dds",
+      "id": "FourUniqueOneHandMace14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "332": {
+    "id": "The Empty Roar",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "공허한 포효",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/TheEmptyRoar.dds",
+      "id": "FourUniqueTwoHandMace5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "330": {
+    "id": "Nebuloch",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "네뷸록",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Nebuloch.dds",
+      "id": "FourUniqueOneHandMace7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "195": {
+    "id": "Seeing Stars",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "눈앞의 별",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/SeeingStars.dds",
+      "id": "FourUniqueOneHandMace6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "196": {
+    "id": "Hoghunt",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "돼지사냥",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Hoghunt.dds",
+      "id": "FourUniqueTwoHandMace1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "434": {
+    "id": "Twisted Empyrean",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "뒤틀린 천공인",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/SpiderVerisiumMaul.dds",
+      "id": "FourUniqueTwoHandMace14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "385": {
+    "id": "Marohi Erqi",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "마로히 에르키",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/MarohiErqi.dds",
+      "id": "FourUniqueTwoHandMace10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "331": {
+    "id": "Mjölner",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "묠니르",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Mjolner.dds",
+      "id": "FourUniqueOneHandMace13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "334": {
+    "id": "Tidebreaker",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "물결 분쇄기",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Tidebreaker.dds",
+      "id": "FourUniqueTwoHandMace9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "431": {
+    "id": "Brutus' Lead Sprinkler",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "브루투스의 리드 스프링클러",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/BrutusLeadSprinkler.dds",
+      "id": "FourUniqueOneHandMace9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "191": {
+    "id": "Brynhand's Mark",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "브린핸드의 징표",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/BrynhandsMark.dds",
+      "id": "FourUniqueOneHandMace1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "333": {
+    "id": "Shyaba",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "샤바",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Shyaba.dds",
+      "id": "FourUniqueTwoHandMace6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "193": {
+    "id": "Frostbreath",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "서리 숨결",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Frostbreath.dds",
+      "id": "FourUniqueOneHandMace3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "433": {
+    "id": "Serle's Grit",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "세를의 근성",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/SerlesMasterwork.dds",
+      "id": "FourUniqueOneHandMace15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "335": {
+    "id": "The Hammer of Faith",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "신념의 망치",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/HammerOfTheChurch.dds",
+      "id": "FourUniqueTwoHandMace13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "243": {
+    "id": "Olrovasara",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "올로바사라",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Olrovasara.dds",
+      "id": "FourUniqueExpedition4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "192": {
+    "id": "Wylund's Stake",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "와일룬드의 말뚝",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/TheStake.dds",
+      "id": "FourUniqueOneHandMace2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "199": {
+    "id": "Brain Rattler",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "요동치는 두뇌",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Brainrattler.dds",
+      "id": "FourUniqueTwoHandMace4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "329": {
+    "id": "Sculpted Suffering",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "조각된 고통",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/SculptedSuffering.dds",
+      "id": "FourUniqueOneHandMace5__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "194": {
+    "id": "Trenchtimbre",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "참호목",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Trenchtimbre.dds",
+      "id": "FourUniqueOneHandMace4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "200": {
+    "id": "Chober Chaber",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "초버 차버",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/ChoberChaber.dds",
+      "id": "FourUniqueTwoHandMace7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "201": {
+    "id": "Quecholli",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "퀘촐리",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Quecholli.dds",
+      "id": "FourUniqueTwoHandMace8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "198": {
+    "id": "Trephina",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "트레피나",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Trephina.dds",
+      "id": "FourUniqueTwoHandMace3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "197": {
+    "id": "Hrimnor's Hymn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "흐림노르의 찬가",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/HrimnorsHymn.dds",
+      "id": "FourUniqueTwoHandMace2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "55": {
+    "id": "Crown of Thorns",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "가시 왕관",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfThorns.dds",
+      "id": "FourUniqueHelmetInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "296": {
+    "id": "The Deepest Tower",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "가장 깊은 탑",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheDeepestTower.dds",
+      "id": "FourUniqueHelmetStrInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "56": {
+    "id": "The Devouring Diadem",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "걸신들린 왕관",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/DevouringDiadem.dds",
+      "id": "FourUniqueHelmetInt2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "45": {
+    "id": "Black Sun Crest",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "검은 태양 문양",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BlackSunCrest.dds",
+      "id": "FourUniqueHelmetStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "298": {
+    "id": "The Black Insignia",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "검은 휘장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheBlackCrest.dds",
+      "id": "FourUniqueHelmetDex7_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "244": {
+    "id": "Assailum",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "공격병동",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Assailum.dds",
+      "id": "FourUniqueDelirium1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "58": {
+    "id": "Forbidden Gaze",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "금단의 응시",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/ForbiddenGaze.dds",
+      "id": "FourUniqueHelmetInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "50": {
+    "id": "Goldrim",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "금테",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Goldrim.dds",
+      "id": "FourUniqueHelmetDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "297": {
+    "id": "Scold's Bridle",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "꾸짖음의 굴레",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/ScoldsBridle.dds",
+      "id": "FourUniqueHelmetInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "59": {
+    "id": "Mask of the Stitched Demon",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "꿰맨 악마의 가면",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MaskOfTheStitchedDemon.dds",
+      "id": "FourUniqueHelmetInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "65": {
+    "id": "The Vile Knight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "끔찍한 기사",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheVileKnight.dds",
+      "id": "FourUniqueHelmetStrDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "299": {
+    "id": "Crown of Eyes",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "눈알 왕관",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfEyes.dds",
+      "id": "FourUniqueHelmetInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "231": {
+    "id": "Sandstorm Visage",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "모래 폭풍의 얼굴",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/SandstormVisage.dds",
+      "id": "FourUniqueSanctum2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "370": {
+    "id": "Constricting Command",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "목 죄이는 명령",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/ConstrictingCommand.dds",
+      "id": "FourUniqueHelmetDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "53": {
+    "id": "Myris Uxor",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "미리스 욱소르",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MyrisUxor.dds",
+      "id": "FourUniqueHelmetDex10_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "64": {
+    "id": "The Smiling Knight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "미소 짓는 기사",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheSmilingKnight.dds",
+      "id": "FourUniqueHelmetStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "69": {
+    "id": "Veil of the Night",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "밤의 장막",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/VeilOfTheNight.dds",
+      "id": "FourUniqueHelmetStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "48": {
+    "id": "Corona of the Red Sun",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "붉은 태양의 광환",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CoronaOfTheRedSun.dds",
+      "id": "FourUniqueHelmetStr6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "304": {
+    "id": "The Bringer of Rain",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "비의 인도자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BringerOfRain.dds",
+      "id": "FourUniqueHelmetStrDex7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "42": {
+    "id": "Horns of Bynden",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "빈덴의 뿔",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/HornsOfBrynden.dds",
+      "id": "FourUniqueHelmetStr1a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "76": {
+    "id": "The Three Dragons",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "세 마리의 용",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheThreeDragons.dds",
+      "id": "FourUniqueHelmetDexInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "226": {
+    "id": "Solus Ipse",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "솔루스 입세",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/SolusIpse.dds",
+      "id": "FourUniquePinnacle2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "301": {
+    "id": "Starkonja's Head",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "스타콘자의 머리",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/StarkonjasHead.dds",
+      "id": "FourUniqueHelmetDex8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "66": {
+    "id": "Crown of the Victor",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "승리자의 왕관",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfTheVictor.dds",
+      "id": "FourUniqueHelmetStrInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "57": {
+    "id": "Visage of Ayah",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "아야의 얼굴",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/VisageOfAyah.dds",
+      "id": "FourUniqueHelmetInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "74": {
+    "id": "Atsak's Sight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "아차크의 시야",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BalefulTemperance.dds",
+      "id": "FourUniqueHelmetDexInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "60": {
+    "id": "Atziri's Disdain",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "앗지리의 멸시",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/AtzirisDisdain.dds",
+      "id": "FourUniqueHelmetInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "415": {
+    "id": "Vestige of Darkness",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "어둠의 자취",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfTheWendigo.dds",
+      "id": "FourUniqueHelmetStrInt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "62": {
+    "id": "Erian's Cobble",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "에리안의 수선",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/GrimrotCoif.dds",
+      "id": "FourUniqueHelmetStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "44": {
+    "id": "Ezomyte Peak",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "에조미어의 면갑",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/EzomytePeak.dds",
+      "id": "FourUniqueHelmetStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "302": {
+    "id": "Heatshiver",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "열기와 오한",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Heatshiver.dds",
+      "id": "FourUniqueHelmetDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "414": {
+    "id": "Decree of Acuity",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "예민함의 법령",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/SightlessConviction.dds",
+      "id": "FourUniqueHelmetStrDex9_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "54": {
+    "id": "Alpha's Howl",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "우두머리의 울부짖음",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/AlphasHowl.dds",
+      "id": "FourUniqueHelmetDex11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "52": {
+    "id": "Elevore",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "원소포식",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Elevore.dds",
+      "id": "FourUniqueHelmetDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "73": {
+    "id": "Leer Cast",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "음흉한 시선",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Leercast.dds",
+      "id": "FourUniqueHelmetDexInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "375": {
+    "id": "Mind of the Council",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "의회의 정신",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MindOfTheCouncil.dds",
+      "id": "FourUniqueHelmetDexInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "303": {
+    "id": "Indigon",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "인디곤",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Indigon.dds",
+      "id": "FourUniqueHelmetInt11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "49": {
+    "id": "Innsmouth",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "인즈머스",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Innsmouth.dds",
+      "id": "FourUniqueHelmetDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "46": {
+    "id": "Thrillsteel",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "전율강철",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Thrillsteel.dds",
+      "id": "FourUniqueHelmetStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "241": {
+    "id": "Keeper of the Arc",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "전호의 보관자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/KeeperOfTheArc.dds",
+      "id": "FourUniqueExpedition2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "47": {
+    "id": "Deidbell",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "죽음의 종",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Deidbell.dds",
+      "id": "FourUniqueHelmetStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "51": {
+    "id": "Radiant Grief",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "찬란한 슬픔",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/RadiantGrief.dds",
+      "id": "FourUniqueHelmetDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "68": {
+    "id": "Crown of the Pale King",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "창백한 왕의 왕관",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfThePaleKing.dds",
+      "id": "FourUniqueHelmetStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "63": {
+    "id": "Ironride",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "철의 질주",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Ironride.dds",
+      "id": "FourUniqueHelmetStrDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "75": {
+    "id": "The Vertex",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "최정점",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheVertex.dds",
+      "id": "FourUniqueHelmetDexInt5__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "43": {
+    "id": "Wings of Caelyn",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "카일린의 날개",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/WingsOfCaelyn.dds",
+      "id": "FourUniqueHelmetStr1b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "70": {
+    "id": "Cornathaum",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "코르나타움",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Cornathaum.dds",
+      "id": "FourUniqueHelmetStrInt5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "71": {
+    "id": "The Hollow Mask",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "텅 빈 가면",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MaskOfTheHollow.dds",
+      "id": "FourUniqueHelmetDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "300": {
+    "id": "Blood Price",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "피의 대가",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BloodPrice.dds",
+      "id": "FourUniqueHelmetStr8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "72": {
+    "id": "Mask of the Sanguimancer",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "혈액술사의 가면",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/PhantomBlood.dds",
+      "id": "FourUniqueHelmetDexInt2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "236": {
+    "id": "Glimpse of Chaos",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "혼돈의 섬광",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/GlimpseOfChaos.dds",
+      "id": "FourUniqueUltimatum1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "67": {
+    "id": "Bronzebeard",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "황동의 턱수염",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Bronzebeard.dds",
+      "id": "FourUniqueHelmetStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "61": {
+    "id": "Greymake",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "회색작품",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Greymake.dds",
+      "id": "FourUniqueHelmetStrDex1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "429": {
+    "id": "Opportunity",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "기회",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/TranscendantThirst.dds",
+      "id": "FourUniqueLifeFlask2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "246": {
+    "id": "Melting Maelstrom",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "녹아내리는 소용돌이",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/MeltingMaelstrom.dds",
+      "id": "FourUniqueDelirium3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "392": {
+    "id": "Lavianga's Spirits",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "라비앙가의 혼백",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/LaviangasSpirit.dds",
+      "id": "FourUniqueManaFlask1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "242": {
+    "id": "Olroth's Resolve",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "올로스의 결의",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/OlrothsResolve.dds",
+      "id": "FourUniqueExpedition3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "430": {
+    "id": "Uhtred's Chalice",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "우트레드의 성배",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/UhtredsLegacy.dds",
+      "id": "FourUniqueManaFlask2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "384": {
+    "id": "Blood of the Warrior",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "전사의 피",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/BloodOfTheKarui.dds",
+      "id": "FourUniqueLifeFlask1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "188": {
+    "id": "Coward's Legacy",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "겁쟁이의 유물",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/CowardsLegacy.dds",
+      "id": "FourUniqueBelt13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "250": {
+    "id": "Ingenuity",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "기발함",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Widowmaker.dds",
+      "id": "FourUniqueRitual3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "187": {
+    "id": "Ryslatha's Coil",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "리슬라사의 감개",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/RyslathasCoil.dds",
+      "id": "FourUniqueBelt12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "448": {
+    "id": "Mageblood",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "마법사의 피",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Mageblood.dds",
+      "id": "FourUniqueBelt24"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "180": {
+    "id": "Meginord's Girdle",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "메기노드의 허리띠",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/MeginordsGirdle.dds",
+      "id": "FourUniqueBelt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "278": {
+    "id": "Bijouborne",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "보석박이",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Twinclasp.dds",
+      "id": "FourUniqueBelt15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "382": {
+    "id": "Umbilicus Immortalis",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "불멸의 탯줄",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/UmbilicusImmortalis.dds",
+      "id": "FourUniqueBelt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "184": {
+    "id": "Brynabas",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "비르나바스",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Byrnabas.dds",
+      "id": "FourUniqueBelt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "183": {
+    "id": "Birthright Buckle",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "생득권 버클",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/BirthrightBuckle.dds",
+      "id": "FourUniqueBelt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "190": {
+    "id": "Shavronne's Satchel",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "샤브론의 가방",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/ShavronnesSatchel.dds",
+      "id": "FourUniqueBelt21_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "277": {
+    "id": "Goregirdle",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "선혈의 요대",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Goregirdle.dds",
+      "id": "FourUniqueBelt10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "181": {
+    "id": "Midnight Braid",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "심야의 끈",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/MidnightBraid.dds",
+      "id": "FourUniqueBelt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "428": {
+    "id": "Cat O' Nine Tails",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "아홉 꼬리 고양이",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/CatONineTails.dds",
+      "id": "FourUniqueBelt19_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "361": {
+    "id": "The Gnashing Sash",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "악무는 띠",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/GnashingSash.dds",
+      "id": "FourUniqueCorruption1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "383": {
+    "id": "Darkness Enthroned",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "어둠에 대한 경외",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/DarknessEnthroned.dds",
+      "id": "FourUniqueBelt23"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "185": {
+    "id": "Soul Tether",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "영혼 올가미",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/SoulTether.dds",
+      "id": "FourUniqueBelt8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "182": {
+    "id": "Keelhaul",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "용골쓸기",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Keelhaul.dds",
+      "id": "FourUniqueBelt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "237": {
+    "id": "Zerphi's Genesis",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "제르피의 시원",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/ZerphisGenesis.dds",
+      "id": "FourUniqueUltimatum2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "186": {
+    "id": "Infernoclasp",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "지옥불 죔쇠",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Infernoclasp.dds",
+      "id": "FourUniqueBelt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "279": {
+    "id": "Waistgate",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "허리문",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Waistgate.dds",
+      "id": "FourUniqueBelt17_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "189": {
+    "id": "Headhunter",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "헤드헌터",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Headhunter.dds",
+      "id": "FourUniqueBelt18__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "358": {
+    "id": "The Black Cat",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "검은 고양이",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/GroundingUniqueCharm.dds",
+      "id": "FourUniqueCharm5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "349": {
+    "id": "Ngamahu's Chosen",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "나마후의 선택받은 자",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/RubyUniqueCharm.dds",
+      "id": "FourUniqueCharm8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "353": {
+    "id": "The Fall of the Axe",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "도끼의 추락",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/SilverUniqueCharm.dds",
+      "id": "FourUniqueCharm7_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "351": {
+    "id": "Valako's Roar",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "발라코의 포효",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/TopazUniqueCharm.dds",
+      "id": "FourUniqueCharm10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "359": {
+    "id": "Forsaken Bangle",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "버림받은 팔찌",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/ChaosUniqueCharm.dds",
+      "id": "FourUniqueCharm11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "357": {
+    "id": "Beira's Anguish",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "베이라의 비통",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/DousingUniqueCharm.dds",
+      "id": "FourUniqueCharm4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "350": {
+    "id": "Breath of the Mountains",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "산맥의 숨결",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/SapphireUniqueCharm.dds",
+      "id": "FourUniqueCharm9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "355": {
+    "id": "Sanguis Heroum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "상귀스 헤로움",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/StaunchingUniqueCharm.dds",
+      "id": "FourUniqueCharm2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "356": {
+    "id": "Arakaali's Gift",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "아라칼리의 선물",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/AntidoteUniqueCharm.dds",
+      "id": "FourUniqueCharm3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "352": {
+    "id": "For Utopia",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "유토피아를 위해",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/StoneUniqueCharm.dds",
+      "id": "FourUniqueCharm6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "354": {
+    "id": "Nascent Hope",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "태동하는 희망",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/ThawingUniqueCharm.dds",
+      "id": "FourUniqueCharm1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "360": {
+    "id": "Rite of Passage",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "통과의례",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/GoldenUniqueCharm.dds",
+      "id": "FourUniqueSpirit1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "139": {
+    "id": "Blackgleam",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "검은 섬광",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Blackgleam.dds",
+      "id": "FourUniqueQuiver2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "254": {
+    "id": "Beyond Reach",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "요원한 저 너머",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/BreachQuiver.dds",
+      "id": "FourUniqueBreach3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "347": {
+    "id": "The Lethal Draw",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "죽음을 부르는 무승부",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/TheLethalDraw.dds",
+      "id": "FourUniqueQuiver3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "369": {
+    "id": "Murkshaft",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "진창 수갱",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Murkshaft.dds",
+      "id": "FourUniqueQuiver6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "138": {
+    "id": "Asphyxia's Wrath",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "질식의 진노",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/AsphyxiasWrath.dds",
+      "id": "FourUniqueQuiver1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "398": {
+    "id": "Drillneck",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "치명적 송곳",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Drillneck.dds",
+      "id": "FourUniqueQuiver12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "368": {
+    "id": "Cadiro's Gambit",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "카디로의 책략",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/PerandusTurnstile.dds",
+      "id": "FourUniqueQuiver8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "348": {
+    "id": "Rearguard",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "후위 경계",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Rearguard.dds",
+      "id": "FourUniqueQuiver5__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "214": {
+    "id": "Widowhail",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "과부우박",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Widowhail.dds",
+      "id": "FourUniqueBow1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "373": {
+    "id": "Lioneye's Glare",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "라이온아이의 섬광",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/LioneyesGlare.dds",
+      "id": "FourUniqueBow13_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "346": {
+    "id": "Slivertongue",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "슬리버텅",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Slivertongue.dds",
+      "id": "FourUniqueBow8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "345": {
+    "id": "Voltaxic Rift",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "전도성 균열",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/VoltaxicRift.dds",
+      "id": "FourUniqueBow7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "441": {
+    "id": "Periphery",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "주변부",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Fluttermoth.dds",
+      "id": "FourUniqueBow14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "344": {
+    "id": "Doomfletch",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "죽음의 깃",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Doomfletch.dds",
+      "id": "FourUniqueBow5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "217": {
+    "id": "Death's Harp",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "죽음의 하프",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/DeathsHarp.dds",
+      "id": "FourUniqueBow6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "440": {
+    "id": "Ironbound",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "철결속",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Ironbound.dds",
+      "id": "FourUniqueBow3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "216": {
+    "id": "Splinterheart",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "파편심장",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Splinterheart.dds",
+      "id": "FourUniqueBow4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "387": {
+    "id": "Fairgraves' Curse",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "페어그레이브즈의 저주",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/DealersHand.dds",
+      "id": "FourUniqueBow9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "215": {
+    "id": "Quill Rain",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "화살 비",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/QuillRain.dds",
+      "id": "FourUniqueBow2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  }
+}

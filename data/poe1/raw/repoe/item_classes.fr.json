@@ -1,0 +1,764 @@
+{
+  "LifeFlask": {
+    "category": "Flacon",
+    "category_id": "Flask",
+    "name": "Flacons de Vie",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "Flacon",
+    "category_id": "Flask",
+    "name": "Flacons de Mana",
+    "influence_tags": null
+  },
+  "HybridFlask": {
+    "category": "Flacon",
+    "category_id": "Flask",
+    "name": "Flacons hybrides",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "Objet monétaire",
+    "category_id": "Currency",
+    "name": "Objet monétaire",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "Amulette",
+    "category_id": "Amulet",
+    "name": "Amulettes",
+    "influence_tags": [
+      "amulet_crusader",
+      "amulet_elder",
+      "amulet_basilisk",
+      "amulet_eyrie",
+      "amulet_shaper",
+      "amulet_adjudicator"
+    ]
+  },
+  "Ring": {
+    "category": "Bague",
+    "category_id": "Ring",
+    "name": "Bagues",
+    "influence_tags": [
+      "ring_crusader",
+      "ring_elder",
+      "ring_basilisk",
+      "ring_eyrie",
+      "ring_shaper",
+      "ring_adjudicator"
+    ]
+  },
+  "Claw": {
+    "category": "Griffe",
+    "category_id": "Claw",
+    "name": "Griffes",
+    "influence_tags": [
+      "claw_crusader",
+      "claw_elder",
+      "claw_basilisk",
+      "claw_eyrie",
+      "claw_shaper",
+      "claw_adjudicator"
+    ]
+  },
+  "Dagger": {
+    "category": "Dague",
+    "category_id": "Dagger",
+    "name": "Dagues",
+    "influence_tags": [
+      "dagger_crusader",
+      "dagger_elder",
+      "dagger_basilisk",
+      "dagger_eyrie",
+      "dagger_shaper",
+      "dagger_adjudicator"
+    ]
+  },
+  "Wand": {
+    "category": "Baguette",
+    "category_id": "Wand",
+    "name": "Baguettes",
+    "influence_tags": [
+      "wand_crusader",
+      "wand_elder",
+      "wand_basilisk",
+      "wand_eyrie",
+      "wand_shaper",
+      "wand_adjudicator"
+    ]
+  },
+  "One Hand Sword": {
+    "category": "Épée à une main",
+    "category_id": "One Hand Sword",
+    "name": "Épées à une main",
+    "influence_tags": [
+      "sword_crusader",
+      "sword_elder",
+      "sword_basilisk",
+      "sword_eyrie",
+      "sword_shaper",
+      "sword_adjudicator"
+    ]
+  },
+  "Thrusting One Hand Sword": {
+    "category": "Épée à une main",
+    "category_id": "One Hand Sword",
+    "name": "Épées d'estoc à une main",
+    "influence_tags": [
+      "sword_crusader",
+      "sword_elder",
+      "sword_basilisk",
+      "sword_eyrie",
+      "sword_shaper",
+      "sword_adjudicator"
+    ]
+  },
+  "One Hand Axe": {
+    "category": "Hache à une main",
+    "category_id": "One Hand Axe",
+    "name": "Haches à une main",
+    "influence_tags": [
+      "axe_crusader",
+      "axe_elder",
+      "axe_basilisk",
+      "axe_eyrie",
+      "axe_shaper",
+      "axe_adjudicator"
+    ]
+  },
+  "One Hand Mace": {
+    "category": "Masse à une main",
+    "category_id": "One Hand Mace",
+    "name": "Masses à une main",
+    "influence_tags": [
+      "mace_crusader",
+      "mace_elder",
+      "mace_basilisk",
+      "mace_eyrie",
+      "mace_shaper",
+      "mace_adjudicator"
+    ]
+  },
+  "Bow": {
+    "category": "Arc",
+    "category_id": "Bow",
+    "name": "Arcs",
+    "influence_tags": [
+      "bow_crusader",
+      "bow_elder",
+      "bow_basilisk",
+      "bow_eyrie",
+      "bow_shaper",
+      "bow_adjudicator"
+    ]
+  },
+  "Staff": {
+    "category": "Bâton",
+    "category_id": "Staff",
+    "name": "Bâtons",
+    "influence_tags": [
+      "staff_crusader",
+      "staff_elder",
+      "staff_basilisk",
+      "staff_eyrie",
+      "staff_shaper",
+      "staff_adjudicator"
+    ]
+  },
+  "Two Hand Sword": {
+    "category": "Épée à deux mains",
+    "category_id": "Two Hand Sword",
+    "name": "Épées à deux mains",
+    "influence_tags": [
+      "2h_sword_crusader",
+      "2h_sword_elder",
+      "2h_sword_basilisk",
+      "2h_sword_eyrie",
+      "2h_sword_shaper",
+      "2h_sword_adjudicator"
+    ]
+  },
+  "Two Hand Axe": {
+    "category": "Hache à deux mains",
+    "category_id": "Two Hand Axe",
+    "name": "Haches à deux mains",
+    "influence_tags": [
+      "2h_axe_crusader",
+      "2h_axe_elder",
+      "2h_axe_basilisk",
+      "2h_axe_eyrie",
+      "2h_axe_shaper",
+      "2h_axe_adjudicator"
+    ]
+  },
+  "Two Hand Mace": {
+    "category": "Masse à deux mains",
+    "category_id": "Two Hand Mace",
+    "name": "Masses à deux mains",
+    "influence_tags": [
+      "2h_mace_crusader",
+      "2h_mace_elder",
+      "2h_mace_basilisk",
+      "2h_mace_eyrie",
+      "2h_mace_shaper",
+      "2h_mace_adjudicator"
+    ]
+  },
+  "Active Skill Gem": {
+    "category": "Gemme d'aptitude",
+    "category_id": "Active Skill Gem",
+    "name": "Gemmes d'aptitude",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "Gemme de soutien",
+    "category_id": "Support Skill Gem",
+    "name": "Gemmes de soutien",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "Carquois",
+    "category_id": "Quiver",
+    "name": "Carquois",
+    "influence_tags": [
+      "quiver_crusader",
+      "quiver_elder",
+      "quiver_basilisk",
+      "quiver_eyrie",
+      "quiver_shaper",
+      "quiver_adjudicator"
+    ]
+  },
+  "Belt": {
+    "category": "Ceinture",
+    "category_id": "Belt",
+    "name": "Ceintures",
+    "influence_tags": [
+      "belt_crusader",
+      "belt_elder",
+      "belt_basilisk",
+      "belt_eyrie",
+      "belt_shaper",
+      "belt_adjudicator"
+    ]
+  },
+  "Gloves": {
+    "category": "Gants",
+    "category_id": "Gloves",
+    "name": "Gants",
+    "influence_tags": [
+      "gloves_crusader",
+      "gloves_elder",
+      "gloves_basilisk",
+      "gloves_eyrie",
+      "gloves_shaper",
+      "gloves_adjudicator"
+    ]
+  },
+  "Boots": {
+    "category": "Bottes",
+    "category_id": "Boots",
+    "name": "Bottes",
+    "influence_tags": [
+      "boots_crusader",
+      "boots_elder",
+      "boots_basilisk",
+      "boots_eyrie",
+      "boots_shaper",
+      "boots_adjudicator"
+    ]
+  },
+  "Body Armour": {
+    "category": "Armure",
+    "category_id": "Body Armour",
+    "name": "Armures",
+    "influence_tags": [
+      "body_armour_crusader",
+      "body_armour_elder",
+      "body_armour_basilisk",
+      "body_armour_eyrie",
+      "body_armour_shaper",
+      "body_armour_adjudicator"
+    ]
+  },
+  "Helmet": {
+    "category": "Casque",
+    "category_id": "Helmet",
+    "name": "Casques",
+    "influence_tags": [
+      "helmet_crusader",
+      "helmet_elder",
+      "helmet_basilisk",
+      "helmet_eyrie",
+      "helmet_shaper",
+      "helmet_adjudicator"
+    ]
+  },
+  "Shield": {
+    "category": "Bouclier",
+    "category_id": "Shield",
+    "name": "Boucliers",
+    "influence_tags": [
+      "shield_crusader",
+      "shield_elder",
+      "shield_basilisk",
+      "shield_eyrie",
+      "shield_shaper",
+      "shield_adjudicator"
+    ]
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Petites reliques",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Reliques moyennes",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Grandes reliques",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "Objet monétaire",
+    "category_id": "Currency",
+    "name": "Objet monétaire empilable",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "Objet de quête",
+    "category_id": "QuestItem",
+    "name": "Objets de quête",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "Masse à une main",
+    "category_id": "One Hand Mace",
+    "name": "Sceptres",
+    "influence_tags": [
+      "sceptre_crusader",
+      "sceptre_elder",
+      "sceptre_basilisk",
+      "sceptre_eyrie",
+      "sceptre_shaper",
+      "sceptre_adjudicator"
+    ]
+  },
+  "UtilityFlask": {
+    "category": "Flacon",
+    "category_id": "Flask",
+    "name": "Flacons utilitaires",
+    "influence_tags": null
+  },
+  "UtilityFlaskCritical": {
+    "category": "Flacon",
+    "category_id": "Flask",
+    "name": "Flacons utilitaires critiques",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "Carte",
+    "category_id": "Map",
+    "name": "Cartes",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "Canne à pêche",
+    "category_id": "FishingRod",
+    "name": "Cannes à pêche",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "Fragment de Carte",
+    "category_id": "MapFragment",
+    "name": "Fragments de carte",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "Décorations de Repaire",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "Microtransactions",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "Joyau",
+    "category_id": "Jewel",
+    "name": "Joyaux",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "Carte divinatoire",
+    "category_id": "DivinationCard",
+    "name": "Cartes divinatoires",
+    "influence_tags": null
+  },
+  "LabyrinthItem": {
+    "category": "Clé du Labyrinthe",
+    "category_id": "LabyrinthItem",
+    "name": "Objets du Labyrinthe",
+    "influence_tags": null
+  },
+  "LabyrinthTrinket": {
+    "category": "Colifichet du Labyrinthe",
+    "category_id": "LabyrinthTrinket",
+    "name": "Colifichets du Labyrinthe",
+    "influence_tags": null
+  },
+  "LabyrinthMapItem": {
+    "category": "Fragment de Carte",
+    "category_id": "MapFragment",
+    "name": "Objets de Carte du Labyrinthe",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "Objet cartographique divers",
+    "category_id": "MiscMapItem",
+    "name": "Objets de Carte divers",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "Pierre de ligue",
+    "category_id": "Leaguestone",
+    "name": "Pierres de ligue",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "Âme capturée",
+    "category_id": "PantheonSoul",
+    "name": "Âmes du Panthéon",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "Morceau d'Unique",
+    "category_id": "UniqueFragment",
+    "name": "Morceaux",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "Joyau abyssal",
+    "category_id": "AbyssJewel",
+    "name": "Joyaux abyssaux",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "Objet d'Incursion",
+    "category_id": "IncursionItem",
+    "name": "Objets d'Incursion",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "Résonateur",
+    "category_id": "DelveSocketableCurrency",
+    "name": "Objets enchâssables Delve",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "Incubateur",
+    "category_id": "Incubator",
+    "name": "Incubateurs",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "Éclats",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "Cœurs d'éclat",
+    "influence_tags": null
+  },
+  "Rune Dagger": {
+    "category": "Dague",
+    "category_id": "Dagger",
+    "name": "Dagues runiques",
+    "influence_tags": [
+      "rune_dagger_crusader",
+      "rune_dagger_elder",
+      "rune_dagger_basilisk",
+      "rune_dagger_eyrie",
+      "rune_dagger_shaper",
+      "rune_dagger_adjudicator"
+    ]
+  },
+  "Warstaff": {
+    "category": "Bâton",
+    "category_id": "Staff",
+    "name": "Bâtons de guerre",
+    "influence_tags": [
+      "warstaff_crusader",
+      "warstaff_elder",
+      "warstaff_basilisk",
+      "warstaff_eyrie",
+      "warstaff_shaper",
+      "warstaff_adjudicator"
+    ]
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "Résonateur",
+    "category_id": "DelveSocketableCurrency",
+    "name": "Objets enchâssables et empilables Delve",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "Pierre de veille",
+    "category_id": "AtlasUpgradeItem",
+    "name": "Objets d'amélioration de l'Atlas",
+    "influence_tags": null
+  },
+  "MetamorphosisDNA": {
+    "category": "Organe de Métamorphe",
+    "category_id": "MetamorphosisDNA",
+    "name": "Organes de Métamorphe",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "Objets cachés",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "Contrat",
+    "category_id": "HeistContract",
+    "name": "Contrats",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "Équipement de Malfaiteur",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "Équipements de Malfaiteur",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "Outil de Malfaiteur",
+    "category_id": "HeistEquipmentTool",
+    "name": "Outils de Malfaiteur",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "Cape de Malfaiteur",
+    "category_id": "HeistEquipmentUtility",
+    "name": "Capes de Malfaiteur",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "Broche de Malfaiteur",
+    "category_id": "HeistEquipmentReward",
+    "name": "Broches de Malfaiteur",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "Plan",
+    "category_id": "HeistBlueprint",
+    "name": "Plans",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "Babiole",
+    "category_id": "Trinket",
+    "name": "Babioles",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "Objectif de Casse",
+    "category_id": "HeistObjective",
+    "name": "Objectifs de Casse",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "Journal de bord d'Expédition",
+    "category_id": "ExpeditionLogbook",
+    "name": "Journaux de bord d'Expédition",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "Incubateur",
+    "category_id": "Incubator",
+    "name": "Incubateurs",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "Mods d'Archnemesis",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "Objet local d'instance",
+    "category_id": "InstanceLocalItem",
+    "name": "Objets locaux d'instance",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "Drone Sentinelle",
+    "category_id": "SentinelDrone",
+    "name": "Sentinelles",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "Souvenir",
+    "category_id": "MemoryLine",
+    "name": "Souvenirs",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "Relique",
+    "category_id": "Relic",
+    "name": "Reliques",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "Relique",
+    "category_id": "Relic",
+    "name": "Reliques sanctifiées",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "Pierre de Brèche",
+    "category_id": "Breachstone",
+    "name": "Pierres de Brèche",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "Clé de la Salle des coffres",
+    "category_id": "VaultKey",
+    "name": "Clés de la Salle des coffres",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "Objet cartographique divers",
+    "category_id": "MiscMapItem",
+    "name": "Recherche du Sanctuaire",
+    "influence_tags": null
+  },
+  "Tincture": {
+    "category": "Teinture",
+    "category_id": "Tincture",
+    "name": "Teintures",
+    "influence_tags": null
+  },
+  "ItemisedCorpse": {
+    "category": "Cadavre",
+    "category_id": "Corpse",
+    "name": "Cadavres",
+    "influence_tags": null
+  },
+  "AnimalCharm": {
+    "category": "Charme",
+    "category_id": "Charm",
+    "name": "Charmes",
+    "influence_tags": null
+  },
+  "NecropolisPack": {
+    "category": "Braise de l’Omniflamme",
+    "category_id": "NecropolisPack",
+    "name": "Braises de l’Omniflamme",
+    "influence_tags": null
+  },
+  "Gold": {
+    "category": "Objet monétaire",
+    "category_id": "Currency",
+    "name": "Or",
+    "influence_tags": null
+  },
+  "AtlasRelic": {
+    "category": "Idole",
+    "category_id": "AtlasRelics",
+    "name": "Idoles",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "Don de la matrice",
+    "category_id": "BrequelFruit",
+    "name": "Dons de la matrice",
+    "influence_tags": null
+  },
+  "MapKey": {
+    "category": "Carte",
+    "category_id": "MapKey",
+    "name": "Cartes",
+    "influence_tags": null
+  },
+  "RemovedItem": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  }
+}

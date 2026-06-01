@@ -1,0 +1,6288 @@
+{
+  "151": {
+    "id": "Astramentis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Astramentis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Astramentis.dds",
+      "id": "FourUniqueAmulet15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "155": {
+    "id": "Eye of Chayula",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Auge des Chayula",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/EyeOfChayula.dds",
+      "id": "FourUniqueAmulet19_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "141": {
+    "id": "Idol of Uldurn",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Bildnis des Uldurn",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/IdolOfUldurn.dds",
+      "id": "FourUniqueAmulet2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "256": {
+    "id": "Choir of the Storm",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Chor des Sturms",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ChoirOfTheStorm.dds",
+      "id": "FourUniqueBreach4b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "147": {
+    "id": "Defiance of Destiny",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Dem Schicksal zum Trotz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/DefianceOfDestiny.dds",
+      "id": "FourUniqueAmulet8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "150": {
+    "id": "The Anvil",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Der Amboss",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/TheAnvil.dds",
+      "id": "FourUniqueAmulet13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "257": {
+    "id": "The Pandemonius",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Der Pandemonius",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ThePandemonius.dds",
+      "id": "FourUniqueBreach4c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "142": {
+    "id": "The Everlasting Gaze",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Der ewige Blick",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/TheEverlastingGaze.dds",
+      "id": "FourUniqueAmulet3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "154": {
+    "id": "Fireflower",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Feuerblume",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Fireflower.dds",
+      "id": "FourUniqueAmulet18"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "152": {
+    "id": "Fixation of Yix",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Fixierung des Yix",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/FixationOfYix.dds",
+      "id": "FourUniqueAmulet16"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "149": {
+    "id": "Rondel of Fragility",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Gedicht der Zerbrechlichkeit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/RondelOfFragility.dds",
+      "id": "FourUniqueAmulet12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "145": {
+    "id": "Carnage Heart",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Herz des Gemetzels",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/CarnageHeart.dds",
+      "id": "FourUniqueAmulet6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "381": {
+    "id": "Hinekora's Sight",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Hinekoras Sicht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/HinekorasSight.dds",
+      "id": "FourUniqueAmulet21"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "140": {
+    "id": "Igniferis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Igniferis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Igniferis.dds",
+      "id": "FourUniqueAmulet1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "270": {
+    "id": "Yoke of Suffering",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Joch des Leids",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/YokeOfSuffering.dds",
+      "id": "FourUniqueAmulet14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "148": {
+    "id": "Ligurium Talisman",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Ligurium-Talisman",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/LiguriumTalisman.dds",
+      "id": "FourUniqueAmulet10_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "422": {
+    "id": "Immaculate Adherence",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Makellose Einhaltung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ChainsOfAdherence.dds",
+      "id": "FourUniqueAmulet23"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "268": {
+    "id": "Strugglescream",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Qualvoller Schrei",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/DeliriumAmulet.dds",
+      "id": "FourUniqueDelirium5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "156": {
+    "id": "Serpent's Egg",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Schlangenei",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/TheSerpentsEgg.dds",
+      "id": "FourUniqueAmulet20"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "146": {
+    "id": "Surefooted Sigil",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Siegel der Trittsicherheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/SurefootedSigil.dds",
+      "id": "FourUniqueAmulet7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "153": {
+    "id": "Beacon of Azis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Signalfeuer von Azis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/BeaconOfAzis.dds",
+      "id": "FourUniqueAmulet17"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "269": {
+    "id": "Stone of Lazhwar",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Stein von Lazhwar",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/StoneOfLazhwar.dds",
+      "id": "FourUniqueAmulet9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "421": {
+    "id": "Eventide Petals",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Stillwasserblüten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/Nattblom.dds",
+      "id": "FourUniqueAmulet22"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "143": {
+    "id": "Ungil's Harmony",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Ungils Harmonie",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/UngilsHarmony.dds",
+      "id": "FourUniqueAmulet4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "144": {
+    "id": "Revered Resin",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Verehrtes Harz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/ReveredResin.dds",
+      "id": "FourUniqueAmulet5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "255": {
+    "id": "Xoph's Blood",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Amulet",
+    "name": "Xophs Blut",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Amulets/Uniques/XophsBlood.dds",
+      "id": "FourUniqueBreach4a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "367": {
+    "id": "The Last Lament",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "Die letzte Klage",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/TheGrandDesign.dds",
+      "id": "FourUniqueCrossbow13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "388": {
+    "id": "Double Vision",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "Doppelte Sicht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/DoubleVision.dds",
+      "id": "FourUniqueCrossbow5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "442": {
+    "id": "Redemption",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "Erlösung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/TheRedemption.dds",
+      "id": "FourUniqueCrossbow14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "218": {
+    "id": "Mist Whisper",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "Nebelgeflüster",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/MistWhisper.dds",
+      "id": "FourUniqueCrossbow1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "219": {
+    "id": "Rampart Raptor",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Crossbow",
+    "name": "Zinnenfalke",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Crossbows/Uniques/RampartRaptor.dds",
+      "id": "FourUniqueCrossbow2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "440": {
+    "id": "Ironbound",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Eisenbund",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Ironbound.dds",
+      "id": "FourUniqueBow3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "387": {
+    "id": "Fairgraves' Curse",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Fairgraves' Fluch",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/DealersHand.dds",
+      "id": "FourUniqueBow9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "217": {
+    "id": "Death's Harp",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Harfe des Todes",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/DeathsHarp.dds",
+      "id": "FourUniqueBow6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "373": {
+    "id": "Lioneye's Glare",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Löwenauges Glanz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/LioneyesGlare.dds",
+      "id": "FourUniqueBow13_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "441": {
+    "id": "Periphery",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Peripherie",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Fluttermoth.dds",
+      "id": "FourUniqueBow14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "346": {
+    "id": "Slivertongue",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Spaltzunge",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Slivertongue.dds",
+      "id": "FourUniqueBow8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "216": {
+    "id": "Splinterheart",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Splitterherz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Splinterheart.dds",
+      "id": "FourUniqueBow4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "215": {
+    "id": "Quill Rain",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Stachelregen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/QuillRain.dds",
+      "id": "FourUniqueBow2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "344": {
+    "id": "Doomfletch",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Verhängnisfeder",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Doomfletch.dds",
+      "id": "FourUniqueBow5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "345": {
+    "id": "Voltaxic Rift",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Voltaxische Kluft",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/VoltaxicRift.dds",
+      "id": "FourUniqueBow7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "214": {
+    "id": "Widowhail",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Bow",
+    "name": "Witwenhagel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Bows/Uniques/Widowhail.dds",
+      "id": "FourUniqueBow1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "384": {
+    "id": "Blood of the Warrior",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "Blut des Kriegers",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/BloodOfTheKarui.dds",
+      "id": "FourUniqueLifeFlask1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "429": {
+    "id": "Opportunity",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "Gelegenheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/TranscendantThirst.dds",
+      "id": "FourUniqueLifeFlask2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "392": {
+    "id": "Lavianga's Spirits",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "Laviangas Seelen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/LaviangasSpirit.dds",
+      "id": "FourUniqueManaFlask1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "242": {
+    "id": "Olroth's Resolve",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "Olroths Entschlossenheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/OlrothsResolve.dds",
+      "id": "FourUniqueExpedition3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "246": {
+    "id": "Melting Maelstrom",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "Schmelzender Mahlstrom",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/MeltingMaelstrom.dds",
+      "id": "FourUniqueDelirium3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "430": {
+    "id": "Uhtred's Chalice",
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Flask",
+    "name": "Uhtreds Kelch",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Flasks/Uniques/UhtredsLegacy.dds",
+      "id": "FourUniqueManaFlask2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "135": {
+    "id": "Carrion Call",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Aasruf",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/CarrionCall.dds",
+      "id": "FourUniqueFocus4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "312": {
+    "id": "Effigy of Cruelty",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Abbild der Grausamkeit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/EffigyOfCruelty.dds",
+      "id": "FourUniqueFocus3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "313": {
+    "id": "Apep's Supremacy",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Apeps Überlegenheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/ApepsSupremacy.dds",
+      "id": "FourUniqueFocus7_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "137": {
+    "id": "The Eternal Spark",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Der Ewige Funke",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/EternalSpark.dds",
+      "id": "FourUniqueFocus6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "134": {
+    "id": "Threaded Light",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Gefädeltes Licht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/ThreadedLight.dds",
+      "id": "FourUniqueFocus2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "136": {
+    "id": "Serpent's Lesson",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Lektion der Schlange",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/TonesOfFate.dds",
+      "id": "FourUniqueFocus5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "314": {
+    "id": "Rathpith Globe",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Rathpith-Globus",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/RathpithGlobe.dds",
+      "id": "FourUniqueFocus8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "133": {
+    "id": "Deathrattle",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Focii",
+    "name": "Todesröcheln",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Foci/Uniques/DeathRattle.dds",
+      "id": "FourUniqueFocus1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "277": {
+    "id": "Goregirdle",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Blutgürtel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Goregirdle.dds",
+      "id": "FourUniqueBelt10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "184": {
+    "id": "Brynabas",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Byrnabas",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Byrnabas.dds",
+      "id": "FourUniqueBelt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "250": {
+    "id": "Ingenuity",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Einfallsreichtum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Widowmaker.dds",
+      "id": "FourUniqueRitual3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "279": {
+    "id": "Waistgate",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Hüftschutz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Waistgate.dds",
+      "id": "FourUniqueBelt17_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "186": {
+    "id": "Infernoclasp",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Infernoschnalle",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Infernoclasp.dds",
+      "id": "FourUniqueBelt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "182": {
+    "id": "Keelhaul",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Kielholen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Keelhaul.dds",
+      "id": "FourUniqueBelt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "278": {
+    "id": "Bijouborne",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Kleinodträger",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Twinclasp.dds",
+      "id": "FourUniqueBelt15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "189": {
+    "id": "Headhunter",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Kopfjäger",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Headhunter.dds",
+      "id": "FourUniqueBelt18__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "448": {
+    "id": "Mageblood",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Magierblut",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/Mageblood.dds",
+      "id": "FourUniqueBelt24"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "180": {
+    "id": "Meginord's Girdle",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Meginords Gürtel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/MeginordsGirdle.dds",
+      "id": "FourUniqueBelt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "181": {
+    "id": "Midnight Braid",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Mitternachtsband",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/MidnightBraid.dds",
+      "id": "FourUniqueBelt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "428": {
+    "id": "Cat O' Nine Tails",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Neunschwänzige Katze",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/CatONineTails.dds",
+      "id": "FourUniqueBelt19_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "187": {
+    "id": "Ryslatha's Coil",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Ryslathas Schlinge",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/RyslathasCoil.dds",
+      "id": "FourUniqueBelt12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "183": {
+    "id": "Birthright Buckle",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Schnalle des Geburtsrechts",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/BirthrightBuckle.dds",
+      "id": "FourUniqueBelt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "361": {
+    "id": "The Gnashing Sash",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Schärpe des Nimmersatts",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/GnashingSash.dds",
+      "id": "FourUniqueCorruption1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "185": {
+    "id": "Soul Tether",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Seelenleine",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/SoulTether.dds",
+      "id": "FourUniqueBelt8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "190": {
+    "id": "Shavronne's Satchel",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Shavronnes Tasche",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/ShavronnesSatchel.dds",
+      "id": "FourUniqueBelt21_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "383": {
+    "id": "Darkness Enthroned",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Thronende Dunkelheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/DarknessEnthroned.dds",
+      "id": "FourUniqueBelt23"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "382": {
+    "id": "Umbilicus Immortalis",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Umbilicus Immortalis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/UmbilicusImmortalis.dds",
+      "id": "FourUniqueBelt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "188": {
+    "id": "Coward's Legacy",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Vermächtnis des Feiglings",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/CowardsLegacy.dds",
+      "id": "FourUniqueBelt13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "237": {
+    "id": "Zerphi's Genesis",
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Belt",
+    "name": "Zerphis Schöpfung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Belts/Uniques/ZerphisGenesis.dds",
+      "id": "FourUniqueUltimatum2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "93": {
+    "id": "Aerisvane's Wings",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Aerisvanes Flügel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/AerisvanesWings.dds",
+      "id": "FourUniqueGlovesStrDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "79": {
+    "id": "Atziri's Acuity",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Atziris Schärfe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/AtzirisAcuity.dds",
+      "id": "FourUniqueGlovesStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "77": {
+    "id": "Treefingers",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Baumfinger",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Treefingers.dds",
+      "id": "FourUniqueGlovesStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "96": {
+    "id": "Blueflame Bracers",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Blaugeflammte Armschienen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/SunConstrictor.dds",
+      "id": "FourUniqueGlovesStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "363": {
+    "id": "Death Articulated",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Der artikulierte Tod",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/DeathArticulated.dds",
+      "id": "FourUniqueCorruption3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "307": {
+    "id": "The Prisoner's Manacles",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Die Fesseln des Gefangenen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/PrisonersManacles.dds",
+      "id": "FourUniqueGlovesStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "85": {
+    "id": "Painter's Servant",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Diener des Malers",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/PaintersServant.dds",
+      "id": "FourUniqueGlovesInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "87": {
+    "id": "Doedre's Tenure",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Doedres Talent",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/EnraptHands.dds",
+      "id": "FourUniqueGlovesInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "378": {
+    "id": "Thunderfist",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Donnerfaust",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Thunderfist.dds",
+      "id": "FourUniqueGlovesDexInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "89": {
+    "id": "Demon Stitcher",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Dämonenflicker",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/DemonStitcher.dds",
+      "id": "FourUniqueGlovesInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "310": {
+    "id": "Essentia Sanguis",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Essentia Sanguis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/EssentiaSanguis.dds",
+      "id": "FourUniqueGlovesDexInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "95": {
+    "id": "Shackles of the Wretched",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Fesseln des Elends",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/ShacklesOfTheWretched.dds",
+      "id": "FourUniqueGlovesStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "417": {
+    "id": "Horror's Flight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Flug des Horrors",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/ChokingMists.dds",
+      "id": "FourUniqueGlovesDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "232": {
+    "id": "Blessed Bonds",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Gesegnete Verbindungen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/BlessedBonds.dds",
+      "id": "FourUniqueSanctum3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "416": {
+    "id": "Facebreaker",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Gesichtsbrecher",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Facebreaker.dds",
+      "id": "FourUniqueGlovesStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "91": {
+    "id": "Aurseize",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Goldgreifer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Aurseize.dds",
+      "id": "FourUniqueGlovesStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "309": {
+    "id": "Empire's Grasp",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Griff des Kaiserreichs",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/EmpiresGrasp.dds",
+      "id": "FourUniqueGlovesStr7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "81": {
+    "id": "Grip of Winter",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Griff des Winters",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/GripOfWinter.dds",
+      "id": "FourUniqueGlovesDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "253": {
+    "id": "Hand of Wisdom and Action",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Hand der Weisheit und Tatkraft",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/HandOfWisdomAndAction.dds",
+      "id": "FourUniqueBreach2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "239": {
+    "id": "Hateforge",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Hass-Schmiede",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Hateforge.dds",
+      "id": "FourUniqueUltimatum4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "90": {
+    "id": "Jarngreipr",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Jarngreipr",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Jarngreipr.dds",
+      "id": "FourUniqueGlovesStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "86": {
+    "id": "Candlemaker",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Kerzenmacher",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Candlemaker.dds",
+      "id": "FourUniqueGlovesInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "88": {
+    "id": "Kitoko's Current",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Kitokos Stromstärke",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/GaruksCurrent.dds",
+      "id": "FourUniqueGlovesInt4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "94": {
+    "id": "Gravebind",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Leichendieb",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Gravebind.dds",
+      "id": "FourUniqueGlovesStrInt1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "311": {
+    "id": "Leopold's Applause",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Leopolds Beifall",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/LeopoldsApplause.dds",
+      "id": "FourUniqueGlovesInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "78": {
+    "id": "Lochtonial Caress",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Lochtoniale Schmeichler",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/LochtonialCaress.dds",
+      "id": "FourUniqueGlovesStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "84": {
+    "id": "Maligaro's Virtuosity",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Maligaros Virtuosität",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/MaligarosVirtuosity.dds",
+      "id": "FourUniqueGlovesDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "98": {
+    "id": "Killjoy",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Mordlust",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Killjoy.dds",
+      "id": "FourUniqueGlovesDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "306": {
+    "id": "Nightscale",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Nachtschuppe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Nightscale.dds",
+      "id": "FourUniqueGlovesInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "80": {
+    "id": "Northpaw",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Nordpfote",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Northpaw.dds",
+      "id": "FourUniqueGlovesDex1____"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "97": {
+    "id": "Plaguefinger",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Pestfinger",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Plaguefinger.dds",
+      "id": "FourUniqueGlovesDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "92": {
+    "id": "Deathblow",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Schicksalsschlag",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Deathblow.dds",
+      "id": "FourUniqueGlovesStrDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "83": {
+    "id": "Snakebite",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Schlangenbiss",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Snakebite.dds",
+      "id": "FourUniqueGlovesDex5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "305": {
+    "id": "Dreadfist",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Schreckensfaust",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/Dreadfist.dds",
+      "id": "FourUniqueGlovesStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "227": {
+    "id": "Sine Aequo",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Sine Aequo",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/SineAequo.dds",
+      "id": "FourUniquePinnacle3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "82": {
+    "id": "Idle Hands",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Untätige Hände",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/IdleHands.dds",
+      "id": "FourUniqueGlovesDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "308": {
+    "id": "Valako's Vice",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Gloves",
+    "name": "Valakos Laster",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Gloves/Uniques/ValakosVice.dds",
+      "id": "FourUniqueGlovesStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "231": {
+    "id": "Sandstorm Visage",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Antlitz des Sandsturms",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/SandstormVisage.dds",
+      "id": "FourUniqueSanctum2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "57": {
+    "id": "Visage of Ayah",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Antlitz von Ayah",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/VisageOfAyah.dds",
+      "id": "FourUniqueHelmetInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "73": {
+    "id": "Leer Cast",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Anzüglicher Blick",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Leercast.dds",
+      "id": "FourUniqueHelmetDexInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "244": {
+    "id": "Assailum",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Assailum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Assailum.dds",
+      "id": "FourUniqueDelirium1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "74": {
+    "id": "Atsak's Sight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Atsaks Sicht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BalefulTemperance.dds",
+      "id": "FourUniqueHelmetDexInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "60": {
+    "id": "Atziri's Disdain",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Atziris Verachtung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/AtzirisDisdain.dds",
+      "id": "FourUniqueHelmetInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "299": {
+    "id": "Crown of Eyes",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Augenkrone",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfEyes.dds",
+      "id": "FourUniqueHelmetInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "67": {
+    "id": "Bronzebeard",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Bronzebart",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Bronzebeard.dds",
+      "id": "FourUniqueHelmetStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "70": {
+    "id": "Cornathaum",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Cornathaum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Cornathaum.dds",
+      "id": "FourUniqueHelmetStrInt5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "56": {
+    "id": "The Devouring Diadem",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Das verschlingende Diadem",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/DevouringDiadem.dds",
+      "id": "FourUniqueHelmetInt2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "414": {
+    "id": "Decree of Acuity",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Dekret der Schärfe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/SightlessConviction.dds",
+      "id": "FourUniqueHelmetStrDex9_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "304": {
+    "id": "The Bringer of Rain",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Der Regenbringer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BringerOfRain.dds",
+      "id": "FourUniqueHelmetStrDex7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "75": {
+    "id": "The Vertex",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Der Vertex",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheVertex.dds",
+      "id": "FourUniqueHelmetDexInt5__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "64": {
+    "id": "The Smiling Knight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Der lächelnde Ritter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheSmilingKnight.dds",
+      "id": "FourUniqueHelmetStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "65": {
+    "id": "The Vile Knight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Der niederträchtige Ritter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheVileKnight.dds",
+      "id": "FourUniqueHelmetStrDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "296": {
+    "id": "The Deepest Tower",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Der tiefste Turm",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheDeepestTower.dds",
+      "id": "FourUniqueHelmetStrInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "71": {
+    "id": "The Hollow Mask",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Die ausgehöhlte Maske",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MaskOfTheHollow.dds",
+      "id": "FourUniqueHelmetDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "76": {
+    "id": "The Three Dragons",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Die drei Drachen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheThreeDragons.dds",
+      "id": "FourUniqueHelmetDexInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "298": {
+    "id": "The Black Insignia",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Die schwarze Insignie",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/TheBlackCrest.dds",
+      "id": "FourUniqueHelmetDex7_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "55": {
+    "id": "Crown of Thorns",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Dornenkrone",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfThorns.dds",
+      "id": "FourUniqueHelmetInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "63": {
+    "id": "Ironride",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Eisenritt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Ironride.dds",
+      "id": "FourUniqueHelmetStrDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "52": {
+    "id": "Elevore",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Elevore",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Elevore.dds",
+      "id": "FourUniqueHelmetDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "62": {
+    "id": "Erian's Cobble",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Erians Kopfsteinpflaster",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/GrimrotCoif.dds",
+      "id": "FourUniqueHelmetStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "370": {
+    "id": "Constricting Command",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Fesselndes Kommando",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/ConstrictingCommand.dds",
+      "id": "FourUniqueHelmetDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "50": {
+    "id": "Goldrim",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Goldkranz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Goldrim.dds",
+      "id": "FourUniqueHelmetDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "302": {
+    "id": "Heatshiver",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Heißkalt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Heatshiver.dds",
+      "id": "FourUniqueHelmetDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "54": {
+    "id": "Alpha's Howl",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Heulen des Alphas",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/AlphasHowl.dds",
+      "id": "FourUniqueHelmetDex11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "44": {
+    "id": "Ezomyte Peak",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Höhepunkt der Ezomyten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/EzomytePeak.dds",
+      "id": "FourUniqueHelmetStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "42": {
+    "id": "Horns of Bynden",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Hörner von Bynden",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/HornsOfBrynden.dds",
+      "id": "FourUniqueHelmetStr1a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "241": {
+    "id": "Keeper of the Arc",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Hüter des Arkus",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/KeeperOfTheArc.dds",
+      "id": "FourUniqueExpedition2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "303": {
+    "id": "Indigon",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Indigon",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Indigon.dds",
+      "id": "FourUniqueHelmetInt11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "49": {
+    "id": "Innsmouth",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Innsmouth",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Innsmouth.dds",
+      "id": "FourUniqueHelmetDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "48": {
+    "id": "Corona of the Red Sun",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Krone der Roten Sonne",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CoronaOfTheRedSun.dds",
+      "id": "FourUniqueHelmetStr6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "45": {
+    "id": "Black Sun Crest",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Krone der schwarzen Sonne",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BlackSunCrest.dds",
+      "id": "FourUniqueHelmetStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "66": {
+    "id": "Crown of the Victor",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Krone des Siegers",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfTheVictor.dds",
+      "id": "FourUniqueHelmetStrInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "68": {
+    "id": "Crown of the Pale King",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Krone des bleichen Königs",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfThePaleKing.dds",
+      "id": "FourUniqueHelmetStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "72": {
+    "id": "Mask of the Sanguimancer",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Maske des Blutvergießers",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/PhantomBlood.dds",
+      "id": "FourUniqueHelmetDexInt2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "59": {
+    "id": "Mask of the Stitched Demon",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Maske des vernarbten Dämons",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MaskOfTheStitchedDemon.dds",
+      "id": "FourUniqueHelmetInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "53": {
+    "id": "Myris Uxor",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Myris Uxor",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MyrisUxor.dds",
+      "id": "FourUniqueHelmetDex10_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "300": {
+    "id": "Blood Price",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Preis des Blutes",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/BloodPrice.dds",
+      "id": "FourUniqueHelmetStr8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "297": {
+    "id": "Scold's Bridle",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Schandmaske",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/ScoldsBridle.dds",
+      "id": "FourUniqueHelmetInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "69": {
+    "id": "Veil of the Night",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Schleier der Nacht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/VeilOfTheNight.dds",
+      "id": "FourUniqueHelmetStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "43": {
+    "id": "Wings of Caelyn",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Schwingen von Caelyn",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/WingsOfCaelyn.dds",
+      "id": "FourUniqueHelmetStr1b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "226": {
+    "id": "Solus Ipse",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Solus Ipse",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/SolusIpse.dds",
+      "id": "FourUniquePinnacle2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "415": {
+    "id": "Vestige of Darkness",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Spur der Dunkelheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/CrownOfTheWendigo.dds",
+      "id": "FourUniqueHelmetStrInt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "301": {
+    "id": "Starkonja's Head",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Starkonjas Schädel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/StarkonjasHead.dds",
+      "id": "FourUniqueHelmetDex8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "51": {
+    "id": "Radiant Grief",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Strahlende Trauer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/RadiantGrief.dds",
+      "id": "FourUniqueHelmetDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "46": {
+    "id": "Thrillsteel",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Stählerner Nervenkitzel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Thrillsteel.dds",
+      "id": "FourUniqueHelmetStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "47": {
+    "id": "Deidbell",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Totenglocke",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Deidbell.dds",
+      "id": "FourUniqueHelmetStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "58": {
+    "id": "Forbidden Gaze",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Verbotener Blick",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/ForbiddenGaze.dds",
+      "id": "FourUniqueHelmetInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "61": {
+    "id": "Greymake",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Vergrauung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/Greymake.dds",
+      "id": "FourUniqueHelmetStrDex1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "236": {
+    "id": "Glimpse of Chaos",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Verschleiertes Chaos",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/GlimpseOfChaos.dds",
+      "id": "FourUniqueUltimatum1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "375": {
+    "id": "Mind of the Council",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Helmet",
+    "name": "Verstand des Rates",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Helmets/Uniques/MindOfTheCouncil.dds",
+      "id": "FourUniqueHelmetDexInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "263": {
+    "id": "From Nothing",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Aus dem Nichts",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/RitualJewel.dds",
+      "id": "FourUniqueJewel6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "266": {
+    "id": "The Adorned",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Die Geschmückten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/TrialmasterJewel.dds",
+      "id": "FourUniqueJewel9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "402": {
+    "id": "Flesh Crucible",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Fleischtiegel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/Vivisection.dds",
+      "id": "FourUniqueJewel13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "267": {
+    "id": "Against the Darkness",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Gegen die Dunkelheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/SanctumJewel.dds",
+      "id": "FourUniqueJewel10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "446": {
+    "id": "Split Personality",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Gespaltene Persönlichkeit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/SplitPersonality.dds",
+      "id": "FourUniqueJewel14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "258": {
+    "id": "Grand Spectrum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Großes Spektrum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/GrandSpectrum_Ruby.dds",
+      "id": "FourUniqueJewel1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "259": {
+    "id": "Grand Spectrum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Großes Spektrum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/GrandSpectrum_Emerald.dds",
+      "id": "FourUniqueJewel2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "260": {
+    "id": "Grand Spectrum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Großes Spektrum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/GrandSpectrum_Sapphire.dds",
+      "id": "FourUniqueJewel3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "262": {
+    "id": "Heroic Tragedy",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Heroische Tragödie",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/ExpeditionJewel.dds",
+      "id": "FourUniqueJewel5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "390": {
+    "id": "Heart of the Well",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Herz des Abgrunds",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/ApostatesHeart.dds",
+      "id": "FourUniqueJewel12_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "264": {
+    "id": "Controlled Metamorphosis",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Kontrollierte Metamorphose",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/BreachJewel.dds",
+      "id": "FourUniqueJewel7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "261": {
+    "id": "Megalomaniac",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Megalomaniac",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/DeliriumJewel.dds",
+      "id": "FourUniqueJewel4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "265": {
+    "id": "Prism of Belief",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Prisma des Glaubens",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/PrismOfBelief.dds",
+      "id": "FourUniqueJewel8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "447": {
+    "id": "Voices",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Stimmen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/Voices.dds",
+      "id": "FourUniqueJewel15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "389": {
+    "id": "Undying Hate",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Jewel",
+    "name": "Unsterblicher Hass",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Jewels/Uniques/UndyingHatred.dds",
+      "id": "FourUniqueJewel11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "202": {
+    "id": "The Blood Thorn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "Der Blutdorn",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/TheBloodThorn.dds",
+      "id": "FourUniqueQuarterstaff1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "204": {
+    "id": "The Sentry",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "Der Wachposten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/TheSentry.dds",
+      "id": "FourUniqueQuarterstaff3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "436": {
+    "id": "Duality",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "Dualität",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/Stjorvar.dds",
+      "id": "FourUniqueQuarterstaff14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "247": {
+    "id": "Collapsing Horizon",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "Einstürzender Horizont",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/CollapsingHorizon.dds",
+      "id": "FourUniqueDelirium4__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "205": {
+    "id": "Matsya",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "Matsya",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/Matsya.dds",
+      "id": "FourUniqueQuarterstaff5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "206": {
+    "id": "Nazir's Judgement",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "Nazirs Urteil",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/NazirsJudgement.dds",
+      "id": "FourUniqueQuarterstaff6__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "203": {
+    "id": "Pillar of the Caged God",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Warstaff",
+    "name": "Pfeiler des gefangenen Gottes",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/WarStaves/Uniques/PillarOfTheCagedGod.dds",
+      "id": "FourUniqueQuarterstaff2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "138": {
+    "id": "Asphyxia's Wrath",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Asphyxias Zorn",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/AsphyxiasWrath.dds",
+      "id": "FourUniqueQuiver1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "368": {
+    "id": "Cadiro's Gambit",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Cadiros Schachzug",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/PerandusTurnstile.dds",
+      "id": "FourUniqueQuiver8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "347": {
+    "id": "The Lethal Draw",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Der tödliche Zug",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/TheLethalDraw.dds",
+      "id": "FourUniqueQuiver3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "398": {
+    "id": "Drillneck",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Genickbohrer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Drillneck.dds",
+      "id": "FourUniqueQuiver12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "348": {
+    "id": "Rearguard",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Rückenschutz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Rearguard.dds",
+      "id": "FourUniqueQuiver5__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "139": {
+    "id": "Blackgleam",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Schwarzglut",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Blackgleam.dds",
+      "id": "FourUniqueQuiver2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "369": {
+    "id": "Murkshaft",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Trübwasserköcher",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/Murkshaft.dds",
+      "id": "FourUniqueQuiver6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "254": {
+    "id": "Beyond Reach",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Quiver",
+    "name": "Unerreichbar",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Quivers/Uniques/BreachQuiver.dds",
+      "id": "FourUniqueBreach3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "12": {
+    "id": "Ashrend",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Aschefetzen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Ashrend.dds",
+      "id": "FourUniqueBodyDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "396": {
+    "id": "Atziri's Splendour",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Atziris Herrlichkeit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/AtzirisSplendour.dds",
+      "id": "FourUniqueBodyStrDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "19": {
+    "id": "Bitterbloom",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Bittere Blüte",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/DarkwoodPerianth.dds",
+      "id": "FourUniqueBodyInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "376": {
+    "id": "Lightning Coil",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Blitzspule",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/LightningCoil.dds",
+      "id": "FourUniqueBodyStrDex8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "26": {
+    "id": "Coat of Red",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Blutroter Mantel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CoatOfRed.dds",
+      "id": "FourUniqueBodyStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "36": {
+    "id": "Couture of Crimson",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Blutroter Mantel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CoutureOfCrimson.dds",
+      "id": "FourUniqueBodyStrInt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "10": {
+    "id": "Bristleboar",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Borstenschwein",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Bristleboar.dds",
+      "id": "FourUniqueBodyDex1___"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "377": {
+    "id": "Cospri's Will",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Cospris Wille",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CosprisWill.dds",
+      "id": "FourUniqueBodyDexInt13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "285": {
+    "id": "The Coming Calamity",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Das nahende Unheil",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheComingCalamity.dds",
+      "id": "FourUniqueBodyStrDex11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "40": {
+    "id": "The Dancing Mirage",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Das tanzende Trugbild",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheDancingMirage.dds",
+      "id": "FourUniqueBodyDexInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "408": {
+    "id": "The Sunken Vessel",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Das versunkene Schiff",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheSunkenVessel.dds",
+      "id": "FourUniqueBodyStrDex14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "412": {
+    "id": "Decree of Loyalty",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Dekret der Loyalität",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/UnfalteringFaith.dds",
+      "id": "FourUniqueBodyStrInt16"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "407": {
+    "id": "The Auspex",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der Auspex",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/The Auspex.dds",
+      "id": "FourUniqueBodyDex16_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "411": {
+    "id": "The Unleashed",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der Entfesselte",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Endurfaedyr.dds",
+      "id": "FourUniqueBodyStrInt15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "27": {
+    "id": "The Barrow Dweller",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der Grabhügelbewohner",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheBarrowDweller.dds",
+      "id": "FourUniqueBodyStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "15": {
+    "id": "The Rat Cage",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der Rattenkäfig",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheRatCage.dds",
+      "id": "FourUniqueBodyDex7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "25": {
+    "id": "The Covenant",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der Schwur",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheCovenant.dds",
+      "id": "FourUniqueBodyInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "3": {
+    "id": "The Immortan",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der Straßenkrieger",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheRoadWarrior.dds",
+      "id": "FourUniqueBodyStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "287": {
+    "id": "The Mutable Star",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der Wandelstern",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/MutableStar.dds",
+      "id": "FourUniqueBodyStrInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "20": {
+    "id": "The Black Doubt",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Der schwarze Zweifel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheBlackDoubt.dds",
+      "id": "FourUniqueBodyInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "284": {
+    "id": "The Fallen Formation",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Die gefallene Formation",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/FallenFormation.dds",
+      "id": "FourUniqueBodyStrDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "0": {
+    "id": "Bramblejack",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Dornenpanzer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Bramblejack.dds",
+      "id": "FourUniqueBodyStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "31": {
+    "id": "Doryani's Prototype",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Doryanis Prototyp",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/DoryanisPrototype.dds",
+      "id": "FourUniqueBodyStrDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "2": {
+    "id": "Edyrn's Tusks",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Edyrn's Stoßzähne",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/EdyrnsTusks.dds",
+      "id": "FourUniqueBodyStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "28": {
+    "id": "Irongrasp",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Eisenumklammerung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Irongrasp.dds",
+      "id": "FourUniqueBodyStrDex3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "33": {
+    "id": "Icetomb",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Eisgrab",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Icetomb.dds",
+      "id": "FourUniqueBodyStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "11": {
+    "id": "Foxshade",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Fuchsschatten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Foxform.dds",
+      "id": "FourUniqueBodyDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "18": {
+    "id": "Ghostwrithe",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Geisterschauder",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Ghostwrithe.dds",
+      "id": "FourUniqueBodyInt1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "409": {
+    "id": "Geofri's Sanctuary",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Geofris Heiligtum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/GeofrisSanctuary.dds",
+      "id": "FourUniqueBodyStrInt11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "252": {
+    "id": "Skin of the Loyal",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Haut der Ergebenen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SkinOfTheLoyal.dds",
+      "id": "FourUniqueBreach1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "291": {
+    "id": "Hyrri's Ire",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Hyrris Wut",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/HyrrisIre.dds",
+      "id": "FourUniqueBodyDex15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "9": {
+    "id": "Kaom's Heart",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Kaoms Herz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/KaomsHeart.dds",
+      "id": "FourUniqueBodyStr14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "17": {
+    "id": "Queen of the Forest",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Königin des Waldes",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/QueenOfTheForest.dds",
+      "id": "FourUniqueBodyDex10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "6": {
+    "id": "Kingsguard",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Königswache",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Kingsguard.dds",
+      "id": "FourUniqueBodyStr7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "38": {
+    "id": "Gloomform",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Mantel der Schwermut",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/GatheringGloom.dds",
+      "id": "FourUniqueBodyDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "8": {
+    "id": "The Brass Dome",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Messingkuppel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/BrassDome.dds",
+      "id": "FourUniqueBodyStr12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "225": {
+    "id": "Morior Invictus",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Morior Invictus",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/MoriorInvictus_M.dds",
+      "id": "FourUniquePinnacle1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "21": {
+    "id": "Necromantle",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Nekromantel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Necromantle.dds",
+      "id": "FourUniqueBodyInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "245": {
+    "id": "Perfidy",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Niedertracht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Perfidy.dds",
+      "id": "FourUniqueDelirium2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "251": {
+    "id": "Pragmatism",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Pragmatismus",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Pragmatism.dds",
+      "id": "FourUniqueRitual4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "16": {
+    "id": "Quatl's Molt",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Quatls Häutung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/QuatlsMolt.dds",
+      "id": "FourUniqueBodyDex8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "41": {
+    "id": "Redflare Conduit",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Rotblitz-Ableiter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/RedflareConduit.dds",
+      "id": "FourUniqueBodyDexInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "289": {
+    "id": "Sacrosanctum",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Sacrosanctum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Sacrosanctum.dds",
+      "id": "FourUniqueBodyStrInt12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "410": {
+    "id": "Loreweave",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Sagenumwoben",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Loreweave.dds",
+      "id": "FourUniqueBodyStrInt14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "1": {
+    "id": "Blackbraid",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Schwarzes Geflecht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Blackbraid.dds",
+      "id": "FourUniqueBodyStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "37": {
+    "id": "Apron of Emiran",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Schürze von Emiran",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/ApronOfEmiran.dds",
+      "id": "FourUniqueBodyDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "281": {
+    "id": "Soul Mantle",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Seelenmantel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SoulMantle.dds",
+      "id": "FourUniqueBodyStrInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "294": {
+    "id": "Silks of Veneration",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Seide der Ehrfurcht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SilksOfVeneration.dds",
+      "id": "FourUniqueBodyInt14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "280": {
+    "id": "Sands of Silk",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Seidensand",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/SandsOfSilk.dds",
+      "id": "FourUniqueBodyDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "39": {
+    "id": "Sierran Inheritance",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Sierrisches Erbe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/MutewindSail.dds",
+      "id": "FourUniqueBodyDexInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "14": {
+    "id": "Dustbloom",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Staubgeborene Blüte",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Dustbloom.dds",
+      "id": "FourUniqueBodyDex6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "23": {
+    "id": "Prayers for Rain",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Stoßgebete für den Regen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/PrayersForRain.dds",
+      "id": "FourUniqueBodyInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "13": {
+    "id": "Briskwrap",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Strammriemen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Briskwrap.dds",
+      "id": "FourUniqueBodyDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "292": {
+    "id": "Tabula Rasa",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Tabula Rasa",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TabulaRasa.dds",
+      "id": "FourUniqueBodyStrDexInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "230": {
+    "id": "Temporalis",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Temporalis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/PilgrimsImage.dds",
+      "id": "FourUniqueSanctum1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "24": {
+    "id": "Tetzlapokal's Desire",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Tetzlapokals Verlangen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TetzlapokalsDesire.dds",
+      "id": "FourUniqueBodyInt7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "4": {
+    "id": "Titanrot Cataphract",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Titanenfäulnis-Kataphrakt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TitanrotCataphract.dds",
+      "id": "FourUniqueBodyStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "34": {
+    "id": "Husk of Dreams",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Träumerei",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/HuskOfDreams.dds",
+      "id": "FourUniqueBodyStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "7": {
+    "id": "Greed's Embrace",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Umarmung der Gier",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/GreedsEmbrace.dds",
+      "id": "FourUniqueBodyStr8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "29": {
+    "id": "Pariah's Embrace",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Umarmung des Ausgestoßenen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/PariahsEmbrace.dds",
+      "id": "FourUniqueBodyStrDex4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "32": {
+    "id": "Enfolding Dawn",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Umfassende Morgendämmerung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/EnfoldingDawn.dds",
+      "id": "FourUniqueBodyStrInt1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "22": {
+    "id": "Cloak of Flame",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Umhang der Flammen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CloakOfFlame.dds",
+      "id": "FourUniqueBodyInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "290": {
+    "id": "Cloak of Defiance",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Umhang des Ungehorsams",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/CloakOfDefiance.dds",
+      "id": "FourUniqueBodyInt13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "413": {
+    "id": "Forgotten Warden",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Vergessene Hüterin",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/TheAncientOrder.dds",
+      "id": "FourUniqueBodyDexInt14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "295": {
+    "id": "Vis Mortis",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Vis Mortis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/VisMortis.dds",
+      "id": "FourUniqueBodyInt12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "35": {
+    "id": "Voll's Protector",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Volls Protektor",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/VollsProtector.dds",
+      "id": "FourUniqueBodyStrInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "5": {
+    "id": "Wandering Reliquary",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Wanderndes Reliquiar",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/WanderingReliquary.dds",
+      "id": "FourUniqueBodyStr6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "30": {
+    "id": "Belly of the Beast",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Wanst der Bestie",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/BellyOfTheBeast.dds",
+      "id": "FourUniqueBodyStrDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "286": {
+    "id": "Waveshaper",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Wellenformer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Waveshaper.dds",
+      "id": "FourUniqueBodyStrInt8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "293": {
+    "id": "Widow's Reign",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Wittwenherrschaft",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/WidowsReign.dds",
+      "id": "FourUniqueBodyStrDex7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "283": {
+    "id": "Yriel's Fostering",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Yriels Pflege",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/YrielsFostering.dds",
+      "id": "FourUniqueBodyDex11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "282": {
+    "id": "Zerphi's Serape",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Zerphis Umhang",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/ZerphisSerape.dds",
+      "id": "FourUniqueBodyDexInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "288": {
+    "id": "Gloamgown",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Body Armour",
+    "name": "Zwielichtrobe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/BodyArmours/Uniques/Gloamgown.dds",
+      "id": "FourUniqueBodyInt9_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "356": {
+    "id": "Arakaali's Gift",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Arakaalis Geschenk",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/AntidoteUniqueCharm.dds",
+      "id": "FourUniqueCharm3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "350": {
+    "id": "Breath of the Mountains",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Atem der Berge",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/SapphireUniqueCharm.dds",
+      "id": "FourUniqueCharm9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "357": {
+    "id": "Beira's Anguish",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Beiras Qualen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/DousingUniqueCharm.dds",
+      "id": "FourUniqueCharm4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "353": {
+    "id": "The Fall of the Axe",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Der Fall der Axt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/SilverUniqueCharm.dds",
+      "id": "FourUniqueCharm7_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "358": {
+    "id": "The Black Cat",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Die schwarze Katze",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/GroundingUniqueCharm.dds",
+      "id": "FourUniqueCharm5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "352": {
+    "id": "For Utopia",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Für Utopia",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/StoneUniqueCharm.dds",
+      "id": "FourUniqueCharm6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "354": {
+    "id": "Nascent Hope",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Hoffnungsschimmer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/ThawingUniqueCharm.dds",
+      "id": "FourUniqueCharm1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "349": {
+    "id": "Ngamahu's Chosen",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Ngamahus Auserwählte",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/RubyUniqueCharm.dds",
+      "id": "FourUniqueCharm8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "360": {
+    "id": "Rite of Passage",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Ritus der Passage",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/GoldenUniqueCharm.dds",
+      "id": "FourUniqueSpirit1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "355": {
+    "id": "Sanguis Heroum",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Sanguis Heroum",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/StaunchingUniqueCharm.dds",
+      "id": "FourUniqueCharm2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "351": {
+    "id": "Valako's Roar",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Valakos Gebrüll",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/TopazUniqueCharm.dds",
+      "id": "FourUniqueCharm10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "359": {
+    "id": "Forsaken Bangle",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Charm",
+    "name": "Verlorener Armreif",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Charms/Uniques/ChaosUniqueCharm.dds",
+      "id": "FourUniqueCharm11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "177": {
+    "id": "Andvarius",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Andvarius",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Andvarius.dds",
+      "id": "FourUniqueRing29"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "425": {
+    "id": "Berek's Respite",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Bereks Aufschub",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BereksRespite.dds",
+      "id": "FourUniqueRing26c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "424": {
+    "id": "Berek's Pass",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Bereks Bestehen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BereksPass.dds",
+      "id": "FourUniqueRing26b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "423": {
+    "id": "Berek's Grip",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Bereks Griff",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BereksGrip.dds",
+      "id": "FourUniqueRing26a__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "362": {
+    "id": "Bursting Decay",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Berstender Zerfall",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BurstingDecay.dds",
+      "id": "FourUniqueCorruption2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "167": {
+    "id": "The Burrower",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Der Wühler",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TheBurrower.dds",
+      "id": "FourUniqueRing14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "173": {
+    "id": "Thief's Torment",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Des Diebes Folter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/ThiefsTorment.dds",
+      "id": "FourUniqueRing21"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "174": {
+    "id": "Heartbound Loop",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Des Herzens Windung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/HeartboundLoop.dds",
+      "id": "FourUniqueRing23"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "426": {
+    "id": "The Taming",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Die Bändigung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TheTaming.dds",
+      "id": "FourUniqueRing27"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "159": {
+    "id": "Doedre's Damning",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Doedres Verdammung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/DoedresDamning.dds",
+      "id": "FourUniqueRing5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "272": {
+    "id": "Icefang Orbit",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Eisschlangenzahn",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/IcefangOrbit.dds",
+      "id": "FourUniqueRing2a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "234": {
+    "id": "Sekhema's Resolve Cold",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Eshteras Weg",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/RimeveilSeal.dds",
+      "id": "FourUniqueSanctum4b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "165": {
+    "id": "Whisper of the Brotherhood",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Flüstern der Bruderschaft",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/WhisperOfTheBrotherhood.dds",
+      "id": "FourUniqueRing12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "276": {
+    "id": "Gifts from Above",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Geschenke des Himmels",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/GiftsFromAbove.dds",
+      "id": "FourUniqueRing25"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "273": {
+    "id": "Prized Pain",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Geschätzter Schmerz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/PrizedPain.dds",
+      "id": "FourUniqueRing3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "271": {
+    "id": "Venopuncture",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Giftbiss",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Venopuncture.dds",
+      "id": "FourUniqueRing2b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "162": {
+    "id": "Blistering Bond",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Glühender Bund",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/BlisteringBond.dds",
+      "id": "FourUniqueRing8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "158": {
+    "id": "Glowswarm",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Glühschwarm",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Glowswarm.dds",
+      "id": "FourUniqueRing4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "391": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Griff von Kulemak",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage01.dds",
+      "id": "FourUniqueRing33_a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "403": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Griff von Kulemak",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage02.dds",
+      "id": "FourUniqueRing33_b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "404": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Griff von Kulemak",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage03.dds",
+      "id": "FourUniqueRing33_c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "405": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Griff von Kulemak",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage04.dds",
+      "id": "FourUniqueRing33_d"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "406": {
+    "id": "Grip of Kulemak",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Griff von Kulemak",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/TokenOfPassage05.dds",
+      "id": "FourUniqueRing33__e"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "275": {
+    "id": "Evergrasping Ring",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Immergreifender Ring",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/EvergraspingRing.dds",
+      "id": "FourUniqueRing22"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "179": {
+    "id": "Kalandra's Touch",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Kalandras Berührung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/MirrorRing.dds",
+      "id": "FourUniqueRing32_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "166": {
+    "id": "Levinstone",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Levinstein",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/StoneOfOndar.dds",
+      "id": "FourUniqueRing13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "169": {
+    "id": "Ming's Heart",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Mings Herz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/MingsHeart.dds",
+      "id": "FourUniqueRing16"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "176": {
+    "id": "Perandus Seal",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Perandussiegel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/PerandusSeal.dds",
+      "id": "FourUniqueRing28"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "163": {
+    "id": "Polcirkeln",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Polarkreis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Polcirkeln.dds",
+      "id": "FourUniqueRing10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "168": {
+    "id": "Call of the Brotherhood",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Ruf der Bruderschaft",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/CallOfTheBrotherhood.dds",
+      "id": "FourUniqueRing15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "233": {
+    "id": "Sekhema's Resolve Fire",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Safrins Entschlossenheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/EmberheartSeal.dds",
+      "id": "FourUniqueSanctum4a"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "160": {
+    "id": "Seed of Cataclysm",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Samen der Katastrophe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/SeedOfCataclysm.dds",
+      "id": "FourUniqueRing6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "175": {
+    "id": "Snakepit",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Schlangengrube",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Snakepit.dds",
+      "id": "FourUniqueRing24"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "161": {
+    "id": "Cracklecreep",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Schleichendes Knistern",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Cracklecreep.dds",
+      "id": "FourUniqueRing7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "427": {
+    "id": "Veilpiercer",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Schleierbrecher",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Veilpiercer.dds",
+      "id": "FourUniqueRing34_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "170": {
+    "id": "Blackflame",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Schwarzflamme",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Blackflame.dds",
+      "id": "FourUniqueRing17"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "157": {
+    "id": "Blackheart",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Schwarzherz",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/Blackheart.dds",
+      "id": "FourUniqueRing1_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "172": {
+    "id": "Death Rush",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Todeseile",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/DeathRush.dds",
+      "id": "FourUniqueRing20"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "164": {
+    "id": "Dream Fragments",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Traumfragmente",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/DreamFragments.dds",
+      "id": "FourUniqueRing11"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "171": {
+    "id": "Original Sin",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Ursünde",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/OriginalSin.dds",
+      "id": "FourUniqueRing18"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "178": {
+    "id": "Ventor's Gamble",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Ventors Glücksspiel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/VentorsGamble.dds",
+      "id": "FourUniqueRing30"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "274": {
+    "id": "Vigilant View",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Wachsamer Blick",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/VigilantView.dds",
+      "id": "FourUniqueRing19"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "235": {
+    "id": "Sekhema's Resolve Lightning",
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Ring",
+    "name": "Zaidas Langlebigkeit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Rings/Uniques/StormforgedSeal.dds",
+      "id": "FourUniqueSanctum4c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "128": {
+    "id": "Alkem Eira",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Alkem Eira",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/AlkemEira.dds",
+      "id": "FourUniqueShieldStrInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "125": {
+    "id": "Arvil's Wheel",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Arvils Rad",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/ArvilsWheel.dds",
+      "id": "FourUniqueShieldStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "132": {
+    "id": "Rise of the Phoenix",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Auferstehung des Phönix",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Crest06.dds",
+      "id": "FourUniqueShieldStrInt6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "420": {
+    "id": "Eyes of the Runefather",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Augen des Runenvaters",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Vindromyr.dds",
+      "id": "FourUniqueShieldStrDex12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "322": {
+    "id": "Bloodbarrier",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Blutbarriere",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/BloodBarrier.dds",
+      "id": "FourUniqueShieldDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "324": {
+    "id": "Calgyra's Arc",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Calgyras Arkus",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/CalgyrasArc.dds",
+      "id": "FourUniqueShieldDex11_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "318": {
+    "id": "Chernobog's Pillar",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Chernobogs Pfeiler",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/ChernobogsPillar.dds",
+      "id": "FourUniqueShieldStr13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "124": {
+    "id": "The Surrender",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Die Hingabe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/TheSurrender.dds",
+      "id": "FourUniqueShieldStr8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "122": {
+    "id": "The Wailing Wall",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Die Klagemauer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/TheWailingWall.dds",
+      "id": "FourUniqueShieldStr5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "119": {
+    "id": "Dionadair",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Dionadair",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Dionadair.dds",
+      "id": "FourUniqueShieldStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "319": {
+    "id": "Dunkelhalt",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Dunkelhalt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Dunkelhalt.dds",
+      "id": "FourUniqueShieldDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "129": {
+    "id": "Oaksworn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Eichenschwur",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Oaksworn.dds",
+      "id": "FourUniqueShieldStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "419": {
+    "id": "Nightfall",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Einbruch der Nacht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/TulShield.dds",
+      "id": "FourUniqueShieldStr14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "316": {
+    "id": "Window to Paradise",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Fenster zum Paradies",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/WindowToParadise.dds",
+      "id": "FourUniqueShieldStr4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "127": {
+    "id": "Feathered Fortress",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Gefiederte Festung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/FeatheredFortress.dds",
+      "id": "FourUniqueShieldStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "380": {
+    "id": "Kaltenhalt",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Kaltenhalt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Kaltenhalt.dds",
+      "id": "FourUniqueShieldDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "123": {
+    "id": "Lycosidae",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Lycosidae",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Lycosa.dds",
+      "id": "FourUniqueShieldStr6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "238": {
+    "id": "Mahuxotl's Machination",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Mahuxotls Machenschaften",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/MahuxotlsMachination.dds",
+      "id": "FourUniqueUltimatum3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "320": {
+    "id": "Nocturne",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Nokturne",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Nocturne.dds",
+      "id": "FourUniqueShieldDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "321": {
+    "id": "Rondel de Ezo",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Rondel de Ezo",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/RondelDeEzo.dds",
+      "id": "FourUniqueShieldDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "317": {
+    "id": "Redblade Banner",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Rotklingen-Banner",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/RedbladeBanner.dds",
+      "id": "FourUniqueShieldStr7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "130": {
+    "id": "Saffell's Frame",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Saffells List",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/SaffelsFrame.dds",
+      "id": "FourUniqueShieldStrInt3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "323": {
+    "id": "Silverthorne",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Silberdorn",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Silverthorne.dds",
+      "id": "FourUniqueShieldDex6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "325": {
+    "id": "Sunsplinter",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Sonnensplitter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Sunsplinter.dds",
+      "id": "FourUniqueShieldDex12"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "315": {
+    "id": "Prism Guardian",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Spektralwächter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/PrismGuardian.dds",
+      "id": "FourUniqueShieldStrInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "240": {
+    "id": "Svalinn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Svalinn",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Svalinn.dds",
+      "id": "FourUniqueExpedition1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "121": {
+    "id": "Doomgate",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Unheilspforte",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Doomgate.dds",
+      "id": "FourUniqueShieldStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "126": {
+    "id": "Merit of Service",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Verdienste für den Dienst",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/MeritOfService.dds",
+      "id": "FourUniqueShieldStrDex2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "131": {
+    "id": "Crest of Ardura",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Wappen von Ardura",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/CrestOfArdura.dds",
+      "id": "FourUniqueShieldStrInt4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "120": {
+    "id": "Wulfsbane",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Shield",
+    "name": "Wolfsfluch",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Shields/Uniques/Wulfsbane.dds",
+      "id": "FourUniqueShieldStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "399": {
+    "id": "Atziri's Contempt",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Atziris Verachtung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/AtziriStaffBlood.dds",
+      "id": "FourUniqueSpear14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "340": {
+    "id": "Daevata's Wind",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Daevatas Wind",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/DaevatasWind.dds",
+      "id": "FourUniqueSpear5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "435": {
+    "id": "The Ordained",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Die Ordinierten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/TheOrdained.dds",
+      "id": "FourUniqueSpear15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "337": {
+    "id": "Tyranny's Grip",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Griff der Tyrannei",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/ArmsLength.dds",
+      "id": "FourUniqueSpear2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "339": {
+    "id": "Skysliver",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Himmelsspalter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/Skysliver.dds",
+      "id": "FourUniqueSpear4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "338": {
+    "id": "Chainsting",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Kettenstachel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/Chainsting.dds",
+      "id": "FourUniqueSpear3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "342": {
+    "id": "Saitha's Spear",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Saithas Speer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/SaithasSpear.dds",
+      "id": "FourUniqueSpear7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "343": {
+    "id": "Spire of Ire",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Spitze des Zorns",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/SpireOfIre.dds",
+      "id": "FourUniqueSpear13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "336": {
+    "id": "Splinter of Loratta",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Splitter von Lorrata",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/SplinterOfLorrata.dds",
+      "id": "FourUniqueSpear1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "341": {
+    "id": "Tangletongue",
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Spear",
+    "name": "Tangletongue",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandSpears/Uniques/Tangletongue.dds",
+      "id": "FourUniqueSpear6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "393": {
+    "id": "Atziri's Rule",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Atziris Macht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/AtziriStaff.dds",
+      "id": "FourUniqueStaff17"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "372": {
+    "id": "The Whispering Ice",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Das flüsternde Eis",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/WhisperingIce.dds",
+      "id": "FourUniqueStaff14__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "386": {
+    "id": "The Unborn Lich",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Der Ungeborene Lich",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/KulemaksBirth.dds",
+      "id": "FourUniqueStaff13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "248": {
+    "id": "The Burden of Shadows",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Die Bürde der Schatten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/BurdenOfShadows.dds",
+      "id": "FourUniqueRitual1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "439": {
+    "id": "The Raven's Flock",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Die Rabenschar",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/RoostOfTheRavenKing.dds",
+      "id": "FourUniqueStaff18"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "212": {
+    "id": "Earthbound",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Erdenbund",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/Earthbound.dds",
+      "id": "FourUniqueStaff3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "326": {
+    "id": "Sire of Shards",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Herr der Splitter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/SireOfShards.dds",
+      "id": "FourUniqueStaff6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "210": {
+    "id": "Dusk Vigil",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Mahnwache in der Dunkelheit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/DuskVigil.dds",
+      "id": "FourUniqueStaff1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "213": {
+    "id": "The Searing Touch",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Sengende Berührung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/SearingTouch.dds",
+      "id": "FourUniqueStaff5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "211": {
+    "id": "Taryn's Shiver",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Staff",
+    "name": "Taryns Schauder",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Uniques/TarynsShiver.dds",
+      "id": "FourUniqueStaff2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "228": {
+    "id": "Ab Aeterno",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Ab Aeterno",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/AbAeterno.dds",
+      "id": "FourUniquePinnacle4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "397": {
+    "id": "Atziri's Step",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Atziris Schritt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/AtzirisStep.dds",
+      "id": "FourUniqueBootsDex9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "107": {
+    "id": "Bushwhack",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Buschwerk",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Bushwack.dds",
+      "id": "FourUniqueBootsDex5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "101": {
+    "id": "The Infinite Pursuit",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Das endlose Streben",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/TheInfinitePursuit.dds",
+      "id": "FourUniqueBootsStr3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "418": {
+    "id": "Decree of Flight",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Dekret des Flugs",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BoundlessAuthority.dds",
+      "id": "FourUniqueBootsStrInt9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "113": {
+    "id": "The Knight-errant",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Der fahrende Ritter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/KnightErrant.dds",
+      "id": "FourUniqueBootsStrDex1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "106": {
+    "id": "Thunderstep",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Donnerschritt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/ThunderousSilence.dds",
+      "id": "FourUniqueBootsDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "104": {
+    "id": "Briarpatch",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Dornenhecke",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Briarpatch.dds",
+      "id": "FourUniqueBootsDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "114": {
+    "id": "Darkray Vectors",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Dunkelschimmervektoren",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/DarkrayVectors.dds",
+      "id": "FourUniqueBootsStrDex2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "110": {
+    "id": "Bones of Ullr",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Gebeine des Ullr",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BonesOfUllr.dds",
+      "id": "FourUniqueBootsInt3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "103": {
+    "id": "Birth of Fury",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Geburt des Zorns",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BirthOfFury.dds",
+      "id": "FourUniqueBootsStr5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "117": {
+    "id": "Ghostmarch",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Geistermarsch",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Ghostmarch.dds",
+      "id": "FourUniqueBootsDexInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "105": {
+    "id": "Gamblesprint",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Glücksschritt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Gamblesprint.dds",
+      "id": "FourUniqueBootsDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "249": {
+    "id": "Beetlebite",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Käferstich",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/ChainsOfDeshret.dds",
+      "id": "FourUniqueRitual2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "100": {
+    "id": "Corpsewade",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Leichenschlurfer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Corpsewade.dds",
+      "id": "FourUniqueBootsStr2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "108": {
+    "id": "Luminous Pace",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Leuchtender Schritt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/BatedPace.dds",
+      "id": "FourUniqueBootsInt1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "118": {
+    "id": "Powertread",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Machtvoller Tritt",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Powertread.dds",
+      "id": "FourUniqueBootsDexInt3_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "115": {
+    "id": "Obern's Bastion",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Oberns Bastion",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/ObernsBastion.dds",
+      "id": "FourUniqueBootsStrDex3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "116": {
+    "id": "Wake of Destruction",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Pfad der Zerstörung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/WakeOfDestruction.dds",
+      "id": "FourUniqueBootsStrInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "99": {
+    "id": "Legionstride",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Schritt der Legion",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Legionstride.dds",
+      "id": "FourUniqueBootsStr1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "379": {
+    "id": "Shankgonne",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Shankgonne",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Shankgonne.dds",
+      "id": "FourUniqueBootsStrDex4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "102": {
+    "id": "Trampletoe",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Trampelzeh",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Trampletoe.dds",
+      "id": "FourUniqueBootsStr4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "109": {
+    "id": "Wanderlust",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Wanderlust",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Wanderlust.dds",
+      "id": "FourUniqueBootsInt2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "112": {
+    "id": "Windscream",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Windschreier",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Windscream.dds",
+      "id": "FourUniqueBootsInt5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "111": {
+    "id": "Wondertrap",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Boots",
+    "name": "Wunderschreiter",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Armours/Boots/Uniques/Wondertrap.dds",
+      "id": "FourUniqueBootsInt4_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "431": {
+    "id": "Brutus' Lead Sprinkler",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Brutus' Bleiregner",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/BrutusLeadSprinkler.dds",
+      "id": "FourUniqueOneHandMace9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "191": {
+    "id": "Brynhand's Mark",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Brynhands Zeichen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/BrynhandsMark.dds",
+      "id": "FourUniqueOneHandMace1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "200": {
+    "id": "Chober Chaber",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Chober Chaber",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/ChoberChaber.dds",
+      "id": "FourUniqueTwoHandMace7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "332": {
+    "id": "The Empty Roar",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Das leere Gebrüll",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/TheEmptyRoar.dds",
+      "id": "FourUniqueTwoHandMace5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "335": {
+    "id": "The Hammer of Faith",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Der Hammer des Glaubens",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/HammerOfTheChurch.dds",
+      "id": "FourUniqueTwoHandMace13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "193": {
+    "id": "Frostbreath",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Frosthauch",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Frostbreath.dds",
+      "id": "FourUniqueOneHandMace3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "329": {
+    "id": "Sculpted Suffering",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Geformtes Leid",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/SculptedSuffering.dds",
+      "id": "FourUniqueOneHandMace5__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "432": {
+    "id": "Sadist's Mercy",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Gnade des Sadisten",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Murkmaw.dds",
+      "id": "FourUniqueOneHandMace14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "194": {
+    "id": "Trenchtimbre",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Grabenruf",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Trenchtimbre.dds",
+      "id": "FourUniqueOneHandMace4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "199": {
+    "id": "Brain Rattler",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Hirnschleuder",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Brainrattler.dds",
+      "id": "FourUniqueTwoHandMace4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "197": {
+    "id": "Hrimnor's Hymn",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Hrimnors Hymne",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/HrimnorsHymn.dds",
+      "id": "FourUniqueTwoHandMace2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "385": {
+    "id": "Marohi Erqi",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Marohi Erqi",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/MarohiErqi.dds",
+      "id": "FourUniqueTwoHandMace10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "331": {
+    "id": "Mjölner",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Mjölner",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Mjolner.dds",
+      "id": "FourUniqueOneHandMace13"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "330": {
+    "id": "Nebuloch",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Nebuloch",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Nebuloch.dds",
+      "id": "FourUniqueOneHandMace7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "243": {
+    "id": "Olrovasara",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Olrovasara",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/Olrovasara.dds",
+      "id": "FourUniqueExpedition4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "201": {
+    "id": "Quecholli",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Quecholli",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Quecholli.dds",
+      "id": "FourUniqueTwoHandMace8"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "433": {
+    "id": "Serle's Grit",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Serles Durchhaltevermögen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/SerlesMasterwork.dds",
+      "id": "FourUniqueOneHandMace15"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "333": {
+    "id": "Shyaba",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Shyaba",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Shyaba.dds",
+      "id": "FourUniqueTwoHandMace6"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "195": {
+    "id": "Seeing Stars",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Sternenklar",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/SeeingStars.dds",
+      "id": "FourUniqueOneHandMace6_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "196": {
+    "id": "Hoghunt",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Treibjagd",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Hoghunt.dds",
+      "id": "FourUniqueTwoHandMace1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "198": {
+    "id": "Trephina",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Trephina",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Trephina.dds",
+      "id": "FourUniqueTwoHandMace3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "434": {
+    "id": "Twisted Empyrean",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Verzerrter Lichthimmel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/SpiderVerisiumMaul.dds",
+      "id": "FourUniqueTwoHandMace14_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "334": {
+    "id": "Tidebreaker",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Wellenbrecher",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandMaces/Uniques/Tidebreaker.dds",
+      "id": "FourUniqueTwoHandMace9"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "192": {
+    "id": "Wylund's Stake",
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Mace",
+    "name": "Wylunds Pfahl",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/OneHandMaces/Uniques/TheStake.dds",
+      "id": "FourUniqueOneHandMace2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "394": {
+    "id": "Amor Mandragora",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "Amor Mandragora",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/AmorMandragora.dds",
+      "id": "FourUniqueTalisman1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "444": {
+    "id": "Spiteful Floret",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "Boshafte Knospe",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/CrimsonChrysalis.dds",
+      "id": "FourUniqueTalisman2_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "395": {
+    "id": "The Flesh Poppet",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "Das Fleischpüppchen",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/TheSkinThief.dds",
+      "id": "FourUniqueTalisman8_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "400": {
+    "id": "Hysseg's Claw",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "Hyssegs Klaue",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/HandOfTheClan.dds",
+      "id": "FourUniqueTalisman4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "445": {
+    "id": "Surge of the Tide",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "Woge der Gezeit",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/TawhoasDominion.dds",
+      "id": "FourUniqueTalisman10"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "401": {
+    "id": "Fury of the King",
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Talisman",
+    "name": "Zorn des Königs",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Offhand/Talismans/Uniques/VesselOfWrath.dds",
+      "id": "FourUniqueTalisman14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "371": {
+    "id": "Adonia's Ego",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Adonias Ego",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/CourtlyDiscord.dds",
+      "id": "FourUniqueWand4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "327": {
+    "id": "The Wicked Quill",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Der boshafte Federkiel",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/TheWickedQuill.dds",
+      "id": "FourUniqueWand1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "209": {
+    "id": "Enezun's Charge",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Enezuns Aufladung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/EnezunsCharge.dds",
+      "id": "FourUniqueWand5"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "328": {
+    "id": "Cursecarver",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Fluchschnitzer",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/Clawmark.dds",
+      "id": "FourUniqueWand7"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "437": {
+    "id": "Liminal Coil",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Grenzwindung",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/CoilOfUndoing.dds",
+      "id": "FourUniqueWand15_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "208": {
+    "id": "Lifesprig",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Lebenszweiglein",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/Lifesprig.dds",
+      "id": "FourUniqueWand3"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "438": {
+    "id": "Runeseeker's Call",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Ruf des Runensuchers",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/RunicDiviner.dds",
+      "id": "FourUniqueWand16_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "207": {
+    "id": "Sanguine Diviner",
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "is_alternate_art": false,
+    "item_class": "Wand",
+    "name": "Wohlgemuter Wahrsager",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Uniques/SanguineDiviner.dds",
+      "id": "FourUniqueWand2"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "220": {
+    "id": "The Dark Defiler",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Der dunkle Schänder",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/DarkDefiler.dds",
+      "id": "FourUniqueSceptre1"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "364": {
+    "id": "Guiding Palm",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Führende Hand",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmFire.dds",
+      "id": "FourUniqueSceptre6a__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "365": {
+    "id": "Guiding Palm",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Führende Hand",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmCold.dds",
+      "id": "FourUniqueSceptre6b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "366": {
+    "id": "Guiding Palm",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Führende Hand",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmLightning.dds",
+      "id": "FourUniqueSceptre6c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "223": {
+    "id": "Guiding Palm of the Eye",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Führende Hand des Auges",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmCold.dds",
+      "id": "FourUniqueSceptre6b"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "222": {
+    "id": "Guiding Palm of the Heart",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Führende Hand des Herzens",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmFire.dds",
+      "id": "FourUniqueSceptre6a__"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "224": {
+    "id": "Guiding Palm of the Mind",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Führende Hand des Verstands",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/GuidingPalmLightning.dds",
+      "id": "FourUniqueSceptre6c"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "374": {
+    "id": "Palm of the Dreamer",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Hand des Träumers",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/OpenPalmOfTheDreamer.dds",
+      "id": "FourUniqueSceptre6d_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "229": {
+    "id": "Sacred Flame",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Heilige Flamme",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/SacredFlame.dds",
+      "id": "FourUniquePinnacle5_"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "221": {
+    "id": "Font of Power",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Quelle der Macht",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/FontOfPower.dds",
+      "id": "FourUniqueSceptre4"
+    },
+    "renamed_version": null,
+    "base_version": null
+  },
+  "443": {
+    "id": "Sylvan's Effigy",
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "is_alternate_art": false,
+    "item_class": "Sceptre",
+    "name": "Sylvans Abbild",
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Scepters/Uniques/Packleader.dds",
+      "id": "FourUniqueSceptre14"
+    },
+    "renamed_version": null,
+    "base_version": null
+  }
+}

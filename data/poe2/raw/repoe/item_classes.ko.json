@@ -1,0 +1,704 @@
+{
+  "LifeFlask": {
+    "category": "[Flask|플라스크]",
+    "category_id": "Flask",
+    "name": "생명력 플라스크",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "[Flask|플라스크]",
+    "category_id": "Flask",
+    "name": "마나 플라스크",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "화폐",
+    "category_id": "Currency",
+    "name": "화폐",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "목걸이",
+    "category_id": "Amulet",
+    "name": "목걸이",
+    "influence_tags": null
+  },
+  "Ring": {
+    "category": "반지",
+    "category_id": "Ring",
+    "name": "반지",
+    "influence_tags": null
+  },
+  "Claw": {
+    "category": "[Claw|클로]",
+    "category_id": "Claw",
+    "name": "클로",
+    "influence_tags": null
+  },
+  "Dagger": {
+    "category": "[Dagger|단검]",
+    "category_id": "Dagger",
+    "name": "단검",
+    "influence_tags": null
+  },
+  "Wand": {
+    "category": "[Wand|마법봉]",
+    "category_id": "Wand",
+    "name": "마법봉",
+    "influence_tags": null
+  },
+  "One Hand Sword": {
+    "category": "[Sword|한손 검]",
+    "category_id": "One Hand Sword",
+    "name": "한손 검",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "One Hand Axe": {
+    "category": "[Axe|한손 도끼]",
+    "category_id": "One Hand Axe",
+    "name": "한손 도끼",
+    "influence_tags": null
+  },
+  "One Hand Mace": {
+    "category": "[Mace|한손 철퇴]",
+    "category_id": "One Hand Mace",
+    "name": "한손 철퇴",
+    "influence_tags": null
+  },
+  "Bow": {
+    "category": "[Bow|활]",
+    "category_id": "Bow",
+    "name": "활",
+    "influence_tags": null
+  },
+  "Staff": {
+    "category": "[Staff|지팡이]",
+    "category_id": "Staff",
+    "name": "지팡이",
+    "influence_tags": null
+  },
+  "Two Hand Sword": {
+    "category": "[Sword|양손 검]",
+    "category_id": "Two Hand Sword",
+    "name": "양손 검",
+    "influence_tags": null
+  },
+  "Two Hand Axe": {
+    "category": "[Axe|양손 도끼]",
+    "category_id": "Two Hand Axe",
+    "name": "양손 도끼",
+    "influence_tags": null
+  },
+  "Two Hand Mace": {
+    "category": "[Mace|양손 철퇴]",
+    "category_id": "Two Hand Mace",
+    "name": "양손 철퇴",
+    "influence_tags": null
+  },
+  "Active Skill Gem": {
+    "category": "스킬 젬",
+    "category_id": "Active Skill Gem",
+    "name": "스킬 젬",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "보조 젬",
+    "category_id": "Support Skill Gem",
+    "name": "보조 젬",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "[Quiver|화살통]",
+    "category_id": "Quiver",
+    "name": "화살통",
+    "influence_tags": null
+  },
+  "Belt": {
+    "category": "허리띠",
+    "category_id": "Belt",
+    "name": "허리띠",
+    "influence_tags": null
+  },
+  "Gloves": {
+    "category": "장갑",
+    "category_id": "Gloves",
+    "name": "장갑",
+    "influence_tags": null
+  },
+  "Boots": {
+    "category": "장화",
+    "category_id": "Boots",
+    "name": "장화",
+    "influence_tags": null
+  },
+  "Body Armour": {
+    "category": "갑옷",
+    "category_id": "Body Armour",
+    "name": "갑옷",
+    "influence_tags": null
+  },
+  "Helmet": {
+    "category": "투구",
+    "category_id": "Helmet",
+    "name": "투구",
+    "influence_tags": null
+  },
+  "Shield": {
+    "category": "[Shield|거대 방패]",
+    "category_id": "Shield",
+    "name": "방패",
+    "influence_tags": null
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "소형 유물",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "중형 유물",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "대형 유물",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "화폐",
+    "category_id": "Currency",
+    "name": "중첩 가능 화폐",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "[QuestItem|퀘스트 아이템]",
+    "category_id": "QuestItem",
+    "name": "퀘스트 아이템",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "[Sceptre|셉터]",
+    "category_id": "Sceptre",
+    "name": "셉터",
+    "influence_tags": null
+  },
+  "UtilityFlask": {
+    "category": "호신부",
+    "category_id": "Charm",
+    "name": "호신부",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "경로석",
+    "category_id": "Map",
+    "name": "경로석",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": "[Unarmed|비무장]",
+    "category_id": "Unarmed",
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "낚싯대",
+    "category_id": "FishingRod",
+    "name": "낚싯대",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "지도 조각",
+    "category_id": "MapFragment",
+    "name": "지도 조각",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "은신처 장식물",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "포인트 아이템",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "[Jewel|주얼]",
+    "category_id": "Jewel",
+    "name": "주얼",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "점술 카드",
+    "category_id": "DivinationCard",
+    "name": "점술 카드",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE9": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE10": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "기타 지도 아이템",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "리그스톤",
+    "category_id": "Leaguestone",
+    "name": "리그스톤",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "포획한 영혼",
+    "category_id": "PantheonSoul",
+    "name": "판테온의 영혼",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "고유 조각",
+    "category_id": "UniqueFragment",
+    "name": "조각",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "심연 주얼",
+    "category_id": "AbyssJewel",
+    "name": "심연 주얼",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "기습 아이템",
+    "category_id": "IncursionItem",
+    "name": "기습 아이템",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "공명기",
+    "category_id": "DelveSocketableCurrency",
+    "name": "탐광 결합형 화폐",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "인큐베이터",
+    "category_id": "Incubator",
+    "name": "인큐베이터",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "파편",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "파편 심장",
+    "influence_tags": null
+  },
+  "DONOTUSE11": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Warstaff": {
+    "category": "[Quarterstaff|육척봉]",
+    "category_id": "Warstaff",
+    "name": "육척봉",
+    "influence_tags": null
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "공명기",
+    "category_id": "DelveSocketableCurrency",
+    "name": "탐광 중첩 및 결합형 화폐",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "감시자의 돌",
+    "category_id": "AtlasUpgradeItem",
+    "name": "아틀라스 업그레이드 아이템",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "숨겨진 아이템",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "계약",
+    "category_id": "HeistContract",
+    "name": "계약",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "강탈 장비",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "강탈 장비",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "강탈 도구",
+    "category_id": "HeistEquipmentTool",
+    "name": "강탈 도구",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "강탈 망토",
+    "category_id": "HeistEquipmentUtility",
+    "name": "강탈 망토",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "강탈 브로치",
+    "category_id": "HeistEquipmentReward",
+    "name": "강탈 브로치",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "도면",
+    "category_id": "HeistBlueprint",
+    "name": "도면",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "장신구",
+    "category_id": "Trinket",
+    "name": "장신구",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "강탈 대상",
+    "category_id": "HeistObjective",
+    "name": "강탈 대상",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "탐험 일지",
+    "category_id": "ExpeditionLogbook",
+    "name": "탐험 일지",
+    "influence_tags": null
+  },
+  "Expedition2Logbooks": {
+    "category": "지도 조각",
+    "category_id": "MapFragment",
+    "name": "탐험 일지",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "인큐베이터",
+    "category_id": "Incubator",
+    "name": "인큐베이터",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "강적 속성",
+    "influence_tags": null
+  },
+  "Meta Skill Gem": {
+    "category": "",
+    "category_id": "MetaSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Spear": {
+    "category": "[Spear|창]",
+    "category_id": "Spear",
+    "name": "창",
+    "influence_tags": null
+  },
+  "Crossbow": {
+    "category": "[Crossbow|석궁]",
+    "category_id": "Crossbow",
+    "name": "쇠뇌",
+    "influence_tags": null
+  },
+  "Focus": {
+    "category": "[Focus|집중구]",
+    "category_id": "Focus",
+    "name": "집중구",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "인스턴스 특정 아이템",
+    "category_id": "InstanceLocalItem",
+    "name": "인스턴스 특정 아이템",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "파수꾼 드론",
+    "category_id": "SentinelDrone",
+    "name": "파수꾼",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "기억",
+    "category_id": "MemoryLine",
+    "name": "기억",
+    "influence_tags": null
+  },
+  "Flail": {
+    "category": "[Flail|도리깨]",
+    "category_id": "Flail",
+    "name": "도리깨",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "유물",
+    "category_id": "Relic",
+    "name": "유물",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "유물",
+    "category_id": "Relic",
+    "name": "축성된 유물",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "균열석",
+    "category_id": "Breachstone",
+    "name": "균열석",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "금고실 열쇠",
+    "category_id": "VaultKey",
+    "name": "금고실 열쇠",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "시련 주화",
+    "influence_tags": null
+  },
+  "DONOTUSE12": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutSkillGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Buckler": {
+    "category": "[Buckler|버클러]",
+    "category_id": "Buckler",
+    "name": "버클러",
+    "influence_tags": null
+  },
+  "Thrown One Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Two Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "ConventionTreasure": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "TrapTool": {
+    "category": "[Trap|덫]",
+    "category_id": "TrapTool",
+    "name": "덫",
+    "influence_tags": null
+  },
+  "Crossbow Attachment REMOVE": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SkillGemToken": {
+    "category": "화폐",
+    "category_id": "Currency",
+    "name": "화폐",
+    "influence_tags": null
+  },
+  "Nothing": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UltimatumKey": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "새겨진 결전",
+    "influence_tags": null
+  },
+  "UncutSupportGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutReservationGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Shield": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SoulCore": {
+    "category": "[Augment|증강물]",
+    "category_id": "SoulCore",
+    "name": "증강물",
+    "influence_tags": null
+  },
+  "TowerAugmentation": {
+    "category": "서판",
+    "category_id": "TowerAugment",
+    "name": "서판",
+    "influence_tags": null
+  },
+  "Omen": {
+    "category": "징조",
+    "category_id": "Omen",
+    "name": "징조",
+    "influence_tags": null
+  },
+  "PinnacleKey_OLD": {
+    "category": "최종 열쇠",
+    "category_id": "PinnacleKey",
+    "name": "",
+    "influence_tags": null
+  },
+  "Talisman": {
+    "category": "[Talisman|부적]",
+    "category_id": "Talisman",
+    "name": "부적",
+    "influence_tags": null
+  },
+  "UncutSkillGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "미가공 스킬 젬",
+    "influence_tags": null
+  },
+  "UncutSupportGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "미가공 보조 젬",
+    "influence_tags": null
+  },
+  "UncutReservationGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "미가공 정신력 젬",
+    "influence_tags": null
+  },
+  "IncursionArm": {
+    "category": "초월의 사지",
+    "category_id": "IncursionLimb",
+    "name": "초월의 팔",
+    "influence_tags": null
+  },
+  "IncursionLeg": {
+    "category": "초월의 사지",
+    "category_id": "IncursionLimb",
+    "name": "초월의 다리",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "생명의 결실",
+    "category_id": "BrequelFruit",
+    "name": "생명의 결실",
+    "influence_tags": null
+  },
+  "PinnacleKeyStackable": {
+    "category": "최종 열쇠",
+    "category_id": "PinnacleKey",
+    "name": "최종 열쇠",
+    "influence_tags": null
+  }
+}

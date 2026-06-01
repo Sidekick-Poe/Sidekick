@@ -22,7 +22,6 @@ services.AddSidekickDataBuilder();
 
 var serviceProvider = services.BuildServiceProvider();
 var dataBuilder = serviceProvider.GetRequiredService<DataBuilder>();
-var dataProvider = serviceProvider.GetRequiredService<DataProvider>();
 var gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
 
 #endregion
@@ -30,6 +29,9 @@ var gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvi
 #region Configuration
 
 var runLanguage = string.Empty;
+
+var download = false;
+var build = true;
 
 var runItems = false;
 var runStats = false;
@@ -64,6 +66,9 @@ for (var i = 0; i < args.Length; i++)
         case "--ninja":
             runNinja = true;
             break;
+        case "--download":
+            download = true;
+            break;
     }
 }
 
@@ -77,11 +82,6 @@ if (!runItems && !runStats && !runTrade && !runRepoe && !runPseudo && !runNinja)
     runRepoe = true;
     runPseudo = true;
     runNinja = true;
-
-    if (runLanguage == string.Empty)
-    {
-        // dataProvider.DeleteAll();
-    }
 }
 
 var languages = gameLanguageProvider.GetList();
@@ -92,11 +92,20 @@ if (!string.IsNullOrEmpty(runLanguage))
 
 foreach (var language in languages)
 {
-    await dataBuilder.DownloadAndBuild(language,
-                                       items: runItems,
-                                       stats: runStats,
-                                       trade: runTrade,
-                                       repoe: runRepoe,
-                                       pseudo: runPseudo,
-                                       ninja: runNinja);
+    if (download)
+    {
+        await dataBuilder.DownloadRawFiles(language,
+                                           trade: runTrade,
+                                           repoe: runRepoe,
+                                           ninja: runNinja);
+    }
+
+    if (build)
+    {
+        await dataBuilder.BuildDataFiles(language,
+                                         items: runItems,
+                                         stats: runStats,
+                                         trade: runTrade,
+                                         pseudo: runPseudo);
+    }
 }

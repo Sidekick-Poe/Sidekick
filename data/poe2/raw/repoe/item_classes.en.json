@@ -1,0 +1,704 @@
+{
+  "LifeFlask": {
+    "category": "[Flask]",
+    "category_id": "Flask",
+    "name": "Life Flasks",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "[Flask]",
+    "category_id": "Flask",
+    "name": "Mana Flasks",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "Currency",
+    "category_id": "Currency",
+    "name": "Currency",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "Amulet",
+    "category_id": "Amulet",
+    "name": "Amulets",
+    "influence_tags": null
+  },
+  "Ring": {
+    "category": "Ring",
+    "category_id": "Ring",
+    "name": "Rings",
+    "influence_tags": null
+  },
+  "Claw": {
+    "category": "[Claw]",
+    "category_id": "Claw",
+    "name": "Claws",
+    "influence_tags": null
+  },
+  "Dagger": {
+    "category": "[Dagger]",
+    "category_id": "Dagger",
+    "name": "Daggers",
+    "influence_tags": null
+  },
+  "Wand": {
+    "category": "[Wand]",
+    "category_id": "Wand",
+    "name": "Wands",
+    "influence_tags": null
+  },
+  "One Hand Sword": {
+    "category": "[Sword|One Hand Sword]",
+    "category_id": "One Hand Sword",
+    "name": "One Hand Swords",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "One Hand Axe": {
+    "category": "[Axe|One Hand Axe]",
+    "category_id": "One Hand Axe",
+    "name": "One Hand Axes",
+    "influence_tags": null
+  },
+  "One Hand Mace": {
+    "category": "[Mace|One Hand Mace]",
+    "category_id": "One Hand Mace",
+    "name": "One Hand Maces",
+    "influence_tags": null
+  },
+  "Bow": {
+    "category": "[Bow]",
+    "category_id": "Bow",
+    "name": "Bows",
+    "influence_tags": null
+  },
+  "Staff": {
+    "category": "[Staff]",
+    "category_id": "Staff",
+    "name": "Staves",
+    "influence_tags": null
+  },
+  "Two Hand Sword": {
+    "category": "[Sword|Two Hand Sword]",
+    "category_id": "Two Hand Sword",
+    "name": "Two Hand Swords",
+    "influence_tags": null
+  },
+  "Two Hand Axe": {
+    "category": "[Axe|Two Hand Axe]",
+    "category_id": "Two Hand Axe",
+    "name": "Two Hand Axes",
+    "influence_tags": null
+  },
+  "Two Hand Mace": {
+    "category": "[Mace|Two Hand Mace]",
+    "category_id": "Two Hand Mace",
+    "name": "Two Hand Maces",
+    "influence_tags": null
+  },
+  "Active Skill Gem": {
+    "category": "Skill Gem",
+    "category_id": "Active Skill Gem",
+    "name": "Skill Gems",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "Support Gem",
+    "category_id": "Support Skill Gem",
+    "name": "Support Gems",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "[Quiver]",
+    "category_id": "Quiver",
+    "name": "Quivers",
+    "influence_tags": null
+  },
+  "Belt": {
+    "category": "Belt",
+    "category_id": "Belt",
+    "name": "Belts",
+    "influence_tags": null
+  },
+  "Gloves": {
+    "category": "Gloves",
+    "category_id": "Gloves",
+    "name": "Gloves",
+    "influence_tags": null
+  },
+  "Boots": {
+    "category": "Boots",
+    "category_id": "Boots",
+    "name": "Boots",
+    "influence_tags": null
+  },
+  "Body Armour": {
+    "category": "Body Armour",
+    "category_id": "Body Armour",
+    "name": "Body Armours",
+    "influence_tags": null
+  },
+  "Helmet": {
+    "category": "Helmet",
+    "category_id": "Helmet",
+    "name": "Helmets",
+    "influence_tags": null
+  },
+  "Shield": {
+    "category": "[Shield]",
+    "category_id": "Shield",
+    "name": "Shields",
+    "influence_tags": null
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Small Relics",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Medium Relics",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Large Relics",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "Currency",
+    "category_id": "Currency",
+    "name": "Stackable Currency",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "[QuestItem|Quest Item]",
+    "category_id": "QuestItem",
+    "name": "Quest Items",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "[Sceptre]",
+    "category_id": "Sceptre",
+    "name": "Sceptres",
+    "influence_tags": null
+  },
+  "UtilityFlask": {
+    "category": "Charm",
+    "category_id": "Charm",
+    "name": "Charms",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "Waystone",
+    "category_id": "Map",
+    "name": "Waystones",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": "[Unarmed]",
+    "category_id": "Unarmed",
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "Fishing Rod",
+    "category_id": "FishingRod",
+    "name": "Fishing Rods",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "Map Fragment",
+    "category_id": "MapFragment",
+    "name": "Map Fragments",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "Hideout Doodads",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "Microtransactions",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "[Jewel]",
+    "category_id": "Jewel",
+    "name": "Jewels",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "Divination Card",
+    "category_id": "DivinationCard",
+    "name": "Divination Cards",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE9": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE10": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "Misc Map Items",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "Leaguestone",
+    "category_id": "Leaguestone",
+    "name": "Leaguestones",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "Captured Soul",
+    "category_id": "PantheonSoul",
+    "name": "Pantheon Souls",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "Unique Piece",
+    "category_id": "UniqueFragment",
+    "name": "Pieces",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "Abyss Jewel",
+    "category_id": "AbyssJewel",
+    "name": "Abyss Jewels",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "Incursion Item",
+    "category_id": "IncursionItem",
+    "name": "Incursion Items",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "Resonator",
+    "category_id": "DelveSocketableCurrency",
+    "name": "Delve Socketable Currency",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "Incubator",
+    "category_id": "Incubator",
+    "name": "Incubators",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "Shards",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "Shard Hearts",
+    "influence_tags": null
+  },
+  "DONOTUSE11": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Warstaff": {
+    "category": "[Quarterstaff]",
+    "category_id": "Warstaff",
+    "name": "Quarterstaves",
+    "influence_tags": null
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "Resonator",
+    "category_id": "DelveSocketableCurrency",
+    "name": "Delve Stackable Socketable Currency",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "Watchstone",
+    "category_id": "AtlasUpgradeItem",
+    "name": "Atlas Upgrade Items",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "Hidden Items",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "Contract",
+    "category_id": "HeistContract",
+    "name": "Contracts",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "Heist Gear",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "Heist Gear",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "Heist Tool",
+    "category_id": "HeistEquipmentTool",
+    "name": "Heist Tools",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "Heist Cloak",
+    "category_id": "HeistEquipmentUtility",
+    "name": "Heist Cloaks",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "Heist Brooch",
+    "category_id": "HeistEquipmentReward",
+    "name": "Heist Brooches",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "Blueprint",
+    "category_id": "HeistBlueprint",
+    "name": "Blueprints",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "Trinket",
+    "category_id": "Trinket",
+    "name": "Trinkets",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "Heist Target",
+    "category_id": "HeistObjective",
+    "name": "Heist Targets",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "Expedition Logbook",
+    "category_id": "ExpeditionLogbook",
+    "name": "Expedition Logbooks",
+    "influence_tags": null
+  },
+  "Expedition2Logbooks": {
+    "category": "Map Fragment",
+    "category_id": "MapFragment",
+    "name": "Expedition Logbook",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "Incubator",
+    "category_id": "Incubator",
+    "name": "Incubators",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "Archnemesis Mods",
+    "influence_tags": null
+  },
+  "Meta Skill Gem": {
+    "category": "",
+    "category_id": "MetaSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Spear": {
+    "category": "[Spear]",
+    "category_id": "Spear",
+    "name": "Spears",
+    "influence_tags": null
+  },
+  "Crossbow": {
+    "category": "[Crossbow]",
+    "category_id": "Crossbow",
+    "name": "Crossbows",
+    "influence_tags": null
+  },
+  "Focus": {
+    "category": "[Focus]",
+    "category_id": "Focus",
+    "name": "Foci",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "Instance Local Item",
+    "category_id": "InstanceLocalItem",
+    "name": "Instance Local Items",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "Sentinel Drone",
+    "category_id": "SentinelDrone",
+    "name": "Sentinels",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "Memory",
+    "category_id": "MemoryLine",
+    "name": "Memories",
+    "influence_tags": null
+  },
+  "Flail": {
+    "category": "[Flail]",
+    "category_id": "Flail",
+    "name": "Flails",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "Relic",
+    "category_id": "Relic",
+    "name": "Relics",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "Relic",
+    "category_id": "Relic",
+    "name": "Sanctified Relics",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "Breachstone",
+    "category_id": "Breachstone",
+    "name": "Breachstones",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "Vault Key",
+    "category_id": "VaultKey",
+    "name": "Vault Keys",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "Trial Coins",
+    "influence_tags": null
+  },
+  "DONOTUSE12": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutSkillGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Buckler": {
+    "category": "[Buckler]",
+    "category_id": "Buckler",
+    "name": "Bucklers",
+    "influence_tags": null
+  },
+  "Thrown One Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Two Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "ConventionTreasure": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "TrapTool": {
+    "category": "[Trap]",
+    "category_id": "TrapTool",
+    "name": "Traps",
+    "influence_tags": null
+  },
+  "Crossbow Attachment REMOVE": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SkillGemToken": {
+    "category": "Currency",
+    "category_id": "Currency",
+    "name": "Currency",
+    "influence_tags": null
+  },
+  "Nothing": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UltimatumKey": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "Inscribed Ultimatum",
+    "influence_tags": null
+  },
+  "UncutSupportGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutReservationGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Shield": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SoulCore": {
+    "category": "[Augment]",
+    "category_id": "SoulCore",
+    "name": "Augment",
+    "influence_tags": null
+  },
+  "TowerAugmentation": {
+    "category": "Tablet",
+    "category_id": "TowerAugment",
+    "name": "Tablet",
+    "influence_tags": null
+  },
+  "Omen": {
+    "category": "Omen",
+    "category_id": "Omen",
+    "name": "Omen",
+    "influence_tags": null
+  },
+  "PinnacleKey_OLD": {
+    "category": "Pinnacle Key",
+    "category_id": "PinnacleKey",
+    "name": "",
+    "influence_tags": null
+  },
+  "Talisman": {
+    "category": "[Talisman]",
+    "category_id": "Talisman",
+    "name": "Talismans",
+    "influence_tags": null
+  },
+  "UncutSkillGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "Uncut Skill Gems",
+    "influence_tags": null
+  },
+  "UncutSupportGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "Uncut Support Gems",
+    "influence_tags": null
+  },
+  "UncutReservationGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "Uncut Spirit Gems",
+    "influence_tags": null
+  },
+  "IncursionArm": {
+    "category": "Transcendent Limb",
+    "category_id": "IncursionLimb",
+    "name": "Transcendent Arm",
+    "influence_tags": null
+  },
+  "IncursionLeg": {
+    "category": "Transcendent Limb",
+    "category_id": "IncursionLimb",
+    "name": "Transcendent Leg",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "Wombgift",
+    "category_id": "BrequelFruit",
+    "name": "Wombgifts",
+    "influence_tags": null
+  },
+  "PinnacleKeyStackable": {
+    "category": "Pinnacle Key",
+    "category_id": "PinnacleKey",
+    "name": "Pinnacle Keys",
+    "influence_tags": null
+  }
+}

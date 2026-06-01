@@ -151,7 +151,20 @@ public class RepoeDownloader(
         foreach (var file in Poe1Files)
         {
             var url = "https://repoe-fork.github.io/" + repoeLanguage.LanguageSlug + file.FilePath;
-            await DownloadToFile(http, url, GameType.PathOfExile1, GetFileName(language, file.FileName));
+            try
+            {
+                logger.LogInformation($"GET {url}");
+
+                using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+
+                await rawDataProvider.Write($"{GameType.PathOfExile1.GetValueAttribute()}/raw/repoe/{GetFileName(language, file.FileName)}", await response.Content.ReadAsStreamAsync());
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Failed for {url}: {ex.Message}");
+                throw;
+            }
         }
     }
 
@@ -163,23 +176,22 @@ public class RepoeDownloader(
         foreach (var file in Poe2Files)
         {
             var url = "https://repoe-fork.github.io/poe2/" + repoeLanguage.LanguageSlug + file.FilePath;
-            await DownloadToFile(http, url, GameType.PathOfExile2, GetFileName(language, file.FileName));
-        }
-    }
+            try
+            {
+                logger.LogInformation($"GET {url}");
 
-    private async Task DownloadToFile(HttpClient http, string url, GameType game, string fileName)
-    {
-        try
-        {
-            logger.LogInformation($"GET {url}");
-            using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
-            response.EnsureSuccessStatusCode();
-            await rawDataProvider.Write($"{game.GetValueAttribute()}/raw/repoe/{fileName}", await response.Content.ReadAsStreamAsync());
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, $"Failed for {url}: {ex.Message}");
-            throw;
+                if (language.Code == "en") return;
+
+                using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+
+                await rawDataProvider.Write($"{GameType.PathOfExile2.GetValueAttribute()}/raw/repoe/{GetFileName(language, file.FileName)}", await response.Content.ReadAsStreamAsync());
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Failed for {url}: {ex.Message}");
+                throw;
+            }
         }
     }
 }
