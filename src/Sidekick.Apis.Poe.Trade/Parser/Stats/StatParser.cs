@@ -34,13 +34,19 @@ public class StatParser
 
     private List<StatDefinition> Definitions { get; set; } = [];
     private List<StatDefinition> InvariantDefinitions { get; set; } = [];
-    private List<TradeStatDefinition> TradeDefinitions { get; set; } = [];
+    public Dictionary<string, TradeStatDefinition> TradeDefinitions { get; private set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
         Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
-        TradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, currentGameLanguage.Language);
+
+        var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, currentGameLanguage.Language);
+        TradeDefinitions.Clear();
+        foreach (var tradeDefinition in tradeDefinitions)
+        {
+            TradeDefinitions.TryAdd(tradeDefinition.Id, tradeDefinition);
+        }
 
         if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) InvariantDefinitions = Definitions;
         else InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
@@ -214,18 +220,18 @@ public class StatParser
         stat.Values = GetValues(stat).ToList();
         return stat;
 
-        IEnumerable<double> GetValues(Stat stat)
+        IEnumerable<double> GetValues(Stat input)
         {
-            var hardcodedDefinition = stat.Definitions.FirstOrDefault(x => x.Value.HasValue);
+            var hardcodedDefinition = input.Definitions.FirstOrDefault(x => x.Value.HasValue);
             if (hardcodedDefinition != null)
             {
                 yield return hardcodedDefinition.Value!.Value;
                 yield break;
             }
 
-            foreach (var definition in stat.Definitions)
+            foreach (var definition in input.Definitions)
             {
-                var patternMatch = definition.Pattern.Match(stat.Text);
+                var patternMatch = definition.Pattern.Match(input.Text);
                 if (!patternMatch.Success) continue;
 
                 var hasMatchingDescription = HasMatchingDescriptions(definition);
@@ -245,9 +251,9 @@ public class StatParser
             }
 
             // Find numbers in the line
-            if (stat.MatchedFuzzily)
+            if (input.MatchedFuzzily)
             {
-                var matches = new Regex("([-+0-9,.]+)").Matches(stat.Text);
+                var matches = new Regex("([-+0-9,.]+)").Matches(input.Text);
                 foreach (Match match in matches)
                 {
                     if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
@@ -263,7 +269,7 @@ public class StatParser
             if (definition.TradeIds == null) return false;
             foreach (var tradeId in definition.TradeIds)
             {
-                var tradeDefinition = TradeDefinitions.FirstOrDefault(x => x.Id == tradeId);
+                var tradeDefinition = TradeDefinitions.GetValueOrDefault(tradeId);
                 if (tradeDefinition != null && tradeDefinition.Text == definition.Text) return true;
             }
 

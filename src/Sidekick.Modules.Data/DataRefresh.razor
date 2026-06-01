@@ -110,11 +110,11 @@
         try
         {
             using var monitor = new LogMonitor();
-            await DataBuilder.DownloadAndBuild(GameLanguageProvider.InvariantLanguage);
+            await DataBuilder.DownloadRawFiles(GameLanguageProvider.InvariantLanguage);
 
             if (Language != null && Language.Code != GameLanguageProvider.InvariantLanguage.Code)
             {
-                await DataBuilder.DownloadAndBuild(Language);
+                await DataBuilder.BuildDataFiles(Language);
             }
 
             if (monitor.Warnings > 0 || monitor.Errors > 0)
