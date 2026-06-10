@@ -180,8 +180,6 @@ public class RepoeDownloader(
             {
                 logger.LogInformation($"GET {url}");
 
-                if (language.Code == "en") return;
-
                 using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
 
