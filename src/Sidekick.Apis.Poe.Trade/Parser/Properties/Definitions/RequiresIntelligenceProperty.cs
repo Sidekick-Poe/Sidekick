@@ -16,7 +16,7 @@ public class RequiresIntelligenceProperty(
 {
     private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionRequiresInt.ToRegexIntProperty();
 
-    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)\s*{currentGameLanguage.Language.DescriptionRequiresInt}");
+    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)(?:\ \([a-z]+\))?\s*{currentGameLanguage.Language.DescriptionRequiresInt}");
 
     public override string Label => currentGameLanguage.Language.DescriptionRequiresInt;
 
