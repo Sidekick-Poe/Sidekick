@@ -1,35 +1,14 @@
-using Microsoft.Extensions.Logging;
-using Sidekick.Common.Exceptions;
 using Sidekick.Data;
-using Sidekick.Data.Builder.Leagues;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public class LeagueProvider(
     DataProvider dataProvider,
-    LeagueBuilder leagueBuilder,
-    IGameLanguageProvider languageProvider,
-    ILogger<LeagueProvider> logger) : ILeagueProvider
+    IGameLanguageProvider languageProvider) : ILeagueProvider
 {
-    public async Task<List<League>> GetList(bool fromCache)
+    public async Task<List<League>> GetList()
     {
-        if (!fromCache)
-        {
-            try
-            {
-                await leagueBuilder.Build(languageProvider.InvariantLanguage);
-            }
-            catch (Exception e)
-            {
-                logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
-                throw new ApiErrorException
-                {
-                    AdditionalInformation = ["If the official trade website is down, Sidekick will not work.", "Please try again later or open a ticket on GitHub."],
-                };
-            }
-        }
-
         return
         [
             ..await dataProvider.Read<List<League>>(GameType.PathOfExile2, DataType.Leagues, languageProvider.InvariantLanguage),

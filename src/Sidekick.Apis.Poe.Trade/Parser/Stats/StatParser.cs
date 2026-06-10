@@ -7,13 +7,14 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
-using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
+using Sidekick.Data.Trade;
+using TradeFilter = Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 

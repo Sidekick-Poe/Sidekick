@@ -12,7 +12,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var leagues = await LeagueProvider.GetList(true);
+        var leagues = await LeagueProvider.GetList();
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         Text = leagues.FirstOrDefault(x => x.Value == leagueId)?.Text;
 

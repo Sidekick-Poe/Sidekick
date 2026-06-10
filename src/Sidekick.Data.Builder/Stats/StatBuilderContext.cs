@@ -2,6 +2,7 @@
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
 using Sidekick.Data.StatsInvariant;
+using Sidekick.Data.Trade;
 namespace Sidekick.Data.Builder.Stats;
 
 public record StatBuilderContext(

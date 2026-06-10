@@ -8,7 +8,6 @@ using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
@@ -21,12 +20,12 @@ using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
-using Sidekick.Data.Builder.Trade;
-using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
+using Sidekick.Data.Trade;
 using Xunit;
+using TradeFilter = Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Tests;
 

@@ -15,9 +15,7 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Data;
-using Sidekick.Data.Builder;
 using Sidekick.Modules.About;
-using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
@@ -54,7 +52,6 @@ builder.Services
 
     // Data
     .AddSidekickData()
-    .AddSidekickDataBuilder()
 
     // Apis
     .AddSidekickGitHubApi()
@@ -69,7 +66,6 @@ builder.Services
 
     // Modules
     .AddSidekickAbout()
-    .AddSidekickModuleData()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()
     .AddSidekickItems()
