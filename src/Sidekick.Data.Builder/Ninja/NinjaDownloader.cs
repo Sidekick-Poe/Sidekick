@@ -10,6 +10,7 @@ using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
+using Sidekick.Data.Trade;
 
 namespace Sidekick.Data.Builder.Ninja;
 

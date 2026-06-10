@@ -6,6 +6,7 @@ using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Pseudo;
 using Sidekick.Data.Stats;
+using Sidekick.Data.Trade;
 namespace Sidekick.Data.Builder.Pseudo;
 
 public class PseudoBuilder

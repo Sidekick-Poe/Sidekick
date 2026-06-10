@@ -1,4 +1,4 @@
-namespace Sidekick.Data.Builder.Trade.Models;
+namespace Sidekick.Data.Trade;
 
 public class TradeStatDefinition
 {

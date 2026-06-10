@@ -5,6 +5,7 @@ using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
+using Sidekick.Data.Trade;
 namespace Sidekick.Data.Builder.StatsInvariant;
 
 public class StatsInvariantBuilder
