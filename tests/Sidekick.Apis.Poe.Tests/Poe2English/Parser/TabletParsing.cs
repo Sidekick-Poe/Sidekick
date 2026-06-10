@@ -88,5 +88,44 @@ Can be used in a personal Map Device to add modifiers to a Map.");
          fixture.AssertHasStat(actual, StatCategory.Explicit, "Favours at Ritual Altars in Area costs #% increased Tribute", 15);
      }
 
+     [Fact]
+     public void ParseIrradiatedTablet()
+     {
+         var actual = parser.ParseItem(
+             @"Item Class: Tablet
+Rarity: Rare
+Eerie Secrets
+Irradiated Tablet
+--------
+Item Level: 79
+--------
+{ Implicit Modifier }
+Adds Irradiated to a Map
+10 uses remaining
+--------
+{ Prefix Modifier ""Collector's"" (Tier: 1) }
+9(8-12)% increased Rarity of Items found in Map
+{ Prefix Modifier ""Breeding"" (Tier: 1) }
+7(5-7)% increased Pack Size in Map
+{ Suffix Modifier ""of Spirits"" (Tier: 1) }
+Map has 73(70-100)% increased chance to contain Azmeri Spirits
+{ Suffix Modifier ""of the Exile"" (Tier: 1) }
+Map has 88(70-100)% increased chance to contain Rogue Exiles
+--------
+Can be used in a personal Map Device to add modifiers to a Map.");
+
+         Assert.Equal(ItemClass.Tablet, actual.ItemClass.Type);
+         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+         Assert.Equal("Irradiated Tablet", actual.Definition.TradeItem?.Type);
+
+         Assert.Equal(79, actual.Properties.ItemLevel);
+
+         fixture.AssertHasFuzzyStat(actual, StatCategory.Implicit, "Adds Irradiated to a Map \n# use remaining", 10);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found in Map", 9);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Pack Size in Map", 7);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "Map has #% increased chance to contain Azmeri Spirits", 73);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "Map has #% increased chance to contain Rogue Exiles", 88);
+     }
+
 
 }
