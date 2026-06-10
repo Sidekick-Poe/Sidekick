@@ -14,7 +14,7 @@ using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
 using Sidekick.Data.Trade;
-using TradeFilter = Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
+using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -35,7 +35,7 @@ public class StatParser
 
     private List<StatDefinition> Definitions { get; set; } = [];
     private List<StatDefinition> InvariantDefinitions { get; set; } = [];
-    public Dictionary<string, TradeStatDefinition> TradeDefinitions { get; private set; } = [];
+    public Dictionary<string, List<TradeStatDefinition>> TradeDefinitions { get; private set; } = [];
 
     public async Task Initialize()
     {
@@ -43,11 +43,7 @@ public class StatParser
         Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
 
         var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, currentGameLanguage.Language);
-        TradeDefinitions.Clear();
-        foreach (var tradeDefinition in tradeDefinitions)
-        {
-            TradeDefinitions.TryAdd(tradeDefinition.Id, tradeDefinition);
-        }
+        TradeDefinitions = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
 
         if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) InvariantDefinitions = Definitions;
         else InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
@@ -270,8 +266,8 @@ public class StatParser
             if (definition.TradeIds == null) return false;
             foreach (var tradeId in definition.TradeIds)
             {
-                var tradeDefinition = TradeDefinitions.GetValueOrDefault(tradeId);
-                if (tradeDefinition != null && tradeDefinition.Text == definition.Text) return true;
+                var tradeDefinitions = TradeDefinitions.GetValueOrDefault(tradeId);
+                if (tradeDefinitions != null && tradeDefinitions.Any(x => x.Text == definition.Text)) return true;
             }
 
             return false;

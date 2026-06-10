@@ -9,7 +9,7 @@ public interface IStatParser : IInitializableService
 {
     StatsInvariantDetails InvariantDetails { get; }
 
-    Dictionary<string, TradeStatDefinition> TradeDefinitions { get; }
+    Dictionary<string, List<TradeStatDefinition>> TradeDefinitions { get; }
 
     void Parse(Item item);
 

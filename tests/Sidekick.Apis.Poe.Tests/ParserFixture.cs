@@ -24,7 +24,7 @@ using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Xunit;
-using TradeFilter = Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
+using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Tests;
 
@@ -128,12 +128,27 @@ public abstract class ParserFixture : IAsyncLifetime
 
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
-        return AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+        return AssertHasStat(actual, expectedCategory, expectedText, null, false, expectedValues);
     }
 
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
     {
-        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
+        return AssertHasStat(actual, expectedCategory, expectedText, expectedOptionText, false, expectedValues);
+    }
+
+    public Stat? AssertHasFuzzyStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
+    {
+        return AssertHasStat(actual, expectedCategory, expectedText, null, true, expectedValues);
+    }
+
+    public Stat? AssertHasFuzzyStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
+    {
+        return AssertHasStat(actual, expectedCategory, expectedText, expectedOptionText, true, expectedValues);
+    }
+
+    private Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, bool fuzzy, params double[] expectedValues)
+    {
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText, fuzzy);
         if (actualStat == null)
         {
             Assert.Fail("The actual stat does not exist. Expected: " + expectedText + " - " + expectedOptionText);
@@ -153,11 +168,19 @@ public abstract class ParserFixture : IAsyncLifetime
         return actualStat;
     }
 
-    private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText)
+    private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, bool? fuzzy)
     {
         foreach (var stat in actual.Stats)
         {
-            if (stat.MatchedFuzzily) continue;
+            switch (fuzzy)
+            {
+                case false when stat.MatchedFuzzily:
+                case true when !stat.MatchedFuzzily:
+                    continue;
+                case null:
+                    break;
+            }
+
             if (stat.Category != expectedCategory) continue;
 
             var tradeStatDefinitions = stat.Definitions
@@ -166,6 +189,7 @@ public abstract class ParserFixture : IAsyncLifetime
                 .Distinct()
                 .Select(x => StatParser.TradeDefinitions.GetValueOrDefault(x))
                 .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToList();
             foreach (var tradeStatDefinition in tradeStatDefinitions)
             {
@@ -189,7 +213,7 @@ public abstract class ParserFixture : IAsyncLifetime
 
     public void AssertDoesNotHaveStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText = null)
     {
-        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText, null);
         Assert.Null(actualStat);
     }
 
