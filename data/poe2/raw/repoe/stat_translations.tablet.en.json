@@ -43,7 +43,14 @@
     "ids": [
       "map_item_drop_quantity_+%"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "explicit.stat_2390685262",
+        "text": "#% increased Quantity of Items found in Map",
+        "type": "explicit",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -53,7 +60,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -109,7 +116,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -153,7 +160,20 @@
     "ids": [
       "map_pack_size_+%"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "enchant.stat_2017682521",
+        "text": "#% increased Pack Size in Map",
+        "type": "enchant",
+        "option": null
+      },
+      {
+        "id": "explicit.stat_2017682521",
+        "text": "#% increased Pack Size in Map",
+        "type": "explicit",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -163,7 +183,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -199,7 +219,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -253,7 +273,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -307,7 +327,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -363,7 +383,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -419,7 +439,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -475,7 +495,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -511,7 +531,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -583,7 +603,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -619,7 +639,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -673,7 +693,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -709,7 +729,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -765,7 +785,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -819,7 +839,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -875,7 +895,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -931,7 +951,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -987,7 +1007,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1023,7 +1043,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1079,7 +1099,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1117,7 +1137,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1153,7 +1173,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1209,7 +1229,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1265,7 +1285,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1321,7 +1341,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1375,7 +1395,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1429,7 +1449,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1473,7 +1493,14 @@
     "ids": [
       "map_breach_X_additional_rare_monsters"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "explicit.stat_1653625239",
+        "text": "Breaches in Map spawn an additional Rare Monster",
+        "type": "explicit",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -1483,7 +1510,70 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
+  },
+  {
+    "English": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% increased Quantity of Hiveblood found in Map",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% reduced Quantity of Hiveblood found in Map",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "ids": [
+      "map_breach_hiveblood_quantity_+%"
+    ],
+    "trade_stats": [
+      {
+        "id": "explicit.stat_2778285247",
+        "text": "#% increased Quantity of Hiveblood found in Map",
+        "type": "explicit",
+        "option": null
+      }
+    ],
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1537,7 +1627,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1555,7 +1645,7 @@
         "index_handlers": [
           []
         ],
-        "string": "[ContainsBreach|Breaches] in Map have {0}% increased Monster density",
+        "string": "[ContainsBreach|Breaches] in Map have {0}% increased Pack Size",
         "reminder_text": null,
         "is_markup": null
       },
@@ -1575,7 +1665,7 @@
             "negate"
           ]
         ],
-        "string": "[ContainsBreach|Breaches] in Map have {0}% reduced Monster density",
+        "string": "[ContainsBreach|Breaches] in Map have {0}% reduced Pack Size",
         "reminder_text": null,
         "is_markup": null
       }
@@ -1593,7 +1683,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1649,7 +1739,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1695,7 +1785,14 @@
     "ids": [
       "map_breach_number_of_magic_packs_+%"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "explicit.stat_1090596078",
+        "text": "Breaches in Map spawn #% increased Magic Monsters",
+        "type": "explicit",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -1705,7 +1802,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1761,7 +1858,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1817,7 +1914,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1853,7 +1950,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1909,7 +2006,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -1953,7 +2050,14 @@
     "ids": [
       "map_breaches_num_additional_chests_to_spawn"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "explicit.stat_2224050171",
+        "text": "Breaches in Map contain # additional Clasped Hand",
+        "type": "explicit",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -1963,7 +2067,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2017,7 +2121,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2053,7 +2157,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2109,7 +2213,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2165,7 +2269,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2209,7 +2313,20 @@
     "ids": [
       "map_delirium_splinter_stack_size_+%"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "enchant.stat_3836551197",
+        "text": "#% increased Stack size of Simulacrum Splinters found in Map",
+        "type": "enchant",
+        "option": null
+      },
+      {
+        "id": "explicit.stat_3836551197",
+        "text": "#% increased Stack size of Simulacrum Splinters found in Map",
+        "type": "explicit",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -2219,7 +2336,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2255,7 +2372,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2309,7 +2426,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2363,7 +2480,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2399,7 +2516,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2453,7 +2570,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2507,7 +2624,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2561,7 +2678,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2615,7 +2732,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2661,7 +2778,20 @@
     "ids": [
       "map_experience_gain_+%"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "explicit.stat_57434274",
+        "text": "#% increased Experience gain in Map",
+        "type": "explicit",
+        "option": null
+      },
+      {
+        "id": "fractured.stat_57434274",
+        "text": "#% increased Experience gain in Map",
+        "type": "fractured",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -2671,7 +2801,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2727,7 +2857,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2781,7 +2911,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2817,7 +2947,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2853,7 +2983,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2889,7 +3019,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2925,7 +3055,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2961,7 +3091,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -2997,7 +3127,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3051,7 +3181,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3087,7 +3217,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3123,7 +3253,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3159,7 +3289,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3195,7 +3325,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3249,7 +3379,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3305,7 +3435,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3341,7 +3471,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3397,7 +3527,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3453,7 +3583,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3489,7 +3619,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3543,7 +3673,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3597,7 +3727,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3651,7 +3781,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3705,7 +3835,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3766,7 +3896,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3802,7 +3932,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3838,7 +3968,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3874,7 +4004,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3910,7 +4040,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -3964,7 +4094,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4020,7 +4150,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4056,7 +4186,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4112,7 +4242,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4168,7 +4298,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4206,7 +4336,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4262,7 +4392,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4318,7 +4448,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4374,7 +4504,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4430,7 +4560,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4486,7 +4616,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4542,7 +4672,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4586,7 +4716,14 @@
     "ids": [
       "map_spawn_extra_exiles"
     ],
-    "trade_stats": null,
+    "trade_stats": [
+      {
+        "id": "explicit.stat_3550168289",
+        "text": "Map is inhabited by # additional Rogue Exile",
+        "type": "explicit",
+        "option": null
+      }
+    ],
     "hidden": null,
     "French": null,
     "German": null,
@@ -4596,7 +4733,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4650,7 +4787,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4706,7 +4843,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4762,7 +4899,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4798,7 +4935,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4854,7 +4991,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4908,7 +5045,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4962,7 +5099,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -4998,7 +5135,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -5034,7 +5171,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -5088,7 +5225,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -5142,7 +5279,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -5196,7 +5333,7 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   },
   {
     "English": [
@@ -5250,6 +5387,6 @@
     "Russian": null,
     "Spanish": null,
     "Thai": null,
-    "Traditional_Chinese": null
+    "Traditional Chinese": null
   }
 ]
