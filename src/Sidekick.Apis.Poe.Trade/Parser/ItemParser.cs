@@ -75,6 +75,7 @@ public class ItemParser
 
         text = StandardizeLineBreaks(text);
         text = RemoveUnusableLine(text);
+        text = AppendCategoryFromAdvancedLines(text);
         text = RemoveAdvancedMetaLines(text);
         text = CombineLines(text);
         text = RemoveNumericParentheses(text);
@@ -89,6 +90,41 @@ public class ItemParser
         string RemoveUnusableLine(string input)
         {
             return UnusablePattern?.Replace(input, string.Empty) ?? input;
+        }
+
+        string AppendCategoryFromAdvancedLines(string input)
+        {
+            var lines = input.Split('\n');
+            var result = new List<string>();
+            string? currentSuffix = null;
+
+            foreach (var line in lines)
+            {
+                if (line.StartsWith("{") && line.EndsWith("}"))
+                {
+                    var trimmed = line.TrimStart('{').TrimEnd('}').Trim();
+                    if (trimmed.StartsWith("Implicit", StringComparison.OrdinalIgnoreCase))
+                        currentSuffix = "(implicit)";
+                    else if (trimmed.StartsWith("Desecrated", StringComparison.OrdinalIgnoreCase))
+                        currentSuffix = "(desecrated)";
+                    else if (trimmed.StartsWith("Fractured", StringComparison.OrdinalIgnoreCase))
+                        currentSuffix = "(fractured)";
+                    else if (trimmed.StartsWith("Crafted", StringComparison.OrdinalIgnoreCase))
+                        currentSuffix = "(crafted)";
+                    else
+                        currentSuffix = null;
+
+                    result.Add(line);
+                    continue;
+                }
+
+                if (currentSuffix != null && !string.IsNullOrWhiteSpace(line) && line != RawText.SeparatorPattern)
+                    result.Add($"{line} {currentSuffix}");
+                else
+                    result.Add(line);
+            }
+
+            return string.Join('\n', result);
         }
 
         string RemoveAdvancedMetaLines(string input)
