@@ -23,7 +23,6 @@ using Sidekick.Data.Builder;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
-using Sidekick.Data.Trade;
 using Xunit;
 using TradeFilter = Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
@@ -43,8 +42,6 @@ public abstract class ParserFixture : IAsyncLifetime
     public ISettingsService SettingsService { get; private set; } = null!;
     public IStatParser StatParser { get; private set; } = null!;
     protected TestContext TestContext { get; set; } = null!;
-
-    private List<TradeStatDefinition>? TradeStatDefinitions { get; set; }
 
     public virtual async Task InitializeAsync()
     {
@@ -93,9 +90,6 @@ public abstract class ParserFixture : IAsyncLifetime
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
         StatParser = TestContext.Services.GetRequiredService<IStatParser>();
-
-        var dataProvider = TestContext.Services.GetRequiredService<DataProvider>();
-        TradeStatDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(GameType, DataType.TradeStats, CurrentGameLanguage.Language);
     }
 
     public Task DisposeAsync()
@@ -161,8 +155,6 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText)
     {
-        if (TradeStatDefinitions == null) return null;
-
         foreach (var stat in actual.Stats)
         {
             if (stat.MatchedFuzzily) continue;
@@ -172,7 +164,7 @@ public abstract class ParserFixture : IAsyncLifetime
                 .Where(x => x.TradeIds != null)
                 .SelectMany(x => x.TradeIds!)
                 .Distinct()
-                .Select(x => TradeStatDefinitions.FirstOrDefault(y => y.Id == x))
+                .Select(x => StatParser.TradeDefinitions.GetValueOrDefault(x))
                 .Where(x => x != null)
                 .ToList();
             foreach (var tradeStatDefinition in tradeStatDefinitions)

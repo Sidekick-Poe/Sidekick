@@ -9,9 +9,9 @@
 <FormFieldset Legend="@Resources["Data"]" Class="flex flex-col justify-start">
     <div class="flex items-center gap-3">
         <ButtonSecondary
-            OnClick="()=>FolderProvider.OpenFolder(DataProvider.DataDirectory)">@Resources["Open_Folder"]
+            OnClick="()=>FolderProvider.OpenFolder(DataProvider.DataDirectory)">@Resources["Open_Data_Folder"]
         </ButtonSecondary>
-        <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
+        <ButtonSecondary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonSecondary>
     </div>
 </FormFieldset>
 

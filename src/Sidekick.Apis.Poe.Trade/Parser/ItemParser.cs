@@ -78,6 +78,7 @@ public class ItemParser
         text = RemoveAdvancedMetaLines(text);
         text = CombineLines(text);
         text = RemoveNumericParentheses(text);
+        text = RemoveDashedMetaString(text);
         return text;
 
         string StandardizeLineBreaks(string input)
@@ -160,6 +161,18 @@ public class ItemParser
         {
             if (string.IsNullOrEmpty(input)) return input;
             return AdvancedDigitsFormat.Replace(input, "$1");
+        }
+
+        // Removes text like ' — Unscalable Value'
+        string RemoveDashedMetaString(string input)
+        {
+            if (!input.Contains(" — ")) return input;
+
+            var cleaned = input
+                .Split('\n')
+                .Select(line => line.Split(" — ")[0]);
+
+            return string.Join('\n', cleaned);
         }
     }
 }
