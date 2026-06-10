@@ -111,6 +111,8 @@ public class ItemParser
                         currentSuffix = "(fractured)";
                     else if (trimmed.StartsWith("Crafted", StringComparison.OrdinalIgnoreCase))
                         currentSuffix = "(crafted)";
+                    else if (trimmed.StartsWith("Corruption Enhancement", StringComparison.OrdinalIgnoreCase))
+                        currentSuffix = "(enchant)";
                     else
                         currentSuffix = null;
 
