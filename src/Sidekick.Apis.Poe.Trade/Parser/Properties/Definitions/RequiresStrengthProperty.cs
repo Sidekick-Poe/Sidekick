@@ -16,7 +16,7 @@ public class RequiresStrengthProperty(
 {
     private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionRequiresStr.ToRegexIntProperty();
 
-    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)\s*{currentGameLanguage.Language.DescriptionRequiresStr}");
+    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)(?:\ \([a-z]+\))?\s*{currentGameLanguage.Language.DescriptionRequiresStr}");
 
     public override string Label => currentGameLanguage.Language.DescriptionRequiresStr;
 
