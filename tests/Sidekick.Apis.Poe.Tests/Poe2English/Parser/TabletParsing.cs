@@ -127,5 +127,4 @@ Can be used in a personal Map Device to add modifiers to a Map.");
          fixture.AssertHasStat(actual, StatCategory.Explicit, "Map has #% increased chance to contain Rogue Exiles", 88);
      }
 
-
 }
