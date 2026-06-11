@@ -141,6 +141,8 @@ public class KeyboardProvider
         { KeyCode.VcRightControl, "Ctrl" },
         { KeyCode.VcLeftAlt, "Alt" },
         { KeyCode.VcRightAlt, "Alt" },
+        { KeyCode.VcLeftMeta, "Meta" },
+        { KeyCode.VcRightMeta, "Meta" },
     };
 
     private static readonly Regex ModifierKeys = new("^(?:Ctrl|Shift|Alt)$");
@@ -272,6 +274,11 @@ public class KeyboardProvider
 
         // Transfer the event key to a string to compare to settings
         var str = new StringBuilder();
+        if ((args.RawEvent.Mask & EventMask.Meta) > 0)
+        {
+            str.Append("Meta+");
+        }
+
         if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
         {
             str.Append("Ctrl+");

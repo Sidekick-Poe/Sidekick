@@ -28,6 +28,7 @@ public static class StartupExtensions
         services.AddSidekickInputHandler<OpenWikiPageKeybindHandler>();
         services.AddSidekickInputHandler<OpenInCraftOfExileHandler>();
         services.AddSidekickInputHandler<MouseWheelHandler>();
+        services.AddSidekickInputHandler<DisableMovementWithMetaKeyHandler>();
 
         services.AddTransient<InitializationResources>();
         services.AddTransient<SettingsResources>();
