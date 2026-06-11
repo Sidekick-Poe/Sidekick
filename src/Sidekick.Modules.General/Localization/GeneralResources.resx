@@ -153,6 +153,12 @@
   <data name="MouseWheelNavigateStashReverse" xml:space="preserve">
     <value>Reverse mouse wheel stash navigation</value>
   </data>
+    <data name="DisableMovementWithMetaKey" xml:space="preserve">
+    <value>Disable movement keys when Meta key is pressed</value>
+  </data>
+    <data name="DisableMovementWithMetaKey_Tooltip" xml:space="preserve">
+    <value>Disable movement keys when meta keys are pressed. For example, allowing to take in game screenshots (e.g. Win+Shift+S)</value>
+  </data>
   <data name="Key_FindItems" xml:space="preserve">
     <value>Find Items</value>
   </data>
