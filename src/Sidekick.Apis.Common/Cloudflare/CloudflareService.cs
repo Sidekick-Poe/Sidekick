@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Browser;
+using Sidekick.Common.Dialogs.Browsers;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Common.Cloudflare;
@@ -7,7 +7,7 @@ namespace Sidekick.Apis.Common.Cloudflare;
 public class CloudflareService
 (
     ISettingsService settingsService,
-    IBrowserWindowProvider browserWindowProvider,
+    BrowserWindowProvider browserWindowProvider,
     ILogger<CloudflareService> logger
 ) : ICloudflareService
 {

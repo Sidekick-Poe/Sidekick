@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Common.Browser;
+﻿namespace Sidekick.Common.Dialogs.Browsers;
 
 public class BrowserRequest
 {

@@ -1,16 +1,16 @@
 using System.Windows;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Browser;
+using Sidekick.Common.Dialogs.Browsers;
 using Sidekick.Wpf.Browser;
 
 namespace Sidekick.Wpf.Services;
 
 public class WpfBrowserWindowProvider : IDisposable
 {
-    private readonly IBrowserWindowProvider browserWindowProvider;
+    private readonly BrowserWindowProvider browserWindowProvider;
     private readonly ILogger<WpfBrowserWindowProvider> logger;
 
-    public WpfBrowserWindowProvider(IBrowserWindowProvider browserWindowProvider, ILogger<WpfBrowserWindowProvider> logger)
+    public WpfBrowserWindowProvider(BrowserWindowProvider browserWindowProvider, ILogger<WpfBrowserWindowProvider> logger)
     {
         this.browserWindowProvider = browserWindowProvider;
         this.logger = logger;

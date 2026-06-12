@@ -3,7 +3,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Authentication.Models;
 using Sidekick.Apis.Poe.Account.Clients;
-using Sidekick.Common.Browser;
+using Sidekick.Common.Dialogs.Browsers;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Authentication;
@@ -17,7 +17,7 @@ internal class AuthenticationService
     ISettingsService settingsService,
     IHttpClientFactory httpClientFactory,
     ILogger<AuthenticationService> logger,
-    IBrowserWindowProvider browserWindowProvider
+    BrowserWindowProvider browserWindowProvider
 ) : IAuthenticationService
 {
     public event Action? OnStateChanged;

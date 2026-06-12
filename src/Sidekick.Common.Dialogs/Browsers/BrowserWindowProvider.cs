@@ -2,15 +2,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
+namespace Sidekick.Common.Dialogs.Browsers;
 
-namespace Sidekick.Common.Browser;
-
-/// <inheritdoc />
+/// <summary>
+/// Provides an interface for managing browser window interactions, such as opening
+/// browser windows, handling cookie management, and notifying when a browser window
+/// is opened.
+/// </summary>
 public class BrowserWindowProvider
 (
     ILogger<BrowserWindowProvider> logger,
     DbContextOptions<SidekickDbContext> dbContextOptions
-) : IBrowserWindowProvider
+)
 {
     public const string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
 

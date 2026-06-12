@@ -30,7 +30,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj"/>
+        <ProjectReference Include="..\Sidekick.Common.Dialogs\Sidekick.Common.Dialogs.csproj" />
         <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.About\Sidekick.Modules.About.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj"/>

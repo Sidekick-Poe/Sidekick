@@ -15,7 +15,7 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
-using Sidekick.Common.Browser;
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
@@ -91,7 +91,7 @@ If you need more support consider asking on the official Sidekick discord server
 
             // Common
             .AddSidekickCommon(SidekickApplicationType.Wpf)
-            .AddSidekickCommonBrowser()
+            .AddSidekickCommonDialogs()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
 
