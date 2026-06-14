@@ -49,7 +49,7 @@ public partial class App
             viewLocator.Close(SidekickViewType.Standard);
             viewLocator.Close(SidekickViewType.Overlay);
 
-            var window = new PopupWindow(Program.ServiceProvider,
+            var window = new DialogWindow(Program.ServiceProvider,
                                          DialogProvider.Type.Ok,
                                          "Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
             await window.Task;

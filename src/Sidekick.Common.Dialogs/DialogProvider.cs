@@ -24,8 +24,11 @@ public class DialogProvider
     /// <returns>True if the user confirmed the action.</returns>
     public async Task<bool> OpenConfirmationModal(string message)
     {
-        var args = new OpenedArgs(Type.Confirmation, message, new TaskCompletionSource<Result>());
+        var args = new OpenedArgs(Type.Confirmation, message, new TaskCompletionSource<Result>(TaskCreationOptions.RunContinuationsAsynchronously));
+
+        if (Opened is null) throw new InvalidOperationException("No dialog handler is registered.");
         Opened?.Invoke(args);
+
         var result = await args.TaskCompletion.Task;
         return result == Result.Confirmed;
     }
@@ -37,8 +40,11 @@ public class DialogProvider
     /// <returns>True if the user acknowledged the message.</returns>
     public async Task<bool> OpenOkModal(string message)
     {
-        var args = new OpenedArgs(Type.Ok, message, new TaskCompletionSource<Result>());
+        var args = new OpenedArgs(Type.Ok, message, new TaskCompletionSource<Result>(TaskCreationOptions.RunContinuationsAsynchronously));
+
+        if (Opened is null) throw new InvalidOperationException("No dialog handler is registered.");
         Opened?.Invoke(args);
+
         await args.TaskCompletion.Task;
         return true;
     }

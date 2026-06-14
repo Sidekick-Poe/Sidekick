@@ -43,9 +43,18 @@ public class WpfDialogsHandler : IDisposable
     {
         Application.Current.Dispatcher.InvokeAsync(async () =>
         {
-            var window = new PopupWindow(serviceProvider, args.Type, args.Message);
-            var result = await window.Task;
-            args.TaskCompletion.SetResult(result);
+            try
+            {
+                var window = new DialogWindow(serviceProvider, args.Type, args.Message);
+                window.Show();
+                var result = await window.Task;
+                args.TaskCompletion.TrySetResult(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "[WpfDialogsHandler] Error opening dialog.");
+                args.TaskCompletion.TrySetResult(DialogProvider.Result.Closed);
+            }
         });
     }
 

@@ -6,13 +6,13 @@ using Sidekick.Common.Ui.Localization;
 
 namespace Sidekick.Wpf;
 
-public partial class PopupWindow : Window
+public partial class DialogWindow : Window
 {
     private readonly IServiceProvider serviceProvider;
-    private readonly TaskCompletionSource<DialogProvider.Result> taskCompletionSource = new();
+    private readonly TaskCompletionSource<DialogProvider.Result> taskCompletionSource = new(TaskCreationOptions.RunContinuationsAsynchronously);
     private bool resultSet;
 
-    public PopupWindow(IServiceProvider serviceProvider, DialogProvider.Type type, string message)
+    public DialogWindow(IServiceProvider serviceProvider, DialogProvider.Type type, string message)
     {
         this.serviceProvider = serviceProvider;
         InitializeComponent();
@@ -25,7 +25,6 @@ public partial class PopupWindow : Window
         ConfigureButtons(type);
 
         Closed += DialogWindow_Closed;
-        Show();
     }
 
     public DialogProvider.Type Type { get; }
