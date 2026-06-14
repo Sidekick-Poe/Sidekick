@@ -3,7 +3,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Authentication.Models;
 using Sidekick.Apis.Poe.Account.Clients;
-using Sidekick.Common.Dialogs.Browsers;
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Authentication;
@@ -17,7 +17,7 @@ internal class AuthenticationService
     ISettingsService settingsService,
     IHttpClientFactory httpClientFactory,
     ILogger<AuthenticationService> logger,
-    BrowserWindowProvider browserWindowProvider
+    BrowserDialogProvider browserDialogProvider
 ) : IAuthenticationService
 {
     public event Action? OnStateChanged;
@@ -70,7 +70,7 @@ internal class AuthenticationService
         OnStateChanged?.Invoke();
 
         var result = await task;
-        await browserWindowProvider.SaveCookies(AccountApiClient.ClientName, result, cancellationToken);
+        await browserDialogProvider.SaveCookies(AccountApiClient.ClientName, result, cancellationToken);
 
         if (!result.Success)
         {
@@ -123,7 +123,7 @@ internal class AuthenticationService
         OnStateChanged?.Invoke();
     }
 
-    private Task<BrowserResult> OpenBrowserWindow(string state, PkceHelper.PkcePair pkcePair)
+    private Task<BrowserDialogProvider.Result> OpenBrowserWindow(string state, PkceHelper.PkcePair pkcePair)
     {
         var builder = new UriBuilder(AuthenticationConfig.AuthorizationUrl);
         var query = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -136,11 +136,9 @@ internal class AuthenticationService
         query["code_challenge_method"] = "S256";
         builder.Query = query.ToString();
         var authenticationLink = builder.ToString();
-        var task = browserWindowProvider.OpenBrowserWindow(new BrowserRequest()
-        {
-            Uri = new Uri(authenticationLink),
-            ShouldComplete = (options) => options.Uri?.ToString().StartsWith(AuthenticationConfig.RedirectUrl) ?? false,
-        });
+        var task = browserDialogProvider.OpenBrowserWindow(
+            new Uri(authenticationLink),
+            (options) => options.Uri?.ToString().StartsWith(AuthenticationConfig.RedirectUrl) ?? false);
         return task;
     }
 

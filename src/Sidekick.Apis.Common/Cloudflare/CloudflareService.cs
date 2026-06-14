@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Dialogs.Browsers;
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Common.Cloudflare;
@@ -7,7 +7,7 @@ namespace Sidekick.Apis.Common.Cloudflare;
 public class CloudflareService
 (
     ISettingsService settingsService,
-    BrowserWindowProvider browserWindowProvider,
+    BrowserDialogProvider browserDialogProvider,
     ILogger<CloudflareService> logger
 ) : ICloudflareService
 {
@@ -32,18 +32,14 @@ public class CloudflareService
         return PendingChallenges[clientName];
     }
 
-    private bool ShouldComplete(BrowserCompletionOptions options)
+    private bool ShouldComplete(BrowserDialogProvider.ShouldCompleteArgs args)
     {
-        return options.Cookies.ContainsKey("cf_clearance");
+        return args.Cookies.ContainsKey("cf_clearance");
     }
 
     private async Task<bool> OpenBrowser(string clientName, Uri uri, CancellationToken cancellationToken)
     {
-        var result = await browserWindowProvider.OpenBrowserWindow(new BrowserRequest()
-                                                                    {
-                                                                        Uri = uri,
-                                                                        ShouldComplete = ShouldComplete,
-                                                                    });
+        var result = await browserDialogProvider.OpenBrowserWindow(uri, ShouldComplete);
         if (!result.Success)
         {
             logger.LogInformation("[CloudflareService] Cloudflare challenge failed.");
@@ -53,7 +49,7 @@ public class CloudflareService
         logger.LogInformation("[CloudflareService] Setting user agent to: " + result.UserAgent);
         await settingsService.Set(SettingKeys.CloudflareUserAgent, result.UserAgent);
 
-        await browserWindowProvider.SaveCookies(clientName, result, cancellationToken);
+        await browserDialogProvider.SaveCookies(clientName, result, cancellationToken);
 
         logger.LogInformation("[CloudflareService] Cloudflare challenge completed.");
         return true;
@@ -64,9 +60,9 @@ public class CloudflareService
         request.Headers.UserAgent.Clear();
 
         var userAgent = await settingsService.GetString(SettingKeys.CloudflareUserAgent);
-        request.Headers.UserAgent.ParseAdd(!string.IsNullOrEmpty(userAgent) ? userAgent : BrowserWindowProvider.DefaultUserAgent);
+        request.Headers.UserAgent.ParseAdd(!string.IsNullOrEmpty(userAgent) ? userAgent : BrowserDialogProvider.DefaultUserAgent);
 
-        var cookieString = await browserWindowProvider.GetCookieString(clientName, cancellationToken);
+        var cookieString = await browserDialogProvider.GetCookieString(clientName, cancellationToken);
         if (!string.IsNullOrEmpty(cookieString))
         {
             logger.LogInformation("[CloudflareService] Adding cookie to request");

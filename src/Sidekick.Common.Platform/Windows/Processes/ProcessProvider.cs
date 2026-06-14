@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Security.Principal;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform.Localization;
 using Sidekick.Common.Platform.Windows.DllImport;
 
@@ -14,7 +15,7 @@ public class ProcessProvider
 (
     ILogger<ProcessProvider> logger,
     IApplicationService applicationService,
-    ISidekickDialogs dialogService,
+    DialogProvider dialogProvider,
     IStringLocalizer<PlatformResources> resources
 ) : IProcessProvider, IDisposable
 {
@@ -194,7 +195,7 @@ public class ProcessProvider
 
     private async Task RestartAsAdmin()
     {
-        if (!await dialogService.OpenConfirmationModal(resources["RestartAsAdminText"]))
+        if (!await dialogProvider.OpenConfirmationModal(resources["RestartAsAdminText"]))
         {
             return;
         }

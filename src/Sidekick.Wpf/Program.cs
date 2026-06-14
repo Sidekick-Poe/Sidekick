@@ -130,7 +130,7 @@ If you need more support consider asking on the official Sidekick discord server
         services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
         services.AddSingleton<IViewLocator, WpfViewLocator>();
         services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
-        services.AddSingleton<WpfBrowserWindowProvider>();
+        services.AddSingleton<WpfDialogsHandler>();
 
         services.AddApexCharts();
 

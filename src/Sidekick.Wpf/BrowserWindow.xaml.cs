@@ -5,22 +5,21 @@ using System.Windows.Media;
 using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
 using Sidekick.Common.Dialogs;
-using Sidekick.Common.Dialogs.Browsers;
 using Sidekick.Wpf.Helpers;
 using Application=System.Windows.Application;
 
-namespace Sidekick.Wpf.Browser;
+namespace Sidekick.Wpf;
 
 public partial class BrowserWindow
 {
     private readonly ILogger logger;
-    private readonly BrowserRequest request;
+    private readonly BrowserDialogProvider.OpenedArgs args;
     private string? userAgent;
 
-    public BrowserWindow(ILogger logger, BrowserRequest request)
+    public BrowserWindow(ILogger logger, BrowserDialogProvider.OpenedArgs args)
     {
         this.logger = logger;
-        this.request = request;
+        this.args = args;
         InitializeComponent();
 
         _ = Application.Current.Dispatcher.Invoke(async () =>
@@ -38,7 +37,7 @@ public partial class BrowserWindow
             // Handle cookie changes by checking cookies after navigation
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
 
-            WebView.Source = request.Uri;
+            WebView.Source = args.Uri;
 
             // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
             WebView.Visibility = Visibility.Visible;
@@ -55,7 +54,15 @@ public partial class BrowserWindow
     protected override void OnClosing(CancelEventArgs e)
     {
         logger.LogInformation("[BrowserWindow] Closing the window.");
-        request.SetFailed();
+        if (!args.TaskCompletion.Task.IsCompleted)
+        {
+            args.TaskCompletion.SetResult(new BrowserDialogProvider.Result(
+                                             Uri: WebView.Source,
+                                             Success: false,
+                                             UserAgent: userAgent,
+                                             Cookies: new Dictionary<string, string>(),
+                                             JsonContent: null));
+        }
 
         UnregisterName("Grid");
         UnregisterName("WebView");
@@ -69,27 +76,24 @@ public partial class BrowserWindow
         {
             logger.LogInformation("[BrowserWindow] Navigation completed at " + WebUtility.UrlDecode(WebView.Source?.ToString()));
 
-            var cookies = await WebView.CoreWebView2.CookieManager.GetCookiesAsync(request.Uri.GetLeftPart(UriPartial.Authority));
+            var cookies = await WebView.CoreWebView2.CookieManager.GetCookiesAsync(args.Uri.GetLeftPart(UriPartial.Authority));
             var jsonContent = await GetPageJson();
 
-            var options = new BrowserCompletionOptions()
-            {
-                JsonContent = jsonContent.Content,
-                Cookies = cookies.ToDictionary(c => c.Name, c => c.Value),
-                Uri = WebView.Source,
-                IsJson = jsonContent.IsJson,
-            };
-            if (!request.ShouldComplete.Invoke(options)) return;
+            var options = new BrowserDialogProvider.ShouldCompleteArgs(
+                Uri: WebView.Source,
+                Cookies: cookies.ToDictionary(c => c.Name, c => c.Value),
+                JsonContent: jsonContent.Content,
+                IsJson: jsonContent.IsJson
+            );
+            if (!args.ShouldComplete.Invoke(options)) return;
 
             logger.LogInformation("[BrowserWindow] Completing the browser request.");
-            request.SetResult(new BrowserResult()
-            {
-                UserAgent = userAgent,
-                Cookies = cookies.ToDictionary(c => c.Name, c => c.Value),
-                JsonContent = jsonContent.Content,
-                Uri = WebView.Source,
-                Success = true,
-            });
+            args.TaskCompletion.SetResult(new BrowserDialogProvider.Result(
+                                             Uri: WebView.Source,
+                                             Success: true,
+                                             UserAgent: userAgent,
+                                             Cookies: cookies.ToDictionary(c => c.Name, c => c.Value),
+                                             JsonContent: jsonContent.Content));
             Dispatcher.Invoke(Close);
         }
         catch (Exception ex)

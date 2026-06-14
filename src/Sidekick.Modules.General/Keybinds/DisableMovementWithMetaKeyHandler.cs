@@ -1,3 +1,4 @@
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
@@ -6,18 +7,24 @@ namespace Sidekick.Modules.General.Keybinds;
 
 public class DisableMovementWithMetaKeyHandler : KeybindHandler
 {
-    public const string SettingKey = "DisableMovementWithMetaKey";
+    public const string Key = "DisableMovementWithMetaKey";
 
     private readonly ISettingsService settingsService;
     private readonly IProcessProvider processProvider;
+    private readonly TransparentDialogProvider transparentDialogProvider;
+    private readonly IKeyboardProvider keyboardProvider;
 
     public DisableMovementWithMetaKeyHandler(
         ISettingsService settingsService,
-        IProcessProvider processProvider)
-        : base(settingsService, SettingKey)
+        IProcessProvider processProvider,
+        TransparentDialogProvider transparentDialogProvider,
+        IKeyboardProvider keyboardProvider)
+        : base(settingsService, Key)
     {
         this.settingsService = settingsService;
         this.processProvider = processProvider;
+        this.transparentDialogProvider = transparentDialogProvider;
+        this.keyboardProvider = keyboardProvider;
         settingsService.OnSettingsChanged += OnSettingsChanged;
         _ = UpdateIsValid();
     }
@@ -59,8 +66,9 @@ public class DisableMovementWithMetaKeyHandler : KeybindHandler
 
     public override bool IsValid(string _) => DisableMovementWithMetaKey && (processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus);
 
-    public override Task Execute(string _)
+    public override async Task Execute(string keyPress)
     {
-        return Task.CompletedTask;
+        await transparentDialogProvider.Open();
+        await keyboardProvider.PressKey(keyPress);
     }
 }
