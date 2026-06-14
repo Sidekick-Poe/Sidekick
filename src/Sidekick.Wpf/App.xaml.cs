@@ -32,12 +32,6 @@ public partial class App
 
         AttachErrorHandlers();
 
-
-        var window = new DialogWindow(Program.ServiceProvider,
-                                      DialogProvider.Type.Ok,
-                                      "Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
-        window.Show();
-
         Program.ServiceProvider.GetRequiredService<WpfDialogsHandler>();
         var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
         viewLocator.Open(SidekickViewType.Standard, "/");

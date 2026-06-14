@@ -27,7 +27,6 @@ public class WpfDialogsHandler : IDisposable
         browserDialogProvider.Opened += BrowserOpened;
         dialogProvider.Opened += DialogOpened;
         transparentDialogProvider.Opened += TransparentOpened;
-        transparentDialogProvider.Closed += TransparentClosed;
     }
 
     private void BrowserOpened(BrowserDialogProvider.OpenedArgs args)
@@ -60,19 +59,25 @@ public class WpfDialogsHandler : IDisposable
 
     private void TransparentOpened(TransparentDialogProvider.OpenedArgs args)
     {
-        Application.Current.Dispatcher.Invoke(() =>
+        Application.Current.Dispatcher.InvokeAsync(async () =>
         {
-            // var window = new BrowserWindow(logger, options);
-            // window.Show();
-        });
-    }
+            try
+            {
+                logger.LogInformation("[WpfDialogsHandler] Opening transparent focus window.");
 
-    private void TransparentClosed(TransparentDialogProvider.OpenedArgs args)
-    {
-        Application.Current.Dispatcher.Invoke(() =>
-        {
-            // var window = new BrowserWindow(logger, options);
-            // window.Show();
+                var window = new TransparentFocusWindow();
+                window.Show();
+
+                await window.FocusTakenTask;
+                args.TaskCompletion.TrySetResult();
+
+                logger.LogInformation("[WpfDialogsHandler] Transparent focus window opened and focused.");
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "[WpfDialogsHandler] Error opening transparent focus window.");
+                args.TaskCompletion.TrySetException(ex);
+            }
         });
     }
 
@@ -81,6 +86,5 @@ public class WpfDialogsHandler : IDisposable
         browserDialogProvider.Opened -= BrowserOpened;
         dialogProvider.Opened -= DialogOpened;
         transparentDialogProvider.Opened -= TransparentOpened;
-        transparentDialogProvider.Closed -= TransparentClosed;
     }
 }

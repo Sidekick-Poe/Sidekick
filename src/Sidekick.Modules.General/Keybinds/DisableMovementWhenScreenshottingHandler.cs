@@ -5,16 +5,16 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;
 
-public class DisableMovementWithMetaKeyHandler : KeybindHandler
+public class DisableMovementWhenScreenshottingHandler : KeybindHandler
 {
-    public const string Key = "DisableMovementWithMetaKey";
+    public const string Key = "DisableMovementWhenScreenshotting";
 
     private readonly ISettingsService settingsService;
     private readonly IProcessProvider processProvider;
     private readonly TransparentDialogProvider transparentDialogProvider;
     private readonly IKeyboardProvider keyboardProvider;
 
-    public DisableMovementWithMetaKeyHandler(
+    public DisableMovementWhenScreenshottingHandler(
         ISettingsService settingsService,
         IProcessProvider processProvider,
         TransparentDialogProvider transparentDialogProvider,
@@ -29,11 +29,11 @@ public class DisableMovementWithMetaKeyHandler : KeybindHandler
         _ = UpdateIsValid();
     }
 
-    private bool DisableMovementWithMetaKey { get; set; }
+    private bool DisableMovementWhenScreenshotting { get; set; }
 
     private async Task UpdateIsValid()
     {
-        DisableMovementWithMetaKey = await settingsService.GetBool(SettingKey);
+        DisableMovementWhenScreenshotting = await settingsService.GetBool(SettingKey);
     }
 
     private void OnSettingsChanged(string[] keys)
@@ -46,29 +46,15 @@ public class DisableMovementWithMetaKeyHandler : KeybindHandler
 
     protected override Task<List<string?>> GetKeybinds() => Task.FromResult<List<string?>>(
     [
-        "Meta+W",
-        "Meta+A",
-        "Meta+S",
-        "Meta+D",
-        "Meta+Ctrl+W",
-        "Meta+Ctrl+A",
-        "Meta+Ctrl+S",
-        "Meta+Ctrl+D",
-        "Meta+Shift+W",
-        "Meta+Shift+A",
         "Meta+Shift+S",
-        "Meta+Shift+D",
-        "Meta+Ctrl+Shift+W",
-        "Meta+Ctrl+Shift+A",
-        "Meta+Ctrl+Shift+S",
-        "Meta+Ctrl+Shift+D",
     ]);
 
-    public override bool IsValid(string _) => DisableMovementWithMetaKey && (processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus);
+    public override bool IsValid(string _) => DisableMovementWhenScreenshotting && processProvider.IsPathOfExileInFocus;
 
     public override async Task Execute(string keyPress)
     {
         await transparentDialogProvider.Open();
+        await keyboardProvider.WiggleMouse();
         await keyboardProvider.PressKey(keyPress);
     }
 }
