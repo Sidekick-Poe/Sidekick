@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Input;
+using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Sidekick.Common.Dialogs;
@@ -86,5 +88,20 @@ public partial class DialogWindow : Window
 
         resultSet = true;
         taskCompletionSource.SetResult(result);
+    }
+
+    private void DialogWindow_ContentRendered(object? sender, EventArgs e)
+    {
+        Dispatcher.BeginInvoke(() =>
+        {
+            Topmost = false;
+            Topmost = true;
+
+            Activate();
+            Focus();
+
+            ConfirmButton.Focus();
+            Keyboard.Focus(ConfirmButton);
+        }, DispatcherPriority.ApplicationIdle);
     }
 }

@@ -31,6 +31,13 @@ public partial class App
         _ = CheckIsAlreadyRunning();
 
         AttachErrorHandlers();
+
+
+        var window = new DialogWindow(Program.ServiceProvider,
+                                      DialogProvider.Type.Ok,
+                                      "Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
+        window.Show();
+
         Program.ServiceProvider.GetRequiredService<WpfDialogsHandler>();
         var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
         viewLocator.Open(SidekickViewType.Standard, "/");
@@ -52,6 +59,7 @@ public partial class App
             var window = new DialogWindow(Program.ServiceProvider,
                                          DialogProvider.Type.Ok,
                                          "Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
+            window.Show();
             await window.Task;
 
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");

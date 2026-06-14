@@ -5,57 +5,191 @@
     Title="Sidekick"
     Width="460"
     SizeToContent="Height"
-    MinHeight="180"
+    MinHeight="200"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    Background="#1E1E1E"
-    Foreground="#F5F5F5">
+    WindowStyle="None"
+    ShowActivated="True"
+    Topmost="True"
+    Background="#050505"
+    Foreground="#F5F5F5"
+    ContentRendered="DialogWindow_ContentRendered">
 
-    <Border
-        Padding="24"
-        Background="#1E1E1E"
-        BorderBrush="#3A3A3A"
-        BorderThickness="1">
+    <Window.Resources>
+        <FontFamily x:Key="FontinFont">./wwwroot/fonts/fontin-regular-webfont.ttf#Fontin</FontFamily>
+        <FontFamily x:Key="FontinSmallCapsFont">./wwwroot/fonts/fontin-smallcaps-webfont.ttf#Fontin SmallCaps</FontFamily>
+
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#181816" />
+        <SolidColorBrush x:Key="PanelBorderBrush" Color="#252525" />
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#6D28D9" />
+        <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#8B5CF6" />
+        <SolidColorBrush x:Key="PrimaryPressedBrush" Color="#5B21B6" />
+        <SolidColorBrush x:Key="SecondaryBrush" Color="#2D2D2D" />
+        <SolidColorBrush x:Key="SecondaryHoverBrush" Color="#3A3A3A" />
+        <SolidColorBrush x:Key="SecondaryPressedBrush" Color="#242424" />
+        <SolidColorBrush x:Key="FocusBrush" Color="#A78BFA" />
+
+        <Style x:Key="DialogButtonBaseStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="Padding" Value="16,8" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                RecognizesAccessKey="True" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource FocusBrush}" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style
+            x:Key="PrimaryButtonStyle"
+            BasedOn="{StaticResource DialogButtonBaseStyle}"
+            TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource FontinSmallCapsFont}" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryHoverBrush}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource PrimaryHoverBrush}" />
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryPressedBrush}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource PrimaryPressedBrush}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style
+            x:Key="SecondaryButtonStyle"
+            BasedOn="{StaticResource DialogButtonBaseStyle}"
+            TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+            <Setter Property="BorderBrush" Value="#555555" />
+            <Setter Property="FontFamily" Value="{StaticResource FontinSmallCapsFont}" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource SecondaryHoverBrush}" />
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource SecondaryPressedBrush}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="0">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="24" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock
-                x:Name="MessageTextBlock"
-                Grid.Row="0"
-                FontSize="15"
-                LineHeight="22"
-                TextWrapping="Wrap" />
+            <Border Grid.Row="0"
+                    Padding="16">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Image
+                        Width="48"
+                        Height="48"
+                        Margin="0,0,12,0"
+                        Source=".\wwwroot\images\orbs\ExaltedOrb.png"
+                        Stretch="Uniform" />
 
-            <StackPanel
-                Grid.Row="2"
-                HorizontalAlignment="Right"
-                Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource FontinSmallCapsFont}"
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#FFFFFF"
+                        Text="Sidekick"
+                        TextOptions.TextFormattingMode="Display">
+                        <TextBlock.Effect>
+                            <DropShadowEffect
+                                BlurRadius="4"
+                                Opacity="0.8"
+                                ShadowDepth="1"
+                                Color="#000000" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
 
-                <Button
-                    x:Name="CancelButton"
-                    MinWidth="90"
-                    Margin="0,0,8,0"
-                    Padding="14,8"
-                    Background="#2D2D2D"
-                    BorderBrush="#555555"
-                    Foreground="#F5F5F5"
-                    Click="CancelButton_Click"
-                    Content="Cancel" />
-
-                <Button
-                    x:Name="ConfirmButton"
-                    MinWidth="90"
-                    Padding="14,8"
-                    Background="#3B82F6"
-                    BorderBrush="#3B82F6"
+            <Border
+                Grid.Row="1"
+                Padding="16"
+                Background="{StaticResource PanelBackgroundBrush}"
+                BorderBrush="{StaticResource PanelBorderBrush}"
+                BorderThickness="0,1,0,1">
+                <TextBlock
+                    x:Name="MessageTextBlock"
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource FontinFont}"
+                    FontSize="18"
                     Foreground="#FFFFFF"
-                    Click="ConfirmButton_Click"
-                    Content="OK" />
-            </StackPanel>
+                    LineHeight="26"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+            </Border>
+
+            <Border
+                Grid.Row="2"
+                Padding="16">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <Button
+                        x:Name="CancelButton"
+                        Margin="0,0,12,0"
+                        Click="CancelButton_Click"
+                        Content="Cancel"
+                        Style="{StaticResource SecondaryButtonStyle}" />
+
+                    <Button
+                        x:Name="ConfirmButton"
+                        Click="ConfirmButton_Click"
+                        Content="OK"
+                        IsDefault="True"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+                </StackPanel>
+            </Border>
         </Grid>
     </Border>
 </Window>

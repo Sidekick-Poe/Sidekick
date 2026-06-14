@@ -55,11 +55,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="BrowserWindow.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
+        <Resource Include="wwwroot\fonts\fontin-bold-webfont.ttf" />
+        <Resource Include="wwwroot\fonts\fontin-italic-webfont.ttf" />
+        <Resource Include="wwwroot\fonts\fontin-regular-webfont.ttf" />
+        <Resource Include="wwwroot\fonts\fontin-smallcaps-webfont.ttf" />
+        <Resource Include="wwwroot\images\orbs\ExaltedOrb.png" />
     </ItemGroup>
 
     <Target Name="Copywwwroot" BeforeTargets="Build">
