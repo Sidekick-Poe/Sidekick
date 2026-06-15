@@ -54,5 +54,7 @@ public interface IKeyboardProvider : IInitializableService
     /// </summary>
     void Disable();
 
+    Task WiggleMouse();
+
     HashSet<string?> UsedKeybinds { get; }
 }

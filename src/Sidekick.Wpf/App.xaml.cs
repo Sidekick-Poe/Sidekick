@@ -3,7 +3,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common;
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Services;
@@ -31,7 +31,8 @@ public partial class App
         _ = CheckIsAlreadyRunning();
 
         AttachErrorHandlers();
-        Program.ServiceProvider.GetRequiredService<WpfBrowserWindowProvider>();
+
+        Program.ServiceProvider.GetRequiredService<WpfDialogsHandler>();
         var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
         viewLocator.Open(SidekickViewType.Standard, "/");
     }
@@ -48,8 +49,13 @@ public partial class App
             var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
             viewLocator.Close(SidekickViewType.Standard);
             viewLocator.Close(SidekickViewType.Overlay);
-            var sidekickDialogs = Program.ServiceProvider.GetRequiredService<ISidekickDialogs>();
-            await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
+
+            var window = new DialogWindow(Program.ServiceProvider,
+                                         DialogProvider.Type.Ok,
+                                         "Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
+            window.Show();
+            await window.Task;
+
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
             ShutdownAndExit();
         }

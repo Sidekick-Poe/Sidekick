@@ -19,133 +19,379 @@ public class KeyboardProvider
     IProcessProvider processProvider,
     IOptions<SidekickConfiguration> configuration) : IKeyboardProvider, IDisposable
 {
+    private readonly EventSimulator simulator = new();
+
     private static readonly Dictionary<KeyCode, string> KeyMappings = new()
     {
-        { KeyCode.VcEscape, "Esc" },
-        { KeyCode.VcF1, "F1" },
-        { KeyCode.VcF2, "F2" },
-        { KeyCode.VcF3, "F3" },
-        { KeyCode.VcF4, "F4" },
-        { KeyCode.VcF5, "F5" },
-        { KeyCode.VcF6, "F6" },
-        { KeyCode.VcF7, "F7" },
-        { KeyCode.VcF8, "F8" },
-        { KeyCode.VcF9, "F9" },
-        { KeyCode.VcF10, "F10" },
-        { KeyCode.VcF11, "F11" },
-        { KeyCode.VcF12, "F12" },
-        { KeyCode.VcF13, "F13" },
-        { KeyCode.VcF14, "F14" },
-        { KeyCode.VcF15, "F15" },
-        { KeyCode.VcF16, "F16" },
-        { KeyCode.VcF17, "F17" },
-        { KeyCode.VcF18, "F18" },
-        { KeyCode.VcF19, "F19" },
-        { KeyCode.VcF20, "F20" },
-        { KeyCode.VcF21, "F21" },
-        { KeyCode.VcF22, "F22" },
-        { KeyCode.VcF23, "F23" },
-        { KeyCode.VcF24, "F24" },
-        { KeyCode.VcBackQuote, "`" },
-        { KeyCode.Vc0, "0" },
-        { KeyCode.Vc1, "1" },
-        { KeyCode.Vc2, "2" },
-        { KeyCode.Vc3, "3" },
-        { KeyCode.Vc4, "4" },
-        { KeyCode.Vc5, "5" },
-        { KeyCode.Vc6, "6" },
-        { KeyCode.Vc7, "7" },
-        { KeyCode.Vc8, "8" },
-        { KeyCode.Vc9, "9" },
-        { KeyCode.VcMinus, "-" },
-        { KeyCode.VcEquals, "=" },
-        { KeyCode.VcBackspace, "Backspace" },
-        { KeyCode.VcTab, "Tab" },
-        { KeyCode.VcCapsLock, "CapsLock" },
-        { KeyCode.VcA, "A" },
-        { KeyCode.VcB, "B" },
-        { KeyCode.VcC, "C" },
-        { KeyCode.VcD, "D" },
-        { KeyCode.VcE, "E" },
-        { KeyCode.VcF, "F" },
-        { KeyCode.VcG, "G" },
-        { KeyCode.VcH, "H" },
-        { KeyCode.VcI, "I" },
-        { KeyCode.VcJ, "J" },
-        { KeyCode.VcK, "K" },
-        { KeyCode.VcL, "L" },
-        { KeyCode.VcM, "M" },
-        { KeyCode.VcN, "N" },
-        { KeyCode.VcO, "O" },
-        { KeyCode.VcP, "P" },
-        { KeyCode.VcQ, "Q" },
-        { KeyCode.VcR, "R" },
-        { KeyCode.VcS, "S" },
-        { KeyCode.VcT, "T" },
-        { KeyCode.VcU, "U" },
-        { KeyCode.VcV, "V" },
-        { KeyCode.VcW, "W" },
-        { KeyCode.VcX, "X" },
-        { KeyCode.VcY, "Y" },
-        { KeyCode.VcZ, "Z" },
-        { KeyCode.VcOpenBracket, "[" },
-        { KeyCode.VcCloseBracket, "]" },
-        { KeyCode.VcBackslash, "\\" },
-        { KeyCode.VcSemicolon, ";" },
-        { KeyCode.VcQuote, "'" },
-        { KeyCode.VcEnter, "Enter" },
-        { KeyCode.VcComma, "," },
-        { KeyCode.VcPeriod, "." },
-        { KeyCode.VcSlash, "/" },
-        { KeyCode.VcSpace, "Space" },
-        { KeyCode.Vc102, "<>" },
-        { KeyCode.VcMisc, "Misc" },
-        { KeyCode.VcPrintScreen, "PrintScreen" },
-        { KeyCode.VcScrollLock, "ScrollLock" },
-        { KeyCode.VcPause, "Pause" },
-        { KeyCode.VcCancel, "Cancel" },
-        { KeyCode.VcHelp, "Help" },
-        { KeyCode.VcInsert, "Insert" },
-        { KeyCode.VcDelete, "Delete" },
-        { KeyCode.VcHome, "Home" },
-        { KeyCode.VcEnd, "End" },
-        { KeyCode.VcPageUp, "PageUp" },
-        { KeyCode.VcPageDown, "PageDown" },
-        { KeyCode.VcUp, "Up" },
-        { KeyCode.VcLeft, "Left" },
-        { KeyCode.VcRight, "Right" },
-        { KeyCode.VcDown, "Down" },
-        { KeyCode.VcNumLock, "NumLock" },
-        { KeyCode.VcNumPadClear, "NumClear" },
-        { KeyCode.VcNumPadDivide, "Num/" },
-        { KeyCode.VcNumPadMultiply, "Num*" },
-        { KeyCode.VcNumPadSubtract, "Num-" },
-        { KeyCode.VcNumPadEquals, "Num=" },
-        { KeyCode.VcNumPadAdd, "Num+" },
-        { KeyCode.VcNumPadEnter, "NumEnter" },
-        { KeyCode.VcNumPadDecimal, "Num." },
-        { KeyCode.VcNumPadSeparator, "Num," },
-        { KeyCode.VcNumPad0, "Num0" },
-        { KeyCode.VcNumPad1, "Num1" },
-        { KeyCode.VcNumPad2, "Num2" },
-        { KeyCode.VcNumPad3, "Num3" },
-        { KeyCode.VcNumPad4, "Num4" },
-        { KeyCode.VcNumPad5, "Num5" },
-        { KeyCode.VcNumPad6, "Num6" },
-        { KeyCode.VcNumPad7, "Num7" },
-        { KeyCode.VcNumPad8, "Num8" },
-        { KeyCode.VcNumPad9, "Num9" },
-        { KeyCode.VcLeftShift, "Shift" },
-        { KeyCode.VcRightShift, "Shift" },
-        { KeyCode.VcLeftControl, "Ctrl" },
-        { KeyCode.VcRightControl, "Ctrl" },
-        { KeyCode.VcLeftAlt, "Alt" },
-        { KeyCode.VcRightAlt, "Alt" },
-        { KeyCode.VcLeftMeta, "Meta" },
-        { KeyCode.VcRightMeta, "Meta" },
+        {
+            KeyCode.VcEscape, "Esc"
+        },
+        {
+            KeyCode.VcF1, "F1"
+        },
+        {
+            KeyCode.VcF2, "F2"
+        },
+        {
+            KeyCode.VcF3, "F3"
+        },
+        {
+            KeyCode.VcF4, "F4"
+        },
+        {
+            KeyCode.VcF5, "F5"
+        },
+        {
+            KeyCode.VcF6, "F6"
+        },
+        {
+            KeyCode.VcF7, "F7"
+        },
+        {
+            KeyCode.VcF8, "F8"
+        },
+        {
+            KeyCode.VcF9, "F9"
+        },
+        {
+            KeyCode.VcF10, "F10"
+        },
+        {
+            KeyCode.VcF11, "F11"
+        },
+        {
+            KeyCode.VcF12, "F12"
+        },
+        {
+            KeyCode.VcF13, "F13"
+        },
+        {
+            KeyCode.VcF14, "F14"
+        },
+        {
+            KeyCode.VcF15, "F15"
+        },
+        {
+            KeyCode.VcF16, "F16"
+        },
+        {
+            KeyCode.VcF17, "F17"
+        },
+        {
+            KeyCode.VcF18, "F18"
+        },
+        {
+            KeyCode.VcF19, "F19"
+        },
+        {
+            KeyCode.VcF20, "F20"
+        },
+        {
+            KeyCode.VcF21, "F21"
+        },
+        {
+            KeyCode.VcF22, "F22"
+        },
+        {
+            KeyCode.VcF23, "F23"
+        },
+        {
+            KeyCode.VcF24, "F24"
+        },
+        {
+            KeyCode.VcBackQuote, "`"
+        },
+        {
+            KeyCode.Vc0, "0"
+        },
+        {
+            KeyCode.Vc1, "1"
+        },
+        {
+            KeyCode.Vc2, "2"
+        },
+        {
+            KeyCode.Vc3, "3"
+        },
+        {
+            KeyCode.Vc4, "4"
+        },
+        {
+            KeyCode.Vc5, "5"
+        },
+        {
+            KeyCode.Vc6, "6"
+        },
+        {
+            KeyCode.Vc7, "7"
+        },
+        {
+            KeyCode.Vc8, "8"
+        },
+        {
+            KeyCode.Vc9, "9"
+        },
+        {
+            KeyCode.VcMinus, "-"
+        },
+        {
+            KeyCode.VcEquals, "="
+        },
+        {
+            KeyCode.VcBackspace, "Backspace"
+        },
+        {
+            KeyCode.VcTab, "Tab"
+        },
+        {
+            KeyCode.VcCapsLock, "CapsLock"
+        },
+        {
+            KeyCode.VcA, "A"
+        },
+        {
+            KeyCode.VcB, "B"
+        },
+        {
+            KeyCode.VcC, "C"
+        },
+        {
+            KeyCode.VcD, "D"
+        },
+        {
+            KeyCode.VcE, "E"
+        },
+        {
+            KeyCode.VcF, "F"
+        },
+        {
+            KeyCode.VcG, "G"
+        },
+        {
+            KeyCode.VcH, "H"
+        },
+        {
+            KeyCode.VcI, "I"
+        },
+        {
+            KeyCode.VcJ, "J"
+        },
+        {
+            KeyCode.VcK, "K"
+        },
+        {
+            KeyCode.VcL, "L"
+        },
+        {
+            KeyCode.VcM, "M"
+        },
+        {
+            KeyCode.VcN, "N"
+        },
+        {
+            KeyCode.VcO, "O"
+        },
+        {
+            KeyCode.VcP, "P"
+        },
+        {
+            KeyCode.VcQ, "Q"
+        },
+        {
+            KeyCode.VcR, "R"
+        },
+        {
+            KeyCode.VcS, "S"
+        },
+        {
+            KeyCode.VcT, "T"
+        },
+        {
+            KeyCode.VcU, "U"
+        },
+        {
+            KeyCode.VcV, "V"
+        },
+        {
+            KeyCode.VcW, "W"
+        },
+        {
+            KeyCode.VcX, "X"
+        },
+        {
+            KeyCode.VcY, "Y"
+        },
+        {
+            KeyCode.VcZ, "Z"
+        },
+        {
+            KeyCode.VcOpenBracket, "["
+        },
+        {
+            KeyCode.VcCloseBracket, "]"
+        },
+        {
+            KeyCode.VcBackslash, "\\"
+        },
+        {
+            KeyCode.VcSemicolon, ";"
+        },
+        {
+            KeyCode.VcQuote, "'"
+        },
+        {
+            KeyCode.VcEnter, "Enter"
+        },
+        {
+            KeyCode.VcComma, ","
+        },
+        {
+            KeyCode.VcPeriod, "."
+        },
+        {
+            KeyCode.VcSlash, "/"
+        },
+        {
+            KeyCode.VcSpace, "Space"
+        },
+        {
+            KeyCode.Vc102, "<>"
+        },
+        {
+            KeyCode.VcMisc, "Misc"
+        },
+        {
+            KeyCode.VcPrintScreen, "PrintScreen"
+        },
+        {
+            KeyCode.VcScrollLock, "ScrollLock"
+        },
+        {
+            KeyCode.VcPause, "Pause"
+        },
+        {
+            KeyCode.VcCancel, "Cancel"
+        },
+        {
+            KeyCode.VcHelp, "Help"
+        },
+        {
+            KeyCode.VcInsert, "Insert"
+        },
+        {
+            KeyCode.VcDelete, "Delete"
+        },
+        {
+            KeyCode.VcHome, "Home"
+        },
+        {
+            KeyCode.VcEnd, "End"
+        },
+        {
+            KeyCode.VcPageUp, "PageUp"
+        },
+        {
+            KeyCode.VcPageDown, "PageDown"
+        },
+        {
+            KeyCode.VcUp, "Up"
+        },
+        {
+            KeyCode.VcLeft, "Left"
+        },
+        {
+            KeyCode.VcRight, "Right"
+        },
+        {
+            KeyCode.VcDown, "Down"
+        },
+        {
+            KeyCode.VcNumLock, "NumLock"
+        },
+        {
+            KeyCode.VcNumPadClear, "NumClear"
+        },
+        {
+            KeyCode.VcNumPadDivide, "Num/"
+        },
+        {
+            KeyCode.VcNumPadMultiply, "Num*"
+        },
+        {
+            KeyCode.VcNumPadSubtract, "Num-"
+        },
+        {
+            KeyCode.VcNumPadEquals, "Num="
+        },
+        {
+            KeyCode.VcNumPadAdd, "Num+"
+        },
+        {
+            KeyCode.VcNumPadEnter, "NumEnter"
+        },
+        {
+            KeyCode.VcNumPadDecimal, "Num."
+        },
+        {
+            KeyCode.VcNumPadSeparator, "Num,"
+        },
+        {
+            KeyCode.VcNumPad0, "Num0"
+        },
+        {
+            KeyCode.VcNumPad1, "Num1"
+        },
+        {
+            KeyCode.VcNumPad2, "Num2"
+        },
+        {
+            KeyCode.VcNumPad3, "Num3"
+        },
+        {
+            KeyCode.VcNumPad4, "Num4"
+        },
+        {
+            KeyCode.VcNumPad5, "Num5"
+        },
+        {
+            KeyCode.VcNumPad6, "Num6"
+        },
+        {
+            KeyCode.VcNumPad7, "Num7"
+        },
+        {
+            KeyCode.VcNumPad8, "Num8"
+        },
+        {
+            KeyCode.VcNumPad9, "Num9"
+        },
+        {
+            KeyCode.VcLeftShift, "Shift"
+        },
+        {
+            KeyCode.VcRightShift, "Shift"
+        },
+        {
+            KeyCode.VcLeftControl, "Ctrl"
+        },
+        {
+            KeyCode.VcRightControl, "Ctrl"
+        },
+        {
+            KeyCode.VcLeftAlt, "Alt"
+        },
+        {
+            KeyCode.VcRightAlt, "Alt"
+        },
+        {
+            KeyCode.VcLeftMeta, "Meta"
+        },
+        {
+            KeyCode.VcRightMeta, "Meta"
+        },
     };
 
-    private static readonly Regex ModifierKeys = new("^(?:Ctrl|Shift|Alt)$");
+    private static readonly Regex ModifierKeys = new("^(?:Meta|Ctrl|Shift|Alt)$");
 
     private bool HasInitialized { get; set; }
 
@@ -164,8 +410,7 @@ public class KeyboardProvider
     public event Action<DraggedEventArgs>? OnMouseDrag;
 
     private List<KeybindHandler> KeybindHandlers { get; init; } =
-    [
-    ];
+        [];
 
     public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
 
@@ -187,14 +432,23 @@ public class KeyboardProvider
             }
         }
 
-        if (Debugger.IsAttached)
-        {
-            return Task.CompletedTask;
-        }
+        if (Debugger.IsAttached) return Task.CompletedTask;
 
         RegisterHooks();
         return Task.CompletedTask;
     }
+
+    public void Enable()
+    {
+        Enabled = true;
+    }
+
+    public void Disable()
+    {
+        Enabled = false;
+    }
+
+    #region Hooks
 
     public void RegisterHooks()
     {
@@ -221,11 +475,10 @@ public class KeyboardProvider
         Hook = new();
         Hook.KeyPressed += OnKeyPressed;
 
-        // Initialize mouse hook
+        // Initialize mouse hooks
         Hook.MouseWheel += OnMouseWheel;
-
-        // Initialize mouse drag hook
         Hook.MouseDragged += OnMouseDragged;
+        Hook.MouseMoved += OnMouseMoved;
 
         HookTask = Hook.RunAsync();
 
@@ -255,6 +508,10 @@ public class KeyboardProvider
             case SharpHook.Data.LogLevel.Error: logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText); break;
         }
     }
+
+    #endregion
+
+    #region Keyboard
 
     private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
     {
@@ -322,57 +579,8 @@ public class KeyboardProvider
         }
     }
 
-    private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)
-    {
-        if (!Enabled) return;
-
-        var str = new StringBuilder();
-        if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
-        {
-            str.Append("Ctrl+");
-        }
-
-        if ((args.RawEvent.Mask & EventMask.Shift) > 0)
-        {
-            str.Append("Shift+");
-        }
-
-        if ((args.RawEvent.Mask & EventMask.Alt) > 0)
-        {
-            str.Append("Alt+");
-        }
-
-        var keybind = str.ToString();
-        if (!string.IsNullOrEmpty(keybind)) keybind = keybind[..^1];
-
-        ScrollEventArgs eventArgs = new()
-        {
-            Masks = keybind,
-        };
-
-        if (args.Data.Rotation > 0)
-        {
-            OnScrollDown?.Invoke(eventArgs);
-        }
-        else
-        {
-            OnScrollUp?.Invoke(eventArgs);
-        }
-
-        if (eventArgs.Suppress) args.SuppressEvent = true;
-    }
-
-    private void OnMouseDragged(object? sender, MouseHookEventArgs args)
-    {
-        if (!Enabled) return;
-
-        OnMouseDrag?.Invoke(new(args.Data.X, args.Data.Y));
-    }
-
     public Task PressKey(params string[] keyStrokes)
     {
-        var simulator = new EventSimulator();
-
         if (Hook != null)
         {
             Hook.KeyPressed -= OnKeyPressed;
@@ -430,6 +638,7 @@ public class KeyboardProvider
             {
                 var modifierKey = key switch
                 {
+                    "Meta" => KeyCode.VcLeftMeta,
                     "Shift" => KeyCode.VcLeftShift,
                     "Ctrl" => KeyCode.VcLeftControl,
                     "Alt" => KeyCode.VcLeftAlt,
@@ -461,6 +670,99 @@ public class KeyboardProvider
         return (modifierCodes, keyCodes);
     }
 
+    public void ReleaseAltModifier()
+    {
+        simulator.SimulateKeyRelease(KeyCode.VcLeftAlt);
+        simulator.SimulateKeyRelease(KeyCode.VcRightAlt);
+    }
+
+    #endregion Keyboard
+
+    #region Mouse
+
+    private short MousePositionX { get; set; }
+    private short MousePositionY { get; set; }
+
+    private void OnMouseMoved(object? sender, MouseHookEventArgs e)
+    {
+        MousePositionX = e.Data.X;
+        MousePositionY = e.Data.Y;
+    }
+
+    private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)
+    {
+        if (!Enabled) return;
+
+        var str = new StringBuilder();
+        if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
+        {
+            str.Append("Ctrl+");
+        }
+
+        if ((args.RawEvent.Mask & EventMask.Shift) > 0)
+        {
+            str.Append("Shift+");
+        }
+
+        if ((args.RawEvent.Mask & EventMask.Alt) > 0)
+        {
+            str.Append("Alt+");
+        }
+
+        var keybind = str.ToString();
+        if (!string.IsNullOrEmpty(keybind)) keybind = keybind[..^1];
+
+        ScrollEventArgs eventArgs = new()
+        {
+            Masks = keybind,
+        };
+
+        if (args.Data.Rotation > 0)
+        {
+            OnScrollDown?.Invoke(eventArgs);
+        }
+        else
+        {
+            OnScrollUp?.Invoke(eventArgs);
+        }
+
+        if (eventArgs.Suppress) args.SuppressEvent = true;
+    }
+
+    private void OnMouseDragged(object? sender, MouseHookEventArgs args)
+    {
+        if (!Enabled) return;
+
+        OnMouseDrag?.Invoke(new(args.Data.X, args.Data.Y));
+    }
+
+    public async Task WiggleMouse()
+    {
+        var x = MousePositionX;
+        var y = MousePositionY;
+
+        var wiggleX = (short)(x > 600 ? x - 300 : x + 300);
+        var wiggleY = (short)(y > 600 ? y - 300 : y + 300);
+
+        await SmoothMoveMouse(x, y, wiggleX, wiggleY);
+        await SmoothMoveMouse(wiggleX, wiggleY, x, y);
+    }
+
+    private async Task SmoothMoveMouse(short fromX, short fromY, short toX, short toY, int steps = 12, int delay = 1)
+    {
+        for (var i = 1; i <= steps; i++)
+        {
+            var progress = (double)i / steps;
+
+            var x = (short)Math.Round(fromX + (toX - fromX) * progress);
+            var y = (short)Math.Round(fromY + (toY - fromY) * progress);
+
+            simulator.SimulateMouseMovement(x, y);
+        }
+    }
+
+    #endregion
+
     public void Dispose()
     {
         Dispose(true);
@@ -469,10 +771,7 @@ public class KeyboardProvider
 
     protected virtual void Dispose(bool disposing)
     {
-        if (!disposing)
-        {
-            return;
-        }
+        if (!disposing) return;
 
         try
         {
@@ -484,8 +783,8 @@ public class KeyboardProvider
             if (HookTask != null && Hook != null)
             {
                 // Cancel the hook task to ensure it's stopped gracefully
-                Hook.Dispose(); // This disposes internal resources of SimpleGlobalHook
-                HookTask.Wait(); // Wait until the hook task completes fully
+                Hook.Dispose();// This disposes internal resources of SimpleGlobalHook
+                HookTask.Wait();// Wait until the hook task completes fully
                 HookTask.Dispose();
                 HookTask = null;
             }
@@ -507,22 +806,5 @@ public class KeyboardProvider
             // Log any errors during disposal, as they could be valuable for debugging
             logger.LogError(ex, "[KeyboardProvider] Error during disposal.");
         }
-    }
-
-    public void ReleaseAltModifier()
-    {
-        var simulator = new EventSimulator();
-        simulator.SimulateKeyRelease(KeyCode.VcLeftAlt);
-        simulator.SimulateKeyRelease(KeyCode.VcRightAlt);
-    }
-
-    public void Enable()
-    {
-        Enabled = true;
-    }
-
-    public void Disable()
-    {
-        Enabled = false;
     }
 }

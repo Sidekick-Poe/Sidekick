@@ -185,17 +185,6 @@ public partial class MainWindow
                 ResizeMode = ResizeMode.CanResize;
                 break;
 
-            case SidekickViewType.Modal:
-                Topmost = false;
-#if DEBUG
-                ShowInTaskbar = true;
-#else
-                Topmost = true;
-                ShowInTaskbar = true;
-#endif
-                ResizeMode = ResizeMode.NoResize;
-                break;
-
             case SidekickViewType.Standard:
                 Topmost = false;
                 ShowInTaskbar = true;
@@ -244,7 +233,6 @@ public partial class MainWindow
 
         MinHeight = ViewType switch
         {
-            SidekickViewType.Modal => ICurrentView.DialogHeight * zoom,
             SidekickViewType.Standard => 768 * zoom,
             _ => 600 * zoom,
         };
@@ -252,13 +240,12 @@ public partial class MainWindow
 
         MinWidth = ViewType switch
         {
-            SidekickViewType.Modal => ICurrentView.DialogWidth * zoom,
             SidekickViewType.Standard => 968 * zoom,
             _ => 768 * zoom,
         };
         Width = MinWidth;
 
-        if (ViewType != SidekickViewType.Modal && preferences != null)
+        if (preferences != null)
         {
             if (preferences.Height > Height && View?.Height == null) Height = preferences.Height;
             if (preferences.Width > Width && View?.Width == null) Width = preferences.Width;
@@ -292,7 +279,7 @@ public partial class MainWindow
 
     private async Task SavePosition()
     {
-        if (!IsVisible || ViewType == SidekickViewType.Modal || ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
+        if (!IsVisible|| ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
         {
             logger.LogInformation("[MainWindow] Not saving position, window is not visible, is modal, or is maximized");
             return;

@@ -14,7 +14,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
-using Sidekick.Common.Browser;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
@@ -51,7 +50,6 @@ public abstract class ParserFixture : IAsyncLifetime
         TestContext.Services
             // Building blocks
             .AddSidekickCommon(SidekickApplicationType.Test)
-            .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickData()
             .AddSidekickDataBuilder()
@@ -193,7 +191,7 @@ public abstract class ParserFixture : IAsyncLifetime
                 .ToList();
             foreach (var tradeStatDefinition in tradeStatDefinitions)
             {
-                if (tradeStatDefinition!.Text != expectedText) continue;
+                if (tradeStatDefinition.Text != expectedText) continue;
                 if (expectedOptionText == null) return stat;
 
                 if (tradeStatDefinition.OptionText == null) continue;

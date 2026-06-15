@@ -153,11 +153,11 @@
   <data name="MouseWheelNavigateStashReverse" xml:space="preserve">
     <value>Reverse mouse wheel stash navigation</value>
   </data>
-    <data name="DisableMovementWithMetaKey" xml:space="preserve">
-    <value>Disable movement keys when Meta key is pressed</value>
+    <data name="DisableMovementWhenScreenshotting" xml:space="preserve">
+    <value>Prevent your character from moving when using screenshot shortcuts</value>
   </data>
-    <data name="DisableMovementWithMetaKey_Tooltip" xml:space="preserve">
-    <value>Disable movement keys when meta keys are pressed. For example, allowing to take in game screenshots (e.g. Win+Shift+S)</value>
+    <data name="DisableMovementWhenScreenshotting_Tooltip" xml:space="preserve">
+    <value>Prevent your character from moving when using screenshot shortcuts like Win+Shift+S. Useful when hovering items in your stash: Sidekick briefly moves focus away from the game, refreshes the item tooltip, then opens the screenshot tool.</value>
   </data>
   <data name="Key_FindItems" xml:space="preserve">
     <value>Find Items</value>
