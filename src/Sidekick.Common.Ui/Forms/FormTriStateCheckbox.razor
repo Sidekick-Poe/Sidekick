@@ -10,7 +10,6 @@
 
 @inject IJSRuntime JsRuntime
 @inject ILogger<FormTriStateCheckbox> Logger
-
 @code {
 
     [Parameter]
@@ -27,31 +26,28 @@
 
     private string ElementId { get; } = UiUtilities.GenerateId();
 
-    protected override async Task OnParametersSetAsync()
-    {
-        try
-        {
-            await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value);
-        }
-        catch (Exception e)
-        {
-            Logger.LogError(e, "Failed to load javascript module.");
-        }
+    private bool ShouldSyncState { get; set; } = true;
 
-        await base.OnParametersSetAsync();
+    protected override Task OnParametersSetAsync()
+    {
+        ShouldSyncState = true;
+
+        return base.OnParametersSetAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender || ShouldSyncState)
         {
+            ShouldSyncState = false;
+
             try
             {
                 await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value);
             }
             catch (Exception e)
             {
-                Logger.LogError(e, "Failed to load javascript module.");
+                Logger.LogError(e, "Failed to set tri-state checkbox state.");
             }
         }
 
@@ -64,7 +60,7 @@
         {
             null => true,
             true => false,
-            false => null
+            false => null,
         };
 
         await ValueChanged.InvokeAsync(checkboxValue);

@@ -4,7 +4,7 @@
      title="@Option?.Label">
     @if (!string.IsNullOrEmpty(Label)) {}
     <label for="@Id"
-           class="@FormInputInline.Classes @FormInputInline.ColorClasses @(Readonly ? string.Empty : FormInputInline.TransitionClasses) flex flex-nowrap items-center gap-1 text-nowrap line-clamp-1">
+           class="@FormInputInline.ContainerClasses flex flex-nowrap items-center gap-1 text-nowrap line-clamp-1">
         @if (Option != null)
         {
             <span class="text-white">@Option.Label</span>
@@ -23,7 +23,7 @@
     {
         <select id="@Id"
                 @onchange="OnChange"
-                class="absolute top-0 left-0 right-0 bottom-0 invisible hover:visible focus:visible @UiClasses.FocusClasses @FormInputInline.Classes @FormInputInline.ColorClasses @FormInputInline.TransitionClasses">
+                class="@FormInputInline.InputClasses appearance-none bg-none">
             @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
             {
                 <option selected></option>

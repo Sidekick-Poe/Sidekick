@@ -172,6 +172,7 @@
         Rule.Checked = value switch
         {
             "null" => null,
+            null => null,
             "true" => true,
             _ => false,
         };

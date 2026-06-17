@@ -3,7 +3,7 @@
 <div class="relative w-full"
      title="@Value">
     <label for="@Id"
-           class="@Classes @ColorClasses @(Readonly ? string.Empty : TransitionClasses) text-nowrap line-clamp-1">
+           class="@ContainerClasses text-nowrap line-clamp-1">
         @if (!string.IsNullOrEmpty(Value))
         {
             <span class="text-white">@Value</span>
@@ -21,16 +21,24 @@
                @attributes="InputAttributes"
                @onfocus="Focus"
                @onblur="Blur"
-               class="absolute top-0 left-0 right-0 bottom-0 @UiClasses.FocusClasses @Classes @ColorClasses @TransitionClasses"
+               class="@InputClasses"
                value="@Value"/>
     }
 </div>
 
 @code {
 
-    public const string Classes = "p-0.5 leading-4 h-5 rounded-sm text-base bg-none";
-    public const string ColorClasses = "border border-zinc-600 bg-zinc-800 text-white";
-    public const string TransitionClasses = "transition-colors duration-200 hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-500 focus:border-zinc-500";
+    private const string CommonClasses = "px-0.5 pt-[1px] pb-0 leading-[16px] h-5 rounded-t-sm text-base text-white";
+
+    public const string ContainerClasses =
+        CommonClasses + " " +
+        "border-t border-x border-t-transparent border-x-transparent " +
+        "border-b border-b-zinc-600 border-dashed";
+
+    public const string InputClasses =
+        CommonClasses + " absolute top-0 left-0 right-0 bottom-0 transition-opacity duration-200 opacity-0 hover:opacity-100 focus:opacity-100 " +
+        "bg-zinc-600 " +
+        "border border-zinc-500 " + UiClasses.FocusClasses;
 
     [Parameter]
     public bool Readonly { get; set; }

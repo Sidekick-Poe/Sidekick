@@ -6,7 +6,7 @@
            disabled="@Readonly"
            checked="@Value"
            @onchange="OnChange"
-           class="@(Dense ? "w-4 h-4 min-w-4 min-h-4" : "w-5 h-5 min-w-5 min-h-5") rounded-sm @FormInputInline.ColorClasses text-zinc-600! @(Readonly ? string.Empty : FormInputInline.TransitionClasses) @UiClasses.FocusClasses">
+           class="@(Dense ? "w-4 h-4 min-w-4 min-h-4" : "w-5 h-5 min-w-5 min-h-5") rounded-sm border border-zinc-600 bg-zinc-800 text-white text-zinc-600! @(Readonly ? string.Empty : "transition-colors duration-200 hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-500 focus:border-zinc-500") @UiClasses.FocusClasses">
     <span class="text-white font-medium @(Dense ? "text-sm" : "text-base") grow">
         @ChildContent
     </span>
