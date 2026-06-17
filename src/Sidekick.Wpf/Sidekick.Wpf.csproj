@@ -55,11 +55,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="wwwroot\fonts\fontin-bold-webfont.ttf" />
-        <Resource Include="wwwroot\fonts\fontin-italic-webfont.ttf" />
-        <Resource Include="wwwroot\fonts\fontin-regular-webfont.ttf" />
-        <Resource Include="wwwroot\fonts\fontin-smallcaps-webfont.ttf" />
-        <Resource Include="wwwroot\images\orbs\ExaltedOrb.png" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-bold-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-bold-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-italic-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-italic-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-regular-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-regular-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-smallcaps-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-smallcaps-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\images\orbs\ExaltedOrb.png"
+                  Link="wwwroot\images\orbs\ExaltedOrb.png" />
     </ItemGroup>
 
     <Target Name="Copywwwroot" BeforeTargets="Build">
