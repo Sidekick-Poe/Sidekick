@@ -52,7 +52,7 @@
                 }
             </div>
 
-            <div class="flex flex-col items-stretch gap-2 p-2">
+            <div class="flex flex-col items-stretch px-2 pb-1 gap-2">
                 @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
                 {
                     var condition = rule.Conditions[conditionIndex];
@@ -66,9 +66,9 @@
 
                 @if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
                 {
-                    <div>
+                    <div class="flex justify-center">
                         <ButtonSecondary OnClick="() => AddCondition(rule)"
-                                         Class="p-0!">@Resources["AutoSelect_AddCondition"]</ButtonSecondary>
+                                         Class="p-0!">- @Resources["AutoSelect_AddCondition"] -</ButtonSecondary>
                     </div>
                 }
 
