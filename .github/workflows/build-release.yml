@@ -42,7 +42,8 @@ jobs:
           prerelease: false
 
   build-windows:
-    needs: setup
+    needs:
+      - setup
     runs-on: windows-latest
     steps:
       - name: Git - Checkout
@@ -114,7 +115,6 @@ jobs:
   build-ubuntu:
     needs:
       - setup
-      - build-windows
     runs-on: ubuntu-latest
     steps:
       - name: Git - Checkout
