@@ -112,7 +112,9 @@ jobs:
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
   build-ubuntu:
-    needs: setup
+    needs:
+      - setup
+      - build-windows
     runs-on: ubuntu-latest
     steps:
       - name: Git - Checkout
