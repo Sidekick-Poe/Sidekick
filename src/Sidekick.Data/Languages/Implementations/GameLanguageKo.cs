@@ -6,10 +6,10 @@ public class GameLanguageKo : IGameLanguage
     public string Code => "ko";
     public string Label => "Korean";
 
-    public string PoeTradeBaseUrl => "https://poe.game.daum.net/trade/";
-    public string PoeTradeApiBaseUrl => "https://poe.game.daum.net/api/trade/";
-    public string Poe2TradeBaseUrl => "https://poe.game.daum.net/trade2/";
-    public string Poe2TradeApiBaseUrl => "https://poe.game.daum.net/api/trade2/";
+    public string PoeTradeBaseUrl => "https://poe.kakaogames.com/trade/";
+    public string PoeTradeApiBaseUrl => "https://poe.kakaogames.com/api/trade/";
+    public string Poe2TradeBaseUrl => "https://poe.kakaogames.com/trade2/";
+    public string Poe2TradeApiBaseUrl => "https://poe.kakaogames.com/api/trade2/";
 
     public string RarityUnique => "고유";
     public string RarityRare => "희귀";
