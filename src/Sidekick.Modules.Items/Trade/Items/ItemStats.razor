@@ -68,11 +68,11 @@
 
         index++;
         foreach (var line in ParseStatLines(index, tradeItem.CraftedMods, tradeItem.Extended?.Mods?.Crafted, ParseHash(tradeItem.Extended?.Hashes?.Crafted))) yield return line;
-        foreach (var line in ParseStatLines(index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit, tradeItem.Extended?.Hashes?.Monster))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.ExplicitModsText, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit, tradeItem.Extended?.Hashes?.Monster))) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.FracturedMods, tradeItem.Extended?.Mods?.Fractured, ParseHash(tradeItem.Extended?.Hashes?.Fractured))) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.DesecratedMods, tradeItem.Extended?.Mods?.Desecrated, ParseHash(tradeItem.Extended?.Hashes?.Desecrated))) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.ScourgeMods, tradeItem.Extended?.Mods?.Scourge, ParseHash(tradeItem.Extended?.Hashes?.Scourge))) yield return line;
-        foreach (var line in ParseStatLines(index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Sanctum, ParseHash(tradeItem.Extended?.Hashes?.Sanctum))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.ExplicitModsText, tradeItem.Extended?.Mods?.Sanctum, ParseHash(tradeItem.Extended?.Hashes?.Sanctum))) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.MutatedMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit)))
         {
             line.Category = StatCategory.Mutated;
