@@ -1,3 +1,4 @@
+using Sidekick.Apis.Poe.Trade.Trade.Converters;
 using Sidekick.Common.Converters;
 using Sidekick.Data.Items;
 using System.Text.Json.Serialization;
@@ -76,6 +77,7 @@ public class ApiItem
     public List<string> CraftedMods { get; set; } = [];
 
     [JsonPropertyName("explicitMods")]
+    [JsonConverter(typeof(StringOrExplicitModListConverter))]
     public List<ExplicitMod> ExplicitMods { get; set; } = [];
 
     [JsonIgnore]
