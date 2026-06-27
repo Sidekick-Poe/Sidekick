@@ -1,7 +1,7 @@
 name: Bug Report
 description: Report a problem with the game
 title: "[Bug]: "
-labels: ["bug"]
+labels: ["Bug"]
 body:
   - type: dropdown
     id: os
