@@ -2,7 +2,15 @@
   "$id": "1",
   "ignoreStatIds": {
     "$id": "2",
-    "$values": []
+    "$values": [
+      "pseudo.pseudo_map_conversion_shaper_map",
+      "pseudo.pseudo_map_conversion_elder_map",
+      "pseudo.pseudo_map_conversion_conqueror_map",
+      "pseudo.pseudo_map_conversion_unique_map",
+      "pseudo.pseudo_map_conversion_scarab",
+      "pseudo.pseudo_map_conversion_maven_invitation",
+      "pseudo.pseudo_map_conversion_memory_line"
+    ]
   },
   "incursionRoomStatIds": {
     "$id": "3",
