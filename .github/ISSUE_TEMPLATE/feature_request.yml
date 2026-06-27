@@ -8,10 +8,6 @@ body:
     attributes:
       label: Feature description
       description: Describe the feature or improvement you would like to see.
-      placeholder: |
-        What would you like added or changed?
-
-        Why would this be useful?
     validations:
       required: true
 

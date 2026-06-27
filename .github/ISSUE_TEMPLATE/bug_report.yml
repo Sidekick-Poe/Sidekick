@@ -49,7 +49,7 @@ body:
       label: Issue description
       description: Describe what happened.
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: related-items
