@@ -1,0 +1,53 @@
+name: Bug Report
+description: Report a problem with the game
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      description: Which operating system are you using?
+      options:
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: Which version are you using?
+      options:
+        - Desktop
+        - Web
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue description
+      description: Describe the issue.
+      placeholder: |
+        What happened?
+
+        What did you expect to happen?
+
+        Steps to reproduce:
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-items
+    attributes:
+      label: Related items
+      description: Ctrl+C in the game, then Ctrl+V here.
+      placeholder: Paste related items here
+      render: text
+    validations:
+      required: false

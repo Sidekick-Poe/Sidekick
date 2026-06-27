@@ -1,0 +1,26 @@
+name: Feature Request
+description: Suggest an idea or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature description
+      description: Describe the feature or improvement you would like to see.
+      placeholder: |
+        What would you like added or changed?
+
+        Why would this be useful?
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-items
+    attributes:
+      label: Related items
+      description: If relevant, Ctrl+C in the game, then Ctrl+V here.
+      placeholder: Paste related items here
+      render: text
+    validations:
+      required: false
