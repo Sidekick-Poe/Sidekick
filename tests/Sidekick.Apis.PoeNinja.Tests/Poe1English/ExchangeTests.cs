@@ -52,7 +52,7 @@ Right click this item then left click a rare item to apply it. Rare items can ha
         Assert.Equal("exalted", result.Id);
     }
 
-    [Fact]
+    [Fact(Skip = "This item is not in the Ninja API for phrecia event")]
     public async Task TheVoid()
     {
         var item = parser.ParseItem(@"Item Class: Divination Cards

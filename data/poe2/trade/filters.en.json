@@ -294,86 +294,91 @@
                   },
                   {
                     "$id": "63",
+                    "id": "flask.charm",
+                    "text": "Charm"
+                  },
+                  {
+                    "$id": "64",
                     "id": "map",
                     "text": "Any Endgame Item"
                   },
                   {
-                    "$id": "64",
+                    "$id": "65",
                     "id": "map.waystone",
                     "text": "Waystone"
                   },
                   {
-                    "$id": "65",
+                    "$id": "66",
                     "id": "map.fragment",
                     "text": "Map Fragment"
                   },
                   {
-                    "$id": "66",
+                    "$id": "67",
                     "id": "map.logbook",
                     "text": "Logbook"
                   },
                   {
-                    "$id": "67",
+                    "$id": "68",
                     "id": "map.breachstone",
                     "text": "Breachstone"
                   },
                   {
-                    "$id": "68",
+                    "$id": "69",
                     "id": "map.barya",
                     "text": "Barya"
                   },
                   {
-                    "$id": "69",
+                    "$id": "70",
                     "id": "map.bosskey",
                     "text": "Pinnacle Key"
                   },
                   {
-                    "$id": "70",
+                    "$id": "71",
                     "id": "map.ultimatum",
                     "text": "Ultimatum Key"
                   },
                   {
-                    "$id": "71",
+                    "$id": "72",
                     "id": "map.tablet",
                     "text": "Tablet"
                   },
                   {
-                    "$id": "72",
+                    "$id": "73",
                     "id": "card",
                     "text": "Divination Card"
                   },
                   {
-                    "$id": "73",
+                    "$id": "74",
                     "id": "sanctum.relic",
                     "text": "Relic"
                   },
                   {
-                    "$id": "74",
+                    "$id": "75",
                     "id": "currency",
                     "text": "Any Currency"
                   },
                   {
-                    "$id": "75",
+                    "$id": "76",
                     "id": "currency.omen",
                     "text": "Omen"
                   },
                   {
-                    "$id": "76",
+                    "$id": "77",
                     "id": "currency.socketable",
                     "text": "Any Augment"
                   },
                   {
-                    "$id": "77",
+                    "$id": "78",
                     "id": "currency.rune",
                     "text": "Rune"
                   },
                   {
-                    "$id": "78",
+                    "$id": "79",
                     "id": "currency.soulcore",
                     "text": "Soul Core"
                   },
                   {
-                    "$id": "79",
+                    "$id": "80",
                     "id": "currency.idol",
                     "text": "Idol"
                   }
@@ -382,45 +387,45 @@
             }
           },
           {
-            "$id": "80",
+            "$id": "81",
             "id": "rarity",
             "text": "Item Rarity",
             "option": {
-              "$id": "81",
+              "$id": "82",
               "options": {
-                "$id": "82",
+                "$id": "83",
                 "$values": [
                   {
-                    "$id": "83",
+                    "$id": "84",
                     "text": "Any"
                   },
                   {
-                    "$id": "84",
+                    "$id": "85",
                     "id": "normal",
                     "text": "Normal"
                   },
                   {
-                    "$id": "85",
+                    "$id": "86",
                     "id": "magic",
                     "text": "Magic"
                   },
                   {
-                    "$id": "86",
+                    "$id": "87",
                     "id": "rare",
                     "text": "Rare"
                   },
                   {
-                    "$id": "87",
+                    "$id": "88",
                     "id": "unique",
                     "text": "Unique"
                   },
                   {
-                    "$id": "88",
+                    "$id": "89",
                     "id": "uniquefoil",
                     "text": "Unique (Foil)"
                   },
                   {
-                    "$id": "89",
+                    "$id": "90",
                     "id": "nonunique",
                     "text": "Any Non-Unique"
                   }
@@ -429,25 +434,25 @@
             }
           },
           {
-            "$id": "90",
+            "$id": "91",
             "id": "ilvl",
             "text": "Item Level",
             "option": {
-              "$id": "91",
+              "$id": "92",
               "options": {
-                "$id": "92",
+                "$id": "93",
                 "$values": []
               }
             }
           },
           {
-            "$id": "93",
+            "$id": "94",
             "id": "quality",
             "text": "Item Quality",
             "option": {
-              "$id": "94",
+              "$id": "95",
               "options": {
-                "$id": "95",
+                "$id": "96",
                 "$values": []
               }
             }
@@ -456,176 +461,176 @@
       }
     },
     {
-      "$id": "96",
+      "$id": "97",
       "id": "equipment_filters",
       "title": "Equipment Filters",
       "filters": {
-        "$id": "97",
+        "$id": "98",
         "$values": [
           {
-            "$id": "98",
+            "$id": "99",
             "id": "damage",
             "text": "Damage",
             "option": {
-              "$id": "99",
+              "$id": "100",
               "options": {
-                "$id": "100",
+                "$id": "101",
                 "$values": []
               }
             }
           },
           {
-            "$id": "101",
+            "$id": "102",
             "id": "aps",
             "text": "Attacks per Second",
             "option": {
-              "$id": "102",
+              "$id": "103",
               "options": {
-                "$id": "103",
+                "$id": "104",
                 "$values": []
               }
             }
           },
           {
-            "$id": "104",
+            "$id": "105",
             "id": "crit",
             "text": "Critical Chance",
             "option": {
-              "$id": "105",
+              "$id": "106",
               "options": {
-                "$id": "106",
+                "$id": "107",
                 "$values": []
               }
             }
           },
           {
-            "$id": "107",
+            "$id": "108",
             "id": "dps",
             "text": "Damage per Second",
             "option": {
-              "$id": "108",
+              "$id": "109",
               "options": {
-                "$id": "109",
+                "$id": "110",
                 "$values": []
               }
             }
           },
           {
-            "$id": "110",
+            "$id": "111",
             "id": "pdps",
             "text": "Physical DPS",
             "option": {
-              "$id": "111",
+              "$id": "112",
               "options": {
-                "$id": "112",
+                "$id": "113",
                 "$values": []
               }
             }
           },
           {
-            "$id": "113",
+            "$id": "114",
             "id": "edps",
             "text": "Elemental DPS",
             "option": {
-              "$id": "114",
+              "$id": "115",
               "options": {
-                "$id": "115",
+                "$id": "116",
                 "$values": []
               }
             }
           },
           {
-            "$id": "116",
+            "$id": "117",
             "id": "reload_time",
             "text": "Reload Time",
             "option": {
-              "$id": "117",
+              "$id": "118",
               "options": {
-                "$id": "118",
+                "$id": "119",
                 "$values": []
               }
             }
           },
           {
-            "$id": "119",
+            "$id": "120",
             "id": "ar",
             "text": "Armour",
             "option": {
-              "$id": "120",
+              "$id": "121",
               "options": {
-                "$id": "121",
+                "$id": "122",
                 "$values": []
               }
             }
           },
           {
-            "$id": "122",
+            "$id": "123",
             "id": "ev",
             "text": "Evasion",
             "option": {
-              "$id": "123",
+              "$id": "124",
               "options": {
-                "$id": "124",
+                "$id": "125",
                 "$values": []
               }
             }
           },
           {
-            "$id": "125",
+            "$id": "126",
             "id": "es",
             "text": "Energy Shield",
             "option": {
-              "$id": "126",
+              "$id": "127",
               "options": {
-                "$id": "127",
+                "$id": "128",
                 "$values": []
               }
             }
           },
           {
-            "$id": "128",
+            "$id": "129",
             "id": "ward",
             "text": "Runic Ward",
             "option": {
-              "$id": "129",
+              "$id": "130",
               "options": {
-                "$id": "130",
+                "$id": "131",
                 "$values": []
               }
             }
           },
           {
-            "$id": "131",
+            "$id": "132",
             "id": "block",
             "text": "Block",
             "option": {
-              "$id": "132",
+              "$id": "133",
               "options": {
-                "$id": "133",
+                "$id": "134",
                 "$values": []
               }
             }
           },
           {
-            "$id": "134",
+            "$id": "135",
             "id": "spirit",
             "text": "Spirit",
             "option": {
-              "$id": "135",
+              "$id": "136",
               "options": {
-                "$id": "136",
+                "$id": "137",
                 "$values": []
               }
             }
           },
           {
-            "$id": "137",
+            "$id": "138",
             "id": "rune_sockets",
             "text": "Augmentable Sockets",
             "option": {
-              "$id": "138",
+              "$id": "139",
               "options": {
-                "$id": "139",
+                "$id": "140",
                 "$values": []
               }
             }
@@ -634,56 +639,56 @@
       }
     },
     {
-      "$id": "140",
+      "$id": "141",
       "id": "req_filters",
       "title": "Requirements",
       "filters": {
-        "$id": "141",
+        "$id": "142",
         "$values": [
           {
-            "$id": "142",
+            "$id": "143",
             "id": "lvl",
             "text": "Level",
             "option": {
-              "$id": "143",
+              "$id": "144",
               "options": {
-                "$id": "144",
+                "$id": "145",
                 "$values": []
               }
             }
           },
           {
-            "$id": "145",
+            "$id": "146",
             "id": "str",
             "text": "Strength",
             "option": {
-              "$id": "146",
+              "$id": "147",
               "options": {
-                "$id": "147",
+                "$id": "148",
                 "$values": []
               }
             }
           },
           {
-            "$id": "148",
+            "$id": "149",
             "id": "dex",
             "text": "Dexterity",
             "option": {
-              "$id": "149",
+              "$id": "150",
               "options": {
-                "$id": "150",
+                "$id": "151",
                 "$values": []
               }
             }
           },
           {
-            "$id": "151",
+            "$id": "152",
             "id": "int",
             "text": "Intelligence",
             "option": {
-              "$id": "152",
+              "$id": "153",
               "options": {
-                "$id": "153",
+                "$id": "154",
                 "$values": []
               }
             }
@@ -692,157 +697,145 @@
       }
     },
     {
-      "$id": "154",
+      "$id": "155",
       "id": "map_filters",
       "title": "Endgame Filters",
       "filters": {
-        "$id": "155",
+        "$id": "156",
         "$values": [
           {
-            "$id": "156",
+            "$id": "157",
             "id": "map_tier",
             "text": "Waystone Tier",
             "option": {
-              "$id": "157",
+              "$id": "158",
               "options": {
-                "$id": "158",
+                "$id": "159",
                 "$values": []
               }
             }
           },
           {
-            "$id": "159",
+            "$id": "160",
             "id": "map_packsize",
             "text": "Waystone Packsize",
             "option": {
-              "$id": "160",
+              "$id": "161",
               "options": {
-                "$id": "161",
+                "$id": "162",
                 "$values": []
               }
             }
           },
           {
-            "$id": "162",
-            "id": "map_iiq",
-            "text": "Waystone IIQ",
+            "$id": "163",
+            "id": "map_magic_monsters",
+            "text": "Monster Effectiveness",
             "option": {
-              "$id": "163",
+              "$id": "164",
               "options": {
-                "$id": "164",
+                "$id": "165",
                 "$values": []
               }
             }
           },
           {
-            "$id": "165",
+            "$id": "166",
             "id": "map_iir",
             "text": "Waystone IIR",
             "option": {
-              "$id": "166",
+              "$id": "167",
               "options": {
-                "$id": "167",
+                "$id": "168",
                 "$values": []
               }
             }
           },
           {
-            "$id": "168",
+            "$id": "169",
+            "id": "map_rare_monsters",
+            "text": "Monster Rarity",
+            "option": {
+              "$id": "170",
+              "options": {
+                "$id": "171",
+                "$values": []
+              }
+            }
+          },
+          {
+            "$id": "172",
             "id": "map_revives",
             "text": "Waystone Revives",
             "option": {
-              "$id": "169",
+              "$id": "173",
               "options": {
-                "$id": "170",
+                "$id": "174",
                 "$values": []
               }
             }
           },
           {
-            "$id": "171",
+            "$id": "175",
             "id": "map_bonus",
             "text": "Waystone Drop Chance",
             "option": {
-              "$id": "172",
+              "$id": "176",
               "options": {
-                "$id": "173",
+                "$id": "177",
                 "$values": []
               }
             }
           },
           {
-            "$id": "174",
+            "$id": "178",
             "id": "map_gold",
             "text": "Waystone Gold",
             "option": {
-              "$id": "175",
+              "$id": "179",
               "options": {
-                "$id": "176",
+                "$id": "180",
                 "$values": []
               }
             }
           },
           {
-            "$id": "177",
+            "$id": "181",
             "id": "map_experience",
             "text": "Waystone Experience",
             "option": {
-              "$id": "178",
+              "$id": "182",
               "options": {
-                "$id": "179",
+                "$id": "183",
                 "$values": []
               }
             }
           },
           {
-            "$id": "180",
-            "id": "map_magic_monsters",
-            "text": "Waystone Magic Monsters",
-            "option": {
-              "$id": "181",
-              "options": {
-                "$id": "182",
-                "$values": []
-              }
-            }
-          },
-          {
-            "$id": "183",
-            "id": "map_rare_monsters",
-            "text": "Waystone Rare Monsters",
-            "option": {
-              "$id": "184",
-              "options": {
-                "$id": "185",
-                "$values": []
-              }
-            }
-          },
-          {
-            "$id": "186",
+            "$id": "184",
             "id": "ultimatum_hint",
             "text": "Ultimatum Trial Hint",
             "option": {
-              "$id": "187",
+              "$id": "185",
               "options": {
-                "$id": "188",
+                "$id": "186",
                 "$values": [
                   {
-                    "$id": "189",
+                    "$id": "187",
                     "text": "Any"
                   },
                   {
-                    "$id": "190",
+                    "$id": "188",
                     "id": "Victorious",
                     "text": "Victorious"
                   },
                   {
-                    "$id": "191",
+                    "$id": "189",
                     "id": "Cowardly",
                     "text": "Cowardly"
                   },
                   {
-                    "$id": "192",
+                    "$id": "190",
                     "id": "Deadly",
                     "text": "Deadly"
                   }
@@ -854,80 +847,80 @@
       }
     },
     {
-      "$id": "193",
+      "$id": "191",
       "id": "misc_filters",
       "title": "Miscellaneous",
       "filters": {
-        "$id": "194",
+        "$id": "192",
         "$values": [
           {
-            "$id": "195",
+            "$id": "193",
             "id": "gem_level",
             "text": "Gem Level",
             "option": {
-              "$id": "196",
+              "$id": "194",
               "options": {
-                "$id": "197",
+                "$id": "195",
                 "$values": []
               }
             }
           },
           {
-            "$id": "198",
+            "$id": "196",
             "id": "gem_sockets",
             "text": "Gem Sockets",
             "option": {
-              "$id": "199",
+              "$id": "197",
               "options": {
-                "$id": "200",
+                "$id": "198",
                 "$values": []
               }
             }
           },
           {
-            "$id": "201",
+            "$id": "199",
             "id": "area_level",
             "text": "Area Level",
             "option": {
-              "$id": "202",
+              "$id": "200",
               "options": {
-                "$id": "203",
+                "$id": "201",
                 "$values": []
               }
             }
           },
           {
-            "$id": "204",
+            "$id": "202",
             "id": "stack_size",
             "text": "Stack Size",
             "option": {
-              "$id": "205",
+              "$id": "203",
               "options": {
-                "$id": "206",
+                "$id": "204",
                 "$values": []
               }
             }
           },
           {
-            "$id": "207",
+            "$id": "205",
             "id": "identified",
             "text": "Identified",
             "option": {
-              "$id": "208",
+              "$id": "206",
               "options": {
-                "$id": "209",
+                "$id": "207",
                 "$values": [
                   {
-                    "$id": "210",
+                    "$id": "208",
                     "text": "Any"
                   },
                   {
-                    "$id": "211",
+                    "$id": "209",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "212",
+                    "$id": "210",
                     "id": "false",
                     "text": "No"
                   }
@@ -936,25 +929,25 @@
             }
           },
           {
-            "$id": "213",
+            "$id": "211",
             "id": "fractured_item",
             "text": "Fractured",
             "option": {
-              "$id": "214",
+              "$id": "212",
               "options": {
-                "$id": "215",
+                "$id": "213",
                 "$values": [
                   {
-                    "$id": "216",
+                    "$id": "214",
                     "text": "Any"
                   },
                   {
-                    "$id": "217",
+                    "$id": "215",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "218",
+                    "$id": "216",
                     "id": "false",
                     "text": "No"
                   }
@@ -963,25 +956,25 @@
             }
           },
           {
-            "$id": "219",
+            "$id": "217",
             "id": "corrupted",
             "text": "Corrupted",
             "option": {
-              "$id": "220",
+              "$id": "218",
               "options": {
-                "$id": "221",
+                "$id": "219",
                 "$values": [
                   {
-                    "$id": "222",
+                    "$id": "220",
                     "text": "Any"
                   },
                   {
-                    "$id": "223",
+                    "$id": "221",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "224",
+                    "$id": "222",
                     "id": "false",
                     "text": "No"
                   }
@@ -990,25 +983,25 @@
             }
           },
           {
-            "$id": "225",
+            "$id": "223",
             "id": "sanctified",
             "text": "Sanctified",
             "option": {
-              "$id": "226",
+              "$id": "224",
               "options": {
-                "$id": "227",
+                "$id": "225",
                 "$values": [
                   {
-                    "$id": "228",
+                    "$id": "226",
                     "text": "Any"
                   },
                   {
-                    "$id": "229",
+                    "$id": "227",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "230",
+                    "$id": "228",
                     "id": "false",
                     "text": "No"
                   }
@@ -1017,25 +1010,25 @@
             }
           },
           {
-            "$id": "231",
+            "$id": "229",
             "id": "twice_corrupted",
             "text": "Twice Corrupted",
             "option": {
-              "$id": "232",
+              "$id": "230",
               "options": {
-                "$id": "233",
+                "$id": "231",
                 "$values": [
                   {
-                    "$id": "234",
+                    "$id": "232",
                     "text": "Any"
                   },
                   {
-                    "$id": "235",
+                    "$id": "233",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "236",
+                    "$id": "234",
                     "id": "false",
                     "text": "No"
                   }
@@ -1044,25 +1037,25 @@
             }
           },
           {
-            "$id": "237",
+            "$id": "235",
             "id": "mutated",
             "text": "Cultivated Vaal Unique",
             "option": {
-              "$id": "238",
+              "$id": "236",
               "options": {
-                "$id": "239",
+                "$id": "237",
                 "$values": [
                   {
-                    "$id": "240",
+                    "$id": "238",
                     "text": "Any"
                   },
                   {
-                    "$id": "241",
+                    "$id": "239",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "242",
+                    "$id": "240",
                     "id": "false",
                     "text": "No"
                   }
@@ -1071,25 +1064,25 @@
             }
           },
           {
-            "$id": "243",
+            "$id": "241",
             "id": "veiled",
             "text": "Unrevealed",
             "option": {
-              "$id": "244",
+              "$id": "242",
               "options": {
-                "$id": "245",
+                "$id": "243",
                 "$values": [
                   {
-                    "$id": "246",
+                    "$id": "244",
                     "text": "Any"
                   },
                   {
-                    "$id": "247",
+                    "$id": "245",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "248",
+                    "$id": "246",
                     "id": "false",
                     "text": "No"
                   }
@@ -1098,25 +1091,25 @@
             }
           },
           {
-            "$id": "249",
+            "$id": "247",
             "id": "desecrated",
             "text": "Desecrated",
             "option": {
-              "$id": "250",
+              "$id": "248",
               "options": {
-                "$id": "251",
+                "$id": "249",
                 "$values": [
                   {
-                    "$id": "252",
+                    "$id": "250",
                     "text": "Any"
                   },
                   {
-                    "$id": "253",
+                    "$id": "251",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "254",
+                    "$id": "252",
                     "id": "false",
                     "text": "No"
                   }
@@ -1125,25 +1118,25 @@
             }
           },
           {
-            "$id": "255",
+            "$id": "253",
             "id": "crafted",
             "text": "Crafted",
             "option": {
-              "$id": "256",
+              "$id": "254",
               "options": {
-                "$id": "257",
+                "$id": "255",
                 "$values": [
                   {
-                    "$id": "258",
+                    "$id": "256",
                     "text": "Any"
                   },
                   {
-                    "$id": "259",
+                    "$id": "257",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "260",
+                    "$id": "258",
                     "id": "false",
                     "text": "No"
                   }
@@ -1152,25 +1145,25 @@
             }
           },
           {
-            "$id": "261",
+            "$id": "259",
             "id": "foreseeing",
             "text": "Foreseeing",
             "option": {
-              "$id": "262",
+              "$id": "260",
               "options": {
-                "$id": "263",
+                "$id": "261",
                 "$values": [
                   {
-                    "$id": "264",
+                    "$id": "262",
                     "text": "Any"
                   },
                   {
-                    "$id": "265",
+                    "$id": "263",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "266",
+                    "$id": "264",
                     "id": "false",
                     "text": "No"
                   }
@@ -1179,25 +1172,25 @@
             }
           },
           {
-            "$id": "267",
+            "$id": "265",
             "id": "mirrored",
             "text": "Mirrored",
             "option": {
-              "$id": "268",
+              "$id": "266",
               "options": {
-                "$id": "269",
+                "$id": "267",
                 "$values": [
                   {
-                    "$id": "270",
+                    "$id": "268",
                     "text": "Any"
                   },
                   {
-                    "$id": "271",
+                    "$id": "269",
                     "id": "true",
                     "text": "Yes"
                   },
                   {
-                    "$id": "272",
+                    "$id": "270",
                     "id": "false",
                     "text": "No"
                   }
@@ -1206,25 +1199,25 @@
             }
           },
           {
-            "$id": "273",
+            "$id": "271",
             "id": "sanctum_gold",
             "text": "Barya Sacred Water",
             "option": {
-              "$id": "274",
+              "$id": "272",
               "options": {
-                "$id": "275",
+                "$id": "273",
                 "$values": []
               }
             }
           },
           {
-            "$id": "276",
+            "$id": "274",
             "id": "unidentified_tier",
             "text": "Unidentified Tier",
             "option": {
-              "$id": "277",
+              "$id": "275",
               "options": {
-                "$id": "278",
+                "$id": "276",
                 "$values": []
               }
             }
@@ -1233,39 +1226,39 @@
       }
     },
     {
-      "$id": "279",
+      "$id": "277",
       "id": "trade_filters",
       "title": "Trade Filters",
       "filters": {
-        "$id": "280",
+        "$id": "278",
         "$values": [
           {
-            "$id": "281",
+            "$id": "279",
             "id": "account",
             "text": "Seller Account",
             "option": {
-              "$id": "282",
+              "$id": "280",
               "options": {
-                "$id": "283",
+                "$id": "281",
                 "$values": []
               }
             }
           },
           {
-            "$id": "284",
+            "$id": "282",
             "id": "collapse",
             "text": "Collapse Listings by Account",
             "option": {
-              "$id": "285",
+              "$id": "283",
               "options": {
-                "$id": "286",
+                "$id": "284",
                 "$values": [
                   {
-                    "$id": "287",
+                    "$id": "285",
                     "text": "No"
                   },
                   {
-                    "$id": "288",
+                    "$id": "286",
                     "id": "true",
                     "text": "Yes"
                   }
@@ -1274,60 +1267,60 @@
             }
           },
           {
-            "$id": "289",
+            "$id": "287",
             "id": "indexed",
             "text": "Listed",
             "option": {
-              "$id": "290",
+              "$id": "288",
               "options": {
-                "$id": "291",
+                "$id": "289",
                 "$values": [
                   {
-                    "$id": "292",
+                    "$id": "290",
                     "text": "Any Time"
                   },
                   {
-                    "$id": "293",
+                    "$id": "291",
                     "id": "1hour",
                     "text": "Up to an Hour Ago"
                   },
                   {
-                    "$id": "294",
+                    "$id": "292",
                     "id": "3hours",
                     "text": "Up to 3 Hours Ago"
                   },
                   {
-                    "$id": "295",
+                    "$id": "293",
                     "id": "12hours",
                     "text": "Up to 12 Hours Ago"
                   },
                   {
-                    "$id": "296",
+                    "$id": "294",
                     "id": "1day",
                     "text": "Up to a Day Ago"
                   },
                   {
-                    "$id": "297",
+                    "$id": "295",
                     "id": "3days",
                     "text": "Up to 3 Days Ago"
                   },
                   {
-                    "$id": "298",
+                    "$id": "296",
                     "id": "1week",
                     "text": "Up to a Week Ago"
                   },
                   {
-                    "$id": "299",
+                    "$id": "297",
                     "id": "2weeks",
                     "text": "Up to 2 Weeks Ago"
                   },
                   {
-                    "$id": "300",
+                    "$id": "298",
                     "id": "1month",
                     "text": "Up to 1 Month Ago"
                   },
                   {
-                    "$id": "301",
+                    "$id": "299",
                     "id": "2months",
                     "text": "Up to 2 Months Ago"
                   }
@@ -1336,30 +1329,30 @@
             }
           },
           {
-            "$id": "302",
+            "$id": "300",
             "id": "sale_type",
             "text": "Sale Type",
             "option": {
-              "$id": "303",
+              "$id": "301",
               "options": {
-                "$id": "304",
+                "$id": "302",
                 "$values": [
                   {
-                    "$id": "305",
+                    "$id": "303",
                     "id": "any",
                     "text": "Any"
                   },
                   {
-                    "$id": "306",
+                    "$id": "304",
                     "text": "Buyout or Fixed Price"
                   },
                   {
-                    "$id": "307",
+                    "$id": "305",
                     "id": "priced_with_info",
                     "text": "Price with Note"
                   },
                   {
-                    "$id": "308",
+                    "$id": "306",
                     "id": "unpriced",
                     "text": "No Listed Price"
                   }
@@ -1368,82 +1361,82 @@
             }
           },
           {
-            "$id": "309",
+            "$id": "307",
             "id": "fee",
             "text": "Gold Fee",
             "option": {
-              "$id": "310",
+              "$id": "308",
               "options": {
-                "$id": "311",
+                "$id": "309",
                 "$values": []
               }
             }
           },
           {
-            "$id": "312",
+            "$id": "310",
             "id": "price",
             "text": "Buyout Price",
             "option": {
-              "$id": "313",
+              "$id": "311",
               "options": {
-                "$id": "314",
+                "$id": "312",
                 "$values": [
                   {
-                    "$id": "315",
+                    "$id": "313",
                     "text": "Exalted Orb Equivalent"
                   },
                   {
-                    "$id": "316",
+                    "$id": "314",
                     "id": "exalted_divine",
                     "text": "Exalted or Divine Orbs"
                   },
                   {
-                    "$id": "317",
+                    "$id": "315",
                     "id": "aug",
                     "text": "Orb of Augmentation"
                   },
                   {
-                    "$id": "318",
+                    "$id": "316",
                     "id": "transmute",
                     "text": "Orb of Transmutation"
                   },
                   {
-                    "$id": "319",
+                    "$id": "317",
                     "id": "exalted",
                     "text": "Exalted Orb"
                   },
                   {
-                    "$id": "320",
+                    "$id": "318",
                     "id": "regal",
                     "text": "Regal Orb"
                   },
                   {
-                    "$id": "321",
+                    "$id": "319",
                     "id": "chaos",
                     "text": "Chaos Orb"
                   },
                   {
-                    "$id": "322",
+                    "$id": "320",
                     "id": "vaal",
                     "text": "Vaal Orb"
                   },
                   {
-                    "$id": "323",
+                    "$id": "321",
                     "id": "alch",
                     "text": "Orb of Alchemy"
                   },
                   {
-                    "$id": "324",
+                    "$id": "322",
                     "id": "divine",
                     "text": "Divine Orb"
                   },
                   {
-                    "$id": "325",
+                    "$id": "323",
                     "id": "annul",
                     "text": "Orb of Annulment"
                   },
                   {
-                    "$id": "326",
+                    "$id": "324",
                     "id": "mirror",
                     "text": "Mirror of Kalandra"
                   }

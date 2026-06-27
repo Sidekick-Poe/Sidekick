@@ -913,7 +913,7 @@
         "index_handlers": [
           []
         ],
-        "string": "[Delirious|Delirium] in Map increases {0}% faster with distance from the mirror",
+        "string": "[ContainsDelirium|Delirium] Fog in Map applies {0}% increased [Delirious|Deliriousness] to Players",
         "reminder_text": null,
         "is_markup": null
       },
@@ -933,7 +933,7 @@
             "negate"
           ]
         ],
-        "string": "[Delirious|Delirium] in Map increases {0}% slower with distance from the mirror",
+        "string": "[ContainsDelirium|Delirium] Fog in Map applies {0}% reduced [Delirious|Deliriousness] to Players",
         "reminder_text": null,
         "is_markup": null
       }
@@ -2721,6 +2721,42 @@
     ],
     "ids": [
       "map_expedition_relics_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional Chinese": null
+  },
+  {
+    "English": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[Runic] Monsters in your Maps are Duplicated",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "ids": [
+      "map_expedition_twinned_elites"
     ],
     "trade_stats": null,
     "hidden": null,
