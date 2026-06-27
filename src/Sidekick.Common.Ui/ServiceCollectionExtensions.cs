@@ -16,7 +16,6 @@ public static class ServiceCollectionExtensions
 
         services.TryAddScoped<ICurrentView, CurrentView>();
 
-        services.TryAddSingleton<IViewPreferenceService, ViewPreferenceService>();
         services.TryAddSingleton<SectionService>();
 
         services.AddSidekickModule(typeof(ConfirmationDialog).Assembly);

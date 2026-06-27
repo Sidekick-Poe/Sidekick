@@ -29,12 +29,10 @@ public partial class MainWindow
     private bool IsNormalized { get; set; }
     private string? NextPath { get; set; }
 
-    private bool CloseOnBlur { get; set; }
-    private IntPtr OriginalFocusedWindow { get; set; }
+    private bool ShouldCloseOnBlur { get; set; }
+    private bool ShouldSavePosition { get; set; }
 
-    private SidekickViewType ViewType { get; }
-
-    public MainWindow(SidekickViewType viewType, ILogger logger)
+    public MainWindow(ILogger logger)
     {
         this.logger = logger;
 
@@ -42,7 +40,6 @@ public partial class MainWindow
         Resources.Add("services", scope.ServiceProvider);
 
         Title = "Sidekick";
-        ViewType = viewType;
         Width = 0;
         Height = 0;
         Opacity = 0;
@@ -58,15 +55,19 @@ public partial class MainWindow
         };
     }
 
-    public async Task OpenView(string url)
+    public async Task OpenView(SidekickViewType type, string url)
     {
         logger.LogInformation("[MainWindow] Opening view: " + url);
 
         await Dispatch(async () =>
         {
             var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
-            CloseOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
-            OriginalFocusedWindow = User32.GetForegroundWindow();
+            ShouldCloseOnBlur = type == SidekickViewType.Overlay;
+            ShouldCloseOnBlur &= await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+
+            ShouldSavePosition = type == SidekickViewType.Overlay;
+
+            var originalFocusedWindow = User32.GetForegroundWindow();
 
             Show();
 
@@ -79,13 +80,44 @@ public partial class MainWindow
                 Navigate(url);
             }
 
+            switch (type)
+            {
+                case SidekickViewType.Overlay:
+                    Topmost = false;
+#if DEBUG
+                    ShowInTaskbar = true;
+#else
+                Topmost = true;
+                ShowInTaskbar = false;
+#endif
+                    ResizeMode = ResizeMode.CanResize;
+                    break;
+
+                case SidekickViewType.Modal:
+                    Topmost = false;
+#if DEBUG
+                    ShowInTaskbar = true;
+#else
+                Topmost = true;
+                ShowInTaskbar = true;
+#endif
+                    ResizeMode = ResizeMode.NoResize;
+                    break;
+
+                case SidekickViewType.Standard:
+                    Topmost = false;
+                    ShowInTaskbar = true;
+                    ResizeMode = ResizeMode.CanResize;
+                    break;
+            }
+
             await NormalizeView();
             Activate();
 
             // Attempt to set focus back to the original window
-            if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
+            if (type == SidekickViewType.Overlay && !ShouldCloseOnBlur && originalFocusedWindow != IntPtr.Zero)
             {
-                User32.SetForegroundWindow(OriginalFocusedWindow);
+                User32.SetForegroundWindow(originalFocusedWindow);
             }
         });
     }
@@ -128,84 +160,10 @@ public partial class MainWindow
 
             if (NextPath != null) NavigationManager.NavigateTo(NextPath);
 
-            await NormalizeView();
-
-            IsReady = true;
-        });
-    }
-
-    private void CurrentViewOptionsChanged()
-    {
-        _ = Dispatch(NormalizeView);
-    }
-
-    private void MinimizeView()
-    {
-        logger.LogInformation("[MainWindow] Minimizing view");
-
-        _ = Dispatch(async () =>
-        {
-            await SavePosition();
-            WindowState = WindowState.Minimized;
-        });
-    }
-
-    private void MaximizeView()
-    {
-        logger.LogInformation("[MainWindow] Maximizing view");
-
-        _ = Dispatch(async () =>
-        {
-            if (WindowState == WindowState.Normal)
-            {
-                await SavePosition();
-                WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                await NormalizeView();
-            }
-        });
-    }
-
-    private async Task NormalizeView()
-    {
-        logger.LogInformation("[MainWindow] Normalizing view");
-
-        switch (ViewType)
-        {
-            case SidekickViewType.Overlay:
-                Topmost = false;
-#if DEBUG
-                ShowInTaskbar = true;
-#else
-                Topmost = true;
-                ShowInTaskbar = false;
-#endif
-                ResizeMode = ResizeMode.CanResize;
-                break;
-
-            case SidekickViewType.Modal:
-                Topmost = false;
-#if DEBUG
-                ShowInTaskbar = true;
-#else
-                Topmost = true;
-                ShowInTaskbar = true;
-#endif
-                ResizeMode = ResizeMode.NoResize;
-                break;
-
-            case SidekickViewType.Standard:
-                Topmost = false;
-                ShowInTaskbar = true;
-                ResizeMode = ResizeMode.CanResize;
-                break;
-        }
 
         var viewPreferenceService = scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
         var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
-        var preferences = await viewPreferenceService.Get(ViewType.ToString());
+        var preferences = await viewPreferenceService.Get();
         var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
         var zoomString = await settingsService.GetString(SettingKeys.Zoom);
         if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
@@ -258,7 +216,7 @@ public partial class MainWindow
         };
         Width = MinWidth;
 
-        if (ViewType != SidekickViewType.Modal && preferences != null)
+        if (type != SidekickViewType.Modal && preferences != null)
         {
             if (preferences.Height > Height && View?.Height == null) Height = preferences.Height;
             if (preferences.Width > Width && View?.Width == null) Width = preferences.Width;
@@ -280,7 +238,42 @@ public partial class MainWindow
             CenterHelper.Center(this);
         }
 
-        IsNormalized = true;
+            IsReady = true;
+        });
+    }
+
+    private void CurrentViewOptionsChanged()
+    {
+        _ = Dispatch(NormalizeView);
+    }
+
+    private void MinimizeView()
+    {
+        logger.LogInformation("[MainWindow] Minimizing view");
+
+        _ = Dispatch(async () =>
+        {
+            await SavePosition();
+            WindowState = WindowState.Minimized;
+        });
+    }
+
+    private void MaximizeView()
+    {
+        logger.LogInformation("[MainWindow] Maximizing view");
+
+        _ = Dispatch(async () =>
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                await SavePosition();
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                await NormalizeView();
+            }
+        });
     }
 
     private void Navigate(string? url)
@@ -292,7 +285,7 @@ public partial class MainWindow
 
     private async Task SavePosition()
     {
-        if (!IsVisible || ViewType == SidekickViewType.Modal || ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
+        if (!IsVisible || !ShouldSavePosition || ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
         {
             logger.LogInformation("[MainWindow] Not saving position, window is not visible, is modal, or is maximized");
             return;
@@ -306,7 +299,7 @@ public partial class MainWindow
             var y = (int)Top;
 
             var viewPreferenceService = scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
-            await viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
+            await viewPreferenceService.Set(width, height, x, y);
             logger.LogInformation("[MainWindow] Position saved");
         }
         catch (Exception e)
@@ -330,7 +323,7 @@ public partial class MainWindow
     {
         base.OnDeactivated(e);
 
-        if (IsReady && ViewType == SidekickViewType.Overlay && CloseOnBlur)
+        if (IsReady && ShouldCloseOnBlur)
         {
             CloseView();
         }

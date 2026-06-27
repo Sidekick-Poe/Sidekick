@@ -8,7 +8,7 @@ public class AvaloniaViewLocator : IViewLocator
     {
     }
 
-    public void Close(SidekickViewType type)
+    public void Close()
     {
     }
 

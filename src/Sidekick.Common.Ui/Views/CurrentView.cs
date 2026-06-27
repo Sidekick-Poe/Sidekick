@@ -7,9 +7,6 @@ namespace Sidekick.Common.Ui.Views;
 public class CurrentView : ICurrentView
 {
     /// <inheritdoc/>
-    public event Action? OptionsChanged;
-
-    /// <inheritdoc/>
     public event Action? Minimized;
 
     /// <inheritdoc/>
@@ -24,15 +21,6 @@ public class CurrentView : ICurrentView
     /// <inheritdoc/>
     public event Action? DragStopped;
 
-    public int? Width  { get; private set; }
-    public int? Height { get; private set; }
-
-    public void UpdateOptions(int? width, int? height)
-    {
-        Width = width;
-        Height = height;
-        OptionsChanged?.Invoke();
-    }
 
     /// <inheritdoc/>
     public void Minimize()
@@ -53,7 +41,7 @@ public class CurrentView : ICurrentView
     }
 
     private bool IsDragging { get; set; }
-    
+
     public void StartDragging(int offsetX, int offsetY)
     {
         if (IsDragging) return;

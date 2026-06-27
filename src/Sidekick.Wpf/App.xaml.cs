@@ -46,8 +46,7 @@ public partial class App
         {
             logger.LogDebug("[Startup] Application is already running.");
             var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
-            viewLocator.Close(SidekickViewType.Standard);
-            viewLocator.Close(SidekickViewType.Overlay);
+            viewLocator.Close();
             var sidekickDialogs = Program.ServiceProvider.GetRequiredService<ISidekickDialogs>();
             await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");

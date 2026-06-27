@@ -13,10 +13,9 @@ public interface IViewLocator
     void Open(SidekickViewType type, string url);
 
     /// <summary>
-    /// Closes a view of the specified type.
+    /// Closes the Sidekick view.
     /// </summary>
-    /// <param name="type">The type of view to close.</param>
-    void Close(SidekickViewType type);
+    void Close();
 
     /// <summary>
     /// Check if an overlay is opened

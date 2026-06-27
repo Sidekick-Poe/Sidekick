@@ -11,7 +11,7 @@ public class PhotinoBlazorViewLocator : IViewLocator
         Views.ForEach(x => x.NavigationManager.NavigateTo(url));
     }
 
-    public void Close(SidekickViewType type)
+    public void Close()
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }

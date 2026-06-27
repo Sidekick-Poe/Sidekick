@@ -19,7 +19,7 @@ public class CloseOverlayKeybindHandler(
 
     public override Task Execute(string _)
     {
-        viewLocator.Close(SidekickViewType.Overlay);
+        viewLocator.Close();
         return Task.CompletedTask;
     }
 }

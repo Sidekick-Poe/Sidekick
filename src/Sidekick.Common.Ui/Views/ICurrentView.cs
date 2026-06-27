@@ -5,14 +5,6 @@ namespace Sidekick.Common.Ui.Views;
 /// </summary>
 public interface ICurrentView
 {
-    public const int DialogWidth = 400;
-    public const int DialogHeight = 220;
-    
-    /// <summary>
-    /// An event that is triggered when a view is updated with specific options.
-    /// </summary>
-    event Action? OptionsChanged;
-
     /// <summary>
     /// An event that is triggered when a view is minimized.
     /// </summary>
@@ -38,12 +30,6 @@ public interface ICurrentView
     /// </summary>
     event Action? DragStopped;
 
-    int? Width { get; }
-    
-    int? Height { get; }
-    
-    void UpdateOptions(int? width, int? height);
-    
     /// <summary>
     /// Minimizes the view.
     /// </summary>

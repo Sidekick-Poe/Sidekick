@@ -58,6 +58,4 @@ public sealed class SidekickDbContext : DbContext
     public DbSet<WealthFullSnapshot> WealthFullSnapshots { get; init; }
 
     public DbSet<WealthSparkline> WealthSparklines { get; init; }
-
-    public DbSet<ViewPreference> ViewPreferences { get; init; }
 }
