@@ -44,9 +44,10 @@ Note: ~b/o 400 chaos
         Assert.Equal("foulborn-ghostwrithe-chaos-recoup-life-to-shield-silken-vest-6l", result.DetailsId);
     }
 
-    [Fact]
+    [Fact(Skip = "This item is not in the Ninja API for phrecia event")]
     public async Task FoulbornSquire()
     {
+
         var item = parser.ParseItem(@"Item Class: Shields
 Rarity: Unique
 Foulborn The Squire
