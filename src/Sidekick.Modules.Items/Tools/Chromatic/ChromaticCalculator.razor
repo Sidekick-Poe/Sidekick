@@ -8,16 +8,20 @@
 
 <div class="grid grid-cols-4 gap-3 my-3">
     <FormNumber @bind-Value="NumberOfSockets"
-                InputAttributes="@(new() { { "min", 0 }, { "max", 6 } })"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Sockets"]"/>
     <FormNumber @bind-Value="RedSockets"
-                InputAttributes="@(new() { { "min", 0 }, { "max", 6 } })"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Red"]"/>
     <FormNumber @bind-Value="GreenSockets"
-                InputAttributes="@(new() { { "min", 0 }, { "max", 6 } })"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Green"]"/>
     <FormNumber @bind-Value="BlueSockets"
-                InputAttributes="@(new() { { "min", 0 }, { "max", 6 } })"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Blue"]"/>
 </div>
 
