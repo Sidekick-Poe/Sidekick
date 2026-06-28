@@ -5,6 +5,7 @@ import zoomHandler from "./app/zoomHandler";
 import contentEditable from "./forms/contentEditable";
 import removeFocus from "./forms/removeFocus.js";
 import setIndeterminate from "./forms/setIndeterminate.js";
+import numberInputWheel from "./forms/numberInputWheel.js";
 
 import modal from "./flowbite/modal";
 import popover from "./flowbite/popover";
@@ -25,5 +26,6 @@ window.sidekick = {
         contentEditable,
         removeFocus,
         setIndeterminate,
+        numberInputWheel,
     },
 };

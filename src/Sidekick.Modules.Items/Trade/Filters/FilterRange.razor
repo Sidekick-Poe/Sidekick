@@ -44,7 +44,6 @@
 </Popover>
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject IJSRuntime JsRuntime
 @inject ISettingsService SettingsService
 
 @code {
@@ -65,22 +64,6 @@
     public EventCallback<double?> MaxChanged { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            // Prevent the wheel event from scrolling.
-            var js = $@"
-                document.getElementById('{Id}')?.addEventListener('wheel', function(e) {{
-                    e.preventDefault();
-                }}, {{ passive: false }});
-            ";
-            await JsRuntime.InvokeVoidAsync("eval", js);
-        }
-
-        await base.OnAfterRenderAsync(firstRender);
-    }
 
     private async Task UpdateMinValue(double? value)
     {

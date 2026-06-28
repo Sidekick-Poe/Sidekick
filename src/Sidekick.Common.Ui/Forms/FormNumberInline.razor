@@ -3,13 +3,13 @@
 <div class="flex flex-nowrap items-center gap-4">
     @if (!string.IsNullOrEmpty(Label))
     {
-        <label for="@Id"
+        <label for="@ElementId"
                class="block text-base font-medium dark:text-zinc-300 text-nowrap">
             @Label
         </label>
     }
     <div class="ml-auto">
-        <input id="@Id"
+        <input id="@ElementId"
                @attributes="InputAttributes"
                type="number"
                @onchange="OnChange"
