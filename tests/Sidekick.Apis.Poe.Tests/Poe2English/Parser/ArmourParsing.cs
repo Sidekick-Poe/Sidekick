@@ -85,7 +85,6 @@ Item Level: 5
 Grants Skill: Parry
 --------
 +12 to maximum Life
-
 ");
 
         Assert.Equal(ItemClass.Buckler, actual.ItemClass.Type);
@@ -217,5 +216,119 @@ Note: ~b/o 980 divine
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Gain Deflection Rating equal to #% of Evasion Rating", 60);
         // Issue #985 fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to amount of Damage Prevented by Deflection", -9);
+    }
+
+    [Fact]
+    public void ParsePainGuardian()
+    {
+        var actual = parser.ParseItem(@"Item Class: Body Armours
+Rarity: Rare
+Pain Guardian
+Sacramental Robe
+--------
+Quality: +20% (augmented)
+Energy Shield: 600 (augmented)
+Runic Ward: 30 (augmented)
+--------
+Requires: Level 75, 84 (augmented) Int
+--------
+Sockets: S S 
+--------
+Item Level: 79
+--------
++25 to maximum Runic Ward (rune)
+18% increased Armour, Evasion and Energy Shield (rune)
+--------
+{ Implicit Modifier — Energy Shield }
+20(20-25)% increased Energy Shield Recharge Rate
+--------
+{ Desecrated Prefix Modifier ""Pope's"" (Tier: 1) — Life, Energy Shield }
+42(39-42)% increased Energy Shield
++46(42-49) to maximum Life
+{ Prefix Modifier ""Archon's"" (Tier: 2) — Energy Shield }
++24(21-25) to maximum Energy Shield
+37(33-38)% increased Energy Shield
+{ Prefix Modifier ""Scintillating"" (Tier: 3) — Energy Shield }
++77(74-80) to maximum Energy Shield
+{ Suffix Modifier ""of the Starfish"" (Tier: 8) — Life }
+4.7(4.1-6) Life Regeneration per second
+{ Suffix Modifier ""of the Skilled"" (Tier: 2) }
+30% reduced Attribute Requirements
+{ Crafted Suffix Modifier ""of the Essence"" }
+Hits against you have 43(40-50)% reduced Critical Damage Bonus
+");
+
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Sacramental Robe", actual.Definition.TradeItem?.Type);
+
+        Assert.Equal(79, actual.Properties.ItemLevel);
+        Assert.Equal(600, actual.Properties.EnergyShield);
+        // TODO Runic Ward
+        // Assert.Equal(30, actual.Properties.RunicWard);
+
+        Assert.Equal(75, actual.Properties.RequiresLevel);
+        Assert.Equal(84, actual.Properties.RequiresIntelligence);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Energy Shield Recharge Rate", 20);
+        fixture.AssertHasStat(actual, StatCategory.Desecrated, "#% increased Energy Shield", 42);
+        fixture.AssertHasStat(actual, StatCategory.Desecrated, "# to maximum Life", 46);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# to maximum Energy Shield", 101);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Energy Shield", 37);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# Life Regeneration per second", 4.7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Attribute Requirements", -30);
+        fixture.AssertHasStat(actual, StatCategory.Crafted, "Hits against you have #% reduced Critical Damage Bonus", 43);
+    }
+
+    [Fact]
+    public void ParseIronride()
+    {
+        var actual = parser.ParseItem(@"Item Class: Helmets
+Rarity: Unique
+Ironride
+Visored Helm
+--------
+Quality: +20% (augmented)
+Armour: 105 (augmented)
+Evasion Rating: 89 (augmented)
+--------
+Requires: Level 16, 14 (augmented) Str, 14 (augmented) Dex
+--------
+Sockets: S 
+--------
+Item Level: 81
+--------
+{ Corruption Enhancement — Mana }
+30(20-30)% increased Mana Regeneration Rate
+--------
+{ Unique Modifier — Armour, Evasion }
+62(60-80)% increased Armour and Evasion
+{ Unique Modifier — Elemental, Lightning, Resistance }
++10(10-15)% to Lightning Resistance
+{ Unique Modifier — Mana }
++40(30-50) to maximum Mana
+{ Unique Modifier }
+You have no Accuracy Penalty at Distance — Unscalable Value
+{ Unique Modifier — Life }
++44(30-50) to maximum Life
+--------
+Let the rider's aim be true.
+--------
+Corrupted");
+
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Ironride", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Visored Helm", actual.Definition.TradeItem?.Type);
+
+        Assert.Equal(81, actual.Properties.ItemLevel);
+        Assert.Equal(105, actual.Properties.Armour);
+        Assert.Equal(89, actual.Properties.EvasionRating);
+
+        Assert.Equal(16, actual.Properties.RequiresLevel);
+        Assert.Equal(14, actual.Properties.RequiresStrength);
+        Assert.Equal(14, actual.Properties.RequiresDexterity);
+
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "#% increased Mana Regeneration Rate", 30);
     }
 }

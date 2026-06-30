@@ -13,6 +13,8 @@ using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
+using Sidekick.Data.Trade;
+using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -33,11 +35,15 @@ public class StatParser
 
     private List<StatDefinition> Definitions { get; set; } = [];
     private List<StatDefinition> InvariantDefinitions { get; set; } = [];
+    public Dictionary<string, List<TradeStatDefinition>> TradeDefinitions { get; private set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
         Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
+
+        var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, currentGameLanguage.Language);
+        TradeDefinitions = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
 
         if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) InvariantDefinitions = Definitions;
         else InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
@@ -82,8 +88,8 @@ public class StatParser
                     var lines = block.Lines.Skip(lineIndex).Select(x => x.Text).ToList();
                     var definitions = MatchDefinitions(FilterDefinitions(), lines).ToList();
                     var matchFuzzily = definitions
-                        .Where(x => x.TradeStats != null)
-                        .Sum(x => x.TradeStats!.Count) is 0;
+                        .Where(x => x.TradeIds != null)
+                        .Sum(x => x.TradeIds!.Count) is 0;
                     if (matchFuzzily) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
                     if (definitions.Count is 0) continue;
 
@@ -102,7 +108,7 @@ public class StatParser
         {
             return item.Properties.Rarity switch
             {
-                Rarity.Gem => Definitions.Where(x => x.TradeStats?.Any(y => y.Category is StatCategory.Imbued) ?? false),
+                Rarity.Gem => Definitions.Where(x => x.TradeIds?.Any(y => y.StartsWith(StatCategory.Imbued.GetValueAttribute())) ?? false),
                 _ => Definitions,
             };
         }
@@ -178,13 +184,17 @@ public class StatParser
         int lineIndex = 0
     )
     {
-        var category = ParseCategory(text);
+        var categoryMatch = ParseCategoryPattern.Match(text);
+        var category = categoryMatch.Success ?
+            categoryMatch.Groups[1].Value.GetEnumFromValue<StatCategory>()
+            : StatCategory.Explicit;
+
         if (category != StatCategory.Mutated)
         {
             var categories = definitions
-                .Where(x => x.TradeStats != null)
-                .SelectMany(x => x.TradeStats!)
-                .Select(x => x.Category)
+                .Where(x => x.TradeIds != null)
+                .SelectMany(x => x.TradeIds!)
+                .Select(x => x.GetStatCategory())
                 .Distinct()
                 .ToList();
             if (categories.Count == 1 && categories[0] != StatCategory.Undefined)
@@ -201,71 +211,66 @@ public class StatParser
             LineIndex = lineIndex,
             Definitions = definitions,
             MatchedFuzzily = matchedFuzzily,
-            HasTradeSupport = definitions.Any(x => x.TradeStats is { Count: > 0 }),
+            HasTradeSupport = definitions.Any(x => x.TradeIds is { Count: > 0 }),
         };
 
         stat.Values = GetValues(stat).ToList();
         return stat;
-    }
 
-    private StatCategory ParseCategory(string value)
-    {
-        var match = ParseCategoryPattern.Match(value);
-        if (!match.Success) return StatCategory.Explicit;
-
-        return match.Groups[1].Value.GetEnumFromValue<StatCategory>();
-    }
-
-    private IEnumerable<double> GetValues(Stat stat)
-    {
-        var hardcodedDefinition = stat.Definitions.FirstOrDefault(x => x.Value.HasValue);
-        if (hardcodedDefinition != null)
+        IEnumerable<double> GetValues(Stat input)
         {
-            yield return hardcodedDefinition.Value!.Value;
-            yield break;
-        }
-
-        foreach (var definition in stat.Definitions)
-        {
-            var patternMatch = definition.Pattern.Match(stat.Text);
-            if (!patternMatch.Success) continue;
-
-            var hasMatchingDescription = HasMatchingDescriptions(definition);
-            var hasValues = false;
-            foreach (Group group in patternMatch.Groups)
+            var hardcodedDefinition = input.Definitions.FirstOrDefault(x => x.Value.HasValue);
+            if (hardcodedDefinition != null)
             {
-                foreach (Capture capture in group.Captures)
-                {
-                    if (!double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value)) continue;
-                    if (!hasMatchingDescription && definition.Negate) value *= -1;
-                    yield return value;
-                    hasValues = true;
-                }
+                yield return hardcodedDefinition.Value!.Value;
+                yield break;
             }
 
-            if (hasValues) yield break;
-        }
-
-        // Find numbers in the line
-        if (stat.MatchedFuzzily)
-        {
-            var matches = new Regex("([-+0-9,.]+)").Matches(stat.Text);
-            foreach (Match match in matches)
+            foreach (var definition in input.Definitions)
             {
-                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
+                var patternMatch = definition.Pattern.Match(input.Text);
+                if (!patternMatch.Success) continue;
+
+                var hasMatchingDescription = HasMatchingDescriptions(definition);
+                var hasValues = false;
+                foreach (Group group in patternMatch.Groups)
                 {
-                    yield return value;
+                    foreach (Capture capture in group.Captures)
+                    {
+                        if (!double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value)) continue;
+                        if (!hasMatchingDescription && definition.Negate) value *= -1;
+                        yield return value;
+                        hasValues = true;
+                    }
+                }
+
+                if (hasValues) yield break;
+            }
+
+            // Find numbers in the line
+            if (input.MatchedFuzzily)
+            {
+                var matches = new Regex("([-+0-9,.]+)").Matches(input.Text);
+                foreach (Match match in matches)
+                {
+                    if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
+                    {
+                        yield return value;
+                    }
                 }
             }
         }
-
-        yield break;
 
         bool HasMatchingDescriptions(StatDefinition definition)
         {
-            if (definition.TradeStats == null) return false;
-            return definition.TradeStats.Any(tradeStat => tradeStat.Text == definition.Text);
+            if (definition.TradeIds == null) return false;
+            foreach (var tradeId in definition.TradeIds)
+            {
+                var tradeDefinitions = TradeDefinitions.GetValueOrDefault(tradeId);
+                if (tradeDefinitions != null && tradeDefinitions.Any(x => x.Text == definition.Text)) return true;
+            }
 
+            return false;
         }
     }
 

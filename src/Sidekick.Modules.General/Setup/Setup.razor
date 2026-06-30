@@ -108,7 +108,7 @@
     {
         try
         {
-            var leagues = await LeagueProvider.GetList(false);
+            var leagues = await LeagueProvider.GetList();
             var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
             var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
             if (apiLeaguesHash != settingsLeaguesHash)
@@ -157,7 +157,7 @@
     public async Task Save()
     {
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        var leagues = await LeagueProvider.GetList(true);
+        var leagues = await LeagueProvider.GetList();
         if (leagues.All(x => x.Value != leagueId))
         {
             FormInvalid = true;

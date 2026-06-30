@@ -1,0 +1,5064 @@
+[
+  {
+    "English": null,
+    "ids": [
+      "map_item_drop_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ ไอเทม ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลดจำนวนของ ไอเทม ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_item_drop_rarity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่ม[Rarity|ระดับความหายาก]ของ ไอเทม ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลด[Rarity|ระดับความหายาก]ของ ไอเทม ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_pack_size_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มขนาดกองมอนสเตอร์ ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ลดขนาดกองมอนสเตอร์ ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "expedition_monsters_logbook_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ [Logbook|สมุดปูมเดินทาง][ContainsExpedition|กองสำรวจ] ที่ดรอปจาก มอนสเตอร์[Runic|อักขระ] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ลดจำนวนของ [Logbook|สมุดปูมเดินทาง][ContainsExpedition|กองสำรวจ] ที่ดรอปจาก มอนสเตอร์[Runic|อักขระ] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_depths_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสนำไปสู่ [AbyssalDepths|เบื้องลึกอะบิส] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสนำไปสู่ [AbyssalDepths|เบื้องลึกอะบิส] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_monster_abyssal_modifier_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสมี [AbyssalModifiers|ม็อดอะบิส] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "มอนสเตอร์[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสมี [AbyssalModifiers|ม็อดอะบิส] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_monster_potency_+%_per_chasm_closed"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์[ContainsAbyss|อะบิส] มี[MonsterEffectiveness|ประสิทธิภาพ] เพิ่มขึ้น {0}% ตามจำนวนหลุมที่ปิด สูงสุด 100%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "มอนสเตอร์[ContainsAbyss|อะบิส] มี[MonsterEffectiveness|ประสิทธิภาพ] เพิ่มขึ้น {0}% ตามจำนวนหลุมที่ปิด",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_monster_spawn_amount_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsAbyss|อะบิส] ในแผนที่ เรียกมอนสเตอร์ เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[ContainsAbyss|อะบิส] ในแผนที่ เรียกมอนสเตอร์ ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_monsters_enhanced_per_chasm_closed"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์[ContainsAbyss|อะบิส] ในแผนที่ มีระดับความยากและของรางวัล เพิ่มขึ้น ตามจำนวนหลุมที่ปิด",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_no_reward_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": -50,
+            "max": -50,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "หลุม[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสมี ของรางวัล มากขึ้นเป็นสองเท่า",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": -100,
+            "max": -100,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "หลุม[ContainsAbyss|อะบิส] ในแผนที่มี ของรางวัล เสมอ",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "หลุม[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสมี ของรางวัล น้อยลง อีก {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_num_additional_rare_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsAbyss|อะบิส] ในแผนที่ เรียก มอนสเตอร์[Rarity|แรร์] เพิ่มเติม {0} ตัว",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_overrun_extra_pits"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [ContainsAbyss|อะบิส] เพิ่มเติม 1 แห่ง",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [ContainsAbyss|อะบิส] เพิ่มเติม {0} แห่ง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_overrun_no_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ ถูกรุกล้ำไปด้วย [ContainsAbyss|พวกอะบิส]​",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_abyss_ticket_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสให้ เงินตรา[Abyssalify|สามานย์] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[ContainsAbyss|อะบิส] ในแผนที่ มีโอกาสให้ เงินตรา[Abyssalify|สามานย์] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_addtional_rare_chest_amount"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี หีบ[Rarity|แรร์] เพิ่มเติม 1 ใบ",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี หีบ[Rarity|แรร์] เพิ่มเติม {0} ใบ",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_affliction_encounter_boss_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "การเผชิญหน้า[ContainsDelirium|เดลิเรียม] ในแผนที่ มีโอกาสเรียก บอส[Rarity|ยูนิค] มากขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "การเผชิญหน้า[ContainsDelirium|เดลิเรียม] ในแผนที่ มีโอกาสเรียก บอส[Rarity|ยูนิค] น้อยลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_affliction_encounter_monster_depth_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[Delirious|เดลิเรียม] ในแผนที่เพิ่ม เร็วขึ้น {0}% ตามระยะห่างจากกระจก",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[Delirious|เดลิเรียม] ในแผนที่เพิ่ม ช้าลง {0}% ตามระยะห่างจากกระจก",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_affliction_pack_size_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์[ContainsDelirium|เดลิเรียม] ในแผนที่ มีขนาดกองมอนสเตอร์ เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "มอนสเตอร์[ContainsDelirium|เดลิเรียม] ในแผนที่ มีขนาดกองมอนสเตอร์ ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_affliction_reward_progress_on_kill_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์ที่อยู่ใน[ContainsDelirium|เดลิเรียม] ที่ถูกสังหารในแผนที่ ให้ความก้าวหน้าของของรางวัล เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_affliction_secondary_wave_acceleration_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "หมอก[ContainsDelirium|เดลิเรียม] ในแผนที่ สลายตัว เร็วขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "หมอก[ContainsDelirium|เดลิเรียม] ในแผนที่ สลายตัว ช้าลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_affliction_secondary_wave_delay_ms_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_0dp"
+          ]
+        ],
+        "string": "หมอก[ContainsDelirium|เดลิเรียม] ในแผนที่ คงอยู่ เพิ่มเติม {0} วินาที ก่อนที่จะสลายไป​",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_affliction_secondary_wave_delay_seconds_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "หมอก[ContainsDelirium|เดลิเรียม] ในแผนที่ คงอยู่ เพิ่มเติม {0} วินาที ก่อนที่จะสลายไป",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_boss_dropped_item_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ ไอเทม ที่ดรอปจาก [MapBoss|บอสประจำแผนที่] {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลดจำนวนของ ไอเทม ที่ดรอปจาก [MapBoss|บอสประจำแผนที่] {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_boss_experience_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[MapBoss|บอสประจำแผนที่] ให้ค่าประสบการณ์ เพิ่มขึ้น อีก {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[MapBoss|บอสประจำแผนที่] ให้ค่าประสบการณ์ ลดลง อีก {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_boss_item_rarity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่ม[Rarity|ระดับความหายาก]ของ ไอเทม ที่ดรอปจาก [MapBoss|บอสประจำแผนที่] {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลด[Rarity|ระดับความหายาก]ของ ไอเทม ที่ดรอปจาก [MapBoss|บอสประจำแผนที่] {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_%_chance_for_1_additional_breach"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [ContainsBreach|บรีช] เพิ่มเติม 1 แห่ง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [ContainsBreach|บรีช] เพิ่มเติม 1 แห่ง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_%_chance_for_3_additional_breach"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [ContainsBreach|บรีช] เพิ่มเติม 3 แห่ง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [ContainsBreach|บรีช] เพิ่มเติม 3 แห่ง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_X_additional_rare_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "บรีช ในแผนที่ เรียก มอนสเตอร์แรร์ เพิ่มเติม 1 ตัว",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "บรีช ในแผนที่ เรียก มอนสเตอร์แรร์ เพิ่มเติม {0} ตัว",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_hives_additional_waves_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsBreach|Breach] Hives in Map have an additional wave of Hiveborn Monsters",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsBreach|Breach] Hives in Map have {0} additional waves of Hiveborn Monsters",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_monster_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsBreach|บรีช] ในแผนที่ มีความหนาแน่นของมอนสเตอร์ เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[ContainsBreach|บรีช] ในแผนที่ มีความหนาแน่นของมอนสเตอร์ ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_monster_splinter_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ สะเก็ด[ContainsBreach|บรีช] ที่ดรอปจาก มอนสเตอร์[ContainsBreach|บรีช] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลดจำนวนของ สะเก็ด[ContainsBreach|บรีช] ที่ดรอปจาก มอนสเตอร์[ContainsBreach|บรีช] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_number_of_magic_packs_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "บรีช ในแผนที่ เรียก มอนสเตอร์เมจิก เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "บรีช ในแผนที่ เรียก มอนสเตอร์เมจิก ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_time_passed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsBreach|บรีช] ในแผนที่ เปิดและปิด เร็วขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[ContainsBreach|บรีช] ในแผนที่ เปิดและปิด ช้าลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breaches_num_additional_chests_to_spawn"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "บรีช ในแผนที่มี มือกุมแน่น เพิ่มเติม {0} มือ",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "บรีช ในแผนที่มี มือกุมแน่น เพิ่มเติม {0} มือ",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_chance_for_4_additional_abysses_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [ContainsAbyss|อะบิส] เพิ่มเติม 4 แห่ง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [ContainsAbyss|อะบิส] เพิ่มเติม 4 แห่ง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_delirium_additional_reward_type_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "การเผชิญหน้า[ContainsDelirium|เดลิเรียม] ในแผนที่ที่ได้รับผล มีโอกาสสร้าง ของรางวัล เพิ่มเติม 1 ชนิด {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_delirium_doodads_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsDelirium|หมอกเดลิเรียม] ในแผนที่เรียก [FracturingMirror|กระจกแตกร้าว] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[ContainsDelirium|หมอกเดลิเรียม] ในแผนที่เรียก [FracturingMirror|กระจกแตกร้าว] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_delirium_special_event_all_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsDelirium|Delirium Fog] in Map spawns {0}% increased [FracturingMirrorShard|MirrorShards]",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[ContainsDelirium|Delirium Fog] in Map spawns {0}% reduced [FracturingMirrorShard|MirrorShards]",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_delirium_splinter_stack_size_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มขนาดกองของ สะเก็ดเมืองจำแลง ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ลดขนาดกองของ สะเก็ดเมืองจำแลง ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_desert_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|ทะเลทราย] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_expedition_artifact_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ โบราณวัตถุ[ContainsExpedition|กองสำรวจ] ที่ดรอปจากมอนสเตอร์ ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ลดจำนวนของ โบราณวัตถุ[ContainsExpedition|กองสำรวจ] ที่ดรอปจากมอนสเตอร์ ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_expedition_elite_marker_count_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ด่านมีจำนวนของ เครื่องหมายมอนสเตอร์แรร์[Runic|อักขระ] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ด่านมีจำนวนของ เครื่องหมายมอนสเตอร์แรร์[Runic|อักขระ] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_expedition_explosion_radius_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มรัศมีของ วัตถุระเบิด[ContainsExpedition|กองสำรวจ] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_expedition_maximum_placement_distance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มระยะการวาง วัตถุระเบิด[ContainsExpedition|กองสำรวจ] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ลดระยะการวาง วัตถุระเบิด[ContainsExpedition|กองสำรวจ] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_expedition_rare_monsters_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ มอนสเตอร์[ContainsExpedition|Expedition][Rarity|แรร์] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ลดจำนวนของ มอนสเตอร์[ContainsExpedition|Expedition][Rarity|แรร์]ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_expedition_relic_mod_effect_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มผลของ ซากอารยธรรม[ContainsExpedition|กองสำรวจ] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ลดผลของ ซากอารยธรรม[ContainsExpedition|กองสำรวจ] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_expedition_relics_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsExpedition|กองสำรวจ] ในแผนที่มี ซากอารยธรรม {0} ชิ้น",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsExpedition|กองสำรวจ] ในแผนที่มี ซากอารยธรรม {0} ชิ้น",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_experience_gain_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มค่าประสบการณ์ที่ได้รับ ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลดค่าประสบการณ์ที่ได้รับ ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_extra_gold_piles_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่ม ทอง ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลด ทอง ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_extra_monoliths"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Essence|เอสเซนส์] เพิ่มเติม 1 ผลึก",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Essence|เอสเซนส์] เพิ่มเติม {0} ผลึก",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ezomyte_city_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|นครเอโซไมต์] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_faridun_city_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|นครฟาริดัน] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_forest_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|ป่า] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_grass_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|หญ้า] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_incursion_token_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มีโอกาสได้รับ คริสตัล เพิ่มเติม 1 ชิ้นจาก [ContainsIncursion|สัญญาณไฟวาล์] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_incursion_vaal_beacon_chest_rare_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "หีบ[ContainsIncursion|สัญญาณไฟวาล์] ในแผนที่ มีโอกาสเป็น หีบ[Rarity|แรร์] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_incursion_vaal_beacon_extra_packs_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มีกองมอนสเตอร์รอบ [ContainsIncursion|สัญญาณไฟวาล์] เพิ่มเติม {0} กอง ในแผนที่",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มีกองมอนสเตอร์รอบ [ContainsIncursion|สัญญาณไฟวาล์] เพิ่มเติม {0} กอง ในแผนที่",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_incursion_vaal_beacon_extra_packs_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มีโอกาสมีกองมอนสเตอร์รอบ [ContainsIncursion|สัญญาณไฟวาล์] เพิ่มเติม 1 กอง ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_incursion_vaal_beacon_pack_size_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มขนาดของมอนสเตอร์รอบ [ContainsIncursion|สัญญาณไฟวาล์] ในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_incursion_vaal_beacon_secondary_encounter_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsIncursion|สัญญาณไฟวาล์] ในแผนที่ มีโอกาสอัญเชิญมอนสเตอร์ เพิ่มเติม เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_incursion_vaal_beacons_also_add_boss_to_area_chance_%_scaled"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มีโอกาสเพิ่ม มอนสเตอร์[ContainsIncursion|สัญญาณไฟวาล์][Rarity|ยูนิค] 1 ตัว ลงไปในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_killing_rare_monsters_pauses_delirium_mirror_timer_for_x_seconds"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "การสังหาร มอนสเตอร์[Rarity|แรร์] ในแผนที่จะหยุดเวลาของ กระจก[ContainsDelirium|เดลิเรียม] 1 วินาที",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "การสังหาร มอนสเตอร์[Rarity|แรร์] ในแผนที่จะหยุดเวลาของ กระจก[ContainsDelirium|เดลิเรียม] {0} วินาที",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_map_boss_bonus_map_drop_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ [Waystone|ศิลานำทาง] ที่ดรอปจาก [MapBoss|บอสประจำแผนที่] {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ลดจำนวนของ [Waystone|ศิลานำทาง] ที่ดรอปจาก [MapBoss|บอสประจำแผนที่] {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_map_item_drop_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "เพิ่มจำนวนของ [Waystone|ศิลานำทาง] ที่พบในแผนที่ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monolith_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [Essence|เอสเซนส์] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "แผนที่ มีโอกาสมี [Essence|เอสเซนส์] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monster_potency_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์ มี[MonsterEffectiveness|ประสิทธิภาพ] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "มอนสเตอร์ มี[MonsterEffectiveness|ประสิทธิภาพ] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_mountain_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|ภูเขา] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_num_extra_abysses"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [ContainsAbyss|อะบิส] เพิ่มเติม 1 แห่ง",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [ContainsAbyss|อะบิส] เพิ่มเติม {0} แห่ง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_num_extra_shrines"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Shrine|แท่นบูชา] เพิ่มเติม 1 แท่น",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Shrine|แท่นบูชา] เพิ่มเติม {0} แท่น",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_num_extra_stone_circles"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [StoneSummoningCircle|วงศิลาอัญเชิญ] เพิ่มเติม 1 วง",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [StoneSummoningCircle|วงศิลาอัญเชิญ] เพิ่มเติม {0} วง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_num_extra_strongboxes"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Strongbox|กล่องนิรภัย] เพิ่มเติม 1 ใบ",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Strongbox|กล่องนิรภัย] เพิ่มเติม {0} ใบ",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_number_of_additional_mods"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีม็อดแบบสุ่ม เพิ่มเติม {0} อย่าง",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีม็อดแบบสุ่ม เพิ่มเติม {0} อย่าง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_number_of_magic_and_rare_packs_+%_and_rare_monster_modifiers_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [MonsterRarity|ระดับความหายากของ มอนสเตอร์] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_number_of_magic_packs_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี มอนสเตอร์[Rarity|เมจิก] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_number_of_rare_packs_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีจำนวนของ มอนสเตอร์[Rarity|แรร์] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_monster_additional_modifier_chance_%_with_rollover"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์[Rarity|แรร์] ในแผนที่ มีโอกาสมีม็อด เพิ่มเติม 1 อย่าง {0}% โดย[SurpassChance|ไม่จำกัดโอกาสสูงสุด]",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_additional_reward_rerolls"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsRitual|แท่นพิธีกรรม] ในแผนที่ สามารถ สุ่มของสนองบรรณาการ ได้ เพิ่มเติม 1 ครั้ง",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsRitual|แท่นพิธีกรรม] ในแผนที่ สามารถ สุ่มของสนองบรรณาการ ได้ เพิ่มเติม {0} ครั้ง",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_defer_reward_tribute_cost_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "การผัดผ่อนของสนองบรรณาการที่ [ContainsRitual|แท่นพิธีกรรม] ในแผนที่มี ค่าบรรณาการ เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "การผัดผ่อนของสนองบรรณาการที่ [ContainsRitual|แท่นพิธีกรรม] ในแผนที่มี ค่าบรรณาการ ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_deferred_rewards_are_offered_again_+%_sooner"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ของสนองบรรณาการ ที่ถูกผัดผ่อนใน [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ ปรากฏใหม่ เร็วขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_magic_monsters_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์ที่คืนชีพจาก [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ มีโอกาสเป็น มอนสเตอร์[Rarity|เมจิก] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "มอนสเตอร์ที่คืนชีพจาก [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ มีโอกาสเป็น มอนสเตอร์[Rarity|เมจิก] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_offered_rewards_amount_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsRitual|แท่นพิธีกรรม] ในด่าน มีจำนวนของ ของสนองบรรณาการ เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "[ContainsRitual|แท่นพิธีกรรม] ในด่าน มีจำนวนของ ของสนองบรรณาการ ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_offered_rewards_from_rerolls_have_permyriad_chance_to_cost_no_tribute"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_one_hundred"
+          ]
+        ],
+        "string": "ของสนองบรรณาการ ที่ถูกสุ่มใน [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ มีโอกาส ไม่มีค่าบรรณาการ {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_omen_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "ของสนองบรรณาการ[ContainsRitual|พิธีกรรม] ในแผนที่ มีโอกาสเป็น [Omen|ลางบอกเหตุ] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "ของสนองบรรณาการ[ContainsRitual|พิธีกรรม] ในแผนที่ มีโอกาสเป็น [Omen|ลางบอกเหตุ] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_rare_monsters_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์ที่คืนชีพจาก [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ มีโอกาสเป็น มอนสเตอร์[Rarity|แรร์] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "มอนสเตอร์ที่คืนชีพจาก [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ มีโอกาสเป็น มอนสเตอร์[Rarity|แรร์] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_rewards_reroll_cost_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "การสุ่มของสนองบรรณาการที่ [ContainsRitual|แท่นพิธีกรรม] ในแผนที่มี ค่าบรรณาการ เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "การสุ่มของสนองบรรณาการที่ [ContainsRitual|แท่นพิธีกรรม] ในแผนที่มี ค่าบรรณาการ ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_ritual_tribute_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "มอนสเตอร์ที่ถูกสังเวยที่ [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ให้ บรรณาการ เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "มอนสเตอร์ที่ถูกสังเวยที่ [ContainsRitual|แท่นพิธีกรรม] ในแผนที่ให้ บรรณาการ ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exile_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [RogueExile|เอ็กไซล์อันธพาล] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "แผนที่ มีโอกาสมี [RogueExile|เอ็กไซล์อันธพาล] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_shrine_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [Shrine|แท่นบูชา] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "แผนที่ มีโอกาสมี [Shrine|แท่นบูชา] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_spawn_extra_exiles"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี เอ็กไซล์อันธพาล อาศัยอยู่ เพิ่มเติม {0} คน",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี เอ็กไซล์อันธพาล อาศัยอยู่ เพิ่มเติม {0} คน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_spawn_extra_torment_spirits"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [AzmeriSpirit|วิญญาณแอสเมรี] เพิ่มเติม {0} ตน",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [AzmeriSpirit|วิญญาณแอสเมรี] เพิ่มเติม {0} ตน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_stone_circle_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [StoneSummoningCircle|วงศิลาอัญเชิญ] 1 วง เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "แผนที่ มีโอกาสมี [StoneSummoningCircle|วงศิลาอัญเชิญ] 1 วง ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_strongbox_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [Strongbox|กล่องนิรภัย] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "แผนที่ มีโอกาสมี [Strongbox|กล่องนิรภัย] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_swamp_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|หนองน้ำ] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_tormented_spirit_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ มีโอกาสมี [AzmeriSpirit|วิญญาณแอสเมรี] เพิ่มขึ้น {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "แผนที่ มีโอกาสมี [AzmeriSpirit|วิญญาณแอสเมรี] ลดลง {0}%",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_unstable_breach_additional_x_seconds_before_collapse"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Unstable [ContainsBreach|Breaches] in Map take an additional second to collapse after timer is filled",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Unstable [ContainsBreach|Breaches] in Map take {0} additional seconds to collapse after timer is filled",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_unstable_breach_enrage_x_additional_rare_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Unstable [ContainsBreach|Breaches] in Map spawn an additional [Rarity|Rare] Monster when Stabilised",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Unstable [ContainsBreach|Breaches] in Map spawn {0} additional [Rarity|Rare] Monsters when Stabilised",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_vaal_city_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|นครวาล์] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_water_biome"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่ นับว่าเป็น แผนที่[Biome|สายน้ำ] เช่นกัน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "maps_with_powerful_bosses_additional_essence_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Essence|เอสเซนส์] เพิ่มเติม 1 ผลึก",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Essence|เอสเซนส์] เพิ่มเติม {0} ผลึก",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "maps_with_powerful_bosses_additional_shrine_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Shrine|แท่นบูชา] เพิ่มเติม 1 แท่น",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Shrine|แท่นบูชา] เพิ่มเติม {0} แท่น",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "maps_with_powerful_bosses_additional_spirit_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [AzmeriSpirit|วิญญาณแอสเมรี] เพิ่มเติม 1 ตน",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [AzmeriSpirit|วิญญาณแอสเมรี] เพิ่มเติม {0} ตน",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "maps_with_powerful_bosses_additional_strongbox_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Strongbox|กล่องนิรภัย] เพิ่มเติม 1 ใบ",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "แผนที่มี [Strongbox|กล่องนิรภัย] เพิ่มเติม {0} ใบ",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Traditional_Chinese": null
+  }
+]

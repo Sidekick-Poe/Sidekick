@@ -14,17 +14,15 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
-using Sidekick.Common.Browser;
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Data;
-using Sidekick.Data.Builder;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
-using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
@@ -92,13 +90,12 @@ If you need more support consider asking on the official Sidekick discord server
 
             // Common
             .AddSidekickCommon(SidekickApplicationType.Wpf)
-            .AddSidekickCommonBrowser()
+            .AddSidekickCommonDialogs()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
 
             // Data
             .AddSidekickData()
-            .AddSidekickDataBuilder()
 
             // Apis
             .AddSidekickGitHubApi()
@@ -115,7 +112,6 @@ If you need more support consider asking on the official Sidekick discord server
             // Modules
             .AddSidekickAbout()
             .AddSidekickChat()
-            .AddSidekickModuleData()
             .AddSidekickDevelopment()
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
@@ -129,7 +125,7 @@ If you need more support consider asking on the official Sidekick discord server
         services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
         services.AddSingleton<IViewLocator, WpfViewLocator>();
         services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
-        services.AddSingleton<WpfBrowserWindowProvider>();
+        services.AddSingleton<WpfDialogsHandler>();
 
         services.AddApexCharts();
 

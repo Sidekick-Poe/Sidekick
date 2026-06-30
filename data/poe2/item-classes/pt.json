@@ -21,7 +21,7 @@
     {
       "$id": "5",
       "id": "Currency",
-      "name": "Item Monet\u00E1rio"
+      "name": "Moeda"
     },
     {
       "$id": "6",
@@ -110,13 +110,13 @@
       "$id": "20",
       "id": "Active Skill Gem",
       "type": "activeSkillGem",
-      "name": "Gemas de Habilidades"
+      "name": "Gemas de Habilidade"
     },
     {
       "$id": "21",
       "id": "Support Skill Gem",
       "type": "supportSkillGem",
-      "name": "Gemas de Suporte"
+      "name": "Gemas de Refor\u00E7o"
     },
     {
       "$id": "22",
@@ -209,7 +209,7 @@
       "$id": "37",
       "id": "Map",
       "type": "map",
-      "name": "Dreno de Mana"
+      "name": "Pedras-guia"
     },
     {
       "$id": "38",
@@ -231,7 +231,7 @@
     {
       "$id": "41",
       "id": "HideoutDoodad",
-      "name": "Enfeites de Ref\u00FAgio"
+      "name": "Decora\u00E7\u00F5es de Ref\u00FAgio"
     },
     {
       "$id": "42",
@@ -267,12 +267,12 @@
     {
       "$id": "48",
       "id": "MiscMapItem",
-      "name": "Itens Mapas Variados"
+      "name": "Itens de Mapa Variados"
     },
     {
       "$id": "49",
       "id": "Leaguestone",
-      "name": "Pedras de Ligas"
+      "name": "Pedras da Liga"
     },
     {
       "$id": "50",
@@ -292,17 +292,17 @@
     {
       "$id": "53",
       "id": "IncursionItem",
-      "name": "Itens Incursion"
+      "name": "Itens da Incurs\u00E3o"
     },
     {
       "$id": "54",
       "id": "DelveSocketableCurrency",
-      "name": "Item Monet\u00E1rio Encaix\u00E1vel Delve"
+      "name": "Moedas de Encaixe da Escava\u00E7\u00E3o"
     },
     {
       "$id": "55",
       "id": "Incubator",
-      "name": "Incubadores"
+      "name": "Incubadoras"
     },
     {
       "$id": "56",
@@ -312,7 +312,7 @@
     {
       "$id": "57",
       "id": "UniqueShardBase",
-      "name": "Fragmentos de Cora\u00E7\u00E3o"
+      "name": "Cora\u00E7\u00F5es de Fragmento"
     },
     {
       "$id": "58",
@@ -323,17 +323,17 @@
       "$id": "59",
       "id": "Warstaff",
       "type": "warstaff",
-      "name": "Cajados"
+      "name": "Bast\u00F5es"
     },
     {
       "$id": "60",
       "id": "DelveStackableSocketableCurrency",
-      "name": "Item Monet\u00E1rio Aglomer\u00E1vel e Encaix\u00E1vel Delve"
+      "name": "Moedas Acumul\u00E1veis e Encaix\u00E1veis da Escava\u00E7\u00E3o"
     },
     {
       "$id": "61",
       "id": "AtlasUpgradeItem",
-      "name": "Itens de Aprimoramento de Regi\u00E3o do Atlas"
+      "name": "Itens de Atualiza\u00E7\u00E3o do Atlas"
     },
     {
       "$id": "62",
@@ -368,22 +368,22 @@
     {
       "$id": "68",
       "id": "HeistEquipmentWeapon",
-      "name": "Equipamento Heist"
+      "name": "Equipamento de Assalto"
     },
     {
       "$id": "69",
       "id": "HeistEquipmentTool",
-      "name": "Ferramentas Heist"
+      "name": "Ferramentas de Assalto"
     },
     {
       "$id": "70",
       "id": "HeistEquipmentUtility",
-      "name": "Capas Heist"
+      "name": "Capas de Assalto"
     },
     {
       "$id": "71",
       "id": "HeistEquipmentReward",
-      "name": "Broches Heist"
+      "name": "Broches de Assalto"
     },
     {
       "$id": "72",
@@ -393,227 +393,242 @@
     {
       "$id": "73",
       "id": "Trinket",
-      "name": "Adornos"
+      "name": "Bugigangas"
     },
     {
       "$id": "74",
       "id": "HeistObjective",
-      "name": "Alvos Heist"
+      "name": "Alvos do Assalto"
     },
     {
       "$id": "75",
       "id": "ExpeditionLogbook",
       "type": "expeditionLogbook",
-      "name": "Di\u00E1rios de Bordo Expedition"
+      "name": "Di\u00E1rios da Expedi\u00E7\u00E3o"
     },
     {
       "$id": "76",
-      "id": "IncubatorStackable",
-      "name": "Incubadores"
+      "id": "Expedition2Logbooks",
+      "name": "Di\u00E1rio da Expedi\u00E7\u00E3o"
     },
     {
       "$id": "77",
-      "id": "ArchnemesisMod",
-      "name": "Mods Archnemesis"
+      "id": "IncubatorStackable",
+      "name": "Incubadoras"
     },
     {
       "$id": "78",
+      "id": "ArchnemesisMod",
+      "name": "Modificadores de Arquin\u00EAmesis"
+    },
+    {
+      "$id": "79",
       "id": "Meta Skill Gem",
       "name": ""
     },
     {
-      "$id": "79",
+      "$id": "80",
       "id": "Spear",
       "type": "spear",
       "name": "Lan\u00E7as"
     },
     {
-      "$id": "80",
+      "$id": "81",
       "id": "Crossbow",
       "type": "crossbow",
       "name": "Bestas"
     },
     {
-      "$id": "81",
+      "$id": "82",
       "id": "Focus",
       "type": "focus",
       "name": "Focos"
     },
     {
-      "$id": "82",
+      "$id": "83",
       "id": "InstanceLocalItem",
       "name": "Itens Locais da Inst\u00E2ncia"
     },
     {
-      "$id": "83",
+      "$id": "84",
       "id": "SentinelDrone",
       "name": "Sentinelas"
     },
     {
-      "$id": "84",
+      "$id": "85",
       "id": "MemoryLine",
       "name": "Mem\u00F3rias"
     },
     {
-      "$id": "85",
+      "$id": "86",
       "id": "Flail",
       "type": "flail",
       "name": "Manguais"
     },
     {
-      "$id": "86",
+      "$id": "87",
       "id": "Relic",
       "type": "sanctumRelic",
       "name": "Rel\u00EDquias"
     },
     {
-      "$id": "87",
+      "$id": "88",
       "id": "SanctumSpecialRelic",
       "type": "sanctumRelic",
       "name": "Rel\u00EDquias Santificadas"
     },
     {
-      "$id": "88",
+      "$id": "89",
       "id": "Breachstone",
       "name": "Pedras de Fenda"
     },
     {
-      "$id": "89",
+      "$id": "90",
       "id": "GiftBox",
       "name": ""
     },
     {
-      "$id": "90",
+      "$id": "91",
       "id": "VaultKey",
       "name": "Chaves do Cofre"
     },
     {
-      "$id": "91",
+      "$id": "92",
       "id": "ItemisedSanctum",
       "name": "Moedas da Prova\u00E7\u00E3o"
     },
     {
-      "$id": "92",
+      "$id": "93",
       "id": "DONOTUSE12",
       "name": ""
     },
     {
-      "$id": "93",
+      "$id": "94",
       "id": "UncutSkillGem_OLD",
       "name": ""
     },
     {
-      "$id": "94",
+      "$id": "95",
       "id": "Buckler",
       "type": "buckler",
       "name": "Broqu\u00E9is"
     },
     {
-      "$id": "95",
+      "$id": "96",
       "id": "Thrown One Hand Axe",
       "name": ""
     },
     {
-      "$id": "96",
+      "$id": "97",
       "id": "Thrown Two Hand Axe",
       "name": ""
     },
     {
-      "$id": "97",
+      "$id": "98",
       "id": "ConventionTreasure",
       "name": ""
     },
     {
-      "$id": "98",
+      "$id": "99",
       "id": "TrapTool",
       "name": "Armadilhas"
     },
     {
-      "$id": "99",
+      "$id": "100",
       "id": "Crossbow Attachment REMOVE",
       "name": ""
     },
     {
-      "$id": "100",
+      "$id": "101",
       "id": "SkillGemToken",
-      "name": "Item Monet\u00E1rio"
+      "name": "Moeda"
     },
     {
-      "$id": "101",
+      "$id": "102",
       "id": "Nothing",
       "name": ""
     },
     {
-      "$id": "102",
+      "$id": "103",
       "id": "UltimatumKey",
-      "name": "Ultimato Talhado"
+      "name": "Ultimato Inscrito"
     },
     {
-      "$id": "103",
+      "$id": "104",
       "id": "UncutSupportGem_OLD",
       "name": ""
     },
     {
-      "$id": "104",
+      "$id": "105",
       "id": "UncutReservationGem_OLD",
       "name": ""
     },
     {
-      "$id": "105",
+      "$id": "106",
       "id": "Thrown Shield",
       "name": ""
     },
     {
-      "$id": "106",
+      "$id": "107",
       "id": "SoulCore",
       "name": "Aprimoramento"
     },
     {
-      "$id": "107",
+      "$id": "108",
       "id": "TowerAugmentation",
       "type": "tablet",
       "name": "T\u00E1bua"
     },
     {
-      "$id": "108",
+      "$id": "109",
       "id": "Omen",
       "name": "Press\u00E1gio"
     },
     {
-      "$id": "109",
-      "id": "PinnacleKey",
-      "name": "Chaves Supremas"
+      "$id": "110",
+      "id": "PinnacleKey_OLD",
+      "name": ""
     },
     {
-      "$id": "110",
+      "$id": "111",
       "id": "Talisman",
       "type": "talisman",
       "name": "Talism\u00E3s"
     },
     {
-      "$id": "111",
+      "$id": "112",
       "id": "UncutSkillGemStackable",
       "name": "Gemas de Habilidade Brutas"
     },
     {
-      "$id": "112",
+      "$id": "113",
       "id": "UncutSupportGemStackable",
       "name": "Gemas de Refor\u00E7o Brutas"
     },
     {
-      "$id": "113",
+      "$id": "114",
       "id": "UncutReservationGemStackable",
       "name": "Gemas Espirituais Brutas"
     },
     {
-      "$id": "114",
+      "$id": "115",
       "id": "IncursionArm",
       "name": "Bra\u00E7o Transcendental"
     },
     {
-      "$id": "115",
+      "$id": "116",
       "id": "IncursionLeg",
       "name": "Perna Transcendental"
+    },
+    {
+      "$id": "117",
+      "id": "BrequelFruit",
+      "name": "D\u00E1divas do Ventre"
+    },
+    {
+      "$id": "118",
+      "id": "PinnacleKeyStackable",
+      "name": "Chaves Supremas"
     }
   ]
 }

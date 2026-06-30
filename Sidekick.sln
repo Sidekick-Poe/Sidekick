@@ -74,7 +74,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.PhotinoBlazor", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.RegexHotkeys", "src\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj", "{B84D39FB-E519-77E1-68F5-33F2FABF1938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Browser", "src\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj", "{FC7FC285-CE31-4983-9FC6-E897478A240F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Dialogs", "src\Sidekick.Common.Dialogs\Sidekick.Common.Dialogs.csproj", "{FC7FC285-CE31-4983-9FC6-E897478A240F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Development", "src\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj", "{6802359E-B82B-4828-990D-15A5240A884D}"
 EndProject
@@ -87,8 +87,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Data", "src\Sidekick.Data\Sidekick.Data.csproj", "{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Data.Builder.Cli", "src\Sidekick.Data.Builder.Cli\Sidekick.Data.Builder.Cli.csproj", "{1A9308D7-77EF-4409-BFC0-BAC1A7A161FF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Data", "src\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj", "{B5C5CEC6-D887-40C8-9D6A-A3F68E518C1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Logs", "src\Sidekick.Modules.Logs\Sidekick.Modules.Logs.csproj", "{05BE989B-4760-4490-99FF-A1DF803C04EB}"
 EndProject
@@ -969,7 +967,6 @@ Global
 		{DDEE9957-B7B7-4213-A988-8638047CDA59} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
 		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
 		{1A9308D7-77EF-4409-BFC0-BAC1A7A161FF} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
-		{B5C5CEC6-D887-40C8-9D6A-A3F68E518C1C} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{05BE989B-4760-4490-99FF-A1DF803C04EB} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{5B23CFD2-77AC-47E8-AF70-C903CA90089C} = {9B41443D-4D1E-4DF3-9DA5-522B0AAB40A0}
 		{308E1FD1-708C-46D9-8574-EA9A02A1FEF7} = {1D8BF515-81E9-4769-9B27-24DFB8D8BDCC}

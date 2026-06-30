@@ -3,23 +3,19 @@ namespace Sidekick.Data.Builder.Stats.Hooks;
 
 public class IncursionRooms(StatBuilderContext context) : BaseHook
 {
-    public override void OnAfterTradeBuild(List<StatDefinition> definitions)
+    public override void OnAfterTradeBuild(List<StatDefinition> statDefinitions)
     {
-        var patterns = (from definition in definitions.Where(x => x.TradeStats != null)
-            from tradeStat in definition.TradeStats!
-            where tradeStat.Category == StatCategory.Pseudo
-            where context.InvariantDetails.IncursionRoomStatIds.Contains(tradeStat.Id)
-            select definition);
-
-        foreach (var pattern in patterns)
+        foreach (var statDefinition in statDefinitions)
         {
-            pattern.Pattern = context.Patterns.GetPattern(pattern.Text.Split(':', 2).Last().Trim());
+            if (statDefinition.TradeIds == null) continue;
+
+            foreach (var tradeStat in statDefinition.TradeIds)
+            {
+                if (!tradeStat.StartsWith("pseudo.")) continue;
+                if (!context.InvariantDetails.IncursionRoomStatIds.Contains(tradeStat)) continue;
+
+                statDefinition.Pattern = context.PatternBuilder.GetPattern(statDefinition.Text.Split(':', 2).Last().Trim());
+            }
         }
-
-        definitions.RemoveAll(x => x.TradeStats != null && x.TradeStats.Any(y => context.InvariantDetails.IncursionRoomStatIds.Contains(y.Id)) && Predicate(x));
-
-        return;
-
-        bool Predicate(StatDefinition x) => x.TradeStats != null && x.TradeStats.All(y => y.Option?.Id == 2);
     }
 }

@@ -5,23 +5,22 @@ public class LogbookBosses(StatBuilderContext context) : BaseHook
 {
     private const string GameId = "map_expedition_saga_contains_boss";
 
-    public override void OnAfterGameBuild(List<StatDefinition> definitions)
+    public override void OnAfterGameBuild(List<StatDefinition> statDefinitions)
     {
-        var tradeDefinitions = context.TradeDefinitions.Where(x => x.Id == context.InvariantDetails.LogbookBossesStatId).ToList();
+        var tradeDefinitions = context.TradeDefinitions
+            .Where(x => context.InvariantDetails.LogbookBossStatIds.Contains(x.Id))
+            .ToList();
         if (tradeDefinitions.Count == 0) return;
 
-        foreach (var definition in definitions)
+        foreach (var statDefinition in statDefinitions)
         {
-            if (definition.GameIds == null) continue;
-            if (!definition.GameIds.Contains(GameId)) continue;
+            if (statDefinition.GameIds == null || !statDefinition.GameIds.Contains(GameId)) continue;
 
-            foreach (var tradeDefinition in tradeDefinitions)
-            {
-                if (tradeDefinition.Option == null) continue;
-                if (!definition.Text.EndsWith(tradeDefinition.Option.Text)) continue;
-                definition.TradeStats ??= [];
-                definition.TradeStats.Add(tradeDefinition);
-            }
+            var tradeDefinition = tradeDefinitions.FirstOrDefault(x => x.Id.GetStatOption() == (int?)statDefinition.Value);
+            if (tradeDefinition == null) continue;
+
+            statDefinition.TradeIds ??= [];
+            statDefinition.TradeIds.Add(tradeDefinition.Id);
         }
     }
 }

@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Ui.Dialogs;
 using Sidekick.Common.Ui.Sections;
 using Sidekick.Common.Ui.Views;
@@ -18,7 +17,7 @@ public static class ServiceCollectionExtensions
 
         services.TryAddSingleton<SectionService>();
 
-        services.AddSidekickModule(typeof(ConfirmationDialog).Assembly);
+        services.AddSidekickModule(typeof(ServiceCollectionExtensions).Assembly);
 
         return services;
     }

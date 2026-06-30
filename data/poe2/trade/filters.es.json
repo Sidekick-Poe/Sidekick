@@ -1114,8 +1114,8 @@
           },
           {
             "$id": "252",
-            "id": "foreseeing",
-            "text": "Predicci\u00F3n",
+            "id": "crafted",
+            "text": "Fabricado",
             "option": {
               "$id": "253",
               "options": {
@@ -1141,8 +1141,8 @@
           },
           {
             "$id": "258",
-            "id": "mirrored",
-            "text": "Reflejado",
+            "id": "foreseeing",
+            "text": "Predicci\u00F3n",
             "option": {
               "$id": "259",
               "options": {
@@ -1168,24 +1168,51 @@
           },
           {
             "$id": "264",
-            "id": "sanctum_gold",
-            "text": "Agua sagrada Barya",
+            "id": "mirrored",
+            "text": "Reflejado",
             "option": {
               "$id": "265",
               "options": {
                 "$id": "266",
+                "$values": [
+                  {
+                    "$id": "267",
+                    "text": "Cualquiera"
+                  },
+                  {
+                    "$id": "268",
+                    "id": "true",
+                    "text": "S\u00ED"
+                  },
+                  {
+                    "$id": "269",
+                    "id": "false",
+                    "text": "No"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "270",
+            "id": "sanctum_gold",
+            "text": "Agua sagrada Barya",
+            "option": {
+              "$id": "271",
+              "options": {
+                "$id": "272",
                 "$values": []
               }
             }
           },
           {
-            "$id": "267",
+            "$id": "273",
             "id": "unidentified_tier",
             "text": "Grado no identificado",
             "option": {
-              "$id": "268",
+              "$id": "274",
               "options": {
-                "$id": "269",
+                "$id": "275",
                 "$values": []
               }
             }
@@ -1194,39 +1221,39 @@
       }
     },
     {
-      "$id": "270",
+      "$id": "276",
       "id": "trade_filters",
       "title": "Filtros de comercio",
       "filters": {
-        "$id": "271",
+        "$id": "277",
         "$values": [
           {
-            "$id": "272",
+            "$id": "278",
             "id": "account",
             "text": "Cuenta vendedora",
             "option": {
-              "$id": "273",
+              "$id": "279",
               "options": {
-                "$id": "274",
+                "$id": "280",
                 "$values": []
               }
             }
           },
           {
-            "$id": "275",
+            "$id": "281",
             "id": "collapse",
             "text": "Colapsar listados por cuenta",
             "option": {
-              "$id": "276",
+              "$id": "282",
               "options": {
-                "$id": "277",
+                "$id": "283",
                 "$values": [
                   {
-                    "$id": "278",
+                    "$id": "284",
                     "text": "No"
                   },
                   {
-                    "$id": "279",
+                    "$id": "285",
                     "id": "true",
                     "text": "S\u00ED"
                   }
@@ -1235,60 +1262,60 @@
             }
           },
           {
-            "$id": "280",
+            "$id": "286",
             "id": "indexed",
             "text": "Listado",
             "option": {
-              "$id": "281",
+              "$id": "287",
               "options": {
-                "$id": "282",
+                "$id": "288",
                 "$values": [
                   {
-                    "$id": "283",
+                    "$id": "289",
                     "text": "Cualquier momento"
                   },
                   {
-                    "$id": "284",
+                    "$id": "290",
                     "id": "1hour",
                     "text": "Hasta hace una hora"
                   },
                   {
-                    "$id": "285",
+                    "$id": "291",
                     "id": "3hours",
                     "text": "Hasta hace 3 horas"
                   },
                   {
-                    "$id": "286",
+                    "$id": "292",
                     "id": "12hours",
                     "text": "Hasta hace 12 horas"
                   },
                   {
-                    "$id": "287",
+                    "$id": "293",
                     "id": "1day",
                     "text": "Hasta 1 d\u00EDa atr\u00E1s"
                   },
                   {
-                    "$id": "288",
+                    "$id": "294",
                     "id": "3days",
                     "text": "Hasta 3 d\u00EDas atr\u00E1s"
                   },
                   {
-                    "$id": "289",
+                    "$id": "295",
                     "id": "1week",
                     "text": "Hasta una semana atr\u00E1s"
                   },
                   {
-                    "$id": "290",
+                    "$id": "296",
                     "id": "2weeks",
                     "text": "Hasta 2 semanas atr\u00E1s"
                   },
                   {
-                    "$id": "291",
+                    "$id": "297",
                     "id": "1month",
                     "text": "Hasta 1 mes atr\u00E1s"
                   },
                   {
-                    "$id": "292",
+                    "$id": "298",
                     "id": "2months",
                     "text": "Hasta 2 meses atr\u00E1s"
                   }
@@ -1297,30 +1324,30 @@
             }
           },
           {
-            "$id": "293",
+            "$id": "299",
             "id": "sale_type",
             "text": "Tipo de venta",
             "option": {
-              "$id": "294",
+              "$id": "300",
               "options": {
-                "$id": "295",
+                "$id": "301",
                 "$values": [
                   {
-                    "$id": "296",
+                    "$id": "302",
                     "id": "any",
                     "text": "Cualquiera"
                   },
                   {
-                    "$id": "297",
+                    "$id": "303",
                     "text": "Precio fijo o de compra"
                   },
                   {
-                    "$id": "298",
+                    "$id": "304",
                     "id": "priced_with_info",
                     "text": "Precio con nota"
                   },
                   {
-                    "$id": "299",
+                    "$id": "305",
                     "id": "unpriced",
                     "text": "Sin precio indicado"
                   }
@@ -1329,82 +1356,82 @@
             }
           },
           {
-            "$id": "300",
+            "$id": "306",
             "id": "fee",
             "text": "Tarifa en oro",
             "option": {
-              "$id": "301",
+              "$id": "307",
               "options": {
-                "$id": "302",
+                "$id": "308",
                 "$values": []
               }
             }
           },
           {
-            "$id": "303",
+            "$id": "309",
             "id": "price",
             "text": "Precio de compra",
             "option": {
-              "$id": "304",
+              "$id": "310",
               "options": {
-                "$id": "305",
+                "$id": "311",
                 "$values": [
                   {
-                    "$id": "306",
+                    "$id": "312",
                     "text": "Equivalente a orbe exaltado"
                   },
                   {
-                    "$id": "307",
+                    "$id": "313",
                     "id": "exalted_divine",
                     "text": "Orbes exaltados o divinos"
                   },
                   {
-                    "$id": "308",
+                    "$id": "314",
                     "id": "aug",
                     "text": "Orbe de aumento"
                   },
                   {
-                    "$id": "309",
+                    "$id": "315",
                     "id": "transmute",
                     "text": "Orbe de transmutaci\u00F3n"
                   },
                   {
-                    "$id": "310",
+                    "$id": "316",
                     "id": "exalted",
                     "text": "Orbe exaltado"
                   },
                   {
-                    "$id": "311",
+                    "$id": "317",
                     "id": "regal",
                     "text": "Orbe regio"
                   },
                   {
-                    "$id": "312",
+                    "$id": "318",
                     "id": "chaos",
                     "text": "Orbe de caos"
                   },
                   {
-                    "$id": "313",
+                    "$id": "319",
                     "id": "vaal",
                     "text": "Orbe vaal"
                   },
                   {
-                    "$id": "314",
+                    "$id": "320",
                     "id": "alch",
                     "text": "Orbe de alquimia"
                   },
                   {
-                    "$id": "315",
+                    "$id": "321",
                     "id": "divine",
                     "text": "Orbe divino"
                   },
                   {
-                    "$id": "316",
+                    "$id": "322",
                     "id": "annul",
                     "text": "Orbe de anulaci\u00F3n"
                   },
                   {
-                    "$id": "317",
+                    "$id": "323",
                     "id": "mirror",
                     "text": "Espejo de Kalandra"
                   }

@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      release_id: ${{ steps.notes.outputs.id }}
+      release_body: ${{ steps.notes.outputs.body }}
     steps:
       - name: Git - Checkout
         uses: actions/checkout@v2
@@ -21,12 +22,6 @@ jobs:
         with:
           scheme: calver
           release_branch: main
-
-      - name: Version - Update project files
-        uses: vers-one/dotnet-project-version-updater@v1.7
-        with:
-          file: "src/**/*.csproj"
-          version: ${{ steps.version.outputs.version }}
 
       - name: Release - Delete unpublished
         uses: hugo19941994/delete-draft-releases@v1.0.0
@@ -46,6 +41,22 @@ jobs:
           publish: false
           prerelease: false
 
+  build-windows:
+    needs:
+      - setup
+    runs-on: windows-latest
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
+        with:
+          file: "src/**/*.csproj"
+          version: ${{ needs.setup.outputs.version }}
+
       - name: .NET - Setup
         uses: actions/setup-dotnet@v4
         with:
@@ -63,7 +74,6 @@ jobs:
           dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.Builder.Cli.dll
 
       - name: .NET - Test
-        if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
           dotnet restore
@@ -71,20 +81,18 @@ jobs:
           dotnet test --no-build --verbosity normal
 
       - name: .NET - Publish (Windows)
-        if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
           dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web
 
       - name: Velopack (Windows)
-        if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          $version = "${{ steps.version.outputs.version }}"
+          $version = "${{ needs.setup.outputs.version }}"
           Write-Output "Version: $version"
 
-          $body = "${{ steps.notes.outputs.body }}"
+          $body = "${{ needs.setup.outputs.release_body }}"
           Write-Output "Body: $body"
 
           # Output the body to a .md file
@@ -104,8 +112,39 @@ jobs:
           vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
+  build-ubuntu:
+    needs:
+      - setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
+        with:
+          file: "src/**/*.csproj"
+          version: ${{ needs.setup.outputs.version }}
+
+      - name: .NET - Setup
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+
+      - name: Data - Publish
+        shell: bash
+        run: |
+          dotnet publish src/Sidekick.Data.Builder.Cli/Sidekick.Data.Builder.Cli.csproj -c Release -o src/Sidekick.Data.Builder.Cli/build --self-contained true
+          chmod +x ./src/Sidekick.Data.Builder.Cli/build
+
+      - name: Data - Execute
+        shell: bash
+        run: |
+          dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.Builder.Cli.dll
+
       - name: .NET - Publish (Ubuntu)
-        if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
           dotnet build src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64
@@ -114,13 +153,12 @@ jobs:
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
 
       - name: Velopack (Ubuntu)
-        if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
-          version="${{ steps.version.outputs.version }}"
+          version="${{ needs.setup.outputs.version }}"
           echo "Version: $version"
 
-          body="${{ steps.notes.outputs.body }}"
+          body="${{ needs.setup.outputs.release_body }}"
           echo "Body: $body"
 
           # Output the body to a .md file

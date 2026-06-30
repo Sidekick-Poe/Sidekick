@@ -16,7 +16,7 @@ public class RequiresDexterityProperty(
 {
     private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionRequiresDex.ToRegexIntProperty();
 
-    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)\s*{currentGameLanguage.Language.DescriptionRequiresDex}");
+    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)(?:\ \([a-z]+\))?\s*{currentGameLanguage.Language.DescriptionRequiresDex}");
 
     public override string Label => currentGameLanguage.Language.DescriptionRequiresDex;
 

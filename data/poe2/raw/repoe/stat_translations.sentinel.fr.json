@@ -1,0 +1,5355 @@
+[
+  {
+    "English": null,
+    "ids": [
+      "%_chance_to_duplicate_dropped_sentinels"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% de chances que les Sentinelles trouvées soient dupliquées",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "expedition_sentinel_tag_limit"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[DNT] Tags {0} Monsters",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_spawns_worms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Génère des Vers",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_anger_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Colère (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_cold_resist_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Pureté de la glace (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_determination_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Détermination (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_discipline_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Discipline (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_fire_resist_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Pureté du feu (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_grace_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Grâce (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_haste_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Hâte (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_hatred_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Haine (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_lightning_resist_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Pureté de la foudre (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_malevolence_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Malfaisance (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_purity_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Pureté des éléments (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_wrath_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Fureur (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_display_sentinel_uses_level_x_zealotry_aura"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Octroie l'Aura Fanatisme (Niveau {0})",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_sentinel_cannot_tag_anything"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Ne peut pas Améliorer les Ennemis",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_sentinel_drone_charge_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0} de Charge",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_sentinel_drone_duration_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% d'Augmentation de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% de Réduction de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_sentinel_duration_+"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0} seconde de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0} secondes de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_sentinel_only_tag_rare"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Ne peut améliorer que les Ennemis Rares",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "local_sentinel_only_tag_rare_or_unique"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Ne peut améliorer que les Ennemis Rares ou Uniques",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "normal_sentinels_drop_as_magic"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles de Rareté Normale cédées par les Monstres que vous Tuez deviennent Magiques\nLes Sentinelles de Rareté Normale trouvées dans les coffres que vous ouvrez deviennent Magiques",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "number_of_chains"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Rayons Ricochent une fois de plus",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Rayons Ricochent {0} fois",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_a_cannot_tag_normal"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses n'Améliorent pas les Ennemis de Rareté normale",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_a_cast_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses ont {0}% d'Augmentation de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles traqueuses ont {0}% de Réduction de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_a_chaining_range_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses ont {0}% d'Augmentation de portée des Ricochets",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles traqueuses ont {0}% de Réduction de portée des Ricochets",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_a_chance_for_reward_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses ont {0}% d'Augmentation de chances d'ajouter des Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles traqueuses ont {0}% de Réduction de chances d'ajouter des Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_a_chance_to_not_consume_charge_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses ont {0}% de chances de ne pas consommer de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses ne consomment pas de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_a_number_of_beams"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses tirent un Rayon supplémentaire",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles traqueuses tirent {0} Rayons supplémentaires",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_a_number_of_chains"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Rayons des Sentinelles traqueuses Ricochent une fois supplémentaire",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Rayons des Sentinelles traqueuses Ricochent {0} fois",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_can_be_deployed_x_additional_times"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses peuvent être Activées une fois de plus par Zone",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses peuvent être Activées {0} fois par Zone",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_cast_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses ont {0}% d'Augmentation de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles tumultueuses ont {0}% de Réduction de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_chaining_range_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses ont {0}% d'Augmentation de portée des Ricochets",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles tumultueuses ont {0}% de Réduction de portée des Ricochets",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_dont_consume_charge_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses ont {0}% de chances de ne pas consommer de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses ne consomment pas de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_duration_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses ont {0}% d'Augmentation de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles tumultueuses ont {0}% de Réduction de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_number_of_beams"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses tirent un Rayon supplémentaire",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses tirent {0} Rayons supplémentaires",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_number_of_chains"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Rayons des Sentinelles tumultueuses Ricochent une fois de plus",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Rayons des Sentinelles tumultueuses Ricochent {0} fois",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_restore_flask_charges_and_souls_on_deploy"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses restaurent toutes vos Charges à l'Activation\nLes Sentinelles tumultueuses octroient le maximum d'Âmes vaal à l'une de vos Aptitudes vaal à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_b_spawn_packs_on_deploy"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles tumultueuses génèrentdes Groupes de Monstres à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_can_be_redeployed_after_dismissal"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles alpha peuvent être réactivées après avoir été désactivées",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_cannot_tag_rare"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles alpha n'Améliorent pas les Ennemis Rares",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_cast_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles alpha ont {0}% d'Augmentation de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles alpha ont {0}% de Réduction de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_chance_to_not_consume_charge_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles alpha ont {0}% de chances de ne pas consommer de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles alpha ne consomment pas de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_duration_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles alpha ont {0}% d'Augmentation de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles alpha ont {0}% de Réduction de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_reward_count_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles alpha octroient {0}% d'Augmentation des Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles alpha octroient {0}% de Réduction des Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_tag_duplicate_reward_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Récompenses cédées par les Ennemis Améliorés par des Sentinelles alpha ont {0}% de chances d'être doublées",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Récompenses cédées par les Ennemis Améliorés par des Sentinelles alpha sont doublées",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_tagged_onslaught"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Ennemis Améliorés par des Sentinelles alpha ont Assaut",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_c_tagged_resist_all_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "+#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Ennemis Améliorés par des Sentinelles alpha ont {0}% à toutes les Résistances",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_can_cleanse_corrupted_fish"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Purifie les Poissons Corrompus",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_can_purify_corrupted_water"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Purifie l'Eau Corrompue",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_chance_for_reward_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% d'Augmentation des chances d'ajouter des Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% de Réduction des chances d'ajouter des Récompensess",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_debilatate_tagged_monsters_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Abasourdit les Ennemis Améliorés pendant 1 seconde",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Abasourdit les Ennemis Améliorés pendant {0} secondes",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_destroyed_on_tagging_specific_monster"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Destroyed on Empowering target Enemy",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_aggro_range_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles ont {0}% d'Augmentation du Rayon d'agression",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles ont {0}% de Réduction du Rayon d'agression",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_cast_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles ont {0}% d'Augmentation de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles ont {0}% de Réduction de Vitesse d'incantation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_chance_to_not_consume_charge_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles ont {0}% de chances de ne pas consommer de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles ne consomment pas de Charge à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_duration_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Sentinelles ont {0}% d'Augmentation de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Sentinelles ont {0} de Réduction de Durée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_accelerating_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel d'Accélération pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel d'Accélération pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_adrenaline_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez Adrénaline pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez Adrénaline pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_diamond_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de Diamant pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de Diamant pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_echoing_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de l'Écho pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de l'Écho pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_endurance_charge_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez des Charges d'endurance pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez des Charges d'endurance pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_frenzy_charge_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez des Charges de frénésie pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez des Charges de frénésie pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_gloom_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de la Morosité pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de la Morosité pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_impenetrable_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de l'Impénétrabilité pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de l'Impénétrabilité pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_massive_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel du Titan pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel du Titan pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_power_charge_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez des Charges de pouvoir pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez des Charges de pouvoir pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_resistance_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de Résistance pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel de Résistance pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_resonating_shrine_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel des Charges pendant 1 seconde à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez l'effet d'un Autel des Charges pendant {0} secondes à l'Activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_drone_player_gains_tailwind_on_summon_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez Vent porteur pendant 1 seconde à l'activation",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Vous gagnez Vent porteur pendant {0} secondes à l'activation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_map_quantity_applies_to_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "La Quantité d'Objets de la Carte affecte le nombre de Récompenses de l'Ennemi Amélioré",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_monster_gives_mods_to_killer_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Lorsqu'un personnage Tue un Monstre Rare Amélioré,\nil a {0}% de chances de gagner ses modificateurs pendant 20 secondes",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Lorsqu'un personnage Tue un Monstre Rare Amélioré,\nil gagne ses modificateurs pendant 20 secondes",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_petrify_tagged_monsters_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1000,
+            "max": 1000,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Pétrifie les Ennemis Améliorés pendant 1 seconde",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds_2dp_if_required"
+          ]
+        ],
+        "string": "Pétrifie les Ennemis Améliorés pendant {0} secondes",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_power_core_duplicate_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Noyaux d'énergie trouvés ont {0}% de chances d'être dupliqués",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Noyaux d'énergie trouvés sont dupliqués",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_refresh_on_use_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% de chances d'être Activable une fois de plus",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Peut être Activée une fois de plus",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_reward_count_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% d'Augmentation des Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% de Réduction des Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_reward_sentinel_type_chance_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Récompenses sont {0}% Davantage susceptibles d'être des Récompenses de Sentinelle",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Récompenses sont {0}% moins susceptibles d'être des Récompenses de Sentinelle",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_rewards_more_likely_less_common_types"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Récompenses sont plus susceptibles d'être d'un type moins courant",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_abyss_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense d'Abysse",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_armour_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense d'Armure",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_beam_number_of_beams"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Tire un Rayon supplémentaire",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Tire {0} Rayons supplémentaires",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_blight_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense d'Infestation",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_breach_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Brèche",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_currency_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense monétaire",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_delirium_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense monétaire",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_divinationcards_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Carte divinatoire",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_duplicate_reward_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Récompenses ont {0}% de chances d'être doublées",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Récompenses sont doublées",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_essence_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense d'Essence",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_expedition_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense d'Expédition",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_fossils_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense Fossilisée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_fragments_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Fragment",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_gems_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Gemme",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_harbinger_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Précurseur",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_heist_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Casse",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_legion_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Légion",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_maps_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Carte",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_metamorphosis_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Métamorphe",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_no_drops"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Ennemis Améliorés ne cèdent pas d'Objets",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_no_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Ennemis Améliorés ne peuvent pas octroyer de Récompenses",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_reward_chance_+permillage_per_previous_tag"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp_if_required"
+          ]
+        ],
+        "string": "{0}% d'Augmentation de chances d'ajouter une Récompense pour chaque Ennemi Amélioré",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate",
+            "divide_by_ten_1dp_if_required"
+          ]
+        ],
+        "string": "{0}% de Réduction de chances d'ajouter une Récompense pour chaque Ennemi Amélioré",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_ritual_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Rituel",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_scarabs_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Scarabée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_sentinel_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense de Sentinelle",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_trinkets_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient un Accessoire en Récompense",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_unique_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense Unique",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tag_weapon_reward_chance_permillage"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "divide_by_ten_1dp"
+          ]
+        ],
+        "string": "{0}% de chances que les Ennemis Améliorés aient une Récompense d'arme",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_damage_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Ennemis Améliorés ont {0}% d'Augmentation de Dégâts",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Ennemis Améliorés ont {0}% de Réduction de Dégâts",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_item_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés ont {0}% d'Augmentation de Quantité d'Objets cédés",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Monstres Améliorés ont {0}% de Réduction de Quantité d'Objets cédés",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_item_rarity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés ont {0}% d'Augmentation de Rareté des Objets cédés",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Monstres Améliorés ont {0}% de Réduction de Rareté des Objets cédés",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_monsters_drop_x_currency_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés cèdent {0} Récompenses monétaires",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_monsters_drop_x_divination_card_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés cèdent {0} Récompenses de Carte divinatoire",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_monsters_drop_x_fragment_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés cèdent {0} Récompenses de Fragment",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_monsters_drop_x_map_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés cèdent {0} Récompenses de Carte",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_monsters_drop_x_scarab_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés cèdent {0} Récompenses de Scarabée",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_monsters_drop_x_sentinel_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés cèdent {0} Récompenses de Sentinelle",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_monsters_drop_x_unique_rewards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés cèdent {0} Récompenses Uniques",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "sentinel_tagged_sentinel_experience_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Les Monstres Améliorés octroient {0}% d'Augmentation de la Puissance de la Sentinelle",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Les Monstres Améliorés octroient {0}% de Réduction de la Puissance de la Sentinelle",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "German": null,
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  }
+]

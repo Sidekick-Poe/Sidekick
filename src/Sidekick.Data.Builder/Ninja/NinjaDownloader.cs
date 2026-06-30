@@ -6,10 +6,11 @@ using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Data.Builder.Ninja.Models;
-using Sidekick.Data.Builder.Trade;
+using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.ItemDefinitions;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Leagues;
+using Sidekick.Data.Trade;
 
 namespace Sidekick.Data.Builder.Ninja;
 
@@ -18,8 +19,7 @@ public class NinjaDownloader(
     IOptions<SidekickConfiguration> configuration,
     RawDataProvider rawDataProvider,
     DataProvider dataProvider,
-    IGameLanguageProvider languageProvider,
-    TradeStatProvider tradeStatProvider)
+    IGameLanguageProvider languageProvider)
 {
     private record NinjaPage(
         string Type,
@@ -210,8 +210,7 @@ public class NinjaDownloader(
         {
             var items = new List<NinjaItemDefinition>();
             var pages = game == GameType.PathOfExile1 ? Poe1Pages : Poe2Pages;
-
-            var tradeStatDefinitions = await tradeStatProvider.GetDefinitions(game, languageProvider.InvariantLanguage);
+            var tradeStatDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, languageProvider.InvariantLanguage);
 
             foreach (var page in pages)
             {
@@ -236,21 +235,19 @@ public class NinjaDownloader(
                                        Links = it.Links,
                                        ItemLevel = it.LevelRequired,
                                        Variant = it.Variant,
-                                       Stats = GetNinjaStats(it),
+                                       Stats = GetTradeStats(it),
                                    },
                                });
             }
 
             return items;
 
-            List<NinjaStashStatDefinition>? GetNinjaStats(NinjaStashLine it)
+            List<NinjaStashStatDefinition>? GetTradeStats(NinjaStashLine it)
             {
-                var stats = it.TradeInfo?.ConvertAll(x => new NinjaStashStatDefinition()
+                var stats = it.TradeInfo?.ConvertAll(x => new NinjaStashStatDefinition
                 {
                     Value = x.Min == x.Max ? x.Min : throw new SidekickException("Unsupported ninja value detected. Typically min and max always match. The item is {0}", it.Name ?? string.Empty),
-                    Id = x.Mod,
-                    Option = x.Option,
-                    Text = tradeStatDefinitions.FirstOrDefault(y => y.Id == x.Mod && y.Option?.Id.ToString() == x.Option)?.Text,
+                    Id = x.Option != null ? $"{x.Mod}#{x.Option}" : x.Mod,
                 }) ?? [];
 
                 if (it.MutatedModifiers != null)
@@ -263,19 +260,14 @@ public class NinjaDownloader(
                         var text = numberRegex.Replace(mutatedMod.Text, "#");
                         var tradeMutatedStat = tradeStatDefinitions.FirstOrDefault(x => x.Text == text);
                         if (tradeMutatedStat == null) continue;
-                        if (stats.Any(x => x.Id == tradeMutatedStat.Id)) continue;
-
-                        stats.Add(new NinjaStashStatDefinition()
+                        stats.Add(new NinjaStashStatDefinition
                         {
                             Id = tradeMutatedStat.Id,
-                            Option = tradeMutatedStat.Option?.Id.ToString(),
-                            Text = tradeMutatedStat.Text,
                         });
                     }
                 }
 
-                stats = stats.DistinctBy(x => x.Id).ToList();
-                return stats.Count == 0 ? null : stats;
+                return stats.Count == 0 ? null : stats.DistinctBy(x => x.Id).ToList();
             }
         }
     }

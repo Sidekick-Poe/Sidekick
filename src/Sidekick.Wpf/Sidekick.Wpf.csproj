@@ -30,11 +30,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj"/>
+        <ProjectReference Include="..\Sidekick.Common.Dialogs\Sidekick.Common.Dialogs.csproj" />
         <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.About\Sidekick.Modules.About.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj"/>
-        <ProjectReference Include="..\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
@@ -53,6 +52,19 @@
         <Content Update="wwwroot\**">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-bold-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-bold-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-italic-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-italic-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-regular-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-regular-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\fonts\fontin-smallcaps-webfont.ttf"
+                  Link="wwwroot\fonts\fontin-smallcaps-webfont.ttf" />
+        <Resource Include="..\Sidekick.Common.Ui\wwwroot\images\orbs\ExaltedOrb.png"
+                  Link="wwwroot\images\orbs\ExaltedOrb.png" />
     </ItemGroup>
 
     <Target Name="Copywwwroot" BeforeTargets="Build">

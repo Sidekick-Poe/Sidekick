@@ -2,9 +2,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Data.Builder.Trade.Models;
-using Sidekick.Data.Extensions;
 using Sidekick.Data.Languages;
+using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
+using Sidekick.Data.Trade;
 namespace Sidekick.Data.Builder.StatsInvariant;
 
 public class StatsInvariantBuilder
@@ -37,128 +38,82 @@ public class StatsInvariantBuilder
 
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        var categories = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(game, DataType.RawTradeStats, language);
-        categories.Result.ForEach(category =>
-        {
-            category.Entries.ForEach(entry =>
-            {
-                entry.Text = entry.Text.RemoveSquareBrackets();
-            });
-        });
+        var definitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, language);
 
         var model = new StatsInvariantDetails()
         {
-            IgnoreStatIds = GetIgnoreStatIds(categories.Result).ToList(),
-            FireWeaponDamageIds = GetFireWeaponDamageIds(categories.Result).ToList(),
-            ColdWeaponDamageIds = GetColdWeaponDamageIds(categories.Result).ToList(),
-            LightningWeaponDamageIds = GetLightningWeaponDamageIds(categories.Result).ToList(),
-            IncursionRoomStatIds = GetIncursionRooms(categories.Result).ToList(),
-            LogbookFactionStatIds = GetLogbookFactions(categories.Result).ToList(),
-            LogbookBossesStatId = GetLogbookBosses(categories.Result),
+            IgnoreStatIds = GetIgnoreStatIds(definitions).ToList(),
+            FireWeaponDamageIds = GetFireWeaponDamageIds(definitions).ToList(),
+            ColdWeaponDamageIds = GetColdWeaponDamageIds(definitions).ToList(),
+            LightningWeaponDamageIds = GetLightningWeaponDamageIds(definitions).ToList(),
+            IncursionRoomStatIds = GetIncursionRooms(definitions).ToList(),
+            LogbookFactionStatIds = GetLogbookFactions(definitions).ToList(),
+            LogbookBossStatIds = GetLogbookBosses(definitions).ToList(),
         };
 
         await dataProvider.Write(game, DataType.StatsInvariant, model);
     }
 
-    private IEnumerable<string> GetIgnoreStatIds(List<RawTradeStatCategory> categories)
+    private IEnumerable<string> GetIgnoreStatIds(List<TradeStatDefinition> definitions)
     {
-        foreach (var category in categories)
+        foreach (var definition in definitions)
         {
-            if (!IsCategory(category, "pseudo")) continue;
-
-            foreach (var entry in category.Entries)
-            {
-                if (entry.Text.StartsWith("#% chance for dropped Maps to convert to")) yield return entry.Id;
-            }
+            if (definition.Id.GetStatCategory() != StatCategory.Pseudo) continue;
+            if (definition.Text.StartsWith("#% chance for dropped Maps to convert to")) yield return definition.Id;
         }
     }
 
-    private IEnumerable<string> GetFireWeaponDamageIds(List<RawTradeStatCategory> categories)
+    private IEnumerable<string> GetFireWeaponDamageIds(List<TradeStatDefinition> definitions)
     {
-        foreach (var category in categories)
+        foreach (var definition in definitions)
         {
-            if (IsCategory(category, "pseudo")) continue;
-
-            foreach (var entry in category.Entries)
-            {
-                var text = entry.Text.RemoveSquareBrackets();
-                if (text == "Adds # to # Fire Damage") yield return entry.Id;
-            }
+            if (definition.Id.GetStatCategory() == StatCategory.Pseudo) continue;
+            if (definition.Text == "Adds # to # Fire Damage") yield return definition.Id;
         }
     }
 
-    private IEnumerable<string> GetColdWeaponDamageIds(List<RawTradeStatCategory> categories)
+    private IEnumerable<string> GetColdWeaponDamageIds(List<TradeStatDefinition> definitions)
     {
-        foreach (var category in categories)
+        foreach (var definition in definitions)
         {
-            if (IsCategory(category, "pseudo")) continue;
-
-            foreach (var entry in category.Entries)
-            {
-                var text = entry.Text.RemoveSquareBrackets();
-                if (text == "Adds # to # Cold Damage") yield return entry.Id;
-            }
+            if (definition.Id.GetStatCategory() == StatCategory.Pseudo) continue;
+            if (definition.Text == "Adds # to # Cold Damage") yield return definition.Id;
         }
     }
 
-    private IEnumerable<string> GetLightningWeaponDamageIds(List<RawTradeStatCategory> categories)
+    private IEnumerable<string> GetLightningWeaponDamageIds(List<TradeStatDefinition> definitions)
     {
-        foreach (var category in categories)
+        foreach (var definition in definitions)
         {
-            if (IsCategory(category, "pseudo")) continue;
-
-            foreach (var entry in category.Entries)
-            {
-                var text = entry.Text.RemoveSquareBrackets();
-                if (text == "Adds # to # Lightning Damage") yield return entry.Id;
-            }
+            if (definition.Id.GetStatCategory() == StatCategory.Pseudo) continue;
+            if (definition.Text == "Adds # to # Lightning Damage") yield return definition.Id;
         }
     }
 
-    private IEnumerable<string> GetIncursionRooms(List<RawTradeStatCategory> categories)
+    private IEnumerable<string> GetIncursionRooms(List<TradeStatDefinition> definitions)
     {
-        foreach (var category in categories)
+        foreach (var definition in definitions)
         {
-            if (!IsCategory(category, "pseudo")) continue;
-
-            foreach (var entry in category.Entries)
-            {
-                if (entry.Text.StartsWith("Has Room: ")) yield return entry.Id;
-            }
+            if (definition.Id.GetStatCategory() != StatCategory.Pseudo) continue;
+            if (definition.Text.StartsWith("Has Room: ") && definition.Id.GetStatOption() != 2) yield return definition.Id;
         }
     }
 
-    private IEnumerable<string> GetLogbookFactions(List<RawTradeStatCategory> categories)
+    private IEnumerable<string> GetLogbookFactions(List<TradeStatDefinition> definitions)
     {
-        foreach (var category in categories)
+        foreach (var definition in definitions)
         {
-            if (!IsCategory(category, "pseudo")) continue;
-
-            foreach (var entry in category.Entries)
-            {
-                if (entry.Text.StartsWith("Has Logbook Faction: ")) yield return entry.Id;
-            }
+            if (definition.Id.GetStatCategory() != StatCategory.Pseudo) continue;
+            if (definition.Text.StartsWith("Has Logbook Faction: ")) yield return definition.Id;
         }
     }
 
-    private string? GetLogbookBosses(List<RawTradeStatCategory> categories)
+    private IEnumerable<string> GetLogbookBosses(List<TradeStatDefinition> definitions)
     {
-        foreach (var category in categories)
+        foreach (var definition in definitions)
         {
-            if (!IsCategory(category, "implicit")) continue;
-
-            foreach (var entry in category.Entries)
-            {
-                if (entry.Text == "Area contains an Expedition Boss (#)") return entry.Id;
-            }
+            if (definition.Id.GetStatCategory() != StatCategory.Implicit) continue;
+            if (definition.Text == "Area contains an Expedition Boss (#)") yield return definition.Id;
         }
-
-        return null;
-    }
-
-    private static bool IsCategory(RawTradeStatCategory apiCategory, string? key)
-    {
-        var first = apiCategory.Entries.FirstOrDefault();
-        return first?.Id.Split('.')[0] == key;
     }
 }

@@ -28,7 +28,7 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<StatBuilder>();
 
         services.TryAddSingleton<TradeDownloader>();
-        services.TryAddSingleton<TradeStatProvider>();
+        services.TryAddSingleton<TradeStatBuilder>();
         services.TryAddSingleton<ItemClassBuilder>();
         services.TryAddSingleton<ItemDefinitionBuilder>();
         services.TryAddSingleton<StatsInvariantBuilder>();

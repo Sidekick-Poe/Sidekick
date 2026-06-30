@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 namespace Sidekick.Apis.Poe.Trade.Filters.Types;
 
 public class PseudoFilter : TradeFilter, INormalizableFilter
@@ -43,9 +44,9 @@ public class PseudoFilter : TradeFilter, INormalizableFilter
             return;
         }
 
-        query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
+        query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters
         {
-            Id = Stat.Id,
+            Id = Stat.Id.GetStatId(),
             Value = new StatFilterValue()
             {
                 Min = Min,

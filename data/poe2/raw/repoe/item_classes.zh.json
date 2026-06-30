@@ -1,0 +1,704 @@
+{
+  "LifeFlask": {
+    "category": "[Flask|藥劑]",
+    "category_id": "Flask",
+    "name": "生命藥劑",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "[Flask|藥劑]",
+    "category_id": "Flask",
+    "name": "魔力藥劑",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "通貨",
+    "category_id": "Currency",
+    "name": "通貨",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "項鍊",
+    "category_id": "Amulet",
+    "name": "項鍊",
+    "influence_tags": null
+  },
+  "Ring": {
+    "category": "戒指",
+    "category_id": "Ring",
+    "name": "戒指",
+    "influence_tags": null
+  },
+  "Claw": {
+    "category": "[Claw|爪]",
+    "category_id": "Claw",
+    "name": "爪",
+    "influence_tags": null
+  },
+  "Dagger": {
+    "category": "[Dagger|匕首]",
+    "category_id": "Dagger",
+    "name": "匕首",
+    "influence_tags": null
+  },
+  "Wand": {
+    "category": "[Wand|法杖]",
+    "category_id": "Wand",
+    "name": "法杖",
+    "influence_tags": null
+  },
+  "One Hand Sword": {
+    "category": "[Sword|單手劍]",
+    "category_id": "One Hand Sword",
+    "name": "單手劍",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "One Hand Axe": {
+    "category": "[Axe|單手斧]",
+    "category_id": "One Hand Axe",
+    "name": "單手斧",
+    "influence_tags": null
+  },
+  "One Hand Mace": {
+    "category": "[Mace|單手錘]",
+    "category_id": "One Hand Mace",
+    "name": "單手錘",
+    "influence_tags": null
+  },
+  "Bow": {
+    "category": "[Bow|弓]",
+    "category_id": "Bow",
+    "name": "弓",
+    "influence_tags": null
+  },
+  "Staff": {
+    "category": "[Staff|長杖]",
+    "category_id": "Staff",
+    "name": "長杖",
+    "influence_tags": null
+  },
+  "Two Hand Sword": {
+    "category": "[Sword|雙手劍]",
+    "category_id": "Two Hand Sword",
+    "name": "雙手劍",
+    "influence_tags": null
+  },
+  "Two Hand Axe": {
+    "category": "[Axe|雙手斧]",
+    "category_id": "Two Hand Axe",
+    "name": "雙手斧",
+    "influence_tags": null
+  },
+  "Two Hand Mace": {
+    "category": "[Mace|雙手錘]",
+    "category_id": "Two Hand Mace",
+    "name": "雙手錘",
+    "influence_tags": null
+  },
+  "Active Skill Gem": {
+    "category": "技能寶石",
+    "category_id": "Active Skill Gem",
+    "name": "技能寶石",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "輔助寶石",
+    "category_id": "Support Skill Gem",
+    "name": "輔助寶石",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "[Quiver|箭袋]",
+    "category_id": "Quiver",
+    "name": "箭袋",
+    "influence_tags": null
+  },
+  "Belt": {
+    "category": "腰帶",
+    "category_id": "Belt",
+    "name": "腰帶",
+    "influence_tags": null
+  },
+  "Gloves": {
+    "category": "手套",
+    "category_id": "Gloves",
+    "name": "手套",
+    "influence_tags": null
+  },
+  "Boots": {
+    "category": "鞋子",
+    "category_id": "Boots",
+    "name": "鞋子",
+    "influence_tags": null
+  },
+  "Body Armour": {
+    "category": "胸甲",
+    "category_id": "Body Armour",
+    "name": "胸甲",
+    "influence_tags": null
+  },
+  "Helmet": {
+    "category": "頭盔",
+    "category_id": "Helmet",
+    "name": "頭部",
+    "influence_tags": null
+  },
+  "Shield": {
+    "category": "[Shield|塔盾]",
+    "category_id": "Shield",
+    "name": "盾",
+    "influence_tags": null
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "小型聖物",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "中型聖物",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "大型聖物",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "通貨",
+    "category_id": "Currency",
+    "name": "可堆疊通貨",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "[QuestItem|任務道具]",
+    "category_id": "QuestItem",
+    "name": "任務物品",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "[Sceptre|權杖]",
+    "category_id": "Sceptre",
+    "name": "權杖",
+    "influence_tags": null
+  },
+  "UtilityFlask": {
+    "category": "護符",
+    "category_id": "Charm",
+    "name": "護符",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "換界石",
+    "category_id": "Map",
+    "name": "換界石",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": "[Unarmed|空手]",
+    "category_id": "Unarmed",
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "釣竿",
+    "category_id": "FishingRod",
+    "name": "魚竿",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "地圖碎片",
+    "category_id": "MapFragment",
+    "name": "地圖碎片",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "藏身處裝飾",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "商城物品",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "[Jewel|珠寶]",
+    "category_id": "Jewel",
+    "name": "珠寶",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "命運卡",
+    "category_id": "DivinationCard",
+    "name": "命運卡",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE9": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE10": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "其它",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "聯盟石",
+    "category_id": "Leaguestone",
+    "name": "聯盟石",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "奪取之魂",
+    "category_id": "PantheonSoul",
+    "name": "眾神之魂",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "傳奇碎片",
+    "category_id": "UniqueFragment",
+    "name": "碎片",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "深淵珠寶",
+    "category_id": "AbyssJewel",
+    "name": "深淵珠寶",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "穿越物品",
+    "category_id": "IncursionItem",
+    "name": "穿越物品",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "鑄新儀",
+    "category_id": "DelveSocketableCurrency",
+    "name": "掘獄插槽通貨",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "培育器",
+    "category_id": "Incubator",
+    "name": "培育器",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "碎片",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "碎片之心",
+    "influence_tags": null
+  },
+  "DONOTUSE11": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Warstaff": {
+    "category": "[Quarterstaff|細杖]",
+    "category_id": "Warstaff",
+    "name": "細杖",
+    "influence_tags": null
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "鑄新儀",
+    "category_id": "DelveSocketableCurrency",
+    "name": "掘獄可堆疊有插槽通貨",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "守望石",
+    "category_id": "AtlasUpgradeItem",
+    "name": "輿圖升級道具",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "隱藏道具",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "契約書",
+    "category_id": "HeistContract",
+    "name": "契約書",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "劫盜裝備",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "劫盜裝備",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "劫盜工具",
+    "category_id": "HeistEquipmentTool",
+    "name": "劫盜工具",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "劫盜披風",
+    "category_id": "HeistEquipmentUtility",
+    "name": "劫盜披風",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "劫盜胸針",
+    "category_id": "HeistEquipmentReward",
+    "name": "劫盜胸針",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "藍圖",
+    "category_id": "HeistBlueprint",
+    "name": "藍圖",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "飾品",
+    "category_id": "Trinket",
+    "name": "飾品",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "劫盜目標",
+    "category_id": "HeistObjective",
+    "name": "劫盜目標",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "探險日誌",
+    "category_id": "ExpeditionLogbook",
+    "name": "探險日誌",
+    "influence_tags": null
+  },
+  "Expedition2Logbooks": {
+    "category": "地圖碎片",
+    "category_id": "MapFragment",
+    "name": "探險日誌",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "培育器",
+    "category_id": "Incubator",
+    "name": "培育器",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "宿敵詞綴",
+    "influence_tags": null
+  },
+  "Meta Skill Gem": {
+    "category": "",
+    "category_id": "MetaSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Spear": {
+    "category": "[Spear|長矛]",
+    "category_id": "Spear",
+    "name": "長矛",
+    "influence_tags": null
+  },
+  "Crossbow": {
+    "category": "[Crossbow|十字弓]",
+    "category_id": "Crossbow",
+    "name": "十字弓",
+    "influence_tags": null
+  },
+  "Focus": {
+    "category": "[Focus|法器]",
+    "category_id": "Focus",
+    "name": "法器",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "地區物品",
+    "category_id": "InstanceLocalItem",
+    "name": "地區物品",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "守望無人機",
+    "category_id": "SentinelDrone",
+    "name": "護衛",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "記憶",
+    "category_id": "MemoryLine",
+    "name": "記憶",
+    "influence_tags": null
+  },
+  "Flail": {
+    "category": "[Flail|鏈錘]",
+    "category_id": "Flail",
+    "name": "鏈錘",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "聖物",
+    "category_id": "Relic",
+    "name": "聖物",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "聖物",
+    "category_id": "Relic",
+    "name": "神化聖物",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "裂痕石",
+    "category_id": "Breachstone",
+    "name": "裂痕石",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "寶庫鑰匙",
+    "category_id": "VaultKey",
+    "name": "遺鑰",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "試煉代幣",
+    "influence_tags": null
+  },
+  "DONOTUSE12": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutSkillGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Buckler": {
+    "category": "[Buckler|輕盾]",
+    "category_id": "Buckler",
+    "name": "輕盾",
+    "influence_tags": null
+  },
+  "Thrown One Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Two Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "ConventionTreasure": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "TrapTool": {
+    "category": "[Trap|陷阱]",
+    "category_id": "TrapTool",
+    "name": "陷阱",
+    "influence_tags": null
+  },
+  "Crossbow Attachment REMOVE": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SkillGemToken": {
+    "category": "通貨",
+    "category_id": "Currency",
+    "name": "通貨",
+    "influence_tags": null
+  },
+  "Nothing": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UltimatumKey": {
+    "category": "",
+    "category_id": "MiscMapItem",
+    "name": "最後通牒雕刻",
+    "influence_tags": null
+  },
+  "UncutSupportGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutReservationGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Shield": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SoulCore": {
+    "category": "[Augment|增幅]",
+    "category_id": "SoulCore",
+    "name": "增幅",
+    "influence_tags": null
+  },
+  "TowerAugmentation": {
+    "category": "碑牌",
+    "category_id": "TowerAugment",
+    "name": "碑牌",
+    "influence_tags": null
+  },
+  "Omen": {
+    "category": "預兆",
+    "category_id": "Omen",
+    "name": "預兆",
+    "influence_tags": null
+  },
+  "PinnacleKey_OLD": {
+    "category": "巔峰鑰匙",
+    "category_id": "PinnacleKey",
+    "name": "",
+    "influence_tags": null
+  },
+  "Talisman": {
+    "category": "[Talisman|魔符]",
+    "category_id": "Talisman",
+    "name": "魔符",
+    "influence_tags": null
+  },
+  "UncutSkillGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "未切割的技能寶石",
+    "influence_tags": null
+  },
+  "UncutSupportGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "未切割的輔助寶石",
+    "influence_tags": null
+  },
+  "UncutReservationGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "未切割的精魂寶石",
+    "influence_tags": null
+  },
+  "IncursionArm": {
+    "category": "超凡肢幹",
+    "category_id": "IncursionLimb",
+    "name": "超凡之臂",
+    "influence_tags": null
+  },
+  "IncursionLeg": {
+    "category": "超凡肢幹",
+    "category_id": "IncursionLimb",
+    "name": "超凡之腿",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "胎贈",
+    "category_id": "BrequelFruit",
+    "name": "胎贈",
+    "influence_tags": null
+  },
+  "PinnacleKeyStackable": {
+    "category": "巔峰鑰匙",
+    "category_id": "PinnacleKey",
+    "name": "巔峰鑰匙",
+    "influence_tags": null
+  }
+}

@@ -301,6 +301,7 @@ public class ItemDefinitionBuilder(
                     Armour = GetPropertyValues(repoeBaseItem.Value.Properties.Armour),
                     EnergyShield = GetPropertyValues(repoeBaseItem.Value.Properties.EnergyShield),
                     Evasion = GetPropertyValues(repoeBaseItem.Value.Properties.Evasion),
+                    Ward = GetPropertyValues(repoeBaseItem.Value.Properties.Ward),
                     PhysicalDamage = repoeBaseItem.Value.Properties.PhysicalDamageMin != null ? new BaseItemPropertyValues()
                     {
                         Min = repoeBaseItem.Value.Properties.PhysicalDamageMin,

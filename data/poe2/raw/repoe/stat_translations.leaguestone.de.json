@@ -1,0 +1,8087 @@
+[
+  {
+    "English": null,
+    "ids": [
+      "kills_count_twice_for_rampage_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% Chance, dass Tötungen im nächsten Gebiet doppelt auf Amok angerechnet werden",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": 100,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Tötungen im nächsten Gebiet werden doppelt auf Amok angerechnet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_arcanists_strongbox"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Arkanistentresor",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_cartographers_strongbox"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Kartographentresor",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_currency_chest"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine zusätzliche Perandus-Schatzkiste",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_gemcutters_strongbox"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Gemmenschneidertresor",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_jewellery_chest"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein zusätzliches Perandus-Schmuckkästchen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_map_chest"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein zusätzliches Perandus-Archiv",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_perandus_coin_chest"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine zusätzliche Perandus-Kassette",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_tormented_embezzler"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Gequälten Veruntreuer",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_tormented_seditionist"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Gequälten Aufrührer",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_tormented_vaal_cultist"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Gequälten Vaal-Kultisten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_unique_item_chest"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein zusätzliches Perandus-Schließfach",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_unique_strongbox"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen einzigartigen Tresor",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_beyond_rules"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Das Töten von dicht beieinander stehenden Gegnern im nächsten Gebiet lockt Monster aus dem Jenseits hervor",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_bloodline_packs_drop_x_additional_currency_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Wenn eine Blutlinien-Gruppe im nächsten Gebiet getötet wird, lässt sie einen Basis-Währungsgegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Wenn eine Blutlinien-Gruppe im nächsten Gebiet getötet wird, lässt sie {0} Basis-Währungsgegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_bloodline_packs_drop_x_additional_rare_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Bei Tötung einer Blutlinien-Gruppe im nächsten Gebiet lässt diese einen seltenen Gegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Bei Tötung einer Blutlinien-Gruppe im nächsten Gebiet lässt diese {0} seltene Gegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_has_boss"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Risse im nächsten Gebiet enthalten einen Rissfürsten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_has_large_chest"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Risse im nächsten Gebiet enthalten eine klammernde Hand des Rissfürsten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_breach_monster_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "[ContainsBreach|Risse] im nächsten Gebiet haben {0}% erhöhte Monsterdichte",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_additional_chrysalis_talisman"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Kokon-Talisman",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_additional_clutching_talisman"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Greifklauen-Talisman",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_additional_fangjaw_talisman"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Reißzahnkiefer-Talisman",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_additional_mandible_talisman"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Kieferknochen-Talisman",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_additional_three_rat_talisman"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Rattentrio-Talisman",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_additional_unique_talisman"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen einzigartigen Talisman",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_additional_writhing_talisman"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Gekrümmten Talisman",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_chayula_breach"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Chayula-Riss",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_corrupted_strongbox"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Ein Tresor im nächsten Gebiet ist verderbt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_keepers_of_the_trove_bloodline_pack"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Blutlinien-Gruppe 'Hüter des Schatzes'",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_nevalis_monkey"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält Yama den Weißen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält Yama den Großzügigen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_perandus_boss"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Mindestens eine Perandus-Truhe im nächsten Gebiet wird von einem einzigartigen Monster bewacht",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_talisman_boss_with_higher_tier"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": 2,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein seltenes Monster, das einen Level 2-Talisman besitzt",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 3,
+            "max": 3,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein einzigartiges Monster, das einen Level 3-Talisman besitzt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_three_magic_packs_with_attack_cast_and_movement_speed_+%",
+      "map_contains_three_magic_packs_with_item_quantity_of_dropped_items_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          },
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#",
+          "#"
+        ],
+        "index_handlers": [
+          [],
+          []
+        ],
+        "string": "Nächstes Gebiet enthält 3 zusätzliche magische Gruppen mit\n {0}% erhöhter Angriffs-, Zauber- und Bewegungsgeschwindigkeit und {1}% mehr fallen gelassener Gegenstände",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          },
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#",
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ],
+          [
+            "negate"
+          ]
+        ],
+        "string": "Nächstes Gebiet enthält 3 zusätzliche magische Gruppen mit\n {0}% verringerter Angriffs-, Zauber- und Bewegungsgeschwindigkeit und {1}% weniger fallen gelassener Gegenstände",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_uul_netol_breach"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Uul-Netol-Riss",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_wealthy_pack"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine zusätzliche magische 'Reichtum'-Gruppe",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_x_additional_animated_weapon_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Gruppen beseelter Waffen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_x_additional_magic_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält zusätzliche magische Monster",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_contains_x_additional_rare_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält zusätzliche seltene Monster",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_area_contains_x_rare_monsters_with_inner_treasure"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein seltenes Monster mit einverleibtem Schatz",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} seltene Monster mit einverleibtem Schatz",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_damage_taken_+%_from_beyond_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler erleiden {0}% erhöhten Schaden von Monstern aus dem Jenseits im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Spieler erleiden {0}% verringerten Schaden von Monstern aus dem Jenseits im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_essence_monsters_are_corrupted"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gefundene Essenzen im nächsten Gebiet sind verderbt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_essence_monsters_have_additional_essences"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Eingeschlossene Monster im nächsten Gebiet tragen eine zusätzliche Essenz",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Eingeschlossene Monster im nächsten Gebiet tragen {0} zusätzliche Essenzen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_essence_monsters_higher_tier"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gefundene Essenzen im nächsten Gebiet sind ein Level höher",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_first_strongbox_contains_x_additional_rare_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Der erste geöffnete Tresor im nächsten Gebiet wird von einem zusätzlichen seltenen Monster bewacht",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Der erste geöffnete Tresor im nächsten Gebiet wird von {0} zusätzlichen seltenen Monstern bewacht",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_first_unique_beyond_boss_slain_drops_x_beyond_uniques"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Bei Tötung des ersten einzigartigen Monsters aus dem Jenseits im nächsten Gebiet fällt ein einzigartiger Jenseits-Gegenstand",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Bei Tötung des ersten einzigartigen Monsters aus dem Jenseits im nächsten Gebiet fallen {0} einzigartige Jenseits-Gegenstände",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_force_stone_circle"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Steinkreis",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_gain_onslaught_for_x_ms_on_killing_rare_monster"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds"
+          ]
+        ],
+        "string": "Spieler im nächsten Gebiet erhalten Ansturm für {0} Sekunden bei Tötung eines seltenen Monsters",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_imprisoned_monsters_action_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Eingeschlossene Monster im nächsten Gebiet haben {0}% erhöhte Aktionsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Eingeschlossene Monster im nächsten Gebiet haben {0}% verringerte Aktionsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_imprisoned_monsters_damage_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Eingeschlossene Monster im nächsten Gebiet verursachen {0}% erhöhten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Eingeschlossene Monster im nächsten Gebiet verursachen {0}% verringerten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_imprisoned_monsters_damage_taken_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Eingeschlossene Monster im nächsten Gebiet erleiden {0}% erhöhten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_invasion_bosses_are_twinned"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Invasion-Bosse im nächsten Gebiet sind doppelt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_invasion_bosses_drop_x_additional_vaal_orbs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Invasion-Bosse im nächsten Gebiet lassen eine zusätzliche Vaalsphäre fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Invasion-Bosse im nächsten Gebiet lassen {0} zusätzliche Vaalsphären fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_invasion_bosses_dropped_items_are_fully_linked"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Fallen gelassene Gegenstände von Invasion-Bossen im nächsten Gebiet sind vollständig verbunden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_invasion_bosses_dropped_items_have_x_additional_sockets"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Fallen gelassene Gegenstände von Invasion-Bossen im nächsten Gebiet haben eine zusätzliche Fassung",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Fallen gelassene Gegenstände von Invasion-Bossen im nächsten Gebiet haben {0} zusätzliche Fassungen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_invasion_monsters_guarded_by_x_magic_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Invasion-Bosse im nächsten Gebiet werden von einer Gruppe magischer Monster bewacht",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Invasion-Bosse im nächsten Gebiet werden von {0} Gruppen magischer Monster bewacht",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_item_drop_quantity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% erhöhte Menge gefundener Gegenstände im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% verringerte Menge gefundener Gegenstände im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_item_drop_rarity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% erhöhte [Rarity|Seltenheit] gefundener Gegenstände im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% verringerte [Rarity|Seltenheit] gefundener Gegenstände im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_item_found_rarity_+%_per_15_rampage_stacks"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet haben {0}% erhöhte Seltenheit gefundener Gegenstände pro 15 Amok-Tötungen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Spieler im nächsten Gebiet haben {0}% verringerte Seltenheit gefundener Gegenstände pro 15 Amok-Tötungen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_item_quantity_from_monsters_that_drop_silver_coin_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit Silbermünzen im nächsten Gebiet lassen {0}% erhöhte Menge an Gegenständen fallen und stechen hervor",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_breaches"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Riss",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Risse",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_invasion_bosses"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Invasion-Boss",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Invasion-Bosse",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_monoliths"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu 1 zusätzliches Monster, das in einer Essenz eingeschlossen ist",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu {0} zusätzliche Monster, die in Essenzen eingeschlossen sind",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_perandus_chests"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine zusätzliche Perandus-Truhe",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Perandus-Truhen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_prophecy_coins"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine zusätzliche Silbermünze",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Silbermünzen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_rogue_exiles"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen abtrünnigen Verbannten",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche abtrünnige Verbannte",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_shrines"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu {0} zusätzlichen Schrein",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu {0} zusätzliche Schreine",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_strongboxes"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Tresor",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Tresore",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_talismans"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein zusätzliches Monster, das von einem uralten Talisman besessen ist",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Monster, die von uralten Talismanen besessen sind",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_tormented_spirits"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine zusätzliche Gequälte Seele",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Gequälte Seelen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_additional_warband_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Kriegshorden-Gruppen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_area_contains_x_additional_leaguestones"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zusätzlichen Liga-Stein",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} zusätzliche Liga-Steine",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_beyond_monster_item_quantity_and_rarity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Menge und Seltenheit fallen gelassener Gegenstände von Monstern aus dem Jenseits im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% weniger Menge und Seltenheit fallen gelassener Gegenstände von Monstern aus dem Jenseits im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_contains_warband_leader"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet wird von einem Kriegshorden-Boss kontrolliert",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_explicit_tempest_type_override"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 5,
+            "max": 5,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einem Widerhallenden Sturm beeinflusst",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 7,
+            "max": 7,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einem Blitzenden Sturm beeinflusst",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 8,
+            "max": 8,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einem Strahlenden Sturm beeinflusst",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 9,
+            "max": 9,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einem Vergrößernden Sturm beeinflusst",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 32,
+            "max": 32,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einem Verzehrenden Sturm beeinflusst",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 44,
+            "max": 44,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einem Verderbenden Sturm beeinflusst",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_explicit_warband_type_override"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet wird von einer Rotklingen-Kriegshorde besiedelt",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": 2,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet wird von einer Stummwind-Kriegshorde besiedelt",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 3,
+            "max": 3,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet wird von einer Gischtfäulnis-Kriegshorde besiedelt",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 4,
+            "max": 4,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet wird von einer Abtrünnigen-Kriegshorde besiedelt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_first_invasion_boss_killed_drops_x_additional_currency"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Ein zusätzlicher Basis-Währungsgegenstand wird fallen gelassen, wenn der erste Invasion-Boss im nächsten Gebiet getötet wird",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0} zusätzliche Basis-Währungsgegenstände werden fallen gelassen, wenn der erste Invasion-Boss im nächsten Gebiet getötet wird",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_implicit_tempest_random"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen zufälligen Sturm, der Monster und Spieler beeinflusst",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_imprisoned_monsters_item_quantity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Menge fallen gelassener Gegenstände von eingeschlossenen Monstern im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_imprisoned_monsters_item_rarity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Seltenheit fallen gelassener Gegenstände von eingeschlossenen Monstern im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_invasion_boss_item_quantity_and_rarity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Menge und Seltenheit fallen gelassener Gegenstände von Invasion-Bossen im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% weniger Menge und Seltenheit fallen gelassener Gegenstände von Invasion-Bossen im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_monolith_contains_essence_type"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 21,
+            "max": 21,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Essenz der Hysterie",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 22,
+            "max": 22,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Essenz des Wahnsinns",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 23,
+            "max": 23,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Essenz des Horrors",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 24,
+            "max": 24,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Essenz des Deliriums",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 25,
+            "max": 25,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein Relikt der Verderbtheit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_breaches"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Riss",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Risse",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_monoliths"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu 1 Monster, das in einer Essenz eingeschlossen ist",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu {0} Monster, die in Essenzen eingeschlossen sind",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_perandus_chests"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Perandus-Truhe",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Perandus-Truhen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_prophecy_coins"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Silbermünze",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Silbermünzen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_rogue_exiles"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen abtrünnigen Verbannten",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} abtrünnige Verbannte",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_shrines"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu 1 Schrein",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält bis zu {0} Schreine",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_strongboxes"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält einen Tresor",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Tresore",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_talismans"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält ein Monster, das von einem uralten Talisman besessen ist",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Monster, das von uralten Talismanen besessen ist",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_tormented_spirits"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Gequälte Seele",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Gequälte Seelen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_override_base_num_warband_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält mindestens 1 Kriegshorde-Gruppe",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält mindestens {0} Kriegshorde-Gruppen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_perandus_chests_have_item_quantity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Menge enthaltener Gegenstände in Perandus-Truhen im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_perandus_chests_have_item_rarity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Seltenheit enthaltener Gegenstände in Perandus-Truhen im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_rogue_exiles_dropped_item_rarity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Seltenheit fallen gelassener Gegenstände von abtrünnigen Verbannten im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_shrine_monster_rarity_override"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster, die im nächsten Gebiet Schreine bewachen, sind magisch",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": 2,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Einige Monster, die im nächsten Gebiet Schreine bewachen, sind selten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_shrine_override_type"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Mindestens ein Schrein im nächsten Gebiet ist ein Schrein der Beschleunigung",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": 2,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Mindestens ein Schrein im nächsten Gebiet ist ein Schrein des Widerhalls",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 3,
+            "max": 3,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Mindestens ein Schrein im nächsten Gebiet ist ein göttlicher Schrein",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_stone_circle_%_chance"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet im Freien hat {0}% Chance einen Steinkreis zu enthalten",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Next Gebiet im Freien enthält einen Steinkreis",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_strongboxes_rarity_override"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Tresore im nächsten Gebiet sind magisch",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": 2,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Tresore im nächsten Gebiet sind selten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_strongboxes_vaal_orb_drop_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Tresore im nächsten Gebiet haben {0}% Chance, eine zusätzliche Vaalsphäre zu enthalten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_warbands_packs_have_item_quantity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Menge fallen gelassener Gegenstände von Kriegshorden im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_warbands_packs_have_item_rarity_+%_final"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% mehr Seltenheit fallen gelassener Gegenstände von Kriegshorden im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_x_monsters_spawn_abaxoth"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Ein Monster im nächsten Gebiet beschwört bei Tötung Abaxoth, das Ende von allem Währenden",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0} Monster im nächsten Gebiet beschwören bei Tötung Abaxoth, das Ende von allem Währenden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestone_x_monsters_spawn_random_beyond_boss"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Ein Monster im nächsten Gebiet beschwört bei Tötung ein einzigartiges Monster aus dem Jenseits",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0} Monster im nächsten Gebiet beschwören bei Tötung ein einzigartiges Monster aus dem Jenseits",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestones_currency_items_drop_when_first_reaching_x_rampage_stacks"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Wenn ein Spieler das erste Mal {0} Amok-Tötungen im nächsten Gebiet erreicht, werden 6 Basis-Währungsgegenstände fallen gelassen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_leaguestones_spawn_powerful_monster_when_reaching_x_rampage_stacks"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Sobald ein Spieler im nächsten Gebiet {0} Amok-Tötungen erreicht hat, stellt sich Euch ein mächtiges Monster entgegen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_magic_monsters_are_maimed"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Magische Monster im nächsten Gebiet sind verstümmelt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_magic_monsters_damage_taken_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Magische Monster im nächsten Gebiet erleiden {0}% erhöhten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Magische Monster im nächsten Gebiet erleiden {0}% verringerten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_magic_pack_mod_rules"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Magische Monstergruppen im nächsten Gebiet haben alle einen Blutlinien-Modifikator",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monster_attack_cast_and_movement_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster im nächsten Gebiet haben {0}% erhöhte Angriffs-, Zauber- und Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Monster im nächsten Gebiet haben {0}% verringerte Angriffs-, Zauber- und Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monster_beyond_portal_chance_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster im nächsten Gebiet haben {0}% erhöhte Chance, ein Jenseits-Portal zu erzeugen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Monster im nächsten Gebiet haben {0}% verringerte Chance, ein Jenseits-Portal zu erzeugen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monster_damage_taken_+%_while_possessed"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Im nächsten Gebiet erleiden Monster, die von Gequälten Seelen besessen sind, {0}% erhöhten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Im nächsten Gebiet erleiden Monster, die von Gequälten Seelen besessen sind, {0}% verringerten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monster_slain_experience_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster im nächsten Gebiet gewähren {0}% erhöhte Erfahrung",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Monster im nächsten Gebiet gewähren {0}% verringerte Erfahrung",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monsters_have_onslaught"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster im nächsten Gebiet haben Ansturm",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monsters_spawned_with_talisman_drop_additional_rare_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit einem Talisman im nächsten Gebiet lassen einen zusätzlichen seltenen Gegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit einem Talisman im nächsten Gebiet lassen {0} zusätzliche seltene Gegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monsters_that_drop_silver_coin_drop_x_additional_silver_coins"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit Silbermünzen im nächsten Gebiet lassen eine zusätzliche Silbermünze fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit Silbermünzen im nächsten Gebiet lassen {0} zusätzliche Silbermünzen fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monsters_with_silver_coins_drop_x_additional_currency_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit Silbermünzen im nächsten Gebiet lassen einen zusätzlichen Basis-Währungsgegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit Silbermünzen im nächsten Gebiet lassen {0} zusätzliche Basis-Währungsgegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_monsters_with_silver_coins_drop_x_additional_rare_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit Silbermünzen im nächsten Gebiet lassen einen zusätzlichen seltenen Gegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Monster mit Silbermünzen im nächsten Gebiet lassen {0} zusätzliche seltene Gegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_next_area_contains_x_additional_bearers_of_the_guardian_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Blutlinien-Gruppe 'Diener des Wächters'",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Blutlinien-Gruppen 'Diener des Wächters'",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_next_area_contains_x_additional_voidspawn_of_abaxoth_packs"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält eine Blutlinien-Gruppe 'Leerengeburt des Abaxoth'",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält {0} Blutlinien-Gruppen 'Leerengeburt des Abaxoth'",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_num_extra_invasion_bosses"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einem zusätzlichen Invasion-Boss bewohnt",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von {0} zusätzlichen Invasion-Bossen bewohnt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_perandus_guards_are_rare"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Perandus-Truhen im nächsten Gebiet werden von zusätzlichen seltenen Monstern bewacht",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_perandus_monsters_drop_perandus_coin_stack_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Perandus-Monster im nächsten Gebiet haben {0}% Chance, Perandus-Münzen fallen zu lassen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_attack_cast_and_movement_speed_+%_during_onslaught"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet haben während Ansturm {0}% erhöhte Angriffs-, Zauber- und Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Spieler im nächsten Gebiet haben während Ansturm {0}% verringerte Angriffs-, Zauber- und Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_damage_+%_vs_breach_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet verursachen {0}% erhöhten Schaden mit Treffern gegen Riss-Monster",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_damage_taken_+%_vs_breach_monsters"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet erleiden {0}% erhöhten Schaden von [ContainsBreach|Riss]-Monstern",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Spieler im nächsten Gebiet erleiden {0}% verringerten Schaden von [ContainsBreach|Riss]-Monstern",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_damage_taken_+%_while_rampaging"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet mit mindestens 50 Amok-Tötungen erleiden {0}% erhöhten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Spieler im nächsten Gebiet mit mindestens 50 Amok-Tötungen erleiden {0}% verringerten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_life_regeneration_rate_per_minute_%_per_25_rampage_stacks"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "per_minute_to_per_second"
+          ]
+        ],
+        "string": "Spieler im nächsten Gebiet regenerieren {0}% ihres Lebens pro Sekunde pro 25 Amok-Tötungen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_movement_velocity_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet haben {0}% erhöhte Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_onslaught_on_kill_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet haben {0}% Chance, bei Tötung Ansturm für 4 Sekunden zu erhalten",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": 100,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet erhalten bei Tötung Ansturm für 4 Sekunden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_player_shrine_effect_duration_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% verlängerte Dauer von [Shrine|Schrein]-Effekten auf Spielern im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_players_gain_1_rare_monster_mods_on_kill_for_20_seconds_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet haben {0}% Chance, bei Tötung eines seltenen Monsters einen seiner Modifikatoren für 20 Sekunden zu erhalten",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": 100,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet erhalten bei Tötung eines seltenen Monsters einen seiner Modifikatoren für 20 Sekunden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_players_gain_onslaught_after_opening_a_strongbox_ms"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "milliseconds_to_seconds"
+          ]
+        ],
+        "string": "Tresore im nächsten Gebiet gewähren Ansturm für {0} Sekunden bei Öffnung",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_players_gain_onslaught_during_flask_effect"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet haben Ansturm während [Flask|Fläschchen]wirkung",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_players_gain_rampage_stacks"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Serien-Tötungen von Monstern im nächsten Gebiet gewähren einen Amok-Bonus",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_players_gain_rare_monster_mods_on_kill_%_chance"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Sobald ein Spieler ein seltenes Monster im nächsten Gebiet tötet, hat er {0}% Chance, dessen Modifikatoren für 20 Sekunden zu erhalten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_players_movement_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Spieler im nächsten Gebiet haben {0}% erhöhte Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Spieler im nächsten Gebiet haben {0}% verringerte Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rampage_time_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% verlängerte Amok-Seriendauer im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% verkürzte Amok-Seriendauer im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_random_area_prophecy"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet ist von einer zufälligen Prophezeiung modifiziert",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_random_unique_monster_is_possessed"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Wenn das nächste Gebiet einzigartige Monster enthält, wird eines davon besessen sein",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_breach_monster_additional_breach_ring_drop_chance_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster aus Rissen im nächsten Gebiet haben eine {0}% Chance, einen Riss-Ring fallen zu lassen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_breach_monsters_drop_additional_shards"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Riss-Monster im nächsten Gebiet lassen einen zusätzlichen Splitter fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Riss-Monster im nächsten Gebiet lassen {0} zusätzliche Splitter fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_monsters_are_hindered"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster im nächsten Gebiet sind gelähmt, mit {0}% erhöhter Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Seltene Monster im nächsten Gebiet sind gelähmt, mit {0}% verringerter Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_monsters_drop_rare_prismatic_ring_on_death_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster im nächsten Gebiet haben {0}% Chance, einen seltenen Spektralring fallen zu lassen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": 100,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster im nächsten Gebiet lassen einen seltenen Spektralring fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_monsters_drop_x_additional_rare_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster im nächsten Gebiet lassen einen zusätzlichen seltenen Gegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster im nächsten Gebiet lassen {0} zusätzliche seltene Gegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_monsters_have_inner_treasure"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster im nächsten Gebiet haben den Modifikator 'Innerer Schatz', zusätzlich zu allen weiteren Modifikatoren",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rare_monsters_have_nemesis_mod"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Seltene Monster im nächsten Gebiet haben einen Nemesis-Modifikator",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exile_attack_cast_and_movement_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet haben {0}% erhöhte Angriffs-, Zauber- und Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exile_drop_skill_gem_with_quality"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet lassen eine Fertigkeitengemme mit Qualität fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exiles_are_doubled"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet haben einen abtrünnigen Verbannten als Verbündeten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exiles_damage_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet verursachen {0}% erhöhten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet verursachen {0}% verringerten Schaden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exiles_drop_additional_currency_items_with_quality"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet lassen {0} zusätzliche Basis-Währungsgegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exiles_drop_x_additional_jewels"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet lassen einen zusätzlichen Juwel fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Abtrünnige Verbannte im nächsten Gebiet lassen {0} zusätzliche Juwelen fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exiles_dropped_items_are_corrupted"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Fallen gelassene Gegenstände von abtrünnigen Verbannten im nächsten Gebiet sind verderbt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exiles_dropped_items_are_duplicated"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Fallen gelassene Gegenstände von abtrünnigen Verbannten im nächsten Gebiet sind gespiegelt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_rogue_exiles_dropped_items_are_fully_linked"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Fallen gelassene Gegenstände von abtrünnigen Verbannten im nächsten Gebiet sind vollständig verbunden",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_shrines_drop_x_currency_items_on_activation"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Schreine im nächsten Gebiet lassen bei Aktivierung einen Basis-Währungsgegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Schreine im nächsten Gebiet lassen bei Aktivierung {0} Basis-Währungsgegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_shrines_grant_a_random_additional_effect"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Schreine im nächsten Gebiet gewähren einen zusätzlichen zufälligen Schrein-Effekt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_spawn_beyond_boss_when_beyond_boss_slain_%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Einzigartige Monster aus dem Jenseits im nächsten Gebiet haben bei Tötung {0}% Chance, ein weiteres einzigartiges Monster aus dem Jenseits zu beschwören",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": 100,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Einzigartige Monster aus dem Jenseits im nächsten Gebiet beschwören bei Tötung ein weiteres einzigartiges Monster aus dem Jenseits",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_spawn_cadiro_%_chance"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 99,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet hat eine {0}% Chance, Cadiro Perandus zu enthalten",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 100,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Nächstes Gebiet enthält Cadiro Perandus",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_storm_area_of_effect_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Sturm-Effekte im nächsten Gebiet haben {0}% vergrößerten Wirkungsbereich",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Sturm-Effekte im nächsten Gebiet haben {0}% verkleinerten Wirkungsbereich",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_strongboxes_drop_x_additional_rare_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Alle Tresore im nächsten Gebiet enthalten einen zusätzlichen seltenen Gegenstand",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Alle Tresore im nächsten Gebiet enthalten {0} zusätzliche seltene Gegenstände",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_talismans_dropped_as_rare"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gefundene Talismane im nächsten Gebiet sind selten",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_talismans_higher_tier"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gefundene Talismane im nächsten Gebiet sind 1 Level höher",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gefundene Talismane im nächsten Gebiet sind {0} Level höher",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_tempest_area_of_effect_+%_visible"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Sturm-Effekte im nächsten Gebiet haben {0}% vergrößerten Wirkungsbereich",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Sturm-Effekte im nächsten Gebiet haben {0}% verkleinerten Wirkungsbereich",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_tempest_frequency_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "{0}% erhöhte Frequenz von Sturm-Effekten im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "{0}% verringerte Frequenz von Sturm-Effekten im nächsten Gebiet",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_tormented_spirits_drop_x_additional_rare_items"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gequälte Seelen im nächsten Gebiet lassen 1 zusätzlichen seltenen Gegenstand fallen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gequälte Seelen im nächsten Gebiet lassen {0} zusätzliche seltene Gegenstände fallen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_tormented_spirits_duration_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gequälte Seelen im nächsten Gebiet haben {0}% verlängerte Dauer",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Gequälte Seelen im nächsten Gebiet haben {0}% verkürzte Dauer",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_tormented_spirits_movement_speed_+%"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Gequälte Seelen im nächsten Gebiet haben {0}% erhöhte Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": -1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          [
+            "negate"
+          ]
+        ],
+        "string": "Gequälte Seelen im nächsten Gebiet haben {0}% verringerte Bewegungsgeschwindigkeit",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_warbands_packs_have_additional_elites"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Kriegshorden im nächsten Gebiet haben ein zusätzliches Elitemitglied",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Kriegshorden im nächsten Gebiet haben {0} zusätzliche Elitemitglieder",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_warbands_packs_have_additional_grunts"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Kriegshorden im nächsten Gebiet haben ein zusätzliches Mitglied",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Kriegshorden im nächsten Gebiet haben {0} zusätzliche Mitglieder",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "map_warbands_packs_have_additional_supports"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": 1,
+            "max": 1,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Kriegshorden im nächsten Gebiet haben einen zusätzlichen Gehilfen",
+        "reminder_text": null,
+        "is_markup": null
+      },
+      {
+        "condition": [
+          {
+            "min": 2,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "#"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Kriegshorden im nächsten Gebiet haben {0} zusätzliche Gehilfen",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  },
+  {
+    "English": null,
+    "ids": [
+      "perandus_double_number_of_coins_found"
+    ],
+    "trade_stats": null,
+    "hidden": null,
+    "French": null,
+    "German": [
+      {
+        "condition": [
+          {
+            "min": null,
+            "max": null,
+            "negated": null
+          }
+        ],
+        "format": [
+          "ignore"
+        ],
+        "index_handlers": [
+          []
+        ],
+        "string": "Anzahl fallen gelassener Perandus-Münzen im nächsten Gebiet ist verdoppelt",
+        "reminder_text": null,
+        "is_markup": null
+      }
+    ],
+    "Japanese": null,
+    "Korean": null,
+    "Portuguese": null,
+    "Russian": null,
+    "Spanish": null,
+    "Thai": null,
+    "Traditional_Chinese": null
+  }
+]

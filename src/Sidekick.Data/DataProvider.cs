@@ -6,16 +6,12 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Initialization;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Data;
 
-public record DataFile(string Name, long Size, DateTimeOffset LastModified);
-
-public class DataProvider : IInitializableService
+public class DataProvider
 {
-    private readonly IOptions<SidekickConfiguration> configuration;
     private readonly ILogger<DataProvider> logger;
 
     private static readonly JsonSerializerOptions JsonOptions = new()
@@ -32,11 +28,8 @@ public class DataProvider : IInitializableService
 
     public string DataDirectory { get; }
 
-    public int Priority => -100;
-
     public DataProvider(IOptions<SidekickConfiguration> configuration, ILogger<DataProvider> logger)
     {
-        this.configuration = configuration;
         this.logger = logger;
         DataDirectory = GetDataDirectory();
 
@@ -53,7 +46,7 @@ public class DataProvider : IInitializableService
                 }
             }
 
-            return SidekickPaths.GetDataFilePath("SidekickData");
+            return Path.Combine(AppContext.BaseDirectory, "wwwroot/data");
         }
 
         string? FindSolutionDirectory(string? startDirectory = null)
@@ -73,55 +66,6 @@ public class DataProvider : IInitializableService
             }
 
             return null;
-        }
-    }
-
-    public Task Initialize()
-    {
-        if (Debugger.IsAttached || configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test) return Task.CompletedTask;
-
-        var sourceDirectory = Path.Combine(AppContext.BaseDirectory, "wwwroot/data");
-        var targetDirectory = DataDirectory;
-
-        if (!Directory.Exists(sourceDirectory))
-        {
-            logger.LogWarning("Source directory for data files not found at {sourceDirectory}. Skipping data copy.", sourceDirectory);
-            return Task.CompletedTask;
-        }
-
-        if (!Directory.Exists(targetDirectory))
-        {
-            Directory.CreateDirectory(targetDirectory);
-        }
-
-        CopyDirectory(sourceDirectory, targetDirectory);
-
-        return Task.CompletedTask;
-
-        void CopyDirectory(string source, string target)
-        {
-            foreach (var sourceFile in Directory.GetFiles(source, "*", SearchOption.AllDirectories))
-            {
-                if (sourceFile.Replace('\\', '/').Contains("/raw/")) continue;
-
-                var relativePath = Path.GetRelativePath(source, sourceFile);
-                var targetFile = Path.Combine(target, relativePath);
-
-                var sourceInfo = new FileInfo(sourceFile);
-                var targetInfo = new FileInfo(targetFile);
-
-                if (!targetInfo.Exists || sourceInfo.LastWriteTimeUtc > targetInfo.LastWriteTimeUtc)
-                {
-                    var targetFileInfo = new FileInfo(targetFile);
-                    if (targetFileInfo.Directory != null && !targetFileInfo.Directory.Exists)
-                    {
-                        targetFileInfo.Directory.Create();
-                    }
-
-                    File.Copy(sourceFile, targetFile, true);
-                    logger.LogInformation($"Copied {relativePath} to user data folder.");
-                }
-            }
         }
     }
 
@@ -190,44 +134,5 @@ public class DataProvider : IInitializableService
     private string GetFilePath(GameType game, DataType type, string languageCode)
     {
         return game.GetValueAttribute() + "/" + string.Format(type.GetValueAttribute(), languageCode);
-    }
-
-    public void DeleteAll()
-    {
-        if (configuration.Value.ApplicationType != SidekickApplicationType.DataBuilder)
-        {
-            throw new SidekickException("Can not delete all data except when running in CLI mode.");
-        }
-
-        if (!string.IsNullOrEmpty(DataDirectory))
-        {
-            Directory.Delete(DataDirectory, true);
-            Directory.CreateDirectory(DataDirectory);
-        }
-    }
-
-    public List<DataFile> GetFiles()
-    {
-        var files = new List<DataFile>();
-        if (!Directory.Exists(DataDirectory))
-        {
-            return files;
-        }
-
-        var directoryInfo = new DirectoryInfo(DataDirectory);
-        foreach (var file in directoryInfo.GetFiles("*", SearchOption.AllDirectories))
-        {
-            var path = file.FullName.Replace('\\', '/');
-            if (path.Contains("/raw/")) continue;
-
-            var name = Path.GetRelativePath(DataDirectory, path).Replace('\\', '/');
-
-            files.Add(new DataFile(
-                      Name: name,
-                      Size: file.Length,
-                      LastModified: file.LastWriteTimeUtc));
-        }
-
-        return files;
     }
 }

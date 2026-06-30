@@ -1,10 +1,9 @@
 using System.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Sidekick.Common.Browser;
 
-public class BrowserProvider(ILogger<BrowserProvider> logger, IServiceProvider serviceProvider) : IBrowserProvider
+public class BrowserProvider(ILogger<BrowserProvider> logger) : IBrowserProvider
 {
     public Uri SidekickWebsite => new("https://sidekick-poe.github.io/");
 
@@ -27,8 +26,6 @@ public class BrowserProvider(ILogger<BrowserProvider> logger, IServiceProvider s
         catch (Exception ex)
         {
             logger.LogError(ex, "[Browser] Failed to open URL: {uri}", uri.AbsoluteUri);
-            var dialogs = serviceProvider.GetService<ISidekickDialogs>();
-            dialogs?.OpenOkModal("Failed to open URL: " + uri.AbsoluteUri);
         }
     }
 }

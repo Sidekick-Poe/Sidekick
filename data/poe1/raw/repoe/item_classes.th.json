@@ -1,0 +1,764 @@
+{
+  "LifeFlask": {
+    "category": "ขวดยา",
+    "category_id": "Flask",
+    "name": "ขวดยาพลังชีวิต",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "ขวดยา",
+    "category_id": "Flask",
+    "name": "ขวดยามานา",
+    "influence_tags": null
+  },
+  "HybridFlask": {
+    "category": "ขวดยา",
+    "category_id": "Flask",
+    "name": "ขวดยาผสม",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "เงินตรา",
+    "category_id": "Currency",
+    "name": "เงินตรา",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "สร้อย",
+    "category_id": "Amulet",
+    "name": "สร้อย",
+    "influence_tags": [
+      "amulet_crusader",
+      "amulet_elder",
+      "amulet_basilisk",
+      "amulet_eyrie",
+      "amulet_shaper",
+      "amulet_adjudicator"
+    ]
+  },
+  "Ring": {
+    "category": "แหวน",
+    "category_id": "Ring",
+    "name": "แหวน",
+    "influence_tags": [
+      "ring_crusader",
+      "ring_elder",
+      "ring_basilisk",
+      "ring_eyrie",
+      "ring_shaper",
+      "ring_adjudicator"
+    ]
+  },
+  "Claw": {
+    "category": "กรงเล็บ",
+    "category_id": "Claw",
+    "name": "กรงเล็บ",
+    "influence_tags": [
+      "claw_crusader",
+      "claw_elder",
+      "claw_basilisk",
+      "claw_eyrie",
+      "claw_shaper",
+      "claw_adjudicator"
+    ]
+  },
+  "Dagger": {
+    "category": "มีด",
+    "category_id": "Dagger",
+    "name": "มีด",
+    "influence_tags": [
+      "dagger_crusader",
+      "dagger_elder",
+      "dagger_basilisk",
+      "dagger_eyrie",
+      "dagger_shaper",
+      "dagger_adjudicator"
+    ]
+  },
+  "Wand": {
+    "category": "ไม้กายสิทธิ์",
+    "category_id": "Wand",
+    "name": "ไม้กายสิทธิ์",
+    "influence_tags": [
+      "wand_crusader",
+      "wand_elder",
+      "wand_basilisk",
+      "wand_eyrie",
+      "wand_shaper",
+      "wand_adjudicator"
+    ]
+  },
+  "One Hand Sword": {
+    "category": "ดาบมือเดียว",
+    "category_id": "One Hand Sword",
+    "name": "ดาบมือเดียว",
+    "influence_tags": [
+      "sword_crusader",
+      "sword_elder",
+      "sword_basilisk",
+      "sword_eyrie",
+      "sword_shaper",
+      "sword_adjudicator"
+    ]
+  },
+  "Thrusting One Hand Sword": {
+    "category": "ดาบมือเดียว",
+    "category_id": "One Hand Sword",
+    "name": "ดาบแทง",
+    "influence_tags": [
+      "sword_crusader",
+      "sword_elder",
+      "sword_basilisk",
+      "sword_eyrie",
+      "sword_shaper",
+      "sword_adjudicator"
+    ]
+  },
+  "One Hand Axe": {
+    "category": "ขวานมือเดียว",
+    "category_id": "One Hand Axe",
+    "name": "ขวานมือเดียว",
+    "influence_tags": [
+      "axe_crusader",
+      "axe_elder",
+      "axe_basilisk",
+      "axe_eyrie",
+      "axe_shaper",
+      "axe_adjudicator"
+    ]
+  },
+  "One Hand Mace": {
+    "category": "กระบองมือเดียว",
+    "category_id": "One Hand Mace",
+    "name": "กระบองมือเดียว",
+    "influence_tags": [
+      "mace_crusader",
+      "mace_elder",
+      "mace_basilisk",
+      "mace_eyrie",
+      "mace_shaper",
+      "mace_adjudicator"
+    ]
+  },
+  "Bow": {
+    "category": "ธนู",
+    "category_id": "Bow",
+    "name": "ธนู",
+    "influence_tags": [
+      "bow_crusader",
+      "bow_elder",
+      "bow_basilisk",
+      "bow_eyrie",
+      "bow_shaper",
+      "bow_adjudicator"
+    ]
+  },
+  "Staff": {
+    "category": "ไม้พลอง",
+    "category_id": "Staff",
+    "name": "ไม้พลอง",
+    "influence_tags": [
+      "staff_crusader",
+      "staff_elder",
+      "staff_basilisk",
+      "staff_eyrie",
+      "staff_shaper",
+      "staff_adjudicator"
+    ]
+  },
+  "Two Hand Sword": {
+    "category": "ดาบสองมือ",
+    "category_id": "Two Hand Sword",
+    "name": "ดาบสองมือ",
+    "influence_tags": [
+      "2h_sword_crusader",
+      "2h_sword_elder",
+      "2h_sword_basilisk",
+      "2h_sword_eyrie",
+      "2h_sword_shaper",
+      "2h_sword_adjudicator"
+    ]
+  },
+  "Two Hand Axe": {
+    "category": "ขวานสองมือ",
+    "category_id": "Two Hand Axe",
+    "name": "ขวานสองมือ",
+    "influence_tags": [
+      "2h_axe_crusader",
+      "2h_axe_elder",
+      "2h_axe_basilisk",
+      "2h_axe_eyrie",
+      "2h_axe_shaper",
+      "2h_axe_adjudicator"
+    ]
+  },
+  "Two Hand Mace": {
+    "category": "กระบองสองมือ",
+    "category_id": "Two Hand Mace",
+    "name": "กระบองสองมือ",
+    "influence_tags": [
+      "2h_mace_crusader",
+      "2h_mace_elder",
+      "2h_mace_basilisk",
+      "2h_mace_eyrie",
+      "2h_mace_shaper",
+      "2h_mace_adjudicator"
+    ]
+  },
+  "Active Skill Gem": {
+    "category": "หินสกิล",
+    "category_id": "Active Skill Gem",
+    "name": "หินสกิล",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "หินเสริม",
+    "category_id": "Support Skill Gem",
+    "name": "หินเสริม",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "ซองธนู",
+    "category_id": "Quiver",
+    "name": "ซองธนู",
+    "influence_tags": [
+      "quiver_crusader",
+      "quiver_elder",
+      "quiver_basilisk",
+      "quiver_eyrie",
+      "quiver_shaper",
+      "quiver_adjudicator"
+    ]
+  },
+  "Belt": {
+    "category": "เข็มขัด",
+    "category_id": "Belt",
+    "name": "เข็มขัด",
+    "influence_tags": [
+      "belt_crusader",
+      "belt_elder",
+      "belt_basilisk",
+      "belt_eyrie",
+      "belt_shaper",
+      "belt_adjudicator"
+    ]
+  },
+  "Gloves": {
+    "category": "ถุงมือ",
+    "category_id": "Gloves",
+    "name": "ถุงมือ",
+    "influence_tags": [
+      "gloves_crusader",
+      "gloves_elder",
+      "gloves_basilisk",
+      "gloves_eyrie",
+      "gloves_shaper",
+      "gloves_adjudicator"
+    ]
+  },
+  "Boots": {
+    "category": "รองเท้า",
+    "category_id": "Boots",
+    "name": "รองเท้า",
+    "influence_tags": [
+      "boots_crusader",
+      "boots_elder",
+      "boots_basilisk",
+      "boots_eyrie",
+      "boots_shaper",
+      "boots_adjudicator"
+    ]
+  },
+  "Body Armour": {
+    "category": "เสื้อเกราะ",
+    "category_id": "Body Armour",
+    "name": "เสื้อเกราะ",
+    "influence_tags": [
+      "body_armour_crusader",
+      "body_armour_elder",
+      "body_armour_basilisk",
+      "body_armour_eyrie",
+      "body_armour_shaper",
+      "body_armour_adjudicator"
+    ]
+  },
+  "Helmet": {
+    "category": "หมวก",
+    "category_id": "Helmet",
+    "name": "หมวก",
+    "influence_tags": [
+      "helmet_crusader",
+      "helmet_elder",
+      "helmet_basilisk",
+      "helmet_eyrie",
+      "helmet_shaper",
+      "helmet_adjudicator"
+    ]
+  },
+  "Shield": {
+    "category": "โล่",
+    "category_id": "Shield",
+    "name": "โล่",
+    "influence_tags": [
+      "shield_crusader",
+      "shield_elder",
+      "shield_basilisk",
+      "shield_eyrie",
+      "shield_shaper",
+      "shield_adjudicator"
+    ]
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "วัตถุโบราณเล็ก",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "วัตถุโบราณกลาง",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "วัตถุโบราณใหญ่",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "เงินตรา",
+    "category_id": "Currency",
+    "name": "เงินตรารวมกองได้",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "ไอเทมเควสต์",
+    "category_id": "QuestItem",
+    "name": "ไอเทมเควสต์",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "กระบองมือเดียว",
+    "category_id": "One Hand Mace",
+    "name": "คทา",
+    "influence_tags": [
+      "sceptre_crusader",
+      "sceptre_elder",
+      "sceptre_basilisk",
+      "sceptre_eyrie",
+      "sceptre_shaper",
+      "sceptre_adjudicator"
+    ]
+  },
+  "UtilityFlask": {
+    "category": "ขวดยา",
+    "category_id": "Flask",
+    "name": "ขวดยาช่วยเหลือ",
+    "influence_tags": null
+  },
+  "UtilityFlaskCritical": {
+    "category": "ขวดยา",
+    "category_id": "Flask",
+    "name": "ขวดยาช่วยเหลือคริติคอล",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "แผนที่",
+    "category_id": "Map",
+    "name": "แผนที่",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "เบ็ดตกปลา",
+    "category_id": "FishingRod",
+    "name": "เบ็ดตกปลา",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "ชิ้นส่วนแผนที่",
+    "category_id": "MapFragment",
+    "name": "ชิ้นส่วนแผนที่",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "ของตกแต่งที่ซ่อน",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "สินค้าแฟชั่น",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "จิวเวล",
+    "category_id": "Jewel",
+    "name": "จิวเวล",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "ไพ่พยากรณ์",
+    "category_id": "DivinationCard",
+    "name": "ไพ่พยากรณ์",
+    "influence_tags": null
+  },
+  "LabyrinthItem": {
+    "category": "กุญแจเขาวงกต",
+    "category_id": "LabyrinthItem",
+    "name": "ไอเทมเขาวงกต",
+    "influence_tags": null
+  },
+  "LabyrinthTrinket": {
+    "category": "อุปกรณ์เขาวงกต",
+    "category_id": "LabyrinthTrinket",
+    "name": "อุปกรณ์เขาวงกต",
+    "influence_tags": null
+  },
+  "LabyrinthMapItem": {
+    "category": "ชิ้นส่วนแผนที่",
+    "category_id": "MapFragment",
+    "name": "ไอเทมแผนที่เขาวงกต",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "ไอเทมแผนที่อื่นๆ",
+    "category_id": "MiscMapItem",
+    "name": "ไอเทมแผนที่อื่นๆ",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "ศิลาลีก",
+    "category_id": "Leaguestone",
+    "name": "ศิลาลีก",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "วิญญาณที่ถูกเก็บ",
+    "category_id": "PantheonSoul",
+    "name": "วิญญาณกลุ่มทวยเทพ",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "ชิ้นส่วนยูนิค",
+    "category_id": "UniqueFragment",
+    "name": "ชิ้นส่วน (Piece)",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "จิวเวลอะบิส",
+    "category_id": "AbyssJewel",
+    "name": "จิวเวลอะบิส",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "ไอเทมย้อนเวลา",
+    "category_id": "IncursionItem",
+    "name": "ไอเทมย้อนเวลา",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "ตัวสั่นพ้อง",
+    "category_id": "DelveSocketableCurrency",
+    "name": "เงินตรามีรูของเหมือง",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "ตัวบ่มฟัก",
+    "category_id": "Incubator",
+    "name": "ตัวบ่มฟัก",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "เศษ",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "ชิ้นส่วนของหัวใจ",
+    "influence_tags": null
+  },
+  "Rune Dagger": {
+    "category": "มีด",
+    "category_id": "Dagger",
+    "name": "มีดอาคม",
+    "influence_tags": [
+      "rune_dagger_crusader",
+      "rune_dagger_elder",
+      "rune_dagger_basilisk",
+      "rune_dagger_eyrie",
+      "rune_dagger_shaper",
+      "rune_dagger_adjudicator"
+    ]
+  },
+  "Warstaff": {
+    "category": "ไม้พลอง",
+    "category_id": "Staff",
+    "name": "ไม้พลองสงคราม",
+    "influence_tags": [
+      "warstaff_crusader",
+      "warstaff_elder",
+      "warstaff_basilisk",
+      "warstaff_eyrie",
+      "warstaff_shaper",
+      "warstaff_adjudicator"
+    ]
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "ตัวสั่นพ้อง",
+    "category_id": "DelveSocketableCurrency",
+    "name": "เงินตรามีรูของเหมืองแบบรวมกองได้",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "อัญมณีผู้พิทักษ์",
+    "category_id": "AtlasUpgradeItem",
+    "name": "ไอเทมอัพเกรดแอตลาส",
+    "influence_tags": null
+  },
+  "MetamorphosisDNA": {
+    "category": "ชิ้นส่วนตัวอย่างเมตามอร์ฟ",
+    "category_id": "MetamorphosisDNA",
+    "name": "ชิ้นส่วนตัวอย่างเมตามอร์ฟ",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "ไอเทมซ่อนเร้น",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "สัญญาจ้าง",
+    "category_id": "HeistContract",
+    "name": "สัญญาจ้าง",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "อุปกรณ์สวมใส่กองโจร",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "อุปกรณ์สวมใส่กองโจร",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "เครื่องมือกองโจร",
+    "category_id": "HeistEquipmentTool",
+    "name": "เครื่องมือกองโจร",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "ผ้าคลุมกองโจร",
+    "category_id": "HeistEquipmentUtility",
+    "name": "ผ้าคลุมกองโจร",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "เข็มกลัดกองโจร",
+    "category_id": "HeistEquipmentReward",
+    "name": "เข็มกลัดกองโจร",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "พิมพ์เขียว",
+    "category_id": "HeistBlueprint",
+    "name": "พิมพ์เขียว",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "เครื่องประดับ",
+    "category_id": "Trinket",
+    "name": "เครื่องประดับโจร",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "เป้าหมายโจรกรรม",
+    "category_id": "HeistObjective",
+    "name": "เป้าหมายโจรกรรม",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "สมุดปูมเดินทางกองสำรวจ",
+    "category_id": "ExpeditionLogbook",
+    "name": "สมุดปูมเดินทางกองสำรวจ",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "ตัวบ่มฟัก",
+    "category_id": "Incubator",
+    "name": "ตัวบ่มฟัก",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "ม็อดอริคู่อาฆาต",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "ไอเทมประจำอินสแตนซ์",
+    "category_id": "InstanceLocalItem",
+    "name": "ไอเทมประจำอินสแตนซ์",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "หุ่นอารักษ์",
+    "category_id": "SentinelDrone",
+    "name": "หุ่นอารักษ์",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "ความทรงจำ",
+    "category_id": "MemoryLine",
+    "name": "ความทรงจำ",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "วัตถุตกทอด",
+    "category_id": "Relic",
+    "name": "วัตถุตกทอด",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "วัตถุตกทอด",
+    "category_id": "Relic",
+    "name": "วัตถุตกทอดบริสุทธิ์",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "ศิลาบรีช",
+    "category_id": "Breachstone",
+    "name": "ศิลาบรีช",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "กุญแจคลังวัตถุโบราณ",
+    "category_id": "VaultKey",
+    "name": "กุญแจคลังวัตถุโบราณ",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "ไอเทมแผนที่อื่นๆ",
+    "category_id": "MiscMapItem",
+    "name": "บทวิจัยเทวสถาน",
+    "influence_tags": null
+  },
+  "Tincture": {
+    "category": "ยาเคลือบอาวุธ",
+    "category_id": "Tincture",
+    "name": "ยาเคลือบอาวุธ",
+    "influence_tags": null
+  },
+  "ItemisedCorpse": {
+    "category": "ศพ",
+    "category_id": "Corpse",
+    "name": "ศพ",
+    "influence_tags": null
+  },
+  "AnimalCharm": {
+    "category": "ของขลัง",
+    "category_id": "Charm",
+    "name": "ของขลัง",
+    "influence_tags": null
+  },
+  "NecropolisPack": {
+    "category": "เถ้าถ่านแห่งออลเฟลม",
+    "category_id": "NecropolisPack",
+    "name": "เถ้าถ่านแห่งออลเฟลม",
+    "influence_tags": null
+  },
+  "Gold": {
+    "category": "เงินตรา",
+    "category_id": "Currency",
+    "name": "ทองคำ",
+    "influence_tags": null
+  },
+  "AtlasRelic": {
+    "category": "เทวรูป",
+    "category_id": "AtlasRelics",
+    "name": "เทวรูป",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "ผลฝากครรภ์",
+    "category_id": "BrequelFruit",
+    "name": "ผลฝากครรภ์",
+    "influence_tags": null
+  },
+  "MapKey": {
+    "category": "แผนที่",
+    "category_id": "MapKey",
+    "name": "แผนที่",
+    "influence_tags": null
+  },
+  "RemovedItem": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  }
+}

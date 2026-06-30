@@ -1114,8 +1114,8 @@
           },
           {
             "$id": "252",
-            "id": "foreseeing",
-            "text": "\uC608\uACAC",
+            "id": "crafted",
+            "text": "\uC81C\uC791\uB41C",
             "option": {
               "$id": "253",
               "options": {
@@ -1141,8 +1141,8 @@
           },
           {
             "$id": "258",
-            "id": "mirrored",
-            "text": "\uBCF5\uC81C\uB41C",
+            "id": "foreseeing",
+            "text": "\uC608\uACAC",
             "option": {
               "$id": "259",
               "options": {
@@ -1168,24 +1168,51 @@
           },
           {
             "$id": "264",
-            "id": "sanctum_gold",
-            "text": "\uBC14\uB9AC\uC57C \uC2E0\uC131\uD55C \uBB3C",
+            "id": "mirrored",
+            "text": "\uBCF5\uC81C\uB41C",
             "option": {
               "$id": "265",
               "options": {
                 "$id": "266",
+                "$values": [
+                  {
+                    "$id": "267",
+                    "text": "\uBAA8\uB450"
+                  },
+                  {
+                    "$id": "268",
+                    "id": "true",
+                    "text": "\uC608"
+                  },
+                  {
+                    "$id": "269",
+                    "id": "false",
+                    "text": "\uC544\uB2C8\uC694"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$id": "270",
+            "id": "sanctum_gold",
+            "text": "\uBC14\uB9AC\uC57C \uC2E0\uC131\uD55C \uBB3C",
+            "option": {
+              "$id": "271",
+              "options": {
+                "$id": "272",
                 "$values": []
               }
             }
           },
           {
-            "$id": "267",
+            "$id": "273",
             "id": "unidentified_tier",
             "text": "\uBBF8\uD655\uC778 \uB4F1\uAE09",
             "option": {
-              "$id": "268",
+              "$id": "274",
               "options": {
-                "$id": "269",
+                "$id": "275",
                 "$values": []
               }
             }
@@ -1194,39 +1221,39 @@
       }
     },
     {
-      "$id": "270",
+      "$id": "276",
       "id": "trade_filters",
       "title": "\uAC70\uB798 \uD544\uD130",
       "filters": {
-        "$id": "271",
+        "$id": "277",
         "$values": [
           {
-            "$id": "272",
+            "$id": "278",
             "id": "account",
             "text": "\uD310\uB9E4\uC790 \uACC4\uC815",
             "option": {
-              "$id": "273",
+              "$id": "279",
               "options": {
-                "$id": "274",
+                "$id": "280",
                 "$values": []
               }
             }
           },
           {
-            "$id": "275",
+            "$id": "281",
             "id": "collapse",
             "text": "\uACC4\uC815 \uAE30\uC900\uC73C\uB85C \uBAA9\uB85D \uC811\uAE30",
             "option": {
-              "$id": "276",
+              "$id": "282",
               "options": {
-                "$id": "277",
+                "$id": "283",
                 "$values": [
                   {
-                    "$id": "278",
+                    "$id": "284",
                     "text": "\uC544\uB2C8\uC694"
                   },
                   {
-                    "$id": "279",
+                    "$id": "285",
                     "id": "true",
                     "text": "\uC608"
                   }
@@ -1235,60 +1262,60 @@
             }
           },
           {
-            "$id": "280",
+            "$id": "286",
             "id": "indexed",
             "text": "\uB4F1\uB85D \uC644\uB8CC",
             "option": {
-              "$id": "281",
+              "$id": "287",
               "options": {
-                "$id": "282",
+                "$id": "288",
                 "$values": [
                   {
-                    "$id": "283",
+                    "$id": "289",
                     "text": "\uC5B8\uC81C\uB4E0"
                   },
                   {
-                    "$id": "284",
+                    "$id": "290",
                     "id": "1hour",
                     "text": "1\uC2DC\uAC04 \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "285",
+                    "$id": "291",
                     "id": "3hours",
                     "text": "3\uC2DC\uAC04 \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "286",
+                    "$id": "292",
                     "id": "12hours",
                     "text": "12\uC2DC\uAC04 \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "287",
+                    "$id": "293",
                     "id": "1day",
                     "text": "1\uC77C \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "288",
+                    "$id": "294",
                     "id": "3days",
                     "text": "3\uC77C \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "289",
+                    "$id": "295",
                     "id": "1week",
                     "text": "1\uC8FC\uC77C \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "290",
+                    "$id": "296",
                     "id": "2weeks",
                     "text": "2\uC8FC\uC77C \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "291",
+                    "$id": "297",
                     "id": "1month",
                     "text": "1\uB2EC \uC804\uAE4C\uC9C0"
                   },
                   {
-                    "$id": "292",
+                    "$id": "298",
                     "id": "2months",
                     "text": "2\uB2EC \uC804\uAE4C\uC9C0"
                   }
@@ -1297,30 +1324,30 @@
             }
           },
           {
-            "$id": "293",
+            "$id": "299",
             "id": "sale_type",
             "text": "\uD310\uB9E4 \uD615\uC2DD",
             "option": {
-              "$id": "294",
+              "$id": "300",
               "options": {
-                "$id": "295",
+                "$id": "301",
                 "$values": [
                   {
-                    "$id": "296",
+                    "$id": "302",
                     "id": "any",
                     "text": "\uBAA8\uB450"
                   },
                   {
-                    "$id": "297",
+                    "$id": "303",
                     "text": "\uC989\uC2DC \uAD6C\uC785 \uB610\uB294 \uACE0\uC815 \uAC00\uACA9"
                   },
                   {
-                    "$id": "298",
+                    "$id": "304",
                     "id": "priced_with_info",
                     "text": "\uCC38\uACE0 \uAC00\uACA9"
                   },
                   {
-                    "$id": "299",
+                    "$id": "305",
                     "id": "unpriced",
                     "text": "\uD45C\uC2DC \uAC00\uACA9 \uC5C6\uC74C"
                   }
@@ -1329,82 +1356,82 @@
             }
           },
           {
-            "$id": "300",
+            "$id": "306",
             "id": "fee",
             "text": "\uACE8\uB4DC \uC218\uC218\uB8CC",
             "option": {
-              "$id": "301",
+              "$id": "307",
               "options": {
-                "$id": "302",
+                "$id": "308",
                 "$values": []
               }
             }
           },
           {
-            "$id": "303",
+            "$id": "309",
             "id": "price",
             "text": "\uC989\uC2DC \uAD6C\uC785 \uAC00\uACA9",
             "option": {
-              "$id": "304",
+              "$id": "310",
               "options": {
-                "$id": "305",
+                "$id": "311",
                 "$values": [
                   {
-                    "$id": "306",
+                    "$id": "312",
                     "text": "\uC5D1\uC798\uD2F0\uB4DC \uC624\uBE0C \uC0C1\uB2F9 \uC544\uC774\uD15C"
                   },
                   {
-                    "$id": "307",
+                    "$id": "313",
                     "id": "exalted_divine",
                     "text": "\uC5D1\uC798\uD2F0\uB4DC \uC624\uBE0C \uBC0F \uC2E0\uC131\uD55C \uC624\uBE0C"
                   },
                   {
-                    "$id": "308",
+                    "$id": "314",
                     "id": "aug",
                     "text": "\uD655\uC7A5\uC758 \uC624\uBE0C"
                   },
                   {
-                    "$id": "309",
+                    "$id": "315",
                     "id": "transmute",
                     "text": "\uC9C4\uD654\uC758 \uC624\uBE0C"
                   },
                   {
-                    "$id": "310",
+                    "$id": "316",
                     "id": "exalted",
                     "text": "\uC5D1\uC798\uD2F0\uB4DC \uC624\uBE0C"
                   },
                   {
-                    "$id": "311",
+                    "$id": "317",
                     "id": "regal",
                     "text": "\uC81C\uC655\uC758 \uC624\uBE0C"
                   },
                   {
-                    "$id": "312",
+                    "$id": "318",
                     "id": "chaos",
                     "text": "\uCE74\uC624\uC2A4 \uC624\uBE0C"
                   },
                   {
-                    "$id": "313",
+                    "$id": "319",
                     "id": "vaal",
                     "text": "\uBC14\uC54C \uC624\uBE0C"
                   },
                   {
-                    "$id": "314",
+                    "$id": "320",
                     "id": "alch",
                     "text": "\uC5F0\uAE08\uC220\uC758 \uC624\uBE0C"
                   },
                   {
-                    "$id": "315",
+                    "$id": "321",
                     "id": "divine",
                     "text": "\uC2E0\uC131\uD55C \uC624\uBE0C"
                   },
                   {
-                    "$id": "316",
+                    "$id": "322",
                     "id": "annul",
                     "text": "\uC18C\uBA78\uC758 \uC624\uBE0C"
                   },
                   {
-                    "$id": "317",
+                    "$id": "323",
                     "id": "mirror",
                     "text": "\uCE7C\uB780\uB4DC\uB77C\uC758 \uAC70\uC6B8"
                   }

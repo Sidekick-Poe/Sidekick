@@ -1,0 +1,704 @@
+{
+  "LifeFlask": {
+    "category": "[Flask|Флакон]",
+    "category_id": "Flask",
+    "name": "Флаконы жизни",
+    "influence_tags": null
+  },
+  "ManaFlask": {
+    "category": "[Flask|Флакон]",
+    "category_id": "Flask",
+    "name": "Флаконы маны",
+    "influence_tags": null
+  },
+  "DONOTUSE5": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Currency": {
+    "category": "Валюта",
+    "category_id": "Currency",
+    "name": "Вещи на обмен",
+    "influence_tags": null
+  },
+  "Amulet": {
+    "category": "Амулет",
+    "category_id": "Amulet",
+    "name": "Амулеты",
+    "influence_tags": null
+  },
+  "Ring": {
+    "category": "Кольцо",
+    "category_id": "Ring",
+    "name": "Кольца",
+    "influence_tags": null
+  },
+  "Claw": {
+    "category": "[Claw|Коготь]",
+    "category_id": "Claw",
+    "name": "Когти",
+    "influence_tags": null
+  },
+  "Dagger": {
+    "category": "[Dagger|Кинжал]",
+    "category_id": "Dagger",
+    "name": "Кинжалы",
+    "influence_tags": null
+  },
+  "Wand": {
+    "category": "[Wand|Жезл]",
+    "category_id": "Wand",
+    "name": "Жезлы",
+    "influence_tags": null
+  },
+  "One Hand Sword": {
+    "category": "[Sword|Одноручный меч]",
+    "category_id": "One Hand Sword",
+    "name": "Одноручные мечи",
+    "influence_tags": null
+  },
+  "DONOTUSE6": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "One Hand Axe": {
+    "category": "[Axe|Одноручный топор]",
+    "category_id": "One Hand Axe",
+    "name": "Одноручные топоры",
+    "influence_tags": null
+  },
+  "One Hand Mace": {
+    "category": "[Mace|Одноручная булава]",
+    "category_id": "One Hand Mace",
+    "name": "Одноручные булавы",
+    "influence_tags": null
+  },
+  "Bow": {
+    "category": "[Bow|Лук]",
+    "category_id": "Bow",
+    "name": "Луки",
+    "influence_tags": null
+  },
+  "Staff": {
+    "category": "[Staff|Посох]",
+    "category_id": "Staff",
+    "name": "Посохи",
+    "influence_tags": null
+  },
+  "Two Hand Sword": {
+    "category": "[Sword|Двуручный меч]",
+    "category_id": "Two Hand Sword",
+    "name": "Двуручные мечи",
+    "influence_tags": null
+  },
+  "Two Hand Axe": {
+    "category": "[Axe|Двуручный топор]",
+    "category_id": "Two Hand Axe",
+    "name": "Двуручные топоры",
+    "influence_tags": null
+  },
+  "Two Hand Mace": {
+    "category": "[Mace|Двуручная булава]",
+    "category_id": "Two Hand Mace",
+    "name": "Двуручные булавы",
+    "influence_tags": null
+  },
+  "Active Skill Gem": {
+    "category": "Камень умения",
+    "category_id": "Active Skill Gem",
+    "name": "Камни умений",
+    "influence_tags": null
+  },
+  "Support Skill Gem": {
+    "category": "Камень поддержки",
+    "category_id": "Support Skill Gem",
+    "name": "Камни поддержки",
+    "influence_tags": null
+  },
+  "Quiver": {
+    "category": "[Quiver|Колчан]",
+    "category_id": "Quiver",
+    "name": "Колчаны",
+    "influence_tags": null
+  },
+  "Belt": {
+    "category": "Пояс",
+    "category_id": "Belt",
+    "name": "Пояса",
+    "influence_tags": null
+  },
+  "Gloves": {
+    "category": "Перчатки",
+    "category_id": "Gloves",
+    "name": "Перчатки",
+    "influence_tags": null
+  },
+  "Boots": {
+    "category": "Сапоги",
+    "category_id": "Boots",
+    "name": "Обувь",
+    "influence_tags": null
+  },
+  "Body Armour": {
+    "category": "Нательный доспех",
+    "category_id": "Body Armour",
+    "name": "Нательные доспехи",
+    "influence_tags": null
+  },
+  "Helmet": {
+    "category": "Шлем",
+    "category_id": "Helmet",
+    "name": "Шлемы",
+    "influence_tags": null
+  },
+  "Shield": {
+    "category": "[Shield|Ростовой щит]",
+    "category_id": "Shield",
+    "name": "Щиты",
+    "influence_tags": null
+  },
+  "SmallRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Малые реликвии",
+    "influence_tags": null
+  },
+  "MediumRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Средние реликвии",
+    "influence_tags": null
+  },
+  "LargeRelic": {
+    "category": null,
+    "category_id": null,
+    "name": "Большие реликвии",
+    "influence_tags": null
+  },
+  "StackableCurrency": {
+    "category": "Валюта",
+    "category_id": "Currency",
+    "name": "Валюта",
+    "influence_tags": null
+  },
+  "QuestItem": {
+    "category": "[QuestItem|Предмет для задания]",
+    "category_id": "QuestItem",
+    "name": "Вещи для заданий",
+    "influence_tags": null
+  },
+  "Sceptre": {
+    "category": "[Sceptre|Скипетр]",
+    "category_id": "Sceptre",
+    "name": "Скипетры",
+    "influence_tags": null
+  },
+  "UtilityFlask": {
+    "category": "Оберег",
+    "category_id": "Charm",
+    "name": "Обереги",
+    "influence_tags": null
+  },
+  "DONOTUSE7": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Map": {
+    "category": "Карта",
+    "category_id": "Map",
+    "name": "Путевые камни",
+    "influence_tags": null
+  },
+  "Unarmed": {
+    "category": "[Unarmed|Без оружия]",
+    "category_id": "Unarmed",
+    "name": "",
+    "influence_tags": null
+  },
+  "FishingRod": {
+    "category": "Удочка",
+    "category_id": "FishingRod",
+    "name": "Удочки",
+    "influence_tags": null
+  },
+  "MapFragment": {
+    "category": "Фрагмент карты",
+    "category_id": "MapFragment",
+    "name": "Обрывки карт",
+    "influence_tags": null
+  },
+  "HideoutDoodad": {
+    "category": null,
+    "category_id": null,
+    "name": "Предметы убежища",
+    "influence_tags": null
+  },
+  "Microtransaction": {
+    "category": null,
+    "category_id": null,
+    "name": "Микротранзакции",
+    "influence_tags": null
+  },
+  "Jewel": {
+    "category": "[Jewel|Самоцвет]",
+    "category_id": "Jewel",
+    "name": "Самоцветы",
+    "influence_tags": null
+  },
+  "DivinationCard": {
+    "category": "Гадальная карта",
+    "category_id": "DivinationCard",
+    "name": "Гадальные карты",
+    "influence_tags": null
+  },
+  "DONOTUSE8": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE9": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE10": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "MiscMapItem": {
+    "category": "Предмет карты",
+    "category_id": "MiscMapItem",
+    "name": "Прочие предметы карт",
+    "influence_tags": null
+  },
+  "Leaguestone": {
+    "category": "Камень лиги",
+    "category_id": "Leaguestone",
+    "name": "Камни лиги",
+    "influence_tags": null
+  },
+  "PantheonSoul": {
+    "category": "Захваченная душа",
+    "category_id": "PantheonSoul",
+    "name": "Души Пантеона",
+    "influence_tags": null
+  },
+  "UniqueFragment": {
+    "category": "Часть уникального предмета",
+    "category_id": "UniqueFragment",
+    "name": "Фрагменты",
+    "influence_tags": null
+  },
+  "AbyssJewel": {
+    "category": "Самоцвет Бездны",
+    "category_id": "AbyssJewel",
+    "name": "Самоцветы Бездны",
+    "influence_tags": null
+  },
+  "IncursionItem": {
+    "category": "Предмет Вмешательства",
+    "category_id": "IncursionItem",
+    "name": "Предметы Вмешательства",
+    "influence_tags": null
+  },
+  "DelveSocketableCurrency": {
+    "category": "Резонатор",
+    "category_id": "DelveSocketableCurrency",
+    "name": "Валюта Спуска",
+    "influence_tags": null
+  },
+  "Incubator": {
+    "category": "Инкубатор",
+    "category_id": "Incubator",
+    "name": "Инкубаторы",
+    "influence_tags": null
+  },
+  "UniqueShard": {
+    "category": null,
+    "category_id": null,
+    "name": "Осколки",
+    "influence_tags": null
+  },
+  "UniqueShardBase": {
+    "category": null,
+    "category_id": null,
+    "name": "Стержни осколков",
+    "influence_tags": null
+  },
+  "DONOTUSE11": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Warstaff": {
+    "category": "[Quarterstaff|Боевой посох]",
+    "category_id": "Warstaff",
+    "name": "Боевые посохи",
+    "influence_tags": null
+  },
+  "DelveStackableSocketableCurrency": {
+    "category": "Резонатор",
+    "category_id": "DelveSocketableCurrency",
+    "name": "Валюта Спуска",
+    "influence_tags": null
+  },
+  "AtlasUpgradeItem": {
+    "category": "Камень Хранителя",
+    "category_id": "AtlasUpgradeItem",
+    "name": "Предметы улучшения Атласа",
+    "influence_tags": null
+  },
+  "DONOTUSE4": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HiddenItem": {
+    "category": null,
+    "category_id": null,
+    "name": "Сокрытые предметы",
+    "influence_tags": null
+  },
+  "DONOTUSE1": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE2": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "DONOTUSE3": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "HeistContract": {
+    "category": "Контракт",
+    "category_id": "HeistContract",
+    "name": "Контракты",
+    "influence_tags": null
+  },
+  "HeistEquipmentWeapon": {
+    "category": "Разбойничьи принадлежности",
+    "category_id": "HeistEquipmentWeapon",
+    "name": "Разбойничьи принадлежности",
+    "influence_tags": null
+  },
+  "HeistEquipmentTool": {
+    "category": "Разбойничий инструмент",
+    "category_id": "HeistEquipmentTool",
+    "name": "Разбойничий инструмент",
+    "influence_tags": null
+  },
+  "HeistEquipmentUtility": {
+    "category": "Разбойничья накидка",
+    "category_id": "HeistEquipmentUtility",
+    "name": "Разбойничьи накидки",
+    "influence_tags": null
+  },
+  "HeistEquipmentReward": {
+    "category": "Разбойничья брошь",
+    "category_id": "HeistEquipmentReward",
+    "name": "Разбойничьи броши",
+    "influence_tags": null
+  },
+  "HeistBlueprint": {
+    "category": "Чертёж",
+    "category_id": "HeistBlueprint",
+    "name": "Чертежи",
+    "influence_tags": null
+  },
+  "Trinket": {
+    "category": "Украшение",
+    "category_id": "Trinket",
+    "name": "Украшения",
+    "influence_tags": null
+  },
+  "HeistObjective": {
+    "category": "Предмет кражи",
+    "category_id": "HeistObjective",
+    "name": "Предметы кражи",
+    "influence_tags": null
+  },
+  "ExpeditionLogbook": {
+    "category": "Журнал экспедиции",
+    "category_id": "ExpeditionLogbook",
+    "name": "Журналы экспедиции",
+    "influence_tags": null
+  },
+  "Expedition2Logbooks": {
+    "category": "Фрагмент карты",
+    "category_id": "MapFragment",
+    "name": "Журнал экспедиции",
+    "influence_tags": null
+  },
+  "IncubatorStackable": {
+    "category": "Инкубатор",
+    "category_id": "Incubator",
+    "name": "Инкубаторы",
+    "influence_tags": null
+  },
+  "ArchnemesisMod": {
+    "category": null,
+    "category_id": null,
+    "name": "Свойства Возмездия",
+    "influence_tags": null
+  },
+  "Meta Skill Gem": {
+    "category": "",
+    "category_id": "MetaSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Spear": {
+    "category": "[Spear|Копьё]",
+    "category_id": "Spear",
+    "name": "Копья",
+    "influence_tags": null
+  },
+  "Crossbow": {
+    "category": "[Crossbow|Самострел]",
+    "category_id": "Crossbow",
+    "name": "Самострелы",
+    "influence_tags": null
+  },
+  "Focus": {
+    "category": "[Focus|Фокус]",
+    "category_id": "Focus",
+    "name": "Фокусы",
+    "influence_tags": null
+  },
+  "InstanceLocalItem": {
+    "category": "Местный предмет области",
+    "category_id": "InstanceLocalItem",
+    "name": "Местные предметы области",
+    "influence_tags": null
+  },
+  "SentinelDrone": {
+    "category": "Часовой Дозора",
+    "category_id": "SentinelDrone",
+    "name": "Часовые",
+    "influence_tags": null
+  },
+  "MemoryLine": {
+    "category": "Воспоминание",
+    "category_id": "MemoryLine",
+    "name": "Воспоминания",
+    "influence_tags": null
+  },
+  "Flail": {
+    "category": "[Flail|Кистень]",
+    "category_id": "Flail",
+    "name": "Кистени",
+    "influence_tags": null
+  },
+  "Relic": {
+    "category": "Реликвия",
+    "category_id": "Relic",
+    "name": "Реликвии",
+    "influence_tags": null
+  },
+  "SanctumSpecialRelic": {
+    "category": "Реликвия",
+    "category_id": "Relic",
+    "name": "Священные реликвии",
+    "influence_tags": null
+  },
+  "Breachstone": {
+    "category": "Камень Разлома",
+    "category_id": "Breachstone",
+    "name": "Камни Разлома",
+    "influence_tags": null
+  },
+  "GiftBox": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "VaultKey": {
+    "category": "Ключ от хранилища",
+    "category_id": "VaultKey",
+    "name": "Ключи от хранилищ",
+    "influence_tags": null
+  },
+  "ItemisedSanctum": {
+    "category": "Предмет карты",
+    "category_id": "MiscMapItem",
+    "name": "Монеты Испытания",
+    "influence_tags": null
+  },
+  "DONOTUSE12": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutSkillGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Buckler": {
+    "category": "[Buckler|Баклер]",
+    "category_id": "Buckler",
+    "name": "Баклеры",
+    "influence_tags": null
+  },
+  "Thrown One Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Two Hand Axe": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "ConventionTreasure": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "TrapTool": {
+    "category": "[Trap|Ловушка]",
+    "category_id": "TrapTool",
+    "name": "Ловушки",
+    "influence_tags": null
+  },
+  "Crossbow Attachment REMOVE": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SkillGemToken": {
+    "category": "Валюта",
+    "category_id": "Currency",
+    "name": "Вещи на обмен",
+    "influence_tags": null
+  },
+  "Nothing": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "UltimatumKey": {
+    "category": "Предмет карты",
+    "category_id": "MiscMapItem",
+    "name": "Начертанные Ультиматумы",
+    "influence_tags": null
+  },
+  "UncutSupportGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "UncutReservationGem_OLD": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "",
+    "influence_tags": null
+  },
+  "Thrown Shield": {
+    "category": null,
+    "category_id": null,
+    "name": "",
+    "influence_tags": null
+  },
+  "SoulCore": {
+    "category": "[Augment|Усилитель]",
+    "category_id": "SoulCore",
+    "name": "Усилители",
+    "influence_tags": null
+  },
+  "TowerAugmentation": {
+    "category": "Плитка",
+    "category_id": "TowerAugment",
+    "name": "Плитки",
+    "influence_tags": null
+  },
+  "Omen": {
+    "category": "Предзнаменование",
+    "category_id": "Omen",
+    "name": "Предзнаменования",
+    "influence_tags": null
+  },
+  "PinnacleKey_OLD": {
+    "category": "Верховный ключ",
+    "category_id": "PinnacleKey",
+    "name": "",
+    "influence_tags": null
+  },
+  "Talisman": {
+    "category": "[Talisman|Талисман]",
+    "category_id": "Talisman",
+    "name": "Талисманы",
+    "influence_tags": null
+  },
+  "UncutSkillGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "Неогранённые камни умений",
+    "influence_tags": null
+  },
+  "UncutSupportGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "Неогранённые камни поддержки",
+    "influence_tags": null
+  },
+  "UncutReservationGemStackable": {
+    "category": "",
+    "category_id": "UncutSkillGem",
+    "name": "Неогранённые камни духа",
+    "influence_tags": null
+  },
+  "IncursionArm": {
+    "category": "Вознесённая конечность",
+    "category_id": "IncursionLimb",
+    "name": "Вознесённая рука",
+    "influence_tags": null
+  },
+  "IncursionLeg": {
+    "category": "Вознесённая конечность",
+    "category_id": "IncursionLimb",
+    "name": "Вознесённая нога",
+    "influence_tags": null
+  },
+  "BrequelFruit": {
+    "category": "Дар утробы",
+    "category_id": "BrequelFruit",
+    "name": "Дары утробы",
+    "influence_tags": null
+  },
+  "PinnacleKeyStackable": {
+    "category": "Верховный ключ",
+    "category_id": "PinnacleKey",
+    "name": "Верховные ключи",
+    "influence_tags": null
+  }
+}

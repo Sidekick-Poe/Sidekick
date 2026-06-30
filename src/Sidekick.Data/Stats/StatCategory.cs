@@ -3,6 +3,12 @@ namespace Sidekick.Data.Stats;
 
 public static class StatCategoryExtensions
 {
+    public static StatCategory GetStatCategory(this string id)
+    {
+        var value = id.Split('.').First();
+        return value.GetEnumFromValue<StatCategory>();
+    }
+
     public static bool HasExplicitStat(this StatCategory category)
     {
         return category switch

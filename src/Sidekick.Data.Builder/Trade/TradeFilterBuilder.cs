@@ -4,6 +4,7 @@ using Sidekick.Common;
 using Sidekick.Data.Builder.StatsInvariant;
 using Sidekick.Data.Builder.Trade.Models;
 using Sidekick.Data.Languages;
+using Sidekick.Data.Trade;
 namespace Sidekick.Data.Builder.Trade;
 
 public class TradeFilterBuilder
@@ -33,7 +34,7 @@ public class TradeFilterBuilder
 
     private async Task BuildForGame(GameType game, IGameLanguage language)
     {
-        var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(game, DataType.RawTradeFilters, language);
+        var result = await dataProvider.Read<RawTradeResult<List<TradeFilterCategory>>>(game, DataType.RawTradeFilters, language);
         await dataProvider.Write(game, DataType.TradeFilters, language, result.Result);
     }
 }

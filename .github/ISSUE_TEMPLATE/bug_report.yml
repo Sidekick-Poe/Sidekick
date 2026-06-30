@@ -1,0 +1,62 @@
+name: Bug Report
+description: Report a problem with the game
+title: "[Bug]: "
+labels: ["Bug"]
+body:
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      description: Which operating system are you using?
+      options:
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: Which version are you using?
+      options:
+        - Desktop
+        - Web
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue type
+      description: Select the option that best matches the problem.
+      options:
+        - Item cannot be parsed
+        - Item has missing stats
+        - Item has incorrect stats
+        - Price check is incorrect
+        - Trade search is incorrect
+        - Overlay does not open
+        - Shortcut/hotkey does not work
+        - Crash or error
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue description
+      description: Describe what happened.
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-items
+    attributes:
+      label: Related items
+      description: Ctrl+C in the game, then Ctrl+V here.
+      placeholder: Paste related items here
+      render: text
+    validations:
+      required: false
