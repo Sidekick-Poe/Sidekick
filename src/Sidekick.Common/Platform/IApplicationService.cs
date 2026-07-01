@@ -15,7 +15,13 @@ public interface IApplicationService : IInitializableService
     /// </returns>
     string? GetVersion()
     {
-        var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
+        List<string?> assemblies =
+        [
+            "Sidekick.Wpf",
+            "Sidekick.Avalonia",
+            "Sidekick.Web",
+        ];
+        var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => assemblies.Contains(x.Name))?.Version;
         return version?.ToString();
     }
 

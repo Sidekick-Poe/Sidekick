@@ -1,8 +1,9 @@
 using System.Globalization;
+using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Platform;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia;
 
@@ -29,23 +30,48 @@ public partial class MainWindow : Window, IDisposable
         CanResize = true;
 
         InitializeComponent();
+
+        WebView.EnvironmentRequested += (sender, args) =>
+        {
+#if DEBUG
+            // Enable developer tools for all platforms
+            args.EnableDevTools = true;
+#endif
+
+            // Platform-specific configuration
+            switch (args)
+            {
+                case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
+                    webView2Args.IsInPrivateModeEnabled = true;
+                    break;
+                case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
+                    appleArgs.NonPersistentDataStore = true;
+                    break;
+                case GtkWebViewEnvironmentRequestedEventArgs gtkArgs:
+                    gtkArgs.EphemeralDataManager = true;
+                    break;
+            }
+        };
     }
 
     public async Task OpenView(string url)
     {
-        WebView.Navigate(new Uri(url));
+        if (IsVisible) _ = WebView.InvokeScript($"window.location.href = {JsonSerializer.Serialize(url)};");
+        else WebView.Navigate(new Uri(url));
 
-        if (WindowState != WindowState.Normal) return;
+        if (WindowState == WindowState.Normal)
+        {
+            var settingsService = serviceProvider.GetRequiredService<ISettingsService>();
+            var zoomString = await settingsService.GetString(SettingKeys.Zoom);
+            if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
 
-        var settingsService = serviceProvider.GetRequiredService<ISettingsService>();
-        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
-        if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
+            WindowState = WindowState.Normal;
+            Height = HEIGHT * zoom;
+            Width = WIDTH * zoom;
+        }
 
-        WindowState = WindowState.Normal;
-        Height = HEIGHT * zoom;
-        Width = WIDTH * zoom;
-
-        Show();
+        if (IsVisible) Activate();
+        else Show();
     }
 
     public void CloseView()
@@ -90,4 +116,3 @@ public partial class MainWindow : Window, IDisposable
         Close();
     }
 }
-

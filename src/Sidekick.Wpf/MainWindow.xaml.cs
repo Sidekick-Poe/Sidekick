@@ -29,44 +29,12 @@ public partial class MainWindow
     private bool IsNormalized { get; set; }
     private string? NextPath { get; set; }
 
-    private bool ShouldCloseOnBlur { get; set; }
-    private bool ShouldSavePosition { get; set; }
-
-    public MainWindow(ILogger logger)
-    {
-        this.logger = logger;
-
-        scope = Program.ServiceProvider.CreateScope();
-        Resources.Add("services", scope.ServiceProvider);
-
-        Title = "Sidekick";
-        Width = 0;
-        Height = 0;
-        Opacity = 0;
-        Topmost = false;
-        ShowInTaskbar = false;
-        InitializeComponent();
-
-        RootComponent.Parameters = new Dictionary<string, object?>
-        {
-            {
-                "Window", this
-            },
-        };
-    }
-
     public async Task OpenView(SidekickViewType type, string url)
     {
         logger.LogInformation("[MainWindow] Opening view: " + url);
 
         await Dispatch(async () =>
         {
-            var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
-            ShouldCloseOnBlur = type == SidekickViewType.Overlay;
-            ShouldCloseOnBlur &= await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
-
-            ShouldSavePosition = type == SidekickViewType.Overlay;
-
             var originalFocusedWindow = User32.GetForegroundWindow();
 
             Show();

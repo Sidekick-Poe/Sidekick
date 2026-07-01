@@ -11,8 +11,6 @@
         <LangVersion>latest</LangVersion>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-        <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
-        <GenerateStaticWebAssets>false</GenerateStaticWebAssets>
         <Title>Sidekick</Title>
         <Authors>$(AssemblyName) Collaborators</Authors>
         <Company>$(AssemblyName)</Company>
@@ -32,10 +30,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj"/>
-        <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj"/>
-        <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj"/>
-        <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
         <ProjectReference Include="..\Sidekick.Web\Sidekick.Web.csproj"/>
     </ItemGroup>
 
@@ -55,30 +49,7 @@
     <ItemGroup>
         <Content Include="..\..\data\**\*.*">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Link>wwwroot\data\%(RecursiveDir)%(Filename)%(Extension)</Link>
-        </Content>
-        <Content Include="..\Sidekick.Common.Ui\wwwroot\**\*.*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>wwwroot\_content\Sidekick.Common.Ui\%(RecursiveDir)%(Filename)%(Extension)</Link>
-        </Content>
-        <Content Include="$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\10.*\">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>wwwroot\_content\Sidekick.Common.Ui\%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <Link>_data\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Content>
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="OverlayWindow.axaml.cs">
-        <DependentUpon>OverlayWindow.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
-    
-    <Target Name="CopyLatestBlazorFramework" AfterTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
-        <Exec Command="powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)_build\copy-framework.ps1&quot; -NuGetRoot &quot;$(NuGetPackageRoot.TrimEnd('\'))&quot; -OutDir &quot;$(OutDir.TrimEnd('\'))&quot;" />
-    </Target>
-
-    <Target Name="CopyLatestBlazorFramework" AfterTargets="Build" Condition="'$(OS)' != 'Windows_NT'">
-        <Exec Command="bash &quot;$(ProjectDir)_build/copy-framework.sh&quot; &quot;$(NuGetPackageRoot.TrimEnd('/'))&quot; &quot;$(OutDir.TrimEnd('/'))&quot;" />
-    </Target>
 </Project>

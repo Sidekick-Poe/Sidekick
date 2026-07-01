@@ -54,17 +54,13 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
             ContentRootPath = assemblyLocation,
             WebRootPath = Path.Combine(assemblyLocation, "wwwroot"),
         });
+        builder.WebHost.UseStaticWebAssets();
 
         #region Services
 
         configureServices?.Invoke(builder.Services);
-
-        // SERVER
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
-
-        // WEB
-        // builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
         builder.Services.AddHttpClient();
         builder.Services.AddLocalization();

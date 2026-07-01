@@ -28,7 +28,7 @@
     <ItemGroup>
         <Content Include="$(ProjectDir)..\..\data\**\*.*">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Link>data\%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <Link>_data\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Content>
     </ItemGroup>
 

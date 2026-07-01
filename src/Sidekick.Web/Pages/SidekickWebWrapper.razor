@@ -1,10 +1,10 @@
 ﻿@using Sidekick.Common.Ui.Views
 @using Sidekick.Web.Services
 
-<Sidekick.Common.Ui.Main />
+<Sidekick.Common.Ui.Main/>
 
 @inject ICurrentView CurrentView
-@inject WebViewLocator ViewLocator
+@inject IServiceProvider ServiceProvider
 @implements IDisposable
 
 @code {
@@ -14,9 +14,13 @@
 
     protected override void OnInitialized()
     {
-        ViewLocator.Views.Add(this);
-        CurrentView.Closed += CurrentViewClosed;
+        // var viewLocator = ServiceProvider.GetService<WebViewLocator>();
+        // if (viewLocator != null)
+        // {
+        //     viewLocator.Views.Add(this);
+        // }
 
+        CurrentView.Closed += CurrentViewClosed;
         base.OnInitialized();
     }
 
@@ -27,7 +31,12 @@
 
     public void Dispose()
     {
-        ViewLocator.Views.Remove(this);
+        // var viewLocator = ServiceProvider.GetService<WebViewLocator>();
+        // if (viewLocator != null)
+        // {
+        //     viewLocator.Views.Remove(this);
+        // }
+
         CurrentView.Closed -= CurrentViewClosed;
     }
 

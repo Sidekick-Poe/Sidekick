@@ -1,13 +1,15 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sidekick.Avalonia.Components;
 using Sidekick.Avalonia.Services;
 using Sidekick.Common;
+using Sidekick.Common.Browser;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Web;
-using Sidekick.Web.Services;
 
 namespace Sidekick.Avalonia;
 
@@ -32,12 +34,8 @@ public partial class App : Application
             {
                 ServerAppHost.Start(services =>
                 {
-                    services.TryAddSingleton<IViewLocator, WebViewLocator>();
-                    services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
-                    // services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
-
-                    // services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
-                    // services.TryAddSingleton(sp => (AvaloniaViewLocator)sp.GetRequiredService<IViewLocator>());
+                    services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
+                    services.TryAddSingleton(sp => (AvaloniaViewLocator)sp.GetRequiredService<IViewLocator>());
                     services.AddSidekickInitializableService<IApplicationService, AvaloniaApplicationService>();
                 });
                 tcs.TrySetResult(ServerAppHost.Application.Urls.FirstOrDefault());
@@ -47,22 +45,19 @@ public partial class App : Application
             var url = tcs.Task.GetAwaiter().GetResult();
             if (url != null)
             {
-                // var viewLocator = ServerAppHost.Application.Services.GetRequiredService<AvaloniaViewLocator>();
-                // viewLocator.Open(SidekickViewType.Standard, url);
-                // desktop.MainWindow = viewLocator.MainWindow;
-
-                var window = new MainWindow(ServerAppHost.Application.Services);
-                _ = window.OpenView(url);
-                desktop.MainWindow = window;
+                var viewLocator = ServerAppHost.Application.Services.GetRequiredService<AvaloniaViewLocator>();
+                viewLocator.Open(SidekickViewType.Standard, url);
             }
 
             desktop.ShutdownRequested += (_, _) =>
             {
                 ServerAppHost.Dispose();
             };
+
+            InitializeTrayMenu();
         }
 
-        if (ServerAppHost == null)
+        if (_serverAppHost == null)
         {
             // logger?.LogCritical("[App] Unsupported application type.");
             // throw new Exception("Unsupported application type.");
@@ -121,5 +116,54 @@ public partial class App : Application
         {
             // logger?.LogCritical(e.Exception, "Unhandled exception.");
         };
+    }
+
+    private void InitializeTrayMenu()
+    {
+        var tray = new TrayIcons
+        {
+            new TrayIcon
+            {
+                Icon = new WindowIcon("Assets/favicon.ico"),
+                Command = new SimpleCommand(() =>
+                {
+                    var viewLocator = ServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+                    viewLocator.Open(SidekickViewType.Standard, "/home");
+                }),
+                Menu = new NativeMenu
+                {
+                    new NativeMenuItem("Sidekick - " + ServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
+                    {
+                        IsEnabled = false,
+                    },
+                    new NativeMenuItem("Home")
+                    {
+                        Command = new SimpleCommand(() =>
+                        {
+                            var viewLocator = ServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+                            viewLocator.Open(SidekickViewType.Standard, "/home");
+                        }),
+                    },
+                    new NativeMenuItem("Open Website")
+                    {
+                        Command = new SimpleCommand(() =>
+                        {
+                            var browserProvider = ServerAppHost.Application.Services.GetRequiredService<IBrowserProvider>();
+                            browserProvider.OpenUri(browserProvider.SidekickWebsite);
+                        }),
+                    },
+                    new NativeMenuItem("Exit")
+                    {
+                        Command = new SimpleCommand(() =>
+                        {
+                            var applicationService = ServerAppHost.Application.Services.GetRequiredService<IApplicationService>();
+                            applicationService.Shutdown();
+                        }),
+                    },
+                }
+            }
+        };
+
+        TrayIcon.SetIcons(Current!, tray);
     }
 }
