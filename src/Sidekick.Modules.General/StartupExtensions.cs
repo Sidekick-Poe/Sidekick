@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
-using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.General.Keybinds;
@@ -31,7 +30,6 @@ public static class StartupExtensions
         services.AddSidekickInputHandler<MouseWheelHandler>();
         services.AddSidekickInputHandler<DisableMovementWhenScreenshottingHandler>();
 
-        services.TryAddTransient<InitializationResources>();
         services.TryAddTransient<SettingsResources>();
 
         services.SetSidekickDefaultSetting(SettingKeys.KeyClose, "Space");

@@ -1,5 +1,4 @@
 using ApexCharts;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe.Account;
@@ -14,18 +13,17 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
-using Sidekick.Common.Ui.Views;
 using Sidekick.Data;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
+using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Items;
 using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Updater;
 using Sidekick.Modules.Wealth;
-using Sidekick.Web.Services;
 
 namespace Sidekick.Web;
 
@@ -91,6 +89,7 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
             .AddSidekickAbout()
             .AddSidekickDevelopment()
             .AddSidekickGeneral()
+            .AddSidekickInitialization()
             .AddSidekickItems()
             .AddSidekickLogs()
             .AddSidekickChat()

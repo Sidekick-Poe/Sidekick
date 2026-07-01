@@ -5,7 +5,7 @@ namespace Sidekick.Common.Platform;
 /// <summary>
 ///     Interface containing platform specific methods.
 /// </summary>
-public interface IApplicationService : IInitializableService
+public interface IApplicationService
 {
     /// <summary>
     /// Retrieves the current version of the application.

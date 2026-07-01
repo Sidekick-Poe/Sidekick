@@ -12,10 +12,10 @@ public class WebViewLocator : IViewLocator
         Views.ForEach(x => x.NavigationManager.NavigateTo(url));
     }
 
-    public void Close()
+    public void Close(SidekickViewType type)
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
 
-    public bool IsOverlayOpened() => false;
+    public bool IsOpened(SidekickViewType type) => false;
 }

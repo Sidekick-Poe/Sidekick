@@ -1,7 +1,7 @@
 @using Velopack
 @using Sidekick.Modules.Updater.Localization
 
-<LayoutSimple>
+<LayoutSplash>
     <TopContent>
         <AppLogo/>
     </TopContent>
@@ -41,7 +41,7 @@
             <ButtonPrimary OnClick="OnDownload">@Resources["Update"]</ButtonPrimary>
         </div>
     </BottomContent>
-</LayoutSimple>
+</LayoutSplash>
 
 @inject IStringLocalizer<UpdateResources> Resources
 

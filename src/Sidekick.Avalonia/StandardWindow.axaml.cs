@@ -7,22 +7,20 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Avalonia;
 
-public partial class MainWindow : Window, IDisposable
+public partial class StandardWindow : Window
 {
     private readonly IServiceProvider serviceProvider;
     private const int WIDTH = 968;
     private const int HEIGHT = 768;
 
-    private bool IsDisposed { get; set; }
-
-    public MainWindow(IServiceProvider serviceProvider)
+    public StandardWindow(IServiceProvider serviceProvider)
     {
         this.serviceProvider = serviceProvider;
 
         Title = "Sidekick";
         Width = WIDTH;
         Height = HEIGHT;
-        Background = Brushes.Transparent;
+        Background = new SolidColorBrush(Color.FromRgb(12, 10, 10));
         WindowDecorations = WindowDecorations.None;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Topmost = false;
@@ -31,7 +29,7 @@ public partial class MainWindow : Window, IDisposable
 
         InitializeComponent();
 
-        WebView.EnvironmentRequested += (sender, args) =>
+        WebView.EnvironmentRequested += (_, args) =>
         {
 #if DEBUG
             // Enable developer tools for all platforms
@@ -56,8 +54,16 @@ public partial class MainWindow : Window, IDisposable
 
     public async Task OpenView(string url)
     {
-        if (IsVisible) _ = WebView.InvokeScript($"window.location.href = {JsonSerializer.Serialize(url)};");
-        else WebView.Navigate(new Uri(url));
+        if (IsVisible)
+        {
+            _ = WebView.InvokeScript($"window.location.href = {JsonSerializer.Serialize(url)};");
+            Activate();
+        }
+        else
+        {
+            Show();
+            WebView.Navigate(new Uri(url));
+        }
 
         if (WindowState == WindowState.Normal)
         {
@@ -65,13 +71,9 @@ public partial class MainWindow : Window, IDisposable
             var zoomString = await settingsService.GetString(SettingKeys.Zoom);
             if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
 
-            WindowState = WindowState.Normal;
             Height = HEIGHT * zoom;
             Width = WIDTH * zoom;
         }
-
-        if (IsVisible) Activate();
-        else Show();
     }
 
     public void CloseView()
@@ -81,12 +83,8 @@ public partial class MainWindow : Window, IDisposable
 
     protected override void OnClosing(WindowClosingEventArgs e)
     {
-        if (!IsDisposed)
-        {
-            CloseView();
-            e.Cancel = true;
-        }
-
+        CloseView();
+        e.Cancel = true;
         base.OnClosing(e);
     }
 
@@ -107,12 +105,4 @@ public partial class MainWindow : Window, IDisposable
     //         logger.LogError(e, "[MainWindow] Error saving position");
     //     }
     // }
-
-    public void Dispose()
-    {
-        if (IsDisposed) return;
-
-        IsDisposed = true;
-        Close();
-    }
 }

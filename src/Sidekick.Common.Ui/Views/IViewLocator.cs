@@ -15,11 +15,11 @@ public interface IViewLocator
     /// <summary>
     /// Closes the Sidekick view.
     /// </summary>
-    void Close();
+    void Close(SidekickViewType type);
 
     /// <summary>
-    /// Check if an overlay is opened
+    /// Check if a view is opened
     /// </summary>
     /// <returns>true if a view is opened. false otherwise</returns>
-    bool IsOverlayOpened();
+    bool IsOpened(SidekickViewType type);
 }

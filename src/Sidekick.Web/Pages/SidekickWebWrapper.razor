@@ -14,11 +14,11 @@
 
     protected override void OnInitialized()
     {
-        // var viewLocator = ServiceProvider.GetService<WebViewLocator>();
-        // if (viewLocator != null)
-        // {
-        //     viewLocator.Views.Add(this);
-        // }
+        var viewLocator = ServiceProvider.GetService<WebViewLocator>();
+        if (viewLocator != null)
+        {
+            viewLocator.Views.Add(this);
+        }
 
         CurrentView.Closed += CurrentViewClosed;
         base.OnInitialized();
@@ -31,11 +31,11 @@
 
     public void Dispose()
     {
-        // var viewLocator = ServiceProvider.GetService<WebViewLocator>();
-        // if (viewLocator != null)
-        // {
-        //     viewLocator.Views.Remove(this);
-        // }
+        var viewLocator = ServiceProvider.GetService<WebViewLocator>();
+        if (viewLocator != null)
+        {
+            viewLocator.Views.Remove(this);
+        }
 
         CurrentView.Closed -= CurrentViewClosed;
     }

@@ -10,8 +10,9 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
     private readonly ILogger<AvaloniaViewLocator> logger;
     private readonly IUiLanguageProvider uiLanguageProvider;
 
-    public MainWindow? MainWindow { get; set; }
+    private StandardWindow? MainWindow { get; set; }
     private OverlayWindow? OverlayWindow { get; set; }
+    private SplashWindow? SplashWindow { get; set; }
 
     public AvaloniaViewLocator(ILogger<AvaloniaViewLocator> logger, IUiLanguageProvider uiLanguageProvider)
     {
@@ -44,39 +45,66 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
 
     public void Open(SidekickViewType type, string url)
     {
-        switch (type)
+        GetApplication().Dispatcher.InvokeAsync(async () =>
         {
-            case SidekickViewType.Overlay:
-                GetApplication().Dispatcher.InvokeAsync(async () =>
-                {
+            var host = App.ServerAppHost.Application.Urls.FirstOrDefault();
+            if (host == null)
+            {
+                logger.LogCritical("[AvaloniaViewLocator] No host found.");
+                throw new Exception("No host found.");
+            }
+
+            var uri = new Uri(new Uri(host), url);
+
+            switch (type)
+            {
+                case SidekickViewType.Overlay:
                     OverlayWindow ??= new OverlayWindow(App.ServerAppHost.Application.Services);
-                    await OverlayWindow.OpenView(url);
-                });
-                break;
-            default:
-                GetApplication().Dispatcher.InvokeAsync(async () =>
-                {
-                    MainWindow ??= new MainWindow(App.ServerAppHost.Application.Services);
-                    await MainWindow.OpenView(url);
-                });
-                break;
-        }
+                    await OverlayWindow.OpenView(uri.ToString());
+                    break;
+                case SidekickViewType.Splash:
+                    SplashWindow ??= new SplashWindow();
+                    SplashWindow.OpenView(uri.ToString());
+                    break;
+                default:
+                    MainWindow ??= new StandardWindow(App.ServerAppHost.Application.Services);
+                    await MainWindow.OpenView(uri.ToString());
+                    break;
+            }
+        });
     }
 
-    public void Close()
+    public void Close(SidekickViewType type)
     {
-        throw new NotImplementedException();
+        GetApplication().Dispatcher.Invoke(() =>
+        {
+            switch (type)
+            {
+                case SidekickViewType.Overlay:
+                    OverlayWindow?.CloseView();
+                    break;
+                case SidekickViewType.Splash:
+                    SplashWindow?.CloseView();
+                    break;
+                default:
+                    MainWindow?.CloseView();
+                    break;
+            }
+        });
     }
 
-    public bool IsOverlayOpened()
+    public bool IsOpened(SidekickViewType type)
     {
-        return OverlayWindow?.IsVisible ?? false;
+        return type switch
+        {
+            SidekickViewType.Overlay => OverlayWindow?.IsVisible ?? false,
+            SidekickViewType.Splash => SplashWindow?.IsVisible ?? false,
+            _ => MainWindow?.IsVisible ?? false,
+        };
     }
 
     public void Dispose()
     {
         uiLanguageProvider.OnLanguageChanged -= SetCultureInfo;
-        MainWindow?.Dispose();
-        OverlayWindow?.Dispose();
     }
 }

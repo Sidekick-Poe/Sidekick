@@ -3,9 +3,11 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Localization;
 using Sidekick.Avalonia.Components;
 using Sidekick.Avalonia.Services;
 using Sidekick.Common;
+using Sidekick.Common.Blazor.Home;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
@@ -16,7 +18,11 @@ namespace Sidekick.Avalonia;
 public partial class App : Application
 {
     private static ServerAppHost? _serverAppHost;
-    public static ServerAppHost ServerAppHost => _serverAppHost ?? throw new Exception("ServerAppHost not initialized.");
+    public static ServerAppHost ServerAppHost
+    {
+        get => _serverAppHost ?? throw new Exception("ServerAppHost not initialized.");
+        private set => _serverAppHost = value;
+    }
 
     public override void Initialize()
     {
@@ -27,34 +33,31 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            _serverAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
-            var tcs = new TaskCompletionSource<string?>();
+            ServerAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
 
+            var tcs = new TaskCompletionSource();
             _ = Task.Run(async () =>
             {
                 ServerAppHost.Start(services =>
                 {
                     services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
-                    services.TryAddSingleton(sp => (AvaloniaViewLocator)sp.GetRequiredService<IViewLocator>());
-                    services.AddSidekickInitializableService<IApplicationService, AvaloniaApplicationService>();
+                    services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
                 });
-                tcs.TrySetResult(ServerAppHost.Application.Urls.FirstOrDefault());
+                tcs.TrySetResult();
                 await ServerAppHost.RunTask;
             });
 
-            var url = tcs.Task.GetAwaiter().GetResult();
-            if (url != null)
-            {
-                var viewLocator = ServerAppHost.Application.Services.GetRequiredService<AvaloniaViewLocator>();
-                viewLocator.Open(SidekickViewType.Standard, url);
-            }
+            tcs.Task.GetAwaiter().GetResult();
+
+            var viewLocator = ServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+            viewLocator.Open(SidekickViewType.Splash, "/");
 
             desktop.ShutdownRequested += (_, _) =>
             {
                 ServerAppHost.Dispose();
             };
 
-            InitializeTrayMenu();
+            InitializeTray();
         }
 
         if (_serverAppHost == null)
@@ -118,8 +121,9 @@ public partial class App : Application
         };
     }
 
-    private void InitializeTrayMenu()
+    private void InitializeTray()
     {
+        var resources = ServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<HomeResources>>();
         var tray = new TrayIcons
         {
             new TrayIcon
@@ -136,7 +140,7 @@ public partial class App : Application
                     {
                         IsEnabled = false,
                     },
-                    new NativeMenuItem("Home")
+                    new NativeMenuItem(resources["Home"])
                     {
                         Command = new SimpleCommand(() =>
                         {
@@ -144,7 +148,7 @@ public partial class App : Application
                             viewLocator.Open(SidekickViewType.Standard, "/home");
                         }),
                     },
-                    new NativeMenuItem("Open Website")
+                    new NativeMenuItem(resources["Open_Website"])
                     {
                         Command = new SimpleCommand(() =>
                         {
@@ -152,7 +156,7 @@ public partial class App : Application
                             browserProvider.OpenUri(browserProvider.SidekickWebsite);
                         }),
                     },
-                    new NativeMenuItem("Exit")
+                    new NativeMenuItem(resources["Exit"])
                     {
                         Command = new SimpleCommand(() =>
                         {

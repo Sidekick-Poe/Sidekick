@@ -14,7 +14,7 @@ host.Start(services =>
 {
     services.TryAddSingleton<IViewLocator, WebViewLocator>();
     services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
-    services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
+    services.TryAddSingleton<IApplicationService, WebApplicationService>();
 });
 
 // Open the browser
