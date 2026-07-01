@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Ui.Dialogs;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Ui.Sections;
 using Sidekick.Common.Ui.Views;
 
@@ -9,10 +9,6 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddSidekickCommonUi(this IServiceCollection services)
     {
-        services.TryAddTransient<DialogResources>();
-        services.TryAddSingleton<ISidekickDialogs, DialogService>();
-        services.AddSingleton((sp) => (DialogService)sp.GetRequiredService<ISidekickDialogs>());
-
         services.TryAddScoped<ICurrentView, CurrentView>();
 
         services.TryAddSingleton<SectionService>();

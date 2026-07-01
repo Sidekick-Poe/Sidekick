@@ -346,10 +346,11 @@ public class NinjaStashProvider(
 
         var stats = (
             from stat in itemStats
-            from definition in stat.Definitions.Where(x => x.TradeStats != null)
-            from tradeStat in definition.TradeStats
-            where stat.Category == statCategory && tradeStat.Id.StartsWith(statStartsWith)
-            where !IgnoreStatTexts.Contains(tradeStat.Text)
+            from definition in stat.Definitions
+            where definition?.TradeIds != null
+            where !IgnoreStatTexts.Contains(definition.Text)
+            from tradeStatId in definition.TradeIds!
+            where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
             select new
             {
                 Id = tradeStatId.GetStatOption() != null ? $"{tradeStatId.GetStatId()}#{tradeStatId.GetStatOption()}" : tradeStatId.GetStatId(),
