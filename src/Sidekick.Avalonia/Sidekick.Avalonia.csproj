@@ -66,6 +66,13 @@
             <Link>wwwroot\_content\Sidekick.Common.Ui\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="OverlayWindow.axaml.cs">
+        <DependentUpon>OverlayWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
     
     <Target Name="CopyLatestBlazorFramework" AfterTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
         <Exec Command="powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)_build\copy-framework.ps1&quot; -NuGetRoot &quot;$(NuGetPackageRoot.TrimEnd('\'))&quot; -OutDir &quot;$(OutDir.TrimEnd('\'))&quot;" />

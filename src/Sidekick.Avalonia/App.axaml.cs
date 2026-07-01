@@ -1,10 +1,12 @@
-using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
+using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Web;
+using Sidekick.Web.Services;
 
 namespace Sidekick.Avalonia;
 
@@ -26,16 +28,23 @@ public partial class App : Application
 
             _ = Task.Run(async () =>
             {
-                serverAppHost.Start();
+                serverAppHost.Start(services =>
+                {
+                    services.TryAddSingleton<IViewLocator, WebViewLocator>();
+                    services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
+                    services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
+                });
                 tcs.TrySetResult(serverAppHost.Application.Urls.FirstOrDefault());
                 await serverAppHost.RunTask;
             });
 
             var url = tcs.Task.GetAwaiter().GetResult();
-                    if (url != null)
-                    {
-                        desktop.MainWindow = new MainWindow(SidekickViewType.Standard, url);
-                    }
+            if (url != null)
+            {
+                var window = new MainWindow(serverAppHost.Application.Services);
+                _ = window.OpenView(url);
+                desktop.MainWindow = window;
+            }
 
             desktop.ShutdownRequested += (_, _) =>
             {
@@ -51,16 +60,16 @@ public partial class App : Application
 
         try
         {
-             // logger = host.Application.Services.GetService<ILogger<App>>();
-             AttachErrorHandlers();
-             // _ = CheckIsAlreadyRunning();
+            // logger = host.Application.Services.GetService<ILogger<App>>();
+            AttachErrorHandlers();
+            // _ = CheckIsAlreadyRunning();
 
-             // Initialize host-level services (tray icon, language change listener)
-             // var appService = host.Application.Services.GetRequiredService<IApplicationService>();
-             // _ = appService.Initialize();
+            // Initialize host-level services (tray icon, language change listener)
+            // var appService = host.Application.Services.GetRequiredService<IApplicationService>();
+            // _ = appService.Initialize();
 
-             // var viewLocator = host.Application.Services.GetRequiredService<IViewLocator>();
-             // viewLocator.Open(SidekickViewType.Standard, "/");
+            // var viewLocator = host.Application.Services.GetRequiredService<IViewLocator>();
+            // viewLocator.Open(SidekickViewType.Standard, "/");
         }
         catch (Exception ex)
         {

@@ -2,19 +2,19 @@ using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia;
 
-public partial class MainWindow : Window, IDisposable
+public partial class OverlayWindow : Window, IDisposable
 {
     private readonly IServiceProvider serviceProvider;
-    private const int WIDTH = 968;
-    private const int HEIGHT = 768;
+    private const int WIDTH = 768;
+    private const int HEIGHT = 600;
 
+    // private readonly ILogger logger;
     private bool IsDisposed { get; set; }
 
-    public MainWindow(IServiceProvider serviceProvider)
+    public OverlayWindow(IServiceProvider serviceProvider)
     {
         this.serviceProvider = serviceProvider;
 
@@ -24,8 +24,8 @@ public partial class MainWindow : Window, IDisposable
         Background = Brushes.Transparent;
         WindowDecorations = WindowDecorations.None;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        Topmost = false;
-        ShowInTaskbar = true;
+        Topmost = true;
+        ShowInTaskbar = false;
         CanResize = true;
 
         InitializeComponent();
@@ -45,10 +45,29 @@ public partial class MainWindow : Window, IDisposable
         Height = HEIGHT * zoom;
         Width = WIDTH * zoom;
 
-        Show();
+        // var viewPreferenceService = serviceProvider.GetRequiredService<IViewPreferenceService>();
+        // if (viewPreferenceService != null && ViewType != SidekickViewType.Modal)
+        // {
+        //     var savePositions = settingsService != null && await settingsService.GetBool(SettingKeys.SaveWindowPositions);
+        //     var preferences = await viewPreferenceService.Get(ViewType.ToString());
+        //     if (preferences != null)
+        //     {
+        //         if (preferences.Height > Height) Height = preferences.Height;
+        //         if (preferences.Width > Width) Width = preferences.Width;
+//
+        //         if (savePositions && preferences.X != null && preferences.Y != null)
+        //         {
+        //             // Position = new Avalonia.PixelPoint((int)preferences.X.Value, (int)preferences.Y.Value);
+        //             IsNormalized = true;
+        //             return;
+        //         }
+        //     }
+        // }
+
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 
-    public void CloseView()
+    public async Task CloseView()
     {
         Hide();
     }
@@ -57,30 +76,12 @@ public partial class MainWindow : Window, IDisposable
     {
         if (!IsDisposed)
         {
-            CloseView();
+            _ = CloseView();
             e.Cancel = true;
         }
 
         base.OnClosing(e);
     }
-
-    // private async Task SavePosition()
-    // {
-    //     if (!IsVisible || ViewType == SidekickViewType.Modal || !CanResize || WindowState == WindowState.Maximized) return;
-
-    //     try
-    //     {
-    //         var viewPreferenceService = Program.ServiceProvider.GetService<IViewPreferenceService>();
-    //         if (viewPreferenceService == null) return;
-
-    //         await viewPreferenceService.Set(ViewType.ToString(), (int)Width, (int)Height, Position.X, Position.Y);
-    //         logger.LogInformation("[MainWindow] Position saved");
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         logger.LogError(e, "[MainWindow] Error saving position");
-    //     }
-    // }
 
     public void Dispose()
     {
@@ -90,4 +91,3 @@ public partial class MainWindow : Window, IDisposable
         Close();
     }
 }
-
