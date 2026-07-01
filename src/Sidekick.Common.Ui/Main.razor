@@ -19,16 +19,23 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (!ApplicationService.HasInitialized)
+        if (ApplicationService.HasInitialized && IsInitializePath())
         {
-            var path = new Uri(NavigationManager.Uri).AbsolutePath;
-            if (path != "/" && path != "/update" && path != "/setup" && path != "/initialize")
-            {
-                NavigationManager.NavigateTo("/");
-            }
+            NavigationManager.NavigateTo("/home");
+        }
+
+        if (!ApplicationService.HasInitialized && !IsInitializePath())
+        {
+            NavigationManager.NavigateTo("/");
         }
 
         await base.OnInitializedAsync();
+    }
+
+    private bool IsInitializePath()
+    {
+        var path = new Uri(NavigationManager.Uri).AbsolutePath;
+        return path == "/" || path == "/update" || path == "/setup" || path == "/initialize";
     }
 
 }

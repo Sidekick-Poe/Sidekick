@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sidekick.Avalonia.Services;
 using Sidekick.Common;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
@@ -12,7 +13,8 @@ namespace Sidekick.Avalonia;
 
 public partial class App : Application
 {
-    private ServerAppHost? serverAppHost;
+    private static ServerAppHost? _serverAppHost;
+    public static ServerAppHost ServerAppHost => _serverAppHost ?? throw new Exception("ServerAppHost not initialized.");
 
     public override void Initialize()
     {
@@ -23,36 +25,44 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            serverAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
+            _serverAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
             var tcs = new TaskCompletionSource<string?>();
 
             _ = Task.Run(async () =>
             {
-                serverAppHost.Start(services =>
+                ServerAppHost.Start(services =>
                 {
                     services.TryAddSingleton<IViewLocator, WebViewLocator>();
                     services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
-                    services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
+                    // services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
+
+                    // services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
+                    // services.TryAddSingleton(sp => (AvaloniaViewLocator)sp.GetRequiredService<IViewLocator>());
+                    services.AddSidekickInitializableService<IApplicationService, AvaloniaApplicationService>();
                 });
-                tcs.TrySetResult(serverAppHost.Application.Urls.FirstOrDefault());
-                await serverAppHost.RunTask;
+                tcs.TrySetResult(ServerAppHost.Application.Urls.FirstOrDefault());
+                await ServerAppHost.RunTask;
             });
 
             var url = tcs.Task.GetAwaiter().GetResult();
             if (url != null)
             {
-                var window = new MainWindow(serverAppHost.Application.Services);
+                // var viewLocator = ServerAppHost.Application.Services.GetRequiredService<AvaloniaViewLocator>();
+                // viewLocator.Open(SidekickViewType.Standard, url);
+                // desktop.MainWindow = viewLocator.MainWindow;
+
+                var window = new MainWindow(ServerAppHost.Application.Services);
                 _ = window.OpenView(url);
                 desktop.MainWindow = window;
             }
 
             desktop.ShutdownRequested += (_, _) =>
             {
-                serverAppHost.Dispose();
+                ServerAppHost.Dispose();
             };
         }
 
-        if (serverAppHost == null)
+        if (ServerAppHost == null)
         {
             // logger?.LogCritical("[App] Unsupported application type.");
             // throw new Exception("Unsupported application type.");
