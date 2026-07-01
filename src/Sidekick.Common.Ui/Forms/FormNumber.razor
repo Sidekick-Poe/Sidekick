@@ -40,8 +40,6 @@
 
     private IJSObjectReference? JsObject { get; set; }
 
-    private DotNetObjectReference<FormNumber>? Reference { get; set; }
-
     protected string ElementId { get; } = UiUtilities.GenerateId();
 
     protected string InternalValue { get; set; } = string.Empty;
@@ -58,8 +56,7 @@
         {
             try
             {
-                Reference = DotNetObjectReference.Create(this);
-                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.forms.numberInputWheel", ElementId, Reference);
+                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.forms.numberInputWheel", ElementId);
             }
             catch (Exception e)
             {
@@ -83,12 +80,11 @@
     }
 
     public async ValueTask DisposeAsync()
-    {        
+    {
         if (JsObject != null)
         {
             await JsObject.InvokeVoidAsync("dispose");
             await JsObject.DisposeAsync();
         }
-        Reference?.Dispose();
     }
 }

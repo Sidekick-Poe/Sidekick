@@ -1,4 +1,4 @@
-export default (elementId, dotNetRef) => {
+﻿export default (elementId, dotNetRef) => {
 
     const element = document.getElementById(elementId);
 

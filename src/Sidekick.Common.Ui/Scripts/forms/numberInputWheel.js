@@ -6,12 +6,22 @@ export default (elementId) => {
     const element = document.getElementById(elementId);
     if (!element) return;
 
-    element.addEventListener("wheel", (event) => {
+    var handler = (event) => {
         event.preventDefault();
 
         if (event.deltaY < 0)
             element.stepUp();
         else
             element.stepDown();
-    }, { passive: false });
+    };
+    element.addEventListener("wheel", handler, {passive: false});
+
+    const dispose = () => {
+        if (!element) return;
+        element.removeEventListener("wheel", handler);
+    }
+
+    return {
+        dispose,
+    };
 };
