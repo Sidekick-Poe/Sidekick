@@ -1,58 +1,49 @@
 namespace Sidekick.Common.Ui.Views;
 
 /// <summary>
-/// Represents the current view implementation for Sidekick with functionalities
-/// to manage and interact with views including initialization, creation, and disposal.
+/// The current view
 /// </summary>
-public class CurrentView : ICurrentView
+public class CurrentView(IViewLocator viewLocator)
 {
-    /// <inheritdoc/>
-    public event Action? Minimized;
+    /// <summary>
+    /// The current view type
+    /// </summary>
+    public SidekickViewType CurrentViewType { get; private set; }
 
-    /// <inheritdoc/>
-    public event Action? Maximized;
-
-    /// <inheritdoc/>
-    public event Action? Closed;
-
-    /// <inheritdoc/>
-    public event Action<int, int>? DragStarted;
-
-    /// <inheritdoc/>
-    public event Action? DragStopped;
-
-
-    /// <inheritdoc/>
-    public void Minimize()
+    /// <summary>
+    /// Set the current view type
+    /// </summary>
+    /// <param name="type">The type of view </param>
+    public void SetViewType(SidekickViewType type)
     {
-        Minimized?.Invoke();
+        CurrentViewType = type;
     }
 
-    /// <inheritdoc/>
-    public void Maximize()
-    {
-        Maximized?.Invoke();
-    }
-
-    /// <inheritdoc/>
+    /// <summary>
+    /// Close the current view
+    /// </summary>
     public void Close()
     {
-        Closed?.Invoke();
+        viewLocator.Close(CurrentViewType);
     }
 
-    private bool IsDragging { get; set; }
-
-    public void StartDragging(int offsetX, int offsetY)
+    public void Maximize()
     {
-        if (IsDragging) return;
+        viewLocator.Maximize(CurrentViewType);
+    }
 
-        IsDragging = true;
-        DragStarted?.Invoke(offsetX, offsetY);
+    public void Minimize()
+    {
+        viewLocator.Minimize(CurrentViewType);
+    }
+
+    public void StartDragging(int pageX, int pageY)
+    {
+        throw new NotImplementedException();
     }
 
     public void StopDragging()
     {
-        IsDragging = false;
-        DragStopped?.Invoke();
+        throw new NotImplementedException();
     }
 }

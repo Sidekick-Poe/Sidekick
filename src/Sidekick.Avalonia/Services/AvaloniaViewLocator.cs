@@ -10,7 +10,9 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
     private readonly ILogger<AvaloniaViewLocator> logger;
     private readonly IUiLanguageProvider uiLanguageProvider;
 
-    private StandardWindow? MainWindow { get; set; }
+    public SidekickViewType LastOpenedType { get; private set; }
+
+    private StandardWindow? StandardWindow { get; set; }
     private OverlayWindow? OverlayWindow { get; set; }
     private SplashWindow? SplashWindow { get; set; }
 
@@ -45,6 +47,8 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
 
     public void Open(SidekickViewType type, string url)
     {
+        LastOpenedType = type;
+
         GetApplication().Dispatcher.InvokeAsync(async () =>
         {
             var host = App.ServerAppHost.Application.Urls.FirstOrDefault();
@@ -59,7 +63,7 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
             switch (type)
             {
                 case SidekickViewType.Overlay:
-                    OverlayWindow ??= new OverlayWindow(App.ServerAppHost.Application.Services);
+                    OverlayWindow ??= new OverlayWindow();
                     await OverlayWindow.OpenView(uri.ToString());
                     break;
                 case SidekickViewType.Splash:
@@ -67,8 +71,8 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
                     SplashWindow.OpenView(uri.ToString());
                     break;
                 default:
-                    MainWindow ??= new StandardWindow(App.ServerAppHost.Application.Services);
-                    await MainWindow.OpenView(uri.ToString());
+                    StandardWindow ??= new StandardWindow();
+                    await StandardWindow.OpenView(uri.ToString());
                     break;
             }
         });
@@ -87,8 +91,38 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
                     SplashWindow?.CloseView();
                     break;
                 default:
-                    MainWindow?.CloseView();
+                    StandardWindow?.CloseView();
                     break;
+            }
+        });
+    }
+
+    public void Maximize(SidekickViewType type)
+    {
+        GetApplication().Dispatcher.Invoke(() =>
+        {
+            switch (type)
+            {
+                case SidekickViewType.Standard:
+                    StandardWindow?.MaximizeView();
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        });
+    }
+
+    public void Minimize(SidekickViewType type)
+    {
+        GetApplication().Dispatcher.Invoke(() =>
+        {
+            switch (type)
+            {
+                case SidekickViewType.Standard:
+                    StandardWindow?.MinimizeView();
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
         });
     }
@@ -99,7 +133,7 @@ public class AvaloniaViewLocator : IViewLocator, IDisposable
         {
             SidekickViewType.Overlay => OverlayWindow?.IsVisible ?? false,
             SidekickViewType.Splash => SplashWindow?.IsVisible ?? false,
-            _ => MainWindow?.IsVisible ?? false,
+            _ => StandardWindow?.IsVisible ?? false,
         };
     }
 

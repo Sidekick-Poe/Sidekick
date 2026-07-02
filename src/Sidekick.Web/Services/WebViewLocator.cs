@@ -7,6 +7,8 @@ public class WebViewLocator : IViewLocator
 {
     public List<SidekickWebWrapper> Views { get; } = [];
 
+    public SidekickViewType LastOpenedType => SidekickViewType.Standard;
+
     public void Open(SidekickViewType type, string url)
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo(url));
@@ -15,6 +17,14 @@ public class WebViewLocator : IViewLocator
     public void Close(SidekickViewType type)
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
+    }
+
+    public void Maximize(SidekickViewType type)
+    {
+    }
+
+    public void Minimize(SidekickViewType type)
+    {
     }
 
     public bool IsOpened(SidekickViewType type) => false;

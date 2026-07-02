@@ -9,7 +9,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddSidekickCommonUi(this IServiceCollection services)
     {
-        services.TryAddScoped<ICurrentView, CurrentView>();
+        services.TryAddScoped<CurrentView>();
 
         services.TryAddSingleton<SectionService>();
 

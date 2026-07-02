@@ -34,7 +34,7 @@ public partial class Initialization
     private ISettingsService SettingsService { get; set; } = null!;
 
     [Inject]
-    private ICurrentView CurrentView { get; set; } = null!;
+    private CurrentView CurrentView { get; set; } = null!;
 
     [Inject]
     private ICacheProvider CacheProvider { get; set; } = null!;

@@ -68,7 +68,14 @@
     {
         if (ZoomHandler != null)
         {
-            await ZoomHandler.DisposeAsync();
+            try
+            {
+                await ZoomHandler.DisposeAsync();
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to dispose javascript module.");
+            }
         }
 
         SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;

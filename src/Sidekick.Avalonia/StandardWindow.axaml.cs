@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text.Json;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Platform;
@@ -9,14 +10,13 @@ namespace Sidekick.Avalonia;
 
 public partial class StandardWindow : Window
 {
-    private readonly IServiceProvider serviceProvider;
+    private IServiceProvider ServiceProvider => App.ServerAppHost.Application.Services;
     private const int WIDTH = 968;
     private const int HEIGHT = 768;
+    private const string POSITION_PREFIX = "StandardWindow";
 
-    public StandardWindow(IServiceProvider serviceProvider)
+    public StandardWindow()
     {
-        this.serviceProvider = serviceProvider;
-
         Title = "Sidekick";
         Width = WIDTH;
         Height = HEIGHT;
@@ -65,15 +65,33 @@ public partial class StandardWindow : Window
             WebView.Navigate(new Uri(url));
         }
 
-        if (WindowState == WindowState.Normal)
-        {
-            var settingsService = serviceProvider.GetRequiredService<ISettingsService>();
-            var zoomString = await settingsService.GetString(SettingKeys.Zoom);
-            if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
+        await NormalizeView();
+    }
 
-            Height = HEIGHT * zoom;
-            Width = WIDTH * zoom;
+    private async Task NormalizeView()
+    {
+        WindowState = WindowState.Normal;
+        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
+        if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
+
+        Height = HEIGHT * zoom;
+        Width = WIDTH * zoom;
+
+        if (await settingsService.GetBool(SettingKeys.SaveWindowPositions))
+        {
+            var positionX = await settingsService.GetInt($"{POSITION_PREFIX}_PositionX");
+            var positionY = await settingsService.GetInt($"{POSITION_PREFIX}_PositionY");
+            Position = new PixelPoint(positionX, positionY);
+            var height = await settingsService.GetDouble($"{POSITION_PREFIX}_Height");
+            var width = await settingsService.GetDouble($"{POSITION_PREFIX}_Width");
+            if (height > HEIGHT && width > WIDTH)
+            {
+                Height = height;
+                Width = width;
+            }
         }
+
     }
 
     public void CloseView()
@@ -88,21 +106,47 @@ public partial class StandardWindow : Window
         base.OnClosing(e);
     }
 
-    // private async Task SavePosition()
-    // {
-    //     if (!IsVisible || ViewType == SidekickViewType.Modal || !CanResize || WindowState == WindowState.Maximized) return;
+    public void MinimizeView()
+    {
+        Dispatcher.InvokeAsync(async () =>
+        {
+            await SavePosition();
+            WindowState = WindowState.Minimized;
+        });
+    }
 
-    //     try
-    //     {
-    //         var viewPreferenceService = Program.ServiceProvider.GetService<IViewPreferenceService>();
-    //         if (viewPreferenceService == null) return;
+    public void MaximizeView()
+    {
+        Dispatcher.InvokeAsync(async () =>
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                await SavePosition();
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                await NormalizeView();
+            }
+        });
+    }
 
-    //         await viewPreferenceService.Set(ViewType.ToString(), (int)Width, (int)Height, Position.X, Position.Y);
-    //         logger.LogInformation("[MainWindow] Position saved");
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         logger.LogError(e, "[MainWindow] Error saving position");
-    //     }
-    // }
+    private async Task SavePosition()
+    {
+        if (!IsVisible || !CanResize || WindowState == WindowState.Maximized) return;
+
+        try
+        {
+            var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+            await settingsService.Set($"{POSITION_PREFIX}_Width", Width);
+            await settingsService.Set($"{POSITION_PREFIX}_Height", Height);
+            await settingsService.Set($"{POSITION_PREFIX}_PositionX", Position.X);
+            await settingsService.Set($"{POSITION_PREFIX}_PositionY", Position.Y);
+        }
+        catch (Exception e)
+        {
+            var logger = ServiceProvider.GetRequiredService<ILogger<StandardWindow>>();
+            logger.LogError(e, "[MainWindow] Error saving position");
+        }
+    }
 }

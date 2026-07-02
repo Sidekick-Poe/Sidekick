@@ -14,15 +14,14 @@
 @inject IOptions<SidekickConfiguration> Configuration
 @inject IApplicationService ApplicationService
 @inject NavigationManager NavigationManager
+@inject IViewLocator ViewLocator
+@inject CurrentView CurrentView
 
 @code {
 
     protected override async Task OnInitializedAsync()
     {
-        if (ApplicationService.HasInitialized && IsInitializePath())
-        {
-            NavigationManager.NavigateTo("/home");
-        }
+        CurrentView.SetViewType(ViewLocator.LastOpenedType);
 
         if (!ApplicationService.HasInitialized && !IsInitializePath())
         {

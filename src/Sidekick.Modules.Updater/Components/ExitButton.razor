@@ -14,6 +14,7 @@ else
 @inject IStringLocalizer<UpdateResources> Resources
 @inject IApplicationService ApplicationService
 @inject NavigationManager NavigationManager
+@inject IViewLocator ViewLocator
 
 @code {
 
@@ -23,7 +24,7 @@ else
     {
         if (!string.IsNullOrEmpty(NavigationManager.QueryString("back")))
         {
-            NavigationManager.NavigateTo(NavigationManager.QueryString("back")!);
+            ViewLocator.Close(SidekickViewType.Splash);
         }
         else
         {

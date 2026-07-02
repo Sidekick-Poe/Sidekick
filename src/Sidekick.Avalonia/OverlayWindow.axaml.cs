@@ -7,17 +7,15 @@ namespace Sidekick.Avalonia;
 
 public partial class OverlayWindow : Window, IDisposable
 {
-    private readonly IServiceProvider serviceProvider;
+    private IServiceProvider ServiceProvider => App.ServerAppHost.Application.Services;
     private const int WIDTH = 768;
     private const int HEIGHT = 600;
 
     // private readonly ILogger logger;
     private bool IsDisposed { get; set; }
 
-    public OverlayWindow(IServiceProvider serviceProvider)
+    public OverlayWindow()
     {
-        this.serviceProvider = serviceProvider;
-
         Title = "Sidekick";
         Width = WIDTH;
         Height = HEIGHT;
@@ -37,7 +35,7 @@ public partial class OverlayWindow : Window, IDisposable
 
         if (WindowState != WindowState.Normal) return;
 
-        var settingsService = serviceProvider.GetRequiredService<ISettingsService>();
+        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
         var zoomString = await settingsService.GetString(SettingKeys.Zoom);
         if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
 
