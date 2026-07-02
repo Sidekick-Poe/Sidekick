@@ -134,10 +134,13 @@
 
                 NavigationManager.NavigateTo("/initialize");
             }
+
+            StateHasChanged();
         }
         catch (SidekickException e)
         {
             Exception = e;
+            Logger.LogError(e, "[Setup] Error while checking for setup.");
             StateHasChanged();
         }
         catch (Exception e)
