@@ -1,9 +1,14 @@
 using Avalonia;
+using Avalonia.Controls;
+using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.EventArgs;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia.Services;
 
-public class AvaloniaViewLocator(ILogger<AvaloniaViewLocator> logger) : IViewLocator
+public class AvaloniaViewLocator(
+    ILogger<AvaloniaViewLocator> logger,
+    IKeyboardProvider keyboardProvider) : IViewLocator
 {
 
     public SidekickViewType LastOpenedType { get; private set; }
@@ -11,6 +16,8 @@ public class AvaloniaViewLocator(ILogger<AvaloniaViewLocator> logger) : IViewLoc
     private StandardWindow? StandardWindow { get; set; }
     private OverlayWindow? OverlayWindow { get; set; }
     private SplashWindow? SplashWindow { get; set; }
+
+    private Action<DraggedEventArgs>? OnMouseDrag { get; set; }
 
     private Application GetApplication() => Application.Current ?? throw new Exception("Application is not initialized.");
 
@@ -104,5 +111,37 @@ public class AvaloniaViewLocator(ILogger<AvaloniaViewLocator> logger) : IViewLoc
             SidekickViewType.Splash => SplashWindow?.IsVisible ?? false,
             _ => StandardWindow?.IsVisible ?? false,
         };
+    }
+
+
+    public void StartMoving(SidekickViewType type, int pageX, int pageY)
+    {
+        StopMoving(type);
+
+        OnMouseDrag = args =>
+        {
+            GetApplication().Dispatcher.Invoke(() =>
+            {
+                Window? window = type switch
+                {
+                    SidekickViewType.Overlay => OverlayWindow,
+                    SidekickViewType.Splash => SplashWindow,
+                    _ => StandardWindow,
+                };
+                if (window == null || !window.IsVisible || window.WindowState == WindowState.Maximized) return;
+
+                window.Position = new PixelPoint(args.X - pageX, args.Y - pageY);
+            });
+        };
+
+        keyboardProvider.OnMouseDrag += OnMouseDrag;
+    }
+
+    public void StopMoving(SidekickViewType type)
+    {
+        if (OnMouseDrag == null) return;
+
+        keyboardProvider.OnMouseDrag -= OnMouseDrag;
+        OnMouseDrag = null;
     }
 }

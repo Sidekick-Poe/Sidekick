@@ -22,12 +22,12 @@
 
     private void OnMouseDown(MouseEventArgs e)
     {
-        CurrentView.StartDragging((int)e.PageX, (int)e.PageY);
+        CurrentView.StartMoving((int)e.PageX, (int)e.PageY);
     }
 
     private void OnMouseUp()
     {
-        CurrentView.StopDragging();
+        CurrentView.StopMoving();
     }
 
 }

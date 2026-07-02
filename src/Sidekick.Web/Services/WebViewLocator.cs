@@ -27,5 +27,13 @@ public class WebViewLocator : IViewLocator
     {
     }
 
+    public void StartMoving(SidekickViewType type, int pageX, int pageY)
+    {
+    }
+
+    public void StopMoving(SidekickViewType type)
+    {
+    }
+
     public bool IsOpened(SidekickViewType type) => false;
 }

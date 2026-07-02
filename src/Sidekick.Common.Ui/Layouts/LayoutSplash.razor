@@ -1,10 +1,7 @@
 <div class="h-full flex flex-col justify-center dark:bg-stone-950">
-    @if (TopContent != null)
-    {
-        <div class="p-4">
-            @TopContent
-        </div>
-    }
+    <AppMoveHandle Class="p-4">
+        <AppLogo/>
+    </AppMoveHandle>
     <div class="grow overflow-y-auto overflow-x-hidden flex items-center">
         <div class="w-full p-4">
             @ChildContent
@@ -19,9 +16,6 @@
 </div>
 
 @code {
-
-    [Parameter]
-    public RenderFragment? TopContent { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
