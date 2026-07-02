@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Items.Keybinds;
@@ -12,8 +13,8 @@ public static class StartupExtensions
     {
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
-        services.AddTransient<TradeResources>();
-        services.AddScoped<TradeService>();
+        services.TryAddTransient<TradeResources>();
+        services.TryAddScoped<TradeService>();
 
         services.AddSidekickInputHandler<PriceCheckItemKeybindHandler>();
 

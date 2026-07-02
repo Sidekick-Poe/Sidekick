@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Ui.Sections;
 using Sidekick.Common.Ui.Views;
 
@@ -8,10 +9,9 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddSidekickCommonUi(this IServiceCollection services)
     {
-        services.AddScoped<ICurrentView, CurrentView>();
+        services.TryAddScoped<CurrentView>();
 
-        services.AddSingleton<IViewPreferenceService, ViewPreferenceService>();
-        services.AddSingleton<SectionService>();
+        services.TryAddSingleton<SectionService>();
 
         services.AddSidekickModule(typeof(ServiceCollectionExtensions).Assembly);
 

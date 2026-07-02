@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Apis.Common.Cloudflare;
 using Sidekick.Apis.Common.Limiter;
 using Sidekick.Apis.Common.States;
@@ -9,9 +10,9 @@ public static class StartupExtensions
 {
     public static IServiceCollection AddSidekickCommonApi(this IServiceCollection services)
     {
-        services.AddSingleton<ICloudflareService, CloudflareService>();
-        services.AddSingleton<IApiStateProvider, ApiStateProvider>();
-        services.AddSingleton<ApiLimiterProvider>();
+        services.TryAddSingleton<ICloudflareService, CloudflareService>();
+        services.TryAddSingleton<IApiStateProvider, ApiStateProvider>();
+        services.TryAddSingleton<ApiLimiterProvider>();
 
         return services;
     }

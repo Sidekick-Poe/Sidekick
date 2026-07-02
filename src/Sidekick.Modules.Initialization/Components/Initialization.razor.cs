@@ -4,18 +4,20 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
-using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
-
-namespace Sidekick.Modules.General.Initialization;
+using Sidekick.Modules.Initialization.Localization;
+namespace Sidekick.Modules.Initialization.Components;
 
 public partial class Initialization
 {
+    [Inject]
+    private IViewLocator ViewLocator { get; set; } = null!;
+
     [Inject]
     private IStringLocalizer<InitializationResources> Resources { get; set; } = null!;
 
@@ -32,10 +34,7 @@ public partial class Initialization
     private ISettingsService SettingsService { get; set; } = null!;
 
     [Inject]
-    private ICurrentView CurrentView { get; set; } = null!;
-
-    [Inject]
-    private NavigationManager NavigationManager { get; set; } = null!;
+    private CurrentView CurrentView { get; set; } = null!;
 
     [Inject]
     private ICacheProvider CacheProvider { get; set; } = null!;
@@ -51,20 +50,19 @@ public partial class Initialization
 
     public Task? InitializationTask { get; set; }
 
-    private int completed;
+    private int Completed { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         InitializationTask = Handle();
         await base.OnInitializedAsync();
-        await InitializationTask;
     }
 
     public async Task Handle()
     {
         try
         {
-            completed = 0;
+            Completed = 0;
             Count = Configuration.Value.InitializableServices.Count;
             var version = ApplicationService.GetVersion();
             var previousVersion = await SettingsService.GetString(SettingKeys.Version);
@@ -85,25 +83,20 @@ public partial class Initialization
                 })
                 .Where(x => x != null)
                 .Select(x => x!)
-                .GroupBy(s => s.Priority)
-                .OrderBy(g => g.Key)
+                .OrderBy(s => s.Priority)
                 .ToList();
 
-            foreach (var priorityGroup in services)
+            foreach (var service in services)
             {
-                var initializationTasks = priorityGroup.Select(async service =>
-                {
-                    Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
-                    await service.Initialize();
-                    Interlocked.Increment(ref completed);
-                    await ReportProgress();
-                });
-                await Task.WhenAll(initializationTasks);
+                Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
+                await service.Initialize();
+                Completed++;
+                await ReportProgress();
             }
 
             // If we have a successful initialization, we delay for half a second to show the
             // "Ready" label on the UI before closing the view
-            completed = Count;
+            Completed = Count;
             ApplicationService.HasInitialized = true;
 
             await ReportProgress();
@@ -123,7 +116,8 @@ public partial class Initialization
         var redirectToHome = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
         if (redirectToHome)
         {
-            NavigationManager.NavigateTo("/home");
+            ViewLocator.Close(SidekickViewType.Splash);
+            ViewLocator.Open(SidekickViewType.Standard, "/home");
         }
         else
         {
@@ -135,7 +129,7 @@ public partial class Initialization
     {
         return InvokeAsync(() =>
         {
-            Percentage = Count == 0 ? 0 : completed * 100 / Count;
+            Percentage = Count == 0 ? 0 : Completed * 100 / Count;
             if (Percentage >= 100)
             {
                 Step = Resources["Ready"];
@@ -143,7 +137,7 @@ public partial class Initialization
             }
             else
             {
-                Step = Resources["Title", completed, Count];
+                Step = Resources["Title", Completed, Count];
             }
 
             StateHasChanged();

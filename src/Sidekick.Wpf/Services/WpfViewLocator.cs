@@ -37,53 +37,38 @@ public class WpfViewLocator : IViewLocator, IDisposable
         }
     }
 
-    public bool SupportsMinimize => true;
-
-    public bool SupportsMaximize => true;
-
-    private Dictionary<SidekickViewType, MainWindow> Windows { get; } = [];
+    private MainWindow? Window { get; set; }
 
     public void Open(SidekickViewType type, string url)
     {
-        var window = GetWindow(type, true)!;
-        _ = window.OpenView(url);
-    }
+        _ = GetOrCreateWindow().OpenView(type, url);
+        return;
 
-    private MainWindow? GetWindow(SidekickViewType type, bool create)
-    {
-        var window = Windows.GetValueOrDefault(type);
-        if (window != null) return window;
-        if (!create) return null;
-
-        return System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
+        MainWindow GetOrCreateWindow()
         {
-            window = new MainWindow(type, logger);
-            Windows.Add(type, window);
-            return window;
-        }).Result;
+            if (Window != null) return Window;
+
+            return System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                Window = new MainWindow(logger);
+                return Window;
+            }).Result;
+        }
     }
 
-    public void Close(SidekickViewType type)
+    public void Close()
     {
-        var window = GetWindow(type, false);
-        if (window == null) return;
-
-        window.CloseView();
+        Window?.CloseView();
     }
 
     public bool IsOverlayOpened()
     {
-        var window = GetWindow(SidekickViewType.Overlay, false);
-        return window?.IsVisible ?? false;
+        return Window?.IsVisible ?? false;
     }
 
     public void Dispose()
     {
         uiLanguageProvider.OnLanguageChanged -= SetCultureInfo;
-
-        foreach (var window in Windows)
-        {
-            window.Value.Dispose();
-        }
+        Window?.Dispose();
     }
 }

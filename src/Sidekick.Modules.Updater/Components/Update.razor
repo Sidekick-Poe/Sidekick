@@ -50,8 +50,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        _ = Check();
         await base.OnInitializedAsync();
 
+    }
+
+    private async Task Check()
+    {
         try
         {
             if (AutoUpdater.IsUpdaterInstalled())
@@ -89,6 +94,12 @@ else
         catch (SidekickException e)
         {
             Exception = e;
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            Exception = new SidekickException(e.Message);
+            Logger.LogError(e, "[AutoUpdater] Error while checking for updates.");
             StateHasChanged();
         }
     }

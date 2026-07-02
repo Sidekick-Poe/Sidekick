@@ -46,7 +46,7 @@ public class DataProvider
                 }
             }
 
-            return Path.Combine(AppContext.BaseDirectory, "wwwroot/data");
+            return Path.Combine(AppContext.BaseDirectory, "_data");
         }
 
         string? FindSolutionDirectory(string? startDirectory = null)

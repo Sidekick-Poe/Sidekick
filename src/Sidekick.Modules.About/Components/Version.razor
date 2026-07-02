@@ -1,6 +1,8 @@
 @using Microsoft.Extensions.Localization
+@using Sidekick.Common.Platform
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Views
 @using Sidekick.Modules.About.Localization
 
 <FormFieldset Legend="@($"Sidekick - {Title}")">
@@ -11,6 +13,8 @@
 
 @inject IStringLocalizer<AboutResources> Resources
 @inject NavigationManager NavigationManager
+@inject IApplicationService ApplicationService
+@inject IViewLocator ViewLocator
 
 @code
 {
@@ -18,12 +22,12 @@
 
     protected override void OnInitialized()
     {
-        Title = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version?.ToString();
+        Title = ApplicationService.GetVersion();
         base.OnInitializedAsync();
     }
 
     private void Check()
     {
-        NavigationManager.NavigateTo($"/update?back={Uri.EscapeDataString(NavigationManager.Uri)}");
+        ViewLocator.Open(SidekickViewType.Splash, $"/update?back={Uri.EscapeDataString(NavigationManager.Uri)}");
     }
 }

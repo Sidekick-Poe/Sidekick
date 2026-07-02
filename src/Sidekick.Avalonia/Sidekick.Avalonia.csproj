@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <Version>1.0.0.0</Version>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <InformationalVersion>1.0.0.0</InformationalVersion>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+        <Title>Sidekick</Title>
+        <Authors>$(AssemblyName) Collaborators</Authors>
+        <Company>$(AssemblyName)</Company>
+        <Description>A Path of Exile companion tool.</Description>
+        <PackageProjectUrl>https://sidekick-poe.github.io/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Sidekick-Poe/Sidekick</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <StartupObject>Sidekick.Avalonia.Program</StartupObject>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sidekick.Web\Sidekick.Web.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Avalonia.Desktop"/>
+        <PackageReference Include="Avalonia.Themes.Fluent"/>
+        <PackageReference Include="Avalonia.Fonts.Inter"/>
+        <PackageReference Include="Avalonia.Controls.WebView"/>
+        <PackageReference Include="AvaloniaUI.DiagnosticsSupport">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Velopack"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\data\**\*.*">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Link>_data\%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="SplashWindow.axaml.cs">
+        <DependentUpon>SplashWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+</Project>

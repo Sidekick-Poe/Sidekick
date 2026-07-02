@@ -3,7 +3,7 @@
 
 <ErrorFullScreenBoundary>
     <div
-        class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
+        class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-950 text-white text-base [zoom:var(--sidekick-zoom)]">
         @ChildContent
     </div>
 
@@ -68,7 +68,14 @@
     {
         if (ZoomHandler != null)
         {
-            await ZoomHandler.DisposeAsync();
+            try
+            {
+                await ZoomHandler.DisposeAsync();
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to dispose javascript module.");
+            }
         }
 
         SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;

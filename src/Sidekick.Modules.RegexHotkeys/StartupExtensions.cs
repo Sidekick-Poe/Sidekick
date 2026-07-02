@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
 using Sidekick.Modules.RegexHotkeys.Keybinds;
 using Sidekick.Modules.RegexHotkeys.Localization;
@@ -18,8 +19,6 @@ public static class StartupExtensions
     public static IServiceCollection AddSidekickRegexHotkeys(this IServiceCollection services)
     {
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
-
-        services.AddTransient<RegexHotkeysResources>();
 
         services.AddSidekickInputHandler<RegexHotkeyHandler>();
 

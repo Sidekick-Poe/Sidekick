@@ -1,4 +1,3 @@
-using System.IO;
 using System.Reflection;
 using System.Windows;
 using ApexCharts;
@@ -44,7 +43,7 @@ public class Program
     // In order for this to work, you must also add the following to your .csproj:
     // <StartupObject>Sidekick.Wpf.App</StartupObject>
     [STAThread]
-    public static void Main(string[] args)
+    public static void Main(string[] _)
     {
         try
         {
@@ -121,11 +120,7 @@ If you need more support consider asking on the official Sidekick discord server
             .AddSidekickWealth()
 
             // Platform needs to be at the end
-            .AddSidekickCommonPlatform(o =>
-            {
-                o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-                o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-            });
+            .AddSidekickCommonPlatform();
 
         services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
         services.AddSingleton<IViewLocator, WpfViewLocator>();

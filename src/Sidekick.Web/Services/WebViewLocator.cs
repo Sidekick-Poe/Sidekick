@@ -1,16 +1,13 @@
 using Sidekick.Common.Ui.Views;
+using Sidekick.Web.Pages;
 
 namespace Sidekick.Web.Services;
 
 public class WebViewLocator : IViewLocator
 {
-    /// <inheritdoc />
-    public bool SupportsMinimize => false;
-
-    /// <inheritdoc />
-    public bool SupportsMaximize => false;
-
     public List<SidekickWebWrapper> Views { get; } = [];
+
+    public SidekickViewType LastOpenedType => SidekickViewType.Standard;
 
     public void Open(SidekickViewType type, string url)
     {
@@ -22,5 +19,13 @@ public class WebViewLocator : IViewLocator
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
 
-    public bool IsOverlayOpened() => false;
+    public void Maximize(SidekickViewType type)
+    {
+    }
+
+    public void Minimize(SidekickViewType type)
+    {
+    }
+
+    public bool IsOpened(SidekickViewType type) => false;
 }

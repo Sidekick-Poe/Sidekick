@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
         services.AddSidekickInitializableService<ICurrentGameLanguage, CurrentGameLanguage>();
 
         services.AddSingleton<DataProvider>();
-        services.AddSingleton<IGameLanguageProvider, GameLanguageProvider>();
+        services.TryAddSingleton<IGameLanguageProvider, GameLanguageProvider>();
 
         services.TryAddSingleton<IFuzzyService, FuzzyService>();
 

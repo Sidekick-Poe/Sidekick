@@ -4,19 +4,8 @@ using Sidekick.Common.Database.Tables;
 
 namespace Sidekick.Common.Database;
 
-public sealed class SidekickDbContext : DbContext
+public sealed class SidekickDbContext(DbContextOptions<SidekickDbContext> options) : DbContext(options)
 {
-    private static bool hasMigrated;
-
-    public SidekickDbContext(DbContextOptions<SidekickDbContext> options)
-        : base(options)
-    {
-        if (hasMigrated) return;
-
-        Database.Migrate();
-        hasMigrated = true;
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
@@ -58,6 +47,4 @@ public sealed class SidekickDbContext : DbContext
     public DbSet<WealthFullSnapshot> WealthFullSnapshots { get; init; }
 
     public DbSet<WealthSparkline> WealthSparklines { get; init; }
-
-    public DbSet<ViewPreference> ViewPreferences { get; init; }
 }

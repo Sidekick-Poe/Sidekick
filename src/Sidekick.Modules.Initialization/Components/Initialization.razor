@@ -4,18 +4,17 @@
 @using Sidekick.Common.Ui.Progress
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Layouts
-@using Sidekick.Common.Ui.Views
 
-<LayoutSimple>
+<LayoutSplash>
     <TopContent>
         <AppLogo/>
     </TopContent>
 
     <ChildContent>
-        <AppFullContainer>
-            <Heading3 Class="mb-2 text-center">@Step</Heading3>
-            <ProgressBar Percent="Percentage"/>
-        </AppFullContainer>
+        <AppContainer>
+        <Heading3 Class="mb-2 text-center">@Step</Heading3>
+        <ProgressBar Percent="Percentage"/>
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
@@ -25,6 +24,4 @@
             </ButtonSecondary>
         </div>
     </BottomContent>
-</LayoutSimple>
-
-<ViewOptions Width="@ICurrentView.DialogWidth" Height="@ICurrentView.DialogHeight" />
+</LayoutSplash>

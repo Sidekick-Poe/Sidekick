@@ -1,0 +1,33 @@
+﻿@using Sidekick.Web.Services
+
+<Sidekick.Common.Ui.Main/>
+
+@inject IServiceProvider ServiceProvider
+@implements IDisposable
+
+@code {
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var viewLocator = ServiceProvider.GetService<WebViewLocator>();
+        if (viewLocator != null)
+        {
+            viewLocator.Views.Add(this);
+        }
+
+        base.OnInitialized();
+    }
+
+    public void Dispose()
+    {
+        var viewLocator = ServiceProvider.GetService<WebViewLocator>();
+        if (viewLocator != null)
+        {
+            viewLocator.Views.Remove(this);
+        }
+    }
+
+}

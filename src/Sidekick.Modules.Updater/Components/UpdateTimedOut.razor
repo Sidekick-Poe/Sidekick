@@ -1,14 +1,14 @@
 @using Sidekick.Modules.Updater.Localization
 
-<LayoutSimple>
+<LayoutSplash>
     <TopContent>
         <AppLogo/>
     </TopContent>
 
     <ChildContent>
-        <AppFullContainer>
+        <AppContainer>
             <Heading3 Class="text-center">@Resources["TimedOut"]</Heading3>
-        </AppFullContainer>
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
@@ -18,9 +18,6 @@
             <SkipButton/>
         </div>
     </BottomContent>
-</LayoutSimple>
-
-<ViewOptions Width="@ICurrentView.DialogWidth"
-             Height="@ICurrentView.DialogHeight"/>
+</LayoutSplash>
 
 @inject IStringLocalizer<UpdateResources> Resources

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Provider;
@@ -11,7 +12,7 @@ public static class StartupExtensions
     {
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
-        services.AddSingleton<WealthProvider>();
+        services.TryAddSingleton<WealthProvider>();
 
         services.SetSidekickDefaultSetting(SettingKeys.WealthItemTotalMinimum, WealthSettings.WealthItemTotalMinimum);
 

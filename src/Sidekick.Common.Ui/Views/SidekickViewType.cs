@@ -4,4 +4,5 @@ public enum SidekickViewType
 {
     Standard,
     Overlay,
+    Splash,
 }

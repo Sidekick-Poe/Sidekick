@@ -1,0 +1,32 @@
+<div class="h-full flex flex-col justify-center dark:bg-stone-950">
+    @if (TopContent != null)
+    {
+        <div class="p-4">
+            @TopContent
+        </div>
+    }
+    <div class="grow overflow-y-auto overflow-x-hidden flex items-center">
+        <div class="w-full p-4">
+            @ChildContent
+        </div>
+    </div>
+    @if (BottomContent != null)
+    {
+        <div class="p-4">
+            @BottomContent
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? TopContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? BottomContent { get; set; }
+
+}
