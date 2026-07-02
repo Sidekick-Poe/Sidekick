@@ -1,0 +1,25 @@
+﻿@using Microsoft.Extensions.Logging
+@using Sidekick.Common.Dialogs
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Forms
+
+<FormFieldset Legend="Dialogs">
+    <ButtonSecondary OnClick="OpenConfirm">Confirmation</ButtonSecondary>
+    <ButtonSecondary OnClick="OpenOk">Ok</ButtonSecondary>
+</FormFieldset>
+
+@inject DialogProvider DialogProvider
+@inject ILogger<Dialogs> Logger
+
+@code {
+    private async Task OpenConfirm()
+    {
+        var result = await DialogProvider.OpenConfirmationModal("Please confirm");
+        Logger.LogInformation("Confirmation result: {result}", result);
+    }
+
+    private async Task OpenOk()
+    {
+        await DialogProvider.OpenOkModal("Congratulations");
+    }
+}

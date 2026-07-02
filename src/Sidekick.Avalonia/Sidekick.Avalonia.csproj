@@ -52,11 +52,4 @@
             <Link>_data\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Content>
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="SplashWindow.axaml.cs">
-        <DependentUpon>SplashWindow.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
 </Project>

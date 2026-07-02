@@ -42,12 +42,18 @@ public partial class App : Application
                 {
                     services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
                     services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
+                    services.TryAddSingleton<AvaloniaCultureHandler>();
+                    services.TryAddSingleton<AvaloniaDialogsHandler>();
                 });
                 tcs.TrySetResult();
                 await ServerAppHost.RunTask;
             });
 
             tcs.Task.GetAwaiter().GetResult();
+
+            // Triggers the constructor of specific handler
+            _ = ServerAppHost.Application.Services.GetRequiredService<AvaloniaCultureHandler>();
+            _ = ServerAppHost.Application.Services.GetRequiredService<AvaloniaDialogsHandler>();
 
             var viewLocator = ServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
             viewLocator.Open(SidekickViewType.Splash, "/");

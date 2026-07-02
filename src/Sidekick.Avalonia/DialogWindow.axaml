@@ -1,0 +1,155 @@
+<Window
+    x:Class="Sidekick.Avalonia.DialogWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Sidekick"
+    Width="460"
+    SizeToContent="Height"
+    MinHeight="200"
+    CanResize="False"
+    WindowStartupLocation="CenterScreen"
+    SystemDecorations="None"
+    ShowActivated="True"
+    Topmost="True"
+    Background="#050505"
+    Foreground="#F5F5F5">
+
+    <Window.Resources>
+        <FontFamily x:Key="FontinFont">Assets/Fonts/fontin-regular-webfont.ttf#Fontin</FontFamily>
+        <FontFamily x:Key="FontinSmallCapsFont">Assets/Fonts/fontin-smallcaps-webfont.ttf#Fontin SmallCaps</FontFamily>
+
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#181816" />
+        <SolidColorBrush x:Key="PanelBorderBrush" Color="#252525" />
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#6D28D9" />
+        <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#8B5CF6" />
+        <SolidColorBrush x:Key="PrimaryPressedBrush" Color="#5B21B6" />
+        <SolidColorBrush x:Key="SecondaryBrush" Color="#2D2D2D" />
+        <SolidColorBrush x:Key="SecondaryHoverBrush" Color="#3A3A3A" />
+        <SolidColorBrush x:Key="SecondaryPressedBrush" Color="#242424" />
+        <SolidColorBrush x:Key="FocusBrush" Color="#A78BFA" />
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="Button.dialog-button">
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="Padding" Value="16,8" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+        </Style>
+
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+        </Style>
+
+        <Style Selector="Button.primary:pointerover">
+            <Setter Property="Background" Value="{StaticResource PrimaryHoverBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryHoverBrush}" />
+        </Style>
+
+        <Style Selector="Button.primary:pressed">
+            <Setter Property="Background" Value="{StaticResource PrimaryPressedBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryPressedBrush}" />
+        </Style>
+
+        <Style Selector="Button.secondary">
+            <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+            <Setter Property="BorderBrush" Value="#555555" />
+        </Style>
+
+        <Style Selector="Button.secondary:pointerover">
+            <Setter Property="Background" Value="{StaticResource SecondaryHoverBrush}" />
+        </Style>
+
+        <Style Selector="Button.secondary:pressed">
+            <Setter Property="Background" Value="{StaticResource SecondaryPressedBrush}" />
+        </Style>
+
+        <Style Selector="Button:focus">
+            <Setter Property="BorderBrush" Value="{StaticResource FocusBrush}" />
+        </Style>
+
+        <Style Selector="Button:disabled">
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+    </Window.Styles>
+
+    <Border CornerRadius="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Padding="16">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <Image
+                        Width="48"
+                        Height="48"
+                        Margin="0,0,12,0"
+                        Source="Assets/ExaltedOrb.png"
+                        Stretch="Uniform" />
+
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource FontinSmallCapsFont}"
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#FFFFFF"
+                        Text="Sidekick" />
+                </StackPanel>
+            </Border>
+
+            <Border
+                Grid.Row="1"
+                Padding="16"
+                Background="{StaticResource PanelBackgroundBrush}"
+                BorderBrush="{StaticResource PanelBorderBrush}"
+                BorderThickness="0,1,0,1">
+
+                <TextBlock
+                    x:Name="MessageTextBlock"
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource FontinFont}"
+                    FontSize="18"
+                    Foreground="#FFFFFF"
+                    LineHeight="26"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+            </Border>
+
+            <Border Grid.Row="2" Padding="16">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <Button
+                        x:Name="CancelButton"
+                        FontFamily="{StaticResource FontinFont}"
+                        Classes="secondary"
+                        Margin="0,0,12,0"
+                        Click="CancelButton_Click"
+                        Content="Cancel" />
+
+                    <Button
+                        x:Name="ConfirmButton"
+                        FontFamily="{StaticResource FontinFont}"
+                        Classes="primary"
+                        Click="ConfirmButton_Click"
+                        Content="OK"
+                        IsDefault="True" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

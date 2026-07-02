@@ -16,7 +16,7 @@ services.AddLogging(o =>
     o.AddConsole();
 });
 
-services.AddSidekickCommon(SidekickApplicationType.DataBuilder);
+services.AddSidekickCommon(SidekickApplicationType.Test);
 services.AddSidekickData();
 services.AddSidekickDataBuilder();
 
