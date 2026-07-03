@@ -9,6 +9,7 @@ using Sidekick.Avalonia.Services;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Home;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Web;
@@ -17,12 +18,8 @@ namespace Sidekick.Avalonia;
 
 public partial class App : Application
 {
-    private static ServerAppHost? _serverAppHost;
-    public static ServerAppHost ServerAppHost
-    {
-        get => _serverAppHost ?? throw new Exception("ServerAppHost not initialized.");
-        private set => _serverAppHost = value;
-    }
+    public static ServerAppHost? ServerAppHost { get; private set; }
+    public static ServerAppHost RequiredServerAppHost => ServerAppHost ?? throw new Exception("ServerAppHost not initialized.");
 
     public override void Initialize()
     {
@@ -31,105 +28,112 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            ServerAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
-
-            var tcs = new TaskCompletionSource();
-            _ = Task.Run(async () =>
-            {
-                ServerAppHost.Start(services =>
-                {
-                    services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
-                    services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
-                    services.TryAddSingleton<AvaloniaCultureHandler>();
-                    services.TryAddSingleton<AvaloniaDialogsHandler>();
-                });
-                tcs.TrySetResult();
-                await ServerAppHost.RunTask;
-            });
-
-            tcs.Task.GetAwaiter().GetResult();
-
-            // Triggers the constructor of specific handler
-            _ = ServerAppHost.Application.Services.GetRequiredService<AvaloniaCultureHandler>();
-            _ = ServerAppHost.Application.Services.GetRequiredService<AvaloniaDialogsHandler>();
-
-            var viewLocator = ServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-            viewLocator.Open(SidekickViewType.Splash, "/");
-
-            desktop.ShutdownRequested += (_, _) =>
-            {
-                ServerAppHost.Dispose();
-            };
-
-            InitializeTray();
-        }
-
-        if (_serverAppHost == null)
-        {
-            // logger?.LogCritical("[App] Unsupported application type.");
-            // throw new Exception("Unsupported application type.");
-        }
-
         try
         {
-            // logger = host.Application.Services.GetService<ILogger<App>>();
-            AttachErrorHandlers();
-            // _ = CheckIsAlreadyRunning();
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                InitializeServerAppHost();
+                AttachErrorHandlers();
+                _ = CheckIsAlreadyRunning();
 
-            // Initialize host-level services (tray icon, language change listener)
-            // var appService = host.Application.Services.GetRequiredService<IApplicationService>();
-            // _ = appService.Initialize();
+                // Triggers the constructor of specific handler
+                _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaCultureHandler>();
+                _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaDialogsHandler>();
 
-            // var viewLocator = host.Application.Services.GetRequiredService<IViewLocator>();
-            // viewLocator.Open(SidekickViewType.Standard, "/");
+                var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+                viewLocator.Open(SidekickViewType.Splash, "/");
+
+                desktop.ShutdownRequested += (_, _) =>
+                {
+                    RequiredServerAppHost.Dispose();
+                };
+
+                InitializeTray();
+            }
+
+            if (ServerAppHost == null)
+            {
+                throw new Exception("Unsupported application type.");
+            }
         }
         catch (Exception ex)
         {
-            // logger?.LogCritical(ex, "[App] Error during framework initialization");
+            var window = new DialogWindow(DialogProvider.Type.Ok,
+                                          $"Error during framework initialization: {ex.Message}");
+            window.Show();
+            window.Task.Wait();
+
+            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
+            logger?.LogCritical(ex, "[App] Error during framework initialization");
+
+            Environment.Exit(0);
         }
 
         base.OnFrameworkInitializationCompleted();
     }
 
-    // private async Task CheckIsAlreadyRunning()
-    // {
-    //     if (ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop) return;
+    private void InitializeServerAppHost()
+    {
+        ServerAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
 
-    //     try
-    //     {
-    //         // Wait a second before starting to listen to interprocess communications.
-    //         await Task.Delay(2000);
-    //         var interprocessService = Program.ServiceProvider.GetRequiredService<IInterprocessService>();
-    //         if (interprocessService.IsAlreadyRunning())
-    //         {
-    //             logger?.LogWarning("[Startup] Another instance of Sidekick is already running. Shutting down.");
-    //             desktop.Shutdown();
-    //         }
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         logger?.LogError(ex, "[App] Error checking if already running");
-    //     }
-    // }
+        var tcs = new TaskCompletionSource();
+        _ = Task.Run(async () =>
+        {
+            RequiredServerAppHost.Start(services =>
+            {
+                services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
+                services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
+                services.TryAddSingleton<AvaloniaCultureHandler>();
+                services.TryAddSingleton<AvaloniaDialogsHandler>();
+            });
+            tcs.TrySetResult();
+            await RequiredServerAppHost.RunTask;
+        });
+
+        tcs.Task.GetAwaiter().GetResult();
+    }
+
+    private async Task CheckIsAlreadyRunning()
+    {
+        try
+        {
+            // Wait a second before starting to listen to interprocess communications.
+            await Task.Delay(2000);
+            var interprocessService = ServerAppHost?.Application.Services.GetService<IInterprocessService>();
+            if (true || interprocessService?.IsAlreadyRunning() == true)
+            {
+                var window = new DialogWindow(DialogProvider.Type.Ok,
+                                              "Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
+                window.Show();
+                await window.Task;
+                Environment.Exit(0);
+            }
+        }
+        catch (Exception ex)
+        {
+            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
+            logger?.LogError(ex, "[App] Error checking if already running");
+        }
+    }
 
     private void AttachErrorHandlers()
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
-            // logger?.LogCritical((Exception)e.ExceptionObject, "Unhandled exception.");
+            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
+            logger?.LogCritical((Exception)e.ExceptionObject, "Unhandled exception.");
         };
 
         TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            // logger?.LogCritical(e.Exception, "Unhandled exception.");
+            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
+            logger?.LogCritical(e.Exception, "Unhandled exception.");
         };
     }
 
     private void InitializeTray()
     {
-        var resources = ServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<HomeResources>>();
+        var resources = RequiredServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<HomeResources>>();
         var tray = new TrayIcons
         {
             new TrayIcon
@@ -137,12 +141,12 @@ public partial class App : Application
                 Icon = new WindowIcon("Assets/favicon.ico"),
                 Command = new SimpleCommand(() =>
                 {
-                    var viewLocator = ServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+                    var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
                     viewLocator.Open(SidekickViewType.Standard, "/home");
                 }),
                 Menu = new NativeMenu
                 {
-                    new NativeMenuItem("Sidekick - " + ServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
+                    new NativeMenuItem("Sidekick - " + RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
                     {
                         IsEnabled = false,
                     },
@@ -150,7 +154,7 @@ public partial class App : Application
                     {
                         Command = new SimpleCommand(() =>
                         {
-                            var viewLocator = ServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+                            var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
                             viewLocator.Open(SidekickViewType.Standard, "/home");
                         }),
                     },
@@ -158,7 +162,7 @@ public partial class App : Application
                     {
                         Command = new SimpleCommand(() =>
                         {
-                            var browserProvider = ServerAppHost.Application.Services.GetRequiredService<IBrowserProvider>();
+                            var browserProvider = RequiredServerAppHost.Application.Services.GetRequiredService<IBrowserProvider>();
                             browserProvider.OpenUri(browserProvider.SidekickWebsite);
                         }),
                     },
@@ -166,7 +170,7 @@ public partial class App : Application
                     {
                         Command = new SimpleCommand(() =>
                         {
-                            var applicationService = ServerAppHost.Application.Services.GetRequiredService<IApplicationService>();
+                            var applicationService = RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>();
                             applicationService.Shutdown();
                         }),
                     },

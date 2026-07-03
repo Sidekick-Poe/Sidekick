@@ -12,7 +12,7 @@ namespace Sidekick.Avalonia;
 
 public partial class StandardWindow : Window
 {
-    private IServiceProvider ServiceProvider => App.ServerAppHost.Application.Services;
+    private IServiceProvider ServiceProvider => App.RequiredServerAppHost.Application.Services;
     private const int WIDTH = 968;
     private const int HEIGHT = 768;
     private const string POSITION_PREFIX = "StandardWindow";

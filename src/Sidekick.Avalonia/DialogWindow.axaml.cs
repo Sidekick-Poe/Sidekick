@@ -9,7 +9,6 @@ namespace Sidekick.Avalonia;
 
 public partial class DialogWindow : Window
 {
-    private IServiceProvider ServiceProvider => App.ServerAppHost.Application.Services;
     private readonly TaskCompletionSource<DialogProvider.Result> taskCompletionSource =
         new(TaskCreationOptions.RunContinuationsAsynchronously);
 
@@ -24,7 +23,20 @@ public partial class DialogWindow : Window
 
         MessageTextBlock.Text = message;
 
-        ConfigureButtons(type);
+        var resources = App.ServerAppHost?.Application.Services.GetService<IStringLocalizer<UiResources>>();
+        switch (type)
+        {
+            case DialogProvider.Type.Ok:
+                CancelButton.IsVisible = false;
+                ConfirmButton.Content = resources?["Ok"] ?? "Ok";
+                break;
+
+            case DialogProvider.Type.Confirmation:
+                CancelButton.IsVisible = true;
+                CancelButton.Content = resources?["Cancel"] ?? "Cancel";
+                ConfirmButton.Content = resources?["Confirm"] ?? "Confirm";
+                break;
+        }
 
         Closed += DialogWindow_Closed;
         Opened += DialogWindow_Opened;
@@ -35,25 +47,6 @@ public partial class DialogWindow : Window
     public string Message { get; }
 
     public Task<DialogProvider.Result> Task => taskCompletionSource.Task;
-
-    private void ConfigureButtons(DialogProvider.Type popupType)
-    {
-        var resources = ServiceProvider.GetRequiredService<IStringLocalizer<UiResources>>();
-
-        switch (popupType)
-        {
-            case DialogProvider.Type.Ok:
-                CancelButton.IsVisible = false;
-                ConfirmButton.Content = resources["Ok"];
-                break;
-
-            case DialogProvider.Type.Confirmation:
-                CancelButton.IsVisible = true;
-                CancelButton.Content = resources["Cancel"];
-                ConfirmButton.Content = resources["Confirm"];
-                break;
-        }
-    }
 
     private void ConfirmButton_Click(object? sender, RoutedEventArgs e)
     {

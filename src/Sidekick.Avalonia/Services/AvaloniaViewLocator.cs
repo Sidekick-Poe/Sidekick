@@ -27,7 +27,7 @@ public class AvaloniaViewLocator(
 
         GetApplication().Dispatcher.InvokeAsync(async () =>
         {
-            var host = App.ServerAppHost.Application.Urls.FirstOrDefault();
+            var host = App.RequiredServerAppHost.Application.Urls.FirstOrDefault();
             if (host == null)
             {
                 logger.LogCritical("[AvaloniaViewLocator] No host found.");

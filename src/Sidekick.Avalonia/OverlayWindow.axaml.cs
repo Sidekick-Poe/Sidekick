@@ -7,7 +7,7 @@ namespace Sidekick.Avalonia;
 
 public partial class OverlayWindow : Window, IDisposable
 {
-    private IServiceProvider ServiceProvider => App.ServerAppHost.Application.Services;
+    private IServiceProvider ServiceProvider => App.RequiredServerAppHost.Application.Services;
     private const int WIDTH = 768;
     private const int HEIGHT = 600;
 
