@@ -114,13 +114,14 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
         app.UseAntiforgery();
 
         // SERVER
+        app.MapStaticAssets();
         app.UseStaticFiles();
         app.UseRouting();
         app.MapBlazorHub();
         app.MapFallbackToPage("/_Host");
 
         // WEB
-        // // app.MapStaticAssets();
+        // //
         // app.UseStaticFiles(new StaticFileOptions
         // {
         //     ServeUnknownFileTypes = true,

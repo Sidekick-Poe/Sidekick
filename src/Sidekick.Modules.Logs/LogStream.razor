@@ -1,6 +1,6 @@
-@using Microsoft.JSInterop
+@using Sidekick.Common.Ui.Utilities
 @implements IAsyncDisposable
-@inject IJSRuntime JsRuntime
+
 
 <div @ref="LogContainer"
      class="flex flex-col overflow-auto max-h-[calc(100vh-120px)] font-mono text-sm p-4 bg-black/20 border border-white/10 break-all">
@@ -9,6 +9,8 @@
         <div class="mb-1 border-b border-white/5 pb-1 last:border-0 last:pb-0 @GetLogClass(log) whitespace-pre-wrap">@log</div>
     }
 </div>
+
+@inject SafeJsRuntime JsRuntime
 
 @code {
     private ElementReference LogContainer { get; set; }

@@ -52,7 +52,7 @@
     }
 </script>
 
-@inject IJSRuntime JSRuntime
+@inject SafeJsRuntime JsRuntime
 
 @code {
 
@@ -80,12 +80,8 @@
     {
         if (firstRender && OnLeftContentResize.HasDelegate)
         {
-            try
-            {
-                var dotNetReference = DotNetObjectReference.Create(this);
-                await JSRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
-            }
-            catch {}
+            var dotNetReference = DotNetObjectReference.Create(this);
+            await JsRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
         }
     }
 

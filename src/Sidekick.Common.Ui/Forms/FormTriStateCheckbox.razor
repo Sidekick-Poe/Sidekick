@@ -8,8 +8,8 @@
     </span>
 </label>
 
-@inject IJSRuntime JsRuntime
-@inject ILogger<FormTriStateCheckbox> Logger
+@inject SafeJsRuntime JsRuntime
+
 @code {
 
     [Parameter]
@@ -40,15 +40,7 @@
         if (firstRender || ShouldSyncState)
         {
             ShouldSyncState = false;
-
-            try
-            {
-                await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value);
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to set tri-state checkbox state.");
-            }
+            await JsRuntime.InvokeVoidAsync("sidekick.forms.setIndeterminate", ElementId, Value);
         }
 
         await base.OnAfterRenderAsync(firstRender);

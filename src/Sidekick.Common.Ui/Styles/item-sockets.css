@@ -20,27 +20,27 @@
 }
 
 .item-socket-green {
-    background-image: url("/images/items/socket-green.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/socket-green.png");
 }
 
 .item-socket-blue {
-    background-image: url("/images/items/socket-blue.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/socket-blue.png");
 }
 
 .item-socket-red {
-    background-image: url("/images/items/socket-red.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/socket-red.png");
 }
 
 .item-socket-white {
-    background-image: url("/images/items/socket-white.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/socket-white.png");
 }
 
 .item-socket-abyss {
-    background-image: url("/images/items/socket-abyss.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/socket-abyss.png");
 }
 
 .item-socket-poe2 {
-    background: url("/images/items/poe2/sockets.png") no-repeat 0 -120px;
+    background: url("/_content/Sidekick.Common.Ui/images/items/poe2/sockets.png") no-repeat 0 -120px;
     background-size: cover;
 }
 
@@ -52,7 +52,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url("/images/items/poe2/socket_gem.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/poe2/socket_gem.png");
 }
 
 .item-socket-poe2-rune::after {
@@ -63,7 +63,7 @@
     bottom: 0;
     left: 0;
     display: block;
-    background: url("/images/items/poe2/sockets.png") no-repeat 0 -150px;
+    background: url("/_content/Sidekick.Common.Ui/images/items/poe2/sockets.png") no-repeat 0 -150px;
     background-size: cover;
 }
 
@@ -75,7 +75,7 @@
     bottom: 0;
     left: 0;
     display: block;
-    background: url("/images/items/poe2/sockets.png") no-repeat 0 -180px;
+    background: url("/_content/Sidekick.Common.Ui/images/items/poe2/sockets.png") no-repeat 0 -180px;
     background-size: cover;
 }
 
@@ -90,7 +90,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url("/images/items/socket-link-vertical.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/socket-link-vertical.png");
 }
 
 .item-sockets {
@@ -155,7 +155,7 @@
 }
 
 .item-sockets.wide .item-socket-link:nth-child(even)::before {
-    background-image: url("/images/items/socket-link-horizontal.png");
+    background-image: url("/_content/Sidekick.Common.Ui/images/items/socket-link-horizontal.png");
     top: 9px;
     left: -19px;
     width: 28px;

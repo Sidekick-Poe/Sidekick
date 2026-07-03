@@ -10,9 +10,8 @@
     <BodySectionOutlets/>
 </ErrorFullScreenBoundary>
 
-@inject IJSRuntime JsRuntime
+@inject SafeJsRuntime JsRuntime
 @inject ISettingsService SettingsService
-@inject ILogger<AppWrapper> Logger
 @implements IAsyncDisposable
 
 @code {
@@ -20,7 +19,7 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private IJSObjectReference? ZoomHandler { get; set; }
+    private SafeJsObjectReference? ZoomHandler { get; set; }
 
     protected override void OnInitialized()
     {
@@ -49,16 +48,8 @@
     {
         if (firstRender)
         {
-            try
-            {
-                ZoomHandler = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.app.zoomHandler");
-                await UpdateZoom();
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to load javascript module.");
-                // Do nothing if the zoom handler fails to load.
-            }
+            ZoomHandler = await JsRuntime.InvokeObjectAsync("sidekick.app.zoomHandler");
+            await UpdateZoom();
         }
 
         await base.OnAfterRenderAsync(firstRender);
@@ -68,14 +59,7 @@
     {
         if (ZoomHandler != null)
         {
-            try
-            {
-                await ZoomHandler.DisposeAsync();
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to dispose javascript module.");
-            }
+            await ZoomHandler.DisposeAsync();
         }
 
         SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;

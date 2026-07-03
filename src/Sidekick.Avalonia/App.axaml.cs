@@ -30,30 +30,32 @@ public partial class App : Application
     {
         try
         {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            if (ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
             {
-                InitializeServerAppHost();
-                AttachErrorHandlers();
-                _ = CheckIsAlreadyRunning();
-
-                // Triggers the constructor of specific handler
-                _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaCultureHandler>();
-                _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaDialogsHandler>();
-
-                var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-                viewLocator.Open(SidekickViewType.Splash, "/");
-
-                desktop.ShutdownRequested += (_, _) =>
-                {
-                    RequiredServerAppHost.Dispose();
-                };
-
-                InitializeTray();
+                throw new Exception("Unsupported application type.");
             }
+
+            InitializeServerAppHost();
+            AttachErrorHandlers();
+            _ = CheckIsAlreadyRunning();
+
+            // Triggers the constructor of specific handler
+            _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaCultureHandler>();
+            _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaDialogsHandler>();
+
+            var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+            viewLocator.Open(SidekickViewType.Splash, "/");
+
+            desktop.ShutdownRequested += (_, _) =>
+            {
+                RequiredServerAppHost.Dispose();
+            };
+
+            InitializeTray();
 
             if (ServerAppHost == null)
             {
-                throw new Exception("Unsupported application type.");
+                throw new Exception("Could not initialize server app host.");
             }
         }
         catch (Exception ex)
@@ -100,7 +102,7 @@ public partial class App : Application
             // Wait a second before starting to listen to interprocess communications.
             await Task.Delay(2000);
             var interprocessService = ServerAppHost?.Application.Services.GetService<IInterprocessService>();
-            if (true || interprocessService?.IsAlreadyRunning() == true)
+            if (interprocessService?.IsAlreadyRunning() == true)
             {
                 var window = new DialogWindow(DialogProvider.Type.Ok,
                                               "Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
