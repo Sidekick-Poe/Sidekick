@@ -181,7 +181,7 @@ jobs:
 
           # Web version (linux-web-x64)
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
           # Migrate old channel name for existing users

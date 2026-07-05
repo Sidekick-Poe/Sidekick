@@ -10,6 +10,14 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+        <Title>Sidekick</Title>
+        <Authors>$(AssemblyName) Collaborators</Authors>
+        <Company>$(AssemblyName)</Company>
+        <Description>A Path of Exile companion tool.</Description>
+        <PackageProjectUrl>https://sidekick-poe.github.io/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Sidekick-Poe/Sidekick</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <AssemblyName>Sidekick.Web</AssemblyName>
         <ApplicationIcon>favicon.ico</ApplicationIcon>
     </PropertyGroup>
 

@@ -20,6 +20,7 @@
         <RepositoryType>git</RepositoryType>
         <StartupObject>Sidekick.Avalonia.Program</StartupObject>
         <AssemblyName>Sidekick</AssemblyName>
+        <ApplicationIcon>Assets/favicon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <PropertyGroup>
