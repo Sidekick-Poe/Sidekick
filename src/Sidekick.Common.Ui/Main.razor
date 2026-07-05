@@ -16,8 +16,11 @@
 @inject NavigationManager NavigationManager
 @inject IViewLocator ViewLocator
 @inject CurrentView CurrentView
+@inject SafeJsRuntime JsRuntime
 
 @code {
+
+    private DotNetObjectReference<Main>? Reference { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -31,10 +34,27 @@
         await base.OnInitializedAsync();
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Reference = DotNetObjectReference.Create(this);
+            await JsRuntime.InvokeVoidAsync("sidekick.app.navigationManager.register", Reference);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
     private bool IsInitializePath()
     {
         var path = new Uri(NavigationManager.Uri).AbsolutePath;
         return path == "/" || path == "/update" || path == "/setup" || path == "/initialize";
+    }
+
+    [JSInvokable]
+    public void NavigateTo(string url)
+    {
+        NavigationManager.NavigateTo(url);
     }
 
 }

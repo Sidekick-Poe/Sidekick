@@ -1,6 +1,8 @@
 ﻿<div class="font-sans text-base absolute top-0 left-0 right-0 bottom-0 pointer-events-none overflow-hidden *:pointer-events-auto [zoom:var(--sidekick-zoom)]">
     @foreach (var name in SectionService.BodySectionNames.ToList())
     {
+        if (string.IsNullOrEmpty(name)) continue;
+
         <SectionOutlet @key="@name"
                        SectionName="@name"/>
     }

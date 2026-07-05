@@ -64,7 +64,7 @@ public partial class StandardWindow : Window
         {
             if (IsVisible)
             {
-                _ = WebView.InvokeScript($"window.location.href = {JsonSerializer.Serialize(url)};");
+                _ = WebView.InvokeScript($"sidekick.app.navigationManager.navigateTo({JsonSerializer.Serialize(url)});");
                 Activate();
             }
             else

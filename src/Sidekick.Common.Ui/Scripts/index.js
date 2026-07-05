@@ -1,4 +1,5 @@
 import intersectionObserver from "./app/intersectionObserver";
+import navigationManager from "./app/navigationManager";
 import scrollToBottom from "./app/scrollToBottom";
 import zoomHandler from "./app/zoomHandler";
 
@@ -13,6 +14,7 @@ import tooltip from "./flowbite/tooltip";
 window.sidekick = {
     app: {
         intersectionObserver,
+        navigationManager,
         scrollToBottom,
         zoomHandler,
     },

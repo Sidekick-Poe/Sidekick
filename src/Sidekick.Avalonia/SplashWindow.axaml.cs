@@ -47,13 +47,21 @@ public partial class SplashWindow : Window
         };
     }
 
-    public void OpenView(string url)
+    public async Task OpenView(string url)
     {
-        if (IsVisible) _ = WebView.InvokeScript($"window.location.href = {JsonSerializer.Serialize(url)};");
-        else WebView.Navigate(new Uri(url));
-
-        if (IsVisible) Activate();
-        else Show();
+        await Dispatcher.InvokeAsync(async () =>
+        {
+            if (IsVisible)
+            {
+                _ = WebView.InvokeScript($"sidekick.app.navigationManager.navigateTo({JsonSerializer.Serialize(url)});");
+                Activate();
+            }
+            else
+            {
+                Show();
+                WebView.Navigate(new Uri(url));
+            }
+        });
     }
 
     public void CloseView()
