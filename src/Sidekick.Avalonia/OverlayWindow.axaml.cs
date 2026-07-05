@@ -45,6 +45,11 @@ public partial class OverlayWindow : Window
             {
                 case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
                     webView2Args.IsInPrivateModeEnabled = true;
+                    var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+                    if (settingsService.GetBool(SettingKeys.UseHardwareAcceleration).Result)
+                    {
+                        webView2Args.AdditionalBrowserArguments = "--disable-gpu";
+                    }
                     break;
                 case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
                     appleArgs.NonPersistentDataStore = true;

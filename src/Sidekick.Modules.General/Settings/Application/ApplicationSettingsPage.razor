@@ -24,7 +24,7 @@
             <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
         </FormFieldset>
 
-        @if (Configuration.Value.ApplicationType.SupportsHardwareAcceleration())
+        @if (Configuration.Value.ApplicationType.SupportsDesktop())
         {
             <FormFieldset Legend="@SettingsResources["Other"]">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"

@@ -102,15 +102,22 @@ jobs:
 
           dotnet tool install -g vpk
 
-          # Desktop version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          # Desktop version (windows-x64)
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-x64 --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
-          # Web version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          # Web version (windows-web-x64)
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-x64 --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          
+          # Migrate old channel name for existing users
+          Copy-Item "releases.windows-web-x64.json" -Destination "releases.windows-web-stable.json"
+          gh release upload "v$version" "releases.windows-web-stable.json" --clobber
+
+          Copy-Item "releases.windows-x64.json" -Destination "releases.windows-stable.json"
+          gh release upload "v$version" "releases.windows-stable.json" --clobber
 
   build-ubuntu:
     needs:
@@ -167,12 +174,19 @@ jobs:
           dotnet tool install -g vpk
           export PATH="$PATH:$HOME/.dotnet/tools"
 
-          # Desktop version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel linux-stable --releaseNotes $releaseNotesPath
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          # Desktop version (linux-x64)
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-x64
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel linux-x64 --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
-          # Web version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-stable --releaseNotes $releaseNotesPath
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          # Web version (linux-web-x64)
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-x64 --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+          # Migrate old channel name for existing users
+          Copy-Item "releases.linux-web-x64.json" -Destination "releases.linux-web-stable.json"
+          gh release upload "v$version" "releases.linux-web-stable.json" --clobber
+
+          Copy-Item "releases.linux-x64.json" -Destination "releases.linux-stable.json"
+          gh release upload "v$version" "releases.linux-stable.json" --clobber
