@@ -21,7 +21,7 @@ jobs:
         uses: reecetech/version-increment@2024.4.4
         with:
           scheme: calver
-          release_branch: main
+          release_branch: ${{ github.ref_name }}
 
       - name: Release - Delete unpublished
         uses: hugo19941994/delete-draft-releases@v1.0.0
@@ -60,7 +60,7 @@ jobs:
       - name: .NET - Setup
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
 
       - name: Data - Publish
         shell: bash
@@ -119,7 +119,7 @@ jobs:
           Copy-Item "releases.windows-x64.json" -Destination "releases.windows-stable.json"
           gh release upload "v$version" "releases.windows-stable.json" --clobber
 
-  build-ubuntu:
+  build-linux:
     needs:
       - setup
     runs-on: ubuntu-latest
@@ -138,7 +138,7 @@ jobs:
       - name: .NET - Setup
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
 
       - name: Data - Publish
         shell: bash
