@@ -83,7 +83,7 @@ jobs:
       - name: .NET - Publish (Windows)
         shell: pwsh
         run: |
-          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o ./Publish
+          dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r win-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web
 
       - name: Velopack (Windows)
@@ -147,9 +147,7 @@ jobs:
       - name: .NET - Publish (Ubuntu)
         shell: bash
         run: |
-          dotnet build src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64
-
-          dotnet publish src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64 -o ./Publish
+          dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r linux-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
 
       - name: Velopack (Ubuntu)
