@@ -111,13 +111,23 @@ jobs:
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64
           vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe --framework net10.0-x64-aspnetcore,net10.0-x64-runtime
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
-          
-          # Migrate old channel name for existing users
-          Copy-Item "releases.windows-web-x64.json" -Destination "releases.windows-web-stable.json"
-          gh release upload "v$version" "releases.windows-web-stable.json" --clobber
 
-          Copy-Item "releases.windows-x64.json" -Destination "releases.windows-stable.json"
+      - name: Old Channels (Windows)
+        shell: pwsh
+        run: |
+          # Retrieve the version from setup outputs
+          $version = "${{ needs.setup.outputs.version }}"
+          $env:GH_TOKEN = "${{ github.token }}"
+        
+          # Handle Desktop channel
+          gh release download "v$version" --pattern "releases.windows-x64.json" --clobber
+          Rename-Item -Path "releases.windows-x64.json" -NewName "releases.windows-stable.json" -Force
           gh release upload "v$version" "releases.windows-stable.json" --clobber
+        
+          # Handle Web channel
+          gh release download "v$version" --pattern "releases.windows-web-x64.json" --clobber
+          Rename-Item -Path "releases.windows-web-x64.json" -NewName "releases.windows-web-stable.json" -Force
+          gh release upload "v$version" "releases.windows-web-stable.json" --clobber
 
   build-linux:
     needs:
@@ -184,9 +194,19 @@ jobs:
           vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
-          # Migrate old channel name for existing users
-          Copy-Item "releases.linux-web-x64.json" -Destination "releases.linux-web-stable.json"
-          gh release upload "v$version" "releases.linux-web-stable.json" --clobber
+      - name: Old Channels (Linux)
+        shell: pwsh
+        run: |
+          # Retrieve the version from setup outputs
+          $version = "${{ needs.setup.outputs.version }}"
+          $env:GH_TOKEN = "${{ github.token }}"
 
-          Copy-Item "releases.linux-x64.json" -Destination "releases.linux-stable.json"
+          # Handle Desktop channel
+          gh release download "v$version" --pattern "releases.linux-x64.json" --clobber
+          mv "releases.linux-x64.json" "releases.linux-stable.json"
           gh release upload "v$version" "releases.linux-stable.json" --clobber
+
+          # Handle Web channel
+          gh release download "v$version" --pattern "releases.linux-web-x64.json" --clobber
+          mv "releases.linux-web-x64.json" "releases.linux-web-stable.json"
+          gh release upload "v$version" "releases.linux-web-stable.json" --clobber
