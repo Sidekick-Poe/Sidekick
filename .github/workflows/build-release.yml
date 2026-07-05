@@ -104,12 +104,12 @@ jobs:
 
           # Desktop version (windows-x64)
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-x64 --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-x64 --releaseNotes $releaseNotesPath --framework net10.0-x64-desktop,webview2
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
           # Web version (windows-web-x64)
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-x64 --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe --framework net10.0-x64-aspnetcore,net10.0-x64-runtime
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
           
           # Migrate old channel name for existing users
@@ -181,7 +181,7 @@ jobs:
 
           # Web version (linux-web-x64)
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-x64 --releaseNotes $releaseNotesPath
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
           # Migrate old channel name for existing users
