@@ -57,21 +57,13 @@ public partial class App : Application
             {
                 throw new Exception("Could not initialize server app host.");
             }
+
+            base.OnFrameworkInitializationCompleted();
         }
         catch (Exception ex)
         {
-            var window = new DialogWindow(DialogProvider.Type.Ok,
-                                          $"Error during framework initialization: {ex.Message}");
-            window.Show();
-            window.Task.Wait();
-
-            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
-            logger?.LogCritical(ex, "[App] Error during framework initialization");
-
-            Environment.Exit(0);
+            HandleException(ex);
         }
-
-        base.OnFrameworkInitializationCompleted();
     }
 
     private void InitializeServerAppHost()
@@ -81,15 +73,22 @@ public partial class App : Application
         var tcs = new TaskCompletionSource();
         _ = Task.Run(async () =>
         {
-            RequiredServerAppHost.Start(services =>
+            try
             {
-                services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
-                services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
-                services.TryAddSingleton<AvaloniaCultureHandler>();
-                services.TryAddSingleton<AvaloniaDialogsHandler>();
-            });
-            tcs.TrySetResult();
-            await RequiredServerAppHost.RunTask;
+                RequiredServerAppHost.Start(services =>
+                {
+                    services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
+                    services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
+                    services.TryAddSingleton<AvaloniaCultureHandler>();
+                    services.TryAddSingleton<AvaloniaDialogsHandler>();
+                });
+                tcs.TrySetResult();
+                await RequiredServerAppHost.RunTask;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         });
 
         tcs.Task.GetAwaiter().GetResult();
@@ -113,8 +112,7 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
-            logger?.LogError(ex, "[App] Error checking if already running");
+            HandleException(ex);
         }
     }
 
@@ -122,14 +120,12 @@ public partial class App : Application
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
-            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
-            logger?.LogCritical((Exception)e.ExceptionObject, "Unhandled exception.");
+            HandleException(e.ExceptionObject as Exception ?? new Exception("Unknown exception"));
         };
 
         TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
-            logger?.LogCritical(e.Exception, "Unhandled exception.");
+            HandleException(e.Exception);
         };
     }
 
@@ -181,5 +177,17 @@ public partial class App : Application
         };
 
         TrayIcon.SetIcons(Current!, tray);
+    }
+
+    private void HandleException(Exception ex)
+    {
+        var window = new DialogWindow(DialogProvider.Type.Ok, $"Unexpected error: {ex.Message}");
+        window.Show();
+        window.Task.Wait();
+
+        var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
+        logger?.LogCritical(ex, "[App] Error during framework initialization");
+
+        Environment.Exit(0);
     }
 }
