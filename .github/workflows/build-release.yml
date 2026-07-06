@@ -102,21 +102,21 @@ jobs:
 
           dotnet tool install -g vpk
 
-          # Desktop version (Windows-x64)
+          # Desktop version (windows-x64)
           $ErrorActionPreference = 'SilentlyContinue'
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64
           $ErrorActionPreference = 'Stop'
           
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel Windows-x64 --releaseNotes $releaseNotesPath --framework net10.0-x64-desktop,webview2
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-x64 --releaseNotes $releaseNotesPath --framework net10.0-x64-desktop,webview2
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
-          # Web version (Windows-Web-x64)
+          # Web version (windows-web-x64)
           $ErrorActionPreference = 'SilentlyContinue'
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Web-x64
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64
           $ErrorActionPreference = 'Stop'
           
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel Windows-Web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe --framework net10.0-x64-aspnetcore,net10.0-x64-runtime
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe --framework net10.0-x64-aspnetcore,net10.0-x64-runtime
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
       - name: Old Channels (Windows)
         shell: pwsh
@@ -126,13 +126,13 @@ jobs:
           $env:GH_TOKEN = "${{ github.token }}"
         
           # Handle Desktop channel
-          gh release download "v$version" --pattern "releases.Windows-x64.json" --clobber
-          Rename-Item -Path "releases.Windows-x64.json" -NewName "releases.windows-stable.json" -Force
+          gh release download "v$version" --pattern "releases.windows-x64.json" --clobber
+          Rename-Item -Path "releases.windows-x64.json" -NewName "releases.windows-stable.json" -Force
           gh release upload "v$version" "releases.windows-stable.json" --clobber
         
           # Handle Web channel
-          gh release download "v$version" --pattern "releases.Windows-Web-x64.json" --clobber
-          Rename-Item -Path "releases.Windows-Web-x64.json" -NewName "releases.windows-web-stable.json" -Force
+          gh release download "v$version" --pattern "releases.windows-web-x64.json" --clobber
+          Rename-Item -Path "releases.windows-web-x64.json" -NewName "releases.windows-web-stable.json" -Force
           gh release upload "v$version" "releases.windows-web-stable.json" --clobber
 
   build-linux:
@@ -167,13 +167,13 @@ jobs:
         run: |
           dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.Builder.Cli.dll
 
-      - name: .NET - Publish (Ubuntu)
+      - name: .NET - Publish (Linux)
         shell: bash
         run: |
           dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r linux-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
 
-      - name: Velopack (Ubuntu)
+      - name: Velopack (Linux)
         shell: bash
         run: |
           version="${{ needs.setup.outputs.version }}"
@@ -190,15 +190,15 @@ jobs:
           dotnet tool install -g vpk
           export PATH="$PATH:$HOME/.dotnet/tools"
 
-          # Desktop version (Linux-x64)
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-x64 || echo "First release for this channel, skipping download."
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel Linux-x64 --releaseNotes $releaseNotesPath
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          # Desktop version (linux-x64)
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-x64 || echo "First release for this channel, skipping download."
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel linux-x64 --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
-          # Web version (Linux-Web-x64)
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-Web-x64 || echo "First release for this channel, skipping download."
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel Linux-Web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-Web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          # Web version (linux-web-x64)
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64 || echo "First release for this channel, skipping download."
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
       - name: Old Channels (Linux)
         shell: pwsh
@@ -208,11 +208,11 @@ jobs:
           $env:GH_TOKEN = "${{ github.token }}"
 
           # Handle Desktop channel
-          gh release download "v$version" --pattern "releases.Linux-x64.json" --clobber
-          mv "releases.Linux-x64.json" "releases.linux-stable.json"
+          gh release download "v$version" --pattern "releases.linux-x64.json" --clobber
+          mv "releases.linux-x64.json" "releases.linux-stable.json"
           gh release upload "v$version" "releases.linux-stable.json" --clobber
 
           # Handle Web channel
-          gh release download "v$version" --pattern "releases.Linux-Web-x64.json" --clobber
-          mv "releases.Linux-Web-x64.json" "releases.linux-web-stable.json"
+          gh release download "v$version" --pattern "releases.linux-web-x64.json" --clobber
+          mv "releases.linux-web-x64.json" "releases.linux-web-stable.json"
           gh release upload "v$version" "releases.linux-web-stable.json" --clobber
