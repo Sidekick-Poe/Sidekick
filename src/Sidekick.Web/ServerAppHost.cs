@@ -114,7 +114,6 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
         app.UseAntiforgery();
 
         // SERVER
-        app.MapStaticAssets();
         app.UseStaticFiles();
         app.UseRouting();
         app.MapBlazorHub();

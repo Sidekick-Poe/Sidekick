@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Threading;
 using Microsoft.Extensions.Localization;
 using Sidekick.Common.Dialogs;
@@ -9,6 +10,9 @@ namespace Sidekick.Avalonia;
 
 public partial class DialogWindow : Window
 {
+    private const int WIDTH = 460;
+    private const int MINHEIGHT = 200;
+
     private readonly TaskCompletionSource<DialogProvider.Result> taskCompletionSource =
         new(TaskCreationOptions.RunContinuationsAsynchronously);
 
@@ -16,6 +20,18 @@ public partial class DialogWindow : Window
 
     public DialogWindow(DialogProvider.Type type, string message)
     {
+        Title = "Sidekick";
+        SizeToContent = SizeToContent.Height;
+        Width = WIDTH;
+        MinHeight = MINHEIGHT;
+        Background = new SolidColorBrush(Color.FromRgb(12, 10, 10));
+        WindowDecorations = WindowDecorations.None;
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        ShowActivated = true;
+        Topmost = false;
+        ShowInTaskbar = true;
+        CanResize = false;
+
         InitializeComponent();
 
         Type = type;

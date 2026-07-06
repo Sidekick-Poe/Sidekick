@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -181,12 +182,22 @@ public partial class App : Application
 
     private void HandleException(Exception ex)
     {
-        var window = new DialogWindow(DialogProvider.Type.Ok, $"Unexpected error: {ex.Message}");
-        window.Show();
-        window.Task.Wait();
+        if (Debugger.IsAttached)
+        {
+            Debugger.Break();
+        }
 
         var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
         logger?.LogCritical(ex, "[App] Error during framework initialization");
+
+        var viewLocator = ServerAppHost?.Application.Services.GetService<IViewLocator>();
+        viewLocator?.Close(SidekickViewType.Overlay);
+        viewLocator?.Close(SidekickViewType.Splash);
+        viewLocator?.Close(SidekickViewType.Standard);
+
+        var window = new DialogWindow(DialogProvider.Type.Ok, $"Unexpected error: {ex.Message}");
+        window.Show();
+        window.Task.Wait();
 
         Environment.Exit(0);
     }

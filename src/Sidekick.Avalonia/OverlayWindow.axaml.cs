@@ -44,12 +44,11 @@ public partial class OverlayWindow : Window
             switch (args)
             {
                 case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
+                    // This causes the application to crash. We need investigation.
+                    // var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+                    // ar useHardwareAcceleration = settingsService.GetBool(SettingKeys.UseHardwareAcceleration).Result;
+                    // if (!useHardwareAcceleration) webView2Args.AdditionalBrowserArguments = "--disable-gpu";
                     webView2Args.IsInPrivateModeEnabled = true;
-                    var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-                    if (settingsService.GetBool(SettingKeys.UseHardwareAcceleration).Result)
-                    {
-                        webView2Args.AdditionalBrowserArguments = "--disable-gpu";
-                    }
                     break;
                 case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
                     appleArgs.NonPersistentDataStore = true;

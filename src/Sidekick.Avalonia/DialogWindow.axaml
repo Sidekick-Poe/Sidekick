@@ -1,18 +1,7 @@
 <Window
     x:Class="Sidekick.Avalonia.DialogWindow"
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Sidekick"
-    Width="460"
-    SizeToContent="Height"
-    MinHeight="200"
-    CanResize="False"
-    WindowStartupLocation="CenterScreen"
-    SystemDecorations="None"
-    ShowActivated="True"
-    Topmost="True"
-    Background="#050505"
-    Foreground="#F5F5F5">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Window.Resources>
         <FontFamily x:Key="FontinFont">Assets/Fonts/fontin-regular-webfont.ttf#Fontin</FontFamily>
