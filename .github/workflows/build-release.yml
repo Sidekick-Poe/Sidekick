@@ -103,12 +103,18 @@ jobs:
           dotnet tool install -g vpk
 
           # Desktop version (Windows-x64)
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-x64
+          $ErrorActionPreference = 'SilentlyContinue'
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64
+          $ErrorActionPreference = 'Stop'
+          
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel Windows-x64 --releaseNotes $releaseNotesPath --framework net10.0-x64-desktop,webview2
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
           # Web version (Windows-Web-x64)
+          $ErrorActionPreference = 'SilentlyContinue'
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Web-x64
+          $ErrorActionPreference = 'Stop'
+          
           vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel Windows-Web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe --framework net10.0-x64-aspnetcore,net10.0-x64-runtime
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
@@ -185,12 +191,12 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
 
           # Desktop version (Linux-x64)
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-x64
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-x64 || echo "First release for this channel, skipping download."
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel Linux-x64 --releaseNotes $releaseNotesPath
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
           # Web version (Linux-Web-x64)
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-Web-x64
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-Web-x64 || echo "First release for this channel, skipping download."
           vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel Linux-Web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Linux-Web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
