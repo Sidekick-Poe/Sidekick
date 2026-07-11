@@ -18,7 +18,7 @@ public class ScoutClient
     ILogger<ScoutClient> logger
 ) : IScoutClient
 {
-    private static readonly Uri apiBaseUrl = new("https://poe2scout.com/api/");
+    private static readonly Uri apiBaseUrl = new("https://api.poe2scout.com/");
 
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
