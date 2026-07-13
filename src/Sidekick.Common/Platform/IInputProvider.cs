@@ -6,7 +6,7 @@ namespace Sidekick.Common.Platform;
 /// <summary>
 /// Service providing keyboard functions
 /// </summary>
-public interface IKeyboardProvider : IInitializableService
+public interface IInputProvider : IInitializableService
 {
     /// <summary>
     /// Event that indicates that a key was pressed
@@ -32,6 +32,11 @@ public interface IKeyboardProvider : IInitializableService
     /// Register keyboard hooks to capture keybinds.
     /// </summary>
     void RegisterHooks();
+
+    /// <summary>
+    /// Unregister keyboard hooks to capture keybinds.
+    /// </summary>
+    void UnregisterHooks();
 
     /// <summary>
     /// Command to send keystrokes to the system

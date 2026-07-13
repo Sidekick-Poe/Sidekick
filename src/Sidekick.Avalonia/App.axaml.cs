@@ -36,8 +36,13 @@ public partial class App : Application
                 throw new Exception("Unsupported application type.");
             }
 
+            AppDomain.CurrentDomain.UnhandledException += (_, e)
+                => HandleException(e.ExceptionObject as Exception ?? new Exception("Unknown exception"));
+            TaskScheduler.UnobservedTaskException += (_, e)
+                => HandleException(e.Exception);
+
             InitializeServerAppHost();
-            AttachErrorHandlers();
+
             _ = CheckIsAlreadyRunning();
 
             // Triggers the constructor of specific handler
@@ -117,19 +122,6 @@ public partial class App : Application
         }
     }
 
-    private void AttachErrorHandlers()
-    {
-        AppDomain.CurrentDomain.UnhandledException += (_, e) =>
-        {
-            HandleException(e.ExceptionObject as Exception ?? new Exception("Unknown exception"));
-        };
-
-        TaskScheduler.UnobservedTaskException += (_, e) =>
-        {
-            HandleException(e.Exception);
-        };
-    }
-
     private void InitializeTray()
     {
         var resources = RequiredServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<HomeResources>>();
@@ -188,7 +180,10 @@ public partial class App : Application
         }
 
         var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
-        logger?.LogCritical(ex, "[App] Error during framework initialization");
+        logger?.LogCritical(ex, "[App] Application critical error");
+
+        var keyboardProvider = ServerAppHost?.Application.Services.GetService<IInputProvider>();
+        keyboardProvider?.UnregisterHooks();
 
         var viewLocator = ServerAppHost?.Application.Services.GetService<IViewLocator>();
         viewLocator?.Close(SidekickViewType.Overlay);

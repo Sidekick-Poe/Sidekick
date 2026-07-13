@@ -17,13 +17,13 @@
 
 @code {
 
-    private IKeyboardProvider? KeyboardProvider { get; set; }
+    private IInputProvider? KeyboardProvider { get; set; }
 
     protected override void OnInitialized()
     {
         if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
-            KeyboardProvider = ServiceProvider.GetService<IKeyboardProvider>();
+            KeyboardProvider = ServiceProvider.GetService<IInputProvider>();
         }
 
         base.OnInitialized();

@@ -8,16 +8,14 @@ using SharpHook;
 using SharpHook.Data;
 using SharpHook.Logging;
 using Sidekick.Common.Platform.EventArgs;
-using Sidekick.Common.Platform.Input;
+namespace Sidekick.Common.Platform.Input;
 
-namespace Sidekick.Common.Platform.Keyboards;
-
-public class KeyboardProvider
+public class InputProvider
 (
-    ILogger<KeyboardProvider> logger,
+    ILogger<InputProvider> logger,
     IServiceProvider serviceProvider,
     IProcessProvider processProvider,
-    IOptions<SidekickConfiguration> configuration) : IKeyboardProvider, IDisposable
+    IOptions<SidekickConfiguration> configuration) : IInputProvider, IDisposable
 {
     private readonly EventSimulator simulator = new();
 
@@ -509,6 +507,45 @@ public class KeyboardProvider
         }
     }
 
+    public void UnregisterHooks()
+    {
+        try
+        {
+            // Dispose of the LogSource
+            LogSource?.Dispose();
+            LogSource = null;
+
+            // Stop the global hook task if it exists
+            if (HookTask != null && Hook != null)
+            {
+                // Cancel the hook task to ensure it's stopped gracefully
+                Hook.Dispose();// This disposes internal resources of SimpleGlobalHook
+                HookTask.Wait();// Wait until the hook task completes fully
+                HookTask.Dispose();
+                HookTask = null;
+            }
+
+            if (Hook == null)
+            {
+                return;
+            }
+
+            // Ensure hook itself is set to null
+            Hook.KeyPressed -= OnKeyPressed;
+            Hook.MouseWheel -= OnMouseWheel;
+            Hook.MouseDragged -= OnMouseDragged;
+            Hook.Dispose();
+            Hook = null;
+
+            HasInitialized = false;
+        }
+        catch (Exception ex)
+        {
+            // Log any errors during disposal, as they could be valuable for debugging
+            logger.LogError(ex, "[KeyboardProvider] Error unregistering hooks.");
+        }
+    }
+
     #endregion
 
     #region Keyboard
@@ -773,38 +810,6 @@ public class KeyboardProvider
     {
         if (!disposing) return;
 
-        try
-        {
-            // Dispose of the LogSource
-            LogSource?.Dispose();
-            LogSource = null;
-
-            // Stop the global hook task if it exists
-            if (HookTask != null && Hook != null)
-            {
-                // Cancel the hook task to ensure it's stopped gracefully
-                Hook.Dispose();// This disposes internal resources of SimpleGlobalHook
-                HookTask.Wait();// Wait until the hook task completes fully
-                HookTask.Dispose();
-                HookTask = null;
-            }
-
-            if (Hook == null)
-            {
-                return;
-            }
-
-            // Ensure hook itself is set to null
-            Hook.KeyPressed -= OnKeyPressed;
-            Hook.MouseWheel -= OnMouseWheel;
-            Hook.MouseDragged -= OnMouseDragged;
-            Hook.Dispose();
-            Hook = null;
-        }
-        catch (Exception ex)
-        {
-            // Log any errors during disposal, as they could be valuable for debugging
-            logger.LogError(ex, "[KeyboardProvider] Error during disposal.");
-        }
+        UnregisterHooks();
     }
 }

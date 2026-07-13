@@ -13,7 +13,7 @@ public class OpenWikiPageKeybindHandler(
     ISettingsService settingsService,
     IProcessProvider processProvider,
     IItemParser itemParser,
-    IKeyboardProvider keyboard,
+    IInputProvider input,
     IPoeDbClient poeDbClient,
     IPoeWikiClient poeWikiClient) : KeybindHandler(settingsService, SettingKeys.KeyOpenWiki)
 {
@@ -31,7 +31,7 @@ public class OpenWikiPageKeybindHandler(
         var text = await clipboardProvider.Copy();
         if (text == null)
         {
-            await keyboard.PressKey(keybind);
+            await input.PressKey(keybind);
             return;
         }
 

@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Platform.EventArgs;
 
 /// <summary>
-/// Represents the event arguments for a drag event within <see cref="IKeyboardProvider"/>.
+/// Represents the event arguments for a drag event within <see cref="IInputProvider"/>.
 /// </summary>
 public class DraggedEventArgs(int x, int y)
 {

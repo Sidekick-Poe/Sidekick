@@ -71,7 +71,7 @@
     {
         if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
-            var keyboardProvider = ServiceProvider.GetRequiredService<IKeyboardProvider>();
+            var keyboardProvider = ServiceProvider.GetRequiredService<IInputProvider>();
             keyboardProvider.Disable();
         }
         await OnFocus.InvokeAsync();
@@ -81,7 +81,7 @@
     {
         if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
-            var keyboardProvider = ServiceProvider.GetRequiredService<IKeyboardProvider>();
+            var keyboardProvider = ServiceProvider.GetRequiredService<IInputProvider>();
             keyboardProvider.Enable();
         }
         await OnBlur.InvokeAsync();

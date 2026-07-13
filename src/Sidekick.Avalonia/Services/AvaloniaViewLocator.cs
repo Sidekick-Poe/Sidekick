@@ -8,7 +8,7 @@ namespace Sidekick.Avalonia.Services;
 
 public class AvaloniaViewLocator(
     ILogger<AvaloniaViewLocator> logger,
-    IKeyboardProvider keyboardProvider) : IViewLocator
+    IInputProvider inputProvider) : IViewLocator
 {
 
     public SidekickViewType LastOpenedType { get; private set; }
@@ -105,12 +105,15 @@ public class AvaloniaViewLocator(
 
     public bool IsOpened(SidekickViewType type)
     {
-        return type switch
+        return GetApplication().Dispatcher.Invoke(() =>
         {
-            SidekickViewType.Overlay => OverlayWindow?.IsVisible ?? false,
-            SidekickViewType.Splash => SplashWindow?.IsVisible ?? false,
-            _ => StandardWindow?.IsVisible ?? false,
-        };
+            return type switch
+            {
+                SidekickViewType.Overlay => OverlayWindow?.IsVisible ?? false,
+                SidekickViewType.Splash => SplashWindow?.IsVisible ?? false,
+                _ => StandardWindow?.IsVisible ?? false,
+            };
+        });
     }
 
 
@@ -134,14 +137,14 @@ public class AvaloniaViewLocator(
             });
         };
 
-        keyboardProvider.OnMouseDrag += OnMouseDrag;
+        inputProvider.OnMouseDrag += OnMouseDrag;
     }
 
     public void StopMoving(SidekickViewType type)
     {
         if (OnMouseDrag == null) return;
 
-        keyboardProvider.OnMouseDrag -= OnMouseDrag;
+        inputProvider.OnMouseDrag -= OnMouseDrag;
         OnMouseDrag = null;
     }
 }

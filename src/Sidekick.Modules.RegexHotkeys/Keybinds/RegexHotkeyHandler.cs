@@ -8,7 +8,7 @@ namespace Sidekick.Modules.RegexHotkeys.Keybinds;
 public class RegexHotkeyHandler(
     ISettingsService settingsService,
     IClipboardProvider clipboard,
-    IKeyboardProvider keyboard,
+    IInputProvider input,
     IProcessProvider processProvider) : KeybindHandler(settingsService, SettingKeys.RegexHotkeys)
 {
     private readonly ISettingsService settingsService = settingsService;
@@ -39,8 +39,8 @@ public class RegexHotkeyHandler(
 
         await clipboard.SetText(regexHotkey.Regex);
 
-        keyboard.ReleaseAltModifier();
-        await keyboard.PressKey("Ctrl+F", "Ctrl+V");
+        input.ReleaseAltModifier();
+        await input.PressKey("Ctrl+F", "Ctrl+V");
 
         if (retainClipboard)
         {

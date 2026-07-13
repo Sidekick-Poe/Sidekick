@@ -12,19 +12,19 @@ public class DisableMovementWhenScreenshottingHandler : KeybindHandler
     private readonly ISettingsService settingsService;
     private readonly IProcessProvider processProvider;
     private readonly TransparentDialogProvider transparentDialogProvider;
-    private readonly IKeyboardProvider keyboardProvider;
+    private readonly IInputProvider inputProvider;
 
     public DisableMovementWhenScreenshottingHandler(
         ISettingsService settingsService,
         IProcessProvider processProvider,
         TransparentDialogProvider transparentDialogProvider,
-        IKeyboardProvider keyboardProvider)
+        IInputProvider inputProvider)
         : base(settingsService, Key)
     {
         this.settingsService = settingsService;
         this.processProvider = processProvider;
         this.transparentDialogProvider = transparentDialogProvider;
-        this.keyboardProvider = keyboardProvider;
+        this.inputProvider = inputProvider;
         settingsService.OnSettingsChanged += OnSettingsChanged;
         _ = UpdateIsValid();
     }
@@ -54,7 +54,7 @@ public class DisableMovementWhenScreenshottingHandler : KeybindHandler
     public override async Task Execute(string keyPress)
     {
         await transparentDialogProvider.Open();
-        await keyboardProvider.WiggleMouse();
-        await keyboardProvider.PressKey(keyPress);
+        await inputProvider.WiggleMouse();
+        await inputProvider.PressKey(keyPress);
     }
 }

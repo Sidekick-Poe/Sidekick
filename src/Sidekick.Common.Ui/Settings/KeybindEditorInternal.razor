@@ -44,7 +44,7 @@
 </div>
 
 @inject IStringLocalizer<UiResources> Resources
-@inject IKeyboardProvider Keyboard
+@inject IInputProvider Input
 @inject SafeJsRuntime JsRuntime
 
 @code {
@@ -91,7 +91,7 @@
 
     protected override void OnInitialized()
     {
-        Keyboard.OnKeyDown += OnKeyDown;
+        Input.OnKeyDown += OnKeyDown;
         CurrentEditorChanged += StateHasChanged;
         base.OnInitialized();
     }
@@ -128,7 +128,7 @@
                 {
                     IsDuplicated = false;
                 }
-                else if (Keyboard.UsedKeybinds.Contains(key))
+                else if (Input.UsedKeybinds.Contains(key))
                 {
                     DuplicatedKey = key;
                     IsDuplicated = true;
@@ -157,7 +157,7 @@
 
     public void Dispose()
     {
-        Keyboard.OnKeyDown -= OnKeyDown;
+        Input.OnKeyDown -= OnKeyDown;
         CurrentEditorChanged -= StateHasChanged;
     }
 

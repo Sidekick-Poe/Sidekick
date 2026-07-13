@@ -17,7 +17,7 @@ public class OpenInCraftOfExileHandler(
     ISettingsService settingsService,
     IProcessProvider processProvider,
     IBrowserProvider browserProvider,
-    IKeyboardProvider keyboard) : KeybindHandler(settingsService, SettingKeys.KeyOpenInCraftOfExile)
+    IInputProvider input) : KeybindHandler(settingsService, SettingKeys.KeyOpenInCraftOfExile)
 {
     private readonly ISettingsService settingsService = settingsService;
 
@@ -35,7 +35,7 @@ public class OpenInCraftOfExileHandler(
         var itemText = await clipboardProvider.Copy(withAlt: true);
         if (itemText == null)
         {
-            await keyboard.PressKey(keybind);
+            await input.PressKey(keybind);
             return;
         }
 

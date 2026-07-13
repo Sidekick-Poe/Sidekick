@@ -3,8 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Platform.Clipboard;
 using Sidekick.Common.Platform.GameLogs;
+using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Platform.Interprocess;
-using Sidekick.Common.Platform.Keyboards;
 
 namespace Sidekick.Common.Platform;
 
@@ -32,7 +32,7 @@ public static class StartupExtensions
             services.AddSidekickInitializableService<IProcessProvider, Linux.Processes.ProcessProvider>();
         }
 
-        services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
+        services.AddSidekickInitializableService<IInputProvider, InputProvider>();
         services.TryAddSingleton<IGameLogProvider, GameLogProvider>();
 
         return services;

@@ -8,7 +8,7 @@ namespace Sidekick.Common.Platform.Clipboard;
 public class ClipboardProvider
 (
     ISettingsService settingsService,
-    IKeyboardProvider keyboard,
+    IInputProvider input,
     ILogger<ClipboardProvider> logger
 ) : IClipboardProvider
 {
@@ -27,12 +27,12 @@ public class ClipboardProvider
 
         if (withAlt == true)
         {
-            await keyboard.PressKey("Ctrl+Alt+C");
+            await input.PressKey("Ctrl+Alt+C");
         }
         else
         {
-            keyboard.ReleaseAltModifier();
-            await keyboard.PressKey("Ctrl+C");
+            input.ReleaseAltModifier();
+            await input.PressKey("Ctrl+C");
         }
 
         logger.LogDebug("[Clipboard] Sent keystrokes Ctrl+C");

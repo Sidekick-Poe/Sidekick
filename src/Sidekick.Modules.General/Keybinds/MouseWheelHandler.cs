@@ -7,12 +7,12 @@ namespace Sidekick.Modules.General.Keybinds;
 public class MouseWheelHandler
 (
     ISettingsService settingsService,
-    IKeyboardProvider keyboardProvider,
+    IInputProvider inputProvider,
     IProcessProvider processProvider
-) : ScrollWheelHandler(settingsService, keyboardProvider)
+) : ScrollWheelHandler(settingsService, inputProvider)
 {
     private readonly ISettingsService settingsService = settingsService;
-    private readonly IKeyboardProvider keyboardProvider = keyboardProvider;
+    private readonly IInputProvider inputProvider = inputProvider;
 
     private bool MouseWheelNavigateStashReverse { get; set; }
 
@@ -26,13 +26,13 @@ public class MouseWheelHandler
 
     protected override Task OnScrollUp()
     {
-        keyboardProvider.PressKey(MouseWheelNavigateStashReverse ? "Left" : "Right");
+        inputProvider.PressKey(MouseWheelNavigateStashReverse ? "Left" : "Right");
         return Task.CompletedTask;
     }
 
     protected override Task OnScrollDown()
     {
-        keyboardProvider.PressKey(MouseWheelNavigateStashReverse ? "Right" : "Left");
+        inputProvider.PressKey(MouseWheelNavigateStashReverse ? "Right" : "Left");
         return Task.CompletedTask;
     }
 }
