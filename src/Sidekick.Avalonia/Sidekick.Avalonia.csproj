@@ -63,5 +63,9 @@
         <DependentUpon>TransparentWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="BrowserWindow.axaml.cs">
+        <DependentUpon>BrowserWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>

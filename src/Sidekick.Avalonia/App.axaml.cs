@@ -48,6 +48,8 @@ public partial class App : Application
             // Triggers the constructor of specific handler
             _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaCultureHandler>();
             _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaDialogsHandler>();
+            _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaBrowserDialogHandler>();
+            _ = RequiredServerAppHost.Application.Services.GetRequiredService<AvaloniaTransparentDialogProvider>();
 
             var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
             viewLocator.Open(SidekickViewType.Splash, "/");
