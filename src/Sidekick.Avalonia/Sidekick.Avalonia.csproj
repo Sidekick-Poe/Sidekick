@@ -57,4 +57,11 @@
             <Link>_data\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="TransparentWindow.axaml.cs">
+        <DependentUpon>TransparentWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

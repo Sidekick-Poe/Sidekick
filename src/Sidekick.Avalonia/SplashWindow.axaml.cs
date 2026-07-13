@@ -1,7 +1,9 @@
+using System.Globalization;
 using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Platform;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Avalonia;
 
@@ -9,6 +11,8 @@ public partial class SplashWindow : Window
 {
     private const int WIDTH = 600;
     private const int HEIGHT = 500;
+
+    private IServiceProvider ServiceProvider => App.RequiredServerAppHost.Application.Services;
 
     public SplashWindow()
     {
@@ -24,7 +28,7 @@ public partial class SplashWindow : Window
 
         InitializeComponent();
 
-        WebView.EnvironmentRequested += (sender, args) =>
+        WebView.EnvironmentRequested += (_, args) =>
         {
 #if DEBUG
             // Enable developer tools for all platforms
@@ -49,7 +53,7 @@ public partial class SplashWindow : Window
 
     public async Task OpenView(string url)
     {
-        await Dispatcher.InvokeAsync(async () =>
+        await Dispatcher.Invoke(async () =>
         {
             if (IsVisible)
             {
@@ -61,7 +65,22 @@ public partial class SplashWindow : Window
                 Show();
                 WebView.Navigate(new Uri(url));
             }
+
+            await NormalizeView();
         });
+    }
+
+    private async Task NormalizeView()
+    {
+        WindowState = WindowState.Normal;
+        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
+        if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
+
+        Height = HEIGHT * zoom;
+        Width = WIDTH * zoom;
+        MinWidth = Width;
+        MinHeight = Height;
     }
 
     public void CloseView()

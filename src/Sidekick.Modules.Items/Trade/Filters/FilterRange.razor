@@ -10,9 +10,7 @@
 
 <Popover Trigger="PopoverTrigger.Hover">
     <ActivatorContent>
-        <div
-            class="flex flex-nowrap items-center [&_.range_[contenteditable]]:leading-[14px] [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!"
-            id="@Id">
+        <div class="flex flex-nowrap items-center [&_.range_[contenteditable]]:leading-[14px] [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!">
             <div @onwheel="OnMinWheel"
                  @oncontextmenu="Clear"
                  class="range">
@@ -44,7 +42,6 @@
 </Popover>
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject SafeJsRuntime JsRuntime
 @inject ISettingsService SettingsService
 
 @code {
@@ -63,24 +60,6 @@
 
     [Parameter]
     public EventCallback<double?> MaxChanged { get; set; }
-
-    private string Id { get; } = UiUtilities.GenerateId();
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            // Prevent the wheel event from scrolling.
-            var js = $@"
-                document.getElementById('{Id}')?.addEventListener('wheel', function(e) {{
-                    e.preventDefault();
-                }}, {{ passive: false }});
-            ";
-            await JsRuntime.InvokeVoidAsync("eval", js);
-        }
-
-        await base.OnAfterRenderAsync(firstRender);
-    }
 
     private async Task UpdateMinValue(double? value)
     {

@@ -12,10 +12,11 @@ namespace Sidekick.Avalonia;
 
 public partial class OverlayWindow : Window
 {
-    private IServiceProvider ServiceProvider => App.RequiredServerAppHost.Application.Services;
     private const int WIDTH = 768;
     private const int HEIGHT = 600;
     private const string POSITION_PREFIX = "OverlayWindow";
+
+    private IServiceProvider ServiceProvider => App.RequiredServerAppHost.Application.Services;
 
     private bool IsReady { get; set; }
 
