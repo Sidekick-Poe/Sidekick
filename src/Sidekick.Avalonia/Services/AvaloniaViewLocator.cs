@@ -44,7 +44,7 @@ public class AvaloniaViewLocator(
                     break;
                 case SidekickViewType.Splash:
                     SplashWindow ??= new SplashWindow();
-                    SplashWindow.OpenView(uri.ToString());
+                    await SplashWindow.OpenView(uri.ToString());
                     break;
                 default:
                     StandardWindow ??= new StandardWindow();
