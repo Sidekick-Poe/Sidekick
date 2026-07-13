@@ -19,9 +19,9 @@
 
         const range = document.createRange();
         const selection = window.getSelection();
-        range.selectNodeContents(this); // Select all the content
-        selection.removeAllRanges();    // Clear any existing selection
-        selection.addRange(range);      // Apply the new range as the selection
+        range.selectNodeContents(element); // Select all the content
+        selection.removeAllRanges();       // Clear any existing selection
+        selection.addRange(range);         // Apply the new range as the selection
     };
     element.addEventListener("focus", focus);
 
@@ -45,10 +45,19 @@
         }
     }
 
+    /**
+     * Prevent scrolling the page when using the mouse wheel.
+     */
+    const wheel = (event) => {
+        event.preventDefault();
+    };
+    element.addEventListener("wheel", wheel, { passive: false });
+
     const dispose = () => {
         element.removeEventListener("input", input);
         element.removeEventListener("focus", focus);
         element.removeEventListener("blur", blur);
+        element.removeEventListener("wheel", wheel);
     }
 
     return {

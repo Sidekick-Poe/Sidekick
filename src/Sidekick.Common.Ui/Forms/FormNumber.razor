@@ -3,14 +3,14 @@
 
     @if (!string.IsNullOrEmpty(Label))
     {
-        <label for="@Id"
+        <label for="@ElementId"
                class="block mb-1 text-base font-medium dark:text-zinc-300">
             @Label
         </label>
     }
 
     <div class="flex flex-nowrap gap-1">
-        <input id="@Id"
+        <input id="@ElementId"
                @attributes="InputAttributes"
                type="number"
                @onchange="OnChange"
@@ -19,6 +19,10 @@
     </div>
 
 </div>
+
+@inject IJSRuntime JsRuntime
+@inject ILogger<FormNumber> Logger
+@implements IAsyncDisposable
 
 @code {
 
@@ -34,7 +38,9 @@
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? InputAttributes { get; set; }
 
-    protected string Id { get; } = UiUtilities.GenerateId();
+    private IJSObjectReference? JsObject { get; set; }
+
+    protected string ElementId { get; } = UiUtilities.GenerateId();
 
     protected string InternalValue { get; set; } = string.Empty;
 
@@ -42,6 +48,23 @@
     {
         InternalValue = Value?.ToString() ?? string.Empty;
         base.OnParametersSet();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.forms.numberInputWheel", ElementId);
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, "Failed to load javascript module.");
+            }
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
     }
 
     protected async Task OnChange(ChangeEventArgs args)
@@ -56,4 +79,12 @@
         }
     }
 
+    public async ValueTask DisposeAsync()
+    {
+        if (JsObject != null)
+        {
+            await JsObject.InvokeVoidAsync("dispose");
+            await JsObject.DisposeAsync();
+        }
+    }
 }

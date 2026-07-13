@@ -1,4 +1,4 @@
-﻿@using Sidekick.Data.ItemClasses
+@using Sidekick.Data.ItemClasses
 @using Sidekick.Data.ItemDefinitions
 @using Sidekick.Data.Items
 @using Sidekick.Modules.Items.Components
@@ -8,12 +8,20 @@
 
 <div class="grid grid-cols-4 gap-3 my-3">
     <FormNumber @bind-Value="NumberOfSockets"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Sockets"]"/>
     <FormNumber @bind-Value="RedSockets"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Red"]"/>
     <FormNumber @bind-Value="GreenSockets"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Green"]"/>
     <FormNumber @bind-Value="BlueSockets"
+                min="0"
+                max="6"
                 Label="@Resources["Chromatic_Blue"]"/>
 </div>
 
