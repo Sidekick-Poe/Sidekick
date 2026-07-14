@@ -43,7 +43,31 @@ public partial class App : Application
             TaskScheduler.UnobservedTaskException += (_, e)
                 => HandleException(e.Exception);
 
-            InitializeServerAppHost();
+            ServerAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
+            var tcs = new TaskCompletionSource();
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    ServerAppHost.Start(services =>
+                    {
+                        services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
+                        services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
+                        services.TryAddSingleton<AvaloniaCultureHandler>();
+                        services.TryAddSingleton<AvaloniaDialogsHandler>();
+                        services.TryAddSingleton<AvaloniaBrowserDialogHandler>();
+                        services.TryAddSingleton<AvaloniaTransparentDialogProvider>();
+                    });
+                    tcs.TrySetResult();
+                    await ServerAppHost.RunTask;
+                }
+                catch (Exception ex)
+                {
+                    HandleException(ex);
+                }
+            });
+
+            tcs.Task.GetAwaiter().GetResult();
 
             _ = CheckIsAlreadyRunning();
 
@@ -74,34 +98,6 @@ public partial class App : Application
         {
             HandleException(ex);
         }
-    }
-
-    private void InitializeServerAppHost()
-    {
-        ServerAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
-
-        var tcs = new TaskCompletionSource();
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                RequiredServerAppHost.Start(services =>
-                {
-                    services.TryAddSingleton<IViewLocator, AvaloniaViewLocator>();
-                    services.TryAddSingleton<IApplicationService, AvaloniaApplicationService>();
-                    services.TryAddSingleton<AvaloniaCultureHandler>();
-                    services.TryAddSingleton<AvaloniaDialogsHandler>();
-                });
-                tcs.TrySetResult();
-                await RequiredServerAppHost.RunTask;
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
-        });
-
-        tcs.Task.GetAwaiter().GetResult();
     }
 
     private async Task CheckIsAlreadyRunning()
