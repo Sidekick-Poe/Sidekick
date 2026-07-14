@@ -8,5 +8,9 @@ public class SimpleCommand(Action execute) : ICommand
 
     public void Execute(object? parameter) => execute.Invoke();
 
-    public event EventHandler? CanExecuteChanged;
+    public event EventHandler? CanExecuteChanged
+    {
+        add { }
+        remove { }
+    }
 }
