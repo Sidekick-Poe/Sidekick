@@ -12,7 +12,7 @@ jobs:
       release_body: ${{ steps.notes.outputs.body }}
     steps:
       - name: Git - Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -24,13 +24,13 @@ jobs:
           release_branch: ${{ github.ref_name }}
 
       - name: Release - Delete unpublished
-        uses: hugo19941994/delete-draft-releases@v1.0.0
+        uses: hugo19941994/delete-draft-releases@v3.0.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Release - Notes
         id: notes
-        uses: release-drafter/release-drafter@v6
+        uses: release-drafter/release-drafter@v7
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -47,7 +47,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Git - Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -124,12 +124,12 @@ jobs:
           # Retrieve the version from setup outputs
           $version = "${{ needs.setup.outputs.version }}"
           $env:GH_TOKEN = "${{ github.token }}"
-        
+          
           # Handle Desktop channel
           gh release download "v$version" --pattern "releases.windows-x64.json" --clobber
           Rename-Item -Path "releases.windows-x64.json" -NewName "releases.windows-stable.json" -Force
           gh release upload "v$version" "releases.windows-stable.json" --clobber
-        
+          
           # Handle Web channel
           gh release download "v$version" --pattern "releases.windows-web-x64.json" --clobber
           Rename-Item -Path "releases.windows-web-x64.json" -NewName "releases.windows-web-stable.json" -Force
@@ -141,7 +141,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git - Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
