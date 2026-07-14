@@ -22,6 +22,8 @@ public partial class App : Application
     public static ServerAppHost? ServerAppHost { get; private set; }
     public static ServerAppHost RequiredServerAppHost => ServerAppHost ?? throw new Exception("ServerAppHost not initialized.");
 
+    private int isHandlingFatalException;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -176,26 +178,35 @@ public partial class App : Application
 
     private void HandleException(Exception ex)
     {
-        if (Debugger.IsAttached)
+        if (Interlocked.Exchange(ref isHandlingFatalException, 1) == 1)
         {
-            Debugger.Break();
+            return;
         }
 
-        var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
-        logger?.LogCritical(ex, "[App] Application critical error");
+        _ = Dispatcher.InvokeAsync(async () =>
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
 
-        var keyboardProvider = ServerAppHost?.Application.Services.GetService<IInputProvider>();
-        keyboardProvider?.UnregisterHooks();
+            var logger = ServerAppHost?.Application.Services.GetService<ILogger<App>>();
+            logger?.LogCritical(ex, "[App] Application critical error");
 
-        var viewLocator = ServerAppHost?.Application.Services.GetService<IViewLocator>();
-        viewLocator?.Close(SidekickViewType.Overlay);
-        viewLocator?.Close(SidekickViewType.Splash);
-        viewLocator?.Close(SidekickViewType.Standard);
+            var keyboardProvider = ServerAppHost?.Application.Services.GetService<IInputProvider>();
+            keyboardProvider?.UnregisterHooks();
 
-        var window = new DialogWindow(DialogProvider.Type.Ok, $"Unexpected error: {ex.Message}");
-        window.Show();
-        window.Task.Wait();
+            var viewLocator = ServerAppHost?.Application.Services.GetService<IViewLocator>();
+            viewLocator?.Close(SidekickViewType.Overlay);
+            viewLocator?.Close(SidekickViewType.Splash);
+            viewLocator?.Close(SidekickViewType.Standard);
 
-        Environment.Exit(0);
+            var window = new DialogWindow(DialogProvider.Type.Ok, $"Unexpected error: {ex.Message}");
+            window.Show();
+
+            await window.Task;
+
+            Environment.Exit(0);
+        });
     }
 }
