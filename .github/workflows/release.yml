@@ -170,8 +170,8 @@ jobs:
       - name: .NET - Publish (Linux)
         shell: bash
         run: |
-          dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r linux-x64 -o ./Publish
-          dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
+          dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r linux-x64 -o ./Publish --self-contained true
+          dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web --self-contained true
 
       - name: Velopack (Linux)
         shell: bash
