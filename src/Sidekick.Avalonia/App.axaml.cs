@@ -125,11 +125,9 @@ public partial class App : Application
     private void InitializeTray()
     {
         var resources = RequiredServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<HomeResources>>();
-        var tray = new TrayIcons
-        {
-            new TrayIcon
-            {
-                Icon = new WindowIcon("Assets/favicon.ico"),
+        var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "favicon.ico");
+
+        var trayIcon = new TrayIcon{
                 Command = new SimpleCommand(() =>
                 {
                     var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
@@ -166,7 +164,16 @@ public partial class App : Application
                         }),
                     },
                 }
-            }
+        };
+
+        if (File.Exists(iconPath))
+        {
+            trayIcon.Icon = new WindowIcon(iconPath);
+        }
+
+        var tray = new TrayIcons
+        {
+            trayIcon,
         };
 
         TrayIcon.SetIcons(Current!, tray);

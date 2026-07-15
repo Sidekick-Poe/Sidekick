@@ -4,7 +4,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <GenerateStaticWebAssets>false</GenerateStaticWebAssets>
+        <GenerateStaticWebAssets>true</GenerateStaticWebAssets>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,7 +23,7 @@
         <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj"/>
     </ItemGroup>
 
-    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Target Name="NpmBuild" BeforeTargets="Build;Publish">
         <Exec Command="npm run build"/>
     </Target>
 
