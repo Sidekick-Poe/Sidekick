@@ -1,3 +1,5 @@
+using System.Net;
+using System.Net.Sockets;
 using ApexCharts;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
@@ -29,6 +31,9 @@ namespace Sidekick.Web;
 
 public class ServerAppHost(SidekickApplicationType applicationType) : IDisposable
 {
+    private const int DefaultPort = 5000;
+    private const int MaxPortSearchAttempts = 100;
+
     private WebApplication? app;
     private Task? runTask;
     private bool disposed;
@@ -53,6 +58,12 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
             WebRootPath = Path.Combine(assemblyLocation, "wwwroot"),
         });
         builder.WebHost.UseStaticWebAssets();
+
+        var port = GetAvailablePort(DefaultPort);
+        builder.WebHost.ConfigureKestrel(options =>
+        {
+            options.ListenLocalhost(port);
+        });
 
         #region Services
 
@@ -135,6 +146,33 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
         #endregion Pipeline
 
         runTask = app.RunAsync(cancellationToken);
+    }
+
+    private static int GetAvailablePort(int preferredPort)
+    {
+        for (var port = preferredPort; port < preferredPort + MaxPortSearchAttempts; port++)
+        {
+            if (IsPortAvailable(port))
+            {
+                return port;
+            }
+        }
+
+        throw new InvalidOperationException($"Could not find an available port between {preferredPort} and {preferredPort + MaxPortSearchAttempts - 1}.");
+    }
+
+    private static bool IsPortAvailable(int port)
+    {
+        try
+        {
+            using var listener = new TcpListener(IPAddress.Loopback, port);
+            listener.Start();
+            return true;
+        }
+        catch (SocketException)
+        {
+            return false;
+        }
     }
 
     /// <summary>
