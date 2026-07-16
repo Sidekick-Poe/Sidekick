@@ -25,14 +25,6 @@
 
     <Target Name="NpmBuild" BeforeTargets="ResolveStaticWebAssetsInputs">
         <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)"/>
-
-        <ItemGroup>
-            <Content Include="$(MSBuildProjectDirectory)\wwwroot\**\*.*"
-                     Exclude="@(Content)"
-                     Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)"
-                     CopyToOutputDirectory="PreserveNewest"
-                     CopyToPublishDirectory="PreserveNewest"/>
-        </ItemGroup>
     </Target>
 
 </Project>
