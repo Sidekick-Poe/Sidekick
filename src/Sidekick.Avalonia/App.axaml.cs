@@ -5,8 +5,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
-using Sidekick.Avalonia.Components;
 using Sidekick.Avalonia.Services;
+using Sidekick.Avalonia.Utilities;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Home;
 using Sidekick.Common.Browser;
@@ -37,6 +37,8 @@ public partial class App : Application
             {
                 throw new Exception("Unsupported application type.");
             }
+
+            CheckLinuxDependencies().GetAwaiter().GetResult();
 
             AppDomain.CurrentDomain.UnhandledException += (_, e)
                 => HandleException(e.ExceptionObject as Exception ?? new Exception("Unknown exception"));
@@ -127,43 +129,44 @@ public partial class App : Application
         var resources = RequiredServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<HomeResources>>();
         var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "favicon.ico");
 
-        var trayIcon = new TrayIcon{
-                Command = new SimpleCommand(() =>
+        var trayIcon = new TrayIcon
+        {
+            Command = new SimpleCommand(() =>
+            {
+                var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+                viewLocator.Open(SidekickViewType.Standard, "/home");
+            }),
+            Menu = new NativeMenu
+            {
+                new NativeMenuItem("Sidekick - " + RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
                 {
-                    var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-                    viewLocator.Open(SidekickViewType.Standard, "/home");
-                }),
-                Menu = new NativeMenu
+                    IsEnabled = false,
+                },
+                new NativeMenuItem(resources["Home"])
                 {
-                    new NativeMenuItem("Sidekick - " + RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
+                    Command = new SimpleCommand(() =>
                     {
-                        IsEnabled = false,
-                    },
-                    new NativeMenuItem(resources["Home"])
+                        var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+                        viewLocator.Open(SidekickViewType.Standard, "/home");
+                    }),
+                },
+                new NativeMenuItem(resources["Open_Website"])
+                {
+                    Command = new SimpleCommand(() =>
                     {
-                        Command = new SimpleCommand(() =>
-                        {
-                            var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-                            viewLocator.Open(SidekickViewType.Standard, "/home");
-                        }),
-                    },
-                    new NativeMenuItem(resources["Open_Website"])
+                        var browserProvider = RequiredServerAppHost.Application.Services.GetRequiredService<IBrowserProvider>();
+                        browserProvider.OpenUri(browserProvider.SidekickWebsite);
+                    }),
+                },
+                new NativeMenuItem(resources["Exit"])
+                {
+                    Command = new SimpleCommand(() =>
                     {
-                        Command = new SimpleCommand(() =>
-                        {
-                            var browserProvider = RequiredServerAppHost.Application.Services.GetRequiredService<IBrowserProvider>();
-                            browserProvider.OpenUri(browserProvider.SidekickWebsite);
-                        }),
-                    },
-                    new NativeMenuItem(resources["Exit"])
-                    {
-                        Command = new SimpleCommand(() =>
-                        {
-                            var applicationService = RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>();
-                            applicationService.Shutdown();
-                        }),
-                    },
-                }
+                        var applicationService = RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>();
+                        applicationService.Shutdown();
+                    }),
+                },
+            }
         };
 
         if (File.Exists(iconPath))
@@ -177,6 +180,27 @@ public partial class App : Application
         };
 
         TrayIcon.SetIcons(Current!, tray);
+    }
+
+    private async Task CheckLinuxDependencies()
+    {
+        var missingDependencies = await LinuxDependencyChecker.GetMissingDependencies();
+        if (missingDependencies.Count == 0)
+        {
+            return;
+        }
+
+        await Dispatcher.InvokeAsync(async () =>
+        {
+            var window = new DialogWindow(
+            DialogProvider.Type.Ok,
+            LinuxDependencyChecker.BuildDialogMessage(missingDependencies));
+
+            window.Show();
+            await window.Task;
+
+            Environment.Exit(0);
+        });
     }
 
     private void HandleException(Exception ex)
