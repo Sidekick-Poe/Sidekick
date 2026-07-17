@@ -1,5 +1,8 @@
 @using Sidekick.Modules.Items.Trade.Localization
-<TextCaption><span title="@(Date.ToLocalTime().ToString("F"))">@Text</span></TextCaption>
+
+<Tooltip Text="@(Date.ToLocalTime().ToString("F"))">
+    <TextCaption>@Text</TextCaption>
+</Tooltip>
 
 @inject IStringLocalizer<TradeResources> Resources
 

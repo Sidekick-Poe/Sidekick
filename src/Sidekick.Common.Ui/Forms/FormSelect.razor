@@ -2,7 +2,7 @@
 
     @if (!string.IsNullOrEmpty(Label))
     {
-        <label for="@Id"
+        <label id="@LabelId"
                class="flex gap-1 mb-1 text-base font-medium dark:text-zinc-300">
             @Label
             @if (Tooltip is not null)
@@ -13,37 +13,89 @@
     }
 
     <div class="flex flex-nowrap items-center gap-1 grow">
-        <select id="@Id"
-                @onchange="OnChange"
-                class="@UiClasses.FormInputClasses p-2 text-base w-full">
-            @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
-            {
-                <option selected></option>
-            }
+        <div class="relative w-full">
+            <button id="@Id"
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="@IsOpen"
+                    aria-labelledby="@LabelId @Id"
+                    @onclick="Toggle"
+                    class="@UiClasses.FormInputClasses p-2 text-base w-full inline-flex items-center justify-between text-left">
+                <span class="@GetSelectedTextClasses()">
+                    @GetSelectedLabel()
+                </span>
+                <Icon Svg="@UiIcons.ChevronDown" Size="UiIconSize.Small"/>
+            </button>
 
-            @if (Options.Any(x => x.Group != null))
+            @if (IsOpen)
             {
-                foreach (var group in Options.GroupBy(x => x.Group))
-                {
-                    <optgroup label="@group.Key">
-                        @foreach (var option in group)
+                <button type="button"
+                        class="fixed inset-0 z-40 cursor-default bg-transparent"
+                        aria-label="Close select"
+                        tabindex="-1"
+                        @onclick="Close"></button>
+
+                <div class="absolute z-50 mt-1 w-full overflow-hidden rounded-lg border dark:border-zinc-600 dark:bg-zinc-700 shadow-lg">
+                    <ul role="listbox"
+                        aria-labelledby="@Id"
+                        class="max-h-60 overflow-auto p-1 text-base dark:text-white">
+                        @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
                         {
-                            <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
-                                    value="@GetOptionValue(option.Value)"
-                                    disabled="@option.Disabled">@option.Label</option>
+                            <li>
+                                <button type="button"
+                                        role="option"
+                                        aria-selected="true"
+                                        @onclick="() => SelectValue(null)"
+                                        class="w-full rounded-md px-2 py-2 text-left hover:dark:bg-zinc-600">
+                                    &nbsp;
+                                </button>
+                            </li>
                         }
-                    </optgroup>
-                }
+
+                        @if (Options.Any(x => x.Group != null))
+                        {
+                            foreach (var group in Options.GroupBy(x => x.Group))
+                            {
+                                <li class="px-2 py-1 text-xs font-semibold uppercase tracking-wide dark:text-zinc-400">
+                                    @group.Key
+                                </li>
+
+                                @foreach (var option in group)
+                                {
+                                    <li>
+                                        <button type="button"
+                                                role="option"
+                                                aria-selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
+                                                disabled="@option.Disabled"
+                                                @onclick="() => SelectValue(option.Value)"
+                                                class="@GetOptionClasses(option)">
+                                            @option.Label
+                                        </button>
+                                    </li>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            foreach (var option in Options)
+                            {
+                                <li>
+                                    <button type="button"
+                                            role="option"
+                                            aria-selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
+                                            disabled="@option.Disabled"
+                                            @onclick="() => SelectValue(option.Value)"
+                                            class="@GetOptionClasses(option)">
+                                        @option.Label
+                                    </button>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             }
-            else
-            {
-                foreach (var option in Options)
-                {
-                    <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
-                            value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
-                }
-            }
-        </select>
+        </div>
+
         @AdornmentContent
     </div>
 </div>
@@ -70,6 +122,10 @@
 
     protected string Id { get; } = UiUtilities.GenerateId();
 
+    protected string LabelId { get; } = UiUtilities.GenerateId();
+
+    protected bool IsOpen { get; set; }
+
     protected string GetOptionValue(string? value)
     {
         if (string.IsNullOrEmpty(value)) return "null";
@@ -82,14 +138,50 @@
         return Options.FirstOrDefault(x => GetOptionValue(x.Value) == optionValue);
     }
 
-    protected async Task OnChange(ChangeEventArgs args)
+    protected string GetSelectedLabel()
     {
-        var newValue = args.Value?.ToString();
-        if (newValue == "null")
+        return GetOption(Value)?.Label ?? string.Empty;
+    }
+
+    protected string GetSelectedTextClasses()
+    {
+        return GetOption(Value) is null
+            ? "block truncate text-zinc-400"
+            : "block truncate";
+    }
+
+    protected string GetOptionClasses(SelectOption option)
+    {
+        var isSelected = GetOptionValue(option.Value) == GetOptionValue(Value);
+
+        var classes = "w-full rounded-md px-2 py-0.5 text-left";
+
+        if (option.Disabled)
         {
-            newValue = null;
+            return $"{classes} cursor-not-allowed opacity-50";
         }
 
-        await ValueChanged.InvokeAsync(newValue);
+        if (isSelected)
+        {
+            return $"{classes} dark:bg-zinc-600 dark:text-white";
+        }
+
+        return $"{classes} hover:dark:bg-zinc-600";
+    }
+
+    protected void Toggle()
+    {
+        IsOpen = !IsOpen;
+    }
+
+    protected void Close()
+    {
+        IsOpen = false;
+    }
+
+    protected async Task SelectValue(string? value)
+    {
+        IsOpen = false;
+        await ValueChanged.InvokeAsync(value);
     }
 }

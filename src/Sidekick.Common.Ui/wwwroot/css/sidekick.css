@@ -1222,6 +1222,9 @@
   .max-h-10 {
     max-height: calc(var(--spacing) * 10);
   }
+  .max-h-60 {
+    max-height: calc(var(--spacing) * 60);
+  }
   .max-h-64 {
     max-height: calc(var(--spacing) * 64);
   }
@@ -1414,8 +1417,14 @@
   .animate-spin {
     animation: var(--animate-spin);
   }
+  .cursor-default {
+    cursor: default;
+  }
   .cursor-help {
     cursor: help;
+  }
+  .cursor-not-allowed {
+    cursor: not-allowed;
   }
   .cursor-pointer {
     cursor: pointer;
@@ -1431,9 +1440,6 @@
   }
   .list-none {
     list-style-type: none;
-  }
-  .appearance-none {
-    appearance: none;
   }
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1982,9 +1988,6 @@
   .bg-\[url\(\'\/_content\/Sidekick\.Common\.Ui\/images\/items\/seperator-unique\.png\'\)\] {
     background-image: url('/_content/Sidekick.Common.Ui/images/items/seperator-unique.png');
   }
-  .bg-none {
-    background-image: none;
-  }
   .bg-contain {
     background-size: contain;
   }
@@ -2407,6 +2410,9 @@
   .text-zinc-300 {
     color: var(--color-zinc-300);
   }
+  .text-zinc-400 {
+    color: var(--color-zinc-400);
+  }
   .text-zinc-600 {
     color: var(--color-zinc-600);
   }
@@ -2424,6 +2430,9 @@
   }
   .opacity-0 {
     opacity: 0%;
+  }
+  .opacity-50 {
+    opacity: 50%;
   }
   .opacity-80 {
     opacity: 80%;
@@ -2632,6 +2641,9 @@
       background-color: var(--color-violet-500);
     }
   }
+  .disabled\:cursor-default:disabled {
+    cursor: default;
+  }
   .disabled\:opacity-50:disabled {
     opacity: 50%;
   }
@@ -2658,6 +2670,9 @@
   .dark\:bg-stone-950:where(.dark, .dark *) {
     background-color: var(--color-stone-950);
   }
+  .dark\:bg-zinc-600:where(.dark, .dark *) {
+    background-color: var(--color-zinc-600);
+  }
   .dark\:bg-zinc-700:where(.dark, .dark *) {
     background-color: var(--color-zinc-700);
   }
@@ -2676,12 +2691,18 @@
   .dark\:text-zinc-300:where(.dark, .dark *) {
     color: var(--color-zinc-300);
   }
+  .dark\:text-zinc-400:where(.dark, .dark *) {
+    color: var(--color-zinc-400);
+  }
   .dark\:placeholder-zinc-400:where(.dark, .dark *)::placeholder {
     color: var(--color-zinc-400);
   }
   @media (hover: hover) {
     .dark\:hover\:bg-stone-600:where(.dark, .dark *):hover {
       background-color: var(--color-stone-600);
+    }
+    .hover\:dark\:bg-zinc-600:hover:where(.dark, .dark *) {
+      background-color: var(--color-zinc-600);
     }
   }
   .dark\:focus\:ring-violet-400:where(.dark, .dark *):focus {

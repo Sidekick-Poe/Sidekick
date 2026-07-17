@@ -1,20 +1,33 @@
-<button type="button"
-        disabled="@Disabled"
-        @attributes="AdditionalAttributes"
-        @onclick="() => OnClick.InvokeAsync()"
-        @onclick:preventDefault="true"
-        class="disabled:opacity-50 dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses @Class @Icon.GetSizeClass(Size)">
-    <span class="relative fill-current inline-block @Icon.GetSizeClass(Size) @Class">
-        @((MarkupString)Svg)
-
-        @if (AddBadge)
-        {
-            <span class="absolute top-0 right-0 w-2 h-2 bg-red-700 rounded-full"></span>
-        }
-    </span>
-</button>
+@if (Tooltip is not null)
+{
+    <Tooltip Text="@Tooltip">
+        <ChildContent>
+            @ButtonContent
+        </ChildContent>
+    </Tooltip>
+}
+else
+{
+    @ButtonContent
+}
 
 @code {
+
+    private RenderFragment ButtonContent => @<button type="button"
+                                                     disabled="@Disabled"
+                                                     @attributes="AdditionalAttributes"
+                                                     @onclick="() => OnClick.InvokeAsync()"
+                                                     @onclick:preventDefault="true"
+                                                     class="disabled:opacity-50 dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses @Class @Icon.GetSizeClass(Size)">
+        <span class="relative fill-current inline-block @Icon.GetSizeClass(Size) @Class">
+            @((MarkupString)Svg)
+
+            @if (AddBadge)
+            {
+                <span class="absolute top-0 right-0 w-2 h-2 bg-red-700 rounded-full"></span>
+            }
+        </span>
+    </button>;
 
     [Parameter]
     public required RenderFragment ChildContent { get; set; }
@@ -36,6 +49,9 @@
 
     [Parameter]
     public bool Disabled { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
 
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }

@@ -1,6 +1,8 @@
 @using Sidekick.Common.Ui.Localization
 
-<TextCaption title="@Title">@Text</TextCaption>
+<Tooltip Text="@Title">
+    <TextCaption>@Text</TextCaption>
+</Tooltip>
 
 @inject IStringLocalizer<UiResources> Resources
 
