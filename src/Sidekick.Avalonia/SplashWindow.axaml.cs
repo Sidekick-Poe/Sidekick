@@ -19,7 +19,7 @@ public partial class SplashWindow : Window
         Title = "Sidekick";
         Width = WIDTH;
         Height = HEIGHT;
-        Background = new SolidColorBrush(Color.FromRgb(12, 10, 10));
+        Background = Brushes.Transparent;
         WindowDecorations = WindowDecorations.None;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Topmost = false;
@@ -71,27 +71,5 @@ public partial class SplashWindow : Window
         CloseView();
         e.Cancel = true;
         base.OnClosing(e);
-    }
-    
-    private void WebView_OnEnvironmentRequested(object? sender, WebViewEnvironmentRequestedEventArgs args)
-    {
-#if DEBUG
-        // Enable developer tools for all platforms
-        args.EnableDevTools = true;
-#endif
-
-        // Platform-specific configuration
-        switch (args)
-        {
-            case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
-                webView2Args.IsInPrivateModeEnabled = true;
-                break;
-            case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
-                appleArgs.NonPersistentDataStore = true;
-                break;
-            case GtkWebViewEnvironmentRequestedEventArgs gtkArgs:
-                gtkArgs.EphemeralDataManager = true;
-                break;
-        }
     }
 }

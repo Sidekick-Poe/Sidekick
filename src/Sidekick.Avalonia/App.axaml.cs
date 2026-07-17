@@ -38,7 +38,8 @@ public partial class App : Application
                 throw new Exception("Unsupported application type.");
             }
 
-            CheckLinuxDependencies().GetAwaiter().GetResult();
+            var missingDependencies = LinuxDependencyChecker.GetMissingDependencies().ToList();
+            if (missingDependencies.Count > 0) throw new Exception(LinuxDependencyChecker.BuildDialogMessage(missingDependencies));
 
             AppDomain.CurrentDomain.UnhandledException += (_, e)
                 => HandleException(e.ExceptionObject as Exception ?? new Exception("Unknown exception"));
@@ -180,27 +181,6 @@ public partial class App : Application
         };
 
         TrayIcon.SetIcons(Current!, tray);
-    }
-
-    private async Task CheckLinuxDependencies()
-    {
-        var missingDependencies = await LinuxDependencyChecker.GetMissingDependencies();
-        if (missingDependencies.Count == 0)
-        {
-            return;
-        }
-
-        await Dispatcher.InvokeAsync(async () =>
-        {
-            var window = new DialogWindow(
-            DialogProvider.Type.Ok,
-            LinuxDependencyChecker.BuildDialogMessage(missingDependencies));
-
-            window.Show();
-            await window.Task;
-
-            Environment.Exit(0);
-        });
     }
 
     private void HandleException(Exception ex)

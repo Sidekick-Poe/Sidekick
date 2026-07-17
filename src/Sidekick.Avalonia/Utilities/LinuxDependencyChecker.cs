@@ -1,163 +1,117 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using System.Runtime.InteropServices;
+
 namespace Sidekick.Avalonia.Utilities;
 
 public static class LinuxDependencyChecker
 {
-    private const int ProcessTimeoutMilliseconds = 3000;
-
-    public static async Task<IReadOnlyList<MissingLinuxDependency>> GetMissingDependencies()
+    public static IEnumerable<string> GetMissingDependencies()
     {
         if (!OperatingSystem.IsLinux())
         {
-            return [];
+            yield break;
         }
 
-        var missingDependencies = new List<MissingLinuxDependency>();
-
-        if (!await CommandExists("xsel"))
+        if (!IsCommandAvailable("xsel"))
         {
-            missingDependencies.Add(new MissingLinuxDependency("xsel", "Required for clipboard support on Linux."));
+            yield return "xsel";
         }
 
-        if (!await HasWpeWebKit())
+        if (!IsWebKitGtkAvailable())
         {
-            missingDependencies.Add(new MissingLinuxDependency("WPE WebKit runtime", "Required for displaying Sidekick's interface on Linux."));
+            yield return "WebKitGTK runtime (libwebkit2gtk)";
         }
-
-        return missingDependencies;
     }
 
-    public static string BuildDialogMessage(IReadOnlyList<MissingLinuxDependency> missingDependencies)
+    private static bool IsCommandAvailable(string command)
     {
-        var builder = new StringBuilder();
-
-        builder.AppendLine("Missing Linux dependencies");
-        builder.AppendLine();
-        builder.AppendLine("Sidekick requires the following packages on Linux:");
-        builder.AppendLine();
-
-        foreach (var dependency in missingDependencies)
-        {
-            builder.AppendLine($"- {dependency.Name}: {dependency.Description}");
-        }
-
-        builder.AppendLine();
-        builder.AppendLine("Install them using one of the following commands:");
-        builder.AppendLine();
-        builder.AppendLine("Arch-based:");
-        builder.AppendLine("sudo pacman -S --needed xsel wpewebkit");
-        builder.AppendLine();
-        builder.AppendLine("Ubuntu / Debian:");
-        builder.AppendLine("sudo apt install xsel libwpewebkit-2.0-1");
-        builder.AppendLine();
-        builder.AppendLine("Fedora:");
-        builder.AppendLine("sudo dnf install xsel wpewebkit");
-        builder.AppendLine();
-        builder.AppendLine("Sidekick will now close.");
-
-        return builder.ToString();
-    }
-
-    private static async Task<bool> CommandExists(string command)
-    {
-        var result = await RunProcess("sh", $"-c \"command -v {EscapeShellArgument(command)}\"");
-        return result.ExitCode == 0 && !string.IsNullOrWhiteSpace(result.StandardOutput);
-    }
-
-    private static async Task<bool> HasWpeWebKit()
-    {
-        if (await PkgConfigPackageExists("wpe-webkit-2.0"))
-        {
-            return true;
-        }
-
-        var ldconfigResult = await RunProcess("sh", "-c \"ldconfig -p 2>/dev/null | grep -E 'libWPEWebKit-2\\.0\\.so|libwpe-1\\.0\\.so'\"");
-        if (ldconfigResult.ExitCode == 0 && !string.IsNullOrWhiteSpace(ldconfigResult.StandardOutput))
-        {
-            return true;
-        }
-
-        return File.Exists("/usr/lib/libWPEWebKit-2.0.so.1")
-               || File.Exists("/usr/lib64/libWPEWebKit-2.0.so.1")
-               || File.Exists("/usr/lib/x86_64-linux-gnu/libWPEWebKit-2.0.so.1")
-               || Directory.Exists("/usr/lib/wpe-webkit-2.0")
-               || Directory.Exists("/usr/lib64/wpe-webkit-2.0");
-    }
-
-    private static async Task<bool> PkgConfigPackageExists(string packageName)
-    {
-        if (!await CommandExists("pkg-config"))
+        var pathEnv = Environment.GetEnvironmentVariable("PATH");
+        if (string.IsNullOrEmpty(pathEnv))
         {
             return false;
         }
 
-        var result = await RunProcess("pkg-config", $"--exists {packageName}");
-        return result.ExitCode == 0;
-    }
-
-    private static async Task<ProcessResult> RunProcess(string fileName, string arguments)
-    {
-        try
+        var paths = pathEnv.Split(':');
+        foreach (var path in paths)
         {
-            using var process = new Process();
-            process.StartInfo = new ProcessStartInfo
+            var fullPath = Path.Combine(path, command);
+            if (File.Exists(fullPath))
             {
-                FileName = fileName,
-                Arguments = arguments,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
-
-            process.Start();
-
-            var standardOutputTask = process.StandardOutput.ReadToEndAsync();
-            var standardErrorTask = process.StandardError.ReadToEndAsync();
-
-            var completedTask = await Task.WhenAny(
-                process.WaitForExitAsync(),
-                Task.Delay(ProcessTimeoutMilliseconds));
-
-            if (completedTask is not { } waitForExitTask || waitForExitTask != process.WaitForExitAsync())
-            {
-                TryKill(process);
-                return new ProcessResult(-1, string.Empty, "Process timed out.");
-            }
-
-            return new ProcessResult(
-                process.ExitCode,
-                await standardOutputTask,
-                await standardErrorTask);
-        }
-        catch (Exception ex)
-        {
-            return new ProcessResult(-1, string.Empty, ex.Message);
-        }
-    }
-
-    private static string EscapeShellArgument(string value)
-    {
-        return value.Replace("'", "'\"'\"'");
-    }
-
-    private static void TryKill(Process process)
-    {
-        try
-        {
-            if (!process.HasExited)
-            {
-                process.Kill(true);
+                return true;
             }
         }
-        catch
+
+        return false;
+    }
+    
+    private static bool IsWebKitGtkAvailable()
+    {
+        // 1. Strict native loader check using standard SONAME variants across modern and legacy distributions
+        string[] exactWebKitLibs = 
+        [
+            "libwebkit2gtk-4.1.so.0", // Modern standard (Ubuntu 22.04+, Fedora, Arch)
+            "libwebkitgtk-6.0.so.4",   // GTK4 modern variant
+            "libwebkit2gtk-4.0.so.37", // Legacy fallback (Ubuntu 20.04 / Debian Oldstable)
+            "libwebkit2gtk-4.1.so", 
+            "libwebkit2gtk-4.0.so"
+        ];
+
+        foreach (var libName in exactWebKitLibs)
         {
-            // Ignore cleanup errors.
+            if (NativeLibrary.TryLoad(libName, out var handle))
+            {
+                NativeLibrary.Free(handle);
+                return true;
+            }
         }
+
+        // 2. Local filesystem check for common dynamic linker absolute paths
+        string[] knownLoaderPaths = 
+        [
+            // WebKit2GTK 4.1
+            "/usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0",
+            "/usr/lib/libwebkit2gtk-4.1.so.0",
+            "/usr/lib64/libwebkit2gtk-4.1.so.0",
+
+            // WebKitGTK 6.0
+            "/usr/lib/x86_64-linux-gnu/libwebkitgtk-6.0.so.4",
+            "/usr/lib/libwebkitgtk-6.0.so.4",
+
+            // Legacy WebKit2GTK 4.0
+            "/usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.0.so.37",
+            "/usr/lib/libwebkit2gtk-4.0.so.37",
+            "/usr/lib64/libwebkit2gtk-4.0.so.37"
+        ];
+
+        foreach (var path in knownLoaderPaths)
+        {
+            if (File.Exists(path))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    public static string BuildDialogMessage(IReadOnlyList<string> missingDependencies)
+    {
+        var items = string.Join(Environment.NewLine, missingDependencies.Select(d => $"- {d}"));
+
+        return $"""
+            Missing Linux dependencies. Sidekick requires the following packages on Linux:
+            
+            {items}
+            
+            Install them using one of the following commands:
+            
+            Arch-based:
+            sudo pacman -S --needed xsel webkit2gtk-4.1
+            
+            Ubuntu / Debian:
+            sudo apt install xsel libwebkit2gtk-4.1-0
+            
+            Fedora:
+            sudo dnf install xsel webkit2gtk4.1
+            """;
     }
 }
-
-public sealed record MissingLinuxDependency(string Name, string Description);
-
-public sealed record ProcessResult(int ExitCode, string StandardOutput, string StandardError);

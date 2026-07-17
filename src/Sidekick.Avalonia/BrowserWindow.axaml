@@ -1,8 +1,8 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:utilities="clr-namespace:Sidekick.Avalonia.Utilities"
         x:Class="Sidekick.Avalonia.BrowserWindow">
     <Grid Name="Grid">
-        <NativeWebView Name="WebView"
-                       IsVisible="False" />
+        <utilities:SidekickWebView Name="WebView" />
     </Grid>
 </Window>

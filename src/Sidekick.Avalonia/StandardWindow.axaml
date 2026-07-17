@@ -1,10 +1,9 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:utilities="clr-namespace:Sidekick.Avalonia.Utilities"
         x:Class="Sidekick.Avalonia.StandardWindow">
     <Grid Name="Grid">
-        <NativeWebView Name="WebView"
-                       EnvironmentRequested="WebView_OnEnvironmentRequested"
-                       Margin="5" />
+        <utilities:SidekickWebView Name="WebView" Margin="5" />
 
         <Border Name="TopResizeHandle"
                 Height="5"

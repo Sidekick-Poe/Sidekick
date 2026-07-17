@@ -28,7 +28,7 @@ public partial class BrowserWindow : Window
         Height = HEIGHT;
         MinWidth = WIDTH;
         MinHeight = HEIGHT;
-        Background = Brushes.Black;
+        Background = new SolidColorBrush(Color.FromRgb(12, 10, 10));
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         WindowDecorations = WindowDecorations.Full;
         Topmost = true;
@@ -37,33 +37,10 @@ public partial class BrowserWindow : Window
 
         InitializeComponent();
 
-        WebView.EnvironmentRequested += WebView_EnvironmentRequested;
         WebView.NavigationCompleted += WebView_NavigationCompleted;
 
         Opened += BrowserWindow_Opened;
         Closed += BrowserWindow_Closed;
-    }
-
-    private void WebView_EnvironmentRequested(object? sender, WebViewEnvironmentRequestedEventArgs e)
-    {
-#if DEBUG
-        e.EnableDevTools = true;
-#endif
-
-        switch (e)
-        {
-            case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
-                webView2Args.IsInPrivateModeEnabled = true;
-                break;
-
-            case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
-                appleArgs.NonPersistentDataStore = true;
-                break;
-
-            case GtkWebViewEnvironmentRequestedEventArgs gtkArgs:
-                gtkArgs.EphemeralDataManager = true;
-                break;
-        }
     }
 
     private void BrowserWindow_Opened(object? sender, EventArgs e)
