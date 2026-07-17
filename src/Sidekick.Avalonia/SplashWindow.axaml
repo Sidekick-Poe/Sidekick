@@ -2,6 +2,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Sidekick.Avalonia.SplashWindow">
     <Grid Name="Grid">
-        <NativeWebView Name="WebView" />
+        <NativeWebView Name="WebView" EnvironmentRequested="WebView_OnEnvironmentRequested" />
     </Grid>
 </Window>

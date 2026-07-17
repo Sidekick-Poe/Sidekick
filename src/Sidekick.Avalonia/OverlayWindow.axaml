@@ -3,6 +3,7 @@
         x:Class="Sidekick.Avalonia.OverlayWindow">
     <Grid Name="Grid">
         <NativeWebView Name="WebView"
+                       EnvironmentRequested="WebView_OnEnvironmentRequested"
                        Margin="5" />
 
         <Border Name="TopResizeHandle"

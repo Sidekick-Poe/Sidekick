@@ -33,32 +33,6 @@ public partial class OverlayWindow : Window
         CanResize = true;
 
         InitializeComponent();
-
-        WebView.EnvironmentRequested += (_, args) =>
-        {
-#if DEBUG
-            // Enable developer tools for all platforms
-            args.EnableDevTools = true;
-#endif
-
-            // Platform-specific configuration
-            switch (args)
-            {
-                case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
-                    // This causes the application to crash. We need investigation.
-                    // var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-                    // ar useHardwareAcceleration = settingsService.GetBool(SettingKeys.UseHardwareAcceleration).Result;
-                    // if (!useHardwareAcceleration) webView2Args.AdditionalBrowserArguments = "--disable-gpu";
-                    webView2Args.IsInPrivateModeEnabled = true;
-                    break;
-                case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
-                    appleArgs.NonPersistentDataStore = true;
-                    break;
-                case GtkWebViewEnvironmentRequestedEventArgs gtkArgs:
-                    gtkArgs.EphemeralDataManager = true;
-                    break;
-            }
-        };
     }
 
     public async Task OpenView(string url)
@@ -234,4 +208,26 @@ public partial class OverlayWindow : Window
     }
 
     #endregion Resize
+    
+    private void WebView_OnEnvironmentRequested(object? sender, WebViewEnvironmentRequestedEventArgs args)
+    {
+#if DEBUG
+        // Enable developer tools for all platforms
+        args.EnableDevTools = true;
+#endif
+
+        // Platform-specific configuration
+        switch (args)
+        {
+            case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
+                webView2Args.IsInPrivateModeEnabled = true;
+                break;
+            case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
+                appleArgs.NonPersistentDataStore = true;
+                break;
+            case GtkWebViewEnvironmentRequestedEventArgs gtkArgs:
+                gtkArgs.EphemeralDataManager = true;
+                break;
+        }
+    }
 }

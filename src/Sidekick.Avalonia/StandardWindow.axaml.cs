@@ -35,28 +35,6 @@ public partial class StandardWindow : Window
         CanResize = true;
 
         InitializeComponent();
-
-        WebView.EnvironmentRequested += (_, args) =>
-        {
-#if DEBUG
-            // Enable developer tools for all platforms
-            args.EnableDevTools = true;
-#endif
-
-            // Platform-specific configuration
-            switch (args)
-            {
-                case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
-                    webView2Args.IsInPrivateModeEnabled = true;
-                    break;
-                case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
-                    appleArgs.NonPersistentDataStore = true;
-                    break;
-                case GtkWebViewEnvironmentRequestedEventArgs gtkArgs:
-                    gtkArgs.EphemeralDataManager = true;
-                    break;
-            }
-        };
     }
 
     public async Task OpenView(string url)
@@ -232,4 +210,26 @@ public partial class StandardWindow : Window
     }
 
     #endregion Resize
+    
+    private void WebView_OnEnvironmentRequested(object? sender, WebViewEnvironmentRequestedEventArgs args)
+    {
+#if DEBUG
+        // Enable developer tools for all platforms
+        args.EnableDevTools = true;
+#endif
+
+        // Platform-specific configuration
+        switch (args)
+        {
+            case WindowsWebView2EnvironmentRequestedEventArgs webView2Args:
+                webView2Args.IsInPrivateModeEnabled = true;
+                break;
+            case AppleWKWebViewEnvironmentRequestedEventArgs appleArgs:
+                appleArgs.NonPersistentDataStore = true;
+                break;
+            case GtkWebViewEnvironmentRequestedEventArgs gtkArgs:
+                gtkArgs.EphemeralDataManager = true;
+                break;
+        }
+    }
 }
