@@ -1,15 +1,17 @@
 @using Sidekick.Common.Ui.Localization
-<button type="button"
-        @onclick="OnClick"
-        @onclick:preventDefault="true"
-        @onclick:stopPropagation="true"
-        tabindex="-1"
-        title="@Resources["Close"]"
-        class="flex items-center p-2 text-white transition-colors duration-200 bg-red-900 hover:bg-red-700">
-    <Icon Svg="@UiIcons.Close" Size="@UiIconSize.Medium" />
-</button>
 
-@inject ICurrentView CurrentView
+<Tooltip Text="@Resources["Close"]">
+    <button type="button"
+            @onclick="OnClick"
+            @onclick:preventDefault="true"
+            @onclick:stopPropagation="true"
+            tabindex="-1"
+            class="flex items-center p-2 text-white transition-colors duration-200 bg-red-900 hover:bg-red-700">
+        <Icon Svg="@UiIcons.Close" Size="@UiIconSize.Medium"/>
+    </button>
+</Tooltip>
+
+@inject CurrentView CurrentView
 @inject IStringLocalizer<UiResources> Resources
 
 @code {

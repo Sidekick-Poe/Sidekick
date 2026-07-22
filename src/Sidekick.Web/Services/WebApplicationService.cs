@@ -4,13 +4,6 @@ namespace Sidekick.Web.Services;
 
 public class WebApplicationService : IApplicationService
 {
-    public int Priority => 9000;
-
-    public Task Initialize()
-    {
-        return Task.CompletedTask;
-    }
-
     public void Shutdown()
     {
         Environment.Exit(0);

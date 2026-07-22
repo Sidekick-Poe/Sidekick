@@ -15,7 +15,7 @@ public class CloseOverlayKeybindHandler(
         await settingsService.GetString(SettingKeys.KeyClose)
     ];
 
-    public override bool IsValid(string _) => viewLocator.IsOverlayOpened();
+    public override bool IsValid(string _) => viewLocator.IsOpened(SidekickViewType.Overlay);
 
     public override Task Execute(string _)
     {

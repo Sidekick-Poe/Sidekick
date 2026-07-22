@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Apis.Poe2Scout.Categories;
 using Sidekick.Apis.Poe2Scout.Clients;
 using Sidekick.Apis.Poe2Scout.History;
@@ -11,10 +12,10 @@ public static class StartupExtensions
     public static IServiceCollection AddSidekickPoe2ScoutApi(this IServiceCollection services)
     {
         services.AddHttpClient();
-        services.AddSingleton<IScoutClient, ScoutClient>();
-        services.AddSingleton<IScoutCategoryProvider, ScoutCategoryProvider>();
-        services.AddSingleton<IScoutItemProvider, ScoutItemProvider>();
-        services.AddSingleton<IScoutHistoryProvider, ScoutHistoryProvider>();
+        services.TryAddSingleton<IScoutClient, ScoutClient>();
+        services.TryAddSingleton<IScoutCategoryProvider, ScoutCategoryProvider>();
+        services.TryAddSingleton<IScoutItemProvider, ScoutItemProvider>();
+        services.TryAddSingleton<IScoutHistoryProvider, ScoutHistoryProvider>();
 
         return services;
     }

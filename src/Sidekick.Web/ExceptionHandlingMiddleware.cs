@@ -1,5 +1,4 @@
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Web;
 
@@ -7,16 +6,13 @@ public class ExceptionHandlingMiddleware
 {
     private readonly ILogger<ExceptionHandlingMiddleware> logger;
     private readonly RequestDelegate requestDelegate;
-    private readonly IViewLocator viewLocator;
 
     public ExceptionHandlingMiddleware(
         ILogger<ExceptionHandlingMiddleware> logger,
-        RequestDelegate requestDelegate,
-        IViewLocator viewLocator)
+        RequestDelegate requestDelegate)
     {
         this.logger = logger;
         this.requestDelegate = requestDelegate;
-        this.viewLocator = viewLocator;
     }
 
     /// <summary>

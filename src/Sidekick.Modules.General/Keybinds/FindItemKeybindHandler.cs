@@ -6,7 +6,7 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Modules.General.Keybinds;
 
 public class FindItemKeybindHandler(
-    IKeyboardProvider keyboard,
+    IInputProvider input,
     IClipboardProvider clipboardProvider,
     IProcessProvider processProvider,
     IItemParser itemParser,
@@ -26,7 +26,7 @@ public class FindItemKeybindHandler(
         var text = await clipboardProvider.Copy();
         if (text == null)
         {
-            await keyboard.PressKey(keybind);
+            await input.PressKey(keybind);
             return;
         }
 
@@ -38,8 +38,8 @@ public class FindItemKeybindHandler(
         if (string.IsNullOrEmpty(searchValue)) return;
 
         await clipboardProvider.SetText(searchValue);
-        keyboard.ReleaseAltModifier();
-        await keyboard.PressKey(
+        input.ReleaseAltModifier();
+        await input.PressKey(
             "Ctrl+F",
             "Ctrl+A",
             "Ctrl+V",

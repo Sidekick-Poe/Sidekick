@@ -1,6 +1,6 @@
 import { build } from 'esbuild';
 
-build({
+await build({
     entryPoints: ['Scripts/index.js'],
     outfile: 'wwwroot/js/sidekick.js',
     bundle: true,

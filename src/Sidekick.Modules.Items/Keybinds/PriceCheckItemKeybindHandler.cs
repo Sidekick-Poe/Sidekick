@@ -11,7 +11,7 @@ public class PriceCheckItemKeybindHandler
     IClipboardProvider clipboardProvider,
     IProcessProvider processProvider,
     ISettingsService settingsService,
-    IKeyboardProvider keyboard
+    IInputProvider input
 ) : KeybindHandler(settingsService, SettingKeys.KeyOpenPriceCheck)
 {
     private readonly ISettingsService settingsService = settingsService;
@@ -28,7 +28,7 @@ public class PriceCheckItemKeybindHandler
         var text = await clipboardProvider.Copy();
         if (text == null)
         {
-            await keyboard.PressKey(keybind);
+            await input.PressKey(keybind);
             return;
         }
 

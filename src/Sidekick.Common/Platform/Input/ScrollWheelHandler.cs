@@ -9,15 +9,15 @@ namespace Sidekick.Common.Platform.Input;
 public abstract class ScrollWheelHandler : IInputHandler, IDisposable
 {
     private readonly ISettingsService settingsService;
-    private readonly IKeyboardProvider keyboardProvider;
+    private readonly IInputProvider inputProvider;
 
-    protected ScrollWheelHandler(ISettingsService settingsService, IKeyboardProvider keyboardProvider)
+    protected ScrollWheelHandler(ISettingsService settingsService, IInputProvider inputProvider)
     {
         this.settingsService = settingsService;
-        this.keyboardProvider = keyboardProvider;
+        this.inputProvider = inputProvider;
         settingsService.OnSettingsChanged += OnSettingsChanged;
-        keyboardProvider.OnScrollDown += ScrollDownHandler;
-        keyboardProvider.OnScrollUp += ScrollUpHandler;
+        inputProvider.OnScrollDown += ScrollDownHandler;
+        inputProvider.OnScrollUp += ScrollUpHandler;
     }
 
     private void OnSettingsChanged(string[] keys)
@@ -90,7 +90,7 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
     public void Dispose()
     {
         settingsService.OnSettingsChanged -= OnSettingsChanged;
-        keyboardProvider.OnScrollDown -= ScrollDownHandler;
-        keyboardProvider.OnScrollUp -= ScrollUpHandler;
+        inputProvider.OnScrollDown -= ScrollDownHandler;
+        inputProvider.OnScrollUp -= ScrollUpHandler;
     }
 }

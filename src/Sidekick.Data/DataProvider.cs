@@ -37,7 +37,7 @@ public class DataProvider
 
         string GetDataDirectory()
         {
-            if (Debugger.IsAttached || configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            if (Debugger.IsAttached || configuration.Value.ApplicationType == SidekickApplicationType.Test)
             {
                 var solutionDirectory = FindSolutionDirectory();
                 if (!string.IsNullOrEmpty(solutionDirectory))
@@ -46,7 +46,7 @@ public class DataProvider
                 }
             }
 
-            return Path.Combine(AppContext.BaseDirectory, "wwwroot/data");
+            return Path.Combine(AppContext.BaseDirectory, "_data");
         }
 
         string? FindSolutionDirectory(string? startDirectory = null)

@@ -6,14 +6,15 @@ namespace Sidekick.Common.Ui.Views;
 public interface IViewLocator
 {
     /// <summary>
-    /// Gets a value indicating whether the view supports the minimize functionality.
+    /// The last opened view type.
     /// </summary>
-    bool SupportsMinimize { get; }
+    SidekickViewType LastOpenedType { get; }
 
     /// <summary>
-    /// Gets a value indicating whether the view supports the maximize functionality.
+    /// Check if a view is opened
     /// </summary>
-    bool SupportsMaximize { get; }
+    /// <returns>true if a view is opened. false otherwise</returns>
+    bool IsOpened(SidekickViewType type);
 
     /// <summary>
     /// Opens a view of the specified type and navigates to the given URL.
@@ -23,14 +24,33 @@ public interface IViewLocator
     void Open(SidekickViewType type, string url);
 
     /// <summary>
-    /// Closes a view of the specified type.
+    /// Closes the Sidekick view.
     /// </summary>
-    /// <param name="type">The type of view to close.</param>
     void Close(SidekickViewType type);
 
     /// <summary>
-    /// Check if an overlay is opened
+    /// Maximizes the specified view type to occupy the full available screen space.
     /// </summary>
-    /// <returns>true if a view is opened. false otherwise</returns>
-    bool IsOverlayOpened();
+    /// <param name="type">The type of view to maximize.</param>
+    void Maximize(SidekickViewType type);
+
+    /// <summary>
+    /// Minimizes the specified view type, reducing its size or visibility while keeping it active in the background.
+    /// </summary>
+    /// <param name="type">The type of view to minimize.</param>
+
+    void Minimize(SidekickViewType type);
+    /// <summary>
+    /// Initiates a dragging action for a view at the specified coordinates.
+    /// </summary>
+    /// <param name="type">The type of view to move.</param>
+    /// <param name="pageX">The X-coordinate on the page where the dragging action starts.</param>
+    /// <param name="pageY">The Y-coordinate on the page where the dragging action starts.</param>
+    void StartMoving(SidekickViewType type, int pageX, int pageY);
+
+    /// <summary>
+    /// Stops dragging the specified view.
+    /// </summary>
+    /// <param name="type">The type of view to move.</param>
+    void StopMoving(SidekickViewType type);
 }

@@ -40,7 +40,7 @@ public class CloseOverlayWithEscHandler : KeybindHandler
         "Esc",
     ]);
 
-    public override bool IsValid(string _) => EscapeClosesOverlays && viewLocator.IsOverlayOpened();
+    public override bool IsValid(string _) => EscapeClosesOverlays && viewLocator.IsOpened(SidekickViewType.Overlay);
 
     public override Task Execute(string _)
     {

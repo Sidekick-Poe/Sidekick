@@ -2,14 +2,17 @@ name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 categories:
   - title: 'Features'
-    labels:
-      - 'Enhancement'
+    when:
+      labels:
+        - 'Enhancement'
   - title: 'Bug Fixes'
-    labels:
-      - 'Bug'
+    when:
+      labels:
+        - 'Bug'
   - title: 'Maintenance'
-    labels:
-      - 'Maintenance'
+    when:
+      labels:
+        - 'Maintenance'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 template: |

@@ -2,7 +2,7 @@
     <div class="dark:bg-stone-950">
         @TopContent
     </div>
-    <div class="grow flex flex-nowrap items-stretch">
+    <div class="grow flex flex-nowrap items-stretch dark:bg-stone-900">
         <div id="@LeftContentId"
              class="relative min-w-80 max-w-140 overflow-auto"
              style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
@@ -52,7 +52,7 @@
     }
 </script>
 
-@inject IJSRuntime JSRuntime
+@inject SafeJsRuntime JsRuntime
 
 @code {
 
@@ -80,12 +80,8 @@
     {
         if (firstRender && OnLeftContentResize.HasDelegate)
         {
-            try
-            {
-                var dotNetReference = DotNetObjectReference.Create(this);
-                await JSRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
-            }
-            catch {}
+            var dotNetReference = DotNetObjectReference.Create(this);
+            await JsRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
         }
     }
 

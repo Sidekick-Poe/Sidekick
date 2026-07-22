@@ -5,8 +5,7 @@
      contenteditable="true"
      data-placeholder="@Placeholder">@Value</div>
 
-@inject IJSRuntime JsRuntime
-@inject ILogger<FormContentEditable> Logger
+@inject SafeJsRuntime JsRuntime
 @implements IAsyncDisposable
 
 @code {
@@ -26,7 +25,7 @@
     [Parameter]
     public EventCallback<double?> DoubleValueChanged { get; set; }
 
-    private IJSObjectReference? JsObject { get; set; }
+    private SafeJsObjectReference? JsObject { get; set; }
 
     private DotNetObjectReference<FormContentEditable>? Reference { get; set; }
 
@@ -72,15 +71,8 @@
         // Initialize the IntersectionObserver
         if (firstRender)
         {
-            try
-            {
-                Reference = DotNetObjectReference.Create(this);
-                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.forms.contentEditable", ElementId, Reference);
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to load javascript module.");
-            }
+            Reference = DotNetObjectReference.Create(this);
+            JsObject = await JsRuntime.InvokeObjectAsync("sidekick.forms.contentEditable", ElementId, Reference);
 
             await UpdateEditable();
         }

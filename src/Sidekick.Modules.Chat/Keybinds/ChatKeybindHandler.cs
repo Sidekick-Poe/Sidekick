@@ -9,7 +9,7 @@ namespace Sidekick.Modules.Chat.Keybinds;
 public class ChatKeybindHandler(
     ISettingsService settingsService,
     IClipboardProvider clipboard,
-    IKeyboardProvider keyboard,
+    IInputProvider input,
     ILogger<ChatKeybindHandler> logger,
     IProcessProvider processProvider,
     IGameLogProvider gameLogProvider) : KeybindHandler(settingsService, SettingKeys.ChatCommands)
@@ -64,11 +64,11 @@ public class ChatKeybindHandler(
         await clipboard.SetText(command);
 
         // Make sure Alt is not pressed. Alt+Enter in-game will toggle fullscreen mode.
-        keyboard.ReleaseAltModifier();
+        input.ReleaseAltModifier();
 
         if (chatCommand.Submit)
         {
-            await keyboard.PressKey(
+            await input.PressKey(
             "Enter",
             "Ctrl+A",
             "Backspace",
@@ -81,7 +81,7 @@ public class ChatKeybindHandler(
         }
         else
         {
-            await keyboard.PressKey("Enter", "Ctrl+A", "Ctrl+V");
+            await input.PressKey("Enter", "Ctrl+A", "Ctrl+V");
         }
 
         if (retainClipboard)

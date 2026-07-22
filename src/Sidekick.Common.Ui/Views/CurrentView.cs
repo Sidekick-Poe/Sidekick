@@ -1,70 +1,39 @@
 namespace Sidekick.Common.Ui.Views;
 
 /// <summary>
-/// Represents the current view implementation for Sidekick with functionalities
-/// to manage and interact with views including initialization, creation, and disposal.
+/// The current view
 /// </summary>
-public class CurrentView : ICurrentView
+public class CurrentView(IViewLocator viewLocator)
 {
-    /// <inheritdoc/>
-    public event Action? OptionsChanged;
+    public SidekickViewType CurrentViewType { get; private set; }
 
-    /// <inheritdoc/>
-    public event Action? Minimized;
-
-    /// <inheritdoc/>
-    public event Action? Maximized;
-
-    /// <inheritdoc/>
-    public event Action? Closed;
-
-    /// <inheritdoc/>
-    public event Action<int, int>? DragStarted;
-
-    /// <inheritdoc/>
-    public event Action? DragStopped;
-
-    public int? Width  { get; private set; }
-    public int? Height { get; private set; }
-
-    public void UpdateOptions(int? width, int? height)
+    public void SetViewType(SidekickViewType type)
     {
-        Width = width;
-        Height = height;
-        OptionsChanged?.Invoke();
+        CurrentViewType = type;
     }
 
-    /// <inheritdoc/>
-    public void Minimize()
-    {
-        Minimized?.Invoke();
-    }
-
-    /// <inheritdoc/>
-    public void Maximize()
-    {
-        Maximized?.Invoke();
-    }
-
-    /// <inheritdoc/>
     public void Close()
     {
-        Closed?.Invoke();
+        viewLocator.Close(CurrentViewType);
     }
 
-    private bool IsDragging { get; set; }
-    
-    public void StartDragging(int offsetX, int offsetY)
+    public void Maximize()
     {
-        if (IsDragging) return;
-
-        IsDragging = true;
-        DragStarted?.Invoke(offsetX, offsetY);
+        viewLocator.Maximize(CurrentViewType);
     }
 
-    public void StopDragging()
+    public void Minimize()
     {
-        IsDragging = false;
-        DragStopped?.Invoke();
+        viewLocator.Minimize(CurrentViewType);
+    }
+
+    public void StartMoving(int pageX, int pageY)
+    {
+        viewLocator.StartMoving(CurrentViewType, pageX, pageY);
+    }
+
+    public void StopMoving()
+    {
+        viewLocator.StopMoving(CurrentViewType);
     }
 }

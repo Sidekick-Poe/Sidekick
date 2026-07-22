@@ -27,7 +27,7 @@ public class StatsInvariantBuilder
         }
         catch (Exception ex)
         {
-            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            if (configuration.Value.ApplicationType == SidekickApplicationType.Test)
             {
                 throw;
             }

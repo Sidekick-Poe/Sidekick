@@ -1,6 +1,8 @@
 ﻿<div class="font-sans text-base absolute top-0 left-0 right-0 bottom-0 pointer-events-none overflow-hidden *:pointer-events-auto [zoom:var(--sidekick-zoom)]">
-    @foreach (var name in SectionService.BodySectionNames)
+    @foreach (var name in bodySectionNames)
     {
+        if (string.IsNullOrEmpty(name)) continue;
+
         <SectionOutlet @key="@name"
                        SectionName="@name"/>
     }
@@ -11,21 +13,45 @@
 @implements IDisposable
 
 @code {
+// Keep a local list for rendering
+    private List<string> bodySectionNames = new();
 
     protected override void OnInitialized()
     {
         SectionService.OnChanged += Changed;
+
+        // Take the initial snapshot
+        UpdateLocalSnapshot();
+
         base.OnInitialized();
     }
 
     private void Changed()
     {
-        InvokeAsync(StateHasChanged);
+        InvokeAsync(() =>
+        {
+            UpdateLocalSnapshot();
+            StateHasChanged();
+        });
+    }
+
+    private void UpdateLocalSnapshot()
+    {
+        // Using a try/catch or lock here prevents the render tree from crashing
+        // if a race condition happens during the event handler.
+        try
+        {
+            bodySectionNames = SectionService.BodySectionNames.ToList();
+        }
+        catch (ArgumentException)
+        {
+            // If it mutates mid-copy, fallback gracefully or retry
+            // The next OnChanged event will fix it up anyway
+        }
     }
 
     public void Dispose()
     {
         SectionService.OnChanged -= Changed;
     }
-
 }

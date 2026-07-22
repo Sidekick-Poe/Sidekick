@@ -88,7 +88,7 @@ public class GameLogProvider(
 
         // fs.Position will be right after the '\n' char or position 0 if no '\n' char
         var bytes = new byte[lineLength - 1];
-        stream.Read(bytes, 0, lineLength - 1);
+        stream.ReadExactly(bytes, 0, lineLength - 1);
 
         // -1 is the \n
         stream.Position = oldPosition - 1;

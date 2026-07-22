@@ -2,12 +2,8 @@
 @using Sidekick.Modules.Updater.Localization
 
 <LayoutSimple>
-    <TopContent>
-        <AppLogo/>
-    </TopContent>
-
     <ChildContent>
-        <AppFullContainer>
+        <AppContainer>
             <Heading1 Class="mb-4 text-center">@Resources["New_Update_Alert"]</Heading1>
             @if (UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
             {
@@ -30,7 +26,7 @@
                     @Resources["NoChangelog"]
                 </div>
             }
-        </AppFullContainer>
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
@@ -42,8 +38,6 @@
         </div>
     </BottomContent>
 </LayoutSimple>
-
-<ViewOptions Width="600" Height="500"/>
 
 @inject IStringLocalizer<UpdateResources> Resources
 

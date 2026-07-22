@@ -1,0 +1,215 @@
+using System.Net;
+using System.Net.Sockets;
+using ApexCharts;
+using Sidekick.Apis.Common;
+using Sidekick.Apis.GitHub;
+using Sidekick.Apis.Poe.Account;
+using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe2Scout;
+using Sidekick.Apis.PoeDb;
+using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoePriceInfo;
+using Sidekick.Apis.PoeWiki;
+using Sidekick.Common;
+using Sidekick.Common.Database;
+using Sidekick.Common.Dialogs;
+using Sidekick.Common.Platform;
+using Sidekick.Common.Ui;
+using Sidekick.Data;
+using Sidekick.Modules.About;
+using Sidekick.Modules.Chat;
+using Sidekick.Modules.Development;
+using Sidekick.Modules.General;
+using Sidekick.Modules.Initialization;
+using Sidekick.Modules.Items;
+using Sidekick.Modules.Logs;
+using Sidekick.Modules.RegexHotkeys;
+using Sidekick.Modules.Updater;
+using Sidekick.Modules.Wealth;
+
+namespace Sidekick.Web;
+
+public class ServerAppHost(SidekickApplicationType applicationType) : IDisposable
+{
+    private const int DefaultPort = 5000;
+    private const int MaxPortSearchAttempts = 100;
+
+    private WebApplication? app;
+    private Task? runTask;
+    private bool disposed;
+
+    public Task RunTask => runTask ?? throw new InvalidOperationException("Server application has not been started.");
+    public WebApplication Application => app ?? throw new InvalidOperationException("Server application has not been started.");
+
+    public void Start(
+        Action<IServiceCollection>? configureServices = null,
+        CancellationToken cancellationToken = default)
+    {
+        var assembly = typeof(ServerAppHost).Assembly;
+        var assemblyName = assembly.GetName().Name;
+        var assemblyLocation = Path.GetDirectoryName(assembly.Location)
+                               ?? AppDomain.CurrentDomain.BaseDirectory;
+
+        var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+        {
+            ApplicationName = assemblyName,
+            Args = [],
+            ContentRootPath = assemblyLocation,
+            WebRootPath = Path.Combine(assemblyLocation, "wwwroot"),
+        });
+        builder.WebHost.UseStaticWebAssets();
+
+        var port = GetAvailablePort(DefaultPort);
+        builder.WebHost.ConfigureKestrel(options =>
+        {
+            options.ListenLocalhost(port);
+        });
+
+        #region Services
+
+        configureServices?.Invoke(builder.Services);
+        builder.Services.AddRazorPages();
+        builder.Services.AddServerSideBlazor();
+
+        builder.Services.AddHttpClient();
+        builder.Services.AddLocalization();
+
+        builder.Services
+
+            // Common
+            .AddSidekickCommon(applicationType)
+            .AddSidekickCommonDialogs()
+            .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickCommonUi()
+
+            // Data
+            .AddSidekickData()
+
+            // Apis
+            .AddSidekickGitHubApi()
+            .AddSidekickCommonApi()
+            .AddSidekickPoeAccountApi()
+            .AddSidekickPoeTradeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoe2ScoutApi()
+            .AddSidekickPoePriceInfoApi()
+            .AddSidekickPoeDbApi()
+            .AddSidekickPoeWikiApi()
+
+            // Modules
+            .AddSidekickAbout()
+            .AddSidekickDevelopment()
+            .AddSidekickGeneral()
+            .AddSidekickInitialization()
+            .AddSidekickItems()
+            .AddSidekickLogs()
+            .AddSidekickChat()
+            .AddSidekickRegexHotkeys()
+            .AddSidekickUpdater()
+            .AddSidekickWealth()
+
+            // Platform needs to be at the end
+            .AddSidekickCommonPlatform();
+
+        builder.Services.AddApexCharts();
+
+        #endregion Services
+
+        app = builder.Build();
+
+        #region Pipeline
+
+        app.Services.UseSidekickCommonDatabase();
+
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+        app.UseAntiforgery();
+
+        // SERVER
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/_Host");
+
+        // WEB
+        // //
+        // app.UseStaticFiles(new StaticFileOptions
+        // {
+        //     ServeUnknownFileTypes = true,
+        //     FileProvider = new PhysicalFileProvider(builder.Environment.WebRootPath),
+        //     RequestPath = "",
+        // });
+        // var configuration = app.Services.GetRequiredService<IOptions<SidekickConfiguration>>();
+        // app.MapRazorComponents<App>()
+        //     .AddInteractiveServerRenderMode()
+        //     .AddAdditionalAssemblies(configuration.Value.Modules.ToArray());
+
+        #endregion Pipeline
+
+        runTask = app.RunAsync(cancellationToken);
+    }
+
+    private static int GetAvailablePort(int preferredPort)
+    {
+        for (var port = preferredPort; port < preferredPort + MaxPortSearchAttempts; port++)
+        {
+            if (IsPortAvailable(port))
+            {
+                return port;
+            }
+        }
+
+        throw new InvalidOperationException($"Could not find an available port between {preferredPort} and {preferredPort + MaxPortSearchAttempts - 1}.");
+    }
+
+    private static bool IsPortAvailable(int port)
+    {
+        try
+        {
+            using var listener = new TcpListener(IPAddress.Loopback, port);
+            listener.Start();
+            return true;
+        }
+        catch (SocketException)
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Gracefully stops the Blazor Server application.
+    /// </summary>
+    private async Task Stop()
+    {
+        if (app == null) return;
+
+        try
+        {
+            await app.StopAsync();
+            if (runTask != null) await runTask;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[ServerAppHost] Error stopping server: {ex}");
+        }
+        finally
+        {
+            app = null;
+        }
+    }
+
+    public void Dispose()
+    {
+        if (disposed) return;
+
+        disposed = true;
+
+        try
+        {
+            Stop().Wait(TimeSpan.FromSeconds(5));
+        }
+        catch
+        {
+            // Ignore timeout exceptions during disposal
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:utilities="clr-namespace:Sidekick.Avalonia.Utilities"
+        x:Class="Sidekick.Avalonia.StandardWindow">
+    <Grid Name="Grid">
+        <utilities:SidekickWebView Name="WebView" Margin="5" />
+
+        <Border Name="TopResizeHandle"
+                Height="5"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Cursor="TopSide"
+                PointerPressed="TopResizeHandle_OnPointerPressed" />
+
+        <Border Name="BottomResizeHandle"
+                Height="5"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
+                Background="Transparent"
+                Cursor="BottomSide"
+                PointerPressed="BottomResizeHandle_OnPointerPressed" />
+
+        <Border Name="LeftResizeHandle"
+                Width="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                Cursor="LeftSide"
+                PointerPressed="LeftResizeHandle_OnPointerPressed" />
+
+        <Border Name="RightResizeHandle"
+                Width="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                Cursor="RightSide"
+                PointerPressed="RightResizeHandle_OnPointerPressed" />
+
+        <Border Name="TopLeftResizeHandle"
+                Width="10"
+                Height="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Cursor="TopLeftCorner"
+                PointerPressed="TopLeftResizeHandle_OnPointerPressed" />
+
+        <Border Name="TopRightResizeHandle"
+                Width="10"
+                Height="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Cursor="TopRightCorner"
+                PointerPressed="TopRightResizeHandle_OnPointerPressed" />
+
+        <Border Name="BottomLeftResizeHandle"
+                Width="10"
+                Height="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Background="Transparent"
+                Cursor="BottomLeftCorner"
+                PointerPressed="BottomLeftResizeHandle_OnPointerPressed" />
+
+        <Border Name="BottomRightResizeHandle"
+                Width="10"
+                Height="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="Transparent"
+                Cursor="BottomRightCorner"
+                PointerPressed="BottomRightResizeHandle_OnPointerPressed" />
+    </Grid>
+</Window>

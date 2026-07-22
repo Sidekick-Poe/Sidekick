@@ -28,7 +28,7 @@
         {
             <ButtonIcon OnClick="Clear"
                         Svg="@UiIcons.Clear"
-                        title="@Resources["Clear"]"/>
+                        Tooltip="@Resources["Clear"]"/>
         }
 
         @AdornmentContent
@@ -44,9 +44,8 @@
 </div>
 
 @inject IStringLocalizer<UiResources> Resources
-@inject IKeyboardProvider Keyboard
-@inject ILogger<KeybindEditorInternal> Logger
-@inject IJSRuntime JsRuntime
+@inject IInputProvider Input
+@inject SafeJsRuntime JsRuntime
 
 @code {
 
@@ -92,21 +91,14 @@
 
     protected override void OnInitialized()
     {
-        Keyboard.OnKeyDown += OnKeyDown;
+        Input.OnKeyDown += OnKeyDown;
         CurrentEditorChanged += StateHasChanged;
         base.OnInitialized();
     }
 
     private async Task RemoveFocusAsync()
     {
-        try
-        {
-            await JsRuntime.InvokeVoidAsync("sidekick.forms.removeFocus", Id);
-        }
-        catch (Exception e)
-        {
-            Logger.LogError(e, "Failed to load javascript module.");
-        }
+        await JsRuntime.InvokeVoidAsync("sidekick.forms.removeFocus", Id);
     }
 
     public void Focus()
@@ -136,7 +128,7 @@
                 {
                     IsDuplicated = false;
                 }
-                else if (Keyboard.UsedKeybinds.Contains(key))
+                else if (Input.UsedKeybinds.Contains(key))
                 {
                     DuplicatedKey = key;
                     IsDuplicated = true;
@@ -165,7 +157,7 @@
 
     public void Dispose()
     {
-        Keyboard.OnKeyDown -= OnKeyDown;
+        Input.OnKeyDown -= OnKeyDown;
         CurrentEditorChanged -= StateHasChanged;
     }
 

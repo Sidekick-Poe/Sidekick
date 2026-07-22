@@ -2,8 +2,7 @@
     @ChildContent
 </div>
 
-@inject IJSRuntime JsRuntime
-@inject ILogger<IntersectionObserver> Logger
+@inject SafeJsRuntime JsRuntime
 
 @code {
 
@@ -21,15 +20,8 @@
     {
         if (firstRender)
         {
-            try
-            {
-                Reference = DotNetObjectReference.Create(this);
-                await JsRuntime.InvokeVoidAsync("sidekick.app.intersectionObserver", ElementId, Reference);
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to load javascript module.");
-            }
+            Reference = DotNetObjectReference.Create(this);
+            await JsRuntime.InvokeVoidAsync("sidekick.app.intersectionObserver", ElementId, Reference);
         }
 
         await base.OnAfterRenderAsync(firstRender);

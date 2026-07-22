@@ -1,15 +1,11 @@
 @using Sidekick.Modules.Updater.Localization
 
 <LayoutSimple>
-    <TopContent>
-        <AppLogo/>
-    </TopContent>
-
     <ChildContent>
-        <AppFullContainer>
+        <AppContainer>
             <Heading3 Class="mb-2 text-center">@Resources["Checking_For_Updates"]</Heading3>
             <ProgressBar Indeterminate="true"/>
-        </AppFullContainer>
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
@@ -20,8 +16,5 @@
         </div>
     </BottomContent>
 </LayoutSimple>
-
-<ViewOptions Width="@ICurrentView.DialogWidth"
-             Height="@ICurrentView.DialogHeight"/>
 
 @inject IStringLocalizer<UpdateResources> Resources

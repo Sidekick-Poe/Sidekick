@@ -1,22 +1,27 @@
-@if (!ViewLocator.SupportsMinimize)
+@using Microsoft.Extensions.Options
+@using Sidekick.Common.Ui.Localization
+
+@if (!Configuration.Value.ApplicationType.SupportsDesktop())
 {
     return;
 }
 
-<button type="button"
-        @onclick="OnClick"
-        @onclick:preventDefault="true"
-        @onclick:stopPropagation="true"
-        tabindex="-1"
-        title="Minimize"
-        class="flex items-center p-2 border-l text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-        <path d="M20,14H4V10H20"/>
-    </svg>
-</button>
+<Tooltip Text="@Resources["Minimize"]">
+    <button type="button"
+            @onclick="OnClick"
+            @onclick:preventDefault="true"
+            @onclick:stopPropagation="true"
+            tabindex="-1"
+            class="flex items-center p-2 border-l text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+            <path d="M20,14H4V10H20"/>
+        </svg>
+    </button>
+</Tooltip>
 
-@inject IViewLocator ViewLocator
-@inject ICurrentView CurrentView
+@inject IOptions<SidekickConfiguration> Configuration
+@inject CurrentView CurrentView
+@inject IStringLocalizer<UiResources> Resources
 
 @code {
 

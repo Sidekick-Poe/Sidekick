@@ -5,17 +5,14 @@ public enum SidekickApplicationType
     Unknown,
     Test,
     Web,
-    Photino,
-    Electron,
-    Wpf,
-    DataBuilder,
+    Avalonia,
 }
 
 public static class SidekickApplicationTypeExtensions
 {
-    public static bool SupportsKeybinds(this SidekickApplicationType type) => type is SidekickApplicationType.Wpf or SidekickApplicationType.Photino or SidekickApplicationType.Electron;
+    public static bool SupportsKeybinds(this SidekickApplicationType type) => type == SidekickApplicationType.Avalonia;
 
-    public static bool SupportsAuthentication(this SidekickApplicationType type) => type == SidekickApplicationType.Wpf;
+    public static bool SupportsAuthentication(this SidekickApplicationType type) => type == SidekickApplicationType.Avalonia;
 
-    public static bool SupportsHardwareAcceleration(this SidekickApplicationType type) => type == SidekickApplicationType.Wpf;
+    public static bool SupportsDesktop(this SidekickApplicationType type) => type is SidekickApplicationType.Avalonia;
 }

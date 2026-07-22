@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
+using Sidekick.Common.Ui.Utilities;
 
 namespace Sidekick.Common.Ui.Errors;
 
@@ -14,7 +14,7 @@ public class LoggingErrorBoundary : ErrorBoundary
     private ILogger<LoggingErrorBoundary> Logger { get; set; } = null!;
 
     [Inject]
-    private IJSRuntime JsRuntime { get; set; } = null!;
+    private SafeJsRuntime JsRuntime { get; set; } = null!;
 
     public Exception? CapturedException => CurrentException;
 

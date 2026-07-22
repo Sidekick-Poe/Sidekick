@@ -1,0 +1,23 @@
+@page "/initialize"
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Typography
+@using Sidekick.Common.Ui.Progress
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Layouts
+
+<LayoutSimple>
+    <ChildContent>
+        <AppContainer>
+        <Heading3 Class="mb-2 text-center">@Step</Heading3>
+        <ProgressBar Percent="Percentage"/>
+        </AppContainer>
+    </ChildContent>
+
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ButtonSecondary OnClick="Exit">
+                @Resources["Exit"]
+            </ButtonSecondary>
+        </div>
+    </BottomContent>
+</LayoutSimple>

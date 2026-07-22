@@ -3,8 +3,7 @@
     @ChildContent
 </div>
 
-@inject IJSRuntime JsRuntime
-@inject ILogger<FlowbiteComponent> Logger
+@inject SafeJsRuntime JsRuntime
 @implements IAsyncDisposable
 
 @code {
@@ -21,7 +20,7 @@
     [Parameter]
     public IEnumerable<object>? ScriptParameters { get; set; }
 
-    public IJSObjectReference? JsObject { get; set; }
+    public SafeJsObjectReference? JsObject { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 
@@ -29,14 +28,7 @@
     {
         if (firstRender)
         {
-            try
-            {
-                JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick.flowbite." + Script, Id, ScriptParameters);
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to load javascript module.");
-            }
+            JsObject = await JsRuntime.InvokeObjectAsync("sidekick.flowbite." + Script, Id, ScriptParameters);
         }
 
         await base.OnAfterRenderAsync(firstRender);

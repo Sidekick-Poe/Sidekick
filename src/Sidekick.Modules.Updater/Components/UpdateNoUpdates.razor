@@ -1,14 +1,10 @@
 @using Sidekick.Modules.Updater.Localization
 
 <LayoutSimple>
-    <TopContent>
-        <AppLogo/>
-    </TopContent>
-
     <ChildContent>
-        <AppFullContainer>
+        <AppContainer>
             <Heading3 Class="text-center">@Resources["No_Updates"]</Heading3>
-        </AppFullContainer>
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
@@ -18,8 +14,5 @@
         </div>
     </BottomContent>
 </LayoutSimple>
-
-<ViewOptions Width="@ICurrentView.DialogWidth"
-             Height="@ICurrentView.DialogHeight"/>
 
 @inject IStringLocalizer<UpdateResources> Resources

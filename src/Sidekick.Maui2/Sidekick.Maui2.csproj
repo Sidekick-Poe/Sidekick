@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">net8.0-windows10.0.19041.0</TargetFrameworks>
+        <TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('windows'))">net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+        <!-- Uncomment to also build the tizen app: -->
+        <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+        <OutputType>Exe</OutputType>
+        <RootNamespace>Sidekick.Maui</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <!-- Display name -->
+        <ApplicationTitle>Sidekick</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.sidekick.maui</ApplicationId>
+        <ApplicationIdGuid>C0A62968-3F40-4A0F-9721-1D7644246944</ApplicationIdGuid>
+
+        <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net8.0-windows10.0.19041.0'">win-x64</RuntimeIdentifier>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <EnableDefaultMauiItems>true</EnableDefaultMauiItems>
+        <StartupObject>Sidekick.Maui.Program</StartupObject>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+        <SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
+        <SupportedOSPlatformVersion>11.0</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-maccatalyst'">
+        <SupportedOSPlatformVersion>13.1</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-windows10.0.19041.0'">
+        <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    </PropertyGroup>
+
+    <!-- Resource items (commented out due to missing files)
+    <ItemGroup>
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+        <MauiImage Include="Resources\Images\*" />
+        <MauiFont Include="Resources\Fonts\*" />
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+    -->
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Maui.Controls" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj" />
+        <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.About\Sidekick.Modules.About.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Logs\Sidekick.Modules.Logs.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Updater\Sidekick.Modules.Updater.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="wwwroot\**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Platforms\Android\MainApplication.cs" />
+      <None Include="Platforms\MacCatalyst\Program.cs" />
+    </ItemGroup>
+
+    <Target Name="Copywwwroot" BeforeTargets="Build">
+        <ItemGroup>
+            <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
+    </Target>
+
+    <Target Name="CopyData" BeforeTargets="Build">
+        <RemoveDir Directories="$(ProjectDir)wwwroot\data" />
+        <MakeDir Directories="$(ProjectDir)wwwroot\data" />
+        <ItemGroup>
+            <DataFiles Include="$(ProjectDir)..\..\data\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ProjectDir)wwwroot\data\%(RecursiveDir)" />
+    </Target>
+
+</Project>

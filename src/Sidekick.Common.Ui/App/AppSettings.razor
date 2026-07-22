@@ -1,16 +1,19 @@
+@using Sidekick.Common.Ui.Localization
 
-<button type="button"
-        @onclick="OpenSettings"
-        @onclick:preventDefault="true"
-        @onclick:stopPropagation="true"
-        tabindex="-1"
-        title="Open Settings"
-        class="flex items-center p-2 border-l text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600">
-    <Icon Svg="@UiIcons.Settings" Size="@UiIconSize.Medium" />
-</button>
+<Tooltip Text="@Resources["Open_Settings"]">
+    <button type="button"
+            @onclick="OpenSettings"
+            @onclick:preventDefault="true"
+            @onclick:stopPropagation="true"
+            tabindex="-1"
+            class="flex items-center p-2 border-l text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600">
+        <Icon Svg="@UiIcons.Settings" Size="@UiIconSize.Medium" />
+    </button>
+</Tooltip>
 
-@inject ICurrentView CurrentView
+@inject CurrentView CurrentView
 @inject IViewLocator ViewLocator
+@inject IStringLocalizer<UiResources> Resources
 
 @code {
 

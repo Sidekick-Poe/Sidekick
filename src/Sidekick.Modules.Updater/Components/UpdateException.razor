@@ -1,12 +1,10 @@
 @using Sidekick.Common.Exceptions
 
 <LayoutSimple>
-    <TopContent>
-        <AppLogo/>
-    </TopContent>
-
     <ChildContent>
-        <AlertException Exception="Exception"/>
+        <AppContainer>
+            <AlertException Exception="Exception"/>
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
@@ -17,9 +15,6 @@
         </div>
     </BottomContent>
 </LayoutSimple>
-
-<ViewOptions Width="ICurrentView.DialogWidth"
-             Height="ICurrentView.DialogHeight"/>
 
 @code {
 

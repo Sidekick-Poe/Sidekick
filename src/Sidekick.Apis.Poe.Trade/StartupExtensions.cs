@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
@@ -20,16 +21,16 @@ public static class StartupExtensions
 {
     public static IServiceCollection AddSidekickPoeTradeApi(this IServiceCollection services)
     {
-        services.AddTransient<TradeApiHandler>();
+        services.TryAddTransient<TradeApiHandler>();
 
         services.AddHttpClient(TradeApiClient.ClientName)
             .AddHttpMessageHandler<TradeApiHandler>();
 
-        services.AddTransient<ITradeApiClient, TradeApiClient>();
-        services.AddTransient<PoeResources>();
+        services.TryAddTransient<ITradeApiClient, TradeApiClient>();
+        services.TryAddTransient<PoeResources>();
 
-        services.AddSingleton<IItemTradeService, ItemTradeService>();
-        services.AddSingleton<ILeagueProvider, LeagueProvider>();
+        services.TryAddSingleton<IItemTradeService, ItemTradeService>();
+        services.TryAddSingleton<ILeagueProvider, LeagueProvider>();
         services.AddSidekickInitializableService<IItemDefinitionParser, ItemDefinitionParser>();
 
         services.AddSidekickInitializableService<IItemParser, ItemParser>();
@@ -38,8 +39,8 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<ITradeFilterProvider, TradeFilterProvider>();
 
-        services.AddSingleton<CurrencyFilterFactory>();
-        services.AddSingleton<PlayerStatusFilterFactory>();
+        services.TryAddSingleton<CurrencyFilterFactory>();
+        services.TryAddSingleton<PlayerStatusFilterFactory>();
 
         services.SetSidekickDefaultSetting(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
         services.SetSidekickDefaultSetting(AutoSelectPreferences.DefaultFillMinSettingKey, true);
