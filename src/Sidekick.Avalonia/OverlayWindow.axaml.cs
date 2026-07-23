@@ -121,7 +121,7 @@ public partial class OverlayWindow : Window
         });
     }
 
-    private async Task SavePosition()
+    public async Task SavePosition()
     {
         await Dispatcher.InvokeAsync(async () =>
         {
