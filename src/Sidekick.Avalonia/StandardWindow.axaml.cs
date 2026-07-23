@@ -50,9 +50,9 @@ public partial class StandardWindow : Window
             {
                 Show();
                 WebView.Navigate(new Uri(url));
+                await NormalizeView();
             }
 
-            await NormalizeView();
             IsReady = true;
         });
     }
@@ -82,6 +82,22 @@ public partial class StandardWindow : Window
                 Width = width;
             }
         }
+
+        // EnsurePositionWithinScreenBounds
+        var screen = Screens.ScreenFromPoint(Position) ?? Screens.Primary;
+        if (screen == null)
+        {
+            return;
+        }
+
+        var workingArea = screen.WorkingArea;
+        var maxX = Math.Max(workingArea.X, workingArea.Right - (int)Width);
+        var maxY = Math.Max(workingArea.Y, workingArea.Bottom - (int)Height);
+
+        var x = Math.Clamp(Position.X, workingArea.X, maxX);
+        var y = Math.Clamp(Position.Y, workingArea.Y, maxY);
+
+        Position = new PixelPoint(x, y);
     }
 
     public void CloseView()
@@ -123,7 +139,7 @@ public partial class StandardWindow : Window
         });
     }
 
-    private async Task SavePosition()
+    public async Task SavePosition()
     {
         await Dispatcher.InvokeAsync(async () =>
         {

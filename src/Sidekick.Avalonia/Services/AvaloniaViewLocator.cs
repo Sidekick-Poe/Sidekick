@@ -146,5 +146,23 @@ public class AvaloniaViewLocator(
 
         inputProvider.OnMouseDrag -= OnMouseDrag;
         OnMouseDrag = null;
+
+        if (type == SidekickViewType.Standard)
+        {
+            GetApplication().Dispatcher.Invoke(async () =>
+            {
+                if (StandardWindow == null) return;
+                await StandardWindow.SavePosition();
+            });
+        }
+
+        if (type == SidekickViewType.Overlay)
+        {
+            GetApplication().Dispatcher.Invoke(async () =>
+            {
+                if (OverlayWindow == null) return;
+                await OverlayWindow.SavePosition();
+            });
+        }
     }
 }
