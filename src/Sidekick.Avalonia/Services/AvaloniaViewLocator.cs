@@ -116,10 +116,12 @@ public class AvaloniaViewLocator(
         });
     }
 
-
     public void StartMoving(SidekickViewType type, int pageX, int pageY)
     {
         StopMoving(type);
+
+        PixelPoint? initialWindowPosition = null;
+        PixelPoint? initialMousePosition = null;
 
         OnMouseDrag = args =>
         {
@@ -133,7 +135,21 @@ public class AvaloniaViewLocator(
                 };
                 if (window == null || !window.IsVisible || window.WindowState == WindowState.Maximized) return;
 
-                window.Position = new PixelPoint(args.X - pageX, args.Y - pageY);
+                var mousePosition = new PixelPoint(args.X, args.Y);
+
+                if (initialWindowPosition == null || initialMousePosition == null)
+                {
+                    initialWindowPosition = window.Position;
+                    initialMousePosition = mousePosition;
+                    return;
+                }
+
+                var deltaX = mousePosition.X - initialMousePosition.Value.X;
+                var deltaY = mousePosition.Y - initialMousePosition.Value.Y;
+
+                window.Position = new PixelPoint(
+                initialWindowPosition.Value.X + deltaX,
+                initialWindowPosition.Value.Y + deltaY);
             });
         };
 
