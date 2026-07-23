@@ -139,27 +139,55 @@ public partial class StandardWindow : Window
         });
     }
 
+    #region Save Position
+
+    private static readonly SemaphoreSlim SavePositionSemaphore = new(1, 1);
+
     public async Task SavePosition()
     {
-        await Dispatcher.InvokeAsync(async () =>
-        {
-            if (!IsVisible || !CanResize || WindowState == WindowState.Maximized) return;
+        if (!await SavePositionSemaphore.WaitAsync(0)) return;
 
-            try
+        try
+        {
+            var position = await Dispatcher.InvokeAsync(() =>
             {
-                var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-                await settingsService.Set($"{POSITION_PREFIX}_Width", Width);
-                await settingsService.Set($"{POSITION_PREFIX}_Height", Height);
-                await settingsService.Set($"{POSITION_PREFIX}_PositionX", Position.X);
-                await settingsService.Set($"{POSITION_PREFIX}_PositionY", Position.Y);
-            }
-            catch (Exception e)
+                if (!IsVisible || !CanResize || WindowState == WindowState.Maximized)
+                {
+                    return null;
+                }
+
+                return new
+                {
+                    Width,
+                    Height,
+                    Position.X,
+                    Position.Y,
+                };
+            });
+
+            if (position == null)
             {
-                var logger = ServiceProvider.GetRequiredService<ILogger<StandardWindow>>();
-                logger.LogError(e, "[MainWindow] Error saving position");
+                return;
             }
-        });
+
+            var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+            await settingsService.Set($"{POSITION_PREFIX}_Width", position.Width);
+            await settingsService.Set($"{POSITION_PREFIX}_Height", position.Height);
+            await settingsService.Set($"{POSITION_PREFIX}_PositionX", position.X);
+            await settingsService.Set($"{POSITION_PREFIX}_PositionY", position.Y);
+        }
+        catch (Exception e)
+        {
+            var logger = ServiceProvider.GetRequiredService<ILogger<StandardWindow>>();
+            logger.LogError(e, "[StandardWindow] Error saving position");
+        }
+        finally
+        {
+            SavePositionSemaphore.Release();
+        }
     }
+
+    #endregion
 
     #region Resize
 

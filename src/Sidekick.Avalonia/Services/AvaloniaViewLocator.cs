@@ -147,9 +147,7 @@ public class AvaloniaViewLocator(
                 var deltaX = mousePosition.X - initialMousePosition.Value.X;
                 var deltaY = mousePosition.Y - initialMousePosition.Value.Y;
 
-                window.Position = new PixelPoint(
-                initialWindowPosition.Value.X + deltaX,
-                initialWindowPosition.Value.Y + deltaY);
+                window.Position = new PixelPoint(initialWindowPosition.Value.X + deltaX, initialWindowPosition.Value.Y + deltaY);
             });
         };
 
