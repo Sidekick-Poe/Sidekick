@@ -4,11 +4,11 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Trade.Converters;
 
-public class StringOrExplicitModListConverter : JsonConverter<List<ExplicitMod>>
+public class StringOrModifierListConverter : JsonConverter<List<ApiItemModifier>>
 {
-    public override List<ExplicitMod> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override List<ApiItemModifier> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var list = new List<ExplicitMod>();
+        var list = new List<ApiItemModifier>();
 
         if (reader.TokenType == JsonTokenType.Null)
         {
@@ -30,7 +30,7 @@ public class StringOrExplicitModListConverter : JsonConverter<List<ExplicitMod>>
             if (reader.TokenType == JsonTokenType.String)
             {
                 var s = reader.GetString();
-                list.Add(new ExplicitMod { Description = s });
+                list.Add(new ApiItemModifier { Description = s });
                 continue;
             }
 
@@ -40,19 +40,19 @@ public class StringOrExplicitModListConverter : JsonConverter<List<ExplicitMod>>
                 var elem = doc.RootElement;
                 try
                 {
-                    var mod = elem.Deserialize<ExplicitMod>(options);
+                    var mod = elem.Deserialize<ApiItemModifier>(options);
                     if (mod != null)
                     {
                         list.Add(mod);
                     }
                     else
                     {
-                        list.Add(new ExplicitMod { Description = elem.GetRawText() });
+                        list.Add(new ApiItemModifier { Description = elem.GetRawText() });
                     }
                 }
                 catch
                 {
-                    list.Add(new ExplicitMod { Description = elem.GetRawText() });
+                    list.Add(new ApiItemModifier { Description = elem.GetRawText() });
                 }
 
                 continue;
@@ -60,13 +60,13 @@ public class StringOrExplicitModListConverter : JsonConverter<List<ExplicitMod>>
 
             // Fallback: parse whatever token into a string
             using var fallback = JsonDocument.ParseValue(ref reader);
-            list.Add(new ExplicitMod { Description = fallback.RootElement.GetRawText() });
+            list.Add(new ApiItemModifier { Description = fallback.RootElement.GetRawText() });
         }
 
         return list;
     }
 
-    public override void Write(Utf8JsonWriter writer, List<ExplicitMod> value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, List<ApiItemModifier> value, JsonSerializerOptions options)
     {
         writer.WriteStartArray();
         foreach (var em in value)
@@ -80,10 +80,10 @@ public class StringOrExplicitModListConverter : JsonConverter<List<ExplicitMod>>
             {
                 writer.WriteString("hash", em.Hash);
             }
-            if (em.Mods != null && em.Mods.Count > 0)
+            if (em.Details != null && em.Details.Count > 0)
             {
                 writer.WritePropertyName("mods");
-                JsonSerializer.Serialize(writer, em.Mods, options);
+                JsonSerializer.Serialize(writer, em.Details, options);
             }
             writer.WriteEndObject();
         }
