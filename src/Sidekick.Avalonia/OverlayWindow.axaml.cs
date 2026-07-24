@@ -71,13 +71,14 @@ public partial class OverlayWindow : Window
             var positionX = await settingsService.GetInt($"{POSITION_PREFIX}_PositionX");
             var positionY = await settingsService.GetInt($"{POSITION_PREFIX}_PositionY");
             Position = new PixelPoint(positionX, positionY);
-            var height = await settingsService.GetDouble($"{POSITION_PREFIX}_Height");
-            var width = await settingsService.GetDouble($"{POSITION_PREFIX}_Width");
-            if (height >= Height && width >= Width)
-            {
-                Height = height;
-                Width = width;
-            }
+        }
+
+        var height = await settingsService.GetDouble($"{POSITION_PREFIX}_Height");
+        var width = await settingsService.GetDouble($"{POSITION_PREFIX}_Width");
+        if (height >= Height && width >= Width)
+        {
+            Height = height;
+            Width = width;
         }
     }
 
