@@ -67,6 +67,7 @@ else
                 {
                     // Completed within timeout
                     UpdateInfo = await checkTask;
+                    StateHasChanged();
 
                     // There's no available updates
                     if (UpdateInfo is null)
@@ -120,6 +121,7 @@ else
         catch (SidekickException e)
         {
             Exception = e;
+            Updating = false;
             StateHasChanged();
         }
     }
