@@ -4,7 +4,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
-using Avalonia.Platform;
 using Sidekick.Common.Helpers;
 using Sidekick.Common.Settings;
 
@@ -74,13 +73,14 @@ public partial class StandardWindow : Window
             var positionX = await settingsService.GetInt($"{POSITION_PREFIX}_PositionX");
             var positionY = await settingsService.GetInt($"{POSITION_PREFIX}_PositionY");
             Position = new PixelPoint(positionX, positionY);
-            var height = await settingsService.GetDouble($"{POSITION_PREFIX}_Height");
-            var width = await settingsService.GetDouble($"{POSITION_PREFIX}_Width");
-            if (height >= Height && width >= Width)
-            {
-                Height = height;
-                Width = width;
-            }
+        }
+
+        var height = await settingsService.GetDouble($"{POSITION_PREFIX}_Height");
+        var width = await settingsService.GetDouble($"{POSITION_PREFIX}_Width");
+        if (height >= Height && width >= Width)
+        {
+            Height = height;
+            Width = width;
         }
 
         // EnsurePositionWithinScreenBounds
