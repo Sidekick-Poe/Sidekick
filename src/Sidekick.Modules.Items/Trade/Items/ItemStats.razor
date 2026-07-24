@@ -3,7 +3,6 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Data.Extensions
 @using Sidekick.Data.Stats
-@using Sidekick.Common.Enums
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 @foreach (var line in Stats)
@@ -64,15 +63,14 @@
         foreach (var line in ParseStatLines(index, tradeItem.RuneMods, tradeItem.Extended?.Mods?.Rune, ParseHash(tradeItem.Extended?.Hashes?.Rune))) yield return line;
 
         index++;
-        foreach (var line in ParseStatLines(index, tradeItem.ImplicitMods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.ImplicitMods)) yield return line;
 
         index++;
         foreach (var line in ParseStatLines(index, tradeItem.CraftedMods, tradeItem.Extended?.Mods?.Crafted, ParseHash(tradeItem.Extended?.Hashes?.Crafted))) yield return line;
-        foreach (var line in ParseStatLines(index, tradeItem.ExplicitModsText, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit, tradeItem.Extended?.Hashes?.Monster))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.ExplicitMods)) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.FracturedMods, tradeItem.Extended?.Mods?.Fractured, ParseHash(tradeItem.Extended?.Hashes?.Fractured))) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.DesecratedMods, tradeItem.Extended?.Mods?.Desecrated, ParseHash(tradeItem.Extended?.Hashes?.Desecrated))) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.ScourgeMods, tradeItem.Extended?.Mods?.Scourge, ParseHash(tradeItem.Extended?.Hashes?.Scourge))) yield return line;
-        foreach (var line in ParseStatLines(index, tradeItem.ExplicitModsText, tradeItem.Extended?.Mods?.Sanctum, ParseHash(tradeItem.Extended?.Hashes?.Sanctum))) yield return line;
         foreach (var line in ParseStatLines(index, tradeItem.MutatedMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit)))
         {
             line.Category = StatCategory.Mutated;
@@ -115,30 +113,44 @@
         for (var index = 0; index < hashes.Count; index++)
         {
             var id = hashes[index];
-            if (id == null || index >= texts.Count)
-            {
-                continue;
-            }
+            if (id == null || index >= texts.Count) continue;
 
             var text = texts[index];
-            text = text.RemoveSquareBrackets();
+            text = text?.RemoveSquareBrackets();
+            if (string.IsNullOrEmpty(text)) continue;
 
             var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);
 
             yield return new StatLine(text: text)
             {
                 BlockIndex = block,
-                Category = GetStatCategory(id),
+                Category = id.GetStatCategory(),
                 Tier = mod?.Tier,
             };
         }
+    }
 
-        yield break;
-
-        StatCategory GetStatCategory(string id)
+    private IEnumerable<StatLine> ParseStatLines(int block, List<ApiItemModifier>? modifiers)
+    {
+        if (modifiers == null)
         {
-            var value = id.Split('.').First();
-            return value.GetEnumFromValue<StatCategory>();
+            yield break;
+        }
+
+        for (var index = 0; index < modifiers.Count; index++)
+        {
+            var modifier = modifiers[index];
+            if (modifier.Hash == null) continue;
+
+            var text = modifier.Description?.RemoveSquareBrackets();
+            if (string.IsNullOrEmpty(text)) continue;
+
+            yield return new StatLine(text: text)
+            {
+                BlockIndex = block,
+                Category = modifier.Hash.GetStatCategory(),
+                Tier = modifier.Details.FirstOrDefault()?.Tier,
+            };
         }
     }
 

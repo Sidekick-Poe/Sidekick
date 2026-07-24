@@ -71,17 +71,15 @@ public class ApiItem
     public List<ApiItemLineContent> AdditionalProperties { get; set; } = [];
 
     [JsonPropertyName("implicitMods")]
-    public List<string> ImplicitMods { get; set; } = [];
+    [JsonConverter(typeof(StringOrModifierListConverter))]
+    public List<ApiItemModifier> ImplicitMods { get; set; } = [];
 
     [JsonPropertyName("craftedMods")]
     public List<string> CraftedMods { get; set; } = [];
 
     [JsonPropertyName("explicitMods")]
-    [JsonConverter(typeof(StringOrExplicitModListConverter))]
-    public List<ExplicitMod> ExplicitMods { get; set; } = [];
-
-    [JsonIgnore]
-    public List<string> ExplicitModsText => ExplicitMods.Select(e => e.Description ?? e.Hash ?? string.Join(", ", e.Mods.Select(m => m.Name ?? string.Empty))).ToList();
+    [JsonConverter(typeof(StringOrModifierListConverter))]
+    public List<ApiItemModifier> ExplicitMods { get; set; } = [];
 
     [JsonPropertyName("utilityMods")]
     public List<string> UtilityMods { get; set; } = [];
