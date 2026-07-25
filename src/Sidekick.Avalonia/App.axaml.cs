@@ -43,8 +43,6 @@ public partial class App : Application
 
             AppDomain.CurrentDomain.UnhandledException += (_, e)
                 => HandleException(e.ExceptionObject as Exception ?? new Exception("Unknown exception"));
-            TaskScheduler.UnobservedTaskException += (_, e)
-                => HandleException(e.Exception);
 
             ServerAppHost = new ServerAppHost(SidekickApplicationType.Avalonia);
             var tcs = new TaskCompletionSource();

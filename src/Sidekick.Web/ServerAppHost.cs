@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Sockets;
 using ApexCharts;
+using Microsoft.JSInterop;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe.Account;
@@ -37,6 +38,7 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
     private WebApplication? app;
     private Task? runTask;
     private bool disposed;
+    private bool isHandlingUnobservedTaskExceptions;
 
     public Task RunTask => runTask ?? throw new InvalidOperationException("Server application has not been started.");
     public WebApplication Application => app ?? throw new InvalidOperationException("Server application has not been started.");
@@ -45,6 +47,8 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
         Action<IServiceCollection>? configureServices = null,
         CancellationToken cancellationToken = default)
     {
+        RegisterUnobservedTaskExceptionHandler();
+
         var assembly = typeof(ServerAppHost).Assembly;
         var assemblyName = assembly.GetName().Name;
         var assemblyLocation = Path.GetDirectoryName(assembly.Location)
@@ -148,6 +152,53 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
         runTask = app.RunAsync(cancellationToken);
     }
 
+    private void RegisterUnobservedTaskExceptionHandler()
+    {
+        if (isHandlingUnobservedTaskExceptions)
+        {
+            return;
+        }
+
+        isHandlingUnobservedTaskExceptions = true;
+        TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+    }
+
+    private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        e.SetObserved();
+
+        var exception = e.Exception.Flatten();
+
+        if (IsIgnorableBlazorException(exception))
+        {
+            app?.Services
+                .GetService<ILogger<ServerAppHost>>()
+                ?.LogDebug(exception, "[ServerAppHost] Ignored unobserved Blazor task exception.");
+
+            return;
+        }
+
+        app?.Services
+            .GetService<ILogger<ServerAppHost>>()
+            ?.LogError(exception, "[ServerAppHost] Unobserved task exception.");
+    }
+
+    private static bool IsIgnorableBlazorException(AggregateException exception)
+    {
+        return exception.InnerExceptions.Any(IsIgnorableBlazorException);
+    }
+
+    private static bool IsIgnorableBlazorException(Exception exception)
+    {
+        if (exception is JSDisconnectedException)
+        {
+            return true;
+        }
+
+        return exception.Message.Contains("JavaScript interop calls cannot be issued at this time", StringComparison.OrdinalIgnoreCase) ||
+               exception.Message.Contains("the circuit has disconnected and is being disposed", StringComparison.OrdinalIgnoreCase);
+    }
+
     private static int GetAvailablePort(int preferredPort)
     {
         for (var port = preferredPort; port < preferredPort + MaxPortSearchAttempts; port++)
@@ -205,6 +256,12 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
 
         try
         {
+            if (isHandlingUnobservedTaskExceptions)
+            {
+                TaskScheduler.UnobservedTaskException -= OnUnobservedTaskException;
+                isHandlingUnobservedTaskExceptions = false;
+            }
+
             Stop().Wait(TimeSpan.FromSeconds(5));
         }
         catch
