@@ -57,10 +57,10 @@
         }
 
         index++;
-        foreach (var line in ParseStatLines(index, tradeItem.EnchantMods, tradeItem.Extended?.Mods?.Enchant, ParseHash(tradeItem.Extended?.Hashes?.Enchant))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.EnchantMods)) yield return line;
 
         index++;
-        foreach (var line in ParseStatLines(index, tradeItem.RuneMods, tradeItem.Extended?.Mods?.Rune, ParseHash(tradeItem.Extended?.Hashes?.Rune))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.RuneMods)) yield return line;
 
         index++;
         foreach (var line in ParseStatLines(index, tradeItem.ImplicitMods)) yield return line;
