@@ -81,7 +81,7 @@ public class NinjaStashProvider(
     public async Task<List<NinjaStash>> GetInfo(ItemDefinition item, ApiItem apiItem)
     {
         var stats = apiItem.MutatedMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Mutated.GetValueAttribute()})")!).ToList();
-        stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Enchant.GetValueAttribute()})")!).ToList());
+        stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant($"{x.Description} ({StatCategory.Enchant.GetValueAttribute()})")!).ToList());
         stats.AddRange(apiItem.ImplicitMods.Select(x => statParser.ParseInvariant($"{x.Description} ({StatCategory.Implicit.GetValueAttribute()})")!).ToList());
         stats = stats.Where(x => x != null!).ToList();
 
