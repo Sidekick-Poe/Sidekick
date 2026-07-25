@@ -88,10 +88,12 @@ public class ApiItem
     public List<string> PseudoMods { get; set; } = [];
 
     [JsonPropertyName("enchantMods")]
-    public List<string> EnchantMods { get; set; } = [];
+    [JsonConverter(typeof(StringOrModifierListConverter))]
+    public List<ApiItemModifier> EnchantMods { get; set; } = [];
 
     [JsonPropertyName("runeMods")]
-    public List<string> RuneMods { get; set; } = [];
+    [JsonConverter(typeof(StringOrModifierListConverter))]
+    public List<ApiItemModifier> RuneMods { get; set; } = [];
 
     [JsonPropertyName("fracturedMods")]
     public List<string> FracturedMods { get; set; } = [];
