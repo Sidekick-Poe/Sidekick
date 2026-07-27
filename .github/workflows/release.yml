@@ -62,17 +62,6 @@ jobs:
         with:
           dotnet-version: 10.x
 
-      - name: Data - Publish
-        shell: bash
-        run: |
-          dotnet publish src/Sidekick.Data.Builder.Cli/Sidekick.Data.Builder.Cli.csproj -c Release -o src/Sidekick.Data.Builder.Cli/build --self-contained true
-          chmod +x ./src/Sidekick.Data.Builder.Cli/build
-
-      - name: Data - Execute
-        shell: bash
-        run: |
-          dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.Builder.Cli.dll
-
       - name: .NET - Test
         shell: pwsh
         run: |
@@ -83,8 +72,8 @@ jobs:
       - name: .NET - Publish (Windows)
         shell: pwsh
         run: |
-          dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r win-x64 -o ./Publish
-          dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web
+          dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r win-x64 -o ./Publish --self-contained true
+          dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web --self-contained true
 
       - name: Velopack (Windows)
         shell: pwsh
@@ -107,7 +96,7 @@ jobs:
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64
           $ErrorActionPreference = 'Stop'
           
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-x64 --releaseNotes $releaseNotesPath --framework net10.0-x64-desktop,webview2
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-x64 --releaseNotes $releaseNotesPath --framework webview2
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
           # Web version (windows-web-x64)
@@ -115,7 +104,7 @@ jobs:
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64
           $ErrorActionPreference = 'Stop'
           
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe --framework net10.0-x64-aspnetcore,net10.0-x64-runtime
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-x64 --releaseNotes $releaseNotesPath --mainExe Sidekick.Web.exe
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-x64 --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
       - name: Old Channels (Windows)
@@ -155,17 +144,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.x
-
-      - name: Data - Publish
-        shell: bash
-        run: |
-          dotnet publish src/Sidekick.Data.Builder.Cli/Sidekick.Data.Builder.Cli.csproj -c Release -o src/Sidekick.Data.Builder.Cli/build --self-contained true
-          chmod +x ./src/Sidekick.Data.Builder.Cli/build
-
-      - name: Data - Execute
-        shell: bash
-        run: |
-          dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.Builder.Cli.dll
 
       - name: .NET - Publish (Linux)
         shell: bash
