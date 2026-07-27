@@ -18,7 +18,6 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
-using Sidekick.Data.Builder;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
@@ -52,7 +51,6 @@ public abstract class ParserFixture : IAsyncLifetime
             .AddSidekickCommon(SidekickApplicationType.Test)
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickData()
-            .AddSidekickDataBuilder()
 
             // Apis
             .AddSidekickCommonApi()
@@ -63,7 +61,6 @@ public abstract class ParserFixture : IAsyncLifetime
         // Override the Trade API client in tests to always use local fallback data files
         TestContext.Services.AddTransient<ITradeApiClient, TestTradeApiClient>();
         TestContext.Services.AddSingleton<ISettingsService, TestSettingsService>();
-        TestContext.Services.AddSingleton<RawDataProvider>();
 
         RegisterServices(TestContext.Services);
 
