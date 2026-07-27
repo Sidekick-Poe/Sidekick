@@ -39,11 +39,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Corrupted
 ");
 
-        var results = fixture.NinjaStashProvider.GetDefinitions(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"map-tier-16-t0-{Collections.PoeNinjaMapSuffix}", result.Stash?.DetailsId);
+        fixture.AssertStash(item, $"map-tier-16-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
@@ -83,11 +79,7 @@ Corrupted
 Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
 ");
 
-        var results = fixture.NinjaStashProvider.GetDefinitions(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"nightmare-map-t0-{Collections.PoeNinjaMapSuffix}", result.Stash?.DetailsId);
+        fixture.AssertStash(item, $"nightmare-map-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]

@@ -39,43 +39,43 @@ public class NinjaStashProvider(
         if (item.Properties.Rarity == Rarity.Unique)
         {
             return GetUniqueInfo(item.Invariant,
-                                       item.Properties.Foulborn,
-                                       item.Properties.GetMaximumNumberOfLinks(),
-                                       item.Stats);
+                                 item.Properties.Foulborn,
+                                 item.Properties.GetMaximumNumberOfLinks(),
+                                 item.Stats);
         }
 
         if (item.Properties.MapTier > 0 || item.ItemClass.Type == ItemClass.Map)
         {
             return GetMapInfo(item.Invariant.NinjaItems,
-                                    item.Invariant.BaseItem?.Name,
-                                    item.Properties.MapTier,
-                                    item.Stats);
+                              item.Invariant.BaseItem?.Name,
+                              item.Properties.MapTier,
+                              item.Stats);
         }
 
         if (item.Properties.GemLevel > 0)
         {
             return GetGemInfo(item.Invariant,
-                                    item.Properties.Corrupted,
-                                    item.Properties.GemLevel,
-                                    item.Properties.Quality);
+                              item.Properties.Corrupted,
+                              item.Properties.GemLevel,
+                              item.Properties.Quality);
         }
 
         if (IsClusterJewel(item.Invariant))
         {
-            return  GetClusterJewelInfo(item.Invariant,
-                                             item.Properties.ItemLevel,
-                                             item.Stats);
+            return GetClusterJewelInfo(item.Invariant,
+                                       item.Properties.ItemLevel,
+                                       item.Stats);
 
         }
 
         if (item.Invariant.TradeItem?.Category == "monster")
         {
-            return  GetBeastInfo(item.Invariant);
+            return GetBeastInfo(item.Invariant);
         }
 
-        return  GetBaseTypeInfo(item.Invariant,
-                                     item.Properties.ItemLevel,
-                                     item.Properties.Influences);
+        return GetBaseTypeInfo(item.Invariant,
+                               item.Properties.ItemLevel,
+                               item.Properties.Influences);
     }
 
     public async Task<List<NinjaStash>> GetInfo(Item item)
@@ -329,13 +329,13 @@ public class NinjaStashProvider(
             where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
             select new
             {
-                Id = tradeStatId.GetStatOption() != null ? $"{tradeStatId.GetStatId()}#{tradeStatId.GetStatOption()}" : tradeStatId.GetStatId(),
-                Value = stat.AverageValue,
+                Id = tradeStatId,
+                stat.Values,
             })
-            .DistinctBy(x => x.Id)
+            .Distinct()
             .ToList();
 
-        if (stats.Count == 0) return ninjaDefinition.Stash!.Stats == null;
+        if (stats.Count == 0 && (ninjaDefinition.Stash?.Stats?.Count ?? 0) == 0) return true;
         if (ninjaDefinition.Stash!.Stats?.Count != stats.Count) return false;
 
         foreach (var expectedStat in ninjaDefinition.Stash.Stats)
@@ -343,8 +343,10 @@ public class NinjaStashProvider(
             var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
             if (foundStat == null) return false;
 
-            if (expectedStat.Value != null && expectedStat.Value != 0 &&
-                (int)Math.Round(foundStat.Value) != expectedStat.Value) return false;
+            if (expectedStat.Min == null || expectedStat.Max == null || expectedStat.Min == 0 || expectedStat.Max == 0) continue;
+            var min = foundStat.Values.Count > 0 ? foundStat.Values.Min() : 0;
+            var max = foundStat.Values.Count > 0 ? foundStat.Values.Max() : 0;
+            if (min < expectedStat.Min || max > expectedStat.Max) return false;
         }
 
         return true;
