@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sidekick.Apis.Poe.Trade.Parser;
+﻿using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 
@@ -9,7 +8,7 @@ public class UniqueArmourTests(NinjaTestFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task FoulbornGhostwrithe()
+    public void FoulbornGhostwrithe()
     {
         var item = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
@@ -37,17 +36,12 @@ Faith springs abundant at the edge of death.
 Note: ~b/o 400 chaos
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("foulborn-ghostwrithe-chaos-recoup-life-to-shield-silken-vest-6l", result.DetailsId);
+        fixture.AssertStash(item, "foulborn-ghostwrithe-chaos-recoup-life-to-shield-silken-vest-6l");
     }
 
-    [Fact(Skip = "This item is not in the Ninja API for phrecia event")]
-    public async Task FoulbornSquire()
+    [Fact]
+    public void FoulbornSquire()
     {
-
         var item = parser.ParseItem(@"Item Class: Shields
 Rarity: Unique
 Foulborn The Squire
@@ -81,15 +75,11 @@ they empower the strong.
 Note: ~b/o 280 divine
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("foulborn-the-squire-gem-level-no-requirements-elegant-round-shield", result.DetailsId);
+        fixture.AssertStash(item, "foulborn-the-squire-gem-level-no-requirements-elegant-round-shield");
     }
 
     [Fact]
-    public async Task FoulbornRathpithGlobe()
+    public void FoulbornRathpithGlobe()
     {
         var item = parser.ParseItem(@"Item Class: Shields
 Rarity: Unique
@@ -120,10 +110,6 @@ and left a mountain of twitching dead.
 Note: ~b/o 250 divine
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("foulborn-rathpith-globe-dot-per-life-titanium-spirit-shield", result.DetailsId);
+        fixture.AssertStash(item, "foulborn-rathpith-globe-dot-per-life-titanium-spirit-shield");
     }
 }
