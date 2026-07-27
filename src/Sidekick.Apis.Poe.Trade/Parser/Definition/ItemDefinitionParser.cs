@@ -68,14 +68,16 @@ public class ItemDefinitionParser(
     public void Parse(Item item)
     {
         item.Type = item.Text.Blocks[0].Lines[^1].Text;
-        if (item.Properties.Rarity is Rarity.Rare or Rarity.Unique)
+        if (item.Properties.Rarity is Rarity.Rare or Rarity.Unique && item.Text.Blocks[0].Lines.Count >= 4)
         {
             item.Name = item.Text.Blocks[0].Lines[^2].Text;
         }
 
-        item.Definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name)
-                          ?? GetDefinition(InvariantDefinitions, item.Type, item.Properties.Rarity, item.Name)
-                          ?? throw new UnparsableException(item.Text.Text);
+        var definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name);
+        definition ??= GetDefinition(InvariantDefinitions, item.Type, item.Properties.Rarity, item.Name)!;
+        if (definition == null) throw new UnparsableException(item.Text.Text);
+
+        item.Definition = definition;
         item.Invariant = GetInvariant(item.Definition) ?? throw new UnparsableException(item.Text.Text);
         item.ItemClass = GetItemClass(item.Definition);
 
@@ -132,38 +134,43 @@ public class ItemDefinitionParser(
 
     private static ItemDefinition? GetDefinition(List<ItemDefinition> definitions, string? type, Rarity rarity, string? name)
     {
+        List<ItemDefinition> results = [];
+
         if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name))
         {
-            var results = definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name));
-            var bestMatch = FindBestMatch(results, x => x.TradeItem?.Text ?? x.TradeItem?.Name, $"{name} {type}");
-            if (bestMatch != null) return bestMatch;
+            results.AddRange(definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name)));
+            if (!string.IsNullOrEmpty(type))
+            {
+                results.RemoveAll(definition => definition.TypePattern != null && !definition.TypePattern.IsMatch(type));
+            }
         }
-
-        if (!string.IsNullOrEmpty(type))
+        else if (!string.IsNullOrEmpty(type))
         {
-            var textResults = definitions.Where(definition => definition.TextPattern != null && definition.TextPattern.IsMatch(type));
-            var textMatch = FindBestMatch(textResults, x => x.TradeItem?.Text, type);
-            if (textMatch != null) return textMatch;
+            results.AddRange(definitions.Where(definition => definition.UniqueItem == null && definition.TextPattern != null && definition.TextPattern.IsMatch(type)));
+            results.AddRange(definitions.Where(definition => definition.UniqueItem == null && definition.TypePattern != null && definition.TypePattern.IsMatch(type)));
         }
 
-        if (!string.IsNullOrEmpty(type))
-        {
-            var typeResults = definitions.Where(definition => definition.TypePattern != null && definition.TypePattern.IsMatch(type));
-            var typeMatch = FindBestMatch(typeResults, x => x.BaseItem?.Name ?? x.TradeItem?.Type, type);
-            if (typeMatch != null) return typeMatch;
-        }
-
-        return null;
-    }
-
-    private static ItemDefinition? FindBestMatch(IEnumerable<ItemDefinition> definitions, Func<ItemDefinition, string?> compareFunc, string text)
-    {
-        return definitions
+        var orderedResults = results
             .Select(x =>
             {
-                var compare = compareFunc(x);
                 var ratio = 0;
-                if (!string.IsNullOrEmpty(compare)) ratio = Fuzz.Ratio(text, compare, FuzzySharp.PreProcess.PreprocessMode.None);
+
+                if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(x.TradeItem?.Name))
+                {
+                    if (!string.IsNullOrEmpty(x.UniqueItem?.Name))
+                        ratio += Fuzz.Ratio(x.UniqueItem.Name, name, FuzzySharp.PreProcess.PreprocessMode.None);
+                    if (!string.IsNullOrEmpty(x.TradeItem?.Name))
+                        ratio += Fuzz.Ratio(x.TradeItem.Name, name, FuzzySharp.PreProcess.PreprocessMode.None);
+                    if (!string.IsNullOrEmpty(x.TradeItem?.Type))
+                        ratio += Fuzz.Ratio(x.TradeItem?.Type, type, FuzzySharp.PreProcess.PreprocessMode.None);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(type) && !string.IsNullOrEmpty(x.TradeItem?.Text))
+                        ratio += Fuzz.Ratio(x.TradeItem?.Text, type, FuzzySharp.PreProcess.PreprocessMode.None);
+                    if (!string.IsNullOrEmpty(type) && !string.IsNullOrEmpty(x.TradeItem?.Type))
+                        ratio += Fuzz.Ratio(x.TradeItem?.Type, type, FuzzySharp.PreProcess.PreprocessMode.None);
+                }
 
                 return new
                 {
@@ -171,9 +178,9 @@ public class ItemDefinitionParser(
                     Definition = x,
                 };
             })
-            .OrderByDescending(x => x.Ratio)
-            .Select(x => x.Definition)
-            .FirstOrDefault();
+            .OrderByDescending(x => x.Ratio);
+
+        return orderedResults.Select(x => x.Definition).FirstOrDefault();
     }
 
     public ItemDefinition? Get(string? text)
