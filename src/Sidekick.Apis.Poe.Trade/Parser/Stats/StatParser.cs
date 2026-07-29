@@ -90,7 +90,7 @@ public class StatParser
                     var matchFuzzily = definitions
                         .Where(x => x.TradeIds != null)
                         .Sum(x => x.TradeIds!.Count) is 0;
-                    if (matchFuzzily) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
+                    if (matchFuzzily && false) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
                     if (definitions.Count is 0) continue;
 
                     var maxLineCount = definitions.Select(x => x.Lines).Max();
@@ -231,7 +231,7 @@ public class StatParser
                 var patternMatch = definition.Pattern.Match(input.Text);
                 if (!patternMatch.Success) continue;
 
-                var hasMatchingDescription = HasMatchingDescriptions(definition);
+                var hasMatchingDescription = HasMatchingTradeDescriptions(definition);
                 var hasValues = false;
                 foreach (Group group in patternMatch.Groups)
                 {
@@ -261,7 +261,7 @@ public class StatParser
             }
         }
 
-        bool HasMatchingDescriptions(StatDefinition definition)
+        bool HasMatchingTradeDescriptions(StatDefinition definition)
         {
             if (definition.TradeIds == null) return false;
             foreach (var tradeId in definition.TradeIds)

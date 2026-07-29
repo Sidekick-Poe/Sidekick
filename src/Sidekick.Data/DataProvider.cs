@@ -19,7 +19,6 @@ public class DataProvider
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
         WriteIndented = true,
-        ReferenceHandler = ReferenceHandler.Preserve,
         Converters =
         {
             new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)

@@ -1,53 +1,42 @@
-{
-  "$id": "1",
-  "$values": [
-    {
-      "$id": "2",
-      "game": "pathOfExile1",
-      "id": "Allflame",
-      "text": "Allflame"
-    },
-    {
-      "$id": "3",
-      "game": "pathOfExile1",
-      "id": "Hardcore Allflame",
-      "text": "Hardcore Allflame"
-    },
-    {
-      "$id": "4",
-      "game": "pathOfExile1",
-      "id": "Ruthless Allflame",
-      "text": "Ruthless Allflame"
-    },
-    {
-      "$id": "5",
-      "game": "pathOfExile1",
-      "id": "HC Ruthless Allflame",
-      "text": "HC Ruthless Allflame"
-    },
-    {
-      "$id": "6",
-      "game": "pathOfExile1",
-      "id": "Standard",
-      "text": "Standard"
-    },
-    {
-      "$id": "7",
-      "game": "pathOfExile1",
-      "id": "Hardcore",
-      "text": "Hardcore"
-    },
-    {
-      "$id": "8",
-      "game": "pathOfExile1",
-      "id": "Ruthless",
-      "text": "Ruthless"
-    },
-    {
-      "$id": "9",
-      "game": "pathOfExile1",
-      "id": "Hardcore Ruthless",
-      "text": "Hardcore Ruthless"
-    }
-  ]
-}
+[
+  {
+    "game": "pathOfExile1",
+    "id": "Allflame",
+    "text": "Allflame"
+  },
+  {
+    "game": "pathOfExile1",
+    "id": "HC Ruthless Allflame",
+    "text": "HC Ruthless Allflame"
+  },
+  {
+    "game": "pathOfExile1",
+    "id": "Hardcore",
+    "text": "Hardcore"
+  },
+  {
+    "game": "pathOfExile1",
+    "id": "Hardcore Allflame",
+    "text": "Hardcore Allflame"
+  },
+  {
+    "game": "pathOfExile1",
+    "id": "Hardcore Ruthless",
+    "text": "Hardcore Ruthless"
+  },
+  {
+    "game": "pathOfExile1",
+    "id": "Ruthless",
+    "text": "Ruthless"
+  },
+  {
+    "game": "pathOfExile1",
+    "id": "Ruthless Allflame",
+    "text": "Ruthless Allflame"
+  },
+  {
+    "game": "pathOfExile1",
+    "id": "Standard",
+    "text": "Standard"
+  }
+]

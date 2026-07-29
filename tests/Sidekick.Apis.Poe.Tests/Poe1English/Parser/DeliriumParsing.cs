@@ -57,7 +57,7 @@ Note: ~b/o 1 chance
         Assert.Equal("Small Cluster Jewel", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 2);
-        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: #", "15% increased Evasion Rating");
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: 15% increased Evasion Rating");
     }
 
 }

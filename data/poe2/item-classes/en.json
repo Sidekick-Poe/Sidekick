@@ -1,634 +1,514 @@
-{
-  "$id": "1",
-  "$values": [
-    {
-      "$id": "2",
-      "id": "AbyssJewel",
-      "name": "Abyss Jewels"
-    },
-    {
-      "$id": "3",
-      "id": "Active Skill Gem",
-      "type": "activeSkillGem",
-      "name": "Skill Gems"
-    },
-    {
-      "$id": "4",
-      "id": "Amulet",
-      "type": "amulet",
-      "name": "Amulets"
-    },
-    {
-      "$id": "5",
-      "id": "ArchnemesisMod",
-      "name": "Archnemesis Mods"
-    },
-    {
-      "$id": "6",
-      "id": "AtlasUpgradeItem",
-      "name": "Atlas Upgrade Items"
-    },
-    {
-      "$id": "7",
-      "id": "Belt",
-      "type": "belt",
-      "name": "Belts"
-    },
-    {
-      "$id": "8",
-      "id": "Body Armour",
-      "type": "bodyArmour",
-      "name": "Body Armours"
-    },
-    {
-      "$id": "9",
-      "id": "Boots",
-      "type": "boots",
-      "name": "Boots"
-    },
-    {
-      "$id": "10",
-      "id": "Bow",
-      "type": "bow",
-      "name": "Bows"
-    },
-    {
-      "$id": "11",
-      "id": "Breachstone",
-      "name": "Breachstones"
-    },
-    {
-      "$id": "12",
-      "id": "BrequelFruit",
-      "name": "Wombgifts"
-    },
-    {
-      "$id": "13",
-      "id": "Buckler",
-      "type": "buckler",
-      "name": "Bucklers"
-    },
-    {
-      "$id": "14",
-      "id": "Claw",
-      "type": "claw",
-      "name": "Claws"
-    },
-    {
-      "$id": "15",
-      "id": "ConventionTreasure",
-      "name": ""
-    },
-    {
-      "$id": "16",
-      "id": "Crossbow",
-      "type": "crossbow",
-      "name": "Crossbows"
-    },
-    {
-      "$id": "17",
-      "id": "Crossbow Attachment REMOVE",
-      "name": ""
-    },
-    {
-      "$id": "18",
-      "id": "Currency",
-      "name": "Currency"
-    },
-    {
-      "$id": "19",
-      "id": "DONOTUSE1",
-      "name": ""
-    },
-    {
-      "$id": "20",
-      "id": "DONOTUSE10",
-      "name": ""
-    },
-    {
-      "$id": "21",
-      "id": "DONOTUSE11",
-      "name": ""
-    },
-    {
-      "$id": "22",
-      "id": "DONOTUSE12",
-      "name": ""
-    },
-    {
-      "$id": "23",
-      "id": "DONOTUSE2",
-      "name": ""
-    },
-    {
-      "$id": "24",
-      "id": "DONOTUSE3",
-      "name": ""
-    },
-    {
-      "$id": "25",
-      "id": "DONOTUSE4",
-      "name": ""
-    },
-    {
-      "$id": "26",
-      "id": "DONOTUSE5",
-      "name": ""
-    },
-    {
-      "$id": "27",
-      "id": "DONOTUSE6",
-      "name": ""
-    },
-    {
-      "$id": "28",
-      "id": "DONOTUSE7",
-      "name": ""
-    },
-    {
-      "$id": "29",
-      "id": "DONOTUSE8",
-      "name": ""
-    },
-    {
-      "$id": "30",
-      "id": "DONOTUSE9",
-      "name": ""
-    },
-    {
-      "$id": "31",
-      "id": "Dagger",
-      "type": "dagger",
-      "name": "Daggers"
-    },
-    {
-      "$id": "32",
-      "id": "DelveSocketableCurrency",
-      "name": "Delve Socketable Currency"
-    },
-    {
-      "$id": "33",
-      "id": "DelveStackableSocketableCurrency",
-      "name": "Delve Stackable Socketable Currency"
-    },
-    {
-      "$id": "34",
-      "id": "DivinationCard",
-      "name": "Divination Cards"
-    },
-    {
-      "$id": "35",
-      "id": "Expedition2Logbooks",
-      "name": "Expedition Logbook"
-    },
-    {
-      "$id": "36",
-      "id": "ExpeditionLogbook",
-      "type": "expeditionLogbook",
-      "name": "Expedition Logbooks"
-    },
-    {
-      "$id": "37",
-      "id": "FishingRod",
-      "type": "fishingRod",
-      "name": "Fishing Rods"
-    },
-    {
-      "$id": "38",
-      "id": "Flail",
-      "type": "flail",
-      "name": "Flails"
-    },
-    {
-      "$id": "39",
-      "id": "Focus",
-      "type": "focus",
-      "name": "Foci"
-    },
-    {
-      "$id": "40",
-      "id": "GiftBox",
-      "name": ""
-    },
-    {
-      "$id": "41",
-      "id": "Gloves",
-      "type": "gloves",
-      "name": "Gloves"
-    },
-    {
-      "$id": "42",
-      "id": "HeistBlueprint",
-      "name": "Blueprints"
-    },
-    {
-      "$id": "43",
-      "id": "HeistContract",
-      "name": "Contracts"
-    },
-    {
-      "$id": "44",
-      "id": "HeistEquipmentReward",
-      "name": "Heist Brooches"
-    },
-    {
-      "$id": "45",
-      "id": "HeistEquipmentTool",
-      "name": "Heist Tools"
-    },
-    {
-      "$id": "46",
-      "id": "HeistEquipmentUtility",
-      "name": "Heist Cloaks"
-    },
-    {
-      "$id": "47",
-      "id": "HeistEquipmentWeapon",
-      "name": "Heist Gear"
-    },
-    {
-      "$id": "48",
-      "id": "HeistObjective",
-      "name": "Heist Targets"
-    },
-    {
-      "$id": "49",
-      "id": "Helmet",
-      "type": "helmet",
-      "name": "Helmets"
-    },
-    {
-      "$id": "50",
-      "id": "HiddenItem",
-      "name": "Hidden Items"
-    },
-    {
-      "$id": "51",
-      "id": "HideoutDoodad",
-      "name": "Hideout Doodads"
-    },
-    {
-      "$id": "52",
-      "id": "Incubator",
-      "name": "Incubators"
-    },
-    {
-      "$id": "53",
-      "id": "IncubatorStackable",
-      "name": "Incubators"
-    },
-    {
-      "$id": "54",
-      "id": "IncursionArm",
-      "name": "Transcendent Arm"
-    },
-    {
-      "$id": "55",
-      "id": "IncursionItem",
-      "name": "Incursion Items"
-    },
-    {
-      "$id": "56",
-      "id": "IncursionLeg",
-      "name": "Transcendent Leg"
-    },
-    {
-      "$id": "57",
-      "id": "InstanceLocalItem",
-      "name": "Instance Local Items"
-    },
-    {
-      "$id": "58",
-      "id": "ItemisedSanctum",
-      "name": "Trial Coins"
-    },
-    {
-      "$id": "59",
-      "id": "Jewel",
-      "type": "jewel",
-      "name": "Jewels"
-    },
-    {
-      "$id": "60",
-      "id": "LargeRelic",
-      "type": "sanctumRelic",
-      "name": "Large Relics"
-    },
-    {
-      "$id": "61",
-      "id": "Leaguestone",
-      "name": "Leaguestones"
-    },
-    {
-      "$id": "62",
-      "id": "LifeFlask",
-      "type": "lifeFlask",
-      "name": "Life Flasks"
-    },
-    {
-      "$id": "63",
-      "id": "ManaFlask",
-      "type": "manaFlask",
-      "name": "Mana Flasks"
-    },
-    {
-      "$id": "64",
-      "id": "Map",
-      "type": "map",
-      "name": "Waystones"
-    },
-    {
-      "$id": "65",
-      "id": "MapFragment",
-      "type": "mapFragments",
-      "name": "Map Fragments"
-    },
-    {
-      "$id": "66",
-      "id": "MediumRelic",
-      "type": "sanctumRelic",
-      "name": "Medium Relics"
-    },
-    {
-      "$id": "67",
-      "id": "MemoryLine",
-      "name": "Memories"
-    },
-    {
-      "$id": "68",
-      "id": "Meta Skill Gem",
-      "name": ""
-    },
-    {
-      "$id": "69",
-      "id": "Microtransaction",
-      "name": "Microtransactions"
-    },
-    {
-      "$id": "70",
-      "id": "MiscMapItem",
-      "name": "Misc Map Items"
-    },
-    {
-      "$id": "71",
-      "id": "Nothing",
-      "name": ""
-    },
-    {
-      "$id": "72",
-      "id": "Omen",
-      "name": "Omen"
-    },
-    {
-      "$id": "73",
-      "id": "One Hand Axe",
-      "type": "oneHandAxe",
-      "name": "One Hand Axes"
-    },
-    {
-      "$id": "74",
-      "id": "One Hand Mace",
-      "type": "oneHandMace",
-      "name": "One Hand Maces"
-    },
-    {
-      "$id": "75",
-      "id": "One Hand Sword",
-      "type": "oneHandSword",
-      "name": "One Hand Swords"
-    },
-    {
-      "$id": "76",
-      "id": "PantheonSoul",
-      "name": "Pantheon Souls"
-    },
-    {
-      "$id": "77",
-      "id": "PinnacleKeyStackable",
-      "name": "Pinnacle Keys"
-    },
-    {
-      "$id": "78",
-      "id": "PinnacleKey_OLD",
-      "name": ""
-    },
-    {
-      "$id": "79",
-      "id": "QuestItem",
-      "name": "Quest Items"
-    },
-    {
-      "$id": "80",
-      "id": "Quiver",
-      "type": "quiver",
-      "name": "Quivers"
-    },
-    {
-      "$id": "81",
-      "id": "Relic",
-      "type": "sanctumRelic",
-      "name": "Relics"
-    },
-    {
-      "$id": "82",
-      "id": "Ring",
-      "type": "ring",
-      "name": "Rings"
-    },
-    {
-      "$id": "83",
-      "id": "SanctumSpecialRelic",
-      "type": "sanctumRelic",
-      "name": "Sanctified Relics"
-    },
-    {
-      "$id": "84",
-      "id": "Sceptre",
-      "type": "sceptre",
-      "name": "Sceptres"
-    },
-    {
-      "$id": "85",
-      "id": "SentinelDrone",
-      "name": "Sentinels"
-    },
-    {
-      "$id": "86",
-      "id": "Shield",
-      "type": "shield",
-      "name": "Shields"
-    },
-    {
-      "$id": "87",
-      "id": "SkillGemToken",
-      "name": "Currency"
-    },
-    {
-      "$id": "88",
-      "id": "SmallRelic",
-      "type": "sanctumRelic",
-      "name": "Small Relics"
-    },
-    {
-      "$id": "89",
-      "id": "SoulCore",
-      "name": "Augment"
-    },
-    {
-      "$id": "90",
-      "id": "Spear",
-      "type": "spear",
-      "name": "Spears"
-    },
-    {
-      "$id": "91",
-      "id": "StackableCurrency",
-      "name": "Stackable Currency"
-    },
-    {
-      "$id": "92",
-      "id": "Staff",
-      "type": "staff",
-      "name": "Staves"
-    },
-    {
-      "$id": "93",
-      "id": "Support Skill Gem",
-      "type": "supportSkillGem",
-      "name": "Support Gems"
-    },
-    {
-      "$id": "94",
-      "id": "Talisman",
-      "type": "talisman",
-      "name": "Talismans"
-    },
-    {
-      "$id": "95",
-      "id": "Thrown One Hand Axe",
-      "name": ""
-    },
-    {
-      "$id": "96",
-      "id": "Thrown Shield",
-      "name": ""
-    },
-    {
-      "$id": "97",
-      "id": "Thrown Two Hand Axe",
-      "name": ""
-    },
-    {
-      "$id": "98",
-      "id": "TowerAugmentation",
-      "type": "tablet",
-      "name": "Tablet"
-    },
-    {
-      "$id": "99",
-      "id": "TrapTool",
-      "name": "Traps"
-    },
-    {
-      "$id": "100",
-      "id": "Trinket",
-      "name": "Trinkets"
-    },
-    {
-      "$id": "101",
-      "id": "Two Hand Axe",
-      "type": "twoHandAxe",
-      "name": "Two Hand Axes"
-    },
-    {
-      "$id": "102",
-      "id": "Two Hand Mace",
-      "type": "twoHandMace",
-      "name": "Two Hand Maces"
-    },
-    {
-      "$id": "103",
-      "id": "Two Hand Sword",
-      "type": "twoHandSword",
-      "name": "Two Hand Swords"
-    },
-    {
-      "$id": "104",
-      "id": "UltimatumKey",
-      "name": "Inscribed Ultimatum"
-    },
-    {
-      "$id": "105",
-      "id": "Unarmed",
-      "name": ""
-    },
-    {
-      "$id": "106",
-      "id": "UncutReservationGemStackable",
-      "name": "Uncut Spirit Gems"
-    },
-    {
-      "$id": "107",
-      "id": "UncutReservationGem_OLD",
-      "name": ""
-    },
-    {
-      "$id": "108",
-      "id": "UncutSkillGemStackable",
-      "name": "Uncut Skill Gems"
-    },
-    {
-      "$id": "109",
-      "id": "UncutSkillGem_OLD",
-      "name": ""
-    },
-    {
-      "$id": "110",
-      "id": "UncutSupportGemStackable",
-      "name": "Uncut Support Gems"
-    },
-    {
-      "$id": "111",
-      "id": "UncutSupportGem_OLD",
-      "name": ""
-    },
-    {
-      "$id": "112",
-      "id": "UniqueFragment",
-      "name": "Pieces"
-    },
-    {
-      "$id": "113",
-      "id": "UniqueShard",
-      "name": "Shards"
-    },
-    {
-      "$id": "114",
-      "id": "UniqueShardBase",
-      "name": "Shard Hearts"
-    },
-    {
-      "$id": "115",
-      "id": "UtilityFlask",
-      "type": "charms",
-      "name": "Charms"
-    },
-    {
-      "$id": "116",
-      "id": "VaultKey",
-      "name": "Vault Keys"
-    },
-    {
-      "$id": "117",
-      "id": "Wand",
-      "type": "wand",
-      "name": "Wands"
-    },
-    {
-      "$id": "118",
-      "id": "Warstaff",
-      "type": "warstaff",
-      "name": "Quarterstaves"
-    }
-  ]
-}
+[
+  {
+    "id": "AbyssJewel",
+    "name": "Abyss Jewels"
+  },
+  {
+    "id": "Active Skill Gem",
+    "type": "activeSkillGem",
+    "name": "Skill Gems"
+  },
+  {
+    "id": "Amulet",
+    "type": "amulet",
+    "name": "Amulets"
+  },
+  {
+    "id": "ArchnemesisMod",
+    "name": "Archnemesis Mods"
+  },
+  {
+    "id": "AtlasUpgradeItem",
+    "name": "Atlas Upgrade Items"
+  },
+  {
+    "id": "Belt",
+    "type": "belt",
+    "name": "Belts"
+  },
+  {
+    "id": "Body Armour",
+    "type": "bodyArmour",
+    "name": "Body Armours"
+  },
+  {
+    "id": "Boots",
+    "type": "boots",
+    "name": "Boots"
+  },
+  {
+    "id": "Bow",
+    "type": "bow",
+    "name": "Bows"
+  },
+  {
+    "id": "Breachstone",
+    "name": "Breachstones"
+  },
+  {
+    "id": "BrequelFruit",
+    "name": "Wombgifts"
+  },
+  {
+    "id": "Buckler",
+    "type": "buckler",
+    "name": "Bucklers"
+  },
+  {
+    "id": "Claw",
+    "type": "claw",
+    "name": "Claws"
+  },
+  {
+    "id": "ConventionTreasure",
+    "name": ""
+  },
+  {
+    "id": "Crossbow",
+    "type": "crossbow",
+    "name": "Crossbows"
+  },
+  {
+    "id": "Crossbow Attachment REMOVE",
+    "name": ""
+  },
+  {
+    "id": "Currency",
+    "name": "Currency"
+  },
+  {
+    "id": "DONOTUSE1",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE10",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE11",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE12",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE2",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE3",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE4",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE5",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE6",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE7",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE8",
+    "name": ""
+  },
+  {
+    "id": "DONOTUSE9",
+    "name": ""
+  },
+  {
+    "id": "Dagger",
+    "type": "dagger",
+    "name": "Daggers"
+  },
+  {
+    "id": "DelveSocketableCurrency",
+    "name": "Delve Socketable Currency"
+  },
+  {
+    "id": "DelveStackableSocketableCurrency",
+    "name": "Delve Stackable Socketable Currency"
+  },
+  {
+    "id": "DivinationCard",
+    "name": "Divination Cards"
+  },
+  {
+    "id": "Expedition2Logbooks",
+    "name": "Expedition Logbook"
+  },
+  {
+    "id": "ExpeditionLogbook",
+    "type": "expeditionLogbook",
+    "name": "Expedition Logbooks"
+  },
+  {
+    "id": "FishingRod",
+    "type": "fishingRod",
+    "name": "Fishing Rods"
+  },
+  {
+    "id": "Flail",
+    "type": "flail",
+    "name": "Flails"
+  },
+  {
+    "id": "Focus",
+    "type": "focus",
+    "name": "Foci"
+  },
+  {
+    "id": "GiftBox",
+    "name": ""
+  },
+  {
+    "id": "Gloves",
+    "type": "gloves",
+    "name": "Gloves"
+  },
+  {
+    "id": "HeistBlueprint",
+    "name": "Blueprints"
+  },
+  {
+    "id": "HeistContract",
+    "name": "Contracts"
+  },
+  {
+    "id": "HeistEquipmentReward",
+    "name": "Heist Brooches"
+  },
+  {
+    "id": "HeistEquipmentTool",
+    "name": "Heist Tools"
+  },
+  {
+    "id": "HeistEquipmentUtility",
+    "name": "Heist Cloaks"
+  },
+  {
+    "id": "HeistEquipmentWeapon",
+    "name": "Heist Gear"
+  },
+  {
+    "id": "HeistObjective",
+    "name": "Heist Targets"
+  },
+  {
+    "id": "Helmet",
+    "type": "helmet",
+    "name": "Helmets"
+  },
+  {
+    "id": "HiddenItem",
+    "name": "Hidden Items"
+  },
+  {
+    "id": "HideoutDoodad",
+    "name": "Hideout Doodads"
+  },
+  {
+    "id": "Incubator",
+    "name": "Incubators"
+  },
+  {
+    "id": "IncubatorStackable",
+    "name": "Incubators"
+  },
+  {
+    "id": "IncursionArm",
+    "name": "Transcendent Arm"
+  },
+  {
+    "id": "IncursionItem",
+    "name": "Incursion Items"
+  },
+  {
+    "id": "IncursionLeg",
+    "name": "Transcendent Leg"
+  },
+  {
+    "id": "InstanceLocalItem",
+    "name": "Instance Local Items"
+  },
+  {
+    "id": "ItemisedSanctum",
+    "name": "Trial Coins"
+  },
+  {
+    "id": "Jewel",
+    "type": "jewel",
+    "name": "Jewels"
+  },
+  {
+    "id": "LargeRelic",
+    "type": "sanctumRelic",
+    "name": "Large Relics"
+  },
+  {
+    "id": "Leaguestone",
+    "name": "Leaguestones"
+  },
+  {
+    "id": "LifeFlask",
+    "type": "lifeFlask",
+    "name": "Life Flasks"
+  },
+  {
+    "id": "ManaFlask",
+    "type": "manaFlask",
+    "name": "Mana Flasks"
+  },
+  {
+    "id": "Map",
+    "type": "map",
+    "name": "Waystones"
+  },
+  {
+    "id": "MapFragment",
+    "type": "mapFragments",
+    "name": "Map Fragments"
+  },
+  {
+    "id": "MediumRelic",
+    "type": "sanctumRelic",
+    "name": "Medium Relics"
+  },
+  {
+    "id": "MemoryLine",
+    "name": "Memories"
+  },
+  {
+    "id": "Meta Skill Gem",
+    "name": ""
+  },
+  {
+    "id": "Microtransaction",
+    "name": "Microtransactions"
+  },
+  {
+    "id": "MiscMapItem",
+    "name": "Misc Map Items"
+  },
+  {
+    "id": "Nothing",
+    "name": ""
+  },
+  {
+    "id": "Omen",
+    "name": "Omen"
+  },
+  {
+    "id": "One Hand Axe",
+    "type": "oneHandAxe",
+    "name": "One Hand Axes"
+  },
+  {
+    "id": "One Hand Mace",
+    "type": "oneHandMace",
+    "name": "One Hand Maces"
+  },
+  {
+    "id": "One Hand Sword",
+    "type": "oneHandSword",
+    "name": "One Hand Swords"
+  },
+  {
+    "id": "PantheonSoul",
+    "name": "Pantheon Souls"
+  },
+  {
+    "id": "PinnacleKeyStackable",
+    "name": "Pinnacle Keys"
+  },
+  {
+    "id": "PinnacleKey_OLD",
+    "name": ""
+  },
+  {
+    "id": "QuestItem",
+    "name": "Quest Items"
+  },
+  {
+    "id": "Quiver",
+    "type": "quiver",
+    "name": "Quivers"
+  },
+  {
+    "id": "Relic",
+    "type": "sanctumRelic",
+    "name": "Relics"
+  },
+  {
+    "id": "Ring",
+    "type": "ring",
+    "name": "Rings"
+  },
+  {
+    "id": "SanctumSpecialRelic",
+    "type": "sanctumRelic",
+    "name": "Sanctified Relics"
+  },
+  {
+    "id": "Sceptre",
+    "type": "sceptre",
+    "name": "Sceptres"
+  },
+  {
+    "id": "SentinelDrone",
+    "name": "Sentinels"
+  },
+  {
+    "id": "Shield",
+    "type": "shield",
+    "name": "Shields"
+  },
+  {
+    "id": "SkillGemToken",
+    "name": "Currency"
+  },
+  {
+    "id": "SmallRelic",
+    "type": "sanctumRelic",
+    "name": "Small Relics"
+  },
+  {
+    "id": "SoulCore",
+    "name": "Augment"
+  },
+  {
+    "id": "Spear",
+    "type": "spear",
+    "name": "Spears"
+  },
+  {
+    "id": "StackableCurrency",
+    "name": "Stackable Currency"
+  },
+  {
+    "id": "Staff",
+    "type": "staff",
+    "name": "Staves"
+  },
+  {
+    "id": "Support Skill Gem",
+    "type": "supportSkillGem",
+    "name": "Support Gems"
+  },
+  {
+    "id": "Talisman",
+    "type": "talisman",
+    "name": "Talismans"
+  },
+  {
+    "id": "Thrown One Hand Axe",
+    "name": ""
+  },
+  {
+    "id": "Thrown Shield",
+    "name": ""
+  },
+  {
+    "id": "Thrown Two Hand Axe",
+    "name": ""
+  },
+  {
+    "id": "TowerAugmentation",
+    "type": "tablet",
+    "name": "Tablet"
+  },
+  {
+    "id": "TrapTool",
+    "name": "Traps"
+  },
+  {
+    "id": "Trinket",
+    "name": "Trinkets"
+  },
+  {
+    "id": "Two Hand Axe",
+    "type": "twoHandAxe",
+    "name": "Two Hand Axes"
+  },
+  {
+    "id": "Two Hand Mace",
+    "type": "twoHandMace",
+    "name": "Two Hand Maces"
+  },
+  {
+    "id": "Two Hand Sword",
+    "type": "twoHandSword",
+    "name": "Two Hand Swords"
+  },
+  {
+    "id": "UltimatumKey",
+    "name": "Inscribed Ultimatum"
+  },
+  {
+    "id": "Unarmed",
+    "name": ""
+  },
+  {
+    "id": "UncutReservationGemStackable",
+    "name": "Uncut Spirit Gems"
+  },
+  {
+    "id": "UncutReservationGem_OLD",
+    "name": ""
+  },
+  {
+    "id": "UncutSkillGemStackable",
+    "name": "Uncut Skill Gems"
+  },
+  {
+    "id": "UncutSkillGem_OLD",
+    "name": ""
+  },
+  {
+    "id": "UncutSupportGemStackable",
+    "name": "Uncut Support Gems"
+  },
+  {
+    "id": "UncutSupportGem_OLD",
+    "name": ""
+  },
+  {
+    "id": "UniqueFragment",
+    "name": "Pieces"
+  },
+  {
+    "id": "UniqueShard",
+    "name": "Shards"
+  },
+  {
+    "id": "UniqueShardBase",
+    "name": "Shard Hearts"
+  },
+  {
+    "id": "UtilityFlask",
+    "type": "charms",
+    "name": "Charms"
+  },
+  {
+    "id": "VaultKey",
+    "name": "Vault Keys"
+  },
+  {
+    "id": "Wand",
+    "type": "wand",
+    "name": "Wands"
+  },
+  {
+    "id": "Warstaff",
+    "type": "warstaff",
+    "name": "Quarterstaves"
+  }
+]

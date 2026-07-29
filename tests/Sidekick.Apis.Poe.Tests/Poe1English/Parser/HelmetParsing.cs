@@ -42,7 +42,8 @@ Hunter Item
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Hunter Hood", actual.Definition.TradeItem?.Type);
 
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "You have # Conflux for 3 seconds every 8 seconds", "Shocking");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Explicit, "You have Chilling Conflux for 3 seconds every 8 seconds");
     }
 
     [Fact]
