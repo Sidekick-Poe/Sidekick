@@ -109,6 +109,7 @@ public class ApiItem
     [JsonConverter(typeof(ObjectOrArrayConverter<Extended>))]
     public Extended? Extended { get; set; }
 
+    [JsonPropertyName("logbookMods")]
     public List<LogbookMod> LogbookMods { get; set; } = [];
 
     [JsonPropertyName("grantedSkills")]

@@ -145,4 +145,38 @@ Note: ~b/o 14 divine
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains Olroth, Origin of the Fall");
         fixture.AssertDoesNotHaveStat(actual, StatCategory.Implicit, "Area contains Medved, Feller of Heroes");
     }
+
+    [Fact]
+    public void NormalLogbook()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+Rarity: Normal
+Expedition Logbook
+--------
+Area Level: 83
+--------
+Item Level: 83
+--------
+Rotting Temple
+Black Scythe Mercenaries
+18(10-40)% increased quantity of Artifacts dropped by Monsters (implicit)
+17(10-40)% increased number of Explosives (implicit)
+Area contains 38(10-40)% increased number of Remnants (implicit)
+--------
+Forest Ruins
+Druids of the Broken Circle
+39(10-40)% increased quantity of Artifacts dropped by Monsters (implicit)
+Excavated Chests have a 17(5-20)% chance to contain twice as many Items (implicit)
+35(10-40)% increased Explosive Radius (implicit)
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.
+");
+
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains Olroth, Origin of the Fall");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Implicit, "Area contains Medved, Feller of Heroes");
+    }
 }
