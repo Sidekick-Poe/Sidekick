@@ -22,6 +22,9 @@ public enum DataType
     [EnumValue("{0}/pseudo.json")]
     Pseudo,
 
+    [EnumValue("{0}/texts.json")]
+    Texts,
+
     [EnumValue("{0}/trade-filters.json")]
     TradeFilters,
 

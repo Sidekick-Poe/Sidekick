@@ -11,6 +11,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
+using Sidekick.Apis.Poe.Trade.Parser.Text;
 using Sidekick.Apis.Poe.Trade.Trade;
 using Sidekick.Common;
 using Sidekick.Data.Stats;
@@ -38,6 +39,7 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IStatParser, StatParser>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<ITradeFilterProvider, TradeFilterProvider>();
+        services.AddSidekickInitializableService<TextParser>();
 
         services.TryAddSingleton<CurrencyFilterFactory>();
         services.TryAddSingleton<PlayerStatusFilterFactory>();
