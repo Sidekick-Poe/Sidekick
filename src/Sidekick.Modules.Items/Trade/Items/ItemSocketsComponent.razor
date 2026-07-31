@@ -12,12 +12,12 @@
             var previousGroup = -1;
         }
         @foreach (var socket in Sockets.OrderBy(x => x.Group)
-                      .Select((x, index) => new
-                      {
-                          x.Colour,
-                          x.Group,
-                          Index = index
-                      }))
+                          .Select((x, index) => new
+                          {
+                              x.Colour,
+                              x.Group,
+                              Index = index,
+                          }))
         {
             var isLink = previousGroup != -1 && previousGroup == socket.Group;
 
@@ -44,19 +44,16 @@
                     break;
 
                 case SocketColour.PoE2:
-                    <div class="item-socket item-socket-poe2"></div>
+                    <div class="item-socket item-socket-poe2">
+                        @if (Result.Item.SocketedItems.Count > socket.Index && !string.IsNullOrEmpty(Result.Item.SocketedItems[socket.Index].SocketedIcon))
+                        {
+                            <img class="w-full" src="@Result.Item.SocketedItems[socket.Index].SocketedIcon"/>
+                        }
+                    </div>
                     break;
 
                 case SocketColour.PoE2_Gem:
                     <div class="item-socket-poe2-gem"></div>
-                    break;
-
-                case SocketColour.PoE2_Rune:
-                    <div class="item-socket item-socket-poe2 item-socket-poe2-rune"></div>
-                    break;
-
-                case SocketColour.PoE2_Soulcore:
-                    <div class="item-socket item-socket-poe2 item-socket-poe2-soulcore"></div>
                     break;
             }
 
@@ -90,7 +87,7 @@
                 .ToList();
         }
 
-        Sockets = Result.Item.Sockets.Where(x => x.ColourString != "DV") // Remove delve resonator sockets
+        Sockets = Result.Item.Sockets.Where(x => x.ColourString != "DV")// Remove delve resonator sockets
             .Select(x => new Socket()
             {
                 Group = x.Group,

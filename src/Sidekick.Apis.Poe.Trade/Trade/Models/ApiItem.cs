@@ -60,6 +60,8 @@ public class ApiItem
 
     public string? Icon { get; set; }
 
+    public string? SocketedIcon { get; set; }
+
     public string? Note { get; set; }
 
     public string? BuiltInSupport { get; set; }
@@ -97,6 +99,9 @@ public class ApiItem
     public List<ApiItemModifier> VeiledMods { get; set; } = [];
 
     public List<string> GemSockets { get; set; } = [];
+
+    [JsonPropertyName("socketedItems")]
+    public List<ApiItem> SocketedItems { get; set; } = [];
 
     public List<ApiItemSocket> Sockets { get; set; } = [];
 
