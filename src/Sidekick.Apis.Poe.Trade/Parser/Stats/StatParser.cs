@@ -8,7 +8,6 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Extensions;
-using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Stats;
@@ -23,8 +22,7 @@ public class StatParser
     ISettingsService settingsService,
     ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources,
-    DataProvider dataProvider,
-    IFuzzyService fuzzyService
+    DataProvider dataProvider
 ) : IStatParser
 {
     private static readonly Regex ParseCategoryPattern = new(@" \(([a-zA-Z]+)\)$", RegexOptions.Multiline);
@@ -61,7 +59,7 @@ public class StatParser
         var maxLineCount = definitions.Select(x => x.Lines).Max();
         definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
 
-        return CreateStat(line, definitions, false);
+        return CreateStat(line, definitions);
     }
 
     /// <inheritdoc/>
@@ -87,10 +85,6 @@ public class StatParser
 
                     var lines = block.Lines.Skip(lineIndex).Select(x => x.Text).ToList();
                     var definitions = MatchDefinitions(FilterDefinitions(), lines).ToList();
-                    var matchFuzzily = definitions
-                        .Where(x => x.TradeIds != null)
-                        .Sum(x => x.TradeIds!.Count) is 0;
-                    if (matchFuzzily && false) definitions.AddRange(MatchDefinitionsFuzzily(block, lineIndex));
                     if (definitions.Count is 0) continue;
 
                     var maxLineCount = definitions.Select(x => x.Lines).Max();
@@ -99,9 +93,10 @@ public class StatParser
                     var matchedLines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
                     matchedLines.ForEach(x => x.Parsed = true);
 
-                    definitions = definitions.OrderByDescending(x=>Fuzz.Ratio(x.Text, x.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None)).ToList();
+                    var lineText = string.Join('\n', matchedLines.Select(x => x.Text));
+                    definitions = definitions.OrderByDescending(x=>Fuzz.Ratio(x.Text, lineText, FuzzySharp.PreProcess.PreprocessMode.None)).ToList();
 
-                    yield return CreateStat(string.Join('\n', matchedLines.Select(x => x.Text)), definitions, matchFuzzily, block.Index, matchedLines.First().Index);
+                    yield return CreateStat(lineText, definitions, block.Index, matchedLines.First().Index);
                 }
             }
         }
@@ -113,50 +108,6 @@ public class StatParser
                 Rarity.Gem => Definitions.Where(x => x.TradeIds?.Any(y => y.StartsWith(StatCategory.Imbued.GetValueAttribute())) ?? false),
                 _ => Definitions,
             };
-        }
-
-        List<StatDefinition> MatchDefinitionsFuzzily(RawBlock block, int lineIndex)
-        {
-            var singleText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, block.Lines[lineIndex].Text);
-
-            string? doubleText = null;
-            if (lineIndex < block.Lines.Count - 1)
-            {
-                doubleText = $"{block.Lines[lineIndex].Text} {block.Lines[lineIndex + 1].Text}";
-                doubleText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, doubleText);
-            }
-
-            var results = new List<(int Ratio, StatDefinition Definition)>();
-            var resultsLock = new object();// Lock object to synchronize access to results
-
-            Parallel.ForEach(FilterDefinitions(),
-                             definition =>
-                             {
-                                 if (string.IsNullOrEmpty(definition.FuzzyText)) return;
-
-                                 var text = definition.Lines switch
-                                 {
-                                     2 => doubleText ?? singleText,
-                                     _ => singleText,
-                                 };
-
-                                 var ratio = Fuzz.Ratio(text, definition.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None);
-                                 if (ratio <= 75)
-                                 {
-                                     return;
-                                 }
-
-                                 lock (resultsLock)// Lock before accessing the shared list
-                                 {
-                                     results.Add((ratio, definition));
-                                 }
-                             });
-
-            if (results.Count == 0) return [];
-
-            var orderedResults = results.OrderByDescending(x => x.Ratio).ToList();
-            var cutoff = orderedResults.First().Ratio - 2;
-            return orderedResults.Where(x => x.Ratio > cutoff).Select(x => x.Definition).ToList();
         }
     }
 
@@ -181,7 +132,6 @@ public class StatParser
     private Stat CreateStat(
         string text,
         List<StatDefinition> definitions,
-        bool matchedFuzzily,
         int blockIndex = 0,
         int lineIndex = 0
     )
@@ -212,7 +162,6 @@ public class StatParser
             BlockIndex = blockIndex,
             LineIndex = lineIndex,
             Definitions = definitions,
-            MatchedFuzzily = matchedFuzzily,
             HasTradeSupport = definitions.Any(x => x.TradeIds is { Count: > 0 }),
         };
 
@@ -233,14 +182,13 @@ public class StatParser
                 var patternMatch = definition.Pattern.Match(input.Text);
                 if (!patternMatch.Success) continue;
 
-                var hasMatchingDescription = HasMatchingTradeDescriptions(definition);
                 var hasValues = false;
                 foreach (Group group in patternMatch.Groups)
                 {
                     foreach (Capture capture in group.Captures)
                     {
                         if (!double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value)) continue;
-                        if (!hasMatchingDescription && definition.Negate) value *= -1;
+                        if (definition.Negate) value *= -1;
                         yield return value;
                         hasValues = true;
                     }
@@ -248,31 +196,6 @@ public class StatParser
 
                 if (hasValues) yield break;
             }
-
-            // Find numbers in the line
-            if (input.MatchedFuzzily)
-            {
-                var matches = new Regex("([-+0-9,.]+)").Matches(input.Text);
-                foreach (Match match in matches)
-                {
-                    if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
-                    {
-                        yield return value;
-                    }
-                }
-            }
-        }
-
-        bool HasMatchingTradeDescriptions(StatDefinition definition)
-        {
-            if (definition.TradeIds == null) return false;
-            foreach (var tradeId in definition.TradeIds)
-            {
-                var tradeDefinitions = TradeDefinitions.GetValueOrDefault(tradeId);
-                if (tradeDefinitions != null && tradeDefinitions.Any(x => x.Text == definition.Text)) return true;
-            }
-
-            return false;
         }
     }
 

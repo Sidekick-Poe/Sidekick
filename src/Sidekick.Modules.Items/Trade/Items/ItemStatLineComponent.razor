@@ -1,15 +1,23 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Models
 @using Sidekick.Apis.Poe.Trade.Trade.Results
-@if (IsFirstOfBlock)
-{
-    <ItemSeparator Rarity="Result.Item.Rarity"/>
-}
+@using Sidekick.Data.Stats
 
 <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-px">
-    <ItemStatText Category="StatLine.Category">@StatLine.Text</ItemStatText>
-    @if (!string.IsNullOrWhiteSpace(StatLine.Tier))
-    {
-        <span class="absolute top-0.5 left-[-6px] @GetTierClass(StatLine.Tier)">@StatLine.Tier</span>
-    }
+    <ItemStatText Category="ComputedCategory">@Modifier.Description</ItemStatText>
+
+    <span class="absolute top-0.5 left-[-6px] flex items-center gap-x-0.5">
+        @foreach (var modifier in Modifier.Details)
+        {
+            if (string.IsNullOrWhiteSpace(modifier.Tier)) continue;
+
+            if (Modifier.Details.IndexOf(modifier) != 0)
+            {
+                <span class="@GetTierClass(modifier.Tier)">+</span>
+            }
+
+            <span class="@GetTierClass(modifier.Tier)">@modifier.Tier</span>
+        }
+    </span>
 </TextBase>
 
 @code {
@@ -18,22 +26,24 @@
     public required TradeResult Result { get; set; }
 
     [Parameter]
-    public required List<ItemStats.StatLine> StatLines { get; set; }
+    public required ApiItemModifier Modifier { get; set; }
 
     [Parameter]
-    public required ItemStats.StatLine StatLine { get; set; }
+    public required StatCategory Category { get; set; } = StatCategory.Explicit;
 
-    private bool IsFirstOfBlock
+    private string GetTierClass(string tier) => tier.StartsWith("P") ? "text-[#ec7676]" : "text-[#7aaff1]";
+
+    private StatCategory ComputedCategory
     {
         get
         {
-            var index = StatLines.IndexOf(StatLine);
-            var previous = StatLines.ElementAtOrDefault(index - 1);
-            return previous == null || StatLine.BlockIndex != previous.BlockIndex;
+            if (Modifier.Flags?.Mutated ?? false) return StatCategory.Mutated;
+            if (Modifier.Flags?.Fractured ?? false) return StatCategory.Fractured;
+            if (Modifier.Flags?.Crafted ?? false) return StatCategory.Crafted;
+            if (Modifier.Flags?.Desecrated ?? false) return StatCategory.Desecrated;
+            return Category;
         }
     }
-
-    private string GetTierClass(string tier) => tier.StartsWith("P") ? "text-[#ec7676]" : "text-[#7aaff1]";
 
     protected override bool ShouldRender() => false;
 

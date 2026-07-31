@@ -123,27 +123,12 @@ public abstract class ParserFixture : IAsyncLifetime
 
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
-        return AssertHasStat(actual, expectedCategory, expectedText, null, false, expectedValues);
+        return AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
     }
 
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
     {
-        return AssertHasStat(actual, expectedCategory, expectedText, expectedOptionText, false, expectedValues);
-    }
-
-    public Stat? AssertHasFuzzyStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
-    {
-        return AssertHasStat(actual, expectedCategory, expectedText, null, true, expectedValues);
-    }
-
-    public Stat? AssertHasFuzzyStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
-    {
-        return AssertHasStat(actual, expectedCategory, expectedText, expectedOptionText, true, expectedValues);
-    }
-
-    private Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, bool fuzzy, params double[] expectedValues)
-    {
-        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText, fuzzy);
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
         if (actualStat == null)
         {
             Assert.Fail("The actual stat does not exist. Expected: " + expectedText + " - " + expectedOptionText);
@@ -163,19 +148,10 @@ public abstract class ParserFixture : IAsyncLifetime
         return actualStat;
     }
 
-    private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, bool? fuzzy)
+    private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText)
     {
         foreach (var stat in actual.Stats)
         {
-            switch (fuzzy)
-            {
-                case false when stat.MatchedFuzzily:
-                case true when !stat.MatchedFuzzily:
-                    continue;
-                case null:
-                    break;
-            }
-
             if (stat.Category != expectedCategory) continue;
 
             var tradeStatDefinitions = stat.Definitions
@@ -208,7 +184,7 @@ public abstract class ParserFixture : IAsyncLifetime
 
     public void AssertDoesNotHaveStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText = null)
     {
-        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText, null);
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
         Assert.Null(actualStat);
     }
 

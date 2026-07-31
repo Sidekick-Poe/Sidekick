@@ -8,4 +8,7 @@ public class ApiItemModifier
 
     [JsonPropertyName("mods")]
     public List<ApiItemModifierDetail> Details { get; set; } = [];
+
+    [JsonPropertyName("flags")]
+    public ApiItemModifierFlags? Flags { get; set; }
 }

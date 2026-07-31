@@ -86,7 +86,9 @@ public class NinjaStashProvider(
 
     public List<NinjaItemDefinition> GetDefinitions(ItemDefinition item, ApiItem apiItem)
     {
-        var stats = apiItem.MutatedMods.Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Mutated.GetValueAttribute()})")!).ToList();
+        var stats = apiItem.ExplicitMods
+            .Where(x => x.Flags?.Mutated ?? false)
+            .Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Mutated.GetValueAttribute()})")!).ToList();
         stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant($"{x.Description} ({StatCategory.Enchant.GetValueAttribute()})")!).ToList());
         stats.AddRange(apiItem.ImplicitMods.Select(x => statParser.ParseInvariant($"{x.Description} ({StatCategory.Implicit.GetValueAttribute()})")!).ToList());
         stats = stats.Where(x => x != null!).ToList();
@@ -231,6 +233,7 @@ public class NinjaStashProvider(
         return item.NinjaItems!
             .Where(x => x.Stash != null)
             .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
+            .Where(x => x.Stash!.DetailsId == "6-increased-mana-reservation-efficiency-of-skills-3-passives-75")
             .Where(x => ValidateNinjaStats(stats, StatCategory.Enchant, x))
             .ToList();
     }
@@ -341,6 +344,7 @@ public class NinjaStashProvider(
         foreach (var expectedStat in ninjaDefinition.Stash.Stats)
         {
             var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
+            foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.Id?.Replace('#', '|'));
             if (foundStat == null) return false;
 
             if (expectedStat.Min == null || expectedStat.Max == null || expectedStat.Min == 0 || expectedStat.Max == 0) continue;

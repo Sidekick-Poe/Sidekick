@@ -42,7 +42,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
     public void AssertApiItem(ApiItem item, string expectedDetailsId)
     {
         var itemDefinition = ItemDefinitionParser.Get(item);
-        var invariantDefinition = itemDefinition?.Key != null ? ItemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
+        var invariantDefinition = itemDefinition?.InvariantKey != null ? ItemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.InvariantKey) : null;
         if (invariantDefinition?.NinjaItems == null || invariantDefinition.NinjaItems.All(x => x.Stash?.DetailsId != expectedDetailsId))
         {
             Logger.LogWarning($"Item {item.Name} {item.Type} does not have expected details id {expectedDetailsId}");

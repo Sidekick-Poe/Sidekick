@@ -91,7 +91,6 @@ Leeches 4.02% of Physical Damage as Mana
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage", 24, 37);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attribute Requirements", -35);
-        Assert.False(actual.Stats[4].MatchedFuzzily);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "# to Level of all Projectile Skills", 3);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02);
     }

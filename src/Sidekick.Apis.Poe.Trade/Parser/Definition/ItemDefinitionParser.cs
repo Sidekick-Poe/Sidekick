@@ -58,9 +58,9 @@ public class ItemDefinitionParser(
 
             foreach (var definition in InvariantDefinitions)
             {
-                if (string.IsNullOrEmpty(definition.Key)) continue;
+                if (string.IsNullOrEmpty(definition.InvariantKey)) continue;
 
-                InvariantDictionary.TryAdd(definition.Key, definition);
+                InvariantDictionary.TryAdd(definition.InvariantKey, definition);
             }
         }
     }
@@ -100,8 +100,8 @@ public class ItemDefinitionParser(
         ItemDefinition? GetInvariant(ItemDefinition definition)
         {
             if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return definition;
-            if (string.IsNullOrEmpty(definition.Key)) return null;
-            return InvariantDictionary.GetValueOrDefault(definition.Key);
+            if (string.IsNullOrEmpty(definition.InvariantKey)) return null;
+            return InvariantDictionary.GetValueOrDefault(definition.InvariantKey);
         }
 
         ItemClassDefinition GetItemClass(ItemDefinition definition)

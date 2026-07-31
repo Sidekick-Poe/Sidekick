@@ -70,17 +70,6 @@ public class ApiItem
 
     public List<ApiItemLineContent> AdditionalProperties { get; set; } = [];
 
-    [JsonPropertyName("implicitMods")]
-    [JsonConverter(typeof(StringOrModifierListConverter))]
-    public List<ApiItemModifier> ImplicitMods { get; set; } = [];
-
-    [JsonPropertyName("craftedMods")]
-    public List<string> CraftedMods { get; set; } = [];
-
-    [JsonPropertyName("explicitMods")]
-    [JsonConverter(typeof(StringOrModifierListConverter))]
-    public List<ApiItemModifier> ExplicitMods { get; set; } = [];
-
     [JsonPropertyName("utilityMods")]
     public List<string> UtilityMods { get; set; } = [];
 
@@ -95,20 +84,17 @@ public class ApiItem
     [JsonConverter(typeof(StringOrModifierListConverter))]
     public List<ApiItemModifier> RuneMods { get; set; } = [];
 
-    [JsonPropertyName("fracturedMods")]
-    public List<string> FracturedMods { get; set; } = [];
+    [JsonPropertyName("implicitMods")]
+    [JsonConverter(typeof(StringOrModifierListConverter))]
+    public List<ApiItemModifier> ImplicitMods { get; set; } = [];
 
-    [JsonPropertyName("desecratedMods")]
-    public List<string> DesecratedMods { get; set; } = [];
+    [JsonPropertyName("explicitMods")]
+    [JsonConverter(typeof(StringOrModifierListConverter))]
+    public List<ApiItemModifier> ExplicitMods { get; set; } = [];
 
-    [JsonPropertyName("scourgeMods")]
-    public List<string> ScourgeMods { get; set; } = [];
-
-    [JsonPropertyName("sanctumMods")]
-    public List<string> SanctumMods { get; set; } = [];
-
-    [JsonPropertyName("mutatedMods")]
-    public List<string> MutatedMods { get; set; } = [];
+    [JsonPropertyName("veiledMods")]
+    [JsonConverter(typeof(StringOrModifierListConverter))]
+    public List<ApiItemModifier> VeiledMods { get; set; } = [];
 
     public List<string> GemSockets { get; set; } = [];
 
@@ -161,18 +147,13 @@ public class ApiItem
 
     public bool HasStats => !Identified ||
                             ImplicitMods.Count > 0 ||
-                            CraftedMods.Count > 0 ||
                             ExplicitMods.Count > 0 ||
                             UtilityMods.Count > 0 ||
                             PseudoMods.Count > 0 ||
                             EnchantMods.Count > 0 ||
                             RuneMods.Count > 0 ||
-                            FracturedMods.Count > 0 ||
-                            DesecratedMods.Count > 0 ||
-                            ScourgeMods.Count > 0 ||
-                            SanctumMods.Count > 0 ||
+                            VeiledMods.Count > 0 ||
                             LogbookMods.Count > 0 ||
-                            MutatedMods.Count > 0 ||
                             Split ||
                             Fractured ||
                             Mirrored;

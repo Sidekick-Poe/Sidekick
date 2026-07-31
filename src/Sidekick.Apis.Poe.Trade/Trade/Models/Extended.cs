@@ -3,12 +3,6 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Models;
 
 public class Extended
 {
-    public string? Text { get; set; }
-
-    public ExtendedMods? Mods { get; set; }
-
-    public ExtendedHashes? Hashes { get; set; }
-
     [JsonPropertyName("dps")]
     public double? DamagePerSecondAtMax { get; set; }
 

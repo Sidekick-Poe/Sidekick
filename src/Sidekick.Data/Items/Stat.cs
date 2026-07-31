@@ -36,8 +36,6 @@ public class Stat(StatCategory category, string text)
 
     public int LineIndex { get; init; }
 
-    public bool MatchedFuzzily { get; init; }
-
     public bool HasTradeSupport { get; init; } = true;
 
     /// <inheritdoc />
