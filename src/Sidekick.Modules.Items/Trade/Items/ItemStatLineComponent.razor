@@ -1,9 +1,10 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Models
 @using Sidekick.Apis.Poe.Trade.Trade.Results
+@using Sidekick.Data.Extensions
 @using Sidekick.Data.Stats
 
 <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-px">
-    <ItemStatText Category="ComputedCategory">@Modifier.Description</ItemStatText>
+    <ItemStatText Category="ComputedCategory">@Modifier.Description?.RemoveSquareBrackets()</ItemStatText>
 
     <span class="absolute top-0.5 left-[-6px] flex items-center gap-x-0.5">
         @foreach (var modifier in Modifier.Details)

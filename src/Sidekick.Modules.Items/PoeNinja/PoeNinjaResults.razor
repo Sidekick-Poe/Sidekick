@@ -3,7 +3,7 @@
 @using Sidekick.Apis.PoeNinja.Exchange
 @using Sidekick.Data.Items
 
-@if (Item.Invariant.NinjaItems == null || Item.Invariant.NinjaItems.Count == 0)
+@if (Item.Invariant?.NinjaItems == null || Item.Invariant.NinjaItems.Count == 0)
 {
     return;
 }
@@ -49,7 +49,7 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        if (Item.Invariant.NinjaItems == null) return;
+        if (Item.Invariant?.NinjaItems == null) return;
 
         Loading = true;
         StateHasChanged();

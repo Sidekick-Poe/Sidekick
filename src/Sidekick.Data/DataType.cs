@@ -4,27 +4,27 @@ namespace Sidekick.Data;
 
 public enum DataType
 {
-    [EnumValue("items/{0}.json")]
-    Items,
-
-    [EnumValue("item-classes/{0}.json")]
-    ItemClasses,
-
-    [EnumValue("stats/{0}.json")]
-    Stats,
-
-    [EnumValue("stats/trade.{0}.json")]
-    TradeStats,
-
-    [EnumValue("pseudo/{0}.json")]
-    Pseudo,
-
     [EnumValue("leagues.json")]
     Leagues,
 
-    [EnumValue("stats/invariant.json")]
+    [EnumValue("{0}/items.json")]
+    Items,
+
+    [EnumValue("{0}/item-classes.json")]
+    ItemClasses,
+
+    [EnumValue("invariant-stats.json")]
     StatsInvariant,
 
-    [EnumValue("trade/filters.{0}.json")]
+    [EnumValue("{0}/stats.json")]
+    Stats,
+
+    [EnumValue("{0}/pseudo.json")]
+    Pseudo,
+
+    [EnumValue("{0}/trade-filters.json")]
     TradeFilters,
+
+    [EnumValue("{0}/trade-stats.json")]
+    TradeStats,
 }

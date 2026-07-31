@@ -1,0 +1,819 @@
+[
+  {
+    "pseudoStatId": "pseudo.pseudo_total_life",
+    "text": "\u002B# \u6700\u5927\u751F\u547D",
+    "stats": [
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_3299347043",
+        "text": "\u002B# \u6700\u5927\u751F\u547D",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_3299347043",
+        "text": "\u002B# \u6700\u5927\u751F\u547D",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_3299347043",
+        "text": "\u002B# \u6700\u5927\u751F\u547D",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_3299347043",
+        "text": "\u002B# \u6700\u5927\u751F\u547D",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_3299347043",
+        "text": "\u002B# \u6700\u5927\u751F\u547D",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
+    "text": "\u002B#% \u7E3D\u6DF7\u6C8C\u6297\u6027",
+    "stats": [
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u002B#% \u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% \u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2923486259",
+        "text": "\u002B#% \u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% \u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% \u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_2923486259",
+        "text": "\u002B#% \u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "\u002B#% \u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% \u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% \u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2923486259",
+        "text": "\u002B#% \u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2923486259",
+        "text": "\u002B#% \u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% \u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% \u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_dexterity",
+    "text": "\u002B# \u654F\u6377",
+    "stats": [
+      {
+        "id": "crafted.stat_3261801346",
+        "text": "\u002B# \u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3261801346",
+        "text": "\u002B# \u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3261801346",
+        "text": "\u002B# \u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_3261801346",
+        "text": "\u002B# \u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3261801346",
+        "text": "\u002B# \u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_mana",
+    "text": "\u002B# \u6700\u5927\u9B54\u529B",
+    "stats": [
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_1050105434",
+        "text": "\u002B# \u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1050105434",
+        "text": "\u002B# \u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_417509375",
+        "text": "\u53F3\u6212\u6307\u6B04\u4F4D\uFF1A\u002B# \u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1050105434",
+        "text": "\u002B# \u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1050105434",
+        "text": "\u002B# \u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1050105434",
+        "text": "\u002B# \u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 0.5
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
+    "text": "\u002B#% \u5143\u7D20\u6297\u6027",
+    "stats": [
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% \u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3372524247",
+        "text": "\u002B#% \u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4277795662",
+        "text": "\u002B#% \u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_2915988346",
+        "text": "\u002B#% \u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_1671376347",
+        "text": "\u002B#% \u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% \u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1671376347",
+        "text": "\u002B#% \u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u002B#% \u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4220027924",
+        "text": "\u002B#% \u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_59544006",
+        "text": "\u53EC\u559A\u98DF\u8150\u9B54\u50CF \u002B#% \u5168\u90E8\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "crafted.stat_2901986750",
+        "text": "\u002B#% \u5168\u90E8\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "implicit.stat_3372524247",
+        "text": "\u002B#% \u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1671376347",
+        "text": "\u002B#% \u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% \u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3372524247",
+        "text": "\u002B#% \u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2915988346",
+        "text": "\u002B#% \u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% \u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4277795662",
+        "text": "\u002B#% \u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_3441501978",
+        "text": "\u002B#% \u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% \u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2901986750",
+        "text": "\u002B#% \u5168\u90E8\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_4277795662",
+        "text": "\u002B#% \u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_2915988346",
+        "text": "\u002B#% \u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_4220027924",
+        "text": "\u002B#% \u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3372524247",
+        "text": "\u002B#% \u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_1671376347",
+        "text": "\u002B#% \u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% \u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3441501978",
+        "text": "\u002B#% \u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "scourge.stat_3372524247",
+        "text": "\u002B#% \u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3441501978",
+        "text": "\u002B#% \u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_4220027924",
+        "text": "\u002B#% \u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4220027924",
+        "text": "\u002B#% \u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3441501978",
+        "text": "\u002B#% \u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_2915988346",
+        "text": "\u002B#% \u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_4277795662",
+        "text": "\u002B#% \u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% \u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2901986750",
+        "text": "\u002B#% \u5168\u90E8\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_2901986750",
+        "text": "\u002B#% \u5168\u90E8\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "\u002B#% \u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4220027924",
+        "text": "\u002B#% \u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_2901986750",
+        "text": "\u002B#% \u5168\u90E8\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_1671376347",
+        "text": "\u002B#% \u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_intelligence",
+    "text": "\u002B# \u667A\u6167",
+    "stats": [
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# \u654F\u6377\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "\u002B# \u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_strength",
+    "text": "\u002B# \u529B\u91CF",
+    "stats": [
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# \u529B\u91CF\u548C\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# \u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# \u5168\u80FD\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# \u529B\u91CF\u548C\u667A\u6167",
+        "multiplier": 1
+      }
+    ]
+  }
+]

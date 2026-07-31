@@ -1,0 +1,819 @@
+[
+  {
+    "pseudoStatId": "pseudo.pseudo_total_dexterity",
+    "text": "\u002B# gesamt zu Geschick",
+    "stats": [
+      {
+        "id": "scourge.stat_3261801346",
+        "text": "\u002B# zu Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3261801346",
+        "text": "\u002B# zu Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3261801346",
+        "text": "\u002B# zu Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3261801346",
+        "text": "\u002B# zu Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3261801346",
+        "text": "\u002B# zu Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
+    "text": "\u002BX% gesamt zu Chaoswiderstand",
+    "stats": [
+      {
+        "id": "implicit.stat_2923486259",
+        "text": "\u002B#% zu Chaoswiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_2923486259",
+        "text": "\u002B#% zu Chaoswiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% zu K\u00E4lte- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% zu Feuer- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% zu K\u00E4lte- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% zu Feuer- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "\u002B#% zu Blitz- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2923486259",
+        "text": "\u002B#% zu Chaoswiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% zu Feuer- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2923486259",
+        "text": "\u002B#% zu Chaoswiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% zu Blitz- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% zu Blitz- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u002B#% zu K\u00E4lte- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_life",
+    "text": "\u002B# gesamt zu maximalem Leben",
+    "stats": [
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_3299347043",
+        "text": "\u002B# zu maximalem Leben",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_3299347043",
+        "text": "\u002B# zu maximalem Leben",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_3299347043",
+        "text": "\u002B# zu maximalem Leben",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_3299347043",
+        "text": "\u002B# zu maximalem Leben",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_3299347043",
+        "text": "\u002B# zu maximalem Leben",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_strength",
+    "text": "\u002B# gesamt zu St\u00E4rke",
+    "stats": [
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# zu St\u00E4rke",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# zu St\u00E4rke und Geschick",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_intelligence",
+    "text": "\u002B# gesamt zu Intelligenz",
+    "stats": [
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
+    "text": "\u002B#% gesamt Elementarwiderstand",
+    "stats": [
+      {
+        "id": "implicit.stat_4277795662",
+        "text": "\u002B#% zu K\u00E4lte- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_4220027924",
+        "text": "\u002B#% zu K\u00E4ltewiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% zu Feuer- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2915988346",
+        "text": "\u002B#% zu Feuer- und K\u00E4ltewiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_4220027924",
+        "text": "\u002B#% zu K\u00E4ltewiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1671376347",
+        "text": "\u002B#% zu Blitzwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_59544006",
+        "text": "Beschworene Aasgolems haben \u002B#% zu allen Elementarwiderst\u00E4nden",
+        "multiplier": 3
+      },
+      {
+        "id": "implicit.stat_3372524247",
+        "text": "\u002B#% zu Feuerwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% zu Feuer- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u002B#% zu K\u00E4lte- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2901986750",
+        "text": "\u002B#% zu allen Elementarwiderst\u00E4nden",
+        "multiplier": 3
+      },
+      {
+        "id": "scourge.stat_2901986750",
+        "text": "\u002B#% zu allen Elementarwiderst\u00E4nden",
+        "multiplier": 3
+      },
+      {
+        "id": "crafted.stat_3372524247",
+        "text": "\u002B#% zu Feuerwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4220027924",
+        "text": "\u002B#% zu K\u00E4ltewiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3372524247",
+        "text": "\u002B#% zu Feuerwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4220027924",
+        "text": "\u002B#% zu K\u00E4ltewiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_1671376347",
+        "text": "\u002B#% zu Blitzwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3372524247",
+        "text": "\u002B#% zu Feuerwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1671376347",
+        "text": "\u002B#% zu Blitzwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% zu K\u00E4lte- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% zu K\u00E4lte- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2915988346",
+        "text": "\u002B#% zu Feuer- und K\u00E4ltewiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3441501978",
+        "text": "\u002B#% zu Feuer- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_2915988346",
+        "text": "\u002B#% zu Feuer- und K\u00E4ltewiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_2901986750",
+        "text": "\u002B#% zu allen Elementarwiderst\u00E4nden",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% zu Blitz- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1671376347",
+        "text": "\u002B#% zu Blitzwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2901986750",
+        "text": "\u002B#% zu allen Elementarwiderst\u00E4nden",
+        "multiplier": 3
+      },
+      {
+        "id": "scourge.stat_3372524247",
+        "text": "\u002B#% zu Feuerwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1671376347",
+        "text": "\u002B#% zu Blitzwiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3441501978",
+        "text": "\u002B#% zu Feuer- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% zu Blitz- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4277795662",
+        "text": "\u002B#% zu K\u00E4lte- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_4277795662",
+        "text": "\u002B#% zu K\u00E4lte- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_4277795662",
+        "text": "\u002B#% zu K\u00E4lte- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_4220027924",
+        "text": "\u002B#% zu K\u00E4ltewiderstand",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3441501978",
+        "text": "\u002B#% zu Feuer- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_3441501978",
+        "text": "\u002B#% zu Feuer- und Blitzwiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_2915988346",
+        "text": "\u002B#% zu Feuer- und K\u00E4ltewiderstand",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% zu Feuer- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "\u002B#% zu Blitz- und Chaoswiderst\u00E4nden",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2901986750",
+        "text": "\u002B#% zu allen Elementarwiderst\u00E4nden",
+        "multiplier": 3
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_mana",
+    "text": "\u002B# gesamt zu maximalem Mana",
+    "stats": [
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_1050105434",
+        "text": "\u002B# zu maximalem Mana",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_417509375",
+        "text": "Rechter Ring-Platz: \u002B# zu maximalem Mana",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1050105434",
+        "text": "\u002B# zu maximalem Mana",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1050105434",
+        "text": "\u002B# zu maximalem Mana",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1050105434",
+        "text": "\u002B# zu maximalem Mana",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# zu St\u00E4rke und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "\u002B# zu Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# zu Geschick und Intelligenz",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1050105434",
+        "text": "\u002B# zu maximalem Mana",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# zu allen Attributen",
+        "multiplier": 0.5
+      }
+    ]
+  }
+]

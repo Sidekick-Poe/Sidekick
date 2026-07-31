@@ -26,7 +26,7 @@ public class Item
 
     public ItemDefinition Definition { get; set; } = null!;
 
-    public ItemDefinition Invariant { get; set; } = null!;
+    public ItemDefinition? Invariant { get; set; }
 
     public ItemProperties Properties { get; } = new();
 

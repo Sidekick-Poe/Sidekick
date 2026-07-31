@@ -19,9 +19,9 @@ public class NinjaExchangeProvider(
         return $"PoeNinjaExchange_{league}_{type}";
     }
 
-    public NinjaItemDefinition? GetDefinition(ItemDefinition item)
+    public NinjaItemDefinition? GetDefinition(ItemDefinition? item)
     {
-        return item.NinjaItems?.FirstOrDefault();
+        return item?.NinjaItems?.FirstOrDefault();
     }
 
     public async Task<NinjaCurrency?> GetInfo(ItemDefinition item)

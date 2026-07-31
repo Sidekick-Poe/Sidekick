@@ -36,6 +36,8 @@ public class NinjaStashProvider(
 
     public List<NinjaItemDefinition> GetDefinitions(Item item)
     {
+        if (item.Invariant == null) return [];
+
         if (item.Properties.Rarity == Rarity.Unique)
         {
             return GetUniqueInfo(item.Invariant,

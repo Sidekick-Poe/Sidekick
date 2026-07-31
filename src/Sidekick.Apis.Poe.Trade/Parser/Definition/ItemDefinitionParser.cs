@@ -78,7 +78,7 @@ public class ItemDefinitionParser(
         if (definition == null) throw new UnparsableException(item.Text.Text);
 
         item.Definition = definition;
-        item.Invariant = GetInvariant(item.Definition) ?? throw new UnparsableException(item.Text.Text);
+        item.Invariant = GetInvariant(item.Definition);
         item.ItemClass = GetItemClass(item.Definition);
 
         ParseVaalGem();

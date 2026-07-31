@@ -48,7 +48,7 @@ public class ItemTradeService
 
             var useEnglishTradeWebsite = await settingsService.GetBool(UseInvariantTradeResults);
             var language = useEnglishTradeWebsite ? currentGameLanguage.InvariantLanguage : currentGameLanguage.Language;
-            var query = GetQueryFromDefinition(useEnglishTradeWebsite ? item.Invariant : item.Definition);
+            var query = GetQueryFromDefinition(useEnglishTradeWebsite ? item.Invariant ?? item.Definition : item.Definition);
 
             foreach (var filter in filters ?? [])
             {
