@@ -230,4 +230,41 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
 
         fixture.AssertDoesNotHaveStat(actual, StatCategory.Explicit, "Abyss");
     }
+
+    [Fact]
+    public void GrimGaze()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Grim Gaze
+Ghastly Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 57
+--------
+Item Level: 85
+--------
+{ Prefix Modifier ""Tempered"" (Tier: 2) — Damage, Physical, Minion }
+Minions deal 20(18-21) to 24(24-27) additional Physical Damage
+{ Prefix Modifier ""Polar"" (Tier: 2) — Damage, Elemental, Cold, Minion }
+Minions deal 26(24-27) to 36(33-36) additional Cold Damage
+{ Fractured Suffix Modifier ""of Delaying"" (Tier: 2) — Caster, Minion }
+Minions have 4(3-5)% chance to Hinder Enemies on Hit with Spells
+(Hinder reduces movement speed by 30% for 4 seconds)
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Fractured Item
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ghastly Eye Jewel", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Minions deal # to # additional Physical Damage");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Minions deal # to # additional Cold Damage");
+        fixture.AssertHasStat(actual, StatCategory.Fractured, "Minions have #% chance to Hinder Enemies on Hit with Spells");
+    }
 }
