@@ -176,7 +176,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 
-        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains Olroth, Origin of the Fall");
-        fixture.AssertDoesNotHaveStat(actual, StatCategory.Implicit, "Area contains Medved, Feller of Heroes");
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Black Scythe Mercenaries");
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
     }
 }
