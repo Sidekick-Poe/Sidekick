@@ -93,4 +93,26 @@ Shift click to unstack.
         Assert.Equal("Crystallised Rancour", actual.Definition.TradeItem?.Type);
     }
 
+    [Fact]
+    public void TrarthanScarabOfInfamy()
+    {
+        var actual = parser.ParseItem(@"Item Class: Map Fragments
+Rarity: Normal
+Trarthan Scarab of Infamy
+--------
+Stack Size: 1/20
+Limit: 1
+--------
+Mercenaries found in Area are Infamous
+Mercenaries found in Area are accompanied by two Wild Mercenaries
+--------
+Some men must make their own way.
+--------
+Can be used in a personal Map Device to add modifiers to a Map.
+");
+
+        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Trarthan Scarab of Infamy", actual.Definition.TradeItem?.Type);
+    }
 }
