@@ -3,8 +3,10 @@
         <AppLogo/>
     </AppMoveHandle>
     <div class="grow overflow-y-auto overflow-x-hidden">
-        <div class="w-full p-4 flex flex-col justify-center min-h-full">
-            @ChildContent
+        <div class="flex flex-col justify-center min-h-full">
+            <div class="w-full p-4">
+                @ChildContent
+            </div>
         </div>
     </div>
     @if (BottomContent != null)

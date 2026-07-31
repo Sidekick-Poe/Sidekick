@@ -248,4 +248,42 @@ Corrupted
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Cast Speed", 7);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to Cold Resistance", 35);
     }
+
+    [Fact]
+    public void UrsaTalisman()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Rare
+Miracle Gorget
+Ursa Talisman
+--------
+Requirements:
+Level: 61
+--------
+Item Level: 85
+--------
+30% increased Effect of your Marks (enchant)
+--------
+{ Prefix Modifier ""Dragon's"" (Tier: 2) — Drop }
+19(19-24)% increased Rarity of Items found
+{ Prefix Modifier ""Unassailable"" (Tier: 1) — Defences, Energy Shield }
+21(20-22)% increased maximum Energy Shield
+{ Suffix Modifier ""of the Storm"" (Tier: 6) — Elemental, Lightning, Resistance }
++18(18-23)% to Lightning Resistance
+{ Suffix Modifier ""of the Goliath"" (Tier: 4) — Attribute }
++35(33-37) to Strength
+--------
+""With the Hag's daughters easing the climate,
+an age of plenty and bounty began. Lysanda
+revived the Phaaryl tradition of the hunt,
+so the people never forgot their roots.""
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Ursa Talisman", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "#% increased Effect of your Marks", 30);
+    }
 }
