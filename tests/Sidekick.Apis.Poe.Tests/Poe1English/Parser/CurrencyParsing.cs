@@ -115,4 +115,26 @@ Can be used in a personal Map Device to add modifiers to a Map.
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Trarthan Scarab of Infamy", actual.Definition.TradeItem?.Type);
     }
+
+    [Fact]
+    public void Ducat()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+The Changeling's Ducat
+--------
+Stack Size: 1/10
+--------
+Transforms into a random Ducat
+--------
+To appease Tsoatha, they tossed it to sea, but the storm grew ever madder.
+None returned to shore. Yet the vessel sails on, and its captain is merry.
+--------
+Can be used as part of Allflame Crafting aboard The Sovereign.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("The Changeling's Ducat", actual.Definition.TradeItem?.Type);
+    }
 }
