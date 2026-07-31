@@ -55,6 +55,6 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas");
         Assert.Null(actual.Definition.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
-        fixture.AssertHasFuzzyStat(actual, StatCategory.Explicit, "# metre to Dodge Roll distance", 0.7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "# metre to Dodge Roll distance", 0.7);
     }
 }

@@ -99,6 +99,8 @@ public class StatParser
                     var matchedLines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
                     matchedLines.ForEach(x => x.Parsed = true);
 
+                    definitions = definitions.OrderByDescending(x=>Fuzz.Ratio(x.Text, x.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None)).ToList();
+
                     yield return CreateStat(string.Join('\n', matchedLines.Select(x => x.Text)), definitions, matchFuzzily, block.Index, matchedLines.First().Index);
                 }
             }
