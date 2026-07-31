@@ -28,6 +28,11 @@ public class TextParser
 
     private string? Fractured { get; set; }
     private string? Corrupted { get; set; }
+    private string? Desecrated { get; set; }
+    private string? Crafted { get; set; }
+    private string? Implicit { get; set; }
+    private string? Enchant { get; set; }
+    private string? Foulborn { get; set; }
 
     public async Task Initialize()
     {
@@ -35,6 +40,11 @@ public class TextParser
         var texts = await dataProvider.Read<DataText>(Game, DataType.Texts, currentGameLanguage.Language);
         Fractured = texts.ModDescriptionFractured?.Replace("#", "").Trim();
         Corrupted = texts.ModDescriptionCorrupted?.Replace("#", "").Trim();
+        Desecrated = texts.ModDescriptionDesecrated?.Replace("#", "").Trim();
+        Crafted = texts.ModDescriptionCrafted?.Replace("#", "").Trim();
+        Implicit = texts.ModDescriptionImplicit?.Replace("#", "").Trim();
+        Enchant = texts.ModDescriptionEnchantment?.Replace("#", "").Trim();
+        Foulborn = texts.ModDescriptionFoulborn?.Replace("#", "").Trim();
 
         var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
         unusableRegex += @"\n+" + RawText.SeparatorPattern + @"\n+";
@@ -74,26 +84,18 @@ public class TextParser
             {
                 if (line.StartsWith("{") && line.EndsWith("}"))
                 {
-                    if (Fractured != null && line.Contains(Fractured)) currentSuffix = "(fractured)";
+                    if (Implicit != null && line.Contains(Implicit)) currentSuffix = "(implicit)";
+                    else if (Fractured != null && line.Contains(Fractured)) currentSuffix = "(fractured)";
+                    else if (Desecrated != null && line.Contains(Desecrated)) currentSuffix = "(desecrated)";
+                    else if (Crafted != null && line.Contains(Crafted)) currentSuffix = "(crafted)";
+                    else if (Enchant != null && line.Contains(Enchant)) currentSuffix = "(enchant)";
+                    else if (Foulborn != null && line.Contains(Foulborn)) currentSuffix = "(mutated)";
                     else if (Corrupted != null && line.Contains(Corrupted))
                     {
                         if (Game == GameType.PathOfExile1) currentSuffix = "(implicit)";
                         else if (Game == GameType.PathOfExile2) currentSuffix = "(enchant)";
                     }
-                    else
-                    {
-                        var trimmed = line.TrimStart('{').TrimEnd('}').Trim();
-                        if (trimmed.StartsWith("Implicit", StringComparison.OrdinalIgnoreCase))
-                            currentSuffix = "(implicit)";
-                        else if (trimmed.StartsWith("Desecrated", StringComparison.OrdinalIgnoreCase))
-                            currentSuffix = "(desecrated)";
-                        else if (trimmed.StartsWith("Crafted", StringComparison.OrdinalIgnoreCase))
-                            currentSuffix = "(crafted)";
-                        else if (trimmed.StartsWith("Corruption Enhancement", StringComparison.OrdinalIgnoreCase))
-                            currentSuffix = "(enchant)";
-                        else
-                            currentSuffix = null;
-                    }
+                    else currentSuffix = null;
 
                     result.Add(line);
                     continue;
