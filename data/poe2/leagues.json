@@ -1,33 +1,26 @@
-{
-  "$id": "1",
-  "$values": [
-    {
-      "$id": "2",
-      "game": "pathOfExile2",
-      "id": "Runes of Aldur",
-      "text": "Runes of Aldur",
-      "realm": "poe2"
-    },
-    {
-      "$id": "3",
-      "game": "pathOfExile2",
-      "id": "HC Runes of Aldur",
-      "text": "HC Runes of Aldur",
-      "realm": "poe2"
-    },
-    {
-      "$id": "4",
-      "game": "pathOfExile2",
-      "id": "Standard",
-      "text": "Standard",
-      "realm": "poe2"
-    },
-    {
-      "$id": "5",
-      "game": "pathOfExile2",
-      "id": "Hardcore",
-      "text": "Hardcore",
-      "realm": "poe2"
-    }
-  ]
-}
+[
+  {
+    "game": "pathOfExile2",
+    "id": "HC Runes of Aldur",
+    "text": "HC Runes of Aldur",
+    "realm": "poe2"
+  },
+  {
+    "game": "pathOfExile2",
+    "id": "Hardcore",
+    "text": "Hardcore",
+    "realm": "poe2"
+  },
+  {
+    "game": "pathOfExile2",
+    "id": "Runes of Aldur",
+    "text": "Runes of Aldur",
+    "realm": "poe2"
+  },
+  {
+    "game": "pathOfExile2",
+    "id": "Standard",
+    "text": "Standard",
+    "realm": "poe2"
+  }
+]

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sidekick.Apis.Poe.Trade.Parser;
+﻿using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 
@@ -9,7 +8,7 @@ public class UniqueJewelTests(NinjaTestFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task BlueDream()
+    public void BlueDream()
     {
         var item = parser.ParseItem(@"Item Class: Jewels
 Rarity: Unique
@@ -31,10 +30,6 @@ and fall like rain into the place we cannot go.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("foulborn-the-blue-dream-crit-multi-cobalt-jewel", result.DetailsId);
+        fixture.AssertStash(item, "foulborn-the-blue-dream-crit-multi-cobalt-jewel");
     }
 }

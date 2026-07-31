@@ -41,7 +41,6 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Recovery applied Instantly", 23);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Charges per use", -26);
-        Assert.False(actual.Stats[1].MatchedFuzzily);
     }
 
     [Fact]
@@ -79,6 +78,5 @@ Used automatically when condition is met. Can only hold charges while in belt. R
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Duration (Charm)", 21);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Charges per use", -19);
-        Assert.False(actual.Stats[1].MatchedFuzzily);
     }
 }

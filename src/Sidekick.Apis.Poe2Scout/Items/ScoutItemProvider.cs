@@ -18,8 +18,10 @@ public class ScoutItemProvider(
 {
     private List<ScoutItem>? Items { get; set; }
 
-    public Task<ScoutItem?> GetItem(ItemDefinition itemDefinition)
+    public Task<ScoutItem?> GetItem(ItemDefinition? itemDefinition)
     {
+        if (itemDefinition == null) return Task.FromResult<ScoutItem?>(null);
+
         var text = itemDefinition.TradeItem?.Name;
         text ??= itemDefinition.TradeItem?.Text;
         text ??= itemDefinition.TradeItem?.Type;

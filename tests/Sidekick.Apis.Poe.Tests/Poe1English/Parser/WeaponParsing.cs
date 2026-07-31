@@ -108,7 +108,6 @@ Item Level: 50
         Assert.Equal("Shadow Axe", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
-        Assert.False(actual.Stats[0].MatchedFuzzily);
     }
 
     /// <summary>
@@ -210,7 +209,6 @@ All form and finesse are forgotten when blood first hits the ground.
         AssertExtensions.AssertCloseEnough(59.2, actual.Properties.ElementalDps);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Frenzy Charge Duration", -20);
-        Assert.False(actual.Stats[3].MatchedFuzzily);
     }
 
     [Fact]

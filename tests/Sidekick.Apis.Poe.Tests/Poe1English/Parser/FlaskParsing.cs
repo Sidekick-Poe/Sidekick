@@ -145,7 +145,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
         Assert.Equal("Bismuth Flask", actual.Definition.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Gain # Charge when you are Hit by an Enemy", 3);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Effect of Chill on you during Effect", 40);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Effect of Chill on you during Effect", -40);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Freeze Duration on you during Effect", -41);
     }
 }

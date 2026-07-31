@@ -18,15 +18,11 @@ public static class StatDefinitionExtensions
 
 public class StatDefinition
 {
-    public List<string>? GameIds { get; init; }
-
-    public required DataSource Source { get; set; }
-
     public required string Text { get; set; }
 
-    public string? FuzzyText { get; set; }
-
     public bool Negate { get; set; }
+
+    public bool MatchedFuzzily { get; set; }
 
     public double? Value { get; set; }
 

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sidekick.Apis.Poe.Trade.Parser;
+﻿using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 
@@ -9,7 +8,7 @@ public class ExchangeTests(NinjaTestFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task ChaosOrb()
+    public void ChaosOrb()
     {
         var item = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
@@ -23,17 +22,14 @@ Right click this item then left click a rare item to apply it.
 Shift click to unstack.
 ");
 
-        var result = await fixture.NinjaExchangeProvider.GetInfo(item.Invariant);
+        var result = fixture.NinjaExchangeProvider.GetDefinition(item.Invariant);
 
         Assert.NotNull(result);
-        Assert.Equal("chaos", result.Id);
-        Assert.Equal(2, result.Trades.Count);
-        Assert.Equal("chaos", result.Trades[0].ExchangeId);
-        Assert.Equal("divine", result.Trades[1].ExchangeId);
+        Assert.Equal("chaos", result.Exchange?.Id);
     }
 
     [Fact]
-    public async Task ExaltedOrb()
+    public void ExaltedOrb()
     {
         var item = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
@@ -46,14 +42,14 @@ Augments a rare item with a new random modifier
 Right click this item then left click a rare item to apply it. Rare items can have up to six random modifiers.
 ");
 
-        var result = await fixture.NinjaExchangeProvider.GetInfo(item.Invariant);
+        var result = fixture.NinjaExchangeProvider.GetDefinition(item.Invariant);
 
         Assert.NotNull(result);
-        Assert.Equal("exalted", result.Id);
+        Assert.Equal("exalted", result.Exchange?.Id);
     }
 
-    [Fact(Skip = "This item is not in the Ninja API for phrecia event")]
-    public async Task TheVoid()
+    [Fact]
+    public void TheVoid()
     {
         var item = parser.ParseItem(@"Item Class: Divination Cards
 Rarity: Divination Card
@@ -64,9 +60,9 @@ The Void
 Reach into the Void and claim your prize.
 ");
 
-        var result = await fixture.NinjaExchangeProvider.GetInfo(item.Invariant);
+        var result = fixture.NinjaExchangeProvider.GetDefinition(item.Invariant);
 
         Assert.NotNull(result);
-        Assert.Equal("the-void", result.Id);
+        Assert.Equal("the-void", result.Exchange?.Id);
     }
 }

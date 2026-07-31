@@ -14,7 +14,7 @@
                         <Icon Svg="@UiIcons.Warning" Class="text-orange-500 flex self-center cursor-help"/>
                     </Tooltip>
                 }
-                else if (Filter.Stat.MatchedFuzzily)
+                else if (Filter.Stat.Definitions.All(x => x.MatchedFuzzily))
                 {
                     <Tooltip Text="@Resources["Stat_Fuzzy"]">
                         <Icon Svg="@UiIcons.Warning" Class="text-violet-500 flex self-center cursor-help"/>

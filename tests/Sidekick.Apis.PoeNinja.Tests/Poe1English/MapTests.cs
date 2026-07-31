@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sidekick.Apis.Poe.Trade.Parser;
+﻿using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 
@@ -9,7 +8,7 @@ public class MapTests(NinjaTestFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task Tier16()
+    public void Tier16()
     {
         var item = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -40,15 +39,11 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Corrupted
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"map-tier-16-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+        fixture.AssertStash(item, $"map-tier-16-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
-    public async Task Nightmare()
+    public void Nightmare()
     {
         var item = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -84,15 +79,11 @@ Corrupted
 Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"nightmare-map-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+        fixture.AssertStash(item, $"nightmare-map-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
-    public async Task BlightedMapTier3()
+    public void BlightedMapTier3()
     {
         var item = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -114,15 +105,11 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Note: ~b/o 1 chaos
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"blighted-map-tier-3-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+        fixture.AssertStash(item, $"blighted-map-tier-3-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
-    public async Task BlightRavagedMap()
+    public void BlightRavagedMap()
     {
         var item = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -145,15 +132,11 @@ Natural inhabitants of this area have been removed (implicit)
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"blight-ravaged-map-tier-16-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+        fixture.AssertStash(item, $"blight-ravaged-map-tier-16-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
-    public async Task DroxMap()
+    public void DroxMap()
     {
         var item = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -180,15 +163,11 @@ Monsters steal Power, Frenzy and Endurance charges on Hit
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"drox-map-tier-16-t0--{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+        fixture.AssertStash(item, $"drox-map-tier-16-t0--{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
-    public async Task ShaperGuardian()
+    public void ShaperGuardian()
     {
         var item = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -220,15 +199,11 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Corrupted
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal($"shaper-guardian-map-t0-{Collections.PoeNinjaMapSuffix}", result.DetailsId);
+        fixture.AssertStash(item, $"shaper-guardian-map-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
-    public async Task PoorjoyAsylum()
+    public void PoorjoyAsylum()
     {
         var item = parser.ParseItem(@"Item Class: Maps
 Rarity: Unique
@@ -259,15 +234,11 @@ They wander, forever uncontrolled.
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("poorjoys-asylum-t0", result.DetailsId);
+        fixture.AssertStash(item, "poorjoys-asylum-t0");
     }
 
     [Fact]
-    public async Task IncandescentInvitation()
+    public void IncandescentInvitation()
     {
         var item = parser.ParseItem(@"Item Class: Misc Map Items
 Rarity: Normal
@@ -283,10 +254,6 @@ the Searing Exarch seeks to master the Atlas.
 Open portals to Absence of Patience and Wisdom by using this item in a personal Map Device. While viewing your Atlas, Right-click this item to pinpoint its location.
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("incandescent-invitation", result.DetailsId);
+        fixture.AssertStash(item, "incandescent-invitation");
     }
 }

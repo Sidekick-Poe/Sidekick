@@ -27,7 +27,7 @@ public class ItemParser
 ) : IItemParser
 {
     private Regex? UnusablePattern { get; set; }
-    private Regex AdvancedDigitsFormat { get; } = new(@"([-+\d,.]+)\([-+\d,.]+\-[-+\d,.]+\)");
+    private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+\-[-+\d,.]+\)");
 
     public int Priority => 100;
 

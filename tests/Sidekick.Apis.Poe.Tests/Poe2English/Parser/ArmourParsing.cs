@@ -276,7 +276,7 @@ Hits against you have 43(40-50)% reduced Critical Damage Bonus
         fixture.AssertHasStat(actual, StatCategory.Explicit, "# to maximum Energy Shield", 101);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Energy Shield", 37);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "# Life Regeneration per second", 4.7);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Attribute Requirements", -30);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attribute Requirements", -30);
         fixture.AssertHasStat(actual, StatCategory.Crafted, "Hits against you have #% reduced Critical Damage Bonus", 43);
     }
 

@@ -19,9 +19,14 @@ public class NinjaExchangeProvider(
         return $"PoeNinjaExchange_{league}_{type}";
     }
 
+    public NinjaItemDefinition? GetDefinition(ItemDefinition? item)
+    {
+        return item?.NinjaItems?.FirstOrDefault();
+    }
+
     public async Task<NinjaCurrency?> GetInfo(ItemDefinition item)
     {
-        var bestMatch = FindBestMatch();
+        var bestMatch = GetDefinition(item);
         if (bestMatch?.Exchange == null) return null;
 
         var result = await GetExchangeResult(bestMatch.Type);
@@ -46,11 +51,6 @@ public class NinjaExchangeProvider(
         {
             DetailsUrl = await ninjaUriProvider.GetDetailsUri(bestMatch),
         };
-
-        NinjaItemDefinition? FindBestMatch()
-        {
-            return item.NinjaItems?.FirstOrDefault();
-        }
     }
 
     private async Task<NinjaExchangeOverview?> GetExchangeResult(string type)

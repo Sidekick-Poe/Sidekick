@@ -14,7 +14,7 @@ sealed class Program
             // This is the true culprit behind the black screen behavior
             Environment.SetEnvironmentVariable("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
         }
-        
+
         VelopackApp.Build().Run();
         AppBuilder.Configure<App>()
             .UsePlatformDetect()

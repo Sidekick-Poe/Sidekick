@@ -33,11 +33,11 @@ public class PoeDbClient(
     private string? GetSearchValue(Item item)
     {
         string? searchValue = null;
-        if (!string.IsNullOrEmpty(item.Invariant.UniqueItem?.Name)) searchValue = item.Invariant.UniqueItem.Name;
-        else if (!string.IsNullOrEmpty(item.Invariant.TradeItem?.Name)) searchValue = item.Invariant.TradeItem?.Name;
-        else if (!string.IsNullOrEmpty(item.Invariant.TradeItem?.Text)) searchValue = item.Invariant.TradeItem?.Text;
-        else if (!string.IsNullOrEmpty(item.Invariant.TradeItem?.Type)) searchValue = item.Invariant.TradeItem?.Type;
-        else if (!string.IsNullOrEmpty(item.Invariant.BaseItem?.Name)) searchValue = item.Invariant.BaseItem.Name;
+        if (!string.IsNullOrEmpty(item.Invariant?.UniqueItem?.Name)) searchValue = item.Invariant.UniqueItem.Name;
+        else if (!string.IsNullOrEmpty(item.Invariant?.TradeItem?.Name)) searchValue = item.Invariant.TradeItem?.Name;
+        else if (!string.IsNullOrEmpty(item.Invariant?.TradeItem?.Text)) searchValue = item.Invariant.TradeItem?.Text;
+        else if (!string.IsNullOrEmpty(item.Invariant?.TradeItem?.Type)) searchValue = item.Invariant.TradeItem?.Type;
+        else if (!string.IsNullOrEmpty(item.Invariant?.BaseItem?.Name)) searchValue = item.Invariant.BaseItem.Name;
         return searchValue;
     }
 }

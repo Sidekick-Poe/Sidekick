@@ -73,5 +73,6 @@ Note: ~price 1.29 exalted
         Assert.Equal(81, actual.Properties.AreaLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)", "Open Room");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)", "Closed Room");
     }
 }

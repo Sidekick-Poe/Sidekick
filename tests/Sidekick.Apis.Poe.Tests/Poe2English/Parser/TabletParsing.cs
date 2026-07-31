@@ -43,7 +43,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 
         Assert.Equal(79, actual.Properties.ItemLevel);
 
-        fixture.AssertHasFuzzyStat(actual, StatCategory.Implicit, "Adds Ritual Altars to a Map \n# use remaining", 10);
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "# uses remaining (Tablets)", 10);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found in Map",11);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Experience gain in Map", 17);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Map contains an additional Shrine");
@@ -83,7 +83,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
 
          Assert.Equal(79, actual.Properties.ItemLevel);
 
-         fixture.AssertHasFuzzyStat(actual, StatCategory.Implicit, "Adds Ritual Altars to a Map \n# use remaining", 5);
+         fixture.AssertHasStat(actual, StatCategory.Pseudo, "# uses remaining (Tablets)", 5);
          fixture.AssertHasStat(actual, StatCategory.Explicit, "Can Reroll Favours at Ritual Altars in your Maps twice as many times");
          fixture.AssertHasStat(actual, StatCategory.Explicit, "Favours at Ritual Altars in Area costs #% increased Tribute", 15);
      }
@@ -120,7 +120,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
 
          Assert.Equal(79, actual.Properties.ItemLevel);
 
-         fixture.AssertHasFuzzyStat(actual, StatCategory.Implicit, "Adds Irradiated to a Map \n# use remaining", 10);
+         fixture.AssertHasStat(actual, StatCategory.Pseudo, "# uses remaining (Tablets)", 10);
          fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found in Map", 9);
          fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Pack Size in Map", 7);
          fixture.AssertHasStat(actual, StatCategory.Explicit, "Map has #% increased chance to contain Azmeri Spirits", 73);

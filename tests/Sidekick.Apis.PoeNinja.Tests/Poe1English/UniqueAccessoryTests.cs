@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sidekick.Apis.Poe.Trade.Parser;
+﻿using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 
@@ -9,7 +8,7 @@ public class UniqueAccessoryTests(NinjaTestFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task AtzirisFoible()
+    public void AtzirisFoible()
     {
         var item = parser.ParseItem(@"Item Class: Amulets
 Rarity: Unique
@@ -37,15 +36,11 @@ The divine truth, however, is that both are one and the same.
 
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("atziris-foible-paua-amulet", result.DetailsId);
+        fixture.AssertStash(item, "atziris-foible-paua-amulet");
     }
 
     [Fact]
-    public async Task FoulbornKhatalWeeping()
+    public void FoulbornKhatalWeeping()
     {
         var item = parser.ParseItem(@"Item Class: Amulets
 Rarity: Unique
@@ -71,9 +66,6 @@ made him drink the enemy's blood. He melted from the inside out.""
 - Toryal, of the Afarud
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        Assert.Contains(results, x => x.DetailsId == "foulborn-khatals-weeping-life-flask-charge-lapis-amulet");
+        fixture.AssertStash(item, "foulborn-khatals-weeping-life-flask-charge-lapis-amulet");
     }
 }

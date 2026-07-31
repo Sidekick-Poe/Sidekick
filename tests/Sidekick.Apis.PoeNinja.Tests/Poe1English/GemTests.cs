@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sidekick.Apis.Poe.Trade.Parser;
+﻿using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 
@@ -9,7 +8,7 @@ public class GemTests(NinjaTestFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task ShockNovaOfProcession()
+    public void ShockNovaOfProcession()
     {
         var item = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
@@ -43,10 +42,6 @@ Imbued
 Transfigured
 ");
 
-        var results = await fixture.NinjaStashProvider.GetInfo(item);
-        Assert.Single(results);
-
-        var result = results[0];
-        Assert.Equal("shock-nova-of-procession-20-20c", result.DetailsId);
+        fixture.AssertStash(item, "shock-nova-of-procession-20-20c");
     }
 }

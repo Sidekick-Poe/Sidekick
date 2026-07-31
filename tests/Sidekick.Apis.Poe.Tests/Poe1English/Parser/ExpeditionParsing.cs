@@ -142,6 +142,7 @@ Note: ~b/o 14 divine
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
 
-        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains an Expedition Boss (#)", "Olroth, Origin of the Fall");
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains Olroth, Origin of the Fall");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Implicit, "Area contains Medved, Feller of Heroes");
     }
 }

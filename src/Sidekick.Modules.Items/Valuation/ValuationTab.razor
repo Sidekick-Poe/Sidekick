@@ -44,7 +44,7 @@
 
     private bool CheckNinja()
     {
-        return Item.Invariant.NinjaItems != null && Item.Invariant.NinjaItems.Any(x => x.Stash != null);
+        return Item.Invariant?.NinjaItems != null && Item.Invariant.NinjaItems.Any(x => x.Stash != null);
     }
 
     private bool CheckPrediction()

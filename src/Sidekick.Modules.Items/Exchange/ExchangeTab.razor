@@ -37,7 +37,7 @@
 
     private bool CheckNinja()
     {
-        return Item.Invariant.NinjaItems != null && Item.Invariant.NinjaItems.Any(x => x.Exchange != null);
+        return Item.Invariant?.NinjaItems != null && Item.Invariant.NinjaItems.Any(x => x.Exchange != null);
     }
 
     private async Task<bool> CheckScout()
