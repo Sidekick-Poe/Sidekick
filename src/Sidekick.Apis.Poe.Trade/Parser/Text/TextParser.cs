@@ -27,12 +27,14 @@ public class TextParser
     public int Priority => 100;
 
     private string? Fractured { get; set; }
+    private string? Corrupted { get; set; }
 
     public async Task Initialize()
     {
         Game = await settingsService.GetGame();
         var texts = await dataProvider.Read<DataText>(Game, DataType.Texts, currentGameLanguage.Language);
         Fractured = texts.ModDescriptionFractured?.Replace("#", "").Trim();
+        Corrupted = texts.ModDescriptionCorrupted?.Replace("#", "").Trim();
 
         var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
         unusableRegex += @"\n+" + RawText.SeparatorPattern + @"\n+";
@@ -72,10 +74,8 @@ public class TextParser
             {
                 if (line.StartsWith("{") && line.EndsWith("}"))
                 {
-                    if (Fractured != null && line.Contains(Fractured))
-                    {
-                        currentSuffix = "(fractured)";
-                    }
+                    if (Fractured != null && line.Contains(Fractured)) currentSuffix = "(fractured)";
+                    else if (Corrupted != null && line.Contains(Corrupted)) currentSuffix = "(implicit)";
                     else
                     {
                         var trimmed = line.TrimStart('{').TrimEnd('}').Trim();

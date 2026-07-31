@@ -208,4 +208,44 @@ Adds 8(6-9) to 15(13-15) Physical Damage to Attacks
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Strength", 8);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all Elemental Resistances", 6);
     }
+
+    [Fact]
+    public void VictoryEye()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Rare
+Victory Eye
+Paua Ring
+--------
+Requirements:
+Level: 40
+--------
+Item Level: 85
+--------
+{ Corruption Implicit Modifier — Mana, Aura }
+Hatred has 22(20-30)% increased Mana Reservation Efficiency
+--------
+{ Prefix Modifier ""Annealed"" (Tier: 1) — Damage, Physical, Attack }
+Adds 9(6-9) to 15(13-15) Physical Damage to Attacks
+{ Prefix Modifier ""Arcing"" (Tier: 4) — Damage, Elemental, Lightning, Attack }
+Adds 2(1-4) to 41(40-43) Lightning Damage to Attacks
+{ Suffix Modifier ""of Talent"" (Tier: 3) — Caster, Speed }
+7(5-8)% increased Cast Speed
+{ Suffix Modifier ""of the Walrus"" (Tier: 4) — Elemental, Cold, Resistance }
++35(30-35)% to Cold Resistance
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Paua Ring", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Hatred has #% increased Mana Reservation Efficiency", 22);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 9, 15);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Attacks", 2, 41);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Cast Speed", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to Cold Resistance", 35);
+    }
 }
