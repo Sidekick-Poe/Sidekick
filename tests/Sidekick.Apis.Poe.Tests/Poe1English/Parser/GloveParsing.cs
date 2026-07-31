@@ -97,4 +97,55 @@ Corrupted
         Assert.Empty(stat.Values);
     }
 
+    [Fact]
+    public void DoryanisFist()
+    {
+        var actual = parser.ParseItem(@"Item Class: Gloves
+Rarity: Unique
+Doryani's Fist
+Vaal Gauntlets
+--------
+Armour: 236
+Energy Shield: 80 (augmented)
+--------
+Requirements:
+Level: 63
+Str: 100 (unmet)
+--------
+Sockets: W-W-W 
+--------
+Item Level: 80
+--------
+{ Unique Modifier — Damage, Elemental, Lightning, Attack }
+Adds 190(150-225) to 550(525-600) Lightning Damage to Unarmed Melee Hits
+(Unarmed Attacks are any Attacks performed with a hand that is not holding any Item)
+{ Unique Modifier — Damage, Elemental, Lightning, Caster }
+Adds 99(90-135) to 344(315-360) Lightning Damage to Spells while Unarmed
+(You are Unarmed as long as you have no Equipped Weapons)
+{ Unique Modifier — Defences, Energy Shield }
++204(200-250) Energy Shield gained on Killing a Shocked Enemy
+{ Unique Modifier — Defences, Energy Shield }
++80(80-100) to maximum Energy Shield
+{ Unique Modifier — Elemental, Lightning, Ailment }
+30% chance to Shock
+(Shock increases Damage taken by up to 50%, depending on the amount of Lightning Damage in the hit, for 2 seconds)
+{ Unique Modifier }
+Grants Level 20 Doryani's Touch Skill
+{ Unique Modifier — Elemental, Lightning, Ailment }
+30% increased Effect of Lightning Ailments
+(Lightning Ailments are Shocked and Sapped)
+--------
+Doryani's ingenuity raised the Vaal Empire
+to unprecedented heights. His curiosity
+reduced it to ruins and bones.
+");
+
+        Assert.Equal(ItemClass.Gloves, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Vaal Gauntlets", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Doryani's Fist", actual.Name);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Unarmed Melee Hits", 190, 550);
+    }
+
 }
