@@ -2,20 +2,27 @@
 @using Sidekick.Data.Stats
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
+
 @foreach (var modifier in Result.Item.EnchantMods)
 {
     <ItemStatLineComponent Result="Result" Category="StatCategory.Enchant" Modifier="modifier"/>
 }
+
+<ItemSeparator Rarity="Result.Item.Rarity"/>
 
 @foreach (var modifier in Result.Item.RuneMods)
 {
     <ItemStatLineComponent Result="Result" Category="StatCategory.Rune" Modifier="modifier"/>
 }
 
+<ItemSeparator Rarity="Result.Item.Rarity"/>
+
 @foreach (var modifier in Result.Item.ImplicitMods)
 {
     <ItemStatLineComponent Result="Result" Category="StatCategory.Implicit" Modifier="modifier"/>
 }
+
+<ItemSeparator Rarity="Result.Item.Rarity"/>
 
 @foreach (var modifier in Result.Item.ExplicitMods)
 {
