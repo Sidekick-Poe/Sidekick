@@ -1,5 +1,4 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Models
-@using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Data.Extensions
 @using Sidekick.Data.Stats
 
@@ -22,9 +21,6 @@
 </TextBase>
 
 @code {
-
-    [Parameter]
-    public required TradeResult Result { get; set; }
 
     [Parameter]
     public required ApiItemModifier Modifier { get; set; }

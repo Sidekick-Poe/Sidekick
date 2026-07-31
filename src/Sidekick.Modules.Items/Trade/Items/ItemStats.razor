@@ -3,30 +3,48 @@
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 
+@foreach(var logbook in Result.Item.LogbookMods)
+{
+    <ItemSeparator Rarity="Result.Item.Rarity"/>
+
+    <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-px">
+        <ItemStatText Category="StatCategory.WhiteText">@logbook.Name</ItemStatText>
+    </TextBase>
+
+    <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-px">
+        <ItemStatText Category="StatCategory.GrayText">@logbook.Faction.Name</ItemStatText>
+    </TextBase>
+
+    @foreach (var modifier in logbook.Mods)
+    {
+        <ItemStatLineComponent Category="StatCategory.Explicit" Modifier="modifier"/>
+    }
+}
+
 @foreach (var modifier in Result.Item.EnchantMods)
 {
-    <ItemStatLineComponent Result="Result" Category="StatCategory.Enchant" Modifier="modifier"/>
+    <ItemStatLineComponent Category="StatCategory.Enchant" Modifier="modifier"/>
 }
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 
 @foreach (var modifier in Result.Item.RuneMods)
 {
-    <ItemStatLineComponent Result="Result" Category="StatCategory.Rune" Modifier="modifier"/>
+    <ItemStatLineComponent Category="StatCategory.Rune" Modifier="modifier"/>
 }
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 
 @foreach (var modifier in Result.Item.ImplicitMods)
 {
-    <ItemStatLineComponent Result="Result" Category="StatCategory.Implicit" Modifier="modifier"/>
+    <ItemStatLineComponent Category="StatCategory.Implicit" Modifier="modifier"/>
 }
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 
 @foreach (var modifier in Result.Item.ExplicitMods)
 {
-    <ItemStatLineComponent Result="Result" Category="StatCategory.Explicit" Modifier="modifier"/>
+    <ItemStatLineComponent Category="StatCategory.Explicit" Modifier="modifier"/>
 }
 
 @code {
