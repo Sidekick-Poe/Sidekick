@@ -6,7 +6,7 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
-public class RingParsing(Poe1EnglishFixture fixture)
+public class AccessoryParsing(Poe1EnglishFixture fixture)
 {
     private readonly IItemParser parser = fixture.Parser;
 
@@ -170,5 +170,42 @@ Mirrored
         Assert.Equal("Kalandra's Touch", actual.Definition.TradeItem?.Name);
         Assert.Equal("Ring", actual.Definition.TradeItem?.Type);
         Assert.True(actual.Properties.Mirrored);
+    }
+
+    [Fact]
+    public void PearlescentAmulet()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Rare
+Maelström Charm
+Pearlescent Amulet
+--------
+Requirements:
+Level: 35
+--------
+Item Level: 72
+--------
+{ Implicit Modifier — Elemental, Resistance }
++10(8-10)% to all Elemental Resistances
+--------
+{ Prefix Modifier ""Annealed"" (Tier: 4) — Damage, Physical, Attack }
+Adds 8(6-9) to 15(13-15) Physical Damage to Attacks
+{ Prefix Modifier ""Magpie's"" (Tier: 4) — Drop }
+9(8-12)% increased Rarity of Items found
+{ Suffix Modifier ""of the Brute"" (Tier: 9) — Attribute }
++8(8-12) to Strength
+{ Suffix Modifier ""of the Prism"" (Tier: 5) — Elemental, Resistance }
++6(6-8)% to all Elemental Resistances
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Pearlescent Amulet", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 15);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found", 9);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Strength", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all Elemental Resistances", 6);
     }
 }
