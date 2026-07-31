@@ -538,4 +538,58 @@ Fractured Item
 
         fixture.AssertDoesNotHaveStat(actual, StatCategory.Pseudo, "Adds # to # Elemental Damage");
     }
+
+    [Fact]
+    public void TheConsumingDark()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rune Daggers
+Rarity: Unique
+The Consuming Dark
+Fiend Dagger
+--------
+Rune Dagger
+Physical Damage: 22-87
+Critical Strike Chance: 9.00%
+Attacks per Second: 1.20
+Weapon Range: 1 metre
+--------
+Requirements:
+Level: 53
+Dex: 58
+Int: 123
+--------
+Sockets: W W-W 
+--------
+Item Level: 83
+--------
+{ Implicit Modifier — Critical }
+55(50-55)% increased Global Critical Strike Chance
+--------
+{ Unique Modifier — Damage, Elemental, Fire, Chaos }
+30% of Fire Damage Converted to Chaos Damage
+{ Unique Modifier — Elemental, Fire, Caster, Gem }
++1 to Level of all Fire Spell Skill Gems
+{ Unique Modifier — Damage, Elemental, Fire }
+50(40-60)% increased Fire Damage
+{ Unique Modifier — Attribute }
++22(20-40) to Intelligence
+{ Unique Modifier — Chaos, Ailment }
+Your Chaos Damage has 60% chance to Poison Enemies
+(Poison deals Chaos Damage over time, based on the base Physical and Chaos Damage of the Skill. Multiple instances of Poison stack)
+--------
+The brightest flames cast the darkest shadows.
+");
+
+        Assert.Equal(ItemClass.Dagger, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("The Consuming Dark", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Fiend Dagger", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Global Critical Strike Chance", 55);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Fire Damage Converted to Chaos Damage", 30);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Level of all Fire Spell Skill Gems", 1);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Fire Damage", 50);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Intelligence", 22);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Your Chaos Damage has #% chance to Poison Enemies", 60);
+    }
 }
