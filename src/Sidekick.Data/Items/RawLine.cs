@@ -10,7 +10,11 @@ public class RawLine(string text, int index)
     /// <summary>
     /// Indicates if this line has been successfully parsed
     /// </summary>
-    public bool Parsed { get; set; }
+    public bool Parsed
+    {
+        get => field;
+        set => field = value;
+    }
 
     /// <summary>
     /// The line of the item description

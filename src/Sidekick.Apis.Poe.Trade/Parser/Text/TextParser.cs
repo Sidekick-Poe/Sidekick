@@ -75,7 +75,11 @@ public class TextParser
                 if (line.StartsWith("{") && line.EndsWith("}"))
                 {
                     if (Fractured != null && line.Contains(Fractured)) currentSuffix = "(fractured)";
-                    else if (Corrupted != null && line.Contains(Corrupted)) currentSuffix = "(implicit)";
+                    else if (Corrupted != null && line.Contains(Corrupted))
+                    {
+                        if (Game == GameType.PathOfExile1) currentSuffix = "(implicit)";
+                        else if (Game == GameType.PathOfExile2) currentSuffix = "(enchant)";
+                    }
                     else
                     {
                         var trimmed = line.TrimStart('{').TrimEnd('}').Trim();
