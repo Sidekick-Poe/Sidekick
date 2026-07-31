@@ -17,7 +17,7 @@ public class SocketProperty(
     ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
-    private Regex Pattern { get; } = new Regex($"{Regex.Escape(currentGameLanguage.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
+    private Regex Pattern { get; } = new Regex($"^{Regex.Escape(currentGameLanguage.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
 
     public override string Label => currentGameLanguage.Language.DescriptionSockets;
 
