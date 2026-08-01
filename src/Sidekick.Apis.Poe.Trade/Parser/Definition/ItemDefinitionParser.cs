@@ -13,12 +13,12 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 public class ItemDefinitionParser(
     DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService
+    ISettingsService settingsService,
+    ItemClassProvider itemClassProvider
 ) : IItemDefinitionParser
 {
     private Dictionary<string, ItemDefinition> TextDictionary { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
-    private Dictionary<string, ItemClassDefinition> ItemClassDictionary { get; set; } = [];
 
     private List<ItemDefinition> Definitions { get; set; } = [];
     private List<ItemDefinition> InvariantDefinitions { get; set; } = [];
@@ -29,9 +29,6 @@ public class ItemDefinitionParser(
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-
-        var itemClassDefinitions = await dataProvider.Read<List<ItemClassDefinition>>(game, DataType.ItemClasses, currentGameLanguage.Language);
-        ItemClassDictionary = itemClassDefinitions.ToDictionary(x => x.Id ?? string.Empty, x => x);
 
         Definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.Language);
         InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
@@ -109,13 +106,13 @@ public class ItemDefinitionParser(
             ItemClassDefinition? itemClass = null;
 
             if (!string.IsNullOrEmpty(definition.BaseItem?.ItemClassId) &&
-                ItemClassDictionary.TryGetValue(definition.BaseItem.ItemClassId, out var baseItemClass)) itemClass = baseItemClass;
+                itemClassProvider.ById.TryGetValue(definition.BaseItem.ItemClassId, out var baseItemClass)) itemClass = baseItemClass;
 
             if ((itemClass == null || itemClass.Type == ItemClass.Unknown) && !string.IsNullOrEmpty(definition.TradeItem?.Category))
             {
                 itemClass = definition.TradeItem.Category switch
                 {
-                    "map" => ItemClassDictionary.GetValueOrDefault("MapKey"),
+                    "map" => itemClassProvider.ById.GetValueOrDefault("MapKey"),
                     _ => itemClass,
                 };
             }

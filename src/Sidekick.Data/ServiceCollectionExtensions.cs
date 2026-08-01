@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
 using Sidekick.Data.Fuzzy;
+using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Languages;
 
 namespace Sidekick.Data;
@@ -12,6 +13,7 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.AddSidekickInitializableService<ICurrentGameLanguage, CurrentGameLanguage>();
+        services.AddSidekickInitializableService<ItemClassProvider>();
 
         services.AddSingleton<DataProvider>();
         services.TryAddSingleton<IGameLanguageProvider, GameLanguageProvider>();
