@@ -21,6 +21,7 @@ public class TextParser
 {
     private Regex? UnusablePattern { get; set; }
     private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+\-[-+\d,.]+\)");
+    private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
 
     private GameType Game { get; set; }
 
@@ -60,7 +61,7 @@ public class TextParser
         text = AppendCategoryFromAdvancedLines(text);
         text = RemoveAdvancedMetaLines(text);
         text = CombineLines(text);
-        text = RemoveNumericParentheses(text);
+        text = RemoveParentheses(text);
         text = RemoveDashedMetaString(text);
         return text;
 
@@ -177,10 +178,11 @@ public class TextParser
             return string.Join('\n', output);
         }
 
-        string RemoveNumericParentheses(string input)
+        string RemoveParentheses(string input)
         {
             if (string.IsNullOrEmpty(input)) return input;
-            return AdvancedDigitsFormat.Replace(input, "$1");
+            input = AdvancedDigitsFormat.Replace(input, "$1");
+            return AdvancedOptionFormat.Replace(input, "$1");
         }
 
         // Removes text like ' — Unscalable Value'
