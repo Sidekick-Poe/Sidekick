@@ -286,4 +286,37 @@ so the people never forgot their roots.""
 
         fixture.AssertHasStat(actual, StatCategory.Enchant, "#% increased Effect of your Marks", 30);
     }
+
+    [Fact]
+    public void ReplicaDragonfangsFlight()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Unique
+Replica Dragonfang's Flight
+Onyx Amulet
+--------
+Requirements:
+Level: 56
+--------
+Item Level: 77
+--------
++12 to all Attributes (implicit)
+(Attributes are Strength, Dexterity, and Intelligence) (implicit)
+--------
++3 to Level of all Defiance Banner(Fireball-Mana-Infused Staff) Gems
++5% to all Elemental Resistances
+5% increased Reservation Efficiency of Skills
+Items and Gems have 6% reduced Attribute Requirements
+(Attributes are Strength, Dexterity, and Intelligence)
+--------
+""Did we make this? Why do we have no record of it?
+We were warned that there would be consequences...""
+- Administrator Qotra
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Replica Dragonfang's Flight", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Onyx Amulet", actual.Definition.TradeItem?.Type);
+    }
 }

@@ -304,4 +304,8 @@ public enum ItemClass
     [ItemClassGameId(GameType.PathOfExile1, "MapFragment")]
     [ItemClassGameId(GameType.PathOfExile2, "MapFragment")]
     MapFragments,
+
+    [ItemClassTradeId(GameType.PathOfExile1, "chart")]
+    [ItemClassGameId(GameType.PathOfExile1, "DeepwaterChart")]
+    Chart,
 }

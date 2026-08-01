@@ -116,6 +116,7 @@ public class TextParser
             foreach (var line in input.Split('\n'))
             {
                 if (line.StartsWith("{") && line.EndsWith("}")) continue;
+                if (line.StartsWith("(")) continue;
                 cleaned.Add(line);
             }
 
