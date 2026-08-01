@@ -32,6 +32,7 @@
 
 @inject ICurrentGameLanguage CurrentGameLanguage
 @inject IStringLocalizer<StatCategory> StatCategoryResources
+@inject ItemClassProvider ItemClassProvider
 
 @code {
 
@@ -154,37 +155,7 @@
             {
                 return new SelectOption()
                 {
-                    Label = itemClass switch
-                    {
-                        ItemClass.AbyssJewel => CurrentGameLanguage.Language.ClassAbyssJewel,
-                        ItemClass.Amulet => CurrentGameLanguage.Language.ClassAmulet,
-                        ItemClass.Belt => CurrentGameLanguage.Language.ClassBelt,
-                        ItemClass.BodyArmour => CurrentGameLanguage.Language.ClassBodyArmours,
-                        ItemClass.Boots => CurrentGameLanguage.Language.ClassBoots,
-                        ItemClass.Bow => CurrentGameLanguage.Language.ClassBows,
-                        ItemClass.Claw => CurrentGameLanguage.Language.ClassClaws,
-                        ItemClass.Crossbow => CurrentGameLanguage.Language.ClassCrossbows,
-                        ItemClass.Dagger => CurrentGameLanguage.Language.ClassDaggers,
-                        ItemClass.FishingRod => CurrentGameLanguage.Language.ClassFishingRods,
-                        ItemClass.Flask => CurrentGameLanguage.Language.ClassUtilityFlasks,
-                        ItemClass.Gloves => CurrentGameLanguage.Language.ClassGloves,
-                        ItemClass.Helmet => CurrentGameLanguage.Language.ClassHelmets,
-                        ItemClass.Jewel => CurrentGameLanguage.Language.ClassJewel,
-                        ItemClass.OneHandAxe => CurrentGameLanguage.Language.ClassOneHandAxes,
-                        ItemClass.OneHandMace => CurrentGameLanguage.Language.ClassOneHandMaces,
-                        ItemClass.OneHandSword => CurrentGameLanguage.Language.ClassOneHandSwords,
-                        ItemClass.Quiver => CurrentGameLanguage.Language.ClassQuivers,
-                        ItemClass.Ring => CurrentGameLanguage.Language.ClassRing,
-                        ItemClass.Sceptre => CurrentGameLanguage.Language.ClassSceptres,
-                        ItemClass.Shield => CurrentGameLanguage.Language.ClassShields,
-                        ItemClass.Staff => CurrentGameLanguage.Language.ClassStaves,
-                        ItemClass.TwoHandAxe => CurrentGameLanguage.Language.ClassTwoHandAxes,
-                        ItemClass.TwoHandMace => CurrentGameLanguage.Language.ClassTwoHandMaces,
-                        ItemClass.TwoHandSword => CurrentGameLanguage.Language.ClassTwoHandSwords,
-                        ItemClass.Wand => CurrentGameLanguage.Language.ClassWands,
-                        ItemClass.Warstaff => CurrentGameLanguage.Language.ClassWarstaves,
-                        _ => itemClass.ToString(),
-                    },
+                    Label = ItemClassProvider.ItemClasses.FirstOrDefault(x => x.Type == itemClass)?.Name ?? itemClass.ToString(),
                     Value = itemClass.ToString(),
                 };
             }
