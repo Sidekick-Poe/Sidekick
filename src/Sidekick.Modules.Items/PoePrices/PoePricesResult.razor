@@ -1,7 +1,13 @@
 ﻿@using Sidekick.Apis.PoePriceInfo
 @using Sidekick.Apis.PoePriceInfo.Models
+@using Sidekick.Common
 @using Sidekick.Common.Settings
 @using Sidekick.Data.Items
+
+@if (!SidekickFlags.PoePricesEnabled)
+{
+    return;
+}
 
 @if (Loading)
 {
@@ -34,6 +40,8 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
+
+        if (!SidekickFlags.PoePricesEnabled) return;
 
         if (!await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled)) return;
 
