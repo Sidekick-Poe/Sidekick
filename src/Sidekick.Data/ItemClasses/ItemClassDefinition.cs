@@ -91,6 +91,7 @@ public class ItemClassDefinition
         ItemClass.Barya,
         ItemClass.Ultimatum,
         ItemClass.SanctumResearch,
+        ItemClass.Chart,
     ];
 
     public bool IsArea() => Areas.Contains(Type);
