@@ -318,5 +318,7 @@ We were warned that there would be consequences...""
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Replica Dragonfang's Flight", actual.Definition.TradeItem?.Name);
         Assert.Equal("Onyx Amulet", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Level of all Defiance Banner Gems", 3);
     }
 }
