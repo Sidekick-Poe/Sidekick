@@ -7,41 +7,29 @@ using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 using ItemProperties = Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EnergyShieldProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionEnergyShield.ToRegexIntProperty();
+    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyEnergyShield.ToRegexIntProperty();
 
-    private Regex? AlternatePattern { get; } =
-        !string.IsNullOrEmpty(currentGameLanguage.Language.DescriptionEnergyShieldAlternate)
-            ? currentGameLanguage.Language.DescriptionEnergyShieldAlternate.ToRegexIntProperty()
-            : null;
+    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyEnergyShield.ToRegexIsAugmented();
 
-    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionEnergyShield.ToRegexIsAugmented();
-
-    private Regex? AlternateIsAugmentedPattern { get; } =
-        !string.IsNullOrEmpty(currentGameLanguage.Language.DescriptionEnergyShieldAlternate)
-            ? currentGameLanguage.Language.DescriptionEnergyShieldAlternate.ToRegexIsAugmented()
-            : null;
-
-    public override string Label => currentGameLanguage.Language.DescriptionEnergyShield;
+    public override string Label => dataTextProvider.Texts.ItemPropertyEnergyShield;
 
     public override void Parse(Item item)
     {
         if (!item.ItemClass.IsEquipment()) return;
 
         item.Properties.EnergyShield = GetInt(Pattern, item.Text);
-        if (item.Properties.EnergyShield <= 0 && AlternatePattern != null) item.Properties.EnergyShield = GetInt(AlternatePattern, item.Text);
         if (item.Properties.EnergyShield == 0) return;
 
         if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
-        else if (AlternateIsAugmentedPattern != null && GetBool(AlternateIsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

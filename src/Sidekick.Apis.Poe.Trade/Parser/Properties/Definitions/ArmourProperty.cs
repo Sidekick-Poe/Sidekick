@@ -7,20 +7,20 @@ using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 using ItemProperties = Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ArmourProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionArmour.ToRegexIntProperty();
+    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyArmour.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionArmour.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyArmour.ToRegexIsAugmented();
 
-    public override string Label => currentGameLanguage.Language.DescriptionArmour;
+    public override string Label => dataTextProvider.Texts.ItemPropertyArmour;
 
     public override void Parse(Item item)
     {

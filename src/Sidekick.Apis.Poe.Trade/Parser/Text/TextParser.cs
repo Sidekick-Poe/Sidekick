@@ -16,12 +16,12 @@ public class TextParser
     ILogger<TextParser> logger,
     ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
-    DataProvider dataProvider
+    DataTextProvider dataTextProvider
 ) : IInitializableService
 {
     private Regex? UnusablePattern { get; set; }
     private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+\-[-+\d,.]+\)");
-    private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
+    private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\s?\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
 
     private GameType Game { get; set; }
 
@@ -38,18 +38,26 @@ public class TextParser
     public async Task Initialize()
     {
         Game = await settingsService.GetGame();
-        var texts = await dataProvider.Read<DataText>(Game, DataType.Texts, currentGameLanguage.Language);
-        Fractured = texts.ModDescriptionFractured?.Replace("#", "").Trim();
-        Corrupted = texts.ModDescriptionCorrupted?.Replace("#", "").Trim();
-        Desecrated = texts.ModDescriptionDesecrated?.Replace("#", "").Trim();
-        Crafted = texts.ModDescriptionCrafted?.Replace("#", "").Trim();
-        Implicit = texts.ModDescriptionImplicit?.Replace("#", "").Trim();
-        Enchant = texts.ModDescriptionEnchantment?.Replace("#", "").Trim();
-        Foulborn = texts.ModDescriptionFoulborn?.Replace("#", "").Trim();
+
+        Fractured = GetKeyword(dataTextProvider.Texts.ModDescriptionFractured);
+        Corrupted = GetKeyword(dataTextProvider.Texts.ModDescriptionCorrupted);
+        Desecrated = GetKeyword(dataTextProvider.Texts.ModDescriptionDesecrated);
+        Crafted = GetKeyword(dataTextProvider.Texts.ModDescriptionCrafted);
+        Implicit = GetKeyword(dataTextProvider.Texts.ModDescriptionImplicit);
+        Enchant = GetKeyword(dataTextProvider.Texts.ModDescriptionEnchantment);
+        Foulborn = GetKeyword(dataTextProvider.Texts.ModDescriptionFoulborn);
 
         var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
         unusableRegex += @"\n+" + RawText.SeparatorPattern + @"\n+";
         UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
+
+        return;
+
+        string? GetKeyword(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return null;
+            return text.Replace("#", "").Trim();
+        }
     }
 
     public string NormalizeText(string text)

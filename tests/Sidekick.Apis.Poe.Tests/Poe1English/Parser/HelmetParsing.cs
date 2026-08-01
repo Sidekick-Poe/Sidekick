@@ -104,22 +104,27 @@ Rarity: Unique
 The Dark Monarch
 Lich's Circlet
 --------
-Energy Shield: 217 (augmented)
+Energy Shield: 189 (augmented)
 --------
 Requirements:
 Level: 84
-Int: 224
+Int: 224 (unmet)
 --------
-Sockets: B 
+Sockets: W 
 --------
 Item Level: 85
 --------
-+87 to maximum Energy Shield
+{ Unique Modifier — Defences, Energy Shield }
++60(50-100) to maximum Energy Shield
+{ Unique Modifier — Minion, Gem }
 +1 to Level of all Minion Skill Gems
-+35% to Chaos Resistance
+{ Unique Modifier — Chaos, Resistance }
++36(27-37)% to Chaos Resistance
+{ Unique Modifier }
 50% reduced Light Radius
-Maximum number of Summoned Skeletons is Doubled
-Cannot have Minions other than Summoned Skeletons
+{ Unique Modifier }
+Maximum number of Raised Spiders (Animated Weapons-Holy Armaments) is Doubled
+Cannot have Minions other than Raised Spiders (Animated Weapons-Holy Armaments)
 --------
 ""Hate? You speak to me of hate? You have no idea what your persecution inflicts.
 How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
@@ -133,12 +138,13 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
 
         Assert.False(actual.Properties.Unidentified);
         Assert.Equal(85, actual.Properties.ItemLevel);
-        Assert.Equal(217, actual.Properties.EnergyShield);
+        Assert.Equal(189, actual.Properties.EnergyShield);
 
-        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "Maximum number of Summoned Skeletons is Doubled\nCannot have Minions other than Summoned Skeletons");
+        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "Maximum number of Raised Spiders is Doubled\nCannot have Minions other than Raised Spiders");
         Assert.NotNull(stat);
         Assert.Single(stat.Definitions
                           .Where(x => x.TradeIds != null)
                           .SelectMany(x => x.TradeIds!));
+        Assert.False(stat.HasValues);
     }
 }

@@ -7,24 +7,20 @@ using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 using ItemProperties = Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlockChanceProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIntProperty()
-        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIntProperty();
+    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyBlockChance.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
-        : currentGameLanguage.Language.DescriptionBlockChance.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyBlockChance.ToRegexIsAugmented();
 
-    public override string Label => game == GameType.PathOfExile1 ? currentGameLanguage.Language.DescriptionChanceToBlock : currentGameLanguage.Language.DescriptionBlockChance;
+    public override string Label => dataTextProvider.Texts.ItemPropertyBlockChance;
 
     public override void Parse(Item item)
     {

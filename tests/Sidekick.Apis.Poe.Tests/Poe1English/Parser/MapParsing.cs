@@ -461,4 +461,37 @@ Note: ~b/o 1 chaos
         Assert.Equal(3, actual.Properties.MapTier);
         Assert.True(actual.Properties.Blighted);
     }
+
+    [Fact(Skip = "Blight ravaged maps need some attention")]
+    public void BlightRavagedMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Normal
+Blight-ravaged Map (Tier 16)
+--------
+Map Area: Foundry
+--------
+Item Level: 82
+--------
+Monster Level: 85
+--------
+{ Implicit Modifier }
+Monster Level: 85
+200% more Monster Life
+20% increased Monster Movement Speed
+Area is infested with Fungal Growths
+Map's Item Quantity Modifiers also affect Blight Chest count at 50% value
+Can be Anointed up to 9 times
+Natural inhabitants of this area have been removed
+--------
+Travel to a Map of this tier or lower by using this in a personal Map Device. Maps can only be used once.
+");
+
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
+        Assert.True(actual.Properties.BlightRavaged);
+    }
 }
