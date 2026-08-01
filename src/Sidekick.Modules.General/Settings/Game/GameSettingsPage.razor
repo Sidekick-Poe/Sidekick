@@ -29,8 +29,12 @@
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
             }
 
-            <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled"
-                                   Label="@SettingResources["ItemOverlay_Prediction_Enable"]"/>
+            @if (SidekickFlags.PoePricesEnabled)
+            {
+                <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled"
+                                       Label="@SettingResources["ItemOverlay_Prediction_Enable"]"/>
+            }
+
             <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
                                    Label="@Resources["SaveWindowPositions"]"/>
             <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"

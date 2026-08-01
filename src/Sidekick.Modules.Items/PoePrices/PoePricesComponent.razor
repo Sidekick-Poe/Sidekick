@@ -1,5 +1,11 @@
+@using Sidekick.Common
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Valuation.Localization
+
+@if (!SidekickFlags.PoePricesEnabled)
+{
+    return;
+}
 
 <div class="mb-2">
     <Heading2>
