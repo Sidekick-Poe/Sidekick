@@ -7,24 +7,20 @@ using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 using ItemProperties = Sidekick.Data.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CriticalHitChanceProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexDoubleProperty()
-        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexDoubleProperty();
+    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexDoubleProperty();
 
-    private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
-        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
-        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexIsAugmented();
 
-    public override string Label => game == GameType.PathOfExile1 ? currentGameLanguage.Language.DescriptionCriticalStrikeChance : currentGameLanguage.Language.DescriptionCriticalHitChance;
+    public override string Label => dataTextProvider.Texts.ItemPropertyCriticalStrikeChance;
 
     public override void Parse(Item item)
     {

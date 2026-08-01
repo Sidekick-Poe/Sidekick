@@ -9,6 +9,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -19,7 +20,8 @@ public class PropertyParser
     IItemDefinitionParser itemDefinitionParser,
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
-    IStringLocalizer<PoeResources> resources
+    IStringLocalizer<PoeResources> resources,
+    DataTextProvider dataTextProvider
 ) : IPropertyParser
 {
     public int Priority => 300;
@@ -40,18 +42,18 @@ public class PropertyParser
             new QualityProperty(game, currentGameLanguage),
 
             new SpiritProperty(game, currentGameLanguage),
-            new ArmourProperty(game, currentGameLanguage),
-            new EvasionRatingProperty(game, currentGameLanguage),
-            new EnergyShieldProperty(game, currentGameLanguage),
-            new BlockChanceProperty(game, currentGameLanguage),
+            new ArmourProperty(game, dataTextProvider),
+            new EvasionRatingProperty(game, dataTextProvider),
+            new EnergyShieldProperty(game, dataTextProvider),
+            new BlockChanceProperty(game, dataTextProvider),
 
             new WeaponDamageProperty(game, currentGameLanguage, serviceProvider, resources),
             new PhysicalDpsProperty(game, resources),
             new ElementalDpsProperty(game, resources),
             new ChaosDpsProperty(game, resources),
             new TotalDpsProperty(game, resources),
-            new CriticalHitChanceProperty(game, currentGameLanguage),
-            new AttacksPerSecondProperty(game, currentGameLanguage),
+            new CriticalHitChanceProperty(game, dataTextProvider),
+            new AttacksPerSecondProperty(game, dataTextProvider),
             new MemoryStrandsProperty(game, currentGameLanguage),
 
             new MapTierProperty(game, currentGameLanguage),

@@ -1,66 +1,66 @@
-using Sidekick.Apis.Poe.Trade.Trade.Models;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Sidekick.Apis.Poe.Trade.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Trade.Converters;
 
 public class StringOrModifierListConverter : JsonConverter<List<ApiItemModifier>>
 {
-    public override List<ApiItemModifier> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override List<ApiItemModifier>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var list = new List<ApiItemModifier>();
-
         if (reader.TokenType == JsonTokenType.Null)
         {
-            return list;
+            return null;
         }
 
         if (reader.TokenType != JsonTokenType.StartArray)
         {
-            throw new JsonException("Expected start of array for explicitMods.");
+            throw new JsonException("Expected start of array.");
         }
 
-        while (reader.Read())
+        var list = new List<ApiItemModifier>();
+
+        // 2. Load the entire token into a JsonDocument safely
+        using var doc = JsonDocument.ParseValue(ref reader);
+
+        // 3. Loop over elements, handling both plain strings and complex objects
+        foreach (var element in doc.RootElement.EnumerateArray())
         {
-            if (reader.TokenType == JsonTokenType.EndArray)
+            switch (element.ValueKind)
             {
-                break;
-            }
-
-            if (reader.TokenType == JsonTokenType.String)
-            {
-                var s = reader.GetString();
-                list.Add(new ApiItemModifier { Description = s });
-                continue;
-            }
-
-            if (reader.TokenType == JsonTokenType.StartObject)
-            {
-                using var doc = JsonDocument.ParseValue(ref reader);
-                var elem = doc.RootElement;
-                try
-                {
-                    var mod = elem.Deserialize<ApiItemModifier>(options);
-                    if (mod != null)
+                case JsonValueKind.String:
+                    list.Add(new ApiItemModifier
                     {
-                        list.Add(mod);
-                    }
-                    else
+                        Description = element.GetString()
+                    });
+                    break;
+
+                case JsonValueKind.Object:
+                    try
                     {
-                        list.Add(new ApiItemModifier { Description = elem.GetRawText() });
+                        var mod = element.Deserialize<ApiItemModifier>(options);
+                        if (mod != null)
+                        {
+                            list.Add(mod);
+                        }
                     }
-                }
-                catch
-                {
-                    list.Add(new ApiItemModifier { Description = elem.GetRawText() });
-                }
+                    catch
+                    {
+                        // Fallback: capture raw JSON if deserialization still fails for edge cases
+                        list.Add(new ApiItemModifier
+                        {
+                            Description = element.GetRawText()
+                        });
+                    }
+                    break;
 
-                continue;
+                default:
+                    list.Add(new ApiItemModifier
+                    {
+                        Description = element.GetRawText()
+                    });
+                    break;
             }
-
-            // Fallback: parse whatever token into a string
-            using var fallback = JsonDocument.ParseValue(ref reader);
-            list.Add(new ApiItemModifier { Description = fallback.RootElement.GetRawText() });
         }
 
         return list;
@@ -68,24 +68,16 @@ public class StringOrModifierListConverter : JsonConverter<List<ApiItemModifier>
 
     public override void Write(Utf8JsonWriter writer, List<ApiItemModifier> value, JsonSerializerOptions options)
     {
-        writer.WriteStartArray();
-        foreach (var em in value)
+        if (value == null)
         {
-            writer.WriteStartObject();
-            if (em.Description != null)
-            {
-                writer.WriteString("description", em.Description);
-            }
-            if (em.Hash != null)
-            {
-                writer.WriteString("hash", em.Hash);
-            }
-            if (em.Details != null && em.Details.Count > 0)
-            {
-                writer.WritePropertyName("mods");
-                JsonSerializer.Serialize(writer, em.Details, options);
-            }
-            writer.WriteEndObject();
+            writer.WriteNullValue();
+            return;
+        }
+
+        writer.WriteStartArray();
+        foreach (var item in value)
+        {
+            JsonSerializer.Serialize(writer, item, options);
         }
         writer.WriteEndArray();
     }

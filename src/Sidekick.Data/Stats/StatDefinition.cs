@@ -12,8 +12,6 @@ public static class StatDefinitionExtensions
         if (int.TryParse(option, out var result)) return result;
         return null;
     }
-
-    public static bool HasStatOption(this string id) => id.Contains('#');
 }
 
 public class StatDefinition
