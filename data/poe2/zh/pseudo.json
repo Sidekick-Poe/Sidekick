@@ -1,26 +1,122 @@
 [
   {
-    "pseudoStatId": "pseudo.pseudo_total_intelligence",
-    "text": "\u002B# \u667A\u6167",
+    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
+    "text": "\u002B#% \u7E3D\u6DF7\u6C8C\u6297\u6027",
     "stats": [
       {
-        "id": "rune.stat_2897413282",
+        "id": "crafted.stat_2923486259",
+        "text": "#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_2923486259",
+        "text": "#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3393628375",
+        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3465022881",
+        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_378817135",
+        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_2923486259",
+        "text": "#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1404134612",
+        "text": "\u4F60\u8207\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2923486259",
+        "text": "#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2923486259",
+        "text": "#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2923486259",
+        "text": "#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2342427527",
+        "text": "\u547D\u5B9A: \u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u76DF\u53CB#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2923486259",
+        "text": "#%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3351086592",
+        "text": "\u547D\u5B9A: #%\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_dexterity",
+    "text": "\u002B# \u654F\u6377",
+    "stats": [
+      {
+        "id": "crafted.stat_2897413282",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
       {
-        "id": "desecrated.stat_1535626285",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u667A\u6167",
+        "id": "crafted.stat_3261801346",
+        "text": "#\u9EDE\u654F\u6377",
         "multiplier": 1
       },
       {
-        "id": "rune.stat_2913012734",
-        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u667A\u6167",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
+        "id": "desecrated.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
       {
@@ -29,47 +125,22 @@
         "multiplier": 1
       },
       {
+        "id": "desecrated.stat_3261801346",
+        "text": "#\u9EDE\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_538848803",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_3261801346",
+        "text": "#\u9EDE\u654F\u6377",
+        "multiplier": 1
+      },
+      {
         "id": "explicit.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2897413282",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_1379411836",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
@@ -79,13 +150,23 @@
         "multiplier": 1
       },
       {
-        "id": "rune.stat_1379411836",
+        "id": "explicit.stat_2897413282",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
+        "id": "explicit.stat_3261801346",
+        "text": "#\u9EDE\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
       {
@@ -94,8 +175,375 @@
         "multiplier": 1
       },
       {
+        "id": "fractured.stat_3261801346",
+        "text": "#\u9EDE\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3261801346",
+        "text": "#\u9EDE\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1261474324",
+        "text": "",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1496740334",
+        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2897413282",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3261801346",
+        "text": "#\u9EDE\u654F\u6377",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
+    "text": "\u002B#% \u5143\u7D20\u6297\u6027",
+    "stats": [
+      {
+        "id": "crafted.stat_1671376347",
+        "text": "#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3372524247",
+        "text": "#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4220027924",
+        "text": "#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1671376347",
+        "text": "#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_2901986750",
+        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "desecrated.stat_3372524247",
+        "text": "#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3393628375",
+        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3465022881",
+        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_378817135",
+        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3850614073",
+        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "desecrated.stat_4220027924",
+        "text": "#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_1671376347",
+        "text": "#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_2901986750",
+        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "enchant.stat_3372524247",
+        "text": "#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_4220027924",
+        "text": "#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1671376347",
+        "text": "#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1726353460",
+        "text": "\u6DF1\u6DF5\u8017\u640D\u4E5F\u9644\u52A0#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2901986750",
+        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_2915988346",
+        "text": "#%\u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_2991563371",
+        "text": "\u6DF1\u6DF5\u8017\u640D\u4E5F\u9644\u52A0#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3372524247",
+        "text": "#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3441501978",
+        "text": "#%\u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3850614073",
+        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_3979226081",
+        "text": "\u6DF1\u6DF5\u8017\u640D\u4E5F\u9644\u52A0#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4220027924",
+        "text": "#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4277795662",
+        "text": "#%\u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_1671376347",
+        "text": "#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2901986750",
+        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_3372524247",
+        "text": "#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3850614073",
+        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_4220027924",
+        "text": "#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1671376347",
+        "text": "#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2901986750",
+        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "implicit.stat_2915988346",
+        "text": "#%\u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_3372524247",
+        "text": "#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3441501978",
+        "text": "#%\u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_4220027924",
+        "text": "#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4277795662",
+        "text": "#%\u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1539508682",
+        "text": "\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u76DF\u53CB#%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "rune.stat_1671376347",
+        "text": "#%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2566210581",
+        "text": "\u547D\u5B9A: #%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2901986750",
+        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "rune.stat_3294435116",
+        "text": "\u547D\u5B9A: #%\u9583\u96FB\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3372524247",
+        "text": "#%\u706B\u7130\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3448627618",
+        "text": "\u547D\u5B9A: #%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3850614073",
+        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      },
+      {
+        "id": "rune.stat_4220027924",
+        "text": "#%\u51B0\u51B7\u6297\u6027",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_953010920",
+        "text": "\u547D\u5B9A: #%\u5168\u5143\u7D20\u6297\u6027",
+        "multiplier": 3
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_intelligence",
+    "text": "\u002B# \u667A\u6167",
+    "stats": [
+      {
+        "id": "crafted.stat_2897413282",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1535626285",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_2300185227",
+        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
         "id": "explicit.stat_1535626285",
         "text": "#\u9EDE\u529B\u91CF\u8207\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
         "multiplier": 1
       },
       {
@@ -104,7 +552,52 @@
         "multiplier": 1
       },
       {
+        "id": "explicit.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
         "id": "implicit.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2897413282",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2913012734",
+        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u667A\u6167",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_328541901",
         "text": "#\u9EDE\u667A\u6167",
         "multiplier": 1
       }
@@ -120,93 +613,18 @@
         "multiplier": 2
       },
       {
-        "id": "rune.stat_2897413282",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_2897413282",
-        "text": "",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_3299347043",
+        "id": "crafted.stat_3299347043",
         "text": "#\u6700\u5927\u751F\u547D",
         "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1556124492",
-        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u529B\u91CF",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_538848803",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_3299347043",
-        "text": "#\u6700\u5927\u751F\u547D",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_3299347043",
-        "text": "#\u6700\u5927\u751F\u547D",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_943343122",
-        "text": "\u547D\u5B9A: #\u9EDE\u529B\u91CF",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_538848803",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 2
       },
       {
         "id": "crafted.stat_4080418644",
         "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 2
       },
       {
@@ -215,12 +633,7 @@
         "multiplier": 2
       },
       {
-        "id": "fractured.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_3299347043",
+        "id": "desecrated.stat_3299347043",
         "text": "#\u6700\u5927\u751F\u547D",
         "multiplier": 1
       },
@@ -230,13 +643,8 @@
         "multiplier": 2
       },
       {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "id": "desecrated.stat_538848803",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
         "multiplier": 2
       },
       {
@@ -245,44 +653,38 @@
         "multiplier": 1
       },
       {
+        "id": "enchant.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 2
+      },
+      {
         "id": "explicit.stat_1535626285",
         "text": "#\u9EDE\u529B\u91CF\u8207\u667A\u6167",
         "multiplier": 2
       },
       {
-        "id": "implicit.stat_3299347043",
-        "text": "#\u6700\u5927\u751F\u547D",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3299347043",
-        "text": "#\u6700\u5927\u751F\u547D",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2280525771",
-        "text": "\u547D\u5B9A: #\u6700\u5927\u751F\u547D",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_mana",
-    "text": "\u002B# \u6700\u5927\u9B54\u529B",
-    "stats": [
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_2897413282",
+        "id": "explicit.stat_2897413282",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3299347043",
+        "text": "#\u6700\u5927\u751F\u547D",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
         "multiplier": 2
       },
       {
@@ -291,13 +693,18 @@
         "multiplier": 2
       },
       {
-        "id": "crafted.stat_1050105434",
-        "text": "#\u6700\u5927\u9B54\u529B",
+        "id": "fractured.stat_2897413282",
+        "text": "",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_3299347043",
+        "text": "#\u6700\u5927\u751F\u547D",
         "multiplier": 1
       },
       {
-        "id": "enchant.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
+        "id": "fractured.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
         "multiplier": 2
       },
       {
@@ -306,19 +713,29 @@
         "multiplier": 2
       },
       {
-        "id": "desecrated.stat_1050105434",
-        "text": "#\u6700\u5927\u9B54\u529B",
+        "id": "implicit.stat_3299347043",
+        "text": "#\u6700\u5927\u751F\u547D",
         "multiplier": 1
       },
       {
-        "id": "rune.stat_1050105434",
-        "text": "#\u6700\u5927\u9B54\u529B",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2913012734",
-        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u667A\u6167",
+        "id": "implicit.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
         "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1556124492",
+        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u529B\u91CF",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_2280525771",
+        "text": "\u547D\u5B9A: #\u6700\u5927\u751F\u547D",
+        "multiplier": 1
       },
       {
         "id": "rune.stat_2897413282",
@@ -326,17 +743,33 @@
         "multiplier": 2
       },
       {
-        "id": "implicit.stat_1050105434",
+        "id": "rune.stat_3299347043",
+        "text": "#\u6700\u5927\u751F\u547D",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_943343122",
+        "text": "\u547D\u5B9A: #\u9EDE\u529B\u91CF",
+        "multiplier": 2
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_mana",
+    "text": "\u002B# \u6700\u5927\u9B54\u529B",
+    "stats": [
+      {
+        "id": "crafted.stat_1050105434",
         "text": "#\u6700\u5927\u9B54\u529B",
         "multiplier": 1
       },
       {
-        "id": "desecrated.stat_2300185227",
-        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_1379411836",
+        "id": "crafted.stat_2897413282",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 2
       },
@@ -346,9 +779,9 @@
         "multiplier": 2
       },
       {
-        "id": "fractured.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
-        "multiplier": 2
+        "id": "desecrated.stat_1050105434",
+        "text": "#\u6700\u5927\u9B54\u529B",
+        "multiplier": 1
       },
       {
         "id": "desecrated.stat_1379411836",
@@ -356,12 +789,27 @@
         "multiplier": 2
       },
       {
-        "id": "implicit.stat_328541901",
+        "id": "desecrated.stat_1535626285",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u667A\u6167",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_2300185227",
+        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_328541901",
         "text": "#\u9EDE\u667A\u6167",
         "multiplier": 2
       },
       {
-        "id": "explicit.stat_328541901",
+        "id": "enchant.stat_1050105434",
+        "text": "#\u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_328541901",
         "text": "#\u9EDE\u667A\u6167",
         "multiplier": 2
       },
@@ -371,8 +819,8 @@
         "multiplier": 1
       },
       {
-        "id": "desecrated.stat_1535626285",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u667A\u6167",
+        "id": "explicit.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 2
       },
       {
@@ -381,18 +829,18 @@
         "multiplier": 2
       },
       {
-        "id": "rune.stat_2926029365",
-        "text": "\u547D\u5B9A: #\u6700\u5927\u9B54\u529B",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_328541901",
-        "text": "#\u9EDE\u667A\u6167",
+        "id": "explicit.stat_2300185227",
+        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
         "multiplier": 2
       },
       {
         "id": "explicit.stat_2897413282",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
         "multiplier": 2
       },
       {
@@ -401,7 +849,37 @@
         "multiplier": 1
       },
       {
-        "id": "enchant.stat_1050105434",
+        "id": "fractured.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_1050105434",
+        "text": "#\u6700\u5927\u9B54\u529B",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1050105434",
         "text": "#\u6700\u5927\u9B54\u529B",
         "multiplier": 1
       },
@@ -411,386 +889,24 @@
         "multiplier": 2
       },
       {
-        "id": "fractured.stat_2897413282",
-        "text": "",
-        "multiplier": 2
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
-    "text": "\u002B#% \u7E3D\u6DF7\u6C8C\u6297\u6027",
-    "stats": [
-      {
-        "id": "rune.stat_2342427527",
-        "text": "\u547D\u5B9A: \u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u76DF\u53CB#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_2923486259",
-        "text": "#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2923486259",
-        "text": "#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_378817135",
-        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3351086592",
-        "text": "\u547D\u5B9A: #%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3465022881",
-        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2923486259",
-        "text": "#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_2923486259",
-        "text": "#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2923486259",
-        "text": "#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3393628375",
-        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2923486259",
-        "text": "#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_378817135",
-        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2923486259",
-        "text": "#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1404134612",
-        "text": "\u4F60\u8207\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9#%\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3393628375",
-        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
-    "text": "\u002B#% \u5143\u7D20\u6297\u6027",
-    "stats": [
-      {
-        "id": "implicit.stat_2915988346",
-        "text": "#%\u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
+        "id": "rune.stat_2897413282",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 2
       },
       {
-        "id": "rune.stat_3850614073",
-        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "rune.stat_3448627618",
-        "text": "\u547D\u5B9A: #%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_1671376347",
-        "text": "#%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3294435116",
-        "text": "\u547D\u5B9A: #%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_953010920",
-        "text": "\u547D\u5B9A: #%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "implicit.stat_4220027924",
-        "text": "#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2901986750",
-        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_2991563371",
-        "text": "\u6DF1\u6DF5\u8017\u640D\u4E5F\u9644\u52A0#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3372524247",
-        "text": "#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2901986750",
-        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_3441501978",
-        "text": "#%\u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "id": "rune.stat_2913012734",
+        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u667A\u6167",
         "multiplier": 2
       },
       {
-        "id": "rune.stat_1671376347",
-        "text": "#%\u9583\u96FB\u6297\u6027",
+        "id": "rune.stat_2926029365",
+        "text": "\u547D\u5B9A: #\u6700\u5927\u9B54\u529B",
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_3372524247",
-        "text": "#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3372524247",
-        "text": "#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3850614073",
-        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "implicit.stat_3441501978",
-        "text": "#%\u706B\u7130\u8207\u9583\u96FB\u6297\u6027",
+        "id": "rune.stat_328541901",
+        "text": "#\u9EDE\u667A\u6167",
         "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_1671376347",
-        "text": "#%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_4220027924",
-        "text": "#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_1671376347",
-        "text": "#%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2901986750",
-        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "implicit.stat_4277795662",
-        "text": "#%\u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_4277795662",
-        "text": "#%\u51B0\u51B7\u8207\u9583\u96FB\u6297\u6027",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_3465022881",
-        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1726353460",
-        "text": "\u6DF1\u6DF5\u8017\u640D\u4E5F\u9644\u52A0#%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2901986750",
-        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_2915988346",
-        "text": "#%\u706B\u7130\u8207\u51B0\u51B7\u6297\u6027",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_3372524247",
-        "text": "#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3372524247",
-        "text": "#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "#%\u9583\u96FB\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1671376347",
-        "text": "#%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3372524247",
-        "text": "#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_2901986750",
-        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "desecrated.stat_3393628375",
-        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_4220027924",
-        "text": "#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3850614073",
-        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "desecrated.stat_4220027924",
-        "text": "#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3979226081",
-        "text": "\u6DF1\u6DF5\u8017\u640D\u4E5F\u9644\u52A0#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1671376347",
-        "text": "#%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3393628375",
-        "text": "#%\u51B0\u51B7\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2566210581",
-        "text": "\u547D\u5B9A: #%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_378817135",
-        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_4220027924",
-        "text": "#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1671376347",
-        "text": "#%\u9583\u96FB\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1539508682",
-        "text": "\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u76DF\u53CB#%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "fractured.stat_4220027924",
-        "text": "#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3850614073",
-        "text": "#%\u8655\u65BC\u4F60\u5B58\u5728\u7BC4\u570D\u4E2D\u7684\u53CB\u65B9\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
-      },
-      {
-        "id": "desecrated.stat_378817135",
-        "text": "#%\u706B\u7130\u548C\u6DF7\u6C8C\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4220027924",
-        "text": "#%\u51B0\u51B7\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_3372524247",
-        "text": "#%\u706B\u7130\u6297\u6027",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_2901986750",
-        "text": "#%\u5168\u5143\u7D20\u6297\u6027",
-        "multiplier": 3
       }
     ]
   },
@@ -799,38 +915,18 @@
     "text": "\u002B# \u529B\u91CF",
     "stats": [
       {
-        "id": "crafted.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2897413282",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 1
-      },
-      {
         "id": "crafted.stat_2897413282",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
       {
-        "id": "rune.stat_943343122",
-        "text": "\u547D\u5B9A: #\u9EDE\u529B\u91CF",
+        "id": "crafted.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
       {
@@ -839,17 +935,22 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_538848803",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4080418644",
+        "id": "desecrated.stat_4080418644",
         "text": "#\u9EDE\u529B\u91CF",
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_1379411836",
+        "id": "desecrated.stat_538848803",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
@@ -859,7 +960,37 @@
         "multiplier": 1
       },
       {
-        "id": "rune.stat_1379411836",
+        "id": "explicit.stat_2897413282",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
@@ -869,17 +1000,7 @@
         "multiplier": 1
       },
       {
-        "id": "enchant.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_538848803",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
+        "id": "rune.stat_1379411836",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
@@ -889,139 +1010,18 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2897413282",
-        "text": "",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_4080418644",
-        "text": "#\u9EDE\u529B\u91CF",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_dexterity",
-    "text": "\u002B# \u654F\u6377",
-    "stats": [
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_3261801346",
-        "text": "#\u9EDE\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3261801346",
-        "text": "#\u9EDE\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2897413282",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2897413282",
-        "text": "",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3261801346",
-        "text": "#\u9EDE\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
-        "multiplier": 1
-      },
-      {
         "id": "rune.stat_2897413282",
         "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_538848803",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
+        "id": "rune.stat_4080418644",
+        "text": "#\u9EDE\u529B\u91CF",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1496740334",
-        "text": "#%\u9700\u6C42\u8F49\u63DB\u70BA\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3261801346",
-        "text": "#\u9EDE\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3261801346",
-        "text": "#\u9EDE\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1379411836",
-        "text": "#\u9EDE\u5168\u90E8\u80FD\u529B\u503C",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3261801346",
-        "text": "#\u9EDE\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3261801346",
-        "text": "#\u9EDE\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_538848803",
-        "text": "#\u9EDE\u529B\u91CF\u8207\u654F\u6377",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_2300185227",
-        "text": "#\u9EDE\u654F\u6377\u8207\u667A\u6167",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1261474324",
-        "text": "",
+        "id": "rune.stat_943343122",
+        "text": "\u547D\u5B9A: #\u9EDE\u529B\u91CF",
         "multiplier": 1
       }
     ]

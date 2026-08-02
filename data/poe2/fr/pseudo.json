@@ -1,589 +1,11 @@
 [
   {
-    "pseudoStatId": "pseudo.pseudo_total_life",
-    "text": "\u002B# \u00E0 la Vie maxi au total",
-    "stats": [
-      {
-        "id": "fractured.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_3299347043",
-        "text": "# de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_943343122",
-        "text": "Li\u00E9 : # de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "enchant.stat_3299347043",
-        "text": "# de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_538848803",
-        "text": "# de Force et de Dext\u00E9rit\u00E9",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_3299347043",
-        "text": "# de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_3299347043",
-        "text": "# de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_3299347043",
-        "text": "# de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_538848803",
-        "text": "# de Force et de Dext\u00E9rit\u00E9",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_1556124492",
-        "text": "Convertit #% des Pr\u00E9requis en Force",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_3299347043",
-        "text": "# de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2280525771",
-        "text": "Li\u00E9 : # de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_3299347043",
-        "text": "# de Vie maximale",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_intelligence",
-    "text": "\u002B# \u00E0 l\u0027Intelligence au total",
-    "stats": [
-      {
-        "id": "rune.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2913012734",
-        "text": "Convertit #% des Pr\u00E9requis en Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_2300185227",
-        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
-    "text": "\u002B#% aux R\u00E9sistances \u00E9l\u00E9mentaires au total",
-    "stats": [
-      {
-        "id": "enchant.stat_3372524247",
-        "text": "#% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4220027924",
-        "text": "#% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3372524247",
-        "text": "#% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_1671376347",
-        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3850614073",
-        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "#% aux R\u00E9sistances au feu et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3372524247",
-        "text": "#% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_2901986750",
-        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_4277795662",
-        "text": "#% aux R\u00E9sistances au froid et \u00E0 la foudre",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_4220027924",
-        "text": "#% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1671376347",
-        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2901986750",
-        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_3441501978",
-        "text": "#% aux R\u00E9sistances au feu et \u00E0 la foudre",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_1671376347",
-        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3393628375",
-        "text": "#% aux R\u00E9sistances au froid et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3294435116",
-        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_4220027924",
-        "text": "#% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_4220027924",
-        "text": "#% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3372524247",
-        "text": "#% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_4277795662",
-        "text": "#% aux R\u00E9sistances au froid et \u00E0 la foudre",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_3465022881",
-        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3979226081",
-        "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Froid",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_378817135",
-        "text": "#% aux R\u00E9sistances au feu et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2915988346",
-        "text": "#% aux R\u00E9sistances au feu et au froid",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_1671376347",
-        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1726353460",
-        "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance \u00E0 la Foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3850614073",
-        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "fractured.stat_378817135",
-        "text": "#% aux R\u00E9sistances au feu et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "#% aux R\u00E9sistances au froid et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1539508682",
-        "text": "Les Compagnons dans votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "implicit.stat_3441501978",
-        "text": "#% aux R\u00E9sistances au feu et \u00E0 la foudre",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_4220027924",
-        "text": "#% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3372524247",
-        "text": "#% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3850614073",
-        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "rune.stat_3448627618",
-        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3850614073",
-        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "desecrated.stat_1671376347",
-        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2901986750",
-        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_2991563371",
-        "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Feu",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3393628375",
-        "text": "#% aux R\u00E9sistances au froid et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1671376347",
-        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2566210581",
-        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2901986750",
-        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "desecrated.stat_2901986750",
-        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_2901986750",
-        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      },
-      {
-        "id": "desecrated.stat_3372524247",
-        "text": "#% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3372524247",
-        "text": "#% \u00E0 la R\u00E9sistance au feu",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2915988346",
-        "text": "#% aux R\u00E9sistances au feu et au froid",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_4220027924",
-        "text": "#% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1671376347",
-        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_4220027924",
-        "text": "#% \u00E0 la R\u00E9sistance au froid",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_953010920",
-        "text": "Li\u00E9 : #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
-        "multiplier": 3
-      }
-    ]
-  },
-  {
     "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
     "text": "\u002B#% R\u00E9sistance au chaos au total",
     "stats": [
       {
-        "id": "explicit.stat_1404134612",
-        "text": "Vous et les Alli\u00E9s en votre Pr\u00E9sence avez #% \u00E0 la R\u00E9sistance au Chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2923486259",
+        "id": "crafted.stat_2923486259",
         "text": "#% \u00E0 la R\u00E9sistance au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "#% aux R\u00E9sistances au froid et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_378817135",
-        "text": "#% aux R\u00E9sistances au feu et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2923486259",
-        "text": "#% \u00E0 la R\u00E9sistance au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3465022881",
-        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_3393628375",
-        "text": "#% aux R\u00E9sistances au froid et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
         "multiplier": 1
       },
       {
@@ -592,43 +14,43 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_378817135",
-        "text": "#% aux R\u00E9sistances au feu et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3393628375",
+        "id": "desecrated.stat_3393628375",
         "text": "#% aux R\u00E9sistances au froid et au chaos",
         "multiplier": 1
       },
       {
-        "id": "rune.stat_2342427527",
-        "text": "Li\u00E9 : Les Compagnons dans votre Pr\u00E9sence ont #% \u00E0 la R\u00E9sistance au Chaos",
+        "id": "desecrated.stat_3465022881",
+        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_2923486259",
-        "text": "#% \u00E0 la R\u00E9sistance au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2923486259",
-        "text": "#% \u00E0 la R\u00E9sistance au chaos",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3351086592",
-        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance au chaos",
+        "id": "desecrated.stat_378817135",
+        "text": "#% aux R\u00E9sistances au feu et au chaos",
         "multiplier": 1
       },
       {
         "id": "enchant.stat_2923486259",
         "text": "#% \u00E0 la R\u00E9sistance au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1404134612",
+        "text": "Vous et les Alli\u00E9s en votre Pr\u00E9sence avez #% \u00E0 la R\u00E9sistance au Chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2923486259",
+        "text": "#% \u00E0 la R\u00E9sistance au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "#% aux R\u00E9sistances au froid et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
         "multiplier": 1
       },
       {
@@ -640,272 +62,40 @@
         "id": "fractured.stat_2923486259",
         "text": "#% \u00E0 la R\u00E9sistance au chaos",
         "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_strength",
-    "text": "\u002B# \u00E0 la Force au total",
-    "stats": [
+      },
       {
-        "id": "desecrated.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
+        "id": "fractured.stat_3393628375",
+        "text": "#% aux R\u00E9sistances au froid et au chaos",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
+        "id": "fractured.stat_3465022881",
+        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
         "multiplier": 1
       },
       {
-        "id": "rune.stat_4080418644",
-        "text": "# de Force",
+        "id": "fractured.stat_378817135",
+        "text": "#% aux R\u00E9sistances au feu et au chaos",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
+        "id": "implicit.stat_2923486259",
+        "text": "#% \u00E0 la R\u00E9sistance au chaos",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_4080418644",
-        "text": "# de Force",
+        "id": "rune.stat_2342427527",
+        "text": "Li\u00E9 : Les Compagnons dans votre Pr\u00E9sence ont #% \u00E0 la R\u00E9sistance au Chaos",
         "multiplier": 1
       },
       {
-        "id": "rune.stat_943343122",
-        "text": "Li\u00E9 : # de Force",
+        "id": "rune.stat_2923486259",
+        "text": "#% \u00E0 la R\u00E9sistance au chaos",
         "multiplier": 1
       },
       {
-        "id": "desecrated.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_538848803",
-        "text": "# de Force et de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1556124492",
-        "text": "Convertit #% des Pr\u00E9requis en Force",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_538848803",
-        "text": "# de Force et de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_4080418644",
-        "text": "# de Force",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_mana",
-    "text": "\u002BX au Mana maxi au total",
-    "stats": [
-      {
-        "id": "desecrated.stat_2300185227",
-        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_2926029365",
-        "text": "Li\u00E9 : # de Mana maximal",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_1050105434",
-        "text": "# de Mana maximal",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "desecrated.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_2913012734",
-        "text": "Convertit #% des Pr\u00E9requis en Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_1050105434",
-        "text": "# de Mana maximal",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "# de Force et d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "rune.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "enchant.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_1050105434",
-        "text": "# de Mana maximal",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_1050105434",
-        "text": "# de Mana maximal",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_328541901",
-        "text": "# d\u0027Intelligence",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_1050105434",
-        "text": "# de Mana maximal",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_1050105434",
-        "text": "# de Mana maximal",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1050105434",
-        "text": "# de Mana maximal",
+        "id": "rune.stat_3351086592",
+        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance au chaos",
         "multiplier": 1
       }
     ]
@@ -915,83 +105,13 @@
     "text": "\u002B# \u00E0 la Dext\u00E9rit\u00E9 au total",
     "stats": [
       {
-        "id": "implicit.stat_3261801346",
-        "text": "# de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
         "id": "crafted.stat_2897413282",
         "text": "#\u00A0\u00E0 tous les Attributs",
         "multiplier": 1
       },
       {
-        "id": "enchant.stat_3261801346",
+        "id": "crafted.stat_3261801346",
         "text": "# de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3261801346",
-        "text": "# de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_3261801346",
-        "text": "# de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "desecrated.stat_2300185227",
-        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1379411836",
-        "text": "# \u00E0 tous les Attributs",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1261474324",
-        "text": "Li\u00E9 : # de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3261801346",
-        "text": "# de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "rune.stat_1496740334",
-        "text": "Convertit #% des Pr\u00E9requis en Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2897413282",
-        "text": "#\u00A0\u00E0 tous les Attributs",
         "multiplier": 1
       },
       {
@@ -1000,13 +120,8 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_538848803",
-        "text": "# de Force et de Dext\u00E9rit\u00E9",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3261801346",
-        "text": "# de Dext\u00E9rit\u00E9",
+        "id": "desecrated.stat_2300185227",
+        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
         "multiplier": 1
       },
       {
@@ -1020,8 +135,893 @@
         "multiplier": 1
       },
       {
+        "id": "enchant.stat_3261801346",
+        "text": "# de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
         "id": "explicit.stat_2300185227",
         "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3261801346",
+        "text": "# de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "# de Force et de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3261801346",
+        "text": "# de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3261801346",
+        "text": "# de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1261474324",
+        "text": "Li\u00E9 : # de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1496740334",
+        "text": "Convertit #% des Pr\u00E9requis en Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3261801346",
+        "text": "# de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
+    "text": "\u002B#% aux R\u00E9sistances \u00E9l\u00E9mentaires au total",
+    "stats": [
+      {
+        "id": "crafted.stat_1671376347",
+        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3372524247",
+        "text": "#% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4220027924",
+        "text": "#% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1671376347",
+        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_2901986750",
+        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "desecrated.stat_3372524247",
+        "text": "#% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3393628375",
+        "text": "#% aux R\u00E9sistances au froid et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3465022881",
+        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_378817135",
+        "text": "#% aux R\u00E9sistances au feu et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_3850614073",
+        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "desecrated.stat_4220027924",
+        "text": "#% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_1671376347",
+        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_2901986750",
+        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "enchant.stat_3372524247",
+        "text": "#% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_4220027924",
+        "text": "#% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1671376347",
+        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1726353460",
+        "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance \u00E0 la Foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2901986750",
+        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_2915988346",
+        "text": "#% aux R\u00E9sistances au feu et au froid",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_2991563371",
+        "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Feu",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3372524247",
+        "text": "#% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "#% aux R\u00E9sistances au froid et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3441501978",
+        "text": "#% aux R\u00E9sistances au feu et \u00E0 la foudre",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "#% aux R\u00E9sistances au feu et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3850614073",
+        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_3979226081",
+        "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Froid",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4220027924",
+        "text": "#% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4277795662",
+        "text": "#% aux R\u00E9sistances au froid et \u00E0 la foudre",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_1671376347",
+        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2901986750",
+        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_3372524247",
+        "text": "#% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "#% aux R\u00E9sistances au froid et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "#% aux R\u00E9sistances \u00E0 la foudre et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "#% aux R\u00E9sistances au feu et au chaos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3850614073",
+        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_4220027924",
+        "text": "#% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1671376347",
+        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2901986750",
+        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "implicit.stat_2915988346",
+        "text": "#% aux R\u00E9sistances au feu et au froid",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_3372524247",
+        "text": "#% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3441501978",
+        "text": "#% aux R\u00E9sistances au feu et \u00E0 la foudre",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_4220027924",
+        "text": "#% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4277795662",
+        "text": "#% aux R\u00E9sistances au froid et \u00E0 la foudre",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1539508682",
+        "text": "Les Compagnons dans votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "rune.stat_1671376347",
+        "text": "#% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2566210581",
+        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2901986750",
+        "text": "#% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "rune.stat_3294435116",
+        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance \u00E0 la foudre",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3372524247",
+        "text": "#% \u00E0 la R\u00E9sistance au feu",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3448627618",
+        "text": "Li\u00E9 : #% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_3850614073",
+        "text": "Les Alli\u00E9s en votre Pr\u00E9sence ont #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      },
+      {
+        "id": "rune.stat_4220027924",
+        "text": "#% \u00E0 la R\u00E9sistance au froid",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_953010920",
+        "text": "Li\u00E9 : #% \u00E0 toutes les R\u00E9sistances \u00C9l\u00E9mentaires",
+        "multiplier": 3
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_intelligence",
+    "text": "\u002B# \u00E0 l\u0027Intelligence au total",
+    "stats": [
+      {
+        "id": "crafted.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_2300185227",
+        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2913012734",
+        "text": "Convertit #% des Pr\u00E9requis en Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_life",
+    "text": "\u002B# \u00E0 la Vie maxi au total",
+    "stats": [
+      {
+        "id": "crafted.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3299347043",
+        "text": "# de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_3299347043",
+        "text": "# de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_538848803",
+        "text": "# de Force et de Dext\u00E9rit\u00E9",
+        "multiplier": 2
+      },
+      {
+        "id": "enchant.stat_3299347043",
+        "text": "# de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3299347043",
+        "text": "# de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "# de Force et de Dext\u00E9rit\u00E9",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_3299347043",
+        "text": "# de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_3299347043",
+        "text": "# de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1556124492",
+        "text": "Convertit #% des Pr\u00E9requis en Force",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_2280525771",
+        "text": "Li\u00E9 : # de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_3299347043",
+        "text": "# de Vie maximale",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_943343122",
+        "text": "Li\u00E9 : # de Force",
+        "multiplier": 2
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_mana",
+    "text": "\u002BX au Mana maxi au total",
+    "stats": [
+      {
+        "id": "crafted.stat_1050105434",
+        "text": "# de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_1050105434",
+        "text": "# de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_2300185227",
+        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "desecrated.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "enchant.stat_1050105434",
+        "text": "# de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_1050105434",
+        "text": "# de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "# de Dext\u00E9rit\u00E9 et d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_1050105434",
+        "text": "# de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_1050105434",
+        "text": "# de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_1050105434",
+        "text": "# de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_2913012734",
+        "text": "Convertit #% des Pr\u00E9requis en Intelligence",
+        "multiplier": 2
+      },
+      {
+        "id": "rune.stat_2926029365",
+        "text": "Li\u00E9 : # de Mana maximal",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_328541901",
+        "text": "# d\u0027Intelligence",
+        "multiplier": 2
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_strength",
+    "text": "\u002B# \u00E0 la Force au total",
+    "stats": [
+      {
+        "id": "crafted.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 1
+      },
+      {
+        "id": "desecrated.stat_538848803",
+        "text": "# de Force et de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "enchant.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "# de Force et d\u0027Intelligence",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "# de Force et de Dext\u00E9rit\u00E9",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1379411836",
+        "text": "# \u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_1556124492",
+        "text": "Convertit #% des Pr\u00E9requis en Force",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_2897413282",
+        "text": "#\u00A0\u00E0 tous les Attributs",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_4080418644",
+        "text": "# de Force",
+        "multiplier": 1
+      },
+      {
+        "id": "rune.stat_943343122",
+        "text": "Li\u00E9 : # de Force",
         "multiplier": 1
       }
     ]

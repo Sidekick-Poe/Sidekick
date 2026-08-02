@@ -1,147 +1,92 @@
 [
   {
-    "pseudoStatId": "pseudo.pseudo_total_life",
-    "text": "Vida m\u00E1xima total \u002B#",
+    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
+    "text": "\u002B#% total a la Resistencia al Caos",
     "stats": [
       {
-        "id": "implicit.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_3299347043",
-        "text": "\u002B# de vida m\u00E1xima",
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% a las resistencias al hielo y al caos",
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_3299347043",
-        "text": "\u002B# de vida m\u00E1xima",
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% a las resistencias al rayo y al caos",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_3299347043",
-        "text": "\u002B# de vida m\u00E1xima",
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% a las resistencias al fuego y al caos",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_4080418644",
-        "text": "\u002B# de fuerza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_538848803",
-        "text": "\u002B# a Fuerza y Destreza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_4080418644",
-        "text": "\u002B# de fuerza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "scourge.stat_4080418644",
-        "text": "\u002B# de fuerza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "scourge.stat_3299347043",
-        "text": "\u002B# de vida m\u00E1xima",
+        "id": "explicit.stat_2923486259",
+        "text": "\u002B#% a la resistencia al caos",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_4080418644",
-        "text": "\u002B# de fuerza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_538848803",
-        "text": "\u002B# a Fuerza y Destreza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_538848803",
-        "text": "\u002B# a Fuerza y Destreza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_4080418644",
-        "text": "\u002B# de fuerza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_3299347043",
-        "text": "\u002B# de vida m\u00E1xima",
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% a las resistencias al hielo y al caos",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_538848803",
-        "text": "\u002B# a Fuerza y Destreza",
-        "multiplier": 0.5
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% a las resistencias al rayo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% a las resistencias al fuego y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2923486259",
+        "text": "\u002B#% a la resistencia al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u002B#% a las resistencias al hielo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "\u002B#% a las resistencias al rayo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% a las resistencias al fuego y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2923486259",
+        "text": "\u002B#% a la resistencia al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_2923486259",
+        "text": "\u002B#% a la resistencia al caos",
+        "multiplier": 1
       }
     ]
   },
   {
-    "pseudoStatId": "pseudo.pseudo_total_strength",
-    "text": "\u002B# total a la Fuerza",
+    "pseudoStatId": "pseudo.pseudo_total_dexterity",
+    "text": "\u002B# total a la Destreza",
     "stats": [
       {
-        "id": "implicit.stat_538848803",
-        "text": "\u002B# a Fuerza y Destreza",
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
         "multiplier": 1
       },
       {
-        "id": "scourge.stat_4080418644",
-        "text": "\u002B# de fuerza",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
+        "id": "crafted.stat_3261801346",
+        "text": "\u002B# de destreza",
         "multiplier": 1
       },
       {
@@ -155,8 +100,33 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3261801346",
+        "text": "\u002B# de destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# a Fuerza y Destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3261801346",
+        "text": "\u002B# de destreza",
         "multiplier": 1
       },
       {
@@ -170,48 +140,239 @@
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_4080418644",
-        "text": "\u002B# de fuerza",
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_4080418644",
-        "text": "\u002B# de fuerza",
+        "id": "implicit.stat_3261801346",
+        "text": "\u002B# de destreza",
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_538848803",
+        "id": "implicit.stat_538848803",
         "text": "\u002B# a Fuerza y Destreza",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_4080418644",
-        "text": "\u002B# de fuerza",
+        "id": "scourge.stat_3261801346",
+        "text": "\u002B# de destreza",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
+    "text": "\u002B#% a la Resistencia Elemental total",
+    "stats": [
+      {
+        "id": "crafted.stat_1671376347",
+        "text": "\u002B#% a la resistencia al rayo",
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_4080418644",
-        "text": "\u002B# de fuerza",
+        "id": "crafted.stat_2901986750",
+        "text": "\u002B#% a todas las resistencias elementales",
+        "multiplier": 3
+      },
+      {
+        "id": "crafted.stat_2915988346",
+        "text": "\u002B#% a las resistencias al fuego y al hielo",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3372524247",
+        "text": "\u002B#% a la resistencia al fuego",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% a las resistencias al hielo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3441501978",
+        "text": "\u002B#% a las resistencias al fuego y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% a las resistencias al rayo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% a las resistencias al fuego y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4220027924",
+        "text": "\u002B#% a la resistencia al hielo",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4277795662",
+        "text": "\u002B#% a las resistencias al hielo y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "enchant.stat_59544006",
+        "text": "Los G\u00F3lems carro\u00F1eros invocados tienen \u002B#% a todas las resistencias elementales",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_1671376347",
+        "text": "\u002B#% a la resistencia al rayo",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2901986750",
+        "text": "\u002B#% a todas las resistencias elementales",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_2915988346",
+        "text": "\u002B#% a las resistencias al fuego y al hielo",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3372524247",
+        "text": "\u002B#% a la resistencia al fuego",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% a las resistencias al hielo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3441501978",
+        "text": "\u002B#% a las resistencias al fuego y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% a las resistencias al rayo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% a las resistencias al fuego y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4220027924",
+        "text": "\u002B#% a la resistencia al hielo",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4277795662",
+        "text": "\u002B#% a las resistencias al hielo y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_1671376347",
+        "text": "\u002B#% a la resistencia al rayo",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2901986750",
+        "text": "\u002B#% a todas las resistencias elementales",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_2915988346",
+        "text": "\u002B#% a las resistencias al fuego y al hielo",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_3372524247",
+        "text": "\u002B#% a la resistencia al fuego",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u002B#% a las resistencias al hielo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3441501978",
+        "text": "\u002B#% a las resistencias al fuego y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "\u002B#% a las resistencias al rayo y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% a las resistencias al fuego y al caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4220027924",
+        "text": "\u002B#% a la resistencia al hielo",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4277795662",
+        "text": "\u002B#% a las resistencias al hielo y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_1671376347",
+        "text": "\u002B#% a la resistencia al rayo",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2901986750",
+        "text": "\u002B#% a todas las resistencias elementales",
+        "multiplier": 3
+      },
+      {
+        "id": "implicit.stat_2915988346",
+        "text": "\u002B#% a las resistencias al fuego y al hielo",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_3372524247",
+        "text": "\u002B#% a la resistencia al fuego",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3441501978",
+        "text": "\u002B#% a las resistencias al fuego y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_4220027924",
+        "text": "\u002B#% a la resistencia al hielo",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4277795662",
+        "text": "\u002B#% a las resistencias al hielo y al rayo",
+        "multiplier": 2
+      },
+      {
+        "id": "scourge.stat_1671376347",
+        "text": "\u002B#% a la resistencia al rayo",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_2901986750",
+        "text": "\u002B#% a todas las resistencias elementales",
+        "multiplier": 3
+      },
+      {
+        "id": "scourge.stat_3372524247",
+        "text": "\u002B#% a la resistencia al fuego",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4220027924",
+        "text": "\u002B#% a la resistencia al hielo",
         "multiplier": 1
       }
     ]
@@ -226,18 +387,23 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_2300185227",
+        "id": "crafted.stat_2300185227",
         "text": "\u002B# a la destreza e inteligencia",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
+        "id": "crafted.stat_328541901",
+        "text": "\u002B# de inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
         "multiplier": 1
       },
       {
@@ -246,8 +412,13 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_328541901",
-        "text": "\u002B# de inteligencia",
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# a la fuerza y a la inteligencia",
         "multiplier": 1
       },
       {
@@ -256,8 +427,33 @@
         "multiplier": 1
       },
       {
-        "id": "scourge.stat_328541901",
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_328541901",
         "text": "\u002B# de inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
         "multiplier": 1
       },
       {
@@ -271,44 +467,130 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_1379411836",
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# de inteligencia",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_life",
+    "text": "Vida m\u00E1xima total \u002B#",
+    "stats": [
+      {
+        "id": "crafted.stat_1379411836",
         "text": "\u002B# a todos los atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 1
+        "multiplier": 0.5
       },
       {
         "id": "crafted.stat_1535626285",
         "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_3299347043",
+        "text": "\u002B# de vida m\u00E1xima",
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_328541901",
-        "text": "\u002B# de inteligencia",
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# de fuerza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# a Fuerza y Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_3299347043",
+        "text": "\u002B# de vida m\u00E1xima",
         "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# de fuerza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# a Fuerza y Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_3299347043",
+        "text": "\u002B# de vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# de fuerza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# a Fuerza y Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_3299347043",
+        "text": "\u002B# de vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# de fuerza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# a Fuerza y Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_3299347043",
+        "text": "\u002B# de vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# de fuerza",
+        "multiplier": 0.5
       }
     ]
   },
@@ -317,34 +599,9 @@
     "text": "Man\u00E1 m\u00E1ximo total \u002B#",
     "stats": [
       {
-        "id": "explicit.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
-        "multiplier": 0.5
-      },
-      {
         "id": "crafted.stat_1050105434",
         "text": "\u002B# de man\u00E1 m\u00E1ximo",
         "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
-        "multiplier": 0.5
       },
       {
         "id": "crafted.stat_1379411836",
@@ -357,13 +614,23 @@
         "multiplier": 0.5
       },
       {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
+        "multiplier": 0.5
+      },
+      {
         "id": "crafted.stat_328541901",
         "text": "\u002B# de inteligencia",
         "multiplier": 0.5
       },
       {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# a la fuerza y a la inteligencia",
+        "id": "explicit.stat_1050105434",
+        "text": "\u002B# de man\u00E1 m\u00E1ximo",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
         "multiplier": 0.5
       },
       {
@@ -372,42 +639,17 @@
         "multiplier": 0.5
       },
       {
-        "id": "implicit.stat_1050105434",
-        "text": "\u002B# de man\u00E1 m\u00E1ximo",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1050105434",
-        "text": "\u002B# de man\u00E1 m\u00E1ximo",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_328541901",
-        "text": "\u002B# de inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_328541901",
-        "text": "\u002B# de inteligencia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_2300185227",
+        "id": "explicit.stat_2300185227",
         "text": "\u002B# a la destreza e inteligencia",
         "multiplier": 0.5
       },
       {
-        "id": "implicit.stat_328541901",
-        "text": "\u002B# de inteligencia",
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# a la fuerza y a la inteligencia",
         "multiplier": 0.5
       },
       {
-        "id": "scourge.stat_328541901",
+        "id": "explicit.stat_328541901",
         "text": "\u002B# de inteligencia",
         "multiplier": 0.5
       },
@@ -417,14 +659,44 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_1050105434",
+        "id": "fractured.stat_1050105434",
         "text": "\u002B# de man\u00E1 m\u00E1ximo",
         "multiplier": 1
       },
       {
-        "id": "scourge.stat_1050105434",
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# a la destreza e inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "\u002B# de inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1050105434",
         "text": "\u002B# de man\u00E1 m\u00E1ximo",
         "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 0.5
       },
       {
         "id": "implicit.stat_2300185227",
@@ -432,265 +704,64 @@
         "multiplier": 0.5
       },
       {
-        "id": "explicit.stat_2543977012",
-        "text": "\u002B# a la fuerza y a la inteligencia",
+        "id": "implicit.stat_328541901",
+        "text": "\u002B# de inteligencia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_1050105434",
+        "text": "\u002B# de man\u00E1 m\u00E1ximo",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# de inteligencia",
         "multiplier": 0.5
       }
     ]
   },
   {
-    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
-    "text": "\u002B#% a la Resistencia Elemental total",
+    "pseudoStatId": "pseudo.pseudo_total_strength",
+    "text": "\u002B# total a la Fuerza",
     "stats": [
-      {
-        "id": "enchant.stat_59544006",
-        "text": "Los G\u00F3lems carro\u00F1eros invocados tienen \u002B#% a todas las resistencias elementales",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_3441501978",
-        "text": "\u002B#% a las resistencias al fuego y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_1671376347",
-        "text": "\u002B#% a la resistencia al rayo",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_4220027924",
-        "text": "\u002B#% a la resistencia al hielo",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2901986750",
-        "text": "\u002B#% a todas las resistencias elementales",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_4220027924",
-        "text": "\u002B#% a la resistencia al hielo",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3372524247",
-        "text": "\u002B#% a la resistencia al fuego",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1671376347",
-        "text": "\u002B#% a la resistencia al rayo",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2901986750",
-        "text": "\u002B#% a todas las resistencias elementales",
-        "multiplier": 3
-      },
-      {
-        "id": "crafted.stat_2915988346",
-        "text": "\u002B#% a las resistencias al fuego y al hielo",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_4220027924",
-        "text": "\u002B#% a la resistencia al hielo",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_4220027924",
-        "text": "\u002B#% a la resistencia al hielo",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_378817135",
-        "text": "\u002B#% a las resistencias al fuego y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2901986750",
-        "text": "\u002B#% a todas las resistencias elementales",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "\u002B#% a las resistencias al rayo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3393628375",
-        "text": "\u002B#% a las resistencias al hielo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3372524247",
-        "text": "\u002B#% a la resistencia al fuego",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_2901986750",
-        "text": "\u002B#% a todas las resistencias elementales",
-        "multiplier": 3
-      },
-      {
-        "id": "implicit.stat_3372524247",
-        "text": "\u002B#% a la resistencia al fuego",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_4220027924",
-        "text": "\u002B#% a la resistencia al hielo",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3441501978",
-        "text": "\u002B#% a las resistencias al fuego y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "\u002B#% a las resistencias al hielo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4277795662",
-        "text": "\u002B#% a las resistencias al hielo y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_3393628375",
-        "text": "\u002B#% a las resistencias al hielo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2915988346",
-        "text": "\u002B#% a las resistencias al fuego y al hielo",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_3465022881",
-        "text": "\u002B#% a las resistencias al rayo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1671376347",
-        "text": "\u002B#% a la resistencia al rayo",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1671376347",
-        "text": "\u002B#% a la resistencia al rayo",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_1671376347",
-        "text": "\u002B#% a la resistencia al rayo",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3441501978",
-        "text": "\u002B#% a las resistencias al fuego y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_4277795662",
-        "text": "\u002B#% a las resistencias al hielo y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_4277795662",
-        "text": "\u002B#% a las resistencias al hielo y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_378817135",
-        "text": "\u002B#% a las resistencias al fuego y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3372524247",
-        "text": "\u002B#% a la resistencia al fuego",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_3372524247",
-        "text": "\u002B#% a la resistencia al fuego",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "\u002B#% a las resistencias al fuego y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3441501978",
-        "text": "\u002B#% a las resistencias al fuego y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_2915988346",
-        "text": "\u002B#% a las resistencias al fuego y al hielo",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "\u002B#% a las resistencias al rayo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2915988346",
-        "text": "\u002B#% a las resistencias al fuego y al hielo",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_4277795662",
-        "text": "\u002B#% a las resistencias al hielo y al rayo",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_2901986750",
-        "text": "\u002B#% a todas las resistencias elementales",
-        "multiplier": 3
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_dexterity",
-    "text": "\u002B# total a la Destreza",
-    "stats": [
-      {
-        "id": "explicit.stat_3261801346",
-        "text": "\u002B# de destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3261801346",
-        "text": "\u002B# de destreza",
-        "multiplier": 1
-      },
       {
         "id": "crafted.stat_1379411836",
         "text": "\u002B# a todos los atributos",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_538848803",
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# de fuerza",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_538848803",
         "text": "\u002B# a Fuerza y Destreza",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# a todos los atributos",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_3261801346",
-        "text": "\u002B# de destreza",
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# de fuerza",
         "multiplier": 1
       },
       {
@@ -704,8 +775,18 @@
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_3261801346",
-        "text": "\u002B# de destreza",
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# de fuerza",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# a Fuerza y Destreza",
         "multiplier": 1
       },
       {
@@ -714,8 +795,13 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_1379411836",
-        "text": "\u002B# a todos los atributos",
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# a la fuerza y a la inteligencia",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# de fuerza",
         "multiplier": 1
       },
       {
@@ -724,94 +810,8 @@
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_538848803",
-        "text": "\u002B# a Fuerza y Destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_3261801346",
-        "text": "\u002B# de destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2300185227",
-        "text": "\u002B# a la destreza e inteligencia",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
-    "text": "\u002B#% total a la Resistencia al Caos",
-    "stats": [
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "\u002B#% a las resistencias al rayo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "\u002B#% a las resistencias al fuego y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2923486259",
-        "text": "\u002B#% a la resistencia al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2923486259",
-        "text": "\u002B#% a la resistencia al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "\u002B#% a las resistencias al hielo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2923486259",
-        "text": "\u002B#% a la resistencia al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_2923486259",
-        "text": "\u002B#% a la resistencia al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_378817135",
-        "text": "\u002B#% a las resistencias al fuego y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_378817135",
-        "text": "\u002B#% a las resistencias al fuego y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3393628375",
-        "text": "\u002B#% a las resistencias al hielo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3465022881",
-        "text": "\u002B#% a las resistencias al rayo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3393628375",
-        "text": "\u002B#% a las resistencias al hielo y al caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "\u002B#% a las resistencias al rayo y al caos",
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# de fuerza",
         "multiplier": 1
       }
     ]
