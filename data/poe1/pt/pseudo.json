@@ -1,30 +1,86 @@
 [
   {
+    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
+    "text": "\u002B#% total de Resistencia de Caos",
+    "stats": [
+      {
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2923486259",
+        "text": "\u002B#% de Resist\u00EAncia a Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2923486259",
+        "text": "\u002B#% de Resist\u00EAncia a Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3465022881",
+        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2923486259",
+        "text": "\u002B#% de Resist\u00EAncia a Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_2923486259",
+        "text": "\u002B#% de Resist\u00EAncia a Caos",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
     "pseudoStatId": "pseudo.pseudo_total_dexterity",
     "text": "\u002B# para a Destreza total",
     "stats": [
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
       {
         "id": "crafted.stat_1379411836",
         "text": "\u002B# de todos Atributos",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2300185227",
+        "id": "crafted.stat_2300185227",
         "text": "\u002B# de Destreza e Intelig\u00EAncia",
         "multiplier": 1
       },
@@ -39,7 +95,27 @@
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_1379411836",
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3261801346",
+        "text": "\u002B# de Destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
         "text": "\u002B# de todos Atributos",
         "multiplier": 1
       },
@@ -49,17 +125,22 @@
         "multiplier": 1
       },
       {
-        "id": "scourge.stat_3261801346",
+        "id": "fractured.stat_3261801346",
         "text": "\u002B# de Destreza",
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_538848803",
+        "id": "fractured.stat_538848803",
         "text": "\u002B# de For\u00E7a e Destreza",
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_2300185227",
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2300185227",
         "text": "\u002B# de Destreza e Intelig\u00EAncia",
         "multiplier": 1
       },
@@ -69,22 +150,12 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_3261801346",
-        "text": "\u002B# de Destreza",
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3261801346",
+        "id": "scourge.stat_3261801346",
         "text": "\u002B# de Destreza",
         "multiplier": 1
       }
@@ -95,7 +166,117 @@
     "text": "\u002B#% total de Resist\u00EAncias Elementais",
     "stats": [
       {
-        "id": "implicit.stat_2901986750",
+        "id": "crafted.stat_1671376347",
+        "text": "\u002B#% de Resist\u00EAncia a Raio",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2901986750",
+        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
+        "multiplier": 3
+      },
+      {
+        "id": "crafted.stat_2915988346",
+        "text": "\u002B#% de Resist\u00EAncias a Fogo e Gelo",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3372524247",
+        "text": "\u002B#% de Resist\u00EAncia a Fogo",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3393628375",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3441501978",
+        "text": "\u002B#% de Resist\u00EAncias a Fogo e Raio",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_378817135",
+        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4220027924",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4277795662",
+        "text": "\u002B#% de Resist\u00EAncias a Gelo e Raio",
+        "multiplier": 2
+      },
+      {
+        "id": "enchant.stat_59544006",
+        "text": "Golens da Carni\u00E7a Convocados t\u00EAm \u002B#% de todas as Resist\u00EAncias Elementais",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_1671376347",
+        "text": "\u002B#% de Resist\u00EAncia a Raio",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2901986750",
+        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_2915988346",
+        "text": "\u002B#% de Resist\u00EAncias a Fogo e Gelo",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3372524247",
+        "text": "\u002B#% de Resist\u00EAncia a Fogo",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3441501978",
+        "text": "\u002B#% de Resist\u00EAncias a Fogo e Raio",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4220027924",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4277795662",
+        "text": "\u002B#% de Resist\u00EAncias a Gelo e Raio",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_1671376347",
+        "text": "\u002B#% de Resist\u00EAncia a Raio",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2901986750",
         "text": "\u002B#% de todas Resist\u00EAncias Elementais",
         "multiplier": 3
       },
@@ -105,48 +286,8 @@
         "multiplier": 2
       },
       {
-        "id": "scourge.stat_3372524247",
-        "text": "\u002B#% de Resist\u00EAncia a Fogo",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3372524247",
-        "text": "\u002B#% de Resist\u00EAncia a Fogo",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4220027924",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo",
-        "multiplier": 1
-      },
-      {
         "id": "fractured.stat_3372524247",
         "text": "\u002B#% de Resist\u00EAncia a Fogo",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_4277795662",
-        "text": "\u002B#% de Resist\u00EAncias a Gelo e Raio",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_4220027924",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2901986750",
-        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_2901986750",
-        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_1671376347",
-        "text": "\u002B#% de Resist\u00EAncia a Raio",
         "multiplier": 1
       },
       {
@@ -155,88 +296,18 @@
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_3372524247",
-        "text": "\u002B#% de Resist\u00EAncia a Fogo",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4277795662",
-        "text": "\u002B#% de Resist\u00EAncias a Gelo e Raio",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_3441501978",
+        "id": "fractured.stat_3441501978",
         "text": "\u002B#% de Resist\u00EAncias a Fogo e Raio",
         "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_2901986750",
-        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
-        "multiplier": 3
-      },
-      {
-        "id": "fractured.stat_1671376347",
-        "text": "\u002B#% de Resist\u00EAncia a Raio",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2915988346",
-        "text": "\u002B#% de Resist\u00EAncias a Fogo e Gelo",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_1671376347",
-        "text": "\u002B#% de Resist\u00EAncia a Raio",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3465022881",
-        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3372524247",
-        "text": "\u002B#% de Resist\u00EAncia a Fogo",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3441501978",
-        "text": "\u002B#% de Resist\u00EAncias a Fogo e Raio",
-        "multiplier": 2
-      },
-      {
-        "id": "scourge.stat_2901986750",
-        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
-        "multiplier": 3
-      },
-      {
-        "id": "enchant.stat_59544006",
-        "text": "Golens da Carni\u00E7a Convocados t\u00EAm \u002B#% de todas as Resist\u00EAncias Elementais",
-        "multiplier": 3
-      },
-      {
-        "id": "scourge.stat_1671376347",
-        "text": "\u002B#% de Resist\u00EAncia a Raio",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_4220027924",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1671376347",
-        "text": "\u002B#% de Resist\u00EAncia a Raio",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_378817135",
-        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
-        "multiplier": 1
       },
       {
         "id": "fractured.stat_3465022881",
         "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
         "multiplier": 1
       },
       {
@@ -245,48 +316,38 @@
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_3393628375",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_4220027924",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2915988346",
-        "text": "\u002B#% de Resist\u00EAncias a Fogo e Gelo",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_3441501978",
-        "text": "\u002B#% de Resist\u00EAncias a Fogo e Raio",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_378817135",
-        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_4277795662",
+        "id": "fractured.stat_4277795662",
         "text": "\u002B#% de Resist\u00EAncias a Gelo e Raio",
         "multiplier": 2
       },
       {
-        "id": "explicit.stat_3465022881",
-        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "id": "implicit.stat_1671376347",
+        "text": "\u002B#% de Resist\u00EAncia a Raio",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2901986750",
+        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
+        "multiplier": 3
+      },
+      {
+        "id": "implicit.stat_2915988346",
+        "text": "\u002B#% de Resist\u00EAncias a Fogo e Gelo",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_3372524247",
+        "text": "\u002B#% de Resist\u00EAncia a Fogo",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3441501978",
+        "text": "\u002B#% de Resist\u00EAncias a Fogo e Raio",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_4220027924",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo",
         "multiplier": 1
       },
       {
@@ -295,427 +356,23 @@
         "multiplier": 2
       },
       {
-        "id": "fractured.stat_3441501978",
-        "text": "\u002B#% de Resist\u00EAncias a Fogo e Raio",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_2915988346",
-        "text": "\u002B#% de Resist\u00EAncias a Fogo e Gelo",
-        "multiplier": 2
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_strength",
-    "text": "\u002B# para a For\u00E7a total",
-    "stats": [
-      {
-        "id": "fractured.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
+        "id": "scourge.stat_1671376347",
+        "text": "\u002B#% de Resist\u00EAncia a Raio",
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
+        "id": "scourge.stat_2901986750",
+        "text": "\u002B#% de todas Resist\u00EAncias Elementais",
+        "multiplier": 3
+      },
+      {
+        "id": "scourge.stat_3372524247",
+        "text": "\u002B#% de Resist\u00EAncia a Fogo",
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_life",
-    "text": "\u002B# total de Vida m\u00E1xima",
-    "stats": [
-      {
-        "id": "explicit.stat_3299347043",
-        "text": "\u002B# de Vida m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_3299347043",
-        "text": "\u002B# de Vida m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "scourge.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_3299347043",
-        "text": "\u002B# de Vida m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_3299347043",
-        "text": "\u002B# de Vida m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_538848803",
-        "text": "\u002B# de For\u00E7a e Destreza",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_4080418644",
-        "text": "\u002B# de For\u00E7a",
-        "multiplier": 0.5
-      },
-      {
-        "id": "scourge.stat_3299347043",
-        "text": "\u002B# de Vida m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_mana",
-    "text": "\u002B# total de Mana m\u00E1xima",
-    "stats": [
-      {
-        "id": "implicit.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "scourge.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_1050105434",
-        "text": "\u002B# de Mana m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "scourge.stat_1050105434",
-        "text": "\u002B# de Mana m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1050105434",
-        "text": "\u002B# de Mana m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_1050105434",
-        "text": "\u002B# de Mana m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_417509375",
-        "text": "Espa\u00E7o de Anel Direito: \u002B# de Mana m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1050105434",
-        "text": "\u002B# de Mana m\u00E1xima",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
-        "multiplier": 0.5
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
-    "text": "\u002B#% total de Resistencia de Caos",
-    "stats": [
-      {
-        "id": "fractured.stat_378817135",
-        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3393628375",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2923486259",
-        "text": "\u002B#% de Resist\u00EAncia a Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_378817135",
-        "text": "\u002B#% de Resist\u00EAncia de Fogo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2923486259",
-        "text": "\u002B#% de Resist\u00EAncia a Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2923486259",
-        "text": "\u002B#% de Resist\u00EAncia a Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3393628375",
-        "text": "\u002B#% de Resist\u00EAncia a Gelo e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_2923486259",
-        "text": "\u002B#% de Resist\u00EAncia a Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3465022881",
-        "text": "\u002B#% de Resist\u00EAncia a Raio e Caos",
+        "id": "scourge.stat_4220027924",
+        "text": "\u002B#% de Resist\u00EAncia a Gelo",
         "multiplier": 1
       }
     ]
@@ -730,13 +387,8 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
         "multiplier": 1
       },
       {
@@ -745,57 +397,7 @@
         "multiplier": 1
       },
       {
-        "id": "scourge.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
         "id": "crafted.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2300185227",
-        "text": "\u002B# de Destreza e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u002B# de todos Atributos",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_328541901",
-        "text": "\u002B# de Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_328541901",
         "text": "\u002B# de Intelig\u00EAncia",
         "multiplier": 1
       },
@@ -805,13 +407,411 @@
         "multiplier": 1
       },
       {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
         "id": "explicit.stat_2543977012",
         "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
         "multiplier": 1
       },
       {
+        "id": "explicit.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
         "id": "implicit.stat_1535626285",
         "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_life",
+    "text": "\u002B# total de Vida m\u00E1xima",
+    "stats": [
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_3299347043",
+        "text": "\u002B# de Vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_3299347043",
+        "text": "\u002B# de Vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_3299347043",
+        "text": "\u002B# de Vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_3299347043",
+        "text": "\u002B# de Vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_3299347043",
+        "text": "\u002B# de Vida m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 0.5
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_mana",
+    "text": "\u002B# total de Mana m\u00E1xima",
+    "stats": [
+      {
+        "id": "crafted.stat_1050105434",
+        "text": "\u002B# de Mana m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1050105434",
+        "text": "\u002B# de Mana m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_417509375",
+        "text": "Espa\u00E7o de Anel Direito: \u002B# de Mana m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1050105434",
+        "text": "\u002B# de Mana m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1050105434",
+        "text": "\u002B# de Mana m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "\u002B# de Destreza e Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_1050105434",
+        "text": "\u002B# de Mana m\u00E1xima",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "\u002B# de Intelig\u00EAncia",
+        "multiplier": 0.5
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_strength",
+    "text": "\u002B# para a For\u00E7a total",
+    "stats": [
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u002B# de todos Atributos",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "\u002B# de For\u00E7a e Intelig\u00EAncia",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "\u002B# de For\u00E7a e Destreza",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "\u002B# de For\u00E7a",
         "multiplier": 1
       }
     ]

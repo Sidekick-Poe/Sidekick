@@ -34,6 +34,7 @@ public class TextParser
     private string? Implicit { get; set; }
     private string? Enchant { get; set; }
     private string? Foulborn { get; set; }
+    private string? Vestigial { get; set; }
 
     public async Task Initialize()
     {
@@ -46,6 +47,7 @@ public class TextParser
         Implicit = GetKeyword(dataTextProvider.Texts.ModDescriptionImplicit);
         Enchant = GetKeyword(dataTextProvider.Texts.ModDescriptionEnchantment);
         Foulborn = GetKeyword(dataTextProvider.Texts.ModDescriptionFoulborn);
+        Vestigial = GetKeyword(dataTextProvider.Texts.ModDescriptionVestigial);
 
         var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
         unusableRegex += @"\n+" + RawText.SeparatorPattern + @"\n+";
@@ -94,6 +96,7 @@ public class TextParser
                 if (line.StartsWith("{") && line.EndsWith("}"))
                 {
                     if (Implicit != null && line.Contains(Implicit)) currentSuffix = "(implicit)";
+                    else if (Vestigial != null && line.Contains(Vestigial)) currentSuffix = "(implicit)";
                     else if (Fractured != null && line.Contains(Fractured)) currentSuffix = "(fractured)";
                     else if (Desecrated != null && line.Contains(Desecrated)) currentSuffix = "(desecrated)";
                     else if (Crafted != null && line.Contains(Crafted)) currentSuffix = "(crafted)";

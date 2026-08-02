@@ -1,15 +1,10 @@
 [
   {
-    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
-    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E18\u0E32\u0E15\u0E38 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#%",
+    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
+    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#%",
     "stats": [
       {
         "id": "crafted.stat_3393628375",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3393628375",
         "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
       },
@@ -19,38 +14,18 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_4277795662",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "fractured.stat_2915988346",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "scourge.stat_4220027924",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "id": "crafted.stat_378817135",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_1671376347",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "id": "explicit.stat_2923486259",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_3441501978",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_3441501978",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_1671376347",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "id": "explicit.stat_3393628375",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
       },
       {
@@ -59,54 +34,14 @@
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_4277795662",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "implicit.stat_1671376347",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "id": "explicit.stat_378817135",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
       },
       {
-        "id": "scourge.stat_3372524247",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
+        "id": "fractured.stat_2923486259",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2915988346",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_4220027924",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1671376347",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "enchant.stat_59544006",
-        "text": "\u0E42\u0E01\u0E40\u0E25\u0E21\u0E0B\u0E32\u0E01\u0E28\u0E1E\u0E2D\u0E31\u0E0D\u0E40\u0E0A\u0E34\u0E0D \u0E21\u0E35\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
-        "multiplier": 3
-      },
-      {
-        "id": "fractured.stat_4220027924",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3372524247",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2901986750",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
-        "multiplier": 3
       },
       {
         "id": "fractured.stat_3393628375",
@@ -114,49 +49,9 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_2901986750",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
-        "multiplier": 3
-      },
-      {
-        "id": "implicit.stat_4220027924",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "id": "fractured.stat_3465022881",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3372524247",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2915988346",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "crafted.stat_4277795662",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "explicit.stat_2901986750",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
-        "multiplier": 3
-      },
-      {
-        "id": "explicit.stat_4220027924",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3441501978",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
-      },
-      {
-        "id": "scourge.stat_2901986750",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
-        "multiplier": 3
       },
       {
         "id": "fractured.stat_378817135",
@@ -164,14 +59,116 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_3441501978",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
+        "id": "implicit.stat_2923486259",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
       },
       {
-        "id": "explicit.stat_4277795662",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
-        "multiplier": 2
+        "id": "scourge.stat_2923486259",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_dexterity",
+    "text": "\u0E04\u0E48\u0E32 Dexterity \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+    "stats": [
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3261801346",
+        "text": "Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3261801346",
+        "text": "Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3261801346",
+        "text": "Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_3261801346",
+        "text": "Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_3261801346",
+        "text": "Dexterity \u002B#",
+        "multiplier": 1
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_elemental_resistance",
+    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E18\u0E32\u0E15\u0E38 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#%",
+    "stats": [
+      {
+        "id": "crafted.stat_1671376347",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 1
       },
       {
         "id": "crafted.stat_2901986750",
@@ -184,8 +181,23 @@
         "multiplier": 2
       },
       {
-        "id": "explicit.stat_378817135",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "id": "crafted.stat_3372524247",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3393628375",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_3441501978",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "crafted.stat_3465022881",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
       },
       {
@@ -194,9 +206,134 @@
         "multiplier": 1
       },
       {
+        "id": "crafted.stat_4220027924",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4277795662",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "enchant.stat_59544006",
+        "text": "\u0E42\u0E01\u0E40\u0E25\u0E21\u0E0B\u0E32\u0E01\u0E28\u0E1E\u0E2D\u0E31\u0E0D\u0E40\u0E0A\u0E34\u0E0D \u0E21\u0E35\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_1671376347",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2901986750",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
+        "multiplier": 3
+      },
+      {
+        "id": "explicit.stat_2915988346",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3372524247",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3393628375",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_3441501978",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "explicit.stat_3465022881",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_378817135",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4220027924",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4277795662",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_1671376347",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2901986750",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
+        "multiplier": 3
+      },
+      {
+        "id": "fractured.stat_2915988346",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "fractured.stat_3372524247",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3393628375",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_3441501978",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
         "id": "fractured.stat_3465022881",
         "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
         "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_378817135",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4220027924",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4277795662",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_1671376347",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2901986750",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
+        "multiplier": 3
+      },
+      {
+        "id": "implicit.stat_2915988346",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "multiplier": 2
       },
       {
         "id": "implicit.stat_3372524247",
@@ -204,89 +341,54 @@
         "multiplier": 1
       },
       {
+        "id": "implicit.stat_3441501978",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
+        "id": "implicit.stat_4220027924",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4277795662",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
+        "multiplier": 2
+      },
+      {
         "id": "scourge.stat_1671376347",
         "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u002B#%",
         "multiplier": 1
       },
       {
-        "id": "crafted.stat_3372524247",
+        "id": "scourge.stat_2901986750",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u002B#%",
+        "multiplier": 3
+      },
+      {
+        "id": "scourge.stat_3372524247",
         "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4220027924",
+        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
         "multiplier": 1
       }
     ]
   },
   {
-    "pseudoStatId": "pseudo.pseudo_total_dexterity",
-    "text": "\u0E04\u0E48\u0E32 Dexterity \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+    "pseudoStatId": "pseudo.pseudo_total_intelligence",
+    "text": "Intelligence \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
     "stats": [
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_3261801346",
-        "text": "Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3261801346",
-        "text": "Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3261801346",
-        "text": "Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3261801346",
-        "text": "Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3261801346",
-        "text": "Dexterity \u002B#",
-        "multiplier": 1
-      },
       {
         "id": "crafted.stat_1379411836",
         "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "id": "crafted.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 1
       },
       {
@@ -295,24 +397,89 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_1379411836",
+        "id": "crafted.stat_328541901",
+        "text": "Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
         "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 1
       },
       {
         "id": "explicit.stat_2300185227",
         "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_328541901",
+        "text": "Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_328541901",
+        "text": "Intelligence \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_328541901",
+        "text": "Intelligence \u002B#",
+        "multiplier": 1
       }
     ]
   },
   {
-    "pseudoStatId": "pseudo.pseudo_total_mana",
-    "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+    "pseudoStatId": "pseudo.pseudo_total_life",
+    "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
     "stats": [
       {
-        "id": "fractured.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "id": "crafted.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
         "multiplier": 0.5
       },
       {
@@ -321,8 +488,18 @@
         "multiplier": 0.5
       },
       {
-        "id": "implicit.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "id": "crafted.stat_3299347043",
+        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_4080418644",
+        "text": "Strength \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
         "multiplier": 0.5
       },
       {
@@ -331,53 +508,33 @@
         "multiplier": 0.5
       },
       {
-        "id": "fractured.stat_1050105434",
-        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_328541901",
-        "text": "Intelligence \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1050105434",
-        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_1050105434",
-        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1050105434",
-        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1050105434",
-        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_417509375",
-        "text": "\u0E41\u0E2B\u0E27\u0E19\u0E0A\u0E48\u0E2D\u0E07\u0E02\u0E27\u0E32: \u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_328541901",
-        "text": "Intelligence \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 0.5
-      },
-      {
         "id": "explicit.stat_1535626285",
         "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_3299347043",
+        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_4080418644",
+        "text": "Strength \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
         "multiplier": 0.5
       },
       {
@@ -386,12 +543,73 @@
         "multiplier": 0.5
       },
       {
+        "id": "fractured.stat_3299347043",
+        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_4080418644",
+        "text": "Strength \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 0.5
+      },
+      {
         "id": "implicit.stat_1379411836",
         "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
         "multiplier": 0.5
       },
       {
-        "id": "explicit.stat_2543977012",
+        "id": "implicit.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_3299347043",
+        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_4080418644",
+        "text": "Strength \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_3299347043",
+        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_4080418644",
+        "text": "Strength \u002B#",
+        "multiplier": 0.5
+      }
+    ]
+  },
+  {
+    "pseudoStatId": "pseudo.pseudo_total_mana",
+    "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+    "stats": [
+      {
+        "id": "crafted.stat_1050105434",
+        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "crafted.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "crafted.stat_1535626285",
         "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 0.5
       },
@@ -401,23 +619,33 @@
         "multiplier": 0.5
       },
       {
-        "id": "scourge.stat_328541901",
+        "id": "crafted.stat_328541901",
         "text": "Intelligence \u002B#",
         "multiplier": 0.5
       },
       {
-        "id": "fractured.stat_1379411836",
+        "id": "explicit.stat_1050105434",
+        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "explicit.stat_1379411836",
         "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
         "multiplier": 0.5
       },
       {
-        "id": "crafted.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "id": "explicit.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 0.5
       },
       {
-        "id": "implicit.stat_2300185227",
+        "id": "explicit.stat_2300185227",
         "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "explicit.stat_2543977012",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 0.5
       },
       {
@@ -426,7 +654,67 @@
         "multiplier": 0.5
       },
       {
+        "id": "explicit.stat_417509375",
+        "text": "\u0E41\u0E2B\u0E27\u0E19\u0E0A\u0E48\u0E2D\u0E07\u0E02\u0E27\u0E32: \u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1050105434",
+        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "fractured.stat_328541901",
+        "text": "Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1050105434",
+        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "implicit.stat_2300185227",
+        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
         "id": "implicit.stat_328541901",
+        "text": "Intelligence \u002B#",
+        "multiplier": 0.5
+      },
+      {
+        "id": "scourge.stat_1050105434",
+        "text": "\u0E21\u0E32\u0E19\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "scourge.stat_328541901",
         "text": "Intelligence \u002B#",
         "multiplier": 0.5
       }
@@ -437,27 +725,12 @@
     "text": "Strength \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
     "stats": [
       {
-        "id": "implicit.stat_4080418644",
-        "text": "Strength \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
+        "id": "crafted.stat_1379411836",
         "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
         "multiplier": 1
       },
       {
-        "id": "implicit.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1535626285",
+        "id": "crafted.stat_1535626285",
         "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 1
       },
@@ -467,7 +740,7 @@
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_538848803",
+        "id": "crafted.stat_538848803",
         "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
         "multiplier": 1
       },
@@ -477,8 +750,8 @@
         "multiplier": 1
       },
       {
-        "id": "explicit.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "id": "explicit.stat_1535626285",
+        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
         "multiplier": 1
       },
       {
@@ -487,331 +760,58 @@
         "multiplier": 1
       },
       {
-        "id": "scourge.stat_4080418644",
-        "text": "Strength \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 1
-      },
-      {
         "id": "explicit.stat_4080418644",
         "text": "Strength \u002B#",
         "multiplier": 1
       },
       {
-        "id": "fractured.stat_4080418644",
-        "text": "Strength \u002B#",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_life",
-    "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-    "stats": [
-      {
-        "id": "implicit.stat_538848803",
+        "id": "explicit.stat_538848803",
         "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_4080418644",
-        "text": "Strength \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_4080418644",
-        "text": "Strength \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "scourge.stat_3299347043",
-        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
         "multiplier": 1
       },
       {
         "id": "fractured.stat_1379411836",
         "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "fractured.stat_3299347043",
-        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_3299347043",
-        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_4080418644",
-        "text": "Strength \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_3299347043",
-        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
         "multiplier": 1
       },
       {
         "id": "fractured.stat_1535626285",
         "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 0.5
+        "multiplier": 1
       },
       {
-        "id": "crafted.stat_1535626285",
+        "id": "fractured.stat_4080418644",
+        "text": "Strength \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "fractured.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1379411836",
+        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
+        "multiplier": 1
+      },
+      {
+        "id": "implicit.stat_1535626285",
         "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 0.5
+        "multiplier": 1
       },
       {
         "id": "implicit.stat_4080418644",
         "text": "Strength \u002B#",
-        "multiplier": 0.5
+        "multiplier": 1
       },
       {
-        "id": "implicit.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 0.5
+        "id": "implicit.stat_538848803",
+        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
+        "multiplier": 1
       },
       {
         "id": "scourge.stat_4080418644",
         "text": "Strength \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "crafted.stat_3299347043",
-        "text": "\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 0.5
-      },
-      {
-        "id": "explicit.stat_538848803",
-        "text": "Strength \u0E41\u0E25\u0E30 Dexterity \u002B#",
-        "multiplier": 0.5
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_chaos_resistance",
-    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#%",
-    "stats": [
-      {
-        "id": "explicit.stat_3393628375",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3393628375",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3393628375",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2923486259",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_378817135",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_378817135",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_2923486259",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_3465022881",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_378817135",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_3465022881",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2923486259",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_3465022881",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E25\u0E30\u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2923486259",
-        "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u002B#%",
-        "multiplier": 1
-      }
-    ]
-  },
-  {
-    "pseudoStatId": "pseudo.pseudo_total_intelligence",
-    "text": "Intelligence \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-    "stats": [
-      {
-        "id": "explicit.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_328541901",
-        "text": "Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_328541901",
-        "text": "Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_328541901",
-        "text": "Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_1379411836",
-        "text": "\u0E04\u0E48\u0E32\u0E04\u0E38\u0E13\u0E2A\u0E21\u0E1A\u0E31\u0E15\u0E34\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "implicit.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "fractured.stat_1535626285",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_328541901",
-        "text": "Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "crafted.stat_2300185227",
-        "text": "Dexterity \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "explicit.stat_2543977012",
-        "text": "Strength \u0E41\u0E25\u0E30 Intelligence \u002B#",
-        "multiplier": 1
-      },
-      {
-        "id": "scourge.stat_328541901",
-        "text": "Intelligence \u002B#",
         "multiplier": 1
       }
     ]

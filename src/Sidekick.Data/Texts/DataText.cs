@@ -16,6 +16,7 @@ public class DataText
     public string ModDescriptionVaalUnique { get; set; } = string.Empty;
     public string ModDescriptionScourge { get; set; } = string.Empty;
     public string ModDescriptionFoulborn { get; set; } = string.Empty;
+    public string ModDescriptionVestigial { get; set; } = string.Empty;
     public string ModDescriptionTier { get; set; } = string.Empty;
     public string ModDescriptionRank { get; set; } = string.Empty;
     public string ModDescriptionLevel { get; set; } = string.Empty;

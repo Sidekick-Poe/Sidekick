@@ -147,4 +147,59 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
                           .SelectMany(x => x.TradeIds!));
         Assert.False(stat.HasValues);
     }
+
+    [Fact]
+    public void VestigialSecutorHelm()
+    {
+        var actual = parser.ParseItem(@"Item Class: Helmets
+Rarity: Rare
+Havoc Ward
+Vestigial Secutor Helm
+--------
+Armour: 164 (augmented)
+Evasion Rating: 164 (augmented)
+--------
+Requirements:
+Level: 60
+Str: 42
+Dex: 42
+--------
+Sockets: G-W-W 
+--------
+Item Level: 85
+--------
+{ Vestigial Implicit Modifier — Elemental, Fire, Lightning, Ailment }
+Your Fire Damage can Shock but not Ignite
+(Shock increases Damage taken by up to 50%, depending on the amount of Lightning Damage in the hit, for 2 seconds)
+--------
+{ Prefix Modifier ""Dragon's"" (Tier: 1) — Drop }
+23(19-24)% increased Rarity of Items found
+{ Prefix Modifier ""Brawler's"" (Tier: 6) — Defences, Armour, Evasion }
+35(27-42)% increased Armour and Evasion
+{ Prefix Modifier ""Rhino's"" (Tier: 3) — Defences, Armour, Evasion }
+31(27-32)% increased Armour and Evasion
+12(12-13)% increased Stun and Block Recovery
+{ Suffix Modifier ""of Excavation"" (Tier: 1) — Drop }
+23(21-26)% increased Rarity of Items found
+{ Suffix Modifier ""of the Sniper"" (Tier: 4) — Attack }
++231(166-250) to Accuracy Rating
+{ Suffix Modifier ""of the Thunderhead"" (Tier: 5) — Elemental, Lightning, Resistance }
++24(24-29)% to Lightning Resistance
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Secutor Helm", actual.Definition.TradeItem?.Type);
+
+        Assert.True(actual.Properties.Corrupted);
+        Assert.Equal(85, actual.Properties.ItemLevel);
+        Assert.Equal(164, actual.Properties.Armour);
+        Assert.Equal(164, actual.Properties.EvasionRating);
+        Assert.Equal(0, actual.Properties.EnergyShield);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Your Fire Damage can Shock but not Ignite");
+    }
 }
