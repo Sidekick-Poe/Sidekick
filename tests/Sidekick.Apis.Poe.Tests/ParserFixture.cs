@@ -131,7 +131,13 @@ public abstract class ParserFixture : IAsyncLifetime
         var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
         if (actualStat == null)
         {
-            Assert.Fail("The actual stat does not exist. Expected: " + expectedText + " - " + expectedOptionText);
+            if (expectedOptionText != null)
+            {
+                Assert.Fail("The actual stat does not exist.\nExpected: " + expectedText + " - " + expectedOptionText);
+                return null;
+            }
+
+            Assert.Fail("The actual stat does not exist.\nExpected: " + expectedText);
             return null;
         }
 
