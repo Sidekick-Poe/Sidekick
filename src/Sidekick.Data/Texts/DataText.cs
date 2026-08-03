@@ -23,14 +23,37 @@ public class DataText
     public string ModDescriptionTierLevel { get; set; } = string.Empty;
     public string ModDescriptionRankLevel { get; set; } = string.Empty;
 
+    public string ItemPropertyRarity { get; set; } = string.Empty;
+    public string ItemPropertyRarityMagic { get; set; } = string.Empty;
+    public string ItemPropertyRarityRare { get; set; } = string.Empty;
+    public string ItemPropertyRarityUnique { get; set; } = string.Empty;
+    public string ItemPropertyRarityGem { get; set; } = string.Empty;
+    public string ItemPropertyRarityCurrency { get; set; } = string.Empty;
+    public string ItemPropertyRarityNormal { get; set; } = string.Empty;
+    public string ItemPropertyRarityDivinationCard { get; set; } = string.Empty;
+
     public string ItemPropertyMapArea { get; set; } = string.Empty;
+
     public string ItemPropertyArmour { get; set; } = string.Empty;
     public string ItemPropertyEvasionRating { get; set; } = string.Empty;
     public string ItemPropertyEnergyShield { get; set; } = string.Empty;
     public string ItemPropertyBlockChance { get; set; } = string.Empty;
+
     public string ItemPropertyAttacksPerSecond { get; set; } = string.Empty;
     public string ItemPropertyCriticalStrikeChance { get; set; } = string.Empty;
     public string ItemPropertyChaosDamage { get; set; } = string.Empty;
     public string ItemPropertyElementalDamage { get; set; } = string.Empty;
     public string ItemPropertyPhysicalDamage { get; set; } = string.Empty;
+
+    public string ItemSuperior { get; set; } = string.Empty;
+    public string ItemSynthesised { get; set; } = string.Empty;
+    public string ItemBlighted { get; set; } = string.Empty;
+    public string ItemBlightRavaged { get; set; } = string.Empty;
+
+    public string InfluenceShaper { get; set; } = string.Empty;
+    public string InfluenceElder { get; set; } = string.Empty;
+    public string InfluenceCrusader { get; set; } = string.Empty;
+    public string InfluenceRedeemer { get; set; } = string.Empty;
+    public string InfluenceHunter { get; set; } = string.Empty;
+    public string InfluenceWarlord { get; set; } = string.Empty;
 }

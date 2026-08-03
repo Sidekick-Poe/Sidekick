@@ -35,7 +35,7 @@ public class PropertyParser
         Definitions.Clear();
         Definitions.AddRange([
             new ItemClassProperty(game, resources),
-            new RarityProperty(game, currentGameLanguage),
+            new RarityProperty(game, dataTextProvider),
 
             new SeparatorProperty(),
 
@@ -76,8 +76,8 @@ public class PropertyParser
             new QualityRarityProperty(game, currentGameLanguage),
             new WaystoneDropChanceProperty(game, currentGameLanguage),
             new AreaLevelProperty(game, currentGameLanguage),
-            new BlightedProperty(game, currentGameLanguage),
-            new BlightRavagedProperty(game, currentGameLanguage),
+            new BlightedProperty(game, dataTextProvider),
+            new BlightRavagedProperty(game, dataTextProvider),
 
             new HeistWingsRevealedProperty(game, currentGameLanguage, serviceProvider),
             new HeistWingsTotalProperty(game, currentGameLanguage, serviceProvider),
@@ -113,12 +113,12 @@ public class PropertyParser
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.MiscellaneousCategory?.Title,
-                                   new ElderProperty(game, currentGameLanguage),
-                                   new ShaperProperty(game, currentGameLanguage),
-                                   new CrusaderProperty(game, currentGameLanguage),
-                                   new HunterProperty(game, currentGameLanguage),
-                                   new RedeemerProperty(game, currentGameLanguage),
-                                   new WarlordProperty(game, currentGameLanguage),
+                                   new ElderProperty(game, dataTextProvider),
+                                   new ShaperProperty(game, dataTextProvider),
+                                   new CrusaderProperty(game, dataTextProvider),
+                                   new HunterProperty(game, dataTextProvider),
+                                   new RedeemerProperty(game, dataTextProvider),
+                                   new WarlordProperty(game, dataTextProvider),
                                    new CorruptedProperty(game, currentGameLanguage),
                                    new SplitProperty(game, currentGameLanguage),
                                    new FracturedProperty(game, serviceProvider),

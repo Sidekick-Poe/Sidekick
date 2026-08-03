@@ -24,7 +24,10 @@ public class CriticalHitChanceProperty(
 
     public override void Parse(Item item)
     {
-        if (!item.ItemClass.IsWeapon()) return;
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique) return;
 
         item.Properties.CriticalHitChance = GetDouble(Pattern, item.Text);
         if (item.Properties.CriticalHitChance == 0) return;

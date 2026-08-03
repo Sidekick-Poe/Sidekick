@@ -92,12 +92,5 @@ public class GameLanguageFr : IGameLanguage
     public string AffixSuperior => "supérieur";
     public string AffixBlighted => "Carte infestée";
     public string AffixBlightRavaged => "Carte ravagée par l'Infestation";
-
-    public string InfluenceShaper => "Objet du Façonneur";
-    public string InfluenceElder => "Objet de l'Ancien";
-    public string InfluenceCrusader => "Objet du Croisé";
-    public string InfluenceHunter => "Objet du Chasseur";
-    public string InfluenceRedeemer => "Objet de la Rédemptrice";
-    public string InfluenceWarlord => "Objet du Seigneur de guerre";
 }
 

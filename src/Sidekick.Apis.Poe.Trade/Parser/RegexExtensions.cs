@@ -4,24 +4,19 @@ namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public static class RegexExtensions
 {
-    public static Regex ToRegexIntProperty(this string input) => new($@"^{Regex.Escape(input)}:[^\d]*([\d,\.]+)");
+    public static Regex ToRegexIntProperty(this string input) => new($@"^{Regex.Escape(input)}:\s*\+?([\d,\.]+)");
 
-    public static Regex ToRegexDoubleProperty(this string input) => new($@"^{Regex.Escape(input)}:[^\d]*([\d,\.]+)");
+    public static Regex ToRegexDoubleProperty(this string input) => new($@"^{Regex.Escape(input)}:\s*\+?([\d,\.]+)");
 
-    public static Regex ToRegexStringProperty(this string input) => new($"^{Regex.Escape(input)}: *(.+)$");
+    public static Regex ToRegexStringProperty(this string input) => new($@"^{Regex.Escape(input)}:\s*(.+)$");
 
-    public static Regex ToRegexIsAugmented(this string input) => new($"^{Regex.Escape(input)}.*\\)$");
+    public static Regex ToRegexIsAugmented(this string input) => new($@"^{Regex.Escape(input)}.*\)$");
 
-    public static Regex ToRegexAffix(this string input, string superior)
+    public static Regex ToRegexAffix(this string input)
     {
-        if (input.StartsWith('/'))
-        {
-            input = input.Trim('/');
-            return new($"^(?:{superior} )?{input}.*$|^.*{input}$");
-        }
-
         input = Regex.Escape(input);
-        return new($"^(?:{superior} )?{input}.*$|^.*{input}$");
+        input = input.Replace(@"\#", @"([a-zA-Z\s]+)?");
+        return new(input);
     }
 
     public static Regex ToRegexEndOfLine(this string input) => new($"^.*{Regex.Escape(input)}$");
@@ -33,6 +28,11 @@ public static class RegexExtensions
         input = Regex.Escape(input);
         input = input.Replace(@"\#", @"([\d,\.]+)(?: \(unmet\))?");
         return new($@"^{input}$");
+    }
+
+    public static string CleanWildcard(this string input)
+    {
+        return input.Replace("#", string.Empty).Trim();
     }
 
 }

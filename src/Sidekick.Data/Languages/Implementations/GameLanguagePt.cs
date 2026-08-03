@@ -92,12 +92,5 @@ public class GameLanguagePt : IGameLanguage
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Infestado";
     public string AffixBlightRavaged => "Devastado";
-
-    public string InfluenceShaper => "Item do Criador";
-    public string InfluenceElder => "Item do Ancião";
-    public string InfluenceCrusader => "Item do Cruzado";
-    public string InfluenceHunter => "Item do Caçador";
-    public string InfluenceRedeemer => "Item do Redentor";
-    public string InfluenceWarlord => "Item do Senhor da Guerra";
 }
 

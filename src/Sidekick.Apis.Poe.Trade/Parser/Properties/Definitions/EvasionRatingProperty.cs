@@ -24,7 +24,10 @@ public class EvasionRatingProperty(
 
     public override void Parse(Item item)
     {
-        if (!item.ItemClass.IsEquipment()) return;
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique) return;
 
         item.Properties.EvasionRating = GetInt(Pattern, item.Text);
         if (item.Properties.EvasionRating == 0) return;

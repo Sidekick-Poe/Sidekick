@@ -92,12 +92,5 @@ public class GameLanguageRu : IGameLanguage
     public string AffixSuperior => "высокого качества";
     public string AffixBlighted => "Заражённая";
     public string AffixBlightRavaged => "Разорённая Скверной";
-
-    public string InfluenceShaper => "Предмет Создателя";
-    public string InfluenceElder => "Древний предмет";
-    public string InfluenceCrusader => "Предмет Крестоносца";
-    public string InfluenceHunter => "Предмет Охотника";
-    public string InfluenceRedeemer => "Предмет Избавительницы";
-    public string InfluenceWarlord => "Предмет Вождя";
 }
 

@@ -8,16 +8,17 @@ using Sidekick.Data;
 using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
 using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlightedProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.AffixBlighted.ToRegexAffix(currentGameLanguage.Language.AffixSuperior);
+    private Regex Pattern { get; } = dataTextProvider.Texts.ItemBlighted.ToRegexAffix();
 
-    public override string Label => currentGameLanguage.Language.AffixBlighted;
+    public override string Label => dataTextProvider.Texts.ItemBlighted.CleanWildcard();
 
     public override void Parse(Item item)
     {

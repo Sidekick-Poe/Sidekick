@@ -27,7 +27,9 @@ public class FracturedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.ItemClass.CanHaveStats() || item.ItemClass.Type == ItemClass.ActiveSkillGem || item.Properties.Rarity == Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity != Rarity.Normal &&
+         item.Properties.Rarity != Rarity.Magic &&
+         item.Properties.Rarity != Rarity.Rare) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FracturedFilter
         {

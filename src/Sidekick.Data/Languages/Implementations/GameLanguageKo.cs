@@ -92,12 +92,5 @@ public class GameLanguageKo : IGameLanguage
     public string AffixSuperior => "상";
     public string AffixBlighted => "역병";
     public string AffixBlightRavaged => "역병에 유린당한";
-
-    public string InfluenceShaper => "쉐이퍼 아이템";
-    public string InfluenceElder => "엘더 아이템";
-    public string InfluenceCrusader => "십자군 아이템";
-    public string InfluenceHunter => "사냥꾼 아이템";
-    public string InfluenceRedeemer => "대속자 아이템";
-    public string InfluenceWarlord => "전쟁군주 아이템";
 }
 

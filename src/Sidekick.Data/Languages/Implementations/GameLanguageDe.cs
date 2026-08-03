@@ -92,12 +92,5 @@ public class GameLanguageDe : IGameLanguage
     public string AffixSuperior => "(hochwertig)";
     public string AffixBlighted => "Befallene";
     public string AffixBlightRavaged => "Extrem befallene";
-
-    public string InfluenceShaper => "Schöpfer-Gegenstand";
-    public string InfluenceElder => "Ältesten-Gegenstand";
-    public string InfluenceCrusader => "Kreuzritter-Gegenstand";
-    public string InfluenceHunter => "Jäger-Gegenstand";
-    public string InfluenceRedeemer => "Erlöserin-Gegenstand";
-    public string InfluenceWarlord => "Kriegsfürst-Gegenstand";
 }
 

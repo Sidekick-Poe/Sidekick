@@ -6,23 +6,24 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ShaperProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceShaper.ToRegexLine();
+    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceShaper.ToRegexLine();
 
-    public override string Label => currentGameLanguage.Language.InfluenceShaper;
+    public override string Label => dataTextProvider.Texts.InfluenceShaper;
 
     public override void Parse(Item item)
     {
-        if (!item.ItemClass.IsEquipment() &&
-            !item.ItemClass.IsWeapon() &&
-            !item.ItemClass.IsAccessory()) return;
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique) return;
 
         item.Properties.Influences.Shaper = GetBool(Pattern, item.Text);
     }
