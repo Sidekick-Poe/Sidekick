@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
-using Sidekick.Data.Fuzzy;
 using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Languages;
 using Sidekick.Data.Texts;
@@ -19,8 +18,6 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton<DataProvider>();
         services.TryAddSingleton<IGameLanguageProvider, GameLanguageProvider>();
-
-        services.TryAddSingleton<IFuzzyService, FuzzyService>();
 
         return services;
     }
