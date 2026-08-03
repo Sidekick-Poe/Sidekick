@@ -10,15 +10,6 @@ public interface IGameLanguage
     string Poe2TradeBaseUrl { get; }
     string Poe2TradeApiBaseUrl { get; }
 
-    string RarityUnique { get; }
-    string RarityRare { get; }
-    string RarityMagic { get; }
-    string RarityNormal { get; }
-    string RarityCurrency { get; }
-    string RarityGem { get; }
-    string RarityDivinationCard { get; }
-
-    string DescriptionRarity { get; }
     string DescriptionUnidentified { get; }
     string DescriptionQuality { get; }
     string DescriptionCorrupted { get; }
@@ -87,17 +78,6 @@ public interface IGameLanguage
     string DescriptionHeistHighValue { get; }
     string DescriptionHeistPrecious { get; }
     string DescriptionHeistPriceless { get; }
-
-    string AffixSuperior { get; }
-    string AffixBlighted { get; }
-    string AffixBlightRavaged { get; }
-
-    string InfluenceShaper { get; }
-    string InfluenceElder { get; }
-    string InfluenceCrusader { get; }
-    string InfluenceHunter { get; }
-    string InfluenceRedeemer { get; }
-    string InfluenceWarlord { get; }
 
     public string GetTradeBaseUrl(GameType game) => game switch
     {

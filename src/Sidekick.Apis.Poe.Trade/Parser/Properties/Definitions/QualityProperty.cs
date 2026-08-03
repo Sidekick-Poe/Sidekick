@@ -25,6 +25,12 @@ public class QualityProperty(
 
     public override void Parse(Item item)
     {
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique &&
+            item.Properties.Rarity != Rarity.Gem) return;
+
         item.Properties.Quality = GetInt(Pattern, item.Text);
         if (item.Properties.Quality == 0) return;
 
@@ -33,11 +39,6 @@ public class QualityProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.ItemClass.IsGem() &&
-            !item.ItemClass.IsEquipment() &&
-            !item.ItemClass.IsWeapon() &&
-            !item.ItemClass.IsFlask()) return Task.FromResult<TradeFilter?>(null);
-
         var filter = new QualityFilter
         {
             Text = Label,

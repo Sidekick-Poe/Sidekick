@@ -15179,7 +15179,6 @@
   },
   {
     "text": "Armadura \u00E1rtica tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2351239732",
@@ -15194,6 +15193,7 @@
   },
   {
     "text": "Armadura \u00E1rtica tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2351239732",
@@ -21837,6 +21837,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1190333629|12597",
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|55867",
       "explicit.stat_1190333629|5819",
@@ -25858,7 +25859,6 @@
   },
   {
     "text": "Carne y piedra tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1740848995",
@@ -25868,6 +25868,7 @@
   },
   {
     "text": "Carne y piedra tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1740848995",
@@ -26195,7 +26196,6 @@
   },
   {
     "text": "Celeridad tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_804667127",
@@ -26205,6 +26205,7 @@
   },
   {
     "text": "Celeridad tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_804667127",
@@ -26405,7 +26406,6 @@
   },
   {
     "text": "Claridad tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2668611054",
@@ -26415,6 +26415,7 @@
   },
   {
     "text": "Claridad tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2668611054",
@@ -26424,7 +26425,6 @@
   },
   {
     "text": "Claridad tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2668611054",
@@ -26434,6 +26434,7 @@
   },
   {
     "text": "Claridad tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2668611054",
@@ -26814,6 +26815,7 @@
   },
   {
     "text": "Con al menos 40 de Destreza dentro del Radio, Disparo de Hielo Perfora un Objetivo adicional",
+    "value": 1,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3103494675",
@@ -26823,7 +26825,6 @@
   },
   {
     "text": "Con al menos 40 de Destreza dentro del Radio, Disparo de Hielo Perfora un Objetivo adicional",
-    "value": 1,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3103494675",
@@ -28079,16 +28080,16 @@
     "pattern": "^Consume\\ 1\\ carga\\ de\\ poder\\ al\\ utilizarlo(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Consume Cargas de Aguante al utilizarlo",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Consume\\ Cargas\\ de\\ Aguante\\ al\\ utilizarlo(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Consume # Cargas de Aguante al utilizarlo",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Consume\\ ([-0-9,.]\u002B)\\ Cargas\\ de\\ Aguante\\ al\\ utilizarlo(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Consume Cargas de Aguante al utilizarlo",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Consume\\ Cargas\\ de\\ Aguante\\ al\\ utilizarlo(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Consume # cargas de frenes\u00ED cuando lo usas",
@@ -28107,16 +28108,16 @@
     "pattern": "^Consume\\ cargas\\ de\\ frenes\u00ED\\ cuando\\ lo\\ usas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Consume cargas de poder al utilizarlo",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Consume\\ cargas\\ de\\ poder\\ al\\ utilizarlo(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Consume # cargas de poder al utilizarlo",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Consume\\ ([-0-9,.]\u002B)\\ cargas\\ de\\ poder\\ al\\ utilizarlo(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Consume cargas de poder al utilizarlo",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Consume\\ cargas\\ de\\ poder\\ al\\ utilizarlo(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Consume gemas de asistencia engarzadas que no est\u00E9n corruptas cuando llegan al nivel m\u00E1ximo\nPuede consumir # gema de asistencia que no est\u00E9 corrupta\nNo ha consumido ninguna gema",
@@ -29767,19 +29768,19 @@
   },
   {
     "text": "Cubre a los enemigos con escarcha con cada golpe",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3450276548",
-      "fractured.stat_3450276548"
+      "enchant.stat_3235270673"
     ],
     "pattern": "^Cubre\\ a\\ los\\ enemigos\\ con\\ escarcha\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Cubre a los enemigos con escarcha con cada golpe",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_3235270673"
+      "explicit.stat_3450276548",
+      "fractured.stat_3450276548"
     ],
     "pattern": "^Cubre\\ a\\ los\\ enemigos\\ con\\ escarcha\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -34647,12 +34648,16 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2960683632",
+      "explicit.stat_3303114033",
       "explicit.stat_3743301799",
       "fractured.stat_2960683632",
+      "fractured.stat_3303114033",
       "fractured.stat_3743301799",
       "implicit.stat_2960683632",
+      "implicit.stat_3303114033",
       "implicit.stat_3743301799",
       "scourge.stat_2960683632",
+      "scourge.stat_3303114033",
       "scourge.stat_3743301799"
     ],
     "pattern": "^Da\u00F1o\\ de\\ Incendio\\ recibido\\ aumentado\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
@@ -34664,12 +34669,16 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2960683632",
+      "explicit.stat_3303114033",
       "explicit.stat_3743301799",
       "fractured.stat_2960683632",
+      "fractured.stat_3303114033",
       "fractured.stat_3743301799",
       "implicit.stat_2960683632",
+      "implicit.stat_3303114033",
       "implicit.stat_3743301799",
       "scourge.stat_2960683632",
+      "scourge.stat_3303114033",
       "scourge.stat_3743301799"
     ],
     "pattern": "^Da\u00F1o\\ de\\ Incendio\\ recibido\\ reducido\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
@@ -44244,7 +44253,6 @@
   },
   {
     "text": "Determinaci\u00F3n tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2721871046",
@@ -44259,6 +44267,7 @@
   },
   {
     "text": "Determinaci\u00F3n tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2721871046",
@@ -44273,7 +44282,6 @@
   },
   {
     "text": "Determinaci\u00F3n tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2721871046",
@@ -44288,6 +44296,7 @@
   },
   {
     "text": "Determinaci\u00F3n tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2721871046",
@@ -44472,7 +44481,6 @@
   },
   {
     "text": "Disciplina tiene su eficiencia de reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1692887998",
@@ -44486,6 +44494,7 @@
   },
   {
     "text": "Disciplina tiene su eficiencia de reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1692887998",
@@ -51343,7 +51352,6 @@
   },
   {
     "text": "Eficiencia de la reserva de las habilidades aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2587176568",
@@ -51355,6 +51363,7 @@
   },
   {
     "text": "Eficiencia de la reserva de las habilidades aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2587176568",
@@ -51390,7 +51399,6 @@
   },
   {
     "text": "Eficiencia de la reserva de las habilidades reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2587176568",
@@ -51402,6 +51410,7 @@
   },
   {
     "text": "Eficiencia de la reserva de las habilidades reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2587176568",
@@ -51470,7 +51479,6 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades asistidas por Lanzahechizos aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1341061286",
@@ -51482,6 +51490,7 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades asistidas por Lanzahechizos aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1341061286",
@@ -51516,7 +51525,6 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1269219558",
@@ -51532,6 +51540,7 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1269219558",
@@ -51547,7 +51556,6 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades aumentada un #% por cada 250 de atributos totales",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1212083058",
@@ -51558,6 +51566,7 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades aumentada un #% por cada 250 de atributos totales",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1212083058",
@@ -51585,7 +51594,6 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades de Heraldo reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3078295401"
@@ -51594,6 +51602,7 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades de Heraldo reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3078295401"
@@ -51636,17 +51645,17 @@
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades de aura de maldici\u00F3n aumentada un #%",
     "negate": true,
     "lines": 1,
-    "tradeIds": [
-      "explicit.stat_443165947",
-      "explicit.stat_714566414"
-    ],
+    "tradeIds": [],
     "pattern": "^Eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ de\\ las\\ habilidades\\ de\\ aura\\ de\\ maldici\u00F3n\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades de aura de maldici\u00F3n aumentada un #%",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_443165947",
+      "explicit.stat_714566414"
+    ],
     "pattern": "^Eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ de\\ las\\ habilidades\\ de\\ aura\\ de\\ maldici\u00F3n\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -51660,7 +51669,6 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades que lanzan minas aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2265342288"
@@ -51669,6 +51677,7 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades que lanzan minas aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2265342288"
@@ -51677,7 +51686,6 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades que lanzan minas reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2265342288"
@@ -51686,6 +51694,7 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades que lanzan minas reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2265342288"
@@ -51757,7 +51766,6 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades reducida un #% por cada 250 de atributos totales",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1212083058",
@@ -51768,6 +51776,7 @@
   },
   {
     "text": "Eficiencia de la reserva de man\u00E1 de las habilidades reducida un #% por cada 250 de atributos totales",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1212083058",
@@ -55930,13 +55939,13 @@
   },
   {
     "text": "El #% del da\u00F1o que se recibe de los golpes cr\u00EDticos se recobra como vida",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^El\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ que\\ se\\ recibe\\ de\\ los\\ golpes\\ cr\u00EDticos\\ se\\ recobra\\ como\\ vida(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "El #% del da\u00F1o que se recibe de los golpes cr\u00EDticos se recobra como vida",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^El\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ que\\ se\\ recibe\\ de\\ los\\ golpes\\ cr\u00EDticos\\ se\\ recobra\\ como\\ vida(?:\\ \\([^\\)]\u002B\\))?$"
@@ -56037,13 +56046,6 @@
   },
   {
     "text": "El #% del da\u00F1o recibido se recobra como vida",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^El\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ recibido\\ se\\ recobra\\ como\\ vida(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "El #% del da\u00F1o recibido se recobra como vida",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1444556985",
@@ -56051,6 +56053,13 @@
       "implicit.stat_1444556985",
       "scourge.stat_1444556985"
     ],
+    "pattern": "^El\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ recibido\\ se\\ recobra\\ como\\ vida(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "El #% del da\u00F1o recibido se recobra como vida",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^El\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ recibido\\ se\\ recobra\\ como\\ vida(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -60216,15 +60225,15 @@
   {
     "text": "El \u00E1rea contiene a Alva",
     "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3187151138|3"
-    ],
+    "tradeIds": [],
     "pattern": "^El\\ \u00E1rea\\ contiene\\ a\\ Alva(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "El \u00E1rea contiene a Alva",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3187151138|3"
+    ],
     "pattern": "^El\\ \u00E1rea\\ contiene\\ a\\ Alva(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -61284,6 +61293,7 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2055257822",
+      "explicit.stat_1365687125",
       "explicit.stat_2055257822",
       "implicit.stat_2055257822"
     ],
@@ -61294,7 +61304,6 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2055257822",
-      "explicit.stat_1365687125",
       "explicit.stat_2055257822",
       "implicit.stat_2055257822"
     ],
@@ -62436,10 +62445,10 @@
     "pattern": "^Elusivo\\ reduce\\ su\\ efecto\\ un\\ ([-0-9,.]\u002B)%\\ m\u00E1s\\ r\u00E1pido\\ sobre\\ ti(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Elusivo tambi\u00E9n otorga #% al multiplicador de golpe cr\u00EDtico para las habilidades asistidas por Filo de la noche",
+    "text": "Elusivo tambi\u00E9n otorga \u002B#% al multiplicador de golpe cr\u00EDtico para las habilidades asistidas por Filo de la noche",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Elusivo\\ tambi\u00E9n\\ otorga\\ ([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ golpe\\ cr\u00EDtico\\ para\\ las\\ habilidades\\ asistidas\\ por\\ Filo\\ de\\ la\\ noche(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Elusivo\\ tambi\u00E9n\\ otorga\\ \\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ golpe\\ cr\u00EDtico\\ para\\ las\\ habilidades\\ asistidas\\ por\\ Filo\\ de\\ la\\ noche(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Elusivo tiene un 50% de probabilidad de eliminarse de ti al #% de efecto",
@@ -62770,6 +62779,12 @@
   {
     "text": "Empuja a los enemigos con cada golpe",
     "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Empuja\\ a\\ los\\ enemigos\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Empuja a los enemigos con cada golpe",
+    "lines": 1,
     "tradeIds": [
       "enchant.stat_977908611",
       "explicit.stat_977908611",
@@ -62777,12 +62792,6 @@
       "implicit.stat_977908611",
       "scourge.stat_977908611"
     ],
-    "pattern": "^Empuja\\ a\\ los\\ enemigos\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Empuja a los enemigos con cada golpe",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Empuja\\ a\\ los\\ enemigos\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -63823,18 +63832,18 @@
   },
   {
     "text": "Escarcha a los enemigos cercanos cuando bloqueas",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Escarcha\\ a\\ los\\ enemigos\\ cercanos\\ cuando\\ bloqueas(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Escarcha a los enemigos cercanos cuando bloqueas",
     "value": 1000,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_583277599",
       "fractured.stat_583277599"
     ],
+    "pattern": "^Escarcha\\ a\\ los\\ enemigos\\ cercanos\\ cuando\\ bloqueas(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Escarcha a los enemigos cercanos cuando bloqueas",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Escarcha\\ a\\ los\\ enemigos\\ cercanos\\ cuando\\ bloqueas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -66705,7 +66714,6 @@
   },
   {
     "text": "Fanatismo tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_168308685",
@@ -66718,6 +66726,7 @@
   },
   {
     "text": "Fanatismo tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_168308685",
@@ -67682,15 +67691,15 @@
   {
     "text": "Foco s\u00EDsmico crea \u002B# fisuras",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_701215561"
+    ],
     "pattern": "^Foco\\ s\u00EDsmico\\ crea\\ \\\u002B([-0-9,.]\u002B)\\ fisuras(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Foco s\u00EDsmico crea \u002B# fisuras",
     "lines": 1,
-    "tradeIds": [
-      "enchant.stat_701215561"
-    ],
+    "tradeIds": [],
     "pattern": "^Foco\\ s\u00EDsmico\\ crea\\ \\\u002B([-0-9,.]\u002B)\\ fisuras(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -68897,14 +68906,6 @@
     "text": "Ganas Fervor durante # segundos al matar",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1195849808"
-    ],
-    "pattern": "^Ganas\\ Fervor\\ durante\\ ([-0-9,.]\u002B)\\ segundos\\ al\\ matar(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Ganas Fervor durante # segundos al matar",
-    "lines": 1,
-    "tradeIds": [
       "crafted.stat_3023957681",
       "explicit.stat_1195849808",
       "explicit.stat_3023957681",
@@ -68913,6 +68914,14 @@
       "fractured.stat_665823128",
       "implicit.stat_3023957681",
       "scourge.stat_3023957681"
+    ],
+    "pattern": "^Ganas\\ Fervor\\ durante\\ ([-0-9,.]\u002B)\\ segundos\\ al\\ matar(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Ganas Fervor durante # segundos al matar",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1195849808"
     ],
     "pattern": "^Ganas\\ Fervor\\ durante\\ ([-0-9,.]\u002B)\\ segundos\\ al\\ matar(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -70916,7 +70925,12 @@
     "text": "Ganas una carga de aguante al matar",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2064503808"
+      "enchant.stat_1054322244",
+      "explicit.stat_1054322244",
+      "explicit.stat_2064503808",
+      "fractured.stat_1054322244",
+      "implicit.stat_1054322244",
+      "scourge.stat_1054322244"
     ],
     "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ matar(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -70924,12 +70938,7 @@
     "text": "Ganas una carga de aguante al matar",
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_1054322244",
-      "explicit.stat_1054322244",
-      "explicit.stat_2064503808",
-      "fractured.stat_1054322244",
-      "implicit.stat_1054322244",
-      "scourge.stat_1054322244"
+      "explicit.stat_2064503808"
     ],
     "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ matar(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -71133,21 +71142,21 @@
   },
   {
     "text": "Ganas una carga de frasco cuando infliges un golpe cr\u00EDtico",
+    "value": 1,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1546046884"
+    ],
+    "pattern": "^Ganas\\ una\\ carga\\ de\\ frasco\\ cuando\\ infliges\\ un\\ golpe\\ cr\u00EDtico(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Ganas una carga de frasco cuando infliges un golpe cr\u00EDtico",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1546046884",
       "explicit.stat_2858921304",
       "explicit.stat_3738001379",
       "fractured.stat_3738001379"
-    ],
-    "pattern": "^Ganas\\ una\\ carga\\ de\\ frasco\\ cuando\\ infliges\\ un\\ golpe\\ cr\u00EDtico(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Ganas una carga de frasco cuando infliges un golpe cr\u00EDtico",
-    "value": 1,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1546046884"
     ],
     "pattern": "^Ganas\\ una\\ carga\\ de\\ frasco\\ cuando\\ infliges\\ un\\ golpe\\ cr\u00EDtico(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -72321,7 +72330,6 @@
   },
   {
     "text": "Golpe preciso tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3859865977",
@@ -72332,6 +72340,7 @@
   },
   {
     "text": "Golpe preciso tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3859865977",
@@ -72538,7 +72547,6 @@
   },
   {
     "text": "Gracia tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1803598623",
@@ -72553,6 +72561,7 @@
   },
   {
     "text": "Gracia tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1803598623",
@@ -73160,7 +73169,6 @@
   },
   {
     "text": "Heraldo de agon\u00EDa tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1133703802",
@@ -73172,6 +73180,7 @@
   },
   {
     "text": "Heraldo de agon\u00EDa tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1133703802",
@@ -73373,7 +73382,6 @@
   },
   {
     "text": "Heraldo de hielo tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3059700363",
@@ -73385,6 +73393,7 @@
   },
   {
     "text": "Heraldo de hielo tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3059700363",
@@ -73396,7 +73405,6 @@
   },
   {
     "text": "Heraldo de hielo tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3059700363",
@@ -73408,6 +73416,7 @@
   },
   {
     "text": "Heraldo de hielo tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3059700363",
@@ -73720,7 +73729,6 @@
   },
   {
     "text": "Heraldo de trueno tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3817220109",
@@ -73732,6 +73740,7 @@
   },
   {
     "text": "Heraldo de trueno tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3817220109",
@@ -75103,7 +75112,6 @@
   },
   {
     "text": "Invocar robots escurridizos tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1695754537",
@@ -75113,6 +75121,7 @@
   },
   {
     "text": "Invocar robots escurridizos tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1695754537",
@@ -75188,9 +75197,9 @@
   },
   {
     "text": "Invocas un esqueleto adicional con Invocar esqueletos",
+    "value": 1,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_634375806",
       "explicit.stat_1589090910",
       "fractured.stat_1589090910"
     ],
@@ -75198,9 +75207,9 @@
   },
   {
     "text": "Invocas un esqueleto adicional con Invocar esqueletos",
-    "value": 1,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_634375806",
       "explicit.stat_1589090910",
       "fractured.stat_1589090910"
     ],
@@ -75459,12 +75468,12 @@
     "pattern": "^La\\ Especialista\\ tiene\\ un\\ ([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ lanzar\\ Aumentar\\ el\\ riesgo\\ e\\ invocar\\ de\\ 1\\ a\\ 3\\ jefes\\ del\\ atlas\\ adicionales(?:\\ \\([^\\)]\u002B\\))?\\nal\\ observar\\ a\\ los\\ jefes\\ de\\ los\\ mapas(?:\\ \\([^\\)]\u002B\\))?\\nLa\\ cantidad\\ de\\ jefes\\ adicionales\\ invocados\\ es\\ mayor\\ cuantos(?:\\ \\([^\\)]\u002B\\))?\\nmenos\\ monstruos\\ queden\\ en\\ el\\ mapa(?:\\ \\([^\\)]\u002B\\))?\\nLos\\ modificadores\\ de\\ los\\ jefes\\ finales\\ del\\ mapa\\ de\\ cada\\ mapa\\ tambi\u00E9n\\ se\\ aplican\\ a\\ estos\\ jefes\\ invocados(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "La Exposici\u00F3n que infliges aplica un #% extra a la resistencia afectada",
+    "text": "La Exposici\u00F3n que infliges aplica un \u002B#% extra a la resistencia afectada",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3306713700"
     ],
-    "pattern": "^La\\ Exposici\u00F3n\\ que\\ infliges\\ aplica\\ un\\ ([-0-9,.]\u002B)%\\ extra\\ a\\ la\\ resistencia\\ afectada(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^La\\ Exposici\u00F3n\\ que\\ infliges\\ aplica\\ un\\ \\\u002B([-0-9,.]\u002B)%\\ extra\\ a\\ la\\ resistencia\\ afectada(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La Marca de Armaged\u00F3n inflige Da\u00F1o aumentado un #%",
@@ -76188,14 +76197,6 @@
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ centinelas\\ de\\ absoluci\u00F3n\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ centinelas\\ de\\ absoluci\u00F3n(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "La cantidad m\u00E1xima de centinelas de dominancia est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean centinelas de dominancia",
-    "lines": 2,
-    "tradeIds": [
-      "explicit.stat_56473917|9"
-    ],
-    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ centinelas\\ de\\ dominancia\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ centinelas\\ de\\ dominancia(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "La cantidad m\u00E1xima de centinelas de dominancia  est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean centinelas de dominancia",
     "matchedFuzzily": true,
     "lines": 2,
@@ -76205,12 +76206,12 @@
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ centinelas\\ de\\ dominancia\\ \\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ centinelas\\ de\\ dominancia(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "La cantidad m\u00E1xima de centinelas de pureza est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean centinelas de pureza",
+    "text": "La cantidad m\u00E1xima de centinelas de dominancia est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean centinelas de dominancia",
     "lines": 2,
     "tradeIds": [
-      "explicit.stat_56473917|10"
+      "explicit.stat_56473917|9"
     ],
-    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ centinelas\\ de\\ pureza\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ centinelas\\ de\\ pureza(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ centinelas\\ de\\ dominancia\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ centinelas\\ de\\ dominancia(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La cantidad m\u00E1xima de centinelas de pureza  est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean centinelas de pureza",
@@ -76220,6 +76221,14 @@
       "explicit.stat_56473917|10"
     ],
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ centinelas\\ de\\ pureza\\ \\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ centinelas\\ de\\ pureza(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "La cantidad m\u00E1xima de centinelas de pureza est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean centinelas de pureza",
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_56473917|10"
+    ],
+    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ centinelas\\ de\\ pureza\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ centinelas\\ de\\ pureza(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La cantidad m\u00E1xima de desgarradores invocados  est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean desgarradores invocados",
@@ -76339,14 +76348,6 @@
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ fantasmas\\ que\\ puedes\\ invocar\\ es\\ 3(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "La cantidad m\u00E1xima de g\u00F3lems invocados est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean g\u00F3lems invocados",
-    "lines": 2,
-    "tradeIds": [
-      "explicit.stat_56473917|2"
-    ],
-    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ g\u00F3lems\\ invocados\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ g\u00F3lems\\ invocados(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "La cantidad m\u00E1xima de g\u00F3lems invocados  est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean g\u00F3lems invocados",
     "matchedFuzzily": true,
     "lines": 2,
@@ -76354,6 +76355,14 @@
       "explicit.stat_56473917|2"
     ],
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ g\u00F3lems\\ invocados\\ \\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ g\u00F3lems\\ invocados(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "La cantidad m\u00E1xima de g\u00F3lems invocados est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean g\u00F3lems invocados",
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_56473917|2"
+    ],
+    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ g\u00F3lems\\ invocados\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ g\u00F3lems\\ invocados(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La cantidad m\u00E1xima de jugadores que puede haber en el \u00E1rea es uno",
@@ -76381,14 +76390,6 @@
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ lobos\\ espectrales\\ invocados\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ lobos\\ espectrales\\ invocados(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "La cantidad m\u00E1xima de rayos vivientes est\u00E1 duplicada\nNo puedes tener esbirros que no sean rayos vivientes",
-    "lines": 2,
-    "tradeIds": [
-      "explicit.stat_56473917|15"
-    ],
-    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ rayos\\ vivientes\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ esbirros\\ que\\ no\\ sean\\ rayos\\ vivientes(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "La cantidad m\u00E1xima de rayos vivientes  est\u00E1 duplicada\nNo puedes tener esbirros que no sean rayos vivientes",
     "lines": 2,
     "tradeIds": [
@@ -76397,12 +76398,12 @@
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ rayos\\ vivientes\\ \\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ esbirros\\ que\\ no\\ sean\\ rayos\\ vivientes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "La cantidad m\u00E1xima de reliquias sagradas invocadas est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean reliquias sagradas invocadas",
+    "text": "La cantidad m\u00E1xima de rayos vivientes est\u00E1 duplicada\nNo puedes tener esbirros que no sean rayos vivientes",
     "lines": 2,
     "tradeIds": [
-      "explicit.stat_56473917|11"
+      "explicit.stat_56473917|15"
     ],
-    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ reliquias\\ sagradas\\ invocadas\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ reliquias\\ sagradas\\ invocadas(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ rayos\\ vivientes\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ esbirros\\ que\\ no\\ sean\\ rayos\\ vivientes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La cantidad m\u00E1xima de reliquias sagradas invocadas  est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean reliquias sagradas invocadas",
@@ -76412,6 +76413,14 @@
       "explicit.stat_56473917|11"
     ],
     "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ reliquias\\ sagradas\\ invocadas\\ \\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ reliquias\\ sagradas\\ invocadas(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "La cantidad m\u00E1xima de reliquias sagradas invocadas est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean reliquias sagradas invocadas",
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_56473917|11"
+    ],
+    "pattern": "^La\\ cantidad\\ m\u00E1xima\\ de\\ reliquias\\ sagradas\\ invocadas\\ est\u00E1\\ duplicada(?:\\ \\([^\\)]\u002B\\))?\\nNo\\ puedes\\ tener\\ otros\\ esbirros\\ que\\ no\\ sean\\ reliquias\\ sagradas\\ invocadas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La cantidad m\u00E1xima de zombis levantados  est\u00E1 duplicada\nNo puedes tener otros esbirros que no sean zombis levantados",
@@ -76672,13 +76681,13 @@
     "pattern": "^La\\ exposici\u00F3n\\ de\\ Ola\\ de\\ condena\\ aplica\\ un\\ \\\u002B([-0-9,.]\u002B)%\\ extra\\ a\\ la\\ resistencia\\ elemental(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "La exposici\u00F3n que infliges aplica al menos #% a la resistencia afectada",
+    "text": "La exposici\u00F3n que infliges aplica al menos \u002B#% a la resistencia afectada",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3306713700"
     ],
-    "pattern": "^La\\ exposici\u00F3n\\ que\\ infliges\\ aplica\\ al\\ menos\\ ([-0-9,.]\u002B)%\\ a\\ la\\ resistencia\\ afectada(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^La\\ exposici\u00F3n\\ que\\ infliges\\ aplica\\ al\\ menos\\ \\\u002B([-0-9,.]\u002B)%\\ a\\ la\\ resistencia\\ afectada(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La fisura tiene un #% de probabilidad de contener un jefe",
@@ -77039,13 +77048,13 @@
   },
   {
     "text": "La llama santificada que aplicas tiene la magnitud aumentada un #% por cada 2% de probabilidad de bloqueo de los ataques",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^La\\ llama\\ santificada\\ que\\ aplicas\\ tiene\\ la\\ magnitud\\ aumentada\\ un\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 2%\\ de\\ probabilidad\\ de\\ bloqueo\\ de\\ los\\ ataques(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La llama santificada que aplicas tiene la magnitud aumentada un #% por cada 2% de probabilidad de bloqueo de los ataques",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^La\\ llama\\ santificada\\ que\\ aplicas\\ tiene\\ la\\ magnitud\\ aumentada\\ un\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 2%\\ de\\ probabilidad\\ de\\ bloqueo\\ de\\ los\\ ataques(?:\\ \\([^\\)]\u002B\\))?$"
@@ -79027,16 +79036,16 @@
     "pattern": "^Las\\ Trampas\\ de\\ lanzallamas,\\ de\\ pararrayos\\ y\\ s\u00EDsmicas\\ tienen\\ la\\ velocidad\\ de\\ recuperaci\u00F3n\\ del\\ tiempo\\ de\\ recarga\\ reducida\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Las Trampas de lanzallamas, de pararrayos y s\u00EDsmicas tienen \u002B# uso del tiempo de recarga",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Las\\ Trampas\\ de\\ lanzallamas,\\ de\\ pararrayos\\ y\\ s\u00EDsmicas\\ tienen\\ \\\u002B([-0-9,.]\u002B)\\ uso\\ del\\ tiempo\\ de\\ recarga(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Las Trampas de lanzallamas, de pararrayos y s\u00EDsmicas tienen # uso del tiempo de recarga",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Las\\ Trampas\\ de\\ lanzallamas,\\ de\\ pararrayos\\ y\\ s\u00EDsmicas\\ tienen\\ ([-0-9,.]\u002B)\\ uso\\ del\\ tiempo\\ de\\ recarga(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Las Trampas de lanzallamas, de pararrayos y s\u00EDsmicas tienen \u002B# uso del tiempo de recarga",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Las\\ Trampas\\ de\\ lanzallamas,\\ de\\ pararrayos\\ y\\ s\u00EDsmicas\\ tienen\\ \\\u002B([-0-9,.]\u002B)\\ uso\\ del\\ tiempo\\ de\\ recarga(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Las Trampas de lanzallamas, de pararrayos y s\u00EDsmicas tienen # usos del tiempo de recarga",
@@ -81786,7 +81795,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_118",
       "explicit.indexable_support_154",
       "explicit.indexable_support_28",
       "explicit.indexable_support_36",
@@ -83443,14 +83451,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3587013273",
       "explicit.stat_550444281",
       "explicit.stat_715256302",
       "explicit.stat_794471597",
       "explicit.stat_804508379",
       "explicit.stat_808939569",
       "explicit.stat_995332031",
-      "fractured.stat_3587013273",
       "fractured.stat_715256302",
       "fractured.stat_808939569"
     ],
@@ -84943,7 +84949,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3062849155",
       "explicit.stat_3274973940",
       "explicit.stat_3354027870",
       "explicit.stat_3924539382",
@@ -86648,13 +86653,13 @@
   },
   {
     "text": "Las habilidades de estandarte tienen la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Las\\ habilidades\\ de\\ estandarte\\ tienen\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Las habilidades de estandarte tienen la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Las\\ habilidades\\ de\\ estandarte\\ tienen\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
@@ -86752,12 +86757,12 @@
     "pattern": "^Las\\ habilidades\\ de\\ grito\\ de\\ guerra\\ engarzadas\\ tienen\\ \\\u002B([-0-9,.]\u002B)\\ usos\\ con\\ tiempo\\ de\\ recarga(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Las habilidades de gritos de guerra tienen # segundos al tiempo de recarga",
+    "text": "Las habilidades de gritos de guerra tienen \u002B# segundos al tiempo de recarga",
     "lines": 1,
     "tradeIds": [
       "implicit.stat_1504905117"
     ],
-    "pattern": "^Las\\ habilidades\\ de\\ gritos\\ de\\ guerra\\ tienen\\ ([-0-9,.]\u002B)\\ segundos\\ al\\ tiempo\\ de\\ recarga(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Las\\ habilidades\\ de\\ gritos\\ de\\ guerra\\ tienen\\ \\\u002B([-0-9,.]\u002B)\\ segundos\\ al\\ tiempo\\ de\\ recarga(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Las habilidades de g\u00F3lem engarzadas ganan el #% de la vida m\u00E1xima como escudo de energ\u00EDa m\u00E1ximo extra",
@@ -89361,10 +89366,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
-      "explicit.stat_4089743927|1|139",
-      "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|150",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
@@ -90833,10 +90834,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
-      "explicit.stat_4089743927|1|139",
-      "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|150",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
@@ -92305,10 +92302,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
-      "explicit.stat_4089743927|1|139",
-      "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|150",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
@@ -93885,10 +93878,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
-      "explicit.stat_4089743927|1|139",
-      "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|150",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
@@ -95526,13 +95515,13 @@
     "pattern": "^Las\\ habilidades\\ que\\ crean\\ marcas\\ tienen\\ un\\ ([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ crear\\ una\\ marca\\ adicional(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Las habilidades que dejan filos persistentes tienen # al m\u00E1ximo de filos persistentes",
+    "text": "Las habilidades que dejan filos persistentes tienen \u002B# al m\u00E1ximo de filos persistentes",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3954265754",
       "fractured.stat_3954265754"
     ],
-    "pattern": "^Las\\ habilidades\\ que\\ dejan\\ filos\\ persistentes\\ tienen\\ ([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ filos\\ persistentes(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Las\\ habilidades\\ que\\ dejan\\ filos\\ persistentes\\ tienen\\ \\\u002B([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ filos\\ persistentes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Las habilidades que dejan filos persistentes tienen un #% de probabilidad de dejar dos filos persistentes en lugar de uno",
@@ -100522,23 +100511,23 @@
   {
     "text": "Los Proyectiles Perforan # Objetivos adicionales",
     "lines": 1,
-    "tradeIds": [
-      "implicit.stat_2902845638"
-    ],
-    "pattern": "^Los\\ Proyectiles\\ Perforan\\ ([-0-9,.]\u002B)\\ Objetivos\\ adicionales(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Los Proyectiles Perforan # Objetivos adicionales",
-    "lines": 1,
-    "tradeIds": [
-      "implicit.stat_2902845638"
-    ],
-    "pattern": "^Los\\ Proyectiles\\ Perforan\\ ([-0-9,.]\u002B)\\ Objetivos\\ adicionales(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Los Proyectiles Perforan # Objetivos adicionales",
-    "lines": 1,
     "tradeIds": [],
+    "pattern": "^Los\\ Proyectiles\\ Perforan\\ ([-0-9,.]\u002B)\\ Objetivos\\ adicionales(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Los Proyectiles Perforan # Objetivos adicionales",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_2902845638"
+    ],
+    "pattern": "^Los\\ Proyectiles\\ Perforan\\ ([-0-9,.]\u002B)\\ Objetivos\\ adicionales(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Los Proyectiles Perforan # Objetivos adicionales",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_2902845638"
+    ],
     "pattern": "^Los\\ Proyectiles\\ Perforan\\ ([-0-9,.]\u002B)\\ Objetivos\\ adicionales(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -101162,17 +101151,17 @@
   },
   {
     "text": "Los aliados cercanos tienen velocidad de lanzamiento de hechizos aumentada un #% por cada 100 de inteligencia que tengas",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Los\\ aliados\\ cercanos\\ tienen\\ velocidad\\ de\\ lanzamiento\\ de\\ hechizos\\ aumentada\\ un\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 100\\ de\\ inteligencia\\ que\\ tengas(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Los aliados cercanos tienen velocidad de lanzamiento de hechizos aumentada un #% por cada 100 de inteligencia que tengas",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2373999301"
     ],
+    "pattern": "^Los\\ aliados\\ cercanos\\ tienen\\ velocidad\\ de\\ lanzamiento\\ de\\ hechizos\\ aumentada\\ un\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 100\\ de\\ inteligencia\\ que\\ tengas(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Los aliados cercanos tienen velocidad de lanzamiento de hechizos aumentada un #% por cada 100 de inteligencia que tengas",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Los\\ aliados\\ cercanos\\ tienen\\ velocidad\\ de\\ lanzamiento\\ de\\ hechizos\\ aumentada\\ un\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 100\\ de\\ inteligencia\\ que\\ tengas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -102938,7 +102927,6 @@
   },
   {
     "text": "Los aumentos y las reducciones al efecto de los frascos que se aplican sobre ti\ntambi\u00E9n se aplican al efecto de Sobrecarga arcana sobre ti",
-    "value": 100,
     "lines": 2,
     "tradeIds": [
       "explicit.stat_1213832501"
@@ -102947,6 +102935,7 @@
   },
   {
     "text": "Los aumentos y las reducciones al efecto de los frascos que se aplican sobre ti\ntambi\u00E9n se aplican al efecto de Sobrecarga arcana sobre ti",
+    "value": 100,
     "lines": 2,
     "tradeIds": [
       "explicit.stat_1213832501"
@@ -106671,10 +106660,10 @@
     "pattern": "^Los\\ enemigos\\ que\\ t\u00FA\\ quemas\\ durante\\ su\\ efecto\\ tienen\\ Tormento(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Los enemigos que t\u00FA quemas o escarchas tienen #% a las resistencias elementales",
+    "text": "Los enemigos que t\u00FA quemas o escarchas tienen \u002B#% a las resistencias elementales",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Los\\ enemigos\\ que\\ t\u00FA\\ quemas\\ o\\ escarchas\\ tienen\\ ([-0-9,.]\u002B)%\\ a\\ las\\ resistencias\\ elementales(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Los\\ enemigos\\ que\\ t\u00FA\\ quemas\\ o\\ escarchas\\ tienen\\ \\\u002B([-0-9,.]\u002B)%\\ a\\ las\\ resistencias\\ elementales(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Los enemigos que t\u00FA quemas tienen \u002B#% a la resistencia al fuego",
@@ -109296,17 +109285,17 @@
   },
   {
     "text": "Los esbirros invocados por tus Torres invocadoras tienen su vida aumentada un #%",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Los\\ esbirros\\ invocados\\ por\\ tus\\ Torres\\ invocadoras\\ tienen\\ su\\ vida\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Los esbirros invocados por tus Torres invocadoras tienen su vida aumentada un #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3651039490"
     ],
+    "pattern": "^Los\\ esbirros\\ invocados\\ por\\ tus\\ Torres\\ invocadoras\\ tienen\\ su\\ vida\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Los esbirros invocados por tus Torres invocadoras tienen su vida aumentada un #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Los\\ esbirros\\ invocados\\ por\\ tus\\ Torres\\ invocadoras\\ tienen\\ su\\ vida\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -116749,16 +116738,16 @@
   {
     "text": "Los jugadores quedan Se\u00F1alados para morir durante # segundos\ndespu\u00E9s de matar a un monstruo raro o \u00FAnico",
     "lines": 2,
-    "tradeIds": [
-      "explicit.stat_436406826",
-      "fractured.stat_436406826"
-    ],
+    "tradeIds": [],
     "pattern": "^Los\\ jugadores\\ quedan\\ Se\u00F1alados\\ para\\ morir\\ durante\\ ([-0-9,.]\u002B)\\ segundos(?:\\ \\([^\\)]\u002B\\))?\\ndespu\u00E9s\\ de\\ matar\\ a\\ un\\ monstruo\\ raro\\ o\\ \u00FAnico(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Los jugadores quedan Se\u00F1alados para morir durante # segundos\ndespu\u00E9s de matar a un monstruo raro o \u00FAnico",
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_436406826",
+      "fractured.stat_436406826"
+    ],
     "pattern": "^Los\\ jugadores\\ quedan\\ Se\u00F1alados\\ para\\ morir\\ durante\\ ([-0-9,.]\u002B)\\ segundos(?:\\ \\([^\\)]\u002B\\))?\\ndespu\u00E9s\\ de\\ matar\\ a\\ un\\ monstruo\\ raro\\ o\\ \u00FAnico(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -122540,12 +122529,12 @@
     "pattern": "^Los\\ objetos\\ que\\ arrojan\\ los\\ exiliados\\ renegados\\ del\\ \u00E1rea\\ tienen\\ un\\ ([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ estar\\ fracturados(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Los objetos que encuentras con hebras de recuerdos tienen # hebras de recuerdos",
+    "text": "Los objetos que encuentras con hebras de recuerdos tienen \u002B# hebras de recuerdos",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1568365503"
     ],
-    "pattern": "^Los\\ objetos\\ que\\ encuentras\\ con\\ hebras\\ de\\ recuerdos\\ tienen\\ ([-0-9,.]\u002B)\\ hebras\\ de\\ recuerdos(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Los\\ objetos\\ que\\ encuentras\\ con\\ hebras\\ de\\ recuerdos\\ tienen\\ \\\u002B([-0-9,.]\u002B)\\ hebras\\ de\\ recuerdos(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Los objetos que encuentras en tus mapas corruptos tienen un #% de probabilidad de estar corruptos",
@@ -123044,12 +123033,12 @@
     "pattern": "^Los\\ proyectiles\\ de\\ los\\ arbalesteros\\ invocados\\ se\\ dividen\\ en\\ ([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Los proyectiles de los arbalesteros invocados se encadenan # veces",
+    "text": "Los proyectiles de los arbalesteros invocados se encadenan \u002B# veces",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3010688059"
     ],
-    "pattern": "^Los\\ proyectiles\\ de\\ los\\ arbalesteros\\ invocados\\ se\\ encadenan\\ ([-0-9,.]\u002B)\\ veces(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Los\\ proyectiles\\ de\\ los\\ arbalesteros\\ invocados\\ se\\ encadenan\\ \\\u002B([-0-9,.]\u002B)\\ veces(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Los proyectiles de los ataques aplican sangrado con cada golpe mientras tengas un esbirro bestial",
@@ -125087,40 +125076,30 @@
     "tradeIds": [
       "explicit.stat_426847518",
       "fractured.stat_426847518",
-      "implicit.stat_426847518"
-    ],
-    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Congelaci\u00F3n\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Maldice a los enemigos con Congelaci\u00F3n con cada golpe",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_426847518",
-      "fractured.stat_426847518",
-      "implicit.stat_426847518"
-    ],
-    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Congelaci\u00F3n\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Maldice a los enemigos con Congelaci\u00F3n con cada golpe",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_426847518",
-      "fractured.stat_426847518",
       "implicit.stat_426847518",
       "scourge.stat_1016707110"
     ],
     "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Congelaci\u00F3n\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Maldice a los enemigos con Debilidad elemental con cada golpe",
+    "text": "Maldice a los enemigos con Congelaci\u00F3n con cada golpe",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2028847114",
-      "fractured.stat_2028847114",
-      "implicit.stat_2028847114"
+      "explicit.stat_426847518",
+      "fractured.stat_426847518",
+      "implicit.stat_426847518"
     ],
-    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Debilidad\\ elemental\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Congelaci\u00F3n\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Maldice a los enemigos con Congelaci\u00F3n con cada golpe",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_426847518",
+      "fractured.stat_426847518",
+      "implicit.stat_426847518"
+    ],
+    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Congelaci\u00F3n\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Maldice a los enemigos con Debilidad elemental con cada golpe",
@@ -125131,6 +125110,16 @@
       "fractured.stat_2028847114",
       "implicit.stat_2028847114",
       "scourge.stat_636057969"
+    ],
+    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Debilidad\\ elemental\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Maldice a los enemigos con Debilidad elemental con cada golpe",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2028847114",
+      "fractured.stat_2028847114",
+      "implicit.stat_2028847114"
     ],
     "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Debilidad\\ elemental\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -125157,8 +125146,7 @@
     "tradeIds": [
       "explicit.stat_2764915899",
       "fractured.stat_2764915899",
-      "implicit.stat_2764915899",
-      "scourge.stat_1764973832"
+      "implicit.stat_2764915899"
     ],
     "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Desesperaci\u00F3n\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -125168,7 +125156,8 @@
     "tradeIds": [
       "explicit.stat_2764915899",
       "fractured.stat_2764915899",
-      "implicit.stat_2764915899"
+      "implicit.stat_2764915899",
+      "scourge.stat_1764973832"
     ],
     "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Desesperaci\u00F3n\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -125203,35 +125192,35 @@
     "text": "Maldice a los enemigos con Vulnerabilidad con cada golpe",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2213584313",
-      "explicit.stat_3967845372",
-      "fractured.stat_2213584313",
-      "fractured.stat_3967845372",
-      "implicit.stat_3967845372",
-      "scourge.stat_1826297223"
-    ],
-    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Vulnerabilidad\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Maldice a los enemigos con Vulnerabilidad con cada golpe",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2213584313",
-      "explicit.stat_3967845372",
-      "fractured.stat_2213584313",
-      "fractured.stat_3967845372",
-      "implicit.stat_3967845372",
-      "scourge.stat_1826297223"
-    ],
-    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Vulnerabilidad\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Maldice a los enemigos con Vulnerabilidad con cada golpe",
-    "lines": 1,
-    "tradeIds": [
       "explicit.stat_3967845372",
       "fractured.stat_3967845372",
       "implicit.stat_3967845372"
+    ],
+    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Vulnerabilidad\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Maldice a los enemigos con Vulnerabilidad con cada golpe",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2213584313",
+      "explicit.stat_3967845372",
+      "fractured.stat_2213584313",
+      "fractured.stat_3967845372",
+      "implicit.stat_3967845372",
+      "scourge.stat_1826297223"
+    ],
+    "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Vulnerabilidad\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Maldice a los enemigos con Vulnerabilidad con cada golpe",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2213584313",
+      "explicit.stat_3967845372",
+      "fractured.stat_2213584313",
+      "fractured.stat_3967845372",
+      "implicit.stat_3967845372",
+      "scourge.stat_1826297223"
     ],
     "pattern": "^Maldice\\ a\\ los\\ enemigos\\ con\\ Vulnerabilidad\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -125375,7 +125364,6 @@
   },
   {
     "text": "Malevolencia tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3266567165",
@@ -125388,6 +125376,7 @@
   },
   {
     "text": "Malevolencia tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3266567165",
@@ -131789,7 +131778,6 @@
   },
   {
     "text": "Odio tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -131803,6 +131791,7 @@
   },
   {
     "text": "Odio tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -131926,12 +131915,12 @@
     "pattern": "^Ofrenda\\ de\\ hueso\\ tiene\\ el\\ efecto\\ reducido\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Ofrenda del esp\u00EDritu otorga #% al multiplicador de golpe cr\u00EDtico",
+    "text": "Ofrenda del esp\u00EDritu otorga \u002B#% al multiplicador de golpe cr\u00EDtico",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1793005352"
     ],
-    "pattern": "^Ofrenda\\ del\\ esp\u00EDritu\\ otorga\\ ([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ golpe\\ cr\u00EDtico(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Ofrenda\\ del\\ esp\u00EDritu\\ otorga\\ \\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ golpe\\ cr\u00EDtico(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Ofrenda del esp\u00EDritu otorga \u002B#% de da\u00F1o f\u00EDsico como da\u00F1o de caos extra",
@@ -133903,13 +133892,13 @@
   },
   {
     "text": "Otorga velocidades de ataque y lanzamiento de hechizos aumentadas un #% a los miembros del grupo al morir",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Otorga\\ velocidades\\ de\\ ataque\\ y\\ lanzamiento\\ de\\ hechizos\\ aumentadas\\ un\\ ([-0-9,.]\u002B)%\\ a\\ los\\ miembros\\ del\\ grupo\\ al\\ morir(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Otorga velocidades de ataque y lanzamiento de hechizos aumentadas un #% a los miembros del grupo al morir",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Otorga\\ velocidades\\ de\\ ataque\\ y\\ lanzamiento\\ de\\ hechizos\\ aumentadas\\ un\\ ([-0-9,.]\u002B)%\\ a\\ los\\ miembros\\ del\\ grupo\\ al\\ morir(?:\\ \\([^\\)]\u002B\\))?$"
@@ -139791,7 +139780,6 @@
   },
   {
     "text": "Pureza de fuego tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1135152940",
@@ -139806,6 +139794,7 @@
   },
   {
     "text": "Pureza de fuego tiene la eficiencia de la reserva de man\u00E1 reducida un #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1135152940",
@@ -142411,17 +142400,17 @@
   },
   {
     "text": "Recobras un #% del da\u00F1o recibido como vida por cada gema roja engarzada",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Recobras\\ un\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ recibido\\ como\\ vida\\ por\\ cada\\ gema\\ roja\\ engarzada(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Recobras un #% del da\u00F1o recibido como vida por cada gema roja engarzada",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_902847342"
     ],
+    "pattern": "^Recobras\\ un\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ recibido\\ como\\ vida\\ por\\ cada\\ gema\\ roja\\ engarzada(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Recobras un #% del da\u00F1o recibido como vida por cada gema roja engarzada",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Recobras\\ un\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ recibido\\ como\\ vida\\ por\\ cada\\ gema\\ roja\\ engarzada(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -142522,9 +142511,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1526933524",
-      "explicit.stat_2503377690",
-      "fractured.stat_1526933524",
-      "fractured.stat_2503377690"
+      "fractured.stat_1526933524"
     ],
     "pattern": "^Recuperaci\u00F3n\\ Instant\u00E1nea(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -142533,7 +142520,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1526933524",
-      "fractured.stat_1526933524"
+      "explicit.stat_2503377690",
+      "fractured.stat_1526933524",
+      "fractured.stat_2503377690"
     ],
     "pattern": "^Recuperaci\u00F3n\\ Instant\u00E1nea(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -145355,13 +145344,6 @@
   },
   {
     "text": "Regeneras un #% de vida por segundo",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Regeneras\\ un\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ por\\ segundo(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Regeneras un #% de vida por segundo",
     "lines": 1,
     "tradeIds": [
       "crafted.stat_836936635",
@@ -145370,6 +145352,13 @@
       "fractured.stat_836936635",
       "implicit.stat_836936635"
     ],
+    "pattern": "^Regeneras\\ un\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ por\\ segundo(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Regeneras un #% de vida por segundo",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Regeneras\\ un\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ por\\ segundo(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -145407,13 +145396,13 @@
   },
   {
     "text": "Regeneras un #% de vida por segundo mientras destruyes un t\u00F3tem de los ancestros",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Regeneras\\ un\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ por\\ segundo\\ mientras\\ destruyes\\ un\\ t\u00F3tem\\ de\\ los\\ ancestros(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Regeneras un #% de vida por segundo mientras destruyes un t\u00F3tem de los ancestros",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Regeneras\\ un\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ por\\ segundo\\ mientras\\ destruyes\\ un\\ t\u00F3tem\\ de\\ los\\ ancestros(?:\\ \\([^\\)]\u002B\\))?$"
@@ -147509,13 +147498,13 @@
   },
   {
     "text": "Si la vida de tu mercenario es inferior a la tuya, el #% del da\u00F1o que recibe se recobra como vida",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Si\\ la\\ vida\\ de\\ tu\\ mercenario\\ es\\ inferior\\ a\\ la\\ tuya,\\ el\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ que\\ recibe\\ se\\ recobra\\ como\\ vida(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Si la vida de tu mercenario es inferior a la tuya, el #% del da\u00F1o que recibe se recobra como vida",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Si\\ la\\ vida\\ de\\ tu\\ mercenario\\ es\\ inferior\\ a\\ la\\ tuya,\\ el\\ ([-0-9,.]\u002B)%\\ del\\ da\u00F1o\\ que\\ recibe\\ se\\ recobra\\ como\\ vida(?:\\ \\([^\\)]\u002B\\))?$"
@@ -147973,31 +147962,31 @@
   },
   {
     "text": "Sin da\u00F1o f\u00EDsico",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_1509134228",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "fractured.stat_1509134228",
+      "implicit.stat_1509134228"
+    ],
+    "pattern": "^Sin\\ da\u00F1o\\ f\u00EDsico(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Sin da\u00F1o f\u00EDsico",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_1509134228",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "fractured.stat_1509134228",
+      "implicit.stat_1509134228"
+    ],
+    "pattern": "^Sin\\ da\u00F1o\\ f\u00EDsico(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Sin da\u00F1o f\u00EDsico",
     "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_1509134228",
-      "enchant.stat_1509134228",
-      "explicit.stat_1509134228",
-      "fractured.stat_1509134228",
-      "implicit.stat_1509134228"
-    ],
-    "pattern": "^Sin\\ da\u00F1o\\ f\u00EDsico(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Sin da\u00F1o f\u00EDsico",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_1509134228",
-      "enchant.stat_1509134228",
-      "explicit.stat_1509134228",
-      "fractured.stat_1509134228",
-      "implicit.stat_1509134228"
-    ],
-    "pattern": "^Sin\\ da\u00F1o\\ f\u00EDsico(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Sin da\u00F1o f\u00EDsico",
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1509134228",
@@ -148192,7 +148181,6 @@
   },
   {
     "text": "Solo afecta a las pasivas en un anillo peque\u00F1o",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3642528642|1"
@@ -148201,6 +148189,7 @@
   },
   {
     "text": "Solo afecta a las pasivas en un anillo peque\u00F1o",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3642528642|1"
@@ -156968,17 +156957,17 @@
   },
   {
     "text": "T\u00FA y tus aliados cercanos tienen \u002B#% a las resistencias elementales",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^T\u00FA\\ y\\ tus\\ aliados\\ cercanos\\ tienen\\ \\\u002B([-0-9,.]\u002B)%\\ a\\ las\\ resistencias\\ elementales(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "T\u00FA y tus aliados cercanos tienen \u002B#% a las resistencias elementales",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_319842716"
     ],
+    "pattern": "^T\u00FA\\ y\\ tus\\ aliados\\ cercanos\\ tienen\\ \\\u002B([-0-9,.]\u002B)%\\ a\\ las\\ resistencias\\ elementales(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "T\u00FA y tus aliados cercanos tienen \u002B#% a las resistencias elementales",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^T\u00FA\\ y\\ tus\\ aliados\\ cercanos\\ tienen\\ \\\u002B([-0-9,.]\u002B)%\\ a\\ las\\ resistencias\\ elementales(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -165026,6 +165015,17 @@
   },
   {
     "text": "Vitalidad tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1233806203",
+      "enchant.stat_3972739758",
+      "implicit.stat_1233806203",
+      "implicit.stat_3972739758"
+    ],
+    "pattern": "^Vitalidad\\ tiene\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Vitalidad tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -165041,17 +165041,6 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Vitalidad\\ tiene\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Vitalidad tiene la eficiencia de la reserva de man\u00E1 aumentada un #%",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1233806203",
-      "enchant.stat_3972739758",
-      "implicit.stat_1233806203",
-      "implicit.stat_3972739758"
-    ],
     "pattern": "^Vitalidad\\ tiene\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ aumentada\\ un\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -165422,13 +165411,13 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ armadura\\ mientras\\ tienes\\ Fortificar(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# a la armadura por cada 1 de escudo de energ\u00EDa m\u00E1ximo en el casco equipado",
+    "text": "\u002B# a la armadura por cada 1 de escudo de energ\u00EDa m\u00E1ximo en el casco equipado",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1144937587"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ armadura\\ por\\ cada\\ 1\\ de\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ en\\ el\\ casco\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ armadura\\ por\\ cada\\ 1\\ de\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ en\\ el\\ casco\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# a la armadura por cada 5 de evasi\u00F3n en el escudo equipado",
@@ -165489,12 +165478,6 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ barrera(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "\u002B# a la barrera por cada 10 de armadura en el casco equipado",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ barrera\\ por\\ cada\\ 10\\ de\\ armadura\\ en\\ el\\ casco\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "# a la barrera por cada 10 de armadura en el casco equipado",
     "negate": true,
     "lines": 1,
@@ -165502,10 +165485,10 @@
     "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ barrera\\ por\\ cada\\ 10\\ de\\ armadura\\ en\\ el\\ casco\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "\u002B# a la barrera por cada 10 de escudo de energ\u00EDa en las botas equipadas",
+    "text": "\u002B# a la barrera por cada 10 de armadura en el casco equipado",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ barrera\\ por\\ cada\\ 10\\ de\\ escudo\\ de\\ energ\u00EDa\\ en\\ las\\ botas\\ equipadas(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ barrera\\ por\\ cada\\ 10\\ de\\ armadura\\ en\\ el\\ casco\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "# a la barrera por cada 10 de escudo de energ\u00EDa en las botas equipadas",
@@ -165513,6 +165496,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ barrera\\ por\\ cada\\ 10\\ de\\ escudo\\ de\\ energ\u00EDa\\ en\\ las\\ botas\\ equipadas(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "\u002B# a la barrera por cada 10 de escudo de energ\u00EDa en las botas equipadas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ barrera\\ por\\ cada\\ 10\\ de\\ escudo\\ de\\ energ\u00EDa\\ en\\ las\\ botas\\ equipadas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "# a la barrera por cada 10 de evasi\u00F3n en los guantes equipados",
@@ -165714,13 +165703,13 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ la\\ calidad\\ de\\ todas\\ las\\ gemas\\ de\\ habilidad\\ de\\ esbirros(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% a la calidad m\u00E1xima",
+    "text": "\u002B#% a la calidad m\u00E1xima",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2039822488",
       "implicit.stat_2039822488"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ a\\ la\\ calidad\\ m\u00E1xima(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ la\\ calidad\\ m\u00E1xima(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# a la cantidad de arbalesteros invocados",
@@ -165798,12 +165787,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ cantidad\\ m\u00E1xima\\ de\\ arqueros\\ ilusorios\\ que\\ puedes\\ invocar(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# a la cantidad m\u00E1xima de cargas de poder y de aguante",
+    "text": "\u002B# a la cantidad m\u00E1xima de cargas de poder y de aguante",
     "lines": 1,
     "tradeIds": [
       "implicit.stat_4138979329"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ cantidad\\ m\u00E1xima\\ de\\ cargas\\ de\\ poder\\ y\\ de\\ aguante(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ cantidad\\ m\u00E1xima\\ de\\ cargas\\ de\\ poder\\ y\\ de\\ aguante(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# a la cantidad m\u00E1xima de centinelas de pureza",
@@ -166237,12 +166226,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ precisi\u00F3n\\ por\\ cada\\ engarce\\ verde\\ en\\ el\\ arco\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# a la precisi\u00F3n por cada engarce verde vac\u00EDo en cualquier objeto equipado",
+    "text": "\u002B# a la precisi\u00F3n por cada engarce verde vac\u00EDo en cualquier objeto equipado",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4280703528"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ precisi\u00F3n\\ por\\ cada\\ engarce\\ verde\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ precisi\u00F3n\\ por\\ cada\\ engarce\\ verde\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# a la precisi\u00F3n por cada nivel",
@@ -166938,6 +166927,13 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ la\\ resistencia\\ al\\ caos\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Pureza\\ de\\ los\\ elementos(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
+    "text": "#% a la resistencia al caos mientras est\u00E9s quieto",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ a\\ la\\ resistencia\\ al\\ caos\\ mientras\\ est\u00E9s\\ quieto(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
     "text": "\u002B#% a la resistencia al caos mientras est\u00E9s quieto",
     "lines": 1,
     "tradeIds": [
@@ -166945,13 +166941,6 @@
       "implicit.stat_779829642"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ la\\ resistencia\\ al\\ caos\\ mientras\\ est\u00E9s\\ quieto(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "#% a la resistencia al caos mientras est\u00E9s quieto",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ a\\ la\\ resistencia\\ al\\ caos\\ mientras\\ est\u00E9s\\ quieto(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% a la resistencia al caos m\u00E1xima",
@@ -167297,12 +167286,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ por\\ cada\\ 2\\ de\\ inteligencia(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# a la vida m\u00E1xima por cada engarce rojo vac\u00EDo en cualquier objeto equipado",
+    "text": "\u002B# a la vida m\u00E1xima por cada engarce rojo vac\u00EDo en cualquier objeto equipado",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_726359715"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ por\\ cada\\ engarce\\ rojo\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ por\\ cada\\ engarce\\ rojo\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# a la vida m\u00E1xima por cada objeto del Antiguo equipado",
@@ -167313,10 +167302,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ por\\ cada\\ objeto\\ del\\ Antiguo\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# a la vida m\u00E1xima por cada tatuaje de viaje del cuerpo asignado",
+    "text": "\u002B# a la vida m\u00E1xima por cada tatuaje de viaje del cuerpo asignado",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ por\\ cada\\ tatuaje\\ de\\ viaje\\ del\\ cuerpo\\ asignado(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ por\\ cada\\ tatuaje\\ de\\ viaje\\ del\\ cuerpo\\ asignado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# a la vida m\u00E1xima por engarce rojo",
@@ -167327,13 +167316,13 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ por\\ engarce\\ rojo(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# a la vida m\u00E1xima si no hay ning\u00FAn modificador de vida en otros objetos equipados",
+    "text": "\u002B# a la vida m\u00E1xima si no hay ning\u00FAn modificador de vida en otros objetos equipados",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2927667525",
       "implicit.stat_2927667525"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ si\\ no\\ hay\\ ning\u00FAn\\ modificador\\ de\\ vida\\ en\\ otros\\ objetos\\ equipados(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ a\\ la\\ vida\\ m\u00E1xima\\ si\\ no\\ hay\\ ning\u00FAn\\ modificador\\ de\\ vida\\ en\\ otros\\ objetos\\ equipados(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% a las Resistencias Elementales de Espectros Levantados",
@@ -167622,12 +167611,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ todas\\ las\\ resistencias\\ elementales\\ m\u00E1ximas\\ durante\\ su\\ efecto(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% a todas las resistencias elementales m\u00E1ximas mientras est\u00E9s afectado por Pureza de los elementos",
+    "text": "\u002B#% a todas las resistencias elementales m\u00E1ximas mientras est\u00E9s afectado por Pureza de los elementos",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3234824465"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ a\\ todas\\ las\\ resistencias\\ elementales\\ m\u00E1ximas\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Pureza\\ de\\ los\\ elementos(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ todas\\ las\\ resistencias\\ elementales\\ m\u00E1ximas\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Pureza\\ de\\ los\\ elementos(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% a todas las resistencias elementales m\u00E1ximas si el casco, la armadura, los guantes y las botas equipados tienen todos armadura",
@@ -167688,12 +167677,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ todas\\ las\\ resistencias\\ elementales\\ por\\ cada\\ carga\\ de\\ aguante(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% a todas las resistencias elementales por cada engarce blanco vac\u00EDo en cualquier objeto equipado",
+    "text": "\u002B#% a todas las resistencias elementales por cada engarce blanco vac\u00EDo en cualquier objeto equipado",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_597739519"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ a\\ todas\\ las\\ resistencias\\ elementales\\ por\\ cada\\ engarce\\ blanco\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ a\\ todas\\ las\\ resistencias\\ elementales\\ por\\ cada\\ engarce\\ blanco\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% a todas las resistencias elementales por cada esbirro, hasta 30%",
@@ -167895,10 +167884,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ por\\ cada\\ 100\\ de\\ vida\\ reservada(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al escudo de energ\u00EDa m\u00E1ximo por cada tatuaje de viaje del alma asignado",
+    "text": "\u002B# al escudo de energ\u00EDa m\u00E1ximo por cada tatuaje de viaje del alma asignado",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ por\\ cada\\ tatuaje\\ de\\ viaje\\ del\\ alma\\ asignado(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ por\\ cada\\ tatuaje\\ de\\ viaje\\ del\\ alma\\ asignado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al escudo de energ\u00EDa m\u00E1ximo por engarce azul",
@@ -167909,12 +167898,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ por\\ engarce\\ azul(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al escudo de energ\u00EDa m\u00E1ximo si los otros objetos equipados no tienen modificadores de defensa",
+    "text": "\u002B# al escudo de energ\u00EDa m\u00E1ximo si los otros objetos equipados no tienen modificadores de defensa",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2236622399"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ si\\ los\\ otros\\ objetos\\ equipados\\ no\\ tienen\\ modificadores\\ de\\ defensa(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ escudo\\ de\\ energ\u00EDa\\ m\u00E1ximo\\ si\\ los\\ otros\\ objetos\\ equipados\\ no\\ tienen\\ modificadores\\ de\\ defensa(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al escudo de energ\u00EDa por cada 8 de evasi\u00F3n en las botas equipadas",
@@ -167923,21 +167912,21 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ escudo\\ de\\ energ\u00EDa\\ por\\ cada\\ 8\\ de\\ evasi\u00F3n\\ en\\ las\\ botas\\ equipadas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al man\u00E1 m\u00E1ximo por cada 2 de inteligencia",
+    "text": "\u002B# al man\u00E1 m\u00E1ximo por cada 2 de inteligencia",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3822999954",
       "fractured.stat_3822999954"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ man\u00E1\\ m\u00E1ximo\\ por\\ cada\\ 2\\ de\\ inteligencia(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ man\u00E1\\ m\u00E1ximo\\ por\\ cada\\ 2\\ de\\ inteligencia(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al man\u00E1 m\u00E1ximo por cada engarce azul vac\u00EDo en cualquier objeto equipado",
+    "text": "\u002B# al man\u00E1 m\u00E1ximo por cada engarce azul vac\u00EDo en cualquier objeto equipado",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2962020005"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ man\u00E1\\ m\u00E1ximo\\ por\\ cada\\ engarce\\ azul\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ man\u00E1\\ m\u00E1ximo\\ por\\ cada\\ engarce\\ azul\\ vac\u00EDo\\ en\\ cualquier\\ objeto\\ equipado(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al man\u00E1 m\u00E1ximo por cada punto de destreza",
@@ -167946,10 +167935,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ man\u00E1\\ m\u00E1ximo\\ por\\ cada\\ punto\\ de\\ destreza(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al man\u00E1 m\u00E1ximo por cada tatuaje de viaje de la mente",
+    "text": "\u002B# al man\u00E1 m\u00E1ximo por cada tatuaje de viaje de la mente",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ man\u00E1\\ m\u00E1ximo\\ por\\ cada\\ tatuaje\\ de\\ viaje\\ de\\ la\\ mente(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ man\u00E1\\ m\u00E1ximo\\ por\\ cada\\ tatuaje\\ de\\ viaje\\ de\\ la\\ mente(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al man\u00E1 m\u00E1ximo por engarce verde",
@@ -168160,13 +168149,13 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ de\\ rayo(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% al multiplicador de da\u00F1o degenerativo de sangrado de los golpes con esta arma",
+    "text": "\u002B#% al multiplicador de da\u00F1o degenerativo de sangrado de los golpes con esta arma",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_951608773",
       "fractured.stat_951608773"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ de\\ sangrado\\ de\\ los\\ golpes\\ con\\ esta\\ arma(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ de\\ sangrado\\ de\\ los\\ golpes\\ con\\ esta\\ arma(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% al multiplicador de da\u00F1o degenerativo de veneno por cada carga de frenes\u00ED",
@@ -168206,15 +168195,15 @@
   {
     "text": "\u002B#% al multiplicador de da\u00F1o degenerativo del sangrado por cada carga de frenes\u00ED",
     "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2583415204"
-    ],
+    "tradeIds": [],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ del\\ sangrado\\ por\\ cada\\ carga\\ de\\ frenes\u00ED(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% al multiplicador de da\u00F1o degenerativo del sangrado por cada carga de frenes\u00ED",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2583415204"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ del\\ sangrado\\ por\\ cada\\ carga\\ de\\ frenes\u00ED(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -168308,13 +168297,13 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ por\\ cada\\ 10\\ de\\ inteligencia\\ de\\ habilidades\\ pasivas\\ sin\\ asignar\\ dentro\\ del\\ radio(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% al multiplicador de da\u00F1o degenerativo si has infligido un golpe cr\u00EDtico en los \u00FAltimos 8 segundos",
+    "text": "\u002B#% al multiplicador de da\u00F1o degenerativo si has infligido un golpe cr\u00EDtico en los \u00FAltimos 8 segundos",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3203086927",
       "implicit.stat_3203086927"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ si\\ has\\ infligido\\ un\\ golpe\\ cr\u00EDtico\\ en\\ los\\ \u00FAltimos\\ 8\\ segundos(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ al\\ multiplicador\\ de\\ da\u00F1o\\ degenerativo\\ si\\ has\\ infligido\\ un\\ golpe\\ cr\u00EDtico\\ en\\ los\\ \u00FAltimos\\ 8\\ segundos(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% al multiplicador de da\u00F1o degenerativo si has matado recientemente",
@@ -169112,12 +169101,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ aguante,\\ frenes\u00ED\\ y\\ poder(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al m\u00E1ximo de cargas de aguante mientras est\u00E9s afectado por Determinaci\u00F3n",
+    "text": "\u002B# al m\u00E1ximo de cargas de aguante mientras est\u00E9s afectado por Determinaci\u00F3n",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2110586221"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ aguante\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Determinaci\u00F3n(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ aguante\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Determinaci\u00F3n(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al m\u00E1ximo de cargas de esp\u00EDritu por cada joya de abismo que te est\u00E9 afectando",
@@ -169146,12 +169135,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ frenes\u00ED(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al m\u00E1ximo de cargas de frenes\u00ED mientras est\u00E9s afectado por Gracia",
+    "text": "\u002B# al m\u00E1ximo de cargas de frenes\u00ED mientras est\u00E9s afectado por Gracia",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3458080964"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ frenes\u00ED\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Gracia(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ frenes\u00ED\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Gracia(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al m\u00E1ximo de cargas de frenes\u00ED y de poder",
@@ -169172,12 +169161,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ poder(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al m\u00E1ximo de cargas de poder mientras est\u00E9s afectado por Disciplina",
+    "text": "\u002B# al m\u00E1ximo de cargas de poder mientras est\u00E9s afectado por Disciplina",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1465672972"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ poder\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Disciplina(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ m\u00E1ximo\\ de\\ cargas\\ de\\ poder\\ mientras\\ est\u00E9s\\ afectado\\ por\\ Disciplina(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al m\u00E1ximo de cargas de retador",
@@ -169622,12 +169611,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ nivel\\ de\\ las\\ gemas\\ de\\ habilidad\\ engarzadas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# al nivel de las gemas de habilidad engarzadas por cada gema engarzada",
+    "text": "\u002B# al nivel de las gemas de habilidad engarzadas por cada gema engarzada",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2503682584"
     ],
-    "pattern": "^([-0-9,.]\u002B)\\ al\\ nivel\\ de\\ las\\ gemas\\ de\\ habilidad\\ engarzadas\\ por\\ cada\\ gema\\ engarzada(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ nivel\\ de\\ las\\ gemas\\ de\\ habilidad\\ engarzadas\\ por\\ cada\\ gema\\ engarzada(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# al nivel de las gemas de hechizo engarzadas",
@@ -173768,13 +173757,13 @@
   },
   {
     "text": "#% de probabilidad de Desactivar Cofres con Trampas",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ Desactivar\\ Cofres\\ con\\ Trampas(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de probabilidad de Desactivar Cofres con Trampas",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ Desactivar\\ Cofres\\ con\\ Trampas(?:\\ \\([^\\)]\u002B\\))?$"
@@ -173813,18 +173802,18 @@
   },
   {
     "text": "#% de probabilidad de Machacar con cada golpe",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ Machacar\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "#% de probabilidad de Machacar con cada golpe",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2228892313",
       "fractured.stat_2228892313"
     ],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ Machacar\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "#% de probabilidad de Machacar con cada golpe",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ Machacar\\ con\\ cada\\ golpe(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -174727,12 +174716,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ bloquear\\ da\u00F1o\\ de\\ hechizos\\ si\\ has\\ lanzado\\ un\\ hechizo\\ recientemente(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% de probabilidad de bloquear da\u00F1o de hechizos si no has bloqueado recientemente",
+    "text": "\u002B#% de probabilidad de bloquear da\u00F1o de hechizos si no has bloqueado recientemente",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3771323968"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ bloquear\\ da\u00F1o\\ de\\ hechizos\\ si\\ no\\ has\\ bloqueado\\ recientemente(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ bloquear\\ da\u00F1o\\ de\\ hechizos\\ si\\ no\\ has\\ bloqueado\\ recientemente(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de probabilidad de bloquear el da\u00F1o de ataques",
@@ -174790,7 +174779,7 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ bloquear\\ el\\ da\u00F1o\\ de\\ hechizos\\ de\\ los\\ proyectiles(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% de probabilidad de bloquear el da\u00F1o de hechizos mientras empu\u00F1es un b\u00E1culo o un escudo",
+    "text": "\u002B#% de probabilidad de bloquear el da\u00F1o de hechizos mientras empu\u00F1es un b\u00E1culo o un escudo",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -174798,7 +174787,7 @@
       "fractured.stat_2120297997",
       "implicit.stat_2120297997"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ bloquear\\ el\\ da\u00F1o\\ de\\ hechizos\\ mientras\\ empu\u00F1es\\ un\\ b\u00E1culo\\ o\\ un\\ escudo(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ bloquear\\ el\\ da\u00F1o\\ de\\ hechizos\\ mientras\\ empu\u00F1es\\ un\\ b\u00E1culo\\ o\\ un\\ escudo(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% de probabilidad de bloquear el da\u00F1o de hechizos mientras est\u00E9 en la mano secundaria",
@@ -176351,7 +176340,6 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3023957681",
-      "explicit.stat_1195849808",
       "explicit.stat_3023957681",
       "explicit.stat_665823128",
       "fractured.stat_3023957681",
@@ -176366,6 +176354,7 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3023957681",
+      "explicit.stat_1195849808",
       "explicit.stat_3023957681",
       "explicit.stat_665823128",
       "fractured.stat_3023957681",
@@ -180233,7 +180222,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1361025326",
       "explicit.stat_1463604143",
       "explicit.stat_1485150248",
       "explicit.stat_1852069308",
@@ -180405,13 +180393,13 @@
   },
   {
     "text": "#% de probabilidad que el Fuego se Propague entre Enemigos",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ que\\ el\\ Fuego\\ se\\ Propague\\ entre\\ Enemigos(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de probabilidad que el Fuego se Propague entre Enemigos",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ que\\ el\\ Fuego\\ se\\ Propague\\ entre\\ Enemigos(?:\\ \\([^\\)]\u002B\\))?$"

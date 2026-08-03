@@ -92,12 +92,5 @@ public class GameLanguageZh : IGameLanguage
     public string AffixSuperior => "精良的";
     public string AffixBlighted => "凋落的";
     public string AffixBlightRavaged => "凋落蔓延";
-
-    public string InfluenceShaper => "塑者之物";
-    public string InfluenceElder => "尊師之物";
-    public string InfluenceCrusader => "聖戰軍王物品";
-    public string InfluenceHunter => "狩獵者物品";
-    public string InfluenceRedeemer => "救贖者物品";
-    public string InfluenceWarlord => "總督軍物品";
 }
 

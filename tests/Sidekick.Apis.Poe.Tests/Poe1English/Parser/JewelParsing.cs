@@ -298,4 +298,48 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Commissioned # coins to commemorate Cadiro");
     }
+
+    [Fact]
+    public void WatchersEye()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Watcher's Eye
+Prismatic Jewel
+--------
+Limited to: 1
+--------
+Item Level: 84
+--------
+{ Unique Modifier — Life }
+6(4-6)% increased maximum Life
+{ Unique Modifier — Defences, Energy Shield }
+4(4-6)% increased maximum Energy Shield
+{ Unique Modifier — Mana }
+6(4-6)% increased maximum Mana
+{ Unique Modifier — Elemental, Resistance }
++1% to all maximum Elemental Resistances while affected by Purity of Elements
+{ Unique Modifier — Damage, Elemental, Cold }
+55(40-60)% increased Cold Damage while affected by Hatred
+--------
+One by one, they stood their ground against a creature 
+they had no hope of understanding, let alone defeating,
+and one by one, they became a part of it.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Foil Unique (Celestial Aureate)
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Watcher's Eye", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Prismatic Jewel", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Energy Shield", 4);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Mana", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all maximum Elemental Resistances while affected by Purity of Elements", 1);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Cold Damage while affected by Hatred", 55);
+    }
 }

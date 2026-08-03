@@ -21,13 +21,22 @@ public class CorruptedProperty(
 
     public override void Parse(Item item)
     {
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique &&
+            item.Properties.Rarity != Rarity.Gem) return;
+
         item.Properties.Corrupted = GetBool(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.ItemClass.CanHaveStats() &&
-            item.ItemClass.Type != ItemClass.SupportSkillGem) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique &&
+            item.Properties.Rarity != Rarity.Gem) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new CorruptedFilter
         {

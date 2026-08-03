@@ -6,20 +6,26 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CrusaderProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceCrusader.ToRegexLine();
+    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceCrusader.ToRegexLine();
 
-    public override string Label => currentGameLanguage.Language.InfluenceCrusader;
+    public override string Label => dataTextProvider.Texts.InfluenceCrusader;
 
     public override void Parse(Item item)
     {
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique) return;
+
+        if (item.Properties.Rarity == Rarity.DivinationCard) return;
         item.Properties.Influences.Crusader = GetBool(Pattern, item.Text);
     }
 

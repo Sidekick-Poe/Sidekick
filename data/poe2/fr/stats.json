@@ -1,27 +1,27 @@
 [
   {
+    "text": "#",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "#",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "#",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
     "text": "# #",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)\\ ([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "#",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "#",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "#",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "-# Carreaux charg\u00E9s par chargeur",
@@ -4660,13 +4660,13 @@
   },
   {
     "text": "Armure arctique a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Armure\\ arctique\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Armure arctique a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Armure\\ arctique\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -16181,16 +16181,16 @@
     "pattern": "^Carnage(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "\u002B# Carreau charg\u00E9 par chargeur",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ Carreau\\ charg\u00E9\\ par\\ chargeur(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "# Carreau charg\u00E9 par chargeur",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)\\ Carreau\\ charg\u00E9\\ par\\ chargeur(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "\u002B# Carreau charg\u00E9 par chargeur",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ Carreau\\ charg\u00E9\\ par\\ chargeur(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "# Carreaux charg\u00E9s par chargeur",
@@ -16938,13 +16938,13 @@
   },
   {
     "text": "Chair et pierre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Chair\\ et\\ pierre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Chair et pierre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Chair\\ et\\ pierre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -18400,13 +18400,13 @@
   },
   {
     "text": "Col\u00E8re a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Col\u00E8re\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Col\u00E8re a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Col\u00E8re\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -18873,16 +18873,16 @@
     "pattern": "^Consomme\\ le\\ Gel,\\ l\u0027\u00C9lectrocution\\ et\\ l\u0027Embrasement\\ afin\\ de\\ d\u00E9clencher\\ D\u00E9charge\\ \u00E9l\u00E9mentaire(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Consomme les Gemmes de soutien Ench\u00E2ss\u00E9es non corrompues lorsqu\u0027elles atteignent leur Niveau maximal\nPeut consommer # Gemmes de soutien non Corrompues\nN\u0027a pas consomm\u00E9 de Gemmes",
-    "lines": 3,
-    "tradeIds": [],
-    "pattern": "^Consomme\\ les\\ Gemmes\\ de\\ soutien\\ Ench\u00E2ss\u00E9es\\ non\\ corrompues\\ lorsqu\u0027elles\\ atteignent\\ leur\\ Niveau\\ maximal(?:\\ \\([^\\)]\u002B\\))?\\nPeut\\ consommer\\ ([-0-9,.]\u002B)\\ Gemmes\\ de\\ soutien\\ non\\ Corrompues(?:\\ \\([^\\)]\u002B\\))?\\nN\u0027a\\ pas\\ consomm\u00E9\\ de\\ Gemmes(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Consomme les Gemmes de soutien Ench\u00E2ss\u00E9es non corrompues lorsqu\u0027elles atteignent leur Niveau maximal\n\nPeut consommer # Gemmes de soutien non Corrompues\nN\u0027a pas consomm\u00E9 de Gemmes",
     "lines": 4,
     "tradeIds": [],
     "pattern": "^Consomme\\ les\\ Gemmes\\ de\\ soutien\\ Ench\u00E2ss\u00E9es\\ non\\ corrompues\\ lorsqu\u0027elles\\ atteignent\\ leur\\ Niveau\\ maximal(?:\\ \\([^\\)]\u002B\\))?\\n(?:\\ \\([^\\)]\u002B\\))?\\nPeut\\ consommer\\ ([-0-9,.]\u002B)\\ Gemmes\\ de\\ soutien\\ non\\ Corrompues(?:\\ \\([^\\)]\u002B\\))?\\nN\u0027a\\ pas\\ consomm\u00E9\\ de\\ Gemmes(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Consomme les Gemmes de soutien Ench\u00E2ss\u00E9es non corrompues lorsqu\u0027elles atteignent leur Niveau maximal\nPeut consommer # Gemmes de soutien non Corrompues\nN\u0027a pas consomm\u00E9 de Gemmes",
+    "lines": 3,
+    "tradeIds": [],
+    "pattern": "^Consomme\\ les\\ Gemmes\\ de\\ soutien\\ Ench\u00E2ss\u00E9es\\ non\\ corrompues\\ lorsqu\u0027elles\\ atteignent\\ leur\\ Niveau\\ maximal(?:\\ \\([^\\)]\u002B\\))?\\nPeut\\ consommer\\ ([-0-9,.]\u002B)\\ Gemmes\\ de\\ soutien\\ non\\ Corrompues(?:\\ \\([^\\)]\u002B\\))?\\nN\u0027a\\ pas\\ consomm\u00E9\\ de\\ Gemmes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Consomme les Gemmes de soutien Ench\u00E2ss\u00E9es non corrompues lorsqu\u0027elles atteignent leur Niveau maximal\nPeut consommer # Gemmes de soutien non Corrompues suppl\u00E9mentaires",
@@ -21399,13 +21399,13 @@
   },
   {
     "text": "Dans les Zones Purifi\u00E9es, les Effets b\u00E9n\u00E9fiques des Autels ont #% d\u0027Augmentation d\u0027Effet sur les Joueurs",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Dans\\ les\\ Zones\\ Purifi\u00E9es,\\ les\\ Effets\\ b\u00E9n\u00E9fiques\\ des\\ Autels\\ ont\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ d\u0027Effet\\ sur\\ les\\ Joueurs(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Dans les Zones Purifi\u00E9es, les Effets b\u00E9n\u00E9fiques des Autels ont #% d\u0027Augmentation d\u0027Effet sur les Joueurs",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Dans\\ les\\ Zones\\ Purifi\u00E9es,\\ les\\ Effets\\ b\u00E9n\u00E9fiques\\ des\\ Autels\\ ont\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ d\u0027Effet\\ sur\\ les\\ Joueurs(?:\\ \\([^\\)]\u002B\\))?$"
@@ -25942,10 +25942,10 @@
     "pattern": "^Dans\\ vos\\ Cartes,\\ les\\ Tr\u00E9sors\\ abyssaux\\ et\\ Cimes\\ stygiennes\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ c\u00E9der\\ un\\ Scarab\u00E9e\\ d\u0027Abysse(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Dans vos Cartes, les Tr\u00E9sors abyssaux ont # Niveau",
+    "text": "Dans vos Cartes, les Tr\u00E9sors abyssaux ont \u002B# Niveau",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Dans\\ vos\\ Cartes,\\ les\\ Tr\u00E9sors\\ abyssaux\\ ont\\ ([-0-9,.]\u002B)\\ Niveau(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Dans\\ vos\\ Cartes,\\ les\\ Tr\u00E9sors\\ abyssaux\\ ont\\ \\\u002B([-0-9,.]\u002B)\\ Niveau(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Dans vos Cartes, les Tr\u00E9sors abyssaux ont #% d\u0027Augmentation de Quantit\u00E9 d\u0027Objets",
@@ -26163,10 +26163,10 @@
     "pattern": "^Dans\\ vos\\ Cartes,\\ les\\ missions\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ Faveur\\ gagn\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Dans vos Cartes, les objets c\u00E9d\u00E9s par les Cimes stygiennes ont # \u00E0 leur Niveau d\u0027objet",
+    "text": "Dans vos Cartes, les objets c\u00E9d\u00E9s par les Cimes stygiennes ont \u002B# \u00E0 leur Niveau d\u0027objet",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Dans\\ vos\\ Cartes,\\ les\\ objets\\ c\u00E9d\u00E9s\\ par\\ les\\ Cimes\\ stygiennes\\ ont\\ ([-0-9,.]\u002B)\\ \u00E0\\ leur\\ Niveau\\ d\u0027objet(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Dans\\ vos\\ Cartes,\\ les\\ objets\\ c\u00E9d\u00E9s\\ par\\ les\\ Cimes\\ stygiennes\\ ont\\ \\\u002B([-0-9,.]\u002B)\\ \u00E0\\ leur\\ Niveau\\ d\u0027objet(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Dans vos Cartes, les portails d\u0027Ailleurs ont #% d\u0027Augmentation de chances de g\u00E9n\u00E9rer un Boss Unique",
@@ -27531,16 +27531,16 @@
     "pattern": "^Davantage\\ de\\ D\u00E9g\u00E2ts\\ octroy\u00E9s\\ aux\\ Aptitudes\\ Am\u00E9lior\u00E9es@([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "\u002B#% Davantage de D\u00E9g\u00E2ts par Braise tir\u00E9e cons\u00E9cutivement",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ par\\ Braise\\ tir\u00E9e\\ cons\u00E9cutivement(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "#% Davantage de D\u00E9g\u00E2ts par Braise tir\u00E9e cons\u00E9cutivement",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ par\\ Braise\\ tir\u00E9e\\ cons\u00E9cutivement(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "\u002B#% Davantage de D\u00E9g\u00E2ts par Braise tir\u00E9e cons\u00E9cutivement",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ par\\ Braise\\ tir\u00E9e\\ cons\u00E9cutivement(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Davantage de D\u00E9g\u00E2ts par Braise tir\u00E9e cons\u00E9cutivement@#%",
@@ -28702,13 +28702,13 @@
   },
   {
     "text": "#% Davantage de Zone d\u0027effet avec les R\u00E9pliques",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Davantage\\ de\\ Zone\\ d\u0027effet\\ avec\\ les\\ R\u00E9pliques(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% Davantage de Zone d\u0027effet avec les R\u00E9pliques",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Davantage\\ de\\ Zone\\ d\u0027effet\\ avec\\ les\\ R\u00E9pliques(?:\\ \\([^\\)]\u002B\\))?$"
@@ -31736,17 +31736,17 @@
   {
     "text": "Empoisonne au Toucher",
     "lines": 1,
-    "tradeIds": [
-      "desecrated.stat_795138349",
-      "explicit.stat_795138349",
-      "fractured.stat_795138349"
-    ],
+    "tradeIds": [],
     "pattern": "^Empoisonne\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Empoisonne au Toucher",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_795138349",
+      "explicit.stat_795138349",
+      "fractured.stat_795138349"
+    ],
     "pattern": "^Empoisonne\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -32705,13 +32705,13 @@
   },
   {
     "text": "Fanatisme a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Fanatisme\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Fanatisme a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Fanatisme\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -32782,13 +32782,13 @@
   },
   {
     "text": "Fiert\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Fiert\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Fiert\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Fiert\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -33947,16 +33947,16 @@
     "pattern": "^Gagne\\ ([-0-9,.]\u002B)\\ Charges\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Gagne \u002B#% Davantage de Rayon par seconde, jusqu\u0027\u00E0 un maximum de \u002B#%",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Gagne\\ \\\u002B([-0-9,.]\u002B)%\\ Davantage\\ de\\ Rayon\\ par\\ seconde,\\ jusqu\u0027\u00E0\\ un\\ maximum\\ de\\ \\\u002B([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Gagne #% Davantage de Rayon par seconde, jusqu\u0027\u00E0 un maximum de #%",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Gagne\\ ([-0-9,.]\u002B)%\\ Davantage\\ de\\ Rayon\\ par\\ seconde,\\ jusqu\u0027\u00E0\\ un\\ maximum\\ de\\ ([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Gagne \u002B#% Davantage de Rayon par seconde, jusqu\u0027\u00E0 un maximum de \u002B#%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gagne\\ \\\u002B([-0-9,.]\u002B)%\\ Davantage\\ de\\ Rayon\\ par\\ seconde,\\ jusqu\u0027\u00E0\\ un\\ maximum\\ de\\ \\\u002B([-0-9,.]\u002B)%(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Gagne #% Davantage de Zone d\u0027effet par seconde, jusqu\u0027\u00E0 un maximum de #%",
@@ -34122,17 +34122,17 @@
   },
   {
     "text": "Gagnez Assaut pendant 4 secondes en Tuant",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Gagnez\\ Assaut\\ pendant\\ 4\\ secondes\\ en\\ Tuant(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Gagnez Assaut pendant 4 secondes en Tuant",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
     ],
+    "pattern": "^Gagnez\\ Assaut\\ pendant\\ 4\\ secondes\\ en\\ Tuant(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Gagnez Assaut pendant 4 secondes en Tuant",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Gagnez\\ Assaut\\ pendant\\ 4\\ secondes\\ en\\ Tuant(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -34281,17 +34281,17 @@
   },
   {
     "text": "Gagnez une Charge d\u0027endurance sur une Touche critique",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gagnez\\ une\\ Charge\\ d\u0027endurance\\ sur\\ une\\ Touche\\ critique(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Gagnez une Charge d\u0027endurance sur une Touche critique",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Gagnez\\ une\\ Charge\\ d\u0027endurance\\ sur\\ une\\ Touche\\ critique(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Gagnez une Charge d\u0027endurance sur une Touche critique",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Gagnez\\ une\\ Charge\\ d\u0027endurance\\ sur\\ une\\ Touche\\ critique(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -35112,6 +35112,12 @@
   {
     "text": "Grav\u00E9 pour glorifier # nouveaux croyants convertis par le Haut Templier Dominus\nLes Talents passifs dans le Rayon sont Conquis par les Templiers",
     "lines": 2,
+    "tradeIds": [],
+    "pattern": "^Grav\u00E9\\ pour\\ glorifier\\ ([-0-9,.]\u002B)\\ nouveaux\\ croyants\\ convertis\\ par\\ le\\ Haut\\ Templier\\ Dominus(?:\\ \\([^\\)]\u002B\\))?\\nLes\\ Talents\\ passifs\\ dans\\ le\\ Rayon\\ sont\\ Conquis\\ par\\ les\\ Templiers(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Grav\u00E9 pour glorifier # nouveaux croyants convertis par le Haut Templier Dominus\nLes Talents passifs dans le Rayon sont Conquis par les Templiers",
+    "lines": 2,
     "tradeIds": [
       "explicit.stat_3418580811|21",
       "explicit.stat_3418580811|22",
@@ -35122,12 +35128,6 @@
       "explicit.stat_3418580811|27",
       "explicit.stat_3418580811|28"
     ],
-    "pattern": "^Grav\u00E9\\ pour\\ glorifier\\ ([-0-9,.]\u002B)\\ nouveaux\\ croyants\\ convertis\\ par\\ le\\ Haut\\ Templier\\ Dominus(?:\\ \\([^\\)]\u002B\\))?\\nLes\\ Talents\\ passifs\\ dans\\ le\\ Rayon\\ sont\\ Conquis\\ par\\ les\\ Templiers(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Grav\u00E9 pour glorifier # nouveaux croyants convertis par le Haut Templier Dominus\nLes Talents passifs dans le Rayon sont Conquis par les Templiers",
-    "lines": 2,
-    "tradeIds": [],
     "pattern": "^Grav\u00E9\\ pour\\ glorifier\\ ([-0-9,.]\u002B)\\ nouveaux\\ croyants\\ convertis\\ par\\ le\\ Haut\\ Templier\\ Dominus(?:\\ \\([^\\)]\u002B\\))?\\nLes\\ Talents\\ passifs\\ dans\\ le\\ Rayon\\ sont\\ Conquis\\ par\\ les\\ Templiers(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -35409,13 +35409,13 @@
   },
   {
     "text": "Haine a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Haine a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -35443,13 +35443,13 @@
   },
   {
     "text": "Haine a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Haine a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -35555,13 +35555,13 @@
   },
   {
     "text": "H\u00E2te a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "H\u00E2te a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -35575,13 +35575,13 @@
   },
   {
     "text": "H\u00E2te a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "H\u00E2te a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -35663,13 +35663,13 @@
   },
   {
     "text": "H\u00E9raut de l\u0027Agonie a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E9raut\\ de\\ l\u0027Agonie\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "H\u00E9raut de l\u0027Agonie a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E9raut\\ de\\ l\u0027Agonie\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -35741,13 +35741,13 @@
   },
   {
     "text": "H\u00E9raut de la cendre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E9raut\\ de\\ la\\ cendre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "H\u00E9raut de la cendre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E9raut\\ de\\ la\\ cendre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -35839,13 +35839,13 @@
   },
   {
     "text": "H\u00E9raut de la puret\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E9raut\\ de\\ la\\ puret\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "H\u00E9raut de la puret\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^H\u00E9raut\\ de\\ la\\ puret\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -36648,7 +36648,7 @@
   {
     "text": "Inflige Exposition au Feu au Toucher",
     "matchedFuzzily": true,
-    "value": 4000,
+    "value": 10,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3005701891"
@@ -36658,7 +36658,7 @@
   {
     "text": "Inflige Exposition au Feu au Toucher",
     "matchedFuzzily": true,
-    "value": 10,
+    "value": 4000,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3005701891"
@@ -37365,10 +37365,10 @@
     "pattern": "^Inoculation\\ du\\ Chaos(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Insaisissable octroie \u00E9galement #% au Bonus de D\u00E9g\u00E2ts critiques des Aptitudes modifi\u00E9es par Lame nocturne",
+    "text": "Insaisissable octroie \u00E9galement \u002B#% au Bonus de D\u00E9g\u00E2ts critiques des Aptitudes modifi\u00E9es par Lame nocturne",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Insaisissable\\ octroie\\ \u00E9galement\\ ([-0-9,.]\u002B)%\\ au\\ Bonus\\ de\\ D\u00E9g\u00E2ts\\ critiques\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Lame\\ nocturne(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Insaisissable\\ octroie\\ \u00E9galement\\ \\\u002B([-0-9,.]\u002B)%\\ au\\ Bonus\\ de\\ D\u00E9g\u00E2ts\\ critiques\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Lame\\ nocturne(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Insaisissable octroy\u00E9 par cette Aptitude octroie \u00E9galement \u002B#% au Bonus de D\u00E9g\u00E2ts critiques des Aptitudes modifi\u00E9es par Lame nocturne",
@@ -37797,13 +37797,13 @@
   },
   {
     "text": "Invocation d\u0027Arachnobots a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Invocation\\ d\u0027Arachnobots\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Invocation d\u0027Arachnobots a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Invocation\\ d\u0027Arachnobots\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -38197,13 +38197,13 @@
   },
   {
     "text": "Justesse a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Justesse\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Justesse a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Justesse\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -40932,17 +40932,17 @@
   },
   {
     "text": "L\u0027\u00C9quipement n\u0027a pas de Pr\u00E9requis d\u0027Attributs",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^L\u0027\u00C9quipement\\ n\u0027a\\ pas\\ de\\ Pr\u00E9requis\\ d\u0027Attributs(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "L\u0027\u00C9quipement n\u0027a pas de Pr\u00E9requis d\u0027Attributs",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2480151124"
     ],
+    "pattern": "^L\u0027\u00C9quipement\\ n\u0027a\\ pas\\ de\\ Pr\u00E9requis\\ d\u0027Attributs(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "L\u0027\u00C9quipement n\u0027a pas de Pr\u00E9requis d\u0027Attributs",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^L\u0027\u00C9quipement\\ n\u0027a\\ pas\\ de\\ Pr\u00E9requis\\ d\u0027Attributs(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -43196,8 +43196,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447",
-      "explicit.stat_2396719220"
+      "explicit.stat_231864447"
     ],
     "pattern": "^La\\ Zone\\ contient\\ ([-0-9,.]\u002B)\\ Coffres\\ de\\ Perandus\\ suppl\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -44262,8 +44261,7 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447",
-      "explicit.stat_2396719220"
+      "explicit.stat_231864447"
     ],
     "pattern": "^La\\ Zone\\ contient\\ un\\ Coffre\\ de\\ Perandus\\ suppl\u00E9mentaire(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -46192,13 +46190,13 @@
   },
   {
     "text": "La troisi\u00E8me \u00E9tape a #% de Perte de D\u00E9g\u00E2ts",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^La\\ troisi\u00E8me\\ \u00E9tape\\ a\\ ([-0-9,.]\u002B)%\\ de\\ Perte\\ de\\ D\u00E9g\u00E2ts(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "La troisi\u00E8me \u00E9tape a #% de Perte de D\u00E9g\u00E2ts",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^La\\ troisi\u00E8me\\ \u00E9tape\\ a\\ ([-0-9,.]\u002B)%\\ de\\ Perte\\ de\\ D\u00E9g\u00E2ts(?:\\ \\([^\\)]\u002B\\))?$"
@@ -47593,6 +47591,13 @@
     "pattern": "^Le\\ D\u00E9marrage\\ de\\ la\\ Recharge\\ du\\ Bouclier\\ d\u0027\u00E9nergie\\ est\\ ([-0-9,.]\u002B)%\\ plus\\ rapide\\ tant\\ que\\ vous\\ \u00EAtes\\ affect\u00E9\\ par\\ un\\ Effet\\ b\u00E9n\u00E9fique\\ d\u0027Archonte(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
+    "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Feu",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Le\\ D\u00E9p\u00E9rissement\\ abyssal\\ applique\\ \u00E9galement\\ ([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ Feu(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
     "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement \u002B#% \u00E0 la R\u00E9sistance au Feu",
     "lines": 1,
     "tradeIds": [
@@ -47601,11 +47606,11 @@
     "pattern": "^Le\\ D\u00E9p\u00E9rissement\\ abyssal\\ applique\\ \u00E9galement\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ Feu(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Feu",
+    "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Froid",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Le\\ D\u00E9p\u00E9rissement\\ abyssal\\ applique\\ \u00E9galement\\ ([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ Feu(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Le\\ D\u00E9p\u00E9rissement\\ abyssal\\ applique\\ \u00E9galement\\ ([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ Froid(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement \u002B#% \u00E0 la R\u00E9sistance au Froid",
@@ -47614,13 +47619,6 @@
       "explicit.stat_3979226081"
     ],
     "pattern": "^Le\\ D\u00E9p\u00E9rissement\\ abyssal\\ applique\\ \u00E9galement\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ Froid(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance au Froid",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Le\\ D\u00E9p\u00E9rissement\\ abyssal\\ applique\\ \u00E9galement\\ ([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ Froid(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Le D\u00E9p\u00E9rissement abyssal applique \u00E9galement #% \u00E0 la R\u00E9sistance \u00E0 la Foudre",
@@ -51891,10 +51889,10 @@
     "pattern": "^Les\\ Aptitudes\\ de\\ Cri\\ de\\ guerre\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ Zone\\ d\u0027effet(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Aptitudes de Cri de guerre ont # secondes de Temps de Recharge",
+    "text": "Les Aptitudes de Cri de guerre ont \u002B# secondes de Temps de Recharge",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Aptitudes\\ de\\ Cri\\ de\\ guerre\\ ont\\ ([-0-9,.]\u002B)\\ secondes\\ de\\ Temps\\ de\\ Recharge(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Aptitudes\\ de\\ Cri\\ de\\ guerre\\ ont\\ \\\u002B([-0-9,.]\u002B)\\ secondes\\ de\\ Temps\\ de\\ Recharge(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Aptitudes de Cr\u00E9atures temporaires ont \u002B# de Limite de nombre de Cr\u00E9atures invoqu\u00E9es",
@@ -55138,13 +55136,13 @@
   },
   {
     "text": "Les Aptitudes modifi\u00E9es ont #% Davantage de D\u00E9g\u00E2ts au Toucher tant que votre Vie est Basse",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ ([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ au\\ Toucher\\ tant\\ que\\ votre\\ Vie\\ est\\ Basse(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Aptitudes modifi\u00E9es ont #% Davantage de D\u00E9g\u00E2ts au Toucher tant que votre Vie est Basse",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ ([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ au\\ Toucher\\ tant\\ que\\ votre\\ Vie\\ est\\ Basse(?:\\ \\([^\\)]\u002B\\))?$"
@@ -56095,10 +56093,10 @@
     "pattern": "^Les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ \\\u002B([-0-9,.]\u002B)%\\ aux\\ Chances\\ de\\ Touche\\ critique\\ tant\\ que\\ vous\\ \u00EAtes\\ Insaisissable(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Aptitudes modifi\u00E9es ont #% aux Chances de Touche critique tant que vous \u00EAtes Mort",
+    "text": "Les Aptitudes modifi\u00E9es ont \u002B#% aux Chances de Touche critique tant que vous \u00EAtes Mort",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ ([-0-9,.]\u002B)%\\ aux\\ Chances\\ de\\ Touche\\ critique\\ tant\\ que\\ vous\\ \u00EAtes\\ Mort(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ \\\u002B([-0-9,.]\u002B)%\\ aux\\ Chances\\ de\\ Touche\\ critique\\ tant\\ que\\ vous\\ \u00EAtes\\ Mort(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Aptitudes modifi\u00E9es ont #% d\u0027Augmentation de Co\u00FBt",
@@ -57510,13 +57508,13 @@
   },
   {
     "text": "Les Aptitudes modifi\u00E9es ont #% de Perte de D\u00E9g\u00E2ts contre les autres cibles",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ Perte\\ de\\ D\u00E9g\u00E2ts\\ contre\\ les\\ autres\\ cibles(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Aptitudes modifi\u00E9es ont #% de Perte de D\u00E9g\u00E2ts contre les autres cibles",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ Perte\\ de\\ D\u00E9g\u00E2ts\\ contre\\ les\\ autres\\ cibles(?:\\ \\([^\\)]\u002B\\))?$"
@@ -60779,10 +60777,10 @@
     "pattern": "^Les\\ Aptitudes\\ qui\\ g\u00E9n\u00E8rent\\ des\\ Cr\u00E9atures\\ mort-vivantes\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ d\u0027Efficacit\u00E9\\ de\\ R\u00E9servation(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Aptitudes qui laissent des Lames r\u00E9manentes ont # au nombre maximum de Lames r\u00E9manentes",
+    "text": "Les Aptitudes qui laissent des Lames r\u00E9manentes ont \u002B# au nombre maximum de Lames r\u00E9manentes",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Aptitudes\\ qui\\ laissent\\ des\\ Lames\\ r\u00E9manentes\\ ont\\ ([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Lames\\ r\u00E9manentes(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Aptitudes\\ qui\\ laissent\\ des\\ Lames\\ r\u00E9manentes\\ ont\\ \\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Lames\\ r\u00E9manentes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Aptitudes qui laissent des Lames r\u00E9manentes ont #% de chances de laisser deux Lames r\u00E9manentes au lieu d\u0027une",
@@ -64995,16 +64993,16 @@
     "pattern": "^Les\\ Calamit\u00E9s\\ qui\\ ne\\ sont\\ pas\\ des\\ Auras\\ expirent\\ en\\ atteignant\\ 200%\\ de\\ leur\\ Effet\\ de\\ base(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Calamit\u00E9s qui ne sont pas des Auras expirent en atteignant \u002B#% de leur Effet de base",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Les\\ Calamit\u00E9s\\ qui\\ ne\\ sont\\ pas\\ des\\ Auras\\ expirent\\ en\\ atteignant\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ leur\\ Effet\\ de\\ base(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Les Calamit\u00E9s qui ne sont pas des Auras expirent en atteignant #% de leur Effet de base",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Calamit\u00E9s\\ qui\\ ne\\ sont\\ pas\\ des\\ Auras\\ expirent\\ en\\ atteignant\\ ([-0-9,.]\u002B)%\\ de\\ leur\\ Effet\\ de\\ base(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Les Calamit\u00E9s qui ne sont pas des Auras expirent en atteignant \u002B#% de leur Effet de base",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Les\\ Calamit\u00E9s\\ qui\\ ne\\ sont\\ pas\\ des\\ Auras\\ expirent\\ en\\ atteignant\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ leur\\ Effet\\ de\\ base(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Carquois absorbent #% Davantage de Corruption",
@@ -72172,10 +72170,10 @@
     "pattern": "^Les\\ Ennemis\\ Am\u00E9lior\u00E9s\\ par\\ des\\ Sentinelles\\ alpha\\ ont\\ Assaut(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Ennemis Am\u00E9lior\u00E9s par des Sentinelles alpha ont #% \u00E0 toutes les R\u00E9sistances",
+    "text": "Les Ennemis Am\u00E9lior\u00E9s par des Sentinelles alpha ont \u002B#% \u00E0 toutes les R\u00E9sistances",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Ennemis\\ Am\u00E9lior\u00E9s\\ par\\ des\\ Sentinelles\\ alpha\\ ont\\ ([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Ennemis\\ Am\u00E9lior\u00E9s\\ par\\ des\\ Sentinelles\\ alpha\\ ont\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Ennemis Convertis Provoquent au Toucher",
@@ -72371,16 +72369,16 @@
     "pattern": "^Les\\ Ennemis\\ Gel\u00E9s\\ par\\ Fracas\\ de\\ glace\\ ou\\ Marteau\\ de\\ glace\\ sont\\ Recouverts\\ de\\ givre\\ pendant\\ 4\\ secondes\\ apr\u00E8s\\ avoir\\ D\u00E9gel\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Ennemis Gel\u00E9s par cette Aptitude ont #% \u00E0 la R\u00E9sistance au froid",
+    "text": "Les Ennemis Gel\u00E9s par cette Aptitude ont \u002B#% \u00E0 la R\u00E9sistance au froid",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Ennemis\\ Gel\u00E9s\\ par\\ cette\\ Aptitude\\ ont\\ ([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ froid(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Ennemis\\ Gel\u00E9s\\ par\\ cette\\ Aptitude\\ ont\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ froid(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Ennemis Gel\u00E9s par les Aptitudes modifi\u00E9es ont #% \u00E0 la R\u00E9sistance au froid",
+    "text": "Les Ennemis Gel\u00E9s par les Aptitudes modifi\u00E9es ont \u002B#% \u00E0 la R\u00E9sistance au froid",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Ennemis\\ Gel\u00E9s\\ par\\ les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ ([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ froid(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Ennemis\\ Gel\u00E9s\\ par\\ les\\ Aptitudes\\ modifi\u00E9es\\ ont\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ froid(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Ennemis Gel\u00E9s sont Recouverts de givre pendant 4 secondes lorsqu\u0027ils D\u00E9g\u00E8lent",
@@ -72891,13 +72889,13 @@
   },
   {
     "text": "Les Ennemis dont l\u0027Armure est enti\u00E8rement Bris\u00E9e se font \u00C9tourdir comme s\u0027ils subissaient #% Davantage de D\u00E9g\u00E2ts au Toucher",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Ennemis\\ dont\\ l\u0027Armure\\ est\\ enti\u00E8rement\\ Bris\u00E9e\\ se\\ font\\ \u00C9tourdir\\ comme\\ s\u0027ils\\ subissaient\\ ([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Ennemis dont l\u0027Armure est enti\u00E8rement Bris\u00E9e se font \u00C9tourdir comme s\u0027ils subissaient #% Davantage de D\u00E9g\u00E2ts au Toucher",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Ennemis\\ dont\\ l\u0027Armure\\ est\\ enti\u00E8rement\\ Bris\u00E9e\\ se\\ font\\ \u00C9tourdir\\ comme\\ s\u0027ils\\ subissaient\\ ([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
@@ -74042,13 +74040,13 @@
   },
   {
     "text": "Les Ennemis situ\u00E9s \u00E0 port\u00E9e ont jusqu\u0027\u00E0 #% d\u0027Augmentation des D\u00E9g\u00E2ts subis, en fonction de leur distance par rapport \u00E0 la Sph\u00E8re du N\u00E9ant",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Ennemis\\ situ\u00E9s\\ \u00E0\\ port\u00E9e\\ ont\\ jusqu\u0027\u00E0\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ subis,\\ en\\ fonction\\ de\\ leur\\ distance\\ par\\ rapport\\ \u00E0\\ la\\ Sph\u00E8re\\ du\\ N\u00E9ant(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Ennemis situ\u00E9s \u00E0 port\u00E9e ont jusqu\u0027\u00E0 #% d\u0027Augmentation des D\u00E9g\u00E2ts subis, en fonction de leur distance par rapport \u00E0 la Sph\u00E8re du N\u00E9ant",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Ennemis\\ situ\u00E9s\\ \u00E0\\ port\u00E9e\\ ont\\ jusqu\u0027\u00E0\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ subis,\\ en\\ fonction\\ de\\ leur\\ distance\\ par\\ rapport\\ \u00E0\\ la\\ Sph\u00E8re\\ du\\ N\u00E9ant(?:\\ \\([^\\)]\u002B\\))?$"
@@ -77893,17 +77891,17 @@
   },
   {
     "text": "Les Gemmes d\u0027aptitude n\u0027ont pas de Pr\u00E9requis d\u0027Attributs",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Les\\ Gemmes\\ d\u0027aptitude\\ n\u0027ont\\ pas\\ de\\ Pr\u00E9requis\\ d\u0027Attributs(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Les Gemmes d\u0027aptitude n\u0027ont pas de Pr\u00E9requis d\u0027Attributs",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
     ],
+    "pattern": "^Les\\ Gemmes\\ d\u0027aptitude\\ n\u0027ont\\ pas\\ de\\ Pr\u00E9requis\\ d\u0027Attributs(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Les Gemmes d\u0027aptitude n\u0027ont pas de Pr\u00E9requis d\u0027Attributs",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Les\\ Gemmes\\ d\u0027aptitude\\ n\u0027ont\\ pas\\ de\\ Pr\u00E9requis\\ d\u0027Attributs(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -78877,16 +78875,16 @@
   {
     "text": "Les Joueurs sont D\u00E9sign\u00E9s pour mourir pendant # secondes\napr\u00E8s avoir tu\u00E9 un Monstre Rare ou Unique",
     "lines": 2,
-    "tradeIds": [
-      "desecrated.stat_436406826",
-      "explicit.stat_436406826"
-    ],
+    "tradeIds": [],
     "pattern": "^Les\\ Joueurs\\ sont\\ D\u00E9sign\u00E9s\\ pour\\ mourir\\ pendant\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?\\napr\u00E8s\\ avoir\\ tu\u00E9\\ un\\ Monstre\\ Rare\\ ou\\ Unique(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Joueurs sont D\u00E9sign\u00E9s pour mourir pendant # secondes\napr\u00E8s avoir tu\u00E9 un Monstre Rare ou Unique",
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_436406826",
+      "explicit.stat_436406826"
+    ],
     "pattern": "^Les\\ Joueurs\\ sont\\ D\u00E9sign\u00E9s\\ pour\\ mourir\\ pendant\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?\\napr\u00E8s\\ avoir\\ tu\u00E9\\ un\\ Monstre\\ Rare\\ ou\\ Unique(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -80164,13 +80162,13 @@
   },
   {
     "text": "Les Monstres Abyssaux ont #% de R\u00E9duction d\u0027Efficacit\u00E9 pour chaque Fosse ferm\u00E9e",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Monstres\\ Abyssaux\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ d\u0027Efficacit\u00E9\\ pour\\ chaque\\ Fosse\\ ferm\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Monstres Abyssaux ont #% de R\u00E9duction d\u0027Efficacit\u00E9 pour chaque Fosse ferm\u00E9e",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Monstres\\ Abyssaux\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ d\u0027Efficacit\u00E9\\ pour\\ chaque\\ Fosse\\ ferm\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
@@ -85776,6 +85774,18 @@
   },
   {
     "text": "Les Projectiles Transpercent # cibles suppl\u00E9mentaires",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Les\\ Projectiles\\ Transpercent\\ ([-0-9,.]\u002B)\\ cibles\\ suppl\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Les Projectiles Transpercent # cibles suppl\u00E9mentaires",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Les\\ Projectiles\\ Transpercent\\ ([-0-9,.]\u002B)\\ cibles\\ suppl\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Les Projectiles Transpercent # cibles suppl\u00E9mentaires",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -85790,18 +85800,6 @@
     "tradeIds": [
       "explicit.stat_3423006863"
     ],
-    "pattern": "^Les\\ Projectiles\\ Transpercent\\ ([-0-9,.]\u002B)\\ cibles\\ suppl\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Les Projectiles Transpercent # cibles suppl\u00E9mentaires",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Les\\ Projectiles\\ Transpercent\\ ([-0-9,.]\u002B)\\ cibles\\ suppl\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Les Projectiles Transpercent # cibles suppl\u00E9mentaires",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Les\\ Projectiles\\ Transpercent\\ ([-0-9,.]\u002B)\\ cibles\\ suppl\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -86098,10 +86096,10 @@
     "pattern": "^Les\\ Projectiles\\ des\\ Aptitudes\\ modifi\u00E9es\\ se\\ Scindent(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Projectiles des Arbalistes Invoqu\u00E9es Ricochent # fois",
+    "text": "Les Projectiles des Arbalistes Invoqu\u00E9es Ricochent \u002B# fois",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Projectiles\\ des\\ Arbalistes\\ Invoqu\u00E9es\\ Ricochent\\ ([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Projectiles\\ des\\ Arbalistes\\ Invoqu\u00E9es\\ Ricochent\\ \\\u002B([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Projectiles des Arbalistes Invoqu\u00E9es Transpercent # Cibles suppl\u00E9mentaires",
@@ -86899,15 +86897,15 @@
   {
     "text": "Les Projectiles se Scindent",
     "lines": 1,
-    "tradeIds": [
-      "rune.stat_1549287843"
-    ],
+    "tradeIds": [],
     "pattern": "^Les\\ Projectiles\\ se\\ Scindent(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Projectiles se Scindent",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1549287843"
+    ],
     "pattern": "^Les\\ Projectiles\\ se\\ Scindent(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -87499,10 +87497,10 @@
     "pattern": "^Les\\ Rayons\\ Ricochent\\ ([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Rayons Ricochent # fois",
+    "text": "Les Rayons Ricochent \u002B# fois",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Rayons\\ Ricochent\\ ([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Rayons\\ Ricochent\\ \\\u002B([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Rayons Ricochent une fois de plus",
@@ -87523,10 +87521,10 @@
     "pattern": "^Les\\ Rayons\\ de\\ Frappe\\ d\u00E9cha\u00EEn\u00E9e\\ Ricochent\\ une\\ fois\\ suppl\u00E9mentaire(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Rayons des Sentinelles traqueuses Ricochent # fois",
+    "text": "Les Rayons des Sentinelles traqueuses Ricochent \u002B# fois",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Rayons\\ des\\ Sentinelles\\ traqueuses\\ Ricochent\\ ([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Rayons\\ des\\ Sentinelles\\ traqueuses\\ Ricochent\\ \\\u002B([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Rayons des Sentinelles traqueuses Ricochent une fois suppl\u00E9mentaire",
@@ -87535,10 +87533,10 @@
     "pattern": "^Les\\ Rayons\\ des\\ Sentinelles\\ traqueuses\\ Ricochent\\ une\\ fois\\ suppl\u00E9mentaire(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Rayons des Sentinelles tumultueuses Ricochent # fois",
+    "text": "Les Rayons des Sentinelles tumultueuses Ricochent \u002B# fois",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Rayons\\ des\\ Sentinelles\\ tumultueuses\\ Ricochent\\ ([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Rayons\\ des\\ Sentinelles\\ tumultueuses\\ Ricochent\\ \\\u002B([-0-9,.]\u002B)\\ fois(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Rayons des Sentinelles tumultueuses Ricochent une fois de plus",
@@ -88747,10 +88745,10 @@
     "pattern": "^Les\\ Sentinelles\\ tumultueuses\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ ne\\ pas\\ consommer\\ de\\ Charge\\ \u00E0\\ l\u0027Activation(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Sentinelles tumultueuses peuvent \u00EAtre Activ\u00E9es # fois par Zone",
+    "text": "Les Sentinelles tumultueuses peuvent \u00EAtre Activ\u00E9es \u002B# fois par Zone",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ Sentinelles\\ tumultueuses\\ peuvent\\ \u00EAtre\\ Activ\u00E9es\\ ([-0-9,.]\u002B)\\ fois\\ par\\ Zone(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ Sentinelles\\ tumultueuses\\ peuvent\\ \u00EAtre\\ Activ\u00E9es\\ \\\u002B([-0-9,.]\u002B)\\ fois\\ par\\ Zone(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Sentinelles tumultueuses peuvent \u00EAtre Activ\u00E9es une fois de plus par Zone",
@@ -88814,16 +88812,16 @@
     "pattern": "^Les\\ Sorts\\ Am\u00E9lior\u00E9s\\ Rajoute\\ ([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Froid(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les Sorts Am\u00E9lior\u00E9s Rajoutent \u002B#% de leurs D\u00E9g\u00E2ts sous forme de D\u00E9g\u00E2ts de Foudre",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Les\\ Sorts\\ Am\u00E9lior\u00E9s\\ Rajoutent\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ leurs\\ D\u00E9g\u00E2ts\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Foudre(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Les Sorts Am\u00E9lior\u00E9s Rajoutent #% de leurs D\u00E9g\u00E2ts sous forme de D\u00E9g\u00E2ts de Foudre",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Les\\ Sorts\\ Am\u00E9lior\u00E9s\\ Rajoutent\\ ([-0-9,.]\u002B)%\\ de\\ leurs\\ D\u00E9g\u00E2ts\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Foudre(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Les Sorts Am\u00E9lior\u00E9s Rajoutent \u002B#% de leurs D\u00E9g\u00E2ts sous forme de D\u00E9g\u00E2ts de Foudre",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Les\\ Sorts\\ Am\u00E9lior\u00E9s\\ Rajoutent\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ leurs\\ D\u00E9g\u00E2ts\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Foudre(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les Sorts Co\u00FBtant de la Vie ont #% d\u0027Augmentation de D\u00E9g\u00E2ts",
@@ -95605,10 +95603,10 @@
     "pattern": "^Les\\ embranchements\\ des\\ rencontres\\ d\u0027Infestation\\ ont\\ un\\ coffre\\ de\\ R\u00E9compense\\ suppl\u00E9mentaire(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Les ennemis Embras\u00E9s ou Frigorifi\u00E9s par vous ont #% aux R\u00E9sistances \u00E9l\u00E9mentaires",
+    "text": "Les ennemis Embras\u00E9s ou Frigorifi\u00E9s par vous ont \u002B#% aux R\u00E9sistances \u00E9l\u00E9mentaires",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Les\\ ennemis\\ Embras\u00E9s\\ ou\\ Frigorifi\u00E9s\\ par\\ vous\\ ont\\ ([-0-9,.]\u002B)%\\ aux\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Les\\ ennemis\\ Embras\u00E9s\\ ou\\ Frigorifi\u00E9s\\ par\\ vous\\ ont\\ \\\u002B([-0-9,.]\u002B)%\\ aux\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Les ennemis Embras\u00E9s tu\u00E9s par vos Touches sont d\u00E9truits",
@@ -100563,13 +100561,13 @@
   },
   {
     "text": "Lorsqu\u0027il est cr\u00E9\u00E9, le Globe a \u002B# au Rayon tous les 10% d\u0027Effet d\u0027\u00C9lectrocution sur l\u0027Ennemi",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Lorsqu\u0027il\\ est\\ cr\u00E9\u00E9,\\ le\\ Globe\\ a\\ \\\u002B([-0-9,.]\u002B)\\ au\\ Rayon\\ tous\\ les\\ 10%\\ d\u0027Effet\\ d\u0027\u00C9lectrocution\\ sur\\ l\u0027Ennemi(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Lorsqu\u0027il est cr\u00E9\u00E9, le Globe a \u002B# au Rayon tous les 10% d\u0027Effet d\u0027\u00C9lectrocution sur l\u0027Ennemi",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Lorsqu\u0027il\\ est\\ cr\u00E9\u00E9,\\ le\\ Globe\\ a\\ \\\u002B([-0-9,.]\u002B)\\ au\\ Rayon\\ tous\\ les\\ 10%\\ d\u0027Effet\\ d\u0027\u00C9lectrocution\\ sur\\ l\u0027Ennemi(?:\\ \\([^\\)]\u002B\\))?$"
@@ -102845,25 +102843,25 @@
   {
     "text": "Mutile au Toucher",
     "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2763429652",
-      "implicit.stat_2763429652"
-    ],
-    "pattern": "^Mutile\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Mutile au Toucher",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2763429652",
-      "implicit.stat_2763429652"
-    ],
-    "pattern": "^Mutile\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Mutile au Toucher",
-    "lines": 1,
     "tradeIds": [],
+    "pattern": "^Mutile\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Mutile au Toucher",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2763429652",
+      "implicit.stat_2763429652"
+    ],
+    "pattern": "^Mutile\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Mutile au Toucher",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2763429652",
+      "implicit.stat_2763429652"
+    ],
     "pattern": "^Mutile\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -103876,10 +103874,10 @@
     "pattern": "^Octroie\\ \\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ sang(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Octroie aux Cr\u00E9atures #% au Bonus de D\u00E9g\u00E2ts critiques",
+    "text": "Octroie aux Cr\u00E9atures \u002B#% au Bonus de D\u00E9g\u00E2ts critiques",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Octroie\\ aux\\ Cr\u00E9atures\\ ([-0-9,.]\u002B)%\\ au\\ Bonus\\ de\\ D\u00E9g\u00E2ts\\ critiques(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Octroie\\ aux\\ Cr\u00E9atures\\ \\\u002B([-0-9,.]\u002B)%\\ au\\ Bonus\\ de\\ D\u00E9g\u00E2ts\\ critiques(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Octroie aux Cr\u00E9atures #% d\u0027Augmentation de chances de Touche critique",
@@ -106119,10 +106117,10 @@
     "pattern": "^Offrande\\ spirituelle\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ d\u0027Effet(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Offrande spirituelle octroie #% au Bonus de D\u00E9g\u00E2ts critiques",
+    "text": "Offrande spirituelle octroie \u002B#% au Bonus de D\u00E9g\u00E2ts critiques",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Offrande\\ spirituelle\\ octroie\\ ([-0-9,.]\u002B)%\\ au\\ Bonus\\ de\\ D\u00E9g\u00E2ts\\ critiques(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^Offrande\\ spirituelle\\ octroie\\ \\\u002B([-0-9,.]\u002B)%\\ au\\ Bonus\\ de\\ D\u00E9g\u00E2ts\\ critiques(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Offrande spirituelle octroie aux Cr\u00E9atures #% d\u0027Augmentation des Chances de Touche critique",
@@ -106429,33 +106427,33 @@
   },
   {
     "text": "Pas de D\u00E9g\u00E2ts Physiques",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_1509134228",
+      "desecrated.stat_1509134228",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "fractured.stat_1509134228",
+      "rune.stat_1509134228"
+    ],
+    "pattern": "^Pas\\ de\\ D\u00E9g\u00E2ts\\ Physiques(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Pas de D\u00E9g\u00E2ts Physiques",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_1509134228",
+      "desecrated.stat_1509134228",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "fractured.stat_1509134228",
+      "rune.stat_1509134228"
+    ],
+    "pattern": "^Pas\\ de\\ D\u00E9g\u00E2ts\\ Physiques(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Pas de D\u00E9g\u00E2ts Physiques",
     "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_1509134228",
-      "desecrated.stat_1509134228",
-      "enchant.stat_1509134228",
-      "explicit.stat_1509134228",
-      "fractured.stat_1509134228",
-      "rune.stat_1509134228"
-    ],
-    "pattern": "^Pas\\ de\\ D\u00E9g\u00E2ts\\ Physiques(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Pas de D\u00E9g\u00E2ts Physiques",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_1509134228",
-      "desecrated.stat_1509134228",
-      "enchant.stat_1509134228",
-      "explicit.stat_1509134228",
-      "fractured.stat_1509134228",
-      "rune.stat_1509134228"
-    ],
-    "pattern": "^Pas\\ de\\ D\u00E9g\u00E2ts\\ Physiques(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Pas de D\u00E9g\u00E2ts Physiques",
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1509134228",
@@ -107904,22 +107902,22 @@
     "pattern": "^Ponction\\ vitale\\ dure\\ ([-0-9,.]\u002B)\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
+    "text": "Ponction vitale dure # secondes",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ponction\\ vitale\\ dure\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Ponction vitale dure # secondes",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ponction\\ vitale\\ dure\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
     "text": "Ponction vitale dure \u002B# secondes",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ponction\\ vitale\\ dure\\ \\\u002B([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Ponction vitale dure # secondes",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Ponction\\ vitale\\ dure\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Ponction vitale dure # secondes",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Ponction\\ vitale\\ dure\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Porte la Marque du Seigneur abyssal",
@@ -108592,13 +108590,13 @@
   },
   {
     "text": "Puret\u00E9 de la foudre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Puret\u00E9 de la foudre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -108612,13 +108610,13 @@
   },
   {
     "text": "Puret\u00E9 de la foudre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Puret\u00E9 de la foudre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -108631,13 +108629,13 @@
   },
   {
     "text": "Puret\u00E9 de la glace a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Puret\u00E9 de la glace a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -108676,7 +108674,6 @@
   },
   {
     "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -108690,6 +108687,7 @@
   },
   {
     "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -108703,13 +108701,13 @@
   },
   {
     "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -109509,6 +109507,12 @@
   {
     "text": "Rajoutez #% des D\u00E9g\u00E2ts sous forme de D\u00E9g\u00E2ts de Feu",
     "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Rajoutez\\ ([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Feu(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Rajoutez #% des D\u00E9g\u00E2ts sous forme de D\u00E9g\u00E2ts de Feu",
+    "lines": 1,
     "tradeIds": [
       "crafted.stat_3015669065",
       "desecrated.stat_3015669065",
@@ -109516,12 +109520,6 @@
       "fractured.stat_3015669065",
       "rune.stat_3015669065"
     ],
-    "pattern": "^Rajoutez\\ ([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Feu(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Rajoutez #% des D\u00E9g\u00E2ts sous forme de D\u00E9g\u00E2ts de Feu",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Rajoutez\\ ([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Feu(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -110789,8 +110787,7 @@
     "text": "R\u00E9cup\u00E9ration instantan\u00E9e",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1526933524",
-      "explicit.stat_2503377690"
+      "explicit.stat_1526933524"
     ],
     "pattern": "^R\u00E9cup\u00E9ration\\ instantan\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -110798,7 +110795,8 @@
     "text": "R\u00E9cup\u00E9ration instantan\u00E9e",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1526933524"
+      "explicit.stat_1526933524",
+      "explicit.stat_2503377690"
     ],
     "pattern": "^R\u00E9cup\u00E9ration\\ instantan\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -111538,13 +111536,13 @@
   },
   {
     "text": "Sang et sable a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Sang\\ et\\ sable\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Sang et sable a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Sang\\ et\\ sable\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -111570,13 +111568,13 @@
   },
   {
     "text": "Sang p\u00E9trifi\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Sang\\ p\u00E9trifi\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Sang p\u00E9trifi\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Sang\\ p\u00E9trifi\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -115904,16 +115902,16 @@
     "pattern": "^Verisium\\ Remnants\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Monster\\ Rarity\\ per\\ Remnant\\ Completed\\ in\\ Area(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "Verrouille les Ennemis comme si vous aviez \u002B#% Davantage de D\u00E9g\u00E2ts",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Verrouille\\ les\\ Ennemis\\ comme\\ si\\ vous\\ aviez\\ \\\u002B([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "Verrouille les Ennemis comme si vous aviez #% Davantage de D\u00E9g\u00E2ts",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Verrouille\\ les\\ Ennemis\\ comme\\ si\\ vous\\ aviez\\ ([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Verrouille les Ennemis comme si vous aviez \u002B#% Davantage de D\u00E9g\u00E2ts",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Verrouille\\ les\\ Ennemis\\ comme\\ si\\ vous\\ aviez\\ \\\u002B([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Verrouille les Ennemis comme si vous aviez #% de Perte de D\u00E9g\u00E2ts",
@@ -116758,13 +116756,13 @@
   },
   {
     "text": "Vitalit\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vitalit\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Vitalit\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vitalit\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
@@ -124053,13 +124051,13 @@
   },
   {
     "text": "Vous avez # % de chances de contre attaquer avec vos \u00E9pines contre les d\u00E9g\u00E2ts instantan\u00E9s \u00E0 distance si vous avez au moins 200 tributs.",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ avez\\ ([-0-9,.]\u002B)\\ %\\ de\\ chances\\ de\\ contre\\ attaquer\\ avec\\ vos\\ \u00E9pines\\ contre\\ les\\ d\u00E9g\u00E2ts\\ instantan\u00E9s\\ \u00E0\\ distance\\ si\\ vous\\ avez\\ au\\ moins\\ 200\\ tributs\\.(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Vous avez # % de chances de contre attaquer avec vos \u00E9pines contre les d\u00E9g\u00E2ts instantan\u00E9s \u00E0 distance si vous avez au moins 200 tributs.",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ avez\\ ([-0-9,.]\u002B)\\ %\\ de\\ chances\\ de\\ contre\\ attaquer\\ avec\\ vos\\ \u00E9pines\\ contre\\ les\\ d\u00E9g\u00E2ts\\ instantan\u00E9s\\ \u00E0\\ distance\\ si\\ vous\\ avez\\ au\\ moins\\ 200\\ tributs\\.(?:\\ \\([^\\)]\u002B\\))?$"
@@ -124758,13 +124756,13 @@
   },
   {
     "text": "Vous et vos Alli\u00E9s \u00E0 proximit\u00E9 avez \u002B#% \u00E0 toutes les R\u00E9sistances \u00E9l\u00E9mentaires",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ et\\ vos\\ Alli\u00E9s\\ \u00E0\\ proximit\u00E9\\ avez\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Vous et vos Alli\u00E9s \u00E0 proximit\u00E9 avez \u002B#% \u00E0 toutes les R\u00E9sistances \u00E9l\u00E9mentaires",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ et\\ vos\\ Alli\u00E9s\\ \u00E0\\ proximit\u00E9\\ avez\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires(?:\\ \\([^\\)]\u002B\\))?$"
@@ -125385,13 +125383,13 @@
   },
   {
     "text": "Vous gagnez Infusion apr\u00E8s avoir Canalis\u00E9 une Aptitude modifi\u00E9e pendant # secondes",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ gagnez\\ Infusion\\ apr\u00E8s\\ avoir\\ Canalis\u00E9\\ une\\ Aptitude\\ modifi\u00E9e\\ pendant\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Vous gagnez Infusion apr\u00E8s avoir Canalis\u00E9 une Aptitude modifi\u00E9e pendant # secondes",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ gagnez\\ Infusion\\ apr\u00E8s\\ avoir\\ Canalis\u00E9\\ une\\ Aptitude\\ modifi\u00E9e\\ pendant\\ ([-0-9,.]\u002B)\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
@@ -128342,17 +128340,17 @@
   },
   {
     "text": "Vous ne pouvez pas \u00EAtre Frigorifi\u00E9 pendant # secondes apr\u00E8s avoir \u00E9t\u00E9 Frigorifi\u00E9",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Vous\\ ne\\ pouvez\\ pas\\ \u00EAtre\\ Frigorifi\u00E9\\ pendant\\ ([-0-9,.]\u002B)\\ secondes\\ apr\u00E8s\\ avoir\\ \u00E9t\u00E9\\ Frigorifi\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Vous ne pouvez pas \u00EAtre Frigorifi\u00E9 pendant # secondes apr\u00E8s avoir \u00E9t\u00E9 Frigorifi\u00E9",
     "value": 1000,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2306924373"
     ],
+    "pattern": "^Vous\\ ne\\ pouvez\\ pas\\ \u00EAtre\\ Frigorifi\u00E9\\ pendant\\ ([-0-9,.]\u002B)\\ secondes\\ apr\u00E8s\\ avoir\\ \u00E9t\u00E9\\ Frigorifi\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Vous ne pouvez pas \u00EAtre Frigorifi\u00E9 pendant # secondes apr\u00E8s avoir \u00E9t\u00E9 Frigorifi\u00E9",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Vous\\ ne\\ pouvez\\ pas\\ \u00EAtre\\ Frigorifi\u00E9\\ pendant\\ ([-0-9,.]\u002B)\\ secondes\\ apr\u00E8s\\ avoir\\ \u00E9t\u00E9\\ Frigorifi\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -129095,22 +129093,22 @@
     "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Mana\\ par\\ Ennemi\\ Tu\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
+    "text": "Vous perdez # de Mana par seconde",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Mana\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "Vous perdez # de Mana par seconde",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Mana\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
     "text": "Vous perdez #% de Mana par seconde",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)%\\ de\\ Mana\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Vous perdez # de Mana par seconde",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Mana\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "Vous perdez # de Mana par seconde",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Mana\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Vous perdez #% de Mana par seconde",
@@ -131117,13 +131115,13 @@
   },
   {
     "text": "Vruun, Mar\u00E9chal de Xesht a #% d\u0027Augmentation de chances de c\u00E9der des Gemmes de soutien de lignage",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vruun,\\ Mar\u00E9chal\\ de\\ Xesht\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ chances\\ de\\ c\u00E9der\\ des\\ Gemmes\\ de\\ soutien\\ de\\ lignage(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "Vruun, Mar\u00E9chal de Xesht a #% d\u0027Augmentation de chances de c\u00E9der des Gemmes de soutien de lignage",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vruun,\\ Mar\u00E9chal\\ de\\ Xesht\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ chances\\ de\\ c\u00E9der\\ des\\ Gemmes\\ de\\ soutien\\ de\\ lignage(?:\\ \\([^\\)]\u002B\\))?$"
@@ -131805,10 +131803,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ au\\ Multiplicateur\\ de\\ D\u00E9g\u00E2ts\\ sur\\ la\\ dur\u00E9e\\ si\\ vous\\ avez\\ Tu\u00E9\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% au Multiplicateur de D\u00E9g\u00E2ts sur la dur\u00E9e si vous avez inflig\u00E9 une Touche critique au cours des 8 derni\u00E8res secondes",
+    "text": "\u002B#% au Multiplicateur de D\u00E9g\u00E2ts sur la dur\u00E9e si vous avez inflig\u00E9 une Touche critique au cours des 8 derni\u00E8res secondes",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ au\\ Multiplicateur\\ de\\ D\u00E9g\u00E2ts\\ sur\\ la\\ dur\u00E9e\\ si\\ vous\\ avez\\ inflig\u00E9\\ une\\ Touche\\ critique\\ au\\ cours\\ des\\ 8\\ derni\u00E8res\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ au\\ Multiplicateur\\ de\\ D\u00E9g\u00E2ts\\ sur\\ la\\ dur\u00E9e\\ si\\ vous\\ avez\\ inflig\u00E9\\ une\\ Touche\\ critique\\ au\\ cours\\ des\\ 8\\ derni\u00E8res\\ secondes(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% au Multiplicateur de d\u00E9g\u00E2ts sur la dur\u00E9e tant que Malfaisance vous affecte",
@@ -134835,16 +134833,16 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ Charges\\ d\u0027endurance,\\ de\\ fr\u00E9n\u00E9sie\\ et\\ de\\ pouvoir(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# au maximum de Charges d\u0027endurance si vous avez au moins 100 de Tribut",
+    "text": "\u002B# au maximum de Charges d\u0027endurance si vous avez au moins 100 de Tribut",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ Charges\\ d\u0027endurance\\ si\\ vous\\ avez\\ au\\ moins\\ 100\\ de\\ Tribut(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ Charges\\ d\u0027endurance\\ si\\ vous\\ avez\\ au\\ moins\\ 100\\ de\\ Tribut(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# au maximum de Charges d\u0027endurance si vous avez au moins 100 de Tribut",
+    "text": "\u002B# au maximum de Charges d\u0027endurance si vous avez au moins 100 de Tribut",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ Charges\\ d\u0027endurance\\ si\\ vous\\ avez\\ au\\ moins\\ 100\\ de\\ Tribut(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ Charges\\ d\u0027endurance\\ si\\ vous\\ avez\\ au\\ moins\\ 100\\ de\\ Tribut(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# au maximum de Charges d\u0027esprit par Joyau abyssal qui vous affecte",
@@ -134871,10 +134869,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ Charges\\ divines(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# au maximum de charge de pouvoir si vous avez au moins 100 tributs.",
+    "text": "\u002B# au maximum de charge de pouvoir si vous avez au moins 100 tributs.",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ charge\\ de\\ pouvoir\\ si\\ vous\\ avez\\ au\\ moins\\ 100\\ tributs\\.(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ maximum\\ de\\ charge\\ de\\ pouvoir\\ si\\ vous\\ avez\\ au\\ moins\\ 100\\ tributs\\.(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% au montant de D\u00E9g\u00E2ts Neutralis\u00E9s lors de la D\u00E9viation de Touches Critiques",
@@ -135129,16 +135127,16 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ d\u0027aspirant(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# au nombre maximum de Charges d\u0027endurance tant que D\u00E9termination vous affecte",
+    "text": "\u002B# au nombre maximum de Charges d\u0027endurance tant que D\u00E9termination vous affecte",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ d\u0027endurance\\ tant\\ que\\ D\u00E9termination\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ d\u0027endurance\\ tant\\ que\\ D\u00E9termination\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# au nombre maximum de Charges de fr\u00E9n\u00E9sie tant que Gr\u00E2ce vous affecte",
+    "text": "\u002B# au nombre maximum de Charges de fr\u00E9n\u00E9sie tant que Gr\u00E2ce vous affecte",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ fr\u00E9n\u00E9sie\\ tant\\ que\\ Gr\u00E2ce\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ fr\u00E9n\u00E9sie\\ tant\\ que\\ Gr\u00E2ce\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# au nombre maximum de Charges de f\u00E9rocit\u00E9",
@@ -135147,16 +135145,16 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ f\u00E9rocit\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# au nombre maximum de Charges de pouvoir et nombre maximum de Charges d\u0027endurance",
+    "text": "\u002B# au nombre maximum de Charges de pouvoir et nombre maximum de Charges d\u0027endurance",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ pouvoir\\ et\\ nombre\\ maximum\\ de\\ Charges\\ d\u0027endurance(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ pouvoir\\ et\\ nombre\\ maximum\\ de\\ Charges\\ d\u0027endurance(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# au nombre maximum de Charges de pouvoir tant que Discipline vous affecte",
+    "text": "\u002B# au nombre maximum de Charges de pouvoir tant que Discipline vous affecte",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ pouvoir\\ tant\\ que\\ Discipline\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Charges\\ de\\ pouvoir\\ tant\\ que\\ Discipline\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# au nombre maximum de Chausse-trappes autoris\u00E9s",
@@ -135165,17 +135163,17 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Chausse-trappes\\ autoris\u00E9s(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "\u002B# au nombre maximum de Ch\u00E2sses",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Ch\u00E2sses(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "# au nombre maximum de Ch\u00E2sses",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Ch\u00E2sses(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "\u002B# au nombre maximum de Ch\u00E2sses",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ nombre\\ maximum\\ de\\ Ch\u00E2sses(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# au nombre maximum de Golems",
@@ -135445,10 +135443,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ aux\\ Chances\\ de\\ Touche\\ critique\\ tant\\ que\\ vous\\ \u00EAtes\\ Insaisissable(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% aux Chances de Touche critique tant que vous \u00EAtes Mort",
+    "text": "\u002B#% aux Chances de Touche critique tant que vous \u00EAtes Mort",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ aux\\ Chances\\ de\\ Touche\\ critique\\ tant\\ que\\ vous\\ \u00EAtes\\ Mort(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ aux\\ Chances\\ de\\ Touche\\ critique\\ tant\\ que\\ vous\\ \u00EAtes\\ Mort(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% aux Chances de Touche critique tant que vous \u00EAtes au maximum de Charges de pouvoir",
@@ -135739,10 +135737,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ d\u0027Armure\\ tant\\ que\\ vous\\ n\u0027avez\\ pas\\ Avatar\\ du\\ feu(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# d\u0027Armure tous les 1 de Bouclier d\u0027\u00E9nergie d\u0027objet sur le Casque \u00C9quip\u00E9",
+    "text": "\u002B# d\u0027Armure tous les 1 de Bouclier d\u0027\u00E9nergie d\u0027objet sur le Casque \u00C9quip\u00E9",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ d\u0027Armure\\ tous\\ les\\ 1\\ de\\ Bouclier\\ d\u0027\u00E9nergie\\ d\u0027objet\\ sur\\ le\\ Casque\\ \u00C9quip\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ d\u0027Armure\\ tous\\ les\\ 1\\ de\\ Bouclier\\ d\u0027\u00E9nergie\\ d\u0027objet\\ sur\\ le\\ Casque\\ \u00C9quip\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# d\u0027Armure tous les 2 de Force",
@@ -138845,15 +138843,15 @@
   {
     "text": "#% d\u0027Augmentation de l\u0027Amplitude du Poison inflig\u00E9 aux cibles qui ne sont pas Empoisonn\u00E9es",
     "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1864159246"
-    ],
+    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Amplitude\\ du\\ Poison\\ inflig\u00E9\\ aux\\ cibles\\ qui\\ ne\\ sont\\ pas\\ Empoisonn\u00E9es(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Amplitude du Poison inflig\u00E9 aux cibles qui ne sont pas Empoisonn\u00E9es",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1864159246"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Amplitude\\ du\\ Poison\\ inflig\u00E9\\ aux\\ cibles\\ qui\\ ne\\ sont\\ pas\\ Empoisonn\u00E9es(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -139236,13 +139234,13 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Effet b\u00E9n\u00E9fique de Sang et sable",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Effet\\ b\u00E9n\u00E9fique\\ de\\ Sang\\ et\\ sable(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Effet b\u00E9n\u00E9fique de Sang et sable",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Effet\\ b\u00E9n\u00E9fique\\ de\\ Sang\\ et\\ sable(?:\\ \\([^\\)]\u002B\\))?$"
@@ -139620,9 +139618,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3407849389",
-      "explicit.stat_3407849389",
-      "rune.stat_3407849389"
+      "desecrated.stat_3796523155",
+      "explicit.stat_3796523155",
+      "fractured.stat_3796523155"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Effet\\ des\\ Mal\u00E9dictions\\ sur\\ les\\ Monstres(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -139631,9 +139629,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3796523155",
-      "explicit.stat_3796523155",
-      "fractured.stat_3796523155"
+      "desecrated.stat_3407849389",
+      "explicit.stat_3407849389",
+      "rune.stat_3407849389"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Effet\\ des\\ Mal\u00E9dictions\\ sur\\ les\\ Monstres(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -139689,13 +139687,13 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Effet des Talents de l\u0027Atlas mineurs",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Effet\\ des\\ Talents\\ de\\ l\u0027Atlas\\ mineurs(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Effet des Talents de l\u0027Atlas mineurs",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Effet\\ des\\ Talents\\ de\\ l\u0027Atlas\\ mineurs(?:\\ \\([^\\)]\u002B\\))?$"
@@ -139748,16 +139746,16 @@
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation d\u0027Esprit",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_53386210",
+      "explicit.stat_53386210"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ d\u0027Esprit(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation d\u0027Esprit",
     "lines": 1,
-    "tradeIds": [
-      "desecrated.stat_53386210",
-      "explicit.stat_53386210"
-    ],
+    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ d\u0027Esprit(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -139787,7 +139785,6 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -139798,6 +139795,7 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -139862,39 +139860,39 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes modifi\u00E9es par Projection de sortil\u00E8ges",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Projection\\ de\\ sortil\u00E8ges(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes modifi\u00E9es par Projection de sortil\u00E8ges",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Projection\\ de\\ sortil\u00E8ges(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes permettant de jeter des Mines",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ permettant\\ de\\ jeter\\ des\\ Mines(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes permettant de jeter des Mines",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ permettant\\ de\\ jeter\\ des\\ Mines(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes tous les 250 de total de vos Attributs",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ tous\\ les\\ 250\\ de\\ total\\ de\\ vos\\ Attributs(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes tous les 250 de total de vos Attributs",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ tous\\ les\\ 250\\ de\\ total\\ de\\ vos\\ Attributs(?:\\ \\([^\\)]\u002B\\))?$"
@@ -141942,13 +141940,13 @@
   },
   {
     "text": "#% d\u0027Augmentation de la Pr\u00E9cision avec les Aptitudes \u00E0 Zone d\u0027effet",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ Pr\u00E9cision\\ avec\\ les\\ Aptitudes\\ \u00E0\\ Zone\\ d\u0027effet(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation de la Pr\u00E9cision avec les Aptitudes \u00E0 Zone d\u0027effet",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ Pr\u00E9cision\\ avec\\ les\\ Aptitudes\\ \u00E0\\ Zone\\ d\u0027effet(?:\\ \\([^\\)]\u002B\\))?$"
@@ -150666,13 +150664,13 @@
   },
   {
     "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts si vous avez Tu\u00E9 un Ennemi qui Saigne R\u00E9cemment",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ si\\ vous\\ avez\\ Tu\u00E9\\ un\\ Ennemi\\ qui\\ Saigne\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts si vous avez Tu\u00E9 un Ennemi qui Saigne R\u00E9cemment",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ si\\ vous\\ avez\\ Tu\u00E9\\ un\\ Ennemi\\ qui\\ Saigne\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
@@ -154752,10 +154750,10 @@
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ Chances\\ de\\ gagner\\ une\\ Charge\\ de\\ fr\u00E9n\u00E9sie\\ lorsque\\ vous\\ \u00EAtes\\ Touch\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# de Charge",
+    "text": "\u002B# de Charge",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ de\\ Charge(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ de\\ Charge(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# de Dext\u00E9rit\u00E9",
@@ -154927,16 +154925,16 @@
     "pattern": "^([-0-9,.]\u002B)\\ de\\ Mana\\ R\u00E9g\u00E9n\u00E9r\u00E9\\ par\\ seconde\\ lorsque\\ vous\\ tenez\\ un\\ bouclier(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% de Mana R\u00E9g\u00E9n\u00E9r\u00E9 par seconde si vous avez Touch\u00E9 un Ennemi R\u00E9cemment",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ Mana\\ R\u00E9g\u00E9n\u00E9r\u00E9\\ par\\ seconde\\ si\\ vous\\ avez\\ Touch\u00E9\\ un\\ Ennemi\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "# de Mana R\u00E9g\u00E9n\u00E9r\u00E9 par seconde si vous avez Touch\u00E9 un Ennemi R\u00E9cemment",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)\\ de\\ Mana\\ R\u00E9g\u00E9n\u00E9r\u00E9\\ par\\ seconde\\ si\\ vous\\ avez\\ Touch\u00E9\\ un\\ Ennemi\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "#% de Mana R\u00E9g\u00E9n\u00E9r\u00E9 par seconde si vous avez Touch\u00E9 un Ennemi R\u00E9cemment",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ Mana\\ R\u00E9g\u00E9n\u00E9r\u00E9\\ par\\ seconde\\ si\\ vous\\ avez\\ Touch\u00E9\\ un\\ Ennemi\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "# de Mana R\u00E9g\u00E9n\u00E9r\u00E9 par seconde si vous avez utilis\u00E9 une Aptitude de d\u00E9placement R\u00E9cemment",
@@ -156100,13 +156098,13 @@
   },
   {
     "text": "#% de Perte de D\u00E9g\u00E2ts physiques subis par Charge d\u0027endurance consomm\u00E9e",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ Perte\\ de\\ D\u00E9g\u00E2ts\\ physiques\\ subis\\ par\\ Charge\\ d\u0027endurance\\ consomm\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de Perte de D\u00E9g\u00E2ts physiques subis par Charge d\u0027endurance consomm\u00E9e",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ Perte\\ de\\ D\u00E9g\u00E2ts\\ physiques\\ subis\\ par\\ Charge\\ d\u0027endurance\\ consomm\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
@@ -161381,26 +161379,26 @@
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes modifi\u00E9es par Projection de sortil\u00E8ges",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Projection\\ de\\ sortil\u00E8ges(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes modifi\u00E9es par Projection de sortil\u00E8ges",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Projection\\ de\\ sortil\u00E8ges(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes permettant de jeter des Mines",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ permettant\\ de\\ jeter\\ des\\ Mines(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes permettant de jeter des Mines",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ permettant\\ de\\ jeter\\ des\\ Mines(?:\\ \\([^\\)]\u002B\\))?$"
@@ -166525,13 +166523,13 @@
   },
   {
     "text": "#% de R\u00E9duction de la Vitesse de jet de Mine d\u0027\u00E9clats de glace",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ de\\ jet\\ de\\ Mine\\ d\u0027\u00E9clats\\ de\\ glace(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de R\u00E9duction de la Vitesse de jet de Mine d\u0027\u00E9clats de glace",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ de\\ jet\\ de\\ Mine\\ d\u0027\u00E9clats\\ de\\ glace(?:\\ \\([^\\)]\u002B\\))?$"
@@ -176058,22 +176056,6 @@
     "pattern": "^([-0-9,.]\u002B)\\ de\\ Vie\\ R\u00E9g\u00E9n\u00E9r\u00E9e\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% de Vie R\u00E9g\u00E9n\u00E9r\u00E9e par seconde",
-    "lines": 1,
-    "tradeIds": [
-      "desecrated.stat_3325883026",
-      "enchant.stat_836936635",
-      "explicit.stat_3325883026",
-      "explicit.stat_836936635",
-      "fractured.stat_3325883026",
-      "implicit.stat_3325883026",
-      "implicit.stat_836936635",
-      "rune.stat_3325883026",
-      "rune.stat_836936635"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ Vie\\ R\u00E9g\u00E9n\u00E9r\u00E9e\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "# de Vie R\u00E9g\u00E9n\u00E9r\u00E9e par seconde",
     "lines": 1,
     "tradeIds": [
@@ -176091,9 +176073,18 @@
   },
   {
     "text": "#% de Vie R\u00E9g\u00E9n\u00E9r\u00E9e par seconde",
-    "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3325883026",
+      "enchant.stat_836936635",
+      "explicit.stat_3325883026",
+      "explicit.stat_836936635",
+      "fractured.stat_3325883026",
+      "implicit.stat_3325883026",
+      "implicit.stat_836936635",
+      "rune.stat_3325883026",
+      "rune.stat_836936635"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ Vie\\ R\u00E9g\u00E9n\u00E9r\u00E9e\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -176110,6 +176101,13 @@
       "rune.stat_3325883026",
       "rune.stat_836936635"
     ],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ Vie\\ R\u00E9g\u00E9n\u00E9r\u00E9e\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "#% de Vie R\u00E9g\u00E9n\u00E9r\u00E9e par seconde",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ Vie\\ R\u00E9g\u00E9n\u00E9r\u00E9e\\ par\\ seconde(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -178245,18 +178243,18 @@
   },
   {
     "text": "#% de chances de Repousser les Ennemis au Toucher",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3739186583"
+      "enchant.stat_2301191210"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ Repousser\\ les\\ Ennemis\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de chances de Repousser les Ennemis au Toucher",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2301191210"
+      "explicit.stat_3739186583"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ Repousser\\ les\\ Ennemis\\ au\\ Toucher(?:\\ \\([^\\)]\u002B\\))?$"
   },
@@ -179813,7 +179811,6 @@
   },
   {
     "text": "#% de chances de gagner Assaut pendant 4 secondes en Tuant",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
@@ -179822,6 +179819,7 @@
   },
   {
     "text": "#% de chances de gagner Assaut pendant 4 secondes en Tuant",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
@@ -181539,16 +181537,16 @@
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances,\\ lorsque\\ vous\\ payez\\ le\\ Co\u00FBt\\ d\u0027une\\ Aptitude,\\ de\\ gagner\\ la\\ m\u00EAme\\ quantit\u00E9\\ de\\ Mana(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "\u002B#% de chances par Puissance de g\u00E9n\u00E9rer un Reliquat de Froid en Gelant une cible",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ chances\\ par\\ Puissance\\ de\\ g\u00E9n\u00E9rer\\ un\\ Reliquat\\ de\\ Froid\\ en\\ Gelant\\ une\\ cible(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "#% de chances par Puissance de g\u00E9n\u00E9rer un Reliquat de Froid en Gelant une cible",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ par\\ Puissance\\ de\\ g\u00E9n\u00E9rer\\ un\\ Reliquat\\ de\\ Froid\\ en\\ Gelant\\ une\\ cible(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "\u002B#% de chances par Puissance de g\u00E9n\u00E9rer un Reliquat de Froid en Gelant une cible",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ chances\\ par\\ Puissance\\ de\\ g\u00E9n\u00E9rer\\ un\\ Reliquat\\ de\\ Froid\\ en\\ Gelant\\ une\\ cible(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "#% de chances pendant les Casses que les Objets c\u00E9d\u00E9s aient une Ch\u00E2sse suppl\u00E9mentaire",
@@ -182897,7 +182895,6 @@
   },
   {
     "text": "#% des D\u00E9g\u00E2ts de Feu au Toucher sont subis sous forme de D\u00E9g\u00E2ts Physiques",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3205239847"
@@ -182906,6 +182903,7 @@
   },
   {
     "text": "#% des D\u00E9g\u00E2ts de Feu au Toucher sont subis sous forme de D\u00E9g\u00E2ts Physiques",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3205239847"
@@ -183488,17 +183486,17 @@
   },
   {
     "text": "#% des D\u00E9g\u00E2ts subis pendant l\u0027effet sont Recouvr\u00E9s sous forme de Vie",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ pendant\\ l\u0027effet\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts subis pendant l\u0027effet sont Recouvr\u00E9s sous forme de Vie",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3598623697"
     ],
+    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ pendant\\ l\u0027effet\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "#% des D\u00E9g\u00E2ts subis pendant l\u0027effet sont Recouvr\u00E9s sous forme de Vie",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ pendant\\ l\u0027effet\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -183551,13 +183549,6 @@
   },
   {
     "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Vie",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Vie",
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1444556985",
@@ -183568,6 +183559,13 @@
       "implicit.stat_1444556985",
       "rune.stat_1444556985"
     ],
+    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Vie",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -184042,17 +184040,17 @@
   },
   {
     "text": "\u002B# m\u00E8tre de distance de Roulade si vous n\u0027avez pas effectu\u00E9 de Roulade R\u00E9cemment",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ m\u00E8tre\\ de\\ distance\\ de\\ Roulade\\ si\\ vous\\ n\u0027avez\\ pas\\ effectu\u00E9\\ de\\ Roulade\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
-    "text": "\u002B# m\u00E8tre de distance de Roulade si vous n\u0027avez pas effectu\u00E9 de Roulade R\u00E9cemment",
     "value": 10,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3350232544"
     ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ m\u00E8tre\\ de\\ distance\\ de\\ Roulade\\ si\\ vous\\ n\u0027avez\\ pas\\ effectu\u00E9\\ de\\ Roulade\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "\u002B# m\u00E8tre de distance de Roulade si vous n\u0027avez pas effectu\u00E9 de Roulade R\u00E9cemment",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ m\u00E8tre\\ de\\ distance\\ de\\ Roulade\\ si\\ vous\\ n\u0027avez\\ pas\\ effectu\u00E9\\ de\\ Roulade\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
@@ -184279,10 +184277,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ seconde\\ au\\ temps\\ d\u0027attaque\\ de\\ base\\ si\\ vous\\ \u00EAtes\\ debout(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# seconde de Dur\u00E9e",
+    "text": "\u002B# seconde de Dur\u00E9e",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ seconde\\ de\\ Dur\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ seconde\\ de\\ Dur\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# seconde \u00E0 la Dur\u00E9e des Totems",
@@ -184334,10 +184332,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ secondes\\ au\\ temps\\ d\u0027utilisation\\ de\\ base\\ lors\\ de\\ la\\ M\u00E9tamorphose(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# secondes de Dur\u00E9e",
+    "text": "\u002B# secondes de Dur\u00E9e",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ secondes\\ de\\ Dur\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ secondes\\ de\\ Dur\u00E9e(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# secondes de Dur\u00E9e de base par Palier",
@@ -185338,10 +185336,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ \u00E0\\ l\u0027Allonge\\ de\\ M\u00EAl\u00E9e\\ avec\\ les\\ masses\\ et\\ les\\ sceptres(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "# \u00E0 l\u0027Allonge de M\u00EAl\u00E9e tant qu\u0027il y a au moins 5 Ennemis \u00E0 proximit\u00E9",
+    "text": "\u002B# \u00E0 l\u0027Allonge de M\u00EAl\u00E9e tant qu\u0027il y a au moins 5 Ennemis \u00E0 proximit\u00E9",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ \u00E0\\ l\u0027Allonge\\ de\\ M\u00EAl\u00E9e\\ tant\\ qu\u0027il\\ y\\ a\\ au\\ moins\\ 5\\ Ennemis\\ \u00E0\\ proximit\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ \u00E0\\ l\u0027Allonge\\ de\\ M\u00EAl\u00E9e\\ tant\\ qu\u0027il\\ y\\ a\\ au\\ moins\\ 5\\ Ennemis\\ \u00E0\\ proximit\u00E9(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# \u00E0 l\u0027Allonge de M\u00EAl\u00E9e tant que vous \u00EAtes sous l\u0027effet du Renforcement",
@@ -185680,7 +185678,7 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ Qualit\u00E9\\ des\\ Gemmes\\ \u00E0\\ Zone\\ d\u0027effet\\ Ench\u00E2ss\u00E9es(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% \u00E0 la Qualit\u00E9 maximale",
+    "text": "\u002B#% \u00E0 la Qualit\u00E9 maximale",
     "lines": 1,
     "tradeIds": [
       "crafted.stat_2039822488",
@@ -185688,7 +185686,7 @@
       "fractured.stat_2039822488",
       "implicit.stat_2039822488"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ \u00E0\\ la\\ Qualit\u00E9\\ maximale(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ Qualit\u00E9\\ maximale(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# \u00E0 la Rage Rage maximale tant que vous maniez une Hache",
@@ -186275,22 +186273,6 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ \u00E0\\ la\\ longueur\\ de\\ la\\ Zone\\ d\u0027effet(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "\u002B#\u00A0\u00E0 tous les Attributs",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_2897413282",
-      "desecrated.stat_1379411836",
-      "explicit.stat_1379411836",
-      "explicit.stat_2897413282",
-      "fractured.stat_1379411836",
-      "fractured.stat_2897413282",
-      "implicit.stat_1379411836",
-      "rune.stat_1379411836",
-      "rune.stat_2897413282"
-    ],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)\u00A0\u00E0\\ tous\\ les\\ Attributs(?:\\ \\([^\\)]\u002B\\))?$"
-  },
-  {
     "text": "\u002B# \u00E0 tous les Attributs",
     "lines": 1,
     "tradeIds": [
@@ -186305,6 +186287,22 @@
       "rune.stat_2897413282"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ \u00E0\\ tous\\ les\\ Attributs(?:\\ \\([^\\)]\u002B\\))?$"
+  },
+  {
+    "text": "\u002B#\u00A0\u00E0 tous les Attributs",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_2897413282",
+      "desecrated.stat_1379411836",
+      "explicit.stat_1379411836",
+      "explicit.stat_2897413282",
+      "fractured.stat_1379411836",
+      "fractured.stat_2897413282",
+      "implicit.stat_1379411836",
+      "rune.stat_1379411836",
+      "rune.stat_2897413282"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\u00A0\u00E0\\ tous\\ les\\ Attributs(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B# \u00E0 tous les Attributs au total",
@@ -186468,10 +186466,10 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires\\ maximales\\ si\\ vous\\ avez\\ tu\u00E9\\ un\\ ennemi\\ Maudit\\ R\u00E9cemment(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
-    "text": "#% \u00E0 toutes les R\u00E9sistances \u00E9l\u00E9mentaires maximales tant que Puret\u00E9 des \u00E9l\u00E9ments vous affecte",
+    "text": "\u002B#% \u00E0 toutes les R\u00E9sistances \u00E9l\u00E9mentaires maximales tant que Puret\u00E9 des \u00E9l\u00E9ments vous affecte",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires\\ maximales\\ tant\\ que\\ Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires\\ maximales\\ tant\\ que\\ Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ vous\\ affecte(?:\\ \\([^\\)]\u002B\\))?$"
   },
   {
     "text": "\u002B#% \u00E0 toutes les R\u00E9sistances \u00E9l\u00E9mentaires maximales tant que votre Sauvegarde runique est Pleine",

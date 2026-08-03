@@ -65,7 +65,12 @@ public class StatParser
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (!item.ItemClass.CanHaveStats()) return;
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique &&
+            item.Properties.Rarity != Rarity.Gem &&
+            item.Properties.Rarity != Rarity.Currency) return;
 
         var stats = MatchStats().ToList();
         item.Stats.Clear();
@@ -94,7 +99,7 @@ public class StatParser
                     matchedLines.ForEach(x => x.Parsed = true);
 
                     var lineText = string.Join('\n', matchedLines.Select(x => x.Text));
-                    definitions = definitions.OrderByDescending(x=>Fuzz.Ratio(x.Text, lineText, FuzzySharp.PreProcess.PreprocessMode.None)).ToList();
+                    definitions = definitions.OrderByDescending(x => Fuzz.Ratio(x.Text, lineText, FuzzySharp.PreProcess.PreprocessMode.None)).ToList();
 
                     yield return CreateStat(lineText, definitions, block.Index, matchedLines.First().Index);
                 }
@@ -201,7 +206,11 @@ public class StatParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (!item.ItemClass.CanHaveStats()) return [];
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique &&
+            item.Properties.Rarity != Rarity.Gem) return [];
 
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 

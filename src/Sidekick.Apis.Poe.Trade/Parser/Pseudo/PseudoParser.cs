@@ -36,7 +36,9 @@ public class PseudoParser
 
     public void Parse(Item item)
     {
-        if (!item.ItemClass.CanHaveStats()) return;
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare) return;
 
         item.PseudoStats.Clear();
         foreach (var definition in Definitions)

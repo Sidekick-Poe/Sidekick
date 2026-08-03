@@ -92,12 +92,5 @@ public class GameLanguageJa : IGameLanguage
     public string AffixSuperior => "上質な";
     public string AffixBlighted => "ブライト";
     public string AffixBlightRavaged => "ブライトに破壊された";
-
-    public string InfluenceShaper => "シェイパーアイテム";
-    public string InfluenceElder => "エルダーアイテム";
-    public string InfluenceCrusader => "クルセイダーアイテム";
-    public string InfluenceHunter => "ハンターアイテム";
-    public string InfluenceRedeemer => "レディーマーアイテム";
-    public string InfluenceWarlord => "ウォーロードアイテム";
 }
 

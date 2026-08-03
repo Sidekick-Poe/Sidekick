@@ -92,12 +92,5 @@ public class GameLanguageTh : IGameLanguage
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";
     public string AffixBlightRavaged => "Blight-ravaged";
-
-    public string InfluenceShaper => "ไอเทมเชปเปอร์";
-    public string InfluenceElder => "ไอเทมเอลเดอร์";
-    public string InfluenceCrusader => "ไอเทมผู้พิชิตอธรรม";
-    public string InfluenceHunter => "ไอเทมผู้พิชิตเหยื่อ";
-    public string InfluenceRedeemer => "ไอเทมผู้พิชิตบาป";
-    public string InfluenceWarlord => "ไอเทมผู้พิชิตศึก";
 }
 

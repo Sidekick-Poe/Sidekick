@@ -92,12 +92,5 @@ public class GameLanguageEs : IGameLanguage
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "infestado";
     public string AffixBlightRavaged => "devastado por la plaga";
-
-    public string InfluenceShaper => "Objeto del Creador";
-    public string InfluenceElder => "Objeto del Antiguo";
-    public string InfluenceCrusader => "Objeto del Cruzado";
-    public string InfluenceHunter => "Objeto del Cazador";
-    public string InfluenceRedeemer => "Objeto de la Redentora";
-    public string InfluenceWarlord => "Objeto del Jefe de guerra";
 }
 

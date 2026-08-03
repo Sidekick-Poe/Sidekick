@@ -4,7 +4,7 @@
 @using Sidekick.Data.ItemClasses
 @using Sidekick.Data.Items
 @using Sidekick.Data.Stats
-@using Sidekick.Data.Languages
+@using Sidekick.Data.Texts
 
 @if (Condition.Comparison is AutoSelectComparisonType.True or AutoSelectComparisonType.False)
 {
@@ -30,7 +30,7 @@
                  ValueChanged="Changed"
                  Readonly="Readonly"/>
 
-@inject ICurrentGameLanguage CurrentGameLanguage
+@inject DataTextProvider DataTextProvider
 @inject IStringLocalizer<StatCategory> StatCategoryResources
 @inject ItemClassProvider ItemClassProvider
 
@@ -105,12 +105,13 @@
                 {
                     Label = rarity switch
                     {
-                        Rarity.Currency => CurrentGameLanguage.Language.RarityCurrency,
-                        Rarity.DivinationCard => CurrentGameLanguage.Language.RarityDivinationCard,
-                        Rarity.Normal => CurrentGameLanguage.Language.RarityNormal,
-                        Rarity.Magic => CurrentGameLanguage.Language.RarityMagic,
-                        Rarity.Rare => CurrentGameLanguage.Language.RarityRare,
-                        Rarity.Unique => CurrentGameLanguage.Language.RarityUnique,
+                        Rarity.Currency => DataTextProvider.Texts.ItemPropertyRarityCurrency,
+                        Rarity.DivinationCard => DataTextProvider.Texts.ItemPropertyRarityDivinationCard,
+                        Rarity.Gem => DataTextProvider.Texts.ItemPropertyRarityGem,
+                        Rarity.Normal => DataTextProvider.Texts.ItemPropertyRarityNormal,
+                        Rarity.Magic => DataTextProvider.Texts.ItemPropertyRarityMagic,
+                        Rarity.Rare => DataTextProvider.Texts.ItemPropertyRarityRare,
+                        Rarity.Unique => DataTextProvider.Texts.ItemPropertyRarityUnique,
                         _ => rarity.ToString(),
                     },
                     Value = rarity.ToString(),

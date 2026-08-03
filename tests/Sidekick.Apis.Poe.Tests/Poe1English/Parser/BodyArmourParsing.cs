@@ -63,9 +63,6 @@ can deny that my work has made quite the splash...""
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Area of Effect", 44);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Area Damage", 47);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Extra gore");
-
-        fixture.AssertHasPseudoStat(actual, "+36% total Elemental Resistance", 36);
-        fixture.AssertHasPseudoStat(actual, "+55 total maximum Life", 55);
     }
 
     [Fact]

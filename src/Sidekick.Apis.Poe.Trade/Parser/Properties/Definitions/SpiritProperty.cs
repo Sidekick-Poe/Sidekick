@@ -24,10 +24,12 @@ public class SpiritProperty(
 
     public override void Parse(Item item)
     {
-        if (!item.ItemClass.IsWeapon() &&
-            !item.ItemClass.IsEquipment()) return;
-
         if (game == GameType.PathOfExile1) return;
+
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique) return;
 
         item.Properties.Spirit = GetInt(Pattern, item.Text);
         if (item.Properties.Spirit == 0) return;

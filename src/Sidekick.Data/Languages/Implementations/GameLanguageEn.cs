@@ -92,12 +92,5 @@ public class GameLanguageEn : IGameLanguage
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";
     public string AffixBlightRavaged => "Blight-ravaged";
-
-    public string InfluenceShaper => "Shaper Item";
-    public string InfluenceElder => "Elder Item";
-    public string InfluenceCrusader => "Crusader Item";
-    public string InfluenceHunter => "Hunter Item";
-    public string InfluenceRedeemer => "Redeemer Item";
-    public string InfluenceWarlord => "Warlord Item";
 }
 

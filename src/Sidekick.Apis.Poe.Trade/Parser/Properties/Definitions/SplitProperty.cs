@@ -20,15 +20,19 @@ public class SplitProperty(
 
     public override void Parse(Item item)
     {
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique) return;
+
         item.Properties.Split = GetBool(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.ItemClass.IsEquipment() &&
-            !item.ItemClass.IsWeapon() &&
-            !item.ItemClass.IsAccessory()) return Task.FromResult<TradeFilter?>(null);
-        if (item.Properties.Rarity == Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new SplitFilter
         {

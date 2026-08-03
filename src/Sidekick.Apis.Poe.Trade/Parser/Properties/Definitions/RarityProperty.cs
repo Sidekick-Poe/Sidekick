@@ -7,40 +7,40 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RarityProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    DataTextProvider dataTextProvider) : PropertyDefinition
 {
     private Dictionary<Rarity, Regex> RarityPatterns { get; } = new()
     {
         {
-            Rarity.Normal, currentGameLanguage.Language.RarityNormal.ToRegexEndOfLine()
+            Rarity.Normal, dataTextProvider.Texts.ItemPropertyRarityNormal.ToRegexEndOfLine()
         },
         {
-            Rarity.Magic, currentGameLanguage.Language.RarityMagic.ToRegexEndOfLine()
+            Rarity.Magic, dataTextProvider.Texts.ItemPropertyRarityMagic.ToRegexEndOfLine()
         },
         {
-            Rarity.Rare, currentGameLanguage.Language.RarityRare.ToRegexEndOfLine()
+            Rarity.Rare, dataTextProvider.Texts.ItemPropertyRarityRare.ToRegexEndOfLine()
         },
         {
-            Rarity.Unique, currentGameLanguage.Language.RarityUnique.ToRegexEndOfLine()
+            Rarity.Unique, dataTextProvider.Texts.ItemPropertyRarityUnique.ToRegexEndOfLine()
         },
         {
-            Rarity.Currency, currentGameLanguage.Language.RarityCurrency.ToRegexEndOfLine()
+            Rarity.Currency, dataTextProvider.Texts.ItemPropertyRarityCurrency.ToRegexEndOfLine()
         },
         {
-            Rarity.Gem, currentGameLanguage.Language.RarityGem.ToRegexEndOfLine()
+            Rarity.Gem, dataTextProvider.Texts.ItemPropertyRarityGem.ToRegexEndOfLine()
         },
         {
-            Rarity.DivinationCard, currentGameLanguage.Language.RarityDivinationCard.ToRegexEndOfLine()
+            Rarity.DivinationCard, dataTextProvider.Texts.ItemPropertyRarityDivinationCard.ToRegexEndOfLine()
         }
     };
 
-    public override string Label => currentGameLanguage.Language.DescriptionRarity;
+    public override string Label => dataTextProvider.Texts.ItemPropertyRarity;
 
     public override void Parse(Item item)
     {
@@ -70,11 +70,11 @@ public class RarityProperty(
 
         var rarityLabel = item.Properties.Rarity switch
         {
-            Rarity.Currency => currentGameLanguage.Language.RarityCurrency,
-            Rarity.Normal => currentGameLanguage.Language.RarityNormal,
-            Rarity.Magic => currentGameLanguage.Language.RarityMagic,
-            Rarity.Rare => currentGameLanguage.Language.RarityRare,
-            Rarity.Unique => currentGameLanguage.Language.RarityUnique,
+            Rarity.Currency => dataTextProvider.Texts.ItemPropertyRarityCurrency,
+            Rarity.Normal => dataTextProvider.Texts.ItemPropertyRarityNormal,
+            Rarity.Magic => dataTextProvider.Texts.ItemPropertyRarityMagic,
+            Rarity.Rare => dataTextProvider.Texts.ItemPropertyRarityRare,
+            Rarity.Unique => dataTextProvider.Texts.ItemPropertyRarityUnique,
             _ => null
         };
         if (rarityLabel == null) return Task.FromResult<TradeFilter?>(null);
@@ -86,7 +86,7 @@ public class RarityProperty(
 
         var filter = new RarityFilter(item.Game)
         {
-            Text = currentGameLanguage.Language.DescriptionRarity,
+            Text = dataTextProvider.Texts.ItemPropertyRarity,
             Value = rarityLabel,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
         };
