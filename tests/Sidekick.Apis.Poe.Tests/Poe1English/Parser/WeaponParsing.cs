@@ -592,4 +592,43 @@ The brightest flames cast the darkest shadows.
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Intelligence", 22);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Your Chaos Damage has #% chance to Poison Enemies", 60);
     }
+
+    [Fact]
+    public void VaalAxe()
+    {
+        var actual = parser.ParseItem(@"Item Class: Two Hand Axes
+Rarity: Magic
+Frosted Vaal Axe of Recuperation
+--------
+Two Handed Axe
+Physical Damage: 104-174
+Elemental Damage: 3-7 (augmented)
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.15
+Weapon Range: 1.3 metres
+--------
+Requirements:
+Level: 64
+Str: 158 (unmet)
+Dex: 76
+--------
+Sockets: R-W W W-W-W 
+--------
+Item Level: 71
+--------
+{ Implicit Modifier — Attack }
+25% chance to Maim on Hit
+(Maimed enemies have 30% reduced Movement Speed)
+--------
+{ Prefix Modifier ""Frosted"" (Tier: 10) — Damage, Elemental, Cold, Attack }
+Adds 3(2-3) to 7(6-7) Cold Damage
+{ Suffix Modifier ""of Recuperation"" (Tier: 2) — Life, Attack }
+Grants 24(23-26) Life per Enemy Hit
+");
+
+        Assert.Equal(ItemClass.TwoHandAxe, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Vaal Axe", actual.Definition.TradeItem?.Type);
+    }
 }
