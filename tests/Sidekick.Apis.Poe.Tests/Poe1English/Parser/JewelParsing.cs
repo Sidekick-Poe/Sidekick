@@ -267,4 +267,35 @@ Fractured Item
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Minions deal # to # additional Cold Damage");
         fixture.AssertHasStat(actual, StatCategory.Fractured, "Minions have #% chance to Hinder Enemies on Hit with Spells");
     }
+
+    [Fact]
+    public void ElegantHubris()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Elegant Hubris
+Timeless Jewel
+--------
+Limited to: 1 Historic
+Radius: Large
+--------
+Item Level: 82
+--------
+{ Unique Modifier }
+Commissioned 65560(2000-160000) coins to commemorate Cadiro(Cadiro-Victario)
+Passives in radius are Conquered by the Eternal Empire
+(Conquered Passive Skills cannot be modified by other Jewels)
+Historic
+--------
+They believed themselves better than the past, but that confidence brought about nightmare.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Timeless Jewel", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Commissioned # coins to commemorate Cadiro");
+    }
 }
