@@ -342,4 +342,39 @@ Foil Unique (Celestial Aureate)
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all maximum Elemental Resistances while affected by Purity of Elements", 1);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Cold Damage while affected by Hatred", 55);
     }
+
+    [Fact]
+    public void KrakenCut()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Rare
+Kraken Cut
+Cobalt Jewel
+--------
+Item Level: 80
+--------
+{ Prefix Modifier ""Vivid"" (Tier: 1) — Life }
+7(5-7)% increased maximum Life
+{ Prefix Modifier ""Cerebral"" (Tier: 1) — Mana }
+3(2-3)% increased Mana Reservation Efficiency of Skills
+{ Suffix Modifier ""of Burning"" (Tier: 1) — Elemental, Fire, Ailment }
+6(6-8)% increased Ignite Duration on Enemies
+5(3-5)% chance to Ignite
+(Ignite deals Fire Damage over time, based on the base Fire Damage of the Skill, for 4 seconds)
+{ Suffix Modifier ""of Menace"" (Tier: 1) — Critical }
+10(8-12)% increased Global Critical Strike Chance
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Cobalt Jewel", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Mana Reservation Efficiency of Skills", 3);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Ignite Duration on Enemies", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Global Critical Strike Chance", 10);
+    }
 }
