@@ -50,39 +50,6 @@ Place this item into an allocated currency item womb on the Genesis Tree. Right 
     }
 
     [Fact]
-    public void Graft()
-    {
-        var actual = parser.ParseItem(@"Item Class: Grafts
-Rarity: Rare
-Quiet Coma
-Freezing Tulgraft
---------
-Graftblood: 416/865
---------
-Requirements:
-Level: 29
---------
-Item Level: 37
---------
-10% chance to Freeze (implicit)
-Uses level 11 Falling Crystals (implicit)
---------
-+12% to Global Critical Strike Multiplier
-10% increased Graftblood gained
-Skills used by this Graft have 17% increased Cooldown Recovery Rate
-Skills used by this Graft deal 56% increased Damage
---------
-Graft items can only be modified by Implant currencies.
-");
-
-        Assert.Equal(ItemClass.RemovedItem, actual.ItemClass.Type);
-        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Freezing Tulgraft", actual.Definition.TradeItem?.Type);
-        Assert.Equal(37, actual.Properties.ItemLevel);
-        Assert.Equal(29, actual.Properties.RequiresLevel);
-    }
-
-    [Fact]
     public void Foulborn()
     {
         var actual = parser.ParseItem(@"Item Class: Body Armours

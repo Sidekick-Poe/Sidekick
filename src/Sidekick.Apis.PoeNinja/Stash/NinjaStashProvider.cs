@@ -34,7 +34,7 @@ public class NinjaStashProvider(
         return $"PoeNinjaStash_{league}_{type}";
     }
 
-    public List<NinjaItemDefinition> GetDefinitions(Item item)
+    public List<NinjaStashDefinition> GetDefinitions(Item item)
     {
         if (item.Invariant == null) return [];
 
@@ -86,7 +86,7 @@ public class NinjaStashProvider(
         return await BuildResult(definitions);
     }
 
-    public List<NinjaItemDefinition> GetDefinitions(ItemDefinition item, ApiItem apiItem)
+    public List<NinjaStashDefinition> GetDefinitions(ItemDefinition item, ApiItem apiItem)
     {
         var stats = apiItem.ExplicitMods
             .Where(x => x.Flags?.Mutated ?? false)
@@ -143,21 +143,20 @@ public class NinjaStashProvider(
         return await BuildResult(definitions);
     }
 
-    private List<NinjaItemDefinition> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<Stat>? stats)
+    private List<NinjaStashDefinition> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<Stat>? stats)
     {
         if (item.NinjaItems == null) return [];
 
         if (links < 5) links = 0;
 
         return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Foulborn.GetValueOrDefault() == foulborn)
-            .Where(x => x.Stash!.Links.GetValueOrDefault() == links.GetValueOrDefault())
+            .Where(x => x.Foulborn == foulborn)
+            .Where(x => x.Links.GetValueOrDefault() == links.GetValueOrDefault())
             .Where(x => ValidateNinjaStats(stats, StatCategory.Mutated, x))
             .ToList();
     }
 
-    private List<NinjaItemDefinition> GetMapInfo(List<NinjaItemDefinition>? ninjaItems, string? type, int? mapTier, List<Stat>? stats)
+    private List<NinjaStashDefinition> GetMapInfo(List<NinjaStashDefinition>? ninjaItems, string? type, int? mapTier, List<Stat>? stats)
     {
         if (ninjaItems == null) return [];
         if (string.IsNullOrEmpty(type)) return [];
@@ -165,7 +164,6 @@ public class NinjaStashProvider(
         if (stats != null && stats.Any(x => x.Category == StatCategory.Implicit))
         {
             var statsResults = ninjaItems
-                .Where(x => x.Stash != null)
                 .Where(x => ValidateNinjaStats(stats, StatCategory.Implicit, x))
                 .ToList();
             if (statsResults.Count > 0) return statsResults;
@@ -179,12 +177,10 @@ public class NinjaStashProvider(
         }
 
         return ninjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == type)
             .ToList();
     }
 
-    private List<NinjaItemDefinition> GetGemInfo(ItemDefinition item, bool corrupted, int gemLevel, int gemQuality)
+    private List<NinjaStashDefinition> GetGemInfo(ItemDefinition item, bool corrupted, int gemLevel, int gemQuality)
     {
         if (item.NinjaItems == null) return [];
         var text = item.TradeItem?.Text;
@@ -205,11 +201,9 @@ public class NinjaStashProvider(
         };
 
         return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == text)
-            .Where(x => x.Stash!.GemLevel.GetValueOrDefault() == gemLevel)
-            .Where(x => x.Stash!.GemQuality.GetValueOrDefault() == gemQuality)
-            .Where(x => x.Stash!.Corrupted.GetValueOrDefault() == corrupted)
+            .Where(x => x.GemLevel.GetValueOrDefault() == gemLevel)
+            .Where(x => x.GemQuality.GetValueOrDefault() == gemQuality)
+            .Where(x => x.Corrupted == corrupted)
             .ToList();
     }
 
@@ -219,7 +213,7 @@ public class NinjaStashProvider(
         return item.BaseItem?.Name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel";
     }
 
-    private List<NinjaItemDefinition> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<Stat>? stats)
+    private List<NinjaStashDefinition> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<Stat>? stats)
     {
         if (!IsClusterJewel(item)) return [];
 
@@ -233,14 +227,13 @@ public class NinjaStashProvider(
         };
 
         return item.NinjaItems!
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-            .Where(x => x.Stash!.DetailsId == "6-increased-mana-reservation-efficiency-of-skills-3-passives-75")
+            .Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel)
+            .Where(x => x.DetailsId == "6-increased-mana-reservation-efficiency-of-skills-3-passives-75")
             .Where(x => ValidateNinjaStats(stats, StatCategory.Enchant, x))
             .ToList();
     }
 
-    private List<NinjaItemDefinition> GetBaseTypeInfo(ItemDefinition item, int itemLevel, Influences influences)
+    private List<NinjaStashDefinition> GetBaseTypeInfo(ItemDefinition item, int itemLevel, Influences influences)
     {
         if (item.NinjaItems == null) return [];
         if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
@@ -260,10 +253,8 @@ public class NinjaStashProvider(
         if (itemLevel == 0) return [];
 
         return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == item.BaseItem.Name)
-            .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-            .Where(x => (x.Stash!.Variant == null && variants.Count == 0) || (x.Stash!.Variant != null && variants.Contains(x.Stash!.Variant)))
+            .Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel)
+            .Where(x => (x.Variant == null && variants.Count == 0) || (x.Variant != null && variants.Contains(x.Variant)))
             .ToList();
 
         IEnumerable<string> GetVariants()
@@ -309,18 +300,15 @@ public class NinjaStashProvider(
         }
     }
 
-    private List<NinjaItemDefinition> GetBeastInfo(ItemDefinition item)
+    private List<NinjaStashDefinition> GetBeastInfo(ItemDefinition item)
     {
         if (item.NinjaItems == null) return [];
         if (string.IsNullOrEmpty(item.TradeItem?.Type)) return [];
 
-        return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == item.TradeItem?.Type)
-            .ToList();
+        return item.NinjaItems.ToList();
     }
 
-    private static bool ValidateNinjaStats(List<Stat>? itemStats, StatCategory statCategory, NinjaItemDefinition ninjaDefinition)
+    private static bool ValidateNinjaStats(List<Stat>? itemStats, StatCategory statCategory, NinjaStashDefinition ninjaDefinition)
     {
         var statStartsWith = statCategory.GetValueAttribute();
         if (statCategory == StatCategory.Mutated) statStartsWith = "explicit";
@@ -340,10 +328,10 @@ public class NinjaStashProvider(
             .Distinct()
             .ToList();
 
-        if (stats.Count == 0 && (ninjaDefinition.Stash?.Stats?.Count ?? 0) == 0) return true;
-        if (ninjaDefinition.Stash!.Stats?.Count != stats.Count) return false;
+        if (stats.Count == 0 && (ninjaDefinition.Stats?.Count ?? 0) == 0) return true;
+        if (ninjaDefinition.Stats?.Count != stats.Count) return false;
 
-        foreach (var expectedStat in ninjaDefinition.Stash.Stats)
+        foreach (var expectedStat in ninjaDefinition.Stats)
         {
             var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
             foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.Id?.Replace('#', '|'));
@@ -358,9 +346,8 @@ public class NinjaStashProvider(
         return true;
     }
 
-    private async Task<List<NinjaStash>> BuildResult(List<NinjaItemDefinition> items)
+    private async Task<List<NinjaStash>> BuildResult(List<NinjaStashDefinition> items)
     {
-        items = items.Where(x => x.Stash != null).ToList();
         var variants = items.DistinctBy(x => x.Type);
         if (items.Count == 0 || variants.Count() > 1) return [];
 
@@ -374,8 +361,7 @@ public class NinjaStashProvider(
             var results = new List<NinjaStash>();
             foreach (var item in items)
             {
-                if (item.Stash == null) continue;
-                var line = result.Lines.FirstOrDefault(x => x.DetailsId == item.Stash.DetailsId);
+                var line = result.Lines.FirstOrDefault(x => x.DetailsId == item.DetailsId);
                 if (line == null) continue;
 
                 results.Add(new NinjaStash(line, result)

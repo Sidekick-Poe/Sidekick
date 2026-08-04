@@ -2,11 +2,12 @@
 
 public class NinjaStashDefinition
 {
+    public required string Type { get; init; }
+    public required string Url { get; init; }
+
     public string? DetailsId { get; init; }
-    public string? Name { get; init; }
-    public string? BaseType { get; init; }
-    public bool? Corrupted { get; init; }
-    public bool? Foulborn { get; set; }
+    public bool Corrupted { get; init; }
+    public bool Foulborn { get; init; }
     public int? GemLevel { get; init; }
     public int? GemQuality { get; init; }
     public int? Links { get; init; }

@@ -12,7 +12,9 @@ public class ItemDefinition
 
     public UniqueItemDefinition? UniqueItem { get; init; }
 
-    public List<NinjaItemDefinition>? NinjaItems { get; init; }
+    public List<NinjaStashDefinition>? NinjaItems { get; init; }
+
+    public NinjaExchangeDefinition? NinjaExchange { get; init; }
 
     [JsonIgnore]
     public Regex? NamePattern { get; init; }

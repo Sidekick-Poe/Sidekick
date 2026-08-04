@@ -5,9 +5,6 @@ public enum ItemClass
 {
     Unknown = 0,
 
-    [ItemClassGameId(GameType.PathOfExile1, "RemovedItem")]
-    RemovedItem,
-
     [ItemClassTradeId(GameType.PathOfExile1, "accessory.amulet")]
     [ItemClassTradeId(GameType.PathOfExile2, "accessory.amulet")]
     [ItemClassGameId(GameType.PathOfExile1, "Amulet")]

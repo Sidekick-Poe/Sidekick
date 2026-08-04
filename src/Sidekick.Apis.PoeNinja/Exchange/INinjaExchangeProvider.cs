@@ -3,6 +3,6 @@ namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public interface INinjaExchangeProvider
 {
-    NinjaItemDefinition? GetDefinition(ItemDefinition? item);
+    NinjaExchangeDefinition? GetDefinition(ItemDefinition? item);
     Task<NinjaCurrency?> GetInfo(ItemDefinition item);
 }

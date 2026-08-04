@@ -18,6 +18,7 @@ public class TextParser
     DataTextProvider dataTextProvider
 ) : IInitializableService
 {
+    private Regex ParanthesesCategory { get; } = new(@"\s*\([a-z]+\)$");
     private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+\-[-+\d,.]+\)");
     private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\s?\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
 
@@ -149,7 +150,11 @@ public class TextParser
                 else if (line.Text.EndsWith("(mutated)")) line.Category = StatCategory.Mutated;
                 else if (line.Text.EndsWith("(rune)")) line.Category = StatCategory.Rune;
 
-                if (line.Category != StatCategory.Undefined) continue;
+                if (line.Category != StatCategory.Undefined)
+                {
+                    line.Text = ParanthesesCategory.Replace(line.Text, string.Empty);
+                    continue;
+                }
 
                 if (line.Text.StartsWith("{") && line.Text.EndsWith("}"))
                 {

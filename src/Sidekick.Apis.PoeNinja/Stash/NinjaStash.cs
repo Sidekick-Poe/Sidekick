@@ -29,5 +29,5 @@ public class NinjaStash
 
     public required Uri? DetailsUrl { get; set; }
 
-    public required NinjaItemDefinition Definition { get; set; }
+    public required NinjaStashDefinition Definition { get; set; }
 }

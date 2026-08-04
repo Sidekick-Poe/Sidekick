@@ -13,17 +13,24 @@ public class NinjaUriProvider(
     ICacheProvider cacheProvider,
     ISettingsService settingsService)
 {
-    public async Task<Uri?> GetDetailsUri(NinjaItemDefinition item)
+    public async Task<Uri?> GetDetailsUri(NinjaExchangeDefinition item)
     {
-        string? detailsId = null;
-        if (item.Exchange != null) detailsId = item.Exchange.Id;
-        else if (item.Stash != null) detailsId = item.Stash.DetailsId;
-        if (string.IsNullOrEmpty(detailsId)) return null;
+        if (string.IsNullOrEmpty(item.Id)) return null;
 
         var game = await settingsService.GetGame();
         var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
         var league = await GetLeague();
-        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{detailsId}");
+        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.Id}");
+    }
+
+    public async Task<Uri?> GetDetailsUri(NinjaStashDefinition item)
+    {
+        if (string.IsNullOrEmpty(item.DetailsId)) return null;
+
+        var game = await settingsService.GetGame();
+        var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
+        var league = await GetLeague();
+        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.DetailsId}");
     }
 
     private async Task<string> GetCacheKey()

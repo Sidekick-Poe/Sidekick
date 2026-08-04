@@ -19,28 +19,27 @@ public class NinjaExchangeProvider(
         return $"PoeNinjaExchange_{league}_{type}";
     }
 
-    public NinjaItemDefinition? GetDefinition(ItemDefinition? item)
+    public NinjaExchangeDefinition? GetDefinition(ItemDefinition? item)
     {
-        return item?.NinjaItems?.FirstOrDefault();
+        return item?.NinjaExchange;
     }
 
     public async Task<NinjaCurrency?> GetInfo(ItemDefinition item)
     {
-        var bestMatch = GetDefinition(item);
-        if (bestMatch?.Exchange == null) return null;
+        if (item.NinjaExchange == null) return null;
 
-        var result = await GetExchangeResult(bestMatch.Type);
+        var result = await GetExchangeResult(item.NinjaExchange.Type);
         if (result?.Core == null) return null;
 
-        var line = result.Lines.FirstOrDefault(x => x.Id == bestMatch.Exchange.Id);
+        var line = result.Lines.FirstOrDefault(x => x.Id == item.NinjaExchange.Id);
 
         // In some cases, the currency is not listed in the exchange overview, but is the primary currency.
         // This is the case for Path of Exile 1's Chaos Orb. It is the main comparison currency, but is absent from the lines.
-        if (line == null && bestMatch.Type == "Currency" && result.Core.Primary == bestMatch.Exchange.Id)
+        if (line == null && item.NinjaExchange.Type == "Currency" && result.Core.Primary == item.NinjaExchange.Id)
         {
             line = new NinjaExchangeLine()
             {
-                Id = bestMatch.Exchange.Id,
+                Id = item.NinjaExchange.Id,
                 PrimaryValue = 1,
             };
         }
@@ -49,7 +48,7 @@ public class NinjaExchangeProvider(
 
         return new NinjaCurrency(line, result)
         {
-            DetailsUrl = await ninjaUriProvider.GetDetailsUri(bestMatch),
+            DetailsUrl = await ninjaUriProvider.GetDetailsUri(item.NinjaExchange),
         };
     }
 

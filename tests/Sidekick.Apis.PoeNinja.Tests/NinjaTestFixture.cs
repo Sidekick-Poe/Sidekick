@@ -43,7 +43,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
     {
         var itemDefinition = ItemDefinitionParser.Get(item);
         var invariantDefinition = itemDefinition?.InvariantKey != null ? ItemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.InvariantKey) : null;
-        if (invariantDefinition?.NinjaItems == null || invariantDefinition.NinjaItems.All(x => x.Stash?.DetailsId != expectedDetailsId))
+        if (invariantDefinition?.NinjaItems == null || invariantDefinition.NinjaItems.All(x => x.DetailsId != expectedDetailsId))
         {
             Logger.LogWarning($"Item {item.Name} {item.Type} does not have expected details id {expectedDetailsId}");
             return;
@@ -51,12 +51,12 @@ public class NinjaTestFixture : Poe1EnglishFixture
 
         var results = NinjaStashProvider.GetDefinitions(invariantDefinition, item);
         Assert.Single(results);
-        Assert.Equal(expectedDetailsId, results[0].Stash?.DetailsId);
+        Assert.Equal(expectedDetailsId, results[0].DetailsId);
     }
 
     public void AssertStash(Item item, string expectedDetailsId)
     {
-        if (item.Invariant?.NinjaItems == null || item.Invariant.NinjaItems.All(x => x.Stash?.DetailsId != expectedDetailsId))
+        if (item.Invariant?.NinjaItems == null || item.Invariant.NinjaItems.All(x => x.DetailsId != expectedDetailsId))
         {
             Logger.LogWarning($"Item {item.Name} {item.Type} does not have expected details id {expectedDetailsId}");
             return;
@@ -66,18 +66,18 @@ public class NinjaTestFixture : Poe1EnglishFixture
         Assert.Single(results);
 
         var result = results[0];
-        Assert.Equal(expectedDetailsId, result.Stash?.DetailsId);
+        Assert.Equal(expectedDetailsId, result.DetailsId);
     }
 
     public void AssertExchange(Item item, string expectedDetailsId)
     {
-        if (item.Invariant?.NinjaItems != null && item.Invariant.NinjaItems.All(x => x.Exchange?.DetailsId != expectedDetailsId))
+        if (item.Invariant?.NinjaItems != null && item.Invariant.NinjaItems.All(x => x.DetailsId != expectedDetailsId))
         {
             Logger.LogWarning($"Item {item.Name} {item.Type} does not have expected details id {expectedDetailsId}");
             return;
         }
 
         var result = NinjaExchangeProvider.GetDefinition(item.Invariant);
-        Assert.Equal(expectedDetailsId, result?.Exchange?.DetailsId);
+        Assert.Equal(expectedDetailsId, result?.DetailsId);
     }
 }

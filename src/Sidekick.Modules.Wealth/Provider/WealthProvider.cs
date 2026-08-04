@@ -219,7 +219,7 @@ internal class WealthProvider
             return (price, sparkLine);
         }
 
-        if (invariantDefinition.NinjaItems?.Any(x => x.Exchange != null) ?? false)
+        if (invariantDefinition.NinjaExchange != null)
         {
             var info = await ninjaExchangeProvider.GetInfo(invariantDefinition);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;

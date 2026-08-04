@@ -49,22 +49,27 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        if (Item.Invariant?.NinjaItems == null) return;
 
-        Loading = true;
-        StateHasChanged();
-
-        if (Item.Invariant.NinjaItems.Any(x => x.Exchange != null))
+        if (Item.Invariant?.NinjaExchange != null)
         {
+            Loading = true;
+            StateHasChanged();
+
             Currency = await NinjaExchangeProvider.GetInfo(Item.Invariant);
-        }
 
-        if (Item.Invariant.NinjaItems.Any(x => x.Stash != null))
+            Loading = false;
+            StateHasChanged();
+        }
+        else if (Item.Invariant?.NinjaItems != null && Item.Invariant.NinjaItems.Count > 0)
         {
+            Loading = true;
+            StateHasChanged();
+
             Stashes = await NinjaStashProvider.GetInfo(Item);
+
+            Loading = false;
+            StateHasChanged();
         }
 
-        Loading = false;
-        StateHasChanged();
     }
 }
