@@ -24,7 +24,8 @@ public class RequiresIntelligenceProperty(
     {
         if (item.ItemClass.IsGem()) return;
 
-        var block = item.Text.Blocks.FirstOrDefault(x => x.Type == RawBlockType.Requirements);
+        var block = item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(currentGameLanguage.Language.DescriptionRequires, StringComparison.InvariantCultureIgnoreCase));
+        block ??= item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(currentGameLanguage.Language.DescriptionRequirements, StringComparison.InvariantCultureIgnoreCase));
         if (block == null) return;
 
         item.Properties.RequiresIntelligence = GetInt(Pattern, block);

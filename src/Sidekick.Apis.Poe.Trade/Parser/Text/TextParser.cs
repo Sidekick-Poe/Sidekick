@@ -6,7 +6,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Data.Stats;
 using Sidekick.Data.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Text;
@@ -14,12 +14,10 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Text;
 public class TextParser
 (
     ILogger<TextParser> logger,
-    ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
     DataTextProvider dataTextProvider
 ) : IInitializableService
 {
-    private Regex? UnusablePattern { get; set; }
     private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+\-[-+\d,.]+\)");
     private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\s?\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
 
@@ -49,10 +47,6 @@ public class TextParser
         Foulborn = GetKeyword(dataTextProvider.Texts.ModDescriptionFoulborn);
         Vestigial = GetKeyword(dataTextProvider.Texts.ModDescriptionVestigial);
 
-        var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
-        unusableRegex += @"\n+" + RawText.SeparatorPattern + @"\n+";
-        UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
-
         return;
 
         string? GetKeyword(string text)
@@ -62,150 +56,145 @@ public class TextParser
         }
     }
 
-    public string NormalizeText(string text)
+    public OriginalText? NormalizeText(string text)
     {
-        if (string.IsNullOrWhiteSpace(text)) return text;
+        if (string.IsNullOrWhiteSpace(text)) return null;
 
         text = StandardizeLineBreaks(text);
         text = RemoveUnusableLine(text);
-        text = AppendCategoryFromAdvancedLines(text);
-        text = RemoveAdvancedMetaLines(text);
-        text = CombineLines(text);
-        text = RemoveParentheses(text);
-        text = RemoveDashedMetaString(text);
-        return text;
 
-        string StandardizeLineBreaks(string input)
+        var rawText = new OriginalText(text);
+        AppendCategoryFromAdvancedLines(rawText);
+        RemoveAdvancedMetaLines(rawText);
+        CombineLines(rawText);
+        CleanupLines(rawText);
+        return rawText;
+
+        void CombineLines(OriginalText input)
         {
-            return Regex.Replace(input, @"[\r\n]+", "\n");
-        }
-
-        string RemoveUnusableLine(string input)
-        {
-            return UnusablePattern?.Replace(input, string.Empty) ?? input;
-        }
-
-        string AppendCategoryFromAdvancedLines(string input)
-        {
-            var lines = input.Split('\n');
-            var result = new List<string>();
-            string? currentSuffix = null;
-
-            foreach (var line in lines)
+            foreach (var block in input.Blocks)
             {
-                if (line.StartsWith("{") && line.EndsWith("}"))
+                var linesByKey = new Dictionary<(StatCategory Category, string Text), OriginalLine>();
+                var combinedLines = new List<OriginalLine>();
+
+                foreach (var line in block.Lines)
                 {
-                    if (Implicit != null && line.Contains(Implicit)) currentSuffix = "(implicit)";
-                    else if (Vestigial != null && line.Contains(Vestigial)) currentSuffix = "(implicit)";
-                    else if (Fractured != null && line.Contains(Fractured)) currentSuffix = "(fractured)";
-                    else if (Desecrated != null && line.Contains(Desecrated)) currentSuffix = "(desecrated)";
-                    else if (Crafted != null && line.Contains(Crafted)) currentSuffix = "(crafted)";
-                    else if (Enchant != null && line.Contains(Enchant)) currentSuffix = "(enchant)";
-                    else if (Foulborn != null && line.Contains(Foulborn)) currentSuffix = "(mutated)";
-                    else if (Corrupted != null && line.Contains(Corrupted))
+                    var key = (line.Category, AdvancedDigitsFormat.Replace(line.Text, "#"));
+
+                    if (!linesByKey.TryGetValue(key, out var previousLine))
                     {
-                        if (Game == GameType.PathOfExile1) currentSuffix = "(implicit)";
-                        else if (Game == GameType.PathOfExile2) currentSuffix = "(enchant)";
-                    }
-                    else currentSuffix = null;
-
-                    result.Add(line);
-                    continue;
-                }
-
-                if (currentSuffix != null && !string.IsNullOrWhiteSpace(line) && line != RawText.SeparatorPattern)
-                    result.Add($"{line} {currentSuffix}");
-                else
-                    result.Add(line);
-            }
-
-            return string.Join('\n', result);
-        }
-
-        string RemoveAdvancedMetaLines(string input)
-        {
-            var cleaned = new List<string>();
-            foreach (var line in input.Split('\n'))
-            {
-                if (line.StartsWith("{") && line.EndsWith("}")) continue;
-                if (line.StartsWith("(")) continue;
-                cleaned.Add(line);
-            }
-
-            return string.Join('\n', cleaned);
-        }
-
-        string CombineLines(string input)
-        {
-            var dictionary = new Dictionary<string, int>();
-            var split = input.Split('\n');
-            var output = new List<string>();
-
-            for (var i = 0; i < split.Length; i++)
-            {
-                var line = split[i];
-                if (line == RawText.SeparatorPattern)
-                {
-                    output.Add(line);
-                    continue;
-                }
-
-                var key = AdvancedDigitsFormat.Replace(line, "#");
-                if (dictionary.TryAdd(key, output.Count))
-                {
-                    output.Add(line);
-                    continue;
-                }
-
-                try
-                {
-                    var previousIndex = dictionary[key];
-                    var previousLine = output[previousIndex];
-
-                    var prevMatch = AdvancedDigitsFormat.Match(previousLine);
-                    var currMatch = AdvancedDigitsFormat.Match(line);
-
-                    if (!prevMatch.Success || !currMatch.Success)
-                    {
-                        output.Add(line);
+                        linesByKey[key] = line;
+                        combinedLines.Add(line);
                         continue;
                     }
 
-                    var prevValue = decimal.Parse(prevMatch.Groups[1].Value, CultureInfo.InvariantCulture);
-                    var currValue = decimal.Parse(currMatch.Groups[1].Value, CultureInfo.InvariantCulture);
+                    try
+                    {
+                        var prevMatch = AdvancedDigitsFormat.Match(previousLine.Text);
+                        var currMatch = AdvancedDigitsFormat.Match(line.Text);
 
-                    var sum = prevValue + currValue;
-                    var sumText = sum % 1 == 0 ? ((int)sum).ToString(CultureInfo.InvariantCulture) : sum.ToString(CultureInfo.InvariantCulture);
+                        if (!prevMatch.Success || !currMatch.Success)
+                        {
+                            combinedLines.Add(line);
+                            continue;
+                        }
 
-                    output[previousIndex] = AdvancedDigitsFormat.Replace(previousLine, $"{sumText}(0-999)", 1);
+                        var prevValue = decimal.Parse(prevMatch.Groups[1].Value, CultureInfo.InvariantCulture);
+                        var currValue = decimal.Parse(currMatch.Groups[1].Value, CultureInfo.InvariantCulture);
+
+                        var sum = prevValue + currValue;
+                        var sumText = sum % 1 == 0
+                            ? ((int)sum).ToString(CultureInfo.InvariantCulture)
+                            : sum.ToString(CultureInfo.InvariantCulture);
+
+                        previousLine.Text = AdvancedDigitsFormat.Replace(previousLine.Text, $"{sumText}(0-999)", 1);
+                    }
+                    catch (Exception)
+                    {
+                        logger.LogWarning("Could not parse advanced digits format: {line}", line.Text);
+                        combinedLines.Add(line);
+                    }
                 }
-                catch (Exception)
-                {
-                    logger.LogWarning("Could not parse advanced digits format: {line}", line);
-                    output.Add(line);
-                }
+
+                block.Lines = combinedLines;
             }
-
-            return string.Join('\n', output);
         }
+    }
 
-        string RemoveParentheses(string input)
+    private string StandardizeLineBreaks(string input)
+    {
+        return Regex.Replace(input, @"[\r\n]+", "\n");
+    }
+
+    private string RemoveUnusableLine(string input)
+    {
+        input = input.Replace(dataTextProvider.Texts.ItemUnusable + "\n" + OriginalText.SeparatorPattern + "\n", string.Empty);
+        input = input.Replace(dataTextProvider.Texts.ItemUnusable + "\n", string.Empty);
+        return input;
+    }
+
+    private void AppendCategoryFromAdvancedLines(OriginalText input)
+    {
+        foreach (var block in input.Blocks)
         {
-            if (string.IsNullOrEmpty(input)) return input;
-            input = AdvancedDigitsFormat.Replace(input, "$1");
-            return AdvancedOptionFormat.Replace(input, "$1");
+            var currentCategory = StatCategory.Explicit;
+
+            foreach (var line in block.Lines)
+            {
+                if (line.Text.EndsWith("(implicit)")) line.Category = StatCategory.Implicit;
+                else if (line.Text.EndsWith("(fractured)")) line.Category = StatCategory.Fractured;
+                else if (line.Text.EndsWith("(desecrated)")) line.Category = StatCategory.Desecrated;
+                else if (line.Text.EndsWith("(crafted)")) line.Category = StatCategory.Crafted;
+                else if (line.Text.EndsWith("(enchant)")) line.Category = StatCategory.Enchant;
+                else if (line.Text.EndsWith("(mutated)")) line.Category = StatCategory.Mutated;
+                else if (line.Text.EndsWith("(rune)")) line.Category = StatCategory.Rune;
+
+                if (line.Category != StatCategory.Undefined) continue;
+
+                if (line.Text.StartsWith("{") && line.Text.EndsWith("}"))
+                {
+                    if (Implicit != null && line.Text.Contains(Implicit)) currentCategory = StatCategory.Implicit;
+                    else if (Vestigial != null && line.Text.Contains(Vestigial)) currentCategory = StatCategory.Implicit;
+                    else if (Fractured != null && line.Text.Contains(Fractured)) currentCategory = StatCategory.Fractured;
+                    else if (Desecrated != null && line.Text.Contains(Desecrated)) currentCategory = StatCategory.Desecrated;
+                    else if (Crafted != null && line.Text.Contains(Crafted)) currentCategory = StatCategory.Crafted;
+                    else if (Enchant != null && line.Text.Contains(Enchant)) currentCategory = StatCategory.Enchant;
+                    else if (Foulborn != null && line.Text.Contains(Foulborn)) currentCategory = StatCategory.Mutated;
+                    else if (Corrupted != null && line.Text.Contains(Corrupted))
+                    {
+                        if (Game == GameType.PathOfExile1) currentCategory = StatCategory.Implicit;
+                        else if (Game == GameType.PathOfExile2) currentCategory = StatCategory.Enchant;
+                    }
+                    else currentCategory = StatCategory.Explicit;
+                }
+
+                line.Category = currentCategory;
+            }
         }
+    }
 
-        // Removes text like ' — Unscalable Value'
-        string RemoveDashedMetaString(string input)
+    private void RemoveAdvancedMetaLines(OriginalText input)
+    {
+        foreach (var block in input.Blocks)
         {
-            if (!input.Contains(" — ")) return input;
+            block.Lines.RemoveAll(x => x.Text.StartsWith("{"));
+            block.Lines.RemoveAll(x => x.Text.StartsWith("("));
+        }
+    }
 
-            var cleaned = input
-                .Split('\n')
-                .Select(line => line.Split(" — ")[0]);
+    void CleanupLines(OriginalText input)
+    {
+        foreach (var block in input.Blocks)
+        {
+            foreach (var line in block.Lines)
+            {
+                // Removes text like ' — Unscalable Value'
+                line.Text = line.Text.Split(" — ")[0];
 
-            return string.Join('\n', cleaned);
+                // Remove range parantheses
+                line.Text = AdvancedDigitsFormat.Replace(line.Text, "$1");
+                line.Text = AdvancedOptionFormat.Replace(line.Text, "$1");
+            }
         }
     }
 }

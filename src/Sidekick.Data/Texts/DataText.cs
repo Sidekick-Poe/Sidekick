@@ -2,6 +2,8 @@
 
 public class DataText
 {
+    #region ModDescriptionTextIds
+
     public string ModDescriptionImplicit { get; set; } = string.Empty;
     public string ModDescriptionEnchantment { get; set; } = string.Empty;
     public string ModDescriptionCorrupted { get; set; } = string.Empty;
@@ -22,6 +24,10 @@ public class DataText
     public string ModDescriptionLevel { get; set; } = string.Empty;
     public string ModDescriptionTierLevel { get; set; } = string.Empty;
     public string ModDescriptionRankLevel { get; set; } = string.Empty;
+
+    #endregion
+
+    #region ItemPropertyTextIds
 
     public string ItemPropertyRarity { get; set; } = string.Empty;
     public string ItemPropertyRarityMagic { get; set; } = string.Empty;
@@ -45,10 +51,20 @@ public class DataText
     public string ItemPropertyElementalDamage { get; set; } = string.Empty;
     public string ItemPropertyPhysicalDamage { get; set; } = string.Empty;
 
+    #endregion
+
+    #region ItemTextIds
+
     public string ItemSuperior { get; set; } = string.Empty;
     public string ItemSynthesised { get; set; } = string.Empty;
     public string ItemBlighted { get; set; } = string.Empty;
     public string ItemBlightRavaged { get; set; } = string.Empty;
+
+    public string ItemUnusable { get; set; } = string.Empty;
+
+    #endregion
+
+    #region InfluenceTextIds
 
     public string InfluenceShaper { get; set; } = string.Empty;
     public string InfluenceElder { get; set; } = string.Empty;
@@ -56,4 +72,6 @@ public class DataText
     public string InfluenceRedeemer { get; set; } = string.Empty;
     public string InfluenceHunter { get; set; } = string.Empty;
     public string InfluenceWarlord { get; set; } = string.Empty;
+
+    #endregion
 }

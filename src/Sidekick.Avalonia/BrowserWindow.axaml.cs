@@ -1,7 +1,6 @@
 using System.Net;
 using Avalonia.Controls;
 using Avalonia.Media;
-using Avalonia.Platform;
 using Avalonia.Threading;
 using Sidekick.Common.Dialogs;
 

@@ -1,5 +1,6 @@
 using Sidekick.Common.Initialization;
 using Sidekick.Data.Items;
+using Sidekick.Data.Stats;
 using Sidekick.Data.StatsInvariant;
 using Sidekick.Data.Trade;
 using TradeFilter = Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
@@ -13,7 +14,7 @@ public interface IStatParser : IInitializableService
 
     void Parse(Item item);
 
-    Stat? ParseInvariant(string? line);
+    Stat? ParseInvariant(StatCategory category, string? line);
 
     Task<List<TradeFilter>> GetFilters(Item item);
 }

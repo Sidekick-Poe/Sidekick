@@ -10,7 +10,6 @@ using Sidekick.Common.Settings;
 using Sidekick.Data;
 using Sidekick.Data.Extensions;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
@@ -20,7 +19,6 @@ public class ItemParser
     IStatParser statParser,
     IPseudoParser pseudoParser,
     IPropertyParser propertyParser,
-    ICurrentGameLanguage currentGameLanguage,
     IItemDefinitionParser itemDefinitionParser,
     ISettingsService settingsService,
     TextParser textParser
@@ -41,9 +39,10 @@ public class ItemParser
 
         try
         {
-            text = textParser.NormalizeText(text);
+            var rawText = textParser.NormalizeText(text);
+            if (rawText == null) throw new UnparsableException(text);
 
-            var item = new Item(Game, currentGameLanguage.Language, text);
+            var item = new Item(Game, rawText);
 
             // Rarity property is required for definition parsing. This means that it must be parsed first.
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
