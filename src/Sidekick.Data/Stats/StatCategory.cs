@@ -25,62 +25,63 @@ public enum StatCategory
 {
     Undefined = 0,
 
-    [EnumValue("crafted")]
-    Crafted = 1,
-
-    [EnumValue("delve")]
-    Delve = 2,
-
-    [EnumValue("enchant")]
-    Enchant = 3,
+    [EnumValue("pseudo")]
+    Pseudo = 1,
 
     [EnumValue("explicit")]
-    Explicit = 4,
+    Explicit = 2,
+
+    [EnumValue("implicit")]
+    Implicit = 3,
+
+    [EnumValue("imbued")]
+    Imbued = 4,
 
     [EnumValue("fractured")]
     Fractured = 5,
 
-    [EnumValue("implicit")]
-    Implicit = 6,
-
-    [EnumValue("monster")]
-    Monster = 7,
-
-    [EnumValue("pseudo")]
-    Pseudo = 8,
+    [EnumValue("enchant")]
+    Enchant = 6,
 
     [EnumValue("scourge")]
-    Scourge = 9,
+    Scourge = 7,
+
+    [EnumValue("crafted")]
+    Crafted = 8,
+
+    [EnumValue("mercenary")]
+    Mercenary = 9,
 
     [EnumValue("veiled")]
     Veiled = 10,
 
-    [EnumValue("crucible")]
-    Crucible = 11,
+    [EnumValue("delve")]
+    Delve = 11,
 
-    [EnumValue("rune")]
-    Rune = 12,
+    [EnumValue("ultimatum")]
+    Uultimatum = 12,
 
     [EnumValue("sanctum")]
     Sanctum = 13,
 
+    [EnumValue("crucible")]
+    Crucible = 14,
+
+    [EnumValue("rune")]
+    Rune = 15,
+
     [EnumValue("desecrated")]
-    Desecrated = 14,
+    Desecrated = 16,
 
     [EnumValue("skill")]
-    Skill = 15,
-
-    [EnumValue("mutated")]
-    Mutated = 16,
-
-    [EnumValue("imbued")]
-    Imbued = 17,
+    Skill = 17,
 
     // Meta modifiers
     Corrupted = 101,
     Unidentified = 102,
     WhiteText = 103,
     GrayText = 104,
+    Mutated = 105,
 
     // Logbook modifiers
     DruidsOfTheBrokenCircle = 201,

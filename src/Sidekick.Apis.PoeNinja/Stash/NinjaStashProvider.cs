@@ -90,9 +90,9 @@ public class NinjaStashProvider(
     {
         var stats = apiItem.ExplicitMods
             .Where(x => x.Flags?.Mutated ?? false)
-            .Select(x => statParser.ParseInvariant($"{x} ({StatCategory.Mutated.GetValueAttribute()})")!).ToList();
-        stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant($"{x.Description} ({StatCategory.Enchant.GetValueAttribute()})")!).ToList());
-        stats.AddRange(apiItem.ImplicitMods.Select(x => statParser.ParseInvariant($"{x.Description} ({StatCategory.Implicit.GetValueAttribute()})")!).ToList());
+            .Select(x => statParser.ParseInvariant(StatCategory.Mutated, x.Description)!).ToList();
+        stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant(StatCategory.Enchant, x.Description)!).ToList());
+        stats.AddRange(apiItem.ImplicitMods.Select(x => statParser.ParseInvariant(StatCategory.Implicit, x.Description)!).ToList());
         stats = stats.Where(x => x != null!).ToList();
 
         if (apiItem.Rarity == Rarity.Unique)

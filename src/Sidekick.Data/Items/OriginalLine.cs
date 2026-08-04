@@ -1,11 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+using Sidekick.Data.Stats;
 namespace Sidekick.Data.Items;
 
 /// <summary>
 /// Stores data about each line in the parsing process
 /// </summary>
-public class RawLine(string text, int index)
+public class OriginalLine(string text, int index)
 {
     /// <summary>
     /// Indicates if this line has been successfully parsed
@@ -15,7 +16,9 @@ public class RawLine(string text, int index)
     /// <summary>
     /// The line of the item description
     /// </summary>
-    public string Text { get; } = text;
+    public string Text { get; set; } = text;
+
+    public StatCategory Category { get; set; }
 
     public int Index { get; } = index;
 

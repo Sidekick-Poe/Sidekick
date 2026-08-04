@@ -7,7 +7,6 @@ using Sidekick.Common.Enums;
 using Sidekick.Data;
 using Sidekick.Data.ItemClasses;
 using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
 using Sidekick.Data.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;

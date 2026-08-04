@@ -25,31 +25,44 @@ public class StatParser
     DataProvider dataProvider
 ) : IStatParser
 {
-    private static readonly Regex ParseCategoryPattern = new(@" \(([a-zA-Z]+)\)$", RegexOptions.Multiline);
-
     public int Priority => 300;
 
     public StatsInvariantDetails InvariantDetails { get; private set; } = new();
 
-    private List<StatDefinition> Definitions { get; set; } = [];
+    private Dictionary<StatCategory, List<StatDefinition>> Definitions { get; set; } = [];
     private List<StatDefinition> InvariantDefinitions { get; set; } = [];
     public Dictionary<string, List<TradeStatDefinition>> TradeDefinitions { get; private set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
+        var definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
+        foreach (var definition in definitions)
+        {
+            if (definition.TradeIds == null || definition.TradeIds.Count == 0)
+            {
+                Definitions.TryAdd(StatCategory.Undefined, []);
+                Definitions[StatCategory.Undefined].Add(definition);
+                continue;
+            }
+
+            foreach (var tradeId in definition.TradeIds)
+            {
+                var category = tradeId.GetStatCategory();
+                Definitions.TryAdd(category, []);
+                Definitions[category].Add(definition);
+            }
+        }
 
         var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, currentGameLanguage.Language);
         TradeDefinitions = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
 
-        if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) InvariantDefinitions = Definitions;
-        else InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
+        InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
 
         InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
     }
 
-    public Stat? ParseInvariant(string? line)
+    public Stat? ParseInvariant(StatCategory category, string? line)
     {
         if (string.IsNullOrEmpty(line)) return null;
 
@@ -59,7 +72,7 @@ public class StatParser
         var maxLineCount = definitions.Select(x => x.Lines).Max();
         definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
 
-        return CreateStat(line, definitions);
+        return CreateStat(category, line, definitions);
     }
 
     /// <inheritdoc/>
@@ -72,62 +85,91 @@ public class StatParser
             item.Properties.Rarity != Rarity.Gem &&
             item.Properties.Rarity != Rarity.Currency) return;
 
-        var stats = MatchStats().ToList();
-        item.Stats.Clear();
-        item.Stats.AddRange(stats);
-
-        return;
-
-        IEnumerable<Stat> MatchStats()
+        foreach (var block in item.Text.Blocks)
         {
-            foreach (var block in item.Text.Blocks)
+            if (block.AnyParsed) continue;
+
+            var lineGroups = block.Lines.GroupBy(x => x.Category).ToList();
+            foreach (var lineGroup in lineGroups)
             {
-                if (block.AnyParsed) continue;
+                var category = lineGroup.First().Category;
+                var lines = lineGroup.Select(x => x.Text).ToList();
 
-                for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
+                for (var lineIndex = 0; lineIndex < lines.Count; lineIndex++)
                 {
-                    if (block.Lines[lineIndex].Parsed) continue;
-
-                    var lines = block.Lines.Skip(lineIndex).Select(x => x.Text).ToList();
-                    var definitions = MatchDefinitions(FilterDefinitions(), lines).ToList();
+                    var definitions = MatchDefinitions(FilterDefinitions(item, category), lines.Skip(lineIndex))
+                        .Distinct()
+                        .ToList();
                     if (definitions.Count is 0) continue;
 
                     var maxLineCount = definitions.Select(x => x.Lines).Max();
                     definitions = definitions.Where(x => x.Lines == maxLineCount).ToList();
 
-                    var matchedLines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
+                    var matchedLines = lineGroup.Skip(lineIndex).Take(maxLineCount).ToList();
                     matchedLines.ForEach(x => x.Parsed = true);
 
                     var lineText = string.Join('\n', matchedLines.Select(x => x.Text));
                     definitions = definitions.OrderByDescending(x => Fuzz.Ratio(x.Text, lineText, FuzzySharp.PreProcess.PreprocessMode.None)).ToList();
 
-                    yield return CreateStat(lineText, definitions, block.Index, matchedLines.First().Index);
+                    item.Stats.Add(CreateStat(category, lineText, definitions, block.Index, matchedLines.First().Index));
                 }
             }
         }
 
-        IEnumerable<StatDefinition> FilterDefinitions()
-        {
-            return item.Properties.Rarity switch
-            {
-                Rarity.Gem => Definitions.Where(x => x.TradeIds?.Any(y => y.StartsWith(StatCategory.Imbued.GetValueAttribute())) ?? false),
-                _ => Definitions,
-            };
-        }
+        item.Stats = item.Stats.OrderBy(x => x.BlockIndex).ThenBy(x => x.LineIndex).ToList();
     }
 
-    private IEnumerable<StatDefinition> MatchDefinitions(IEnumerable<StatDefinition> definitions, List<string> lines)
+    private IEnumerable<StatDefinition> FilterDefinitions(Item item, StatCategory category)
+    {
+        if (item.Properties.Rarity == Rarity.Gem)
+        {
+            return Definitions
+                .Where(x => x.Key
+                           is StatCategory.Imbued)
+                .SelectMany(x => x.Value);
+        }
+
+        if (category is StatCategory.Explicit or StatCategory.Mutated)
+        {
+            return Definitions
+                .Where(x => x.Key
+                           is StatCategory.Explicit
+                           or StatCategory.Sanctum
+                           or StatCategory.Pseudo)
+                .SelectMany(x => x.Value);
+        }
+
+        if (category is StatCategory.Implicit)
+        {
+            return Definitions
+                .Where(x => x.Key
+                           is StatCategory.Implicit
+                           or StatCategory.Pseudo)
+                .SelectMany(x => x.Value);
+        }
+
+        if (category != StatCategory.Undefined)
+        {
+            return Definitions
+                .Where(x => x.Key == category)
+                .SelectMany(x => x.Value);
+        }
+
+        return Definitions.SelectMany(x => x.Value);
+    }
+
+    private IEnumerable<StatDefinition> MatchDefinitions(IEnumerable<StatDefinition> definitions, IEnumerable<string> lines)
     {
         foreach (var definition in definitions)
         {
-            // Multiple line stats
-            if (definition.Lines > 1 && definition.Pattern.IsMatch(string.Join('\n', lines.Take(definition.Lines))))
+            // Single line stats
+            if (definition.Lines == 1 && definition.Pattern.IsMatch(lines.First()))
             {
                 yield return definition;
             }
 
-            // Single line stats
-            if (definition.Lines == 1 && definition.Pattern.IsMatch(lines[0]))
+            // Multiple line stats
+            if (definition.Lines > 1 && definition.Pattern.IsMatch(string.Join('\n', lines.Take(definition.Lines))))
             {
                 yield return definition;
             }
@@ -135,32 +177,27 @@ public class StatParser
     }
 
     private Stat CreateStat(
+        StatCategory category,
         string text,
         List<StatDefinition> definitions,
         int blockIndex = 0,
         int lineIndex = 0
     )
     {
-        var categoryMatch = ParseCategoryPattern.Match(text);
-        var category = categoryMatch.Success ?
-            categoryMatch.Groups[1].Value.GetEnumFromValue<StatCategory>()
-            : StatCategory.Explicit;
-
-        if (category != StatCategory.Mutated)
+        // Category overrides
+        var categories = definitions
+            .Where(x => x.TradeIds != null)
+            .SelectMany(x => x.TradeIds!)
+            .Select(x => x.GetStatCategory())
+            .Distinct()
+            .ToList();
+        if (categories.Count == 1)
         {
-            var categories = definitions
-                .Where(x => x.TradeIds != null)
-                .SelectMany(x => x.TradeIds!)
-                .Select(x => x.GetStatCategory())
-                .Distinct()
-                .ToList();
-            if (categories.Count == 1 && categories[0] != StatCategory.Undefined)
-            {
+            if (category == StatCategory.Explicit && categories[0] != StatCategory.Undefined)
                 category = categories[0];
-            }
+            if (category == StatCategory.Implicit && categories[0] == StatCategory.Pseudo)
+                category = StatCategory.Pseudo;
         }
-
-        text = ParseCategoryPattern.Replace(text, string.Empty);
 
         var stat = new Stat(category, text)
         {

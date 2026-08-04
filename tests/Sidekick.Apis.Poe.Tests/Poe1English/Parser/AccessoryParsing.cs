@@ -321,4 +321,43 @@ We were warned that there would be consequences...""
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Level of all Defiance Banner Gems", 3);
     }
+
+    [Fact]
+    public void PandemoniumIdol()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Rare
+Pandemonium Idol
+Citrine Amulet
+--------
+Requirements:
+Level: 44
+--------
+Item Level: 80
+--------
+{ Corruption Implicit Modifier — Attribute }
+4(4-6)% increased Strength
+4(4-6)% increased Intelligence
+--------
+{ Prefix Modifier ""Burning"" (Tier: 6) — Damage, Elemental, Fire, Attack }
+Adds 8(7-10) to 18(15-18) Fire Damage to Attacks
+{ Prefix Modifier ""Thaumaturgist's"" (Tier: 4) — Damage, Caster }
+20(18-22)% increased Spell Damage
+{ Suffix Modifier ""of the Heavens"" (Tier: 5) — Attribute }
++17(17-20) to all Attributes
+(Attributes are Strength, Dexterity, and Intelligence)
+{ Suffix Modifier ""of Sleet"" (Tier: 4) — Damage, Elemental, Cold }
+15(13-15)% increased Cold Damage
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Citrine Amulet", actual.Definition.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Strength", 4);
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Intelligence", 4);
+    }
 }

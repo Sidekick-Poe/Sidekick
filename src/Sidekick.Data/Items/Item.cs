@@ -1,20 +1,19 @@
 using Sidekick.Data.ItemClasses;
 using Sidekick.Data.ItemDefinitions;
-using Sidekick.Data.Languages;
+
 namespace Sidekick.Data.Items;
 
 public class Item
 {
-    public Item(GameType game, IGameLanguage language, string text)
+    public Item(GameType game, OriginalText text)
     {
-        Text = new RawText(language, text);
+        Text = text;
         Game = game;
-        Text.Blocks[0].Parsed = true;
     }
 
     public Guid Id { get; } = Guid.NewGuid();
 
-    public RawText Text { get; }
+    public OriginalText Text { get; }
 
     public GameType Game { get; }
 
@@ -30,7 +29,7 @@ public class Item
 
     public ItemProperties Properties { get; } = new();
 
-    public List<Stat> Stats { get; } = [];
+    public List<Stat> Stats { get; set; } = [];
 
     public List<ItemPseudoStat> PseudoStats { get; } = [];
 

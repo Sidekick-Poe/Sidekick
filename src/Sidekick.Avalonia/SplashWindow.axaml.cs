@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Media;
-using Avalonia.Platform;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Avalonia;
