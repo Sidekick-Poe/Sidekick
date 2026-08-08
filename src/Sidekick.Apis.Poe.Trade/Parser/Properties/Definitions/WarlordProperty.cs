@@ -12,11 +12,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class WarlordProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceWarlord.ToRegexLine();
+    private Regex Pattern { get; } = gameTextProvider.Texts.InfluenceWarlord.ToRegexLine();
 
-    public override string Label => dataTextProvider.Texts.InfluenceWarlord;
+    public override string Label => gameTextProvider.Texts.InfluenceWarlord;
 
     public override void Parse(Item item)
     {

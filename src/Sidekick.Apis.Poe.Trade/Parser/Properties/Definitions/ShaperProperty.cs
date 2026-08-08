@@ -12,11 +12,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ShaperProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceShaper.ToRegexLine();
+    private Regex Pattern { get; } = gameTextProvider.Texts.InfluenceShaper.ToRegexLine();
 
-    public override string Label => dataTextProvider.Texts.InfluenceShaper;
+    public override string Label => gameTextProvider.Texts.InfluenceShaper;
 
     public override void Parse(Item item)
     {

@@ -5,13 +5,13 @@
 {
     <div class="flex flex-nowrap gap-0.5 items-center justify-end text-white">
         <Heading3>@Value.ToString("0.##")</Heading3>
-        @if (Definition?.TradeItem?.Image != null)
+        @if (Definition?.Image != null)
         {
             <TextCaption Class="text-[#a38d6d]">&times;</TextCaption>
 
-            <Tooltip Text="@Definition.BaseItem?.Name">
+            <Tooltip Text="@Definition.Name">
                 <ChildContent>
-                    <img src="@Definition.TradeItem?.Image" class="max-h-5" alt="@Definition.BaseItem?.Name" />
+                    <img src="@Definition.Image" class="max-h-5" alt="@Definition.Name" />
                 </ChildContent>
             </Tooltip>
         }
@@ -21,12 +21,12 @@ else
 {
     <div class="flex flex-nowrap gap-1 items-center justify-end text-white">
         <Heading2>@Value.ToString("0.##")</Heading2>
-        @if (Definition?.TradeItem?.Image != null)
+        @if (Definition?.Image != null)
         {
             <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-            <Tooltip Text="@Definition.BaseItem?.Name">
+            <Tooltip Text="@Definition.Name">
                 <ChildContent>
-                    <img src="@Definition.TradeItem?.Image" class="max-h-10" alt="@Definition.BaseItem?.Name" />
+                    <img src="@Definition.Image" class="max-h-10" alt="@Definition.Name" />
                 </ChildContent>
             </Tooltip>
         }
@@ -50,7 +50,7 @@ else
 
     protected override void OnParametersSet()
     {
-        Definition = ItemDefinitionParser.Get(Currency);
+        Definition = ItemDefinitionParser.GetInvariant(Currency);
         base.OnParametersSet();
     }
 

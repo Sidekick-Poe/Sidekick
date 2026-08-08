@@ -45,8 +45,8 @@ can deny that my work has made quite the splash...""
 ");
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Carcass Jack", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Varnished Coat", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Carcass Jack", actual.TradeItem?.Name);
+        Assert.Equal("Varnished Coat", actual.TradeItem?.Type);
         Assert.Equal(20, actual.Properties.Quality);
         Assert.Equal(960, actual.Properties.EvasionRating);
         Assert.Equal(186, actual.Properties.EnergyShield);
@@ -105,7 +105,7 @@ Note: ~price 2 chaos
 
         Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Daresso's Defiance", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Full Dragonscale", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Daresso's Defiance", actual.TradeItem?.Name);
+        Assert.Equal("Full Dragonscale", actual.TradeItem?.Type);
     }
 }

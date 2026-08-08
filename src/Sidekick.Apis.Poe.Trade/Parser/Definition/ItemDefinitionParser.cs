@@ -1,5 +1,4 @@
 using FuzzySharp;
-using Sidekick.Apis.Poe.Trade.Trade.Models;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
@@ -13,11 +12,9 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 public class ItemDefinitionParser(
     DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService,
-    ItemClassProvider itemClassProvider
+    ISettingsService settingsService
 ) : IItemDefinitionParser
 {
-    private Dictionary<string, ItemDefinition> TextDictionary { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
 
     private List<ItemDefinition> Definitions { get; set; } = [];
@@ -31,34 +28,17 @@ public class ItemDefinitionParser(
         var game = await settingsService.GetGame();
 
         Definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.Language);
-        InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
-        UniqueItems = Definitions.Where(x => x.UniqueItem != null)
-            .OrderByDescending(x => x.UniqueItem?.Name?.Length ?? 0)
+        UniqueItems = Definitions.Where(x => x.IsUnique)
+            .OrderByDescending(x => x.Name?.Length ?? 0)
             .ToList();
 
-        TextDictionary.Clear();
-        foreach (var definition in Definitions)
+        InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
+        InvariantDictionary.Clear();
+        foreach (var definition in InvariantDefinitions)
         {
-            if (!string.IsNullOrEmpty(definition.TradeItem?.Name)) TextDictionary.TryAdd(definition.TradeItem.Name, definition);
-            else if (!string.IsNullOrEmpty(definition.TradeItem?.Text)) TextDictionary.TryAdd(definition.TradeItem.Text, definition);
-            else if (!string.IsNullOrEmpty(definition.TradeItem?.Type)) TextDictionary.TryAdd(definition.TradeItem.Type, definition);
-            if (!string.IsNullOrEmpty(definition.TradeItem?.Id)) TextDictionary.TryAdd(definition.TradeItem.Id, definition);
-        }
+            if (string.IsNullOrEmpty(definition.InvariantKey)) continue;
 
-        BuildInvariantDictionary();
-
-        return;
-
-        void BuildInvariantDictionary()
-        {
-            InvariantDictionary.Clear();
-
-            foreach (var definition in InvariantDefinitions)
-            {
-                if (string.IsNullOrEmpty(definition.InvariantKey)) continue;
-
-                InvariantDictionary.TryAdd(definition.InvariantKey, definition);
-            }
+            InvariantDictionary.TryAdd(definition.InvariantKey, definition);
         }
     }
 
@@ -70,15 +50,14 @@ public class ItemDefinitionParser(
             item.Name = item.Text.Blocks[0].Lines[^2].Text;
         }
 
-        var definition = GetDefinition(Definitions, item.Type, item.Properties.Rarity, item.Name);
-        definition ??= GetDefinition(InvariantDefinitions, item.Type, item.Properties.Rarity, item.Name)!;
+        var definition = GetDefinition(item.Type, item.Properties.Rarity, item.Name);
         if (definition == null) throw new UnparsableException(item.Text.Text);
 
         item.Definition = definition;
-        item.Invariant = GetInvariant(item.Definition);
-        item.ItemClass = GetItemClass(item.Definition);
-
         ParseVaalGem();
+
+        item.ExchangeItem = item.Definition.ExchangeItem;
+        item.TradeItem = GetTradeItem(item);
 
         return;
 
@@ -87,55 +66,28 @@ public class ItemDefinitionParser(
             var canBeVaalGem = item.ItemClass.Type == ItemClass.ActiveSkillGem && item.Text.Blocks.Count > 7;
             if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-            var vaalGem = GetDefinition(Definitions, item.Text.Blocks[5].Lines[0].Text, item.Properties.Rarity, item.Name);
+            var vaalGem = GetDefinition(item.Text.Blocks[5].Lines[0].Text, item.Properties.Rarity, item.Name);
             if (vaalGem != null)
             {
                 item.Definition = vaalGem;
             }
         }
-
-        ItemDefinition? GetInvariant(ItemDefinition definition)
-        {
-            if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return definition;
-            if (string.IsNullOrEmpty(definition.InvariantKey)) return null;
-            return InvariantDictionary.GetValueOrDefault(definition.InvariantKey);
-        }
-
-        ItemClassDefinition GetItemClass(ItemDefinition definition)
-        {
-            ItemClassDefinition? itemClass = null;
-
-            if (!string.IsNullOrEmpty(definition.BaseItem?.ItemClassId) &&
-                itemClassProvider.ById.TryGetValue(definition.BaseItem.ItemClassId, out var baseItemClass)) itemClass = baseItemClass;
-
-            if ((itemClass == null || itemClass.Type == ItemClass.Unknown) && !string.IsNullOrEmpty(definition.TradeItem?.Category))
-            {
-                itemClass = definition.TradeItem.Category switch
-                {
-                    "map" => itemClassProvider.ById.GetValueOrDefault("MapKey"),
-                    _ => itemClass,
-                };
-            }
-
-            return itemClass ?? new ItemClassDefinition()
-            {
-                Type = ItemClass.Unknown,
-            };
-        }
     }
 
-    public ItemDefinition? Get(ApiItem apiItem)
+    private ItemDefinition? GetInvariant(ItemDefinition definition)
     {
-        return GetDefinition(InvariantDefinitions, apiItem.Type, apiItem.Rarity, apiItem.Name);
+        if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return definition;
+        if (string.IsNullOrEmpty(definition.InvariantKey)) return null;
+        return InvariantDictionary.GetValueOrDefault(definition.InvariantKey);
     }
 
-    private static ItemDefinition? GetDefinition(List<ItemDefinition> definitions, string? type, Rarity rarity, string? name)
+    private ItemDefinition? GetDefinition(string? type, Rarity rarity, string? name)
     {
         List<ItemDefinition> results = [];
 
         if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name))
         {
-            results.AddRange(definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name)));
+            results.AddRange(Definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name)));
             if (!string.IsNullOrEmpty(type))
             {
                 results.RemoveAll(definition => definition.TypePattern != null && !definition.TypePattern.IsMatch(type));
@@ -143,8 +95,7 @@ public class ItemDefinitionParser(
         }
         else if (!string.IsNullOrEmpty(type))
         {
-            results.AddRange(definitions.Where(definition => definition.UniqueItem == null && definition.TextPattern != null && definition.TextPattern.IsMatch(type)));
-            results.AddRange(definitions.Where(definition => definition.UniqueItem == null && definition.TypePattern != null && definition.TypePattern.IsMatch(type)));
+            results.AddRange(Definitions.Where(definition => !definition.IsUnique && definition.TypePattern != null && definition.TypePattern.IsMatch(type)));
         }
 
         var orderedResults = results
@@ -152,21 +103,13 @@ public class ItemDefinitionParser(
             {
                 var ratio = 0;
 
-                if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(x.TradeItem?.Name))
+                if (!string.IsNullOrEmpty(name))
                 {
-                    if (!string.IsNullOrEmpty(x.UniqueItem?.Name))
-                        ratio += Fuzz.Ratio(x.UniqueItem.Name, name, FuzzySharp.PreProcess.PreprocessMode.None);
-                    if (!string.IsNullOrEmpty(x.TradeItem?.Name))
-                        ratio += Fuzz.Ratio(x.TradeItem.Name, name, FuzzySharp.PreProcess.PreprocessMode.None);
-                    if (!string.IsNullOrEmpty(x.TradeItem?.Type))
-                        ratio += Fuzz.Ratio(x.TradeItem?.Type, type, FuzzySharp.PreProcess.PreprocessMode.None);
+                    ratio += Fuzz.Ratio(x.Name, name, FuzzySharp.PreProcess.PreprocessMode.None);
                 }
-                else
+                if (!string.IsNullOrEmpty(type))
                 {
-                    if (!string.IsNullOrEmpty(type) && !string.IsNullOrEmpty(x.TradeItem?.Text))
-                        ratio += Fuzz.Ratio(x.TradeItem?.Text, type, FuzzySharp.PreProcess.PreprocessMode.None);
-                    if (!string.IsNullOrEmpty(type) && !string.IsNullOrEmpty(x.TradeItem?.Type))
-                        ratio += Fuzz.Ratio(x.TradeItem?.Type, type, FuzzySharp.PreProcess.PreprocessMode.None);
+                    ratio += Fuzz.Ratio(x.Name, type, FuzzySharp.PreProcess.PreprocessMode.None);
                 }
 
                 return new
@@ -180,7 +123,17 @@ public class ItemDefinitionParser(
         return orderedResults.Select(x => x.Definition).FirstOrDefault();
     }
 
-    public ItemDefinition? Get(string? text)
+    private TradeItemDefinition? GetTradeItem(Item item)
+    {
+        var tradeItems = item.Definition.TradeItems;
+
+        var byType = tradeItems?.FirstOrDefault(x => x.Type == item.Type);
+        if (byType != null) return byType;
+
+        return tradeItems?.FirstOrDefault();
+    }
+
+    public ItemDefinition? GetInvariant(string? text)
     {
         if (string.IsNullOrEmpty(text)) return null;
         text = text switch
@@ -188,6 +141,6 @@ public class ItemDefinitionParser(
             "exalt" => "exalted",
             _ => text,
         };
-        return TextDictionary.GetValueOrDefault(text);
+        return InvariantDictionary.GetValueOrDefault(text);
     }
 }

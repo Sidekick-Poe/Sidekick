@@ -14,13 +14,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class AttacksPerSecondProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexDoubleProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexDoubleProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyAttacksPerSecond;
+    public override string Label => gameTextProvider.Texts.ItemPropertyAttacksPerSecond;
 
     public override void Parse(Item item)
     {

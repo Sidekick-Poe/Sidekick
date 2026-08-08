@@ -14,13 +14,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CriticalHitChanceProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexDoubleProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexDoubleProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyCriticalStrikeChance;
+    public override string Label => gameTextProvider.Texts.ItemPropertyCriticalStrikeChance;
 
     public override void Parse(Item item)
     {

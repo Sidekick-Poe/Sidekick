@@ -14,13 +14,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EvasionRatingProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyEvasionRating;
+    public override string Label => gameTextProvider.Texts.ItemPropertyEvasionRating;
 
     public override void Parse(Item item)
     {

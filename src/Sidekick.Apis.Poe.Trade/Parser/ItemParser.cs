@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Trade.Parser.Definition;
+using Sidekick.Apis.Poe.Trade.Parser.ItemClasses;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
@@ -21,6 +22,7 @@ public class ItemParser
     IPropertyParser propertyParser,
     IItemDefinitionParser itemDefinitionParser,
     ISettingsService settingsService,
+    ItemClassParser itemClassParser,
     TextParser textParser
 ) : IItemParser
 {
@@ -47,6 +49,7 @@ public class ItemParser
             // Rarity property is required for definition parsing. This means that it must be parsed first.
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
+            itemClassParser.Parse(item);
             itemDefinitionParser.Parse(item);
             propertyParser.Parse(item);
             statParser.Parse(item);

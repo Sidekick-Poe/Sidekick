@@ -25,7 +25,11 @@ public class Item
 
     public ItemDefinition Definition { get; set; } = null!;
 
-    public ItemDefinition? Invariant { get; set; }
+    public ExchangeItemDefinition? ExchangeItem { get; set; }
+
+    public TradeItemDefinition? TradeItem { get; set; }
+
+    public TradeItemDefinition? InvariantTradeItem { get; set; }
 
     public ItemProperties Properties { get; } = new();
 

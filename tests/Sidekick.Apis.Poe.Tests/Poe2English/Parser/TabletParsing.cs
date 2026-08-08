@@ -39,7 +39,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 
         Assert.Equal(ItemClass.Tablet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ritual Tablet", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Ritual Tablet", actual.TradeItem?.Type);
 
         Assert.Equal(79, actual.Properties.ItemLevel);
 
@@ -78,8 +78,8 @@ Can be used in a personal Map Device to add modifiers to a Map.");
 
          Assert.Equal(ItemClass.Tablet, actual.ItemClass.Type);
          Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-         Assert.Equal("Ritual Tablet", actual.Definition.TradeItem?.Type);
-         Assert.Equal("Freedom of Faith", actual.Definition.TradeItem?.Name);
+         Assert.Equal("Ritual Tablet", actual.TradeItem?.Type);
+         Assert.Equal("Freedom of Faith", actual.TradeItem?.Name);
 
          Assert.Equal(79, actual.Properties.ItemLevel);
 
@@ -116,7 +116,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
 
          Assert.Equal(ItemClass.Tablet, actual.ItemClass.Type);
          Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-         Assert.Equal("Irradiated Tablet", actual.Definition.TradeItem?.Type);
+         Assert.Equal("Irradiated Tablet", actual.TradeItem?.Type);
 
          Assert.Equal(79, actual.Properties.ItemLevel);
 

@@ -42,7 +42,7 @@ Fractured Item
 
         Assert.Equal(ItemClass.Belt, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Cord Belt", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Cord Belt", actual.TradeItem?.Type);
 
         Assert.Equal(83, actual.Properties.ItemLevel);
         Assert.True(actual.Properties.Split);

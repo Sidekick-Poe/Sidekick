@@ -48,7 +48,8 @@ public class ItemTradeService
 
             var useEnglishTradeWebsite = await settingsService.GetBool(UseInvariantTradeResults);
             var language = useEnglishTradeWebsite ? currentGameLanguage.InvariantLanguage : currentGameLanguage.Language;
-            var query = GetQueryFromDefinition(useEnglishTradeWebsite ? item.Invariant ?? item.Definition : item.Definition);
+            var tradeItem = useEnglishTradeWebsite ? item.InvariantTradeItem ?? item.TradeItem : item.TradeItem;
+            var query = GetQueryFromDefinition(tradeItem);
 
             foreach (var filter in filters ?? [])
             {
@@ -86,31 +87,31 @@ public class ItemTradeService
 
         throw new ApiErrorException();
 
-        Query GetQueryFromDefinition(ItemDefinition definition)
+        Query GetQueryFromDefinition(TradeItemDefinition? tradeItem)
         {
             var query = new Query();
 
-            if (!string.IsNullOrEmpty(definition.TradeItem?.Discriminator))
+            if (!string.IsNullOrEmpty(tradeItem?.Discriminator))
             {
                 query.Type = new TypeDiscriminator()
                 {
-                    Option = definition.TradeItem.Type,
-                    Discriminator = definition.TradeItem.Discriminator,
+                    Option = tradeItem.Type,
+                    Discriminator = tradeItem.Discriminator,
                 };
             }
             else
             {
-                query.Type = definition.TradeItem?.Type;
+                query.Type = tradeItem?.Type;
             }
 
-            if (definition.TradeItem?.Category == "monster" && !string.IsNullOrEmpty(definition.TradeItem?.Name))
+            if (tradeItem?.Category == "monster" && !string.IsNullOrEmpty(tradeItem?.Name))
             {
-                query.Term = definition.TradeItem.Name;
+                query.Term = tradeItem.Name;
                 query.Type = null;
             }
-            else if (definition.UniqueItem != null && !string.IsNullOrEmpty(definition.TradeItem?.Name))
+            else if (!string.IsNullOrEmpty(tradeItem?.Name))
             {
-                query.Name = definition.TradeItem.Name;
+                query.Name = tradeItem.Name;
             }
 
             return query;

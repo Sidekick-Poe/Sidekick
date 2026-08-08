@@ -14,13 +14,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlockChanceProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyBlockChance.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyBlockChance.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyBlockChance.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyBlockChance.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyBlockChance;
+    public override string Label => gameTextProvider.Texts.ItemPropertyBlockChance;
 
     public override void Parse(Item item)
     {

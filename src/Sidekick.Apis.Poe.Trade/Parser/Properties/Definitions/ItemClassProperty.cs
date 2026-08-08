@@ -24,14 +24,14 @@ public class ItemClassProperty(
         if (item.ItemClass.Type == ItemClass.Unknown) return Task.FromResult<TradeFilter?>(null);
 
         var classLabel = item.ItemClass.Name;
-        if (classLabel == null || item.Definition.TradeItem?.Type == null) return Task.FromResult<TradeFilter?>(null);
+        if (classLabel == null || item.TradeItem?.Type == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemClassFilter
         {
             Text = resources["Item_Class"],
             ItemClass = classLabel,
             BaseTypeText = resources["Base_Type"],
-            BaseType = item.Definition.TradeItem.Type,
+            BaseType = item.TradeItem.Type,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}",
         };
         return Task.FromResult<TradeFilter?>(filter);

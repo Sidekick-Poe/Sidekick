@@ -34,8 +34,8 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
 
         Assert.Equal(ItemClass.LifeFlask, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ultimate Life Flask", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Ultimate Life Flask", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
@@ -70,8 +70,8 @@ Used automatically when condition is met. Can only hold charges while in belt. R
 
         Assert.Equal(ItemClass.Charms, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Stone Charm", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Stone Charm", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
 
         Assert.Equal(16, actual.Properties.RequiresLevel);
         Assert.Equal(51, actual.Properties.ItemLevel);

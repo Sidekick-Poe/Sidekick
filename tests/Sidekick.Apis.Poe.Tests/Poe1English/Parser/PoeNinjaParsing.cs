@@ -49,7 +49,7 @@ Fractured Item
 
         Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Sacred Chainmail", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Sacred Chainmail", actual.TradeItem?.Type);
 
         Assert.Equal(985, actual.Properties.ArmourWithQuality);
     }

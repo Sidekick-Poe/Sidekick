@@ -1,6 +1,6 @@
 ﻿namespace Sidekick.Data.Texts;
 
-public class DataText
+public class GameText
 {
     #region ModDescriptionTextIds
 
@@ -28,6 +28,8 @@ public class DataText
     #endregion
 
     #region ItemPropertyTextIds
+
+    public string ItemPropertyItemClass { get; set; } = string.Empty;
 
     public string ItemPropertyRarity { get; set; } = string.Empty;
     public string ItemPropertyRarityMagic { get; set; } = string.Empty;

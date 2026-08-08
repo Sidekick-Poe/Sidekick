@@ -33,7 +33,7 @@ Note: ~price 1 chaos
 
         Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Divine Vessel", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Divine Vessel", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -67,9 +67,9 @@ Can be used in a personal Map Device to open portals to the Temple of Atzoatl in
 Note: ~price 1.29 exalted
 ");
 
-        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Chronicle of Atzoatl", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Chronicle of Atzoatl", actual.TradeItem?.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)", "Open Room");

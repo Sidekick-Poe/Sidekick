@@ -26,6 +26,6 @@ Right click this item then left click a ring, amulet or belt to apply it. Has gr
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Noxious Catalyst", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Noxious Catalyst", actual.TradeItem?.Type);
     }
 }

@@ -15,7 +15,7 @@ public class TextParser
 (
     ILogger<TextParser> logger,
     ISettingsService settingsService,
-    DataTextProvider dataTextProvider
+    GameTextProvider gameTextProvider
 ) : IInitializableService
 {
     private Regex ParanthesesCategory { get; } = new(@"\s*\([a-z]+\)$");
@@ -39,14 +39,14 @@ public class TextParser
     {
         Game = await settingsService.GetGame();
 
-        Fractured = GetKeyword(dataTextProvider.Texts.ModDescriptionFractured);
-        Corrupted = GetKeyword(dataTextProvider.Texts.ModDescriptionCorrupted);
-        Desecrated = GetKeyword(dataTextProvider.Texts.ModDescriptionDesecrated);
-        Crafted = GetKeyword(dataTextProvider.Texts.ModDescriptionCrafted);
-        Implicit = GetKeyword(dataTextProvider.Texts.ModDescriptionImplicit);
-        Enchant = GetKeyword(dataTextProvider.Texts.ModDescriptionEnchantment);
-        Foulborn = GetKeyword(dataTextProvider.Texts.ModDescriptionFoulborn);
-        Vestigial = GetKeyword(dataTextProvider.Texts.ModDescriptionVestigial);
+        Fractured = GetKeyword(gameTextProvider.Texts.ModDescriptionFractured);
+        Corrupted = GetKeyword(gameTextProvider.Texts.ModDescriptionCorrupted);
+        Desecrated = GetKeyword(gameTextProvider.Texts.ModDescriptionDesecrated);
+        Crafted = GetKeyword(gameTextProvider.Texts.ModDescriptionCrafted);
+        Implicit = GetKeyword(gameTextProvider.Texts.ModDescriptionImplicit);
+        Enchant = GetKeyword(gameTextProvider.Texts.ModDescriptionEnchantment);
+        Foulborn = GetKeyword(gameTextProvider.Texts.ModDescriptionFoulborn);
+        Vestigial = GetKeyword(gameTextProvider.Texts.ModDescriptionVestigial);
 
         return;
 
@@ -129,8 +129,8 @@ public class TextParser
 
     private string RemoveUnusableLine(string input)
     {
-        input = input.Replace(dataTextProvider.Texts.ItemUnusable + "\n" + OriginalText.SeparatorPattern + "\n", string.Empty);
-        input = input.Replace(dataTextProvider.Texts.ItemUnusable + "\n", string.Empty);
+        input = input.Replace(gameTextProvider.Texts.ItemUnusable + "\n" + OriginalText.SeparatorPattern + "\n", string.Empty);
+        input = input.Replace(gameTextProvider.Texts.ItemUnusable + "\n", string.Empty);
         return input;
     }
 

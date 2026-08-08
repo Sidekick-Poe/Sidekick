@@ -76,10 +76,6 @@ public class ItemProperties
 
     public int WaystoneDropChance { get; set; }
 
-    public bool Blighted { get; set; }
-
-    public bool BlightRavaged { get; set; }
-
     public bool Foulborn { get; set; }
 
     public bool Imbued { get; set; }

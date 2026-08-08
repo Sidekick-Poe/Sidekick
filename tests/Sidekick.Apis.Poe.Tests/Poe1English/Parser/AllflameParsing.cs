@@ -49,6 +49,6 @@ Take this item to Valerie aboard the Sovereign to Chart this area.
 
         Assert.Equal(ItemClass.Chart, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Coral Forest Chart", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Coral Forest Chart", actual.TradeItem?.Type);
     }
 }

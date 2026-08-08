@@ -27,7 +27,7 @@ Note: ~price .5 chaos
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Simulacrum Splinter", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Simulacrum Splinter", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -54,7 +54,7 @@ Note: ~b/o 1 chance
 
         Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Small Cluster Jewel", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Small Cluster Jewel", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 2);
         fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: 15% increased Evasion Rating");
@@ -92,7 +92,7 @@ Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added pass
 
         Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Large Cluster Jewel", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Large Cluster Jewel", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 8);
         fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: 12% increased Physical Damage");

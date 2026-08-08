@@ -12,11 +12,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ElderProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceElder.ToRegexLine();
+    private Regex Pattern { get; } = gameTextProvider.Texts.InfluenceElder.ToRegexLine();
 
-    public override string Label => dataTextProvider.Texts.InfluenceElder;
+    public override string Label => gameTextProvider.Texts.InfluenceElder;
 
     public override void Parse(Item item)
     {

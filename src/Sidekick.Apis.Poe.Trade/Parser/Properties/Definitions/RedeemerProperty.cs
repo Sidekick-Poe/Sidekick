@@ -12,11 +12,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RedeemerProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceRedeemer.ToRegexLine();
+    private Regex Pattern { get; } = gameTextProvider.Texts.InfluenceRedeemer.ToRegexLine();
 
-    public override string Label => dataTextProvider.Texts.InfluenceRedeemer;
+    public override string Label => gameTextProvider.Texts.InfluenceRedeemer;
 
     public override void Parse(Item item)
     {

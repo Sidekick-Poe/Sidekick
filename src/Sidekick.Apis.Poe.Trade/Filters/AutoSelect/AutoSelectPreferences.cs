@@ -88,8 +88,6 @@ public class AutoSelectPreferences
             AutoSelectConditionType.AreaLevel => item.Properties.AreaLevel,
             AutoSelectConditionType.Armour => item.Properties.Armour,
             AutoSelectConditionType.AttacksPerSecond => item.Properties.AttacksPerSecond,
-            AutoSelectConditionType.Blighted => item.Properties.Blighted,
-            AutoSelectConditionType.BlightRavaged => item.Properties.BlightRavaged,
             AutoSelectConditionType.ItemClass => item.ItemClass.Type,
             AutoSelectConditionType.ItemLevel => item.Properties.ItemLevel,
             AutoSelectConditionType.Quality => item.Properties.Quality,

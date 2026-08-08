@@ -6,11 +6,11 @@
     <TextCaption Class="mx-1 text-[#a38d6d]">-</TextCaption>
     <Heading2>@Max.ToString("0.#")</Heading2>
 
-    @if (Definition?.TradeItem?.Image != null)
+    @if (Definition?.Image != null)
     {
         <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-        <Tooltip Placement="TooltipPlacement.Left" Text="@Definition.BaseItem?.Name">
-            <img src="@Definition.TradeItem?.Image" class="max-h-10" alt="@Definition.BaseItem?.Name"/>
+        <Tooltip Placement="TooltipPlacement.Left" Text="@Definition.Name">
+            <img src="@Definition.Image" class="max-h-10" alt="@Definition.Name"/>
         </Tooltip>
     }
 </div>
@@ -32,7 +32,7 @@
 
     protected override void OnParametersSet()
     {
-        Definition = ItemDefinitionParser.Get(Currency);
+        Definition = ItemDefinitionParser.GetInvariant(Currency);
         base.OnParametersSet();
     }
 

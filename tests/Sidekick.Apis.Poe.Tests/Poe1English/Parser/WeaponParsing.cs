@@ -13,7 +13,7 @@ public class WeaponParsing(Poe1EnglishFixture fixture)
     [Fact]
     public void ParseUnidentifiedUnique()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: One Hand Axes
 Rarity: Unique
 Jade Hatchet
 --------
@@ -34,14 +34,14 @@ Unidentified
 ;");
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Jade Hatchet", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Jade Hatchet", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Unidentified);
     }
 
     [Fact]
     public void ParseInfluencedWeapon()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Wands
 Rarity: Rare
 Miracle Chant
 Imbued Wand
@@ -69,7 +69,7 @@ Crusader Item
 ");
 
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Imbued Wand", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Imbued Wand", actual.TradeItem?.Type);
         Assert.Equal("Miracle Chant", actual.Name);
         Assert.True(actual.Properties.Influences.Crusader);
 
@@ -82,7 +82,7 @@ Crusader Item
     [Fact]
     public void ParseMagicWeapon()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: One Hand Axes
 Rarity: Magic
 Shadow Axe of the Boxer
 --------
@@ -105,7 +105,7 @@ Item Level: 50
 ");
 
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Shadow Axe", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Shadow Axe", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
     }
@@ -116,7 +116,7 @@ Item Level: 50
     [Fact]
     public void ParseUniqueItemWithDifferentBases()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Two Hand Axes
 Rarity: Unique
 Wings of Entropy
 Ezomyte Axe
@@ -148,8 +148,8 @@ Counts as Dual Wielding
 Fire and Anarchy are the most reliable agents of change.");
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Wings of Entropy", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Ezomyte Axe", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Wings of Entropy", actual.TradeItem?.Name);
+        Assert.Equal("Ezomyte Axe", actual.TradeItem?.Type);
 
         Assert.Equal(243.7, actual.Properties.PhysicalDps);
         Assert.Equal(172.80, actual.Properties.ElementalDps);
@@ -194,8 +194,8 @@ All form and finesse are forgotten when blood first hits the ground.
 
         Assert.Equal(ItemClass.OneHandSword, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Daresso's Passion", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Estoc", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Daresso's Passion", actual.TradeItem?.Name);
+        Assert.Equal("Estoc", actual.TradeItem?.Type);
 
         // Verify physical damage
         Assert.Equal(58, actual.Properties.PhysicalDamage?.Min);
@@ -242,8 +242,8 @@ Note: ~price 40 chaos
 
         Assert.Equal(ItemClass.FishingRod, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Reefbane", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Fishing Rod", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Reefbane", actual.TradeItem?.Name);
+        Assert.Equal("Fishing Rod", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -274,7 +274,7 @@ Hunter Item");
 
         Assert.Equal(ItemClass.OneHandMace, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ornate Mace", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Ornate Mace", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Influences.Hunter);
     }
 
@@ -316,7 +316,7 @@ Spells Triggered this way have 150% more Cost (crafted)
 
         Assert.Equal(ItemClass.OneHandSword, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Apex Rapier", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Apex Rapier", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost");
     }
@@ -355,7 +355,7 @@ Adds 10 to 175 Lightning Damage
 
         Assert.Equal(ItemClass.OneHandSword, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Fancy Foil", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Fancy Foil", actual.TradeItem?.Type);
 
         Assert.Equal(110.30, actual.Properties.PhysicalDpsWithQuality);
         Assert.Equal(295.90, actual.Properties.ElementalDps);
@@ -400,7 +400,7 @@ Note: ~price 30 chaos
 
         Assert.Equal(ItemClass.Staff, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Imperial Staff", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Imperial Staff", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Fractured);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "+#% to Damage over Time Multiplier", 44);
@@ -447,7 +447,7 @@ Corrupted");
 
         Assert.Equal(ItemClass.OneHandAxe, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Decorative Axe", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Decorative Axe", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Melee Hits Fortify", 12);
     }
@@ -487,7 +487,7 @@ Elder Item");
 
         Assert.Equal(ItemClass.Wand, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Prophecy Wand", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Prophecy Wand", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Attacks with this Weapon per 10 Intelligence", 1, 5);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Spell Damage per 16 Intelligence", 1);
@@ -528,7 +528,7 @@ Fractured Item
 
         Assert.Equal(ItemClass.TwoHandAxe, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Despot Axe", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Despot Axe", actual.TradeItem?.Type);
 
         Assert.Equal(14, actual.Properties.LightningDamage?.Min);
         Assert.Equal(229, actual.Properties.LightningDamage?.Max);
@@ -582,8 +582,8 @@ The brightest flames cast the darkest shadows.
 
         Assert.Equal(ItemClass.Dagger, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("The Consuming Dark", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Fiend Dagger", actual.Definition.TradeItem?.Type);
+        Assert.Equal("The Consuming Dark", actual.TradeItem?.Name);
+        Assert.Equal("Fiend Dagger", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Global Critical Strike Chance", 55);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Fire Damage Converted to Chaos Damage", 30);
@@ -628,7 +628,7 @@ Grants 24(23-26) Life per Enemy Hit
 
         Assert.Equal(ItemClass.TwoHandAxe, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Vaal Axe", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Vaal Axe", actual.TradeItem?.Type);
     }
 }

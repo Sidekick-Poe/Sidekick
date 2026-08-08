@@ -43,7 +43,7 @@ Item Level: 86
 
         Assert.Equal(ItemClass.Shield, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Titanium Spirit Shield", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Titanium Spirit Shield", actual.TradeItem?.Type);
 
         Assert.Equal(86, actual.Properties.ItemLevel);
         Assert.False(actual.Properties.Unidentified);

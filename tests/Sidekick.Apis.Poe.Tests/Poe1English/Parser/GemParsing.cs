@@ -58,7 +58,7 @@ Note: ~price 2 chaos
 
         Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Vaal Double Strike", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Vaal Double Strike", actual.TradeItem?.Type);
         Assert.Equal(1, actual.Properties.GemLevel);
         Assert.Equal(0, actual.Properties.Quality);
         Assert.True(actual.Properties.Corrupted);
@@ -94,7 +94,7 @@ This is a Support Gem. It does not grant a bonus to your character, but to skill
 
         Assert.Equal(ItemClass.SupportSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Arcane Surge Support", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Arcane Surge Support", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -131,7 +131,7 @@ Place into an item socket of the right colour to gain this skill. Right click to
 
         Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Void Sphere", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Void Sphere", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -170,9 +170,9 @@ Transfigured
 
         Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Kinetic Blast of Clustering", actual.Definition.TradeItem?.Text);
-        Assert.Equal("Kinetic Blast", actual.Definition.TradeItem?.Type);
-        Assert.Equal("alt_x", actual.Definition.TradeItem?.Discriminator);
+        Assert.Equal("Kinetic Blast of Clustering", actual.TradeItem?.Text);
+        Assert.Equal("Kinetic Blast", actual.TradeItem?.Type);
+        Assert.Equal("alt_x", actual.TradeItem?.Discriminator);
     }
 
     [Fact]
@@ -212,9 +212,9 @@ Transfigured
 
         Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Orb of Storms of Squalls", actual.Definition.TradeItem?.Text);
-        Assert.Equal("Orb of Storms", actual.Definition.TradeItem?.Type);
-        Assert.Equal("alt_x", actual.Definition.TradeItem?.Discriminator);
+        Assert.Equal("Orb of Storms of Squalls", actual.TradeItem?.Text);
+        Assert.Equal("Orb of Storms", actual.TradeItem?.Type);
+        Assert.Equal("alt_x", actual.TradeItem?.Discriminator);
     }
 
     [Fact]
@@ -255,8 +255,8 @@ Imbued
 
         Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Text);
-        Assert.Equal("Earthshatter", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Text);
+        Assert.Equal("Earthshatter", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Imbued, "Supported by Level 1 Knockback");
     }

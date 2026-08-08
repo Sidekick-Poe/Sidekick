@@ -14,13 +14,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EnergyShieldProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyEnergyShield.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyEnergyShield.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyEnergyShield.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyEnergyShield.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyEnergyShield;
+    public override string Label => gameTextProvider.Texts.ItemPropertyEnergyShield;
 
     public override void Parse(Item item)
     {

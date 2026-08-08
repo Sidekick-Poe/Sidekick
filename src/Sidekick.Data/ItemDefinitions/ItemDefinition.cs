@@ -6,15 +6,21 @@ public class ItemDefinition
 {
     public string? InvariantKey { get; init; }
 
-    public TradeItemDefinition? TradeItem { get; init; }
+    public bool IsUnique => InvariantKey?.StartsWith("UNIQUE_") ?? false;
 
-    public BaseItemDefinition? BaseItem { get; init; }
+    public string? ItemClassId { get; init; }
 
-    public UniqueItemDefinition? UniqueItem { get; init; }
+    public string? Name { get; init; }
 
-    public List<NinjaStashDefinition>? NinjaItems { get; init; }
+    public string? Image { get; init; }
 
-    public NinjaExchangeDefinition? NinjaExchange { get; init; }
+    public BaseItemProperties? Properties { get; set; }
+
+    public BaseItemRequirements? Requirements { get; set; }
+
+    public ExchangeItemDefinition? ExchangeItem { get; init; }
+
+    public List<TradeItemDefinition>? TradeItems { get; init; }
 
     [JsonIgnore]
     public Regex? NamePattern { get; init; }
@@ -48,27 +54,9 @@ public class ItemDefinition
         }
     }
 
-    [JsonIgnore]
-    public Regex? TextPattern { get; init; }
-
-    [JsonPropertyName("textPattern")]
-    public string? TextPatternValue
-    {
-        get
-        {
-            return TextPattern?.ToString();
-        }
-        init
-        {
-            TextPattern = value == null ? null : new Regex(value);
-        }
-    }
-
     /// <inheritdoc />
     public override string ToString()
     {
-        var type = TradeItem?.Type ?? BaseItem?.Name;
-        var name = TradeItem?.Name;
-        return $"{name} {type}".Trim();
+        return $"{Name} ({ItemClassId})";
     }
 }

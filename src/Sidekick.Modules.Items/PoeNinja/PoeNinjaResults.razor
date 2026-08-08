@@ -3,7 +3,7 @@
 @using Sidekick.Apis.PoeNinja.Exchange
 @using Sidekick.Data.Items
 
-@if (Item.Invariant?.NinjaItems == null || Item.Invariant.NinjaItems.Count == 0)
+@if (Item.InvariantDefinition?.NinjaItems == null || Item.InvariantDefinition.NinjaItems.Count == 0)
 {
     return;
 }
@@ -50,17 +50,17 @@
     {
         await base.OnInitializedAsync();
 
-        if (Item.Invariant?.NinjaExchange != null)
+        if (Item.InvariantDefinition?.NinjaExchange != null)
         {
             Loading = true;
             StateHasChanged();
 
-            Currency = await NinjaExchangeProvider.GetInfo(Item.Invariant);
+            Currency = await NinjaExchangeProvider.GetInfo(Item.InvariantDefinition);
 
             Loading = false;
             StateHasChanged();
         }
-        else if (Item.Invariant?.NinjaItems != null && Item.Invariant.NinjaItems.Count > 0)
+        else if (Item.InvariantDefinition?.NinjaItems != null && Item.InvariantDefinition.NinjaItems.Count > 0)
         {
             Loading = true;
             StateHasChanged();

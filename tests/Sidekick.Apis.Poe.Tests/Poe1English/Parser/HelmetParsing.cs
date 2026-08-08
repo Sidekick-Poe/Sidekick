@@ -40,7 +40,7 @@ Hunter Item
 
         Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Hunter Hood", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Hunter Hood", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
         fixture.AssertDoesNotHaveStat(actual, StatCategory.Explicit, "You have Chilling Conflux for 3 seconds every 8 seconds");
@@ -80,8 +80,8 @@ Note: ~price 1 chaos
 
         Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Starkonja's Head", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Silken Hood", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Starkonja's Head", actual.TradeItem?.Name);
+        Assert.Equal("Silken Hood", actual.TradeItem?.Type);
 
         Assert.False(actual.Properties.Unidentified);
         Assert.Equal(63, actual.Properties.ItemLevel);
@@ -133,8 +133,8 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
 
         Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("The Dark Monarch", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Lich's Circlet", actual.Definition.TradeItem?.Type);
+        Assert.Equal("The Dark Monarch", actual.TradeItem?.Name);
+        Assert.Equal("Lich's Circlet", actual.TradeItem?.Type);
 
         Assert.False(actual.Properties.Unidentified);
         Assert.Equal(85, actual.Properties.ItemLevel);
@@ -191,8 +191,8 @@ Corrupted
 
         Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Secutor Helm", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Secutor Helm", actual.TradeItem?.Type);
 
         Assert.True(actual.Properties.Corrupted);
         Assert.Equal(85, actual.Properties.ItemLevel);

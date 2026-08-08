@@ -22,8 +22,8 @@ Right Click to engrave a Persistent Buff Skill Gem.
 ");
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
-        Assert.Equal("Uncut Spirit Gem (Level 16)", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Uncut Spirit Gem (Level 16)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
     }
 
     [Fact]
@@ -40,8 +40,8 @@ Right Click to engrave a Support Gem.
 ");
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
-        Assert.Equal("Uncut Support Gem (Level 3)", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Uncut Support Gem (Level 3)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
     }
 
     [Fact]
@@ -58,8 +58,8 @@ Right Click to engrave a Skill Gem.
 ");
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
-        Assert.Equal("Uncut Skill Gem (Level 9)", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Uncut Skill Gem (Level 9)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
     }
 
     [Fact]
@@ -97,8 +97,8 @@ Enemies you Shatter explode
 Skills can be managed in the Skills Panel.
 ");
 
-        Assert.Equal("Herald of Ice", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Herald of Ice", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
         Assert.Equal(18, actual.Properties.GemLevel);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Equal(4, actual.Properties.Sockets.Count);
@@ -140,8 +140,8 @@ Place one or more Skill Gems into this Meta Gem's sockets in the Skills Panel. T
 Corrupted
 ");
 
-        Assert.Equal("Cast on Critical", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Cast on Critical", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
         Assert.Equal(20, actual.Properties.GemLevel);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Equal(5, actual.Properties.Sockets.Count);

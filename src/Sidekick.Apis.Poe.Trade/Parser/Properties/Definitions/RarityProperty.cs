@@ -13,34 +13,34 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RarityProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
     private Dictionary<Rarity, Regex> RarityPatterns { get; } = new()
     {
         {
-            Rarity.Normal, dataTextProvider.Texts.ItemPropertyRarityNormal.ToRegexEndOfLine()
+            Rarity.Normal, gameTextProvider.Texts.ItemPropertyRarityNormal.ToRegexEndOfLine()
         },
         {
-            Rarity.Magic, dataTextProvider.Texts.ItemPropertyRarityMagic.ToRegexEndOfLine()
+            Rarity.Magic, gameTextProvider.Texts.ItemPropertyRarityMagic.ToRegexEndOfLine()
         },
         {
-            Rarity.Rare, dataTextProvider.Texts.ItemPropertyRarityRare.ToRegexEndOfLine()
+            Rarity.Rare, gameTextProvider.Texts.ItemPropertyRarityRare.ToRegexEndOfLine()
         },
         {
-            Rarity.Unique, dataTextProvider.Texts.ItemPropertyRarityUnique.ToRegexEndOfLine()
+            Rarity.Unique, gameTextProvider.Texts.ItemPropertyRarityUnique.ToRegexEndOfLine()
         },
         {
-            Rarity.Currency, dataTextProvider.Texts.ItemPropertyRarityCurrency.ToRegexEndOfLine()
+            Rarity.Currency, gameTextProvider.Texts.ItemPropertyRarityCurrency.ToRegexEndOfLine()
         },
         {
-            Rarity.Gem, dataTextProvider.Texts.ItemPropertyRarityGem.ToRegexEndOfLine()
+            Rarity.Gem, gameTextProvider.Texts.ItemPropertyRarityGem.ToRegexEndOfLine()
         },
         {
-            Rarity.DivinationCard, dataTextProvider.Texts.ItemPropertyRarityDivinationCard.ToRegexEndOfLine()
+            Rarity.DivinationCard, gameTextProvider.Texts.ItemPropertyRarityDivinationCard.ToRegexEndOfLine()
         }
     };
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyRarity;
+    public override string Label => gameTextProvider.Texts.ItemPropertyRarity;
 
     public override void Parse(Item item)
     {
@@ -59,7 +59,7 @@ public class RarityProperty(
 
     public override void ParseAfterStats(Item item)
     {
-        if (item.Definition.UniqueItem != null) item.Properties.Rarity = Rarity.Unique;
+        if (item.Definition.IsUnique) item.Properties.Rarity = Rarity.Unique;
 
         base.ParseAfterStats(item);
     }
@@ -70,11 +70,11 @@ public class RarityProperty(
 
         var rarityLabel = item.Properties.Rarity switch
         {
-            Rarity.Currency => dataTextProvider.Texts.ItemPropertyRarityCurrency,
-            Rarity.Normal => dataTextProvider.Texts.ItemPropertyRarityNormal,
-            Rarity.Magic => dataTextProvider.Texts.ItemPropertyRarityMagic,
-            Rarity.Rare => dataTextProvider.Texts.ItemPropertyRarityRare,
-            Rarity.Unique => dataTextProvider.Texts.ItemPropertyRarityUnique,
+            Rarity.Currency => gameTextProvider.Texts.ItemPropertyRarityCurrency,
+            Rarity.Normal => gameTextProvider.Texts.ItemPropertyRarityNormal,
+            Rarity.Magic => gameTextProvider.Texts.ItemPropertyRarityMagic,
+            Rarity.Rare => gameTextProvider.Texts.ItemPropertyRarityRare,
+            Rarity.Unique => gameTextProvider.Texts.ItemPropertyRarityUnique,
             _ => null
         };
         if (rarityLabel == null) return Task.FromResult<TradeFilter?>(null);
@@ -86,7 +86,7 @@ public class RarityProperty(
 
         var filter = new RarityFilter(item.Game)
         {
-            Text = dataTextProvider.Texts.ItemPropertyRarity,
+            Text = gameTextProvider.Texts.ItemPropertyRarity,
             Value = rarityLabel,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
         };

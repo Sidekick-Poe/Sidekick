@@ -35,7 +35,7 @@ Corrupted
 
         Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Ruby Ring", actual.TradeItem?.Type);
 
         Assert.Equal(76, actual.Properties.ItemLevel);
         Assert.False(actual.Properties.Unidentified);
@@ -110,8 +110,8 @@ Note: ~b/o 2 chaos
 
         Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Ruby Ring", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Precursor's Emblem", actual.TradeItem?.Name);
+        Assert.Equal("Ruby Ring", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -143,8 +143,8 @@ Note: ~b/o 20 chaos
 
         Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Precursor's Emblem", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Sapphire Ring", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Precursor's Emblem", actual.TradeItem?.Name);
+        Assert.Equal("Sapphire Ring", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -167,8 +167,8 @@ Mirrored
 
         Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Kalandra's Touch", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Ring", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Kalandra's Touch", actual.TradeItem?.Name);
+        Assert.Equal("Ring", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Mirrored);
     }
 
@@ -200,8 +200,8 @@ Adds 8(6-9) to 15(13-15) Physical Damage to Attacks
 
         Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Pearlescent Amulet", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Pearlescent Amulet", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 15);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found", 9);
@@ -239,8 +239,8 @@ Corrupted
 
         Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Paua Ring", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Paua Ring", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Hatred has #% increased Mana Reservation Efficiency", 22);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 9, 15);
@@ -281,8 +281,8 @@ so the people never forgot their roots.""
 
         Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Ursa Talisman", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Ursa Talisman", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Enchant, "#% increased Effect of your Marks", 30);
     }
@@ -316,8 +316,8 @@ We were warned that there would be consequences...""
 
         Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Replica Dragonfang's Flight", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Onyx Amulet", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Replica Dragonfang's Flight", actual.TradeItem?.Name);
+        Assert.Equal("Onyx Amulet", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Level of all Defiance Banner Gems", 3);
     }
@@ -354,8 +354,8 @@ Corrupted
 
         Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Citrine Amulet", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Citrine Amulet", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Strength", 4);
         fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Intelligence", 4);

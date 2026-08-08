@@ -5,18 +5,18 @@ using Sidekick.Data.Languages;
 
 namespace Sidekick.Data.Texts;
 
-public class DataTextProvider(
+public class GameTextProvider(
     ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
     DataProvider dataProvider) : IInitializableService
 {
     public int Priority => 100;
 
-    public DataText Texts { get; private set; } = new();
+    public GameText Texts { get; private set; } = new();
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Texts = await dataProvider.Read<DataText>(game, DataType.Texts, currentGameLanguage.Language);
+        Texts = await dataProvider.Read<GameText>(game, DataType.Texts, currentGameLanguage.Language);
     }
 }

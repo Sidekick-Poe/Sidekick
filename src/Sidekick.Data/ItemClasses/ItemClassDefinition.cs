@@ -10,21 +10,6 @@ public class ItemClassDefinition
     public string? Name { get; init; }
 
     [JsonIgnore]
-    private static readonly ItemClass[] Equipment =
-    [
-        ItemClass.BodyArmour,
-        ItemClass.Boots,
-        ItemClass.Gloves,
-        ItemClass.Helmet,
-        ItemClass.Quiver,
-        ItemClass.Shield,
-        ItemClass.Focus,
-        ItemClass.Buckler,
-    ];
-
-    public bool IsEquipment() => Equipment.Contains(Type);
-
-    [JsonIgnore]
     private static readonly ItemClass[] Weapons =
     [
         ItemClass.Bow,
@@ -72,4 +57,9 @@ public class ItemClassDefinition
     ];
 
     public bool IsGem() => Gems.Contains(Type);
+
+    public override string ToString()
+    {
+        return Name ?? string.Empty;
+    }
 }

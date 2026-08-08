@@ -26,8 +26,8 @@ Right click this item then left click a normal item to apply it.
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Essence of Enhancement", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Essence of Enhancement", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
     }
 
     [Fact]
@@ -51,7 +51,7 @@ Shift click to unstack.");
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Swift Alloy", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Swift Alloy", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
     }
 }

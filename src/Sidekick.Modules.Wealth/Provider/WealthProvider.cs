@@ -211,7 +211,7 @@ internal class WealthProvider
     {
         decimal price = 0;
         NinjaSparkline? sparkLine = null;
-        var itemDefinition = itemDefinitionParser.Get(item);
+        var itemDefinition = itemDefinitionParser.GetInvariant(item);
         var invariantDefinition = itemDefinition?.InvariantKey != null ? itemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.InvariantKey) : null;
         if (itemDefinition == null || invariantDefinition == null)
         {

@@ -25,7 +25,7 @@ Shift click to unstack.
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Splinter of Tul", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Splinter of Tul", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -45,7 +45,7 @@ Place this item into an allocated currency item womb on the Genesis Tree. Right 
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Lavish Wombgift", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Lavish Wombgift", actual.TradeItem?.Type);
         Assert.Equal(34, actual.Properties.ItemLevel);
     }
 
@@ -71,8 +71,8 @@ A net woven to keep safe the bones of the Lords.
 
         Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Simple Robe", actual.Definition.TradeItem?.Type);
-        Assert.Equal("Skin of the Loyal", actual.Definition.TradeItem?.Name);
+        Assert.Equal("Simple Robe", actual.TradeItem?.Type);
+        Assert.Equal("Skin of the Loyal", actual.TradeItem?.Name);
         Assert.Equal("Foulborn Skin of the Loyal", actual.Name);
         Assert.True(actual.Properties.Foulborn);
 

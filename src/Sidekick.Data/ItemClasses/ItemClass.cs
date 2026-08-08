@@ -1,4 +1,3 @@
-using Sidekick.Data.ItemDefinitions;
 namespace Sidekick.Data.ItemClasses;
 
 public enum ItemClass

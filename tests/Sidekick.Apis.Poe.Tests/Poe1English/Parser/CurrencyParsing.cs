@@ -27,8 +27,8 @@ Note: ~b/o 2 blessed
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Chaos Orb", actual.Definition.TradeItem?.Type);
-        Assert.Equal("chaos", actual.Definition.TradeItem?.Id);
+        Assert.Equal("Chaos Orb", actual.TradeItem?.Type);
+        Assert.Equal("chaos", actual.ExchangeItem?.NinjaExchange?.Id);
 
         Assert.Empty(actual.Stats);
     }
@@ -49,8 +49,8 @@ Right click this item then left click a rare item to apply it. Rare items can ha
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Exalted Orb", actual.Definition.TradeItem?.Type);
-        Assert.Equal("exalted", actual.Definition.TradeItem?.Id);
+        Assert.Equal("Exalted Orb", actual.TradeItem?.Type);
+        Assert.Equal("exalted", actual.ExchangeItem?.NinjaExchange?.Id);
 
         Assert.Empty(actual.Stats);
     }
@@ -72,7 +72,7 @@ Note: ~price 1 blessed
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Clear Oil", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Clear Oil", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -90,7 +90,7 @@ Shift click to unstack.
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Crystallised Rancour", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Crystallised Rancour", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -113,7 +113,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 
         Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Trarthan Scarab of Infamy", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Trarthan Scarab of Infamy", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -135,6 +135,6 @@ Can be used as part of Allflame Crafting aboard The Sovereign.
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("The Changeling's Ducat", actual.Definition.TradeItem?.Type);
+        Assert.Equal("The Changeling's Ducat", actual.TradeItem?.Type);
     }
 }

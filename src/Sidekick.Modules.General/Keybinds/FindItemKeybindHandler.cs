@@ -31,10 +31,7 @@ public class FindItemKeybindHandler(
         }
 
         var item = itemParser.ParseItem(text);
-
-        string? searchValue = null;
-        if (!string.IsNullOrEmpty(item.Definition.UniqueItem?.Name)) searchValue = item.Definition.UniqueItem.Name;
-        else if (!string.IsNullOrEmpty(item.Definition.BaseItem?.Name)) searchValue = item.Definition.BaseItem.Name;
+        var searchValue = item.Definition.Name;
         if (string.IsNullOrEmpty(searchValue)) return;
 
         await clipboardProvider.SetText(searchValue);
