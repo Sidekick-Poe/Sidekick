@@ -132,7 +132,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         {
             query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
             {
-                Id = stats.First().TradeStatId.GetStatId(),
+                Id = stats.First().TradeStatId.Split('#').First(),
                 Value = new StatFilterValue(this),
             });
         }
@@ -143,7 +143,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             {
                 countGroup.Filters.Add(new StatFilters()
                 {
-                    Id = stat.TradeStatId.GetStatId(),
+                    Id = stat.TradeStatId.Split('#').First(),
                     Value = new StatFilterValue(this),
                 });
             }

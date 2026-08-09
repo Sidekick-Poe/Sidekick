@@ -25,7 +25,9 @@ public class Item
 
     public ItemDefinition Definition { get; set; } = null!;
 
-    public ExchangeItemDefinition? ExchangeItem { get; set; }
+    public ExchangeItem? Exchange { get; set; }
+
+    public NinjaExchangeItem? NinjaExchange { get; set; }
 
     public TradeItemDefinition? TradeItem { get; set; }
 

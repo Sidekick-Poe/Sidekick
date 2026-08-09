@@ -28,7 +28,8 @@ Note: ~b/o 2 blessed
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Chaos Orb", actual.TradeItem?.Type);
-        Assert.Equal("chaos", actual.ExchangeItem?.NinjaExchange?.Id);
+        Assert.Equal("chaos", actual.Exchange?.Id);
+        Assert.Equal("chaos", actual.NinjaExchange?.Id);
 
         Assert.Empty(actual.Stats);
     }
@@ -50,7 +51,8 @@ Right click this item then left click a rare item to apply it. Rare items can ha
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Exalted Orb", actual.TradeItem?.Type);
-        Assert.Equal("exalted", actual.ExchangeItem?.NinjaExchange?.Id);
+        Assert.Equal("exalted", actual.Exchange?.Id);
+        Assert.Equal("exalted", actual.NinjaExchange?.Id);
 
         Assert.Empty(actual.Stats);
     }

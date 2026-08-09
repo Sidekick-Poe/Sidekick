@@ -22,8 +22,8 @@ Right click this item then left click a rare item to apply it.
 Shift click to unstack.
 ");
 
-        Assert.NotNull(item.ExchangeItem?.NinjaExchange);
-        Assert.Equal("chaos", item.ExchangeItem?.NinjaExchange.Id);
+        Assert.NotNull(item.NinjaExchange);
+        Assert.Equal("chaos", item.NinjaExchange.Id);
     }
 
     [Fact]
@@ -40,8 +40,8 @@ Augments a rare item with a new random modifier
 Right click this item then left click a rare item to apply it. Rare items can have up to six random modifiers.
 ");
 
-        Assert.NotNull(item.ExchangeItem?.NinjaExchange);
-        Assert.Equal("exalted", item.ExchangeItem?.NinjaExchange.Id);
+        Assert.NotNull(item.NinjaExchange);
+        Assert.Equal("exalted", item.NinjaExchange.Id);
     }
 
     [Fact]
@@ -56,7 +56,7 @@ The Void
 Reach into the Void and claim your prize.
 ");
 
-        Assert.NotNull(item.ExchangeItem?.NinjaExchange);
-        Assert.Equal("the-void", item.ExchangeItem?.NinjaExchange.Id);
+        Assert.NotNull(item.NinjaExchange);
+        Assert.Equal("the-void", item.NinjaExchange.Id);
     }
 }

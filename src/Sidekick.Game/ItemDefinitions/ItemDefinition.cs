@@ -1,12 +1,11 @@
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+
 namespace Sidekick.Game.ItemDefinitions;
 
 public class ItemDefinition
 {
     public string? InvariantKey { get; init; }
-
-    public bool IsUnique => InvariantKey?.StartsWith("UNIQUE_") ?? false;
 
     public string? ItemClassId { get; init; }
 
@@ -18,9 +17,13 @@ public class ItemDefinition
 
     public BaseItemRequirements? Requirements { get; set; }
 
-    public ExchangeItemDefinition? ExchangeItem { get; init; }
+    public ExchangeItem? Exchange { get; init; }
+
+    public NinjaExchangeItem? NinjaExchange { get; init; }
 
     public List<TradeItemDefinition>? TradeItems { get; init; }
+
+    public List<NinjaStashItem>? NinjaItems { get; init; }
 
     [JsonIgnore]
     public Regex? NamePattern { get; init; }
@@ -53,6 +56,9 @@ public class ItemDefinition
             TypePattern = value == null ? null : new Regex(value);
         }
     }
+
+    [JsonIgnore]
+    public bool IsUnique => InvariantKey?.StartsWith("UNIQUE_") ?? false;
 
     /// <inheritdoc />
     public override string ToString()

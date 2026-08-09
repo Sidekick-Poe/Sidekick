@@ -13,7 +13,7 @@ public class NinjaUriProvider(
     ICacheProvider cacheProvider,
     ISettingsService settingsService)
 {
-    public async Task<Uri?> GetDetailsUri(NinjaExchangeDefinition item)
+    public async Task<Uri?> GetDetailsUri(NinjaExchangeItem item)
     {
         if (string.IsNullOrEmpty(item.Id)) return null;
 
@@ -23,7 +23,7 @@ public class NinjaUriProvider(
         return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.Id}");
     }
 
-    public async Task<Uri?> GetDetailsUri(NinjaStashDefinition item)
+    public async Task<Uri?> GetDetailsUri(NinjaStashItem item)
     {
         if (string.IsNullOrEmpty(item.DetailsId)) return null;
 

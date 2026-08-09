@@ -56,7 +56,8 @@ public class ItemDefinitionParser(
         item.Definition = definition;
         ParseVaalGem();
 
-        item.ExchangeItem = item.Definition.ExchangeItem;
+        item.Exchange = definition.Exchange;
+        item.NinjaExchange = definition.NinjaExchange;
         item.TradeItem = GetTradeItem(item);
 
         return;

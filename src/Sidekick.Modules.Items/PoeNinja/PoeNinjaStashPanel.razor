@@ -29,30 +29,30 @@
         <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
     }
 
-    @if (Stash.Definition.ItemLevel > 0)
+    @if (Stash.Item.ItemLevel > 0)
     {
         <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionItemLevel"
-                          Value="@Stash.Definition.ItemLevel.ToString()"
+                          Value="@Stash.Item.ItemLevel.ToString()"
                           Class="text-center justify-center"/>
     }
 
-    @if (Stash.Definition.GemLevel > 0)
+    @if (Stash.Item.GemLevel > 0)
     {
         <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionLevel"
-                          Value="@Stash.Definition.GemLevel.ToString()"
+                          Value="@Stash.Item.GemLevel.ToString()"
                           Class="text-center justify-center"/>
     }
 
-    @if (Stash.Definition.GemQuality > 0)
+    @if (Stash.Item.GemQuality > 0)
     {
         <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionQuality"
-                          Value="@Stash.Definition.GemQuality.ToString()"
+                          Value="@Stash.Item.GemQuality.ToString()"
                           Class="text-center justify-center"/>
     }
 
-    @if (Stash.Definition.Stats != null)
+    @if (Stash.Item.Stats != null)
     {
-        foreach (var stat in Stash.Definition.Stats)
+        foreach (var stat in Stash.Item.Stats)
         {
             if (string.IsNullOrEmpty(stat.Id)) continue;
 
@@ -67,7 +67,7 @@
         }
     }
 
-    @if (Stash.Definition.Corrupted == true)
+    @if (Stash.Item.Corrupted == true)
     {
         <ItemStatText Category="StatCategory.Corrupted"
                       Class="text-center">@(PropertyParser.GetDefinition<CorruptedProperty>().Label)</ItemStatText>
@@ -76,9 +76,9 @@
     <div class="flex flex-nowrap justify-between mt-1">
         <TextCaption>@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
 
-        @if (!string.IsNullOrEmpty(Stash.Definition.Variant))
+        @if (!string.IsNullOrEmpty(Stash.Item.Variant))
         {
-            <TextCaption>@Stash.Definition.Variant.Trim(' ', ',')</TextCaption>
+            <TextCaption>@Stash.Item.Variant.Trim(' ', ',')</TextCaption>
         }
     </div>
 

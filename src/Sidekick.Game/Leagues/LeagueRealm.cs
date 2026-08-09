@@ -1,9 +1,9 @@
 namespace Sidekick.Game.Leagues;
 
-public enum LeagueRealm
+public enum LeagueRealm : byte
 {
-    PC,
-    Xbox,
-    Sony,
-    Poe2,
+    PC = 0,
+    Xbox = 1,
+    Sony = 2,
+    Poe2 = 3,
 }

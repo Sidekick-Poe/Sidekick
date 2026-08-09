@@ -46,7 +46,7 @@ public class PseudoFilter : TradeFilter, INormalizableFilter
 
         query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters
         {
-            Id = Stat.Id.GetStatId(),
+            Id = Stat.Id.Split('#').First(),
             Value = new StatFilterValue()
             {
                 Min = Min,

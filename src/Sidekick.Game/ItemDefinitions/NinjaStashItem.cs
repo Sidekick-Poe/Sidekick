@@ -1,6 +1,6 @@
 ﻿namespace Sidekick.Game.ItemDefinitions;
 
-public class NinjaStashDefinition
+public class NinjaStashItem
 {
     public required string Type { get; init; }
     public required string Url { get; init; }
@@ -14,5 +14,5 @@ public class NinjaStashDefinition
     public int? ItemLevel { get; init; }
     public string? Variant { get; init; }
 
-    public List<NinjaStashStatDefinition>? Stats { get; init; }
+    public List<NinjaStashItemStat>? Stats { get; set; }
 }

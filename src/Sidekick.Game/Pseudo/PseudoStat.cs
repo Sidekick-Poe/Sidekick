@@ -1,17 +1,12 @@
 namespace Sidekick.Game.Pseudo;
 
 public class PseudoStat
-(
-    string id,
-    string text,
-    double multiplier
-)
 {
-    public string Id { get; } = id;
+    public string Id { get; init; }
 
-    public string Text { get; } = text;
+    public string Text { get; init; }
 
-    public double Multiplier { get; } = multiplier;
+    public double Multiplier { get; init; }
 
     public override string ToString()
     {

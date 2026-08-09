@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Sidekick.Common.Enums;
+
 namespace Sidekick.Game.Leagues;
 
 public class League
@@ -14,4 +15,9 @@ public class League
 
     [JsonIgnore]
     public string Value => $"{Game.GetValueAttribute()}.{Id}";
+
+    public override string ToString()
+    {
+        return Value;
+    }
 }

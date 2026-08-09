@@ -1,6 +1,6 @@
 ﻿namespace Sidekick.Game.ItemDefinitions;
 
-public class NinjaStashStatDefinition
+public class NinjaStashItemStat
 {
     public string? Id { get; init; }
     public int? Min { get; init; }

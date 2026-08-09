@@ -3,5 +3,5 @@ namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public interface INinjaExchangeProvider
 {
-    Task<NinjaCurrency?> GetInfo(ExchangeItemDefinition? exchange);
+    Task<NinjaCurrency?> GetInfo(NinjaExchangeItem? exchange);
 }

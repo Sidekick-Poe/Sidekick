@@ -39,9 +39,8 @@ public class StatFilterValue
                          .Where(x => x.TradeIds != null)
                          .SelectMany(definition => definition.TradeIds!))
             {
-                var option = tradeStat.GetStatOption();
-                if (option == null) continue;
-                return option;
+                var option = tradeStat.Split('#').ElementAtOrDefault(1);
+                if (int.TryParse(option, out var result)) return result;
             }
 
             return null;

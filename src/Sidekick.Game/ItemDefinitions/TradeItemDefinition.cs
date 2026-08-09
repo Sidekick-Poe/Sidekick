@@ -7,6 +7,4 @@ public class TradeItemDefinition
     public string? Type { get; init; }
     public string? Category { get; init; }
     public string? Discriminator { get; init; }
-
-    public List<NinjaStashDefinition>? NinjaItems { get; init; }
 }

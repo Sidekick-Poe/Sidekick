@@ -7,4 +7,9 @@ public class PseudoDefinition
     public string? Text { get; init; }
 
     public List<PseudoStat> Stats { get; init; } = [];
+
+    public override string ToString()
+    {
+        return Text ?? string.Empty;
+    }
 }
