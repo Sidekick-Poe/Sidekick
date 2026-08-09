@@ -4,9 +4,9 @@ using Sidekick.Apis.Poe2Scout.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemDefinitions;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.ItemDefinitions;
 
 namespace Sidekick.Apis.Poe2Scout.Items;
 

@@ -6,13 +6,13 @@ using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using Sidekick.Data.Stats;
-using Sidekick.Data.StatsInvariant;
-using Sidekick.Data.Trade;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
+using Sidekick.Game.Stats;
+using Sidekick.Game.StatsInvariant;
+using Sidekick.Game.TradeStats;
 using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
@@ -36,7 +36,7 @@ public class StatParser
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var definitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.Language);
+        var definitions = await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.Language);
         foreach (var definition in definitions)
         {
             if (definition.TradeIds == null || definition.TradeIds.Count == 0)
@@ -54,12 +54,12 @@ public class StatParser
             }
         }
 
-        var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, DataType.TradeStats, currentGameLanguage.Language);
+        var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, GameDataType.TradeStats, currentGameLanguage.Language);
         TradeDefinitions = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
 
-        InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, DataType.Stats, currentGameLanguage.InvariantLanguage);
+        InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.InvariantLanguage);
 
-        InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, DataType.StatsInvariant);
+        InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, GameDataType.StatsInvariant);
     }
 
     public Stat? ParseInvariant(StatCategory category, string? line)

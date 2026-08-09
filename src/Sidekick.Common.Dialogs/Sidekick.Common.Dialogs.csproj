@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Sidekick.Common.Database\Sidekick.Common.Database.csproj" />
       <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
     </ItemGroup>
 

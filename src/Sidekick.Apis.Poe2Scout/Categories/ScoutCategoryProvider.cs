@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe2Scout.Clients;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
+using Sidekick.Game.Extensions;
 
 namespace Sidekick.Apis.Poe2Scout.Categories;
 

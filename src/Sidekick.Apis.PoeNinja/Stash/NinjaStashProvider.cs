@@ -6,11 +6,11 @@ using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.ItemDefinitions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Items;
+using Sidekick.Game.Stats;
 
 namespace Sidekick.Apis.PoeNinja.Stash;
 

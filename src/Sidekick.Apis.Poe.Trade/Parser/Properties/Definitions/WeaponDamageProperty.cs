@@ -9,10 +9,10 @@ using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using ItemProperties=Sidekick.Data.Items.ItemProperties;
+using Sidekick.Game;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
+using ItemProperties=Sidekick.Game.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 

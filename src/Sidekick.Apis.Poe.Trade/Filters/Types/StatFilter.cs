@@ -4,9 +4,9 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game;
+using Sidekick.Game.Items;
+using Sidekick.Game.Stats;
 namespace Sidekick.Apis.Poe.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter, INormalizableFilter

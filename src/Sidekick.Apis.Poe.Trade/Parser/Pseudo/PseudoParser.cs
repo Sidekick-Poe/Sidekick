@@ -4,11 +4,11 @@ using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using Sidekick.Data.Pseudo;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
+using Sidekick.Game.Pseudo;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
@@ -31,7 +31,7 @@ public class PseudoParser
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Definitions = await dataProvider.Read<List<PseudoDefinition>>(game, DataType.Pseudo, currentGameLanguage.Language);
+        Definitions = await dataProvider.Read<List<PseudoDefinition>>(game, GameDataType.Pseudo, currentGameLanguage.Language);
     }
 
     public void Parse(Item item)

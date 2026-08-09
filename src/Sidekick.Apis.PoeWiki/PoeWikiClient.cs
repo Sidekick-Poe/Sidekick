@@ -7,8 +7,8 @@ using Sidekick.Apis.PoeWiki.Extensions;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
-using Sidekick.Data;
-using Sidekick.Data.Items;
+using Sidekick.Game;
+using Sidekick.Game.Items;
 
 namespace Sidekick.Apis.PoeWiki;
 

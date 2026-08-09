@@ -3,8 +3,8 @@ using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemDefinitions;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.ItemDefinitions;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaExchangeProvider(

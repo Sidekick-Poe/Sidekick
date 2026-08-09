@@ -6,10 +6,10 @@ using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using Sidekick.Data.Texts;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
+using Sidekick.Game.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 

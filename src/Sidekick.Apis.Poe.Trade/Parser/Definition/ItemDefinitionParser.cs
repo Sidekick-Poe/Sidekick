@@ -1,12 +1,12 @@
 using FuzzySharp;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.ItemDefinitions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
 namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
 
 public class ItemDefinitionParser(
@@ -27,12 +27,12 @@ public class ItemDefinitionParser(
     {
         var game = await settingsService.GetGame();
 
-        Definitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.Language);
+        Definitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.Language);
         UniqueItems = Definitions.Where(x => x.IsUnique)
             .OrderByDescending(x => x.Name?.Length ?? 0)
             .ToList();
 
-        InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, DataType.Items, currentGameLanguage.InvariantLanguage);
+        InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.InvariantLanguage);
         InvariantDictionary.Clear();
         foreach (var definition in InvariantDefinitions)
         {

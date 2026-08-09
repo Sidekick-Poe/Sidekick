@@ -1,12 +1,12 @@
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using Sidekick.Data.Texts;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
+using Sidekick.Game.Texts;
 namespace Sidekick.Apis.Poe.Trade.Parser.ItemClasses;
 
 public class ItemClassParser(
@@ -23,7 +23,7 @@ public class ItemClassParser(
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        ItemClasses = await dataProvider.Read<List<ItemClassDefinition>>(game, DataType.ItemClasses, currentGameLanguage.Language);
+        ItemClasses = await dataProvider.Read<List<ItemClassDefinition>>(game, GameDataType.ItemClasses, currentGameLanguage.Language);
     }
 
     public void Parse(Item item)

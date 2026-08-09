@@ -3,11 +3,11 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
-using Sidekick.Data.Texts;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.Items;
+using Sidekick.Game.Stats;
+using Sidekick.Game.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Text;
 

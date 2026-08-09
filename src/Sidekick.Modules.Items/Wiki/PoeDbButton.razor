@@ -1,6 +1,6 @@
 @using Sidekick.Apis.PoeDb
-@using Sidekick.Data.Items
-@using Sidekick.Data
+@using Sidekick.Game.Items
+@using Sidekick.Game
 
 <ButtonLink Class="justify-start! p-3 gap-2" OnClick="() => PoeDbClient.OpenWebsite(Item)">
     <Icon Svg="@UiIcons.External" /> @(Item.Game == GameType.PathOfExile1 ? "poedb.tw" : "poe2db.tw")

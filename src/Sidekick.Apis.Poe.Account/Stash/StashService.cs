@@ -3,8 +3,7 @@ using Sidekick.Apis.Poe.Account.Clients;
 using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Models;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
+using Sidekick.Game.Items;
 
 namespace Sidekick.Apis.Poe.Account.Stash;
 

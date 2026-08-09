@@ -1,7 +1,7 @@
 ﻿using Sidekick.Common.Browser;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Game;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
 namespace Sidekick.Apis.PoeDb;
 
 public class PoeDbClient(

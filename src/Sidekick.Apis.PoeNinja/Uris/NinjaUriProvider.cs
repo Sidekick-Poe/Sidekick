@@ -3,9 +3,9 @@ using Sidekick.Apis.PoeNinja.Uris.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemDefinitions;
+using Sidekick.Game;
+using Sidekick.Game.ItemDefinitions;
+
 namespace Sidekick.Apis.PoeNinja.Uris;
 
 public class NinjaUriProvider(

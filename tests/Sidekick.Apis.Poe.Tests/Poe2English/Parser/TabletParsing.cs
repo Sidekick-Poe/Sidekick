@@ -1,7 +1,7 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Items;
+using Sidekick.Game.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 

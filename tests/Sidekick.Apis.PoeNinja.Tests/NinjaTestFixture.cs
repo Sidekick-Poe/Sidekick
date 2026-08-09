@@ -8,7 +8,7 @@ using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Apis.PoeNinja.Tests.Mocks;
-using Sidekick.Data.Items;
+using Sidekick.Game.Items;
 using Xunit;
 
 namespace Sidekick.Apis.PoeNinja.Tests;

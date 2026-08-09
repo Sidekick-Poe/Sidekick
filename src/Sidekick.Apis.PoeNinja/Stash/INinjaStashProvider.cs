@@ -1,6 +1,6 @@
 ﻿using Sidekick.Apis.Poe.Trade.Trade.Models;
-using Sidekick.Data.ItemDefinitions;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Items;
 namespace Sidekick.Apis.PoeNinja.Stash;
 
 public interface INinjaStashProvider

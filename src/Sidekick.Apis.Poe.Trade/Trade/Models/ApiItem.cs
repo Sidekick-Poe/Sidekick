@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Trade.Trade.Converters;
 using Sidekick.Common.Converters;
-using Sidekick.Data.Items;
+using Sidekick.Game.Items;
 using System.Text.Json.Serialization;
 namespace Sidekick.Apis.Poe.Trade.Trade.Models;
 

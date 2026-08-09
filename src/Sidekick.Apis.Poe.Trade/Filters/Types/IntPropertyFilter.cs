@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
+using Sidekick.Game.Items;
 namespace Sidekick.Apis.Poe.Trade.Filters.Types;
 
 public class IntPropertyFilter : TradeFilter, INormalizableFilter

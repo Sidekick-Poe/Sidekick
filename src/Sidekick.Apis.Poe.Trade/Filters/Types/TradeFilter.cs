@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
+using Sidekick.Game.Items;
 namespace Sidekick.Apis.Poe.Trade.Filters.Types;
 
 public abstract class TradeFilter

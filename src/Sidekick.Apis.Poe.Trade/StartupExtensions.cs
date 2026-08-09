@@ -15,7 +15,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Parser.Text;
 using Sidekick.Apis.Poe.Trade.Trade;
 using Sidekick.Common;
-using Sidekick.Data.Stats;
+using Sidekick.Game.Stats;
 
 namespace Sidekick.Apis.Poe.Trade;
 

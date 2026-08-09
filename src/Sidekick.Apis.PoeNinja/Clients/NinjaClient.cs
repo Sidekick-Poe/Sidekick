@@ -2,8 +2,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
 
 namespace Sidekick.Apis.PoeNinja.Clients;
 

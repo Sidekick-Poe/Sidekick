@@ -5,10 +5,10 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.ItemDefinitions;
-using Sidekick.Data.Items;
+using Sidekick.Game;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 

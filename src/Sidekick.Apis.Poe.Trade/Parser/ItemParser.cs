@@ -8,9 +8,9 @@ using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Parser.Text;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
+using Sidekick.Game;
+using Sidekick.Game.Extensions;
+using Sidekick.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 

@@ -1,5 +1,5 @@
 using Sidekick.Common.Initialization;
-using Sidekick.Data.Items;
+using Sidekick.Game.Items;
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public interface IItemParser : IInitializableService

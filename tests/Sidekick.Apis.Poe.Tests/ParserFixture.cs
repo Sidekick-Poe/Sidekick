@@ -17,10 +17,10 @@ using Sidekick.Common;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using Sidekick.Data.Stats;
+using Sidekick.Game;
+using Sidekick.Game.Items;
+using Sidekick.Game.Languages;
+using Sidekick.Game.Stats;
 using Xunit;
 using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
@@ -50,7 +50,10 @@ public abstract class ParserFixture : IAsyncLifetime
             // Building blocks
             .AddSidekickCommon(SidekickApplicationType.Test)
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-            .AddSidekickData()
+            .AddSidekickCommonSettings()
+
+            .AddSidekickGame()
+            .AddSidekickGameParser()
 
             // Apis
             .AddSidekickCommonApi()
