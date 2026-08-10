@@ -2,8 +2,7 @@ using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Settings;
-using Sidekick.Game.Items;
-using Sidekick.Game.Stats;
+using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.Poe.Trade.Filters.Types;
 
 public class PseudoFilter : TradeFilter, INormalizableFilter

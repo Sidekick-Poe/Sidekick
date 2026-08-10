@@ -1,13 +1,11 @@
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
 using Sidekick.Game.ItemClasses;
-using Sidekick.Game.Items;
-using Sidekick.Game.Languages;
-using Sidekick.Game.Texts;
-namespace Sidekick.Apis.Poe.Trade.Parser.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Texts;
+namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class ItemClassParser(
     DataProvider dataProvider,
@@ -16,14 +14,14 @@ public class ItemClassParser(
     GameTextProvider gameTextProvider
 ) : IInitializableService
 {
-    public List<ItemClassDefinition> ItemClasses { get; set; } = [];
+    public List<ItemClassDefinition> Definitions { get; set; } = [];
 
     public int Priority => 100;
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        ItemClasses = await dataProvider.Read<List<ItemClassDefinition>>(game, GameDataType.ItemClasses, currentGameLanguage.Language);
+        Definitions = await dataProvider.Read<List<ItemClassDefinition>>(game, GameDataType.ItemClasses, currentGameLanguage.Language);
     }
 
     public void Parse(Item item)
@@ -32,9 +30,7 @@ public class ItemClassParser(
         line = line.Replace(gameTextProvider.Texts.ItemPropertyItemClass, string.Empty);
         line = line.Trim(':', ' ');
 
-        var itemClass = ItemClasses.FirstOrDefault(x => x.Name == line);
-        if (itemClass == null) throw new UnparsableException(item.Text.Text);
-
-        item.ItemClass = itemClass;
+        // This will fail in the ItemDefinitionParser if the item class is still not set at that point.
+        item.ItemClass = Definitions.FirstOrDefault(x => x.Name == line)!;
     }
 }

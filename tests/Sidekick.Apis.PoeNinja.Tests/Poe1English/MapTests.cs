@@ -5,7 +5,7 @@ namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 [Collection(Collections.NinjaTestCollection)]
 public class MapTests(NinjaTestFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void Tier16()

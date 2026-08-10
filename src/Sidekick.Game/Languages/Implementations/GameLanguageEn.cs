@@ -88,9 +88,5 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionHeistHighValue => "High Value";
     public string DescriptionHeistPrecious => "Precious";
     public string DescriptionHeistPriceless => "Priceless";
-
-    public string AffixSuperior => "Superior";
-    public string AffixBlighted => "Blighted";
-    public string AffixBlightRavaged => "Blight-ravaged";
 }
 

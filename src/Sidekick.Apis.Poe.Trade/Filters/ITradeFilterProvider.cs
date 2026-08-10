@@ -1,5 +1,5 @@
 using Sidekick.Common.Initialization;
-using Sidekick.Game.Items;
+using Sidekick.Game.Parser.Items;
 using Sidekick.Game.TradeFilters;
 namespace Sidekick.Apis.Poe.Trade.Filters;
 

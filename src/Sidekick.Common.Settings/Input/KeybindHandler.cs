@@ -1,6 +1,5 @@
-using Sidekick.Common.Settings;
-
-namespace Sidekick.Common.Platform.Input;
+using Sidekick.Common.Platform.Input;
+namespace Sidekick.Common.Settings.Input;
 
 /// <summary>
 ///     Interface for keybind handlers

@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Game.ItemClasses;
-using Sidekick.Game.Items;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -10,7 +10,7 @@ namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 [Collection(Collections.Poe1EnglishFixture)]
 public class PoeNinjaParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void SacredChainmail()

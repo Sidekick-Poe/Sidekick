@@ -8,6 +8,7 @@ using SharpHook;
 using SharpHook.Data;
 using SharpHook.Logging;
 using Sidekick.Common.Platform.EventArgs;
+using Sidekick.Common.Settings.Input;
 namespace Sidekick.Common.Platform.Input;
 
 public class InputProvider

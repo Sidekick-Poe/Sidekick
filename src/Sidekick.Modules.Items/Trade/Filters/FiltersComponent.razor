@@ -1,10 +1,9 @@
 @using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Filters.Types
+@using Sidekick.Apis.Poe.Trade.Parser
 @using Sidekick.Apis.Poe.Trade.Parser.Properties
-@using Sidekick.Apis.Poe.Trade.Parser.Pseudo
-@using Sidekick.Apis.Poe.Trade.Parser.Stats
 @using Sidekick.Common.Settings
-@using Sidekick.Game.Items
+@using Sidekick.Game.Parser.Items
 @using Sidekick.Modules.Items.Trade.Filters.Types
 @using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
@@ -42,9 +41,9 @@
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject TradeService TradeService
-@inject IPropertyParser PropertyParser
-@inject IStatParser StatParser
-@inject IPseudoParser PseudoParser
+@inject PropertyParser PropertyParser
+@inject StatParser StatParser
+@inject PseudoParser PseudoParser
 @inject ITradeFilterProvider TradeFilterProvider
 @inject ISettingsService SettingsService
 

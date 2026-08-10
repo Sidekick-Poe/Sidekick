@@ -1,5 +1,6 @@
+using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Stats;
-namespace Sidekick.Game.Items;
+namespace Sidekick.Game.Parser.Items;
 
 /// <summary>
 ///     Represents a line of text on an item. With the API being the way it is, each line of text can be represented by one

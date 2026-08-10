@@ -1,30 +1,25 @@
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
-using Sidekick.Apis.Poe.Trade.Parser.ItemClasses;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
-using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Parser.Text;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
-using Sidekick.Game.Items;
+using Sidekick.Game.Parser.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class ItemParser
 (
     ILogger<ItemParser> logger,
-    IStatParser statParser,
-    IPseudoParser pseudoParser,
-    IPropertyParser propertyParser,
-    IItemDefinitionParser itemDefinitionParser,
+    StatParser statParser,
+    PseudoParser pseudoParser,
+    PropertyParser propertyParser,
+    ItemDefinitionParser itemDefinitionParser,
     ISettingsService settingsService,
     ItemClassParser itemClassParser,
     TextParser textParser
-) : IItemParser
+) : IInitializableService
 {
     public int Priority => 100;
 

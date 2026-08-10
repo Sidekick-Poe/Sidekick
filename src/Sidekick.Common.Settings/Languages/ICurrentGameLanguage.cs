@@ -1,5 +1,6 @@
 using Sidekick.Common.Initialization;
-namespace Sidekick.Game.Languages;
+using Sidekick.Game.Languages;
+namespace Sidekick.Common.Settings.Languages;
 
 public interface ICurrentGameLanguage : IInitializableService
 {

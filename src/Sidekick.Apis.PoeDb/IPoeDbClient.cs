@@ -1,4 +1,4 @@
-﻿using Sidekick.Game.Items;
+﻿using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.PoeDb;
 
 public interface IPoeDbClient

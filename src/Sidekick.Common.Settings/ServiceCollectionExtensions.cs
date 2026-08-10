@@ -1,10 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Sidekick.Common.Localization;
-using Sidekick.Common.Settings;
-using Sidekick.Game.Languages;
-
-namespace Sidekick.Common;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Common.Settings.Localization;
+namespace Sidekick.Common.Settings;
 
 public static class ServiceCollectionExtensions
 {

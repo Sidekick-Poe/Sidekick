@@ -5,17 +5,18 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
-using Sidekick.Game.Items;
-using Sidekick.Game.Languages;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Stats;
 using Sidekick.Game.StatsInvariant;
 using Sidekick.Game.TradeStats;
 using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
-namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
+namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class StatParser
 (
@@ -23,7 +24,7 @@ public class StatParser
     ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources,
     DataProvider dataProvider
-) : IStatParser
+) : IInitializableService
 {
     public int Priority => 300;
 

@@ -8,11 +8,11 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Avalonia.Services;
 using Sidekick.Avalonia.Utilities;
 using Sidekick.Common;
-using Sidekick.Common.Blazor.Home;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
+using Sidekick.Modules.General.Home;
 using Sidekick.Web;
 
 namespace Sidekick.Avalonia;

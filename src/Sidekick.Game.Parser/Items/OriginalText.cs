@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Sidekick.Game.Extensions;
-using Sidekick.Game.Tokenizers;
-namespace Sidekick.Game.Items;
+using Sidekick.Game.Parser.Tokenizers;
+namespace Sidekick.Game.Parser.Items;
 
 /// <summary>
 /// Stores data about the state of the parsing process for the item

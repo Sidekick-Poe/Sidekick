@@ -5,7 +5,6 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
 using Sidekick.Game.ItemDefinitions;
 
 namespace Sidekick.Apis.Poe2Scout.Items;
@@ -18,7 +17,7 @@ public class ScoutItemProvider(
 {
     private List<ScoutItem>? Items { get; set; }
 
-    public Task<ScoutItem?> GetItem(TradeItemDefinition? tradeItem)
+    public Task<ScoutItem?> GetItem(TradeItem? tradeItem)
     {
         if (tradeItem == null) return Task.FromResult<ScoutItem?>(null);
 

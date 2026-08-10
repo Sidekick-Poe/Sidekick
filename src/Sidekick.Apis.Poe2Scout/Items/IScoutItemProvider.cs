@@ -4,6 +4,6 @@ namespace Sidekick.Apis.Poe2Scout.Items;
 
 public interface IScoutItemProvider
 {
-    Task<ScoutItem?> GetItem(TradeItemDefinition? tradeItem);
+    Task<ScoutItem?> GetItem(TradeItem? tradeItem);
     Task<ScoutItem?> GetItem(string text);
 }

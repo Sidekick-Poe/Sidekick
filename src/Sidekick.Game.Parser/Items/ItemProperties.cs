@@ -1,4 +1,4 @@
-namespace Sidekick.Game.Items;
+namespace Sidekick.Game.Parser.Items;
 
 public class ItemProperties
 {
@@ -97,6 +97,10 @@ public class ItemProperties
     public double CriticalHitChance { get; set; }
 
     public double AttacksPerSecond { get; set; }
+
+    public bool Blighted { get; set; }
+
+    public bool BlightRavaged { get; set; }
 
     public DamageRange? PhysicalDamage { get; set; }
 

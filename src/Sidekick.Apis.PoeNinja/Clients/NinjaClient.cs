@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
 
 namespace Sidekick.Apis.PoeNinja.Clients;
 

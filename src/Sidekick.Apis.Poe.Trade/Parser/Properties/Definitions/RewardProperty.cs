@@ -1,22 +1,21 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
 using Sidekick.Game.ItemClasses;
-using Sidekick.Game.Items;
-using Sidekick.Game.Languages;
+using Sidekick.Game.Parser.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RewardProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage,
-    IItemDefinitionParser itemDefinitionParser) : PropertyDefinition
+    ItemDefinitionParser itemDefinitionParser) : PropertyDefinition
 {
     private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringProperty();
 
@@ -47,13 +46,13 @@ public class RewardProperty(
 
 public class RewardFilter : StringPropertyFilter
 {
-    public RewardFilter(IItemDefinitionParser itemDefinitionParser)
+    public RewardFilter(ItemDefinitionParser itemDefinitionParser)
     {
         ItemDefinitionParser = itemDefinitionParser;
         DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
-    private IItemDefinitionParser ItemDefinitionParser { get; }
+    private ItemDefinitionParser ItemDefinitionParser { get; }
 
     public override void PrepareTradeRequest(Query query, Item item)
     {

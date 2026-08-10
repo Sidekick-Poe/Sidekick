@@ -10,11 +10,10 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
 using Sidekick.Game.ItemDefinitions;
-using Sidekick.Game.Items;
-using Sidekick.Game.Languages;
+using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade;
 
 public class ItemTradeService
@@ -87,7 +86,7 @@ public class ItemTradeService
 
         throw new ApiErrorException();
 
-        Query GetQueryFromDefinition(TradeItemDefinition? tradeItem)
+        Query GetQueryFromDefinition(TradeItem? tradeItem)
         {
             var query = new Query();
 

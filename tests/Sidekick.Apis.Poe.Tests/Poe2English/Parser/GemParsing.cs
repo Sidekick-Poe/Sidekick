@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 [Collection(Collections.Poe2EnglishFixture)]
 public class GemParsing(Poe2EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseUncutSpirit16()

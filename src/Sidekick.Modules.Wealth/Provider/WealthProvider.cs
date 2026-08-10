@@ -2,13 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
+using Sidekick.Game;
 using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Models.ApiItem;
 
 namespace Sidekick.Modules.Wealth.Provider;
@@ -20,7 +21,7 @@ internal class WealthProvider
     IStashService stashService,
     INinjaExchangeProvider ninjaExchangeProvider,
     INinjaStashProvider ninjaStashProvider,
-    IItemDefinitionParser itemDefinitionParser,
+    ItemDefinitionParser itemDefinitionParser,
     DbContextOptions<SidekickDbContext> dbContextOptions
 )
 {
@@ -68,6 +69,8 @@ internal class WealthProvider
                 return;
             }
 
+            var game = await settingsService.GetGame();
+
             await using var database = new SidekickDbContext(dbContextOptions);
             var tabs = await database.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
 
@@ -85,7 +88,7 @@ internal class WealthProvider
                 if (stash == null) continue;
 
                 logger.LogInformation($"[WealthProvider] Parsing {stash.Name}");
-                await ParseStash(database, leagueId, stash);
+                await ParseStash(database, game, leagueId, stash);
 
                 logger.LogInformation($"[WealthProvider] Taking stash snapshot {stash.Name}");
                 await TakeStashSnapshot(database, leagueId, stash, date);
@@ -109,7 +112,7 @@ internal class WealthProvider
         }
     }
 
-    private async Task ParseStash(SidekickDbContext database, string leagueId, StashTab stash)
+    private async Task ParseStash(SidekickDbContext database, GameType game, string leagueId, StashTab stash)
     {
         var dbStash = await database.WealthStashes.FirstOrDefaultAsync(x => x.Id == stash.Id);
         if (dbStash == null)
@@ -147,7 +150,7 @@ internal class WealthProvider
         var items = new List<WealthItem>();
         foreach (var item in stash.Items)
         {
-            var parsedItem = await ParseItem(leagueId, stash, item);
+            var parsedItem = await ParseItem(game, leagueId, stash, item);
             if (parsedItem == null) continue;
             items.Add(parsedItem);
         }
@@ -157,7 +160,7 @@ internal class WealthProvider
         await database.SaveChangesAsync();
     }
 
-    private async Task<WealthItem?> ParseItem(string leagueId, StashTab stash, ApiItem item)
+    private async Task<WealthItem?> ParseItem(GameType game, string leagueId, StashTab stash, ApiItem item)
     {
         if (string.IsNullOrEmpty(item.Id))
         {
@@ -172,7 +175,7 @@ internal class WealthProvider
             return null;
         }
 
-        var price = await GetItemPrice(item);
+        var price = await GetItemPrice(game, item);
         if (!price.HasValue || price.Value.Value == 0) return null;
 
         var dbItem = new WealthItem
@@ -207,12 +210,12 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<(decimal Value, NinjaSparkline? SparkLine)?> GetItemPrice(ApiItem item)
+    private async Task<(decimal Value, NinjaSparkline? SparkLine)?> GetItemPrice(GameType game, ApiItem item)
     {
         decimal price = 0;
         NinjaSparkline? sparkLine = null;
         var itemDefinition = itemDefinitionParser.GetInvariant(item);
-        var invariantDefinition = itemDefinition?.InvariantKey != null ? itemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.InvariantKey) : null;
+        var invariantDefinition = itemDefinition?.Key != null ? itemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
         if (itemDefinition == null || invariantDefinition == null)
         {
             logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");
@@ -221,13 +224,13 @@ internal class WealthProvider
 
         if (invariantDefinition.NinjaExchange != null)
         {
-            var info = await ninjaExchangeProvider.GetInfo(invariantDefinition);
+            var info = await ninjaExchangeProvider.GetInfo(invariantDefinition.NinjaExchange);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
             sparkLine = info?.Sparkline;
         }
         else
         {
-            var stashes = await ninjaStashProvider.GetInfo(invariantDefinition, item);
+            var stashes = await ninjaStashProvider.GetInfo(game, invariantDefinition, item);
             var info = stashes.FirstOrDefault();
             price = info?.ChaosValue ?? 0;
             sparkLine = info?.Sparkline;

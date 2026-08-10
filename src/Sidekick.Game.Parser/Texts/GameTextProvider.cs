@@ -1,8 +1,8 @@
 ﻿using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Game.Languages;
-
-namespace Sidekick.Game.Texts;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Texts;
+namespace Sidekick.Game.Parser.Texts;
 
 public class GameTextProvider(
     ICurrentGameLanguage currentGameLanguage,

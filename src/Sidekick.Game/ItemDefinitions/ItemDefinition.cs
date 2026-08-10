@@ -5,7 +5,7 @@ namespace Sidekick.Game.ItemDefinitions;
 
 public class ItemDefinition
 {
-    public string? InvariantKey { get; init; }
+    public string? Key { get; init; }
 
     public string? ItemClassId { get; init; }
 
@@ -17,11 +17,9 @@ public class ItemDefinition
 
     public BaseItemRequirements? Requirements { get; set; }
 
-    public ExchangeItem? Exchange { get; init; }
-
     public NinjaExchangeItem? NinjaExchange { get; init; }
 
-    public List<TradeItemDefinition>? TradeItems { get; init; }
+    public List<TradeItem>? TradeItems { get; init; }
 
     public List<NinjaStashItem>? NinjaItems { get; init; }
 
@@ -58,7 +56,7 @@ public class ItemDefinition
     }
 
     [JsonIgnore]
-    public bool IsUnique => InvariantKey?.StartsWith("UNIQUE_") ?? false;
+    public bool IsUnique => Key?.StartsWith("UNIQUE_") ?? false;
 
     /// <inheritdoc />
     public override string ToString()

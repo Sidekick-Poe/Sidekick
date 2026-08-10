@@ -1,19 +1,21 @@
 using FuzzySharp;
+using Sidekick.Apis.Poe.Trade.Trade.Models;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.ItemDefinitions;
-using Sidekick.Game.Items;
-using Sidekick.Game.Languages;
-namespace Sidekick.Apis.Poe.Trade.Parser.Definition;
+using Sidekick.Game.Parser.Items;
+namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class ItemDefinitionParser(
     DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService
-) : IItemDefinitionParser
+    ISettingsService settingsService,
+    ItemClassParser itemClassParser
+) : IInitializableService
 {
     public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
 
@@ -32,13 +34,14 @@ public class ItemDefinitionParser(
             .OrderByDescending(x => x.Name?.Length ?? 0)
             .ToList();
 
-        InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.InvariantLanguage);
         InvariantDictionary.Clear();
+        if (currentGameLanguage.IsEnglish()) InvariantDefinitions = Definitions;
+        else InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.InvariantLanguage);
         foreach (var definition in InvariantDefinitions)
         {
-            if (string.IsNullOrEmpty(definition.InvariantKey)) continue;
+            if (string.IsNullOrEmpty(definition.Key)) continue;
 
-            InvariantDictionary.TryAdd(definition.InvariantKey, definition);
+            InvariantDictionary.TryAdd(definition.Key, definition);
         }
     }
 
@@ -50,15 +53,18 @@ public class ItemDefinitionParser(
             item.Name = item.Text.Blocks[0].Lines[^2].Text;
         }
 
-        var definition = GetDefinition(item.Type, item.Properties.Rarity, item.Name);
-        if (definition == null) throw new UnparsableException(item.Text.Text);
+        item.Definition = GetDefinition(Definitions, item.Properties.Rarity, item.Type, item.Name)!;
+        if (item.Definition == null) throw new UnparsableException(item.Text.Text);
 
-        item.Definition = definition;
+        // Poe.ninja does not include item class in the text, so we fill it in here in case.
+        item.ItemClass ??= itemClassParser.Definitions.FirstOrDefault(x => x.Id == item.Definition.ItemClassId)!;
+        if (item.ItemClass == null) throw new UnparsableException(item.Text.Text);
         ParseVaalGem();
 
-        item.Exchange = definition.Exchange;
-        item.NinjaExchange = definition.NinjaExchange;
-        item.TradeItem = GetTradeItem(item);
+        item.TradeItem = GetTradeItem(item.Definition.TradeItems, item.Type);
+
+        if (currentGameLanguage.IsEnglish()) item.InvariantDefinition = item.Definition;
+        else if(item.Definition.Key != null) item.InvariantDefinition = InvariantDictionary.GetValueOrDefault(item.Definition.Key);
 
         return;
 
@@ -67,7 +73,7 @@ public class ItemDefinitionParser(
             var canBeVaalGem = item.ItemClass.Type == ItemClass.ActiveSkillGem && item.Text.Blocks.Count > 7;
             if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-            var vaalGem = GetDefinition(item.Text.Blocks[5].Lines[0].Text, item.Properties.Rarity, item.Name);
+            var vaalGem = GetDefinition(Definitions, item.Properties.Rarity, item.Text.Blocks[5].Lines[0].Text, item.Name);
             if (vaalGem != null)
             {
                 item.Definition = vaalGem;
@@ -75,20 +81,29 @@ public class ItemDefinitionParser(
         }
     }
 
-    private ItemDefinition? GetInvariant(ItemDefinition definition)
+    public ItemDefinition? GetInvariant(ApiItem item)
     {
-        if (currentGameLanguage.Language.Code == currentGameLanguage.InvariantLanguage.Code) return definition;
-        if (string.IsNullOrEmpty(definition.InvariantKey)) return null;
-        return InvariantDictionary.GetValueOrDefault(definition.InvariantKey);
+        return GetDefinition(InvariantDefinitions, item.Rarity, item.TypeLine, item.Name);
     }
 
-    private ItemDefinition? GetDefinition(string? type, Rarity rarity, string? name)
+    public ItemDefinition? GetInvariant(string? text)
+    {
+        if (string.IsNullOrEmpty(text)) return null;
+        text = text switch
+        {
+            "exalt" => "exalted",
+            _ => text,
+        };
+        return InvariantDictionary.GetValueOrDefault(text);
+    }
+
+    private ItemDefinition? GetDefinition(List<ItemDefinition> definitions, Rarity rarity, string? type, string? name)
     {
         List<ItemDefinition> results = [];
 
         if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name))
         {
-            results.AddRange(Definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name)));
+            results.AddRange(definitions.Where(definition => definition.NamePattern != null && definition.NamePattern.IsMatch(name)));
             if (!string.IsNullOrEmpty(type))
             {
                 results.RemoveAll(definition => definition.TypePattern != null && !definition.TypePattern.IsMatch(type));
@@ -96,7 +111,7 @@ public class ItemDefinitionParser(
         }
         else if (!string.IsNullOrEmpty(type))
         {
-            results.AddRange(Definitions.Where(definition => !definition.IsUnique && definition.TypePattern != null && definition.TypePattern.IsMatch(type)));
+            results.AddRange(definitions.Where(definition => !definition.IsUnique && definition.TypePattern != null && definition.TypePattern.IsMatch(type)));
         }
 
         var orderedResults = results
@@ -124,24 +139,11 @@ public class ItemDefinitionParser(
         return orderedResults.Select(x => x.Definition).FirstOrDefault();
     }
 
-    private TradeItemDefinition? GetTradeItem(Item item)
+    private TradeItem? GetTradeItem(List<TradeItem>? tradeItems, string? type)
     {
-        var tradeItems = item.Definition.TradeItems;
-
-        var byType = tradeItems?.FirstOrDefault(x => x.Type == item.Type);
+        var byType = tradeItems?.FirstOrDefault(x => x.Type == type);
         if (byType != null) return byType;
 
         return tradeItems?.FirstOrDefault();
-    }
-
-    public ItemDefinition? GetInvariant(string? text)
-    {
-        if (string.IsNullOrEmpty(text)) return null;
-        text = text switch
-        {
-            "exalt" => "exalted",
-            _ => text,
-        };
-        return InvariantDictionary.GetValueOrDefault(text);
     }
 }

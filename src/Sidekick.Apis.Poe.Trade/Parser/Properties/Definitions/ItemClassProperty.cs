@@ -7,8 +7,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Game;
 using Sidekick.Game.ItemClasses;
-using Sidekick.Game.ItemDefinitions;
-using Sidekick.Game.Items;
+using Sidekick.Game.Parser.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 

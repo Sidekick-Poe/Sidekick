@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Tests.Poe1English;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Apis.PoeNinja.Tests.Mocks;
-using Sidekick.Game.Items;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 
 namespace Sidekick.Apis.PoeNinja.Tests;
@@ -17,7 +17,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
 {
     public INinjaExchangeProvider NinjaExchangeProvider { get; private set; } = null!;
     public INinjaStashProvider NinjaStashProvider { get; private set; } = null!;
-    public IItemDefinitionParser ItemDefinitionParser { get; private set; } = null!;
+    public ItemDefinitionParser ItemDefinitionParser { get; private set; } = null!;
     public ILogger Logger { get; private set; } = null!;
 
     public override async Task InitializeAsync()
@@ -26,7 +26,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
 
         NinjaExchangeProvider = TestContext.Services.GetRequiredService<INinjaExchangeProvider>();
         NinjaStashProvider = TestContext.Services.GetRequiredService<INinjaStashProvider>();
-        ItemDefinitionParser = TestContext.Services.GetRequiredService<IItemDefinitionParser>();
+        ItemDefinitionParser = TestContext.Services.GetRequiredService<ItemDefinitionParser>();
         Logger = TestContext.Services.GetRequiredService<ILogger<NinjaTestFixture>>();
     }
 
@@ -39,7 +39,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
 
     public void AssertStash(Item item, string expectedDetailsId)
     {
-        if (item.Definition.NinjaItems == null || item.Definition.NinjaItems.All(x => x.DetailsId != expectedDetailsId))
+        if (item.InvariantDefinition?.NinjaItems == null || item.InvariantDefinition.NinjaItems.All(x => x.DetailsId != expectedDetailsId))
         {
             Logger.LogWarning($"Item {item.Name} {item.Type} does not have expected details id {expectedDetailsId}");
             return;

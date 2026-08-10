@@ -1,4 +1,4 @@
-namespace Sidekick.Game.Tokenizers;
+namespace Sidekick.Game.Parser.Tokenizers;
 
 public enum ItemNameTokenType
 {

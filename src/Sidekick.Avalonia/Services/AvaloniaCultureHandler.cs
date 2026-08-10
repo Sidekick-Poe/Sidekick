@@ -1,6 +1,6 @@
 using System.Globalization;
 using Avalonia;
-using Sidekick.Common.Localization;
+using Sidekick.Common.Settings.Localization;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia.Services;

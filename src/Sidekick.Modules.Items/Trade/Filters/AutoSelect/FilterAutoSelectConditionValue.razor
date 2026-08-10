@@ -1,11 +1,11 @@
 @using System.Text.Json
 @using Sidekick.Apis.Poe.Trade.Filters.AutoSelect
-@using Sidekick.Apis.Poe.Trade.Parser.ItemClasses
+@using Sidekick.Apis.Poe.Trade.Parser
 @using Sidekick.Game
 @using Sidekick.Game.ItemClasses
-@using Sidekick.Game.Items
-@using Sidekick.Game.Stats
-@using Sidekick.Game.Texts
+@using Sidekick.Game.Parser.Items
+@using Sidekick.Game.Parser.Stats
+@using Sidekick.Game.Parser.Texts
 
 @if (Condition.Comparison is AutoSelectComparisonType.True or AutoSelectComparisonType.False)
 {
@@ -157,7 +157,7 @@
             {
                 return new SelectOption()
                 {
-                    Label = ItemClassParser.ItemClasses.FirstOrDefault(x => x.Type == itemClass)?.Name ?? itemClass.ToString(),
+                    Label = ItemClassParser.Definitions.FirstOrDefault(x => x.Type == itemClass)?.Name ?? itemClass.ToString(),
                     Value = itemClass.ToString(),
                 };
             }

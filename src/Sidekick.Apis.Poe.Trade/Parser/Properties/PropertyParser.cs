@@ -2,14 +2,13 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Game.Extensions;
-using Sidekick.Game.Items;
-using Sidekick.Game.Languages;
-using Sidekick.Game.Texts;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Texts;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -17,12 +16,12 @@ public class PropertyParser
 (
     IServiceProvider serviceProvider,
     ICurrentGameLanguage currentGameLanguage,
-    IItemDefinitionParser itemDefinitionParser,
+    ItemDefinitionParser itemDefinitionParser,
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
     GameTextProvider gameTextProvider
-) : IPropertyParser
+) : IInitializableService
 {
     public int Priority => 300;
 
@@ -56,6 +55,8 @@ public class PropertyParser
             new AttacksPerSecondProperty(game, gameTextProvider),
             new MemoryStrandsProperty(game, currentGameLanguage),
 
+            new BlightedProperty(game, gameTextProvider),
+            new BlightRavagedProperty(game, gameTextProvider),
             new MapTierProperty(game, currentGameLanguage),
             new RewardProperty(game, currentGameLanguage, itemDefinitionParser),
             new RevivesAvailableProperty(game, currentGameLanguage),

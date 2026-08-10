@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Game.ItemClasses;
-using Sidekick.Game.Items;
-using Sidekick.Game.Stats;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class MapParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void Tier2()
@@ -426,7 +426,9 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
-        Assert.Equal("Blighted Map", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Type);
+        Assert.True(actual.Properties.Blighted);
+        Assert.False(actual.Properties.BlightRavaged);
         Assert.Equal(13, actual.Properties.MapTier);
     }
 
@@ -456,11 +458,13 @@ Note: ~b/o 1 chaos
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
-        Assert.Equal("Blighted Map", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Type);
+        Assert.True(actual.Properties.Blighted);
+        Assert.False(actual.Properties.BlightRavaged);
         Assert.Equal(3, actual.Properties.MapTier);
     }
 
-    [Fact(Skip = "Blight ravaged maps need some attention")]
+    [Fact]
     public void BlightRavagedMap()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
@@ -488,7 +492,9 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
-        Assert.Equal("Blight-ravaged Map", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Type);
+        Assert.False(actual.Properties.Blighted);
+        Assert.True(actual.Properties.BlightRavaged);
         Assert.Equal(16, actual.Properties.MapTier);
     }
 }

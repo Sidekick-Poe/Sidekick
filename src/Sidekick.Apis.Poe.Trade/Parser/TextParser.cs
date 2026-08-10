@@ -4,12 +4,10 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
-using Sidekick.Game.Extensions;
-using Sidekick.Game.Items;
-using Sidekick.Game.Stats;
-using Sidekick.Game.Texts;
-
-namespace Sidekick.Apis.Poe.Trade.Parser.Text;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
+using Sidekick.Game.Parser.Texts;
+namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class TextParser
 (

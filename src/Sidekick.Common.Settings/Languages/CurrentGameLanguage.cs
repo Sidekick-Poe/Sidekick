@@ -1,7 +1,6 @@
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Settings;
-
-namespace Sidekick.Game.Languages;
+using Sidekick.Game.Languages;
+namespace Sidekick.Common.Settings.Languages;
 
 public class CurrentGameLanguage(
     ISettingsService settingsService,

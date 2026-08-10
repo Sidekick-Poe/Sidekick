@@ -1,7 +1,6 @@
 using System.Globalization;
 using Sidekick.Common.Initialization;
-
-namespace Sidekick.Common.Localization;
+namespace Sidekick.Common.Settings.Localization;
 
 /// <summary>
 ///     Interface to access ui language parameters.

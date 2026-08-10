@@ -1,5 +1,5 @@
 ﻿using Sidekick.Common.Enums;
-namespace Sidekick.Game.Items;
+namespace Sidekick.Game.Parser.Items;
 
 public enum HeistObjectiveValue
 {

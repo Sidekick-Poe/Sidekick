@@ -1,7 +1,6 @@
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.ItemDefinitions;
-
-namespace Sidekick.Game.Items;
+namespace Sidekick.Game.Parser.Items;
 
 public class Item
 {
@@ -25,13 +24,11 @@ public class Item
 
     public ItemDefinition Definition { get; set; } = null!;
 
-    public ExchangeItem? Exchange { get; set; }
+    public ItemDefinition? InvariantDefinition { get; set; }
 
-    public NinjaExchangeItem? NinjaExchange { get; set; }
+    public TradeItem? TradeItem { get; set; }
 
-    public TradeItemDefinition? TradeItem { get; set; }
-
-    public TradeItemDefinition? InvariantTradeItem { get; set; }
+    public TradeItem? InvariantTradeItem { get; set; }
 
     public ItemProperties Properties { get; } = new();
 

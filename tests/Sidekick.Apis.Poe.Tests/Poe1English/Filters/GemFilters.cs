@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Tests.Poe1English.Filters;
 [Collection(Collections.Poe1EnglishFixture)]
 public class GemFilters(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public async Task VaalGem()

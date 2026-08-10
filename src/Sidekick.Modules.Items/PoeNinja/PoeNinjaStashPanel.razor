@@ -1,9 +1,9 @@
-﻿@using Sidekick.Apis.Poe.Trade.Parser.Properties
+﻿@using Sidekick.Apis.Poe.Trade.Parser
+@using Sidekick.Apis.Poe.Trade.Parser.Properties
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
-@using Sidekick.Apis.Poe.Trade.Parser.Stats
 @using Sidekick.Apis.PoeNinja.Stash
-@using Sidekick.Game.Languages
-@using Sidekick.Game.Stats
+@using Sidekick.Common.Settings.Languages
+@using Sidekick.Game.Parser.Stats
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
 
@@ -89,8 +89,8 @@
 
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
 @inject ICurrentGameLanguage CurrentGameLanguage
-@inject IPropertyParser PropertyParser
-@inject IStatParser StatParser
+@inject PropertyParser PropertyParser
+@inject StatParser StatParser
 
 @code {
 

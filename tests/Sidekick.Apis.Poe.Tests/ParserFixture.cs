@@ -10,17 +10,17 @@ using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
-using Sidekick.Game.Items;
-using Sidekick.Game.Languages;
-using Sidekick.Game.Stats;
+using Sidekick.Game.Parser;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
@@ -33,12 +33,12 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private Task? initializationTask;
 
-    public IItemParser Parser { get; private set; } = null!;
+    public ItemParser Parser { get; private set; } = null!;
     public ICurrentGameLanguage CurrentGameLanguage { get; private set; } = null!;
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
-    public IPropertyParser PropertyParser { get; private set; } = null!;
+    public PropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
-    public IStatParser StatParser { get; private set; } = null!;
+    public StatParser StatParser { get; private set; } = null!;
     protected TestContext TestContext { get; set; } = null!;
 
     public virtual async Task InitializeAsync()
@@ -83,11 +83,11 @@ public abstract class ParserFixture : IAsyncLifetime
 
         await initializationTask;
 
-        Parser = TestContext.Services.GetRequiredService<IItemParser>();
+        Parser = TestContext.Services.GetRequiredService<ItemParser>();
         CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
-        PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
+        PropertyParser = TestContext.Services.GetRequiredService<PropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
-        StatParser = TestContext.Services.GetRequiredService<IStatParser>();
+        StatParser = TestContext.Services.GetRequiredService<StatParser>();
     }
 
     public Task DisposeAsync()

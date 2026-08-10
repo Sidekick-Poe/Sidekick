@@ -1,4 +1,5 @@
-namespace Sidekick.Game.Extensions;
+using Sidekick.Game;
+namespace Sidekick.Common.Settings.Extensions;
 
 /// <summary>
 ///     Class containing extension methods for strings.

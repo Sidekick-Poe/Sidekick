@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Platform.Linux.Processes;
+namespace Sidekick.Common.Platform.Linux;
 
 public class ProcessProvider() : IProcessProvider
 {

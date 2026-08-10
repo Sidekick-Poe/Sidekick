@@ -5,7 +5,7 @@ namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 [Collection(Collections.NinjaTestCollection)]
 public class ExchangeTests(NinjaTestFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ChaosOrb()
@@ -22,8 +22,8 @@ Right click this item then left click a rare item to apply it.
 Shift click to unstack.
 ");
 
-        Assert.NotNull(item.NinjaExchange);
-        Assert.Equal("chaos", item.NinjaExchange.Id);
+        Assert.NotNull(item.InvariantDefinition?.NinjaExchange);
+        Assert.Equal("chaos", item.InvariantDefinition?.NinjaExchange?.Id);
     }
 
     [Fact]
@@ -40,8 +40,8 @@ Augments a rare item with a new random modifier
 Right click this item then left click a rare item to apply it. Rare items can have up to six random modifiers.
 ");
 
-        Assert.NotNull(item.NinjaExchange);
-        Assert.Equal("exalted", item.NinjaExchange.Id);
+        Assert.NotNull(item.InvariantDefinition?.NinjaExchange);
+        Assert.Equal("exalted", item.InvariantDefinition?.NinjaExchange?.Id);
     }
 
     [Fact]
@@ -56,7 +56,7 @@ The Void
 Reach into the Void and claim your prize.
 ");
 
-        Assert.NotNull(item.NinjaExchange);
-        Assert.Equal("the-void", item.NinjaExchange.Id);
+        Assert.NotNull(item.InvariantDefinition?.NinjaExchange);
+        Assert.Equal("the-void", item.InvariantDefinition?.NinjaExchange?.Id);
     }
 }

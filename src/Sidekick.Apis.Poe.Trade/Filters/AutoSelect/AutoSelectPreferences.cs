@@ -3,8 +3,8 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Common.Settings;
-using Sidekick.Game.Items;
-using Sidekick.Game.Stats;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 namespace Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 
 public class AutoSelectPreferences

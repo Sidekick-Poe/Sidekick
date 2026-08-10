@@ -1,4 +1,4 @@
-namespace Sidekick.Game.Items;
+namespace Sidekick.Game.Parser.Items;
 
 public class DamageRange(int min, int max)
 {

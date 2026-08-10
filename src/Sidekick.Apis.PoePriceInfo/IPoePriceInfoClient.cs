@@ -1,5 +1,5 @@
 using Sidekick.Apis.PoePriceInfo.Models;
-using Sidekick.Game.Items;
+using Sidekick.Game.Parser.Items;
 
 namespace Sidekick.Apis.PoePriceInfo;
 

@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-namespace Sidekick.Game.Tokenizers;
+namespace Sidekick.Game.Parser.Tokenizers;
 
 public class ItemNameTokenMatch
 {

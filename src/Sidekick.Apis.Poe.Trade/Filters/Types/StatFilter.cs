@@ -5,8 +5,8 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
-using Sidekick.Game.Items;
-using Sidekick.Game.Stats;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 namespace Sidekick.Apis.Poe.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter, INormalizableFilter

@@ -7,15 +7,11 @@ using Sidekick.Apis.Poe.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
-using Sidekick.Apis.Poe.Trade.Parser.ItemClasses;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
-using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Parser.Text;
 using Sidekick.Apis.Poe.Trade.Trade;
 using Sidekick.Common;
-using Sidekick.Game.Stats;
+using Sidekick.Common.Settings;
+using Sidekick.Game.Parser.Stats;
 
 namespace Sidekick.Apis.Poe.Trade;
 
@@ -33,13 +29,13 @@ public static class StartupExtensions
 
         services.TryAddSingleton<IItemTradeService, ItemTradeService>();
         services.TryAddSingleton<ILeagueProvider, LeagueProvider>();
-        services.AddSidekickInitializableService<IItemDefinitionParser, ItemDefinitionParser>();
+        services.AddSidekickInitializableService<ItemDefinitionParser>();
 
         services.AddSidekickInitializableService<ItemClassParser>();
-        services.AddSidekickInitializableService<IItemParser, ItemParser>();
-        services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
-        services.AddSidekickInitializableService<IStatParser, StatParser>();
-        services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
+        services.AddSidekickInitializableService<ItemParser>();
+        services.AddSidekickInitializableService<PropertyParser>();
+        services.AddSidekickInitializableService<StatParser, StatParser>();
+        services.AddSidekickInitializableService<PseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<ITradeFilterProvider, TradeFilterProvider>();
         services.AddSidekickInitializableService<TextParser>();
 

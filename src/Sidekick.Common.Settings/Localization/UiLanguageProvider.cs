@@ -1,7 +1,5 @@
 using System.Globalization;
-using Sidekick.Common.Settings;
-
-namespace Sidekick.Common.Localization;
+namespace Sidekick.Common.Settings.Localization;
 
 /// <summary>
 ///     Implementation of the ui language provider.

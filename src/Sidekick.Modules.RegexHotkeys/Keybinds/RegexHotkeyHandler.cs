@@ -1,6 +1,6 @@
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Input;
 using Sidekick.Modules.RegexHotkeys.Settings;
 
 namespace Sidekick.Modules.RegexHotkeys.Keybinds;

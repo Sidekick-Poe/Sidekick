@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using Sidekick.Game.Stats;
-namespace Sidekick.Game.Items;
+using Sidekick.Game.Parser.Stats;
+namespace Sidekick.Game.Parser.Items;
 
 /// <summary>
 /// Stores data about each line in the parsing process

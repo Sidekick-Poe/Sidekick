@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-namespace Sidekick.Game.Items;
+namespace Sidekick.Game.Parser.Items;
 
 /// <summary>
 /// Represents a single item section seperated by dashes when copying an item in-game.
