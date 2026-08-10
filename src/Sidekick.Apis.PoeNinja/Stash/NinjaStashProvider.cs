@@ -69,7 +69,7 @@ public class NinjaStashProvider(
 
         }
 
-        if (item.InvariantTradeItem?.Category == "monster")
+        if (item.InvariantDefinition.TradeItems?.FirstOrDefault()?.Category == "monster")
         {
             return FilterBeastiaryMonsters(item.InvariantDefinition.NinjaItems);
         }
