@@ -174,14 +174,10 @@ public class NinjaStashProvider(
 
         if (mapTier.HasValue)
         {
-            if (type == "Map") type = $"Map (Tier {mapTier})";
-            if (type == "Blighted Map") type = $"Blighted Map (Tier {mapTier})";
-            if (type == "Blight-ravaged Map") type = $"Blight-ravaged Map (Tier {mapTier})";
+            query = query.Where(x => x.MapTier == null || x.MapTier == mapTier);
         }
 
-        return query
-            .Where(x => x.Type == type)
-            .ToList();
+        return query.ToList();
     }
 
     private List<NinjaStashItem> FilterGems(List<NinjaStashItem>? items, bool corrupted, int gemLevel, int gemQuality)
@@ -237,21 +233,25 @@ public class NinjaStashProvider(
         if (items == null) return [];
 
         var variants = GetVariants().ToList();
+        var query = items.AsQueryable();
 
-        itemLevel = itemLevel switch
+        if (items.Any(x => x.ItemLevel != null))
         {
-            >= 86 => 86,
-            >= 85 => 85,
-            >= 84 => 84,
-            >= 83 => 83,
-            >= 82 => 82,
-            _ => 0,
-        };
+            itemLevel = itemLevel switch
+            {
+                >= 86 => 86,
+                >= 85 => 85,
+                >= 84 => 84,
+                >= 83 => 83,
+                >= 82 => 82,
+                _ => 0,
+            };
 
-        if (itemLevel == 0) return [];
+            if (itemLevel == 0) return [];
+            query = query.Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel);
+        }
 
-        return items
-            .Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel)
+        return query
             .Where(x => (x.Variant == null && variants.Count == 0) || (x.Variant != null && variants.Contains(x.Variant)))
             .ToList();
 
@@ -323,7 +323,7 @@ public class NinjaStashProvider(
             .Distinct()
             .ToList();
 
-        if (stats.Count == 0 && (ninjaItem.Stats?.Count ?? 0) == 0) return true;
+        if ((ninjaItem.Stats?.Count ?? 0) == 0) return true;
         if (ninjaItem.Stats?.Count != stats.Count) return false;
 
         foreach (var expectedStat in ninjaItem.Stats)

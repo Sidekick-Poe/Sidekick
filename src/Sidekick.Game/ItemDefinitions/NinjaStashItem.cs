@@ -12,6 +12,7 @@ public class NinjaStashItem
     public int? GemQuality { get; init; }
     public int? Links { get; init; }
     public int? ItemLevel { get; init; }
+    public int? MapTier { get; init; }
     public string? Variant { get; init; }
 
     public List<NinjaStashItemStat>? Stats { get; set; }
