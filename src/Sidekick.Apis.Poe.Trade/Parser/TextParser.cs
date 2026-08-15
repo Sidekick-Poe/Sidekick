@@ -192,8 +192,6 @@ public class TextParser
         {
             foreach (var line in block.Lines)
             {
-                if (line.Text.StartsWith("Allocates Incendiary")) Debugger.Break();
-
                 // Removes text like ' — Unscalable Value'
                 if (UnscalableValue != null) line.Text = line.Text.Replace(UnscalableValue, string.Empty).Trim();
 
