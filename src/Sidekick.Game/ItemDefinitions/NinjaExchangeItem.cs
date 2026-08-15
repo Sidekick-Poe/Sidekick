@@ -7,4 +7,9 @@ public class NinjaExchangeItem
 
     public string? Id { get; init; }
     public string? DetailsId { get; init; }
+
+    public override string ToString()
+    {
+        return DetailsId ?? string.Empty;
+    }
 }

@@ -30958,6 +30958,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1190333629|12597",
       "explicit.stat_1190333629|38180",
       "explicit.stat_1190333629|39598",
       "explicit.stat_1190333629|39790",
@@ -48054,17 +48055,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_1692887998",
       "enchant.stat_1803598623",
-      "enchant.stat_2081344089",
       "enchant.stat_2549369799",
       "enchant.stat_2721871046",
       "enchant.stat_2963485753",
       "enchant.stat_325889252",
       "enchant.stat_900639351",
-      "explicit.stat_1692887998",
       "explicit.stat_1803598623",
-      "explicit.stat_2081344089",
       "explicit.stat_2549369799",
       "explicit.stat_2721871046",
       "explicit.stat_2963485753",
@@ -48073,9 +48070,7 @@
       "fractured.stat_2549369799",
       "fractured.stat_325889252",
       "fractured.stat_900639351",
-      "implicit.stat_1692887998",
       "implicit.stat_1803598623",
-      "implicit.stat_2081344089",
       "implicit.stat_2549369799",
       "implicit.stat_2721871046",
       "implicit.stat_325889252",
@@ -48098,17 +48093,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_1692887998",
       "enchant.stat_1803598623",
-      "enchant.stat_2081344089",
       "enchant.stat_2549369799",
       "enchant.stat_2721871046",
       "enchant.stat_2963485753",
       "enchant.stat_325889252",
       "enchant.stat_900639351",
-      "explicit.stat_1692887998",
       "explicit.stat_1803598623",
-      "explicit.stat_2081344089",
       "explicit.stat_2549369799",
       "explicit.stat_2721871046",
       "explicit.stat_2963485753",
@@ -48117,9 +48108,7 @@
       "fractured.stat_2549369799",
       "fractured.stat_325889252",
       "fractured.stat_900639351",
-      "implicit.stat_1692887998",
       "implicit.stat_1803598623",
-      "implicit.stat_2081344089",
       "implicit.stat_2549369799",
       "implicit.stat_2721871046",
       "implicit.stat_325889252",
@@ -58152,6 +58141,7 @@
   },
   {
     "text": "Gain an Endurance Charge on Critical Strike",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2542650946",
@@ -58161,7 +58151,6 @@
   },
   {
     "text": "Gain an Endurance Charge on Critical Strike",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2542650946",
@@ -61563,7 +61552,8 @@
     "text": "Grants Summon Harbinger of Focus Skill",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3872739249|3"
+      "explicit.stat_3872739249|3",
+      "implicit.stat_3872739249|3"
     ],
     "pattern": "^Grants\\ Summon\\ Harbinger\\ of\\ Focus\\ Skill$"
   },
@@ -103748,6 +103738,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -105220,6 +105213,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -106692,6 +106688,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -108434,6 +108433,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -121987,7 +121989,8 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2130824945"
+      "explicit.stat_2130824945",
+      "fractured.stat_2130824945"
     ],
     "pattern": "^Throw\\ up\\ to\\ ([-0-9,.]\u002B)\\ additional\\ Trap\\ if\\ dual\\ wielding$"
   },
@@ -121995,7 +121998,8 @@
     "text": "Throw up to # additional Traps if dual wielding",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2130824945"
+      "explicit.stat_2130824945",
+      "fractured.stat_2130824945"
     ],
     "pattern": "^Throw\\ up\\ to\\ ([-0-9,.]\u002B)\\ additional\\ Traps\\ if\\ dual\\ wielding$"
   },
@@ -125328,7 +125332,8 @@
     "text": "Unaffected by Ignite or Shock if Maximum Life and Maximum Mana are within 500",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2716882575"
+      "explicit.stat_2716882575",
+      "implicit.stat_2716882575"
     ],
     "pattern": "^Unaffected\\ by\\ Ignite\\ or\\ Shock\\ if\\ Maximum\\ Life\\ and\\ Maximum\\ Mana\\ are\\ within\\ 500$"
   },
@@ -128835,6 +128840,23 @@
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Bleeding\\ you\\ inflict\\ deals\\ Damage\\ ([-0-9,.]\u002B)%\\ faster$"
   },
   {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Bone Offering has #% increased Effect",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_689723685"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Bone\\ Offering\\ has\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Effect$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Bone Offering has #% increased Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_689723685"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Bone\\ Offering\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Effect$"
+  },
+  {
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% Chance to Block Attack Damage",
     "lines": 1,
     "tradeIds": [
@@ -129015,6 +129037,23 @@
       "implicit.stat_2013839784"
     ],
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Flesh\\ Offering\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Effect$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Flesh and Stone has #% increased Area of Effect",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_764963982"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Flesh and Stone has #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_764963982"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
     "text": "While a Pinnacle Atlas Boss is in your Presence, Freezes you inflict spread to other Enemies within # metre",
@@ -129557,6 +129596,23 @@
       "implicit.stat_2218095219"
     ],
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Shocks\\ you\\ inflict\\ spread\\ to\\ other\\ Enemies\\ within\\ ([-0-9,.]\u002B)\\ metre$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Spirit Offering has #% increased Effect",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_726251263"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Spirit\\ Offering\\ has\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Effect$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Spirit Offering has #% increased Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_726251263"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Spirit\\ Offering\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Effect$"
   },
   {
     "text": "While a Pinnacle Atlas Boss is in your Presence, Tempest Shield has #% increased Buff Effect",
@@ -131228,6 +131284,14 @@
       "implicit.stat_3042217102"
     ],
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ ([-0-9,.]\u002B)%\\ reduced\\ Ignite\\ Duration\\ on\\ you$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, #% reduced Mana Cost of Attacks",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_1297664519"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Cost\\ of\\ Attacks$"
   },
   {
     "text": "While a Pinnacle Atlas Boss is in your Presence, \u002B# to Accuracy Rating per Frenzy Charge",
@@ -149564,7 +149628,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1463604143",
-      "explicit.stat_1485150248",
       "explicit.stat_1852069308",
       "explicit.stat_2610785454",
       "explicit.stat_3145607602",
@@ -170616,8 +170679,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
-      "explicit.stat_539970476",
-      "fractured.stat_539970476",
       "implicit.stat_485151258"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ more\\ Damage\\ with\\ Hits\\ and\\ Ailments\\ against\\ Unique\\ Enemies$"

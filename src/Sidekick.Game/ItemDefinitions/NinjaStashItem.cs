@@ -16,4 +16,9 @@ public class NinjaStashItem
     public string? Variant { get; init; }
 
     public List<NinjaStashItemStat>? Stats { get; set; }
+
+    public override string ToString()
+    {
+        return DetailsId ?? string.Empty;
+    }
 }

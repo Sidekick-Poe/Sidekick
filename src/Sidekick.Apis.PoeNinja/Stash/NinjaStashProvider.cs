@@ -148,11 +148,12 @@ public class NinjaStashProvider(
 
         if (links < 5) links = 0;
 
-        return items
+        var query = items
             .Where(x => x.Foulborn == foulborn)
-            .Where(x => x.Links.GetValueOrDefault() == links.GetValueOrDefault())
-            .Where(x => ValidateNinjaStats(stats, StatCategory.Mutated, x))
-            .ToList();
+            .Where(x => x.Links.GetValueOrDefault() == links.GetValueOrDefault());
+
+        query = ValidateNinjaStats(query, stats, StatCategory.Mutated);
+        return query.ToList();
     }
 
     private bool IsMap(string? itemClassId)
@@ -165,12 +166,7 @@ public class NinjaStashProvider(
         if (items == null) return [];
         if (string.IsNullOrEmpty(type)) return [];
 
-        var query = items.AsQueryable();
-        if (stats != null && stats.Any(x => x.Category == StatCategory.Implicit))
-        {
-            query = query
-                .Where(x => ValidateNinjaStats(stats, StatCategory.Implicit, x));
-        }
+        var query = ValidateNinjaStats(items.AsEnumerable(), stats, StatCategory.Implicit);
 
         if (mapTier.HasValue)
         {
@@ -222,10 +218,9 @@ public class NinjaStashProvider(
             _ => 84,
         };
 
-        return items
-            .Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel)
-            .Where(x => ValidateNinjaStats(stats, StatCategory.Enchant, x))
-            .ToList();
+        var query = items.Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel);
+        query = ValidateNinjaStats(query, stats, StatCategory.Enchant);
+        return query.ToList();
     }
 
     private List<NinjaStashItem> FilterBaseTypes(List<NinjaStashItem>? items, int itemLevel, Influences influences)
@@ -300,45 +295,78 @@ public class NinjaStashProvider(
 
     private List<NinjaStashItem> FilterBeastiaryMonsters(List<NinjaStashItem>? items)
     {
-        return items;
+        return items ?? [];
     }
 
-    private static bool ValidateNinjaStats(List<Stat>? itemStats, StatCategory statCategory, NinjaStashItem ninjaItem)
+    private static IEnumerable<NinjaStashItem> ValidateNinjaStats(IEnumerable<NinjaStashItem> query, List<Stat>? itemStats, StatCategory statCategory)
     {
-        var statStartsWith = statCategory.GetValueAttribute();
-        if (statCategory == StatCategory.Mutated) statStartsWith = "explicit";
-
-        var stats = (
-            from stat in itemStats
-            from definition in stat.Definitions
-            where definition?.TradeIds != null
-            where !IgnoreStatTexts.Contains(definition.Text)
-            from tradeStatId in definition.TradeIds!
-            where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
-            select new
-            {
-                Id = tradeStatId,
-                stat.Values,
-            })
-            .Distinct()
-            .ToList();
-
-        if ((ninjaItem.Stats?.Count ?? 0) == 0) return true;
-        if (ninjaItem.Stats?.Count != stats.Count) return false;
-
-        foreach (var expectedStat in ninjaItem.Stats)
+        var outputEmpty = true;
+        var items = query.ToList();
+        foreach (var ninjaItem in items)
         {
-            var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
-            foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.Id?.Replace('#', '|'));
-            if (foundStat == null) return false;
+            var statStartsWith = statCategory.GetValueAttribute();
+            if (statCategory == StatCategory.Mutated) statStartsWith = "explicit";
 
-            if (expectedStat.Min == null || expectedStat.Max == null || expectedStat.Min == 0 || expectedStat.Max == 0) continue;
-            var min = foundStat.Values.Count > 0 ? foundStat.Values.Min() : 0;
-            var max = foundStat.Values.Count > 0 ? foundStat.Values.Max() : 0;
-            if (min < expectedStat.Min || max > expectedStat.Max) return false;
+            var stats = (
+                from stat in itemStats
+                from definition in stat.Definitions
+                where definition?.TradeIds != null
+                where !IgnoreStatTexts.Contains(definition.Text)
+                from tradeStatId in definition.TradeIds!
+                where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
+                select new
+                {
+                    Id = tradeStatId,
+                    stat.Values,
+                })
+                .Distinct()
+                .ToList();
+
+            if (ninjaItem.Stats?.Count != stats.Count)
+            {
+                continue;
+            }
+
+            var valid = true;
+            foreach (var expectedStat in ninjaItem.Stats)
+            {
+                var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
+                foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.Id?.Replace('#', '|'));
+                if (foundStat == null)
+                {
+                    valid = false;
+                    break;
+                }
+
+                if (expectedStat.Min == null || expectedStat.Max == null || expectedStat.Min == 0 || expectedStat.Max == 0)
+                {
+                    continue;
+                }
+                var min = foundStat.Values.Count > 0 ? foundStat.Values.Min() : 0;
+                var max = foundStat.Values.Count > 0 ? foundStat.Values.Max() : 0;
+                if (min < expectedStat.Min || max > expectedStat.Max)
+                {
+                    valid = false;
+                    break;
+                }
+            }
+
+            if (valid)
+            {
+                outputEmpty = false;
+                yield return ninjaItem;
+            }
         }
 
-        return true;
+        if (!outputEmpty) yield break;
+
+        foreach (var ninjaItem in items)
+        {
+            if ((ninjaItem.Stats?.Count ?? 0) == 0)
+            {
+                yield return ninjaItem;
+            }
+        }
     }
 
     private async Task<List<NinjaStash>> BuildResult(List<NinjaStashItem> items)
