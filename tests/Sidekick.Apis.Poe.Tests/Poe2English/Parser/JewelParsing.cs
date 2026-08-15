@@ -118,4 +118,39 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Melee Damage", 12);
     }
+
+    [Fact]
+    public void Megalomaniac()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Jewels
+Rarity: Unique
+Megalomaniac
+Diamond
+--------
+Limited to: 1
+--------
+Item Level: 79
+--------
+{ Enhancement }
+Allocates Incendiary() — Unscalable Value
+{ Enhancement }
+Allocates Exposed to the Storm() — Unscalable Value
+--------
+If you're going to act like you're better
+than everyone else, make sure you are.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Corrupted");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Diamond", actual.TradeItem?.Type);
+        Assert.Equal("Megalomaniac", actual.TradeItem?.Name);
+        Assert.Equal(79, actual.Properties.ItemLevel);
+
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Allocates Incendiary");
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Allocates Exposed to the Storm");
+    }
 }

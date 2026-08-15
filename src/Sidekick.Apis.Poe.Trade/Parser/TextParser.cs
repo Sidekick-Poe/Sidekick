@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
@@ -30,6 +31,7 @@ public class TextParser
     private string? Enchant { get; set; }
     private string? Foulborn { get; set; }
     private string? Vestigial { get; set; }
+    private string? UnscalableValue { get; set; }
 
     public async Task Initialize()
     {
@@ -43,6 +45,7 @@ public class TextParser
         Enchant = GetKeyword(gameTextProvider.Texts.ModDescriptionEnchantment);
         Foulborn = GetKeyword(gameTextProvider.Texts.ModDescriptionFoulborn);
         Vestigial = GetKeyword(gameTextProvider.Texts.ModDescriptionVestigial);
+        UnscalableValue = GetKeyword(gameTextProvider.Texts.ModDescriptionUnscalableValue);
 
         return;
 
@@ -183,18 +186,24 @@ public class TextParser
         }
     }
 
-    void CleanupLines(OriginalText input)
+    private void CleanupLines(OriginalText input)
     {
         foreach (var block in input.Blocks)
         {
             foreach (var line in block.Lines)
             {
+                if (line.Text.StartsWith("Allocates Incendiary")) Debugger.Break();
+
                 // Removes text like ' — Unscalable Value'
-                line.Text = line.Text.Split(" — ")[0];
+                if (UnscalableValue != null) line.Text = line.Text.Replace(UnscalableValue, string.Empty).Trim();
+
+                if (line.Text.EndsWith("()")) line.Text = line.Text.Substring(0, line.Text.Length - 2);
 
                 // Remove range parantheses
                 line.Text = AdvancedDigitsFormat.Replace(line.Text, "$1");
                 line.Text = AdvancedOptionFormat.Replace(line.Text, "$1");
+
+                line.Text = line.Text.Trim();
             }
         }
     }
