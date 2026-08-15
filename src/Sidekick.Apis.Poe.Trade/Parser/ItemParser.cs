@@ -1,31 +1,26 @@
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
-using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Parser.Text;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class ItemParser
 (
     ILogger<ItemParser> logger,
-    IStatParser statParser,
-    IPseudoParser pseudoParser,
-    IPropertyParser propertyParser,
-    IItemDefinitionParser itemDefinitionParser,
+    StatParser statParser,
+    PseudoParser pseudoParser,
+    PropertyParser propertyParser,
+    ItemDefinitionParser itemDefinitionParser,
     ISettingsService settingsService,
+    ItemClassParser itemClassParser,
     TextParser textParser
-) : IItemParser
+) : IInitializableService
 {
-    public int Priority => 100;
-
     private GameType Game { get; set; }
 
     public async Task Initialize()
@@ -47,6 +42,7 @@ public class ItemParser
             // Rarity property is required for definition parsing. This means that it must be parsed first.
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
+            itemClassParser.Parse(item);
             itemDefinitionParser.Parse(item);
             propertyParser.Parse(item);
             statParser.Parse(item);

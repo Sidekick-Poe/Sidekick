@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Platform.Linux.Processes;
+namespace Sidekick.Common.Platform.Linux;
 
 public class ProcessProvider() : IProcessProvider
 {
@@ -31,7 +31,4 @@ public class ProcessProvider() : IProcessProvider
             return true;
         }
     }
-
-    /// <inheritdoc/>
-    public int Priority => 0;
 }

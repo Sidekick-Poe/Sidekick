@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sidekick.Apis.PoeNinja.Clients;
-using Sidekick.Data;
+using Sidekick.Game;
 
 namespace Sidekick.Apis.PoeNinja.Tests.Mocks;
 

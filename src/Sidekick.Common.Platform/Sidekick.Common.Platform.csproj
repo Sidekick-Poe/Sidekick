@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
+    <ProjectReference Include="..\Sidekick.Common.Settings\Sidekick.Common.Settings.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Dialogs\Sidekick.Common.Dialogs.csproj" />
   </ItemGroup>
 

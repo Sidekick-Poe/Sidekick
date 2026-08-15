@@ -5,22 +5,22 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
-using ItemProperties = Sidekick.Data.Items.ItemProperties;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
+using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlockChanceProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyBlockChance.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyBlockChance.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyBlockChance.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyBlockChance.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyBlockChance;
+    public override string Label => gameTextProvider.Texts.ItemPropertyBlockChance;
 
     public override void Parse(Item item)
     {

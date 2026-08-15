@@ -1,29 +1,29 @@
-using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlightRavagedProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemBlightRavaged.ToRegexAffix();
-
     public override string Label => dataTextProvider.Texts.ItemBlightRavaged.CleanWildcard();
 
     public override void Parse(Item item)
     {
-        if (item.ItemClass.Type != ItemClass.Map) return;
+        item.Properties.BlightRavaged = item.Definition.BaseItemIds?.Contains("Metadata/Items/TradeProxy/UberBlightedMap") ?? false;
 
-        item.Properties.BlightRavaged = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
+        if (item.Properties.BlightRavaged)
+        {
+            item.TradeItem = null;
+            item.InvariantTradeItem = null;
+        }
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
@@ -39,7 +39,7 @@ public class BlightRavagedProperty(
     }
 }
 
-public class BlightRavagedFilter : TradeFilter
+public class BlightRavagedFilter : HiddenFilter
 {
     public BlightRavagedFilter()
     {

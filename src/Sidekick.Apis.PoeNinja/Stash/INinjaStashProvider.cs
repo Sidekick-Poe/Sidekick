@@ -1,12 +1,13 @@
 ﻿using Sidekick.Apis.Poe.Trade.Trade.Models;
-using Sidekick.Data.ItemDefinitions;
-using Sidekick.Data.Items;
+using Sidekick.Game;
+using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.PoeNinja.Stash;
 
 public interface INinjaStashProvider
 {
-    List<NinjaItemDefinition> GetDefinitions(Item item);
-    List<NinjaItemDefinition> GetDefinitions(ItemDefinition item, ApiItem apiItem);
+    List<NinjaStashItem> GetDefinitions(Item item);
+    List<NinjaStashItem> GetDefinitions(GameType game, ItemDefinition item, ApiItem apiItem);
     Task<List<NinjaStash>> GetInfo(Item item);
-    Task<List<NinjaStash>> GetInfo(ItemDefinition item, ApiItem apiItem);
+    Task<List<NinjaStash>> GetInfo(GameType game, ItemDefinition item, ApiItem apiItem);
 }

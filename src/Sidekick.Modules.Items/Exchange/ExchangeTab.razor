@@ -1,6 +1,6 @@
 ﻿@using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Modules.Items.Exchange.Localization
-@using Sidekick.Data.Items
+@using Sidekick.Game.Parser.Items
 @using Sidekick.Common.Ui.Tabs
 
 @if (SupportsCurrencyExchange)
@@ -37,12 +37,12 @@
 
     private bool CheckNinja()
     {
-        return Item.Invariant?.NinjaItems != null && Item.Invariant.NinjaItems.Any(x => x.Exchange != null);
+        return Item.InvariantDefinition?.NinjaExchange != null;
     }
 
     private async Task<bool> CheckScout()
     {
-        var scoutItem = await ScoutItemProvider.GetItem(Item.Invariant);
+        var scoutItem = await ScoutItemProvider.GetItem(Item.InvariantTradeItem);
         return scoutItem?.IsCurrency ?? false;
     }
 

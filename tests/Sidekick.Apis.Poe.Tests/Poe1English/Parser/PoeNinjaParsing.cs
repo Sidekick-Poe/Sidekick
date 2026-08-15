@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -10,7 +10,7 @@ namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 [Collection(Collections.Poe1EnglishFixture)]
 public class PoeNinjaParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void SacredChainmail()
@@ -49,7 +49,7 @@ Fractured Item
 
         Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Sacred Chainmail", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Sacred Chainmail", actual.TradeItem?.Type);
 
         Assert.Equal(985, actual.Properties.ArmourWithQuality);
     }

@@ -5,22 +5,22 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
-using ItemProperties = Sidekick.Data.Items.ItemProperties;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
+using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class AttacksPerSecondProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexDoubleProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexDoubleProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyAttacksPerSecond.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyAttacksPerSecond;
+    public override string Label => gameTextProvider.Texts.ItemPropertyAttacksPerSecond;
 
     public override void Parse(Item item)
     {

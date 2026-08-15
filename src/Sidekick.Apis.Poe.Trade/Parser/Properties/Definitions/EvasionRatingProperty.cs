@@ -5,22 +5,22 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
-using ItemProperties = Sidekick.Data.Items.ItemProperties;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
+using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EvasionRatingProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyEvasionRating.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyEvasionRating;
+    public override string Label => gameTextProvider.Texts.ItemPropertyEvasionRating;
 
     public override void Parse(Item item)
     {

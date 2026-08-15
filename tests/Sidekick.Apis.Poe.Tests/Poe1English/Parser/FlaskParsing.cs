@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class FlaskParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseSanctifiedManaFlask()
@@ -35,7 +35,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         Assert.Equal(ItemClass.Flask, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Sanctified Mana Flask", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Sanctified Mana Flask", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood");
     }
@@ -61,7 +61,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         Assert.Equal(ItemClass.Flask, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Hallowed Life Flask", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Hallowed Life Flask", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -87,7 +87,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         Assert.Equal(ItemClass.Flask, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Sacred Hybrid Flask", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Sacred Hybrid Flask", actual.TradeItem?.Type);
         Assert.Equal(13, actual.Properties.Quality);
     }
 
@@ -114,7 +114,7 @@ Right click to activate. Only one Tincture in your belt can be active at a time.
 
         Assert.Equal(ItemClass.Tincture, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Poisonberry Tincture", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Poisonberry Tincture", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -142,7 +142,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         Assert.Equal(ItemClass.Flask, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Bismuth Flask", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Bismuth Flask", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Gain # Charge when you are Hit by an Enemy", 3);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Effect of Chill on you during Effect", -40);

@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class MapParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void Tier2()
@@ -33,8 +33,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(2, actual.Properties.MapTier);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% Monster Physical Damage Reduction", 20);
@@ -68,8 +68,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Olmec's Sanctum", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Olmec's Sanctum", actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(6, actual.Properties.MapTier);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% more Monster Life", 42);
@@ -115,8 +115,8 @@ Corrupted
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(101, actual.Properties.ItemQuantity);
         Assert.Equal(62, actual.Properties.ItemRarity);
@@ -146,8 +146,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(50, actual.Properties.MoreCurrency);
@@ -173,8 +173,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(50, actual.Properties.MoreScarabs);
@@ -200,8 +200,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(50, actual.Properties.MoreCards);
@@ -227,8 +227,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(10, actual.Properties.MonsterPackSize);
@@ -254,8 +254,8 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(40, actual.Properties.ItemRarity);
@@ -293,8 +293,8 @@ Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Nightmare Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Nightmare Map", actual.TradeItem?.Type);
         Assert.Equal(78, actual.Properties.ItemQuantity);
         Assert.Equal(45, actual.Properties.ItemRarity);
         Assert.Equal(41, actual.Properties.MonsterPackSize);
@@ -346,8 +346,8 @@ Corrupted
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(113, actual.Properties.ItemQuantity);
         Assert.Equal(117, actual.Properties.ItemRarity);
@@ -395,8 +395,8 @@ Foil (Celestial Amethyst)
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Valdo Map", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Valdo Map", actual.TradeItem?.Type);
         Assert.Equal("Foil The Dancing Dervish", actual.Properties.Reward);
         Assert.Equal(50, actual.Properties.ItemRarity);
         Assert.Equal(26, actual.Properties.MonsterPackSize);
@@ -425,10 +425,11 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
-        Assert.Equal(13, actual.Properties.MapTier);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Null(actual.TradeItem?.Type);
         Assert.True(actual.Properties.Blighted);
+        Assert.False(actual.Properties.BlightRavaged);
+        Assert.Equal(13, actual.Properties.MapTier);
     }
 
     [Fact]
@@ -456,13 +457,14 @@ Note: ~b/o 1 chaos
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
-        Assert.Equal(3, actual.Properties.MapTier);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Null(actual.TradeItem?.Type);
         Assert.True(actual.Properties.Blighted);
+        Assert.False(actual.Properties.BlightRavaged);
+        Assert.Equal(3, actual.Properties.MapTier);
     }
 
-    [Fact(Skip = "Blight ravaged maps need some attention")]
+    [Fact]
     public void BlightRavagedMap()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
@@ -489,9 +491,10 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Map", actual.Definition.TradeItem?.Type);
-        Assert.Equal(16, actual.Properties.MapTier);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Null(actual.TradeItem?.Type);
+        Assert.False(actual.Properties.Blighted);
         Assert.True(actual.Properties.BlightRavaged);
+        Assert.Equal(16, actual.Properties.MapTier);
     }
 }

@@ -4,12 +4,26 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Extensions;
+using Sidekick.Game;
 namespace Sidekick.Apis.Poe.Tests.Mocks;
 
 public class TestSettingsService(IOptions<SidekickConfiguration> configuration) : ISettingsService
 {
     public event Action<string[]>? OnSettingsChanged;
     private readonly Dictionary<string, string?> store = new();
+
+    public async Task<string?> GetLeague()
+    {
+        var leagueId = await GetString(SettingKeys.LeagueId);
+        return leagueId?.Split('.', 2).ElementAtOrDefault(1);
+    }
+
+    public async Task<GameType> GetGame()
+    {
+        var leagueId = await GetString(SettingKeys.LeagueId);
+        return leagueId.GetGameFromLeagueId();
+    }
 
     public Task<bool> GetBool(string key)
     {

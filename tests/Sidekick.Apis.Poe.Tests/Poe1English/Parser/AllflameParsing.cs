@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
@@ -8,7 +8,7 @@ namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 [Collection(Collections.Poe1EnglishFixture)]
 public class AllflameParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseRareChart()
@@ -49,6 +49,6 @@ Take this item to Valerie aboard the Sovereign to Chart this area.
 
         Assert.Equal(ItemClass.Chart, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Coral Forest Chart", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Coral Forest Chart", actual.TradeItem?.Type);
     }
 }

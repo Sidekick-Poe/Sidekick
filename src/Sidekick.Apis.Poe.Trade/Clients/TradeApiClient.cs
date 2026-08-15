@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Data;
-using Sidekick.Data.Languages;
+using Sidekick.Game;
+using Sidekick.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
 

@@ -1,13 +1,13 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class DelveParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParsePotentChaoticResonator()
@@ -30,7 +30,7 @@ Note: ~price 1 chaos
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Potent Chaotic Resonator", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Potent Chaotic Resonator", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -54,7 +54,7 @@ Note: ~price 4 chaos
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Powerful Chaotic Resonator", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Powerful Chaotic Resonator", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -74,6 +74,6 @@ Place in a Resonator to influence item crafting.
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Opulent Fossil", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Opulent Fossil", actual.TradeItem?.Type);
     }
 }

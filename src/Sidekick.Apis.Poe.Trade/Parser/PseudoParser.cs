@@ -1,0 +1,110 @@
+using System.Text.RegularExpressions;
+using Microsoft.Extensions.Localization;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Localization;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Initialization;
+using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Pseudo;
+namespace Sidekick.Apis.Poe.Trade.Parser;
+
+public class PseudoParser
+(
+    ISettingsService settingsService,
+    IStringLocalizer<PoeResources> resources,
+    DataProvider dataProvider,
+    ICurrentGameLanguage currentGameLanguage
+) : IInitializableService
+{
+    private static readonly Regex ParseHashPattern = new(@"#");
+
+    private List<PseudoDefinition> Definitions { get; set; } = [];
+
+    /// <inheritdoc/>
+    public async Task Initialize()
+    {
+        var game = await settingsService.GetGame();
+        Definitions = await dataProvider.Read<List<PseudoDefinition>>(game, GameDataType.Pseudo, currentGameLanguage.Language);
+    }
+
+    public void Parse(Item item)
+    {
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare) return;
+
+        item.PseudoStats.Clear();
+        foreach (var definition in Definitions)
+        {
+            var result = GetItemPseudoStat(definition, item.Stats);
+            if (result != null && !string.IsNullOrEmpty(result.Text)) item.PseudoStats.Add(result);
+        }
+
+        return;
+
+        ItemPseudoStat? GetItemPseudoStat(PseudoDefinition definition, List<Stat> itemStats)
+        {
+            var value = 0d;
+            foreach (var itemStat in itemStats)
+            {
+                foreach (var definitionStat in definition.Stats)
+                {
+                    var hasBadId = itemStat.Definitions
+                        .Where(x => x.TradeIds != null)
+                        .All(x => x.TradeIds!.All(y => y != definitionStat.Id));
+                    if (hasBadId) continue;
+
+                    value += itemStat.AverageValue * definitionStat.Multiplier;
+                    break;
+                }
+            }
+
+            if (value == 0) return null;
+
+            var text = GetText(definition.Text, value);
+            if (string.IsNullOrEmpty(text)) return null;
+
+            return new ItemPseudoStat
+            {
+                Id = definition.PseudoStatId,
+                Text = text,
+                Value = (int)value,
+            };
+        }
+
+        string GetText(string? text, double value)
+        {
+            if (text == null) return string.Empty;
+
+            return ParseHashPattern
+                .Replace(text, ((int)value).ToString(), 1)
+                .Replace("+-", "-");
+        }
+    }
+
+    public async Task<List<TradeFilter>> GetFilters(Item item)
+    {
+        var result = new List<TradeFilter>();
+        foreach (var stat in item.PseudoStats)
+        {
+            result.Add(new PseudoFilter(stat)
+            {
+                AutoSelectSettingKey = $"Trade_Filter_Pseudo_{item.Game.GetValueAttribute()}_{stat.Id}",
+            });
+        }
+
+        if (result.Count == 0) return result;
+
+        var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], true, result.ToArray())
+        {
+            Checked = true,
+        };
+        await expandableFilter.Initialize(item,  settingsService);
+        expandableFilter.Checked = true;
+
+        return [expandableFilter];
+    }
+}

@@ -4,19 +4,19 @@ using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CrusaderProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceCrusader.ToRegexLine();
+    private Regex Pattern { get; } = gameTextProvider.Texts.InfluenceCrusader.ToRegexLine();
 
-    public override string Label => dataTextProvider.Texts.InfluenceCrusader;
+    public override string Label => gameTextProvider.Texts.InfluenceCrusader;
 
     public override void Parse(Item item)
     {

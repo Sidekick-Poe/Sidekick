@@ -1,13 +1,13 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class HeistParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void HeistTool()
@@ -34,7 +34,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistEquipmentTool, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Basic Disguise Kit", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Basic Disguise Kit", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -58,7 +58,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistEquipmentUtility, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Torn Cloak", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Torn Cloak", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -82,7 +82,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistEquipmentReward, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Silver Brooch", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Silver Brooch", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -113,7 +113,7 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistEquipmentWeapon, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Rough Sharpening Stone", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Rough Sharpening Stone", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -132,7 +132,7 @@ Can be exchanged with Faustus, the Fence in The Rogue Harbour
 
         Assert.Equal(ItemClass.HeistObjective, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Golden Napuatzi Idol", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Golden Napuatzi Idol", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -159,7 +159,7 @@ Corrupted
 
         Assert.Equal(ItemClass.Trinket, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Thief's Trinket", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Thief's Trinket", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Corrupted);
     }
 

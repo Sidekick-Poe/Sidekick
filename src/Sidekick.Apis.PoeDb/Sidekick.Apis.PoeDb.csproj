@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Sidekick.Data\Sidekick.Data.csproj" />
+      <ProjectReference Include="..\Sidekick.Game.Parser\Sidekick.Game.Parser.csproj" />
+      <ProjectReference Include="..\Sidekick.Game\Sidekick.Game.csproj" />
     </ItemGroup>
 
 </Project>

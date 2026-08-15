@@ -4,9 +4,9 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 namespace Sidekick.Apis.Poe.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter, INormalizableFilter
@@ -132,7 +132,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
         {
             query.GetOrCreateStatGroup(StatType.And).Filters.Add(new StatFilters()
             {
-                Id = stats.First().TradeStatId.GetStatId(),
+                Id = stats.First().TradeStatId.Split('#').First(),
                 Value = new StatFilterValue(this),
             });
         }
@@ -143,7 +143,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             {
                 countGroup.Filters.Add(new StatFilters()
                 {
-                    Id = stat.TradeStatId.GetStatId(),
+                    Id = stat.TradeStatId.Split('#').First(),
                     Value = new StatFilterValue(this),
                 });
             }

@@ -1,4 +1,4 @@
-using Sidekick.Data;
+using Sidekick.Game;
 namespace Sidekick.Apis.PoeNinja.Clients;
 
 public interface INinjaClient

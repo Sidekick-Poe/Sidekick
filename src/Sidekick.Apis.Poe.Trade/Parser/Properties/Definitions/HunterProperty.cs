@@ -4,19 +4,19 @@ using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class HunterProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.InfluenceHunter.ToRegexLine();
+    private Regex Pattern { get; } = gameTextProvider.Texts.InfluenceHunter.ToRegexLine();
 
-    public override string Label => dataTextProvider.Texts.InfluenceHunter;
+    public override string Label => gameTextProvider.Texts.InfluenceHunter;
 
     public override void Parse(Item item)
     {

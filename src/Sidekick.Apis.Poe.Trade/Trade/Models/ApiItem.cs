@@ -1,7 +1,7 @@
 using Sidekick.Apis.Poe.Trade.Trade.Converters;
 using Sidekick.Common.Converters;
-using Sidekick.Data.Items;
 using System.Text.Json.Serialization;
+using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Models;
 
 public class ApiItem

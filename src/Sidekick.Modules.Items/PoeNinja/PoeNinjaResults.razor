@@ -1,9 +1,9 @@
 ﻿@using Sidekick.Apis.PoeNinja.Stash
 @using Sidekick.Modules.Items.PoeNinja.Localization
 @using Sidekick.Apis.PoeNinja.Exchange
-@using Sidekick.Data.Items
+@using Sidekick.Game.Parser.Items
 
-@if (Item.Invariant?.NinjaItems == null || Item.Invariant.NinjaItems.Count == 0)
+@if (Item.InvariantDefinition?.NinjaItems == null || Item.InvariantDefinition?.NinjaItems.Count == 0)
 {
     return;
 }
@@ -49,22 +49,27 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        if (Item.Invariant?.NinjaItems == null) return;
 
-        Loading = true;
-        StateHasChanged();
-
-        if (Item.Invariant.NinjaItems.Any(x => x.Exchange != null))
+        if (Item.InvariantDefinition?.NinjaExchange != null)
         {
-            Currency = await NinjaExchangeProvider.GetInfo(Item.Invariant);
+            Loading = true;
+            StateHasChanged();
+
+            Currency = await NinjaExchangeProvider.GetInfo(Item.InvariantDefinition.NinjaExchange);
+
+            Loading = false;
+            StateHasChanged();
         }
-
-        if (Item.Invariant.NinjaItems.Any(x => x.Stash != null))
+        else if (Item.InvariantDefinition?.NinjaItems != null && Item.InvariantDefinition.NinjaItems.Count > 0)
         {
+            Loading = true;
+            StateHasChanged();
+
             Stashes = await NinjaStashProvider.GetInfo(Item);
+
+            Loading = false;
+            StateHasChanged();
         }
 
-        Loading = false;
-        StateHasChanged();
     }
 }

@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class SanctumParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseFloor()
@@ -28,7 +28,7 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
 ");
 
         Assert.Equal(ItemClass.SanctumResearch, actual.ItemClass.Type);
-        Assert.Equal("Forbidden Tome", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Forbidden Tome", actual.TradeItem?.Type);
         Assert.Equal(83, actual.Properties.AreaLevel);
         Assert.Equal(84, actual.Properties.ItemLevel);
     }
@@ -52,8 +52,8 @@ Unmodifiable
 
         Assert.Equal(ItemClass.SanctumRelic, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Urn Relic", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Urn Relic", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         fixture.AssertHasStat(actual, StatCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);

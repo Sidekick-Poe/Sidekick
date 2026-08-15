@@ -1,7 +1,7 @@
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Input;
 
 namespace Sidekick.Modules.General.Keybinds;
 

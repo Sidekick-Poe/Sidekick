@@ -1,7 +1,7 @@
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Input;
 
 namespace Sidekick.Modules.General.Keybinds;
 
@@ -9,7 +9,7 @@ public class FindItemKeybindHandler(
     IInputProvider input,
     IClipboardProvider clipboardProvider,
     IProcessProvider processProvider,
-    IItemParser itemParser,
+    ItemParser itemParser,
     ISettingsService settingsService) : KeybindHandler(settingsService, SettingKeys.KeyFindItems)
 {
     private readonly ISettingsService settingsService = settingsService;
@@ -31,10 +31,7 @@ public class FindItemKeybindHandler(
         }
 
         var item = itemParser.ParseItem(text);
-
-        string? searchValue = null;
-        if (!string.IsNullOrEmpty(item.Definition.UniqueItem?.Name)) searchValue = item.Definition.UniqueItem.Name;
-        else if (!string.IsNullOrEmpty(item.Definition.BaseItem?.Name)) searchValue = item.Definition.BaseItem.Name;
+        var searchValue = item.Definition.Name;
         if (string.IsNullOrEmpty(searchValue)) return;
 
         await clipboardProvider.SetText(searchValue);

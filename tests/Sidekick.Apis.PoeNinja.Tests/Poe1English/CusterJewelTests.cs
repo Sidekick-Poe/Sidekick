@@ -5,7 +5,7 @@ namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 [Collection(Collections.NinjaTestCollection)]
 public class ClusterJewelTests(NinjaTestFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void SmallCluster()

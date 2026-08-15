@@ -75,18 +75,9 @@ public partial class Initialization
             // Report initial progress
             await ReportProgress();
 
-            var services = Configuration.Value.InitializableServices
-                .Select(serviceType =>
-                {
-                    var service = ServiceProvider.GetRequiredService(serviceType);
-                    return service as IInitializableService;
-                })
-                .Where(x => x != null)
-                .Select(x => x!)
-                .OrderBy(s => s.Priority)
-                .ToList();
-
-            foreach (var service in services)
+            var resolver = new InitializationOrderResolver(ServiceProvider);
+            var orderedServices = resolver.GetOrderedServices(Configuration.Value.InitializableServices);
+            foreach (var service in orderedServices)
             {
                 Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
                 await service.Initialize();

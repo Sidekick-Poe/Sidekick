@@ -1,12 +1,12 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
+using Sidekick.Game.ItemClasses;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
 [Collection(Collections.Poe2EnglishFixture)]
 public class WaystoneParsing(Poe2EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseWaystoneProperties()
@@ -41,8 +41,8 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
 ");
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
-        Assert.Equal("Waystone (Tier 1)", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Waystone (Tier 1)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
         Assert.Equal(66, actual.Properties.ItemLevel);
 
         Assert.Equal(2, actual.Properties.RevivesAvailable);
@@ -85,8 +85,8 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
 ");
 
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
-        Assert.Equal("Waystone (Tier 13)", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Waystone (Tier 13)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         Assert.Equal(1, actual.Properties.RevivesAvailable);

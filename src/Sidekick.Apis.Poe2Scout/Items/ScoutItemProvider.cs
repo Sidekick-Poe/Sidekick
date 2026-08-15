@@ -4,9 +4,8 @@ using Sidekick.Apis.Poe2Scout.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemDefinitions;
+using Sidekick.Game;
+using Sidekick.Game.ItemDefinitions;
 
 namespace Sidekick.Apis.Poe2Scout.Items;
 
@@ -18,13 +17,13 @@ public class ScoutItemProvider(
 {
     private List<ScoutItem>? Items { get; set; }
 
-    public Task<ScoutItem?> GetItem(ItemDefinition? itemDefinition)
+    public Task<ScoutItem?> GetItem(TradeItem? tradeItem)
     {
-        if (itemDefinition == null) return Task.FromResult<ScoutItem?>(null);
+        if (tradeItem == null) return Task.FromResult<ScoutItem?>(null);
 
-        var text = itemDefinition.TradeItem?.Name;
-        text ??= itemDefinition.TradeItem?.Text;
-        text ??= itemDefinition.TradeItem?.Type;
+        var text = tradeItem.Name;
+        text ??= tradeItem.Text;
+        text ??= tradeItem.Type;
         if (string.IsNullOrEmpty(text)) return Task.FromResult<ScoutItem?>(null);
 
         return GetItem(text);

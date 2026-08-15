@@ -1,10 +1,10 @@
 @using System.Text.Json
 @using Sidekick.Apis.Poe.Trade.Filters.AutoSelect
-@using Sidekick.Data
-@using Sidekick.Data.ItemClasses
-@using Sidekick.Data.Items
-@using Sidekick.Data.Stats
-@using Sidekick.Data.Texts
+@using Sidekick.Game
+@using Sidekick.Game.ItemClasses
+@using Sidekick.Game.Parser.Items
+@using Sidekick.Game.Parser.Stats
+@using Sidekick.Game.Providers
 
 @if (Condition.Comparison is AutoSelectComparisonType.True or AutoSelectComparisonType.False)
 {
@@ -30,7 +30,7 @@
                  ValueChanged="Changed"
                  Readonly="Readonly"/>
 
-@inject DataTextProvider DataTextProvider
+@inject GameTextProvider GameTextProvider
 @inject IStringLocalizer<StatCategory> StatCategoryResources
 @inject ItemClassProvider ItemClassProvider
 
@@ -105,13 +105,13 @@
                 {
                     Label = rarity switch
                     {
-                        Rarity.Currency => DataTextProvider.Texts.ItemPropertyRarityCurrency,
-                        Rarity.DivinationCard => DataTextProvider.Texts.ItemPropertyRarityDivinationCard,
-                        Rarity.Gem => DataTextProvider.Texts.ItemPropertyRarityGem,
-                        Rarity.Normal => DataTextProvider.Texts.ItemPropertyRarityNormal,
-                        Rarity.Magic => DataTextProvider.Texts.ItemPropertyRarityMagic,
-                        Rarity.Rare => DataTextProvider.Texts.ItemPropertyRarityRare,
-                        Rarity.Unique => DataTextProvider.Texts.ItemPropertyRarityUnique,
+                        Rarity.Currency => GameTextProvider.Texts.ItemPropertyRarityCurrency,
+                        Rarity.DivinationCard => GameTextProvider.Texts.ItemPropertyRarityDivinationCard,
+                        Rarity.Gem => GameTextProvider.Texts.ItemPropertyRarityGem,
+                        Rarity.Normal => GameTextProvider.Texts.ItemPropertyRarityNormal,
+                        Rarity.Magic => GameTextProvider.Texts.ItemPropertyRarityMagic,
+                        Rarity.Rare => GameTextProvider.Texts.ItemPropertyRarityRare,
+                        Rarity.Unique => GameTextProvider.Texts.ItemPropertyRarityUnique,
                         _ => rarity.ToString(),
                     },
                     Value = rarity.ToString(),
@@ -156,7 +156,7 @@
             {
                 return new SelectOption()
                 {
-                    Label = ItemClassProvider.ItemClasses.FirstOrDefault(x => x.Type == itemClass)?.Name ?? itemClass.ToString(),
+                    Label = ItemClassProvider.Definitions.FirstOrDefault(x => x.Type == itemClass)?.Name ?? itemClass.ToString(),
                     Value = itemClass.ToString(),
                 };
             }

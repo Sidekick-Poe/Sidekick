@@ -1,4 +1,4 @@
-﻿using Sidekick.Apis.Poe.Trade.Parser.Stats;
+﻿using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Trade.Models;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Stash.Models;
@@ -6,11 +6,10 @@ using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.ItemDefinitions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game;
+using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 
 namespace Sidekick.Apis.PoeNinja.Stash;
 
@@ -19,7 +18,7 @@ public class NinjaStashProvider(
     ISettingsService settingsService,
     ICacheProvider cacheProvider,
     NinjaUriProvider ninjaUriProvider,
-    IStatParser statParser) : INinjaStashProvider
+    StatParser statParser) : INinjaStashProvider
 {
     private static readonly List<string> IgnoreStatTexts =
     [
@@ -34,48 +33,48 @@ public class NinjaStashProvider(
         return $"PoeNinjaStash_{league}_{type}";
     }
 
-    public List<NinjaItemDefinition> GetDefinitions(Item item)
+    public List<NinjaStashItem> GetDefinitions(Item item)
     {
-        if (item.Invariant == null) return [];
+        if (item.InvariantDefinition == null) return [];
 
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return GetUniqueInfo(item.Invariant,
-                                 item.Properties.Foulborn,
-                                 item.Properties.GetMaximumNumberOfLinks(),
-                                 item.Stats);
+            return FilterUniqueItems(item.InvariantDefinition.NinjaItems,
+                                     item.Properties.Foulborn,
+                                     item.Properties.GetMaximumNumberOfLinks(),
+                                     item.Stats);
         }
 
-        if (item.Properties.MapTier > 0 || item.ItemClass.Type == ItemClass.Map)
+        if (item.Properties.MapTier > 0 || IsMap(item.ItemClass.Id))
         {
-            return GetMapInfo(item.Invariant.NinjaItems,
-                              item.Invariant.BaseItem?.Name,
-                              item.Properties.MapTier,
-                              item.Stats);
+            return FilterMapItems(item.InvariantDefinition.NinjaItems,
+                                  item.InvariantDefinition.Name,
+                                  item.Properties.MapTier,
+                                  item.Stats);
         }
 
         if (item.Properties.GemLevel > 0)
         {
-            return GetGemInfo(item.Invariant,
+            return FilterGems(item.InvariantDefinition.NinjaItems,
                               item.Properties.Corrupted,
                               item.Properties.GemLevel,
                               item.Properties.Quality);
         }
 
-        if (IsClusterJewel(item.Invariant))
+        if (IsClusterJewel(item.InvariantDefinition.Name))
         {
-            return GetClusterJewelInfo(item.Invariant,
+            return FilterClusterJewels(item.InvariantDefinition.NinjaItems,
                                        item.Properties.ItemLevel,
                                        item.Stats);
 
         }
 
-        if (item.Invariant.TradeItem?.Category == "monster")
+        if (item.InvariantDefinition.TradeItems?.FirstOrDefault()?.Category == "monster")
         {
-            return GetBeastInfo(item.Invariant);
+            return FilterBeastiaryMonsters(item.InvariantDefinition.NinjaItems);
         }
 
-        return GetBaseTypeInfo(item.Invariant,
+        return FilterBaseTypes(item.InvariantDefinition.NinjaItems,
                                item.Properties.ItemLevel,
                                item.Properties.Influences);
     }
@@ -86,7 +85,7 @@ public class NinjaStashProvider(
         return await BuildResult(definitions);
     }
 
-    public List<NinjaItemDefinition> GetDefinitions(ItemDefinition item, ApiItem apiItem)
+    public List<NinjaStashItem> GetDefinitions(GameType game, ItemDefinition item, ApiItem apiItem)
     {
         var stats = apiItem.ExplicitMods
             .Where(x => x.Flags?.Mutated ?? false)
@@ -97,99 +96,89 @@ public class NinjaStashProvider(
 
         if (apiItem.Rarity == Rarity.Unique)
         {
-            return GetUniqueInfo(item,
-                                 apiItem.Mutated,
-                                 apiItem.MaxLinks,
-                                 stats);
+            return FilterUniqueItems(item.NinjaItems,
+                                     apiItem.Mutated,
+                                     apiItem.MaxLinks,
+                                     stats);
         }
 
         if (apiItem.GemLevel > 0)
         {
-            return GetGemInfo(item,
+            return FilterGems(item.NinjaItems,
                               apiItem.Corrupted,
                               apiItem.GemLevel.Value,
                               apiItem.Quality.GetValueOrDefault());
         }
 
-        if (apiItem.MapTier > 0 || item.TradeItem?.Category == "map")
+        if (IsClusterJewel(item.Name))
         {
-            return GetMapInfo(item.NinjaItems,
-                              apiItem.Type,
-                              apiItem.MapTier,
-                              stats);
-        }
-
-        if (IsClusterJewel(item))
-        {
-            return GetClusterJewelInfo(item,
+            return FilterClusterJewels(item.NinjaItems,
                                        apiItem.ItemLevel,
                                        stats);
 
         }
 
-        if (item.TradeItem?.Category == "monster")
+        if (apiItem.MapTier > 0 || item.BaseItems.Any(x => IsMap(x.ItemClassId)))
         {
-            return GetBeastInfo(item);
+            return FilterMapItems(item.NinjaItems,
+                                  item.Name,
+                                  apiItem.MapTier,
+                                  stats);
         }
 
-        return GetBaseTypeInfo(item,
+        if (item.TradeItems?.FirstOrDefault()?.Category == "monster")
+        {
+            return FilterBeastiaryMonsters(item.NinjaItems);
+        }
+
+        return FilterBaseTypes(item.NinjaItems,
                                apiItem.ItemLevel,
                                apiItem.Influences);
     }
 
-    public async Task<List<NinjaStash>> GetInfo(ItemDefinition item, ApiItem apiItem)
+    public async Task<List<NinjaStash>> GetInfo(GameType game, ItemDefinition item, ApiItem apiItem)
     {
-        var definitions = GetDefinitions(item, apiItem);
+        var definitions = GetDefinitions(game, item, apiItem);
         return await BuildResult(definitions);
     }
 
-    private List<NinjaItemDefinition> GetUniqueInfo(ItemDefinition item, bool foulborn, int? links, List<Stat>? stats)
+    private List<NinjaStashItem> FilterUniqueItems(List<NinjaStashItem>? items, bool foulborn, int? links, List<Stat>? stats)
     {
-        if (item.NinjaItems == null) return [];
+        if (items == null) return [];
 
         if (links < 5) links = 0;
 
-        return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Foulborn.GetValueOrDefault() == foulborn)
-            .Where(x => x.Stash!.Links.GetValueOrDefault() == links.GetValueOrDefault())
-            .Where(x => ValidateNinjaStats(stats, StatCategory.Mutated, x))
-            .ToList();
+        var query = items
+            .Where(x => x.Foulborn == foulborn)
+            .Where(x => x.Links.GetValueOrDefault() == links.GetValueOrDefault());
+
+        query = ValidateNinjaStats(query, stats, StatCategory.Mutated);
+        return query.ToList();
     }
 
-    private List<NinjaItemDefinition> GetMapInfo(List<NinjaItemDefinition>? ninjaItems, string? type, int? mapTier, List<Stat>? stats)
+    private bool IsMap(string? itemClassId)
     {
-        if (ninjaItems == null) return [];
+        return itemClassId == "Map" || itemClassId == "MapKey" || itemClassId == "InstanceLocalItem";
+    }
+
+    private List<NinjaStashItem> FilterMapItems(List<NinjaStashItem>? items, string? type, int? mapTier, List<Stat>? stats)
+    {
+        if (items == null) return [];
         if (string.IsNullOrEmpty(type)) return [];
 
-        if (stats != null && stats.Any(x => x.Category == StatCategory.Implicit))
-        {
-            var statsResults = ninjaItems
-                .Where(x => x.Stash != null)
-                .Where(x => ValidateNinjaStats(stats, StatCategory.Implicit, x))
-                .ToList();
-            if (statsResults.Count > 0) return statsResults;
-        }
+        var query = ValidateNinjaStats(items.AsEnumerable(), stats, StatCategory.Implicit);
 
         if (mapTier.HasValue)
         {
-            if (type == "Map") type = $"Map (Tier {mapTier})";
-            if (type == "Blighted Map") type = $"Blighted Map (Tier {mapTier})";
-            if (type == "Blight-ravaged Map") type = $"Blight-ravaged Map (Tier {mapTier})";
+            query = query.Where(x => x.MapTier == null || x.MapTier == mapTier);
         }
 
-        return ninjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == type)
-            .ToList();
+        return query.ToList();
     }
 
-    private List<NinjaItemDefinition> GetGemInfo(ItemDefinition item, bool corrupted, int gemLevel, int gemQuality)
+    private List<NinjaStashItem> FilterGems(List<NinjaStashItem>? items, bool corrupted, int gemLevel, int gemQuality)
     {
-        if (item.NinjaItems == null) return [];
-        var text = item.TradeItem?.Text;
-        text ??= item.BaseItem?.Name;
-        if (string.IsNullOrEmpty(text)) return [];
+        if (items == null) return [];
 
         gemLevel = gemLevel switch
         {
@@ -204,24 +193,21 @@ public class NinjaStashProvider(
             _ => 23
         };
 
-        return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == text)
-            .Where(x => x.Stash!.GemLevel.GetValueOrDefault() == gemLevel)
-            .Where(x => x.Stash!.GemQuality.GetValueOrDefault() == gemQuality)
-            .Where(x => x.Stash!.Corrupted.GetValueOrDefault() == corrupted)
+        return items
+            .Where(x => x.GemLevel.GetValueOrDefault() == gemLevel)
+            .Where(x => x.GemQuality.GetValueOrDefault() == gemQuality)
+            .Where(x => x.Corrupted == corrupted)
             .ToList();
     }
 
-    private bool IsClusterJewel(ItemDefinition item)
+    private bool IsClusterJewel(string? name)
     {
-        if (item.NinjaItems == null) return false;
-        return item.BaseItem?.Name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel";
+        return name is "Small Cluster Jewel" or "Medium Cluster Jewel" or "Large Cluster Jewel";
     }
 
-    private List<NinjaItemDefinition> GetClusterJewelInfo(ItemDefinition item, int itemLevel, List<Stat>? stats)
+    private List<NinjaStashItem> FilterClusterJewels(List<NinjaStashItem>? items, int itemLevel, List<Stat>? stats)
     {
-        if (!IsClusterJewel(item)) return [];
+        if (items == null) return [];
 
         itemLevel = itemLevel switch
         {
@@ -232,38 +218,36 @@ public class NinjaStashProvider(
             _ => 84,
         };
 
-        return item.NinjaItems!
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-            .Where(x => x.Stash!.DetailsId == "6-increased-mana-reservation-efficiency-of-skills-3-passives-75")
-            .Where(x => ValidateNinjaStats(stats, StatCategory.Enchant, x))
-            .ToList();
+        var query = items.Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel);
+        query = ValidateNinjaStats(query, stats, StatCategory.Enchant);
+        return query.ToList();
     }
 
-    private List<NinjaItemDefinition> GetBaseTypeInfo(ItemDefinition item, int itemLevel, Influences influences)
+    private List<NinjaStashItem> FilterBaseTypes(List<NinjaStashItem>? items, int itemLevel, Influences influences)
     {
-        if (item.NinjaItems == null) return [];
-        if (string.IsNullOrEmpty(item.BaseItem?.Name)) return [];
+        if (items == null) return [];
 
         var variants = GetVariants().ToList();
+        var query = items.AsQueryable();
 
-        itemLevel = itemLevel switch
+        if (items.Any(x => x.ItemLevel != null))
         {
-            >= 86 => 86,
-            >= 85 => 85,
-            >= 84 => 84,
-            >= 83 => 83,
-            >= 82 => 82,
-            _ => 0,
-        };
+            itemLevel = itemLevel switch
+            {
+                >= 86 => 86,
+                >= 85 => 85,
+                >= 84 => 84,
+                >= 83 => 83,
+                >= 82 => 82,
+                _ => 0,
+            };
 
-        if (itemLevel == 0) return [];
+            if (itemLevel == 0) return [];
+            query = query.Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel);
+        }
 
-        return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == item.BaseItem.Name)
-            .Where(x => x.Stash!.ItemLevel.GetValueOrDefault() == itemLevel)
-            .Where(x => (x.Stash!.Variant == null && variants.Count == 0) || (x.Stash!.Variant != null && variants.Contains(x.Stash!.Variant)))
+        return query
+            .Where(x => (x.Variant == null && variants.Count == 0) || (x.Variant != null && variants.Contains(x.Variant)))
             .ToList();
 
         IEnumerable<string> GetVariants()
@@ -309,58 +293,84 @@ public class NinjaStashProvider(
         }
     }
 
-    private List<NinjaItemDefinition> GetBeastInfo(ItemDefinition item)
+    private List<NinjaStashItem> FilterBeastiaryMonsters(List<NinjaStashItem>? items)
     {
-        if (item.NinjaItems == null) return [];
-        if (string.IsNullOrEmpty(item.TradeItem?.Type)) return [];
-
-        return item.NinjaItems
-            .Where(x => x.Stash != null)
-            .Where(x => x.Stash!.Name == item.TradeItem?.Type)
-            .ToList();
+        return items ?? [];
     }
 
-    private static bool ValidateNinjaStats(List<Stat>? itemStats, StatCategory statCategory, NinjaItemDefinition ninjaDefinition)
+    private static IEnumerable<NinjaStashItem> ValidateNinjaStats(IEnumerable<NinjaStashItem> query, List<Stat>? itemStats, StatCategory statCategory)
     {
-        var statStartsWith = statCategory.GetValueAttribute();
-        if (statCategory == StatCategory.Mutated) statStartsWith = "explicit";
-
-        var stats = (
-            from stat in itemStats
-            from definition in stat.Definitions
-            where definition?.TradeIds != null
-            where !IgnoreStatTexts.Contains(definition.Text)
-            from tradeStatId in definition.TradeIds!
-            where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
-            select new
-            {
-                Id = tradeStatId,
-                stat.Values,
-            })
-            .Distinct()
-            .ToList();
-
-        if (stats.Count == 0 && (ninjaDefinition.Stash?.Stats?.Count ?? 0) == 0) return true;
-        if (ninjaDefinition.Stash!.Stats?.Count != stats.Count) return false;
-
-        foreach (var expectedStat in ninjaDefinition.Stash.Stats)
+        var outputEmpty = true;
+        var items = query.ToList();
+        foreach (var ninjaItem in items)
         {
-            var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
-            foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.Id?.Replace('#', '|'));
-            if (foundStat == null) return false;
+            var statStartsWith = statCategory.GetValueAttribute();
+            if (statCategory == StatCategory.Mutated) statStartsWith = "explicit";
 
-            if (expectedStat.Min == null || expectedStat.Max == null || expectedStat.Min == 0 || expectedStat.Max == 0) continue;
-            var min = foundStat.Values.Count > 0 ? foundStat.Values.Min() : 0;
-            var max = foundStat.Values.Count > 0 ? foundStat.Values.Max() : 0;
-            if (min < expectedStat.Min || max > expectedStat.Max) return false;
+            var stats = (
+                from stat in itemStats
+                from definition in stat.Definitions
+                where definition?.TradeIds != null
+                where !IgnoreStatTexts.Contains(definition.Text)
+                from tradeStatId in definition.TradeIds!
+                where stat.Category == statCategory && tradeStatId.StartsWith(statStartsWith)
+                select new
+                {
+                    Id = tradeStatId,
+                    stat.Values,
+                })
+                .Distinct()
+                .ToList();
+
+            if (ninjaItem.Stats?.Count != stats.Count)
+            {
+                continue;
+            }
+
+            var valid = true;
+            foreach (var expectedStat in ninjaItem.Stats)
+            {
+                var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
+                foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.Id?.Replace('#', '|'));
+                if (foundStat == null)
+                {
+                    valid = false;
+                    break;
+                }
+
+                if (expectedStat.Min == null || expectedStat.Max == null || expectedStat.Min == 0 || expectedStat.Max == 0)
+                {
+                    continue;
+                }
+                var min = foundStat.Values.Count > 0 ? foundStat.Values.Min() : 0;
+                var max = foundStat.Values.Count > 0 ? foundStat.Values.Max() : 0;
+                if (min < expectedStat.Min || max > expectedStat.Max)
+                {
+                    valid = false;
+                    break;
+                }
+            }
+
+            if (valid)
+            {
+                outputEmpty = false;
+                yield return ninjaItem;
+            }
         }
 
-        return true;
+        if (!outputEmpty) yield break;
+
+        foreach (var ninjaItem in items)
+        {
+            if ((ninjaItem.Stats?.Count ?? 0) == 0)
+            {
+                yield return ninjaItem;
+            }
+        }
     }
 
-    private async Task<List<NinjaStash>> BuildResult(List<NinjaItemDefinition> items)
+    private async Task<List<NinjaStash>> BuildResult(List<NinjaStashItem> items)
     {
-        items = items.Where(x => x.Stash != null).ToList();
         var variants = items.DistinctBy(x => x.Type);
         if (items.Count == 0 || variants.Count() > 1) return [];
 
@@ -374,14 +384,13 @@ public class NinjaStashProvider(
             var results = new List<NinjaStash>();
             foreach (var item in items)
             {
-                if (item.Stash == null) continue;
-                var line = result.Lines.FirstOrDefault(x => x.DetailsId == item.Stash.DetailsId);
+                var line = result.Lines.FirstOrDefault(x => x.DetailsId == item.DetailsId);
                 if (line == null) continue;
 
                 results.Add(new NinjaStash(line, result)
                 {
                     DetailsUrl = await ninjaUriProvider.GetDetailsUri(item),
-                    Definition = item,
+                    Item = item,
                 });
             }
 

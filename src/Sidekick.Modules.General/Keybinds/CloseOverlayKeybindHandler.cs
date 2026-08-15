@@ -1,5 +1,5 @@
-using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Settings.Input;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Modules.General.Keybinds;

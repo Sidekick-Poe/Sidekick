@@ -5,6 +5,7 @@ using Sidekick.Common.Platform.Clipboard;
 using Sidekick.Common.Platform.GameLogs;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Platform.Interprocess;
+using Sidekick.Common.Platform.Linux;
 
 namespace Sidekick.Common.Platform;
 
@@ -29,7 +30,7 @@ public static class StartupExtensions
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            services.AddSidekickInitializableService<IProcessProvider, Linux.Processes.ProcessProvider>();
+            services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
         }
 
         services.AddSidekickInitializableService<IInputProvider, InputProvider>();

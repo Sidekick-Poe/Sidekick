@@ -3,8 +3,7 @@ using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.ItemDefinitions;
+using NinjaExchangeItem = Sidekick.Game.ItemDefinitions.NinjaExchangeItem;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaExchangeProvider(
@@ -19,28 +18,22 @@ public class NinjaExchangeProvider(
         return $"PoeNinjaExchange_{league}_{type}";
     }
 
-    public NinjaItemDefinition? GetDefinition(ItemDefinition? item)
+    public async Task<NinjaCurrency?> GetInfo(NinjaExchangeItem? exchange)
     {
-        return item?.NinjaItems?.FirstOrDefault();
-    }
+        if (exchange == null) return null;
 
-    public async Task<NinjaCurrency?> GetInfo(ItemDefinition item)
-    {
-        var bestMatch = GetDefinition(item);
-        if (bestMatch?.Exchange == null) return null;
-
-        var result = await GetExchangeResult(bestMatch.Type);
+        var result = await GetExchangeResult(exchange.Type);
         if (result?.Core == null) return null;
 
-        var line = result.Lines.FirstOrDefault(x => x.Id == bestMatch.Exchange.Id);
+        var line = result.Lines.FirstOrDefault(x => x.Id == exchange.Id);
 
         // In some cases, the currency is not listed in the exchange overview, but is the primary currency.
         // This is the case for Path of Exile 1's Chaos Orb. It is the main comparison currency, but is absent from the lines.
-        if (line == null && bestMatch.Type == "Currency" && result.Core.Primary == bestMatch.Exchange.Id)
+        if (line == null && exchange.Type == "Currency" && result.Core.Primary == exchange.Id)
         {
             line = new NinjaExchangeLine()
             {
-                Id = bestMatch.Exchange.Id,
+                Id = exchange.Id,
                 PrimaryValue = 1,
             };
         }
@@ -49,7 +42,7 @@ public class NinjaExchangeProvider(
 
         return new NinjaCurrency(line, result)
         {
-            DetailsUrl = await ninjaUriProvider.GetDetailsUri(bestMatch),
+            DetailsUrl = await ninjaUriProvider.GetDetailsUri(exchange),
         };
     }
 

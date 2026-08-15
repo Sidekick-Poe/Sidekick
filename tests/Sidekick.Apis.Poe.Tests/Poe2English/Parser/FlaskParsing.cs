@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
 [Collection(Collections.Poe2EnglishFixture)]
 public class FlaskParsing(Poe2EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseLifeFlask()
@@ -34,8 +34,8 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
 
         Assert.Equal(ItemClass.LifeFlask, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ultimate Life Flask", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Ultimate Life Flask", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
@@ -70,8 +70,8 @@ Used automatically when condition is met. Can only hold charges while in belt. R
 
         Assert.Equal(ItemClass.Charms, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Stone Charm", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Stone Charm", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
 
         Assert.Equal(16, actual.Properties.RequiresLevel);
         Assert.Equal(51, actual.Properties.ItemLevel);

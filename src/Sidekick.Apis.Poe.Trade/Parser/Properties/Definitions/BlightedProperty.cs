@@ -1,29 +1,29 @@
-using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlightedProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider dataTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemBlighted.ToRegexAffix();
-
     public override string Label => dataTextProvider.Texts.ItemBlighted.CleanWildcard();
 
     public override void Parse(Item item)
     {
-        if (item.ItemClass.Type != ItemClass.Map) return;
+        item.Properties.Blighted = item.Definition.BaseItemIds?.Contains("Metadata/Items/TradeProxy/BlightedMap") ?? false;
 
-        item.Properties.Blighted = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
+        if (item.Properties.Blighted)
+        {
+            item.TradeItem = null;
+            item.InvariantTradeItem = null;
+        }
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

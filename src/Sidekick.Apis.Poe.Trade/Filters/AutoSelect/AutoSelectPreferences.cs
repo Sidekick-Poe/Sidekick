@@ -3,8 +3,8 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 namespace Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 
 public class AutoSelectPreferences
@@ -88,8 +88,6 @@ public class AutoSelectPreferences
             AutoSelectConditionType.AreaLevel => item.Properties.AreaLevel,
             AutoSelectConditionType.Armour => item.Properties.Armour,
             AutoSelectConditionType.AttacksPerSecond => item.Properties.AttacksPerSecond,
-            AutoSelectConditionType.Blighted => item.Properties.Blighted,
-            AutoSelectConditionType.BlightRavaged => item.Properties.BlightRavaged,
             AutoSelectConditionType.ItemClass => item.ItemClass.Type,
             AutoSelectConditionType.ItemLevel => item.Properties.ItemLevel,
             AutoSelectConditionType.Quality => item.Properties.Quality,

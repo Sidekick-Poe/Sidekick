@@ -2,14 +2,13 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using Sidekick.Data.Texts;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -17,15 +16,13 @@ public class PropertyParser
 (
     IServiceProvider serviceProvider,
     ICurrentGameLanguage currentGameLanguage,
-    IItemDefinitionParser itemDefinitionParser,
+    ItemDefinitionProvider itemDefinitionProvider,
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
-    DataTextProvider dataTextProvider
-) : IPropertyParser
+    GameTextProvider gameTextProvider
+) : IInitializableService
 {
-    public int Priority => 300;
-
     private List<PropertyDefinition> Definitions { get; } = new();
 
     public async Task Initialize()
@@ -35,29 +32,31 @@ public class PropertyParser
         Definitions.Clear();
         Definitions.AddRange([
             new ItemClassProperty(game, resources),
-            new RarityProperty(game, dataTextProvider),
+            new RarityProperty(game, gameTextProvider),
 
             new SeparatorProperty(),
 
             new QualityProperty(game, currentGameLanguage),
 
             new SpiritProperty(game, currentGameLanguage),
-            new ArmourProperty(game, dataTextProvider),
-            new EvasionRatingProperty(game, dataTextProvider),
-            new EnergyShieldProperty(game, dataTextProvider),
-            new BlockChanceProperty(game, dataTextProvider),
+            new ArmourProperty(game, gameTextProvider),
+            new EvasionRatingProperty(game, gameTextProvider),
+            new EnergyShieldProperty(game, gameTextProvider),
+            new BlockChanceProperty(game, gameTextProvider),
 
             new WeaponDamageProperty(game, currentGameLanguage, serviceProvider, resources),
             new PhysicalDpsProperty(game, resources),
             new ElementalDpsProperty(game, resources),
             new ChaosDpsProperty(game, resources),
             new TotalDpsProperty(game, resources),
-            new CriticalHitChanceProperty(game, dataTextProvider),
-            new AttacksPerSecondProperty(game, dataTextProvider),
+            new CriticalHitChanceProperty(game, gameTextProvider),
+            new AttacksPerSecondProperty(game, gameTextProvider),
             new MemoryStrandsProperty(game, currentGameLanguage),
 
+            new BlightedProperty(game, gameTextProvider),
+            new BlightRavagedProperty(game, gameTextProvider),
             new MapTierProperty(game, currentGameLanguage),
-            new RewardProperty(game, currentGameLanguage, itemDefinitionParser),
+            new RewardProperty(game, currentGameLanguage, itemDefinitionProvider),
             new RevivesAvailableProperty(game, currentGameLanguage),
             new MonsterPackSizeProperty(game, currentGameLanguage),
 
@@ -76,8 +75,6 @@ public class PropertyParser
             new QualityRarityProperty(game, currentGameLanguage),
             new WaystoneDropChanceProperty(game, currentGameLanguage),
             new AreaLevelProperty(game, currentGameLanguage),
-            new BlightedProperty(game, dataTextProvider),
-            new BlightRavagedProperty(game, dataTextProvider),
 
             new HeistWingsRevealedProperty(game, currentGameLanguage, serviceProvider),
             new HeistWingsTotalProperty(game, currentGameLanguage, serviceProvider),
@@ -113,12 +110,12 @@ public class PropertyParser
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.MiscellaneousCategory?.Title,
-                                   new ElderProperty(game, dataTextProvider),
-                                   new ShaperProperty(game, dataTextProvider),
-                                   new CrusaderProperty(game, dataTextProvider),
-                                   new HunterProperty(game, dataTextProvider),
-                                   new RedeemerProperty(game, dataTextProvider),
-                                   new WarlordProperty(game, dataTextProvider),
+                                   new ElderProperty(game, gameTextProvider),
+                                   new ShaperProperty(game, gameTextProvider),
+                                   new CrusaderProperty(game, gameTextProvider),
+                                   new HunterProperty(game, gameTextProvider),
+                                   new RedeemerProperty(game, gameTextProvider),
+                                   new WarlordProperty(game, gameTextProvider),
                                    new CorruptedProperty(game, currentGameLanguage),
                                    new SplitProperty(game, currentGameLanguage),
                                    new FracturedProperty(game, serviceProvider),

@@ -1,13 +1,13 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class DivinationCardParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseSaintTreasure()
@@ -25,8 +25,8 @@ Publicly, he lived a pious and chaste life of poverty. Privately, tithes and tri
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("The Saint's Treasure", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("The Saint's Treasure", actual.TradeItem?.Type);
     }
 
     [Fact]
@@ -45,8 +45,8 @@ Though they were a pack of elite combatants, the Emperor's royal guards were not
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("The Lord of Celebration", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("The Lord of Celebration", actual.TradeItem?.Type);
         Assert.False(actual.Properties.Influences.Crusader);
         Assert.False(actual.Properties.Influences.Elder);
         Assert.False(actual.Properties.Influences.Hunter);
@@ -73,6 +73,6 @@ Note: ~price 1 blessed
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Equal("Boon of Justice", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Boon of Justice", actual.TradeItem?.Type);
     }
 }

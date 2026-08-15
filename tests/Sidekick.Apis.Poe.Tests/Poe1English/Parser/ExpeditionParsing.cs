@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class ExpeditionParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseMagicLogbook()
@@ -49,7 +49,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
@@ -94,7 +94,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
     }
@@ -140,7 +140,7 @@ Note: ~b/o 14 divine
 
         Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains Olroth, Origin of the Fall");
         fixture.AssertDoesNotHaveStat(actual, StatCategory.Implicit, "Area contains Medved, Feller of Heroes");
@@ -174,7 +174,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Expedition Logbook", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Black Scythe Mercenaries");
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");

@@ -13,7 +13,8 @@
     <ItemGroup>
         <ProjectReference Include="..\Sidekick.Apis.Common\Sidekick.Apis.Common.csproj"/>
         <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj"/>
-        <ProjectReference Include="..\Sidekick.Data\Sidekick.Data.csproj"/>
+        <ProjectReference Include="..\Sidekick.Game.Parser\Sidekick.Game.Parser.csproj" />
+        <ProjectReference Include="..\Sidekick.Game.Providers\Sidekick.Game.Providers.csproj" />
     </ItemGroup>
 
 </Project>

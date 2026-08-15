@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class IdolParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void MinorIdol()
@@ -30,8 +30,8 @@ Unmodifiable");
 
         Assert.Equal(ItemClass.Idol, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Minor Idol", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Minor Idol", actual.TradeItem?.Type);
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);
@@ -64,8 +64,8 @@ Unmodifiable
 
         Assert.Equal(ItemClass.Idol, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Loved by the Sun", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Minor Idol", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Loved by the Sun", actual.TradeItem?.Name);
+        Assert.Equal("Minor Idol", actual.TradeItem?.Type);
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);

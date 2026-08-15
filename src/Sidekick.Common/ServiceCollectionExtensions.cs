@@ -5,9 +5,7 @@ using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
 using Sidekick.Common.Initialization;
-using Sidekick.Common.Localization;
 using Sidekick.Common.Platform.Input;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
 
@@ -24,15 +22,6 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<IBrowserProvider, BrowserProvider>();
         services.TryAddSingleton<ICacheProvider, CacheProvider>();
         services.TryAddSingleton<IFolderProvider, FolderProvider>();
-        services.TryAddSingleton<ISettingsService, SettingsService>();
-
-        services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
-
-        services.SetSidekickDefaultSetting(SettingKeys.LanguageParser, "en");
-        services.SetSidekickDefaultSetting(SettingKeys.LanguageUi, "en");
-        services.SetSidekickDefaultSetting(SettingKeys.Zoom, "1");
-        services.SetSidekickDefaultSetting(SettingKeys.RetainClipboard, true);
-        services.SetSidekickDefaultSetting(SettingKeys.UseHardwareAcceleration, true);
 
         services.Configure<SidekickConfiguration>(configuration =>
         {
@@ -104,18 +93,5 @@ public static class ServiceCollectionExtensions
         {
             services.TryAddSingleton<TInputHandler>();
         }
-    }
-
-    public static void SetSidekickDefaultSetting(this IServiceCollection services,
-        string key,
-        object value)
-    {
-        services.Configure<SidekickConfiguration>(configuration =>
-        {
-            if (!configuration.DefaultSettings.TryAdd(key, value))
-            {
-                configuration.DefaultSettings[key] = value;
-            }
-        });
     }
 }

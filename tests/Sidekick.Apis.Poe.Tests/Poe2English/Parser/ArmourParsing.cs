@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
 [Collection(Collections.Poe2EnglishFixture)]
 public class ArmourParsing(Poe2EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseThunderstep()
@@ -46,9 +46,9 @@ Corrupted
 
         Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Steeltoe Boots", actual.Definition.TradeItem?.Type);
-        Assert.Equal("Thunderstep", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Thunderstep Steeltoe Boots", actual.Definition.TradeItem?.Text);
+        Assert.Equal("Steeltoe Boots", actual.TradeItem?.Type);
+        Assert.Equal("Thunderstep", actual.TradeItem?.Name);
+        Assert.Equal("Thunderstep Steeltoe Boots", actual.TradeItem?.Text);
 
         Assert.Equal(129, actual.Properties.EvasionRating);
 
@@ -89,8 +89,8 @@ Grants Skill: Parry
 
         Assert.Equal(ItemClass.Buckler, actual.ItemClass.Type);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Wooden Buckler", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Wooden Buckler", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
         Assert.Equal(5, actual.Properties.RequiresLevel);
         Assert.Equal(11, actual.Properties.RequiresDexterity);
 
@@ -122,8 +122,8 @@ Can only be equipped if you are wielding a Bow.
 
         Assert.Equal(ItemClass.Quiver, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Fire Quiver", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Fire Quiver", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
 
         Assert.Equal(8, actual.Properties.ItemLevel);
     }
@@ -160,8 +160,8 @@ Item Level: 66
 
         Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Bastion Sabatons", actual.Definition.TradeItem?.Type);
-        Assert.Null(actual.Definition.TradeItem?.Name);
+        Assert.Equal("Bastion Sabatons", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
         Assert.Equal(59, actual.Properties.RequiresLevel);
         Assert.Equal(44, actual.Properties.RequiresStrength);
         Assert.Equal(44, actual.Properties.RequiresDexterity);
@@ -211,8 +211,8 @@ Note: ~b/o 980 divine
 
         Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Atziri's Step", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Cinched Boots", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Atziri's Step", actual.TradeItem?.Name);
+        Assert.Equal("Cinched Boots", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Gain Deflection Rating equal to #% of Evasion Rating", 60);
         // Issue #985 fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to amount of Damage Prevented by Deflection", -9);
@@ -260,7 +260,7 @@ Hits against you have 43(40-50)% reduced Critical Damage Bonus
 
         Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Sacramental Robe", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Sacramental Robe", actual.TradeItem?.Type);
 
         Assert.Equal(79, actual.Properties.ItemLevel);
         Assert.Equal(600, actual.Properties.EnergyShield);
@@ -318,8 +318,8 @@ Corrupted");
 
         Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Ironride", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Visored Helm", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Ironride", actual.TradeItem?.Name);
+        Assert.Equal("Visored Helm", actual.TradeItem?.Type);
 
         Assert.Equal(81, actual.Properties.ItemLevel);
         Assert.Equal(105, actual.Properties.Armour);

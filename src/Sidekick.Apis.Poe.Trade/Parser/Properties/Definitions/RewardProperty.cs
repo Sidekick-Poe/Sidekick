@@ -1,22 +1,22 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Parser.Definition;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RewardProperty(
     GameType game,
     ICurrentGameLanguage currentGameLanguage,
-    IItemDefinitionParser itemDefinitionParser) : PropertyDefinition
+    ItemDefinitionProvider itemDefinitionProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringProperty();
 
@@ -34,7 +34,7 @@ public class RewardProperty(
     {
         if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new RewardFilter(itemDefinitionParser)
+        var filter = new RewardFilter(itemDefinitionProvider)
         {
             Text = Label,
             Value = item.Properties.Reward!,
@@ -47,21 +47,21 @@ public class RewardProperty(
 
 public class RewardFilter : StringPropertyFilter
 {
-    public RewardFilter(IItemDefinitionParser itemDefinitionParser)
+    public RewardFilter(ItemDefinitionProvider itemDefinitionProvider)
     {
-        ItemDefinitionParser = itemDefinitionParser;
+        ItemDefinitionProvider = itemDefinitionProvider;
         DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
-    private IItemDefinitionParser ItemDefinitionParser { get; }
+    private ItemDefinitionProvider ItemDefinitionProvider { get; }
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
 
-        var uniqueItem = ItemDefinitionParser.UniqueItems.FirstOrDefault(x => x.UniqueItem?.Name != null && Value.Contains(x.UniqueItem.Name));
-        if (uniqueItem?.UniqueItem?.Name == null) return;
+        var uniqueItem = ItemDefinitionProvider.UniqueItems.FirstOrDefault(x => x.Name != null && Value.Contains(x.Name));
+        if (uniqueItem?.Name == null) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.UniqueItem.Name);
+        query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.Name);
     }
 }

@@ -5,14 +5,13 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
-using ItemProperties=Sidekick.Data.Items.ItemProperties;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using ItemProperties=Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -22,7 +21,7 @@ public class WeaponDamageProperty(
     IServiceProvider serviceProvider,
     IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
-    private readonly IStatParser statParser = serviceProvider.GetRequiredService<IStatParser>();
+    private readonly StatParser statParser = serviceProvider.GetRequiredService<StatParser>();
 
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 

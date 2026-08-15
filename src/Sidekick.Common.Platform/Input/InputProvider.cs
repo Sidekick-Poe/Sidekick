@@ -8,6 +8,7 @@ using SharpHook;
 using SharpHook.Data;
 using SharpHook.Logging;
 using Sidekick.Common.Platform.EventArgs;
+using Sidekick.Common.Settings.Input;
 namespace Sidekick.Common.Platform.Input;
 
 public class InputProvider
@@ -413,9 +414,6 @@ public class InputProvider
     public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
 
     private bool Enabled { get; set; } = true;
-
-    /// <inheritdoc/>
-    public int Priority => 100;
 
     /// <inheritdoc/>
     public Task Initialize()

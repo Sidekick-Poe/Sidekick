@@ -1,13 +1,13 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class UltimatumParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void NoxiousCatalyst()
@@ -26,6 +26,6 @@ Right click this item then left click a ring, amulet or belt to apply it. Has gr
 
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Noxious Catalyst", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Noxious Catalyst", actual.TradeItem?.Type);
     }
 }

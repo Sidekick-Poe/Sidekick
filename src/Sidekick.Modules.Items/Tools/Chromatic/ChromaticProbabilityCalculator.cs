@@ -1,4 +1,5 @@
-﻿using Sidekick.Data.ItemDefinitions;
+﻿using Sidekick.Game.BaseItems;
+
 namespace Sidekick.Modules.Items.Tools.Chromatic;
 
 // This file has been adapted and translated to C# from the original JavaScript implementation

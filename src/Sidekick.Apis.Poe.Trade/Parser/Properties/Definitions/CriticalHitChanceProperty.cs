@@ -5,22 +5,22 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Data;
-using Sidekick.Data.Items;
-using Sidekick.Data.Texts;
-using ItemProperties = Sidekick.Data.Items.ItemProperties;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
+using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CriticalHitChanceProperty(
     GameType game,
-    DataTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = dataTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexDoubleProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexDoubleProperty();
 
-    private Regex IsAugmentedPattern { get; } = dataTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyCriticalStrikeChance.ToRegexIsAugmented();
 
-    public override string Label => dataTextProvider.Texts.ItemPropertyCriticalStrikeChance;
+    public override string Label => gameTextProvider.Texts.ItemPropertyCriticalStrikeChance;
 
     public override void Parse(Item item)
     {

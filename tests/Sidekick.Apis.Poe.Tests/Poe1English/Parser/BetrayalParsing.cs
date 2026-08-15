@@ -1,13 +1,13 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class BetrayalParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void RustedReliquaryScarab()
@@ -28,7 +28,7 @@ Note: ~b/o .50 chaos
 
         Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Rusted Reliquary Scarab", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Rusted Reliquary Scarab", actual.TradeItem?.Type);
     }
 
 }

@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class BootParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseFracturedItem()
@@ -34,7 +34,7 @@ Fractured Item
 
         Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Iron Greaves", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Iron Greaves", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Fractured);
 
         fixture.AssertHasStat(actual, StatCategory.Fractured, "#% increased Movement Speed", 10);
@@ -71,8 +71,8 @@ Even the dead serve the Lightless.
 
         Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Bubonic Trail", actual.Definition.TradeItem?.Name);
-        Assert.Equal("Murder Boots", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Bubonic Trail", actual.TradeItem?.Name);
+        Assert.Equal("Murder Boots", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Has # Abyssal Sockets", 1);
     }
@@ -98,8 +98,8 @@ Item Level: 83
 
         Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Null(actual.Definition.TradeItem?.Name);
-        Assert.Equal("Sorcerer Boots", actual.Definition.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Sorcerer Boots", actual.TradeItem?.Type);
 
         Assert.Equal(61, actual.Properties.MemoryStrands);
     }

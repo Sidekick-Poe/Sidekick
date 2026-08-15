@@ -4,9 +4,8 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Extensions;
-using Sidekick.Data.Items;
-using Sidekick.Data.Languages;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Parser.Items;
 
 namespace Sidekick.Apis.PoePriceInfo;
 

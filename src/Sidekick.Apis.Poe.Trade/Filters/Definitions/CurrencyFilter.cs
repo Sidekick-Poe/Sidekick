@@ -1,7 +1,7 @@
 ﻿using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Data;
-using Sidekick.Data.Items;
+using Sidekick.Game;
+using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.Poe.Trade.Filters.Definitions;
 
 public class CurrencyFilterFactory(ITradeFilterProvider tradeFilterProvider)

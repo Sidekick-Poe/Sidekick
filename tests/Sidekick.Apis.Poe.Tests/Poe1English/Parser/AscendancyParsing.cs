@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class AscendancyParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseEnchantWithAdditionalProjectiles()
@@ -59,6 +59,6 @@ Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth
 
         Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Tribute to the Goddess", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Tribute to the Goddess", actual.TradeItem?.Type);
     }
 }

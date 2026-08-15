@@ -1,18 +1,18 @@
-@using Sidekick.Apis.Poe.Trade.Parser.Definition
-@using Sidekick.Data.ItemDefinitions
+@using Sidekick.Apis.Poe.Trade.Parser
+@using Sidekick.Game.ItemDefinitions
 
 <div class="flex flex-nowrap gap-0.5 items-center justify-end">
     <Heading3>@Value.ToString("0.##")</Heading3>
     <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-    @if (Currency != null)
+    @if (Currency?.Image != null)
     {
-        <Tooltip Text="@Currency.BaseItem?.Name">
-            <img src="@Currency.TradeItem?.Image" class="max-h-6" alt="@Currency.BaseItem?.Name"/>
+        <Tooltip Text="@Currency.Name">
+            <img src="@Currency.Image" class="max-h-6" alt="@Currency.Name"/>
         </Tooltip>
     }
 </div>
 
-@inject IItemDefinitionParser ItemDefinitionParser
+@inject ItemDefinitionParser ItemDefinitionParser
 
 @code {
 
@@ -23,7 +23,7 @@
 
     protected override void OnParametersSet()
     {
-        Currency = ItemDefinitionParser.Get("chaos");
+        Currency = ItemDefinitionParser.GetInvariant("chaos");
         base.OnParametersSet();
     }
 

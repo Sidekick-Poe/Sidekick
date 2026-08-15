@@ -1,6 +1,6 @@
-@using Sidekick.Data.ItemClasses
-@using Sidekick.Data.ItemDefinitions
-@using Sidekick.Data.Items
+@using Sidekick.Game.BaseItems
+@using Sidekick.Game.ItemClasses
+@using Sidekick.Game.Parser.Items
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Tools.Localization
 
@@ -51,7 +51,7 @@
                 <div class="flex flex-wrap gap-2 gap-y-0 items-center text-[#a38d6d] text-sm">
                     <div class="flex flex-nowrap items-center gap-1">
                         <span>@Resources["Chromatic_Cost"]:</span>
-                        <PriceDisplay Value="@((decimal)result.Cost)" Currency="chrome" Small="true"/>
+                        <PriceDisplay Value="@(result.Cost)" Currency="chrome" Small="true"/>
                     </div>
                     <div>
                         @Resources["Chromatic_Chance"]: <span
@@ -93,7 +93,7 @@
     private double? GreenSockets { get; set; }
     private double? BlueSockets { get; set; }
 
-    private BaseItemRequirements Requirements => Item.Definition.BaseItem?.Requirements ?? new()
+    private BaseItemRequirements Requirements => Item.Definition.BaseItems.FirstOrDefault()?.Requirements ?? new()
     {
         Strength = Item.Properties.RequiresStrength,
         Dexterity = Item.Properties.RequiresDexterity,

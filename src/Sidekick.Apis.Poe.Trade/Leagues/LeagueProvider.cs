@@ -1,6 +1,6 @@
-using Sidekick.Data;
-using Sidekick.Data.Languages;
-using Sidekick.Data.Leagues;
+using Sidekick.Game;
+using Sidekick.Game.Languages;
+using Sidekick.Game.Leagues;
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public class LeagueProvider(
@@ -11,8 +11,8 @@ public class LeagueProvider(
     {
         return
         [
-            ..await dataProvider.Read<List<League>>(GameType.PathOfExile2, DataType.Leagues, languageProvider.InvariantLanguage),
-            ..await dataProvider.Read<List<League>>(GameType.PathOfExile1, DataType.Leagues, languageProvider.InvariantLanguage),
+            ..await dataProvider.Read<List<League>>(GameType.PathOfExile2, GameDataType.Leagues, languageProvider.InvariantLanguage),
+            ..await dataProvider.Read<List<League>>(GameType.PathOfExile1, GameDataType.Leagues, languageProvider.InvariantLanguage),
         ];
     }
 }

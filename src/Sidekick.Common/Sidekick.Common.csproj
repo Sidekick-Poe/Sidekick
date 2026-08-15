@@ -12,8 +12,4 @@
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Common.Database\Sidekick.Common.Database.csproj" />
-  </ItemGroup>
-
 </Project>

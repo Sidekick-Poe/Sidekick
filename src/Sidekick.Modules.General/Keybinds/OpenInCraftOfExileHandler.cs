@@ -1,9 +1,8 @@
 using Sidekick.Common.Browser;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
-using Sidekick.Data.Extensions;
+using Sidekick.Common.Settings.Input;
+using Sidekick.Game;
 
 namespace Sidekick.Modules.General.Keybinds;
 

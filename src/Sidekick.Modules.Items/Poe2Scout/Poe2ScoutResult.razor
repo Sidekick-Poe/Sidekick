@@ -3,8 +3,8 @@
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Apis.Poe2Scout.Items.Models
 @using Sidekick.Modules.Items.Poe2Scout.Localization
-@using Sidekick.Data.Items
-@using Sidekick.Data
+@using Sidekick.Game.Parser.Items
+@using Sidekick.Game
 
 @if (Item.Game == GameType.PathOfExile1)
 {
@@ -62,7 +62,7 @@
         Loading = true;
         StateHasChanged();
 
-        ScoutItem = await ScoutItemProvider.GetItem(Item.Invariant);
+        ScoutItem = await ScoutItemProvider.GetItem(Item.InvariantTradeItem);
         if (ScoutItem != null)
         {
             ScoutHistory = await ScoutHistoryProvider.GetItemHistory(ScoutItem.ItemId);

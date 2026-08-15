@@ -15,8 +15,11 @@ using Sidekick.Common;
 using Sidekick.Common.Database;
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
-using Sidekick.Data;
+using Sidekick.Game;
+using Sidekick.Game.Parser;
+using Sidekick.Game.Providers;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
@@ -84,10 +87,12 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
             .AddSidekickCommon(applicationType)
             .AddSidekickCommonDialogs()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickCommonSettings()
             .AddSidekickCommonUi()
 
-            // Data
-            .AddSidekickData()
+            // Game
+            .AddSidekickGameParser()
+            .AddSidekickGameProviders()
 
             // Apis
             .AddSidekickGitHubApi()

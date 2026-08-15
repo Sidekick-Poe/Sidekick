@@ -1,14 +1,14 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Data.ItemClasses;
-using Sidekick.Data.Items;
-using Sidekick.Data.Stats;
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class GloveParsing(Poe1EnglishFixture fixture)
 {
-    private readonly IItemParser parser = fixture.Parser;
+    private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
     public void ParseRareGloves()
@@ -38,7 +38,7 @@ Item Level: 61
 
         Assert.Equal(ItemClass.Gloves, actual.ItemClass.Type);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Assassin's Mitts", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Assassin's Mitts", actual.TradeItem?.Type);
         Assert.Equal("Death Nails", actual.Name);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Single(actual.Properties.Sockets);
@@ -87,7 +87,7 @@ Corrupted
 
         Assert.Equal(ItemClass.Gloves, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Silk Gloves", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Silk Gloves", actual.TradeItem?.Type);
         Assert.Equal("Asenath's Gentle Touch", actual.Name);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Single(actual.Properties.Sockets);
@@ -142,7 +142,7 @@ reduced it to ruins and bones.
 
         Assert.Equal(ItemClass.Gloves, actual.ItemClass.Type);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Vaal Gauntlets", actual.Definition.TradeItem?.Type);
+        Assert.Equal("Vaal Gauntlets", actual.TradeItem?.Type);
         Assert.Equal("Doryani's Fist", actual.Name);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Unarmed Melee Hits", 190, 550);

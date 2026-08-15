@@ -1,6 +1,6 @@
-﻿namespace Sidekick.Common.Blazor.Home;
+﻿namespace Sidekick.Modules.General.Home;
 
 public class HomeResources
 {
-    
+
 }
