@@ -24,6 +24,7 @@ public class GameText
     public string ModDescriptionLevel { get; set; } = string.Empty;
     public string ModDescriptionTierLevel { get; set; } = string.Empty;
     public string ModDescriptionRankLevel { get; set; } = string.Empty;
+    public string ModDescriptionUnscalableValue { get; set; } = string.Empty;
 
     #endregion
 
