@@ -19,7 +19,7 @@ public class DesecratedProperty(
 
     public override string Label => tradeFilterProvider.Desecrated?.Text ?? "Desecrated";
 
-    public override void Parse(Item item)
+    public override void ParseAfterStats(Item item)
     {
         item.Properties.Desecrated = item.Stats.Any(x => x.Category == StatCategory.Desecrated);
     }

@@ -74,7 +74,6 @@ public class StatParser
         return CreateStat(category, line, definitions);
     }
 
-    /// <inheritdoc/>
     public void Parse(Item item)
     {
         if (item.Properties.Rarity != Rarity.Normal &&
