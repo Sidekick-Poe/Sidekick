@@ -7,7 +7,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Game;
 using Sidekick.Game.Parser.Items;
-using Sidekick.Game.Parser.Texts;
+using Sidekick.Game.Providers;
 using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;

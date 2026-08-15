@@ -26,8 +26,6 @@ public class StatParser
     DataProvider dataProvider
 ) : IInitializableService
 {
-    public int Priority => 300;
-
     public StatsInvariantDetails InvariantDetails { get; private set; } = new();
 
     private Dictionary<StatCategory, List<StatDefinition>> Definitions { get; set; } = [];

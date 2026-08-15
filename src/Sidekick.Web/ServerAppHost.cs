@@ -19,6 +19,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Game;
 using Sidekick.Game.Parser;
+using Sidekick.Game.Providers;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
@@ -90,8 +91,8 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
             .AddSidekickCommonUi()
 
             // Game
-            .AddSidekickGame()
             .AddSidekickGameParser()
+            .AddSidekickGameProviders()
 
             // Apis
             .AddSidekickGitHubApi()

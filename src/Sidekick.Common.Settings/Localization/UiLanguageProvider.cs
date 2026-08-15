@@ -19,9 +19,6 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
     public event Action<CultureInfo>? OnLanguageChanged;
 
     /// <inheritdoc />
-    public int Priority => 0;
-
-    /// <inheritdoc />
     public async Task Initialize()
     {
         var language = await settingsService.GetString(SettingKeys.LanguageUi);

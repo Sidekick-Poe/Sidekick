@@ -31,7 +31,4 @@ public class ProcessProvider() : IProcessProvider
             return true;
         }
     }
-
-    /// <inheritdoc/>
-    public int Priority => 0;
 }

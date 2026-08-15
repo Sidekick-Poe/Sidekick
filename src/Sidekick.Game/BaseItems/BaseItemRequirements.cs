@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Game.ItemDefinitions;
+namespace Sidekick.Game.BaseItems;
 
 public class BaseItemRequirements
 {

@@ -29,9 +29,9 @@ public static class StartupExtensions
 
         services.TryAddSingleton<IItemTradeService, ItemTradeService>();
         services.TryAddSingleton<ILeagueProvider, LeagueProvider>();
-        services.AddSidekickInitializableService<ItemDefinitionParser>();
+        services.TryAddSingleton<ItemClassParser>();
+        services.TryAddSingleton<ItemDefinitionParser>();
 
-        services.AddSidekickInitializableService<ItemClassParser>();
         services.AddSidekickInitializableService<ItemParser>();
         services.AddSidekickInitializableService<PropertyParser>();
         services.AddSidekickInitializableService<StatParser, StatParser>();

@@ -33,9 +33,6 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
     /// </summary>
     public bool Enabled { get; set; }
 
-    /// <inheritdoc />
-    public int Priority => 0;
-
     /// <summary>
     /// Determines whether the scroll wheel handler should be enabled based on the current settings.
     /// </summary>

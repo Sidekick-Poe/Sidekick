@@ -38,9 +38,6 @@ public abstract class KeybindHandler : IInputHandler, IDisposable
     ];
 
     /// <inheritdoc />
-    public int Priority => 0;
-
-    /// <inheritdoc />
     public async Task Initialize()
     {
         Keybinds = await GetKeybinds();

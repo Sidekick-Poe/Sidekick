@@ -215,22 +215,21 @@ internal class WealthProvider
         decimal price = 0;
         NinjaSparkline? sparkLine = null;
         var itemDefinition = itemDefinitionParser.GetInvariant(item);
-        var invariantDefinition = itemDefinition?.Key != null ? itemDefinitionParser.InvariantDictionary.GetValueOrDefault(itemDefinition.Key) : null;
-        if (itemDefinition == null || invariantDefinition == null)
+        if (itemDefinition == null)
         {
             logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");
             return (price, sparkLine);
         }
 
-        if (invariantDefinition.NinjaExchange != null)
+        if (itemDefinition.NinjaExchange != null)
         {
-            var info = await ninjaExchangeProvider.GetInfo(invariantDefinition.NinjaExchange);
+            var info = await ninjaExchangeProvider.GetInfo(itemDefinition.NinjaExchange);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
             sparkLine = info?.Sparkline;
         }
         else
         {
-            var stashes = await ninjaStashProvider.GetInfo(game, invariantDefinition, item);
+            var stashes = await ninjaStashProvider.GetInfo(game, itemDefinition, item);
             var info = stashes.FirstOrDefault();
             price = info?.ChaosValue ?? 0;
             sparkLine = info?.Sparkline;

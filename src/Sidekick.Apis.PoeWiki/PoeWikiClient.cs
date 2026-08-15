@@ -72,9 +72,6 @@ public class PoeWikiClient
     private Dictionary<string, List<string>> BlightOilNamesByMods { get; set; } = new();
 
     /// <inheritdoc/>
-    public int Priority => 0;
-
-    /// <inheritdoc/>
     public async Task Initialize()
     {
         var blightOils = await cacheProvider.GetOrSet("PoeWikiBlightOils",

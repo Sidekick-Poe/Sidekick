@@ -13,9 +13,6 @@ public class CurrentGameLanguage(
     public IGameLanguage InvariantLanguage => gameLanguageProvider.InvariantLanguage;
 
     /// <inheritdoc />
-    public int Priority => 0;
-
-    /// <inheritdoc />
     public async Task Initialize()
     {
         var languageCode = await settingsService.GetString(SettingKeys.LanguageParser) ?? EnglishLanguageCode;

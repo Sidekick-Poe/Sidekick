@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+
 namespace Sidekick.Game.ItemDefinitions;
 
 public class TradeItem

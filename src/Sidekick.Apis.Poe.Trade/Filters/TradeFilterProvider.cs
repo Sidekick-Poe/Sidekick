@@ -40,9 +40,6 @@ public class TradeFilterProvider
     private List<TradeFilterCategory> Filters { get; set; } = [];
 
     /// <inheritdoc/>
-    public int Priority => 200;
-
-    /// <inheritdoc/>
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();

@@ -1,5 +1,5 @@
+@using Sidekick.Game.BaseItems
 @using Sidekick.Game.ItemClasses
-@using Sidekick.Game.ItemDefinitions
 @using Sidekick.Game.Parser.Items
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Tools.Localization
@@ -93,7 +93,7 @@
     private double? GreenSockets { get; set; }
     private double? BlueSockets { get; set; }
 
-    private BaseItemRequirements Requirements => Item.Definition.Requirements ?? new()
+    private BaseItemRequirements Requirements => Item.Definition.BaseItems.FirstOrDefault()?.Requirements ?? new()
     {
         Strength = Item.Properties.RequiresStrength,
         Dexterity = Item.Properties.RequiresDexterity,

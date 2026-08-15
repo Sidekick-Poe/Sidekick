@@ -416,9 +416,6 @@ public class InputProvider
     private bool Enabled { get; set; } = true;
 
     /// <inheritdoc/>
-    public int Priority => 100;
-
-    /// <inheritdoc/>
     public Task Initialize()
     {
         if (Debugger.IsAttached || !configuration.Value.ApplicationType.SupportsKeybinds()) return Task.CompletedTask;

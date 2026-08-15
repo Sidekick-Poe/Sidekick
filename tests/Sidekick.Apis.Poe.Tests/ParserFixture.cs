@@ -21,6 +21,7 @@ using Sidekick.Game;
 using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
+using Sidekick.Game.Providers;
 using Xunit;
 using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
 
@@ -52,8 +53,8 @@ public abstract class ParserFixture : IAsyncLifetime
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonSettings()
 
-            .AddSidekickGame()
             .AddSidekickGameParser()
+            .AddSidekickGameProviders()
 
             // Apis
             .AddSidekickCommonApi()
@@ -102,16 +103,11 @@ public abstract class ParserFixture : IAsyncLifetime
     {
         var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
         var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
-        List<IInitializableService> services = [];
-        foreach (var serviceType in configuration.Value.InitializableServices)
-        {
-            var service = serviceProvider.GetRequiredService(serviceType);
-            if (service is not IInitializableService initializableService) continue;
 
-            services.Add(initializableService);
-        }
+        var resolver = new InitializationOrderResolver(serviceProvider);
+        var orderedServices = resolver.GetOrderedServices(configuration.Value.InitializableServices);
 
-        foreach (var service in services.OrderBy(x => x.Priority))
+        foreach (var service in orderedServices)
         {
             logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
             await service.Initialize();

@@ -100,6 +100,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Game.Parser", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Settings", "src\Sidekick.Common.Settings\Sidekick.Common.Settings.csproj", "{05C4B9EB-443D-46BC-A834-B96AB885C521}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Game.Providers", "src\Sidekick.Game.Providers\Sidekick.Game.Providers.csproj", "{DCE41065-FF97-4211-B504-65467A69D62F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -908,6 +910,30 @@ Global
 		{05C4B9EB-443D-46BC-A834-B96AB885C521}.Release|x64.Build.0 = Release|Any CPU
 		{05C4B9EB-443D-46BC-A834-B96AB885C521}.Release|x86.ActiveCfg = Release|Any CPU
 		{05C4B9EB-443D-46BC-A834-B96AB885C521}.Release|x86.Build.0 = Release|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Debug|x64.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Debug|x86.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Debug|x64.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Debug|x64.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Debug|x86.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Debug|x86.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Release|x64.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Release|x64.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Release|x86.ActiveCfg = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Linux-Release|x86.Build.0 = Debug|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Release|x64.ActiveCfg = Release|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Release|x64.Build.0 = Release|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Release|x86.ActiveCfg = Release|Any CPU
+		{DCE41065-FF97-4211-B504-65467A69D62F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -944,6 +970,7 @@ Global
 		{2956FDF9-2B05-4077-9454-7626AF968476} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{6B433BB9-C109-47D6-A9FE-6E0C4D7999F3} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
 		{05C4B9EB-443D-46BC-A834-B96AB885C521} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
+		{DCE41065-FF97-4211-B504-65467A69D62F} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

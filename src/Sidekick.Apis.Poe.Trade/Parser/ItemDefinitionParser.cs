@@ -1,50 +1,21 @@
 using FuzzySharp;
 using Sidekick.Apis.Poe.Trade.Trade.Models;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Initialization;
-using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
-using Sidekick.Game;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
+
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class ItemDefinitionParser(
-    DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService,
-    ItemClassParser itemClassParser
-) : IInitializableService
+    ItemClassProvider itemClassProvider,
+    BaseItemProvider baseItemProvider,
+    ItemDefinitionProvider itemDefinitionProvider
+)
 {
-    public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
-
-    private List<ItemDefinition> Definitions { get; set; } = [];
-    private List<ItemDefinition> InvariantDefinitions { get; set; } = [];
-    public List<ItemDefinition> UniqueItems { get; private set; } = [];
-
-    public int Priority => 100;
-
-    public async Task Initialize()
-    {
-        var game = await settingsService.GetGame();
-
-        Definitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.Language);
-        UniqueItems = Definitions.Where(x => x.IsUnique)
-            .OrderByDescending(x => x.Name?.Length ?? 0)
-            .ToList();
-
-        InvariantDictionary.Clear();
-        if (currentGameLanguage.IsEnglish()) InvariantDefinitions = Definitions;
-        else InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.InvariantLanguage);
-        foreach (var definition in InvariantDefinitions)
-        {
-            if (string.IsNullOrEmpty(definition.Key)) continue;
-
-            InvariantDictionary.TryAdd(definition.Key, definition);
-        }
-    }
-
     public void Parse(Item item)
     {
         item.Type = item.Text.Blocks[0].Lines[^1].Text;
@@ -53,18 +24,24 @@ public class ItemDefinitionParser(
             item.Name = item.Text.Blocks[0].Lines[^2].Text;
         }
 
-        item.Definition = GetDefinition(Definitions, item.Properties.Rarity, item.Type, item.Name)!;
+        item.Definition = GetDefinition(itemDefinitionProvider.Definitions, item.Properties.Rarity, item.ItemClass?.Id, item.Type, item.Name)!;
         if (item.Definition == null) throw new UnparsableException(item.Text.Text);
 
-        // Poe.ninja does not include item class in the text, so we fill it in here in case.
-        item.ItemClass ??= itemClassParser.Definitions.FirstOrDefault(x => x.Id == item.Definition.ItemClassId)!;
+        // Poe.ninja does not include item class in the text, so we fill it here in case.
+        if (item.Definition.BaseItemIds != null && item.ItemClass == null!)
+        {
+            var baseItem = baseItemProvider.Definitions.FirstOrDefault(x => item.Definition.BaseItemIds.Contains(x.Id));
+            item.ItemClass ??= itemClassProvider.Definitions.FirstOrDefault(x => x.Id == baseItem?.ItemClassId)!;
+        }
         if (item.ItemClass == null) throw new UnparsableException(item.Text.Text);
+
         ParseVaalGem();
 
         item.TradeItem = GetTradeItem(item.Definition.TradeItems, item.Type);
 
         if (currentGameLanguage.IsEnglish()) item.InvariantDefinition = item.Definition;
-        else if(item.Definition.Key != null) item.InvariantDefinition = InvariantDictionary.GetValueOrDefault(item.Definition.Key);
+        else if (item.Definition.UniqueIds != null && item.Definition.UniqueIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.UniqueIds.First());
+        else if (item.Definition.BaseItemIds != null && item.Definition.BaseItemIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.BaseItemIds.First());
 
         return;
 
@@ -73,7 +50,7 @@ public class ItemDefinitionParser(
             var canBeVaalGem = item.ItemClass.Type == ItemClass.ActiveSkillGem && item.Text.Blocks.Count > 7;
             if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-            var vaalGem = GetDefinition(Definitions, item.Properties.Rarity, item.Text.Blocks[5].Lines[0].Text, item.Name);
+            var vaalGem = GetDefinition(itemDefinitionProvider.Definitions, item.Properties.Rarity, item.ItemClass.Id, item.Text.Blocks[5].Lines[0].Text, item.Name);
             if (vaalGem != null)
             {
                 item.Definition = vaalGem;
@@ -83,7 +60,7 @@ public class ItemDefinitionParser(
 
     public ItemDefinition? GetInvariant(ApiItem item)
     {
-        return GetDefinition(InvariantDefinitions, item.Rarity, item.TypeLine, item.Name);
+        return GetDefinition(itemDefinitionProvider.InvariantDefinitions, item.Rarity, null, item.TypeLine, item.Name);
     }
 
     public ItemDefinition? GetInvariant(string? text)
@@ -94,10 +71,10 @@ public class ItemDefinitionParser(
             "exalt" => "exalted",
             _ => text,
         };
-        return InvariantDictionary.GetValueOrDefault(text);
+        return itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(text);
     }
 
-    private ItemDefinition? GetDefinition(List<ItemDefinition> definitions, Rarity rarity, string? type, string? name)
+    private ItemDefinition? GetDefinition(List<ItemDefinition> definitions, Rarity rarity, string? itemClassId, string? type, string? name)
     {
         List<ItemDefinition> results = [];
 
@@ -123,9 +100,15 @@ public class ItemDefinitionParser(
                 {
                     ratio += Fuzz.Ratio(x.Name, name, FuzzySharp.PreProcess.PreprocessMode.None);
                 }
+
                 if (!string.IsNullOrEmpty(type))
                 {
                     ratio += Fuzz.Ratio(x.Name, type, FuzzySharp.PreProcess.PreprocessMode.None);
+                }
+
+                if (x.BaseItems.Any(baseItem => baseItem.ItemClassId == itemClassId))
+                {
+                    ratio += 10;
                 }
 
                 return new

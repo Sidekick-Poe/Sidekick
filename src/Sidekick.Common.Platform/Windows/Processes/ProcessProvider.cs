@@ -116,9 +116,6 @@ public class ProcessProvider
     }
 
     /// <inheritdoc/>
-    public int Priority => 0;
-
-    /// <inheritdoc/>
     public Task Initialize()
     {
         // We can't initialize twice

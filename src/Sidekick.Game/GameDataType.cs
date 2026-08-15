@@ -7,6 +7,9 @@ public enum GameDataType
     [EnumValue("leagues.json")]
     Leagues,
 
+    [EnumValue("{0}/base-items.json")]
+    BaseItems,
+
     [EnumValue("{0}/items.json")]
     Items,
 

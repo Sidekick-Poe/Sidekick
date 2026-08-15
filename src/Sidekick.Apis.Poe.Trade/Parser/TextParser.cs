@@ -6,7 +6,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Game;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
-using Sidekick.Game.Parser.Texts;
+using Sidekick.Game.Providers;
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public class TextParser
@@ -21,8 +21,6 @@ public class TextParser
     private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\s?\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
 
     private GameType Game { get; set; }
-
-    public int Priority => 100;
 
     private string? Fractured { get; set; }
     private string? Corrupted { get; set; }

@@ -8,7 +8,7 @@ using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Parser.Items;
-using Sidekick.Game.Parser.Texts;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -16,15 +16,13 @@ public class PropertyParser
 (
     IServiceProvider serviceProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ItemDefinitionParser itemDefinitionParser,
+    ItemDefinitionProvider itemDefinitionProvider,
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
     GameTextProvider gameTextProvider
 ) : IInitializableService
 {
-    public int Priority => 300;
-
     private List<PropertyDefinition> Definitions { get; } = new();
 
     public async Task Initialize()
@@ -58,7 +56,7 @@ public class PropertyParser
             new BlightedProperty(game, gameTextProvider),
             new BlightRavagedProperty(game, gameTextProvider),
             new MapTierProperty(game, currentGameLanguage),
-            new RewardProperty(game, currentGameLanguage, itemDefinitionParser),
+            new RewardProperty(game, currentGameLanguage, itemDefinitionProvider),
             new RevivesAvailableProperty(game, currentGameLanguage),
             new MonsterPackSizeProperty(game, currentGameLanguage),
 

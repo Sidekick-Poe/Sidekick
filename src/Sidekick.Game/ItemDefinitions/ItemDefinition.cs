@@ -1,21 +1,20 @@
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using Sidekick.Game.BaseItems;
 
 namespace Sidekick.Game.ItemDefinitions;
 
 public class ItemDefinition
 {
-    public string? Key { get; init; }
+    public List<string>? UniqueIds { get; set; }
 
-    public string? ItemClassId { get; init; }
+    public List<string>? BaseItemIds { get; set; }
+
+    public string? ExchangeId { get; set; }
 
     public string? Name { get; init; }
 
     public string? Image { get; init; }
-
-    public BaseItemProperties? Properties { get; set; }
-
-    public BaseItemRequirements? Requirements { get; set; }
 
     public NinjaExchangeItem? NinjaExchange { get; init; }
 
@@ -29,14 +28,8 @@ public class ItemDefinition
     [JsonPropertyName("namePattern")]
     public string? NamePatternValue
     {
-        get
-        {
-            return NamePattern?.ToString();
-        }
-        init
-        {
-            NamePattern = value == null ? null : new Regex(value);
-        }
+        get { return NamePattern?.ToString(); }
+        init { NamePattern = value == null ? null : new Regex(value); }
     }
 
     [JsonIgnore]
@@ -45,22 +38,19 @@ public class ItemDefinition
     [JsonPropertyName("typePattern")]
     public string? TypePatternValue
     {
-        get
-        {
-            return TypePattern?.ToString();
-        }
-        init
-        {
-            TypePattern = value == null ? null : new Regex(value);
-        }
+        get { return TypePattern?.ToString(); }
+        init { TypePattern = value == null ? null : new Regex(value); }
     }
 
     [JsonIgnore]
-    public bool IsUnique => Key?.StartsWith("UNIQUE_") ?? false;
+    public bool IsUnique => UniqueIds?.Any() ?? false;
+
+    [JsonIgnore]
+    public List<BaseItemDefinition> BaseItems { get; set; } = [];
 
     /// <inheritdoc />
     public override string ToString()
     {
-        return $"{Name} ({ItemClassId})";
+        return Name ?? string.Empty;
     }
 }

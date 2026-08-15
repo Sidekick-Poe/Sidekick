@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Common.Settings.Localization;
 namespace Sidekick.Common.Settings;
 
@@ -16,7 +15,6 @@ public static class ServiceCollectionExtensions
         services.SetSidekickDefaultSetting(SettingKeys.RetainClipboard, true);
         services.SetSidekickDefaultSetting(SettingKeys.UseHardwareAcceleration, true);
 
-        services.AddSidekickInitializableService<ICurrentGameLanguage, CurrentGameLanguage>();
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
         return services;

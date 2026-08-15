@@ -3,11 +3,16 @@ namespace Sidekick.Game.ItemClasses;
 
 public class ItemClassDefinition
 {
-    public string? Id { get; init; }
+    public required string Id { get; init; }
 
     public ItemClass Type { get; init; }
 
     public string? Name { get; init; }
+
+    public override string ToString()
+    {
+        return Name ?? string.Empty;
+    }
 
     [JsonIgnore]
     private static readonly ItemClass[] Weapons =
@@ -57,9 +62,4 @@ public class ItemClassDefinition
     ];
 
     public bool IsGem() => Gems.Contains(Type);
-
-    public override string ToString()
-    {
-        return Name ?? string.Empty;
-    }
 }

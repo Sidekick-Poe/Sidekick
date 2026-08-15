@@ -5,7 +5,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Game;
 using Sidekick.Game.Parser.Items;
-using Sidekick.Game.Parser.Texts;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -17,7 +17,7 @@ public class BlightRavagedProperty(
 
     public override void Parse(Item item)
     {
-        item.Properties.BlightRavaged = item.Definition.Key == "BASEITEM_Metadata/Items/TradeProxy/UberBlightedMap";
+        item.Properties.BlightRavaged = item.Definition.BaseItemIds?.Contains("Metadata/Items/TradeProxy/UberBlightedMap") ?? false;
 
         if (item.Properties.BlightRavaged)
         {

@@ -45,7 +45,7 @@ public class NinjaStashProvider(
                                      item.Stats);
         }
 
-        if (item.Properties.MapTier > 0 || IsMap(item.InvariantDefinition.ItemClassId))
+        if (item.Properties.MapTier > 0 || IsMap(item.ItemClass.Id))
         {
             return FilterMapItems(item.InvariantDefinition.NinjaItems,
                                   item.InvariantDefinition.Name,
@@ -118,7 +118,7 @@ public class NinjaStashProvider(
 
         }
 
-        if (apiItem.MapTier > 0 || IsMap(item.ItemClassId))
+        if (apiItem.MapTier > 0 || item.BaseItems.Any(x => IsMap(x.ItemClassId)))
         {
             return FilterMapItems(item.NinjaItems,
                                   item.Name,

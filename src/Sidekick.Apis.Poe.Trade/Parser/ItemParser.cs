@@ -21,8 +21,6 @@ public class ItemParser
     TextParser textParser
 ) : IInitializableService
 {
-    public int Priority => 100;
-
     private GameType Game { get; set; }
 
     public async Task Initialize()
