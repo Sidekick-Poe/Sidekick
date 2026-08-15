@@ -256,4 +256,27 @@ Open portals to Absence of Patience and Wisdom by using this item in a personal 
 
         fixture.AssertStash(item, "incandescent-invitation");
     }
+
+    [Fact]
+    public void ScreamingInvitation()
+    {
+        var item = parser.ParseItem(@"Item Class: Misc Map Items
+Rarity: Normal
+Screaming Invitation
+--------
+Item Level: 83
+--------
+{ Implicit Modifier }
+Modifiers to Item Quantity affect the amount of rewards dropped by the boss
+--------
+From the heart of the Tangle, the Eater of Worlds
+reaches out for control of the Atlas.
+--------
+Open portals to Absence of Symmetry and Harmony by using this item in a personal Map Device. While viewing your Atlas, Right-click this item to pinpoint its location.
+--------
+Note: ~b/o 112 chaos
+");
+
+        fixture.AssertStash(item, "screaming-invitation");
+    }
 }
