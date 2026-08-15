@@ -75,4 +75,28 @@ Note: ~price 1.29 exalted
         fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)", "Open Room");
         fixture.AssertDoesNotHaveStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)", "Closed Room");
     }
+
+    [Fact]
+    public void VaalAspect()
+    {
+        var actual = parser.ParseItem(@"Item Class: Pieces
+Rarity: Unique
+Curiosity
+Vaal Aspect
+--------
+Item Level: 84
+--------
+--------
+Delving into the mysteries of existence, they deciphered
+the secret laws of nature... and then, harnessed them.
+--------
+This item will transform when correctly arranged with other items.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Curiosity", actual.TradeItem?.Name);
+        Assert.Equal("Vaal Aspect", actual.TradeItem?.Type);
+        Assert.Equal(84, actual.Properties.ItemLevel);
+    }
 }
