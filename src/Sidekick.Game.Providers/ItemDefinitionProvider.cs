@@ -55,6 +55,11 @@ public class ItemDefinitionProvider(
                     InvariantDictionary.TryAdd(key, definition);
                 }
             }
+
+            if (definition.ExchangeId != null)
+            {
+                InvariantDictionary.TryAdd(definition.ExchangeId, definition);
+            }
         }
 
         return;
