@@ -1,0 +1,66 @@
+using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Apis.Poe.Trade.Parser.Properties;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Parser.Items;
+namespace Sidekick.Game.Parser.Properties.Definitions;
+
+public class RequiresLevelProperty(
+    GameType game,
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+{
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionLevel.ToRegexIntProperty();
+
+    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*{currentGameLanguage.Language.DescriptionLevel}\s*(\d+)");
+
+    public override string Label => currentGameLanguage.Language.DescriptionRequiresLevel;
+
+    public override void Parse(Item item)
+    {
+        if (item.ItemClass.IsGem()) return;
+
+        var block = item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(currentGameLanguage.Language.DescriptionRequires, StringComparison.InvariantCultureIgnoreCase));
+        block ??= item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(currentGameLanguage.Language.DescriptionRequirements, StringComparison.InvariantCultureIgnoreCase));
+        if (block == null) return;
+
+        item.Properties.RequiresLevel = GetInt(Pattern, block);
+        if (item.Properties.RequiresLevel == 0) item.Properties.RequiresLevel = GetInt(RequiresPattern, block);
+        if (item.Properties.RequiresLevel == 0) return;
+
+        block.Parsed = true;
+    }
+
+    public override Task<TradeFilter?> GetFilter(Item item)
+    {
+        if (item.Properties.RequiresLevel <= 0) return Task.FromResult<TradeFilter?>(null);
+
+        var filter = new RequiresLevelFilter
+        {
+            Text = Label,
+            Value = item.Properties.RequiresLevel,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresLevelProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = false,
+        };
+        return Task.FromResult<TradeFilter?>(filter);
+    }
+}
+
+public class RequiresLevelFilter : IntPropertyFilter
+{
+    public RequiresLevelFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(false, normalizeBy: 0);
+    }
+
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        query.Filters.GetOrCreateRequirementsFilters().Filters.Level = new StatFilterValue(this);
+    }
+}

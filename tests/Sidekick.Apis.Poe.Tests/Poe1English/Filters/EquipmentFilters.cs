@@ -1,5 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
+using Sidekick.Game.Parser.Properties.Definitions;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Filters;
 
@@ -43,14 +43,15 @@ can deny that my work has made quite the splash...""
 ");
 
         var filters = await fixture.GetPropertyFilters(item);
-        Assert.Equal(13, filters.Count);
+        Assert.Equal(14, filters.Count);
         var index = -1;
         Assert.IsType<UniqueRarityFilter>(filters[++index]);
         Assert.IsType<QualityFilter>(filters[++index]);
         Assert.IsType<EvasionRatingFilter>(filters[++index]);
         Assert.IsType<EnergyShieldFilter>(filters[++index]);
         Assert.IsType<ItemLevelFilter>(filters[++index]);
-        Assert.IsType<SocketFilter>(filters[++index]);
+        Assert.IsType<SocketCountFilter>(filters[++index]);
+        Assert.IsType<SocketLinkFilter>(filters[++index]);
         Assert.IsType<RequiresLevelFilter>(filters[++index]);
         Assert.IsType<RequiresStrengthFilter>(filters[++index]);
         Assert.IsType<RequiresDexterityFilter>(filters[++index]);

@@ -1,0 +1,19 @@
+﻿using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Parser.Properties;
+using Sidekick.Game.Parser.Items;
+namespace Sidekick.Game.Parser.Properties.Definitions;
+
+public class SeparatorProperty : PropertyDefinition
+{
+    public const string Text = "---";
+
+    public override string Label => Text;
+
+    public override Task<TradeFilter?> GetFilter(Item item)
+    {
+        return Task.FromResult<TradeFilter?>(new SeparatorFilter
+        {
+            Text = Label,
+        });
+    }
+}

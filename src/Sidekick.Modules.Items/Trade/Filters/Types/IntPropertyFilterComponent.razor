@@ -9,7 +9,7 @@
             <ItemPropertyText Label="@Filter.Text"
                               Hint="@Filter.Hint"
                               Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"
-                              ContentType="@Filter.Type"
+                              ContentType="@Filter.GetLineContentType()"
                               HasAdditionalInformation="Filter.Value != Filter.OriginalValue && Filter.OriginalValue > 0">
                 <AdditionalInformation>
                     <ItemPropertyText

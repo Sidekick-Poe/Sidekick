@@ -44,7 +44,7 @@
 @inject PropertyParser PropertyParser
 @inject StatParser StatParser
 @inject PseudoParser PseudoParser
-@inject ITradeFilterProvider TradeFilterProvider
+@inject TradeFilterParser TradeFilterParser
 @inject ISettingsService SettingsService
 
 @code {
@@ -63,7 +63,7 @@
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await PseudoParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
-        Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
+        Filters.AddRange(await TradeFilterParser.GetFilters(Item));
 
         // Remove leading SeparatorProperty filters
         while (Filters.Count > 0 && Filters[0] is SeparatorFilter)

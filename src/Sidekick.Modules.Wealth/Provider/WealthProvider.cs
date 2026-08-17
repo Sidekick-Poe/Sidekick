@@ -214,7 +214,7 @@ internal class WealthProvider
     {
         decimal price = 0;
         NinjaSparkline? sparkLine = null;
-        var itemDefinition = itemDefinitionParser.GetInvariant(item);
+        var itemDefinition = itemDefinitionParser.GetInvariant(item.Rarity, item.TypeLine, item.Name);
         if (itemDefinition == null)
         {
             logger.LogWarning($"[WealthProvider] Could not price: {item.Name ?? item.Type}.");

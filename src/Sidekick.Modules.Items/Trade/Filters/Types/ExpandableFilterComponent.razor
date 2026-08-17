@@ -14,7 +14,7 @@
             <ItemPropertyText Label="@Filter.Text"
                               Hint="@Filter.Hint"
                               Value="@(Filter.Checked ? "true" : "false")"
-                              ContentType="@Filter.Type"
+                              ContentType="@Filter.GetLineContentType()"
                               OnlyShowLabel="true"/>
 
             <Icon Size="UiIconSize.Small"

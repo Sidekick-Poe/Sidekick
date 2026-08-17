@@ -69,7 +69,7 @@
 
     private async Task Update()
     {
-        ConditionType?.Update();
+        if (ConditionType != null) await ConditionType.Update();
         ComparisonType?.Update();
         ConditionValue?.Update();
         await OnChanged.InvokeAsync();

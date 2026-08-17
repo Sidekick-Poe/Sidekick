@@ -10,7 +10,7 @@
             <ItemPropertyText Label="@Filter.Text"
                               Hint="@Filter.Hint"
                               Value="@($"{Filter.ValuePrefix}{Filter.Value.ToString("0.00", CultureInfo.InvariantCulture)}{Filter.ValueSuffix}")"
-                              ContentType="@Filter.Type"
+                              ContentType="@Filter.GetLineContentType()"
                               HasAdditionalInformation="Math.Abs(Filter.Value - Filter.OriginalValue) > 0.001 && Filter.OriginalValue > 0">
                 <AdditionalInformation>
                     <ItemPropertyText

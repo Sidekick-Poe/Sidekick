@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Common;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Languages;
@@ -13,6 +14,7 @@ public static class ServiceCollectionExtensions
     {
         services.TryAddSingleton<DataProvider>();
         services.TryAddSingleton<IGameLanguageProvider, GameLanguageProvider>();
+        services.TryAddSingleton<LeagueProvider>();
 
         services.AddSidekickInitializableService<BaseItemProvider>();
         services.AddSidekickInitializableService<GameTextProvider>();

@@ -1,7 +1,7 @@
 @using System.Globalization
-@using Sidekick.Apis.Poe.Trade.Localization
 @using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Common.Settings.Languages
+@using Sidekick.Game.Providers
 @using Sidekick.Modules.Items.Trade.Localization
 
 @if (!AnyExtendedAtMax)
@@ -42,29 +42,29 @@
 
     @if (Result.Item.Extended?.DamagePerSecondAtMax > 0)
     {
-        <ItemPropertyText Label="@PoeResources["Dps"]"
+        <ItemPropertyText Label="@GameTextProvider.Texts.TradeDps"
                           Value="@(Result.Item.Extended?.DamagePerSecondAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
                           ContentType="GetContentType(Result.Item.Extended?.DamagePerSecondAugmented)"/>
     }
 
     @if (Result.Item.Extended?.PhysicalDpsAtMax > 0)
     {
-        <ItemPropertyText Label="@PoeResources["PhysicalDps"]"
+        <ItemPropertyText Label="@GameTextProvider.Texts.TradePhysicalDps"
                           Value="@(Result.Item.Extended?.PhysicalDpsAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
                           ContentType="GetContentType(Result.Item.Extended?.PhysicalDpsAugmented)"/>
     }
 
     @if (Result.Item.Extended?.ElementalDpsAtMax > 0)
     {
-        <ItemPropertyText Label="@PoeResources["ElementalDps"]"
+        <ItemPropertyText Label="@GameTextProvider.Texts.TradeElementalDps"
                           Value="@(Result.Item.Extended?.ElementalDpsAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
                           ContentType="GetContentType(Result.Item.Extended?.ElementalDpsAugmented)"/>
     }
 </div>
 
-@inject IStringLocalizer<PoeResources> PoeResources
 @inject IStringLocalizer<TradeResources> TradeResources
 @inject ICurrentGameLanguage CurrentGameLanguage
+@inject GameTextProvider GameTextProvider
 
 @code {
 
