@@ -12,7 +12,7 @@ public class SocketLinkProperty(
     GameType game,
     IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
-    public override string Label => resources["Sockets_Links"];
+    public override string Label => resources["Socket_Links"];
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {

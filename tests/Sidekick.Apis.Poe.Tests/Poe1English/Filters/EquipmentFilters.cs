@@ -52,6 +52,7 @@ can deny that my work has made quite the splash...""
         Assert.IsType<ItemLevelFilter>(filters[++index]);
         Assert.IsType<SocketCountFilter>(filters[++index]);
         Assert.IsType<SocketLinkFilter>(filters[++index]);
+        Assert.Equal(6, ((SocketLinkFilter)filters[index]).Value);
         Assert.IsType<RequiresLevelFilter>(filters[++index]);
         Assert.IsType<RequiresStrengthFilter>(filters[++index]);
         Assert.IsType<RequiresDexterityFilter>(filters[++index]);
