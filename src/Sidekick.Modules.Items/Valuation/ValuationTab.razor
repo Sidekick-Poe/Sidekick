@@ -1,4 +1,5 @@
 ﻿@using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Common
 @using Sidekick.Common.Settings.Languages
 @using Sidekick.Modules.Items.Valuation.Localization
 @using Sidekick.Game
@@ -32,7 +33,7 @@
     protected override async Task OnInitializedAsync()
     {
         Valid = CheckNinja();
-        // Valid |= CheckPrediction();
+        Valid |= CheckPrediction();
         Valid |= await CheckScout();
 
         var switchTab = Valid;
@@ -45,11 +46,13 @@
     private bool CheckNinja()
     {
         if (Item.InvariantDefinition?.NinjaExchange != null) return false;
-        return Item.InvariantDefinition?.NinjaExchange != null || (Item.InvariantDefinition?.NinjaItems != null && Item.InvariantDefinition.NinjaItems.Count > 0);
+        return Item.InvariantDefinition?.NinjaItems != null && Item.InvariantDefinition.NinjaItems.Count > 0;
     }
 
     private bool CheckPrediction()
     {
+        if (!SidekickFlags.PoePricesEnabled) return false;
+
         return Item.Game == GameType.PathOfExile1
                && Item.Properties.Rarity == Rarity.Rare
                && CurrentGameLanguage.IsEnglish();
