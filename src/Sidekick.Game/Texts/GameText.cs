@@ -58,8 +58,11 @@ public class GameText
 
     #region ItemTextIds
 
+    public string ItemFoulborn { get; set; } = string.Empty;
+
     public string ItemSuperior { get; set; } = string.Empty;
     public string ItemSynthesised { get; set; } = string.Empty;
+    public string ItemVestigial { get; set; } = string.Empty;
     public string ItemBlighted { get; set; } = string.Empty;
     public string ItemBlightRavaged { get; set; } = string.Empty;
 
@@ -75,6 +78,15 @@ public class GameText
     public string InfluenceRedeemer { get; set; } = string.Empty;
     public string InfluenceHunter { get; set; } = string.Empty;
     public string InfluenceWarlord { get; set; } = string.Empty;
+
+    #endregion
+
+    #region TradeTextIds
+
+    public string TradeBaseType { get; set; } = string.Empty;
+    public string TradePhysicalDps { get; set; } = string.Empty;
+    public string TradeElementalDps { get; set; } = string.Empty;
+    public string TradeDps { get; set; } = string.Empty;
 
     #endregion
 }

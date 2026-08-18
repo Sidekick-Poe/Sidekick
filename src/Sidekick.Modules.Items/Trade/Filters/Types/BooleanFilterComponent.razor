@@ -1,11 +1,11 @@
-@using Sidekick.Apis.Poe.Trade.Filters.Types
+@using Sidekick.Game.Parser.Filters.Types
 <FilterWrapper Filter="@Filter">
     <div class="grow">
         <FormCheckbox @bind-Value="Filter.Checked">
             <ItemPropertyText Label="@Filter.Text"
                               Hint="@Filter.Hint"
                               Value="@(Filter.Checked ? "true" : "false")"
-                              ContentType="@Filter.Type"
+                              ContentType="@Filter.GetLineContentType()"
                               OnlyShowLabel="true"/>
         </FormCheckbox>
     </div>

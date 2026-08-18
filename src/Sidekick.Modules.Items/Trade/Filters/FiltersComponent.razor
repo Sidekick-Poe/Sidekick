@@ -1,9 +1,9 @@
 @using Sidekick.Apis.Poe.Trade.Filters
-@using Sidekick.Apis.Poe.Trade.Filters.Types
-@using Sidekick.Apis.Poe.Trade.Parser
-@using Sidekick.Apis.Poe.Trade.Parser.Properties
 @using Sidekick.Common.Settings
+@using Sidekick.Game.Parser
+@using Sidekick.Game.Parser.Filters.Types
 @using Sidekick.Game.Parser.Items
+@using Sidekick.Game.Parser.Properties
 @using Sidekick.Modules.Items.Trade.Filters.Types
 @using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
@@ -44,7 +44,7 @@
 @inject PropertyParser PropertyParser
 @inject StatParser StatParser
 @inject PseudoParser PseudoParser
-@inject ITradeFilterProvider TradeFilterProvider
+@inject TradeFilterParser TradeFilterParser
 @inject ISettingsService SettingsService
 
 @code {
@@ -63,7 +63,7 @@
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await PseudoParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
-        Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
+        Filters.AddRange(await TradeFilterParser.GetFilters(Item));
 
         // Remove leading SeparatorProperty filters
         while (Filters.Count > 0 && Filters[0] is SeparatorFilter)

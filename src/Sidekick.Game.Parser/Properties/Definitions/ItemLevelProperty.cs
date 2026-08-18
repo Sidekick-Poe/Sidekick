@@ -1,0 +1,145 @@
+using System.Text.Json;
+using System.Text.RegularExpressions;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Parser.Filters.AutoSelect;
+using Sidekick.Game.Parser.Filters.Types;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Trade.Requests;
+using Sidekick.Game.Parser.Trade.Requests.Filters;
+namespace Sidekick.Game.Parser.Properties.Definitions;
+
+public class ItemLevelProperty(
+    GameType game,
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+{
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionItemLevel.ToRegexIntProperty();
+
+    public override string Label => currentGameLanguage.Language.DescriptionItemLevel;
+
+    public override void Parse(Item item)
+    {
+        item.Properties.ItemLevel = GetInt(Pattern, item.Text);
+    }
+
+    public override Task<TradeFilter?> GetFilter(Item item)
+    {
+        if (item.Properties.ItemLevel <= 0) return Task.FromResult<TradeFilter?>(null);
+
+        var filter = new ItemLevelFilter(game)
+        {
+            Text = Label,
+            Value = item.Properties.ItemLevel,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemLevelProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
+        };
+        return Task.FromResult<TradeFilter?>(filter);
+    }
+}
+
+public class ItemLevelFilter : IntPropertyFilter
+{
+    public ItemLevelFilter(GameType game)
+    {
+        Game = game;
+        if (game == GameType.PathOfExile1)
+        {
+            DefaultAutoSelect = new AutoSelectPreferences()
+            {
+                Mode = AutoSelectMode.Default,
+                Rules =
+                [
+                    new()
+                    {
+                        Checked = true,
+                        NormalizeBy = 0,
+                        FillMinRange = true,
+                        FillMaxRange = false,
+                        Conditions =
+                        [
+                            new()
+                            {
+                                Type = AutoSelectConditionType.ItemLevel,
+                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 80.ToString(),
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.MapTier,
+                                Comparison = AutoSelectComparisonType.Equals,
+                                Value = 0.ToString(),
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.Rarity,
+                                Comparison = AutoSelectComparisonType.IsContainedIn,
+                                Value = JsonSerializer.Serialize(new List<Rarity>()
+                                {
+                                    Rarity.Normal,
+                                    Rarity.Magic,
+                                    Rarity.Rare,
+                                }, AutoSelectPreferences.JsonSerializerOptions),
+                            },
+                        ],
+                    },
+                ],
+            };
+        }
+        else
+        {
+            DefaultAutoSelect = new AutoSelectPreferences()
+            {
+                Mode = AutoSelectMode.Default,
+                Rules =
+                [
+                    new()
+                    {
+                        Checked = true,
+                        NormalizeBy = 0,
+                        FillMinRange = true,
+                        FillMaxRange = false,
+                        Conditions =
+                        [
+                            new()
+                            {
+                                Type = AutoSelectConditionType.ItemLevel,
+                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 82.ToString(),
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.MapTier,
+                                Comparison = AutoSelectComparisonType.Equals,
+                                Value = 0.ToString(),
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.Rarity,
+                                Comparison = AutoSelectComparisonType.IsContainedIn,
+                                Value = JsonSerializer.Serialize(new List<Rarity>()
+                                {
+                                    Rarity.Normal,
+                                    Rarity.Magic,
+                                    Rarity.Rare,
+                                }, AutoSelectPreferences.JsonSerializerOptions),
+                            },
+                        ],
+                    },
+                ],
+            };
+        }
+    }
+
+    private GameType Game { get; }
+
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        switch (Game)
+        {
+            case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(this); break;
+        }
+    }
+}

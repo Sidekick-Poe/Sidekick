@@ -17,7 +17,6 @@ using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
-using Sidekick.Game;
 using Sidekick.Game.Parser;
 using Sidekick.Game.Providers;
 using Sidekick.Modules.About;

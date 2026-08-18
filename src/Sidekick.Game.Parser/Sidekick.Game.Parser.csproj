@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FuzzySharp"/>
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\Sidekick.Common.Settings\Sidekick.Common.Settings.csproj" />
       <ProjectReference Include="..\Sidekick.Game.Providers\Sidekick.Game.Providers.csproj" />
     </ItemGroup>

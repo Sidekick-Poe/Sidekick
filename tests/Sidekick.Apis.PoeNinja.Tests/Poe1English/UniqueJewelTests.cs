@@ -1,4 +1,4 @@
-﻿using Sidekick.Apis.Poe.Trade.Parser;
+﻿using Sidekick.Game.Parser;
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 

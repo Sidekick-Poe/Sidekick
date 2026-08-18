@@ -7,9 +7,6 @@ using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -19,11 +16,13 @@ using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
 using Sidekick.Game.Parser;
+using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Providers;
 using Xunit;
-using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
+using TradeFilter=Sidekick.Game.Parser.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Tests;
 
@@ -36,7 +35,7 @@ public abstract class ParserFixture : IAsyncLifetime
 
     public ItemParser Parser { get; private set; } = null!;
     public ICurrentGameLanguage CurrentGameLanguage { get; private set; } = null!;
-    public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
+    public TradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public PropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
     public StatParser StatParser { get; private set; } = null!;
@@ -87,7 +86,7 @@ public abstract class ParserFixture : IAsyncLifetime
         Parser = TestContext.Services.GetRequiredService<ItemParser>();
         CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
         PropertyParser = TestContext.Services.GetRequiredService<PropertyParser>();
-        TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
+        TradeFilterProvider = TestContext.Services.GetRequiredService<TradeFilterProvider>();
         StatParser = TestContext.Services.GetRequiredService<StatParser>();
     }
 

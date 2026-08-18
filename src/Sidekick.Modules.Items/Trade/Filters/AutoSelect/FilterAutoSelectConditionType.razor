@@ -1,8 +1,10 @@
 @using Sidekick.Apis.Poe.Trade.Filters
-@using Sidekick.Apis.Poe.Trade.Filters.AutoSelect
-@using Sidekick.Apis.Poe.Trade.Localization
-@using Sidekick.Apis.Poe.Trade.Parser.Properties
-@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
+@using Sidekick.Game
+@using Sidekick.Game.Parser.Properties.Definitions
+@using Sidekick.Game.Parser.Properties
+@using Sidekick.Game.Parser.Filters.AutoSelect
+@using Sidekick.Game.Parser.Localization
+@using Sidekick.Common.Settings
 
 <FormSelectInline Value="@Condition.Type.ToString()"
                   ValueChanged="Changed"
@@ -12,7 +14,8 @@
 @inject PropertyParser PropertyParser
 @inject IStringLocalizer<AutoSelectConditionType> ConditionResources
 @inject IStringLocalizer<PoeResources> PoeResources
-@inject ITradeFilterProvider TradeFilterProvider
+@inject ISettingsService SettingsService
+@inject TradeFilterProvider TradeFilterProvider
 
 @code {
 
@@ -27,18 +30,25 @@
 
     private List<SelectOption> Options { get; set; } = [];
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        Update();
-        base.OnInitialized();
+        await Update();
+        await base.OnInitializedAsync();
     }
 
-    public void Update()
+    public async Task Update()
     {
         Options.Clear();
 
+        var game = await SettingsService.GetGame();
+
         foreach (var value in Enum.GetValues<AutoSelectConditionType>())
         {
+            if (game == GameType.PathOfExile2 && value is AutoSelectConditionType.SocketLink)
+            {
+                continue;
+            }
+
             var label = value switch
             {
                 AutoSelectConditionType.ItemClass => PropertyParser.GetDefinition<ItemClassProperty>().Label,
@@ -49,7 +59,8 @@
                 AutoSelectConditionType.Unidentified => PropertyParser.GetDefinition<UnidentifiedProperty>().Label,
                 AutoSelectConditionType.Spirit => PropertyParser.GetDefinition<SpiritProperty>().Label,
                 AutoSelectConditionType.Foulborn => PropertyParser.GetDefinition<FoulbornProperty>().Label,
-                AutoSelectConditionType.SocketCount => PropertyParser.GetDefinition<SocketProperty>().Label,
+                AutoSelectConditionType.SocketCount => PropertyParser.GetDefinition<SocketCountProperty>().Label,
+                AutoSelectConditionType.SocketLink => PropertyParser.GetDefinition<SocketLinkProperty>().Label,
                 AutoSelectConditionType.Armour => PropertyParser.GetDefinition<ArmourProperty>().Label,
                 AutoSelectConditionType.EvasionRating => PropertyParser.GetDefinition<EvasionRatingProperty>().Label,
                 AutoSelectConditionType.EnergyShield => PropertyParser.GetDefinition<EnergyShieldProperty>().Label,
@@ -83,6 +94,7 @@
                 AutoSelectConditionType.Unidentified => TradeFilterProvider.MiscellaneousCategory?.Title,
                 AutoSelectConditionType.Foulborn => TradeFilterProvider.MiscellaneousCategory?.Title,
                 AutoSelectConditionType.SocketCount => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.SocketCategory?.Title,
+                AutoSelectConditionType.SocketLink => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.SocketCategory?.Title,
                 AutoSelectConditionType.Armour => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,
                 AutoSelectConditionType.EvasionRating => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,
                 AutoSelectConditionType.EnergyShield => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,

@@ -1,5 +1,5 @@
-﻿using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Game.ItemClasses;
+﻿using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
 using Xunit;

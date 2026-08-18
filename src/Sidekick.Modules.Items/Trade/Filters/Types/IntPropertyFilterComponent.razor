@@ -1,5 +1,5 @@
-@using Sidekick.Apis.Poe.Trade.Filters.Types
 @using Sidekick.Common.Settings.Languages
+@using Sidekick.Game.Parser.Filters.Types
 @using Sidekick.Game.Parser.Items
 
 <FilterWrapper Filter="@Filter">
@@ -9,7 +9,7 @@
             <ItemPropertyText Label="@Filter.Text"
                               Hint="@Filter.Hint"
                               Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"
-                              ContentType="@Filter.Type"
+                              ContentType="@Filter.GetLineContentType()"
                               HasAdditionalInformation="Filter.Value != Filter.OriginalValue && Filter.OriginalValue > 0">
                 <AdditionalInformation>
                     <ItemPropertyText

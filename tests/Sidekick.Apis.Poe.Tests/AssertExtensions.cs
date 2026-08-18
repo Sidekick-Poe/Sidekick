@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Game.Parser.Filters.Types;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
