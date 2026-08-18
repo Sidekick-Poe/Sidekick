@@ -1,9 +1,8 @@
-using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Common.Settings;
+using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Items;
-
-namespace Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Game.Parser.Trade.Requests;
+namespace Sidekick.Game.Parser.Filters.Types;
 
 public abstract class TradeFilter
 {

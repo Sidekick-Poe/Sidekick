@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
-namespace Sidekick.Apis.Poe.Trade.Filters.Definitions;
+using Sidekick.Game.Parser.Localization;
+using Sidekick.Game.Parser.Trade.Requests;
+namespace Sidekick.Game.Parser.Filters.Definitions;
 
 public class PlayerStatusFilterFactory(
     TradeFilterProvider tradeFilterProvider,

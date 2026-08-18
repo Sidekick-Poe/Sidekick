@@ -1,5 +1,5 @@
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-namespace Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Game.Parser.Trade.Requests.Filters;
+namespace Sidekick.Game.Parser.Trade.Requests;
 
 public class Query
 {

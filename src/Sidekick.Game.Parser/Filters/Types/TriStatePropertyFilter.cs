@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Trade.Filters.Types;
+namespace Sidekick.Game.Parser.Filters.Types;
 
 public class TriStatePropertyFilter : TradeFilter
 {

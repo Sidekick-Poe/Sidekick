@@ -7,9 +7,6 @@ using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -19,11 +16,13 @@ using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
 using Sidekick.Game.Parser;
+using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Providers;
 using Xunit;
-using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
+using TradeFilter=Sidekick.Game.Parser.Filters.Types.TradeFilter;
 
 namespace Sidekick.Apis.Poe.Tests;
 

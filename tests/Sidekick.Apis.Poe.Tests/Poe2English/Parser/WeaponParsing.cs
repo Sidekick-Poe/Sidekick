@@ -1,6 +1,6 @@
-using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
 using Xunit;

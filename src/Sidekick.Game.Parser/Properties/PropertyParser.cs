@@ -1,16 +1,15 @@
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Parser.Properties.Definitions;
 using Sidekick.Game.Providers;
-
-namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
+namespace Sidekick.Game.Parser.Properties;
 
 public class PropertyParser
 (

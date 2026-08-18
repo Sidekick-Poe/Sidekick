@@ -5,8 +5,7 @@ using Sidekick.Game.ItemClasses;
 using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Providers;
-
-namespace Sidekick.Apis.Poe.Trade.Parser;
+namespace Sidekick.Game.Parser;
 
 public class ItemDefinitionParser(
     ICurrentGameLanguage currentGameLanguage,

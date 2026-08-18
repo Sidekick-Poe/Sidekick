@@ -1,5 +1,5 @@
-using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
 using Xunit;
@@ -111,6 +111,45 @@ Adds Irradiated to a Map
 Map has 73(70-100)% increased chance to contain Azmeri Spirits
 { Suffix Modifier ""of the Exile"" (Tier: 1) }
 Map has 88(70-100)% increased chance to contain Rogue Exiles
+--------
+Can be used in a personal Map Device to add modifiers to a Map.");
+
+         Assert.Equal(ItemClass.Tablet, actual.ItemClass.Type);
+         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+         Assert.Equal("Irradiated Tablet", actual.TradeItem?.Type);
+
+         Assert.Equal(79, actual.Properties.ItemLevel);
+
+         fixture.AssertHasStat(actual, StatCategory.Pseudo, "# uses remaining (Tablets)", 10);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found in Map", 9);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Pack Size in Map", 7);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "Map has #% increased chance to contain Azmeri Spirits", 73);
+         fixture.AssertHasStat(actual, StatCategory.Explicit, "Map has #% increased chance to contain Rogue Exiles", 88);
+     }
+
+     [Fact(Skip = "Missing modifiers")]
+     public void ParseBreachTablet()
+     {
+         var actual = parser.ParseItem(
+             @"Item Class: Tablet
+Rarity: Rare
+Mythic Anthem
+Breach Tablet
+--------
+Item Level: 80
+--------
+{ Implicit Modifier }
+Adds an Otherworldy Breach to a Map
+10 uses remaining
+--------
+{ Prefix Modifier ""Challenger's"" (Tier: 1) }
+Monsters have 15(10-15)% increased Effectiveness
+{ Prefix Modifier ""Treasurer's"" (Tier: 1) }
+Map contains 3(2-3) additional Rare Chests
+{ Suffix Modifier ""of the Hand"" (Tier: 1) }
+17(5-20)% increased Effectiveness of Rare Breach Monsters in Map
+{ Suffix Modifier ""of the Invasion"" (Tier: 1) }
+Unstable Breaches in Map spawn 3(1-3) additional Rare Monsters when Stabilised
 --------
 Can be used in a personal Map Device to add modifiers to a Map.");
 

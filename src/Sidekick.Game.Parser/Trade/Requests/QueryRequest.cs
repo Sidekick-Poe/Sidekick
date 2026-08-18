@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Trade.Trade.Requests;
+namespace Sidekick.Game.Parser.Trade.Requests;
 
 public class QueryRequest
 {

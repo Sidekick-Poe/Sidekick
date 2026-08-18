@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-namespace Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+namespace Sidekick.Game.Parser.Trade.Requests.Filters;
 
 public class WeaponFilters
 {

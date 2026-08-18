@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Sidekick.Common.Enums;
-namespace Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+namespace Sidekick.Game.Parser.Trade.Requests.Filters;
 
 public class StatFilterGroup
 {

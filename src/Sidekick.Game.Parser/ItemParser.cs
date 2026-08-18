@@ -1,13 +1,11 @@
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Game;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties;
 using Sidekick.Game.Parser.Properties.Definitions;
-
-namespace Sidekick.Apis.Poe.Trade.Parser;
+namespace Sidekick.Game.Parser;
 
 public class ItemParser
 (

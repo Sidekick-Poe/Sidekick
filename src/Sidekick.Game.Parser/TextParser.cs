@@ -3,11 +3,10 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Game;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Providers;
-namespace Sidekick.Apis.Poe.Trade.Parser;
+namespace Sidekick.Game.Parser;
 
 public class TextParser
 (

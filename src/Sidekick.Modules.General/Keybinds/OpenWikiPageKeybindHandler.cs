@@ -1,9 +1,9 @@
-using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.PoeDb;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Input;
+using Sidekick.Game.Parser;
 using Sidekick.Modules.General.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;

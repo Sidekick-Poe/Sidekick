@@ -1,16 +1,16 @@
-﻿using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Parser.Properties;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Common.Enums;
+﻿using Sidekick.Common.Enums;
+using Sidekick.Game.Parser.Filters.AutoSelect;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Localization;
+using Sidekick.Game.Parser.Trade.Requests;
 using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class ChaosDpsProperty(
     GameType game,
-    Microsoft.Extensions.Localization.IStringLocalizer<Apis.Poe.Trade.Localization.PoeResources> resources) : PropertyDefinition
+    Microsoft.Extensions.Localization.IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
     public override string Label => resources["ChaosDps"];
 

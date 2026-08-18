@@ -1,13 +1,12 @@
 using System.Text.Json;
-using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
-using Sidekick.Game;
+using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
-namespace Sidekick.Apis.Poe.Trade.Filters.Types;
+using Sidekick.Game.Parser.Trade.Requests;
+using Sidekick.Game.Parser.Trade.Requests.Filters;
+namespace Sidekick.Game.Parser.Filters.Types;
 
 public sealed class StatFilter : TradeFilter, INormalizableFilter
 {

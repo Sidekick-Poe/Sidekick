@@ -1,14 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
-using Sidekick.Apis.Poe.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Leagues;
-using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Common;
 using Sidekick.Common.Settings;
+using Sidekick.Game.Parser.Filters.AutoSelect;
+using Sidekick.Game.Parser.Filters.Definitions;
+using Sidekick.Game.Parser.Localization;
+using Sidekick.Game.Parser.Properties;
 using Sidekick.Game.Parser.Stats;
 
 namespace Sidekick.Game.Parser;

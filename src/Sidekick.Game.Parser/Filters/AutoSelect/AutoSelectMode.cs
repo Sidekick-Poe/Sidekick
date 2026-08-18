@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+﻿namespace Sidekick.Game.Parser.Filters.AutoSelect;
 
 public enum AutoSelectMode
 {

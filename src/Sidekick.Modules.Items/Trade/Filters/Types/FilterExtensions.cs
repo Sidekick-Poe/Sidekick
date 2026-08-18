@@ -1,5 +1,5 @@
-﻿using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+﻿using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Properties.Definitions;
 namespace Sidekick.Modules.Items.Trade.Filters.Types;
 

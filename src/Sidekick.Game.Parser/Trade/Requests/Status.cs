@@ -1,5 +1,5 @@
-using Sidekick.Apis.Poe.Trade.Filters.Definitions;
-namespace Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Game.Parser.Filters.Definitions;
+namespace Sidekick.Game.Parser.Trade.Requests;
 
 public class Status
 {

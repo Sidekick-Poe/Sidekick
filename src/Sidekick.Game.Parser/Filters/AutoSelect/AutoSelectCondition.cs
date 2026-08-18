@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-namespace Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+namespace Sidekick.Game.Parser.Filters.AutoSelect;
 
 public class AutoSelectCondition
 {

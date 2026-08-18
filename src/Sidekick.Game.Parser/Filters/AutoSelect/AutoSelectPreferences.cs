@@ -1,11 +1,11 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Common.Settings;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
-namespace Sidekick.Apis.Poe.Trade.Filters.AutoSelect;
+namespace Sidekick.Game.Parser.Filters.AutoSelect;
 
 public class AutoSelectPreferences
 {

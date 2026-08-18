@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Trade.Filters.Definitions;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
 using Sidekick.Common.Settings;
+using Sidekick.Game.Parser.Filters.Definitions;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.Poe.Trade.Filters;
 

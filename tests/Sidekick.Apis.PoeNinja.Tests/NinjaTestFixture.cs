@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Tests.Poe1English;
-using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Apis.PoeNinja.Tests.Mocks;
+using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Items;
 using Xunit;
 

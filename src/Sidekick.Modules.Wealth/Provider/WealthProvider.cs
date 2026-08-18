@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
-using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Stash;
@@ -10,6 +9,7 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
+using Sidekick.Game.Parser;
 using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Models.ApiItem;
 
 namespace Sidekick.Modules.Wealth.Provider;

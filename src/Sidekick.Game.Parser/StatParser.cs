@@ -2,21 +2,20 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using FuzzySharp;
 using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
-using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
-using Sidekick.Game;
+using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Stats;
 using Sidekick.Game.StatsInvariant;
 using Sidekick.Game.TradeStats;
-using TradeFilter=Sidekick.Apis.Poe.Trade.Filters.Types.TradeFilter;
+using TradeFilter=Sidekick.Game.Parser.Filters.Types.TradeFilter;
 
-namespace Sidekick.Apis.Poe.Trade.Parser;
+namespace Sidekick.Game.Parser;
 
 public class StatParser
 (

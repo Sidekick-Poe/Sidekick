@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Sidekick.Apis.Poe.Trade.Filters.Types;
-namespace Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Game.Parser.Filters.Types;
+namespace Sidekick.Game.Parser.Trade.Requests.Filters;
 
 public class SocketFilterOption : StatFilterValue
 {

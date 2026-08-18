@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Trade.Localization;
+namespace Sidekick.Game.Parser.Localization;
 
 public class PoeResources
 {
