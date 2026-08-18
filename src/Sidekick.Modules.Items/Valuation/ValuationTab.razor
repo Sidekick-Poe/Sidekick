@@ -32,7 +32,7 @@
     protected override async Task OnInitializedAsync()
     {
         Valid = CheckNinja();
-        Valid |= CheckPrediction();
+        // Valid |= CheckPrediction();
         Valid |= await CheckScout();
 
         var switchTab = Valid;
@@ -44,6 +44,7 @@
 
     private bool CheckNinja()
     {
+        if (Item.InvariantDefinition?.NinjaExchange != null) return false;
         return Item.InvariantDefinition?.NinjaExchange != null || (Item.InvariantDefinition?.NinjaItems != null && Item.InvariantDefinition.NinjaItems.Count > 0);
     }
 
