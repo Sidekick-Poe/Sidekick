@@ -1,5 +1,4 @@
-﻿@using Sidekick.Apis.Poe2Scout.Items
-@using Sidekick.Modules.Items.Exchange.Localization
+﻿@using Sidekick.Modules.Items.Exchange.Localization
 @using Sidekick.Game.Parser.Items
 @using Sidekick.Common.Ui.Tabs
 
@@ -11,7 +10,6 @@
 }
 
 @inject IStringLocalizer<ExchangeResources> Resources
-@inject IScoutItemProvider ScoutItemProvider
 
 @code {
 
@@ -28,22 +26,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        SupportsCurrencyExchange = CheckNinja();
-        if (!SupportsCurrencyExchange) SupportsCurrencyExchange = await CheckScout();
+        SupportsCurrencyExchange = Item.InvariantDefinition?.NinjaExchange != null;
         if (SupportsCurrencyExchange) await CurrentTabChanged.InvokeAsync("exchange");
 
         await base.OnInitializedAsync();
     }
-
-    private bool CheckNinja()
-    {
-        return Item.InvariantDefinition?.NinjaExchange != null;
-    }
-
-    private async Task<bool> CheckScout()
-    {
-        var scoutItem = await ScoutItemProvider.GetItem(Item.InvariantTradeItem);
-        return scoutItem?.IsCurrency ?? false;
-    }
-
 }

@@ -3,7 +3,7 @@
 @using Sidekick.Apis.PoeNinja.Exchange
 @using Sidekick.Game.Parser.Items
 
-@if (Item.InvariantDefinition?.NinjaItems == null || Item.InvariantDefinition?.NinjaItems.Count == 0)
+@if (Item.InvariantDefinition?.NinjaExchange == null && (Item.InvariantDefinition?.NinjaItems == null || Item.InvariantDefinition?.NinjaItems.Count == 0))
 {
     return;
 }
