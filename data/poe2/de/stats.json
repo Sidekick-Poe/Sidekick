@@ -10717,11 +10717,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_2720982137",
       "desecrated.stat_2957407601",
-      "explicit.stat_2720982137",
       "explicit.stat_2957407601",
-      "fractured.stat_2720982137",
       "fractured.stat_2957407601"
     ],
     "pattern": "^Aura-Fertigkeiten\\ \\ haben\\ ([-0-9,.]\u002B)%\\ verk\u00FCrzte\\ Dauer$"
@@ -10731,11 +10728,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_2720982137",
       "desecrated.stat_2957407601",
-      "explicit.stat_2720982137",
       "explicit.stat_2957407601",
-      "fractured.stat_2720982137",
       "fractured.stat_2957407601"
     ],
     "pattern": "^Aura-Fertigkeiten\\ \\ haben\\ ([-0-9,.]\u002B)%\\ verl\u00E4ngerte\\ Dauer$"
@@ -27868,7 +27862,8 @@
     "text": "Doppelter Bet\u00E4ubungsschwelle, w\u00E4hrend der Schild gehoben ist",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3686997387"
+      "explicit.stat_3686997387",
+      "rune.stat_3686997387"
     ],
     "pattern": "^Doppelter\\ Bet\u00E4ubungsschwelle,\\ w\u00E4hrend\\ der\\ Schild\\ gehoben\\ ist$"
   },
@@ -46824,7 +46819,8 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1468737867"
+      "explicit.stat_1468737867",
+      "explicit.stat_3240183538"
     ],
     "pattern": "^Gebiet\\ enth\u00E4lt\\ einen\\ zus\u00E4tzlichen\\ Scourge-Boss$"
   },
@@ -47279,7 +47275,9 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3309089125",
-      "explicit.stat_3309089125"
+      "desecrated.stat_4130878258",
+      "explicit.stat_3309089125",
+      "explicit.stat_4130878258"
     ],
     "pattern": "^Gebiet\\ enth\u00E4lt\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Gruppen\\ von\\ regenerierenden\\ Monstern$"
   },
@@ -47453,7 +47451,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1468737867"
+      "explicit.stat_1468737867",
+      "explicit.stat_3240183538"
     ],
     "pattern": "^Gebiet\\ enth\u00E4lt\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Scourge-Bosse$"
   },
@@ -58879,7 +58878,6 @@
   },
   {
     "text": "Ihr k\u00F6nnt einen zus\u00E4tzlichen Fluch anwenden",
-    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -58889,6 +58887,7 @@
   },
   {
     "text": "Ihr k\u00F6nnt einen zus\u00E4tzlichen Fluch anwenden",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -78760,7 +78759,6 @@
     "tradeIds": [
       "explicit.stat_3076483222|32821",
       "explicit.stat_3076483222|38303",
-      "explicit.stat_3076483222|4897",
       "explicit.stat_3076483222|49977",
       "explicit.stat_3076483222|61382",
       "explicit.stat_3076483222|62634",
@@ -80278,17 +80276,17 @@
   },
   {
     "text": "Projektile durchbohren # zus\u00E4tzliche Ziele",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Projektile\\ durchbohren\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Ziele$"
-  },
-  {
-    "text": "Projektile durchbohren # zus\u00E4tzliche Ziele",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3423006863"
     ],
+    "pattern": "^Projektile\\ durchbohren\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Ziele$"
+  },
+  {
+    "text": "Projektile durchbohren # zus\u00E4tzliche Ziele",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Projektile\\ durchbohren\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Ziele$"
   },
   {
@@ -80333,18 +80331,18 @@
   },
   {
     "text": "Projektile gabeln sich auf",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2421436896"
+      "rune.stat_1549287843"
     ],
     "pattern": "^Projektile\\ gabeln\\ sich\\ auf$"
   },
   {
     "text": "Projektile gabeln sich auf",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1549287843"
+      "explicit.stat_2421436896"
     ],
     "pattern": "^Projektile\\ gabeln\\ sich\\ auf$"
   },
@@ -103784,12 +103782,28 @@
     "pattern": "^Verbunden:\\ ([-0-9,.]\u002B)%\\ vergr\u00F6\u00DFerter\\ Wirkungsbereich\\ von\\ Fl\u00FCchen$"
   },
   {
+    "text": "Verbunden: #% verk\u00FCrzte Einfrierungsdauer bei Euch",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_2861770798"
+    ],
+    "pattern": "^Verbunden:\\ ([-0-9,.]\u002B)%\\ verk\u00FCrzte\\ Einfrierungsdauer\\ bei\\ Euch$"
+  },
+  {
     "text": "Verbunden: #% verk\u00FCrzte Schockdauer bei Euch",
     "lines": 1,
     "tradeIds": [
       "rune.stat_1441491952"
     ],
     "pattern": "^Verbunden:\\ ([-0-9,.]\u002B)%\\ verk\u00FCrzte\\ Schockdauer\\ bei\\ Euch$"
+  },
+  {
+    "text": "Verbunden: #% verk\u00FCrzte Unterk\u00FChlungsdauer bei Euch",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_2174462855"
+    ],
+    "pattern": "^Verbunden:\\ ([-0-9,.]\u002B)%\\ verk\u00FCrzte\\ Unterk\u00FChlungsdauer\\ bei\\ Euch$"
   },
   {
     "text": "Verbunden: #% verl\u00E4ngerte Archondauer",
@@ -113373,7 +113387,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|49356",
       "enchant.stat_2954116742|49356",
-      "explicit.stat_2954116742|49356"
+      "explicit.stat_2954116742|49356",
+      "fractured.stat_2954116742|49356"
     ],
     "pattern": "^Weist\\ zu:\\ Das\\ erste\\ Prinzip\\ der\\ Leere$"
   },
@@ -115978,7 +115993,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|31175",
       "enchant.stat_2954116742|31175",
-      "explicit.stat_2954116742|31175"
+      "explicit.stat_2954116742|31175",
+      "fractured.stat_2954116742|31175"
     ],
     "pattern": "^Weist\\ zu:\\ Griff\\ des\\ B\u00F6sen$"
   },
@@ -123869,11 +123885,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_2720982137",
       "desecrated.stat_2957407601",
-      "explicit.stat_2720982137",
       "explicit.stat_2957407601",
-      "fractured.stat_2720982137",
       "fractured.stat_2957407601"
     ],
     "pattern": "^Zeichen-Fertigkeiten\\ haben\\ ([-0-9,.]\u002B)%\\ verk\u00FCrzte\\ Dauer$"
@@ -123883,11 +123896,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_2720982137",
       "desecrated.stat_2957407601",
-      "explicit.stat_2720982137",
       "explicit.stat_2957407601",
-      "fractured.stat_2720982137",
       "fractured.stat_2957407601"
     ],
     "pattern": "^Zeichen-Fertigkeiten\\ haben\\ ([-0-9,.]\u002B)%\\ verl\u00E4ngerte\\ Dauer$"
@@ -125007,6 +125017,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3627052716",
+      "explicit.stat_40154188",
       "implicit.stat_3627052716"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ Blitzschadens\\ werden\\ in\\ Feuerschaden\\ umgewandelt$"
@@ -127110,7 +127121,8 @@
     "text": "#% erh\u00F6hte Bet\u00E4ubungserholung",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2511217560"
+      "explicit.stat_2511217560",
+      "rune.stat_2511217560"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Bet\u00E4ubungserholung$"
   },
@@ -129040,17 +129052,17 @@
   },
   {
     "text": "#% erh\u00F6hte Geschick-Anforderung",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Geschick-Anforderung$"
+  },
+  {
+    "text": "#% erh\u00F6hte Geschick-Anforderung",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1133453872"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Geschick-Anforderung$"
-  },
-  {
-    "text": "#% erh\u00F6hte Geschick-Anforderung",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Geschick-Anforderung$"
   },
   {
@@ -129264,6 +129276,12 @@
   },
   {
     "text": "#% erh\u00F6hte Intelligenz-Anforderung",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Intelligenz-Anforderung$"
+  },
+  {
+    "text": "#% erh\u00F6hte Intelligenz-Anforderung",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -129271,12 +129289,6 @@
       "implicit.stat_2153364323",
       "rune.stat_2153364323"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Intelligenz-Anforderung$"
-  },
-  {
-    "text": "#% erh\u00F6hte Intelligenz-Anforderung",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Intelligenz-Anforderung$"
   },
   {
@@ -130333,13 +130345,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
@@ -130409,8 +130418,14 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "explicit.stat_3624940721",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Magnituden\\ von\\ expliziten\\ Modifikatoren$"
   },
@@ -144287,7 +144302,6 @@
   },
   {
     "text": "#% mehr Projektilgeschwindigkeit",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3759663284",
@@ -144299,6 +144313,7 @@
   },
   {
     "text": "#% mehr Projektilgeschwindigkeit",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3759663284",
@@ -151658,7 +151673,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2511217560"
+      "explicit.stat_2511217560",
+      "rune.stat_2511217560"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Bet\u00E4ubungserholung$"
   },
@@ -154787,13 +154803,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
@@ -154851,8 +154864,14 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "explicit.stat_3624940721",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Magnituden\\ von\\ expliziten\\ Modifikatoren$"
   },
@@ -168336,6 +168355,13 @@
   {
     "text": "#% weniger Projektilgeschwindigkeit",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ weniger\\ Projektilgeschwindigkeit$"
+  },
+  {
+    "text": "#% weniger Projektilgeschwindigkeit",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -168344,13 +168370,6 @@
       "fractured.stat_3759663284",
       "rune.stat_3759663284"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ weniger\\ Projektilgeschwindigkeit$"
-  },
-  {
-    "text": "#% weniger Projektilgeschwindigkeit",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ weniger\\ Projektilgeschwindigkeit$"
   },
   {

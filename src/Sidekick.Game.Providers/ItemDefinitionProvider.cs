@@ -8,7 +8,8 @@ public class ItemDefinitionProvider(
     DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
-    BaseItemProvider baseItemProvider
+    BaseItemProvider baseItemProvider,
+    NinjaProvider ninjaProvider
 ) : IInitializableService
 {
     public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
@@ -23,6 +24,8 @@ public class ItemDefinitionProvider(
 
         Definitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.Language);
         AssignBaseItems(Definitions);
+        AssignNinjaExchangeItems(Definitions);
+        AssignNinjaStashItems(Definitions);
         UniqueItems = Definitions.Where(x => x.IsUnique)
             .OrderByDescending(x => x.Name?.Length ?? 0)
             .ToList();
@@ -35,6 +38,8 @@ public class ItemDefinitionProvider(
         {
             InvariantDefinitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.InvariantLanguage);
             AssignBaseItems(InvariantDefinitions);
+            AssignNinjaExchangeItems(InvariantDefinitions);
+            AssignNinjaStashItems(InvariantDefinitions);
         }
 
         InvariantDictionary.Clear();
@@ -71,6 +76,27 @@ public class ItemDefinitionProvider(
                 if (definition.BaseItemIds == null) continue;
                 definition.BaseItems = definition.BaseItemIds
                     .Select(x => baseItemProvider.Dictionary.GetValueOrDefault(x))
+                    .Where(x => x != null)
+                    .ToList()!;
+            }
+        }
+
+        void AssignNinjaExchangeItems(List<ItemDefinition> definitions)
+        {
+            foreach (var definition in definitions)
+            {
+                if (definition.NinjaExchangeItemId == null) continue;
+                definition.NinjaExchangeItem = ninjaProvider.ExchangeItems.GetValueOrDefault(definition.NinjaExchangeItemId);
+            }
+        }
+
+        void AssignNinjaStashItems(List<ItemDefinition> definitions)
+        {
+            foreach (var definition in definitions)
+            {
+                if (definition.NinjaStashItemIds == null) continue;
+                definition.NinjaStashItems = definition.NinjaStashItemIds
+                    .Select(x => ninjaProvider.StashItems.GetValueOrDefault(x))
                     .Where(x => x != null)
                     .ToList()!;
             }

@@ -1,6 +1,7 @@
 ﻿using Sidekick.Apis.Poe.Trade.Trade.Models;
 using Sidekick.Game;
 using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Ninja;
 using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.PoeNinja.Stash;
 

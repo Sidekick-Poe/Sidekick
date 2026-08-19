@@ -3329,18 +3329,18 @@
   },
   {
     "text": "\u0027Frostpuls\u0027 feuert # zus\u00E4tzliche Projektile",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\u0027Frostpuls\u0027\\ feuert\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Projektile$"
-  },
-  {
-    "text": "\u0027Frostpuls\u0027 feuert # zus\u00E4tzliche Projektile",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_186513618",
       "enchant.stat_3371533847"
     ],
+    "pattern": "^\u0027Frostpuls\u0027\\ feuert\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Projektile$"
+  },
+  {
+    "text": "\u0027Frostpuls\u0027 feuert # zus\u00E4tzliche Projektile",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^\u0027Frostpuls\u0027\\ feuert\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Projektile$"
   },
   {
@@ -10857,7 +10857,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^\u0027Zeichen\\ des\\ Winters\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Unterk\u00FChlungswirkung$"
   },
@@ -10867,7 +10868,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^\u0027Zeichen\\ des\\ Winters\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Unterk\u00FChlungswirkung$"
   },
@@ -27530,8 +27532,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_628716294",
-      "implicit.stat_628716294",
-      "scourge.stat_770490590"
+      "implicit.stat_628716294"
     ],
     "pattern": "^Aktionsgeschwindigkeit\\ des\\ Totems\\ kann\\ nicht\\ unter\\ den\\ Basiswert\\ modifiziert\\ werden$"
   },
@@ -35182,6 +35183,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3771323968",
       "explicit.stat_3789765926",
       "explicit.stat_647983250",
       "fractured.stat_3789765926"
@@ -44644,7 +44646,8 @@
     "text": "Die Unterk\u00FChlungswirkung auf Euch wird umgekehrt, w\u00E4hrend auf unterk\u00FChlendem Boden",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3440719546"
+      "explicit.stat_3440719546",
+      "fractured.stat_3440719546"
     ],
     "pattern": "^Die\\ Unterk\u00FChlungswirkung\\ auf\\ Euch\\ wird\\ umgekehrt,\\ w\u00E4hrend\\ auf\\ unterk\u00FChlendem\\ Boden$"
   },
@@ -46299,11 +46302,9 @@
   },
   {
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0027Abklingzeit\u0027 Stufe #",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3839163699",
-      "fractured.stat_3839163699"
+      "explicit.stat_654335115"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027Abklingzeit\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
   },
@@ -49032,9 +49033,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_48",
       "explicit.indexable_support_96",
       "explicit.stat_1135493957",
-      "explicit.stat_3207084920"
+      "explicit.stat_3207084920",
+      "explicit.stat_858460086"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027T\u00F6dliche\\ Dosis\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
   },
@@ -49288,8 +49291,11 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_25",
+      "explicit.indexable_support_65",
       "explicit.stat_2487643588",
-      "fractured.stat_2487643588"
+      "explicit.stat_407317553",
+      "fractured.stat_2487643588",
+      "fractured.stat_407317553"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027Verl\u00E4ngerte\\ Dauer\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
   },
@@ -62751,17 +62757,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|100",
-      "explicit.stat_4089743927|1|114",
-      "explicit.stat_4089743927|1|115",
-      "explicit.stat_4089743927|1|116",
-      "explicit.stat_4089743927|1|119",
-      "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|120",
-      "explicit.stat_4089743927|1|132",
-      "explicit.stat_4089743927|1|134",
-      "explicit.stat_4089743927|1|141",
-      "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
@@ -62777,13 +62772,6 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
-      "explicit.stat_4089743927|2|100",
-      "explicit.stat_4089743927|2|114",
-      "explicit.stat_4089743927|2|115",
-      "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -62836,6 +62824,13 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
       "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|119",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|120",
+      "explicit.stat_4089743927|4|132",
+      "explicit.stat_4089743927|4|134",
+      "explicit.stat_4089743927|4|137",
+      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -64273,17 +64268,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|100",
-      "explicit.stat_4089743927|1|114",
-      "explicit.stat_4089743927|1|115",
-      "explicit.stat_4089743927|1|116",
-      "explicit.stat_4089743927|1|119",
-      "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|120",
-      "explicit.stat_4089743927|1|132",
-      "explicit.stat_4089743927|1|134",
-      "explicit.stat_4089743927|1|141",
-      "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
@@ -64299,13 +64283,6 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
-      "explicit.stat_4089743927|2|100",
-      "explicit.stat_4089743927|2|114",
-      "explicit.stat_4089743927|2|115",
-      "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -64358,6 +64335,13 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
       "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|119",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|120",
+      "explicit.stat_4089743927|4|132",
+      "explicit.stat_4089743927|4|134",
+      "explicit.stat_4089743927|4|137",
+      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -65795,17 +65779,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|100",
-      "explicit.stat_4089743927|1|114",
-      "explicit.stat_4089743927|1|115",
-      "explicit.stat_4089743927|1|116",
-      "explicit.stat_4089743927|1|119",
-      "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|120",
-      "explicit.stat_4089743927|1|132",
-      "explicit.stat_4089743927|1|134",
-      "explicit.stat_4089743927|1|141",
-      "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
@@ -65821,13 +65794,6 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
-      "explicit.stat_4089743927|2|100",
-      "explicit.stat_4089743927|2|114",
-      "explicit.stat_4089743927|2|115",
-      "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -65880,6 +65846,13 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
       "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|119",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|120",
+      "explicit.stat_4089743927|4|132",
+      "explicit.stat_4089743927|4|134",
+      "explicit.stat_4089743927|4|137",
+      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -67342,17 +67315,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|100",
-      "explicit.stat_4089743927|1|114",
-      "explicit.stat_4089743927|1|115",
-      "explicit.stat_4089743927|1|116",
-      "explicit.stat_4089743927|1|119",
-      "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|120",
-      "explicit.stat_4089743927|1|132",
-      "explicit.stat_4089743927|1|134",
-      "explicit.stat_4089743927|1|141",
-      "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
@@ -67368,13 +67330,6 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
-      "explicit.stat_4089743927|2|100",
-      "explicit.stat_4089743927|2|114",
-      "explicit.stat_4089743927|2|115",
-      "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -67427,6 +67382,13 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
       "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|119",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|120",
+      "explicit.stat_4089743927|4|132",
+      "explicit.stat_4089743927|4|134",
+      "explicit.stat_4089743927|4|137",
+      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -118435,7 +118397,8 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3181879507",
-      "explicit.stat_3181879507"
+      "explicit.stat_3181879507",
+      "fractured.stat_3181879507"
     ],
     "pattern": "^Schockt\\ Euch\\ selbst\\ f\u00FCr\\ ([-0-9,.]\u002B)\\ Sekunden,\\ wenn\\ Ihr\\ Fokus\\ erhaltet$"
   },
@@ -125222,7 +125185,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1144742318"
+      "explicit.stat_1144742318",
+      "explicit.stat_1173860008"
     ],
     "pattern": "^Transplantat-Fertigkeiten\\ haben\\ ([-0-9,.]\u002B)%\\ beschleunigte\\ Abklingzeit-Rate$"
   },
@@ -126092,7 +126056,8 @@
     "text": "Trifft brennende Gegner immer",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_270993809"
+      "explicit.stat_270993809",
+      "fractured.stat_270993809"
     ],
     "pattern": "^Trifft\\ brennende\\ Gegner\\ immer$"
   },
@@ -151035,7 +151000,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4201339891"
+      "explicit.stat_3764265320",
+      "explicit.stat_4201339891",
+      "fractured.stat_3764265320",
+      "implicit.stat_2508100173",
+      "implicit.stat_3764265320",
+      "scourge.stat_3764265320"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ physischen\\ Schadens\\ werden\\ als\\ Energieschild\\ geraubt$"
   },
@@ -152897,7 +152867,8 @@
     "text": "#% erh\u00F6hte Bewegungsgeschwindigkeit f\u00FCr jeden Giftstapel, der auf Euch wirkt, bis zu einem Maximum von 50%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Bewegungsgeschwindigkeit\\ f\u00FCr\\ jeden\\ Giftstapel,\\ der\\ auf\\ Euch\\ wirkt,\\ bis\\ zu\\ einem\\ Maximum\\ von\\ 50%$"
   },
@@ -160186,7 +160157,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ kritische\\ Trefferchance\\ f\u00FCr\\ Zeichen$"
   },
@@ -160382,6 +160354,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -160410,7 +160383,8 @@
     "text": "#% erh\u00F6hte kritische Trefferchance mit Fallen",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ kritische\\ Trefferchance\\ mit\\ Fallen$"
   },
@@ -160431,6 +160405,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -160565,7 +160540,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ kritische\\ Trefferchance\\ mit\\ Zauberst\u00E4ben$"
   },
@@ -160684,7 +160660,8 @@
     "text": "#% erh\u00F6hte kritische Trefferchance pro Zeichen",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ kritische\\ Trefferchance\\ pro\\ Zeichen$"
   },
@@ -164049,6 +164026,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
+      "explicit.stat_528422616",
+      "explicit.stat_539970476",
+      "fractured.stat_539970476",
       "implicit.stat_485151258"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hter\\ Schaden\\ mit\\ Treffern\\ und\\ Beeintr\u00E4chtigungen\\ gegen\\ einzigartige\\ Gegner$"
@@ -175306,7 +175286,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Bewegungsgeschwindigkeit\\ f\u00FCr\\ jeden\\ Giftstapel,\\ der\\ auf\\ Euch\\ wirkt$"
   },
@@ -181388,7 +181369,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ kritische\\ Trefferchance\\ f\u00FCr\\ Zeichen$"
   },
@@ -181597,6 +181579,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -181628,7 +181611,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ kritische\\ Trefferchance\\ mit\\ Fallen$"
   },
@@ -181651,6 +181635,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -181771,7 +181756,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ kritische\\ Trefferchance\\ mit\\ Zauberst\u00E4ben$"
   },
@@ -181866,7 +181852,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ kritische\\ Trefferchance\\ pro\\ Zeichen$"
   },
@@ -190492,6 +190479,7 @@
       "explicit.stat_2529112796",
       "explicit.stat_3556824919",
       "fractured.stat_1712221299",
+      "fractured.stat_1780168381",
       "fractured.stat_3556824919",
       "implicit.stat_1474913037",
       "implicit.stat_1712221299",
@@ -190745,7 +190733,8 @@
     "text": "\u002B#% zu Multiplikator f\u00FCr kritische Treffer mit Fallen",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1780168381"
+      "explicit.stat_1780168381",
+      "fractured.stat_1780168381"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ zu\\ Multiplikator\\ f\u00FCr\\ kritische\\ Treffer\\ mit\\ Fallen$"
   },

@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.PoeNinja.Exchange.Models;
 
-public class NinjaSparkline
+public class ApiSparkline
 {
     public decimal TotalChange { get; set; }
 

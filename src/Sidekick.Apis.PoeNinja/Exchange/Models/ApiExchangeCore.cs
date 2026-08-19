@@ -1,6 +1,6 @@
 ﻿namespace Sidekick.Apis.PoeNinja.Exchange.Models;
 
-public class NinjaExchangeCore
+public class ApiExchangeCore
 {
     public string? Primary { get; set; }
 
@@ -8,5 +8,5 @@ public class NinjaExchangeCore
 
     public Dictionary<string, decimal> Rates { get; set; } = [];
 
-    public List<NinjaExchangeItem> Items { get; set; } = [];
+    public List<ApiExchangeItem> Items { get; set; } = [];
 }

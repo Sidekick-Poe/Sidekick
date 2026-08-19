@@ -48924,6 +48924,10 @@
     "text": "Maldice enemigos con inflamabilidad con cada golpe"
   },
   {
+    "id": "explicit.stat_654335115",
+    "text": "Las gemas engarzadas est\u00E1n asistidas por Recuperaci\u00F3n del enfriamiento de nivel #"
+  },
+  {
     "id": "explicit.stat_654501336",
     "text": "Efecto de las joyas del ojo hipn\u00F3tico m\u00E1gicas engarzadas aumentado un #%"
   },
@@ -51536,6 +51540,10 @@
     "text": "Las habilidades que lanzan minas reservan vida en lugar de man\u00E1"
   },
   {
+    "id": "fractured.stat_1192661666",
+    "text": "Probabilidad de golpe cr\u00EDtico con trampas aumentada un #%"
+  },
+  {
     "id": "fractured.stat_1195319608",
     "text": "Escudo de energ\u00EDa de la armadura equipada aumentado un #%"
   },
@@ -52582,6 +52590,10 @@
   {
     "id": "fractured.stat_1778298516",
     "text": "\u002B#% a la probabilidad de bloquear da\u00F1o de ataques mientras empu\u00F1as un b\u00E1culo"
+  },
+  {
+    "id": "fractured.stat_1780168381",
+    "text": "\u002B#% al multiplicador de golpe cr\u00EDtico con trampas"
   },
   {
     "id": "fractured.stat_1782086450",
@@ -54364,6 +54376,10 @@
     "text": "Las habilidades pasivas peque\u00F1as agregadas tambi\u00E9n otorgan: \u002B# a la resistencia al hielo"
   },
   {
+    "id": "fractured.stat_270993809",
+    "text": "Siempre golpea a los enemigos incendiados"
+  },
+  {
     "id": "fractured.stat_2718698372",
     "text": "\u002B# al nivel de las gemas de destreza engarzadas"
   },
@@ -55216,6 +55232,10 @@
     "text": "Velocidad de Movimiento aumentada un #% si has Golpeado un Enemigo Recientemente"
   },
   {
+    "id": "fractured.stat_3181879507",
+    "text": "Te electrocutas a ti mismo durante # segundos cuando est\u00E1s concentrado"
+  },
+  {
     "id": "fractured.stat_3182498570",
     "text": "Velocidad de movimiento aumentada un #% durante su efecto"
   },
@@ -55706,6 +55726,10 @@
   {
     "id": "fractured.stat_3438201750",
     "text": "#% de probabilidad de intimidar a los enemigos durante 4 segundos al golpear con ataques"
+  },
+  {
+    "id": "fractured.stat_3440719546",
+    "text": "El efecto del escarchamiento est\u00E1 invertido sobre ti mientras est\u00E9s sobre suelo escarchado"
   },
   {
     "id": "fractured.stat_3441501978",
@@ -59820,6 +59844,10 @@
     "text": "Mientras un enemigo \u00FAnico est\u00E9 en tu presencia, #% de probabilidad de bloquear el da\u00F1o de hechizos"
   },
   {
+    "id": "implicit.stat_1360723495",
+    "text": "Velocidad de movimiento aumentada un #% por cada veneno sobre ti, hasta un m\u00E1ximo de 50%"
+  },
+  {
     "id": "implicit.stat_1361343333",
     "text": "Regeneras # de man\u00E1 por segundo mientras usas doble empu\u00F1adura"
   },
@@ -60662,6 +60690,10 @@
   {
     "id": "implicit.stat_1829869055",
     "text": "#% de probabilidad de que si fueras a ganar una Barrera de cangrejo, en su lugar ganes\nhasta tu cantidad m\u00E1xima de Barreras de cangrejo"
+  },
+  {
+    "id": "implicit.stat_1831757355",
+    "text": "Marca de ola invernal tiene el efecto del escarchamiento aumentado un #%"
   },
   {
     "id": "implicit.stat_1836549522",
@@ -61758,6 +61790,10 @@
   {
     "id": "implicit.stat_240857668",
     "text": "Efecto de Elusivo aumentado un #%"
+  },
+  {
+    "id": "implicit.stat_2409504914",
+    "text": "Probabilidad de golpe cr\u00EDtico aumentada un #% por cada marca"
   },
   {
     "id": "implicit.stat_2410613176",
@@ -73193,82 +73229,82 @@
   },
   {
     "id": "veiled.mod_11536",
-    "text": "de la Encriptaci\u00F3n de Janus"
+    "text": "of Janus\u0027 Veil"
   },
   {
     "id": "veiled.mod_14269",
-    "text": "Encriptado de Vagan"
+    "text": "Vagan\u0027s Veiled"
   },
   {
     "id": "veiled.mod_3258",
-    "text": "Encriptado de Leo"
+    "text": "Leo\u0027s Veiled"
   },
   {
     "id": "veiled.mod_38872",
-    "text": "Encriptado de Gravicius"
+    "text": "Gravicius\u0027 Veiled"
   },
   {
     "id": "veiled.mod_39023",
-    "text": "Encriptado de Haku"
+    "text": "Haku\u0027s Veiled"
   },
   {
     "id": "veiled.mod_3975",
-    "text": "de la Encriptaci\u00F3n de Hillock"
+    "text": "of Hillock\u0027s Veil"
   },
   {
     "id": "veiled.mod_44855",
-    "text": "Encriptado de Korell"
+    "text": "Korell\u0027s Veiled"
   },
   {
     "id": "veiled.mod_47933",
-    "text": "Encriptado de Vorici"
+    "text": "Vorici\u0027s Veiled"
   },
   {
     "id": "veiled.mod_48007",
-    "text": "de la Encriptaci\u00F3n de Aisling"
+    "text": "of Aisling\u0027s Veil"
   },
   {
     "id": "veiled.mod_48408",
-    "text": "de la Encriptaci\u00F3n de Riker"
+    "text": "of Riker\u0027s Veil"
   },
   {
     "id": "veiled.mod_55787",
-    "text": "Encriptado de Eso que Escap\u00F3"
+    "text": "It That Fled\u0027s Veiled"
   },
   {
     "id": "veiled.mod_5769",
-    "text": "Encriptado de Elreon"
+    "text": "Elreon\u0027s Veiled"
   },
   {
     "id": "veiled.mod_6131",
-    "text": "Encriptado de Rin"
+    "text": "Rin\u0027s Veiled"
   },
   {
     "id": "veiled.mod_62955",
-    "text": "de la Encriptaci\u00F3n de Jorgin"
+    "text": "of Jorgin\u0027s Veil"
   },
   {
     "id": "veiled.mod_63099",
-    "text": "de Encriptaci\u00F3n"
+    "text": "of the Veil"
   },
   {
     "id": "veiled.mod_63772",
-    "text": "Encriptado de Catarina"
+    "text": "Catarina\u0027s Veiled"
   },
   {
     "id": "veiled.mod_65000",
-    "text": "Encriptado"
+    "text": "Veiled"
   },
   {
     "id": "veiled.mod_65163",
-    "text": "de la Encriptaci\u00F3n de Cameria"
+    "text": "of Cameria\u0027s Veil"
   },
   {
     "id": "veiled.mod_6779",
-    "text": "Encriptado de Guff"
+    "text": "Guff\u0027s Veiled"
   },
   {
     "id": "veiled.mod_8541",
-    "text": "Encriptado de Tora"
+    "text": "Tora\u0027s Veiled"
   }
 ]

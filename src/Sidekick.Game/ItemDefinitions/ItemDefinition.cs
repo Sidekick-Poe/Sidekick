@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Sidekick.Game.BaseItems;
+using Sidekick.Game.Ninja;
 
 namespace Sidekick.Game.ItemDefinitions;
 
@@ -10,17 +11,19 @@ public class ItemDefinition
 
     public List<string>? BaseItemIds { get; set; }
 
+    [JsonPropertyName("ninjaExchange")]
+    public string? NinjaExchangeItemId { get; set; }
+
+    [JsonPropertyName("ninjaStash")]
+    public List<string>? NinjaStashItemIds { get; set; }
+
     public string? ExchangeId { get; set; }
 
     public string? Name { get; init; }
 
     public string? Image { get; init; }
 
-    public NinjaExchangeItem? NinjaExchange { get; init; }
-
     public List<TradeItem>? TradeItems { get; init; }
-
-    public List<NinjaStashItem>? NinjaItems { get; init; }
 
     [JsonIgnore]
     public Regex? NamePattern { get; init; }
@@ -47,6 +50,12 @@ public class ItemDefinition
 
     [JsonIgnore]
     public List<BaseItemDefinition> BaseItems { get; set; } = [];
+
+    [JsonIgnore]
+    public NinjaExchangeItem? NinjaExchangeItem { get; set; }
+
+    [JsonIgnore]
+    public List<NinjaStashItem>? NinjaStashItems { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

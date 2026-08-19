@@ -1,4 +1,4 @@
-﻿using Sidekick.Game.ItemDefinitions;
+﻿using Sidekick.Game.Ninja;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public interface INinjaExchangeProvider

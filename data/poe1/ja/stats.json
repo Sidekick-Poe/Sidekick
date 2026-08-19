@@ -5806,14 +5806,6 @@
     "pattern": "^9\u304B\u308920\u306E\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3092\u8FFD\u52A0\u3059\u308B\\n\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u304C6%\u6E1B\u5C11\u3059\u308B$"
   },
   {
-    "text": "Catarina\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_63772"
-    ],
-    "pattern": "^Catarina\u0027s\\ Veiled$"
-  },
-  {
     "text": "DNT -#% to All Resistances per Minion",
     "negate": true,
     "lines": 1,
@@ -6143,14 +6135,6 @@
     "pattern": "^DoT\u500D\u7387$"
   },
   {
-    "text": "Elreon\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_5769"
-    ],
-    "pattern": "^Elreon\u0027s\\ Veiled$"
-  },
-  {
     "text": "\u002B#% Global Critical Strike Chance",
     "lines": 1,
     "tradeIds": [
@@ -6167,59 +6151,11 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ Global\\ Critical\\ Strike\\ Multiplier$"
   },
   {
-    "text": "Gravicius\u0027 Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_38872"
-    ],
-    "pattern": "^Gravicius\u0027\\ Veiled$"
-  },
-  {
-    "text": "Guff\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_6779"
-    ],
-    "pattern": "^Guff\u0027s\\ Veiled$"
-  },
-  {
-    "text": "Haku\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_39023"
-    ],
-    "pattern": "^Haku\u0027s\\ Veiled$"
-  },
-  {
-    "text": "It That Fled\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_55787"
-    ],
-    "pattern": "^It\\ That\\ Fled\u0027s\\ Veiled$"
-  },
-  {
-    "text": "Korell\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_44855"
-    ],
-    "pattern": "^Korell\u0027s\\ Veiled$"
-  },
-  {
     "text": "Left ring slot: you and your Minions prevent \u002B#% of Reflected Elemental Damage",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Left\\ ring\\ slot:\\ you\\ and\\ your\\ Minions\\ prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Elemental\\ Damage$"
-  },
-  {
-    "text": "Leo\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_3258"
-    ],
-    "pattern": "^Leo\u0027s\\ Veiled$"
   },
   {
     "text": "Minions prevent \u002B#% of Reflected Damage they would take",
@@ -6283,46 +6219,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Right\\ ring\\ slot:\\ you\\ and\\ your\\ Minions\\ prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Physical\\ Damage$"
-  },
-  {
-    "text": "Rin\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_6131"
-    ],
-    "pattern": "^Rin\u0027s\\ Veiled$"
-  },
-  {
-    "text": "Tora\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_8541"
-    ],
-    "pattern": "^Tora\u0027s\\ Veiled$"
-  },
-  {
-    "text": "Vagan\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_14269"
-    ],
-    "pattern": "^Vagan\u0027s\\ Veiled$"
-  },
-  {
-    "text": "Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_65000"
-    ],
-    "pattern": "^Veiled$"
-  },
-  {
-    "text": "Vorici\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_47933"
-    ],
-    "pattern": "^Vorici\u0027s\\ Veiled$"
   },
   {
     "text": "\u66B4\u8650\u306E\u93E1\u50CF",
@@ -10271,9 +10167,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1963942874",
-      "explicit.stat_2355615476",
-      "fractured.stat_2355615476"
+      "explicit.stat_1963942874"
     ],
     "pattern": "^\u51FA\u8840\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30C0\u30E1\u30FC\u30B8\u500D\u7387\\ \\\u002B([-0-9,.]\u002B)%$"
   },
@@ -12177,6 +12071,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1282978314",
       "explicit.stat_1332534089"
     ],
     "pattern": "^\u767A\u706B\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u8FD1\u63A5\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
@@ -12186,6 +12081,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1282978314",
       "explicit.stat_1332534089"
     ],
     "pattern": "^\u767A\u706B\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u8FD1\u63A5\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
@@ -14344,7 +14240,8 @@
     "text": "\u51B7\u5374\u9818\u57DF\u306E\u4E0A\u306B\u3044\u308B\u6642\u306B\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u5BFE\u3059\u308B\u51B7\u5374\u306E\u52B9\u679C\u304C\u53CD\u8EE2\u3059\u308B",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3440719546"
+      "explicit.stat_3440719546",
+      "fractured.stat_3440719546"
     ],
     "pattern": "^\u51B7\u5374\u9818\u57DF\u306E\u4E0A\u306B\u3044\u308B\u6642\u306B\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u5BFE\u3059\u308B\u51B7\u5374\u306E\u52B9\u679C\u304C\u53CD\u8EE2\u3059\u308B$"
   },
@@ -37878,7 +37775,8 @@
     "text": "\u71C3\u713C\u72B6\u614B\u306E\u6575\u306B\u5E38\u306B\u30D2\u30C3\u30C8\u304C\u5F53\u305F\u308B",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_270993809"
+      "explicit.stat_270993809",
+      "fractured.stat_270993809"
     ],
     "pattern": "^\u71C3\u713C\u72B6\u614B\u306E\u6575\u306B\u5E38\u306B\u30D2\u30C3\u30C8\u304C\u5F53\u305F\u308B$"
   },
@@ -46361,6 +46259,14 @@
     "pattern": "^\u82E6\u75DB\u306E\u935B\u9020\u8005\\ \u3092\u5272\u308A\u5F53\u3066\u308B$"
   },
   {
+    "text": "\u9003\u3052\u305F\u3082\u306E\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_55787"
+    ],
+    "pattern": "^\u9003\u3052\u305F\u3082\u306E\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
     "text": "\u91CE\u86EE\u306A\u6FC0\u3057\u3055 \u3092\u5272\u308A\u5F53\u3066\u308B",
     "lines": 1,
     "tradeIds": [
@@ -49998,62 +49904,6 @@
       "mercenary.skill_57377"
     ],
     "pattern": "^\u843D\u4E0B\u306E\u30BE\u30F3\u30D3\u8607\u751F$"
-  },
-  {
-    "text": "of Aisling\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_48007"
-    ],
-    "pattern": "^of\\ Aisling\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Cameria\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_65163"
-    ],
-    "pattern": "^of\\ Cameria\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Hillock\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_3975"
-    ],
-    "pattern": "^of\\ Hillock\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Janus\u0027 Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_11536"
-    ],
-    "pattern": "^of\\ Janus\u0027\\ Veil$"
-  },
-  {
-    "text": "of Jorgin\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_62955"
-    ],
-    "pattern": "^of\\ Jorgin\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Riker\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_48408"
-    ],
-    "pattern": "^of\\ Riker\u0027s\\ Veil$"
-  },
-  {
-    "text": "of the Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_63099"
-    ],
-    "pattern": "^of\\ the\\ Veil$"
   },
   {
     "text": "\u88DC\u7D66\u306E\u6BCD\u80CE\u30AE\u30D5\u30C8\u304C\u4EE3\u308F\u308A\u306B\u30B8\u30E5\u30A8\u30EB\u3092\u8A95\u751F\u3055\u305B\u308B\u3053\u3068\u304C\u3042\u308B",
@@ -61180,6 +61030,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2460506030|10099",
+      "explicit.stat_2460506030|12597",
+      "explicit.stat_2460506030|14603",
+      "explicit.stat_2460506030|16940",
+      "explicit.stat_2460506030|23572",
       "explicit.stat_2460506030|43122",
       "explicit.stat_2460506030|43195",
       "explicit.stat_2460506030|43962",
@@ -80132,6 +79987,14 @@
     "pattern": "^\u30A2\u30B5\u30B7\u30F3\u306E\u546A\u5370\u306E\u546A\u3044\u52B9\u679C\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
+    "text": "\u30A2\u30B7\u30E5\u30EA\u30F3\u30B0\u306E\u30F4\u30A7\u30FC\u30EB\u306E",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_48007"
+    ],
+    "pattern": "^\u30A2\u30B7\u30E5\u30EA\u30F3\u30B0\u306E\u30F4\u30A7\u30FC\u30EB\u306E$"
+  },
+  {
     "text": "\u30A2\u30BA\u30E9\u30A4\u30C8\u306E\u9271\u8108\u304C\u542B\u3080\u30A2\u30BA\u30E9\u30A4\u30C8\u91CF\u304C#%\u4F4E\u4E0B\u3059\u308B",
     "negate": true,
     "lines": 1,
@@ -88476,8 +88339,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3909654181",
-      "explicit.stat_399295164"
+      "explicit.stat_3909654181"
     ],
     "pattern": "^\u30A4\u30B6\u30ED\u306E\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3001\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304A\u3088\u3073\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -88486,8 +88348,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3909654181",
-      "explicit.stat_399295164"
+      "explicit.stat_3909654181"
     ],
     "pattern": "^\u30A4\u30B6\u30ED\u306E\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3001\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304A\u3088\u3073\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
@@ -89578,7 +89439,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^\u30A6\u30A3\u30F3\u30BF\u30FC\u30BF\u30A4\u30C9\u30D6\u30E9\u30F3\u30C9\u306E\u51B7\u5374\u306E\u52B9\u679C\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -89587,7 +89449,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^\u30A6\u30A3\u30F3\u30BF\u30FC\u30BF\u30A4\u30C9\u30D6\u30E9\u30F3\u30C9\u306E\u51B7\u5374\u306E\u52B9\u679C\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
@@ -89761,6 +89624,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1256719186",
       "enchant.stat_1934891174",
       "enchant.stat_2556095677",
       "enchant.stat_3719728947",
@@ -89771,11 +89635,13 @@
       "enchant.stat_447560345",
       "enchant.stat_775034903",
       "explicit.stat_117667746",
+      "explicit.stat_1256719186",
       "explicit.stat_2001530951",
       "explicit.stat_2171629017",
       "explicit.stat_2357996603",
       "explicit.stat_3420284170",
       "fractured.stat_117667746",
+      "fractured.stat_1256719186",
       "fractured.stat_2001530951",
       "scourge.stat_2357996603"
     ],
@@ -89786,6 +89652,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1256719186",
       "enchant.stat_1934891174",
       "enchant.stat_2556095677",
       "enchant.stat_3719728947",
@@ -89796,11 +89663,13 @@
       "enchant.stat_447560345",
       "enchant.stat_775034903",
       "explicit.stat_117667746",
+      "explicit.stat_1256719186",
       "explicit.stat_2001530951",
       "explicit.stat_2171629017",
       "explicit.stat_2357996603",
       "explicit.stat_3420284170",
       "fractured.stat_117667746",
+      "fractured.stat_1256719186",
       "fractured.stat_2001530951",
       "scourge.stat_2357996603"
     ],
@@ -96261,6 +96130,14 @@
     "pattern": "^\u30A8\u30EB\u30C9\u30EA\u30C3\u30C1\u30D0\u30C3\u30C6\u30EA\u30FC\u306E\u7BC4\u56F2\u5185\u306B\u3042\u308B\u30D1\u30C3\u30B7\u30D6\u30B9\u30AD\u30EB\u306F\u30C4\u30EA\u30FC\u306B\u7E4B\u3052\u308B\u3053\u3068\u306A\u304F\u5272\u308A\u5F53\u3066\u308B\u3053\u3068\u304C\u3067\u304D\u308B\\n\u30D1\u30C3\u30BB\u30FC\u30B8$"
   },
   {
+    "text": "\u30A8\u30EB\u30EC\u30AA\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_5769"
+    ],
+    "pattern": "^\u30A8\u30EB\u30EC\u30AA\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
     "text": "\u30A8\u30EC\u30E1\u30F3\u30BF\u30EB\u30A4\u30AF\u30A4\u30EA\u30D6\u30EA\u30A2\u30E0",
     "lines": 1,
     "tradeIds": [
@@ -98777,6 +98654,14 @@
     "pattern": "^\u30AB\u30B9\u30D4\u30ED\u306E\u8A18\u5FF5\u30B3\u30A4\u30F3\u3092([-0-9,.]\u002B)\u500B\u92F3\u9020\u3057\u305F\\n\u7BC4\u56F2\u5185\u306E\u30D1\u30C3\u30B7\u30D6\u306F\u30A8\u30BF\u30FC\u30CA\u30EB\u5E1D\u56FD\u306B\u5F81\u670D\u3055\u308C\u308B$"
   },
   {
+    "text": "\u30AB\u30BF\u30EA\u30CA\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_63772"
+    ],
+    "pattern": "^\u30AB\u30BF\u30EA\u30CA\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
     "text": "\u30AB\u30C3\u30B7\u30A2\u306E\u9632\u885B\u3092\u5B8C\u4E86\u3059\u308B\u3053\u3068\u3067\u5F62\u6210\u9818\u57DF\u5185\u306E\u30DE\u30C3\u30D7\u306E\u5B8C\u4E86\u306B\u6210\u529F\u3067\u304D\u308B\n\u5F62\u6210\u9818\u57DF\u5185\u306E\u30DE\u30C3\u30D7\u3092\u5B8C\u4E86\u3059\u308B\u3054\u3068\u306B\u30D6\u30E9\u30A4\u30C8\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u96E3\u6613\u5EA6\u3068\u5831\u916C\u304C\u5897\u52A0\u3059\u308B",
     "lines": 2,
     "tradeIds": [],
@@ -98809,6 +98694,14 @@
       "sanctum.sanctum_effect_64286"
     ],
     "pattern": "^\u30AB\u30D3\u81ED\u3044\u30EF\u30A4\u30F3\u3092\u4F7F\u7528\u4E2D$"
+  },
+  {
+    "text": "\u30AB\u30DF\u30EA\u30A2\u306E\u30F4\u30A7\u30FC\u30EB\u306E",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_65163"
+    ],
+    "pattern": "^\u30AB\u30DF\u30EA\u30A2\u306E\u30F4\u30A7\u30FC\u30EB\u306E$"
   },
   {
     "text": "\u30AB\u30E9\u30F3\u30C9\u30E9\u306E\u93E1\u50CF",
@@ -98885,6 +98778,14 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u30AB\u30EC\u30F3\u30B7\u30FC\u3068\u4EA4\u63DB\u3067\u304D\u308B\u5360\u3044\u30AB\u30FC\u30C9\u304C\u8FFD\u52A0\u3067\u5165\u3063\u3066\u3044\u308B$"
+  },
+  {
+    "text": "\u30AC\u30D5\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_6779"
+    ],
+    "pattern": "^\u30AC\u30D5\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
   },
   {
     "text": "\u30AC\u30E9\u30B9\u306E\u7834\u7247\u3092\u4F7F\u7528\u4E2D",
@@ -102444,6 +102345,14 @@
     "pattern": "^\u30B0\u30E9\u30F3\u30C9\u30CF\u30A4\u30B9\u30C8\u4E2D\u306B([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u30ED\u30C3\u30AF\u30C0\u30A6\u30F3\u72B6\u614B\u3092\u958B\u59CB\u3055\u305B\u306A\u3044$"
   },
   {
+    "text": "\u30B0\u30E9\u30F4\u30A3\u30B7\u30A6\u30B9\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_38872"
+    ],
+    "pattern": "^\u30B0\u30E9\u30F4\u30A3\u30B7\u30A6\u30B9\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
     "text": "\u30B0\u30EC\u30A4\u30B7\u30E3\u30EB\u30AB\u30B9\u30B1\u30FC\u30C9\u306E\u52B9\u679C\u7BC4\u56F2\u304C#%\u6E1B\u5C11\u3059\u308B",
     "negate": true,
     "lines": 1,
@@ -104648,6 +104557,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|35",
@@ -104660,11 +104570,12 @@
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|48",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|118",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|113",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|146",
@@ -106001,6 +105912,14 @@
       "enchant.stat_3045497140"
     ],
     "pattern": "^\u30B3\u30E9\u30D7\u30C8\u30F4\u30A1\u30FC\u30EB\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u30C9\u30ED\u30C3\u30D7\u3059\u308B\u30A2\u30A4\u30C6\u30E0\u306F\u30B3\u30E9\u30D7\u30C8\u72B6\u614B\u3068\u306A\u308B$"
+  },
+  {
+    "text": "\u30B3\u30EC\u30EB\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_44855"
+    ],
+    "pattern": "^\u30B3\u30EC\u30EB\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
   },
   {
     "text": "\u30B3\u30ED\u30A4\u30C9\u6DF7\u5408\u7269 \u3092\u5272\u308A\u5F53\u3066\u308B",
@@ -110213,6 +110132,7 @@
   {
     "text": "\u30B8\u30A7\u30E0\u306E\u7372\u5F97\u7D4C\u9A13\u5024\u304C#%\u6E1B\u5C11\u3059\u308B",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3808869043"
@@ -110222,7 +110142,6 @@
   {
     "text": "\u30B8\u30A7\u30E0\u306E\u7372\u5F97\u7D4C\u9A13\u5024\u304C#%\u6E1B\u5C11\u3059\u308B",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3808869043"
@@ -110377,6 +110296,14 @@
       "fractured.stat_2978905446"
     ],
     "pattern": "^\u30B8\u30E7\u30D6\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30B8\u30E7\u30FC\u30AE\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u306E",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_62955"
+    ],
+    "pattern": "^\u30B8\u30E7\u30FC\u30AE\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u306E$"
   },
   {
     "text": "\u30B9\u30A6\u30A3\u30D5\u30C8\u30A2\u30D5\u30EA\u30AF\u30B7\u30E7\u30F3",
@@ -121961,7 +121888,9 @@
   {
     "text": "\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B8\u30A7\u30E0\u306F\u30EC\u30D9\u30EB#\u30AF\u30FC\u30EB\u30C0\u30A6\u30F3\u89E3\u6D88\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u308B",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_654335115"
+    ],
     "pattern": "^\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B8\u30A7\u30E0\u306F\u30EC\u30D9\u30EB([-0-9,.]\u002B)\u30AF\u30FC\u30EB\u30C0\u30A6\u30F3\u89E3\u6D88\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u308B$"
   },
   {
@@ -127853,7 +127782,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^\u30C8\u30E9\u30C3\u30D7\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -127861,7 +127791,8 @@
     "text": "\u30C8\u30E9\u30C3\u30D7\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C#%\u5897\u52A0\u3059\u308B",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^\u30C8\u30E9\u30C3\u30D7\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
@@ -127869,7 +127800,8 @@
     "text": "\u30C8\u30E9\u30C3\u30D7\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30C0\u30E1\u30FC\u30B8\u500D\u7387 \u002B#%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1780168381"
+      "explicit.stat_1780168381",
+      "fractured.stat_1780168381"
     ],
     "pattern": "^\u30C8\u30E9\u30C3\u30D7\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30C0\u30E1\u30FC\u30B8\u500D\u7387\\ \\\u002B([-0-9,.]\u002B)%$"
   },
@@ -129315,6 +129247,14 @@
       "pseudo.lake_53950"
     ],
     "pattern": "^\u30C8\u30FC\u30E1\u30F3\u30C8\u306E\u93E1\u50CF$"
+  },
+  {
+    "text": "\u30C8\u30FC\u30E9\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_8541"
+    ],
+    "pattern": "^\u30C8\u30FC\u30E9\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
   },
   {
     "text": "\u30C9\u30DF\u30CA\u30F3\u30B9\u306E\u30BB\u30F3\u30C1\u30CD\u30EB\u306E\u6301\u7D9A\u6642\u9593\u304C#%\u6E1B\u5C11\u3059\u308B",
@@ -131128,7 +131068,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1361025326",
-      "explicit.stat_1463604143",
       "explicit.stat_1852069308",
       "explicit.stat_2454528473",
       "explicit.stat_2581419165",
@@ -131579,6 +131518,14 @@
       "explicit.stat_3967804254"
     ],
     "pattern": "^\u30CF\u30A4\u30F4\u30DC\u30FC\u30F3\u30E2\u30F3\u30B9\u30BF\u30FC\u304B\u3089\u898B\u3064\u304B\u308B\u30A2\u30A4\u30C6\u30E0\u306E\u30EC\u30A2\u30EA\u30C6\u30A3\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30CF\u30AF\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_39023"
+    ],
+    "pattern": "^\u30CF\u30AF\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
   },
   {
     "text": "\u30CF\u30E4\u30D6\u30B5\u306E\u722A \u3092\u5272\u308A\u5F53\u3066\u308B",
@@ -136411,6 +136358,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|35",
@@ -136423,11 +136371,12 @@
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|48",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|118",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|113",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|146",
@@ -141471,6 +141420,14 @@
     "pattern": "^\u30D2\u30C3\u30C8\u30C0\u30E1\u30FC\u30B8\u306E\u3046\u3061\u8FFD\u52A0\u3067([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u307E\u305F\u306F\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u306E\u524D\u306B\u3053\u306E\u30B0\u30E9\u30D5\u30C8\u306B\u3088\u308A\u4F7F\u7528\u3055\u308C\u308B\u30CF\u30FC\u30C8\u30AA\u30D6\u30D5\u30EC\u30A4\u30E0\u306E\u30D0\u30D5\u3067\u53D7\u3051\u308B$"
   },
   {
+    "text": "\u30D2\u30ED\u30C3\u30AF\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_3975"
+    ],
+    "pattern": "^\u30D2\u30ED\u30C3\u30AF\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
     "text": "\u30D3\u30B9\u30DE\u30B9\u30D5\u30E9\u30B9\u30B3\u306E\u30C1\u30E3\u30FC\u30B8\u304C\u6D88\u8CBB\u3055\u308C\u3001#%\u306E\u5143\u7D20\u8010\u6027\u3092\u8CAB\u901A\u3059\u308B",
     "lines": 1,
     "tradeIds": [],
@@ -143441,7 +143398,8 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3181879507",
-      "explicit.stat_3181879507"
+      "explicit.stat_3181879507",
+      "fractured.stat_3181879507"
     ],
     "pattern": "^\u30D5\u30A9\u30FC\u30AB\u30B9\u6642\u306B\u30D7\u30EC\u30A4\u30E4\u30FC\u81EA\u8EAB\u3092([-0-9,.]\u002B)\u79D2\u9593\u611F\u96FB\u3055\u305B\u308B$"
   },
@@ -148111,7 +148069,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^\u30D6\u30E9\u30F3\u30C91\u500B\u3054\u3068\u306B\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -148119,7 +148078,8 @@
     "text": "\u30D6\u30E9\u30F3\u30C91\u500B\u3054\u3068\u306B\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C#%\u5897\u52A0\u3059\u308B",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^\u30D6\u30E9\u30F3\u30C91\u500B\u3054\u3068\u306B\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
@@ -148199,9 +148159,11 @@
       "explicit.stat_2375316951",
       "explicit.stat_2409504914",
       "explicit.stat_491450213",
+      "fractured.stat_1192661666",
       "fractured.stat_2375316951",
       "fractured.stat_491450213",
-      "implicit.stat_2375316951"
+      "implicit.stat_2375316951",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^\u30D6\u30E9\u30F3\u30C9\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -148217,9 +148179,11 @@
       "explicit.stat_2375316951",
       "explicit.stat_2409504914",
       "explicit.stat_491450213",
+      "fractured.stat_1192661666",
       "fractured.stat_2375316951",
       "fractured.stat_491450213",
-      "implicit.stat_2375316951"
+      "implicit.stat_2375316951",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^\u30D6\u30E9\u30F3\u30C9\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
@@ -150810,6 +150774,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|35",
@@ -150822,11 +150787,12 @@
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|48",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|118",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|113",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|146",
@@ -157110,7 +157076,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u4ED8\u4E0E\u3055\u308C\u305F\u6BD2\u306E\u30B9\u30BF\u30C3\u30AF\u3054\u3068\u306B\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -157119,7 +157086,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u4ED8\u4E0E\u3055\u308C\u305F\u6BD2\u306E\u30B9\u30BF\u30C3\u30AF\u3054\u3068\u306B\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -157128,7 +157096,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u4ED8\u4E0E\u3055\u308C\u305F\u6BD2\u306E\u30B9\u30BF\u30C3\u30AF\u3054\u3068\u306B\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
@@ -157186,7 +157155,8 @@
     "text": "\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u4ED8\u4E0E\u3055\u308C\u3066\u3044\u308B\u6BD2\u306E\u30B9\u30BF\u30C3\u30AF\u3054\u3068\u306B\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C#%\u3001\u6700\u592750%\u5897\u52A0\u3059\u308B",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u4ED8\u4E0E\u3055\u308C\u3066\u3044\u308B\u6BD2\u306E\u30B9\u30BF\u30C3\u30AF\u3054\u3068\u306B\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u3001\u6700\u592750%\u5897\u52A0\u3059\u308B$"
   },
@@ -158777,9 +158747,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1880071428",
-      "explicit.stat_2450628570",
       "fractured.stat_1880071428",
-      "fractured.stat_2450628570",
       "implicit.stat_1880071428",
       "scourge.stat_1880071428"
     ],
@@ -158791,9 +158759,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1880071428",
-      "explicit.stat_2450628570",
       "fractured.stat_1880071428",
-      "fractured.stat_2450628570",
       "implicit.stat_1880071428",
       "scourge.stat_1880071428"
     ],
@@ -163077,6 +163043,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|35",
@@ -163089,11 +163056,12 @@
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|48",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|118",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|113",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|146",
@@ -183121,6 +183089,14 @@
     "pattern": "^\u30E4\u30DE\u30CD\u30B3\u306E\u5316\u8EAB\\ \u3092\u5272\u308A\u5F53\u3066\u308B$"
   },
   {
+    "text": "\u30E4\u30FC\u30CD\u30B9\u306E\u30F4\u30A7\u30FC\u30EB\u306E",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_11536"
+    ],
+    "pattern": "^\u30E4\u30FC\u30CD\u30B9\u306E\u30F4\u30A7\u30FC\u30EB\u306E$"
+  },
+  {
     "text": "\u30E6\u30CB\u30FC\u30AF\u4EE5\u5916\u306E\u30A2\u30A4\u30C6\u30E0\u304B\u3089\u30AF\u30EB\u30FC\u30B7\u30D6\u30EB\u30D1\u30C3\u30B7\u30D6\u30B9\u30AD\u30EB\u30C4\u30EA\u30FC\u3092\u53D6\u308A\u9664\u304F\u7089\u304C\u51FA\u73FE\u3059\u308B",
     "lines": 1,
     "tradeIds": [
@@ -186757,6 +186733,14 @@
     "pattern": "^\u30E6\u30FC\u30C6\u30A3\u30EA\u30C6\u30A3\u30D5\u30E9\u30B9\u30B3\u306F\u305D\u306E\u30D5\u30E9\u30B9\u30B3\u52B9\u679C\u4E2D\u3082\u30C1\u30E3\u30FC\u30B8\u3092\u7372\u5F97\u3067\u304D\u308B$"
   },
   {
+    "text": "\u30E9\u30A4\u30AB\u30FC\u306E\u30F4\u30A7\u30FC\u30EB\u306E",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_48408"
+    ],
+    "pattern": "^\u30E9\u30A4\u30AB\u30FC\u306E\u30F4\u30A7\u30FC\u30EB\u306E$"
+  },
+  {
     "text": "\u30E9\u30A4\u30C1\u30E3\u30B9\u30D5\u30A1\u30A4\u30E4\u30FC\n\u30E9\u30A4\u30C1\u30E3\u30B9\u30D5\u30A1\u30A4\u30E4\u30FC\u306E\u7BC4\u56F2\u5185\u306E\u6575\u306F\u706B\u8010\u6027\u306E\u6700\u5927\u5024 -10%",
     "lines": 2,
     "tradeIds": [],
@@ -189138,6 +189122,14 @@
     "pattern": "^\u30E9\u30FC\u30B9\u306E\u30EA\u30B6\u30FC\u30D6\u304C\u306A\u304F\u306A\u308B$"
   },
   {
+    "text": "\u30EA\u30AA\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_3258"
+    ],
+    "pattern": "^\u30EA\u30AA\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
     "text": "\u30EA\u30B6\u30FC\u30D6\u6E08\u307F\u30DE\u30CA\u306E#%\u3068\u540C\u91CF\u306E\u6700\u5927\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u3092\u30D7\u30EC\u30A4\u30E4\u30FC\u304A\u3088\u3073\u8FD1\u304F\u306E\u5473\u65B9\u306B\u4ED8\u4E0E\u3059\u308B",
     "lines": 1,
     "tradeIds": [],
@@ -189339,6 +189331,14 @@
       "enchant.stat_4071708873"
     ],
     "pattern": "^\u30EA\u30DD\u30FC\u30B9\u30C8\u306E\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30EA\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_6131"
+    ],
+    "pattern": "^\u30EA\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
   },
   {
     "text": "\u30EA\u30F3\u30AF\u3057\u305F\u5BFE\u8C61\u304C\u5C11\u306A\u304F\u3068\u30824\u4F53\u3044\u308B\u6642\u306B\u9632\u5FA1\u529B\u304C#%\u6E1B\u5C11\u3059\u308B",
@@ -195710,7 +195710,6 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_186513618",
-      "enchant.stat_2278715446",
       "enchant.stat_3009270704",
       "enchant.stat_3371533847",
       "enchant.stat_3420683028",
@@ -197624,6 +197623,14 @@
     "pattern": "^\u30F4\u30A3\u30EA\u30C7\u30A3\u30A2\u30F3\u30FB\u30EF\u30A4\u30EB\u30C9\u30A6\u30C3\u30C9\u3067\u898B\u3064\u304B\u308B\u30EF\u30A4\u30EB\u30C9\u30A6\u30A3\u30B9\u30D7\u306E\u6570\u91CF\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
+    "text": "\u30F4\u30A7\u30A4\u30AC\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_14269"
+    ],
+    "pattern": "^\u30F4\u30A7\u30A4\u30AC\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
     "text": "\u30F4\u30A7\u30CE\u30E0\u30B8\u30E3\u30A4\u30A2",
     "lines": 1,
     "tradeIds": [
@@ -197705,6 +197712,22 @@
       "enchant.stat_1972101281"
     ],
     "pattern": "^\u30F4\u30A7\u30F3\u30B8\u30A7\u30F3\u30B9\u306E\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_65000"
+    ],
+    "pattern": "^\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
+  },
+  {
+    "text": "\u30F4\u30A7\u30FC\u30EB\u306E",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_63099"
+    ],
+    "pattern": "^\u30F4\u30A7\u30FC\u30EB\u306E$"
   },
   {
     "text": "\u30F4\u30A7\u30FC\u30EB\u3092\u89E3\u304B\u308C\u305F\u30E2\u30C3\u30C9\u306E\u5F37\u3055\u304C#%\u5897\u52A0\u3059\u308B",
@@ -197900,6 +197923,14 @@
     "lines": 2,
     "tradeIds": [],
     "pattern": "^\u30F4\u30A9\u30E9\u30CA\u306E\u4E00\u65CF\u304C\u884C\u3063\u305F\u6B4C\u306B\u3059\u308B\u306B\u3075\u3055\u308F\u3057\u3044\u5049\u696D([-0-9,.]\u002B)\u500B\u3092\u523B\u3080\\n\u7BC4\u56F2\u5185\u306E\u30D1\u30C3\u30B7\u30D6\u306F\u30AB\u30EB\u30B0\u30FC\u30EB\u306B\u5F81\u670D\u3055\u308C\u308B$"
+  },
+  {
+    "text": "\u30F4\u30A9\u30EA\u30FC\u30C1\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_47933"
+    ],
+    "pattern": "^\u30F4\u30A9\u30EA\u30FC\u30C1\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F$"
   },
   {
     "text": "\u30F4\u30A9\u30EB\u30AB\u30CB\u30C3\u30AF\u30D5\u30A3\u30C3\u30B7\u30E3\u30FC\u306E\u30C0\u30E1\u30FC\u30B8\u304C#%\u6E1B\u5C11\u3059\u308B",

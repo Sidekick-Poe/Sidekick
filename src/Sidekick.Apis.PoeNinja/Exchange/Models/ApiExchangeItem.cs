@@ -1,6 +1,6 @@
 ﻿namespace Sidekick.Apis.PoeNinja.Exchange.Models;
 
-public class NinjaExchangeItem
+public class ApiExchangeItem
 {
     public string? Category { get; set; }
     public string? DetailsId { get; set; }

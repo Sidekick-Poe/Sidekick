@@ -4,7 +4,7 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
-using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Ninja;
 
 namespace Sidekick.Apis.PoeNinja.Uris;
 
@@ -20,7 +20,7 @@ public class NinjaUriProvider(
         var game = await settingsService.GetGame();
         var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
         var league = await GetLeague();
-        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.Id}");
+        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.DetailsId}");
     }
 
     public async Task<Uri?> GetDetailsUri(NinjaStashItem item)
