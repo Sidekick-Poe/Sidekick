@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
         services.AddSidekickInitializableService<GameTextProvider>();
         services.AddSidekickInitializableService<ItemClassProvider>();
         services.AddSidekickInitializableService<ItemDefinitionProvider>();
+        services.AddSidekickInitializableService<NinjaProvider>();
 
         services.AddSidekickInitializableService<ICurrentGameLanguage, CurrentGameLanguage>();
 

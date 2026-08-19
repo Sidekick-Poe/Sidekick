@@ -30934,7 +30934,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2460506030|12597",
       "explicit.stat_2460506030|38180",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
@@ -30958,7 +30957,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1190333629|12597",
       "explicit.stat_1190333629|38180",
       "explicit.stat_1190333629|39598",
       "explicit.stat_1190333629|39790",
@@ -31055,7 +31053,8 @@
     "text": "Always Hits Burning Enemies",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_270993809"
+      "explicit.stat_270993809",
+      "fractured.stat_270993809"
     ],
     "pattern": "^Always\\ Hits\\ Burning\\ Enemies$"
   },
@@ -58141,7 +58140,6 @@
   },
   {
     "text": "Gain an Endurance Charge on Critical Strike",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2542650946",
@@ -58151,6 +58149,7 @@
   },
   {
     "text": "Gain an Endurance Charge on Critical Strike",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2542650946",
@@ -103032,7 +103031,8 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3181879507",
-      "explicit.stat_3181879507"
+      "explicit.stat_3181879507",
+      "fractured.stat_3181879507"
     ],
     "pattern": "^Shock\\ yourself\\ for\\ ([-0-9,.]\u002B)\\ Seconds\\ when\\ you\\ Focus$"
   },
@@ -103744,13 +103744,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
-      "explicit.stat_4089743927|4|146",
-      "explicit.stat_4089743927|4|148",
-      "explicit.stat_4089743927|4|157",
-      "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
       "explicit.stat_4089743927|4|35",
@@ -105219,13 +105212,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
-      "explicit.stat_4089743927|4|146",
-      "explicit.stat_4089743927|4|148",
-      "explicit.stat_4089743927|4|157",
-      "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
       "explicit.stat_4089743927|4|35",
@@ -106694,13 +106680,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
-      "explicit.stat_4089743927|4|146",
-      "explicit.stat_4089743927|4|148",
-      "explicit.stat_4089743927|4|157",
-      "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
       "explicit.stat_4089743927|4|35",
@@ -108439,13 +108418,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
-      "explicit.stat_4089743927|4|146",
-      "explicit.stat_4089743927|4|148",
-      "explicit.stat_4089743927|4|157",
-      "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
       "explicit.stat_4089743927|4|35",
@@ -112931,7 +112903,9 @@
   {
     "text": "Socketed Gems are Supported by Level # Cooldown Recovery",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_654335115"
+    ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Cooldown\\ Recovery$"
   },
   {
@@ -121500,7 +121474,8 @@
     "text": "The Effect of Chill on you is reversed while on Chilled ground",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3440719546"
+      "explicit.stat_3440719546",
+      "fractured.stat_3440719546"
     ],
     "pattern": "^The\\ Effect\\ of\\ Chill\\ on\\ you\\ is\\ reversed\\ while\\ on\\ Chilled\\ ground$"
   },
@@ -134596,7 +134571,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^Wintertide\\ Brand\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Chill\\ Effect$"
   },
@@ -134606,7 +134582,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^Wintertide\\ Brand\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Chill\\ Effect$"
   },
@@ -149628,6 +149605,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1463604143",
+      "explicit.stat_1485150248",
       "explicit.stat_1852069308",
       "explicit.stat_2610785454",
       "explicit.stat_3145607602",
@@ -154260,7 +154238,8 @@
     "text": "#% increased Critical Strike Chance per Brand",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ per\\ Brand$"
   },
@@ -154459,6 +154438,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -154548,6 +154528,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -154582,7 +154563,8 @@
     "text": "#% increased Critical Strike Chance with Traps",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ with\\ Traps$"
   },
@@ -154611,6 +154593,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -156151,9 +156134,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
-      "explicit.stat_528422616",
-      "explicit.stat_539970476",
-      "fractured.stat_539970476",
       "implicit.stat_485151258"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ with\\ Hits\\ and\\ Ailments\\ against\\ Taunted\\ Enemies$"
@@ -156163,7 +156143,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
-      "explicit.stat_528422616",
       "explicit.stat_539970476",
       "fractured.stat_539970476",
       "implicit.stat_485151258"
@@ -163029,7 +163008,8 @@
     "text": "#% increased Movement Speed for each Poison on you up to a maximum of 50%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ for\\ each\\ Poison\\ on\\ you\\ up\\ to\\ a\\ maximum\\ of\\ 50%$"
   },
@@ -170679,6 +170659,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
+      "explicit.stat_539970476",
+      "fractured.stat_539970476",
       "implicit.stat_485151258"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ more\\ Damage\\ with\\ Hits\\ and\\ Ailments\\ against\\ Unique\\ Enemies$"
@@ -177955,7 +177937,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Strike\\ Chance\\ per\\ Brand$"
   },
@@ -178131,6 +178114,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -178211,6 +178195,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -178248,7 +178233,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Strike\\ Chance\\ with\\ Traps$"
   },
@@ -178280,6 +178266,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -186173,7 +186160,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ for\\ each\\ Poison\\ on\\ you$"
   },
@@ -192508,7 +192496,8 @@
     "text": "\u002B#% to Critical Strike Multiplier with Traps",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1780168381"
+      "explicit.stat_1780168381",
+      "fractured.stat_1780168381"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ to\\ Critical\\ Strike\\ Multiplier\\ with\\ Traps$"
   },

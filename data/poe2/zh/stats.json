@@ -49541,6 +49541,7 @@
     "tradeIds": [
       "crafted.stat_830161081",
       "explicit.stat_830161081",
+      "fractured.stat_830161081",
       "rune.stat_830161081"
     ],
     "pattern": "^\u589E\u52A0([-0-9,.]\u002B)%\u7B26\u6587\u4FDD\u8B77$"
@@ -49563,6 +49564,7 @@
     "tradeIds": [
       "crafted.stat_830161081",
       "explicit.stat_830161081",
+      "fractured.stat_830161081",
       "rune.stat_830161081"
     ],
     "pattern": "^\u589E\u52A0([-0-9,.]\u002B)%\u7B26\u6587\u4FDD\u8B77\u6548\u7387$"
@@ -103166,6 +103168,7 @@
     "tradeIds": [
       "crafted.stat_830161081",
       "explicit.stat_830161081",
+      "fractured.stat_830161081",
       "rune.stat_830161081"
     ],
     "pattern": "^\u6E1B\u5C11([-0-9,.]\u002B)%\u7B26\u6587\u4FDD\u8B77$"
@@ -103190,6 +103193,7 @@
     "tradeIds": [
       "crafted.stat_830161081",
       "explicit.stat_830161081",
+      "fractured.stat_830161081",
       "rune.stat_830161081"
     ],
     "pattern": "^\u6E1B\u5C11([-0-9,.]\u002B)%\u7B26\u6587\u4FDD\u8B77\u6548\u7387$"
@@ -156870,6 +156874,7 @@
     "text": "\u914D\u7F6E\u6BBA\u624B\u672C\u80FD",
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2954116742|56453",
       "enchant.stat_2954116742|56453",
       "explicit.stat_2954116742|56453",
       "fractured.stat_2954116742|56453"

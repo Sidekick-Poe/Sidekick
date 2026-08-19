@@ -1,7 +1,7 @@
 ﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
 namespace Sidekick.Apis.PoeNinja.Stash.Models;
 
-public class NinjaStashLine
+public class ApiStashLine
 {
     public string? DetailsId { get; set; }
     public string? BaseType { get; set; }
@@ -20,5 +20,5 @@ public class NinjaStashLine
     public int? LevelRequired { get; set; }
     public int? MapTier { get; set; }
 
-    public NinjaSparkline? SparkLine { get; set; }
+    public ApiSparkline? SparkLine { get; set; }
 }

@@ -3,7 +3,7 @@ namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaCurrency
 {
-    public NinjaCurrency(NinjaExchangeLine line, NinjaExchangeOverview result)
+    public NinjaCurrency(ApiExchangeLine line, ApiExchangeOverview result)
     {
         Id = line.Id;
         LastUpdated = result.LastUpdated;
@@ -18,6 +18,6 @@ public class NinjaCurrency
     public string? Id { get; set; }
     public DateTimeOffset LastUpdated { get; set; }
     public List<NinjaCurrencyTrade> Trades { get; set; } = [];
-    public NinjaSparkline? Sparkline { get; set; }
+    public ApiSparkline? Sparkline { get; set; }
     public required Uri? DetailsUrl { get; set; }
 }

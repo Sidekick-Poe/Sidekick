@@ -3,7 +3,7 @@
 @using Sidekick.Apis.PoeNinja.Exchange
 @using Sidekick.Game.Parser.Items
 
-@if (Item.InvariantDefinition?.NinjaExchange == null && (Item.InvariantDefinition?.NinjaItems == null || Item.InvariantDefinition?.NinjaItems.Count == 0))
+@if (Item.InvariantDefinition?.NinjaExchangeItem == null && (Item.InvariantDefinition?.NinjaStashItems == null || Item.InvariantDefinition?.NinjaStashItems.Count == 0))
 {
     return;
 }
@@ -50,17 +50,17 @@
     {
         await base.OnInitializedAsync();
 
-        if (Item.InvariantDefinition?.NinjaExchange != null)
+        if (Item.InvariantDefinition?.NinjaExchangeItem != null)
         {
             Loading = true;
             StateHasChanged();
 
-            Currency = await NinjaExchangeProvider.GetInfo(Item.InvariantDefinition.NinjaExchange);
+            Currency = await NinjaExchangeProvider.GetInfo(Item.InvariantDefinition.NinjaExchangeItem);
 
             Loading = false;
             StateHasChanged();
         }
-        else if (Item.InvariantDefinition?.NinjaItems != null && Item.InvariantDefinition.NinjaItems.Count > 0)
+        else if (Item.InvariantDefinition?.NinjaStashItems != null && Item.InvariantDefinition.NinjaStashItems.Count > 0)
         {
             Loading = true;
             StateHasChanged();

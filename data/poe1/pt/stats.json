@@ -22168,9 +22168,7 @@
       "explicit.stat_1190333629|58827",
       "explicit.stat_1190333629|61072",
       "explicit.stat_1190333629|61627",
-      "explicit.stat_1190333629|62595",
-      "explicit.stat_1190333629|6778",
-      "explicit.stat_1190333629|8656"
+      "explicit.stat_1190333629|62595"
     ],
     "pattern": "^Aloca\\ ([-0-9,.]\u002B)\\ se\\ voc\u00EA\\ possuir\\ o\\ modificador\\ correspondente\\ na\\ Carne\\ Proibida$"
   },
@@ -22187,18 +22185,14 @@
       "explicit.stat_2460506030|17988",
       "explicit.stat_2460506030|18335",
       "explicit.stat_2460506030|19083",
-      "explicit.stat_2460506030|21264",
-      "explicit.stat_2460506030|24848",
-      "explicit.stat_2460506030|27602",
       "explicit.stat_2460506030|44482",
       "explicit.stat_2460506030|48239",
       "explicit.stat_2460506030|55867",
       "explicit.stat_2460506030|56789",
       "explicit.stat_2460506030|58827",
+      "explicit.stat_2460506030|61072",
       "explicit.stat_2460506030|61627",
-      "explicit.stat_2460506030|62595",
-      "explicit.stat_2460506030|6778",
-      "explicit.stat_2460506030|8656"
+      "explicit.stat_2460506030|62595"
     ],
     "pattern": "^Aloca\\ ([-0-9,.]\u002B)\\ se\\ voc\u00EA\\ possuir\\ o\\ modificador\\ correspondente\\ na\\ Chama\\ Proibida$"
   },
@@ -34780,6 +34774,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -34795,6 +34790,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -34828,7 +34824,8 @@
     "text": "Chance de Cr\u00EDtico com Armadilhas aumentada em #%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^Chance\\ de\\ Cr\u00EDtico\\ com\\ Armadilhas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -34837,7 +34834,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1192661666"
+      "explicit.stat_1192661666",
+      "fractured.stat_1192661666"
     ],
     "pattern": "^Chance\\ de\\ Cr\u00EDtico\\ com\\ Armadilhas\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -34914,6 +34912,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -34929,6 +34928,7 @@
       "explicit.stat_1192661666",
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -35719,7 +35719,8 @@
     "text": "Chance de Golpe Cr\u00EDtico aumentada em #% por Marca",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^Chance\\ de\\ Golpe\\ Cr\u00EDtico\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ Marca$"
   },
@@ -36100,7 +36101,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2409504914"
+      "explicit.stat_2409504914",
+      "implicit.stat_2409504914"
     ],
     "pattern": "^Chance\\ de\\ Golpe\\ Cr\u00EDtico\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ por\\ Marca$"
   },
@@ -67237,7 +67239,8 @@
     "text": "Efeito de esfriamento em voc\u00EA \u00E9 invertido enquanto em ch\u00E3o congelado",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3440719546"
+      "explicit.stat_3440719546",
+      "fractured.stat_3440719546"
     ],
     "pattern": "^Efeito\\ de\\ esfriamento\\ em\\ voc\u00EA\\ \u00E9\\ invertido\\ enquanto\\ em\\ ch\u00E3o\\ congelado$"
   },
@@ -92626,8 +92629,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|2|27",
@@ -92635,9 +92636,6 @@
       "explicit.stat_4089743927|2|70",
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|118",
-      "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|36",
       "explicit.stat_4089743927|3|70",
@@ -94016,8 +94014,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|2|27",
@@ -94025,9 +94021,6 @@
       "explicit.stat_4089743927|2|70",
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|118",
-      "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|36",
       "explicit.stat_4089743927|3|70",
@@ -95406,8 +95399,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|2|27",
@@ -95415,9 +95406,6 @@
       "explicit.stat_4089743927|2|70",
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|118",
-      "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|36",
       "explicit.stat_4089743927|3|70",
@@ -95849,10 +95837,9 @@
   },
   {
     "text": "Gemas encaixadas recebem refor\u00E7o de Recupera\u00E7\u00E3o de Recarga n\u00EDvel #",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2475469642"
+      "explicit.stat_654335115"
     ],
     "pattern": "^Gemas\\ encaixadas\\ recebem\\ refor\u00E7o\\ de\\ Recupera\u00E7\u00E3o\\ de\\ Recarga\\ n\u00EDvel\\ ([-0-9,.]\u002B)$"
   },
@@ -100915,8 +100902,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|2|27",
@@ -100924,9 +100909,6 @@
       "explicit.stat_4089743927|2|70",
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|118",
-      "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|36",
       "explicit.stat_4089743927|3|70",
@@ -121451,7 +121433,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^Marca\\ da\\ Mar\u00E9\\ Invernal\\ tem\\ Efeito\\ de\\ Resfriamento\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -121461,7 +121444,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1831757355",
-      "explicit.stat_1831757355"
+      "explicit.stat_1831757355",
+      "implicit.stat_1831757355"
     ],
     "pattern": "^Marca\\ da\\ Mar\u00E9\\ Invernal\\ tem\\ Efeito\\ de\\ Resfriamento\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -148933,7 +148917,8 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3181879507",
-      "explicit.stat_3181879507"
+      "explicit.stat_3181879507",
+      "fractured.stat_3181879507"
     ],
     "pattern": "^Se\\ eletriza\\ por\\ ([-0-9,.]\u002B)\\ Segundos\\ ao\\ Focar$"
   },
@@ -149580,7 +149565,8 @@
     "text": "Sempre atinge inimigos em chamas",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_270993809"
+      "explicit.stat_270993809",
+      "fractured.stat_270993809"
     ],
     "pattern": "^Sempre\\ atinge\\ inimigos\\ em\\ chamas$"
   },
@@ -162405,7 +162391,8 @@
     "text": "Velocidade de Movimento aumentada em #% por cada Envenenamento em voc\u00EA at\u00E9 um m\u00E1ximo de 50%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^Velocidade\\ de\\ Movimento\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ Envenenamento\\ em\\ voc\u00EA\\ at\u00E9\\ um\\ m\u00E1ximo\\ de\\ 50%$"
   },
@@ -162967,7 +162954,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^Velocidade\\ de\\ Movimento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ para\\ cada\\ Envenenamento\\ em\\ voc\u00EA$"
   },
@@ -168005,7 +167993,8 @@
     "text": "\u002B#% ao Multiplicador de Cr\u00EDtico com Armadilhas",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1780168381"
+      "explicit.stat_1780168381",
+      "fractured.stat_1780168381"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ ao\\ Multiplicador\\ de\\ Cr\u00EDtico\\ com\\ Armadilhas$"
   },

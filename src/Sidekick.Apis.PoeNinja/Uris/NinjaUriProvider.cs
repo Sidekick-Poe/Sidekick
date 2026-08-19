@@ -4,7 +4,7 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
-using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Ninja;
 
 namespace Sidekick.Apis.PoeNinja.Uris;
 

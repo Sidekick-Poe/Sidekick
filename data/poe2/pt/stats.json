@@ -16317,7 +16317,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|31175",
       "enchant.stat_2954116742|31175",
-      "explicit.stat_2954116742|31175"
+      "explicit.stat_2954116742|31175",
+      "fractured.stat_2954116742|31175"
     ],
     "pattern": "^Atribui\\ Empunhadura\\ do\\ Mal$"
   },
@@ -20373,7 +20374,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|49356",
       "enchant.stat_2954116742|49356",
-      "explicit.stat_2954116742|49356"
+      "explicit.stat_2954116742|49356",
+      "fractured.stat_2954116742|49356"
     ],
     "pattern": "^Atribui\\ Primeiro\\ Princ\u00EDpio\\ do\\ Oco$"
   },
@@ -55341,7 +55343,9 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_999511066",
+      "desecrated.stat_1365232741",
       "desecrated.stat_999511066",
+      "explicit.stat_1365232741",
       "explicit.stat_999511066"
     ],
     "pattern": "^Dura\u00E7\u00E3o\\ de\\ carga\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -55366,7 +55370,9 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_999511066",
+      "desecrated.stat_1365232741",
       "desecrated.stat_999511066",
+      "explicit.stat_1365232741",
       "explicit.stat_999511066"
     ],
     "pattern": "^Dura\u00E7\u00E3o\\ de\\ carga\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -69564,17 +69570,17 @@
   },
   {
     "text": "Ganha 1 carga de frenesi com golpes cr\u00EDticos",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Ganha\\ 1\\ carga\\ de\\ frenesi\\ com\\ golpes\\ cr\u00EDticos$"
-  },
-  {
-    "text": "Ganha 1 carga de frenesi com golpes cr\u00EDticos",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
+    "pattern": "^Ganha\\ 1\\ carga\\ de\\ frenesi\\ com\\ golpes\\ cr\u00EDticos$"
+  },
+  {
+    "text": "Ganha 1 carga de frenesi com golpes cr\u00EDticos",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Ganha\\ 1\\ carga\\ de\\ frenesi\\ com\\ golpes\\ cr\u00EDticos$"
   },
   {
@@ -69762,17 +69768,17 @@
   },
   {
     "text": "Ganha 1 carga de poder com golpes n\u00E3o cr\u00EDticos",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Ganha\\ 1\\ carga\\ de\\ poder\\ com\\ golpes\\ n\u00E3o\\ cr\u00EDticos$"
-  },
-  {
-    "text": "Ganha 1 carga de poder com golpes n\u00E3o cr\u00EDticos",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
+    "pattern": "^Ganha\\ 1\\ carga\\ de\\ poder\\ com\\ golpes\\ n\u00E3o\\ cr\u00EDticos$"
+  },
+  {
+    "text": "Ganha 1 carga de poder com golpes n\u00E3o cr\u00EDticos",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Ganha\\ 1\\ carga\\ de\\ poder\\ com\\ golpes\\ n\u00E3o\\ cr\u00EDticos$"
   },
   {
@@ -95670,12 +95676,15 @@
       "desecrated.stat_3196512240",
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
-      "fractured.stat_3514984677"
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ dano\\ aumentadas\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -126537,7 +126546,8 @@
     "text": "Recupera\u00E7\u00E3o contra atordoamento aumentada em #%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2511217560"
+      "explicit.stat_2511217560",
+      "rune.stat_2511217560"
     ],
     "pattern": "^Recupera\u00E7\u00E3o\\ contra\\ atordoamento\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -126558,7 +126568,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2511217560"
+      "explicit.stat_2511217560",
+      "rune.stat_2511217560"
     ],
     "pattern": "^Recupera\u00E7\u00E3o\\ contra\\ atordoamento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -126813,7 +126824,8 @@
     "text": "Recupera\u00E7\u00E3o de vida aumentada em #% enquanto seu companheiro estiver em sua presen\u00E7a",
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1779262102"
+      "rune.stat_1779262102",
+      "rune.stat_2122116143"
     ],
     "pattern": "^Recupera\u00E7\u00E3o\\ de\\ vida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ seu\\ companheiro\\ estiver\\ em\\ sua\\ presen\u00E7a$"
   },
@@ -128907,12 +128919,6 @@
   },
   {
     "text": "Requisito de Intelig\u00EAncia aumentado em #%",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Requisito\\ de\\ Intelig\u00EAncia\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Requisito de Intelig\u00EAncia aumentado em #%",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -128920,6 +128926,12 @@
       "implicit.stat_2153364323",
       "rune.stat_2153364323"
     ],
+    "pattern": "^Requisito\\ de\\ Intelig\u00EAncia\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Requisito de Intelig\u00EAncia aumentado em #%",
+    "lines": 1,
+    "tradeIds": [],
     "pattern": "^Requisito\\ de\\ Intelig\u00EAncia\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -129622,7 +129634,8 @@
     "text": "Resist\u00EAncia-limite a atordoamento dobrado enquanto o escudo estiver levantado",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3686997387"
+      "explicit.stat_3686997387",
+      "rune.stat_3686997387"
     ],
     "pattern": "^Resist\u00EAncia-limite\\ a\\ atordoamento\\ dobrado\\ enquanto\\ o\\ escudo\\ estiver\\ levantado$"
   },
@@ -137326,7 +137339,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2156230257",
       "explicit.stat_4012215578"
     ],
     "pattern": "^Todo\\ o\\ dano\\ dos\\ ataques\\ contribui\\ para\\ a\\ intensidade\\ de\\ esfriamento$"
@@ -142592,7 +142604,9 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3091578504",
+      "explicit.stat_174664100",
       "explicit.stat_3091578504",
+      "fractured.stat_174664100",
       "fractured.stat_3091578504",
       "rune.stat_3091578504"
     ],
@@ -142605,7 +142619,9 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3091578504",
+      "explicit.stat_174664100",
       "explicit.stat_3091578504",
+      "fractured.stat_174664100",
       "fractured.stat_3091578504",
       "rune.stat_3091578504"
     ],
@@ -147615,6 +147631,22 @@
       "rune.stat_96906928"
     ],
     "pattern": "^Vinculado:\\ Dura\u00E7\u00E3o\\ do\\ sangramento\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Vinculado: Dura\u00E7\u00E3o dos congelamentos em voc\u00EA reduzida em #%",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_2861770798"
+    ],
+    "pattern": "^Vinculado:\\ Dura\u00E7\u00E3o\\ dos\\ congelamentos\\ em\\ voc\u00EA\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Vinculado: Dura\u00E7\u00E3o dos esfriamentos em voc\u00EA reduzida em #%",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_2174462855"
+    ],
+    "pattern": "^Vinculado:\\ Dura\u00E7\u00E3o\\ dos\\ esfriamentos\\ em\\ voc\u00EA\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Vinculado: Dura\u00E7\u00E3o dos inc\u00EAndios em inimigos aumentada em #%",
@@ -153800,11 +153832,17 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3035140377",
+      "desecrated.stat_1202301673",
+      "desecrated.stat_1992191903",
       "explicit.stat_1078455967",
+      "explicit.stat_1202301673",
+      "explicit.stat_1992191903",
       "explicit.stat_3035140377",
       "explicit.stat_448592698|221",
       "explicit.stat_599749213",
       "explicit.stat_67169579",
+      "fractured.stat_1202301673",
+      "fractured.stat_1992191903",
       "fractured.stat_3035140377",
       "implicit.stat_1078455967"
     ],
@@ -154025,8 +154063,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1078455967",
       "explicit.stat_1147690586",
       "explicit.stat_67169579",
+      "implicit.stat_1078455967",
       "rune.stat_1147690586"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ f\u00EDsicas$"
@@ -165909,7 +165949,9 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3309089125",
-      "explicit.stat_3309089125"
+      "desecrated.stat_3592067990",
+      "explicit.stat_3309089125",
+      "explicit.stat_3592067990"
     ],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ ([-0-9,.]\u002B)\\ grupos\\ de\\ monstros\\ venenosos\\ adicionais$"
   },

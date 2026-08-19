@@ -3,7 +3,7 @@ using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
-using NinjaExchangeItem = Sidekick.Game.ItemDefinitions.NinjaExchangeItem;
+using Sidekick.Game.Ninja;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaExchangeProvider(
@@ -31,7 +31,7 @@ public class NinjaExchangeProvider(
         // This is the case for Path of Exile 1's Chaos Orb. It is the main comparison currency, but is absent from the lines.
         if (line == null && exchange.Type == "Currency" && result.Core.Primary == exchange.Id)
         {
-            line = new NinjaExchangeLine()
+            line = new ApiExchangeLine()
             {
                 Id = exchange.Id,
                 PrimaryValue = 1,
@@ -46,7 +46,7 @@ public class NinjaExchangeProvider(
         };
     }
 
-    private async Task<NinjaExchangeOverview?> GetExchangeResult(string type)
+    private async Task<ApiExchangeOverview?> GetExchangeResult(string type)
     {
         var result = await GetOrUpdateCache();
         if (!await CheckCacheIsValid(type, result))
@@ -56,7 +56,7 @@ public class NinjaExchangeProvider(
 
         return result;
 
-        async Task<NinjaExchangeOverview?> GetOrUpdateCache()
+        async Task<ApiExchangeOverview?> GetOrUpdateCache()
         {
             var cacheKey = await GetCacheKey(type);
             return await cacheProvider.GetOrSet(cacheKey, async () =>
@@ -70,7 +70,7 @@ public class NinjaExchangeProvider(
                     },
                 };
 
-                var response = await ninjaClient.Fetch<NinjaExchangeOverview>(game, "economy/exchange/current/overview", query);
+                var response = await ninjaClient.Fetch<ApiExchangeOverview>(game, "economy/exchange/current/overview", query);
                 if (response == null) return new();
 
                 response.LastUpdated = DateTimeOffset.Now;
@@ -79,7 +79,7 @@ public class NinjaExchangeProvider(
         }
     }
 
-    private async Task<bool> CheckCacheIsValid(string type, NinjaExchangeOverview? result = null)
+    private async Task<bool> CheckCacheIsValid(string type, ApiExchangeOverview? result = null)
     {
         var lastUpdate = result?.LastUpdated ?? DateTimeOffset.MinValue;
         var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(1);

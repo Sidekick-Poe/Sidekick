@@ -210,10 +210,10 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<(decimal Value, NinjaSparkline? SparkLine)?> GetItemPrice(GameType game, ApiItem item)
+    private async Task<(decimal Value, ApiSparkline? SparkLine)?> GetItemPrice(GameType game, ApiItem item)
     {
         decimal price = 0;
-        NinjaSparkline? sparkLine = null;
+        ApiSparkline? sparkLine = null;
         var itemDefinition = itemDefinitionParser.GetInvariant(item.Rarity, item.TypeLine, item.Name);
         if (itemDefinition == null)
         {
@@ -221,9 +221,9 @@ internal class WealthProvider
             return (price, sparkLine);
         }
 
-        if (itemDefinition.NinjaExchange != null)
+        if (itemDefinition.NinjaExchangeItem != null)
         {
-            var info = await ninjaExchangeProvider.GetInfo(itemDefinition.NinjaExchange);
+            var info = await ninjaExchangeProvider.GetInfo(itemDefinition.NinjaExchangeItem);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
             sparkLine = info?.Sparkline;
         }

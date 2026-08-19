@@ -3,7 +3,7 @@ namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaCurrencyTrade
 {
-    public NinjaCurrencyTrade(NinjaExchangeLine line, NinjaExchangeCore core, string? exchangeId)
+    public NinjaCurrencyTrade(ApiExchangeLine line, ApiExchangeCore core, string? exchangeId)
     {
         decimal rate = 1;
         if (exchangeId != null && core.Rates.TryGetValue(exchangeId, out var coreRate)) rate = coreRate;

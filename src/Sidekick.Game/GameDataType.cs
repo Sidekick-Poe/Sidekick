@@ -16,6 +16,12 @@ public enum GameDataType
     [EnumValue("{0}/item-classes.json")]
     ItemClasses,
 
+    [EnumValue("ninja-exchange-items.json")]
+    NinjaExchangeItems,
+
+    [EnumValue("ninja-stash-items.json")]
+    NinjaStashItems,
+
     [EnumValue("invariant-stats.json")]
     StatsInvariant,
 

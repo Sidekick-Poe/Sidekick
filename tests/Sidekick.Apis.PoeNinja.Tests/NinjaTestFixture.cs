@@ -39,7 +39,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
 
     public void AssertStash(Item item, string expectedDetailsId)
     {
-        if (item.InvariantDefinition?.NinjaItems == null || item.InvariantDefinition.NinjaItems.All(x => x.DetailsId != expectedDetailsId))
+        if (item.InvariantDefinition?.NinjaStashItems == null || item.InvariantDefinition.NinjaStashItems.All(x => x.DetailsId != expectedDetailsId))
         {
             Logger.LogWarning($"Item {item.Name} {item.Type} does not have expected details id {expectedDetailsId}");
             return;

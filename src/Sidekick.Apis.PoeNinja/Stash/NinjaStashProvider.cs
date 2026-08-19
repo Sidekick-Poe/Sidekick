@@ -7,6 +7,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
 using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Ninja;
 using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
@@ -39,7 +40,7 @@ public class NinjaStashProvider(
 
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return FilterUniqueItems(item.InvariantDefinition.NinjaItems,
+            return FilterUniqueItems(item.InvariantDefinition.NinjaStashItems,
                                      item.Properties.Foulborn,
                                      item.Properties.GetMaximumNumberOfLinks(),
                                      item.Stats);
@@ -47,7 +48,7 @@ public class NinjaStashProvider(
 
         if (item.Properties.MapTier > 0 || IsMap(item.ItemClass.Id))
         {
-            return FilterMapItems(item.InvariantDefinition.NinjaItems,
+            return FilterMapItems(item.InvariantDefinition.NinjaStashItems,
                                   item.InvariantDefinition.Name,
                                   item.Properties.MapTier,
                                   item.Stats);
@@ -55,7 +56,7 @@ public class NinjaStashProvider(
 
         if (item.Properties.GemLevel > 0)
         {
-            return FilterGems(item.InvariantDefinition.NinjaItems,
+            return FilterGems(item.InvariantDefinition.NinjaStashItems,
                               item.Properties.Corrupted,
                               item.Properties.GemLevel,
                               item.Properties.Quality);
@@ -63,7 +64,7 @@ public class NinjaStashProvider(
 
         if (IsClusterJewel(item.InvariantDefinition.Name))
         {
-            return FilterClusterJewels(item.InvariantDefinition.NinjaItems,
+            return FilterClusterJewels(item.InvariantDefinition.NinjaStashItems,
                                        item.Properties.ItemLevel,
                                        item.Stats);
 
@@ -71,10 +72,10 @@ public class NinjaStashProvider(
 
         if (item.InvariantDefinition.TradeItems?.FirstOrDefault()?.Category == "monster")
         {
-            return FilterBeastiaryMonsters(item.InvariantDefinition.NinjaItems);
+            return FilterBeastiaryMonsters(item.InvariantDefinition.NinjaStashItems);
         }
 
-        return FilterBaseTypes(item.InvariantDefinition.NinjaItems,
+        return FilterBaseTypes(item.InvariantDefinition.NinjaStashItems,
                                item.Properties.ItemLevel,
                                item.Properties.Influences);
     }
@@ -96,7 +97,7 @@ public class NinjaStashProvider(
 
         if (apiItem.Rarity == Rarity.Unique)
         {
-            return FilterUniqueItems(item.NinjaItems,
+            return FilterUniqueItems(item.NinjaStashItems,
                                      apiItem.Mutated,
                                      apiItem.MaxLinks,
                                      stats);
@@ -104,7 +105,7 @@ public class NinjaStashProvider(
 
         if (apiItem.GemLevel > 0)
         {
-            return FilterGems(item.NinjaItems,
+            return FilterGems(item.NinjaStashItems,
                               apiItem.Corrupted,
                               apiItem.GemLevel.Value,
                               apiItem.Quality.GetValueOrDefault());
@@ -112,7 +113,7 @@ public class NinjaStashProvider(
 
         if (IsClusterJewel(item.Name))
         {
-            return FilterClusterJewels(item.NinjaItems,
+            return FilterClusterJewels(item.NinjaStashItems,
                                        apiItem.ItemLevel,
                                        stats);
 
@@ -120,7 +121,7 @@ public class NinjaStashProvider(
 
         if (apiItem.MapTier > 0 || item.BaseItems.Any(x => IsMap(x.ItemClassId)))
         {
-            return FilterMapItems(item.NinjaItems,
+            return FilterMapItems(item.NinjaStashItems,
                                   item.Name,
                                   apiItem.MapTier,
                                   stats);
@@ -128,10 +129,10 @@ public class NinjaStashProvider(
 
         if (item.TradeItems?.FirstOrDefault()?.Category == "monster")
         {
-            return FilterBeastiaryMonsters(item.NinjaItems);
+            return FilterBeastiaryMonsters(item.NinjaStashItems);
         }
 
-        return FilterBaseTypes(item.NinjaItems,
+        return FilterBaseTypes(item.NinjaStashItems,
                                apiItem.ItemLevel,
                                apiItem.Influences);
     }
@@ -400,7 +401,7 @@ public class NinjaStashProvider(
         }
     }
 
-    private async Task<NinjaStashOverview?> GetResult(string type)
+    private async Task<ApiStashOverview?> GetResult(string type)
     {
         var result = await GetOrUpdateCache();
         if (!await CheckCacheIsValid(type, result))
@@ -410,7 +411,7 @@ public class NinjaStashProvider(
 
         return result;
 
-        async Task<NinjaStashOverview?> GetOrUpdateCache()
+        async Task<ApiStashOverview?> GetOrUpdateCache()
         {
             var cacheKey = await GetCacheKey(type);
             return await cacheProvider.GetOrSet(cacheKey, async () =>
@@ -423,7 +424,7 @@ public class NinjaStashProvider(
                     },
                 };
 
-                var response = await ninjaClient.Fetch<NinjaStashOverview>(game, "economy/stash/current/item/overview", query);
+                var response = await ninjaClient.Fetch<ApiStashOverview>(game, "economy/stash/current/item/overview", query);
                 if (response == null) return new();
 
                 response.LastUpdated = DateTimeOffset.Now;
@@ -432,7 +433,7 @@ public class NinjaStashProvider(
         }
     }
 
-    private async Task<bool> CheckCacheIsValid(string type, NinjaStashOverview? result = null)
+    private async Task<bool> CheckCacheIsValid(string type, ApiStashOverview? result = null)
     {
         var lastUpdate = result?.LastUpdated ?? DateTimeOffset.MinValue;
         var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(2);

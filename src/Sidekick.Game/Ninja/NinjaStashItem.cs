@@ -1,11 +1,11 @@
-﻿namespace Sidekick.Game.ItemDefinitions;
+﻿namespace Sidekick.Game.Ninja;
 
 public class NinjaStashItem
 {
     public required string Type { get; init; }
     public required string Url { get; init; }
+    public required string DetailsId { get; init; }
 
-    public string? DetailsId { get; init; }
     public bool Corrupted { get; init; }
     public bool Foulborn { get; init; }
     public int? GemLevel { get; init; }
@@ -19,6 +19,6 @@ public class NinjaStashItem
 
     public override string ToString()
     {
-        return DetailsId ?? string.Empty;
+        return DetailsId;
     }
 }
