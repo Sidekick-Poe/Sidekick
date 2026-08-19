@@ -5902,18 +5902,18 @@
   },
   {
     "text": "Aplicas exposici\u00F3n al impactar",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Aplicas\\ exposici\u00F3n\\ al\\ impactar$"
+  },
+  {
+    "text": "Aplicas exposici\u00F3n al impactar",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3005701891",
       "explicit.stat_3602667353"
     ],
-    "pattern": "^Aplicas\\ exposici\u00F3n\\ al\\ impactar$"
-  },
-  {
-    "text": "Aplicas exposici\u00F3n al impactar",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Aplicas\\ exposici\u00F3n\\ al\\ impactar$"
   },
   {
@@ -39746,8 +39746,12 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3668351662",
+      "desecrated.stat_3824372849",
       "explicit.stat_3668351662",
-      "fractured.stat_3668351662"
+      "explicit.stat_3824372849",
+      "fractured.stat_3668351662",
+      "fractured.stat_3824372849",
+      "rune.stat_3824372849"
     ],
     "pattern": "^Duraci\u00F3n\\ de\\ la\\ provocaci\u00F3n\\ aumentada\\ un\\ ([-0-9,.]\u002B)%$"
   },
@@ -39758,8 +39762,12 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3668351662",
+      "desecrated.stat_3824372849",
       "explicit.stat_3668351662",
-      "fractured.stat_3668351662"
+      "explicit.stat_3824372849",
+      "fractured.stat_3668351662",
+      "fractured.stat_3824372849",
+      "rune.stat_3824372849"
     ],
     "pattern": "^Duraci\u00F3n\\ de\\ la\\ provocaci\u00F3n\\ reducida\\ un\\ ([-0-9,.]\u002B)%$"
   },
@@ -47677,7 +47685,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3198708642",
       "explicit.stat_3205239847",
       "explicit.stat_425242359"
     ],
@@ -52545,9 +52552,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3592067990",
       "desecrated.stat_4181857719",
-      "explicit.stat_3592067990",
       "explicit.stat_4181857719"
     ],
     "pattern": "^El\\ \u00E1rea\\ contiene\\ ([-0-9,.]\u002B)\\ grupos\\ adicionales\\ de\\ monstruos\\ que\\ se\\ curan$"
@@ -63389,17 +63394,17 @@
   },
   {
     "text": "Ganas una carga de aguante al infligir un impacto cr\u00EDtico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ infligir\\ un\\ impacto\\ cr\u00EDtico$"
+  },
+  {
+    "text": "Ganas una carga de aguante al infligir un impacto cr\u00EDtico",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ infligir\\ un\\ impacto\\ cr\u00EDtico$"
-  },
-  {
-    "text": "Ganas una carga de aguante al infligir un impacto cr\u00EDtico",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ infligir\\ un\\ impacto\\ cr\u00EDtico$"
   },
   {
@@ -63419,17 +63424,17 @@
   },
   {
     "text": "Ganas una carga de aguante al matar",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ matar$"
+  },
+  {
+    "text": "Ganas una carga de aguante al matar",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1453197917"
     ],
-    "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ matar$"
-  },
-  {
-    "text": "Ganas una carga de aguante al matar",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganas\\ una\\ carga\\ de\\ aguante\\ al\\ matar$"
   },
   {
@@ -63581,17 +63586,17 @@
   },
   {
     "text": "Ganas una carga de frasco cuando infliges un impacto cr\u00EDtico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganas\\ una\\ carga\\ de\\ frasco\\ cuando\\ infliges\\ un\\ impacto\\ cr\u00EDtico$"
+  },
+  {
+    "text": "Ganas una carga de frasco cuando infliges un impacto cr\u00EDtico",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Ganas\\ una\\ carga\\ de\\ frasco\\ cuando\\ infliges\\ un\\ impacto\\ cr\u00EDtico$"
-  },
-  {
-    "text": "Ganas una carga de frasco cuando infliges un impacto cr\u00EDtico",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganas\\ una\\ carga\\ de\\ frasco\\ cuando\\ infliges\\ un\\ impacto\\ cr\u00EDtico$"
   },
   {
@@ -63634,6 +63639,12 @@
   },
   {
     "text": "Ganas una carga de frenes\u00ED al infligir un impacto cr\u00EDtico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganas\\ una\\ carga\\ de\\ frenes\u00ED\\ al\\ infligir\\ un\\ impacto\\ cr\u00EDtico$"
+  },
+  {
+    "text": "Ganas una carga de frenes\u00ED al infligir un impacto cr\u00EDtico",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -63642,10 +63653,10 @@
     "pattern": "^Ganas\\ una\\ carga\\ de\\ frenes\u00ED\\ al\\ infligir\\ un\\ impacto\\ cr\u00EDtico$"
   },
   {
-    "text": "Ganas una carga de frenes\u00ED al infligir un impacto cr\u00EDtico",
+    "text": "Ganas una carga de frenes\u00ED al matar",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ganas\\ una\\ carga\\ de\\ frenes\u00ED\\ al\\ infligir\\ un\\ impacto\\ cr\u00EDtico$"
+    "pattern": "^Ganas\\ una\\ carga\\ de\\ frenes\u00ED\\ al\\ matar$"
   },
   {
     "text": "Ganas una carga de frenes\u00ED al matar",
@@ -63654,12 +63665,6 @@
     "tradeIds": [
       "explicit.stat_1453197917"
     ],
-    "pattern": "^Ganas\\ una\\ carga\\ de\\ frenes\u00ED\\ al\\ matar$"
-  },
-  {
-    "text": "Ganas una carga de frenes\u00ED al matar",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganas\\ una\\ carga\\ de\\ frenes\u00ED\\ al\\ matar$"
   },
   {
@@ -102648,7 +102653,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "sanctum.stat_2207905451",
       "sanctum.stat_3554921410"
     ],
     "pattern": "^Los\\ guardias\\ infligen\\ el\\ da\u00F1o\\ aumentado\\ un\\ ([-0-9,.]\u002B)%$"
@@ -102659,7 +102663,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "sanctum.stat_2207905451",
       "sanctum.stat_3554921410"
     ],
     "pattern": "^Los\\ guardias\\ infligen\\ el\\ da\u00F1o\\ reducido\\ un\\ ([-0-9,.]\u002B)%$"
@@ -119415,8 +119418,11 @@
     "text": "Magnitudes de los modificadores de vida expl\u00EDcitos aumentadas un #%",
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3514984677",
       "desecrated.stat_363924732",
+      "explicit.stat_3514984677",
       "explicit.stat_363924732",
+      "fractured.stat_3514984677",
       "fractured.stat_363924732"
     ],
     "pattern": "^Magnitudes\\ de\\ los\\ modificadores\\ de\\ vida\\ expl\u00EDcitos\\ aumentadas\\ un\\ ([-0-9,.]\u002B)%$"
@@ -125019,7 +125025,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "skill.parry",
       "skill.trinity"
     ],
     "pattern": "^Otorga\\ la\\ habilidad\\ Claridad\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
@@ -125051,7 +125056,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "skill.parry",
       "skill.reap",
       "skill.unique_earthbound_triggered_spark",
       "skill.unleash"
@@ -125418,7 +125422,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "skill.reap"
+      "skill.reap",
+      "skill.unique_earthbound_triggered_spark"
     ],
     "pattern": "^Otorga\\ la\\ habilidad\\ Odio\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
   },
@@ -125450,8 +125455,7 @@
     "lines": 1,
     "tradeIds": [
       "skill.parry",
-      "skill.reap",
-      "skill.unleash"
+      "skill.reap"
     ],
     "pattern": "^Otorga\\ la\\ habilidad\\ Plaga\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
   },
@@ -125496,7 +125500,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "skill.berserk",
       "skill.malice",
       "skill.parry",
       "skill.reap",
@@ -138348,6 +138351,12 @@
   },
   {
     "text": "Requisito de inteligencia aumentado un #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Requisito\\ de\\ inteligencia\\ aumentado\\ un\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Requisito de inteligencia aumentado un #%",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -138355,12 +138364,6 @@
       "implicit.stat_2153364323",
       "rune.stat_2153364323"
     ],
-    "pattern": "^Requisito\\ de\\ inteligencia\\ aumentado\\ un\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Requisito de inteligencia aumentado un #%",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Requisito\\ de\\ inteligencia\\ aumentado\\ un\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -141564,7 +141567,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_2017682521",
       "explicit.stat_1714706956",
+      "explicit.stat_2017682521",
       "fractured.stat_1714706956"
     ],
     "pattern": "^Tama\u00F1o\\ de\\ los\\ grupos\\ de\\ monstruos\\ sintetizados\\ aumentado\\ un\\ ([-0-9,.]\u002B)%$"
@@ -162963,18 +162968,18 @@
   },
   {
     "text": "#% de probabilidad de aplicar exposici\u00F3n al impactar",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ aplicar\\ exposici\u00F3n\\ al\\ impactar$"
+  },
+  {
+    "text": "#% de probabilidad de aplicar exposici\u00F3n al impactar",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3005701891",
       "explicit.stat_3602667353"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ aplicar\\ exposici\u00F3n\\ al\\ impactar$"
-  },
-  {
-    "text": "#% de probabilidad de aplicar exposici\u00F3n al impactar",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ aplicar\\ exposici\u00F3n\\ al\\ impactar$"
   },
   {

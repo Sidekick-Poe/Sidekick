@@ -21621,6 +21621,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1190333629|12597",
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|55867",
       "explicit.stat_1190333629|5819",
@@ -39480,6 +39481,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "implicit.stat_3761858151",
       "implicit.stat_3935031607"
     ],
     "pattern": "^Da\u00F1o\\ degenerativo\\ con\\ habilidades\\ de\\ hechizos\\ aumentado\\ un\\ ([-0-9,.]\u002B)%$"
@@ -39490,6 +39492,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "implicit.stat_3761858151",
       "implicit.stat_3935031607"
     ],
     "pattern": "^Da\u00F1o\\ degenerativo\\ con\\ habilidades\\ de\\ hechizos\\ reducido\\ un\\ ([-0-9,.]\u002B)%$"
@@ -52592,6 +52595,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1736172673",
       "explicit.stat_1898978455",
       "fractured.stat_1898978455"
     ],
@@ -61468,8 +61472,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_779592324",
-      "explicit.stat_866391849"
+      "explicit.stat_779592324"
     ],
     "pattern": "^En\\ los\\ atracos,\\ los\\ Orbes\\ de\\ alquimia\\ caen\\ como\\ Orbes\\ exaltados$"
   },
@@ -63646,22 +63649,28 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_139925400",
       "enchant.stat_1450978702",
       "enchant.stat_168308685",
       "enchant.stat_1740848995",
+      "enchant.stat_2665518524",
       "enchant.stat_3059700363",
       "enchant.stat_3395872960",
       "enchant.stat_3411256933",
       "enchant.stat_3563089138",
       "enchant.stat_4216444167",
+      "explicit.stat_139925400",
       "explicit.stat_1450978702",
       "explicit.stat_168308685",
+      "explicit.stat_2665518524",
       "explicit.stat_3059700363",
       "explicit.stat_3395872960",
       "explicit.stat_3411256933",
       "explicit.stat_4216444167",
+      "implicit.stat_139925400",
       "implicit.stat_1450978702",
       "implicit.stat_168308685",
+      "implicit.stat_2665518524",
       "implicit.stat_3411256933"
     ],
     "pattern": "^Estandarte\\ de\\ desaf\u00EDo\\ tiene\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ aumentada\\ un\\ ([-0-9,.]\u002B)%$"
@@ -63672,22 +63681,28 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_139925400",
       "enchant.stat_1450978702",
       "enchant.stat_168308685",
       "enchant.stat_1740848995",
+      "enchant.stat_2665518524",
       "enchant.stat_3059700363",
       "enchant.stat_3395872960",
       "enchant.stat_3411256933",
       "enchant.stat_3563089138",
       "enchant.stat_4216444167",
+      "explicit.stat_139925400",
       "explicit.stat_1450978702",
       "explicit.stat_168308685",
+      "explicit.stat_2665518524",
       "explicit.stat_3059700363",
       "explicit.stat_3395872960",
       "explicit.stat_3411256933",
       "explicit.stat_4216444167",
+      "implicit.stat_139925400",
       "implicit.stat_1450978702",
       "implicit.stat_168308685",
+      "implicit.stat_2665518524",
       "implicit.stat_3411256933"
     ],
     "pattern": "^Estandarte\\ de\\ desaf\u00EDo\\ tiene\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ reducida\\ un\\ ([-0-9,.]\u002B)%$"
@@ -63697,28 +63712,34 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1233806203",
+      "enchant.stat_139925400",
       "enchant.stat_1450978702",
-      "enchant.stat_1542765265",
       "enchant.stat_1740848995",
-      "enchant.stat_2189040439",
       "enchant.stat_2500442851",
+      "enchant.stat_2665518524",
       "enchant.stat_2668611054",
       "enchant.stat_3411256933",
       "enchant.stat_3563089138",
       "enchant.stat_3817220109",
       "enchant.stat_3819451758",
       "enchant.stat_3959101898",
+      "enchant.stat_3972739758",
       "enchant.stat_453778214",
+      "explicit.stat_139925400",
       "explicit.stat_1450978702",
-      "explicit.stat_1542765265",
-      "explicit.stat_2189040439",
       "explicit.stat_2500442851",
+      "explicit.stat_2665518524",
       "explicit.stat_3411256933",
       "explicit.stat_3817220109",
       "explicit.stat_3819451758",
       "explicit.stat_3959101898",
+      "implicit.stat_1233806203",
+      "implicit.stat_139925400",
       "implicit.stat_1450978702",
-      "implicit.stat_3411256933"
+      "implicit.stat_2665518524",
+      "implicit.stat_3411256933",
+      "implicit.stat_3972739758"
     ],
     "pattern": "^Estandarte\\ de\\ guerra\\ tiene\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ aumentada\\ un\\ ([-0-9,.]\u002B)%$"
   },
@@ -63728,28 +63749,34 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1233806203",
+      "enchant.stat_139925400",
       "enchant.stat_1450978702",
-      "enchant.stat_1542765265",
       "enchant.stat_1740848995",
-      "enchant.stat_2189040439",
       "enchant.stat_2500442851",
+      "enchant.stat_2665518524",
       "enchant.stat_2668611054",
       "enchant.stat_3411256933",
       "enchant.stat_3563089138",
       "enchant.stat_3817220109",
       "enchant.stat_3819451758",
       "enchant.stat_3959101898",
+      "enchant.stat_3972739758",
       "enchant.stat_453778214",
+      "explicit.stat_139925400",
       "explicit.stat_1450978702",
-      "explicit.stat_1542765265",
-      "explicit.stat_2189040439",
       "explicit.stat_2500442851",
+      "explicit.stat_2665518524",
       "explicit.stat_3411256933",
       "explicit.stat_3817220109",
       "explicit.stat_3819451758",
       "explicit.stat_3959101898",
+      "implicit.stat_1233806203",
+      "implicit.stat_139925400",
       "implicit.stat_1450978702",
-      "implicit.stat_3411256933"
+      "implicit.stat_2665518524",
+      "implicit.stat_3411256933",
+      "implicit.stat_3972739758"
     ],
     "pattern": "^Estandarte\\ de\\ guerra\\ tiene\\ la\\ eficiencia\\ de\\ la\\ reserva\\ de\\ man\u00E1\\ reducida\\ un\\ ([-0-9,.]\u002B)%$"
   },
@@ -63759,12 +63786,10 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
-      "enchant.stat_1542765265",
       "enchant.stat_168308685",
       "enchant.stat_1740848995",
       "enchant.stat_1920370417",
       "enchant.stat_2156140483",
-      "enchant.stat_2189040439",
       "enchant.stat_2668611054",
       "enchant.stat_3059700363",
       "enchant.stat_3395872960",
@@ -63773,11 +63798,9 @@
       "enchant.stat_4216444167",
       "enchant.stat_453778214",
       "explicit.stat_1450978702",
-      "explicit.stat_1542765265",
       "explicit.stat_168308685",
       "explicit.stat_1920370417",
       "explicit.stat_2156140483",
-      "explicit.stat_2189040439",
       "explicit.stat_3059700363",
       "explicit.stat_3395872960",
       "explicit.stat_3411256933",
@@ -63797,12 +63820,10 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
-      "enchant.stat_1542765265",
       "enchant.stat_168308685",
       "enchant.stat_1740848995",
       "enchant.stat_1920370417",
       "enchant.stat_2156140483",
-      "enchant.stat_2189040439",
       "enchant.stat_2668611054",
       "enchant.stat_3059700363",
       "enchant.stat_3395872960",
@@ -63811,11 +63832,9 @@
       "enchant.stat_4216444167",
       "enchant.stat_453778214",
       "explicit.stat_1450978702",
-      "explicit.stat_1542765265",
       "explicit.stat_168308685",
       "explicit.stat_1920370417",
       "explicit.stat_2156140483",
-      "explicit.stat_2189040439",
       "explicit.stat_3059700363",
       "explicit.stat_3395872960",
       "explicit.stat_3411256933",
@@ -83104,8 +83123,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1866583932",
-      "explicit.stat_2116100988",
-      "explicit.stat_2127532091",
       "explicit.stat_2755724036",
       "explicit.stat_2854183975",
       "explicit.stat_3111091501",
@@ -84706,7 +84723,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_137115575",
-      "explicit.stat_2505291583",
       "implicit.stat_1967040409"
     ],
     "pattern": "^Las\\ habilidades\\ de\\ estandarte\\ tienen\\ el\\ \u00E1rea\\ de\\ efecto\\ aumentada\\ un\\ ([-0-9,.]\u002B)%$"
@@ -84718,7 +84734,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_137115575",
-      "explicit.stat_2505291583",
       "implicit.stat_1967040409"
     ],
     "pattern": "^Las\\ habilidades\\ de\\ estandarte\\ tienen\\ el\\ \u00E1rea\\ de\\ efecto\\ reducida\\ un\\ ([-0-9,.]\u002B)%$"
@@ -87438,6 +87453,10 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|90",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
@@ -88834,6 +88853,10 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|90",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
@@ -90230,6 +90253,10 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|90",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
@@ -91734,6 +91761,10 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|90",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
+      "explicit.stat_4089743927|4|12",
+      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
@@ -109398,7 +109429,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2263557454",
       "explicit.stat_2810822634",
+      "explicit.stat_3017211510",
       "explicit.stat_316950976",
       "explicit.stat_3866432319",
       "explicit.stat_723578929",
@@ -136063,8 +136096,10 @@
     "text": "Probabilidad de golpe cr\u00EDtico con habilidades de caos aumentada un #%",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1104796138",
       "explicit.stat_1186596295",
       "explicit.stat_3337344042",
+      "fractured.stat_1104796138",
       "fractured.stat_1186596295",
       "fractured.stat_3337344042"
     ],
@@ -144197,9 +144232,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_908516597",
-      "explicit.stat_952897668",
-      "fractured.stat_908516597"
+      "explicit.stat_2656696317",
+      "explicit.stat_952897668"
     ],
     "pattern": "^Regeneras\\ un\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ por\\ segundo\\ mientras\\ est\u00E1s\\ quieto$"
   },
@@ -146851,7 +146885,6 @@
   },
   {
     "text": "Solo afecta a las pasivas en un anillo peque\u00F1o",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3642528642|1"
@@ -146860,6 +146893,7 @@
   },
   {
     "text": "Solo afecta a las pasivas en un anillo peque\u00F1o",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3642528642|1"
@@ -172632,8 +172666,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_938645499",
-      "fractured.stat_938645499",
-      "implicit.stat_2907896585"
+      "fractured.stat_938645499"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ atenuar\\ el\\ da\u00F1o\\ de\\ hechizos\\ mientras\\ portas\\ un\\ escudo$"
   },
@@ -177245,8 +177278,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_779592324",
-      "explicit.stat_866391849"
+      "explicit.stat_779592324"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ que\\ los\\ Orbes\\ de\\ alquimia\\ caigan\\ como\\ Orbes\\ exaltados\\ dentro\\ de\\ los\\ atracos$"
   },

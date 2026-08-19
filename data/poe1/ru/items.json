@@ -2306,6 +2306,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAtzirisArsenal"
     ],
+    "ninjaExchange": "atziris-arsenal",
     "exchangeId": "atziris-arsenal",
     "name": "\u0410\u0440\u0441\u0435\u043D\u0430\u043B \u0410\u0442\u0437\u0438\u0440\u0438",
     "tradeItems": [
@@ -2792,6 +2793,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheTower"
     ],
+    "ninjaExchange": "the-tower",
     "exchangeId": "the-tower",
     "name": "\u0411\u0430\u0448\u043D\u044F",
     "tradeItems": [
@@ -2859,6 +2861,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheFathomlessDepths"
     ],
+    "ninjaExchange": "the-fathomless-depths",
     "exchangeId": "the-fathomless-depths",
     "name": "\u0411\u0435\u0437\u0434\u043E\u043D\u043D\u044B\u0435 \u0433\u043B\u0443\u0431\u0438\u043D\u044B",
     "tradeItems": [
@@ -3159,7 +3162,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardEndlessNight"
     ],
-    "ninjaExchange": "endless-night",
     "exchangeId": "endless-night",
     "name": "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u0430\u044F \u043D\u043E\u0447\u044C",
     "tradeItems": [
@@ -3189,6 +3191,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardEverChanging"
     ],
+    "ninjaExchange": "ever-changing",
     "exchangeId": "ever-changing",
     "name": "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0435 \u043F\u0435\u0440\u0435\u043C\u0435\u043D\u044B",
     "tradeItems": [
@@ -3290,6 +3293,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheRuthlessCeinture"
     ],
+    "ninjaExchange": "the-ruthless-ceinture",
     "exchangeId": "the-ruthless-ceinture",
     "name": "\u0411\u0435\u0441\u043F\u043E\u0449\u0430\u0434\u043D\u044B\u0439 \u0440\u0435\u043C\u0435\u043D\u044C",
     "tradeItems": [
@@ -3425,7 +3429,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheRabidRhoa"
     ],
-    "ninjaExchange": "the-rabid-rhoa",
     "exchangeId": "the-rabid-rhoa",
     "name": "\u0411\u0435\u0448\u0435\u043D\u044B\u0439 \u0420\u043E\u0430",
     "tradeItems": [
@@ -3812,6 +3815,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheTwins"
     ],
+    "ninjaExchange": "the-twins",
     "exchangeId": "the-twins",
     "name": "\u0411\u043B\u0438\u0437\u043D\u0435\u0446\u044B",
     "tradeItems": [
@@ -4366,7 +4370,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceGreed2"
     ],
-    "ninjaExchange": "muttering-essence-of-greed",
     "exchangeId": "muttering-essence-of-greed",
     "name": "\u0411\u043E\u0440\u043C\u043E\u0447\u0443\u0449\u0430\u044F \u0441\u0443\u0449\u043D\u043E\u0441\u0442\u044C \u0436\u0430\u0434\u043D\u043E\u0441\u0442\u0438",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9HcmVlZDIiLCJzY2FsZSI6MX1d/66dcbcfe6c/Greed2.png",
@@ -4414,6 +4417,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceHatred2"
     ],
+    "ninjaExchange": "muttering-essence-of-hatred",
     "exchangeId": "muttering-essence-of-hatred",
     "name": "\u0411\u043E\u0440\u043C\u043E\u0447\u0443\u0449\u0430\u044F \u0441\u0443\u0449\u043D\u043E\u0441\u0442\u044C \u043D\u0435\u043D\u0430\u0432\u0438\u0441\u0442\u0438",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQyIiwic2NhbGUiOjF9XQ/cb37284b43/Hatred2.png",
@@ -4429,7 +4433,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceSorrow1"
     ],
-    "ninjaExchange": "muttering-essence-of-sorrow",
     "exchangeId": "muttering-essence-of-sorrow",
     "name": "\u0411\u043E\u0440\u043C\u043E\u0447\u0443\u0449\u0430\u044F \u0441\u0443\u0449\u043D\u043E\u0441\u0442\u044C \u043F\u0435\u0447\u0430\u043B\u0438",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9Tb3Jyb3cyIiwic2NhbGUiOjF9XQ/d4fa234cf8/Sorrow2.png",
@@ -7917,6 +7920,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceAnguish1"
     ],
+    "ninjaExchange": "wailing-essence-of-anguish",
     "exchangeId": "wailing-essence-of-anguish",
     "name": "\u0412\u043E\u043F\u044F\u0449\u0430\u044F \u0441\u0443\u0449\u043D\u043E\u0441\u0442\u044C \u0433\u043E\u0440\u044F",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9Bbmd1aXNoNCIsInNjYWxlIjoxfV0/b0116a21e3/Anguish4.png",
@@ -8012,7 +8016,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceLoathing1"
     ],
-    "ninjaExchange": "wailing-essence-of-loathing",
     "exchangeId": "wailing-essence-of-loathing",
     "name": "\u0412\u043E\u043F\u044F\u0449\u0430\u044F \u0441\u0443\u0449\u043D\u043E\u0441\u0442\u044C \u043E\u0442\u0432\u0440\u0430\u0449\u0435\u043D\u0438\u044F",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9Mb2F0aGluZzQiLCJzY2FsZSI6MX1d/77278edd37/Loathing4.png",
@@ -8585,7 +8588,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheScarredMeadow"
     ],
-    "ninjaExchange": "the-scarred-meadow",
     "exchangeId": "the-scarred-meadow",
     "name": "\u0412\u044B\u0433\u043E\u0440\u0435\u0432\u0448\u0438\u0439 \u043B\u0443\u0433",
     "tradeItems": [
@@ -8615,7 +8617,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheSurvivalist"
     ],
-    "ninjaExchange": "the-survivalist",
     "exchangeId": "the-survivalist",
     "name": "\u0412\u044B\u0436\u0438\u0432\u0448\u0438\u0439",
     "tradeItems": [
@@ -9545,7 +9546,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheHunger"
     ],
-    "ninjaExchange": "the-hunger",
     "exchangeId": "the-hunger",
     "name": "\u0413\u043E\u043B\u043E\u0434",
     "tradeItems": [
@@ -9734,6 +9734,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBurningBlood"
     ],
+    "ninjaExchange": "burning-blood",
     "exchangeId": "burning-blood",
     "name": "\u0413\u043E\u0440\u044F\u0449\u0430\u044F \u043A\u0440\u043E\u0432\u044C",
     "tradeItems": [
@@ -10316,6 +10317,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheMetalsmithsGift"
     ],
+    "ninjaExchange": "the-metalsmiths-gift",
     "exchangeId": "the-metalsmiths-gift",
     "name": "\u0414\u0430\u0440 \u043A\u0443\u0437\u043D\u0435\u0446\u0430",
     "tradeItems": [
@@ -10619,7 +10621,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheGentleman"
     ],
-    "ninjaExchange": "the-gentleman",
     "exchangeId": "the-gentleman",
     "name": "\u0414\u0436\u0435\u043D\u0442\u043B\u044C\u043C\u0435\u043D",
     "tradeItems": [
@@ -11035,6 +11036,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLongCon"
     ],
+    "ninjaExchange": "the-long-con",
     "exchangeId": "the-long-con",
     "name": "\u0414\u043E\u043B\u0433\u043E\u0435 \u0441\u043E\u0431\u0440\u0430\u043D\u0438\u0435",
     "tradeItems": [
@@ -12244,7 +12246,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardHerMask"
     ],
-    "ninjaExchange": "her-mask",
     "exchangeId": "her-mask",
     "name": "\u0415\u0451 \u043C\u0430\u0441\u043A\u0430",
     "tradeItems": [
@@ -12259,7 +12260,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardThirstForKnowledge"
     ],
-    "ninjaExchange": "thirst-for-knowledge",
     "exchangeId": "thirst-for-knowledge",
     "name": "\u0416\u0430\u0436\u0434\u0430 \u0437\u043D\u0430\u043D\u0438\u0439",
     "tradeItems": [
@@ -12739,7 +12739,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheSacrifice"
     ],
-    "ninjaExchange": "the-sacrifice",
     "exchangeId": "the-sacrifice",
     "name": "\u0416\u0435\u0440\u0442\u0432\u043E\u043F\u0440\u0438\u043D\u043E\u0448\u0435\u043D\u0438\u0435",
     "tradeItems": [
@@ -12918,6 +12917,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLunarisPriestess"
     ],
+    "ninjaExchange": "the-lunaris-priestess",
     "exchangeId": "the-lunaris-priestess",
     "name": "\u0416\u0440\u0438\u0446\u0430 \u041B\u0443\u043D\u0430\u0440\u0438\u0441",
     "tradeItems": [
@@ -13257,7 +13257,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardGraveKnowledge"
     ],
-    "ninjaExchange": "grave-knowledge",
     "exchangeId": "grave-knowledge",
     "name": "\u0417\u0430\u0433\u0440\u043E\u0431\u043D\u043E\u0435 \u0437\u043D\u0430\u043D\u0438\u0435",
     "tradeItems": [
@@ -14150,6 +14149,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardLostWorlds"
     ],
+    "ninjaExchange": "lost-worlds",
     "exchangeId": "lost-worlds",
     "name": "\u0417\u0430\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435 \u043C\u0438\u0440\u044B",
     "tradeItems": [
@@ -14946,6 +14946,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAFamiliarCall"
     ],
+    "ninjaExchange": "a-familiar-call",
     "exchangeId": "a-familiar-call",
     "name": "\u0417\u043D\u0430\u043A\u043E\u043C\u044B\u0439 \u0437\u043E\u0432",
     "tradeItems": [
@@ -16851,7 +16852,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheInoculated"
     ],
-    "ninjaExchange": "the-inoculated",
     "exchangeId": "the-inoculated",
     "name": "\u0418\u043D\u043E\u043A\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439",
     "tradeItems": [
@@ -20587,6 +20587,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheKingsBlade"
     ],
+    "ninjaExchange": "the-kings-blade",
     "exchangeId": "the-kings-blade",
     "name": "\u041A\u043B\u0438\u043D\u043E\u043A \u0412\u0435\u043D\u0446\u0435\u043D\u043E\u0441\u0446\u0430",
     "tradeItems": [
@@ -22872,6 +22873,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBones"
     ],
+    "ninjaExchange": "the-bones",
     "exchangeId": "the-bones",
     "name": "\u041A\u043E\u0441\u0442\u0438",
     "tradeItems": [
@@ -23848,6 +23850,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheRabbitsFoot"
     ],
+    "ninjaExchange": "the-rabbits-foot",
     "exchangeId": "the-rabbits-foot",
     "name": "\u041A\u0440\u043E\u043B\u0438\u0447\u044C\u044F \u043B\u0430\u043F\u043A\u0430",
     "tradeItems": [
@@ -24491,7 +24494,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAzureRage"
     ],
-    "ninjaExchange": "azure-rage",
     "exchangeId": "azure-rage",
     "name": "\u041B\u0430\u0437\u0443\u0440\u043D\u0430\u044F \u044F\u0440\u043E\u0441\u0442\u044C",
     "tradeItems": [
@@ -25138,6 +25140,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheFoxInTheBrambles"
     ],
+    "ninjaExchange": "the-fox-in-the-brambles",
     "exchangeId": "the-fox-in-the-brambles",
     "name": "\u041B\u0438\u0441 \u0432 \u0442\u0435\u0440\u043D\u043E\u0432\u043D\u0438\u043A\u0435",
     "tradeItems": [
@@ -25208,6 +25211,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLich"
     ],
+    "ninjaExchange": "the-lich",
     "exchangeId": "the-lich",
     "name": "\u041B\u0438\u0447",
     "tradeItems": [
@@ -25700,7 +25704,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLover"
     ],
-    "ninjaExchange": "the-lover",
     "exchangeId": "the-lover",
     "name": "\u041B\u044E\u0431\u043E\u0432\u043D\u0438\u043A",
     "tradeItems": [
@@ -27055,7 +27058,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBowyersDream"
     ],
-    "ninjaExchange": "bowyers-dream",
     "exchangeId": "bowyers-dream",
     "name": "\u041C\u0435\u0447\u0442\u0430 \u043B\u0443\u0447\u043D\u0438\u043A\u0430",
     "tradeItems": [
@@ -27446,6 +27448,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardSilenceAndFrost"
     ],
+    "ninjaExchange": "silence-and-frost",
     "exchangeId": "silence-and-frost",
     "name": "\u041C\u043E\u043B\u0447\u0430\u043D\u0438\u0435 \u0438 \u0445\u043B\u0430\u0434",
     "tradeItems": [
@@ -27635,7 +27638,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardScholarOfTheSeas"
     ],
-    "ninjaExchange": "scholar-of-the-seas",
     "exchangeId": "scholar-of-the-seas",
     "name": "\u041C\u043E\u0440\u0435\u043F\u043B\u0430\u0432\u0430\u0442\u0435\u043B\u044C",
     "tradeItems": [
@@ -28234,6 +28236,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardHope"
     ],
+    "ninjaExchange": "hope",
     "exchangeId": "hope-card",
     "name": "\u041D\u0430\u0434\u0435\u0436\u0434\u0430",
     "tradeItems": [
@@ -28426,7 +28429,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBrokenTruce"
     ],
-    "ninjaExchange": "broken-truce",
     "exchangeId": "broken-truce",
     "name": "\u041D\u0430\u0440\u0443\u0448\u0435\u043D\u043D\u043E\u0435 \u043F\u0435\u0440\u0435\u043C\u0438\u0440\u0438\u0435",
     "tradeItems": [
@@ -30005,7 +30007,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardDrapedInDreams"
     ],
-    "ninjaExchange": "draped-in-dreams",
     "exchangeId": "draped-in-dreams",
     "name": "\u041E\u0431\u043B\u0430\u0447\u0451\u043D\u043D\u044B\u0439 \u0432 \u043C\u0435\u0447\u0442\u044B",
     "tradeItems": [
@@ -31979,6 +31980,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyUpgradeToMagicShard"
     ],
+    "ninjaExchange": "transmutation-shard",
     "exchangeId": "transmutation-shard",
     "name": "\u041E\u0441\u043A\u043E\u043B\u043E\u043A \u043F\u0440\u0435\u0432\u0440\u0430\u0449\u0435\u043D\u0438\u044F",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9NYWdpY1NoYXJkIiwic2NhbGUiOjF9XQ/047a6fc903/CurrencyUpgradeToMagicShard.png",
@@ -32196,6 +32198,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardEchoesOfLove"
     ],
+    "ninjaExchange": "echoes-of-love",
     "exchangeId": "echoes-of-love",
     "name": "\u041E\u0442\u0433\u043E\u043B\u043E\u0441\u043A\u0438 \u043B\u044E\u0431\u0432\u0438",
     "tradeItems": [
@@ -32639,6 +32642,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheScavenger"
     ],
+    "ninjaExchange": "the-scavenger",
     "exchangeId": "the-scavenger",
     "name": "\u041F\u0430\u0434\u0430\u043B\u044C\u0449\u0438\u043A",
     "tradeItems": [
@@ -33915,7 +33919,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheIncantation"
     ],
-    "ninjaExchange": "the-incantation",
     "exchangeId": "the-incantation",
     "name": "\u041F\u0435\u0441\u043D\u043E\u043F\u0435\u043D\u0438\u0435",
     "tradeItems": [
@@ -38387,7 +38390,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTurnTheOtherCheek"
     ],
-    "ninjaExchange": "turn-the-other-cheek",
     "exchangeId": "turn-the-other-cheek",
     "name": "\u041F\u043E\u0434\u0441\u0442\u0430\u0432\u044C \u0434\u0440\u0443\u0433\u0443\u044E \u0449\u0451\u043A\u0443",
     "tradeItems": [
@@ -39417,7 +39419,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBeautyThroughDeath"
     ],
-    "ninjaExchange": "beauty-through-death",
     "exchangeId": "beauty-through-death",
     "name": "\u041F\u043E\u0441\u043C\u0435\u0440\u0442\u043D\u0430\u044F \u043A\u0440\u0430\u0441\u043E\u0442\u0430",
     "tradeItems": [
@@ -40066,6 +40067,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheArchmagesRightHand"
     ],
+    "ninjaExchange": "the-archmages-right-hand",
     "exchangeId": "the-archmages-right-hand",
     "name": "\u041F\u0440\u0430\u0432\u0430\u044F \u0440\u0443\u043A\u0430 \u0410\u0440\u0445\u0438\u043C\u0430\u0433\u0430",
     "tradeItems": [
@@ -40080,6 +40082,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardMightIsRight"
     ],
+    "ninjaExchange": "might-is-right",
     "exchangeId": "might-is-right",
     "name": "\u041F\u0440\u0430\u0432\u0434\u0430 \u0432 \u0441\u0438\u043B\u0435",
     "tradeItems": [
@@ -40352,6 +40355,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBetrayal"
     ],
+    "ninjaExchange": "the-betrayal",
     "exchangeId": "the-betrayal",
     "name": "\u041F\u0440\u0435\u0434\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E",
     "tradeItems": [
@@ -42066,6 +42070,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheStormcaller"
     ],
+    "ninjaExchange": "the-stormcaller",
     "exchangeId": "the-stormcaller",
     "name": "\u041F\u0440\u0438\u0437\u044B\u0432\u0430\u0442\u0435\u043B\u044C \u0431\u0443\u0440\u0438",
     "tradeItems": [
@@ -42965,7 +42970,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheVisionary"
     ],
-    "ninjaExchange": "the-visionary",
     "exchangeId": "the-visionary",
     "name": "\u041F\u0440\u043E\u0432\u0438\u0434\u0435\u0446",
     "tradeItems": [
@@ -42993,6 +42997,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheConduit"
     ],
+    "ninjaExchange": "the-conduit",
     "exchangeId": "the-conduit",
     "name": "\u041F\u0440\u043E\u0432\u043E\u0434\u043D\u0438\u043A",
     "tradeItems": [
@@ -43183,7 +43188,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardCursedWords"
     ],
-    "ninjaExchange": "cursed-words",
     "exchangeId": "cursed-words",
     "name": "\u041F\u0440\u043E\u043A\u043B\u044F\u0442\u044B\u0435 \u0441\u043B\u043E\u0432\u0430",
     "tradeItems": [
@@ -43198,7 +43202,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheCursedKing"
     ],
-    "ninjaExchange": "the-cursed-king",
     "exchangeId": "the-cursed-king",
     "name": "\u041F\u0440\u043E\u043A\u043B\u044F\u0442\u044B\u0439 \u043C\u043E\u043D\u0430\u0440\u0445",
     "tradeItems": [
@@ -43223,7 +43226,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheFletcher"
     ],
-    "ninjaExchange": "the-fletcher",
     "exchangeId": "the-fletcher",
     "name": "\u041F\u0440\u043E\u043D\u0437\u0430\u0442\u0435\u043B\u044C",
     "tradeItems": [
@@ -43526,6 +43528,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheStandoff"
     ],
+    "ninjaExchange": "the-standoff",
     "exchangeId": "the-standoff",
     "name": "\u041F\u0440\u043E\u0442\u0438\u0432\u043E\u0431\u043E\u0440\u0441\u0442\u0432\u043E",
     "tradeItems": [
@@ -45287,6 +45290,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardHuntersResolve"
     ],
+    "ninjaExchange": "hunters-resolve",
     "exchangeId": "hunters-resolve",
     "name": "\u0420\u0435\u0448\u0435\u043D\u0438\u0435 \u043E\u0445\u043E\u0442\u043D\u0438\u043A\u0430",
     "tradeItems": [
@@ -48732,6 +48736,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheSiren"
     ],
+    "ninjaExchange": "the-siren",
     "exchangeId": "the-siren",
     "name": "\u0421\u0438\u0440\u0435\u043D\u0430",
     "tradeItems": [
@@ -50515,6 +50520,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheHiveOfKnowledge"
     ],
+    "ninjaExchange": "the-hive-of-knowledge",
     "exchangeId": "the-hive-of-knowledge",
     "name": "\u0421\u043A\u043E\u043F\u0438\u0449\u0435 \u0437\u043D\u0430\u043D\u0438\u0439",
     "tradeItems": [
@@ -52634,7 +52640,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBuriedTreasure"
     ],
-    "ninjaExchange": "buried-treasure",
     "exchangeId": "buried-treasure",
     "name": "\u0421\u043F\u0440\u044F\u0442\u0430\u043D\u043D\u043E\u0435 \u0441\u043E\u043A\u0440\u043E\u0432\u0438\u0449\u0435",
     "tradeItems": [
@@ -53250,6 +53255,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheDreamland"
     ],
+    "ninjaExchange": "the-dreamland",
     "exchangeId": "the-dreamland",
     "name": "\u0421\u0442\u0440\u0430\u043D\u0430 \u0433\u0440\u0451\u0437",
     "tradeItems": [
@@ -56821,7 +56827,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBody"
     ],
-    "ninjaExchange": "the-body",
     "exchangeId": "the-body",
     "name": "\u0422\u0435\u043B\u043E",
     "tradeItems": [
@@ -56864,6 +56869,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheWolfsShadow"
     ],
+    "ninjaExchange": "the-wolfs-shadow",
     "exchangeId": "the-wolfs-shadow",
     "name": "\u0422\u0435\u043D\u044C \u0412\u043E\u043B\u043A\u0430",
     "tradeItems": [
@@ -59443,6 +59449,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheWolvenKingsBite"
     ],
+    "ninjaExchange": "the-wolven-kings-bite",
     "exchangeId": "the-wolven-kings-bite",
     "name": "\u0423\u043A\u0443\u0441 \u0412\u043E\u043B\u0447\u044C\u0435\u0433\u043E \u043A\u043E\u0440\u043E\u043B\u044F",
     "tradeItems": [
@@ -59763,7 +59770,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAssassinsFavour"
     ],
-    "ninjaExchange": "assassins-favour",
     "exchangeId": "assassins-favour",
     "name": "\u0423\u0441\u043B\u0443\u0433\u0430 \u0434\u0443\u0448\u0435\u0433\u0443\u0431\u0430",
     "tradeItems": [
@@ -59815,7 +59821,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardLantadorsLostLove"
     ],
-    "ninjaExchange": "lantadors-lost-love",
     "exchangeId": "lantadors-lost-love",
     "name": "\u0423\u0442\u0440\u0430\u0447\u0435\u043D\u043D\u0430\u044F \u043B\u044E\u0431\u043E\u0432\u044C \u041B\u0430\u043D\u0442\u0430\u0434\u043E\u0440\u0430",
     "tradeItems": [
@@ -60746,6 +60751,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBrittleEmperor"
     ],
+    "ninjaExchange": "the-brittle-emperor",
     "exchangeId": "the-brittle-emperor",
     "name": "\u0425\u0440\u0443\u043F\u043A\u0438\u0439 \u0438\u043C\u043F\u0435\u0440\u0430\u0442\u043E\u0440",
     "tradeItems": [
@@ -62109,6 +62115,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceHatred1"
     ],
+    "ninjaExchange": "whispering-essence-of-hatred",
     "exchangeId": "whispering-essence-of-hatred",
     "name": "\u0428\u0435\u043F\u0447\u0443\u0449\u0430\u044F \u0441\u0443\u0449\u043D\u043E\u0441\u0442\u044C \u043D\u0435\u043D\u0430\u0432\u0438\u0441\u0442\u0438",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQxIiwic2NhbGUiOjF9XQ/b22aed8024/Hatred1.png",
@@ -63430,6 +63437,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheEthereal"
     ],
+    "ninjaExchange": "the-ethereal",
     "exchangeId": "the-ethereal",
     "name": "\u042D\u0444\u0435\u043C\u0435\u0440\u043D\u043E\u0441\u0442\u044C",
     "tradeItems": [
@@ -66021,8 +66029,8 @@
     ],
     "ninjaStash": [
       "agnerod-east-imperial-staff-6l",
-      "agnerod-east-imperial-staff",
-      "agnerod-east-imperial-staff-5l"
+      "agnerod-east-imperial-staff-5l",
+      "agnerod-east-imperial-staff"
     ],
     "name": "Agnerod East",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff6unique.png",
@@ -66049,8 +66057,8 @@
     ],
     "ninjaStash": [
       "agnerod-south-imperial-staff-6l",
-      "agnerod-south-imperial-staff",
-      "agnerod-south-imperial-staff-5l"
+      "agnerod-south-imperial-staff-5l",
+      "agnerod-south-imperial-staff"
     ],
     "name": "Agnerod South",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff6unique.png",
@@ -66063,8 +66071,8 @@
     ],
     "ninjaStash": [
       "agnerod-west-imperial-staff-6l",
-      "agnerod-west-imperial-staff",
-      "agnerod-west-imperial-staff-5l"
+      "agnerod-west-imperial-staff-5l",
+      "agnerod-west-imperial-staff"
     ],
     "name": "Agnerod West",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff6unique.png",
@@ -66740,7 +66748,6 @@
     ],
     "ninjaStash": [
       "atziris-rule-judgement-staff-6l",
-      "atziris-rule-judgement-staff-5l",
       "atziris-rule-judgement-staff"
     ],
     "name": "Atziri\u0027s Rule",
@@ -66757,26 +66764,26 @@
       "atziris-splendour-armour-es-sacrificial-garb-6l",
       "atziris-splendour-armour-evasion-sacrificial-garb-6l",
       "atziris-splendour-armour-sacrificial-garb-6l",
-      "atziris-splendour-es-sacrificial-garb-6l",
       "atziris-splendour-armour-es-life-sacrificial-garb-6l",
       "atziris-splendour-evasion-sacrificial-garb-6l",
       "atziris-splendour-evasion-es-life-sacrificial-garb-6l",
       "atziris-splendour-armour-sacrificial-garb-5l",
       "atziris-splendour-armour-es-life-sacrificial-garb-5l",
+      "atziris-splendour-es-sacrificial-garb-6l",
       "atziris-splendour-evasion-es-sacrificial-garb-6l",
       "atziris-splendour-armour-evasion-es-sacrificial-garb-5l",
+      "atziris-splendour-evasion-sacrificial-garb-5l",
       "atziris-splendour-es-sacrificial-garb-5l",
       "atziris-splendour-evasion-es-sacrificial-garb-5l",
-      "atziris-splendour-evasion-sacrificial-garb-5l",
-      "atziris-splendour-armour-evasion-sacrificial-garb-5l",
       "atziris-splendour-armour-es-sacrificial-garb-5l",
-      "atziris-splendour-evasion-sacrificial-garb",
+      "atziris-splendour-armour-evasion-sacrificial-garb-5l",
       "atziris-splendour-armour-evasion-es-sacrificial-garb",
       "atziris-splendour-armour-evasion-sacrificial-garb",
       "atziris-splendour-armour-es-sacrificial-garb",
       "atziris-splendour-armour-sacrificial-garb",
       "atziris-splendour-es-sacrificial-garb",
       "atziris-splendour-evasion-es-sacrificial-garb",
+      "atziris-splendour-evasion-sacrificial-garb",
       "atziris-splendour-armour-es-life-sacrificial-garb",
       "atziris-splendour-evasion-es-life-sacrificial-garb"
     ],
@@ -68256,9 +68263,9 @@
       "UniqueJewel124"
     ],
     "ninjaStash": [
-      "combat-focus-viridian-jewel",
+      "combat-focus-crimson-jewel",
       "combat-focus-cobalt-jewel",
-      "combat-focus-crimson-jewel"
+      "combat-focus-viridian-jewel"
     ],
     "name": "Combat Focus",
     "image": "Art/2DItems/Jewels/ElementalHitCold.png",
@@ -69651,9 +69658,9 @@
       "UniqueStaff5"
     ],
     "ninjaStash": [
+      "dying-breath-iron-staff-5l",
       "dying-breath-iron-staff-6l",
-      "dying-breath-iron-staff",
-      "dying-breath-iron-staff-5l"
+      "dying-breath-iron-staff"
     ],
     "name": "Dying Breath",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/DyingBreath.png",
@@ -70231,8 +70238,8 @@
     ],
     "ninjaStash": [
       "farruls-fur-triumphant-lamellar-6l",
-      "farruls-fur-triumphant-lamellar-5l",
-      "farruls-fur-triumphant-lamellar"
+      "farruls-fur-triumphant-lamellar",
+      "farruls-fur-triumphant-lamellar-5l"
     ],
     "name": "Farrul\u0027s Fur",
     "image": "Art/2DItems/Armours/BodyArmours/TigerBodyArmour.png",
@@ -70293,8 +70300,8 @@
     ],
     "ninjaStash": [
       "femurs-of-the-saints-primordial-staff-6l",
-      "femurs-of-the-saints-primordial-staff",
-      "femurs-of-the-saints-primordial-staff-5l"
+      "femurs-of-the-saints-primordial-staff-5l",
+      "femurs-of-the-saints-primordial-staff"
     ],
     "name": "Femurs of the Saints",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/FemursoftheSaints.png",
@@ -72816,8 +72823,8 @@
     ],
     "ninjaStash": [
       "loreweave-elegant-ringmail-6l",
-      "loreweave-elegant-ringmail-5l",
-      "loreweave-elegant-ringmail"
+      "loreweave-elegant-ringmail",
+      "loreweave-elegant-ringmail-5l"
     ],
     "name": "Loreweave",
     "image": "Art/2DItems/Armours/BodyArmours/Loreweave.png",
@@ -74945,8 +74952,8 @@
       "AlternateArtUniqueReapersPursuit"
     ],
     "ninjaStash": [
-      "reapers-pursuit-shadow-axe-6l",
       "reapers-pursuit-shadow-axe-5l",
+      "reapers-pursuit-shadow-axe-6l",
       "reapers-pursuit-shadow-axe"
     ],
     "name": "Reaper\u0027s Pursuit",
@@ -75400,8 +75407,8 @@
     ],
     "ninjaStash": [
       "replica-duskdawn-maelstrom-staff-6l",
-      "replica-duskdawn-maelstrom-staff",
-      "replica-duskdawn-maelstrom-staff-5l"
+      "replica-duskdawn-maelstrom-staff-5l",
+      "replica-duskdawn-maelstrom-staff"
     ],
     "name": "Replica Duskdawn",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/SolarisLunarisStaff.png",
@@ -77257,8 +77264,8 @@
     ],
     "ninjaStash": [
       "sinvictas-mettle-ezomyte-axe-6l",
-      "sinvictas-mettle-ezomyte-axe-5l",
-      "sinvictas-mettle-ezomyte-axe"
+      "sinvictas-mettle-ezomyte-axe",
+      "sinvictas-mettle-ezomyte-axe-5l"
     ],
     "name": "Sinvicta\u0027s Mettle",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandAxes/SinvictasMettle.png",
@@ -78775,6 +78782,7 @@
       "UniqueStaff33"
     ],
     "ninjaStash": [
+      "the-burden-of-shadows-primordial-staff-6l",
       "the-burden-of-shadows-primordial-staff-5l",
       "the-burden-of-shadows-primordial-staff"
     ],
@@ -79333,8 +79341,8 @@
     ],
     "ninjaStash": [
       "the-golden-charlatan-lion-sword-6l",
-      "the-golden-charlatan-lion-sword",
-      "the-golden-charlatan-lion-sword-5l"
+      "the-golden-charlatan-lion-sword-5l",
+      "the-golden-charlatan-lion-sword"
     ],
     "name": "The Golden Charlatan",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandSwords/Faithstealer.png",
@@ -79633,7 +79641,6 @@
       "UniqueTwoHandSword16"
     ],
     "ninjaStash": [
-      "the-living-blade-ezomyte-blade-6l",
       "the-living-blade-ezomyte-blade"
     ],
     "name": "The Living Blade",
@@ -81730,8 +81737,8 @@
       "UniqueBodyStrInt1"
     ],
     "ninjaStash": [
-      "volls-protector-holy-chainmail-5l",
       "volls-protector-holy-chainmail-6l",
+      "volls-protector-holy-chainmail-5l",
       "volls-protector-holy-chainmail"
     ],
     "name": "Voll\u0027s Protector",

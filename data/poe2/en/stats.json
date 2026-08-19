@@ -15482,7 +15482,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447"
+      "explicit.stat_231864447",
+      "explicit.stat_2396719220"
     ],
     "pattern": "^Area\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Perandus\\ Chests$"
   },
@@ -16216,7 +16217,8 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447"
+      "explicit.stat_231864447",
+      "explicit.stat_2396719220"
     ],
     "pattern": "^Area\\ contains\\ an\\ additional\\ Perandus\\ Chest$"
   },
@@ -24758,8 +24760,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "implicit.stat_2055966527",
-      "rune.stat_368025119"
+      "implicit.stat_2055966527"
     ],
     "pattern": "^Bow\\ Attacks\\ cause\\ Bleeding$"
   },
@@ -24821,8 +24822,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "implicit.stat_2055966527",
-      "rune.stat_368025119"
+      "implicit.stat_2055966527"
     ],
     "pattern": "^Bow\\ Attacks\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ cause\\ Bleeding$"
   },
@@ -47748,17 +47748,17 @@
   },
   {
     "text": "Gain a Power Charge on Non-Critical Hit",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gain\\ a\\ Power\\ Charge\\ on\\ Non-Critical\\ Hit$"
+  },
+  {
+    "text": "Gain a Power Charge on Non-Critical Hit",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Gain\\ a\\ Power\\ Charge\\ on\\ Non-Critical\\ Hit$"
-  },
-  {
-    "text": "Gain a Power Charge on Non-Critical Hit",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Gain\\ a\\ Power\\ Charge\\ on\\ Non-Critical\\ Hit$"
   },
   {
@@ -48078,17 +48078,17 @@
   },
   {
     "text": "Gain an Endurance Charge on Critical Hit",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gain\\ an\\ Endurance\\ Charge\\ on\\ Critical\\ Hit$"
+  },
+  {
+    "text": "Gain an Endurance Charge on Critical Hit",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Gain\\ an\\ Endurance\\ Charge\\ on\\ Critical\\ Hit$"
-  },
-  {
-    "text": "Gain an Endurance Charge on Critical Hit",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Gain\\ an\\ Endurance\\ Charge\\ on\\ Critical\\ Hit$"
   },
   {
@@ -60232,7 +60232,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "sanctum.stat_1890519597",
       "sanctum.stat_199414195"
     ],
     "pattern": "^Labyrinth\\ Monsters\\ deal\\ ([-0-9,.]\u002B)%\\ increased\\ Damage$"
@@ -60243,7 +60242,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "sanctum.stat_1890519597",
       "sanctum.stat_199414195"
     ],
     "pattern": "^Labyrinth\\ Monsters\\ deal\\ ([-0-9,.]\u002B)%\\ reduced\\ Damage$"
@@ -116863,8 +116861,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466",
-      "explicit.stat_3049505189"
+      "explicit.stat_2440265466"
     ],
     "pattern": "^Your\\ Maps\\ which\\ contain\\ Breaches\\ contain\\ ten\\ additional\\ Breaches$"
   },
@@ -116901,8 +116898,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466",
-      "explicit.stat_3049505189"
+      "explicit.stat_2440265466"
     ],
     "pattern": "^Your\\ Maps\\ which\\ contain\\ Breaches\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ contain\\ ten\\ additional\\ Breaches$"
   },
@@ -130147,7 +130143,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_324210709",
       "desecrated.stat_3313255158",
+      "explicit.stat_324210709",
       "explicit.stat_3313255158"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ if\\ you\u0027ve\\ consumed\\ a\\ Frenzy\\ Charge\\ Recently$"
@@ -131600,17 +131598,17 @@
   },
   {
     "text": "#% increased Dexterity Requirement",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Dexterity\\ Requirement$"
+  },
+  {
+    "text": "#% increased Dexterity Requirement",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1133453872"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Dexterity\\ Requirement$"
-  },
-  {
-    "text": "#% increased Dexterity Requirement",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Dexterity\\ Requirement$"
   },
   {
@@ -133773,11 +133771,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Ailment\\ Modifier\\ magnitudes$"
@@ -133933,13 +133928,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
-      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Minion\\ Modifier\\ magnitudes$"
@@ -135765,6 +135757,7 @@
     "text": "#% increased Life Recovery Rate while your Companion is in your Presence",
     "lines": 1,
     "tradeIds": [
+      "rune.stat_1779262102",
       "rune.stat_2122116143"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Life\\ Recovery\\ Rate\\ while\\ your\\ Companion\\ is\\ in\\ your\\ Presence$"
@@ -141416,14 +141409,10 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_2974417149",
-      "crafted.stat_3291658075",
       "desecrated.stat_2974417149",
-      "desecrated.stat_3291658075",
       "enchant.stat_2974417149",
       "explicit.stat_2974417149",
-      "explicit.stat_3291658075",
       "fractured.stat_2974417149",
-      "fractured.stat_3291658075",
       "rune.stat_2974417149"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Spell\\ Cold\\ Damage$"
@@ -156173,7 +156162,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_324210709",
       "desecrated.stat_3313255158",
+      "explicit.stat_324210709",
       "explicit.stat_3313255158"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ if\\ you\u0027ve\\ consumed\\ a\\ Frenzy\\ Charge\\ Recently$"
@@ -159851,11 +159842,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Ailment\\ Modifier\\ magnitudes$"
@@ -160020,13 +160008,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
-      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Minion\\ Modifier\\ magnitudes$"
@@ -167442,14 +167427,10 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_2974417149",
-      "crafted.stat_3291658075",
       "desecrated.stat_2974417149",
-      "desecrated.stat_3291658075",
       "enchant.stat_2974417149",
       "explicit.stat_2974417149",
-      "explicit.stat_3291658075",
       "fractured.stat_2974417149",
-      "fractured.stat_3291658075",
       "rune.stat_2974417149"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Spell\\ Cold\\ Damage$"

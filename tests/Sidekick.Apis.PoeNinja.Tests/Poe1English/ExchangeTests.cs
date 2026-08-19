@@ -2,8 +2,8 @@
 using Xunit;
 namespace Sidekick.Apis.PoeNinja.Tests.Poe1English;
 
-[Collection(Collections.NinjaTestCollection)]
-public class ExchangeTests(NinjaTestFixture fixture)
+[Collection(Collections.NinjaPoe1TestCollection)]
+public class ExchangeTests(NinjaPoe1TestFixture fixture)
 {
     private readonly ItemParser parser = fixture.Parser;
 

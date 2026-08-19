@@ -32093,17 +32093,17 @@
   },
   {
     "text": "Gagnez Assaut pendant 4 secondes en Tuant",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gagnez\\ Assaut\\ pendant\\ 4\\ secondes\\ en\\ Tuant$"
+  },
+  {
+    "text": "Gagnez Assaut pendant 4 secondes en Tuant",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
     ],
-    "pattern": "^Gagnez\\ Assaut\\ pendant\\ 4\\ secondes\\ en\\ Tuant$"
-  },
-  {
-    "text": "Gagnez Assaut pendant 4 secondes en Tuant",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Gagnez\\ Assaut\\ pendant\\ 4\\ secondes\\ en\\ Tuant$"
   },
   {
@@ -32252,17 +32252,17 @@
   },
   {
     "text": "Gagnez une Charge d\u0027endurance sur une Touche critique",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gagnez\\ une\\ Charge\\ d\u0027endurance\\ sur\\ une\\ Touche\\ critique$"
+  },
+  {
+    "text": "Gagnez une Charge d\u0027endurance sur une Touche critique",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Gagnez\\ une\\ Charge\\ d\u0027endurance\\ sur\\ une\\ Touche\\ critique$"
-  },
-  {
-    "text": "Gagnez une Charge d\u0027endurance sur une Touche critique",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Gagnez\\ une\\ Charge\\ d\u0027endurance\\ sur\\ une\\ Touche\\ critique$"
   },
   {
@@ -40450,7 +40450,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447"
+      "explicit.stat_231864447",
+      "explicit.stat_2396719220"
     ],
     "pattern": "^La\\ Zone\\ contient\\ ([-0-9,.]\u002B)\\ Coffres\\ de\\ Perandus\\ suppl\u00E9mentaires$"
   },
@@ -40813,7 +40814,6 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3490187949",
-      "explicit.stat_1070816711",
       "explicit.stat_1468737867",
       "explicit.stat_3490187949"
     ],
@@ -41446,7 +41446,8 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447"
+      "explicit.stat_231864447",
+      "explicit.stat_2396719220"
     ],
     "pattern": "^La\\ Zone\\ contient\\ un\\ Coffre\\ de\\ Perandus\\ suppl\u00E9mentaire$"
   },
@@ -41586,7 +41587,6 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3490187949",
-      "explicit.stat_1070816711",
       "explicit.stat_1468737867",
       "explicit.stat_3490187949"
     ],
@@ -44257,6 +44257,12 @@
   },
   {
     "text": "Le Co\u00FBt en Mana des Aptitudes modifi\u00E9es est Converti en Co\u00FBt en Vie",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Le\\ Co\u00FBt\\ en\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ est\\ Converti\\ en\\ Co\u00FBt\\ en\\ Vie$"
+  },
+  {
+    "text": "Le Co\u00FBt en Mana des Aptitudes modifi\u00E9es est Converti en Co\u00FBt en Vie",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -44266,12 +44272,6 @@
       "fractured.stat_2480498143",
       "rune.stat_2480498143"
     ],
-    "pattern": "^Le\\ Co\u00FBt\\ en\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ est\\ Converti\\ en\\ Co\u00FBt\\ en\\ Vie$"
-  },
-  {
-    "text": "Le Co\u00FBt en Mana des Aptitudes modifi\u00E9es est Converti en Co\u00FBt en Vie",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Le\\ Co\u00FBt\\ en\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ est\\ Converti\\ en\\ Co\u00FBt\\ en\\ Vie$"
   },
   {
@@ -102593,7 +102593,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1570901920"
+      "rune.stat_1570901920",
+      "rune.stat_1936645603"
     ],
     "pattern": "^Rajoutez\\ ([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ Physiques\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ de\\ Chaos$"
   },
@@ -121663,6 +121664,17 @@
   {
     "text": "Vous perdez # de Vie par Ennemi Touch\u00E9",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_821021828",
+      "explicit.stat_821021828",
+      "fractured.stat_821021828"
+    ],
+    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Vie\\ par\\ Ennemi\\ Touch\u00E9$"
+  },
+  {
+    "text": "Vous perdez # de Vie par Ennemi Touch\u00E9",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -121672,17 +121684,6 @@
       "fractured.stat_3695891184",
       "implicit.stat_3695891184",
       "rune.stat_3695891184"
-    ],
-    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Vie\\ par\\ Ennemi\\ Touch\u00E9$"
-  },
-  {
-    "text": "Vous perdez # de Vie par Ennemi Touch\u00E9",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "desecrated.stat_821021828",
-      "explicit.stat_821021828",
-      "fractured.stat_821021828"
     ],
     "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)\\ de\\ Vie\\ par\\ Ennemi\\ Touch\u00E9$"
   },
@@ -169005,7 +169006,6 @@
   },
   {
     "text": "#% de chances de gagner Assaut pendant 4 secondes en Tuant",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
@@ -169014,6 +169014,7 @@
   },
   {
     "text": "#% de chances de gagner Assaut pendant 4 secondes en Tuant",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"

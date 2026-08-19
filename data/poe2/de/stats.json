@@ -72100,13 +72100,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
-      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^Magnituden\\ von\\ impliziten\\ Modifikatoren\\ sind\\ verdoppelt$"
@@ -72118,13 +72115,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
-      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^Magnituden\\ von\\ impliziten\\ Modifikatoren\\ sind\\ verdreifacht$"
@@ -78759,6 +78753,7 @@
     "tradeIds": [
       "explicit.stat_3076483222|32821",
       "explicit.stat_3076483222|38303",
+      "explicit.stat_3076483222|4897",
       "explicit.stat_3076483222|49977",
       "explicit.stat_3076483222|61382",
       "explicit.stat_3076483222|62634",
@@ -80276,17 +80271,17 @@
   },
   {
     "text": "Projektile durchbohren # zus\u00E4tzliche Ziele",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Projektile\\ durchbohren\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Ziele$"
+  },
+  {
+    "text": "Projektile durchbohren # zus\u00E4tzliche Ziele",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3423006863"
     ],
-    "pattern": "^Projektile\\ durchbohren\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Ziele$"
-  },
-  {
-    "text": "Projektile durchbohren # zus\u00E4tzliche Ziele",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Projektile\\ durchbohren\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Ziele$"
   },
   {
@@ -130517,13 +130512,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
-      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Magnituden\\ von\\ impliziten\\ Modifikatoren$"
@@ -154972,13 +154964,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
-      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Magnituden\\ von\\ impliziten\\ Modifikatoren$"

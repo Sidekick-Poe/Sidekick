@@ -112885,6 +112885,7 @@
     "lines": 1,
     "tradeIds": [
       "crucible.mod_36660",
+      "crucible.mod_47569",
       "crucible.mod_54710",
       "crucible.mod_59749",
       "crucible.mod_6400"
@@ -113066,6 +113067,7 @@
     "lines": 1,
     "tradeIds": [
       "crucible.mod_36660",
+      "crucible.mod_47569",
       "crucible.mod_54710",
       "crucible.mod_59749",
       "crucible.mod_6400"
@@ -157085,6 +157087,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_528422616",
       "explicit.stat_539970476",
       "fractured.stat_539970476"
     ],
@@ -157172,9 +157175,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_528422616",
-      "explicit.stat_539970476",
-      "fractured.stat_539970476"
+      "explicit.stat_528422616"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ \u0443\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435\\ \u0443\u0440\u043E\u043D\u0430\\ \u043E\u0442\\ \u0443\u0434\u0430\u0440\u043E\u0432\\ \u0438\\ \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0439\\ \u043F\u043E\\ \u0443\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u043C\\ \u0432\u0440\u0430\u0433\u0430\u043C$"
   },
@@ -158641,7 +158642,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2594215131",
       "explicit.stat_2769075491",
       "explicit.stat_3814560373",
       "explicit.stat_402920808",
@@ -169598,6 +169598,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_528422616",
       "explicit.stat_539970476",
       "fractured.stat_539970476"
     ],
@@ -169693,9 +169694,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_528422616",
-      "explicit.stat_539970476",
-      "fractured.stat_539970476"
+      "explicit.stat_528422616"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ \u0443\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435\\ \u0443\u0440\u043E\u043D\u0430\\ \u043E\u0442\\ \u0443\u0434\u0430\u0440\u043E\u0432\\ \u0438\\ \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0439\\ \u043F\u043E\\ \u0443\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u043C\\ \u0432\u0440\u0430\u0433\u0430\u043C$"
   },
@@ -171114,7 +171113,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2594215131",
       "explicit.stat_2769075491",
       "explicit.stat_3814560373",
       "explicit.stat_402920808",

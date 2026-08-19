@@ -77291,7 +77291,6 @@
   {
     "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 #% \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E1E\u0E34\u0E29 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E15\u0E34\u0E14",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1034580601"
@@ -77301,6 +77300,7 @@
   {
     "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 #% \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E1E\u0E34\u0E29 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E15\u0E34\u0E14",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1034580601"
@@ -117593,9 +117593,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_107",
-      "explicit.indexable_support_118",
-      "explicit.indexable_support_120",
       "explicit.indexable_support_140",
       "explicit.indexable_support_161",
       "explicit.indexable_support_171",
@@ -117609,21 +117606,15 @@
       "explicit.stat_1122134690",
       "explicit.stat_2062753054",
       "explicit.stat_2172297405",
-      "explicit.stat_2223640518",
-      "explicit.stat_2643665787",
       "explicit.stat_3370631451",
       "explicit.stat_369650395",
       "explicit.stat_3826977109",
-      "explicit.stat_3827538724",
       "explicit.stat_388696990",
       "explicit.stat_4082662318",
       "explicit.stat_794471597",
       "fractured.stat_1122134690",
-      "fractured.stat_2223640518",
       "fractured.stat_3826977109",
       "implicit.stat_2062753054",
-      "implicit.stat_2223640518",
-      "implicit.stat_2643665787",
       "implicit.stat_369650395"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Ward\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
@@ -126395,9 +126386,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2460506030|23169",
-      "explicit.stat_2460506030|30919",
-      "explicit.stat_2460506030|31700",
       "explicit.stat_2460506030|38180",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
@@ -126425,6 +126413,7 @@
       "explicit.stat_1190333629|39598",
       "explicit.stat_1190333629|39790",
       "explicit.stat_1190333629|4194",
+      "explicit.stat_1190333629|43122",
       "explicit.stat_1190333629|43195",
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|45313",

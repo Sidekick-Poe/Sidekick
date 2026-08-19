@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Tests.Poe1English;
+using Sidekick.Apis.Poe.Tests.Poe2English;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Stash;
@@ -13,7 +13,7 @@ using Xunit;
 
 namespace Sidekick.Apis.PoeNinja.Tests;
 
-public class NinjaTestFixture : Poe1EnglishFixture
+public class NinjaPoe2TestFixture : Poe2EnglishFixture
 {
     public INinjaExchangeProvider NinjaExchangeProvider { get; private set; } = null!;
     public INinjaStashProvider NinjaStashProvider { get; private set; } = null!;
@@ -27,7 +27,7 @@ public class NinjaTestFixture : Poe1EnglishFixture
         NinjaExchangeProvider = TestContext.Services.GetRequiredService<INinjaExchangeProvider>();
         NinjaStashProvider = TestContext.Services.GetRequiredService<INinjaStashProvider>();
         ItemDefinitionParser = TestContext.Services.GetRequiredService<ItemDefinitionParser>();
-        Logger = TestContext.Services.GetRequiredService<ILogger<NinjaTestFixture>>();
+        Logger = TestContext.Services.GetRequiredService<ILogger<NinjaPoe2TestFixture>>();
     }
 
     protected override void RegisterServices(IServiceCollection services)
