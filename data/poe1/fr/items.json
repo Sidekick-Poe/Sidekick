@@ -14314,7 +14314,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardDrapedInDreams"
     ],
-    "ninjaExchange": "draped-in-dreams",
     "exchangeId": "draped-in-dreams",
     "name": "Drap\u00E9 de r\u00EAves",
     "tradeItems": [
@@ -15495,6 +15494,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardEverChanging"
     ],
+    "ninjaExchange": "ever-changing",
     "exchangeId": "ever-changing",
     "name": "En Constante \u00E9volution",
     "tradeItems": [
@@ -15675,6 +15675,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLongCon"
     ],
+    "ninjaExchange": "the-long-con",
     "exchangeId": "the-long-con",
     "name": "Escroquerie \u00E0 long terme",
     "tradeItems": [
@@ -16415,7 +16416,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceGreed2"
     ],
-    "ninjaExchange": "muttering-essence-of-greed",
     "exchangeId": "muttering-essence-of-greed",
     "name": "Essence chuchotante d\u0027Avarice",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9HcmVlZDIiLCJzY2FsZSI6MX1d/66dcbcfe6c/Greed2.png",
@@ -16431,7 +16431,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceSorrow1"
     ],
-    "ninjaExchange": "muttering-essence-of-sorrow",
     "exchangeId": "muttering-essence-of-sorrow",
     "name": "Essence chuchotante de Chagrin",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9Tb3Jyb3cyIiwic2NhbGUiOjF9XQ/d4fa234cf8/Sorrow2.png",
@@ -16479,6 +16478,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceHatred2"
     ],
+    "ninjaExchange": "muttering-essence-of-hatred",
     "exchangeId": "muttering-essence-of-hatred",
     "name": "Essence chuchotante de Haine",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQyIiwic2NhbGUiOjF9XQ/cb37284b43/Hatred2.png",
@@ -16637,6 +16637,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceAnguish1"
     ],
+    "ninjaExchange": "wailing-essence-of-anguish",
     "exchangeId": "wailing-essence-of-anguish",
     "name": "Essence g\u00E9missante d\u0027Angoisse",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9Bbmd1aXNoNCIsInNjYWxlIjoxfV0/b0116a21e3/Anguish4.png",
@@ -16668,7 +16669,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceLoathing1"
     ],
-    "ninjaExchange": "wailing-essence-of-loathing",
     "exchangeId": "wailing-essence-of-loathing",
     "name": "Essence g\u00E9missante d\u0027Aversion",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9Mb2F0aGluZzQiLCJzY2FsZSI6MX1d/77278edd37/Loathing4.png",
@@ -17404,6 +17404,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceHatred1"
     ],
+    "ninjaExchange": "whispering-essence-of-hatred",
     "exchangeId": "whispering-essence-of-hatred",
     "name": "Essence murmurante de Haine",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQxIiwic2NhbGUiOjF9XQ/b22aed8024/Hatred1.png",
@@ -23391,6 +23392,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardSilenceAndFrost"
     ],
+    "ninjaExchange": "silence-and-frost",
     "exchangeId": "silence-and-frost",
     "name": "Givre et silence",
     "tradeItems": [
@@ -29230,7 +29232,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLover"
     ],
-    "ninjaExchange": "the-lover",
     "exchangeId": "the-lover",
     "name": "L\u0027Amant",
     "tradeItems": [
@@ -29305,7 +29306,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardLantadorsLostLove"
     ],
-    "ninjaExchange": "lantadors-lost-love",
     "exchangeId": "lantadors-lost-love",
     "name": "L\u0027Amour perdu de Lantador",
     "tradeItems": [
@@ -29425,6 +29425,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAtzirisArsenal"
     ],
+    "ninjaExchange": "atziris-arsenal",
     "exchangeId": "atziris-arsenal",
     "name": "L\u0027Arsenal d\u0027Atziri",
     "tradeItems": [
@@ -29512,7 +29513,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheSurvivalist"
     ],
-    "ninjaExchange": "the-survivalist",
     "exchangeId": "the-survivalist",
     "name": "L\u0027Aventurier",
     "tradeItems": [
@@ -29542,6 +29542,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBrittleEmperor"
     ],
+    "ninjaExchange": "the-brittle-emperor",
     "exchangeId": "the-brittle-emperor",
     "name": "L\u0027Empereur de verre",
     "tradeItems": [
@@ -29581,6 +29582,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheCraving"
     ],
+    "ninjaExchange": "the-craving",
     "exchangeId": "the-craving",
     "name": "L\u0027Envie",
     "tradeItems": [
@@ -29610,6 +29612,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardHope"
     ],
+    "ninjaExchange": "hope",
     "exchangeId": "hope-card",
     "name": "L\u0027Espoir",
     "tradeItems": [
@@ -29855,6 +29858,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheStandoff"
     ],
+    "ninjaExchange": "the-standoff",
     "exchangeId": "the-standoff",
     "name": "L\u0027Impasse",
     "tradeItems": [
@@ -29884,7 +29888,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheIncantation"
     ],
-    "ninjaExchange": "the-incantation",
     "exchangeId": "the-incantation",
     "name": "L\u0027Incantation",
     "tradeItems": [
@@ -29944,7 +29947,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheInoculated"
     ],
-    "ninjaExchange": "the-inoculated",
     "exchangeId": "the-inoculated",
     "name": "L\u0027Inocul\u00E9",
     "tradeItems": [
@@ -30059,6 +30061,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheWolfsShadow"
     ],
+    "ninjaExchange": "the-wolfs-shadow",
     "exchangeId": "the-wolfs-shadow",
     "name": "L\u0027Ombre du Loup",
     "tradeItems": [
@@ -30178,7 +30181,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheVisionary"
     ],
-    "ninjaExchange": "the-visionary",
     "exchangeId": "the-visionary",
     "name": "L\u0027Utopiste",
     "tradeItems": [
@@ -30326,7 +30328,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardScholarOfTheSeas"
     ],
-    "ninjaExchange": "scholar-of-the-seas",
     "exchangeId": "scholar-of-the-seas",
     "name": "L\u0027\u00C9rudit navigateur",
     "tradeItems": [
@@ -30356,6 +30357,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheEthereal"
     ],
+    "ninjaExchange": "the-ethereal",
     "exchangeId": "the-ethereal",
     "name": "L\u0027\u00C9th\u00E9r\u00E9",
     "tradeItems": [
@@ -30485,7 +30487,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBeautyThroughDeath"
     ],
-    "ninjaExchange": "beauty-through-death",
     "exchangeId": "beauty-through-death",
     "name": "La Beaut\u00E9 \u00E0 travers la mort",
     "tradeItems": [
@@ -30633,6 +30634,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheRuthlessCeinture"
     ],
+    "ninjaExchange": "the-ruthless-ceinture",
     "exchangeId": "the-ruthless-ceinture",
     "name": "La Ceinture impitoyable",
     "tradeItems": [
@@ -30798,6 +30800,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardHuntersResolve"
     ],
+    "ninjaExchange": "hunters-resolve",
     "exchangeId": "hunters-resolve",
     "name": "La D\u00E9termination du chasseur",
     "tradeItems": [
@@ -30835,7 +30838,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheHunger"
     ],
-    "ninjaExchange": "the-hunger",
     "exchangeId": "the-hunger",
     "name": "La Famine",
     "tradeItems": [
@@ -30865,7 +30867,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAssassinsFavour"
     ],
-    "ninjaExchange": "assassins-favour",
     "exchangeId": "assassins-favour",
     "name": "La Faveur\u00A0de l\u0027assassin",
     "tradeItems": [
@@ -30970,6 +30971,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardMightIsRight"
     ],
+    "ninjaExchange": "might-is-right",
     "exchangeId": "might-is-right",
     "name": "La Force prime le droit",
     "tradeItems": [
@@ -31152,6 +31154,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheKingsBlade"
     ],
+    "ninjaExchange": "the-kings-blade",
     "exchangeId": "the-kings-blade",
     "name": "La Lame du roi",
     "tradeItems": [
@@ -31166,6 +31169,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLich"
     ],
+    "ninjaExchange": "the-lich",
     "exchangeId": "the-lich",
     "name": "La Liche",
     "tradeItems": [
@@ -31225,6 +31229,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheArchmagesRightHand"
     ],
+    "ninjaExchange": "the-archmages-right-hand",
     "exchangeId": "the-archmages-right-hand",
     "name": "La Main droite de l\u0027Archimage",
     "tradeItems": [
@@ -31310,6 +31315,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheWolvenKingsBite"
     ],
+    "ninjaExchange": "the-wolven-kings-bite",
     "exchangeId": "the-wolven-kings-bite",
     "name": "La Morsure du Roi loup",
     "tradeItems": [
@@ -31350,6 +31356,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheRabbitsFoot"
     ],
+    "ninjaExchange": "the-rabbits-foot",
     "exchangeId": "the-rabbits-foot",
     "name": "La Patte de lapin",
     "tradeItems": [
@@ -31394,7 +31401,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheScarredMeadow"
     ],
-    "ninjaExchange": "the-scarred-meadow",
     "exchangeId": "the-scarred-meadow",
     "name": "La Prairie \u00E9corch\u00E9e",
     "tradeItems": [
@@ -31514,6 +31520,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheLunarisPriestess"
     ],
+    "ninjaExchange": "the-lunaris-priestess",
     "exchangeId": "the-lunaris-priestess",
     "name": "La Pr\u00EAtresse de Lunaris",
     "tradeItems": [
@@ -31673,6 +31680,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheHiveOfKnowledge"
     ],
+    "ninjaExchange": "the-hive-of-knowledge",
     "exchangeId": "the-hive-of-knowledge",
     "name": "La Ruche du savoir",
     "tradeItems": [
@@ -31762,6 +31770,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheSiren"
     ],
+    "ninjaExchange": "the-siren",
     "exchangeId": "the-siren",
     "name": "La Sir\u00E8ne",
     "tradeItems": [
@@ -31776,7 +31785,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardThirstForKnowledge"
     ],
-    "ninjaExchange": "thirst-for-knowledge",
     "exchangeId": "thirst-for-knowledge",
     "name": "La Soif de connaissance",
     "tradeItems": [
@@ -31935,6 +31943,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheTower"
     ],
+    "ninjaExchange": "the-tower",
     "exchangeId": "the-tower",
     "name": "La Tour",
     "tradeItems": [
@@ -31949,6 +31958,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBetrayal"
     ],
+    "ninjaExchange": "the-betrayal",
     "exchangeId": "the-betrayal",
     "name": "La Trahison",
     "tradeItems": [
@@ -33144,6 +33154,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheConduit"
     ],
+    "ninjaExchange": "the-conduit",
     "exchangeId": "the-conduit",
     "name": "Le Conduit",
     "tradeItems": [
@@ -33173,7 +33184,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBody"
     ],
-    "ninjaExchange": "the-body",
     "exchangeId": "the-body",
     "name": "Le Corps",
     "tradeItems": [
@@ -33474,6 +33484,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheScavenger"
     ],
+    "ninjaExchange": "the-scavenger",
     "exchangeId": "the-scavenger",
     "name": "Le D\u00E9peceur",
     "tradeItems": [
@@ -33529,7 +33540,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheFletcher"
     ],
-    "ninjaExchange": "the-fletcher",
     "exchangeId": "the-fletcher",
     "name": "Le Fl\u00E9chier",
     "tradeItems": [
@@ -33673,7 +33683,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheGentleman"
     ],
-    "ninjaExchange": "the-gentleman",
     "exchangeId": "the-gentleman",
     "name": "Le Gentleman",
     "tradeItems": [
@@ -33894,6 +33903,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheStormcaller"
     ],
+    "ninjaExchange": "the-stormcaller",
     "exchangeId": "the-stormcaller",
     "name": "Le Mande-foudre",
     "tradeItems": [
@@ -33938,7 +33948,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardHerMask"
     ],
-    "ninjaExchange": "her-mask",
     "exchangeId": "her-mask",
     "name": "Le Masque de la Reine",
     "tradeItems": [
@@ -34162,6 +34171,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheDreamland"
     ],
+    "ninjaExchange": "the-dreamland",
     "exchangeId": "the-dreamland",
     "name": "Le Pays des r\u00EAves",
     "tradeItems": [
@@ -34491,6 +34501,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheMetalsmithsGift"
     ],
+    "ninjaExchange": "the-metalsmiths-gift",
     "exchangeId": "the-metalsmiths-gift",
     "name": "Le Pr\u00E9sent du m\u00E9tallurgiste",
     "tradeItems": [
@@ -34578,6 +34589,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheFoxInTheBrambles"
     ],
+    "ninjaExchange": "the-fox-in-the-brambles",
     "exchangeId": "the-fox-in-the-brambles",
     "name": "Le Renard dans la ronci\u00E8re",
     "tradeItems": [
@@ -34607,7 +34619,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheRabidRhoa"
     ],
-    "ninjaExchange": "the-rabid-rhoa",
     "exchangeId": "the-rabid-rhoa",
     "name": "Le Rhoa rabique",
     "tradeItems": [
@@ -34667,7 +34678,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheCursedKing"
     ],
-    "ninjaExchange": "the-cursed-king",
     "exchangeId": "the-cursed-king",
     "name": "Le Roi maudit",
     "tradeItems": [
@@ -34721,7 +34731,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBowyersDream"
     ],
-    "ninjaExchange": "bowyers-dream",
     "exchangeId": "bowyers-dream",
     "name": "Le R\u00EAve du facteur d\u0027arcs",
     "tradeItems": [
@@ -34766,7 +34775,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheSacrifice"
     ],
-    "ninjaExchange": "the-sacrifice",
     "exchangeId": "the-sacrifice",
     "name": "Le Sacrifice",
     "tradeItems": [
@@ -34796,6 +34804,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBurningBlood"
     ],
+    "ninjaExchange": "burning-blood",
     "exchangeId": "burning-blood",
     "name": "Le Sang ardent",
     "tradeItems": [
@@ -34810,7 +34819,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardGraveKnowledge"
     ],
-    "ninjaExchange": "grave-knowledge",
     "exchangeId": "grave-knowledge",
     "name": "Le Savoir s\u00E9pulcral",
     "tradeItems": [
@@ -35042,7 +35050,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBuriedTreasure"
     ],
-    "ninjaExchange": "buried-treasure",
     "exchangeId": "buried-treasure",
     "name": "Le Tr\u00E9sor enterr\u00E9",
     "tradeItems": [
@@ -35337,6 +35344,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheTwins"
     ],
+    "ninjaExchange": "the-twins",
     "exchangeId": "the-twins",
     "name": "Les Jumelles",
     "tradeItems": [
@@ -35411,6 +35419,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardLostWorlds"
     ],
+    "ninjaExchange": "lost-worlds",
     "exchangeId": "lost-worlds",
     "name": "Les Mondes perdus",
     "tradeItems": [
@@ -35455,6 +35464,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheBones"
     ],
+    "ninjaExchange": "the-bones",
     "exchangeId": "the-bones",
     "name": "Les Ossements",
     "tradeItems": [
@@ -35571,6 +35581,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTheFathomlessDepths"
     ],
+    "ninjaExchange": "the-fathomless-depths",
     "exchangeId": "the-fathomless-depths",
     "name": "Les Tr\u00E9fonds insondables",
     "tradeItems": [
@@ -35668,6 +35679,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardEchoesOfLove"
     ],
+    "ninjaExchange": "echoes-of-love",
     "exchangeId": "echoes-of-love",
     "name": "Les \u00C9chos de l\u0027amour",
     "tradeItems": [
@@ -39125,7 +39137,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardEndlessNight"
     ],
-    "ninjaExchange": "endless-night",
     "exchangeId": "endless-night",
     "name": "Nuit \u00E9ternelle",
     "tradeItems": [
@@ -41192,7 +41203,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardCursedWords"
     ],
-    "ninjaExchange": "cursed-words",
     "exchangeId": "cursed-words",
     "name": "Paroles sibyllines",
     "tradeItems": [
@@ -45064,7 +45074,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAzureRage"
     ],
-    "ninjaExchange": "azure-rage",
     "exchangeId": "azure-rage",
     "name": "Rage azur",
     "tradeItems": [
@@ -58244,7 +58253,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardTurnTheOtherCheek"
     ],
-    "ninjaExchange": "turn-the-other-cheek",
     "exchangeId": "turn-the-other-cheek",
     "name": "Tendre l\u0027autre joue",
     "tradeItems": [
@@ -59286,7 +59294,6 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardBrokenTruce"
     ],
-    "ninjaExchange": "broken-truce",
     "exchangeId": "broken-truce",
     "name": "Tr\u00EAve bris\u00E9e",
     "tradeItems": [
@@ -59800,6 +59807,7 @@
     "baseItemIds": [
       "Metadata/Items/DivinationCards/DivinationCardAFamiliarCall"
     ],
+    "ninjaExchange": "a-familiar-call",
     "exchangeId": "a-familiar-call",
     "name": "Une Rengaine famili\u00E8re",
     "tradeItems": [
@@ -62502,6 +62510,7 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyUpgradeToMagicShard"
     ],
+    "ninjaExchange": "transmutation-shard",
     "exchangeId": "transmutation-shard",
     "name": "\u00C9clat de transmutation",
     "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9NYWdpY1NoYXJkIiwic2NhbGUiOjF9XQ/047a6fc903/CurrencyUpgradeToMagicShard.png",
@@ -66443,8 +66452,8 @@
     ],
     "ninjaStash": [
       "agnerod-east-imperial-staff-6l",
-      "agnerod-east-imperial-staff",
-      "agnerod-east-imperial-staff-5l"
+      "agnerod-east-imperial-staff-5l",
+      "agnerod-east-imperial-staff"
     ],
     "name": "Agnerod East",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff6unique.png",
@@ -66516,8 +66525,8 @@
     ],
     "ninjaStash": [
       "agnerod-south-imperial-staff-6l",
-      "agnerod-south-imperial-staff",
-      "agnerod-south-imperial-staff-5l"
+      "agnerod-south-imperial-staff-5l",
+      "agnerod-south-imperial-staff"
     ],
     "name": "Agnerod South",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff6unique.png",
@@ -66545,8 +66554,8 @@
     ],
     "ninjaStash": [
       "agnerod-west-imperial-staff-6l",
-      "agnerod-west-imperial-staff",
-      "agnerod-west-imperial-staff-5l"
+      "agnerod-west-imperial-staff-5l",
+      "agnerod-west-imperial-staff"
     ],
     "name": "Agnerod West",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff6unique.png",
@@ -67992,7 +68001,6 @@
     ],
     "ninjaStash": [
       "atziris-rule-judgement-staff-6l",
-      "atziris-rule-judgement-staff-5l",
       "atziris-rule-judgement-staff"
     ],
     "name": "Atziri\u0027s Rule",
@@ -68009,26 +68017,26 @@
       "atziris-splendour-armour-es-sacrificial-garb-6l",
       "atziris-splendour-armour-evasion-sacrificial-garb-6l",
       "atziris-splendour-armour-sacrificial-garb-6l",
-      "atziris-splendour-es-sacrificial-garb-6l",
       "atziris-splendour-armour-es-life-sacrificial-garb-6l",
       "atziris-splendour-evasion-sacrificial-garb-6l",
       "atziris-splendour-evasion-es-life-sacrificial-garb-6l",
       "atziris-splendour-armour-sacrificial-garb-5l",
       "atziris-splendour-armour-es-life-sacrificial-garb-5l",
+      "atziris-splendour-es-sacrificial-garb-6l",
       "atziris-splendour-evasion-es-sacrificial-garb-6l",
       "atziris-splendour-armour-evasion-es-sacrificial-garb-5l",
+      "atziris-splendour-evasion-sacrificial-garb-5l",
       "atziris-splendour-es-sacrificial-garb-5l",
       "atziris-splendour-evasion-es-sacrificial-garb-5l",
-      "atziris-splendour-evasion-sacrificial-garb-5l",
-      "atziris-splendour-armour-evasion-sacrificial-garb-5l",
       "atziris-splendour-armour-es-sacrificial-garb-5l",
-      "atziris-splendour-evasion-sacrificial-garb",
+      "atziris-splendour-armour-evasion-sacrificial-garb-5l",
       "atziris-splendour-armour-evasion-es-sacrificial-garb",
       "atziris-splendour-armour-evasion-sacrificial-garb",
       "atziris-splendour-armour-es-sacrificial-garb",
       "atziris-splendour-armour-sacrificial-garb",
       "atziris-splendour-es-sacrificial-garb",
       "atziris-splendour-evasion-es-sacrificial-garb",
+      "atziris-splendour-evasion-sacrificial-garb",
       "atziris-splendour-armour-es-life-sacrificial-garb",
       "atziris-splendour-evasion-es-life-sacrificial-garb"
     ],
@@ -71548,9 +71556,9 @@
       "UniqueJewel124"
     ],
     "ninjaStash": [
-      "combat-focus-viridian-jewel",
+      "combat-focus-crimson-jewel",
       "combat-focus-cobalt-jewel",
-      "combat-focus-crimson-jewel"
+      "combat-focus-viridian-jewel"
     ],
     "name": "Combat Focus",
     "image": "Art/2DItems/Jewels/ElementalHitCold.png",
@@ -74600,9 +74608,9 @@
       "UniqueStaff5"
     ],
     "ninjaStash": [
+      "dying-breath-iron-staff-5l",
       "dying-breath-iron-staff-6l",
-      "dying-breath-iron-staff",
-      "dying-breath-iron-staff-5l"
+      "dying-breath-iron-staff"
     ],
     "name": "Dying Breath",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/DyingBreath.png",
@@ -76359,8 +76367,8 @@
     ],
     "ninjaStash": [
       "farruls-fur-triumphant-lamellar-6l",
-      "farruls-fur-triumphant-lamellar-5l",
-      "farruls-fur-triumphant-lamellar"
+      "farruls-fur-triumphant-lamellar",
+      "farruls-fur-triumphant-lamellar-5l"
     ],
     "name": "Farrul\u0027s Fur",
     "image": "Art/2DItems/Armours/BodyArmours/TigerBodyArmour.png",
@@ -76481,8 +76489,8 @@
     ],
     "ninjaStash": [
       "femurs-of-the-saints-primordial-staff-6l",
-      "femurs-of-the-saints-primordial-staff",
-      "femurs-of-the-saints-primordial-staff-5l"
+      "femurs-of-the-saints-primordial-staff-5l",
+      "femurs-of-the-saints-primordial-staff"
     ],
     "name": "Femurs of the Saints",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/FemursoftheSaints.png",
@@ -85001,8 +85009,8 @@
     ],
     "ninjaStash": [
       "loreweave-elegant-ringmail-6l",
-      "loreweave-elegant-ringmail-5l",
-      "loreweave-elegant-ringmail"
+      "loreweave-elegant-ringmail",
+      "loreweave-elegant-ringmail-5l"
     ],
     "name": "Loreweave",
     "image": "Art/2DItems/Armours/BodyArmours/Loreweave.png",
@@ -91422,8 +91430,8 @@
       "AlternateArtUniqueReapersPursuit"
     ],
     "ninjaStash": [
-      "reapers-pursuit-shadow-axe-6l",
       "reapers-pursuit-shadow-axe-5l",
+      "reapers-pursuit-shadow-axe-6l",
       "reapers-pursuit-shadow-axe"
     ],
     "name": "Reaper\u0027s Pursuit",
@@ -92160,8 +92168,8 @@
     ],
     "ninjaStash": [
       "replica-duskdawn-maelstrom-staff-6l",
-      "replica-duskdawn-maelstrom-staff",
-      "replica-duskdawn-maelstrom-staff-5l"
+      "replica-duskdawn-maelstrom-staff-5l",
+      "replica-duskdawn-maelstrom-staff"
     ],
     "name": "Replica Duskdawn",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/Staves/SolarisLunarisStaff.png",
@@ -96809,8 +96817,8 @@
     ],
     "ninjaStash": [
       "sinvictas-mettle-ezomyte-axe-6l",
-      "sinvictas-mettle-ezomyte-axe-5l",
-      "sinvictas-mettle-ezomyte-axe"
+      "sinvictas-mettle-ezomyte-axe",
+      "sinvictas-mettle-ezomyte-axe-5l"
     ],
     "name": "Sinvicta\u0027s Mettle",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandAxes/SinvictasMettle.png",
@@ -99107,6 +99115,7 @@
       "UniqueStaff33"
     ],
     "ninjaStash": [
+      "the-burden-of-shadows-primordial-staff-6l",
       "the-burden-of-shadows-primordial-staff-5l",
       "the-burden-of-shadows-primordial-staff"
     ],
@@ -99665,8 +99674,8 @@
     ],
     "ninjaStash": [
       "the-golden-charlatan-lion-sword-6l",
-      "the-golden-charlatan-lion-sword",
-      "the-golden-charlatan-lion-sword-5l"
+      "the-golden-charlatan-lion-sword-5l",
+      "the-golden-charlatan-lion-sword"
     ],
     "name": "The Golden Charlatan",
     "image": "Art/2DItems/Weapons/TwoHandWeapons/TwoHandSwords/Faithstealer.png",
@@ -99965,7 +99974,6 @@
       "UniqueTwoHandSword16"
     ],
     "ninjaStash": [
-      "the-living-blade-ezomyte-blade-6l",
       "the-living-blade-ezomyte-blade"
     ],
     "name": "The Living Blade",
@@ -103743,8 +103751,8 @@
       "UniqueBodyStrInt1"
     ],
     "ninjaStash": [
-      "volls-protector-holy-chainmail-5l",
       "volls-protector-holy-chainmail-6l",
+      "volls-protector-holy-chainmail-5l",
       "volls-protector-holy-chainmail"
     ],
     "name": "Voll\u0027s Protector",

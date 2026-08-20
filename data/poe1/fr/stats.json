@@ -22033,10 +22033,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1190333629|12597",
       "explicit.stat_1190333629|16940",
       "explicit.stat_1190333629|1734",
       "explicit.stat_1190333629|17988",
-      "explicit.stat_1190333629|27602",
       "explicit.stat_1190333629|30919",
       "explicit.stat_1190333629|31700",
       "explicit.stat_1190333629|3184",
@@ -45129,8 +45129,13 @@
   },
   {
     "text": "L\u0027Objet peut \u00EAtre vendu pour # Orbes royaux suppl\u00E9mentaires",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crucible.mod_2402",
+      "crucible.mod_38368",
+      "crucible.mod_60323"
+    ],
     "pattern": "^L\u0027Objet\\ peut\\ \u00EAtre\\ vendu\\ pour\\ ([-0-9,.]\u002B)\\ Orbes\\ royaux\\ suppl\u00E9mentaires$"
   },
   {
@@ -45267,11 +45272,11 @@
   },
   {
     "text": "L\u0027Objet peut \u00EAtre vendu pour un Orbe royal suppl\u00E9mentaire",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
       "crucible.mod_2402",
-      "crucible.mod_36660",
       "crucible.mod_38368",
       "crucible.mod_60323"
     ],
@@ -50879,6 +50884,7 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3955574239",
       "explicit.stat_411810300"
     ],
     "pattern": "^La\\ Zone\\ contient\\ un\\ Coffre\\ de\\ Perandus\\ suppl\u00E9mentaire$"
@@ -73768,7 +73774,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2101383955",
-      "explicit.stat_2499808413",
       "fractured.stat_2101383955",
       "implicit.stat_2101383955"
     ],
@@ -83890,6 +83895,7 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
+      "scourge.stat_2614920781",
       "scourge.stat_602265718"
     ],
     "pattern": "^Les\\ Monstres\\ Rares\\ Synth\u00E9tis\u00E9s\\ c\u00E8dent\\ un\\ Objet\\ mon\u00E9taire\\ suppl\u00E9mentaire$"
@@ -114149,6 +114155,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.delirium_reward_gems",
       "enchant.delirium_reward_weapon"
     ],
     "pattern": "^Type\\ de\\ R\u00E9compense\\ du\\ D\u00E9lire\\ :\\ ([-0-9,.]\u002B)$"
@@ -161566,20 +161573,20 @@
   {
     "text": "#% de R\u00E9duction de la Vitesse de d\u00E9placement par Poison vous affectant",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3265807022"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ de\\ d\u00E9placement\\ par\\ Poison\\ vous\\ affectant$"
   },
   {
     "text": "#% de R\u00E9duction de la Vitesse de d\u00E9placement par Poison vous affectant",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495",
-      "implicit.stat_1360723495"
+      "explicit.stat_3265807022"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ de\\ d\u00E9placement\\ par\\ Poison\\ vous\\ affectant$"
   },
@@ -175431,9 +175438,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4113439745",
-      "explicit.stat_4179663748",
-      "fractured.stat_4179663748"
+      "explicit.stat_4113439745"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ gagner\\ une\\ Charge\\ de\\ fr\u00E9n\u00E9sie\\ lorsque\\ vous\\ Touchez\\ votre\\ Ennemi\\ Marqu\u00E9$"
   },
@@ -176587,6 +176592,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1463604143",
+      "explicit.stat_1852069308",
       "explicit.stat_2610785454",
       "explicit.stat_3145607602",
       "explicit.stat_3876876906",

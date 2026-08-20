@@ -3329,18 +3329,18 @@
   },
   {
     "text": "\u0027Frostpuls\u0027 feuert # zus\u00E4tzliche Projektile",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0027Frostpuls\u0027\\ feuert\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Projektile$"
+  },
+  {
+    "text": "\u0027Frostpuls\u0027 feuert # zus\u00E4tzliche Projektile",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_186513618",
       "enchant.stat_3371533847"
     ],
-    "pattern": "^\u0027Frostpuls\u0027\\ feuert\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Projektile$"
-  },
-  {
-    "text": "\u0027Frostpuls\u0027 feuert # zus\u00E4tzliche Projektile",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^\u0027Frostpuls\u0027\\ feuert\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Projektile$"
   },
   {
@@ -27532,7 +27532,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_628716294",
-      "implicit.stat_628716294"
+      "implicit.stat_628716294",
+      "scourge.stat_770490590"
     ],
     "pattern": "^Aktionsgeschwindigkeit\\ des\\ Totems\\ kann\\ nicht\\ unter\\ den\\ Basiswert\\ modifiziert\\ werden$"
   },
@@ -35183,7 +35184,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3771323968",
       "explicit.stat_3789765926",
       "explicit.stat_647983250",
       "fractured.stat_3789765926"
@@ -49033,11 +49033,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_48",
       "explicit.indexable_support_96",
       "explicit.stat_1135493957",
-      "explicit.stat_3207084920",
-      "explicit.stat_858460086"
+      "explicit.stat_3207084920"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027T\u00F6dliche\\ Dosis\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
   },
@@ -62772,6 +62770,9 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
+      "explicit.stat_4089743927|2|100",
+      "explicit.stat_4089743927|2|114",
+      "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -62789,17 +62790,6 @@
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
       "explicit.stat_4089743927|2|94",
-      "explicit.stat_4089743927|3|100",
-      "explicit.stat_4089743927|3|114",
-      "explicit.stat_4089743927|3|115",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|119",
-      "explicit.stat_4089743927|3|12",
-      "explicit.stat_4089743927|3|120",
-      "explicit.stat_4089743927|3|132",
-      "explicit.stat_4089743927|3|134",
-      "explicit.stat_4089743927|3|141",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|154",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
@@ -62819,18 +62809,6 @@
       "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|105",
       "explicit.stat_4089743927|4|112",
-      "explicit.stat_4089743927|4|114",
-      "explicit.stat_4089743927|4|115",
-      "explicit.stat_4089743927|4|116",
-      "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
-      "explicit.stat_4089743927|4|119",
-      "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|120",
-      "explicit.stat_4089743927|4|132",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -64283,6 +64261,9 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
+      "explicit.stat_4089743927|2|100",
+      "explicit.stat_4089743927|2|114",
+      "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -64300,17 +64281,6 @@
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
       "explicit.stat_4089743927|2|94",
-      "explicit.stat_4089743927|3|100",
-      "explicit.stat_4089743927|3|114",
-      "explicit.stat_4089743927|3|115",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|119",
-      "explicit.stat_4089743927|3|12",
-      "explicit.stat_4089743927|3|120",
-      "explicit.stat_4089743927|3|132",
-      "explicit.stat_4089743927|3|134",
-      "explicit.stat_4089743927|3|141",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|154",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
@@ -64330,18 +64300,6 @@
       "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|105",
       "explicit.stat_4089743927|4|112",
-      "explicit.stat_4089743927|4|114",
-      "explicit.stat_4089743927|4|115",
-      "explicit.stat_4089743927|4|116",
-      "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
-      "explicit.stat_4089743927|4|119",
-      "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|120",
-      "explicit.stat_4089743927|4|132",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -65794,6 +65752,9 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
+      "explicit.stat_4089743927|2|100",
+      "explicit.stat_4089743927|2|114",
+      "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -65811,17 +65772,6 @@
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
       "explicit.stat_4089743927|2|94",
-      "explicit.stat_4089743927|3|100",
-      "explicit.stat_4089743927|3|114",
-      "explicit.stat_4089743927|3|115",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|119",
-      "explicit.stat_4089743927|3|12",
-      "explicit.stat_4089743927|3|120",
-      "explicit.stat_4089743927|3|132",
-      "explicit.stat_4089743927|3|134",
-      "explicit.stat_4089743927|3|141",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|154",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
@@ -65841,18 +65791,6 @@
       "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|105",
       "explicit.stat_4089743927|4|112",
-      "explicit.stat_4089743927|4|114",
-      "explicit.stat_4089743927|4|115",
-      "explicit.stat_4089743927|4|116",
-      "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
-      "explicit.stat_4089743927|4|119",
-      "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|120",
-      "explicit.stat_4089743927|4|132",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -67330,6 +67268,9 @@
       "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
       "explicit.stat_4089743927|1|94",
+      "explicit.stat_4089743927|2|100",
+      "explicit.stat_4089743927|2|114",
+      "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -67347,17 +67288,6 @@
       "explicit.stat_4089743927|2|90",
       "explicit.stat_4089743927|2|91",
       "explicit.stat_4089743927|2|94",
-      "explicit.stat_4089743927|3|100",
-      "explicit.stat_4089743927|3|114",
-      "explicit.stat_4089743927|3|115",
-      "explicit.stat_4089743927|3|116",
-      "explicit.stat_4089743927|3|119",
-      "explicit.stat_4089743927|3|12",
-      "explicit.stat_4089743927|3|120",
-      "explicit.stat_4089743927|3|132",
-      "explicit.stat_4089743927|3|134",
-      "explicit.stat_4089743927|3|141",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|154",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
@@ -67377,18 +67307,6 @@
       "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|105",
       "explicit.stat_4089743927|4|112",
-      "explicit.stat_4089743927|4|114",
-      "explicit.stat_4089743927|4|115",
-      "explicit.stat_4089743927|4|116",
-      "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
-      "explicit.stat_4089743927|4|119",
-      "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|120",
-      "explicit.stat_4089743927|4|132",
-      "explicit.stat_4089743927|4|134",
-      "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|141",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|150",
       "explicit.stat_4089743927|4|154",
@@ -77923,8 +77841,7 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3294034100",
-      "explicit.stat_3955574239"
+      "explicit.stat_3294034100"
     ],
     "pattern": "^Gebiet\\ enth\u00E4lt\\ eine\\ zus\u00E4tzliche\\ Perandus-Truhe$"
   },
@@ -78836,8 +78753,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3294034100",
-      "explicit.stat_3955574239"
+      "explicit.stat_3294034100"
     ],
     "pattern": "^Gebiet\\ enth\u00E4lt\\ ([-0-9,.]\u002B)\\ zus\u00E4tzliche\\ Perandus-Truhen$"
   },
@@ -124751,20 +124667,20 @@
   {
     "text": "Teleportpfeil und Teleportpfeil-Klone haben #% verringerten Schaden",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_1967878868",
-      "enchant.stat_4136186767"
+      "enchant.stat_1967878868"
     ],
     "pattern": "^Teleportpfeil\\ und\\ Teleportpfeil-Klone\\ haben\\ ([-0-9,.]\u002B)%\\ verringerten\\ Schaden$"
   },
   {
     "text": "Teleportpfeil und Teleportpfeil-Klone haben #% verringerten Schaden",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_1967878868"
+      "enchant.stat_1967878868",
+      "enchant.stat_4136186767"
     ],
     "pattern": "^Teleportpfeil\\ und\\ Teleportpfeil-Klone\\ haben\\ ([-0-9,.]\u002B)%\\ verringerten\\ Schaden$"
   },
@@ -151000,12 +150916,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3764265320",
-      "explicit.stat_4201339891",
-      "fractured.stat_3764265320",
-      "implicit.stat_2508100173",
-      "implicit.stat_3764265320",
-      "scourge.stat_3764265320"
+      "explicit.stat_4201339891"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ physischen\\ Schadens\\ werden\\ als\\ Energieschild\\ geraubt$"
   },
@@ -151180,9 +151091,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3423022686",
-      "explicit.stat_407390981",
-      "fractured.stat_3423022686",
-      "fractured.stat_407390981"
+      "fractured.stat_3423022686"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ physischen\\ Schadens\\ werden\\ vom\\ Gegner\\ als\\ Mana\\ geraubt$"
   },
@@ -164081,7 +163990,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
-      "explicit.stat_528422616",
       "explicit.stat_539970476",
       "fractured.stat_539970476",
       "implicit.stat_485151258"
@@ -168647,7 +168555,6 @@
   },
   {
     "text": "#% mehr Schaden mit Treffern und Beeintr\u00E4chtigungen gegen Gegner mit niedrigem Leben",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3708045494",
@@ -168657,6 +168564,7 @@
   },
   {
     "text": "#% mehr Schaden mit Treffern und Beeintr\u00E4chtigungen gegen Gegner mit niedrigem Leben",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3708045494",
@@ -175274,20 +175182,20 @@
   {
     "text": "#% verringerte Bewegungsgeschwindigkeit f\u00FCr jeden Giftstapel, der auf Euch wirkt",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_453789911"
+      "explicit.stat_1360723495",
+      "implicit.stat_1360723495"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Bewegungsgeschwindigkeit\\ f\u00FCr\\ jeden\\ Giftstapel,\\ der\\ auf\\ Euch\\ wirkt$"
   },
   {
     "text": "#% verringerte Bewegungsgeschwindigkeit f\u00FCr jeden Giftstapel, der auf Euch wirkt",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1360723495",
-      "implicit.stat_1360723495"
+      "enchant.stat_453789911"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Bewegungsgeschwindigkeit\\ f\u00FCr\\ jeden\\ Giftstapel,\\ der\\ auf\\ Euch\\ wirkt$"
   },

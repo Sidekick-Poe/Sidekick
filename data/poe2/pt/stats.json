@@ -69570,17 +69570,17 @@
   },
   {
     "text": "Ganha 1 carga de frenesi com golpes cr\u00EDticos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganha\\ 1\\ carga\\ de\\ frenesi\\ com\\ golpes\\ cr\u00EDticos$"
+  },
+  {
+    "text": "Ganha 1 carga de frenesi com golpes cr\u00EDticos",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Ganha\\ 1\\ carga\\ de\\ frenesi\\ com\\ golpes\\ cr\u00EDticos$"
-  },
-  {
-    "text": "Ganha 1 carga de frenesi com golpes cr\u00EDticos",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganha\\ 1\\ carga\\ de\\ frenesi\\ com\\ golpes\\ cr\u00EDticos$"
   },
   {
@@ -69768,17 +69768,17 @@
   },
   {
     "text": "Ganha 1 carga de poder com golpes n\u00E3o cr\u00EDticos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganha\\ 1\\ carga\\ de\\ poder\\ com\\ golpes\\ n\u00E3o\\ cr\u00EDticos$"
+  },
+  {
+    "text": "Ganha 1 carga de poder com golpes n\u00E3o cr\u00EDticos",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Ganha\\ 1\\ carga\\ de\\ poder\\ com\\ golpes\\ n\u00E3o\\ cr\u00EDticos$"
-  },
-  {
-    "text": "Ganha 1 carga de poder com golpes n\u00E3o cr\u00EDticos",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganha\\ 1\\ carga\\ de\\ poder\\ com\\ golpes\\ n\u00E3o\\ cr\u00EDticos$"
   },
   {
@@ -69979,17 +69979,17 @@
   },
   {
     "text": "Ganha 1 carga de toler\u00E2ncia com golpes cr\u00EDticos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganha\\ 1\\ carga\\ de\\ toler\u00E2ncia\\ com\\ golpes\\ cr\u00EDticos$"
+  },
+  {
+    "text": "Ganha 1 carga de toler\u00E2ncia com golpes cr\u00EDticos",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3814876985"
     ],
-    "pattern": "^Ganha\\ 1\\ carga\\ de\\ toler\u00E2ncia\\ com\\ golpes\\ cr\u00EDticos$"
-  },
-  {
-    "text": "Ganha 1 carga de toler\u00E2ncia com golpes cr\u00EDticos",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganha\\ 1\\ carga\\ de\\ toler\u00E2ncia\\ com\\ golpes\\ cr\u00EDticos$"
   },
   {
@@ -70286,17 +70286,17 @@
   },
   {
     "text": "Ganha Agressividade por 4 segundos ao matar",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganha\\ Agressividade\\ por\\ 4\\ segundos\\ ao\\ matar$"
+  },
+  {
+    "text": "Ganha Agressividade por 4 segundos ao matar",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
     ],
-    "pattern": "^Ganha\\ Agressividade\\ por\\ 4\\ segundos\\ ao\\ matar$"
-  },
-  {
-    "text": "Ganha Agressividade por 4 segundos ao matar",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Ganha\\ Agressividade\\ por\\ 4\\ segundos\\ ao\\ matar$"
   },
   {
@@ -91100,17 +91100,17 @@
   },
   {
     "text": "Inflige Exposi\u00E7\u00E3o ao Fogo ao atingir",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Inflige\\ Exposi\u00E7\u00E3o\\ ao\\ Fogo\\ ao\\ atingir$"
+  },
+  {
+    "text": "Inflige Exposi\u00E7\u00E3o ao Fogo ao atingir",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3602667353"
     ],
-    "pattern": "^Inflige\\ Exposi\u00E7\u00E3o\\ ao\\ Fogo\\ ao\\ atingir$"
-  },
-  {
-    "text": "Inflige Exposi\u00E7\u00E3o ao Fogo ao atingir",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Inflige\\ Exposi\u00E7\u00E3o\\ ao\\ Fogo\\ ao\\ atingir$"
   },
   {
@@ -108712,7 +108712,6 @@
       "desecrated.stat_2653955271",
       "enchant.stat_2653955271",
       "explicit.stat_2653955271",
-      "explicit.stat_3588388638",
       "fractured.stat_2653955271"
     ],
     "pattern": "^Monstros\\ ignoram\\ ([-0-9,.]\u002B)%\\ da\\ resist\u00EAncia\\ a\\ dano\\ de\\ fogo$"
@@ -126824,8 +126823,7 @@
     "text": "Recupera\u00E7\u00E3o de vida aumentada em #% enquanto seu companheiro estiver em sua presen\u00E7a",
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1779262102",
-      "rune.stat_2122116143"
+      "rune.stat_1779262102"
     ],
     "pattern": "^Recupera\u00E7\u00E3o\\ de\\ vida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ seu\\ companheiro\\ estiver\\ em\\ sua\\ presen\u00E7a$"
   },
@@ -128919,6 +128917,12 @@
   },
   {
     "text": "Requisito de Intelig\u00EAncia aumentado em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Requisito\\ de\\ Intelig\u00EAncia\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Requisito de Intelig\u00EAncia aumentado em #%",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -128926,12 +128930,6 @@
       "implicit.stat_2153364323",
       "rune.stat_2153364323"
     ],
-    "pattern": "^Requisito\\ de\\ Intelig\u00EAncia\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Requisito de Intelig\u00EAncia aumentado em #%",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^Requisito\\ de\\ Intelig\u00EAncia\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -154063,10 +154061,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1078455967",
       "explicit.stat_1147690586",
       "explicit.stat_67169579",
-      "implicit.stat_1078455967",
       "rune.stat_1147690586"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ f\u00EDsicas$"
@@ -157421,18 +157417,18 @@
   },
   {
     "text": "#% de chance de empurrar inimigos ao atingir",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2301191210"
+      "explicit.stat_3739186583"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ empurrar\\ inimigos\\ ao\\ atingir$"
   },
   {
     "text": "#% de chance de empurrar inimigos ao atingir",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3739186583"
+      "enchant.stat_2301191210"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ empurrar\\ inimigos\\ ao\\ atingir$"
   },
@@ -158786,7 +158782,6 @@
   },
   {
     "text": "#% de chance de ganhar Agressividade por 4 segundos ao matar",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
@@ -158795,6 +158790,7 @@
   },
   {
     "text": "#% de chance de ganhar Agressividade por 4 segundos ao matar",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
