@@ -22,7 +22,7 @@ public class ItemDefinitionParser(
             item.Name = item.Text.Blocks[0].Lines[^2].Text;
         }
 
-        item.Definition = GetDefinition(itemDefinitionProvider.Definitions, item.Properties.Rarity, item.ItemClass?.Id, item.Type, item.Name)!;
+        item.Definition = GetDefinition(itemDefinitionProvider.Definitions, item.Properties.Rarity, item.ItemClass.Id, item.Type, item.Name)!;
         if (item.Definition == null) throw new UnparsableException(item.Text.Text);
 
         // Poe.ninja does not include item class in the text, so we fill it here in case.
@@ -35,11 +35,12 @@ public class ItemDefinitionParser(
 
         ParseVaalGem();
 
-        item.TradeItem = GetTradeItem(item.Definition.TradeItems, item.Type);
-
         if (currentGameLanguage.IsEnglish()) item.InvariantDefinition = item.Definition;
         else if (item.Definition.UniqueIds != null && item.Definition.UniqueIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.UniqueIds.First());
         else if (item.Definition.BaseItemIds != null && item.Definition.BaseItemIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.BaseItemIds.First());
+
+        item.TradeItem = GetTradeItem(item.Definition.TradeItems, item.Type);
+        if (item.InvariantDefinition != null) item.InvariantTradeItem = GetTradeItem(item.InvariantDefinition.TradeItems, item.InvariantDefinition.Name);
 
         return;
 
@@ -120,7 +121,7 @@ public class ItemDefinitionParser(
         return orderedResults.Select(x => x.Definition).FirstOrDefault();
     }
 
-    private TradeItem? GetTradeItem(List<TradeItem>? tradeItems, string? type)
+    private static TradeItem? GetTradeItem(List<TradeItem>? tradeItems, string? type)
     {
         var byType = tradeItems?.FirstOrDefault(x => x.Type == type);
         if (byType != null) return byType;
