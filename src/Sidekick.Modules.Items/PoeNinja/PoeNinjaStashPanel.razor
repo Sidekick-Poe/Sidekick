@@ -67,7 +67,7 @@
         }
     }
 
-    @if (Stash.Item.Corrupted == true)
+    @if (Stash.Item.Corrupted)
     {
         <ItemStatText Category="StatCategory.Corrupted"
                       Class="text-center">@(PropertyParser.GetDefinition<CorruptedProperty>().Label)</ItemStatText>

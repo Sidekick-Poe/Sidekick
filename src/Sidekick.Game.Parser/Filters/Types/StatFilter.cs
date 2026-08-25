@@ -36,7 +36,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
             ],
         };
 
-        if (game == GameType.PathOfExile2)
+        if (game == GameType.Poe2)
         {
             preferences.Rules.Add(new AutoSelectRule()
             {

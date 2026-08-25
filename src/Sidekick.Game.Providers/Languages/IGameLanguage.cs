@@ -81,13 +81,13 @@ public interface IGameLanguage
 
     public string GetTradeBaseUrl(GameType game) => game switch
     {
-        GameType.PathOfExile2 => Poe2TradeBaseUrl,
+        GameType.Poe2 => Poe2TradeBaseUrl,
         _ => PoeTradeBaseUrl,
     };
 
     public string GetTradeApiBaseUrl(GameType game) => game switch
     {
-        GameType.PathOfExile2 => Poe2TradeApiBaseUrl,
+        GameType.Poe2 => Poe2TradeApiBaseUrl,
         _ => PoeTradeApiBaseUrl,
     };
 }

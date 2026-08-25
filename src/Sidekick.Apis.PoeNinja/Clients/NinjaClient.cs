@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Settings;
 using Sidekick.Game;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.PoeNinja.Clients;
 
@@ -12,14 +12,14 @@ namespace Sidekick.Apis.PoeNinja.Clients;
 /// </summary>
 public class NinjaClient
 (
-    ISettingsService settingsService,
     IHttpClientFactory httpClientFactory,
-    ILogger<NinjaClient> logger
+    ILogger<NinjaClient> logger,
+    LeagueProvider leagueProvider
 ) : INinjaClient
 {
-    private static readonly Uri apiBaseUrl = new("https://poe.ninja/");
+    private static readonly Uri ApiBaseUrl = new("https://poe.ninja/");
 
-    public static JsonSerializerOptions JsonSerializerOptions { get; } = new()
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -42,14 +42,13 @@ public class NinjaClient
     {
         parameters ??= new();
 
-        var gamePath = game == GameType.PathOfExile1 ? "poe1/api/" : "poe2/api/";
+        var gamePath = game == GameType.Poe1 ? "poe1/api/" : "poe2/api/";
 
-        var league = await settingsService.GetLeague();
-        league = league?.Replace(' ', '+');
-        parameters.TryAdd("league", league);
+        var leagueValue = leagueProvider.Current.Id.Replace(' ', '+');
+        parameters.TryAdd("league", leagueValue);
 
         var query = string.Join("&", parameters.Select(x => x.Key + "=" + x.Value?.ToString()));
-        var url = new Uri($"{apiBaseUrl}{gamePath}{path}?{query}");
+        var url = new Uri($"{ApiBaseUrl}{gamePath}{path}?{query}");
 
         try
         {

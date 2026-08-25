@@ -9,6 +9,7 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
+using Sidekick.Game.Providers;
 using ItemProperties=Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Game.Parser.Properties.Definitions;
@@ -97,7 +98,7 @@ public class WeaponDamageProperty(
 
     public override void ParseAfterStats(Item item)
     {
-        if (game == GameType.PathOfExile2) return;
+        if (game == GameType.Poe2) return;
 
         var damageMods = statParser.InvariantDetails.FireWeaponDamageIds.ToList();
         damageMods.AddRange(statParser.InvariantDetails.ColdWeaponDamageIds);
@@ -186,8 +187,8 @@ public class WeaponDamageFilter : DoublePropertyFilter
 
         switch (Game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(this); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(this); break;
+            case GameType.Poe1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(this); break;
+            case GameType.Poe2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(this); break;
         }
     }
 }

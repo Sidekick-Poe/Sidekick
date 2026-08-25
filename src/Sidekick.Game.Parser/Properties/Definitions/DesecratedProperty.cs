@@ -6,6 +6,7 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class DesecratedProperty(
@@ -21,7 +22,7 @@ public class DesecratedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.Poe1) return Task.FromResult<TradeFilter?>(null);
         if (tradeFilterProvider.Desecrated == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new DesecratedFilter

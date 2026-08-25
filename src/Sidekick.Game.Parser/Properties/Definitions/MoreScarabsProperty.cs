@@ -22,7 +22,7 @@ public class MoreScarabsProperty(
 
     public override void Parse(Item item)
     {
-        if (game != GameType.PathOfExile1) return;
+        if (game != GameType.Poe1) return;
 
         item.Properties.MoreScarabs = GetInt(Pattern, item.Text);
         if (item.Properties.MoreScarabs == 0) return;
@@ -32,7 +32,7 @@ public class MoreScarabsProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game != GameType.PathOfExile1 || item.Properties.MoreScarabs <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (game != GameType.Poe1 || item.Properties.MoreScarabs <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new MoreScarabsFilter
         {

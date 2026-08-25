@@ -30934,6 +30934,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2460506030|12597",
+      "explicit.stat_2460506030|17315",
+      "explicit.stat_2460506030|17988",
+      "explicit.stat_2460506030|23169",
       "explicit.stat_2460506030|38180",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
@@ -95596,7 +95600,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "crucible.mod_48348",
       "crucible.mod_56565"
     ],
     "pattern": "^Raised\\ Zombies\\ and\\ Spectres\\ gain\\ Adrenaline\\ for\\ ([-0-9,.]\u002B)\\ seconds\\ when\\ Raised$"
@@ -103739,6 +103742,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -105211,6 +105217,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -106683,6 +106692,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -108425,6 +108437,9 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
@@ -149535,6 +149550,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2581419165",
       "explicit.stat_2610785454",
       "explicit.stat_3145607602",
       "explicit.stat_3835470471",
@@ -154032,10 +154048,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1939202111",
       "explicit.stat_276103140",
       "explicit.stat_3699490848",
-      "fractured.stat_1939202111",
       "fractured.stat_276103140"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ against\\ Marked\\ Enemy$"
@@ -170682,6 +170696,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
+      "explicit.stat_539970476",
+      "fractured.stat_539970476",
       "implicit.stat_485151258"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ more\\ Damage\\ with\\ Hits\\ and\\ Ailments\\ against\\ Unique\\ Enemies$"
@@ -177748,10 +177764,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1939202111",
       "explicit.stat_276103140",
       "explicit.stat_3699490848",
-      "fractured.stat_1939202111",
       "fractured.stat_276103140"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Strike\\ Chance\\ against\\ Marked\\ Enemy$"

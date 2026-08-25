@@ -9,7 +9,6 @@
     "text": "-",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_204196526",
       "explicit.stat_2319738353",
       "explicit.stat_504850499",
       "implicit.stat_504850499"
@@ -62377,7 +62376,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1190333629|16940",
       "explicit.stat_1190333629|43122",
       "explicit.stat_1190333629|43195",
       "explicit.stat_1190333629|48239",
@@ -79270,8 +79268,7 @@
       "crucible.mod_18496",
       "crucible.mod_30417",
       "crucible.mod_49711",
-      "crucible.mod_62042",
-      "crucible.mod_6400"
+      "crucible.mod_62042"
     ],
     "pattern": "^\u30A2\u30A4\u30C6\u30E0\u306F\u8FFD\u52A0\u30671\u500B\u306E\u53E4\u4EE3\u306E\u30AA\u30FC\u30D6\u3068\u4EA4\u63DB\u3067\u58F2\u308C\u308B$"
   },
@@ -88337,8 +88334,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3909654181",
-      "explicit.stat_399295164"
+      "explicit.stat_3909654181"
     ],
     "pattern": "^\u30A4\u30B6\u30ED\u306E\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3001\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304A\u3088\u3073\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
@@ -88347,8 +88343,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3909654181",
-      "explicit.stat_399295164"
+      "explicit.stat_3909654181"
     ],
     "pattern": "^\u30A4\u30B6\u30ED\u306E\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3001\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304A\u3088\u3073\u79FB\u52D5\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
@@ -90083,15 +90078,21 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1761642973",
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
       "enchant.stat_3444518809",
       "explicit.stat_1269219558",
       "explicit.stat_1761642973",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
       "explicit.stat_3444518809",
       "explicit.stat_4237190083",
       "fractured.stat_1269219558",
+      "fractured.stat_2549369799",
       "fractured.stat_3444518809",
       "fractured.stat_4237190083",
       "implicit.stat_1269219558",
+      "implicit.stat_2549369799",
       "implicit.stat_3444518809",
       "implicit.stat_4237190083",
       "scourge.stat_1269219558",
@@ -90105,15 +90106,21 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1761642973",
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
       "enchant.stat_3444518809",
       "explicit.stat_1269219558",
       "explicit.stat_1761642973",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
       "explicit.stat_3444518809",
       "explicit.stat_4237190083",
       "fractured.stat_1269219558",
+      "fractured.stat_2549369799",
       "fractured.stat_3444518809",
       "fractured.stat_4237190083",
       "implicit.stat_1269219558",
+      "implicit.stat_2549369799",
       "implicit.stat_3444518809",
       "implicit.stat_4237190083",
       "scourge.stat_1269219558",
@@ -91916,7 +91923,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1849225887",
       "explicit.stat_1858240316",
       "explicit.stat_2810822634",
       "explicit.stat_3017211510",
@@ -104542,10 +104548,11 @@
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|113",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
+      "explicit.stat_4089743927|4|146",
+      "explicit.stat_4089743927|4|157",
+      "explicit.stat_4089743927|4|20",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|91"
@@ -122742,7 +122749,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_120",
       "explicit.indexable_support_36",
       "explicit.stat_3581578643",
       "fractured.stat_3581578643"
@@ -130991,6 +130997,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1852069308",
       "explicit.stat_2454528473",
       "explicit.stat_2581419165",
       "explicit.stat_2610785454",
@@ -136341,10 +136348,11 @@
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|113",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
+      "explicit.stat_4089743927|4|146",
+      "explicit.stat_4089743927|4|157",
+      "explicit.stat_4089743927|4|20",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|91"
@@ -144444,7 +144452,6 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_1797913614",
       "enchant.stat_3009270704",
       "enchant.stat_3908539803",
       "enchant.stat_74338099",
@@ -148435,6 +148442,7 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2287986752",
+      "enchant.stat_2289367813",
       "enchant.stat_2983274404",
       "explicit.stat_1691403182",
       "fractured.stat_1691403182",
@@ -148448,6 +148456,7 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2287986752",
+      "enchant.stat_2289367813",
       "enchant.stat_2983274404",
       "explicit.stat_1691403182",
       "fractured.stat_1691403182",
@@ -150752,10 +150761,11 @@
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|113",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
+      "explicit.stat_4089743927|4|146",
+      "explicit.stat_4089743927|4|157",
+      "explicit.stat_4089743927|4|20",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|91"
@@ -163021,10 +163031,11 @@
       "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|113",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|131",
+      "explicit.stat_4089743927|4|146",
+      "explicit.stat_4089743927|4|157",
+      "explicit.stat_4089743927|4|20",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|91"
@@ -165016,6 +165027,7 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_4224588066",
+      "enchant.stat_441455463",
       "explicit.stat_2448279015",
       "explicit.stat_3094501804",
       "explicit.stat_940978994"

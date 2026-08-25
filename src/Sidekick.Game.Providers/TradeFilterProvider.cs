@@ -1,17 +1,15 @@
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
-using Sidekick.Game;
 using Sidekick.Game.TradeFilters;
 using TradeFilter = Sidekick.Game.TradeFilters.TradeFilter;
-namespace Sidekick.Apis.Poe.Trade.Filters;
+namespace Sidekick.Game.Providers;
 
 public class TradeFilterProvider
 (
     DataProvider dataProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService,
-    IServiceProvider serviceProvider
+    ISettingsService settingsService
 ) : IInitializableService
 {
     public TradeFilter? TypeCategory => GetApiFilter("type_filters", "category");

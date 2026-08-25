@@ -22,7 +22,7 @@ public class SpiritProperty(
 
     public override void Parse(Item item)
     {
-        if (game == GameType.PathOfExile1) return;
+        if (game == GameType.Poe1) return;
 
         if (item.Properties.Rarity != Rarity.Normal &&
             item.Properties.Rarity != Rarity.Magic &&

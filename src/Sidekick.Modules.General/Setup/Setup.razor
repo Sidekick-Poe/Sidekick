@@ -2,7 +2,6 @@
 @using System.Text.Json
 @using Microsoft.Extensions.Localization
 @using Microsoft.Extensions.Logging
-@using Sidekick.Apis.Poe.Trade.Leagues
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Extensions
@@ -15,6 +14,7 @@
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Common.Ui.Progress
 @using Sidekick.Common.Ui.Buttons
+@using Sidekick.Game.Providers
 @using Sidekick.Modules.General.Settings.Components
 
 <LayoutSimple>
@@ -104,7 +104,7 @@
     {
         try
         {
-            var leagues = await LeagueProvider.GetList();
+            var leagues = await LeagueProvider.GetLeagues();
             var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
             var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
             if (apiLeaguesHash != settingsLeaguesHash)
@@ -156,7 +156,7 @@
     public async Task Save()
     {
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        var leagues = await LeagueProvider.GetList();
+        var leagues = await LeagueProvider.GetLeagues();
         if (leagues.All(x => x.Value != leagueId))
         {
             FormInvalid = true;

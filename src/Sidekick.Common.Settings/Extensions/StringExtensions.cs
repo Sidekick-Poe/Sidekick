@@ -12,8 +12,8 @@ public static class StringExtensions
                 ?.Split('.')
                 .ElementAtOrDefault(0) switch
             {
-                "poe2" => GameType.PathOfExile2,
-                _ => GameType.PathOfExile1,
+                "poe2" => GameType.Poe2,
+                _ => GameType.Poe1,
             };
     }
 }

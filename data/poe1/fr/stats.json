@@ -22033,10 +22033,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1190333629|12597",
       "explicit.stat_1190333629|16940",
       "explicit.stat_1190333629|1734",
       "explicit.stat_1190333629|17988",
+      "explicit.stat_1190333629|27602",
       "explicit.stat_1190333629|30919",
       "explicit.stat_1190333629|31700",
       "explicit.stat_1190333629|3184",
@@ -22068,10 +22068,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2460506030|12597",
       "explicit.stat_2460506030|16940",
       "explicit.stat_2460506030|1734",
       "explicit.stat_2460506030|17988",
-      "explicit.stat_2460506030|27602",
       "explicit.stat_2460506030|30919",
       "explicit.stat_2460506030|31700",
       "explicit.stat_2460506030|3184",
@@ -45129,13 +45129,8 @@
   },
   {
     "text": "L\u0027Objet peut \u00EAtre vendu pour # Orbes royaux suppl\u00E9mentaires",
-    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [
-      "crucible.mod_2402",
-      "crucible.mod_38368",
-      "crucible.mod_60323"
-    ],
+    "tradeIds": [],
     "pattern": "^L\u0027Objet\\ peut\\ \u00EAtre\\ vendu\\ pour\\ ([-0-9,.]\u002B)\\ Orbes\\ royaux\\ suppl\u00E9mentaires$"
   },
   {
@@ -45272,11 +45267,11 @@
   },
   {
     "text": "L\u0027Objet peut \u00EAtre vendu pour un Orbe royal suppl\u00E9mentaire",
-    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
       "crucible.mod_2402",
+      "crucible.mod_36660",
       "crucible.mod_38368",
       "crucible.mod_60323"
     ],
@@ -50884,7 +50879,6 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3955574239",
       "explicit.stat_411810300"
     ],
     "pattern": "^La\\ Zone\\ contient\\ un\\ Coffre\\ de\\ Perandus\\ suppl\u00E9mentaire$"
@@ -73774,6 +73768,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2101383955",
+      "explicit.stat_2499808413",
       "fractured.stat_2101383955",
       "implicit.stat_2101383955"
     ],
@@ -83895,7 +83890,6 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "scourge.stat_2614920781",
       "scourge.stat_602265718"
     ],
     "pattern": "^Les\\ Monstres\\ Rares\\ Synth\u00E9tis\u00E9s\\ c\u00E8dent\\ un\\ Objet\\ mon\u00E9taire\\ suppl\u00E9mentaire$"
@@ -106658,6 +106652,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_1779904215",
+      "enchant.stat_1829483269",
       "enchant.stat_1920370417",
       "enchant.stat_2156140483",
       "enchant.stat_2549369799",
@@ -106668,6 +106665,7 @@
       "enchant.stat_3383226338",
       "enchant.stat_3395872960",
       "enchant.stat_3484910620",
+      "enchant.stat_3563089138",
       "enchant.stat_3859865977",
       "enchant.stat_3993865658",
       "enchant.stat_453778214",
@@ -106700,6 +106698,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_1779904215",
+      "enchant.stat_1829483269",
       "enchant.stat_1920370417",
       "enchant.stat_2156140483",
       "enchant.stat_2549369799",
@@ -106710,6 +106711,7 @@
       "enchant.stat_3383226338",
       "enchant.stat_3395872960",
       "enchant.stat_3484910620",
+      "enchant.stat_3563089138",
       "enchant.stat_3859865977",
       "enchant.stat_3993865658",
       "enchant.stat_453778214",
@@ -114155,7 +114157,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.delirium_reward_gems",
       "enchant.delirium_reward_weapon"
     ],
     "pattern": "^Type\\ de\\ R\u00E9compense\\ du\\ D\u00E9lire\\ :\\ ([-0-9,.]\u002B)$"
@@ -131447,6 +131448,9 @@
     "text": "\u002B# au Niveau de toutes les Gemmes #",
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_skill_149",
+      "explicit.indexable_skill_154",
+      "explicit.indexable_skill_155",
       "explicit.indexable_skill_193",
       "explicit.indexable_skill_197",
       "explicit.indexable_skill_205",
@@ -143282,7 +143286,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_542923416",
       "explicit.stat_581625445"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ Vitesse\\ de\\ d\u00E9placement\\ tant\\ que\\ vous\\ tenez\\ un\\ bouclier$"
@@ -149896,6 +149899,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1586440250",
       "explicit.stat_1625103793",
       "explicit.stat_3693130674"
     ],
@@ -161835,7 +161839,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_542923416",
       "explicit.stat_581625445"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ de\\ d\u00E9placement\\ tant\\ que\\ vous\\ tenez\\ un\\ bouclier$"
@@ -175438,7 +175441,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4113439745"
+      "explicit.stat_4113439745",
+      "explicit.stat_4179663748",
+      "fractured.stat_4179663748"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ gagner\\ une\\ Charge\\ de\\ fr\u00E9n\u00E9sie\\ lorsque\\ vous\\ Touchez\\ votre\\ Ennemi\\ Marqu\u00E9$"
   },
@@ -176591,6 +176596,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1361025326",
       "explicit.stat_1463604143",
       "explicit.stat_1852069308",
       "explicit.stat_2610785454",

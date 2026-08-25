@@ -4,18 +4,19 @@ using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
 using Sidekick.Game.Ninja;
+using Sidekick.Game.Providers;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaExchangeProvider(
     INinjaClient ninjaClient,
     ISettingsService settingsService,
     ICacheProvider cacheProvider,
-    NinjaUriProvider ninjaUriProvider) : INinjaExchangeProvider
+    NinjaUriProvider ninjaUriProvider,
+    LeagueProvider leagueProvider) : INinjaExchangeProvider
 {
-    private async Task<string> GetCacheKey(string type)
+    private string GetCacheKey(string type)
     {
-        var league = await settingsService.GetLeague();
-        return $"PoeNinjaExchange_{league}_{type}";
+        return $"PoeNinjaExchange_{leagueProvider.Current.Id}_{type}";
     }
 
     public async Task<NinjaCurrency?> GetInfo(NinjaExchangeItem? exchange)
@@ -49,7 +50,7 @@ public class NinjaExchangeProvider(
     private async Task<ApiExchangeOverview?> GetExchangeResult(string type)
     {
         var result = await GetOrUpdateCache();
-        if (!await CheckCacheIsValid(type, result))
+        if (!CheckCacheIsValid(type, result))
         {
             result = await GetOrUpdateCache();
         }
@@ -58,7 +59,7 @@ public class NinjaExchangeProvider(
 
         async Task<ApiExchangeOverview?> GetOrUpdateCache()
         {
-            var cacheKey = await GetCacheKey(type);
+            var cacheKey = GetCacheKey(type);
             return await cacheProvider.GetOrSet(cacheKey, async () =>
             {
                 var game = await settingsService.GetGame();
@@ -79,13 +80,13 @@ public class NinjaExchangeProvider(
         }
     }
 
-    private async Task<bool> CheckCacheIsValid(string type, ApiExchangeOverview? result = null)
+    private bool CheckCacheIsValid(string type, ApiExchangeOverview? result = null)
     {
         var lastUpdate = result?.LastUpdated ?? DateTimeOffset.MinValue;
         var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(1);
         if (isCacheTimeValid) return true;
 
-        var cacheKey = await GetCacheKey(type);
+        var cacheKey = GetCacheKey(type);
         cacheProvider.Delete(cacheKey);
         return false;
     }

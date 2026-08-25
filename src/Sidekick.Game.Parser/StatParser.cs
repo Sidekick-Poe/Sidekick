@@ -10,6 +10,7 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Parser.Stats;
+using Sidekick.Game.Providers;
 using Sidekick.Game.Stats;
 using Sidekick.Game.StatsInvariant;
 using Sidekick.Game.TradeStats;

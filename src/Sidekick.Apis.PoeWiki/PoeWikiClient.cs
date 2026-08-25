@@ -442,7 +442,7 @@ public class PoeWikiClient
     public void OpenWebsite(Item item)
     {
         var searchValue = GetSearchValue(item)?.Replace(" ", "+");
-        var baseUrl = item.Game == GameType.PathOfExile1 ? PoeWikiBaseUri : Poe2WikiBaseUri;
+        var baseUrl = item.Game == GameType.Poe1 ? PoeWikiBaseUri : Poe2WikiBaseUri;
         var uri = new Uri(baseUrl + PoeWikiSubUrl + searchValue);
 
         browserProvider.OpenUri(uri);

@@ -43040,6 +43040,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2460506030|16940",
       "explicit.stat_2460506030|6778"
     ],
     "pattern": "^\u0414\u0430\u0440\u0443\u0435\u0442\\ \u0443\u043C\u0435\u043D\u0438\u0435\\ ([-0-9,.]\u002B),\\ \u0435\u0441\u043B\u0438\\ \u0443\\ \u0432\u0430\u0441\\ \u0435\u0441\u0442\u044C\\ \u0430\u043D\u0430\u043B\u043E\u0433\u0438\u0447\u043D\u043E\u0435\\ \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u043E\\ \u043D\u0430\\ \u0417\u0430\u043F\u0440\u0435\u0442\u043D\u043E\u043C\\ \u043F\u043B\u0430\u043C\u0435\u043D\u0438$"
@@ -112885,7 +112886,6 @@
     "lines": 1,
     "tradeIds": [
       "crucible.mod_36660",
-      "crucible.mod_47569",
       "crucible.mod_54710",
       "crucible.mod_59749",
       "crucible.mod_6400"
@@ -113067,7 +113067,6 @@
     "lines": 1,
     "tradeIds": [
       "crucible.mod_36660",
-      "crucible.mod_47569",
       "crucible.mod_54710",
       "crucible.mod_59749",
       "crucible.mod_6400"
@@ -118698,9 +118697,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1736172673",
-      "explicit.stat_1898978455",
       "explicit.stat_2101383955",
-      "fractured.stat_1898978455",
       "fractured.stat_2101383955",
       "implicit.stat_2101383955"
     ],
@@ -157175,7 +157172,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_528422616"
+      "explicit.stat_528422616",
+      "explicit.stat_539970476",
+      "fractured.stat_539970476"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ \u0443\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435\\ \u0443\u0440\u043E\u043D\u0430\\ \u043E\u0442\\ \u0443\u0434\u0430\u0440\u043E\u0432\\ \u0438\\ \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0439\\ \u043F\u043E\\ \u0443\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u043C\\ \u0432\u0440\u0430\u0433\u0430\u043C$"
   },
@@ -169694,7 +169693,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_528422616"
+      "explicit.stat_528422616",
+      "explicit.stat_539970476",
+      "fractured.stat_539970476"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ \u0443\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435\\ \u0443\u0440\u043E\u043D\u0430\\ \u043E\u0442\\ \u0443\u0434\u0430\u0440\u043E\u0432\\ \u0438\\ \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0439\\ \u043F\u043E\\ \u0443\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u043C\\ \u0432\u0440\u0430\u0433\u0430\u043C$"
   },

@@ -5,6 +5,7 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class SanctifiedProperty(
@@ -17,7 +18,7 @@ public class SanctifiedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.Poe1) return Task.FromResult<TradeFilter?>(null);
         if (tradeFilterProvider.Sanctified == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new SanctifiedFilter

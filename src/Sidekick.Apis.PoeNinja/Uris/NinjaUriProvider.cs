@@ -5,20 +5,22 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
 using Sidekick.Game.Ninja;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.PoeNinja.Uris;
 
 public class NinjaUriProvider(
     INinjaClient ninjaClient,
     ICacheProvider cacheProvider,
-    ISettingsService settingsService)
+    ISettingsService settingsService,
+    LeagueProvider leagueProvider)
 {
     public async Task<Uri?> GetDetailsUri(NinjaExchangeItem item)
     {
         if (string.IsNullOrEmpty(item.Id)) return null;
 
         var game = await settingsService.GetGame();
-        var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
+        var gamePath = game == GameType.Poe1 ? "" : "poe2/";
         var league = await GetLeague();
         return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.DetailsId}");
     }
@@ -28,7 +30,7 @@ public class NinjaUriProvider(
         if (string.IsNullOrEmpty(item.DetailsId)) return null;
 
         var game = await settingsService.GetGame();
-        var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
+        var gamePath = game == GameType.Poe1 ? "" : "poe2/";
         var league = await GetLeague();
         return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.DetailsId}");
     }
@@ -39,13 +41,12 @@ public class NinjaUriProvider(
         return $"PoeNinjaIndexState_{game.GetValueAttribute()}";
     }
 
-    public async Task<IndexStateLeague?> GetLeague()
+    private async Task<IndexStateLeague?> GetLeague()
     {
         var result = await GetResult();
         if (result == null) return null;
 
-        var league = await settingsService.GetLeague();
-        var line = result.EconomyLeagues.FirstOrDefault(x => x.Name == league);
+        var line = result.EconomyLeagues.FirstOrDefault(x => x.Name == leagueProvider.Current.Id);
         return line ?? null;
 
         async Task<bool> CheckCacheIsValid(IndexStateModel? model = null)

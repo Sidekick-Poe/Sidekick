@@ -4,6 +4,7 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Parser.Trade.Requests;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Filters.Definitions;
 
 public class PlayerStatusFilterFactory(

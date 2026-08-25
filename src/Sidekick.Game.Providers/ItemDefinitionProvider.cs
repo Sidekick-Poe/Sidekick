@@ -9,7 +9,8 @@ public class ItemDefinitionProvider(
     ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
     BaseItemProvider baseItemProvider,
-    NinjaProvider ninjaProvider
+    NinjaProvider ninjaProvider,
+    ScoutProvider scoutProvider
 ) : IInitializableService
 {
     public Dictionary<string, ItemDefinition> InvariantDictionary { get; } = new(StringComparer.Ordinal);
@@ -26,9 +27,7 @@ public class ItemDefinitionProvider(
         AssignBaseItems(Definitions);
         AssignNinjaExchangeItems(Definitions);
         AssignNinjaStashItems(Definitions);
-        UniqueItems = Definitions.Where(x => x.IsUnique)
-            .OrderByDescending(x => x.Name?.Length ?? 0)
-            .ToList();
+        AssignScoutItems(Definitions);
 
         if (currentGameLanguage.IsEnglish())
         {
@@ -40,7 +39,12 @@ public class ItemDefinitionProvider(
             AssignBaseItems(InvariantDefinitions);
             AssignNinjaExchangeItems(InvariantDefinitions);
             AssignNinjaStashItems(InvariantDefinitions);
+            AssignScoutItems(InvariantDefinitions);
         }
+
+        UniqueItems = Definitions.Where(x => x.IsUnique)
+            .OrderByDescending(x => x.Name?.Length ?? 0)
+            .ToList();
 
         InvariantDictionary.Clear();
         foreach (var definition in InvariantDefinitions)
@@ -97,6 +101,18 @@ public class ItemDefinitionProvider(
                 if (definition.NinjaStashItemIds == null) continue;
                 definition.NinjaStashItems = definition.NinjaStashItemIds
                     .Select(x => ninjaProvider.StashItems.GetValueOrDefault(x))
+                    .Where(x => x != null)
+                    .ToList()!;
+            }
+        }
+
+        void AssignScoutItems(List<ItemDefinition> definitions)
+        {
+            foreach (var definition in definitions)
+            {
+                if (definition.ScoutItemIds == null) continue;
+                definition.ScoutItems = definition.ScoutItemIds
+                    .Select(x => scoutProvider.Items.GetValueOrDefault(x))
                     .Where(x => x != null)
                     .ToList()!;
             }

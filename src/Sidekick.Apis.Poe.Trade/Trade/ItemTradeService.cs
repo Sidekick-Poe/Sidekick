@@ -14,6 +14,7 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Models;
+using Sidekick.Game.Providers;
 namespace Sidekick.Apis.Poe.Trade.Trade;
 
 public class ItemTradeService
@@ -21,7 +22,8 @@ public class ItemTradeService
     ILogger<ItemTradeService> logger,
     ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
-    IHttpClientFactory httpClientFactory
+    IHttpClientFactory httpClientFactory,
+    LeagueProvider leagueProvider
 ) : IItemTradeService
 {
     /// <summary>
@@ -55,8 +57,7 @@ public class ItemTradeService
                 filter.PrepareTradeRequest(query, item);
             }
 
-            var league = await settingsService.GetLeague();
-            var uri = new Uri($"{language.GetTradeApiBaseUrl(item.Game)}search/{league}");
+            var uri = new Uri($"{language.GetTradeApiBaseUrl(item.Game)}search/{leagueProvider.Current}");
 
             var request = new QueryRequest()
             {
@@ -103,7 +104,7 @@ public class ItemTradeService
                 query.Type = tradeItem?.Type;
             }
 
-            if (tradeItem?.Category == "monster" && !string.IsNullOrEmpty(tradeItem?.Name))
+            if (tradeItem?.Category == "monster" && !string.IsNullOrEmpty(tradeItem.Name))
             {
                 query.Term = tradeItem.Name;
                 query.Type = null;
@@ -155,7 +156,6 @@ public class ItemTradeService
         var language = useEnglishTradeWebsite ? currentGameLanguage.InvariantLanguage : currentGameLanguage.Language;
 
         var baseUri = new Uri(language.GetTradeBaseUrl(game) + "search/");
-        var league = await settingsService.GetLeague();
-        return new Uri(baseUri, $"{league}/{queryId}");
+        return new Uri(baseUri, $"{leagueProvider.Current}/{queryId}");
     }
 }

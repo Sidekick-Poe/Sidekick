@@ -7,6 +7,7 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class ImbuedGemProperty(
@@ -17,7 +18,7 @@ public class ImbuedGemProperty(
 
     public override void ParseAfterStats(Item item)
     {
-        if (game != GameType.PathOfExile1) return;
+        if (game != GameType.Poe1) return;
         if (item.ItemClass.Type != ItemClass.ActiveSkillGem) return;
 
         item.Properties.Imbued = item.Stats.Any(x => x.Category == StatCategory.Imbued);
@@ -25,7 +26,7 @@ public class ImbuedGemProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game != GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
+        if (game != GameType.Poe1) return Task.FromResult<TradeFilter?>(null);
         if (item.ItemClass.Type != ItemClass.ActiveSkillGem) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ImbuedGemFilter

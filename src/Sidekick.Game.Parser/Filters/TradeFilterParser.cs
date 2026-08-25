@@ -3,6 +3,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Game.Parser.Filters.Definitions;
 using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 namespace Sidekick.Apis.Poe.Trade.Filters;
 
 public class TradeFilterParser

@@ -96,7 +96,7 @@ public class RarityFilter : StringPropertyFilter
 {
     public RarityFilter(GameType game)
     {
-        if (game == GameType.PathOfExile1)
+        if (game == GameType.Poe1)
         {
             DefaultAutoSelect = AutoSelectPreferences.Create(false);
         }

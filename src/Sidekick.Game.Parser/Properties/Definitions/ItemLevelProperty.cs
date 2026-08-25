@@ -42,7 +42,7 @@ public class ItemLevelFilter : IntPropertyFilter
     public ItemLevelFilter(GameType game)
     {
         Game = game;
-        if (game == GameType.PathOfExile1)
+        if (game == GameType.Poe1)
         {
             DefaultAutoSelect = new AutoSelectPreferences()
             {
@@ -138,8 +138,8 @@ public class ItemLevelFilter : IntPropertyFilter
 
         switch (Game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(this); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(this); break;
+            case GameType.Poe1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(this); break;
+            case GameType.Poe2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(this); break;
         }
     }
 }

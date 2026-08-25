@@ -23,15 +23,9 @@ public class SettingsService(
     {
         Converters =
         {
-            new JsonStringEnumConverter()
+            new JsonStringEnumConverter(),
         },
     };
-
-    public async Task<string?> GetLeague()
-    {
-        var leagueId = await GetString(SettingKeys.LeagueId);
-        return leagueId?.Split('.', 2).ElementAtOrDefault(1);
-    }
 
     public async Task<GameType> GetGame()
     {

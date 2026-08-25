@@ -5,8 +5,6 @@ public interface ISettingsService
 {
     Task<GameType> GetGame();
 
-    Task<string?> GetLeague();
-
     /// <summary>
     /// Event when any setting is changed.
     /// </summary>

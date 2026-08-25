@@ -4,6 +4,7 @@
 @using Sidekick.Game.Parser.Properties
 @using Sidekick.Game.Parser.Filters.AutoSelect
 @using Sidekick.Game.Parser.Localization
+@using Sidekick.Game.Providers
 @using Sidekick.Common.Settings
 
 <FormSelectInline Value="@Condition.Type.ToString()"
@@ -44,7 +45,7 @@
 
         foreach (var value in Enum.GetValues<AutoSelectConditionType>())
         {
-            if (game == GameType.PathOfExile2 && value is AutoSelectConditionType.SocketLink)
+            if (game == GameType.Poe2 && value is AutoSelectConditionType.SocketLink)
             {
                 continue;
             }

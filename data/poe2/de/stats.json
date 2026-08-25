@@ -66860,9 +66860,7 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3091578504",
-      "explicit.stat_174664100",
       "explicit.stat_3091578504",
-      "fractured.stat_174664100",
       "fractured.stat_3091578504",
       "rune.stat_3091578504"
     ],
@@ -67242,9 +67240,7 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3091578504",
-      "explicit.stat_174664100",
       "explicit.stat_3091578504",
-      "fractured.stat_174664100",
       "fractured.stat_3091578504",
       "rune.stat_3091578504"
     ],
@@ -72100,10 +72096,13 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^Magnituden\\ von\\ impliziten\\ Modifikatoren\\ sind\\ verdoppelt$"
@@ -72115,10 +72114,13 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^Magnituden\\ von\\ impliziten\\ Modifikatoren\\ sind\\ verdreifacht$"
@@ -130512,10 +130514,13 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Magnituden\\ von\\ impliziten\\ Modifikatoren$"
@@ -132556,6 +132561,7 @@
     "text": "#% erh\u00F6hte R\u00FCstung und Ausweichwert bei niedrigem Leben",
     "lines": 1,
     "tradeIds": [
+      "rune.stat_1392112423",
       "rune.stat_51757548"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ R\u00FCstung\\ und\\ Ausweichwert\\ bei\\ niedrigem\\ Leben$"
@@ -154964,10 +154970,13 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Magnituden\\ von\\ impliziten\\ Modifikatoren$"

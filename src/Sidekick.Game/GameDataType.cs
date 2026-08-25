@@ -22,6 +22,9 @@ public enum GameDataType
     [EnumValue("ninja-stash-items.json")]
     NinjaStashItems,
 
+    [EnumValue("scout-items.json")]
+    ScoutItems,
+
     [EnumValue("invariant-stats.json")]
     StatsInvariant,
 

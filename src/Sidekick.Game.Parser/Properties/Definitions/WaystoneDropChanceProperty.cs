@@ -22,7 +22,7 @@ public class WaystoneDropChanceProperty(
 
     public override void Parse(Item item)
     {
-        if (game != GameType.PathOfExile2) return;
+        if (game != GameType.Poe2) return;
 
         item.Properties.WaystoneDropChance = GetInt(Pattern, item.Text);
         if (item.Properties.WaystoneDropChance == 0) return;

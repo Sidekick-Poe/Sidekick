@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Common.Settings\Sidekick.Common.Settings.csproj" />
+    <ProjectReference Include="..\Sidekick.Game.Parser\Sidekick.Game.Parser.csproj" />
+    <ProjectReference Include="..\Sidekick.Game.Providers\Sidekick.Game.Providers.csproj" />
   </ItemGroup>
 
 </Project>

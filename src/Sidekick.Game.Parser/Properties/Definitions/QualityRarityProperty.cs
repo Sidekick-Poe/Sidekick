@@ -22,7 +22,7 @@ public class QualityRarityProperty(
 
     public override void Parse(Item item)
     {
-        if (game != GameType.PathOfExile1) return;
+        if (game != GameType.Poe1) return;
 
         item.Properties.QualityRarity = GetInt(Pattern, item.Text);
         if (item.Properties.QualityRarity == 0) return;
@@ -32,7 +32,7 @@ public class QualityRarityProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game != GameType.PathOfExile1 || item.Properties.QualityRarity <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (game != GameType.Poe1 || item.Properties.QualityRarity <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new QualityRarityFilter
         {
