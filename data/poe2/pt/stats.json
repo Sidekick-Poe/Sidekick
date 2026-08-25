@@ -108712,6 +108712,7 @@
       "desecrated.stat_2653955271",
       "enchant.stat_2653955271",
       "explicit.stat_2653955271",
+      "explicit.stat_3588388638",
       "fractured.stat_2653955271"
     ],
     "pattern": "^Monstros\\ ignoram\\ ([-0-9,.]\u002B)%\\ da\\ resist\u00EAncia\\ a\\ dano\\ de\\ fogo$"
@@ -164181,8 +164182,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3273962791",
-      "implicit.stat_2264295449"
+      "explicit.stat_3273962791"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metros\\ para\\ o\\ alcance\\ do\\ golpe\\ corpo\\ a\\ corpo\\ com\\ machados$"
   },

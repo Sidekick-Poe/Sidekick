@@ -65,8 +65,8 @@ public class AttacksPerSecondFilter : DoublePropertyFilter
 
         switch (Game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
+            case GameType.Poe1: query.Filters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
+            case GameType.Poe2: query.Filters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
         }
     }
 }

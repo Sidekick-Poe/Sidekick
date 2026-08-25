@@ -16,7 +16,7 @@ public class SocketLinkProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Game == GameType.PathOfExile2) return Task.FromResult<TradeFilter?>(null);
+        if (item.Game == GameType.Poe2) return Task.FromResult<TradeFilter?>(null);
 
         if (item.Properties.Sockets is not
             {
@@ -40,7 +40,7 @@ public class SocketLinkFilter : IntPropertyFilter
     public SocketLinkFilter(GameType game)
     {
         Game = game;
-        if (game == GameType.PathOfExile1)
+        if (game == GameType.Poe1)
         {
             DefaultAutoSelect = new AutoSelectPreferences()
             {
@@ -76,7 +76,7 @@ public class SocketLinkFilter : IntPropertyFilter
 
         switch (Game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(this); break;
+            case GameType.Poe1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(this); break;
         }
     }
 }

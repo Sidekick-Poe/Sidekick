@@ -3,17 +3,17 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
-using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.PoePriceInfo;
 
 public class PoePriceInfoClient(
-    ISettingsService settingsService,
     ILogger<PoePriceInfoClient> logger,
     IHttpClientFactory httpClientFactory,
-    ICurrentGameLanguage currentGameLanguage) : IPoePriceInfoClient
+    ICurrentGameLanguage currentGameLanguage,
+    LeagueProvider leagueProvider) : IPoePriceInfoClient
 {
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
@@ -39,10 +39,9 @@ public class PoePriceInfoClient(
 
         try
         {
-            var league = await settingsService.GetLeague();
             var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text.Text));
             using var client = GetHttpClient();
-            var response = await client.GetAsync("?l=" + league + "&i=" + encodedItem);
+            var response = await client.GetAsync("?l=" + leagueProvider.Current.Id + "&i=" + encodedItem);
             var content = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, JsonSerializerOptions);
 

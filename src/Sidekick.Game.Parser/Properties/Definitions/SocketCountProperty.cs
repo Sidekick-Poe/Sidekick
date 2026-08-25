@@ -121,7 +121,7 @@ public class SocketCountFilter : IntPropertyFilter
     public SocketCountFilter(GameType game)
     {
         Game = game;
-        if (game == GameType.PathOfExile1)
+        if (game == GameType.Poe1)
         {
             DefaultAutoSelect = new AutoSelectPreferences()
             {
@@ -183,9 +183,9 @@ public class SocketCountFilter : IntPropertyFilter
 
         switch (Game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Sockets = new SocketFilterOption(this); break;
+            case GameType.Poe1: query.Filters.GetOrCreateSocketFilters().Filters.Sockets = new SocketFilterOption(this); break;
 
-            case GameType.PathOfExile2:
+            case GameType.Poe2:
                 switch (item.Properties.Rarity)
                 {
                     case Rarity.Gem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(this); break;

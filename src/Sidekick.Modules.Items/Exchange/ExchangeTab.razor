@@ -26,7 +26,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        SupportsCurrencyExchange = Item.InvariantDefinition?.NinjaExchangeItem != null;
+        SupportsCurrencyExchange = Item.Definition.NinjaExchangeItem != null;
+        SupportsCurrencyExchange |= Item.Definition.ScoutItems?.Any(x => x.IsCurrency) ?? false;
         if (SupportsCurrencyExchange) await CurrentTabChanged.InvokeAsync("exchange");
 
         await base.OnInitializedAsync();

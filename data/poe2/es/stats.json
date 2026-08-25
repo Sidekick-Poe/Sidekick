@@ -47685,6 +47685,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3198708642",
       "explicit.stat_3205239847",
       "explicit.stat_425242359"
     ],
@@ -119205,10 +119206,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
+      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
+      "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
@@ -119220,10 +119224,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
+      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
+      "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
     ],
@@ -119418,11 +119425,8 @@
     "text": "Magnitudes de los modificadores de vida expl\u00EDcitos aumentadas un #%",
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3514984677",
       "desecrated.stat_363924732",
-      "explicit.stat_3514984677",
       "explicit.stat_363924732",
-      "fractured.stat_3514984677",
       "fractured.stat_363924732"
     ],
     "pattern": "^Magnitudes\\ de\\ los\\ modificadores\\ de\\ vida\\ expl\u00EDcitos\\ aumentadas\\ un\\ ([-0-9,.]\u002B)%$"
@@ -125213,6 +125217,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "skill.herald_of_ash",
       "skill.herald_of_plague"
     ],
     "pattern": "^Otorga\\ la\\ habilidad\\ Heraldo\\ de\\ agon\u00EDa\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
@@ -125407,6 +125412,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "skill.convalescence",
       "skill.malice"
     ],
     "pattern": "^Otorga\\ la\\ habilidad\\ Malevolencia\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
@@ -125455,7 +125461,8 @@
     "lines": 1,
     "tradeIds": [
       "skill.parry",
-      "skill.reap"
+      "skill.reap",
+      "skill.unleash"
     ],
     "pattern": "^Otorga\\ la\\ habilidad\\ Plaga\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
   },
@@ -141567,9 +141574,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2017682521",
       "explicit.stat_1714706956",
-      "explicit.stat_2017682521",
       "fractured.stat_1714706956"
     ],
     "pattern": "^Tama\u00F1o\\ de\\ los\\ grupos\\ de\\ monstruos\\ sintetizados\\ aumentado\\ un\\ ([-0-9,.]\u002B)%$"
@@ -149146,6 +149151,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1174076861",
       "explicit.stat_1659564104"
     ],
     "pattern": "^Velocidad\\ de\\ ataque\\ aumentada\\ un\\ ([-0-9,.]\u002B)%\\ si\\ has\\ infligido\\ un\\ impacto\\ cr\u00EDtico\\ recientemente$"
@@ -150097,6 +150103,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1174076861",
       "explicit.stat_1659564104"
     ],
     "pattern": "^Velocidad\\ de\\ ataque\\ reducida\\ un\\ ([-0-9,.]\u002B)%\\ si\\ has\\ infligido\\ un\\ impacto\\ cr\u00EDtico\\ recientemente$"

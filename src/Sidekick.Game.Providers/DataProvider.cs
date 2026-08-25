@@ -7,8 +7,7 @@ using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Game.Languages;
-
-namespace Sidekick.Game;
+namespace Sidekick.Game.Providers;
 
 public class DataProvider
 {

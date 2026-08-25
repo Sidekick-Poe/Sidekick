@@ -30421,6 +30421,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "rune.stat_1433756169",
       "rune.stat_1936645603"
     ],
     "pattern": "^\u0E19\u0E33\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)%\\ \u0E44\u0E1B\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E40\u0E1B\u0E47\u0E19\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32$"
@@ -56268,7 +56269,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_795138349",
       "enchant.stat_2763429652",
+      "explicit.stat_795138349",
+      "fractured.stat_795138349",
       "implicit.stat_2763429652"
     ],
     "pattern": "^\u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E22\u0E31\u0E48\u0E27\u0E22\u0E38\\ ([-0-9,.]\u002B)%\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30$"
@@ -80282,7 +80286,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2604619892",
       "desecrated.stat_548070846",
+      "explicit.stat_2604619892",
       "explicit.stat_548070846",
       "fractured.stat_548070846"
     ],
@@ -102478,8 +102484,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1224838456",
-      "explicit.stat_4258251165"
+      "explicit.stat_1224838456"
     ],
     "pattern": "^\u0E2A\u0E2B\u0E32\u0E22\u0E43\u0E19\u0E23\u0E30\u0E22\u0E30\u0E1B\u0E23\u0E32\u0E01\u0E0F\u0E01\u0E32\u0E22\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E19\u0E33\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ ([-0-9,.]\u002B)%\\ \u0E44\u0E1B\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E40\u0E1B\u0E47\u0E19\\ \u0E40\u0E04\u0E2D\u0E2D\u0E2A$"
   },
@@ -102504,6 +102509,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "rune.stat_1539508682",
       "rune.stat_2342427527"
     ],
     "pattern": "^\u0E2A\u0E2B\u0E32\u0E22\u0E43\u0E19\u0E23\u0E30\u0E22\u0E30\u0E1B\u0E23\u0E32\u0E01\u0E0F\u0E01\u0E32\u0E22\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E35\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E40\u0E04\u0E2D\u0E2D\u0E2A\\ \\\u002B([-0-9,.]\u002B)%$"
@@ -142299,7 +142305,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2604619892",
       "desecrated.stat_548070846",
+      "explicit.stat_2604619892",
       "explicit.stat_548070846",
       "fractured.stat_548070846"
     ],

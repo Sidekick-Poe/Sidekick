@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-namespace Sidekick.Game.Extensions;
+namespace Sidekick.Game.Providers.Extensions;
 
 /// <summary>
 ///     Class containing extension methods for strings.

@@ -7,9 +7,11 @@ public class League
 {
     public GameType Game { get; init; }
 
-    public string Id { get; init; } = string.Empty;
+    public required string Id { get; init; }
 
-    public string Text { get; init; } = string.Empty;
+    public required string Text { get; init; }
+
+    public string? ScoutValue { get; init; }
 
     public LeagueRealm Realm { get; init; }
 

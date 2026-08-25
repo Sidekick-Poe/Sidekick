@@ -2,6 +2,7 @@
 using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Filters.Definitions;
 
 public class CurrencyFilterFactory(TradeFilterProvider tradeFilterProvider)
@@ -14,7 +15,7 @@ public class CurrencyFilterFactory(TradeFilterProvider tradeFilterProvider)
         var priceFilters = tradeFilterProvider.GetApiFilter("trade_filters", "price");
         if (priceFilters == null) return Task.FromResult<TradeFilter?>(null);
 
-        var priceKey = item.Game == GameType.PathOfExile1 ? SettingKeyPoe1 : SettingKeyPoe2;
+        var priceKey = item.Game == GameType.Poe1 ? SettingKeyPoe1 : SettingKeyPoe2;
 
         return Task.FromResult<TradeFilter?>(new CurrencyFilter(priceKey)
         {

@@ -9,6 +9,7 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class HeistPerceptionProperty(

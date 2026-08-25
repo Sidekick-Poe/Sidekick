@@ -22,14 +22,14 @@ public class RewardProperty(
     public override void Parse(Item item)
     {
         if (item.ItemClass.Type != ItemClass.Map) return;
-        if (game == GameType.PathOfExile2) return;
+        if (game == GameType.Poe2) return;
 
         item.Properties.Reward = GetString(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.Poe2 || item.Properties.Reward == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RewardFilter(itemDefinitionProvider)
         {

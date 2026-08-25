@@ -13,7 +13,7 @@
                Height="@("100%")">
         <ApexPointSeries TItem="DataPoint"
                          Items="QuantityPoints"
-                         Name="@(QuantityLabel ?? Resources["Listings"])"
+                         Name="@QuantityLabel"
                          SeriesType="SeriesType.Bar"
                          XValue="@(e => e.DateString)"
                          YValue="@(e => e.Value)"/>
@@ -34,7 +34,7 @@
     public List<ScoutHistoryLog> Logs { get; set; } = [];
 
     [Parameter]
-    public string? QuantityLabel { get; set; }
+    public required string QuantityLabel { get; set; }
 
     private List<DataPoint> ValuePoints { get; set; } = [];
 

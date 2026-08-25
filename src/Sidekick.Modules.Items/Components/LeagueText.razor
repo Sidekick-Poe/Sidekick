@@ -1,22 +1,5 @@
-@using Sidekick.Apis.Poe.Trade.Leagues
-@using Sidekick.Common.Settings
+@using Sidekick.Game.Providers
 
-<TextCaption Class="text-teal-500">@Text</TextCaption>
+<TextCaption Class="text-teal-500">@LeagueProvider.Current.Text</TextCaption>
 
-@inject ISettingsService SettingsService
 @inject LeagueProvider LeagueProvider
-
-@code {
-
-    private string? Text { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        var leagues = await LeagueProvider.GetList();
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        Text = leagues.FirstOrDefault(x => x.Value == leagueId)?.Text;
-
-        await base.OnInitializedAsync();
-    }
-
-}

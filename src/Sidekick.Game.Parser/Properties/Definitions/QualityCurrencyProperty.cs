@@ -22,7 +22,7 @@ public class QualityCurrencyProperty(
 
     public override void Parse(Item item)
     {
-        if (game != GameType.PathOfExile1) return;
+        if (game != GameType.Poe1) return;
 
         item.Properties.QualityCurrency = GetInt(Pattern, item.Text);
         if (item.Properties.QualityCurrency == 0) return;
@@ -32,7 +32,7 @@ public class QualityCurrencyProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game != GameType.PathOfExile1 || item.Properties.QualityCurrency <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (game != GameType.Poe1 || item.Properties.QualityCurrency <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new QualityCurrencyFilter
         {

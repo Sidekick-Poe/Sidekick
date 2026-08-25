@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using Sidekick.Game.Extensions;
 using Sidekick.Game.Parser.Tokenizers;
+using Sidekick.Game.Providers.Extensions;
 namespace Sidekick.Game.Parser.Items;
 
 /// <summary>

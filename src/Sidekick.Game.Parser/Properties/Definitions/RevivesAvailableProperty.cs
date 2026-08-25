@@ -22,7 +22,7 @@ public class RevivesAvailableProperty(
 
     public override void Parse(Item item)
     {
-        if (game != GameType.PathOfExile2) return;
+        if (game != GameType.Poe2) return;
 
         item.Properties.RevivesAvailable = GetInt(Pattern, item.Text);
         if (item.Properties.RevivesAvailable == 0) return;

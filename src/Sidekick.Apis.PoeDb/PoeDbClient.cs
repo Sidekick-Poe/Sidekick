@@ -13,7 +13,7 @@ public class PoeDbClient(
 
     public void OpenWebsite(Item item)
     {
-        var baseUrl = item.Game == GameType.PathOfExile1 ? PoeDbBaseUri : Poe2DbBaseUri;
+        var baseUrl = item.Game == GameType.Poe1 ? PoeDbBaseUri : Poe2DbBaseUri;
         var languageCodeSuffix = currentGameLanguage.Language.Code switch
         {
             "en" => "us/",

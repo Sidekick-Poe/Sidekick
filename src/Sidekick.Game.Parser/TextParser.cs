@@ -164,8 +164,8 @@ public class TextParser
                     else if (Foulborn != null && line.Text.Contains(Foulborn)) currentCategory = StatCategory.Mutated;
                     else if (Corrupted != null && line.Text.Contains(Corrupted))
                     {
-                        if (Game == GameType.PathOfExile1) currentCategory = StatCategory.Implicit;
-                        else if (Game == GameType.PathOfExile2) currentCategory = StatCategory.Enchant;
+                        if (Game == GameType.Poe1) currentCategory = StatCategory.Implicit;
+                        else if (Game == GameType.Poe2) currentCategory = StatCategory.Enchant;
                     }
                     else currentCategory = StatCategory.Explicit;
                 }

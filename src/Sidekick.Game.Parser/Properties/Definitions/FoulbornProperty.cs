@@ -6,6 +6,7 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class FoulbornProperty(
@@ -21,7 +22,7 @@ public class FoulbornProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2 || item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.Poe2 || item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FoulbornFilter
         {

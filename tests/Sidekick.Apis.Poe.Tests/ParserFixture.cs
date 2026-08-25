@@ -72,8 +72,8 @@ public abstract class ParserFixture : IAsyncLifetime
         await SettingsService.Set(SettingKeys.LanguageUi, Language);
         await SettingsService.Set(AutoSelectPreferences.DefaultFillMinSettingKey, true);
         await SettingsService.Set(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
-        if (GameType == GameType.PathOfExile1) await SettingsService.Set(SettingKeys.LeagueId, "poe1.Standard");
-        else if (GameType == GameType.PathOfExile2) await SettingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
+        if (GameType == GameType.Poe1) await SettingsService.Set(SettingKeys.LeagueId, "poe1.Standard");
+        else if (GameType == GameType.Poe2) await SettingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
 
         if (initializationTask == null)
         {

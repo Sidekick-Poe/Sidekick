@@ -1,4 +1,5 @@
 ﻿@using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Game.Parser.Items
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
 
@@ -7,12 +8,23 @@
     return;
 }
 
-<div class="bg-stone-950 rounded-lg">
-    <div class="flex flex-nowrap items-center gap-2 pt-1 px-3">
-        <PriceDisplay Value="LastLog.Price" Currency="@Currency"/>
-        <TextCaption Class="ml-auto">@LastLog.Quantity @(QuantityLabel ?? NinjaResources["Listings"])</TextCaption>
-    </div>
-    <Poe2ScoutChart Logs="Logs" QuantityLabel="@(QuantityLabel ?? NinjaResources["Listings"])"/>
+<div class="bg-stone-950 rounded-lg px-2 py-1">
+    @if (ChaosValue != null)
+    {
+        @GetCurrencyRow(ChaosValue.Value, "chaos", ChaosQuantity)
+    }
+    @if (ExaltedValue != null)
+    {
+        @GetCurrencyRow(ExaltedValue.Value, "exalted", ExaltedQuantity)
+    }
+    @if (DivineValue != null)
+    {
+        @GetCurrencyRow(DivineValue.Value, "divine", DivineQuantity)
+    }
+
+    <Poe2ScoutWebsite History="History"/>
+    <LayoutDivider Dense="true"/>
+    <Poe2ScoutChart Logs="Logs" QuantityLabel="@ListingsLabel"/>
 </div>
 
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
@@ -20,19 +32,66 @@
 @code {
 
     [Parameter]
-    public List<ScoutHistoryLog>? Logs { get; set; }
+    public required ScoutHistory History { get; set; }
 
-    [Parameter]
-    public required string Currency { get; set; }
-
-    [Parameter]
-    public string? QuantityLabel { get; set; }
+    [CascadingParameter]
+    public required Item Item { get; set; }
 
     private ScoutHistoryLog? LastLog { get; set; }
+
+    private List<ScoutHistoryLog>? Logs { get; set; }
+
+    private string ListingsLabel => History.Item.IsCurrency ? NinjaResources["Listings"] : NinjaResources["VolumeTraded"];
+
+    private decimal? ChaosValue => History.Chaos?.FirstOrDefault()?.Price;
+    private decimal? ExaltedValue => History.Exalted?.FirstOrDefault()?.Price;
+    private decimal? DivineValue => History.Divine?.FirstOrDefault()?.Price;
+
+    private int? ChaosQuantity => History.Chaos?.FirstOrDefault()?.Quantity;
+    private int? ExaltedQuantity => History.Exalted?.FirstOrDefault()?.Quantity;
+    private int? DivineQuantity => History.Divine?.FirstOrDefault()?.Quantity;
+
+    private RenderFragment GetCurrencyRow(decimal value, string currency, int? volume)
+        => @<div
+               class="flex flex-wrap mb-2">
+               <div
+                   class="flex w-1/2 justify-center">
+                   <PriceDisplay
+                       Value="value"
+                       Currency="@currency"/>
+               </div>
+               <div
+                   class="flex items-center w-1/2 justify-center">
+                   <PriceDisplay
+                       Value="1"
+                       Currency="@currency"
+                       Small="true"/>
+                   <Icon
+                       Svg="@UiIcons.ArrowForward"
+                       Class="mx-1 text-[#a38d6d]"/>
+                   <PriceDisplay
+                       Value="@(1 / value)"
+                       Currency="@Item.Definition.ExchangeId"
+                       Small="true"/>
+               </div>
+
+               @if (volume != null)
+               {
+                   <div class="w-1/2">
+                       <TextCaption
+                           Class="text-center">@volume @ListingsLabel</TextCaption>
+                   </div>
+               }
+           </div>;
 
     protected override void OnParametersSet()
     {
         LastLog = Logs?.LastOrDefault();
+
+        Logs = History.Divine;
+        Logs ??= History.Chaos;
+        Logs ??= History.Exalted;
+
         base.OnParametersSet();
     }
 

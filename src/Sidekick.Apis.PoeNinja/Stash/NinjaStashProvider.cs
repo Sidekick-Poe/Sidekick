@@ -11,6 +11,7 @@ using Sidekick.Game.Ninja;
 using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
+using Sidekick.Game.Providers;
 
 namespace Sidekick.Apis.PoeNinja.Stash;
 
@@ -19,7 +20,8 @@ public class NinjaStashProvider(
     ISettingsService settingsService,
     ICacheProvider cacheProvider,
     NinjaUriProvider ninjaUriProvider,
-    StatParser statParser) : INinjaStashProvider
+    StatParser statParser,
+    LeagueProvider leagueProvider) : INinjaStashProvider
 {
     private static readonly List<string> IgnoreStatTexts =
     [
@@ -28,10 +30,9 @@ public class NinjaStashProvider(
         "Area is influenced by The Elder",
     ];
 
-    private async Task<string> GetCacheKey(string type)
+    private string GetCacheKey(string type)
     {
-        var league = await settingsService.GetLeague();
-        return $"PoeNinjaStash_{league}_{type}";
+        return $"PoeNinjaStash_{leagueProvider.Current.Id}_{type}";
     }
 
     public List<NinjaStashItem> GetDefinitions(Item item)
@@ -404,7 +405,7 @@ public class NinjaStashProvider(
     private async Task<ApiStashOverview?> GetResult(string type)
     {
         var result = await GetOrUpdateCache();
-        if (!await CheckCacheIsValid(type, result))
+        if (!CheckCacheIsValid(type, result))
         {
             result = await GetOrUpdateCache();
         }
@@ -413,7 +414,7 @@ public class NinjaStashProvider(
 
         async Task<ApiStashOverview?> GetOrUpdateCache()
         {
-            var cacheKey = await GetCacheKey(type);
+            var cacheKey = GetCacheKey(type);
             return await cacheProvider.GetOrSet(cacheKey, async () =>
             {
                 var game = await settingsService.GetGame();
@@ -433,13 +434,13 @@ public class NinjaStashProvider(
         }
     }
 
-    private async Task<bool> CheckCacheIsValid(string type, ApiStashOverview? result = null)
+    private bool CheckCacheIsValid(string type, ApiStashOverview? result = null)
     {
         var lastUpdate = result?.LastUpdated ?? DateTimeOffset.MinValue;
         var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(2);
         if (isCacheTimeValid) return true;
 
-        var cacheKey = await GetCacheKey(type);
+        var cacheKey = GetCacheKey(type);
         cacheProvider.Delete(cacheKey);
         return false;
     }

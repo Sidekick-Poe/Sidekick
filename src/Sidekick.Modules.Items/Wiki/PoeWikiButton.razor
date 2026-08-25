@@ -3,7 +3,7 @@
 @using Sidekick.Game
 
 <ButtonLink Class="justify-start! p-3 gap-2" OnClick="() => PoeWikiClient.OpenWebsite(Item)">
-    <Icon Svg="@UiIcons.External"/> @(Item.Game == GameType.PathOfExile1 ? "poewiki.net" : "poe2wiki.net")
+    <Icon Svg="@UiIcons.External"/> @(Item.Game == GameType.Poe1 ? "poewiki.net" : "poe2wiki.net")
 </ButtonLink>
 
 @inject IPoeWikiClient PoeWikiClient

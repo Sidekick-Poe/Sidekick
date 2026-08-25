@@ -1,9 +1,9 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Apis.Poe.Trade.Leagues
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Settings.Extensions
 @using Sidekick.Common.Ui.Forms
+@using Sidekick.Game.Providers
 
 <FormSelect Label="@Resources["Character_League"]"
             Value="@LeagueId"
@@ -30,15 +30,13 @@
     {
         LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
 
-        var leagues = await LeagueProvider.GetList();
-        Options = leagues
-            .GroupBy(x => x.Value)
+        Options = (await LeagueProvider.GetLeagues())
             .Select(
             x => new SelectOption()
             {
-                Value = x.First().Value,
-                Label = x.First().Text,
-                Group = Resources[x.First().Game.ToString()]
+                Value = x.Value,
+                Label = x.Text,
+                Group = Resources[x.Game.ToString()]
             })
             .ToList();
 
@@ -47,11 +45,13 @@
 
     private async Task LeagueChanged(string? value)
     {
+        if (value == null) return;
+
         var currentGame = LeagueId.GetGameFromLeagueId();
         var newGame = value.GetGameFromLeagueId();
 
         LeagueId = value;
-        await SettingsService.Set(SettingKeys.LeagueId, value);
+        await LeagueProvider.Set(value);
 
         if (AutoRefresh && currentGame != newGame)
         {

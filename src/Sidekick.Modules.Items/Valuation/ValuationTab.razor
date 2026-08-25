@@ -1,5 +1,4 @@
-﻿@using Sidekick.Apis.Poe2Scout.Items
-@using Sidekick.Common
+﻿@using Sidekick.Common
 @using Sidekick.Common.Settings.Languages
 @using Sidekick.Modules.Items.Valuation.Localization
 @using Sidekick.Game
@@ -14,7 +13,6 @@
 }
 
 @inject IStringLocalizer<ValuationResources> Resources
-@inject IScoutItemProvider ScoutItemProvider
 @inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
@@ -34,7 +32,7 @@
     {
         Valid = CheckNinja();
         Valid |= CheckPrediction();
-        Valid |= await CheckScout();
+        Valid |= CheckScout();
 
         var switchTab = Valid;
         switchTab &= !Item.ItemClass.IsArea();
@@ -53,15 +51,13 @@
     {
         if (!SidekickFlags.PoePricesEnabled) return false;
 
-        return Item.Game == GameType.PathOfExile1
+        return Item.Game == GameType.Poe1
                && Item.Properties.Rarity == Rarity.Rare
                && CurrentGameLanguage.IsEnglish();
     }
 
-    private async Task<bool> CheckScout()
+    private bool CheckScout()
     {
-        var scoutItem = await ScoutItemProvider.GetItem(Item.InvariantTradeItem);
-        return scoutItem != null;
+        return Item.Definition.ScoutItems != null && Item.Definition.ScoutItems.Any(x => !x.IsCurrency);
     }
-
 }

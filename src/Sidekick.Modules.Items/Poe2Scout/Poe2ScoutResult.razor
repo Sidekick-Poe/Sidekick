@@ -1,15 +1,7 @@
 ﻿@using Sidekick.Apis.Poe2Scout.History
 @using Sidekick.Apis.Poe2Scout.History.Models
-@using Sidekick.Apis.Poe2Scout.Items
-@using Sidekick.Apis.Poe2Scout.Items.Models
 @using Sidekick.Modules.Items.Poe2Scout.Localization
 @using Sidekick.Game.Parser.Items
-@using Sidekick.Game
-
-@if (Item.Game == GameType.PathOfExile1)
-{
-    return;
-}
 
 <div class="flex flex-col gap-2">
     <Heading2>
@@ -23,25 +15,20 @@
     {
         <AppLoading Label="Poe2Scout.com"/>
     }
-    else if (ScoutHistory == null)
+    else if (Results == null || Results.Count == 0)
     {
-        <AlertInfo Flat="true">@Resources["NoCurrencyExchangeData"]</AlertInfo>
+        <AlertInfo Flat="true">@Resources["NoData"]</AlertInfo>
     }
     else
     {
-        <Poe2ScoutPanel Currency="exalted" Logs="@ScoutHistory.Exalted"
-                        QuantityLabel="@Resources["VolumeTraded"]"/>
-        <Poe2ScoutPanel Currency="chaos" Logs="@ScoutHistory.Chaos"
-                        QuantityLabel="@Resources["VolumeTraded"]"/>
-        <Poe2ScoutPanel Currency="divine" Logs="@ScoutHistory.Divine"
-                        QuantityLabel="@Resources["VolumeTraded"]"/>
-
-        <Poe2ScoutWebsite History="ScoutHistory" Item="ScoutItem"/>
+        foreach (var result in Results)
+        {
+            <Poe2ScoutPanel History="result"/>
+        }
     }
 </div>
 
-@inject IScoutHistoryProvider ScoutHistoryProvider
-@inject IScoutItemProvider ScoutItemProvider
+@inject ScoutHistoryProvider ScoutHistoryProvider
 @inject IStringLocalizer<Poe2ScoutResources> Resources
 
 @code {
@@ -49,26 +36,20 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    private ScoutHistory? ScoutHistory { get; set; }
-
-    private ScoutItem? ScoutItem { get; set; }
+    private List<ScoutHistory>? Results { get; set; }
 
     private bool Loading { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        await base.OnInitializedAsync();
-
         Loading = true;
         StateHasChanged();
 
-        ScoutItem = await ScoutItemProvider.GetItem(Item.InvariantTradeItem);
-        if (ScoutItem != null)
-        {
-            ScoutHistory = await ScoutHistoryProvider.GetItemHistory(ScoutItem.ItemId);
-        }
+        Results = await ScoutHistoryProvider.GetHistories(Item);
 
         Loading = false;
         StateHasChanged();
+
+        await base.OnParametersSetAsync();
     }
 }
