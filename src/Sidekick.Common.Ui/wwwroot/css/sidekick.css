@@ -12,29 +12,42 @@
     --color-gray-600: #4B5563;
     --color-gray-700: #374151;
     --color-gray-800: #1F2937;
+    --color-red-200: #FECACA;
     --color-red-300: #FCA5A5;
     --color-red-400: #F87171;
     --color-red-500: #EF4444;
     --color-red-600: #DC2626;
     --color-red-700: #B91C1C;
+    --color-red-800: #991B1B;
     --color-red-900: #7F1D1D;
     --color-yellow-400: #FBBF24;
     --color-yellow-500: #F59E0B;
     --color-yellow-600: #D97706;
+    --color-green-200: #A7F3D0;
+    --color-green-300: #6EE7B7;
     --color-green-400: #34D399;
     --color-green-500: #10B981;
     --color-green-600: #059669;
+    --color-green-700: #047857;
+    --color-green-800: #065F46;
     --color-green-900: #064E3B;
+    --color-blue-200: #BFDBFE;
+    --color-blue-300: #93C5FD;
     --color-blue-400: #60A5FA;
     --color-blue-500: #3B82F6;
     --color-blue-600: #2563EB;
+    --color-blue-700: #1D4ED8;
+    --color-blue-800: #1E40AF;
     --color-blue-900: #1E3A8A;
     --color-orange-400: #ED8936;
     --color-orange-500: #DD6B20;
     --color-orange-600: #C05621;
     --color-orange-700: #9C4221;
     --color-teal-500: #14B8A6;
+    --color-red-950: oklch(25.8% 0.092 26.042);
     --color-amber-500: oklch(76.9% 0.188 70.08);
+    --color-green-950: oklch(26.6% 0.065 152.934);
+    --color-blue-950: oklch(28.2% 0.091 267.935);
     --color-violet-200: oklch(89.4% 0.057 293.283);
     --color-violet-300: oklch(81.1% 0.111 293.571);
     --color-violet-400: oklch(70.2% 0.183 293.541);
@@ -1756,17 +1769,26 @@
   .border-blue-500 {
     border-color: var(--color-blue-500);
   }
+  .border-blue-800 {
+    border-color: var(--color-blue-800);
+  }
   .border-gray-200 {
     border-color: var(--color-gray-200);
   }
   .border-green-500 {
     border-color: var(--color-green-500);
   }
+  .border-green-800 {
+    border-color: var(--color-green-800);
+  }
   .border-neutral-500 {
     border-color: var(--color-neutral-500);
   }
   .border-red-500 {
     border-color: var(--color-red-500);
+  }
+  .border-red-800 {
+    border-color: var(--color-red-800);
   }
   .border-stone-600 {
     border-color: var(--color-stone-600);
@@ -1858,6 +1880,12 @@
       background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
     }
   }
+  .bg-blue-300\/10 {
+    background-color: color-mix(in srgb, #93C5FD 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-blue-300) 10%, transparent);
+    }
+  }
   .bg-blue-400 {
     background-color: var(--color-blue-400);
   }
@@ -1872,6 +1900,12 @@
   }
   .bg-gray-600 {
     background-color: var(--color-gray-600);
+  }
+  .bg-green-300\/10 {
+    background-color: color-mix(in srgb, #6EE7B7 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-green-300) 10%, transparent);
+    }
   }
   .bg-green-400 {
     background-color: var(--color-green-400);
@@ -1890,6 +1924,12 @@
   }
   .bg-orange-700 {
     background-color: var(--color-orange-700);
+  }
+  .bg-red-300\/10 {
+    background-color: color-mix(in srgb, #FCA5A5 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-red-300) 10%, transparent);
+    }
   }
   .bg-red-400 {
     background-color: var(--color-red-400);
@@ -2316,6 +2356,9 @@
   .text-blue-400 {
     color: var(--color-blue-400);
   }
+  .text-blue-500 {
+    color: var(--color-blue-500);
+  }
   .text-gray-200 {
     color: var(--color-gray-200);
   }
@@ -2525,6 +2568,15 @@
     padding-bottom: 0px;
   }
   @media (hover: hover) {
+    .hover\:border-blue-600:hover {
+      border-color: var(--color-blue-600);
+    }
+    .hover\:border-green-600:hover {
+      border-color: var(--color-green-600);
+    }
+    .hover\:border-red-600:hover {
+      border-color: var(--color-red-600);
+    }
     .hover\:border-stone-600:hover {
       border-color: var(--color-stone-600);
     }
@@ -2534,6 +2586,12 @@
     .hover\:border-zinc-500:hover {
       border-color: var(--color-zinc-500);
     }
+    .hover\:bg-blue-950:hover {
+      background-color: var(--color-blue-950);
+    }
+    .hover\:bg-green-950:hover {
+      background-color: var(--color-green-950);
+    }
     .hover\:bg-orange-400:hover {
       background-color: var(--color-orange-400);
     }
@@ -2542,6 +2600,9 @@
     }
     .hover\:bg-red-700:hover {
       background-color: var(--color-red-700);
+    }
+    .hover\:bg-red-950:hover {
+      background-color: var(--color-red-950);
     }
     .hover\:bg-stone-600:hover {
       background-color: var(--color-stone-600);
@@ -2564,11 +2625,20 @@
     .hover\:bg-zinc-700:hover {
       background-color: var(--color-zinc-700);
     }
+    .hover\:text-blue-400:hover {
+      color: var(--color-blue-400);
+    }
     .hover\:text-gray-300:hover {
       color: var(--color-gray-300);
     }
+    .hover\:text-green-400:hover {
+      color: var(--color-green-400);
+    }
     .hover\:text-red-300\!:hover {
       color: var(--color-red-300) !important;
+    }
+    .hover\:text-red-400:hover {
+      color: var(--color-red-400);
     }
     .hover\:text-violet-400:hover {
       color: var(--color-violet-400);
@@ -2702,6 +2772,22 @@
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
   }
+  .\[\&_\.sockets_\[contenteditable\]\]\:rounded-r-none\! .sockets [contenteditable] {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  .\[\&_\.sockets_\[contenteditable\]\]\:leading-\[14px\] .sockets [contenteditable] {
+    --tw-leading: 14px;
+    line-height: 14px;
+  }
+  .\[\&_\.sockets\:last-child_\[contenteditable\]\]\:rounded-r-md\! .sockets:last-child [contenteditable] {
+    border-top-right-radius: var(--radius-md) !important;
+    border-bottom-right-radius: var(--radius-md) !important;
+  }
+  .\[\&_\.sockets\~\.sockets_\[contenteditable\]\]\:rounded-l-none\! .sockets ~ .sockets [contenteditable] {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
   .\[\&_\.text-base\]\:text-sm\! .text-base {
     font-size: var(--text-sm) !important;
   }
@@ -2756,8 +2842,26 @@
   .\[\&\+\.separator\]\:hidden + .separator {
     display: none;
   }
+  .\[\&\:\:selection\]\:bg-blue-700::selection {
+    background-color: var(--color-blue-700);
+  }
+  .\[\&\:\:selection\]\:bg-green-700::selection {
+    background-color: var(--color-green-700);
+  }
+  .\[\&\:\:selection\]\:bg-red-700::selection {
+    background-color: var(--color-red-700);
+  }
   .\[\&\:\:selection\]\:bg-violet-700::selection {
     background-color: var(--color-violet-700);
+  }
+  .\[\&\:\:selection\]\:text-blue-200::selection {
+    color: var(--color-blue-200);
+  }
+  .\[\&\:\:selection\]\:text-green-200::selection {
+    color: var(--color-green-200);
+  }
+  .\[\&\:\:selection\]\:text-red-200::selection {
+    color: var(--color-red-200);
   }
   .\[\&\:\:selection\]\:text-violet-200::selection {
     color: var(--color-violet-200);

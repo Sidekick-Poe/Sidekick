@@ -2,26 +2,21 @@ using System.Text.Json.Serialization;
 using Sidekick.Game.Parser.Filters.Types;
 namespace Sidekick.Game.Parser.Trade.Requests.Filters;
 
-public class SocketFilterOption : StatFilterValue
+public class SocketFilterOption(SocketPropertyFilter filter)
 {
-    public SocketFilterOption() {}
+    public double? Min { get; set; } = filter.Min;
 
-    public SocketFilterOption(IntPropertyFilter filter)
-    {
-        Option = filter.Checked ? "true" : "false";
-        Min = filter.Min;
-        Max = filter.Max;
-    }
+    public double? Max { get; set; } = filter.Max;
 
     [JsonPropertyName("r")]
-    public int? Red { get; set; }
+    public int? Red { get; set; } = filter.Red;
 
     [JsonPropertyName("g")]
-    public int? Green { get; set; }
+    public int? Green { get; set; } = filter.Green;
 
     [JsonPropertyName("b")]
-    public int? Blue { get; set; }
+    public int? Blue { get; set; } = filter.Blue;
 
     [JsonPropertyName("w")]
-    public int? White { get; set; }
+    public int? White { get; set; } = filter.White;
 }
