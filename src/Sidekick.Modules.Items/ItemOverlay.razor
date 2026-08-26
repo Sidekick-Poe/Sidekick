@@ -38,14 +38,14 @@
                             IsFixed="true">
                 <AppContainer>
                     <div class="sticky top-0 z-10 pb-1 mb-2 -mt-3 pt-2 bg-stone-900">
-                        <TabList>
+                        <TabList @ref="TabList">
                             <ChildContent>
-                                <AreaTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                                <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                                <ValuationTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                                <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <AreaTab/>
+                                <ExchangeTab/>
+                                <ValuationTab/>
+                                <TradeTab/>
                                 @* Removed. Restore with #1168
-                                <ToolTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <ToolTab/>
                                 *@
                                 <WikiTab/>
                             </ChildContent>
@@ -54,14 +54,14 @@
                             </RightContent>
                         </TabList>
 
-                        @switch (CurrentTab)
+                        @switch (TabList?.SelectedTab)
                         {
                             case "trade":
                                 <TradeSticky/> break;
                         }
                     </div>
 
-                    @switch (CurrentTab)
+                    @switch (TabList?.SelectedTab)
                     {
                         case "area":
                             <AreaResult/> break;
@@ -98,7 +98,7 @@
 
     private Item? Item { get; set; }
 
-    private string? CurrentTab { get; set; } = "trade";
+    private TabList? TabList { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -120,15 +120,6 @@
         Item = ItemParser.ParseItem(itemText);
 
         await base.OnParametersSetAsync();
-    }
-
-    private async Task TabChanged(string? tab)
-    {
-        await InvokeAsync(() =>
-        {
-            CurrentTab = tab ?? "trade";
-            StateHasChanged();
-        });
     }
 
     private async Task OnLeftContentResize(int width)

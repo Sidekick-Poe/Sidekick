@@ -2,9 +2,13 @@
 @using Sidekick.Game.Parser.Items
 @using Sidekick.Common.Ui.Tabs
 
-<TabItem Active="@(CurrentTab == "trade")"
-         Text="@Resources["Trade"]"
-         OnClick="@(() => CurrentTabChanged.InvokeAsync("trade"))"/>
+@if (!Item.Definition.SupportsTrade)
+{
+    return;
+}
+
+<TabItem Id="trade"
+         Text="@Resources["Trade"]"/>
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject TradeService TradeService
@@ -15,11 +19,8 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    [Parameter]
-    public string? CurrentTab { get; set; }
-
-    [Parameter]
-    public EventCallback<string?> CurrentTabChanged { get; set; }
+    [CascadingParameter]
+    public required TabList TabList { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -29,8 +30,7 @@
 
     private void TradeServiceOnChanged()
     {
-        CurrentTabChanged.InvokeAsync("trade");
-        StateHasChanged();
+        TabList.SelectedTab = "trade";
     }
 
     public void Dispose()

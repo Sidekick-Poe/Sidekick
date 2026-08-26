@@ -17,26 +17,29 @@
                     Influences="Item.Properties.Influences"/>
     </div>
 
-    <div class="grow overflow-y-auto pt-1">
-        @for (var index = 0; index < Filters.Count; index++)
-        {
-            var filter = Filters[index];
-            var key = $"{Item.Id}_filter_{index}";
-            <FilterComponent @key="key" Filter="filter"/>
-        }
-    </div>
+    @if (Item.Definition.SupportsTrade)
+    {
+        <div class="grow overflow-y-auto pt-1">
+            @for (var index = 0; index < Filters.Count; index++)
+            {
+                var filter = Filters[index];
+                var key = $"{Item.Id}_filter_{index}";
+                <FilterComponent @key="key" Filter="filter"/>
+            }
+        </div>
 
-    <div class="flex items-center text-center px-2 pb-2 pt-1 gap-2">
-        <HelpModal/>
-        <ButtonPrimary
-            Class="flex-1"
-            OnClick="() => TradeService.SearchItems(Item, Filters)"
-            Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
-        <ButtonIcon Svg="@UiIcons.Refresh"
-                    Title="@Resources["ResetFilters"]"
-                    OnClick="ResetFilters"
-                    Disabled="TradeService.IsLoading"/>
-    </div>
+        <div class="flex items-center text-center px-2 pb-2 pt-1 gap-2">
+            <HelpModal/>
+            <ButtonPrimary
+                Class="flex-1"
+                OnClick="() => TradeService.SearchItems(Item, Filters)"
+                Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
+            <ButtonIcon Svg="@UiIcons.Refresh"
+                        Title="@Resources["ResetFilters"]"
+                        OnClick="ResetFilters"
+                        Disabled="TradeService.IsLoading"/>
+        </div>
+    }
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources

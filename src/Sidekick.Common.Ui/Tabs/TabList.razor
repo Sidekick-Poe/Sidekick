@@ -1,9 +1,11 @@
-﻿<ul class="flex flex-wrap items-center gap-1 text-sm font-medium text-center border-b border-stone-700 text-gray-400 mb-2 @Class">
-    @ChildContent
-    <li class="ml-auto flex flex-wrap items-center gap-1">
-        @RightContent
-    </li>
-</ul>
+﻿<CascadingValue Value="this">
+    <ul class="flex flex-wrap items-center gap-1 text-sm font-medium text-center border-b border-stone-700 text-gray-400 mb-2 @Class">
+        @ChildContent
+        <li class="ml-auto flex flex-wrap items-center gap-1">
+            @RightContent
+        </li>
+    </ul>
+</CascadingValue>
 
 @code {
     [Parameter]
@@ -14,5 +16,17 @@
 
     [Parameter]
     public string? Class { get; set; }
+
+    public event Action? SelectedTabChanged;
+
+    public string? SelectedTab
+    {
+        get;
+        set
+        {
+            field = value;
+            SelectedTabChanged?.Invoke();
+        }
+    }
 
 }
