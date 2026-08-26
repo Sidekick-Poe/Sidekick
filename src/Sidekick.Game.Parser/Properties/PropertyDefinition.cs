@@ -23,11 +23,6 @@ public abstract class PropertyDefinition
         return originalText.TryParseRegex(pattern, out var match) ? match.Groups[1].Value.Trim(' ', ':') : null;
     }
 
-    protected static string? GetString(Regex pattern, OriginalBlock originalBlock)
-    {
-        return originalBlock.TryParseRegex(pattern, out var match) ? match.Groups[1].Value.Trim(' ', ':') : null;
-    }
-
     protected static int GetInt(Regex pattern, OriginalText originalText)
     {
         if (!originalText.TryParseRegex(pattern, out var match)) return 0;
@@ -53,22 +48,6 @@ public abstract class PropertyDefinition
     protected static double GetDouble(Regex pattern, OriginalText originalText)
     {
         if (!originalText.TryParseRegex(pattern, out var match)) return 0;
-
-        var value = match.Groups[1].Value
-            .Replace(",", ".")
-            .TrimEnd('%');
-
-        if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
-        {
-            return result;
-        }
-
-        return 0;
-    }
-
-    protected static double GetDouble(Regex pattern, OriginalBlock originalBlock)
-    {
-        if (!originalBlock.TryParseRegex(pattern, out var match)) return 0;
 
         var value = match.Groups[1].Value
             .Replace(",", ".")

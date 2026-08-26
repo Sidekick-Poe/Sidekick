@@ -18,9 +18,6 @@ public class MiscFilters
 
     public SearchFilterOption? Split { get; set; }
 
-    [JsonPropertyName("scourge_tier")]
-    public StatFilterValue? Scourged { get; set; }
-
     [JsonPropertyName("elder_item")]
     public SearchFilterOption? ElderItem { get; set; }
 
@@ -57,7 +54,7 @@ public class MiscFilters
     [JsonPropertyName("sanctified")]
     public SearchFilterOption? Sanctified { get; set; }
 
-    [JsonPropertyName("foulborn_item")]
+    [JsonPropertyName("mutated")]
     public SearchFilterOption? Foulborn { get; set; }
 
     [JsonPropertyName("gem_imbued")]

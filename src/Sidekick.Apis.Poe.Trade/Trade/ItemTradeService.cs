@@ -57,7 +57,7 @@ public class ItemTradeService
                 filter.PrepareTradeRequest(query, item);
             }
 
-            var uri = new Uri($"{language.GetTradeApiBaseUrl(item.Game)}search/{leagueProvider.Current}");
+            var uri = new Uri($"{language.GetTradeApiBaseUrl(item.Game)}search/{leagueProvider.Current.Id}");
 
             var request = new QueryRequest()
             {

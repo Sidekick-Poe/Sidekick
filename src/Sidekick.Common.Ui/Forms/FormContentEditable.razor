@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 
 <div id="@ElementId"
-     class="p-[2px] border border-violet-800 bg-violet-300/10 min-w-6 text-center rounded-md whitespace-pre-wrap duration-200 @UiClasses.FocusClasses transition-colors hover:bg-violet-950 [&::selection]:bg-violet-700 [&::selection]:text-violet-200 hover:text-violet-400 hover:border-violet-600 text-violet-500"
+     class="p-[2px] border min-w-6 text-center rounded-md whitespace-pre-wrap duration-200 @UiClasses.FocusClasses transition-colors @Class"
      contenteditable="true"
      data-placeholder="@Placeholder">@Value</div>
 
@@ -21,6 +21,9 @@
 
     [Parameter]
     public double? DoubleValue { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "border-violet-800 bg-violet-300/10 hover:bg-violet-950 [&::selection]:bg-violet-700 [&::selection]:text-violet-200 hover:text-violet-400 hover:border-violet-600 text-violet-500";
 
     [Parameter]
     public EventCallback<double?> DoubleValueChanged { get; set; }

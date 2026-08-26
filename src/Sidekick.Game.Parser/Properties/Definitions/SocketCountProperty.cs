@@ -105,94 +105,112 @@ public class SocketCountProperty(
             })
             return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new SocketCountFilter(game)
+        TradeFilter? filter = null;
+        switch (game)
         {
-            Text = Label,
-            Value = item.Properties.Sockets.Count,
-            AutoSelectSettingKey = $"Trade_Filter_{nameof(SocketCountProperty)}_{game.GetValueAttribute()}",
-            NormalizeEnabled = false,
-        };
-        return Task.FromResult<TradeFilter?>(filter);
+            case GameType.Poe1:
+            {
+                filter = new Poe1SocketCountFilter()
+                {
+                    Text = Label,
+                    Value = item.Properties.Sockets.Count,
+                    AutoSelectSettingKey = $"Trade_Filter_{nameof(SocketCountProperty)}_{game.GetValueAttribute()}",
+                    NormalizeEnabled = false,
+                };
+                break;
+            }
+
+            case GameType.Poe2:
+            {
+                filter = new Poe2SocketCountFilter()
+                {
+                    Text = Label,
+                    Value = item.Properties.Sockets.Count,
+                    AutoSelectSettingKey = $"Trade_Filter_{nameof(SocketCountProperty)}_{game.GetValueAttribute()}",
+                    NormalizeEnabled = false,
+                };
+                break;
+            }
+        }
+
+        return Task.FromResult(filter);
     }
 }
 
-public class SocketCountFilter : IntPropertyFilter
+public class Poe1SocketCountFilter : SocketPropertyFilter
 {
-    public SocketCountFilter(GameType game)
+    public Poe1SocketCountFilter()
     {
-        Game = game;
-        if (game == GameType.Poe1)
+        DefaultAutoSelect = new AutoSelectPreferences()
         {
-            DefaultAutoSelect = new AutoSelectPreferences()
-            {
-                Mode = AutoSelectMode.Default,
-                Rules =
-                [
-                    new()
-                    {
-                        Checked = true,
-                        NormalizeBy = 0,
-                        FillMinRange = true,
-                        FillMaxRange = false,
-                        Conditions =
-                        [
-                            new()
-                            {
-                                Type = AutoSelectConditionType.SocketCount,
-                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
-                                Value = 6.ToString(),
-                            },
-                        ],
-                    },
-                ],
-            };
-        }
-        else
-        {
-            DefaultAutoSelect = new AutoSelectPreferences()
-            {
-                Mode = AutoSelectMode.Default,
-                Rules =
-                [
-                    new()
-                    {
-                        Checked = true,
-                        NormalizeBy = 0,
-                        FillMinRange = true,
-                        FillMaxRange = false,
-                        Conditions =
-                        [
-                            new()
-                            {
-                                Type = AutoSelectConditionType.SocketCount,
-                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
-                                Value = 3.ToString(),
-                            },
-                        ],
-                    },
-                ],
-            };
-        }
+            Mode = AutoSelectMode.Default,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    NormalizeBy = 0,
+                    FillMinRange = true,
+                    FillMaxRange = false,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.SocketCount,
+                            Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                            Value = 6.ToString(),
+                        },
+                    ],
+                },
+            ],
+        };
     }
-
-    private GameType Game { get; }
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
 
-        switch (Game)
+        query.Filters.GetOrCreateSocketFilters().Filters.Sockets = new SocketFilterOption(this);
+    }
+}
+
+public class Poe2SocketCountFilter : IntPropertyFilter
+{
+    public Poe2SocketCountFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
         {
-            case GameType.Poe1: query.Filters.GetOrCreateSocketFilters().Filters.Sockets = new SocketFilterOption(this); break;
-
-            case GameType.Poe2:
-                switch (item.Properties.Rarity)
+            Mode = AutoSelectMode.Default,
+            Rules =
+            [
+                new()
                 {
-                    case Rarity.Gem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(this); break;
-                    default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(this); break;
-                }
+                    Checked = true,
+                    NormalizeBy = 0,
+                    FillMinRange = true,
+                    FillMaxRange = false,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.SocketCount,
+                            Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                            Value = 3.ToString(),
+                        },
+                    ],
+                },
+            ],
+        };
+    }
 
-                break;
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        switch (item.Properties.Rarity)
+        {
+            case Rarity.Gem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(this); break;
+            default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(this); break;
         }
     }
 }

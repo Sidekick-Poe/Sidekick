@@ -1,0 +1,142 @@
+@using Sidekick.Common.Settings.Languages
+@using Sidekick.Game.Parser.Filters.Types
+@using Sidekick.Game.Parser.Items
+@using Sidekick.Modules.Items.Trade.Localization
+
+<FilterWrapper Filter="@Filter">
+    <div class="grow">
+        <FormCheckbox Value="Filter.Checked"
+                      ValueChanged="CheckedChanged">
+            <ItemPropertyText Label="@Filter.Text"
+                              Hint="@Filter.Hint"
+                              Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"
+                              ContentType="@Filter.GetLineContentType()"
+                              HasAdditionalInformation="Filter.Value != Filter.OriginalValue && Filter.OriginalValue > 0">
+                <AdditionalInformation>
+                    <ItemPropertyText
+                        Label="@($"{CurrentGameLanguage.Language.DescriptionQuality} {Item.Properties.Quality}%")"
+                        Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue}{Filter.ValueSuffix}")"/>
+                    <ItemPropertyText Label="@($"{CurrentGameLanguage.Language.DescriptionQuality} 20%")"
+                                      Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"/>
+                </AdditionalInformation>
+            </ItemPropertyText>
+        </FormCheckbox>
+    </div>
+
+    @if (Filter.Checked)
+    {
+        <div class="flex flex-nowrap items-center [&_.sockets_[contenteditable]]:leading-[14px] [&_.sockets~.sockets_[contenteditable]]:rounded-l-none! [&_.sockets_[contenteditable]]:rounded-r-none! [&_.sockets:last-child_[contenteditable]]:rounded-r-md!">
+            <div @onwheel="OnRedWheel"
+                 @oncontextmenu="ClearSockets"
+                 class="sockets">
+                <FormContentEditable Placeholder="R"
+                                     Class="border-red-800 bg-red-300/10 hover:bg-red-950 [&::selection]:bg-red-700 [&::selection]:text-red-200 hover:text-red-400 hover:border-red-600 text-red-500"
+                                     DoubleValue="Filter.Red"
+                                     DoubleValueChanged="value => Filter.Red = value != null ? (int)value : null"/>
+            </div>
+            <div @onwheel="OnGreenWheel"
+                 @oncontextmenu="ClearSockets"
+                 class="sockets">
+                <FormContentEditable Placeholder="G"
+                                     Class="border-green-800 bg-green-300/10 hover:bg-green-950 [&::selection]:bg-green-700 [&::selection]:text-green-200 hover:text-green-400 hover:border-green-600 text-green-500"
+                                     DoubleValue="Filter.Green"
+                                     DoubleValueChanged="value => Filter.Green = value != null ? (int)value : null"/>
+            </div>
+            <div @onwheel="OnBlueWheel"
+                 @oncontextmenu="ClearSockets"
+                 class="sockets">
+                <FormContentEditable Placeholder="B"
+                                     Class="border-blue-800 bg-blue-300/10 hover:bg-blue-950 [&::selection]:bg-blue-700 [&::selection]:text-blue-200 hover:text-blue-400 hover:border-blue-600 text-blue-500"
+                                     DoubleValue="Filter.Blue"
+                                     DoubleValueChanged="value => Filter.Blue = value != null ? (int)value : null"/>
+            </div>
+        </div>
+
+        <FilterRange Filter="Filter"
+                     Min="@Filter.Min"
+                     MinChanged="MinChanged"
+                     Max="@Filter.Max"
+                     MaxChanged="MaxChanged"/>
+    }
+</FilterWrapper>
+
+@inject ICurrentGameLanguage CurrentGameLanguage
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required SocketPropertyFilter Filter { get; set; }
+
+    private void CheckedChanged(bool value)
+    {
+        Filter.Checked = value;
+    }
+
+    private void MinChanged(double? value)
+    {
+        Filter.Min = value != null ? (int)value : null;
+    }
+
+    private void MaxChanged(double? value)
+    {
+        Filter.Max = value != null ? (int)value : null;
+    }
+
+    private void ClearSockets()
+    {
+        Filter.Red = null;
+        Filter.Green = null;
+        Filter.Blue = null;
+        StateHasChanged();
+    }
+
+    private void OnRedWheel(WheelEventArgs args)
+    {
+        var value = Filter.Red ?? 0;
+        if (args.DeltaY < 0)
+        {
+            value += 1;
+        }
+        else
+        {
+            value -= 1;
+        }
+
+        Filter.Red = value;
+    }
+
+    private void OnGreenWheel(WheelEventArgs args)
+    {
+        var value = Filter.Green ?? 0;
+        if (args.DeltaY < 0)
+        {
+            value += 1;
+        }
+        else
+        {
+            value -= 1;
+        }
+
+        Filter.Green = value;
+    }
+
+    private void OnBlueWheel(WheelEventArgs args)
+    {
+        var value = Filter.Blue ?? 0;
+        if (args.DeltaY < 0)
+        {
+            value += 1;
+        }
+        else
+        {
+            value -= 1;
+        }
+
+        Filter.Blue = value;
+    }
+
+}
