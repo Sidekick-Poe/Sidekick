@@ -11,7 +11,15 @@
             <Icon Size="UiIconSize.Small"
                   Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronRight)"/>
 
-            <ItemPropertyText Label="@Filter.Text"
+            @{
+                var label = Filter.Text;
+                if (CheckedFiltersWhenCollapsed > 0)
+                {
+                    label = $"{label} ({CheckedFiltersWhenCollapsed})";
+                }
+            }
+
+            <ItemPropertyText Label="@label"
                               Hint="@Filter.Hint"
                               Value="@(Filter.Checked ? "true" : "false")"
                               ContentType="@Filter.GetLineContentType()"
@@ -27,14 +35,7 @@
         var filter = Filter.Filters[index];
         var key = $"{Item.Id}_filter_{index}";
 
-        if (!Filter.Checked)
-        {
-            if (filter is TriStatePropertyFilter triState)
-            {
-                if (triState.Checked == null) continue;
-            }
-            else if (!filter.Checked) continue;
-        }
+        if (!Filter.Checked) continue;
 
         <FilterComponent @key="key"
                          Filter="filter"/>
@@ -49,4 +50,23 @@
     [Parameter]
     public required ExpandableFilter Filter { get; set; }
 
+    private int CheckedFiltersWhenCollapsed
+    {
+        get
+        {
+            if (Filter.Checked) return 0;
+
+            var selectedFilters = 0;
+            foreach (var filter in Filter.Filters)
+            {
+                if (filter is TriStatePropertyFilter triState)
+                {
+                    if (triState.Checked != null) selectedFilters++;
+                }
+                else if (filter.Checked) selectedFilters++;
+            }
+
+            return selectedFilters;
+        }
+    }
 }

@@ -4,9 +4,8 @@
 
 @if (SupportsCurrencyExchange)
 {
-    <TabItem Active="@(CurrentTab == "exchange")"
-             Text="@Resources["CurrencyExchange"]"
-             OnClick="@(() => CurrentTabChanged.InvokeAsync("exchange"))"/>
+    <TabItem Id="exchange"
+             Text="@Resources["CurrencyExchange"]"/>
 }
 
 @inject IStringLocalizer<ExchangeResources> Resources
@@ -16,20 +15,14 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    [Parameter]
-    public string? CurrentTab { get; set; }
-
-    [Parameter]
-    public EventCallback<string?> CurrentTabChanged { get; set; }
-
-    private bool SupportsCurrencyExchange { get; set; }
-
-    protected override async Task OnInitializedAsync()
+    private bool SupportsCurrencyExchange
     {
-        SupportsCurrencyExchange = Item.Definition.NinjaExchangeItem != null;
-        SupportsCurrencyExchange |= Item.Definition.ScoutItems?.Any(x => x.IsCurrency) ?? false;
-        if (SupportsCurrencyExchange) await CurrentTabChanged.InvokeAsync("exchange");
+        get
+        {
+            if (Item.Definition.NinjaExchangeItem != null) return true;
+            if (Item.Definition.ScoutItems?.Any(x => x.IsCurrency) ?? false) return true;
 
-        await base.OnInitializedAsync();
+            return false;
+        }
     }
 }

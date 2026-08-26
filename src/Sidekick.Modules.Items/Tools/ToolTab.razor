@@ -10,13 +10,13 @@
 
 <Popover Placement="TooltipPlacement.Bottom">
     <ActivatorContent>
-        <TabItem Active="Active"
-                 EndIcon="@UiIcons.ChevronDown"
+        <TabItem EndIcon="@UiIcons.ChevronDown"
                  Text="@Resources["Tools"]"/>
     </ActivatorContent>
     <ChildContent>
         <div class="flex flex-col">
-            <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenChromatic">@Resources["ChromaticCalculator"]</ButtonLink>
+            <ButtonLink Class="justify-start! p-3 gap-2"
+                        OnClick="OpenChromatic">@Resources["ChromaticCalculator"]</ButtonLink>
         </div>
     </ChildContent>
 </Popover>
@@ -29,13 +29,11 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
+    [CascadingParameter]
+    public required TabList TabList { get; set; }
+
     [Parameter]
     public string? CurrentTab { get; set; }
-
-    [Parameter]
-    public EventCallback<string?> CurrentTabChanged { get; set; }
-
-    private bool Active => CurrentTab == "chromatic";
 
     private bool AnyTools { get; set; }
 
@@ -46,9 +44,8 @@
         await base.OnInitializedAsync();
     }
 
-    private async Task OpenChromatic()
+    private void OpenChromatic()
     {
-        await CurrentTabChanged.InvokeAsync("chromatic");
+        TabList.SelectedTab = "chromatic";
     }
-
 }

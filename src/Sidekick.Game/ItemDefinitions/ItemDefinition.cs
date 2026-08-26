@@ -64,6 +64,18 @@ public class ItemDefinition
     [JsonIgnore]
     public List<ScoutItem>? ScoutItems { get; set; }
 
+    [JsonIgnore]
+    public bool SupportsTrade
+    {
+        get
+        {
+            if (NinjaExchangeItem != null) return false;
+            if (ScoutItems != null && ScoutItems.All(x => x.IsCurrency)) return false;
+
+            return true;
+        }
+    }
+
     /// <inheritdoc />
     public override string ToString()
     {

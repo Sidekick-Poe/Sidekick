@@ -2,11 +2,10 @@
 @using Sidekick.Game.Parser.Items
 @using Sidekick.Common.Ui.Tabs
 
-@if (Valid)
+@if (Item.ItemClass.IsArea())
 {
-    <TabItem Active="@(CurrentTab == "area")"
-             Text="@Resources["Tab"]"
-             OnClick="@(() => CurrentTabChanged.InvokeAsync("area"))"/>
+    <TabItem Id="area"
+             Text="@Resources["Tab"]"/>
 }
 
 @inject IStringLocalizer<AreaResources> Resources
@@ -15,22 +14,5 @@
 
     [CascadingParameter]
     public required Item Item { get; set; }
-
-    [Parameter]
-    public string? CurrentTab { get; set; }
-
-    [Parameter]
-    public EventCallback<string?> CurrentTabChanged { get; set; }
-
-    private bool Valid { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        Valid = Item.ItemClass.IsArea();
-
-        if (Valid) await CurrentTabChanged.InvokeAsync("area");
-
-        await base.OnInitializedAsync();
-    }
 
 }

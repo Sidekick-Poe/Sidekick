@@ -7,9 +7,8 @@
 
 @if (Valid)
 {
-    <TabItem Active="@(CurrentTab == "valuation")"
-             Text="@Resources["Valuation"]"
-             OnClick="@(() => CurrentTabChanged.InvokeAsync("valuation"))"/>
+    <TabItem Id="valuation"
+             Text="@Resources["Valuation"]"/>
 }
 
 @inject IStringLocalizer<ValuationResources> Resources
@@ -20,25 +19,15 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    [Parameter]
-    public string? CurrentTab { get; set; }
-
-    [Parameter]
-    public EventCallback<string?> CurrentTabChanged { get; set; }
-
     private bool Valid { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         Valid = CheckNinja();
         Valid |= CheckPrediction();
         Valid |= CheckScout();
 
-        var switchTab = Valid;
-        switchTab &= !Item.ItemClass.IsArea();
-        if (switchTab) await CurrentTabChanged.InvokeAsync("valuation");
-
-        await base.OnInitializedAsync();
+        base.OnInitialized();
     }
 
     private bool CheckNinja()

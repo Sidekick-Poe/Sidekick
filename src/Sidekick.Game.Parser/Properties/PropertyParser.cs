@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Localization;
-using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
@@ -95,8 +94,13 @@ public class PropertyParser
 
             new GemLevelProperty(game, currentGameLanguage),
             new ItemLevelProperty(game, currentGameLanguage),
-            new SocketCountProperty(game, currentGameLanguage),
-            new SocketLinkProperty(game, resources),
+
+            new SeparatorProperty(),
+
+            new ExpandableProperty(tradeFilterProvider.SocketCategory?.Title,
+                                   new SocketCountProperty(game, currentGameLanguage),
+                                   new SocketLinkProperty(game, resources)),
+
 
             new SeparatorProperty(),
 
