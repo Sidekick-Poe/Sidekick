@@ -17,6 +17,9 @@
     [Parameter]
     public string? Class { get; set; }
 
+    [Parameter]
+    public EventCallback OnChange { get; set; }
+
     public event Action? SelectedTabChanged;
 
     public string? SelectedTab
@@ -26,6 +29,7 @@
         {
             field = value;
             SelectedTabChanged?.Invoke();
+            InvokeAsync(OnChange.InvokeAsync);
         }
     }
 

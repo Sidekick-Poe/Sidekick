@@ -38,7 +38,8 @@
                             IsFixed="true">
                 <AppContainer>
                     <div class="sticky top-0 z-10 pb-1 mb-2 -mt-3 pt-2 bg-stone-900">
-                        <TabList @ref="TabList">
+                        <TabList @ref="TabList"
+                                 OnChange="StateHasChanged">
                             <ChildContent>
                                 <AreaTab/>
                                 <ExchangeTab/>

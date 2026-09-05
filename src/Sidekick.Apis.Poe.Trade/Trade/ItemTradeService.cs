@@ -156,6 +156,6 @@ public class ItemTradeService
         var language = useEnglishTradeWebsite ? currentGameLanguage.InvariantLanguage : currentGameLanguage.Language;
 
         var baseUri = new Uri(language.GetTradeBaseUrl(game) + "search/");
-        return new Uri(baseUri, $"{leagueProvider.Current}/{queryId}");
+        return new Uri(baseUri, $"{leagueProvider.Current.Id}/{queryId}");
     }
 }
