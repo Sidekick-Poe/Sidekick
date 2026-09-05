@@ -15,7 +15,7 @@ public class StashService
 {
     public async Task<List<StashTab>> GetStashTabList()
     {
-        var response = await client.Fetch<StashTabListResult>($"stash/{leagueProvider.Current}");
+        var response = await client.Fetch<StashTabListResult>($"stash/{leagueProvider.Current.Id}");
         if (response == null) return [];
 
         var stashTabs = FlattenStashTabs(response.Tabs);
@@ -39,7 +39,7 @@ public class StashService
 
     public async Task<StashTab?> GetStashDetails(string id)
     {
-        var result = await client.Fetch<StashTabResult>($"stash/{leagueProvider.Current}/{id}");
+        var result = await client.Fetch<StashTabResult>($"stash/{leagueProvider.Current.Id}/{id}");
         if (result == null) return null;
 
         if (result.Stash.Type == StashType.Map)
@@ -60,7 +60,7 @@ public class StashService
 
         if (tab.Items == null && tab.Children == null)
         {
-            var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{leagueProvider.Current}/{tab.Id}" : $"stash/{leagueProvider.Current}/{tab.Parent}/{tab.Id}";
+            var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{leagueProvider.Current.Id}/{tab.Id}" : $"stash/{leagueProvider.Current}/{tab.Parent}/{tab.Id}";
 
             var wrapper = await client.Fetch<StashTabResult>(uri);
             if (wrapper?.Stash.Items != null)

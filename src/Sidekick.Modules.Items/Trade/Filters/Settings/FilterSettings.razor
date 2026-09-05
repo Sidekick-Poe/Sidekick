@@ -22,16 +22,16 @@
         <Heading2>@Resources["Filter_Settings"]</Heading2>
     </HeaderContent>
     <ChildContent>
-        <TabList>
-            <TabItem OnClick="@(() => CurrentTab = "initial")"
-                     Active="@(CurrentTab == "initial")"
+        <TabList @ref="TabList"
+                 OnChange="StateHasChanged">
+            <TabItem Id="initial"
                      Text="Initial State"/>
-            <TabItem OnClick="@(() => CurrentTab = "global")"
-                     Active="@(CurrentTab == "global")"
+            <TabItem Id="global"
                      Text="Global Settings"/>
         </TabList>
 
-        @switch (CurrentTab)
+
+        @switch (TabList?.SelectedTab)
         {
             case "initial":
                 <FilterAutoSelectSettings Filter="Filter"/> break;
@@ -55,11 +55,11 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
+    private TabList? TabList { get; set; }
+
     [Parameter]
     public required TradeFilter Filter { get; set; }
 
     private string ButtonClass => Filter.AutoSelect == null || Filter.AutoSelect.Mode == AutoSelectMode.Default ? "invisible group-hover:visible group-hover/filter-settings:visible text-neutral-500" : "text-neutral-500";
-
-    private string CurrentTab { get; set; } = "initial";
 
 }

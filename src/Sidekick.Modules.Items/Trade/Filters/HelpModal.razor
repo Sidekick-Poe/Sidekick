@@ -10,23 +10,20 @@
         <Heading2>Help &amp; Tips</Heading2>
     </HeaderContent>
     <ChildContent Context="modal">
-        <TabList>
-            <TabItem OnClick="@(() => CurrentTab = "overview")"
-                     Active="@(CurrentTab == "overview")"
+        <TabList @ref="TabList"
+                 OnChange="StateHasChanged">
+            <TabItem Id="overview"
                      Text="Overview"/>
-            <TabItem OnClick="@(() => CurrentTab = "filters")"
-                     Active="@(CurrentTab == "filters")"
+            <TabItem Id="filters"
                      Text="Filters"/>
-            <TabItem OnClick="@(() => CurrentTab = "shortcuts")"
-                     Active="@(CurrentTab == "shortcuts")"
+            <TabItem Id="shortcuts"
                      Text="Shortcuts"/>
-            <TabItem OnClick="@(() => CurrentTab = "interface")"
-                     Active="@(CurrentTab == "interface")"
+            <TabItem Id="interface"
                      Text="Interface"/>
         </TabList>
 
         <div class="py-3 space-y-3 text-sm text-stone-300">
-            @switch (CurrentTab)
+            @switch (TabList?.SelectedTab)
             {
                 case "overview":
                     <p>
@@ -115,6 +112,6 @@
 
 @code {
 
-    private string CurrentTab { get; set; } = "overview";
+    private TabList? TabList { get; set; }
 
 }
