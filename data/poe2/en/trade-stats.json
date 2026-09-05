@@ -12173,7 +12173,7 @@
   },
   {
     "id": "explicit.stat_1367999357",
-    "text": "Non-Channelling Spells have #% increased Critical Hit Chance per 100 maximum Mana"
+    "text": "Non-Channelling Skills have #% increased Spell Critical Hit Chance per 100 maximum Mana"
   },
   {
     "id": "explicit.stat_1368271171",
@@ -14954,6 +14954,10 @@
   {
     "id": "explicit.stat_2770044702",
     "text": "Notable Passive Skills in Radius also grant #% increased Curse Magnitudes"
+  },
+  {
+    "id": "explicit.stat_2771095426",
+    "text": "Gain #% of damage as Fire damage per 1% Chance to Block"
   },
   {
     "id": "explicit.stat_2772033465",
@@ -18996,6 +19000,10 @@
     "text": "Conquered Small Passive Skills also grant #% increased Spell damage"
   },
   {
+    "id": "explicit.stat_3039133122",
+    "text": "#% increased Expedition Explosive Area of Effect in Map"
+  },
+  {
     "id": "explicit.stat_3040571529",
     "text": "#% increased Deflection Rating"
   },
@@ -19133,7 +19141,7 @@
   },
   {
     "id": "explicit.stat_3076483222|61382",
-    "text": "Sacrifice up to 3 Divine Orbs to receive double on Trial completion"
+    "text": "Sacrifice up to 2 Divine Orbs to receive double on Trial completion"
   },
   {
     "id": "explicit.stat_3076483222|62634",
@@ -19334,10 +19342,6 @@
   {
     "id": "explicit.stat_3169585282",
     "text": "Allies in your Presence have # to Accuracy Rating"
-  },
-  {
-    "id": "explicit.stat_3170380905",
-    "text": "Gain 1% of damage as Fire damage per #% Chance to Block"
   },
   {
     "id": "explicit.stat_3171212276",
@@ -20232,10 +20236,6 @@
     "text": "#% increased Mana Flask Charges gained"
   },
   {
-    "id": "explicit.stat_3591307827",
-    "text": "#% chance to add a Vaal Beacon Unique Monster to the Map"
-  },
-  {
     "id": "explicit.stat_3592067990",
     "text": "Area contains # additional packs of Plagued Monsters"
   },
@@ -21058,6 +21058,10 @@
   {
     "id": "explicit.stat_3936121440",
     "text": "Notable Passive Skills in Radius also grant #% increased Withered Magnitude"
+  },
+  {
+    "id": "explicit.stat_3937291366",
+    "text": "#% chance to add a Vaal Beacon Unique Monster to the Map"
   },
   {
     "id": "explicit.stat_3939216292",
@@ -25372,6 +25376,10 @@
     "text": "Allocates Favourable Odds"
   },
   {
+    "id": "fractured.stat_2954116742|19644",
+    "text": "Allocates Left Hand of Darkness"
+  },
+  {
     "id": "fractured.stat_2954116742|19715",
     "text": "Allocates Cremation"
   },
@@ -25438,6 +25446,10 @@
   {
     "id": "fractured.stat_2954116742|21206",
     "text": "Allocates Explosive Impact"
+  },
+  {
+    "id": "fractured.stat_2954116742|21213",
+    "text": "Allocates Cirel of Tarth\u0027s Light"
   },
   {
     "id": "fractured.stat_2954116742|21251",
@@ -25698,6 +25710,10 @@
   {
     "id": "fractured.stat_2954116742|27626",
     "text": "Allocates Touch the Arcane"
+  },
+  {
+    "id": "fractured.stat_2954116742|27704",
+    "text": "Allocates Grace of the Ancestors"
   },
   {
     "id": "fractured.stat_2954116742|27875",
@@ -29169,7 +29185,7 @@
   },
   {
     "id": "implicit.stat_3408607858",
-    "text": "Runic Ward recovery can can Overflow maximum Runic Ward"
+    "text": "Runic Ward recovery can Overflow maximum Runic Ward"
   },
   {
     "id": "implicit.stat_3441501978",
@@ -29656,6 +29672,10 @@
     "text": "Banners also grant #% of Life Regenerated per second to affected targets"
   },
   {
+    "id": "rune.stat_1195319608",
+    "text": "#% increased Energy Shield from Equipped Body Armour"
+  },
+  {
     "id": "rune.stat_1197632982",
     "text": "# to Armour per 1 Spirit"
   },
@@ -29838,6 +29858,10 @@
   {
     "id": "rune.stat_1512261731",
     "text": "Bonded: Knocks Enemies Back on Hit"
+  },
+  {
+    "id": "rune.stat_1519474779",
+    "text": "#% increased Effect of Non-Damaging Ailments on you"
   },
   {
     "id": "rune.stat_1519615863",
@@ -30444,6 +30468,10 @@
     "text": "Culling Strike"
   },
   {
+    "id": "rune.stat_2527686725",
+    "text": "#% increased Magnitude of Shock you inflict"
+  },
+  {
     "id": "rune.stat_2530800730",
     "text": "Bonded: #% increased Skill Effect Duration with Plant Skills"
   },
@@ -30506,6 +30534,10 @@
   {
     "id": "rune.stat_2616640048",
     "text": "On Hitting an enemy, gains maximum added Cold damage equal to the enemy\u0027s Power for 20 seconds, up to a total of #"
+  },
+  {
+    "id": "rune.stat_2621116283",
+    "text": "Gain #% of damage as Fire damage per 2% Chance to Block"
   },
   {
     "id": "rune.stat_262946222",
@@ -30844,8 +30876,8 @@
     "text": "#% increased Magnitude of Bleeding you inflict"
   },
   {
-    "id": "rune.stat_3170380905",
-    "text": "Gain 1% of damage as Fire damage per #% Chance to Block"
+    "id": "rune.stat_3174700878",
+    "text": "#% increased Energy Shield from Equipped Focus"
   },
   {
     "id": "rune.stat_3175163625",
@@ -31172,6 +31204,10 @@
     "text": "Bonded: #% to Maximum Lightning Resistance"
   },
   {
+    "id": "rune.stat_3791899485",
+    "text": "#% increased Ignite Magnitude"
+  },
+  {
     "id": "rune.stat_3793026369",
     "text": "Bonded: Plants have a #% chance to immediately Overgrow when they enter your Presence for the first time"
   },
@@ -31397,7 +31433,7 @@
   },
   {
     "id": "rune.stat_4217453078",
-    "text": "#% of Chaos Damage from Hits taken as a Damage of a random Element"
+    "text": "#% of Chaos Damage from Hits taken as Damage of a random Element"
   },
   {
     "id": "rune.stat_4220027924",
@@ -31838,6 +31874,10 @@
   {
     "id": "rune.stat_98977150",
     "text": "Pain Attunement"
+  },
+  {
+    "id": "rune.stat_995044379",
+    "text": "# to maximum Mana per 3 Item Armour on Equipped Helmet"
   },
   {
     "id": "sanctum.sanctum_effect_0",
@@ -32309,7 +32349,7 @@
   },
   {
     "id": "sanctum.stat_2284543592",
-    "text": "#% chance to Avoid Resolve loss from Enemy Hits if you\u0027ve been Hit Recently"
+    "text": "#% chance to Avoid Honour loss from Enemy Hits if you\u0027ve been Hit Recently"
   },
   {
     "id": "sanctum.stat_2287831219",

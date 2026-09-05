@@ -35184,7 +35184,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3771323968",
       "explicit.stat_3789765926",
       "explicit.stat_647983250",
       "fractured.stat_3789765926"
@@ -47116,11 +47115,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_105",
-      "explicit.indexable_support_118",
-      "explicit.indexable_support_12",
-      "explicit.indexable_support_122",
-      "explicit.indexable_support_136",
       "explicit.indexable_support_140",
       "explicit.indexable_support_144",
       "explicit.indexable_support_150",
@@ -47142,40 +47136,29 @@
       "explicit.stat_1122134690",
       "explicit.stat_1384629003",
       "explicit.stat_1385879224",
-      "explicit.stat_1679136",
       "explicit.stat_1715139253",
-      "explicit.stat_1828254451",
       "explicit.stat_2062753054",
       "explicit.stat_2065361612",
-      "explicit.stat_2223640518",
       "explicit.stat_2433615566",
       "explicit.stat_254728692",
       "explicit.stat_2608615082",
       "explicit.stat_285773939",
       "explicit.stat_3370631451",
       "explicit.stat_3462081007",
-      "explicit.stat_3652278215",
       "explicit.stat_369650395",
       "explicit.stat_3740740992",
       "explicit.stat_388696990",
       "explicit.stat_407317553",
-      "explicit.stat_689720069",
       "explicit.stat_799443127",
-      "explicit.stat_961135393",
       "explicit.stat_991044906",
       "fractured.stat_1106668565",
       "fractured.stat_1122134690",
       "fractured.stat_2065361612",
-      "fractured.stat_2223640518",
       "fractured.stat_2608615082",
       "fractured.stat_407317553",
-      "fractured.stat_961135393",
-      "implicit.stat_1679136",
       "implicit.stat_2062753054",
-      "implicit.stat_2223640518",
       "implicit.stat_254728692",
-      "implicit.stat_369650395",
-      "implicit.stat_689720069"
+      "implicit.stat_369650395"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027Erbauen\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
   },
@@ -49050,11 +49033,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_48",
       "explicit.indexable_support_96",
       "explicit.stat_1135493957",
-      "explicit.stat_3207084920",
-      "explicit.stat_858460086"
+      "explicit.stat_3207084920"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027T\u00F6dliche\\ Dosis\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
   },
@@ -49393,13 +49374,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_142",
       "explicit.indexable_support_152",
       "explicit.indexable_support_92",
       "explicit.stat_2065361612",
       "explicit.stat_2820883532",
       "explicit.stat_388696990",
-      "explicit.stat_970734352",
       "fractured.stat_2065361612"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027Versuchung\\ der\\ Vaal\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
@@ -49839,13 +49818,9 @@
   },
   {
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0027\u00DCbernat\u00FCrliche Blasphemie\u0027 Stufe #",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_119",
-      "explicit.stat_1046449631",
-      "explicit.stat_539747809",
-      "implicit.stat_539747809"
+      "explicit.stat_1628375748"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027\u00DCbernat\u00FCrliche\\ Blasphemie\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
   },
@@ -62795,9 +62770,6 @@
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -64286,9 +64258,6 @@
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -65777,9 +65746,6 @@
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -67293,9 +67259,6 @@
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
-      "explicit.stat_4089743927|2|119",
-      "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|120",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|150",
       "explicit.stat_4089743927|2|154",
@@ -125124,8 +125087,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1144742318",
-      "explicit.stat_1173860008"
+      "explicit.stat_1144742318"
     ],
     "pattern": "^Transplantat-Fertigkeiten\\ haben\\ ([-0-9,.]\u002B)%\\ beschleunigte\\ Abklingzeit-Rate$"
   },
@@ -137363,7 +137325,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2460506030|30919",
       "explicit.stat_2460506030|44482",
       "explicit.stat_2460506030|61072"
     ],
@@ -160291,6 +160252,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -160342,6 +160304,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -160360,7 +160323,8 @@
     "text": "#% erh\u00F6hte kritische Trefferchance mit Minen",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_214031493"
+      "explicit.stat_214031493",
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ kritische\\ Trefferchance\\ mit\\ Minen$"
   },
@@ -160412,6 +160376,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "implicit.stat_2194114101",
       "scourge.stat_2091591880"
@@ -160432,6 +160397,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -160497,6 +160463,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -163078,7 +163045,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1282978314",
       "explicit.stat_1332534089"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hter\\ Nahkampfschaden\\ gegen\\ entz\u00FCndete\\ Gegner$"
@@ -164017,6 +163983,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
+      "explicit.stat_528422616",
       "explicit.stat_539970476",
       "fractured.stat_539970476",
       "implicit.stat_485151258"
@@ -168623,6 +168590,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_485151258",
+      "explicit.stat_528422616",
+      "explicit.stat_539970476",
+      "fractured.stat_539970476",
       "implicit.stat_485151258"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ mehr\\ Schaden\\ mit\\ Treffern\\ und\\ Beeintr\u00E4chtigungen\\ gegen\\ einzigartige\\ Gegner$"
@@ -181513,6 +181483,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -181569,6 +181540,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -181589,7 +181561,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_214031493"
+      "explicit.stat_214031493",
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ kritische\\ Trefferchance\\ mit\\ Minen$"
   },
@@ -181621,6 +181594,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "implicit.stat_2194114101",
       "scourge.stat_2091591880"
@@ -181643,6 +181617,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -181712,6 +181687,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -183995,7 +183971,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1282978314",
       "explicit.stat_1332534089"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerter\\ Nahkampfschaden\\ gegen\\ entz\u00FCndete\\ Gegner$"
@@ -190413,6 +190388,7 @@
       "explicit.stat_3556824919",
       "fractured.stat_1712221299",
       "fractured.stat_1780168381",
+      "fractured.stat_2529112796",
       "fractured.stat_3556824919",
       "implicit.stat_1474913037",
       "implicit.stat_1712221299",
@@ -190710,7 +190686,8 @@
     "text": "\u002B#% zu Multiplikator f\u00FCr kritische Treffer mit Minen",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2529112796"
+      "explicit.stat_2529112796",
+      "fractured.stat_2529112796"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ zu\\ Multiplikator\\ f\u00FCr\\ kritische\\ Treffer\\ mit\\ Minen$"
   },

@@ -26885,7 +26885,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyHinekorasLock",
     "itemClassId": "StackableCurrency",
-    "name": "Trava de Hinekora",
+    "name": "Tran\u00E7a de Hinekora",
     "req": {
       "lvl": 46
     }
@@ -27501,7 +27501,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantArmour",
     "itemClassId": "StackableCurrency",
-    "name": "Orbe do Sacrif\u00EDcio Fortificado",
+    "name": "Orbe do Sacrif\u00EDcio de Kopec",
     "req": {
       "lvl": 1
     }
@@ -27509,7 +27509,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewel",
     "itemClassId": "StackableCurrency",
-    "name": "Orbe do Sacrif\u00EDcio Real",
+    "name": "Orbe do Sacrif\u00EDcio de Yugul",
     "req": {
       "lvl": 1
     }
@@ -27517,7 +27517,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewellery",
     "itemClassId": "StackableCurrency",
-    "name": "Orbe do Sacrif\u00EDcio Profano",
+    "name": "Orbe do Sacrif\u00EDcio de Kamasa",
     "req": {
       "lvl": 1
     }
@@ -27525,7 +27525,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantWeapon",
     "itemClassId": "StackableCurrency",
-    "name": "Orbe do Sacrif\u00EDcio Brutal",
+    "name": "Orbe do Sacrif\u00EDcio de Yaomac",
     "req": {
       "lvl": 1
     }
@@ -37668,7 +37668,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CurrencyAfflictionFragment",
-    "itemClassId": "MapFragment",
+    "itemClassId": "AtlasCurrency",
     "name": "Simulacrum",
     "req": {
       "lvl": 75
@@ -38312,6 +38312,14 @@
     "name": "Conjunto Mortal",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyWildwoodFragment",
+    "itemClassId": "AtlasCurrency",
+    "name": "Flora\u00E7\u00E3o Sagrada",
+    "req": {
+      "lvl": 65
     }
   },
   {
@@ -41845,7 +41853,7 @@
   {
     "id": "Metadata/Items/SoulCores/RuneOlrothsLegacyEyesOfTheRunefather",
     "itemClassId": "SoulCore",
-    "name": "Legado de Um inimigo \u00E0 altura",
+    "name": "Legado de Um Inimigo \u00E0 Altura",
     "req": {
       "lvl": 65
     }
@@ -42883,6 +42891,38 @@
     }
   },
   {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial16",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Automa\u00E7\u00E3o de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial17",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Esconjura\u00E7\u00E3o de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial18",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma do Direcionamento de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial19",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma do Reagrupamento de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
     "id": "Metadata/Items/SoulCores/SoulCoreSpecial2",
     "itemClassId": "SoulCore",
     "name": "N\u00FAcleo d\u0027Alma do Isolamento de Zalatl",
@@ -42891,9 +42931,113 @@
     }
   },
   {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial20",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma do Esplendor de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial21",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma do Rompimento de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial22",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Ondula\u00E7\u00E3o de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial23",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma do Tremor de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial24",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma das Muni\u00E7\u00F5es de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial25",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma das Amarras de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial26",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Abund\u00E2ncia de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial27",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma das Borrascas de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial28",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma Trovejante de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial29",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Devo\u00E7\u00E3o de Jiquani",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
     "id": "Metadata/Items/SoulCores/SoulCoreSpecial3",
     "itemClassId": "SoulCore",
     "name": "N\u00FAcleo d\u0027Alma do Amortecimento de Topotante",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial30",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Vitalidade de Atziri",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial31",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Dilig\u00EAncia de Atziri",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial32",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma da Inocula\u00E7\u00E3o de Atziri",
     "req": {
       "lvl": 65
     }
@@ -42958,6 +43102,14 @@
     "id": "Metadata/Items/SoulCores/SoulCoreStrength",
     "itemClassId": "SoulCore",
     "name": "N\u00FAcleo d\u0027Alma de Atmohua",
+    "req": {
+      "lvl": 35
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreVision",
+    "itemClassId": "SoulCore",
+    "name": "N\u00FAcleo d\u0027Alma de Vizoma",
     "req": {
       "lvl": 35
     }
@@ -43248,6 +43400,14 @@
     "name": "Destino Vitorioso",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Ultimatum/UltimatumKeyInProgress",
+    "itemClassId": "UltimatumKey",
+    "name": "Ultimato Inscrito",
+    "req": {
+      "lvl": 39
     }
   },
   {
@@ -45862,7 +46022,7 @@
   {
     "id": "Metadata/Items/Weapons/TwoHandWeapons/Bows/FourBowVerisium3",
     "itemClassId": "Bow",
-    "name": "Runeforged Warden Bow",
+    "name": "Arco Vigilante Runiforjado",
     "req": {
       "lvl": 40,
       "dex": 72
@@ -48312,7 +48472,7 @@
   {
     "id": "axe_whirling_slash",
     "itemClassId": "Active Skill Gem",
-    "name": "WIP"
+    "name": "Corte Girat\u00F3rio com Machado"
   },
   {
     "id": "azmerian_swarm",
@@ -50140,11 +50300,6 @@
     "name": "Lan\u00E7a Relampejante"
   },
   {
-    "id": "lightning_strike",
-    "itemClassId": "Active Skill Gem",
-    "name": "Golpe Relampejante"
-  },
-  {
     "id": "lightning_tendrils_channelled",
     "itemClassId": "Active Skill Gem",
     "name": "WIP Gavinhas El\u00E9tricas"
@@ -50403,11 +50558,6 @@
     "id": "new_cold_snap",
     "itemClassId": "Active Skill Gem",
     "name": "Ruptura G\u00E9lida"
-  },
-  {
-    "id": "new_lightning_strike",
-    "itemClassId": "Active Skill Gem",
-    "name": "Golpe Relampejante"
   },
   {
     "id": "new_new_arctic_armour",

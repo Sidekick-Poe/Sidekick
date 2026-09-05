@@ -645,7 +645,7 @@
   },
   {
     "id": "crafted.stat_2954116742|14258",
-    "text": "Atribui M\u00E3o Oculta"
+    "text": "Atribui Chance de Mestre das Marionetes"
   },
   {
     "id": "crafted.stat_2954116742|14265",
@@ -3489,7 +3489,7 @@
   },
   {
     "id": "crafted.stat_2954116742|62210",
-    "text": "Atribui Dan\u00E7a Infind\u00E1vel"
+    "text": "Atribui Chance de Mestre das Marionetes"
   },
   {
     "id": "crafted.stat_2954116742|62230",
@@ -4633,7 +4633,7 @@
   },
   {
     "id": "desecrated.stat_1365079333",
-    "text": "Players steal the Eaten Souls of Slain Rare Monsters in Area"
+    "text": "Jogadores roubam as almas devoradas de monstros raros mortos na \u00E1rea"
   },
   {
     "id": "desecrated.stat_1365232741",
@@ -7821,7 +7821,7 @@
   },
   {
     "id": "enchant.stat_2954116742|14258",
-    "text": "Atribui M\u00E3o Oculta"
+    "text": "Atribui Chance de Mestre das Marionetes"
   },
   {
     "id": "enchant.stat_2954116742|14265",
@@ -10665,7 +10665,7 @@
   },
   {
     "id": "enchant.stat_2954116742|62210",
-    "text": "Atribui Dan\u00E7a Infind\u00E1vel"
+    "text": "Atribui Chance de Mestre das Marionetes"
   },
   {
     "id": "enchant.stat_2954116742|62230",
@@ -12157,7 +12157,7 @@
   },
   {
     "id": "explicit.stat_1365079333",
-    "text": "Players steal the Eaten Souls of Slain Rare Monsters in Area"
+    "text": "Jogadores roubam as almas devoradas de monstros raros mortos na \u00E1rea"
   },
   {
     "id": "explicit.stat_1365232741",
@@ -12173,7 +12173,7 @@
   },
   {
     "id": "explicit.stat_1367999357",
-    "text": "Magias n\u00E3o canalizadoras t\u00EAm uma chance de golpe cr\u00EDtico aumentada em #% por 100 de mana m\u00E1ximo"
+    "text": "Habilidades n\u00E3o canalizadoras t\u00EAm uma chance de golpe cr\u00EDtico m\u00E1gico aumentada em #% por 100 de mana m\u00E1ximo"
   },
   {
     "id": "explicit.stat_1368271171",
@@ -12225,7 +12225,7 @@
   },
   {
     "id": "explicit.stat_1393838912",
-    "text": "Eat a Soul when you Hit an enemy with an Open Weakness"
+    "text": "Devora uma alma ao atingir um inimigo com Fraqueza Exposta"
   },
   {
     "id": "explicit.stat_1394184789",
@@ -13189,7 +13189,7 @@
   },
   {
     "id": "explicit.stat_1910039112",
-    "text": "A cada 3 segundos durante o efeito, cause #% do mana gasto nesse per\u00EDodo como dano de caos aos inimigos em at\u00E9 3 metros"
+    "text": "A cada 3 segundos durante o efeito, cause #% do mana gasto nesse per\u00EDodo como dano de caos aos inimigos a at\u00E9 3 metros"
   },
   {
     "id": "explicit.stat_1910297038",
@@ -13785,7 +13785,7 @@
   },
   {
     "id": "explicit.stat_2285766967",
-    "text": "#% of damage taken from enemies with an Open Weakness Recouped as Life"
+    "text": "#% do dano sofrido de inimigos com Fraqueza Exposta \u00E9 recuperado como vida"
   },
   {
     "id": "explicit.stat_2293111154",
@@ -13805,7 +13805,7 @@
   },
   {
     "id": "explicit.stat_2301852600",
-    "text": "Causa #% de dano de massacre aos inimigos em at\u00E9 2 metros do inimigo morto"
+    "text": "Causa #% de dano de massacre aos inimigos a at\u00E9 2 metros do inimigo morto"
   },
   {
     "id": "explicit.stat_2306002879",
@@ -14956,6 +14956,10 @@
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Intensidade de maldi\u00E7\u00F5es aumentada em #%"
   },
   {
+    "id": "explicit.stat_2771095426",
+    "text": "Ganha #% do dano como dano de fogo por 1% de chance de bloqueio"
+  },
+  {
     "id": "explicit.stat_2772033465",
     "text": "#% do dano de fogo \u00E9 convertido em dano el\u00E9trico"
   },
@@ -15593,7 +15597,7 @@
   },
   {
     "id": "explicit.stat_2954116742|14258",
-    "text": "Atribui M\u00E3o Oculta"
+    "text": "Atribui Chance de Mestre das Marionetes"
   },
   {
     "id": "explicit.stat_2954116742|14265",
@@ -18437,7 +18441,7 @@
   },
   {
     "id": "explicit.stat_2954116742|62210",
-    "text": "Atribui Dan\u00E7a Infind\u00E1vel"
+    "text": "Atribui Chance de Mestre das Marionetes"
   },
   {
     "id": "explicit.stat_2954116742|62230",
@@ -18996,6 +19000,10 @@
     "text": "Habilidades passivas pequenas conquistadas tamb\u00E9m concedem dano m\u00E1gico aumentado em #%"
   },
   {
+    "id": "explicit.stat_3039133122",
+    "text": "#% increased Expedition Explosive Area of Effect in Map"
+  },
+  {
     "id": "explicit.stat_3040571529",
     "text": "Taxa de deflex\u00E3o aumentada em #%"
   },
@@ -19133,7 +19141,7 @@
   },
   {
     "id": "explicit.stat_3076483222|61382",
-    "text": "Sacrifica at\u00E9 3 Orbes Divinos para receber o dobro ao concluir a Prova\u00E7\u00E3o"
+    "text": "Sacrifica at\u00E9 2 Orbes Divinos para receber o dobro ao concluir a Prova\u00E7\u00E3o"
   },
   {
     "id": "explicit.stat_3076483222|62634",
@@ -19334,10 +19342,6 @@
   {
     "id": "explicit.stat_3169585282",
     "text": "Aliados em sua presen\u00E7a t\u00EAm # de precis\u00E3o"
-  },
-  {
-    "id": "explicit.stat_3170380905",
-    "text": "Ganha 1% do dano como dano de fogo por #% de chance de bloqueio"
   },
   {
     "id": "explicit.stat_3171212276",
@@ -19621,7 +19625,7 @@
   },
   {
     "id": "explicit.stat_3314057862",
-    "text": "Seus inc\u00EAndios se alastram para outros inimigos em at\u00E9 1,5 metro por # segundo"
+    "text": "Seus inc\u00EAndios se alastram para outros inimigos a at\u00E9 1,5 metro por # segundo"
   },
   {
     "id": "explicit.stat_3314536008",
@@ -20230,10 +20234,6 @@
   {
     "id": "explicit.stat_3590792340",
     "text": "Ganho de cargas de frasco de mana aumentado em #%"
-  },
-  {
-    "id": "explicit.stat_3591307827",
-    "text": "#% de chance de adicionar um monstro \u00FAnico de sinalizador vaal ao mapa"
   },
   {
     "id": "explicit.stat_3592067990",
@@ -21058,6 +21058,10 @@
   {
     "id": "explicit.stat_3936121440",
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Intensidade de Atrofia aumentada em #%"
+  },
+  {
+    "id": "explicit.stat_3937291366",
+    "text": "#% de chance de adicionar um monstro \u00FAnico de sinalizador vaal ao mapa"
   },
   {
     "id": "explicit.stat_3939216292",
@@ -25372,6 +25376,10 @@
     "text": "Atribui Boas Chances"
   },
   {
+    "id": "fractured.stat_2954116742|19644",
+    "text": "Atribui M\u00E3o Esquerda da Escurid\u00E3o"
+  },
+  {
     "id": "fractured.stat_2954116742|19715",
     "text": "Atribui Crema\u00E7\u00E3o"
   },
@@ -25438,6 +25446,10 @@
   {
     "id": "fractured.stat_2954116742|21206",
     "text": "Atribui Impacto Explosivo"
+  },
+  {
+    "id": "fractured.stat_2954116742|21213",
+    "text": "Atribui Luz de Cirel de Tarth"
   },
   {
     "id": "fractured.stat_2954116742|21251",
@@ -25698,6 +25710,10 @@
   {
     "id": "fractured.stat_2954116742|27626",
     "text": "Atribui Tocando o Arcano"
+  },
+  {
+    "id": "fractured.stat_2954116742|27704",
+    "text": "Atribui Gra\u00E7a dos Ancestrais"
   },
   {
     "id": "fractured.stat_2954116742|27875",
@@ -29656,6 +29672,10 @@
     "text": "Estandartes tamb\u00E9m concedem #% de regenera\u00E7\u00E3o de vida por segundo"
   },
   {
+    "id": "rune.stat_1195319608",
+    "text": "Escudo de energia do peitoral equipado aumentado em #%"
+  },
+  {
     "id": "rune.stat_1197632982",
     "text": "# \u00E0 armadura por 1 de esp\u00EDrito"
   },
@@ -29838,6 +29858,10 @@
   {
     "id": "rune.stat_1512261731",
     "text": "Vinculado: Empurra inimigos ao atingir"
+  },
+  {
+    "id": "rune.stat_1519474779",
+    "text": "Efeito das afec\u00E7\u00F5es n\u00E3o danosas em voc\u00EA aumentado em #%"
   },
   {
     "id": "rune.stat_1519615863",
@@ -30317,7 +30341,7 @@
   },
   {
     "id": "rune.stat_2301852600",
-    "text": "Causa #% de dano de massacre aos inimigos em at\u00E9 2 metros do inimigo morto"
+    "text": "Causa #% de dano de massacre aos inimigos a at\u00E9 2 metros do inimigo morto"
   },
   {
     "id": "rune.stat_2310741722",
@@ -30444,6 +30468,10 @@
     "text": "Golpe Aniquilador"
   },
   {
+    "id": "rune.stat_2527686725",
+    "text": "Intensidade das eletrifica\u00E7\u00F5es infligidas por voc\u00EA aumentada em #%"
+  },
+  {
     "id": "rune.stat_2530800730",
     "text": "Vinculado: Dura\u00E7\u00E3o do efeito de habilidade com habilidades de planta aumentada em #%"
   },
@@ -30506,6 +30534,10 @@
   {
     "id": "rune.stat_2616640048",
     "text": "Ao atingir um inimigo, ganha dano de frio adicionado m\u00E1ximo equivalente ao poder do inimigo por 20 segundos, at\u00E9 um total de #"
+  },
+  {
+    "id": "rune.stat_2621116283",
+    "text": "Ganha #% do dano como dano de fogo por 2% de chance de bloqueio"
   },
   {
     "id": "rune.stat_262946222",
@@ -30844,8 +30876,8 @@
     "text": "Intensidade dos sangramentos infligidos por voc\u00EA aumentada em #%"
   },
   {
-    "id": "rune.stat_3170380905",
-    "text": "Ganha 1% do dano como dano de fogo por #% de chance de bloqueio"
+    "id": "rune.stat_3174700878",
+    "text": "Escudo de energia do foco equipado aumentado em #%"
   },
   {
     "id": "rune.stat_3175163625",
@@ -31170,6 +31202,10 @@
   {
     "id": "rune.stat_3788647247",
     "text": "Vinculado: #% \u00E0 resist\u00EAncia a dano el\u00E9trico m\u00E1xima"
+  },
+  {
+    "id": "rune.stat_3791899485",
+    "text": "Intensidade de inc\u00EAndio aumentada em #%"
   },
   {
     "id": "rune.stat_3793026369",
@@ -31838,6 +31874,10 @@
   {
     "id": "rune.stat_98977150",
     "text": "Sintonia com a Dor"
+  },
+  {
+    "id": "rune.stat_995044379",
+    "text": "# ao mana m\u00E1ximo por 3 de armadura de item no elmo equipado"
   },
   {
     "id": "sanctum.sanctum_effect_0",

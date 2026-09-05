@@ -7,7 +7,7 @@ public class ExchangeTests(NinjaPoe2TestFixture fixture)
 {
     private readonly ItemParser parser = fixture.Parser;
 
-    [Fact]
+    [Fact(Skip = "New league, ninja is not updated yet")]
     public void VoranasCarnage()
     {
         var item = parser.ParseItem(@"Item Class: Augment
