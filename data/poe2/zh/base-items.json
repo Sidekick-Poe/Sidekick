@@ -27501,7 +27501,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantArmour",
     "itemClassId": "StackableCurrency",
-    "name": "\u5805\u97CC\u5949\u737B\u5BF6\u73E0",
+    "name": "\u79D1\u4F69\u514B\u5949\u737B\u5BF6\u73E0",
     "req": {
       "lvl": 1
     }
@@ -27509,7 +27509,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewel",
     "itemClassId": "StackableCurrency",
-    "name": "\u7687\u5BB6\u5949\u737B\u5BF6\u73E0",
+    "name": "\u4F0A\u679C\u5949\u737B\u5BF6\u73E0",
     "req": {
       "lvl": 1
     }
@@ -27517,7 +27517,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewellery",
     "itemClassId": "StackableCurrency",
-    "name": "\u7006\u795E\u5949\u737B\u5BF6\u73E0",
+    "name": "\u5361\u746A\u85A9\u5949\u737B\u5BF6\u73E0",
     "req": {
       "lvl": 1
     }
@@ -27525,7 +27525,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantWeapon",
     "itemClassId": "StackableCurrency",
-    "name": "\u6B98\u9177\u5949\u737B\u5BF6\u73E0",
+    "name": "\u582F\u99AC\u514B\u5949\u737B\u5BF6\u73E0",
     "req": {
       "lvl": 1
     }
@@ -34189,7 +34189,7 @@
   {
     "id": "Metadata/Items/Gems/SupportGemBountyTwo",
     "itemClassId": "Support Skill Gem",
-    "name": "\u5BF6\u7269 II",
+    "name": "\u61F8\u8CDE II",
     "req": {
       "lvl": 1
     }
@@ -37668,7 +37668,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CurrencyAfflictionFragment",
-    "itemClassId": "MapFragment",
+    "itemClassId": "AtlasCurrency",
     "name": "\u5E7B\u50CF\u7570\u754C",
     "req": {
       "lvl": 75
@@ -38312,6 +38312,14 @@
     "name": "\u51E1\u4EBA\u5957\u7D44",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyWildwoodFragment",
+    "itemClassId": "AtlasCurrency",
+    "name": "\u8056\u7DBB\u4E4B\u82B1",
+    "req": {
+      "lvl": 65
     }
   },
   {
@@ -41925,7 +41933,7 @@
   {
     "id": "Metadata/Items/SoulCores/RuneOlrothsLegacyKingsguard",
     "itemClassId": "SoulCore",
-    "name": "\u50B3\u627F\uFF0E\u738B\u885B",
+    "name": "\u50B3\u627F\uFF0E\u7687\u5BB6\u885B\u7532",
     "req": {
       "lvl": 65
     }
@@ -42883,6 +42891,38 @@
     }
   },
   {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial16",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u81EA\u52D5\u5316\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial17",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u60E1\u8A9E\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial18",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u7D22\u6575\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial19",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u865F\u53EC\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
     "id": "Metadata/Items/SoulCores/SoulCoreSpecial2",
     "itemClassId": "SoulCore",
     "name": "\u672D\u723E\u7279\u7684\u7D55\u7DE3\u9748\u9B42\u6838\u5FC3",
@@ -42891,9 +42931,113 @@
     }
   },
   {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial20",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u8F1D\u8000\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial21",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u65B7\u5207\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial22",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u6F23\u6F2A\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial23",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u9707\u986B\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial24",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u5F48\u85E5\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial25",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u9677\u9631\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial26",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u8C50\u9952\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial27",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u72C2\u98A8\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial28",
+    "itemClassId": "SoulCore",
+    "name": "\u5409\u5361\u5C3C\u7684\u96F7\u9CF4\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial29",
+    "itemClassId": "SoulCore",
+    "name": "\u963F\u8332\u91CC\u7684\u5949\u737B\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
     "id": "Metadata/Items/SoulCores/SoulCoreSpecial3",
     "itemClassId": "SoulCore",
     "name": "\u6258\u6CE2\u8B5A\u63D0\u7684\u963B\u632B\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial30",
+    "itemClassId": "SoulCore",
+    "name": "\u963F\u8332\u91CC\u7684\u6D3B\u529B\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial31",
+    "itemClassId": "SoulCore",
+    "name": "\u963F\u8332\u91CC\u7684\u654F\u6377\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 65
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreSpecial32",
+    "itemClassId": "SoulCore",
+    "name": "\u963F\u8332\u91CC\u7684\u514D\u75AB\u9748\u9B42\u6838\u5FC3",
     "req": {
       "lvl": 65
     }
@@ -42958,6 +43102,14 @@
     "id": "Metadata/Items/SoulCores/SoulCoreStrength",
     "itemClassId": "SoulCore",
     "name": "\u827E\u7279\u746A\u54C8\u9748\u9B42\u6838\u5FC3",
+    "req": {
+      "lvl": 35
+    }
+  },
+  {
+    "id": "Metadata/Items/SoulCores/SoulCoreVision",
+    "itemClassId": "SoulCore",
+    "name": "\u5A01\u7D22\u746A\u9748\u9B42\u6838\u5FC3",
     "req": {
       "lvl": 35
     }
@@ -43077,7 +43229,7 @@
   {
     "id": "Metadata/Items/SoulCores/TalismanSpecial6",
     "itemClassId": "SoulCore",
-    "name": "\u99AC\u85A9\u91CC\u65AF\u9B54\u5076",
+    "name": "\u746A\u85A9\u91CC\u6B50\u65AF\u9B54\u5076",
     "req": {
       "lvl": 65
     }
@@ -43248,6 +43400,14 @@
     "name": "\u52DD\u5229\u4E4B\u904B",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Ultimatum/UltimatumKeyInProgress",
+    "itemClassId": "UltimatumKey",
+    "name": "\u6700\u5F8C\u901A\u7252\u96D5\u523B",
+    "req": {
+      "lvl": 39
     }
   },
   {
@@ -45110,7 +45270,7 @@
   {
     "id": "Metadata/Items/Weapons/OneHandWeapons/OneHandSwords/FourOneHandSword4",
     "itemClassId": "One Hand Sword",
-    "name": "\u5F4E\u5200",
+    "name": "\u77ED\u5F4E\u5200",
     "req": {
       "lvl": 16,
       "dex": 19,
@@ -45862,7 +46022,7 @@
   {
     "id": "Metadata/Items/Weapons/TwoHandWeapons/Bows/FourBowVerisium3",
     "itemClassId": "Bow",
-    "name": "Runeforged Warden Bow",
+    "name": "\u7B26\u935B\u5B88\u8B77\u8005\u4E4B\u5F13",
     "req": {
       "lvl": 40,
       "dex": 72
@@ -48312,7 +48472,7 @@
   {
     "id": "axe_whirling_slash",
     "itemClassId": "Active Skill Gem",
-    "name": "\u65CB\u98A8\u65AC"
+    "name": "[DNT-UNUSED]\u65CB\u98A8\u65AC"
   },
   {
     "id": "azmerian_swarm",
@@ -50140,11 +50300,6 @@
     "name": "\u9583\u96FB\u9577\u77DB"
   },
   {
-    "id": "lightning_strike",
-    "itemClassId": "Active Skill Gem",
-    "name": "\u9583\u96FB\u6253\u64CA"
-  },
-  {
     "id": "lightning_tendrils_channelled",
     "itemClassId": "Active Skill Gem",
     "name": "\u96FB\u80FD\u91CB\u653E "
@@ -50405,11 +50560,6 @@
     "name": "\u971C\u66B4"
   },
   {
-    "id": "new_lightning_strike",
-    "itemClassId": "Active Skill Gem",
-    "name": "\u9583\u96FB\u6253\u64CA"
-  },
-  {
     "id": "new_new_arctic_armour",
     "itemClassId": "Active Skill Gem",
     "name": "\u6975\u5730\u88DD\u7532"
@@ -50587,7 +50737,7 @@
   {
     "id": "player_melee_1hsword",
     "itemClassId": "Active Skill Gem",
-    "name": "\u528D\u5203\u65AC"
+    "name": "\u528D\u65AC"
   },
   {
     "id": "player_melee_2haxe",
@@ -50602,7 +50752,7 @@
   {
     "id": "player_melee_2hsword",
     "itemClassId": "Active Skill Gem",
-    "name": "\u528D\u5203\u65AC"
+    "name": "\u528D\u65AC"
   },
   {
     "id": "player_melee_axe_axe",
@@ -50672,7 +50822,7 @@
   {
     "id": "player_melee_sword_sword",
     "itemClassId": "Active Skill Gem",
-    "name": "\u528D\u5203\u65AC"
+    "name": "\u528D\u65AC"
   },
   {
     "id": "player_melee_unarmed",
@@ -50702,7 +50852,7 @@
   {
     "id": "plunging_blade",
     "itemClassId": "Active Skill Gem",
-    "name": "\u88C2\u5730\u5203\u843D"
+    "name": "[DNT-UNUSED]\u88C2\u5730\u5203\u843D"
   },
   {
     "id": "poison_burst_arrow",
@@ -51982,7 +52132,7 @@
   {
     "id": "triggered_fissure_on_landing",
     "itemClassId": "Active Skill Gem",
-    "name": "\u9695\u77F3\u5751"
+    "name": "\u9695\u5751\u885D\u64CA"
   },
   {
     "id": "triggered_fist_of_kalguur",

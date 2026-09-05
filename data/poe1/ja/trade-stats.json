@@ -26396,6 +26396,10 @@
     "text": "\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u96F7\u8010\u6027 \u002B#%"
   },
   {
+    "id": "explicit.stat_1628375748",
+    "text": "\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B8\u30A7\u30E0\u306F\u30EC\u30D9\u30EB#\u30A8\u30EB\u30C9\u30EA\u30C3\u30C1\u30D6\u30E9\u30B9\u30D5\u30A7\u30DF\u30FC\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u308B"
+  },
+  {
     "id": "explicit.stat_1628606063",
     "text": "\u88DC\u7D66\u306E\u6BCD\u80CE\u30AE\u30D5\u30C8\u3092\u898B\u3064\u3051\u308B\u78BA\u7387\u304C#%\u5897\u52A0\u3059\u308B"
   },
@@ -53272,6 +53276,10 @@
     "text": "\u4E8C\u5200\u6D41\u4E2D\u306F\u7D99\u7D9A\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B"
   },
   {
+    "id": "fractured.stat_214031493",
+    "text": "\u30DE\u30A4\u30F3\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u7387\u304C#%\u5897\u52A0\u3059\u308B"
+  },
+  {
     "id": "fractured.stat_2142803347",
     "text": "\u6575\u3092\u5012\u3057\u305F\u6642\u306B#%\u306E\u78BA\u7387\u3067\u30D5\u30EC\u30F3\u30B8\u30FC\u30C1\u30E3\u30FC\u30B8\u30921\u500B\u5931\u3046"
   },
@@ -54094,6 +54102,10 @@
   {
     "id": "fractured.stat_2527686725",
     "text": "\u611F\u96FB\u306E\u52B9\u679C\u304C#%\u5897\u52A0\u3059\u308B"
+  },
+  {
+    "id": "fractured.stat_2529112796",
+    "text": "\u30DE\u30A4\u30F3\u306E\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30C0\u30E1\u30FC\u30B8\u500D\u7387 \u002B#%"
   },
   {
     "id": "fractured.stat_2530372417",
@@ -73213,82 +73225,82 @@
   },
   {
     "id": "veiled.mod_11536",
-    "text": "\u30E4\u30FC\u30CD\u30B9\u306E\u30F4\u30A7\u30FC\u30EB\u306E"
+    "text": "of Janus\u0027 Veil"
   },
   {
     "id": "veiled.mod_14269",
-    "text": "\u30F4\u30A7\u30A4\u30AC\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Vagan\u0027s Veiled"
   },
   {
     "id": "veiled.mod_3258",
-    "text": "\u30EA\u30AA\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Leo\u0027s Veiled"
   },
   {
     "id": "veiled.mod_38872",
-    "text": "\u30B0\u30E9\u30F4\u30A3\u30B7\u30A6\u30B9\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Gravicius\u0027 Veiled"
   },
   {
     "id": "veiled.mod_39023",
-    "text": "\u30CF\u30AF\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Haku\u0027s Veiled"
   },
   {
     "id": "veiled.mod_3975",
-    "text": "\u30D2\u30ED\u30C3\u30AF\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "of Hillock\u0027s Veil"
   },
   {
     "id": "veiled.mod_44855",
-    "text": "\u30B3\u30EC\u30EB\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Korell\u0027s Veiled"
   },
   {
     "id": "veiled.mod_47933",
-    "text": "\u30F4\u30A9\u30EA\u30FC\u30C1\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Vorici\u0027s Veiled"
   },
   {
     "id": "veiled.mod_48007",
-    "text": "\u30A2\u30B7\u30E5\u30EA\u30F3\u30B0\u306E\u30F4\u30A7\u30FC\u30EB\u306E"
+    "text": "of Aisling\u0027s Veil"
   },
   {
     "id": "veiled.mod_48408",
-    "text": "\u30E9\u30A4\u30AB\u30FC\u306E\u30F4\u30A7\u30FC\u30EB\u306E"
+    "text": "of Riker\u0027s Veil"
   },
   {
     "id": "veiled.mod_55787",
-    "text": "\u9003\u3052\u305F\u3082\u306E\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "It That Fled\u0027s Veiled"
   },
   {
     "id": "veiled.mod_5769",
-    "text": "\u30A8\u30EB\u30EC\u30AA\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Elreon\u0027s Veiled"
   },
   {
     "id": "veiled.mod_6131",
-    "text": "\u30EA\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Rin\u0027s Veiled"
   },
   {
     "id": "veiled.mod_62955",
-    "text": "\u30B8\u30E7\u30FC\u30AE\u30F3\u306E\u30F4\u30A7\u30FC\u30EB\u306E"
+    "text": "of Jorgin\u0027s Veil"
   },
   {
     "id": "veiled.mod_63099",
-    "text": "\u30F4\u30A7\u30FC\u30EB\u306E"
+    "text": "of the Veil"
   },
   {
     "id": "veiled.mod_63772",
-    "text": "\u30AB\u30BF\u30EA\u30CA\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Catarina\u0027s Veiled"
   },
   {
     "id": "veiled.mod_65000",
-    "text": "\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Veiled"
   },
   {
     "id": "veiled.mod_65163",
-    "text": "\u30AB\u30DF\u30EA\u30A2\u306E\u30F4\u30A7\u30FC\u30EB\u306E"
+    "text": "of Cameria\u0027s Veil"
   },
   {
     "id": "veiled.mod_6779",
-    "text": "\u30AC\u30D5\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Guff\u0027s Veiled"
   },
   {
     "id": "veiled.mod_8541",
-    "text": "\u30C8\u30FC\u30E9\u306E\u30F4\u30A7\u30FC\u30EB\u3055\u308C\u305F"
+    "text": "Tora\u0027s Veiled"
   }
 ]

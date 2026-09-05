@@ -1627,10 +1627,10 @@
     "pattern": "^Abyss\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ to\\ Abyssal\\ Monsters$"
   },
   {
-    "text": "Abyss Tablets also provide #% increased Rarity of Items Dropped to Abyssal Monsters",
+    "text": "Abyss Tablets also provide #% increased Rarity of Items Dropped by Abyssal Monsters",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Abyss\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Abyssal\\ Monsters$"
+    "pattern": "^Abyss\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Abyssal\\ Monsters$"
   },
   {
     "text": "Abyss Tablets also provide #% reduced Effectiveness to Abyssal Monsters",
@@ -1640,11 +1640,11 @@
     "pattern": "^Abyss\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ to\\ Abyssal\\ Monsters$"
   },
   {
-    "text": "Abyss Tablets also provide #% reduced Rarity of Items Dropped to Abyssal Monsters",
+    "text": "Abyss Tablets also provide #% reduced Rarity of Items Dropped by Abyssal Monsters",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Abyss\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Abyssal\\ Monsters$"
+    "pattern": "^Abyss\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Abyssal\\ Monsters$"
   },
   {
     "text": "Abyss monsters in your Maps grant #% reduced Experience",
@@ -5711,7 +5711,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|21213",
       "enchant.stat_2954116742|21213",
-      "explicit.stat_2954116742|21213"
+      "explicit.stat_2954116742|21213",
+      "fractured.stat_2954116742|21213"
     ],
     "pattern": "^Allocates\\ Cirel\\ of\\ Tarth\u0027s\\ Light$"
   },
@@ -8090,7 +8091,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|27704",
       "enchant.stat_2954116742|27704",
-      "explicit.stat_2954116742|27704"
+      "explicit.stat_2954116742|27704",
+      "fractured.stat_2954116742|27704"
     ],
     "pattern": "^Allocates\\ Grace\\ of\\ the\\ Ancestors$"
   },
@@ -9341,7 +9343,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|19644",
       "enchant.stat_2954116742|19644",
-      "explicit.stat_2954116742|19644"
+      "explicit.stat_2954116742|19644",
+      "fractured.stat_2954116742|19644"
     ],
     "pattern": "^Allocates\\ Left\\ Hand\\ of\\ Darkness$"
   },
@@ -14508,10 +14511,10 @@
     "pattern": "^Arbiter\\ drops\\ ([-0-9,.]\u002B)\\ additional\\ tier\\ 15\\ Waystones$"
   },
   {
-    "text": "Arbiter drops an additional Corrupted Rare Tablets",
+    "text": "Arbiter drops an additional Corrupted Rare Tablet",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Arbiter\\ drops\\ an\\ additional\\ Corrupted\\ Rare\\ Tablets$"
+    "pattern": "^Arbiter\\ drops\\ an\\ additional\\ Corrupted\\ Rare\\ Tablet$"
   },
   {
     "text": "Arbiter drops an additional tier 15 Waystone",
@@ -14588,6 +14591,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Arcane\\ Cloak\\ grants\\ Life\\ Regeneration\\ equal\\ to\\ ([-0-9,.]\u002B)%\\ of\\ Mana\\ Spent\\ per\\ Second$"
+  },
+  {
+    "text": "Arcane Strongboxes can roll additional Prefix Modifiers that cause them to contain items with particular Granted Skill Types",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Arcane\\ Strongboxes\\ can\\ roll\\ additional\\ Prefix\\ Modifiers\\ that\\ cause\\ them\\ to\\ contain\\ items\\ with\\ particular\\ Granted\\ Skill\\ Types$"
   },
   {
     "text": "Arcane Surge grants #% less Spell Damage to you",
@@ -15482,7 +15491,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447"
+      "explicit.stat_231864447",
+      "explicit.stat_2396719220"
     ],
     "pattern": "^Area\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Perandus\\ Chests$"
   },
@@ -16216,7 +16226,8 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447"
+      "explicit.stat_231864447",
+      "explicit.stat_2396719220"
     ],
     "pattern": "^Area\\ contains\\ an\\ additional\\ Perandus\\ Chest$"
   },
@@ -17681,6 +17692,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Armourer\u0027s\\ Scraps\\ found\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ drop\\ as\\ a\\ full\\ stack$"
+  },
+  {
+    "text": "Armourer\u0027s Strongboxes can roll additional Prefix Modifiers that cause them to contain particular Armour Types",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Armourer\u0027s\\ Strongboxes\\ can\\ roll\\ additional\\ Prefix\\ Modifiers\\ that\\ cause\\ them\\ to\\ contain\\ particular\\ Armour\\ Types$"
   },
   {
     "text": "Arrows Chain \u002B# times",
@@ -19212,10 +19229,10 @@
     "pattern": "^Avatar\\ of\\ Fire$"
   },
   {
-    "text": "Average damage per use@#",
+    "text": "Average damage per Hit@#",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Average\\ damage\\ per\\ use@([-0-9,.]\u002B)$"
+    "pattern": "^Average\\ damage\\ per\\ Hit@([-0-9,.]\u002B)$"
   },
   {
     "text": "Avoid All Damage from Hits",
@@ -20862,6 +20879,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Blacksmith\u0027s,\\ Armourer\u0027s\\ and\\ Basic\\ Strongboxes\\ can\\ roll\\ additional\\ Prefix\\ Modifiers\\ that\\ cause\\ dropped\\ items\\ to\\ require\\ Strength\\ if\\ possible$"
+  },
+  {
+    "text": "Blacksmith\u0027s Strongboxes can roll additional Prefix Modifiers that cause them to contain particular Weapons or Quivers",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Blacksmith\u0027s\\ Strongboxes\\ can\\ roll\\ additional\\ Prefix\\ Modifiers\\ that\\ cause\\ them\\ to\\ contain\\ particular\\ Weapons\\ or\\ Quivers$"
   },
   {
     "text": "Blacksmith\u0027s Whetstones found in your Maps have #% chance to drop as a full stack",
@@ -25182,10 +25205,10 @@
     "pattern": "^Breach\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ to\\ Breach\\ Monsters$"
   },
   {
-    "text": "Breach Tablets also provide #% increased Rarity of Items Dropped to Breach Monsters",
+    "text": "Breach Tablets also provide #% increased Rarity of Items Dropped by Breach Monsters",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Breach\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Breach\\ Monsters$"
+    "pattern": "^Breach\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Breach\\ Monsters$"
   },
   {
     "text": "Breach Tablets also provide #% reduced Effectiveness to Breach Monsters",
@@ -25195,11 +25218,11 @@
     "pattern": "^Breach\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ to\\ Breach\\ Monsters$"
   },
   {
-    "text": "Breach Tablets also provide #% reduced Rarity of Items Dropped to Breach Monsters",
+    "text": "Breach Tablets also provide #% reduced Rarity of Items Dropped by Breach Monsters",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Breach\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Breach\\ Monsters$"
+    "pattern": "^Breach\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Breach\\ Monsters$"
   },
   {
     "text": "Breach has #% chance to contain a Boss",
@@ -31923,12 +31946,6 @@
     "pattern": "^Consumes\\ a\\ Void\\ Charge\\ to\\ Trigger\\ Level\\ ([-0-9,.]\u002B)\\ Void\\ Shot\\ when\\ you\\ fire\\ Arrows\\ with\\ a\\ Non-Triggered\\ Skill$"
   },
   {
-    "text": "Consumes #% of current Mana to deal that much Fire damage",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Consumes\\ ([-0-9,.]\u002B)%\\ of\\ current\\ Mana\\ to\\ deal\\ that\\ much\\ Fire\\ damage$"
-  },
-  {
     "text": "Consumes one Cooldown Use per Statue Summoned",
     "lines": 1,
     "tradeIds": [],
@@ -32125,6 +32142,126 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Contained\\ non-Unique\\ Tablets\\ are\\ Ritual\\ Tablets$"
+  },
+  {
+    "text": "Contained non-Unique items always have a Chaos Granted Skill",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ always\\ have\\ a\\ Chaos\\ Granted\\ Skill$"
+  },
+  {
+    "text": "Contained non-Unique items always have a Cold Granted Skill",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ always\\ have\\ a\\ Cold\\ Granted\\ Skill$"
+  },
+  {
+    "text": "Contained non-Unique items always have a Fire Granted Skill",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ always\\ have\\ a\\ Fire\\ Granted\\ Skill$"
+  },
+  {
+    "text": "Contained non-Unique items always have a Generic Granted Skill",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ always\\ have\\ a\\ Generic\\ Granted\\ Skill$"
+  },
+  {
+    "text": "Contained non-Unique items always have a Lightning Granted Skill",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ always\\ have\\ a\\ Lightning\\ Granted\\ Skill$"
+  },
+  {
+    "text": "Contained non-Unique items always have a Physical Granted Skill",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ always\\ have\\ a\\ Physical\\ Granted\\ Skill$"
+  },
+  {
+    "text": "Contained non-Unique items are Belts",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Belts$"
+  },
+  {
+    "text": "Contained non-Unique items are Body Armour",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Body\\ Armour$"
+  },
+  {
+    "text": "Contained non-Unique items are Boots",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Boots$"
+  },
+  {
+    "text": "Contained non-Unique items are Bows",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Bows$"
+  },
+  {
+    "text": "Contained non-Unique items are Crossbows",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Crossbows$"
+  },
+  {
+    "text": "Contained non-Unique items are Gloves",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Gloves$"
+  },
+  {
+    "text": "Contained non-Unique items are Helmets",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Helmets$"
+  },
+  {
+    "text": "Contained non-Unique items are Maces",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Maces$"
+  },
+  {
+    "text": "Contained non-Unique items are Quarterstaves",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Quarterstaves$"
+  },
+  {
+    "text": "Contained non-Unique items are Quivers",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Quivers$"
+  },
+  {
+    "text": "Contained non-Unique items are Shields",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Shields$"
+  },
+  {
+    "text": "Contained non-Unique items are Spears",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Spears$"
+  },
+  {
+    "text": "Contained non-Unique items are Swords",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Swords$"
+  },
+  {
+    "text": "Contained non-Unique items are Talismans",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Contained\\ non-Unique\\ items\\ are\\ Talismans$"
   },
   {
     "text": "Contained non-Unique items are always Amulets",
@@ -33113,6 +33250,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Corrupting\\ Imprisoned\\ Monsters\\ cannot\\ release\\ them$"
+  },
+  {
+    "text": "Corrupting will always result in change",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Corrupting\\ will\\ always\\ result\\ in\\ change$"
   },
   {
     "text": "Corruption Areas have #% increased chance of Essences",
@@ -34517,6 +34660,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Curses\\ you\\ with\\ Silence\\ when\\ Hit$"
+  },
+  {
+    "text": "DNT Obliterated #233763",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^DNT\\ Obliterated\\ ([-0-9,.]\u002B)233763$"
   },
   {
     "text": "DNT dummy_display_stat_rune_delevel_inherent_skill",
@@ -36530,6 +36679,21 @@
     "pattern": "^Defend\\ with\\ ([-0-9,.]\u002B)%\\ of\\ Armour\\ while\\ you\\ have\\ Energy\\ Shield$"
   },
   {
+    "text": "Deferring Favours at Ritual Altars costs #% increased Tribute",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1345835998"
+    ],
+    "pattern": "^Deferring\\ Favours\\ at\\ Ritual\\ Altars\\ costs\\ ([-0-9,.]\u002B)%\\ increased\\ Tribute$"
+  },
+  {
+    "text": "Deferring Favours at Ritual Altars costs #% reduced Tribute",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Deferring\\ Favours\\ at\\ Ritual\\ Altars\\ costs\\ ([-0-9,.]\u002B)%\\ reduced\\ Tribute$"
+  },
+  {
     "text": "Deferring Favours at Ritual Altars in Area costs #% increased Tribute",
     "lines": 1,
     "tradeIds": [
@@ -36564,19 +36728,17 @@
     "pattern": "^Deferring\\ Favours\\ at\\ Ritual\\ Altars\\ in\\ Map\\ costs\\ ([-0-9,.]\u002B)%\\ increased\\ Tribute$"
   },
   {
-    "text": "Deferring Favours at Ritual Altars in your Maps costs #% increased Tribute",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1345835998"
-    ],
-    "pattern": "^Deferring\\ Favours\\ at\\ Ritual\\ Altars\\ in\\ your\\ Maps\\ costs\\ ([-0-9,.]\u002B)%\\ increased\\ Tribute$"
-  },
-  {
-    "text": "Deferring Favours at Ritual Altars in your Maps costs #% reduced Tribute",
+    "text": "Deferring Favours using Tribute already offered to the King costs #% less Offered Tribute",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Deferring\\ Favours\\ at\\ Ritual\\ Altars\\ in\\ your\\ Maps\\ costs\\ ([-0-9,.]\u002B)%\\ reduced\\ Tribute$"
+    "pattern": "^Deferring\\ Favours\\ using\\ Tribute\\ already\\ offered\\ to\\ the\\ King\\ costs\\ ([-0-9,.]\u002B)%\\ less\\ Offered\\ Tribute$"
+  },
+  {
+    "text": "Deferring Favours using Tribute already offered to the King costs #% more Offered Tribute",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Deferring\\ Favours\\ using\\ Tribute\\ already\\ offered\\ to\\ the\\ King\\ costs\\ ([-0-9,.]\u002B)%\\ more\\ Offered\\ Tribute$"
   },
   {
     "text": "Defiance Banner has #% increased Aura Magnitudes",
@@ -37027,10 +37189,10 @@
     "pattern": "^Delirium\\ Fog\\ spread\\ to\\ additional\\ Maps\\ has\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ spread\\ to\\ each\\ connected\\ Map$"
   },
   {
-    "text": "Delirium Fog spreads to \u002B# Maps",
+    "text": "Delirium Fog spreads to \u002B# additional Maps",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Delirium\\ Fog\\ spreads\\ to\\ \\\u002B([-0-9,.]\u002B)\\ Maps$"
+    "pattern": "^Delirium\\ Fog\\ spreads\\ to\\ \\\u002B([-0-9,.]\u002B)\\ additional\\ Maps$"
   },
   {
     "text": "Delirium Monsters in Area have #% increased Pack Size",
@@ -37145,10 +37307,10 @@
     "pattern": "^Delirium\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ to\\ Delirium\\ Monsters$"
   },
   {
-    "text": "Delirium Tablets also provide #% increased Rarity of Items Dropped to Delirium Monsters",
+    "text": "Delirium Tablets also provide #% increased Rarity of Items Dropped by Delirium Monsters",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Delirium\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Delirium\\ Monsters$"
+    "pattern": "^Delirium\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Delirium\\ Monsters$"
   },
   {
     "text": "Delirium Tablets also provide #% reduced Effectiveness to Delirium Monsters",
@@ -37158,11 +37320,11 @@
     "pattern": "^Delirium\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ to\\ Delirium\\ Monsters$"
   },
   {
-    "text": "Delirium Tablets also provide #% reduced Rarity of Items Dropped to Delirium Monsters",
+    "text": "Delirium Tablets also provide #% reduced Rarity of Items Dropped by Delirium Monsters",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Delirium\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Delirium\\ Monsters$"
+    "pattern": "^Delirium\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Delirium\\ Monsters$"
   },
   {
     "text": "Demigod Footprints",
@@ -42804,10 +42966,10 @@
     "pattern": "^Expedition\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ to\\ Expedition\\ Monsters$"
   },
   {
-    "text": "Expedition Tablets also provide #% increased Rarity of Items Dropped to Expedition Monsters",
+    "text": "Expedition Tablets also provide #% increased Rarity of Items Dropped by Expedition Monsters",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Expedition\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Expedition\\ Monsters$"
+    "pattern": "^Expedition\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Expedition\\ Monsters$"
   },
   {
     "text": "Expedition Tablets also provide #% reduced Effectiveness to Expedition Monsters",
@@ -42817,11 +42979,11 @@
     "pattern": "^Expedition\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ to\\ Expedition\\ Monsters$"
   },
   {
-    "text": "Expedition Tablets also provide #% reduced Rarity of Items Dropped to Expedition Monsters",
+    "text": "Expedition Tablets also provide #% reduced Rarity of Items Dropped by Expedition Monsters",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Expedition\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Expedition\\ Monsters$"
+    "pattern": "^Expedition\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Expedition\\ Monsters$"
   },
   {
     "text": "Expedition encounters in your Maps contain # additional Chest Marker",
@@ -43454,13 +43616,13 @@
     "pattern": "^Favours\\ Deferred\\ at\\ Ritual\\ Altars\\ in\\ Map\\ reappear\\ ([-0-9,.]\u002B)%\\ sooner$"
   },
   {
-    "text": "Favours Deferred at Ritual Altars in your Maps reappear #% sooner",
+    "text": "Favours Deferred at Ritual Altars reappear #% sooner",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_28208665"
     ],
-    "pattern": "^Favours\\ Deferred\\ at\\ Ritual\\ Altars\\ in\\ your\\ Maps\\ reappear\\ ([-0-9,.]\u002B)%\\ sooner$"
+    "pattern": "^Favours\\ Deferred\\ at\\ Ritual\\ Altars\\ reappear\\ ([-0-9,.]\u002B)%\\ sooner$"
   },
   {
     "text": "Favours Rerolled at Ritual Altars in Area have #% chance to cost no Tribute",
@@ -46048,15 +46210,6 @@
     "pattern": "^Gain\\ 1%\\ of\\ Unarmed\\ Damage\\ as\\ extra\\ Fire\\ damage\\ per\\ ([-0-9,.]\u002B)\\ Intelligence$"
   },
   {
-    "text": "Gain 1% of damage as Fire damage per #% Chance to Block",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3170380905",
-      "rune.stat_3170380905"
-    ],
-    "pattern": "^Gain\\ 1%\\ of\\ damage\\ as\\ Fire\\ damage\\ per\\ ([-0-9,.]\u002B)%\\ Chance\\ to\\ Block$"
-  },
-  {
     "text": "Gain Absorption Charges instead of Power Charges",
     "lines": 1,
     "tradeIds": [],
@@ -48276,30 +48429,6 @@
     "pattern": "^Gain\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ deal\\ Double\\ Damage\\ for\\ 3\\ seconds\\ when\\ you\\ cast\\ a\\ Spell,\\ up\\ to\\ once\\ every\\ 9\\ seconds$"
   },
   {
-    "text": "Gain #% damage as Extra Fire Damage",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_3015669065",
-      "desecrated.stat_3015669065",
-      "explicit.stat_3015669065",
-      "fractured.stat_3015669065",
-      "rune.stat_3015669065"
-    ],
-    "pattern": "^Gain\\ ([-0-9,.]\u002B)%\\ damage\\ as\\ Extra\\ Fire\\ Damage$"
-  },
-  {
-    "text": "Gain #% damage as Extra Lightning Damage",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_3278136794",
-      "desecrated.stat_3278136794",
-      "explicit.stat_3278136794",
-      "fractured.stat_3278136794",
-      "rune.stat_3278136794"
-    ],
-    "pattern": "^Gain\\ ([-0-9,.]\u002B)%\\ damage\\ as\\ Extra\\ Lightning\\ Damage$"
-  },
-  {
     "text": "Gain # fewer Lightning Surge from Triggering Elemental Surge",
     "lines": 1,
     "tradeIds": [],
@@ -49161,6 +49290,22 @@
     "pattern": "^Gain\\ ([-0-9,.]\u002B)%\\ of\\ Physical\\ Damage\\ as\\ extra\\ Chaos\\ Damage$"
   },
   {
+    "text": "Gain #% of damage as Fire damage per 1% Chance to Block",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2771095426"
+    ],
+    "pattern": "^Gain\\ ([-0-9,.]\u002B)%\\ of\\ damage\\ as\\ Fire\\ damage\\ per\\ 1%\\ Chance\\ to\\ Block$"
+  },
+  {
+    "text": "Gain #% of damage as Fire damage per 2% Chance to Block",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_2621116283"
+    ],
+    "pattern": "^Gain\\ ([-0-9,.]\u002B)%\\ of\\ damage\\ as\\ Fire\\ damage\\ per\\ 2%\\ Chance\\ to\\ Block$"
+  },
+  {
     "text": "Gain #% of maximum Energy Shield as additional Freeze Threshold",
     "lines": 1,
     "tradeIds": [],
@@ -49479,19 +49624,6 @@
     "pattern": "^Gains\\ no\\ Charges\\ during\\ Effect\\ of\\ any\\ Soul\\ Ripper\\ Flask$"
   },
   {
-    "text": "Gains #% of Damage as Extra Chaos Damage",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_3398787959",
-      "desecrated.stat_3398787959",
-      "enchant.stat_3398787959",
-      "explicit.stat_3398787959",
-      "fractured.stat_3398787959",
-      "rune.stat_3398787959"
-    ],
-    "pattern": "^Gains\\ ([-0-9,.]\u002B)%\\ of\\ Damage\\ as\\ Extra\\ Chaos\\ Damage$"
-  },
-  {
     "text": "Gains #% of Life and Mana Cost as Extra Runic Ward Cost",
     "lines": 1,
     "tradeIds": [],
@@ -49511,6 +49643,36 @@
       "rune.stat_1936645603"
     ],
     "pattern": "^Gains\\ ([-0-9,.]\u002B)%\\ of\\ Physical\\ damage\\ as\\ Fire\\ damage$"
+  },
+  {
+    "text": "Gains #% of damage as Chaos damage",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gains\\ ([-0-9,.]\u002B)%\\ of\\ damage\\ as\\ Chaos\\ damage$"
+  },
+  {
+    "text": "Gains #% of damage as Cold damage",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gains\\ ([-0-9,.]\u002B)%\\ of\\ damage\\ as\\ Cold\\ damage$"
+  },
+  {
+    "text": "Gains #% of damage as Fire damage",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gains\\ ([-0-9,.]\u002B)%\\ of\\ damage\\ as\\ Fire\\ damage$"
+  },
+  {
+    "text": "Gains #% of damage as Lightning damage",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gains\\ ([-0-9,.]\u002B)%\\ of\\ damage\\ as\\ Lightning\\ damage$"
+  },
+  {
+    "text": "Gains #% of damage as Physical damage",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Gains\\ ([-0-9,.]\u002B)%\\ of\\ damage\\ as\\ Physical\\ damage$"
   },
   {
     "text": "Galvanic Arrow deals #% increased Area Damage",
@@ -60406,16 +60568,16 @@
     "pattern": "^Lanes\\ of\\ Blight\\ Encounters\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ for\\ an\\ additional\\ Reward\\ Chest$"
   },
   {
-    "text": "Large Abyssal Chests from the final Pit are instead an Abyssal Strongbox",
+    "text": "Large Abyssal Chests from Abyss Pits are instead an Abyssal Strongbox",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Large\\ Abyssal\\ Chests\\ from\\ the\\ final\\ Pit\\ are\\ instead\\ an\\ Abyssal\\ Strongbox$"
+    "pattern": "^Large\\ Abyssal\\ Chests\\ from\\ Abyss\\ Pits\\ are\\ instead\\ an\\ Abyssal\\ Strongbox$"
   },
   {
-    "text": "Large Abyssal Chests from the final Pit have a #% chance to instead be an Abyssal Strongbox",
+    "text": "Large Abyssal Chests from Abyss Pits have a #% chance to instead be an Abyssal Strongbox",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Large\\ Abyssal\\ Chests\\ from\\ the\\ final\\ Pit\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ instead\\ be\\ an\\ Abyssal\\ Strongbox$"
+    "pattern": "^Large\\ Abyssal\\ Chests\\ from\\ Abyss\\ Pits\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ instead\\ be\\ an\\ Abyssal\\ Strongbox$"
   },
   {
     "text": "Leaves a Lingering Blade in the ground for every Projectile fired",
@@ -62390,10 +62552,10 @@
     "pattern": "^Links\\ take\\ twice\\ as\\ long\\ to\\ break$"
   },
   {
-    "text": "Liquid Emotions found have a 20% chance to be Ancient Liquid Emotions",
+    "text": "Liquid Emotions found have a #% chance to be Ancient Liquid Emotions",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Liquid\\ Emotions\\ found\\ have\\ a\\ 20%\\ chance\\ to\\ be\\ Ancient\\ Liquid\\ Emotions$"
+    "pattern": "^Liquid\\ Emotions\\ found\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ be\\ Ancient\\ Liquid\\ Emotions$"
   },
   {
     "text": "Living Weapons",
@@ -63333,7 +63495,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "sanctum.stat_3114474137"
+      "sanctum.stat_3114474137",
+      "sanctum.stat_408585189"
     ],
     "pattern": "^Magic\\ Monsters\\ take\\ ([-0-9,.]\u002B)%\\ increased\\ Damage$"
   },
@@ -63343,7 +63506,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "sanctum.stat_3114474137"
+      "sanctum.stat_3114474137",
+      "sanctum.stat_408585189"
     ],
     "pattern": "^Magic\\ Monsters\\ take\\ ([-0-9,.]\u002B)%\\ reduced\\ Damage$"
   },
@@ -63696,10 +63860,10 @@
     "pattern": "^Mana\\ Cost\\ of\\ Supported\\ Skills\\ Converted\\ to\\ Life\\ Cost$"
   },
   {
-    "text": "Mana Flask Effects are not removed when Unreserved Mana is Filled\\Mana Flask Effects do not Queue",
-    "lines": 1,
+    "text": "Mana Flask Effects are not removed when Unreserved Mana is Filled\nMana Flask Effects do not Queue",
+    "lines": 2,
     "tradeIds": [],
-    "pattern": "^Mana\\ Flask\\ Effects\\ are\\ not\\ removed\\ when\\ Unreserved\\ Mana\\ is\\ Filled\\\\Mana\\ Flask\\ Effects\\ do\\ not\\ Queue$"
+    "pattern": "^Mana\\ Flask\\ Effects\\ are\\ not\\ removed\\ when\\ Unreserved\\ Mana\\ is\\ Filled\\nMana\\ Flask\\ Effects\\ do\\ not\\ Queue$"
   },
   {
     "text": "Mana Flask charges Consumed@#",
@@ -64789,6 +64953,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Maps\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ drop\\ as\\ a\\ random\\ Unique\\ Map\\ instead\\ in\\ your\\ Maps$"
+  },
+  {
+    "text": "Maps within the Delirium Fog have \u002B#% additional Deliriousness",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Maps\\ within\\ the\\ Delirium\\ Fog\\ have\\ \\\u002B([-0-9,.]\u002B)%\\ additional\\ Deliriousness$"
   },
   {
     "text": "Mark Skills have #% increased Skill Effect Duration",
@@ -71271,6 +71441,12 @@
     "pattern": "^Monsters\\ reflect\\ ([-0-9,.]\u002B)%\\ of\\ Physical\\ Damage$"
   },
   {
+    "text": "Monsters released from Essences become Corrupted",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Monsters\\ released\\ from\\ Essences\\ become\\ Corrupted$"
+  },
+  {
     "text": "Monsters remove Charges on Hit",
     "lines": 1,
     "tradeIds": [],
@@ -73388,6 +73564,23 @@
     "pattern": "^Non-Channelling\\ Skills\\ Cost\\ \\\u002B([-0-9,.]\u002B)\\ Mana$"
   },
   {
+    "text": "Non-Channelling Skills have #% increased Spell Critical Hit Chance per 100 maximum Mana",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1367999357"
+    ],
+    "pattern": "^Non-Channelling\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Spell\\ Critical\\ Hit\\ Chance\\ per\\ 100\\ maximum\\ Mana$"
+  },
+  {
+    "text": "Non-Channelling Skills have #% reduced Spell Critical Hit Chance per 100 maximum Mana",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1367999357"
+    ],
+    "pattern": "^Non-Channelling\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Spell\\ Critical\\ Hit\\ Chance\\ per\\ 100\\ maximum\\ Mana$"
+  },
+  {
     "text": "Non-Channelling Skills have \u002B# to Total Life Cost",
     "lines": 1,
     "tradeIds": [],
@@ -73490,14 +73683,6 @@
     "pattern": "^Non-Channelling\\ Spells\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Critical\\ Hit\\ Chance\\ per\\ 100\\ maximum\\ Life$"
   },
   {
-    "text": "Non-Channelling Spells have #% increased Critical Hit Chance per 100 maximum Mana",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1367999357"
-    ],
-    "pattern": "^Non-Channelling\\ Spells\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Critical\\ Hit\\ Chance\\ per\\ 100\\ maximum\\ Mana$"
-  },
-  {
     "text": "Non-Channelling Spells have #% increased Magnitude of Ailments per 100 maximum Life",
     "lines": 1,
     "tradeIds": [
@@ -73513,15 +73698,6 @@
       "explicit.stat_170426423"
     ],
     "pattern": "^Non-Channelling\\ Spells\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Hit\\ Chance\\ per\\ 100\\ maximum\\ Life$"
-  },
-  {
-    "text": "Non-Channelling Spells have #% reduced Critical Hit Chance per 100 maximum Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1367999357"
-    ],
-    "pattern": "^Non-Channelling\\ Spells\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Hit\\ Chance\\ per\\ 100\\ maximum\\ Mana$"
   },
   {
     "text": "Non-Channelling Spells have #% reduced Magnitude of Ailments per 100 maximum Life",
@@ -76618,17 +76794,17 @@
     "pattern": "^Overlord\u0027s\\ Influence\\ and\\ Overlord\u0027s\\ Domain\\ Atlas\\ Passive\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ add\\ twice\\ as\\ much\\ content$"
   },
   {
-    "text": "Overseer Precursor Tablets also provide #% increased Rarity of Items Dropped to the Map Boss",
+    "text": "Overseer Precursor Tablets also provide #% increased Rarity of Items Dropped by the Map Boss",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Overseer\\ Precursor\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ the\\ Map\\ Boss$"
+    "pattern": "^Overseer\\ Precursor\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ the\\ Map\\ Boss$"
   },
   {
-    "text": "Overseer Precursor Tablets also provide #% reduced Rarity of Items Dropped to the Map Boss",
+    "text": "Overseer Precursor Tablets also provide #% reduced Rarity of Items Dropped by the Map Boss",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Overseer\\ Precursor\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ the\\ Map\\ Boss$"
+    "pattern": "^Overseer\\ Precursor\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ the\\ Map\\ Boss$"
   },
   {
     "text": "Overseer Precursor Tablets can drop from Powerful Map Bosses",
@@ -79581,22 +79757,28 @@
     "pattern": "^Poisons\\ you\\ inflict\\ during\\ any\\ Flask\\ Effect\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ have\\ 100%\\ more\\ Effect$"
   },
   {
-    "text": "Possessed Essence Monsters have #% chance to release Spirits on death",
+    "text": "Possessed Essence Monsters Release Spirits on death",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Essence\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Essence\\ Monsters\\ Release\\ Spirits\\ on\\ death$"
   },
   {
-    "text": "Possessed Essence Monsters release Spirits on death",
+    "text": "Possessed Essence Monsters have #% chance to Release Spirits on death",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Essence\\ Monsters\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Essence\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ Release\\ Spirits\\ on\\ death$"
   },
   {
-    "text": "Possessed Monsters have #% chance to release Spirits on death",
+    "text": "Possessed Monsters Release Spirits on death",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Monsters\\ Release\\ Spirits\\ on\\ death$"
+  },
+  {
+    "text": "Possessed Monsters have #% chance to Release Spirits on death",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Possessed\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ Release\\ Spirits\\ on\\ death$"
   },
   {
     "text": "Possessed Monsters have #% increased chance to drop Idols",
@@ -79625,46 +79807,66 @@
     "pattern": "^Possessed\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ chance\\ to\\ drop\\ a\\ Rite\\ of\\ Passage$"
   },
   {
-    "text": "Possessed Monsters release Spirits on death",
+    "text": "Possessed Rogue Exiles have #% increased chance to drop Exceptional Items",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Monsters\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Rogue\\ Exiles\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ chance\\ to\\ drop\\ Exceptional\\ Items$"
   },
   {
-    "text": "Possessed Strongboxes have a #% chance to release the Azmeri Spirit when opened",
+    "text": "Possessed Rogue Exiles have #% reduced chance to drop Exceptional Items",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Strongboxes\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ release\\ the\\ Azmeri\\ Spirit\\ when\\ opened$"
+    "pattern": "^Possessed\\ Rogue\\ Exiles\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ chance\\ to\\ drop\\ Exceptional\\ Items$"
   },
   {
-    "text": "Possessed Strongboxes release the Azmeri Spirit when opened",
+    "text": "Possessed Strongboxes have a #% chance to manifest the Azmeri Spirit when opened",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Strongboxes\\ release\\ the\\ Azmeri\\ Spirit\\ when\\ opened$"
+    "pattern": "^Possessed\\ Strongboxes\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ manifest\\ the\\ Azmeri\\ Spirit\\ when\\ opened$"
   },
   {
-    "text": "Possessed Summoning Circle Bosses in your Maps have #% chance to release Spirits on death",
+    "text": "Possessed Strongboxes have #% increased Item Rarity",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Summoning\\ Circle\\ Bosses\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Strongboxes\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Item\\ Rarity$"
   },
   {
-    "text": "Possessed Summoning Circle Bosses in your Maps release Spirits on death",
+    "text": "Possessed Strongboxes have #% reduced Item Rarity",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Summoning\\ Circle\\ Bosses\\ in\\ your\\ Maps\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Strongboxes\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Item\\ Rarity$"
   },
   {
-    "text": "Possessed Unique Monsters have #% chance to release Spirits on death",
+    "text": "Possessed Strongboxes manifest the Azmeri Spirit when opened",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Unique\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Strongboxes\\ manifest\\ the\\ Azmeri\\ Spirit\\ when\\ opened$"
   },
   {
-    "text": "Possessed Unique Monsters release Spirits on death",
+    "text": "Possessed Summoning Circle Bosses Release Spirits on death",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Possessed\\ Unique\\ Monsters\\ release\\ Spirits\\ on\\ death$"
+    "pattern": "^Possessed\\ Summoning\\ Circle\\ Bosses\\ Release\\ Spirits\\ on\\ death$"
+  },
+  {
+    "text": "Possessed Summoning Circle Bosses have #% chance to Release Spirits on death",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Possessed\\ Summoning\\ Circle\\ Bosses\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ Release\\ Spirits\\ on\\ death$"
+  },
+  {
+    "text": "Possessed Unique Monsters Release Spirits on death",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Possessed\\ Unique\\ Monsters\\ Release\\ Spirits\\ on\\ death$"
+  },
+  {
+    "text": "Possessed Unique Monsters have #% chance to Release Spirits on death",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Possessed\\ Unique\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ Release\\ Spirits\\ on\\ death$"
   },
   {
     "text": "Possessed by Spirit Of The Bear for # seconds on use",
@@ -86667,10 +86869,10 @@
     "pattern": "^Ritual\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ to\\ Ritual\\ Monsters$"
   },
   {
-    "text": "Ritual Tablets also provide #% increased Rarity of Items Dropped to Ritual Monsters",
+    "text": "Ritual Tablets also provide #% increased Rarity of Items Dropped by Ritual Monsters",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ritual\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Ritual\\ Monsters$"
+    "pattern": "^Ritual\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Ritual\\ Monsters$"
   },
   {
     "text": "Ritual Tablets also provide #% reduced Effectiveness to Ritual Monsters",
@@ -86680,11 +86882,11 @@
     "pattern": "^Ritual\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ to\\ Ritual\\ Monsters$"
   },
   {
-    "text": "Ritual Tablets also provide #% reduced Rarity of Items Dropped to Ritual Monsters",
+    "text": "Ritual Tablets also provide #% reduced Rarity of Items Dropped by Ritual Monsters",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ritual\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Ritual\\ Monsters$"
+    "pattern": "^Ritual\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Ritual\\ Monsters$"
   },
   {
     "text": "Rituals contain # additional packs of Wildwood Monsters",
@@ -87331,12 +87533,12 @@
     "pattern": "^Runic\\ Ward\\ Regeneration\\ Rate\\ is\\ doubled$"
   },
   {
-    "text": "Runic Ward recovery can can Overflow maximum Runic Ward",
+    "text": "Runic Ward recovery can Overflow maximum Runic Ward",
     "lines": 1,
     "tradeIds": [
       "implicit.stat_3408607858"
     ],
-    "pattern": "^Runic\\ Ward\\ recovery\\ can\\ can\\ Overflow\\ maximum\\ Runic\\ Ward$"
+    "pattern": "^Runic\\ Ward\\ recovery\\ can\\ Overflow\\ maximum\\ Runic\\ Ward$"
   },
   {
     "text": "Runic Ward spent for Boost@#",
@@ -87447,6 +87649,14 @@
     "pattern": "^Sacrifice\\ up\\ to\\ 10\\ Vaal\\ Orbs\\ to\\ receive\\ double\\ on\\ Trial\\ completion$"
   },
   {
+    "text": "Sacrifice up to 2 Divine Orbs to receive double on Trial completion",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3076483222|61382"
+    ],
+    "pattern": "^Sacrifice\\ up\\ to\\ 2\\ Divine\\ Orbs\\ to\\ receive\\ double\\ on\\ Trial\\ completion$"
+  },
+  {
     "text": "Sacrifice up to 20 Arcanist\u0027s Etchers to receive double on Trial completion",
     "lines": 1,
     "tradeIds": [
@@ -87501,14 +87711,6 @@
       "explicit.stat_3076483222|54496"
     ],
     "pattern": "^Sacrifice\\ up\\ to\\ 20\\ Regal\\ Orbs\\ to\\ receive\\ double\\ on\\ Trial\\ completion$"
-  },
-  {
-    "text": "Sacrifice up to 3 Divine Orbs to receive double on Trial completion",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3076483222|61382"
-    ],
-    "pattern": "^Sacrifice\\ up\\ to\\ 3\\ Divine\\ Orbs\\ to\\ receive\\ double\\ on\\ Trial\\ completion$"
   },
   {
     "text": "Sacrifice up to 3 Orb of Annulments to receive double on Trial completion",
@@ -88033,12 +88235,6 @@
     "pattern": "^Select\\ additional\\ Verisium\\ Remnant\\ or\\ Expedition\\ chance$"
   },
   {
-    "text": "Select an Abyss Faction to always encounter",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Select\\ an\\ Abyss\\ Faction\\ to\\ always\\ encounter$"
-  },
-  {
     "text": "Select an additional bonus for Runic Modifiers",
     "lines": 1,
     "tradeIds": [],
@@ -88055,6 +88251,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Select\\ between\\ faster\\ or\\ stable\\ Azmeri\\ Spirits$"
+  },
+  {
+    "text": "Select the Abyss Faction you encounter in non-Fissure Abysses",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Select\\ the\\ Abyss\\ Faction\\ you\\ encounter\\ in\\ non-Fissure\\ Abysses$"
   },
   {
     "text": "Sentinels do not consume Charge on use",
@@ -88686,10 +88888,10 @@
     "pattern": "^Shrines\\ grant\\ a\\ random\\ additional\\ Shrine\\ Effect$"
   },
   {
-    "text": "Shrines have a #% chance to release an Azmeri Spirit, the Shrine Buff is reapplied when it Possesses a monster",
+    "text": "Shrines have a #% chance to manifest an Azmeri Spirit, the Shrine Buff is reapplied when it Possesses a monster",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Shrines\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ release\\ an\\ Azmeri\\ Spirit,\\ the\\ Shrine\\ Buff\\ is\\ reapplied\\ when\\ it\\ Possesses\\ a\\ monster$"
+    "pattern": "^Shrines\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ manifest\\ an\\ Azmeri\\ Spirit,\\ the\\ Shrine\\ Buff\\ is\\ reapplied\\ when\\ it\\ Possesses\\ a\\ monster$"
   },
   {
     "text": "Shrines have an additional Effect",
@@ -99280,18 +99482,18 @@
     "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Projectile\\ Damage$"
   },
   {
-    "text": "Supported Skills deal #% less Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last eight seconds",
+    "text": "Supported Skills deal #% less Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 2 seconds",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ eight\\ seconds$"
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 2\\ seconds$"
   },
   {
-    "text": "Supported Skills deal #% less Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last two seconds",
+    "text": "Supported Skills deal #% less Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 8 seconds",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ two\\ seconds$"
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 8\\ seconds$"
   },
   {
     "text": "Supported Skills deal #% less Projectile Damage when Attacking in indicated direction",
@@ -99771,16 +99973,16 @@
     "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Projectile\\ Damage$"
   },
   {
-    "text": "Supported Skills deal #% more Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last eight seconds",
+    "text": "Supported Skills deal #% more Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 2 seconds",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ eight\\ seconds$"
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 2\\ seconds$"
   },
   {
-    "text": "Supported Skills deal #% more Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last two seconds",
+    "text": "Supported Skills deal #% more Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 8 seconds",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ two\\ seconds$"
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 8\\ seconds$"
   },
   {
     "text": "Supported Skills deal #% more Projectile Damage when Attacking in indicated direction",
@@ -104595,10 +104797,10 @@
     "pattern": "^Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ to\\ Monsters\\ from\\ their\\ mechanic$"
   },
   {
-    "text": "Tablets also provide #% increased Rarity of Items Dropped to\nMonsters from their mechanic",
+    "text": "Tablets also provide #% increased Rarity of Items Dropped by\nMonsters from their mechanic",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\nMonsters\\ from\\ their\\ mechanic$"
+    "pattern": "^Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\nMonsters\\ from\\ their\\ mechanic$"
   },
   {
     "text": "Tablets also provide #% reduced Effectiveness to Monsters from their mechanic",
@@ -104608,11 +104810,11 @@
     "pattern": "^Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ to\\ Monsters\\ from\\ their\\ mechanic$"
   },
   {
-    "text": "Tablets also provide #% reduced Rarity of Items Dropped to\nMonsters from their mechanic",
+    "text": "Tablets also provide #% reduced Rarity of Items Dropped by\nMonsters from their mechanic",
     "negate": true,
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\nMonsters\\ from\\ their\\ mechanic$"
+    "pattern": "^Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\nMonsters\\ from\\ their\\ mechanic$"
   },
   {
     "text": "Tablets found are always a random type",
@@ -105204,10 +105406,10 @@
     "pattern": "^Temple\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ to\\ Vaal\\ Beacon\\ Monsters$"
   },
   {
-    "text": "Temple Tablets also provide #% increased Rarity of Items Dropped to Vaal Beacon Monsters",
+    "text": "Temple Tablets also provide #% increased Rarity of Items Dropped by Vaal Beacon Monsters",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Temple\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Vaal\\ Beacon\\ Monsters$"
+    "pattern": "^Temple\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Vaal\\ Beacon\\ Monsters$"
   },
   {
     "text": "Temple Tablets also provide #% reduced Effectiveness to Vaal Beacon Monsters",
@@ -105217,11 +105419,11 @@
     "pattern": "^Temple\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ to\\ Vaal\\ Beacon\\ Monsters$"
   },
   {
-    "text": "Temple Tablets also provide #% reduced Rarity of Items Dropped to Vaal Beacon Monsters",
+    "text": "Temple Tablets also provide #% reduced Rarity of Items Dropped by Vaal Beacon Monsters",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Temple\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ to\\ Vaal\\ Beacon\\ Monsters$"
+    "pattern": "^Temple\\ Tablets\\ also\\ provide\\ ([-0-9,.]\u002B)%\\ reduced\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Vaal\\ Beacon\\ Monsters$"
   },
   {
     "text": "Temporal Chains can affect Hexproof Enemies",
@@ -106566,9 +106768,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_2479683456",
       "enchant.stat_836936635",
-      "explicit.stat_2479683456",
       "explicit.stat_836936635",
       "implicit.stat_836936635",
       "rune.stat_1981392722",
@@ -107207,6 +107407,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Travels\\ ([-0-9,.]\u002B)%\\ reduced\\ distance\\ before\\ changing\\ forms$"
+  },
+  {
+    "text": "Tribute already offered to the King may be used to Defer items",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Tribute\\ already\\ offered\\ to\\ the\\ King\\ may\\ be\\ used\\ to\\ Defer\\ items$"
   },
   {
     "text": "Trigger Ancestral Spirits when you Summon a Totem",
@@ -116863,8 +117069,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466",
-      "explicit.stat_3049505189"
+      "explicit.stat_2440265466"
     ],
     "pattern": "^Your\\ Maps\\ which\\ contain\\ Breaches\\ contain\\ ten\\ additional\\ Breaches$"
   },
@@ -116901,8 +117106,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466",
-      "explicit.stat_3049505189"
+      "explicit.stat_2440265466"
     ],
     "pattern": "^Your\\ Maps\\ which\\ contain\\ Breaches\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ contain\\ ten\\ additional\\ Breaches$"
   },
@@ -118203,12 +118407,6 @@
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ Unique\\ Monsters\\ may\\ be\\ scavenged\\ for\\ a\\ Unique\\ item$"
   },
   {
-    "text": "#% chance Vaal Beacon Unique Monsters are added to the Area for each Vaal Beacon in an Area",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ Vaal\\ Beacon\\ Unique\\ Monsters\\ are\\ added\\ to\\ the\\ Area\\ for\\ each\\ Vaal\\ Beacon\\ in\\ an\\ Area$"
-  },
-  {
     "text": "#% chance Vaal Beacon Unique Monsters drop an additional random Temple Currency",
     "lines": 1,
     "tradeIds": [],
@@ -118227,10 +118425,10 @@
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ Verisium\\ Remnants\\ count\\ as\\ affected\\ by\\ a\\ Power\\ Rune$"
   },
   {
-    "text": "# chance a Rare or Unique Monster in the Area is Corrupted when Vaal Beacons are activated",
+    "text": "#% chance a Rare or Unique Monster in the Area is Corrupted when Vaal Beacons are activated",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)\\ chance\\ a\\ Rare\\ or\\ Unique\\ Monster\\ in\\ the\\ Area\\ is\\ Corrupted\\ when\\ Vaal\\ Beacons\\ are\\ activated$"
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ a\\ Rare\\ or\\ Unique\\ Monster\\ in\\ the\\ Area\\ is\\ Corrupted\\ when\\ Vaal\\ Beacons\\ are\\ activated$"
   },
   {
     "text": "#% chance an additional Simulacrum is transformed when Delirium Fog reaches 100% Deliriousness",
@@ -118249,6 +118447,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ base\\ Regal\\ Orbs\\ drop\\ as\\ Alchemy\\ Orbs\\ in\\ Desert\\ Areas$"
+  },
+  {
+    "text": "#% chance each Vaal Beacon adds a Vaal Unique Monster to the Area",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ each\\ Vaal\\ Beacon\\ adds\\ a\\ Vaal\\ Unique\\ Monster\\ to\\ the\\ Area$"
   },
   {
     "text": "#% chance for 100% of Elemental Damage to be gained as Extra Chaos Damage",
@@ -119888,6 +120092,14 @@
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Avoid\\ Fire\\ Damage\\ from\\ Hits$"
   },
   {
+    "text": "#% chance to Avoid Honour loss from Enemy Hits if you\u0027ve been Hit Recently",
+    "lines": 1,
+    "tradeIds": [
+      "sanctum.stat_2284543592"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Avoid\\ Honour\\ loss\\ from\\ Enemy\\ Hits\\ if\\ you\u0027ve\\ been\\ Hit\\ Recently$"
+  },
+  {
     "text": "#% chance to Avoid Lightning Damage from Hits",
     "lines": 1,
     "tradeIds": [
@@ -119922,14 +120134,6 @@
       "sanctum.stat_2878762585"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Avoid\\ Resolve\\ loss\\ from\\ Enemy\\ Hits$"
-  },
-  {
-    "text": "#% chance to Avoid Resolve loss from Enemy Hits if you\u0027ve been Hit Recently",
-    "lines": 1,
-    "tradeIds": [
-      "sanctum.stat_2284543592"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Avoid\\ Resolve\\ loss\\ from\\ Enemy\\ Hits\\ if\\ you\u0027ve\\ been\\ Hit\\ Recently$"
   },
   {
     "text": "#% chance to Avoid being Chilled",
@@ -121829,7 +122033,7 @@
     "text": "#% chance to add a Vaal Beacon Unique Monster to the Map",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3591307827"
+      "explicit.stat_3937291366"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ add\\ a\\ Vaal\\ Beacon\\ Unique\\ Monster\\ to\\ the\\ Map$"
   },
@@ -132228,15 +132432,18 @@
   },
   {
     "text": "#% increased Effect of Non-Damaging Ailments on Monsters",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1519474779"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Effect\\ of\\ Non-Damaging\\ Ailments\\ on\\ Monsters$"
   },
   {
     "text": "#% increased Effect of Non-Damaging Ailments on you",
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1279298634"
+      "rune.stat_1519474779"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Effect\\ of\\ Non-Damaging\\ Ailments\\ on\\ you$"
   },
@@ -132637,13 +132844,6 @@
   },
   {
     "text": "#% increased Effectiveness of Strongbox Monsters",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ of\\ Strongbox\\ Monsters$"
-  },
-  {
-    "text": "#% increased Effectiveness of Strongbox Monsters",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Effectiveness\\ of\\ Strongbox\\ Monsters$"
@@ -133279,7 +133479,8 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1195319608",
-      "explicit.stat_1195319608"
+      "explicit.stat_1195319608",
+      "rune.stat_1195319608"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Energy\\ Shield\\ from\\ Equipped\\ Body\\ Armour$"
   },
@@ -133289,7 +133490,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Energy\\ Shield\\ from\\ Equipped\\ Focus$"
   },
@@ -133300,7 +133502,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Energy\\ Shield\\ from\\ Equipped\\ Helmet$"
   },
@@ -133311,7 +133514,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Energy\\ Shield\\ from\\ Equipped\\ Shield$"
   },
@@ -133624,6 +133828,23 @@
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Exceptional\\ Items\\ found$"
   },
   {
+    "text": "#% increased Expedition Explosive Area of Effect in Map",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3039133122"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Expedition\\ Explosive\\ Area\\ of\\ Effect\\ in\\ Map$"
+  },
+  {
+    "text": "#% increased Expedition Explosive Area of Effect in Map",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3039133122"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Expedition\\ Explosive\\ Area\\ of\\ Effect\\ in\\ Map$"
+  },
+  {
     "text": "#% increased Expedition Explosive Placement Range",
     "lines": 1,
     "tradeIds": [
@@ -133773,8 +133994,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Ailment\\ Modifier\\ magnitudes$"
@@ -133846,8 +134070,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Damage\\ Modifier\\ magnitudes$"
   },
@@ -135427,7 +135654,8 @@
       "enchant.stat_3791899485",
       "explicit.stat_3791899485",
       "fractured.stat_3791899485",
-      "implicit.stat_3791899485"
+      "implicit.stat_3791899485",
+      "rune.stat_3791899485"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Ignite\\ Magnitude$"
   },
@@ -135759,6 +135987,7 @@
     "text": "#% increased Life Recovery Rate while your Companion is in your Presence",
     "lines": 1,
     "tradeIds": [
+      "rune.stat_1779262102",
       "rune.stat_2122116143"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Life\\ Recovery\\ Rate\\ while\\ your\\ Companion\\ is\\ in\\ your\\ Presence$"
@@ -136670,7 +136899,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Magnitude\\ of\\ Shock\\ inflicted$"
   },
@@ -136694,7 +136924,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Magnitude\\ of\\ Shock\\ you\\ inflict$"
   },
@@ -141195,6 +141426,12 @@
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Skill\\ Speed$"
   },
   {
+    "text": "#% increased Skill Speed for each Corrupted Item Equipped",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Skill\\ Speed\\ for\\ each\\ Corrupted\\ Item\\ Equipped$"
+  },
+  {
     "text": "#% increased Skill Speed if you\u0027ve consumed a Frenzy Charge Recently",
     "lines": 1,
     "tradeIds": [
@@ -141824,6 +142061,15 @@
       "explicit.stat_53386210"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Spirit\\ Reservation\\ Efficiency\\ of\\ Skills\\ per\\ 20\\ Tribute$"
+  },
+  {
+    "text": "#% increased Spirit for each Corrupted Item Equipped",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_4169430079"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Spirit\\ for\\ each\\ Corrupted\\ Item\\ Equipped$"
   },
   {
     "text": "#% increased Spirit if you have at least 100 Tribute",
@@ -148558,7 +148804,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ more\\ Magnitude\\ of\\ Shock\\ you\\ inflict$"
   },
@@ -149396,12 +149643,12 @@
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Burning\\ Arrow\\ Physical\\ Damage\\ gained\\ as\\ Extra\\ Fire\\ Damage$"
   },
   {
-    "text": "#% of Chaos Damage from Hits taken as a Damage of a random Element",
+    "text": "#% of Chaos Damage from Hits taken as Damage of a random Element",
     "lines": 1,
     "tradeIds": [
       "rune.stat_4217453078"
     ],
-    "pattern": "^([-0-9,.]\u002B)%\\ of\\ Chaos\\ Damage\\ from\\ Hits\\ taken\\ as\\ a\\ Damage\\ of\\ a\\ random\\ Element$"
+    "pattern": "^([-0-9,.]\u002B)%\\ of\\ Chaos\\ Damage\\ from\\ Hits\\ taken\\ as\\ Damage\\ of\\ a\\ random\\ Element$"
   },
   {
     "text": "#% of Chaos Damage is taken from Mana before Life",
@@ -158299,15 +158546,20 @@
   {
     "text": "#% reduced Effect of Non-Damaging Ailments on Monsters",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1519474779"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Effect\\ of\\ Non-Damaging\\ Ailments\\ on\\ Monsters$"
   },
   {
     "text": "#% reduced Effect of Non-Damaging Ailments on you",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1519474779"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Effect\\ of\\ Non-Damaging\\ Ailments\\ on\\ you$"
   },
   {
@@ -158728,6 +158980,13 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ of\\ Rogue\\ Exiles\\ in\\ your\\ Maps\\ per\\ Explicit\\ Modifier\\ on\\ the\\ Map$"
+  },
+  {
+    "text": "#% reduced Effectiveness of Strongbox Monsters",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Effectiveness\\ of\\ Strongbox\\ Monsters$"
   },
   {
     "text": "#% reduced Effectiveness of Summoning Circle Bosses in your Maps",
@@ -159434,7 +159693,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Energy\\ Shield\\ from\\ Equipped\\ Focus$"
   },
@@ -159446,7 +159706,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Energy\\ Shield\\ from\\ Equipped\\ Helmet$"
   },
@@ -159458,7 +159719,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Energy\\ Shield\\ from\\ Equipped\\ Shield$"
   },
@@ -159841,8 +160103,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Ailment\\ Modifier\\ magnitudes$"
@@ -159920,8 +160185,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Damage\\ Modifier\\ magnitudes$"
   },
@@ -161565,7 +161833,8 @@
       "enchant.stat_3791899485",
       "explicit.stat_3791899485",
       "fractured.stat_3791899485",
-      "implicit.stat_3791899485"
+      "implicit.stat_3791899485",
+      "rune.stat_3791899485"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Ignite\\ Magnitude$"
   },
@@ -162847,7 +163116,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Magnitude\\ of\\ Shock\\ inflicted$"
   },
@@ -162874,7 +163144,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Magnitude\\ of\\ Shock\\ you\\ inflict$"
   },
@@ -167185,6 +167456,13 @@
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Skill\\ Speed$"
   },
   {
+    "text": "#% reduced Skill Speed for each Corrupted Item Equipped",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Skill\\ Speed\\ for\\ each\\ Corrupted\\ Item\\ Equipped$"
+  },
+  {
     "text": "#% reduced Skill Speed if you\u0027ve consumed a Frenzy Charge Recently",
     "negate": true,
     "lines": 1,
@@ -167824,6 +168102,16 @@
       "explicit.stat_53386210"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Spirit\\ Reservation\\ Efficiency\\ of\\ Skills\\ per\\ 20\\ Tribute$"
+  },
+  {
+    "text": "#% reduced Spirit for each Corrupted Item Equipped",
+    "negate": true,
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_4169430079"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Spirit\\ for\\ each\\ Corrupted\\ Item\\ Equipped$"
   },
   {
     "text": "#% reduced Spirit if you have at least 100 Tribute",
@@ -171986,6 +172274,15 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ to\\ Chaos\\ Resistance\\ during\\ any\\ Flask\\ Effect$"
   },
   {
+    "text": "\u002B#% to Chaos Resistance for each Corrupted Item Equipped",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_3100523498"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ to\\ Chaos\\ Resistance\\ for\\ each\\ Corrupted\\ Item\\ Equipped$"
+  },
+  {
     "text": "\u002B#% to Chaos Resistance per Endurance Charge",
     "lines": 1,
     "tradeIds": [],
@@ -174105,6 +174402,18 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Glacial\\ Lance\\ Skills$"
   },
   {
+    "text": "\u002B# to Level of all Grenade Skill Gems",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_448592698|104",
+      "explicit.stat_448592698|142",
+      "explicit.stat_448592698|54",
+      "implicit.stat_2251279027"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Grenade\\ Skill\\ Gems$"
+  },
+  {
     "text": "\u002B# to Level of all Grim Feast Skills",
     "lines": 1,
     "tradeIds": [
@@ -174135,6 +174444,18 @@
       "explicit.stat_448592698|62"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Hand\\ of\\ Chayula\\ Skills$"
+  },
+  {
+    "text": "\u002B# to Level of all Hazard Skill Gems",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Hazard\\ Skill\\ Gems$"
+  },
+  {
+    "text": "\u002B# to Level of all Herald Skill Gems",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Herald\\ Skill\\ Gems$"
   },
   {
     "text": "\u002B# to Level of all Herald of Ash Skills",
@@ -174488,6 +174809,15 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Mortar\\ Cannon\\ Skills$"
   },
   {
+    "text": "\u002B# to Level of all Nova Skill Gems",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_448592698|153"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Nova\\ Skill\\ Gems$"
+  },
+  {
     "text": "\u002B# to Level of all Oil Barrage Skills",
     "lines": 1,
     "tradeIds": [
@@ -174573,6 +174903,12 @@
       "explicit.stat_448592698|123"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Plague\\ Bearer\\ Skills$"
+  },
+  {
+    "text": "\u002B# to Level of all Plant Skill Gems",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Plant\\ Skill\\ Gems$"
   },
   {
     "text": "\u002B# to Level of all Plasma Blast Skills",
@@ -174958,6 +175294,16 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Skills\\ with\\ an\\ Intelligence\\ requirement$"
   },
   {
+    "text": "\u002B# to Level of all Slam Skill Gems",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_448592698|111",
+      "explicit.stat_448592698|77"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Slam\\ Skill\\ Gems$"
+  },
+  {
     "text": "\u002B# to Level of all Snap Skills",
     "lines": 1,
     "tradeIds": [
@@ -175074,6 +175420,15 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Storm\\ Lance\\ Skills$"
   },
   {
+    "text": "\u002B# to Level of all Storm Skill Gems",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_448592698|94"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Storm\\ Skill\\ Gems$"
+  },
+  {
     "text": "\u002B# to Level of all Storm Wave Skills",
     "lines": 1,
     "tradeIds": [
@@ -175096,6 +175451,15 @@
       "explicit.stat_448592698|146"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Stormcaller\\ Arrow\\ Skills$"
+  },
+  {
+    "text": "\u002B# to Level of all Strike Skill Gems",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_448592698|103"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Strike\\ Skill\\ Gems$"
   },
   {
     "text": "\u002B# to Level of all Summon Skeleton Gems",
@@ -175353,6 +175717,12 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ War\\ Banner\\ Skills$"
   },
   {
+    "text": "\u002B# to Level of all Warcry Skill Gems",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Warcry\\ Skill\\ Gems$"
+  },
+  {
     "text": "\u002B# to Level of all Wave of Frost Skills",
     "lines": 1,
     "tradeIds": [
@@ -175407,6 +175777,12 @@
       "explicit.stat_448592698|190"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Wind\\ Serpent\u0027s\\ Fury\\ Skills$"
+  },
+  {
+    "text": "\u002B# to Level of all Wind Skill Gems",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Wind\\ Skill\\ Gems$"
   },
   {
     "text": "\u002B# to Level of all Wing Blast Skills",
@@ -177087,6 +177463,14 @@
       "rune.stat_280497929"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ maximum\\ Mana\\ per\\ 2\\ Item\\ Energy\\ Shield\\ on\\ Equipped\\ Helmet$"
+  },
+  {
+    "text": "\u002B# to maximum Mana per 3 Item Armour on Equipped Helmet",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_995044379"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ maximum\\ Mana\\ per\\ 3\\ Item\\ Armour\\ on\\ Equipped\\ Helmet$"
   },
   {
     "text": "\u002B# to maximum Mana per Socket filled",

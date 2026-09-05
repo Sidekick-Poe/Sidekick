@@ -22185,7 +22185,6 @@
       "explicit.stat_2460506030|56789",
       "explicit.stat_2460506030|58827",
       "explicit.stat_2460506030|61072",
-      "explicit.stat_2460506030|61627",
       "explicit.stat_2460506030|62595",
       "explicit.stat_2460506030|6778",
       "explicit.stat_2460506030|8656"
@@ -33416,14 +33415,6 @@
     "pattern": "^Catalisadores\\ derrubados\\ por\\ Metamorfos\\ s\u00E3o\\ duplicados$"
   },
   {
-    "text": "Catarina\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_63772"
-    ],
-    "pattern": "^Catarina\u0027s\\ Veiled$"
-  },
-  {
     "text": "Causa Dano Dobrado aos Inimigos que estejam em Vida Cheia",
     "lines": 1,
     "tradeIds": [],
@@ -34772,6 +34763,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -34788,6 +34780,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -34881,6 +34874,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -34895,6 +34889,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -34910,6 +34905,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -34926,6 +34922,7 @@
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -34939,6 +34936,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -34953,6 +34951,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -35093,6 +35092,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -35107,6 +35107,7 @@
       "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_2091591880",
+      "fractured.stat_214031493",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
     ],
@@ -35116,7 +35117,8 @@
     "text": "Chance de Cr\u00EDtico com Minas aumentada em #%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_214031493"
+      "explicit.stat_214031493",
+      "fractured.stat_214031493"
     ],
     "pattern": "^Chance\\ de\\ Cr\u00EDtico\\ com\\ Minas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -35125,7 +35127,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_214031493"
+      "explicit.stat_214031493",
+      "fractured.stat_214031493"
     ],
     "pattern": "^Chance\\ de\\ Cr\u00EDtico\\ com\\ Minas\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -35134,7 +35137,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_214031493"
+      "explicit.stat_214031493",
+      "fractured.stat_214031493"
     ],
     "pattern": "^Chance\\ de\\ Cr\u00EDtico\\ com\\ Varinhas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -35144,7 +35148,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_214031493"
+      "explicit.stat_214031493",
+      "fractured.stat_214031493"
     ],
     "pattern": "^Chance\\ de\\ Cr\u00EDtico\\ com\\ Varinhas\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -47557,10 +47562,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3882531569",
       "explicit.stat_402920808",
       "explicit.stat_635761691",
+      "fractured.stat_3882531569",
       "fractured.stat_402920808",
       "fractured.stat_635761691",
+      "implicit.stat_3882531569",
       "implicit.stat_402920808",
       "implicit.stat_635761691"
     ],
@@ -47572,10 +47580,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3882531569",
       "explicit.stat_402920808",
       "explicit.stat_635761691",
+      "fractured.stat_3882531569",
       "fractured.stat_402920808",
       "fractured.stat_635761691",
+      "implicit.stat_3882531569",
       "implicit.stat_402920808",
       "implicit.stat_635761691"
     ],
@@ -53881,10 +53892,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3586984690",
-      "explicit.stat_3882531569",
-      "fractured.stat_3586984690",
-      "fractured.stat_3882531569",
-      "implicit.stat_3882531569"
+      "fractured.stat_3586984690"
     ],
     "pattern": "^Dano\\ de\\ Fogo\\ com\\ Adagas\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -53895,10 +53903,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3586984690",
-      "explicit.stat_3882531569",
-      "fractured.stat_3586984690",
-      "fractured.stat_3882531569",
-      "implicit.stat_3882531569"
+      "fractured.stat_3586984690"
     ],
     "pattern": "^Dano\\ de\\ Fogo\\ com\\ Adagas\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -70208,14 +70213,6 @@
     "lines": 4,
     "tradeIds": [],
     "pattern": "^Elimine\\ todos\\ os\\ monstros\\ r\u00FAnicos\\ ap\u00F3s\\ detonar\\ pelo\\ menos\\ metade\\ dos\\ vest\u00EDgios\\ para\\ncompletar\\ com\\ sucesso\\ os\\ mapas\\ dentro\\ desta\\ regi\u00E3o\\ moldada\\nMonstros\\ da\\ Expedi\u00E7\u00E3o\\ t\u00EAm\\ a\\ dificuldade\\ e\\ a\\ recompensa\\ aumentadas\\ para\\ncada\\ mapa\\ completado\\ na\\ regi\u00E3o\\ moldada$"
-  },
-  {
-    "text": "Elreon\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_5769"
-    ],
-    "pattern": "^Elreon\u0027s\\ Veiled$"
   },
   {
     "text": "Elusividade tem 50% de chance de ser removida de voc\u00EA em #% do efeito",
@@ -92637,7 +92634,6 @@
       "explicit.stat_4089743927|3|70",
       "explicit.stat_4089743927|3|90",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|36",
@@ -94023,7 +94019,6 @@
       "explicit.stat_4089743927|3|70",
       "explicit.stat_4089743927|3|90",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|36",
@@ -95409,7 +95404,6 @@
       "explicit.stat_4089743927|3|70",
       "explicit.stat_4089743927|3|90",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|36",
@@ -95469,7 +95463,9 @@
   {
     "text": "Gemas encaixadas recebem refor\u00E7o de Blasf\u00EAmia Sobrenatural n\u00EDvel #",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1628375748"
+    ],
     "pattern": "^Gemas\\ encaixadas\\ recebem\\ refor\u00E7o\\ de\\ Blasf\u00EAmia\\ Sobrenatural\\ n\u00EDvel\\ ([-0-9,.]\u002B)$"
   },
   {
@@ -95559,9 +95555,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|14",
-      "explicit.stat_4089743927|2|14",
-      "explicit.stat_4089743927|3|14"
+      "explicit.stat_4089743927|1|14"
     ],
     "pattern": "^Gemas\\ encaixadas\\ recebem\\ refor\u00E7o\\ de\\ Convoca\u00E7\u00E3o\\ Ancestral\\ Maior\\ n\u00EDvel\\ ([-0-9,.]\u002B)$"
   },
@@ -96030,22 +96024,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Glifos\\ desvinculados\\ ganham\\ alcance\\ de\\ ader\u00EAncia\\ de\\ glifo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ por\\ segundo$"
-  },
-  {
-    "text": "\u002B#% Global Critical Strike Chance",
-    "lines": 1,
-    "tradeIds": [
-      "pseudo.pseudo_global_critical_strike_chance"
-    ],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ Global\\ Critical\\ Strike\\ Chance$"
-  },
-  {
-    "text": "\u002B#% Global Critical Strike Multiplier",
-    "lines": 1,
-    "tradeIds": [
-      "pseudo.pseudo_global_critical_strike_multiplier"
-    ],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ Global\\ Critical\\ Strike\\ Multiplier$"
   },
   {
     "text": "Golens Causam #% mais Dano",
@@ -97019,14 +96997,6 @@
     "pattern": "^Golpes\\ n\u00E3o-cr\u00EDticos\\ causam\\ ([-0-9,.]\u002B)%\\ menos\\ Dano$"
   },
   {
-    "text": "Gravicius\u0027 Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_38872"
-    ],
-    "pattern": "^Gravicius\u0027\\ Veiled$"
-  },
-  {
     "text": "Gra\u00E7a",
     "lines": 1,
     "tradeIds": [
@@ -97613,14 +97583,6 @@
       "explicit.stat_2646007123"
     ],
     "pattern": "^Guerreiros\\ e\\ Soldados\\ Esqueletos\\ Convocados\\ portam\\ esta\\ Arma\\ enquanto\\ ela\\ estiver\\ em\\ sua\\ M\u00E3o\\ Principal$"
-  },
-  {
-    "text": "Guff\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_6779"
-    ],
-    "pattern": "^Guff\u0027s\\ Veiled$"
   },
   {
     "text": "G\u00EAiseres criados por este enxerto disparam # proj\u00E9til adicional ao esbravejar um clamor",
@@ -100913,7 +100875,6 @@
       "explicit.stat_4089743927|3|70",
       "explicit.stat_4089743927|3|90",
       "explicit.stat_4089743927|3|91",
-      "explicit.stat_4089743927|4|103",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|36",
@@ -102590,6 +102551,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1053840971",
       "explicit.stat_1144742318"
     ],
     "pattern": "^Habilidades\\ de\\ enxerto\\ t\u00EAm\\ velocidade\\ de\\ recarga\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -104285,14 +104247,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Habitantes\\ da\\ \u00E1rea\\ est\u00E3o\\ \u00E0\\ espreita$"
-  },
-  {
-    "text": "Haku\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_39023"
-    ],
-    "pattern": "^Haku\u0027s\\ Veiled$"
   },
   {
     "text": "Hidrosfera causa Dano aumentado em #%",
@@ -108628,14 +108582,6 @@
     "pattern": "^Isca\\ de\\ Verme\\ da\\ Sereia$"
   },
   {
-    "text": "It That Fled\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_55787"
-    ],
-    "pattern": "^It\\ That\\ Fled\u0027s\\ Veiled$"
-  },
-  {
     "text": "Item vende por 2 Escaravelhos Cart\u00F3grafos de cada tipo",
     "lines": 1,
     "tradeIds": [
@@ -111528,14 +111474,6 @@
       "scourge.stat_1308467455"
     ],
     "pattern": "^Juventude\\ Eterna$"
-  },
-  {
-    "text": "Korell\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_44855"
-    ],
-    "pattern": "^Korell\u0027s\\ Veiled$"
   },
   {
     "text": "Lacaios Cegam ao Acertar com Ataques",
@@ -117477,14 +117415,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Lento$"
-  },
-  {
-    "text": "Leo\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_3258"
-    ],
-    "pattern": "^Leo\u0027s\\ Veiled$"
   },
   {
     "text": "Liberar um Monstro Aprisionado concede um Modificador de Ess\u00EAncia aleat\u00F3rio para outro Monstro Aprisionado",
@@ -130559,6 +130489,110 @@
       "enchant.stat_2212298325"
     ],
     "pattern": "^O\\ raio\\ da\\ Ira\\ Divina\\ tem\\ sua\\ largura\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Ocultado pela Coisa Fugitiva",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_55787"
+    ],
+    "pattern": "^Ocultado\\ pela\\ Coisa\\ Fugitiva$"
+  },
+  {
+    "text": "Ocultado por Catarina",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_63772"
+    ],
+    "pattern": "^Ocultado\\ por\\ Catarina$"
+  },
+  {
+    "text": "Ocultado por Elreon",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_5769"
+    ],
+    "pattern": "^Ocultado\\ por\\ Elreon$"
+  },
+  {
+    "text": "Ocultado por Gravicius",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_38872"
+    ],
+    "pattern": "^Ocultado\\ por\\ Gravicius$"
+  },
+  {
+    "text": "Ocultado por Guff",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_6779"
+    ],
+    "pattern": "^Ocultado\\ por\\ Guff$"
+  },
+  {
+    "text": "Ocultado por Haku",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_39023"
+    ],
+    "pattern": "^Ocultado\\ por\\ Haku$"
+  },
+  {
+    "text": "Ocultado por Korell",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_44855"
+    ],
+    "pattern": "^Ocultado\\ por\\ Korell$"
+  },
+  {
+    "text": "Ocultado por Leo",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_3258"
+    ],
+    "pattern": "^Ocultado\\ por\\ Leo$"
+  },
+  {
+    "text": "Ocultado por Rin",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_6131"
+    ],
+    "pattern": "^Ocultado\\ por\\ Rin$"
+  },
+  {
+    "text": "Ocultado por Tora",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_8541"
+    ],
+    "pattern": "^Ocultado\\ por\\ Tora$"
+  },
+  {
+    "text": "Ocultado por Vagan",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_14269"
+    ],
+    "pattern": "^Ocultado\\ por\\ Vagan$"
+  },
+  {
+    "text": "Ocultado por Vorici",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_47933"
+    ],
+    "pattern": "^Ocultado\\ por\\ Vorici$"
+  },
+  {
+    "text": "Oculto",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_65000"
+    ],
+    "pattern": "^Oculto$"
   },
   {
     "text": "Oferena de Osso concede uma Chance adicional de \u002B#% de Bloquear o Dano de Ataques",
@@ -148007,14 +148041,6 @@
     "pattern": "^Right\\ ring\\ slot:\\ you\\ and\\ your\\ Minions\\ prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Physical\\ Damage$"
   },
   {
-    "text": "Rin\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_6131"
-    ],
-    "pattern": "^Rin\u0027s\\ Veiled$"
-  },
-  {
     "text": "Ritual Proibido dispara # Proj\u00E9teis adicionais",
     "lines": 1,
     "tradeIds": [
@@ -156760,14 +156786,6 @@
     "pattern": "^Toque\\ Divino$"
   },
   {
-    "text": "Tora\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_8541"
-    ],
-    "pattern": "^Tora\u0027s\\ Veiled$"
-  },
-  {
     "text": "Tormenta Explosiva possui 15% de chance de criar um Orbe adicional",
     "lines": 1,
     "tradeIds": [
@@ -158034,14 +158052,6 @@
     "pattern": "^Uul-Netol,\\ Carne\\ N\u00E3o\\ Queimada\\ tem\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ ser\\ Duplicado\\ em\\ seus\\ Mapas$"
   },
   {
-    "text": "Vagan\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_14269"
-    ],
-    "pattern": "^Vagan\u0027s\\ Veiled$"
-  },
-  {
     "text": "Valor das Ins\u00EDgnias de Renegado para o Alvo Prim\u00E1rio do Golpe aumentado em #%",
     "negate": true,
     "lines": 1,
@@ -158236,14 +158246,6 @@
       "explicit.stat_1174549622"
     ],
     "pattern": "^Veias\\ ou\\ Ba\u00FAs\\ de\\ Sulfito\\ Voltaxico\\ em\\ seus\\ Mapas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ conterem\\ o\\ dobro\\ de\\ Sulfito$"
-  },
-  {
-    "text": "Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_65000"
-    ],
-    "pattern": "^Veiled$"
   },
   {
     "text": "Velociade de Movimento aumentada em #% caso voc\u00EA tenha causado um Golpe Cr\u00EDtico Recentemente",
@@ -167308,14 +167310,6 @@
     "pattern": "^Vontade\\ de\\ Ferro$"
   },
   {
-    "text": "Vorici\u0027s Veiled",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_47933"
-    ],
-    "pattern": "^Vorici\u0027s\\ Veiled$"
-  },
-  {
     "text": "Vulnerabilidade n\u00E3o tem Reserva se Conjurada como Aura",
     "lines": 1,
     "tradeIds": [
@@ -168114,7 +168108,8 @@
     "text": "\u002B#% ao Multiplicador de Cr\u00EDtico com Minas",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2529112796"
+      "explicit.stat_2529112796",
+      "fractured.stat_2529112796"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ ao\\ Multiplicador\\ de\\ Cr\u00EDtico\\ com\\ Minas$"
   },
@@ -187348,6 +187343,62 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ do\\ Multiplicador\\ de\\ Dano\\ de\\ Caos$"
   },
   {
+    "text": "do Ocultamento",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_63099"
+    ],
+    "pattern": "^do\\ Ocultamento$"
+  },
+  {
+    "text": "do Ocultamento de Aisling",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_48007"
+    ],
+    "pattern": "^do\\ Ocultamento\\ de\\ Aisling$"
+  },
+  {
+    "text": "do Ocultamento de Cameria",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_65163"
+    ],
+    "pattern": "^do\\ Ocultamento\\ de\\ Cameria$"
+  },
+  {
+    "text": "do Ocultamento de Hillock",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_3975"
+    ],
+    "pattern": "^do\\ Ocultamento\\ de\\ Hillock$"
+  },
+  {
+    "text": "do Ocultamento de Janus",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_11536"
+    ],
+    "pattern": "^do\\ Ocultamento\\ de\\ Janus$"
+  },
+  {
+    "text": "do Ocultamento de Jorgin",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_62955"
+    ],
+    "pattern": "^do\\ Ocultamento\\ de\\ Jorgin$"
+  },
+  {
+    "text": "do Ocultamento de Riker",
+    "lines": 1,
+    "tradeIds": [
+      "veiled.mod_48408"
+    ],
+    "pattern": "^do\\ Ocultamento\\ de\\ Riker$"
+  },
+  {
     "text": "#% do Total de Dano F\u00EDsico dos Acertos impedido nos \u00FAltimos 10 segundos \u00E9 Regenerado como Vida por segundo",
     "lines": 1,
     "tradeIds": [],
@@ -190044,62 +190095,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ m\u00E1ximo\\ de\\ Chance\\ de\\ Cr\u00EDtico$"
-  },
-  {
-    "text": "of Aisling\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_48007"
-    ],
-    "pattern": "^of\\ Aisling\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Cameria\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_65163"
-    ],
-    "pattern": "^of\\ Cameria\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Hillock\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_3975"
-    ],
-    "pattern": "^of\\ Hillock\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Janus\u0027 Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_11536"
-    ],
-    "pattern": "^of\\ Janus\u0027\\ Veil$"
-  },
-  {
-    "text": "of Jorgin\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_62955"
-    ],
-    "pattern": "^of\\ Jorgin\u0027s\\ Veil$"
-  },
-  {
-    "text": "of Riker\u0027s Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_48408"
-    ],
-    "pattern": "^of\\ Riker\u0027s\\ Veil$"
-  },
-  {
-    "text": "of the Veil",
-    "lines": 1,
-    "tradeIds": [
-      "veiled.mod_63099"
-    ],
-    "pattern": "^of\\ the\\ Veil$"
   },
   {
     "text": "\u002B# para a Destreza total",
@@ -196211,6 +196206,22 @@
       "enchant.stat_1220207954"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0s\\ Resist\u00EAncias\\ Elementais\\ do\\ Totem\\ do\\ Protetor\\ Ancestral$"
+  },
+  {
+    "text": "\u3164\u002B#% de Chance de Golpe Cr\u00EDtico Global",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_global_critical_strike_chance"
+    ],
+    "pattern": "^\u3164\\\u002B([-0-9,.]\u002B)%\\ de\\ Chance\\ de\\ Golpe\\ Cr\u00EDtico\\ Global$"
+  },
+  {
+    "text": "\u3164\u002B#% de Multiplicador de Golpe Cr\u00EDtico Global",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_global_critical_strike_multiplier"
+    ],
+    "pattern": "^\u3164\\\u002B([-0-9,.]\u002B)%\\ de\\ Multiplicador\\ de\\ Golpe\\ Cr\u00EDtico\\ Global$"
   },
   {
     "text": "\u3164\u002B# de Salvaguarda por 10 de armadura no elmo equipado",

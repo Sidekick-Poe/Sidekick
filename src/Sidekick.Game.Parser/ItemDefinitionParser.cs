@@ -22,7 +22,8 @@ public class ItemDefinitionParser(
             item.Name = item.Text.Blocks[0].Lines[^2].Text;
         }
 
-        item.Definition = GetDefinition(itemDefinitionProvider.Definitions, item.Properties.Rarity, item.ItemClass.Id, item.Type, item.Name)!;
+        // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
+        item.Definition = GetDefinition(itemDefinitionProvider.Definitions, item.Properties.Rarity, item.ItemClass?.Id, item.Type, item.Name)!;
         if (item.Definition == null) throw new UnparsableException(item.Text.Text);
 
         // Poe.ninja does not include item class in the text, so we fill it here in case.

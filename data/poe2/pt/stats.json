@@ -912,12 +912,12 @@
     "pattern": "^A\\ cada\\ 3\\ segundos,\\ consome\\ um\\ cad\u00E1ver\\ pr\u00F3ximo\\ para\\ recuperar\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ m\u00E1xima$"
   },
   {
-    "text": "A cada 3 segundos durante o efeito, cause #% do mana gasto nesse per\u00EDodo como dano de caos aos inimigos em at\u00E9 3 metros",
+    "text": "A cada 3 segundos durante o efeito, cause #% do mana gasto nesse per\u00EDodo como dano de caos aos inimigos a at\u00E9 3 metros",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1910039112"
     ],
-    "pattern": "^A\\ cada\\ 3\\ segundos\\ durante\\ o\\ efeito,\\ cause\\ ([-0-9,.]\u002B)%\\ do\\ mana\\ gasto\\ nesse\\ per\u00EDodo\\ como\\ dano\\ de\\ caos\\ aos\\ inimigos\\ em\\ at\u00E9\\ 3\\ metros$"
+    "pattern": "^A\\ cada\\ 3\\ segundos\\ durante\\ o\\ efeito,\\ cause\\ ([-0-9,.]\u002B)%\\ do\\ mana\\ gasto\\ nesse\\ per\u00EDodo\\ como\\ dano\\ de\\ caos\\ aos\\ inimigos\\ a\\ at\u00E9\\ 3\\ metros$"
   },
   {
     "text": "A cada 4 segundos, ganha Guarda equivalente a #% da Salvaguarda R\u00FAnica m\u00E1xima por 2 segundos",
@@ -2968,17 +2968,17 @@
     "pattern": "^Ac\u00FAmulo\\ de\\ atordoamento\\ com\\ ma\u00E7as\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "Ac\u00FAmulo de atordoamento contra inimigos em at\u00E9 2 metros aumentado em #%",
+    "text": "Ac\u00FAmulo de atordoamento contra inimigos a at\u00E9 2 metros aumentado em #%",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ac\u00FAmulo\\ de\\ atordoamento\\ contra\\ inimigos\\ em\\ at\u00E9\\ 2\\ metros\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+    "pattern": "^Ac\u00FAmulo\\ de\\ atordoamento\\ contra\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "Ac\u00FAmulo de atordoamento contra inimigos em at\u00E9 2 metros reduzido em #%",
+    "text": "Ac\u00FAmulo de atordoamento contra inimigos a at\u00E9 2 metros reduzido em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ac\u00FAmulo\\ de\\ atordoamento\\ contra\\ inimigos\\ em\\ at\u00E9\\ 2\\ metros\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
+    "pattern": "^Ac\u00FAmulo\\ de\\ atordoamento\\ contra\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Ac\u00FAmulo de atordoamento contra inimigos em vida baixa aumentada em #%",
@@ -3320,12 +3320,6 @@
     "pattern": "^Adapta\u00E7\u00F5es\\ se\\ aplicam\\ a\\ todo\\ o\\ dano\\ elemental\\ durante\\ o\\ efeito$"
   },
   {
-    "text": "Add an Explosive or Verisium Remnant to Expeditions",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Add\\ an\\ Explosive\\ or\\ Verisium\\ Remnant\\ to\\ Expeditions$"
-  },
-  {
     "text": "Adiamento da recarga base do seu escudo de energia \u00E9 de # segundo",
     "value": 1000,
     "lines": 1,
@@ -3360,6 +3354,19 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Adiamento\\ na\\ aplica\u00E7\u00E3o\\ de\\ maldi\u00E7\u00F5es@([-0-9,.]\u002B)\\ s$"
+  },
+  {
+    "text": "Adiar favores usando tributo j\u00E1 oferecido ao Rei custa -#% de tributo oferecido",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Adiar\\ favores\\ usando\\ tributo\\ j\u00E1\\ oferecido\\ ao\\ Rei\\ custa\\ -([-0-9,.]\u002B)%\\ de\\ tributo\\ oferecido$"
+  },
+  {
+    "text": "Adiar favores usando tributo j\u00E1 oferecido ao Rei custa \u002B#% de tributo oferecido",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Adiar\\ favores\\ usando\\ tributo\\ j\u00E1\\ oferecido\\ ao\\ Rei\\ custa\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ tributo\\ oferecido$"
   },
   {
     "text": "Adiciona 1 de dano el\u00E9trico m\u00E1ximo para os ataques por # de Destreza atribu\u00EDda no raio de alcance",
@@ -3666,11 +3673,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_709508406",
       "desecrated.stat_1573130764",
+      "desecrated.stat_709508406",
+      "enchant.stat_709508406",
       "explicit.stat_1573130764",
+      "explicit.stat_709508406",
       "fractured.stat_1573130764",
+      "fractured.stat_709508406",
       "implicit.stat_1573130764",
-      "rune.stat_1573130764"
+      "rune.stat_1573130764",
+      "rune.stat_709508406"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ fogo\\ a\\ magias$"
   },
@@ -4343,6 +4356,12 @@
     "pattern": "^Adiciona\\ um\\ Espelho\\ do\\ Del\u00EDrio\\ a\\ um\\ mapa\\nRestam\\ ([-0-9,.]\u002B)\\ utiliza\u00E7\u00F5es$"
   },
   {
+    "text": "Adiciona um explosivo ou um Vest\u00EDgio de Ver\u00EDsio \u00E0s Expedi\u00E7\u00F5es",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Adiciona\\ um\\ explosivo\\ ou\\ um\\ Vest\u00EDgio\\ de\\ Ver\u00EDsio\\ \u00E0s\\ Expedi\u00E7\u00F5es$"
+  },
+  {
     "text": "Adiciona uma Expedi\u00E7\u00E3o Kalguurana a um mapa\nResta # utiliza\u00E7\u00E3o",
     "value": 1,
     "lines": 2,
@@ -4375,12 +4394,6 @@
       "implicit.stat_2219129443"
     ],
     "pattern": "^Adiciona\\ uma\\ Fenda\\ de\\ Outro\\ Mundo\\ a\\ um\\ mapa\\nRestam\\ ([-0-9,.]\u002B)\\ utiliza\u00E7\u00F5es$"
-  },
-  {
-    "text": "Adjust how Verisium Remnants within Expeditions and Grand Expeditions add Runic Modifiers to future Remnants",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Adjust\\ how\\ Verisium\\ Remnants\\ within\\ Expeditions\\ and\\ Grand\\ Expeditions\\ add\\ Runic\\ Modifiers\\ to\\ future\\ Remnants$"
   },
   {
     "text": "Adoradores de altares s\u00E3o m\u00E1gicos",
@@ -4679,6 +4692,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ajusta\\ a\\ forma\\ como\\ a\\ n\u00E9voa\\ de\\ Del\u00EDrio\\ se\\ espalha\\ dos\\ Espelhos\\ Imponentes\\ pelo\\ mundo$"
+  },
+  {
+    "text": "Ajusta como Vest\u00EDgios de Ver\u00EDsio em Expedi\u00E7\u00F5es e Grandes Expedi\u00E7\u00F5es adicionam modificadores r\u00FAnicos a vest\u00EDgios futuros",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ajusta\\ como\\ Vest\u00EDgios\\ de\\ Ver\u00EDsio\\ em\\ Expedi\u00E7\u00F5es\\ e\\ Grandes\\ Expedi\u00E7\u00F5es\\ adicionam\\ modificadores\\ r\u00FAnicos\\ a\\ vest\u00EDgios\\ futuros$"
   },
   {
     "text": "Alastra-se quando o inimigo afetado \u00E9 atingido",
@@ -5651,10 +5670,10 @@
     "pattern": "^Altares\\ s\u00E3o\\ corrompidos\\ pelas\\ Trevas$"
   },
   {
-    "text": "Altares t\u00EAm #% de chance de liberar um Esp\u00EDrito Azmeri. O b\u00F4nus de altar \u00E9 reaplicado quando ele possui um monstro",
+    "text": "Altares t\u00EAm #% de chance de manifestar um Esp\u00EDrito Azmeri. O b\u00F4nus de altar \u00E9 reaplicado quando ele possui um monstro",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Altares\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ liberar\\ um\\ Esp\u00EDrito\\ Azmeri\\.\\ O\\ b\u00F4nus\\ de\\ altar\\ \u00E9\\ reaplicado\\ quando\\ ele\\ possui\\ um\\ monstro$"
+    "pattern": "^Altares\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ manifestar\\ um\\ Esp\u00EDrito\\ Azmeri\\.\\ O\\ b\u00F4nus\\ de\\ altar\\ \u00E9\\ reaplicado\\ quando\\ ele\\ possui\\ um\\ monstro$"
   },
   {
     "text": "Altares t\u00EAm #% de chance de serem adorados por um Exilado Renegado",
@@ -6700,10 +6719,10 @@
     "pattern": "^Ao\\ matar\\ um\\ inimigo\\ amaldi\u00E7oado\\ com\\ um\\ feiti\u00E7o\\ sem\\ aura,\\ voc\u00EA\\ fica\\ imune\\ a\\nmaldi\u00E7\u00F5es\\ pelo\\ tempo\\ restante\\ do\\ feiti\u00E7o$"
   },
   {
-    "text": "Ao matar um inimigo eletrificado, todos os inimigos em at\u00E9 # metros s\u00E3o eletrificados por 2 segundos",
+    "text": "Ao matar um inimigo eletrificado, todos os inimigos a at\u00E9 # metros s\u00E3o eletrificados por 2 segundos",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ao\\ matar\\ um\\ inimigo\\ eletrificado,\\ todos\\ os\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ s\u00E3o\\ eletrificados\\ por\\ 2\\ segundos$"
+    "pattern": "^Ao\\ matar\\ um\\ inimigo\\ eletrificado,\\ todos\\ os\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ s\u00E3o\\ eletrificados\\ por\\ 2\\ segundos$"
   },
   {
     "text": "Ao matar um inimigo eletrificado, voc\u00EA ganha 1 carga de poder",
@@ -7600,24 +7619,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Arco\\ empurra\\ \u00E0\\ queima-roupa$"
-  },
-  {
-    "text": "Area contains \u002B# Verisium Remnant",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Area\\ contains\\ \\\u002B([-0-9,.]\u002B)\\ Verisium\\ Remnant$"
-  },
-  {
-    "text": "Area contains \u002B# Verisium Remnants",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Area\\ contains\\ \\\u002B([-0-9,.]\u002B)\\ Verisium\\ Remnants$"
-  },
-  {
-    "text": "Area contains #% increased number of Verisium Remnants",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Area\\ contains\\ ([-0-9,.]\u002B)%\\ increased\\ number\\ of\\ Verisium\\ Remnants$"
   },
   {
     "text": "Armadilha Conversora tem a velocidade de recarga aumentada em #%",
@@ -15007,6 +15008,19 @@
     "pattern": "^Atribui\\ Chamuscado$"
   },
   {
+    "text": "Atribui Chance de Mestre das Marionetes",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_2954116742|14258",
+      "crafted.stat_2954116742|62210",
+      "enchant.stat_2954116742|14258",
+      "enchant.stat_2954116742|62210",
+      "explicit.stat_2954116742|14258",
+      "explicit.stat_2954116742|62210"
+    ],
+    "pattern": "^Atribui\\ Chance\\ de\\ Mestre\\ das\\ Marionetes$"
+  },
+  {
     "text": "Atribui Ch\u00E3o Fendido",
     "lines": 1,
     "tradeIds": [
@@ -15497,16 +15511,6 @@
       "fractured.stat_2954116742|39990"
     ],
     "pattern": "^Atribui\\ Cronomancia$"
-  },
-  {
-    "text": "Atribui Dan\u00E7a Infind\u00E1vel",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_2954116742|62210",
-      "enchant.stat_2954116742|62210",
-      "explicit.stat_2954116742|62210"
-    ],
-    "pattern": "^Atribui\\ Dan\u00E7a\\ Infind\u00E1vel$"
   },
   {
     "text": "Atribui Dan\u00E7a das Sombras",
@@ -17980,7 +17984,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|27704",
       "enchant.stat_2954116742|27704",
-      "explicit.stat_2954116742|27704"
+      "explicit.stat_2954116742|27704",
+      "fractured.stat_2954116742|27704"
     ],
     "pattern": "^Atribui\\ Gra\u00E7a\\ dos\\ Ancestrais$"
   },
@@ -18807,7 +18812,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|21213",
       "enchant.stat_2954116742|21213",
-      "explicit.stat_2954116742|21213"
+      "explicit.stat_2954116742|21213",
+      "fractured.stat_2954116742|21213"
     ],
     "pattern": "^Atribui\\ Luz\\ de\\ Cirel\\ de\\ Tarth$"
   },
@@ -19339,19 +19345,10 @@
     "tradeIds": [
       "crafted.stat_2954116742|19644",
       "enchant.stat_2954116742|19644",
-      "explicit.stat_2954116742|19644"
+      "explicit.stat_2954116742|19644",
+      "fractured.stat_2954116742|19644"
     ],
     "pattern": "^Atribui\\ M\u00E3o\\ Esquerda\\ da\\ Escurid\u00E3o$"
-  },
-  {
-    "text": "Atribui M\u00E3o Oculta",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_2954116742|14258",
-      "enchant.stat_2954116742|14258",
-      "explicit.stat_2954116742|14258"
-    ],
-    "pattern": "^Atribui\\ M\u00E3o\\ Oculta$"
   },
   {
     "text": "Atribui M\u00E3o Orientada",
@@ -23748,16 +23745,16 @@
     "pattern": "^Ba\u00FAs\\ Perandus\\ em\\ seus\\ mapas\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ serem\\ Cat\u00E1logos$"
   },
   {
-    "text": "Ba\u00FAs abissais grandes do fosso final s\u00E3o, na verdade, uma caixa-forte abissal",
+    "text": "Ba\u00FAs abissais grandes de Fossos Abissais s\u00E3o, na verdade, uma caixa-forte abissal",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ba\u00FAs\\ abissais\\ grandes\\ do\\ fosso\\ final\\ s\u00E3o,\\ na\\ verdade,\\ uma\\ caixa-forte\\ abissal$"
+    "pattern": "^Ba\u00FAs\\ abissais\\ grandes\\ de\\ Fossos\\ Abissais\\ s\u00E3o,\\ na\\ verdade,\\ uma\\ caixa-forte\\ abissal$"
   },
   {
-    "text": "Ba\u00FAs abissais grandes do fosso final t\u00EAm #% de chance de ser uma caixa-forte abissal",
+    "text": "Ba\u00FAs abissais grandes de Fossos Abissais t\u00EAm #% de chance de serem uma caixa-forte abissal",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Ba\u00FAs\\ abissais\\ grandes\\ do\\ fosso\\ final\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ ser\\ uma\\ caixa-forte\\ abissal$"
+    "pattern": "^Ba\u00FAs\\ abissais\\ grandes\\ de\\ Fossos\\ Abissais\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ serem\\ uma\\ caixa-forte\\ abissal$"
   },
   {
     "text": "Ba\u00FAs da Expedi\u00E7\u00E3o em seus mapas desaparecem ap\u00F3s # segundos",
@@ -26069,6 +26066,12 @@
     "pattern": "^Caixas-forte\\ Arcanas,\\ do\\ Cart\u00F3grafo,\\ do\\ Joalheiro\\ e\\ do\\ Pesquisador\\ podem\\ gerar\\ modificadores\\ de\\ prefixo\\ adicionais\\ que\\ alteram\\ os\\ tipos\\ de\\ itens\\ que\\ elas\\ cont\u00EAm$"
   },
   {
+    "text": "Caixas-forte Arcanas podem ter modificadores de prefixo adicionais, fazendo com que contenham itens com tipos espec\u00EDficos de habilidades concedidas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Caixas-forte\\ Arcanas\\ podem\\ ter\\ modificadores\\ de\\ prefixo\\ adicionais,\\ fazendo\\ com\\ que\\ contenham\\ itens\\ com\\ tipos\\ espec\u00EDficos\\ de\\ habilidades\\ concedidas$"
+  },
+  {
     "text": "Caixas-forte abertas concedem Agressividade por # segundos",
     "lines": 1,
     "tradeIds": [],
@@ -26087,6 +26090,12 @@
     "pattern": "^Caixas-forte\\ cont\u00EAm\\ ([-0-9,.]\u002B)\\ itens\\ raros\\ aleat\u00F3rios\\ adicionais$"
   },
   {
+    "text": "Caixas-forte do Armeiro podem ter modificadores de prefixo adicionais, fazendo com que contenham tipos espec\u00EDficos de armadura",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Caixas-forte\\ do\\ Armeiro\\ podem\\ ter\\ modificadores\\ de\\ prefixo\\ adicionais,\\ fazendo\\ com\\ que\\ contenham\\ tipos\\ espec\u00EDficos\\ de\\ armadura$"
+  },
+  {
     "text": "Caixas-forte do Ferreiro, do Armeiro e B\u00E1sicas podem gerar modificadores de prefixo adicionais que fazem com que os itens largados exijam Destreza, se poss\u00EDvel",
     "lines": 1,
     "tradeIds": [],
@@ -26103,6 +26112,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Caixas-forte\\ do\\ Ferreiro,\\ do\\ Armeiro\\ e\\ B\u00E1sicas\\ podem\\ gerar\\ modificadores\\ de\\ prefixo\\ adicionais\\ que\\ fazem\\ com\\ que\\ os\\ itens\\ largados\\ exijam\\ Intelig\u00EAncia,\\ se\\ poss\u00EDvel$"
+  },
+  {
+    "text": "Caixas-forte do Ferreiro podem ter modificadores de prefixo adicionais, fazendo com que contenham armas ou aljavas espec\u00EDficas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Caixas-forte\\ do\\ Ferreiro\\ podem\\ ter\\ modificadores\\ de\\ prefixo\\ adicionais,\\ fazendo\\ com\\ que\\ contenham\\ armas\\ ou\\ aljavas\\ espec\u00EDficas$"
   },
   {
     "text": "Caixas-forte em seus mapas s\u00E3o corrompidas",
@@ -26329,16 +26344,29 @@
     "pattern": "^Caixas-forte\\ podem\\ gerar\\ vers\u00F5es\\ superiores\\ dos\\ modificadores\\ de\\ sufixo\\ existentes$"
   },
   {
-    "text": "Caixas-forte possu\u00EDdas liberam o Esp\u00EDrito Azmeri quando abertas",
+    "text": "Caixas-forte possu\u00EDdas manifestam o Esp\u00EDrito Azmeri quando abertas",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Caixas-forte\\ possu\u00EDdas\\ liberam\\ o\\ Esp\u00EDrito\\ Azmeri\\ quando\\ abertas$"
+    "pattern": "^Caixas-forte\\ possu\u00EDdas\\ manifestam\\ o\\ Esp\u00EDrito\\ Azmeri\\ quando\\ abertas$"
   },
   {
-    "text": "Caixas-forte possu\u00EDdas t\u00EAm #% de chance de liberar o Esp\u00EDrito Azmeri quando abertas",
+    "text": "Caixas-forte possu\u00EDdas t\u00EAm a raridade de itens aumentada em #%",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Caixas-forte\\ possu\u00EDdas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ liberar\\ o\\ Esp\u00EDrito\\ Azmeri\\ quando\\ abertas$"
+    "pattern": "^Caixas-forte\\ possu\u00EDdas\\ t\u00EAm\\ a\\ raridade\\ de\\ itens\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Caixas-forte possu\u00EDdas t\u00EAm a raridade de itens reduzida em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Caixas-forte\\ possu\u00EDdas\\ t\u00EAm\\ a\\ raridade\\ de\\ itens\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Caixas-forte possu\u00EDdas t\u00EAm #% de chance de manifestar o Esp\u00EDrito Azmeri quando abertas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Caixas-forte\\ possu\u00EDdas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ manifestar\\ o\\ Esp\u00EDrito\\ Azmeri\\ quando\\ abertas$"
   },
   {
     "text": "Caixas-forte que forem abertas na pr\u00F3xima \u00E1rea conceder\u00E3o Agressividade por # segundos",
@@ -27610,13 +27638,13 @@
     "pattern": "^Causa\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ frio\\ por\\ segundo$"
   },
   {
-    "text": "Causa #% de dano de massacre aos inimigos em at\u00E9 2 metros do inimigo morto",
+    "text": "Causa #% de dano de massacre aos inimigos a at\u00E9 2 metros do inimigo morto",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2301852600",
       "rune.stat_2301852600"
     ],
-    "pattern": "^Causa\\ ([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ massacre\\ aos\\ inimigos\\ em\\ at\u00E9\\ 2\\ metros\\ do\\ inimigo\\ morto$"
+    "pattern": "^Causa\\ ([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ massacre\\ aos\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros\\ do\\ inimigo\\ morto$"
   },
   {
     "text": "Causa # de dano f\u00EDsico por segundo",
@@ -28486,6 +28514,12 @@
     "pattern": "^Chance\\ de\\ eletrificar\\ com\\ bast\u00F5es\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Chance de eletrificar inimigos a at\u00E9 # m ao eletrificar@#%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Chance\\ de\\ eletrificar\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ m\\ ao\\ eletrificar@([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Chance de eletrificar inimigos eletrocutados aumentada em #%",
     "lines": 1,
     "tradeIds": [],
@@ -28497,12 +28531,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Chance\\ de\\ eletrificar\\ inimigos\\ eletrocutados\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Chance de eletrificar inimigos em at\u00E9 # m ao eletrificar@#%",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Chance\\ de\\ eletrificar\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ m\\ ao\\ eletrificar@([-0-9,.]\u002B)%$"
   },
   {
     "text": "Chance de eletrificar reduzida em #%",
@@ -28917,6 +28945,19 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Chance\\ de\\ encontrar\\ uma\\ Gema\\ de\\ Refor\u00E7o\\ Desperta\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ ao\\ completar\\ o\\ Calv\u00E1rio\\ da\\ Conhecedora\\ ou\\ derrotar\\ a\\ Conhecedora$"
+  },
+  {
+    "text": "Chance de encontros da Expedi\u00E7\u00E3o aumentada em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Chance\\ de\\ encontros\\ da\\ Expedi\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Chance de encontros da Expedi\u00E7\u00E3o reduzida em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Chance\\ de\\ encontros\\ da\\ Expedi\u00E7\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Chance de envenenar aumentada em #%",
@@ -32385,6 +32426,18 @@
     "lines": 2,
     "tradeIds": [],
     "pattern": "^Chefes\\ de\\ c\u00EDrculo\\ de\\ invoca\u00E7\u00E3o\\ em\\ \u00E1reas\\ purificadas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\nter\\ 1\\ modificador\\ de\\ monstro\\ adicional$"
+  },
+  {
+    "text": "Chefes de c\u00EDrculo de invoca\u00E7\u00E3o possu\u00EDdos liberam esp\u00EDritos ao morrer",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Chefes\\ de\\ c\u00EDrculo\\ de\\ invoca\u00E7\u00E3o\\ possu\u00EDdos\\ liberam\\ esp\u00EDritos\\ ao\\ morrer$"
+  },
+  {
+    "text": "Chefes de c\u00EDrculo de invoca\u00E7\u00E3o possu\u00EDdos t\u00EAm #% de chance de liberar esp\u00EDritos ao morrer",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Chefes\\ de\\ c\u00EDrculo\\ de\\ invoca\u00E7\u00E3o\\ possu\u00EDdos\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ liberar\\ esp\u00EDritos\\ ao\\ morrer$"
   },
   {
     "text": "Chefes de c\u00EDrculo de invoca\u00E7\u00E3o s\u00E3o poderosos",
@@ -37887,12 +37940,6 @@
     "pattern": "^Consome\\ congelamentos\\ em\\ inimigos\\ \u00FAnicos\\ para\\ causar\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano$"
   },
   {
-    "text": "Consome #% do mana atual para causar a mesma quantidade como dano de fogo",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Consome\\ ([-0-9,.]\u002B)%\\ do\\ mana\\ atual\\ para\\ causar\\ a\\ mesma\\ quantidade\\ como\\ dano\\ de\\ fogo$"
-  },
-  {
     "text": "Consome eletrifica\u00E7\u00F5es ao atingir",
     "lines": 1,
     "tradeIds": [],
@@ -38988,6 +39035,12 @@
     "pattern": "^Corromper\\ monstros\\ aprisionados\\ n\u00E3o\\ os\\ libertar\u00E1$"
   },
   {
+    "text": "Corromper sempre resultar\u00E1 em mudan\u00E7a",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Corromper\\ sempre\\ resultar\u00E1\\ em\\ mudan\u00E7a$"
+  },
+  {
     "text": "Corrup\u00E7\u00E3o Aglutinada em seus mapas tem o raio de fus\u00E3o aumentado em #%",
     "lines": 1,
     "tradeIds": [],
@@ -39959,6 +40012,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^C\u00EDrculos\\ de\\ invoca\u00E7\u00E3o\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ serem\\ incrustados\\ com\\ ess\u00EAncias,\\ adicionando\\ m\u00FAltiplas\\ ess\u00EAncias\\ ao\\ chefe$"
+  },
+  {
+    "text": "DNT Obliterated #233763",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^DNT\\ Obliterated\\ ([-0-9,.]\u002B)233763$"
   },
   {
     "text": "DNT dummy_display_stat_rune_delevel_inherent_skill",
@@ -42920,11 +42979,8 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3962278098",
-      "desecrated.stat_1890519597",
       "desecrated.stat_3962278098",
-      "explicit.stat_1890519597",
       "explicit.stat_3962278098",
-      "fractured.stat_1890519597",
       "fractured.stat_3962278098",
       "rune.stat_3962278098"
     ],
@@ -42937,11 +42993,8 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3962278098",
-      "desecrated.stat_1890519597",
       "desecrated.stat_3962278098",
-      "explicit.stat_1890519597",
       "explicit.stat_3962278098",
-      "fractured.stat_1890519597",
       "fractured.stat_3962278098",
       "rune.stat_3962278098"
     ],
@@ -44022,8 +44075,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1569159338",
       "desecrated.stat_1890519597",
+      "explicit.stat_1569159338",
       "explicit.stat_1890519597",
+      "fractured.stat_1569159338",
       "fractured.stat_1890519597"
     ],
     "pattern": "^Dano\\ de\\ Ripostar\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -44034,8 +44090,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1569159338",
       "desecrated.stat_1890519597",
+      "explicit.stat_1569159338",
       "explicit.stat_1890519597",
+      "fractured.stat_1569159338",
       "fractured.stat_1890519597"
     ],
     "pattern": "^Dano\\ de\\ Ripostar\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -47334,17 +47393,17 @@
     "pattern": "^Dano\\ de\\ proj\u00E9til\\ aumentado\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ causou\\ um\\ acerto\\ corpo\\ a\\ corpo\\ nos\\ \u00FAltimos\\ 8\\ segundos$"
   },
   {
-    "text": "Dano de proj\u00E9til com lan\u00E7as aumentado em #% enquanto n\u00E3o houver inimigos em at\u00E9 3 m",
+    "text": "Dano de proj\u00E9til com lan\u00E7as aumentado em #% enquanto n\u00E3o houver inimigos a at\u00E9 3 m",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Dano\\ de\\ proj\u00E9til\\ com\\ lan\u00E7as\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ n\u00E3o\\ houver\\ inimigos\\ em\\ at\u00E9\\ 3\\ m$"
+    "pattern": "^Dano\\ de\\ proj\u00E9til\\ com\\ lan\u00E7as\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ n\u00E3o\\ houver\\ inimigos\\ a\\ at\u00E9\\ 3\\ m$"
   },
   {
-    "text": "Dano de proj\u00E9til com lan\u00E7as reduzido em #% enquanto n\u00E3o houver inimigos em at\u00E9 3 m",
+    "text": "Dano de proj\u00E9til com lan\u00E7as reduzido em #% enquanto n\u00E3o houver inimigos a at\u00E9 3 m",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Dano\\ de\\ proj\u00E9til\\ com\\ lan\u00E7as\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ n\u00E3o\\ houver\\ inimigos\\ em\\ at\u00E9\\ 3\\ m$"
+    "pattern": "^Dano\\ de\\ proj\u00E9til\\ com\\ lan\u00E7as\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ n\u00E3o\\ houver\\ inimigos\\ a\\ at\u00E9\\ 3\\ m$"
   },
   {
     "text": "Dano de proj\u00E9til em Postura de Sangue aumentado em #%",
@@ -53019,6 +53078,14 @@
     "pattern": "^Devora\\ uma\\ Alma\\ ao\\ atingir\\ um\\ inimigo\\ \u00FAnico,\\ n\u00E3o\\ mais\\ que\\ uma\\ vez\\ por\\ segundo$"
   },
   {
+    "text": "Devora uma alma ao atingir um inimigo com Fraqueza Exposta",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1393838912"
+    ],
+    "pattern": "^Devora\\ uma\\ alma\\ ao\\ atingir\\ um\\ inimigo\\ com\\ Fraqueza\\ Exposta$"
+  },
+  {
     "text": "Devorador de Almas",
     "lines": 1,
     "tradeIds": [
@@ -57080,14 +57147,6 @@
     "pattern": "^D\u00E1divas\\ do\\ Ventre\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ serem\\ obtidas\\ com\\ um\\ n\u00EDvel\\ superior\\ para\\ cada\\ modificador\\ expl\u00EDcito\\ no\\ mapa$"
   },
   {
-    "text": "Eat a Soul when you Hit an enemy with an Open Weakness",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1393838912"
-    ],
-    "pattern": "^Eat\\ a\\ Soul\\ when\\ you\\ Hit\\ an\\ enemy\\ with\\ an\\ Open\\ Weakness$"
-  },
-  {
     "text": "Eco final das magias em cascata tamb\u00E9m cascateiam nas laterais da \u00E1rea selecionada em um eixo aleat\u00F3rio",
     "lines": 1,
     "tradeIds": [],
@@ -57288,23 +57347,28 @@
   },
   {
     "text": "Efeito das afec\u00E7\u00F5es n\u00E3o danosas em monstros aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1519474779"
+    ],
     "pattern": "^Efeito\\ das\\ afec\u00E7\u00F5es\\ n\u00E3o\\ danosas\\ em\\ monstros\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Efeito das afec\u00E7\u00F5es n\u00E3o danosas em monstros reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1519474779"
+    ],
     "pattern": "^Efeito\\ das\\ afec\u00E7\u00F5es\\ n\u00E3o\\ danosas\\ em\\ monstros\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Efeito das afec\u00E7\u00F5es n\u00E3o danosas em voc\u00EA aumentado em #%",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1279298634"
+      "rune.stat_1519474779"
     ],
     "pattern": "^Efeito\\ das\\ afec\u00E7\u00F5es\\ n\u00E3o\\ danosas\\ em\\ voc\u00EA\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -57317,10 +57381,9 @@
   {
     "text": "Efeito das afec\u00E7\u00F5es n\u00E3o danosas em voc\u00EA reduzido em #%",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1279298634"
+      "rune.stat_1519474779"
     ],
     "pattern": "^Efeito\\ das\\ afec\u00E7\u00F5es\\ n\u00E3o\\ danosas\\ em\\ voc\u00EA\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -61230,10 +61293,10 @@
     "pattern": "^Emite\\ um\\ brilho\\ dourado$"
   },
   {
-    "text": "Emo\u00E7\u00F5es L\u00EDquidas encontradas t\u00EAm 20% de chance de serem Emo\u00E7\u00F5es L\u00EDquidas Antigas",
+    "text": "Emo\u00E7\u00F5es L\u00EDquidas encontradas t\u00EAm #% de chance de serem Emo\u00E7\u00F5es L\u00EDquidas Antigas",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Emo\u00E7\u00F5es\\ L\u00EDquidas\\ encontradas\\ t\u00EAm\\ 20%\\ de\\ chance\\ de\\ serem\\ Emo\u00E7\u00F5es\\ L\u00EDquidas\\ Antigas$"
+    "pattern": "^Emo\u00E7\u00F5es\\ L\u00EDquidas\\ encontradas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ serem\\ Emo\u00E7\u00F5es\\ L\u00EDquidas\\ Antigas$"
   },
   {
     "text": "Emo\u00E7\u00F5es L\u00EDquidas largadas por monstros aumentadas em #%",
@@ -62307,7 +62370,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ elmo\\ equipado\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62319,7 +62383,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ elmo\\ equipado\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62330,7 +62395,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ escudo\\ equipado\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62342,7 +62408,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ escudo\\ equipado\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62352,7 +62419,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ foco\\ equipado\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62363,7 +62431,8 @@
     "tradeIds": [
       "desecrated.stat_3174700878",
       "explicit.stat_3174700878",
-      "fractured.stat_3174700878"
+      "fractured.stat_3174700878",
+      "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ foco\\ equipado\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62372,7 +62441,8 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1195319608",
-      "explicit.stat_1195319608"
+      "explicit.stat_1195319608",
+      "rune.stat_1195319608"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ peitoral\\ equipado\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -63253,6 +63323,12 @@
     "pattern": "^Esp\u00EDrito\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ com\\ 100\\ ou\\ mais\\ Tributos$"
   },
   {
+    "text": "Esp\u00EDrito aumentado em #% por item corrompido equipado",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Esp\u00EDrito\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ por\\ item\\ corrompido\\ equipado$"
+  },
+  {
     "text": "Esp\u00EDrito aumentado em #% por joia Espectro Grandioso encaixada",
     "lines": 1,
     "tradeIds": [
@@ -63289,6 +63365,13 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Esp\u00EDrito\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ com\\ 100\\ ou\\ mais\\ Tributos$"
+  },
+  {
+    "text": "Esp\u00EDrito reduzido em #% por item corrompido equipado",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Esp\u00EDrito\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ por\\ item\\ corrompido\\ equipado$"
   },
   {
     "text": "Esp\u00EDritos Atormentados assombram Wraeclast",
@@ -65580,6 +65663,19 @@
     "pattern": "^Exilados\\ Renegados\\ na\\ pr\u00F3xima\\ \u00E1rea\\ ter\u00E3o\\ um\\ Exilado\\ Renegado\\ aliado\\ cada$"
   },
   {
+    "text": "Exilados Renegados possu\u00EDdos t\u00EAm uma chance aumentada em #% de largar itens excepcionais",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Exilados\\ Renegados\\ possu\u00EDdos\\ t\u00EAm\\ uma\\ chance\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ de\\ largar\\ itens\\ excepcionais$"
+  },
+  {
+    "text": "Exilados Renegados possu\u00EDdos t\u00EAm uma chance reduzida em #% de largar itens excepcionais",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Exilados\\ Renegados\\ possu\u00EDdos\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ largar\\ itens\\ excepcionais$"
+  },
+  {
     "text": "Exilados Renegados t\u00EAm -#% de vida m\u00E1xima",
     "negate": true,
     "lines": 1,
@@ -65745,10 +65841,10 @@
     "pattern": "^Exilados\\ Renegados\\ vagam\\ por\\ Wraeclast$"
   },
   {
-    "text": "Expeditions may now contain Verisium Sentries",
+    "text": "Expedi\u00E7\u00F5es agora podem conter Sentinelas de Ver\u00EDsio",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Expeditions\\ may\\ now\\ contain\\ Verisium\\ Sentries$"
+    "pattern": "^Expedi\u00E7\u00F5es\\ agora\\ podem\\ conter\\ Sentinelas\\ de\\ Ver\u00EDsio$"
   },
   {
     "text": "Expedi\u00E7\u00F5es em seus mapas t\u00EAm uma chance aumentada em #% de serem lideradas por Dannig",
@@ -65850,16 +65946,28 @@
     "pattern": "^Experi\u00EAncia\\ obtida\\ de\\ monstros\\ mortos\\ em\\ mem\u00F3rias\\ colocadas\\ neste\\ local\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Experi\u00EAncia recebida dos monstros aumentada em #% por modificador r\u00FAnico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Experi\u00EAncia\\ recebida\\ dos\\ monstros\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ modificador\\ r\u00FAnico$"
+  },
+  {
+    "text": "Experi\u00EAncia recebida dos monstros da expedi\u00E7\u00E3o aumentada em #% por modificador r\u00FAnico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Experi\u00EAncia\\ recebida\\ dos\\ monstros\\ da\\ expedi\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ modificador\\ r\u00FAnico$"
+  },
+  {
     "text": "Explode",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Explode$"
   },
   {
-    "text": "Explosives only wait for #% of Monsters to be slain before continuing",
+    "text": "Explosivos aguardam apenas que #% dos monstros sejam eliminados antes de prosseguir",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Explosives\\ only\\ wait\\ for\\ ([-0-9,.]\u002B)%\\ of\\ Monsters\\ to\\ be\\ slain\\ before\\ continuing$"
+    "pattern": "^Explosivos\\ aguardam\\ apenas\\ que\\ ([-0-9,.]\u002B)%\\ dos\\ monstros\\ sejam\\ eliminados\\ antes\\ de\\ prosseguir$"
   },
   {
     "text": "Explos\u00E3o Cin\u00E9tica causa uma explos\u00E3o adicional",
@@ -66280,10 +66388,10 @@
     "pattern": "^Fantasmas\\ invocados\\ t\u00EAm\\ os\\ b\u00F4nus\\ do\\ Altar\\ Diamante\\ e\\ do\\ Altar\\ Maci\u00E7o$"
   },
   {
-    "text": "Farrow now sells Liquid Verisium in exchange for Verisium",
+    "text": "Farrow agora vende Ver\u00EDsio L\u00EDquido em troca de ver\u00EDsio",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Farrow\\ now\\ sells\\ Liquid\\ Verisium\\ in\\ exchange\\ for\\ Verisium$"
+    "pattern": "^Farrow\\ agora\\ vende\\ Ver\u00EDsio\\ L\u00EDquido\\ em\\ troca\\ de\\ ver\u00EDsio$"
   },
   {
     "text": "Fatia do C\u00EDrculo aumentada em #%",
@@ -66297,30 +66405,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Fatia\\ do\\ C\u00EDrculo\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Favores adiados em Altares Ritual\u00EDsticos em seus mapas reaparecem #% mais r\u00E1pido",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_28208665"
-    ],
-    "pattern": "^Favores\\ adiados\\ em\\ Altares\\ Ritual\u00EDsticos\\ em\\ seus\\ mapas\\ reaparecem\\ ([-0-9,.]\u002B)%\\ mais\\ r\u00E1pido$"
-  },
-  {
-    "text": "Favores adiados em Altares Ritual\u00EDsticos em seus mapas t\u00EAm um custo de tributo aumentado em #%",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1345835998"
-    ],
-    "pattern": "^Favores\\ adiados\\ em\\ Altares\\ Ritual\u00EDsticos\\ em\\ seus\\ mapas\\ t\u00EAm\\ um\\ custo\\ de\\ tributo\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Favores adiados em Altares Ritual\u00EDsticos em seus mapas t\u00EAm um custo de tributo reduzido em #%",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Favores\\ adiados\\ em\\ Altares\\ Ritual\u00EDsticos\\ em\\ seus\\ mapas\\ t\u00EAm\\ um\\ custo\\ de\\ tributo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Favores adiados em Altares Ritual\u00EDsticos na \u00E1rea reaparecem #% mais r\u00E1pido",
@@ -66380,6 +66464,30 @@
       "explicit.stat_1345835998"
     ],
     "pattern": "^Favores\\ adiados\\ em\\ Altares\\ Ritual\u00EDsticos\\ no\\ mapa\\ t\u00EAm\\ o\\ custo\\ de\\ tributo\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Favores adiados em altares ritual\u00EDsticos reaparecem #% mais r\u00E1pido",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_28208665"
+    ],
+    "pattern": "^Favores\\ adiados\\ em\\ altares\\ ritual\u00EDsticos\\ reaparecem\\ ([-0-9,.]\u002B)%\\ mais\\ r\u00E1pido$"
+  },
+  {
+    "text": "Favores adiados em altares ritual\u00EDsticos t\u00EAm o custo de tributo aumentado em #%",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1345835998"
+    ],
+    "pattern": "^Favores\\ adiados\\ em\\ altares\\ ritual\u00EDsticos\\ t\u00EAm\\ o\\ custo\\ de\\ tributo\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Favores adiados em altares ritual\u00EDsticos t\u00EAm o custo de tributo reduzido em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Favores\\ adiados\\ em\\ altares\\ ritual\u00EDsticos\\ t\u00EAm\\ o\\ custo\\ de\\ tributo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Favores em Altares Ritual\u00EDsticos em seus mapas custam aleatoriamente entre 90% menos e 80% mais tributo",
@@ -70165,15 +70273,6 @@
     "pattern": "^Ganha\\ 1\\ de\\ f\u00FAria\\ ao\\ causar\\ um\\ golpe\\ cr\u00EDtico\\ com\\ ataques,\\ limitado\\ a\\ uma\\ vez\\ a\\ cada\\ ([-0-9,.]\u002B)\\ segundos$"
   },
   {
-    "text": "Ganha 1% do dano como dano de fogo por #% de chance de bloqueio",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3170380905",
-      "rune.stat_3170380905"
-    ],
-    "pattern": "^Ganha\\ 1%\\ do\\ dano\\ como\\ dano\\ de\\ fogo\\ por\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ bloqueio$"
-  },
-  {
     "text": "Ganha 1% do dano desarmado como dano de fogo adicional por # de Intelig\u00EAncia]",
     "lines": 1,
     "tradeIds": [],
@@ -72197,6 +72296,35 @@
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ como\\ dano\\ de\\ fogo\\ adicional\\ por\\ permanecer\\ em\\ ch\u00E3o\\ incendiado$"
   },
   {
+    "text": "Ganha #% do dano como dano de fogo por 1% de chance de bloqueio",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2771095426"
+    ],
+    "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ como\\ dano\\ de\\ fogo\\ por\\ 1%\\ de\\ chance\\ de\\ bloqueio$"
+  },
+  {
+    "text": "Ganha #% do dano como dano de fogo por 2% de chance de bloqueio",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_2621116283"
+    ],
+    "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ como\\ dano\\ de\\ fogo\\ por\\ 2%\\ de\\ chance\\ de\\ bloqueio$"
+  },
+  {
+    "text": "Ganha #% do dano como dano de frio",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_2505884597",
+      "desecrated.stat_2505884597",
+      "explicit.stat_2505884597",
+      "fractured.stat_2505884597",
+      "rune.stat_2505884597"
+    ],
+    "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ como\\ dano\\ de\\ frio$"
+  },
+  {
     "text": "Ganha #% do dano como dano de frio adicional",
     "lines": 1,
     "tradeIds": [
@@ -72230,6 +72358,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ como\\ dano\\ de\\ frio\\ por\\ ([-0-9,.]\u002B)\\ segundos\\ ao\\ congelar\\ um\\ inimigo\\ com\\ habilidades\\ refor\u00E7adas$"
+  },
+  {
+    "text": "Ganha #% do dano como dano de f\u00EDsico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ como\\ dano\\ de\\ f\u00EDsico$"
   },
   {
     "text": "Ganha #% do dano como dano el\u00E9trico adicional",
@@ -76219,28 +76353,28 @@
     "pattern": "^Granadas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ serem\\ ativadas\\ novamente$"
   },
   {
-    "text": "Grand Expeditions have \u002B1 Area Level",
+    "text": "Grandes Expedi\u00E7\u00F5es podem ter at\u00E9 3 modificadores",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Grand\\ Expeditions\\ have\\ \\\u002B1\\ Area\\ Level$"
+    "pattern": "^Grandes\\ Expedi\u00E7\u00F5es\\ podem\\ ter\\ at\u00E9\\ 3\\ modificadores$"
   },
   {
-    "text": "Grand Expeditions have only 1 Explosive",
+    "text": "Grandes Expedi\u00E7\u00F5es t\u00EAm \u002B1 de n\u00EDvel de \u00E1rea",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Grand\\ Expeditions\\ have\\ only\\ 1\\ Explosive$"
+    "pattern": "^Grandes\\ Expedi\u00E7\u00F5es\\ t\u00EAm\\ \\\u002B1\\ de\\ n\u00EDvel\\ de\\ \u00E1rea$"
   },
   {
-    "text": "Grand Expeditions have only # Explosives",
+    "text": "Grandes Expedi\u00E7\u00F5es t\u00EAm apenas 1 explosivo",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Grand\\ Expeditions\\ have\\ only\\ ([-0-9,.]\u002B)\\ Explosives$"
+    "pattern": "^Grandes\\ Expedi\u00E7\u00F5es\\ t\u00EAm\\ apenas\\ 1\\ explosivo$"
   },
   {
-    "text": "Grand Expeditions may have up to 3 Modifiers",
+    "text": "Grandes Expedi\u00E7\u00F5es t\u00EAm apenas # explosivos",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Grand\\ Expeditions\\ may\\ have\\ up\\ to\\ 3\\ Modifiers$"
+    "pattern": "^Grandes\\ Expedi\u00E7\u00F5es\\ t\u00EAm\\ apenas\\ ([-0-9,.]\u002B)\\ explosivos$"
   },
   {
     "text": "Gra\u00E7a n\u00E3o tem reserva",
@@ -79339,6 +79473,23 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Habilidades\\ n\u00E3o\\ canalizadoras\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)\\ de\\ custo\\ de\\ vida\\ total$"
+  },
+  {
+    "text": "Habilidades n\u00E3o canalizadoras t\u00EAm uma chance de golpe cr\u00EDtico m\u00E1gico aumentada em #% por 100 de mana m\u00E1ximo",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1367999357"
+    ],
+    "pattern": "^Habilidades\\ n\u00E3o\\ canalizadoras\\ t\u00EAm\\ uma\\ chance\\ de\\ golpe\\ cr\u00EDtico\\ m\u00E1gico\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 100\\ de\\ mana\\ m\u00E1ximo$"
+  },
+  {
+    "text": "Habilidades n\u00E3o canalizadoras t\u00EAm uma chance de golpe cr\u00EDtico m\u00E1gico reduzida em #% por 100 de mana m\u00E1ximo",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1367999357"
+    ],
+    "pattern": "^Habilidades\\ n\u00E3o\\ canalizadoras\\ t\u00EAm\\ uma\\ chance\\ de\\ golpe\\ cr\u00EDtico\\ m\u00E1gico\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 100\\ de\\ mana\\ m\u00E1ximo$"
   },
   {
     "text": "Habilidades n\u00E3o custam mana durante o efeito",
@@ -84158,20 +84309,6 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ -([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ proj\u00E9til\\ ao\\ atacar\\ na\\ dire\u00E7\u00E3o\\ indicada$"
   },
   {
-    "text": "Habilidades refor\u00E7adas causam -#% de dano de proj\u00E9til, se voc\u00EA tiver ferido um inimigo com um ataque corpo a corpo nos \u00FAltimos 2 segundos",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ -([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ proj\u00E9til,\\ se\\ voc\u00EA\\ tiver\\ ferido\\ um\\ inimigo\\ com\\ um\\ ataque\\ corpo\\ a\\ corpo\\ nos\\ \u00FAltimos\\ 2\\ segundos$"
-  },
-  {
-    "text": "Habilidades refor\u00E7adas causam -#% de dano de proj\u00E9til, se voc\u00EA tiver ferido um inimigo com um ataque corpo a corpo nos \u00FAltimos 8 segundos",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ -([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ proj\u00E9til,\\ se\\ voc\u00EA\\ tiver\\ ferido\\ um\\ inimigo\\ com\\ um\\ ataque\\ corpo\\ a\\ corpo\\ nos\\ \u00FAltimos\\ 8\\ segundos$"
-  },
-  {
     "text": "Habilidades refor\u00E7adas causam -#% de dano de \u00E1rea",
     "negate": true,
     "lines": 1,
@@ -84904,10 +85041,10 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ com\\ ataques\\ aos\\ninimigos\\ a\\ 7\\ metros\\ ou\\ mais\\ de\\ voc\u00EA,\\ diminuindo\\ gradualmente\\nat\u00E9\\ zerar\\ a\\ 3,5\\ metros\\ ou\\ menos$"
   },
   {
-    "text": "Habilidades refor\u00E7adas causam \u002B#% de dano com ataques aos\ninimigos em at\u00E9 1 metro de voc\u00EA, diminuindo\ngradualmente at\u00E9 zerar a 3,5 metros ou mais",
+    "text": "Habilidades refor\u00E7adas causam \u002B#% de dano com ataques aos\ninimigos a at\u00E9 1 metro de voc\u00EA, diminuindo\ngradualmente at\u00E9 zerar a 3,5 metros ou mais",
     "lines": 3,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ com\\ ataques\\ aos\\ninimigos\\ em\\ at\u00E9\\ 1\\ metro\\ de\\ voc\u00EA,\\ diminuindo\\ngradualmente\\ at\u00E9\\ zerar\\ a\\ 3,5\\ metros\\ ou\\ mais$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ com\\ ataques\\ aos\\ninimigos\\ a\\ at\u00E9\\ 1\\ metro\\ de\\ voc\u00EA,\\ diminuindo\\ngradualmente\\ at\u00E9\\ zerar\\ a\\ 3,5\\ metros\\ ou\\ mais$"
   },
   {
     "text": "Habilidades refor\u00E7adas causam \u002B#% de dano com ataques contra alvos isolados",
@@ -85152,18 +85289,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ proj\u00E9til\\ ao\\ atacar\\ na\\ dire\u00E7\u00E3o\\ indicada$"
-  },
-  {
-    "text": "Habilidades refor\u00E7adas causam \u002B#% de dano de proj\u00E9til, se voc\u00EA tiver ferido um inimigo com um ataque corpo a corpo nos \u00FAltimos 2 segundos",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ proj\u00E9til,\\ se\\ voc\u00EA\\ tiver\\ ferido\\ um\\ inimigo\\ com\\ um\\ ataque\\ corpo\\ a\\ corpo\\ nos\\ \u00FAltimos\\ 2\\ segundos$"
-  },
-  {
-    "text": "Habilidades refor\u00E7adas causam \u002B#% de dano de proj\u00E9til, se voc\u00EA tiver ferido um inimigo com um ataque corpo a corpo nos \u00FAltimos 8 segundos",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ causam\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ proj\u00E9til,\\ se\\ voc\u00EA\\ tiver\\ ferido\\ um\\ inimigo\\ com\\ um\\ ataque\\ corpo\\ a\\ corpo\\ nos\\ \u00FAltimos\\ 8\\ segundos$"
   },
   {
     "text": "Habilidades refor\u00E7adas causam \u002B#% de dano de \u00E1rea",
@@ -85868,16 +85993,16 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ criam\\ um\\ sino\\ por\\ ([-0-9,.]\u002B)\\ de\\ combo\\ gasto\\ ao\\ gastar\\ combo$"
   },
   {
-    "text": "Habilidades refor\u00E7adas criam um tremor secund\u00E1rio ao atordoar totalmente um inimigo, causando dano a outros inimigos em at\u00E9 # metro\nTremores secund\u00E1rios causados dessa maneira n\u00E3o atordoam",
+    "text": "Habilidades refor\u00E7adas criam um tremor secund\u00E1rio ao atordoar totalmente um inimigo, causando dano a outros inimigos a at\u00E9 # metro\nTremores secund\u00E1rios causados dessa maneira n\u00E3o atordoam",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ criam\\ um\\ tremor\\ secund\u00E1rio\\ ao\\ atordoar\\ totalmente\\ um\\ inimigo,\\ causando\\ dano\\ a\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\nTremores\\ secund\u00E1rios\\ causados\\ dessa\\ maneira\\ n\u00E3o\\ atordoam$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ criam\\ um\\ tremor\\ secund\u00E1rio\\ ao\\ atordoar\\ totalmente\\ um\\ inimigo,\\ causando\\ dano\\ a\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\nTremores\\ secund\u00E1rios\\ causados\\ dessa\\ maneira\\ n\u00E3o\\ atordoam$"
   },
   {
-    "text": "Habilidades refor\u00E7adas criam um tremor secund\u00E1rio ao atordoar totalmente um inimigo, causando dano a outros inimigos em at\u00E9 # metros\nTremores secund\u00E1rios causados dessa maneira n\u00E3o atordoam",
+    "text": "Habilidades refor\u00E7adas criam um tremor secund\u00E1rio ao atordoar totalmente um inimigo, causando dano a outros inimigos a at\u00E9 # metros\nTremores secund\u00E1rios causados dessa maneira n\u00E3o atordoam",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ criam\\ um\\ tremor\\ secund\u00E1rio\\ ao\\ atordoar\\ totalmente\\ um\\ inimigo,\\ causando\\ dano\\ a\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\nTremores\\ secund\u00E1rios\\ causados\\ dessa\\ maneira\\ n\u00E3o\\ atordoam$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ criam\\ um\\ tremor\\ secund\u00E1rio\\ ao\\ atordoar\\ totalmente\\ um\\ inimigo,\\ causando\\ dano\\ a\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\nTremores\\ secund\u00E1rios\\ causados\\ dessa\\ maneira\\ n\u00E3o\\ atordoam$"
   },
   {
     "text": "Habilidades refor\u00E7adas custam -#% de Vida",
@@ -86541,10 +86666,10 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ lan\u00E7am\\ at\u00E9\\ ([-0-9,.]\u002B)\\ minas\\ adicionais$"
   },
   {
-    "text": "Habilidades refor\u00E7adas marcam outro inimigo em at\u00E9 3 metros de um inimigo marcado ao consumir",
+    "text": "Habilidades refor\u00E7adas marcam outro inimigo a at\u00E9 3 metros de um inimigo marcado ao consumir",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ marcam\\ outro\\ inimigo\\ em\\ at\u00E9\\ 3\\ metros\\ de\\ um\\ inimigo\\ marcado\\ ao\\ consumir$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ marcam\\ outro\\ inimigo\\ a\\ at\u00E9\\ 3\\ metros\\ de\\ um\\ inimigo\\ marcado\\ ao\\ consumir$"
   },
   {
     "text": "Habilidades refor\u00E7adas n\u00E3o causam ac\u00FAmulo de atordoamento",
@@ -87158,11 +87283,11 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ tamb\u00E9m\\ disparam\\ proj\u00E9teis\\ de\\ at\u00E9\\ ([-0-9,.]\u002B)\\ pontos\\ ao\\ seu\\ lado$"
   },
   {
-    "text": "Habilidades refor\u00E7adas t\u00EAm -#% de ac\u00FAmulo de aprisionamento contra inimigos em at\u00E9 2 metros de voc\u00EA, aumentando at\u00E9 n\u00E3o ter efeito a 12 metros",
+    "text": "Habilidades refor\u00E7adas t\u00EAm -#% de ac\u00FAmulo de aprisionamento contra inimigos a at\u00E9 2 metros de voc\u00EA, aumentando at\u00E9 n\u00E3o ter efeito a 12 metros",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ -([-0-9,.]\u002B)%\\ de\\ ac\u00FAmulo\\ de\\ aprisionamento\\ contra\\ inimigos\\ em\\ at\u00E9\\ 2\\ metros\\ de\\ voc\u00EA,\\ aumentando\\ at\u00E9\\ n\u00E3o\\ ter\\ efeito\\ a\\ 12\\ metros$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ -([-0-9,.]\u002B)%\\ de\\ ac\u00FAmulo\\ de\\ aprisionamento\\ contra\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros\\ de\\ voc\u00EA,\\ aumentando\\ at\u00E9\\ n\u00E3o\\ ter\\ efeito\\ a\\ 12\\ metros$"
   },
   {
     "text": "Habilidades refor\u00E7adas t\u00EAm -#% de ac\u00FAmulo de atordoamento",
@@ -87318,11 +87443,11 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ -([-0-9,.]\u002B)%\\ de\\ precis\u00E3o$"
   },
   {
-    "text": "Habilidades refor\u00E7adas t\u00EAm -#% de precis\u00E3o contra inimigos em at\u00E9 2 metros",
+    "text": "Habilidades refor\u00E7adas t\u00EAm -#% de precis\u00E3o contra inimigos a at\u00E9 2 metros",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ -([-0-9,.]\u002B)%\\ de\\ precis\u00E3o\\ contra\\ inimigos\\ em\\ at\u00E9\\ 2\\ metros$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ -([-0-9,.]\u002B)%\\ de\\ precis\u00E3o\\ contra\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros$"
   },
   {
     "text": "Habilidades refor\u00E7adas t\u00EAm -#% de precis\u00E3o se usadas enquanto fortalecidas",
@@ -88307,10 +88432,10 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ f\u00EDsico\\ adicionado$"
   },
   {
-    "text": "Habilidades refor\u00E7adas t\u00EAm \u002B#% de ac\u00FAmulo de aprisionamento contra inimigos em at\u00E9 2 metros de voc\u00EA, diminuindo at\u00E9 n\u00E3o ter efeito a 12 metros",
+    "text": "Habilidades refor\u00E7adas t\u00EAm \u002B#% de ac\u00FAmulo de aprisionamento contra inimigos a at\u00E9 2 metros de voc\u00EA, diminuindo at\u00E9 n\u00E3o ter efeito a 12 metros",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ ac\u00FAmulo\\ de\\ aprisionamento\\ contra\\ inimigos\\ em\\ at\u00E9\\ 2\\ metros\\ de\\ voc\u00EA,\\ diminuindo\\ at\u00E9\\ n\u00E3o\\ ter\\ efeito\\ a\\ 12\\ metros$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ ac\u00FAmulo\\ de\\ aprisionamento\\ contra\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros\\ de\\ voc\u00EA,\\ diminuindo\\ at\u00E9\\ n\u00E3o\\ ter\\ efeito\\ a\\ 12\\ metros$"
   },
   {
     "text": "Habilidades refor\u00E7adas t\u00EAm \u002B#% de ac\u00FAmulo de atordoamento",
@@ -88748,10 +88873,10 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ lan\u00E7ar\\ at\u00E9\\ 3\\ armadilhas\\ ou\\ minas\\ adicionais$"
   },
   {
-    "text": "Habilidades refor\u00E7adas t\u00EAm #% de chance de marcar outro inimigo em at\u00E9 3 metros de um inimigo marcado ao consumir",
+    "text": "Habilidades refor\u00E7adas t\u00EAm #% de chance de marcar outro inimigo a at\u00E9 3 metros de um inimigo marcado ao consumir",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ marcar\\ outro\\ inimigo\\ em\\ at\u00E9\\ 3\\ metros\\ de\\ um\\ inimigo\\ marcado\\ ao\\ consumir$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ marcar\\ outro\\ inimigo\\ a\\ at\u00E9\\ 3\\ metros\\ de\\ um\\ inimigo\\ marcado\\ ao\\ consumir$"
   },
   {
     "text": "Habilidades refor\u00E7adas t\u00EAm #% de chance de n\u00E3o remover cargas, mas ainda contam como se as consumissem",
@@ -88917,10 +89042,10 @@
     "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ precis\u00E3o$"
   },
   {
-    "text": "Habilidades refor\u00E7adas t\u00EAm \u002B#% de precis\u00E3o contra inimigos em at\u00E9 2 metros",
+    "text": "Habilidades refor\u00E7adas t\u00EAm \u002B#% de precis\u00E3o contra inimigos a at\u00E9 2 metros",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ precis\u00E3o\\ contra\\ inimigos\\ em\\ at\u00E9\\ 2\\ metros$"
+    "pattern": "^Habilidades\\ refor\u00E7adas\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ precis\u00E3o\\ contra\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros$"
   },
   {
     "text": "Habilidades refor\u00E7adas t\u00EAm \u002B#% de precis\u00E3o se usadas enquanto fortalecidas",
@@ -90335,12 +90460,6 @@
     "pattern": "^Impede\\ os\\ proj\u00E9teis\\ de\\ se\\ propagarem\\ para\\ ou\\ de\\ voc\u00EA$"
   },
   {
-    "text": "Improve Explosives used within Expeditions and Grand Expeditions",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Improve\\ Explosives\\ used\\ within\\ Expeditions\\ and\\ Grand\\ Expeditions$"
-  },
-  {
     "text": "Impulso Ardente tem a velocidade de recarga aumentada em #%",
     "lines": 1,
     "tradeIds": [],
@@ -90699,10 +90818,10 @@
     "pattern": "^Inativa$"
   },
   {
-    "text": "Incendeia inimigos em at\u00E9 # m de raio como se causasse # de dano de fogo",
+    "text": "Incendeia inimigos a at\u00E9 # m de raio como se causasse # de dano de fogo",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Incendeia\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ m\\ de\\ raio\\ como\\ se\\ causasse\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ fogo$"
+    "pattern": "^Incendeia\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ m\\ de\\ raio\\ como\\ se\\ causasse\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ fogo$"
   },
   {
     "text": "Incendeia voc\u00EA quando ativado",
@@ -90736,28 +90855,28 @@
     "pattern": "^Incinera\u00E7\u00E3o\\ tem\\ \\\u002B([-0-9,.]\u002B)\\ de\\ est\u00E1gios\\ m\u00E1ximos$"
   },
   {
-    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos em at\u00E9 # metro por # segundo",
+    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos a at\u00E9 # metro por # segundo",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
+    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
   },
   {
-    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos em at\u00E9 # metro por # segundos",
+    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos a at\u00E9 # metro por # segundos",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundos$"
+    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundos$"
   },
   {
-    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos em at\u00E9 # metros por # segundo",
+    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos a at\u00E9 # metros por # segundo",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
+    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
   },
   {
-    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos em at\u00E9 # metros por # segundos",
+    "text": "Inc\u00EAndios causados por esta habilidade se alastram para outros inimigos a at\u00E9 # metros por # segundos",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ ([-0-9,.]\u002B)\\ segundos$"
+    "pattern": "^Inc\u00EAndios\\ causados\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ ([-0-9,.]\u002B)\\ segundos$"
   },
   {
     "text": "Inc\u00EAndios de habilidades refor\u00E7adas causam dano #% mais devagar",
@@ -90773,28 +90892,28 @@
     "pattern": "^Inc\u00EAndios\\ de\\ habilidades\\ refor\u00E7adas\\ causam\\ dano\\ ([-0-9,.]\u002B)%\\ mais\\ r\u00E1pido$"
   },
   {
-    "text": "Inc\u00EAndios infligidos por esta habilidade se alastram para outros\ninimigos que fiquem em at\u00E9 # metro por 1 segundo",
+    "text": "Inc\u00EAndios infligidos por esta habilidade se alastram para outros\ninimigos que fiquem a at\u00E9 # metro por 1 segundo",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ninimigos\\ que\\ fiquem\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ 1\\ segundo$"
+    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ninimigos\\ que\\ fiquem\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ 1\\ segundo$"
   },
   {
-    "text": "Inc\u00EAndios infligidos por esta habilidade se alastram para outros\ninimigos que fiquem em at\u00E9 # metros por 1 segundo",
+    "text": "Inc\u00EAndios infligidos por esta habilidade se alastram para outros\ninimigos que fiquem a at\u00E9 # metros por 1 segundo",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ninimigos\\ que\\ fiquem\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ 1\\ segundo$"
+    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ esta\\ habilidade\\ se\\ alastram\\ para\\ outros\\ninimigos\\ que\\ fiquem\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ 1\\ segundo$"
   },
   {
-    "text": "Inc\u00EAndios infligidos por habilidades refor\u00E7adas se espalham para outros\ninimigos que estejam em at\u00E9 # metro, por 1 segundo",
+    "text": "Inc\u00EAndios infligidos por habilidades refor\u00E7adas se espalham para outros\ninimigos que estejam a at\u00E9 # metro, por 1 segundo",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ habilidades\\ refor\u00E7adas\\ se\\ espalham\\ para\\ outros\\ninimigos\\ que\\ estejam\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro,\\ por\\ 1\\ segundo$"
+    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ habilidades\\ refor\u00E7adas\\ se\\ espalham\\ para\\ outros\\ninimigos\\ que\\ estejam\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro,\\ por\\ 1\\ segundo$"
   },
   {
-    "text": "Inc\u00EAndios infligidos por habilidades refor\u00E7adas se espalham para outros\ninimigos que estejam em at\u00E9 # metros, por 1 segundo",
+    "text": "Inc\u00EAndios infligidos por habilidades refor\u00E7adas se espalham para outros\ninimigos que estejam a at\u00E9 # metros, por 1 segundo",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ habilidades\\ refor\u00E7adas\\ se\\ espalham\\ para\\ outros\\ninimigos\\ que\\ estejam\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros,\\ por\\ 1\\ segundo$"
+    "pattern": "^Inc\u00EAndios\\ infligidos\\ por\\ habilidades\\ refor\u00E7adas\\ se\\ espalham\\ para\\ outros\\ninimigos\\ que\\ estejam\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros,\\ por\\ 1\\ segundo$"
   },
   {
     "text": "Inc\u00EAndios infligidos por um \u00FAnico uso desta habilidade s\u00E3o combinados",
@@ -94150,7 +94269,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ da\\ eletrifica\u00E7\u00E3o\\ infligida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94163,7 +94283,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ da\\ eletrifica\u00E7\u00E3o\\ infligida\\ por\\ monstros\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94177,7 +94298,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ da\\ eletrifica\u00E7\u00E3o\\ infligida\\ por\\ monstros\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94191,7 +94313,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ da\\ eletrifica\u00E7\u00E3o\\ infligida\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94423,7 +94546,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ das\\ eletrifica\u00E7\u00F5es\\ infligidas\\ com\\ golpes\\ cr\u00EDticos\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94437,7 +94561,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ das\\ eletrifica\u00E7\u00F5es\\ infligidas\\ com\\ golpes\\ cr\u00EDticos\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94462,7 +94587,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ das\\ eletrifica\u00E7\u00F5es\\ infligidas\\ por\\ voc\u00EA\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94498,7 +94624,8 @@
       "enchant.stat_2527686725",
       "explicit.stat_2527686725",
       "fractured.stat_2527686725",
-      "implicit.stat_2527686725"
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
     ],
     "pattern": "^Intensidade\\ das\\ eletrifica\u00E7\u00F5es\\ infligidas\\ por\\ voc\u00EA\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94739,7 +94866,8 @@
       "enchant.stat_3791899485",
       "explicit.stat_3791899485",
       "fractured.stat_3791899485",
-      "implicit.stat_3791899485"
+      "implicit.stat_3791899485",
+      "rune.stat_3791899485"
     ],
     "pattern": "^Intensidade\\ de\\ inc\u00EAndio\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -94774,7 +94902,8 @@
       "enchant.stat_3791899485",
       "explicit.stat_3791899485",
       "fractured.stat_3791899485",
-      "implicit.stat_3791899485"
+      "implicit.stat_3791899485",
+      "rune.stat_3791899485"
     ],
     "pattern": "^Intensidade\\ de\\ inc\u00EAndio\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -95384,12 +95513,6 @@
     "pattern": "^Intensidade\\ dos\\ inc\u00EAndios\\ infligidos\\ por\\ voc\u00EA\\ com\\ golpes\\ cr\u00EDticos\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "Intensidade dos sangramento infligidos por voc\u00EA contra inimigos aprisionados aumentada em #%",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Intensidade\\ dos\\ sangramento\\ infligidos\\ por\\ voc\u00EA\\ contra\\ inimigos\\ aprisionados\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
     "text": "Intensidade dos sangramentos aumentada em #% por f\u00FAria ao usar um machado",
     "lines": 1,
     "tradeIds": [],
@@ -95481,6 +95604,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Intensidade\\ dos\\ sangramentos\\ infligidos\\ por\\ voc\u00EA\\ contra\\ inimigos\\ afetados\\ por\\ incis\u00F5es\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Intensidade dos sangramentos infligidos por voc\u00EA contra inimigos aprisionados aumentada em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Intensidade\\ dos\\ sangramentos\\ infligidos\\ por\\ voc\u00EA\\ contra\\ inimigos\\ aprisionados\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Intensidade dos sangramentos infligidos por voc\u00EA em alvos envenenados aumentada em #%",
@@ -97705,6 +97834,120 @@
     "pattern": "^Itens\\ n\u00E3o\\ podem\\ ser\\ vendidos\\ ou\\ comprados\\ em\\ PNJs$"
   },
   {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui sempre t\u00EAm uma habilidade concedida de caos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ sempre\\ t\u00EAm\\ uma\\ habilidade\\ concedida\\ de\\ caos$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui sempre t\u00EAm uma habilidade concedida de fogo",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ sempre\\ t\u00EAm\\ uma\\ habilidade\\ concedida\\ de\\ fogo$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui sempre t\u00EAm uma habilidade concedida de frio",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ sempre\\ t\u00EAm\\ uma\\ habilidade\\ concedida\\ de\\ frio$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui sempre t\u00EAm uma habilidade concedida el\u00E9trica",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ sempre\\ t\u00EAm\\ uma\\ habilidade\\ concedida\\ el\u00E9trica$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui sempre t\u00EAm uma habilidade concedida f\u00EDsica",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ sempre\\ t\u00EAm\\ uma\\ habilidade\\ concedida\\ f\u00EDsica$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui sempre t\u00EAm uma habilidade concedida gen\u00E9rica",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ sempre\\ t\u00EAm\\ uma\\ habilidade\\ concedida\\ gen\u00E9rica$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o aljavas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ aljavas$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o arcos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ arcos$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o bast\u00F5es",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ bast\u00F5es$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o bestas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ bestas$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o botas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ botas$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o cintos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ cintos$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o elmos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ elmos$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o escudos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ escudos$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o espadas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ espadas$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o lan\u00E7as",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ lan\u00E7as$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o luvas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ luvas$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o ma\u00E7as",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ ma\u00E7as$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o peitorais",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ peitorais$"
+  },
+  {
     "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o sempre amuletos",
     "lines": 1,
     "tradeIds": [],
@@ -97739,6 +97982,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ sempre\\ varinhas$"
+  },
+  {
+    "text": "Itens n\u00E3o \u00FAnicos contidos aqui s\u00E3o talism\u00E3s",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Itens\\ n\u00E3o\\ \u00FAnicos\\ contidos\\ aqui\\ s\u00E3o\\ talism\u00E3s$"
   },
   {
     "text": "Itens raros e m\u00E1gicos contidos aqui s\u00E3o sempre joias",
@@ -98517,6 +98766,15 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Jogadores\\ regeneram\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ m\u00E1xima\\ por\\ segundo\\ por\\ 25\\ mortes\\ com\\ Furor$"
+  },
+  {
+    "text": "Jogadores roubam as almas devoradas de monstros raros mortos na \u00E1rea",
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_1365079333",
+      "explicit.stat_1365079333"
+    ],
+    "pattern": "^Jogadores\\ roubam\\ as\\ almas\\ devoradas\\ de\\ monstros\\ raros\\ mortos\\ na\\ \u00E1rea$"
   },
   {
     "text": "Jogadores sofrem dano aumentado em #% ao ficarem im\u00F3veis",
@@ -99763,10 +100021,10 @@
     "pattern": "^Lacaios\\ de\\ habilidades\\ refor\u00E7adas\\ cegam\\ inimigos\\ em\\ um\\ raio\\ de\\ ([-0-9,.]\u002B)\\ metro$"
   },
   {
-    "text": "Lacaios de habilidades refor\u00E7adas curam lacaios aliados em at\u00E9 # metros em #% da vida dos lacaios refor\u00E7ados ao morrer, bem como removem todas as afec\u00E7\u00F5es desses lacaios",
+    "text": "Lacaios de habilidades refor\u00E7adas curam lacaios aliados a at\u00E9 # metros em #% da vida dos lacaios refor\u00E7ados ao morrer, bem como removem todas as afec\u00E7\u00F5es desses lacaios",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Lacaios\\ de\\ habilidades\\ refor\u00E7adas\\ curam\\ lacaios\\ aliados\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ em\\ ([-0-9,.]\u002B)%\\ da\\ vida\\ dos\\ lacaios\\ refor\u00E7ados\\ ao\\ morrer,\\ bem\\ como\\ removem\\ todas\\ as\\ afec\u00E7\u00F5es\\ desses\\ lacaios$"
+    "pattern": "^Lacaios\\ de\\ habilidades\\ refor\u00E7adas\\ curam\\ lacaios\\ aliados\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ em\\ ([-0-9,.]\u002B)%\\ da\\ vida\\ dos\\ lacaios\\ refor\u00E7ados\\ ao\\ morrer,\\ bem\\ como\\ removem\\ todas\\ as\\ afec\u00E7\u00F5es\\ desses\\ lacaios$"
   },
   {
     "text": "Lacaios de habilidades refor\u00E7adas explodem quando reduzidos \u00E0 vida baixa, causando #% de sua vida m\u00E1xima como dano de fogo aos inimigos ao redor",
@@ -100112,6 +100370,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Lacaios\\ envenenam\\ ao\\ atingir$"
+  },
+  {
+    "text": "Lacaios explodem ao morrer, causando #% da pr\u00F3pria vida\nm\u00E1xima como dano f\u00EDsico aos inimigos a at\u00E9 2 metros",
+    "lines": 2,
+    "tradeIds": [],
+    "pattern": "^Lacaios\\ explodem\\ ao\\ morrer,\\ causando\\ ([-0-9,.]\u002B)%\\ da\\ pr\u00F3pria\\ vida\\nm\u00E1xima\\ como\\ dano\\ f\u00EDsico\\ aos\\ inimigos\\ a\\ at\u00E9\\ 2\\ metros$"
   },
   {
     "text": "Lacaios ganham Agressividade por 4 segundos ao matar",
@@ -102629,23 +102893,6 @@
     "pattern": "^Magias\\ n\u00E3o\\ canalizadoras\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ custar\\ o\\ dobro\\ de\\ mana\\ e\\ causar\\ golpes\\ cr\u00EDticos$"
   },
   {
-    "text": "Magias n\u00E3o canalizadoras t\u00EAm uma chance de golpe cr\u00EDtico aumentada em #% por 100 de mana m\u00E1ximo",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1367999357"
-    ],
-    "pattern": "^Magias\\ n\u00E3o\\ canalizadoras\\ t\u00EAm\\ uma\\ chance\\ de\\ golpe\\ cr\u00EDtico\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 100\\ de\\ mana\\ m\u00E1ximo$"
-  },
-  {
-    "text": "Magias n\u00E3o canalizadoras t\u00EAm uma chance de golpe cr\u00EDtico reduzida em #% por 100 de mana m\u00E1ximo",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1367999357"
-    ],
-    "pattern": "^Magias\\ n\u00E3o\\ canalizadoras\\ t\u00EAm\\ uma\\ chance\\ de\\ golpe\\ cr\u00EDtico\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 100\\ de\\ mana\\ m\u00E1ximo$"
-  },
-  {
     "text": "Magias ocorrem mais uma vez",
     "lines": 1,
     "tradeIds": [],
@@ -103171,10 +103418,10 @@
     "pattern": "^Mais\\ dano\\ de\\ Infus\u00E3o\\ El\u00E9trica@([-0-9,.]\u002B)%$"
   },
   {
-    "text": "Mais dano de ataque aos inimigos em at\u00E9 1 m@#%",
+    "text": "Mais dano de ataque aos inimigos a at\u00E9 1 m@#%",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Mais\\ dano\\ de\\ ataque\\ aos\\ inimigos\\ em\\ at\u00E9\\ 1\\ m@([-0-9,.]\u002B)%$"
+    "pattern": "^Mais\\ dano\\ de\\ ataque\\ aos\\ inimigos\\ a\\ at\u00E9\\ 1\\ m@([-0-9,.]\u002B)%$"
   },
   {
     "text": "Mais dano de ataque contra alvos isolados@#%",
@@ -104509,6 +104756,12 @@
     "pattern": "^Mapas\\ com\\ biomas\\ aqu\u00E1ticos\\ e\\ pantanosos\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ largar\\ moedas\\ b\u00E1sicas$"
   },
   {
+    "text": "Mapas dentro da n\u00E9voa de Del\u00EDrio t\u00EAm \u002B#% de Del\u00EDrio adicional",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Mapas\\ dentro\\ da\\ n\u00E9voa\\ de\\ Del\u00EDrio\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ Del\u00EDrio\\ adicional$"
+  },
+  {
     "text": "Mapas encontrados em seus mapas s\u00E3o corrompidos com 8 modificadores",
     "lines": 1,
     "tradeIds": [],
@@ -104792,6 +105045,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Melhora\\ as\\ recompensas\\ oferecidas\\ pelo\\ Rito\\ dos\\ Inominados$"
+  },
+  {
+    "text": "Melhora os explosivos usados em Expedi\u00E7\u00F5es e Grandes Expedi\u00E7\u00F5es",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Melhora\\ os\\ explosivos\\ usados\\ em\\ Expedi\u00E7\u00F5es\\ e\\ Grandes\\ Expedi\u00E7\u00F5es$"
   },
   {
     "text": "Membros do Sindicato Imortal derrotados em seus mapas concedem # de informa\u00E7\u00E3o para\no atual quartel do encontro se n\u00E3o forem interrogados ou libertados",
@@ -105439,12 +105698,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Minimapa\\ revelado$"
-  },
-  {
-    "text": "Minions explode on death, dealing #% of their maximum\nlife as Physical Damage to enemies within 2 metres",
-    "lines": 2,
-    "tradeIds": [],
-    "pattern": "^Minions\\ explode\\ on\\ death,\\ dealing\\ ([-0-9,.]\u002B)%\\ of\\ their\\ maximum\\nlife\\ as\\ Physical\\ Damage\\ to\\ enemies\\ within\\ 2\\ metres$"
   },
   {
     "text": "Mira em um lacaio descarnado adicional",
@@ -106630,6 +106883,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Moedas\\ obtidas\\ das\\ caixas-forte\\ em\\ seus\\ mapas\\ s\u00E3o\\ duplicadas$"
+  },
+  {
+    "text": "Monsters released from Essences become Corrupted",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Monsters\\ released\\ from\\ Essences\\ become\\ Corrupted$"
   },
   {
     "text": "Monstro raro em \u00E1reas de p\u00E2ntano tem #% de chance de ser substitu\u00EDdo por um chefe de mapa aleat\u00F3rio",
@@ -107856,18 +108115,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Monstros\\ de\\ caixas-forte\\ t\u00EAm\\ a\\ quantidade\\ de\\ itens\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Monstros de c\u00EDrculo de invoca\u00E7\u00E3o possu\u00EDdos em seus mapas liberam esp\u00EDritos ao morrer",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Monstros\\ de\\ c\u00EDrculo\\ de\\ invoca\u00E7\u00E3o\\ possu\u00EDdos\\ em\\ seus\\ mapas\\ liberam\\ esp\u00EDritos\\ ao\\ morrer$"
-  },
-  {
-    "text": "Monstros de c\u00EDrculo de invoca\u00E7\u00E3o possu\u00EDdos em seus mapas t\u00EAm #% de chance de liberar esp\u00EDritos ao morrer",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Monstros\\ de\\ c\u00EDrculo\\ de\\ invoca\u00E7\u00E3o\\ possu\u00EDdos\\ em\\ seus\\ mapas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ liberar\\ esp\u00EDritos\\ ao\\ morrer$"
   },
   {
     "text": "Monstros de ess\u00EAncia corrompidos t\u00EAm #% de chance de serem duplicados quando soltos",
@@ -110467,12 +110714,24 @@
     "pattern": "^Monstros\\ r\u00FAnicos\\ infligem\\ petrifica\u00E7\u00E3o\\ por\\ ([-0-9,.]\u002B)\\ segundos\\ ao\\ atingir$"
   },
   {
+    "text": "Monstros r\u00FAnicos surgem com uma redu\u00E7\u00E3o de vida adicional de #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Monstros\\ r\u00FAnicos\\ surgem\\ com\\ uma\\ redu\u00E7\u00E3o\\ de\\ vida\\ adicional\\ de\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Monstros r\u00FAnicos s\u00E3o duplicados",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2816104578"
     ],
     "pattern": "^Monstros\\ r\u00FAnicos\\ s\u00E3o\\ duplicados$"
+  },
+  {
+    "text": "Monstros r\u00FAnicos t\u00EAm uma chance de largar di\u00E1rios aumentada em #% por modificador r\u00FAnico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Monstros\\ r\u00FAnicos\\ t\u00EAm\\ uma\\ chance\\ de\\ largar\\ di\u00E1rios\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ modificador\\ r\u00FAnico$"
   },
   {
     "text": "Monstros sacrificados em Altares Ritual\u00EDsticos concedem tributo aumentado em #%",
@@ -112167,10 +112426,10 @@
     "pattern": "^M\u00E1ximo\\ de\\ ([-0-9,.]\u002B)\\ inst\u00E2ncias\\ de\\ Forma\\ Corrompida\\ e\\ Purificada$"
   },
   {
-    "text": "M\u00E1ximo de mais ac\u00FAmulo de aprisionamento contra inimigos em at\u00E9 2 m@#%",
+    "text": "M\u00E1ximo de mais ac\u00FAmulo de aprisionamento contra inimigos a at\u00E9 2 m@#%",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^M\u00E1ximo\\ de\\ mais\\ ac\u00FAmulo\\ de\\ aprisionamento\\ contra\\ inimigos\\ em\\ at\u00E9\\ 2\\ m@([-0-9,.]\u002B)%$"
+    "pattern": "^M\u00E1ximo\\ de\\ mais\\ ac\u00FAmulo\\ de\\ aprisionamento\\ contra\\ inimigos\\ a\\ at\u00E9\\ 2\\ m@([-0-9,.]\u002B)%$"
   },
   {
     "text": "M\u00E1ximo de # orbes por vez",
@@ -112239,10 +112498,10 @@
     "pattern": "^M\u00E3os\\ da\\ Fenda\\ s\u00E3o\\ pequenas$"
   },
   {
-    "text": "M\u00E9dia de dano por uso@#",
+    "text": "M\u00E9dia de dano por acerto@#",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^M\u00E9dia\\ de\\ dano\\ por\\ uso@([-0-9,.]\u002B)$"
+    "pattern": "^M\u00E9dia\\ de\\ dano\\ por\\ acerto@([-0-9,.]\u002B)$"
   },
   {
     "text": "M\u00EDnimo de 1 segundo entre os ganhos de est\u00E1gio",
@@ -114047,6 +114306,12 @@
     "pattern": "^O\\ Rito\\ dos\\ Inominados\\ raramente\\ oferece\\ itens\\ \u00FAnicos\\ espec\u00EDficos\\ e\\ valiosos$"
   },
   {
+    "text": "O T\u00FAmulo do Cavaleiro Ca\u00EDdo pode ser encontrado nas expedi\u00E7\u00F5es",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^O\\ T\u00FAmulo\\ do\\ Cavaleiro\\ Ca\u00EDdo\\ pode\\ ser\\ encontrado\\ nas\\ expedi\u00E7\u00F5es$"
+  },
+  {
     "text": "O comerciante tem uma escolha adicional",
     "lines": 1,
     "tradeIds": [
@@ -114061,10 +114326,10 @@
     "pattern": "^O\\ custo\\ base\\ desta\\ habilidade\\ equivale\\ a\\ ([-0-9,.]\u002B)%\\ dos\\ custos\\ base\\ndas\\ habilidades\\ encaixadas$"
   },
   {
-    "text": "O envenenamento mais danoso nos inimigos que voc\u00EA matar se propaga para outros inimigos em at\u00E9 # metros",
+    "text": "O envenenamento mais danoso nos inimigos que voc\u00EA matar se propaga para outros inimigos a at\u00E9 # metros",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^O\\ envenenamento\\ mais\\ danoso\\ nos\\ inimigos\\ que\\ voc\u00EA\\ matar\\ se\\ propaga\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros$"
+    "pattern": "^O\\ envenenamento\\ mais\\ danoso\\ nos\\ inimigos\\ que\\ voc\u00EA\\ matar\\ se\\ propaga\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros$"
   },
   {
     "text": "O escudo erguido inflige Aparar por # segundo ao atingir",
@@ -114158,10 +114423,10 @@
     "pattern": "^O\\ impacto\\ final\\ causa\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ com\\ ataques$"
   },
   {
-    "text": "O inc\u00EAndio nos inimigos que voc\u00EA matar se alastra para outros inimigos em at\u00E9 # metros",
+    "text": "O inc\u00EAndio nos inimigos que voc\u00EA matar se alastra para outros inimigos a at\u00E9 # metros",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^O\\ inc\u00EAndio\\ nos\\ inimigos\\ que\\ voc\u00EA\\ matar\\ se\\ alastra\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros$"
+    "pattern": "^O\\ inc\u00EAndio\\ nos\\ inimigos\\ que\\ voc\u00EA\\ matar\\ se\\ alastra\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros$"
   },
   {
     "text": "O item \u00E9 vendido por muito mais aos vendedores",
@@ -114366,6 +114631,12 @@
     "pattern": "^O\\ terceiro\\ eco\\ tem\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ \u00E1rea\\ de\\ efeito$"
   },
   {
+    "text": "O tributo j\u00E1 oferecido ao Rei pode ser usado para adiar itens",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^O\\ tributo\\ j\u00E1\\ oferecido\\ ao\\ Rei\\ pode\\ ser\\ usado\\ para\\ adiar\\ itens$"
+  },
+  {
     "text": "O \u00C1rbitro larga 1 Pedra-guia de n\u00EDvel 15 adicional",
     "lines": 1,
     "tradeIds": [],
@@ -114432,12 +114703,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Objetos\\ criados\\ por\\ habilidades\\ refor\u00E7adas\\ podem\\ ser\\ atingidos\\ \\\u002B([-0-9,.]\u002B)\\ vezes$"
-  },
-  {
-    "text": "Ocean and Island Areas are also considered to be another Biome",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Ocean\\ and\\ Island\\ Areas\\ are\\ also\\ considered\\ to\\ be\\ another\\ Biome$"
   },
   {
     "text": "Oferenda Espiritual concede \u002B#% ao b\u00F4nus de dano cr\u00EDtico",
@@ -118035,10 +118300,7 @@
   {
     "text": "Players steal the Eaten Souls of Slain Rare Monsters in Area",
     "lines": 1,
-    "tradeIds": [
-      "desecrated.stat_1365079333",
-      "explicit.stat_1365079333"
-    ],
+    "tradeIds": [],
     "pattern": "^Players\\ steal\\ the\\ Eaten\\ Souls\\ of\\ Slain\\ Rare\\ Monsters\\ in\\ Area$"
   },
   {
@@ -121808,10 +122070,10 @@
     "pattern": "^Quando\\ suas\\ armadilhas\\ s\u00E3o\\ ativadas,\\ as\\ armadilhas\\ pr\u00F3ximas\\ tamb\u00E9m\\ s\u00E3o$"
   },
   {
-    "text": "Quando suas marcas s\u00E3o consumidas, elas t\u00EAm #% de chance de marcar outro inimigo em at\u00E9 3 metros",
+    "text": "Quando suas marcas s\u00E3o consumidas, elas t\u00EAm #% de chance de marcar outro inimigo a at\u00E9 3 metros",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Quando\\ suas\\ marcas\\ s\u00E3o\\ consumidas,\\ elas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ marcar\\ outro\\ inimigo\\ em\\ at\u00E9\\ 3\\ metros$"
+    "pattern": "^Quando\\ suas\\ marcas\\ s\u00E3o\\ consumidas,\\ elas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ marcar\\ outro\\ inimigo\\ a\\ at\u00E9\\ 3\\ metros$"
   },
   {
     "text": "Quando um Personagem Matar um Monstro Raro Maximizado,\neles ganham seus modificadores por 20 segundos",
@@ -121900,16 +122162,16 @@
     "pattern": "^Quando\\ uma\\ habilidade\\ refor\u00E7ada\\ \u00E9\\ usada\\ e\\ entra\\ em\\ recarga,\\ recupera\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ m\u00E1xima\\ por\\ segundo\\ de\\ recarga$"
   },
   {
-    "text": "Quando usadas, as habilidades refor\u00E7adas consomem 1 cad\u00E1ver em at\u00E9 # metros\nse poss\u00EDvel",
+    "text": "Quando usadas, as habilidades refor\u00E7adas consomem 1 cad\u00E1ver a at\u00E9 # metros\nse poss\u00EDvel",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Quando\\ usadas,\\ as\\ habilidades\\ refor\u00E7adas\\ consomem\\ 1\\ cad\u00E1ver\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\nse\\ poss\u00EDvel$"
+    "pattern": "^Quando\\ usadas,\\ as\\ habilidades\\ refor\u00E7adas\\ consomem\\ 1\\ cad\u00E1ver\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\nse\\ poss\u00EDvel$"
   },
   {
-    "text": "Quando usadas, as habilidades refor\u00E7adas consomem at\u00E9 # cad\u00E1veres em at\u00E9 # metros\nse poss\u00EDvel",
+    "text": "Quando usadas, as habilidades refor\u00E7adas consomem at\u00E9 # cad\u00E1veres a at\u00E9 # metros\nse poss\u00EDvel",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Quando\\ usadas,\\ as\\ habilidades\\ refor\u00E7adas\\ consomem\\ at\u00E9\\ ([-0-9,.]\u002B)\\ cad\u00E1veres\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\nse\\ poss\u00EDvel$"
+    "pattern": "^Quando\\ usadas,\\ as\\ habilidades\\ refor\u00E7adas\\ consomem\\ at\u00E9\\ ([-0-9,.]\u002B)\\ cad\u00E1veres\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\nse\\ poss\u00EDvel$"
   },
   {
     "text": "Quando usado no Sintetizador, o novo item ter\u00E1 um modificador de arauto adicional",
@@ -122207,6 +122469,15 @@
       "enchant.stat_3138466258"
     ],
     "pattern": "^Quantidade\\ de\\ T\u00E1buas\\ encontradas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Quantidade de Vest\u00EDgios de Ver\u00EDsio na \u00E1rea aumentada em #%",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_2991413918"
+    ],
+    "pattern": "^Quantidade\\ de\\ Vest\u00EDgios\\ de\\ Ver\u00EDsio\\ na\\ \u00E1rea\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Quantidade de artefatos largados por monstros aumentada em #%",
@@ -122940,6 +123211,18 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Quantidade\\ de\\ itens\\ largados\\ por\\ monstros\\ adoradores\\ de\\ altares\\ em\\ seus\\ mapas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Quantidade de itens largados por monstros aumentada em #% por modificador r\u00FAnico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Quantidade\\ de\\ itens\\ largados\\ por\\ monstros\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ modificador\\ r\u00FAnico$"
+  },
+  {
+    "text": "Quantidade de itens largados por monstros da expedi\u00E7\u00E3o aumentada em #% por modificador r\u00FAnico",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Quantidade\\ de\\ itens\\ largados\\ por\\ monstros\\ da\\ expedi\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ modificador\\ r\u00FAnico$"
   },
   {
     "text": "Quantidade de itens largados por monstros delirantes aumentada em #%",
@@ -126824,7 +127107,8 @@
     "text": "Recupera\u00E7\u00E3o de vida aumentada em #% enquanto seu companheiro estiver em sua presen\u00E7a",
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1779262102"
+      "rune.stat_1779262102",
+      "rune.stat_2122116143"
     ],
     "pattern": "^Recupera\u00E7\u00E3o\\ de\\ vida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ seu\\ companheiro\\ estiver\\ em\\ sua\\ presen\u00E7a$"
   },
@@ -130355,18 +130639,6 @@
     "pattern": "^Runas\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ \u00E1rea\\ de\\ efeito\\ por\\ melhoria$"
   },
   {
-    "text": "Runic Monsters have #% increased chance to drop Logbooks per Runic Modifier",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Runic\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ chance\\ to\\ drop\\ Logbooks\\ per\\ Runic\\ Modifier$"
-  },
-  {
-    "text": "Runic Monsters spawn with an additional #% of Life missing",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Runic\\ Monsters\\ spawn\\ with\\ an\\ additional\\ ([-0-9,.]\u002B)%\\ of\\ Life\\ missing$"
-  },
-  {
     "text": "Ruptura G\u00E9lida concede cargas de poder em vez de cargas de frenesi quando inimigos morrem na \u00E1rea de efeito\nO tempo de recarga de Ruptura G\u00E9lida pode ser ignorado com cargas de poder em vez de cargas de frenesi",
     "lines": 2,
     "tradeIds": [],
@@ -130446,6 +130718,14 @@
     "pattern": "^Sacrifica\\ at\u00E9\\ 10\\ Prismas\\ do\\ Lapid\u00E1rio\\ para\\ receber\\ o\\ dobro\\ ao\\ concluir\\ a\\ Prova\u00E7\u00E3o$"
   },
   {
+    "text": "Sacrifica at\u00E9 2 Orbes Divinos para receber o dobro ao concluir a Prova\u00E7\u00E3o",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3076483222|61382"
+    ],
+    "pattern": "^Sacrifica\\ at\u00E9\\ 2\\ Orbes\\ Divinos\\ para\\ receber\\ o\\ dobro\\ ao\\ concluir\\ a\\ Prova\u00E7\u00E3o$"
+  },
+  {
     "text": "Sacrifica at\u00E9 20 Bugigangas do Vidreiro para receber o dobro ao concluir a Prova\u00E7\u00E3o",
     "lines": 1,
     "tradeIds": [
@@ -130500,14 +130780,6 @@
       "explicit.stat_3076483222|4897"
     ],
     "pattern": "^Sacrifica\\ at\u00E9\\ 20\\ Sucatas\\ do\\ Armeiro\\ para\\ receber\\ o\\ dobro\\ ao\\ concluir\\ a\\ Prova\u00E7\u00E3o$"
-  },
-  {
-    "text": "Sacrifica at\u00E9 3 Orbes Divinos para receber o dobro ao concluir a Prova\u00E7\u00E3o",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3076483222|61382"
-    ],
-    "pattern": "^Sacrifica\\ at\u00E9\\ 3\\ Orbes\\ Divinos\\ para\\ receber\\ o\\ dobro\\ ao\\ concluir\\ a\\ Prova\u00E7\u00E3o$"
   },
   {
     "text": "Sacrifica at\u00E9 3 Orbes Exaltados Perfeitos para receber o dobro ao concluir a Prova\u00E7\u00E3o",
@@ -131178,6 +131450,12 @@
     "pattern": "^Seleciona\\ b\u00F4nus\\ de\\ monstro\\ da\\ Fenda$"
   },
   {
+    "text": "Seleciona chance adicional de Vest\u00EDgio de Ver\u00EDsio ou Expedi\u00E7\u00E3o",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Seleciona\\ chance\\ adicional\\ de\\ Vest\u00EDgio\\ de\\ Ver\u00EDsio\\ ou\\ Expedi\u00E7\u00E3o$"
+  },
+  {
     "text": "Seleciona entre Esp\u00EDritos Azmeri mais r\u00E1pidos ou est\u00E1veis",
     "lines": 1,
     "tradeIds": [],
@@ -131194,6 +131472,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Seleciona\\ renascimentos\\ adicionais\\ ou\\ recompensas\\ adicionais$"
+  },
+  {
+    "text": "Seleciona um b\u00F4nus adicional para modificadores r\u00FAnicos",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Seleciona\\ um\\ b\u00F4nus\\ adicional\\ para\\ modificadores\\ r\u00FAnicos$"
   },
   {
     "text": "Seleciona um b\u00F4nus ao corromper monstros de ess\u00EAncia",
@@ -131256,28 +131540,16 @@
     "pattern": "^Seleciona\\ um\\ b\u00F4nus\\ para\\ monstros\\ raros$"
   },
   {
+    "text": "Selecione a fac\u00E7\u00E3o do Abismo que voc\u00EA encontrar fora das Fissuras Abissais",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Selecione\\ a\\ fac\u00E7\u00E3o\\ do\\ Abismo\\ que\\ voc\u00EA\\ encontrar\\ fora\\ das\\ Fissuras\\ Abissais$"
+  },
+  {
     "text": "Selecione o b\u00F4nus de adiamento do Favor do Ritual",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Selecione\\ o\\ b\u00F4nus\\ de\\ adiamento\\ do\\ Favor\\ do\\ Ritual$"
-  },
-  {
-    "text": "Selecione uma fac\u00E7\u00E3o do Abismo para sempre encontrar.",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Selecione\\ uma\\ fac\u00E7\u00E3o\\ do\\ Abismo\\ para\\ sempre\\ encontrar\\.$"
-  },
-  {
-    "text": "Select additional Verisium Remnant or Expedition chance",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Select\\ additional\\ Verisium\\ Remnant\\ or\\ Expedition\\ chance$"
-  },
-  {
-    "text": "Select an additional bonus for Runic Modifiers",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Select\\ an\\ additional\\ bonus\\ for\\ Runic\\ Modifiers$"
   },
   {
     "text": "Selos m\u00E1ximos@#",
@@ -132491,27 +132763,27 @@
     "pattern": "^Seus\\ golpes\\ cr\u00EDticos\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ causar\\ dano\\ dobrado$"
   },
   {
-    "text": "Seus inc\u00EAndios se alastram para outros inimigos em at\u00E9 1,5 metro por # segundo",
+    "text": "Seus inc\u00EAndios se alastram para outros inimigos a at\u00E9 1,5 metro por # segundo",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3314057862"
     ],
-    "pattern": "^Seus\\ inc\u00EAndios\\ se\\ alastram\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ 1,5\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
+    "pattern": "^Seus\\ inc\u00EAndios\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ 1,5\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
   },
   {
-    "text": "Seus inc\u00EAndios se alastram para outros inimigos em at\u00E9 # metro por # segundo",
+    "text": "Seus inc\u00EAndios se alastram para outros inimigos a at\u00E9 # metro por # segundo",
     "value": 10,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3314057862"
     ],
-    "pattern": "^Seus\\ inc\u00EAndios\\ se\\ alastram\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
+    "pattern": "^Seus\\ inc\u00EAndios\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
   },
   {
-    "text": "Seus inc\u00EAndios se alastram para outros inimigos em at\u00E9 # metros por # segundo",
+    "text": "Seus inc\u00EAndios se alastram para outros inimigos a at\u00E9 # metros por # segundo",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Seus\\ inc\u00EAndios\\ se\\ alastram\\ para\\ outros\\ inimigos\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
+    "pattern": "^Seus\\ inc\u00EAndios\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
   },
   {
     "text": "Seus inc\u00EAndios s\u00E3o refletidos em voc\u00EA",
@@ -135164,16 +135436,16 @@
     "pattern": "^Suas\\ eletrifica\u00E7\u00F5es\\ s\u00E3o\\ refletidas\\ em\\ voc\u00EA$"
   },
   {
-    "text": "Suas habilidades afetam lacaios de habilidades refor\u00E7adas em at\u00E9\n# metro, se poss\u00EDvel",
+    "text": "Suas habilidades afetam lacaios de habilidades refor\u00E7adas a at\u00E9\n# metro, se poss\u00EDvel",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Suas\\ habilidades\\ afetam\\ lacaios\\ de\\ habilidades\\ refor\u00E7adas\\ em\\ at\u00E9\\n([-0-9,.]\u002B)\\ metro,\\ se\\ poss\u00EDvel$"
+    "pattern": "^Suas\\ habilidades\\ afetam\\ lacaios\\ de\\ habilidades\\ refor\u00E7adas\\ a\\ at\u00E9\\n([-0-9,.]\u002B)\\ metro,\\ se\\ poss\u00EDvel$"
   },
   {
-    "text": "Suas habilidades afetam lacaios de habilidades refor\u00E7adas em at\u00E9\n# metros, se poss\u00EDvel",
+    "text": "Suas habilidades afetam lacaios de habilidades refor\u00E7adas a at\u00E9\n# metros, se poss\u00EDvel",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^Suas\\ habilidades\\ afetam\\ lacaios\\ de\\ habilidades\\ refor\u00E7adas\\ em\\ at\u00E9\\n([-0-9,.]\u002B)\\ metros,\\ se\\ poss\u00EDvel$"
+    "pattern": "^Suas\\ habilidades\\ afetam\\ lacaios\\ de\\ habilidades\\ refor\u00E7adas\\ a\\ at\u00E9\\n([-0-9,.]\u002B)\\ metros,\\ se\\ poss\u00EDvel$"
   },
   {
     "text": "Suas habilidades de deslocamento s\u00E3o desabilitadas",
@@ -135398,6 +135670,32 @@
     "lines": 2,
     "tradeIds": [],
     "pattern": "^Superf\u00EDcies\\ no\\ ch\u00E3o\\ de\\ habilidades\\ refor\u00E7adas\\ aplicam\\ Ch\u00E3o\\ Supressor\\nCh\u00E3o\\ Supressor\\ inflige\\ -([-0-9,.]\u002B)%\\ de\\ velocidade\\ de\\ recarga$"
+  },
+  {
+    "text": "Supported Skills deal #% less Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 2 seconds",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 2\\ seconds$"
+  },
+  {
+    "text": "Supported Skills deal #% less Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 8 seconds",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 8\\ seconds$"
+  },
+  {
+    "text": "Supported Skills deal #% more Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 2 seconds",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 2\\ seconds$"
+  },
+  {
+    "text": "Supported Skills deal #% more Projectile Damage if you have Damaged an Enemy with a Melee Hit in the last 8 seconds",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Supported\\ Skills\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Projectile\\ Damage\\ if\\ you\\ have\\ Damaged\\ an\\ Enemy\\ with\\ a\\ Melee\\ Hit\\ in\\ the\\ last\\ 8\\ seconds$"
   },
   {
     "text": "S\u00F3 pode maximizar inimigos Raros",
@@ -137087,12 +137385,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Tesouros\\ de\\ Profundezas\\ Abissais\\ em\\ seus\\ mapas\\ largam\\ moedas\\ b\u00E1sicas\\ adicionais$"
-  },
-  {
-    "text": "The Tomb of the Fallen Knight can be found in Expeditions",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^The\\ Tomb\\ of\\ the\\ Fallen\\ Knight\\ can\\ be\\ found\\ in\\ Expeditions$"
   },
   {
     "text": "Tipo de recompensa do Del\u00EDrio: #",
@@ -142960,6 +143252,12 @@
     "pattern": "^Velocidade\\ de\\ habilidades\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ um\\ inimigo\\ com\\ uma\\ Fraqueza\\ Aberta\\ estiver\\ em\\ sua\\ presen\u00E7a$"
   },
   {
+    "text": "Velocidade de habilidades aumentada em #% por item corrompido equipado",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Velocidade\\ de\\ habilidades\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ item\\ corrompido\\ equipado$"
+  },
+  {
     "text": "Velocidade de habilidades aumentada em #% se a afinidade total passar de 250",
     "lines": 1,
     "tradeIds": [],
@@ -143007,6 +143305,13 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Velocidade\\ de\\ habilidades\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ um\\ inimigo\\ com\\ uma\\ Fraqueza\\ Aberta\\ estiver\\ em\\ sua\\ presen\u00E7a$"
+  },
+  {
+    "text": "Velocidade de habilidades reduzida em #% por item corrompido equipado",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Velocidade\\ de\\ habilidades\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ por\\ item\\ corrompido\\ equipado$"
   },
   {
     "text": "Velocidade de habilidades reduzida em #% se a afinidade total passar de 250",
@@ -145959,12 +146264,6 @@
     "pattern": "^Venenos\\ de\\ habilidades\\ refor\u00E7adas\\ t\u00EAm\\ a\\ dura\u00E7\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "Verisium Remnants have #% increased Monster Rarity per Remnant Completed in Area",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Verisium\\ Remnants\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Monster\\ Rarity\\ per\\ Remnant\\ Completed\\ in\\ Area$"
-  },
-  {
     "text": "Vest\u00EDgios criados por habilidades refor\u00E7adas desaparecem ap\u00F3s # segundo",
     "lines": 1,
     "tradeIds": [],
@@ -146063,6 +146362,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vest\u00EDgios\\ de\\ Ver\u00EDsio\\ na\\ \u00E1rea\\ ter\u00E3o\\ ao\\ menos\\ ([-0-9,.]\u002B)\\ espa\u00E7os\\ de\\ runa$"
+  },
+  {
+    "text": "Vest\u00EDgios de Ver\u00EDsio t\u00EAm a raridade de monstro aumentada em #% por vest\u00EDgio conclu\u00EDdo na \u00E1rea",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Vest\u00EDgios\\ de\\ Ver\u00EDsio\\ t\u00EAm\\ a\\ raridade\\ de\\ monstro\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ vest\u00EDgio\\ conclu\u00EDdo\\ na\\ \u00E1rea$"
   },
   {
     "text": "Vest\u00EDgios de Ver\u00EDsio t\u00EAm ao menos # espa\u00E7os de runa",
@@ -146198,10 +146503,10 @@
     "pattern": "^Vest\u00EDgios\\ podem\\ ser\\ coletados\\ de\\ uma\\ dist\u00E2ncia\\ ([-0-9,.]\u002B)%\\ maior\\ com\\ 100\\ ou\\ mais\\ Tributos$"
   },
   {
-    "text": "Vest\u00EDgios s\u00E3o criados em at\u00E9 # metro de raio do inimigo morto",
+    "text": "Vest\u00EDgios s\u00E3o criados a at\u00E9 # metro de raio do inimigo morto",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Vest\u00EDgios\\ s\u00E3o\\ criados\\ em\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ de\\ raio\\ do\\ inimigo\\ morto$"
+    "pattern": "^Vest\u00EDgios\\ s\u00E3o\\ criados\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metro\\ de\\ raio\\ do\\ inimigo\\ morto$"
   },
   {
     "text": "Vest\u00EDgios t\u00EAm 1 modificador de sufixo adicional",
@@ -153319,6 +153624,14 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ mana\\ m\u00E1ximo\\ por\\ 2\\ de\\ escudo\\ de\\ energia\\ de\\ item\\ no\\ elmo\\ equipado$"
   },
   {
+    "text": "\u002B# ao mana m\u00E1ximo por 3 de armadura de item no elmo equipado",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_995044379"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ mana\\ m\u00E1ximo\\ por\\ 3\\ de\\ armadura\\ de\\ item\\ no\\ elmo\\ equipado$"
+  },
+  {
     "text": "\u002B# ao mana por 4 de For\u00E7a",
     "lines": 1,
     "tradeIds": [],
@@ -153898,6 +154211,36 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ corpo\\ a\\ corpo$"
   },
   {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de amea\u00E7a",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_124131830",
+      "desecrated.stat_124131830",
+      "desecrated.stat_1992191903",
+      "explicit.stat_124131830",
+      "explicit.stat_1992191903",
+      "fractured.stat_124131830",
+      "fractured.stat_1992191903",
+      "rune.stat_124131830"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ amea\u00E7a$"
+  },
+  {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de arauto",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_1992191903",
+      "explicit.stat_1078455967",
+      "explicit.stat_1992191903",
+      "explicit.stat_67169579",
+      "fractured.stat_1992191903",
+      "implicit.stat_1078455967"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ arauto$"
+  },
+  {
     "text": "\u002B# ao n\u00EDvel de todas as habilidades de ataque",
     "lines": 1,
     "tradeIds": [
@@ -153916,6 +154259,15 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ caos$"
   },
   {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de clamor",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_67169579"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ clamor$"
+  },
+  {
     "text": "\u002B# ao n\u00EDvel de todas as habilidades de fogo",
     "lines": 1,
     "tradeIds": [
@@ -153931,6 +154283,45 @@
       "implicit.stat_1078455967"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ frio$"
+  },
+  {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de golpe",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_599749213"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ golpe$"
+  },
+  {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de granada",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_124131830",
+      "crafted.stat_2162097452",
+      "crafted.stat_3035140377",
+      "desecrated.stat_124131830",
+      "desecrated.stat_1992191903",
+      "desecrated.stat_2162097452",
+      "enchant.stat_2162097452",
+      "explicit.stat_1078455967",
+      "explicit.stat_124131830",
+      "explicit.stat_1992191903",
+      "explicit.stat_2162097452",
+      "explicit.stat_3035140377",
+      "explicit.stat_448592698|26",
+      "explicit.stat_448592698|39",
+      "explicit.stat_599749213",
+      "explicit.stat_67169579",
+      "fractured.stat_124131830",
+      "fractured.stat_1992191903",
+      "fractured.stat_2162097452",
+      "fractured.stat_3035140377",
+      "implicit.stat_1078455967",
+      "rune.stat_124131830"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ granada$"
   },
   {
     "text": "\u002B# ao n\u00EDvel de todas as habilidades de lacaio",
@@ -154031,6 +154422,49 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ marca$"
   },
   {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de nova",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1078455967",
+      "explicit.stat_599749213",
+      "explicit.stat_67169579",
+      "implicit.stat_1078455967"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ nova$"
+  },
+  {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de pancada",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_1992191903",
+      "explicit.stat_1992191903",
+      "explicit.stat_67169579",
+      "fractured.stat_1992191903"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ pancada$"
+  },
+  {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de planta",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_2162097452",
+      "crafted.stat_3035140377",
+      "desecrated.stat_1992191903",
+      "desecrated.stat_2162097452",
+      "enchant.stat_2162097452",
+      "explicit.stat_1992191903",
+      "explicit.stat_2162097452",
+      "explicit.stat_3035140377",
+      "fractured.stat_1992191903",
+      "fractured.stat_2162097452",
+      "fractured.stat_3035140377"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ planta$"
+  },
+  {
     "text": "\u002B# ao n\u00EDvel de todas as habilidades de proj\u00E9til",
     "lines": 1,
     "tradeIds": [
@@ -154039,6 +154473,37 @@
       "fractured.stat_1202301673"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ proj\u00E9til$"
+  },
+  {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de tempestade",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_3035140377",
+      "desecrated.stat_1992191903",
+      "explicit.stat_1992191903",
+      "explicit.stat_2901213448",
+      "explicit.stat_3035140377",
+      "explicit.stat_448592698|195",
+      "explicit.stat_448592698|94",
+      "explicit.stat_805298720",
+      "fractured.stat_1992191903",
+      "fractured.stat_3035140377",
+      "rune.stat_805298720"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ tempestade$"
+  },
+  {
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de vento",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1078455967",
+      "explicit.stat_599749213",
+      "explicit.stat_67169579",
+      "implicit.stat_1078455967"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidades\\ de\\ vento$"
   },
   {
     "text": "\u002B# ao n\u00EDvel de todas as habilidades elementais",
@@ -154170,18 +154635,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)\\ cargas\\ de\\ frasco\\ recuperadas\\ a\\ cada\\ 3\\ segundos$"
-  },
-  {
-    "text": "#% chance Verisium Remnants count as affected by a Power Rune",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ Verisium\\ Remnants\\ count\\ as\\ affected\\ by\\ a\\ Power\\ Rune$"
-  },
-  {
-    "text": "#% chance for an additional Verisium Remnant Encounter",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ an\\ additional\\ Verisium\\ Remnant\\ Encounter$"
   },
   {
     "text": "\u002B#% da armadura tamb\u00E9m se aplica ao dano de caos",
@@ -155114,7 +155567,7 @@
     "text": "#% de chance de adicionar um monstro \u00FAnico de sinalizador vaal ao mapa",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3591307827"
+      "explicit.stat_3937291366"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ adicionar\\ um\\ monstro\\ \u00FAnico\\ de\\ sinalizador\\ vaal\\ ao\\ mapa$"
   },
@@ -156358,6 +156811,12 @@
       "rune.stat_3617372509"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ bloqueio\\ m\u00E1xima,\\ se\\ voc\u00EA\\ bloqueou\\ com\\ um\\ escudo\\ erguido\\ recentemente$"
+  },
+  {
+    "text": "#% de chance de cada sinalizador vaal adicionar um monstro vaal \u00FAnico \u00E0 \u00E1rea",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ cada\\ sinalizador\\ vaal\\ adicionar\\ um\\ monstro\\ vaal\\ \u00FAnico\\ \u00E0\\ \u00E1rea$"
   },
   {
     "text": "#% de chance de cada uma das suas chaves serem atualizadas ao completar um andar",
@@ -160532,6 +160991,12 @@
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ Relat\u00F3rios\\ de\\ Patrulha\\ surgirem\\ como\\ Relat\u00F3rios\\ de\\ Patrulha\\ Vaal\\ em\\ seus\\ mapas$"
   },
   {
+    "text": "#% de chance de os Vest\u00EDgios de Ver\u00EDsio serem considerados afetados por uma Runa do Poder",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ Vest\u00EDgios\\ de\\ Ver\u00EDsio\\ serem\\ considerados\\ afetados\\ por\\ uma\\ Runa\\ do\\ Poder$"
+  },
+  {
     "text": "#% de chance de os acertos de ataques aplicarem 10 incis\u00F5es",
     "matchedFuzzily": true,
     "lines": 1,
@@ -160797,12 +161262,6 @@
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ monstros\\ \u00FAnicos\\ de\\ sinalizador\\ vaal\\ largarem\\ uma\\ Moeda\\ do\\ Templo\\ aleat\u00F3ria\\ adicional$"
   },
   {
-    "text": "#% de chance de os monstros \u00FAnicos de sinalizador vaal serem adicionados \u00E0 \u00E1rea para cada sinalizador vaal na \u00E1rea",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ monstros\\ \u00FAnicos\\ de\\ sinalizador\\ vaal\\ serem\\ adicionados\\ \u00E0\\ \u00E1rea\\ para\\ cada\\ sinalizador\\ vaal\\ na\\ \u00E1rea$"
-  },
-  {
     "text": "#% de chance de os monstros \u00FAnicos de sinalizador vaal terem um modificador de ess\u00EAncia",
     "lines": 1,
     "tradeIds": [],
@@ -160824,10 +161283,10 @@
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ patu\u00E1s\\ usados\\ por\\ voc\u00EA\\ n\u00E3o\\ consumirem\\ cargas$"
   },
   {
-    "text": "#% de chance de os proj\u00E9teis perfurarem inimigos em at\u00E9 3 m de voc\u00EA",
+    "text": "#% de chance de os proj\u00E9teis perfurarem inimigos a at\u00E9 3 m de voc\u00EA",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ proj\u00E9teis\\ perfurarem\\ inimigos\\ em\\ at\u00E9\\ 3\\ m\\ de\\ voc\u00EA$"
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ proj\u00E9teis\\ perfurarem\\ inimigos\\ a\\ at\u00E9\\ 3\\ m\\ de\\ voc\u00EA$"
   },
   {
     "text": "#% de chance de os sangramentos serem agravados quando infligidos contra inimigos em ch\u00E3o de estacas",
@@ -161359,6 +161818,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ um\\ Simulacrum\\ adicional\\ ser\\ transformado\\ quando\\ a\\ n\u00E9voa\\ de\\ Del\u00EDrio\\ atinge\\ 100%\\ de\\ del\u00EDrio$"
+  },
+  {
+    "text": "#% de chance de um encontro de Vest\u00EDgio de Ver\u00EDsio adicional",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ um\\ encontro\\ de\\ Vest\u00EDgio\\ de\\ Ver\u00EDsio\\ adicional$"
   },
   {
     "text": "#% de chance de um item \u00FAnico de Atziri",
@@ -163538,6 +164003,23 @@
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ de\\ ataques\\ ignora\\ o\\ escudo\\ de\\ energia,\\ se\\ o\\ escudo\\ de\\ energia\\ estiver\\ abaixo\\ da\\ metade$"
   },
   {
+    "text": "#% do dano sofrido de inimigos com Fraqueza Exposta \u00E9 recuperado como vida",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2285766967"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ de\\ inimigos\\ com\\ Fraqueza\\ Exposta\\ \u00E9\\ recuperado\\ como\\ vida$"
+  },
+  {
+    "text": "#% do dano sofrido de inimigos com Fraqueza Exposta \u00E9 recuperado como vida e escudo de energia",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2285766967"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ de\\ inimigos\\ com\\ Fraqueza\\ Exposta\\ \u00E9\\ recuperado\\ como\\ vida\\ e\\ escudo\\ de\\ energia$"
+  },
+  {
     "text": "#% do dano sofrido durante a utiliza\u00E7\u00E3o de habilidades refor\u00E7adas \u00E9 recuperado como mana por um quarto de segundo do tempo de conjura\u00E7\u00E3o da habilidade refor\u00E7ada",
     "lines": 1,
     "tradeIds": [],
@@ -163897,40 +164379,12 @@
     "pattern": "^habilidades\\ refor\u00E7adas\\ por\\ L\u00E2mina\\ Noturna\\ t\u00EAm\\ o\\ efeito\\ de\\ elusividade\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "#% increased Experience from Expedition Monsters per Runic Modifier",
+    "text": "#% increased Expedition Explosive Area of Effect in Map",
     "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Experience\\ from\\ Expedition\\ Monsters\\ per\\ Runic\\ Modifier$"
-  },
-  {
-    "text": "#% increased Experience from Monsters per Runic Modifier",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Experience\\ from\\ Monsters\\ per\\ Runic\\ Modifier$"
-  },
-  {
-    "text": "#% increased Quantity of Expedition Logbooks dropped by Runic Monsters",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Quantity\\ of\\ Expedition\\ Logbooks\\ dropped\\ by\\ Runic\\ Monsters$"
-  },
-  {
-    "text": "#% increased Quantity of Items dropped by Expedition Monsters per Runic Modifier",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Quantity\\ of\\ Items\\ dropped\\ by\\ Expedition\\ Monsters\\ per\\ Runic\\ Modifier$"
-  },
-  {
-    "text": "#% increased Quantity of Items dropped by Monsters per Runic Modifier",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Quantity\\ of\\ Items\\ dropped\\ by\\ Monsters\\ per\\ Runic\\ Modifier$"
-  },
-  {
-    "text": "#% increased chance of Expedition Encounters",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ chance\\ of\\ Expedition\\ Encounters$"
+    "tradeIds": [
+      "explicit.stat_3039133122"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Expedition\\ Explosive\\ Area\\ of\\ Effect\\ in\\ Map$"
   },
   {
     "text": "informa\u00E7\u00F5es obtidas dos alvos do Sindicato Imortal aumentadas em #%",
@@ -164182,7 +164636,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3273962791"
+      "explicit.stat_3273962791",
+      "implicit.stat_2264295449"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metros\\ para\\ o\\ alcance\\ do\\ golpe\\ corpo\\ a\\ corpo\\ com\\ machados$"
   },
@@ -164316,23 +164771,6 @@
     "pattern": "^([-0-9,.]\u002B)\\ monstros\\ s\u00E3o\\ aprisionados\\ por\\ ess\u00EAncias$"
   },
   {
-    "text": "#% of damage taken from enemies with an Open Weakness Recouped as Life",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2285766967"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ of\\ damage\\ taken\\ from\\ enemies\\ with\\ an\\ Open\\ Weakness\\ Recouped\\ as\\ Life$"
-  },
-  {
-    "text": "#% of damage taken from enemies with an Open Weakness Recouped as Life and Energy Shield",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2285766967"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ of\\ damage\\ taken\\ from\\ enemies\\ with\\ an\\ Open\\ Weakness\\ Recouped\\ as\\ Life\\ and\\ Energy\\ Shield$"
-  },
-  {
     "text": "\u002B# para Carga",
     "lines": 1,
     "tradeIds": [],
@@ -164379,20 +164817,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)\\ proj\u00E9teis\\ adicionais\\ de\\ Armadilha\\ de\\ Raios$"
-  },
-  {
-    "text": "#% reduced Quantity of Expedition Logbooks dropped by Runic Monsters",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Quantity\\ of\\ Expedition\\ Logbooks\\ dropped\\ by\\ Runic\\ Monsters$"
-  },
-  {
-    "text": "#% reduced chance of Expedition Encounters",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ chance\\ of\\ Expedition\\ Encounters$"
   },
   {
     "text": "# rostos de chefes destru\u00EDdos",
@@ -165494,6 +165918,18 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ Uhtred,\\ Traidor\\ Ambicioso$"
+  },
+  {
+    "text": "\u00C1rea cont\u00E9m \u002B# Vest\u00EDgio de Ver\u00EDsio",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u00C1rea\\ cont\u00E9m\\ \\\u002B([-0-9,.]\u002B)\\ Vest\u00EDgio\\ de\\ Ver\u00EDsio$"
+  },
+  {
+    "text": "\u00C1rea cont\u00E9m \u002B# Vest\u00EDgios de Ver\u00EDsio",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u00C1rea\\ cont\u00E9m\\ \\\u002B([-0-9,.]\u002B)\\ Vest\u00EDgios\\ de\\ Ver\u00EDsio$"
   },
   {
     "text": "\u00C1rea cont\u00E9m Vorana, a \u00DAltima a Cair",
@@ -169313,6 +169749,12 @@
     "pattern": "^\u00C1reas\\ de\\ montanha\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ conter\\ caixas-forte$"
   },
   {
+    "text": "\u00C1reas de oceano e ilha tamb\u00E9m s\u00E3o consideradas de outro bioma",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u00C1reas\\ de\\ oceano\\ e\\ ilha\\ tamb\u00E9m\\ s\u00E3o\\ consideradas\\ de\\ outro\\ bioma$"
+  },
+  {
     "text": "\u00C1reas de p\u00E2ntano t\u00EAm uma chance aumentada em #% de conter c\u00EDrculos de invoca\u00E7\u00E3o",
     "lines": 1,
     "tradeIds": [],
@@ -171176,6 +171618,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ resist\u00EAncia\\ a\\ dano\\ de\\ caos\\ por\\ envenenamento\\ em\\ voc\u00EA$"
+  },
+  {
+    "text": "\u002B#% \u00E0 resist\u00EAncia a dano de caos por item corrompido equipado",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ resist\u00EAncia\\ a\\ dano\\ de\\ caos\\ por\\ item\\ corrompido\\ equipado$"
   },
   {
     "text": "\u002B#% \u00E0 resist\u00EAncia a dano de fogo",

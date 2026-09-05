@@ -224,13 +224,6 @@
     "title": "\u5176\u5B83",
     "filters": [
       {
-        "id": "intangibility",
-        "text": "Intangibility",
-        "option": {
-          "options": []
-        }
-      },
-      {
         "id": "stored_experience",
         "text": "\u5132\u5B58\u7D93\u9A57",
         "option": {
@@ -484,6 +477,13 @@
       {
         "id": "scourge_tier",
         "text": "\u707D\u9B58\u968E\u7D1A",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "intangibility",
+        "text": "\u7121\u5F62\u6027",
         "option": {
           "options": []
         }
