@@ -165,12 +165,20 @@
     background: url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-rare-left.png") top left repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-rare-right.png") top right repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-rare-middle.png") top center repeat;
     background-size: contain;
   }
+  .item-header-double-runeforged.poe2 {
+    background: url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-runic-rare-left.png") top left repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-runic-rare-right.png") top right repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-runic-rare-middle.png") top center repeat;
+    background-size: contain;
+  }
   .item-header-double-unique {
     background: url("/_content/Sidekick.Common.Ui/images/items/header-double-unique-left.png") top left repeat-y, url("/_content/Sidekick.Common.Ui/images/items/header-double-unique-right.png") top right repeat-y, url("/_content/Sidekick.Common.Ui/images/items/header-double-unique-middle.png") top center repeat;
     background-size: contain;
   }
   .item-header-double-unique.poe2 {
     background: url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-unique-left.png") top left repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-unique-right.png") top right repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-unique-middle.png") top center repeat;
+    background-size: contain;
+  }
+  .item-header-double-runemastered.poe2 {
+    background: url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-runic-unique-left.png") top left repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-runic-unique-right.png") top right repeat-y, url("/_content/Sidekick.Common.Ui/images/items/poe2/header-double-runic-unique-middle.png") top center repeat;
     background-size: contain;
   }
   .item-header-magic {

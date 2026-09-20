@@ -10,6 +10,8 @@ public enum Rarity
     Currency = 5,
     DivinationCard = 6,
     Foil = 10,
+    Runeforged = 13,
+    Runemastered = 14,
 
     Unknown = 99,
     Relic = 100,

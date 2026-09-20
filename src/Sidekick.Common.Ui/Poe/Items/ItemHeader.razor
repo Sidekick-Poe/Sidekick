@@ -79,6 +79,8 @@
                 case Rarity.Gem: return false;
                 case Rarity.Rare: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
                 case Rarity.Unique: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
+                case Rarity.Runeforged: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
+                case Rarity.Runemastered: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
                 case Rarity.Relic: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
 
                 case Rarity.Foil:
@@ -142,6 +144,12 @@
                     if (!Double) return "item-header-unique";
                     return "item-header-double-unique";
 
+                case Rarity.Runeforged:
+                    return "item-header-double-runeforged";
+
+                case Rarity.Runemastered:
+                    return "item-header-double-runemastered";
+
                 default: return "item-header-normal";
             }
         }
@@ -170,7 +178,9 @@
         Rarity.Currency => "text-[#AA9E82]",
         Rarity.Magic => "text-[#8888FF]",
         Rarity.Rare => "text-[#FFFF77]",
+        Rarity.Runeforged => "text-[#FFFF77]",
         Rarity.Unique => "text-[#AF6025]",
+        Rarity.Runemastered => "text-[#AF6025]",
         Rarity.Gem => "text-[#1BA29B]",
         Rarity.Foil => "text-[#7F7F7F]",
         _ => "text-[#C8C8C8]",
