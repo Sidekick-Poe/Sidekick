@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
 using Sidekick.Game.ItemDefinitions;
@@ -21,16 +20,10 @@ public class ItemTradeService
 (
     ILogger<ItemTradeService> logger,
     ICurrentGameLanguage currentGameLanguage,
-    ISettingsService settingsService,
     IHttpClientFactory httpClientFactory,
     LeagueProvider leagueProvider
 ) : IItemTradeService
 {
-    /// <summary>
-    /// Serves the purpose of having the game localized, but wanting to trade in english when there is no trade site in the game language.
-    /// </summary>
-    public const string UseInvariantTradeResults = nameof(UseInvariantTradeResults);
-
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -47,17 +40,14 @@ public class ItemTradeService
         {
             logger.LogInformation("[Trade API] Querying Trade API.");
 
-            var useEnglishTradeWebsite = await settingsService.GetBool(UseInvariantTradeResults);
-            var language = useEnglishTradeWebsite ? currentGameLanguage.InvariantLanguage : currentGameLanguage.Language;
-            var tradeItem = useEnglishTradeWebsite ? item.InvariantTradeItem ?? item.TradeItem : item.TradeItem;
-            var query = GetQueryFromDefinition(tradeItem);
+            var query = GetQueryFromDefinition(item.TradeItem);
 
             foreach (var filter in filters ?? [])
             {
                 filter.PrepareTradeRequest(query, item);
             }
 
-            var uri = new Uri($"{language.GetTradeApiBaseUrl(item.Game)}search/{leagueProvider.Current.Id}");
+            var uri = new Uri($"{currentGameLanguage.Language.GetTradeApiBaseUrl(item.Game)}search/{leagueProvider.Current.Id}");
 
             var request = new QueryRequest()
             {
@@ -124,11 +114,8 @@ public class ItemTradeService
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
-            var useEnglishTradeWebsite = await settingsService.GetBool(UseInvariantTradeResults);
-            var language = useEnglishTradeWebsite ? currentGameLanguage.InvariantLanguage : currentGameLanguage.Language;
-
             using var httpClient = httpClientFactory.CreateClient(TradeApiClient.ClientName);
-            var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
+            var response = await httpClient.GetAsync(currentGameLanguage.Language.GetTradeApiBaseUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {
                 return [];
@@ -152,10 +139,7 @@ public class ItemTradeService
 
     public async Task<Uri> GetTradeUri(GameType game, string queryId)
     {
-        var useEnglishTradeWebsite = await settingsService.GetBool(UseInvariantTradeResults);
-        var language = useEnglishTradeWebsite ? currentGameLanguage.InvariantLanguage : currentGameLanguage.Language;
-
-        var baseUri = new Uri(language.GetTradeBaseUrl(game) + "search/");
+        var baseUri = new Uri(currentGameLanguage.Language.GetTradeBaseUrl(game) + "search/");
         return new Uri(baseUri, $"{leagueProvider.Current.Id}/{queryId}");
     }
 }

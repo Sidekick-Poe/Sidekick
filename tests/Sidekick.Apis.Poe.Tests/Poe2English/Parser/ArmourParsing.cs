@@ -377,4 +377,72 @@ Item Level: 82
         Assert.Equal(80, actual.Properties.RequiresLevel);
         Assert.Equal(108, actual.Properties.RequiresIntelligence);
     }
+
+    [Fact]
+    public void TheKnightErrantRunemastered()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
+Rarity: Unique
+The Knight-errant
+Runemastered Mail Sabatons
+--------
+Armour: 71 (augmented)
+Evasion Rating: 62 (augmented)
+Runic Ward: 54
+--------
+Requires: Level 38, 29 Str, 29 (unmet) Dex
+--------
+Item Level: 39
+--------
+{ Implicit Modifier — Speed }
+5% increased Movement Speed
+--------
+{ Unique Modifier — Armour, Evasion }
+41(30-50)% increased Armour and Evasion
+{ Unique Modifier }
++38(30-50) to Stun Threshold
+{ Unique Modifier — Speed }
+10% increased Movement Speed
+{ Unique Modifier — Armour, Evasion }
+Iron Reflexes — Unscalable Value
+{ Unique Modifier }
++50(30-50) to Ailment Threshold
+--------
+Some search forever for their path.
+");
+
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("The Knight-errant", actual.TradeItem?.Name);
+        Assert.Equal("Runemastered Mail Sabatons", actual.TradeItem?.Type);
+
+        Assert.Equal(39, actual.Properties.ItemLevel);
+    }
+
+    [Fact]
+    public void TheKnightErrant()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
+Rarity: Unique
+The Knight-errant
+Mail Sabatons
+--------
+Armour: 71 (augmented)
+Evasion Rating: 62 (augmented)
+Runic Ward: 54
+--------
+Requires: Level 38, 29 Str, 29 (unmet) Dex
+--------
+Item Level: 39
+--------
+Some search forever for their path.
+");
+
+        Assert.Equal(ItemClass.Boots, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("The Knight-errant", actual.TradeItem?.Name);
+        Assert.Equal("Mail Sabatons", actual.TradeItem?.Type);
+
+        Assert.Equal(39, actual.Properties.ItemLevel);
+    }
 }
