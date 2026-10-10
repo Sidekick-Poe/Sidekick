@@ -25197,7 +25197,7 @@
   },
   {
     "id": "explicit.stat_1455353008",
-    "text": "Monsters cannot steal or remove your Power, Frenzy or Endurance charges on Hit"
+    "text": "Los monstruos no pueden robar ni eliminar tus cargas de poder, frenes\u00ED o aguante al golpear"
   },
   {
     "id": "explicit.stat_1455766505",
@@ -38917,7 +38917,7 @@
   },
   {
     "id": "explicit.stat_3408048164",
-    "text": "Agrega # de da\u00F1o de hielo m\u00EDnimo a los hechizos por cada carga de poder"
+    "text": "Agrega de # a # de da\u00F1o de hielo a los hechizos por cada carga de poder"
   },
   {
     "id": "explicit.stat_3408085256",
@@ -43657,7 +43657,7 @@
   },
   {
     "id": "explicit.stat_4089743927|1|150",
-    "text": "Las habilidades engarzadas en tu casco est\u00E1n asistidas por Le\u00F1a de nivel #"
+    "text": "Las habilidades engarzadas en tu casco est\u00E1n asistidas por Carne fresca de nivel #"
   },
   {
     "id": "explicit.stat_4089743927|1|151",
@@ -44313,7 +44313,7 @@
   },
   {
     "id": "explicit.stat_4089743927|2|150",
-    "text": "Las habilidades engarzadas en tus guantes est\u00E1n asistidas por Le\u00F1a de nivel #"
+    "text": "Las habilidades engarzadas en tus guantes est\u00E1n asistidas por Carne fresca de nivel #"
   },
   {
     "id": "explicit.stat_4089743927|2|151",
@@ -44969,7 +44969,7 @@
   },
   {
     "id": "explicit.stat_4089743927|3|150",
-    "text": "Las habilidades engarzadas en tus botas est\u00E1n asistidas por Le\u00F1a de nivel #"
+    "text": "Las habilidades engarzadas en tus botas est\u00E1n asistidas por Carne fresca de nivel #"
   },
   {
     "id": "explicit.stat_4089743927|3|151",
@@ -45625,7 +45625,7 @@
   },
   {
     "id": "explicit.stat_4089743927|4|150",
-    "text": "Las habilidades otorgadas por tu \u00E1rbol de pasivas est\u00E1n asistidas por Le\u00F1a de nivel #"
+    "text": "Las habilidades otorgadas por tu \u00E1rbol de pasivas est\u00E1n asistidas por Carne fresca de nivel #"
   },
   {
     "id": "explicit.stat_4089743927|4|151",
@@ -53916,6 +53916,10 @@
     "text": "Las quemaduras que aplicas infligen su da\u00F1o un #% m\u00E1s r\u00E1pido"
   },
   {
+    "id": "fractured.stat_2445634879",
+    "text": "Las minas tienen un #% de probabilidad de ser detonadas una vez adicional"
+  },
+  {
     "id": "fractured.stat_2448920197",
     "text": "Efecto aumentado un #%"
   },
@@ -55693,7 +55697,7 @@
   },
   {
     "id": "fractured.stat_3408048164",
-    "text": "Agrega # de da\u00F1o de hielo m\u00EDnimo a los hechizos por cada carga de poder"
+    "text": "Agrega de # a # de da\u00F1o de hielo a los hechizos por cada carga de poder"
   },
   {
     "id": "fractured.stat_3410752193",
@@ -60612,6 +60616,10 @@
     "text": "Espacio para anillo izquierdo: El #% del da\u00F1o de fuego de los golpes se recibe como da\u00F1o de rayo"
   },
   {
+    "id": "implicit.stat_1774362541",
+    "text": "Mientras un jefe final del Atlas est\u00E9 en tu presencia, Ganas 1 de furia con cada golpe con ataques"
+  },
+  {
     "id": "implicit.stat_1774370437",
     "text": "Activa Invocar artefacto provocador de nivel # cuando usas un frasco"
   },
@@ -63798,6 +63806,10 @@
   {
     "id": "implicit.stat_3485067555",
     "text": "Duraci\u00F3n del escarchamiento en los enemigos aumentada un #%"
+  },
+  {
+    "id": "implicit.stat_3485231932",
+    "text": "Agrega de # a # de da\u00F1o de hielo mientras tengas Poder del ave"
   },
   {
     "id": "implicit.stat_348693938",
@@ -73241,82 +73253,82 @@
   },
   {
     "id": "veiled.mod_11536",
-    "text": "de la Encriptaci\u00F3n de Janus"
+    "text": "of Janus\u0027 Veil"
   },
   {
     "id": "veiled.mod_14269",
-    "text": "Encriptado de Vagan"
+    "text": "Vagan\u0027s Veiled"
   },
   {
     "id": "veiled.mod_3258",
-    "text": "Encriptado de Leo"
+    "text": "Leo\u0027s Veiled"
   },
   {
     "id": "veiled.mod_38872",
-    "text": "Encriptado de Gravicius"
+    "text": "Gravicius\u0027 Veiled"
   },
   {
     "id": "veiled.mod_39023",
-    "text": "Encriptado de Haku"
+    "text": "Haku\u0027s Veiled"
   },
   {
     "id": "veiled.mod_3975",
-    "text": "de la Encriptaci\u00F3n de Hillock"
+    "text": "of Hillock\u0027s Veil"
   },
   {
     "id": "veiled.mod_44855",
-    "text": "Encriptado de Korell"
+    "text": "Korell\u0027s Veiled"
   },
   {
     "id": "veiled.mod_47933",
-    "text": "Encriptado de Vorici"
+    "text": "Vorici\u0027s Veiled"
   },
   {
     "id": "veiled.mod_48007",
-    "text": "de la Encriptaci\u00F3n de Aisling"
+    "text": "of Aisling\u0027s Veil"
   },
   {
     "id": "veiled.mod_48408",
-    "text": "de la Encriptaci\u00F3n de Riker"
+    "text": "of Riker\u0027s Veil"
   },
   {
     "id": "veiled.mod_55787",
-    "text": "Encriptado de Eso que Escap\u00F3"
+    "text": "It That Fled\u0027s Veiled"
   },
   {
     "id": "veiled.mod_5769",
-    "text": "Encriptado de Elreon"
+    "text": "Elreon\u0027s Veiled"
   },
   {
     "id": "veiled.mod_6131",
-    "text": "Encriptado de Rin"
+    "text": "Rin\u0027s Veiled"
   },
   {
     "id": "veiled.mod_62955",
-    "text": "de la Encriptaci\u00F3n de Jorgin"
+    "text": "of Jorgin\u0027s Veil"
   },
   {
     "id": "veiled.mod_63099",
-    "text": "de Encriptaci\u00F3n"
+    "text": "of the Veil"
   },
   {
     "id": "veiled.mod_63772",
-    "text": "Encriptado de Catarina"
+    "text": "Catarina\u0027s Veiled"
   },
   {
     "id": "veiled.mod_65000",
-    "text": "Encriptado"
+    "text": "Veiled"
   },
   {
     "id": "veiled.mod_65163",
-    "text": "de la Encriptaci\u00F3n de Cameria"
+    "text": "of Cameria\u0027s Veil"
   },
   {
     "id": "veiled.mod_6779",
-    "text": "Encriptado de Guff"
+    "text": "Guff\u0027s Veiled"
   },
   {
     "id": "veiled.mod_8541",
-    "text": "Encriptado de Tora"
+    "text": "Tora\u0027s Veiled"
   }
 ]

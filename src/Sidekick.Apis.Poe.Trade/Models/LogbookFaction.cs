@@ -1,5 +1,5 @@
 using Sidekick.Game.Parser.Stats;
-namespace Sidekick.Apis.Poe.Trade.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Models;
 
 public class LogbookFaction
 {

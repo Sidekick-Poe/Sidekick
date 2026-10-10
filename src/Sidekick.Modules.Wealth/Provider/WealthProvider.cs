@@ -10,7 +10,7 @@ using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
 using Sidekick.Game.Parser;
-using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Models.ApiItem;
+using ApiItem=Sidekick.Apis.Poe.Trade.Models.ApiItem;
 
 namespace Sidekick.Modules.Wealth.Provider;
 

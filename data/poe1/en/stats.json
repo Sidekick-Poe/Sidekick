@@ -16336,17 +16336,17 @@
     "pattern": "^Absolution$"
   },
   {
-    "text": "Abyss Chasms in Area spawn #% increased Monsters per fed soul",
+    "text": "Abyss Chasms in Area spawn #% increased Monsters per fed Soul",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Abyss\\ Chasms\\ in\\ Area\\ spawn\\ ([-0-9,.]\u002B)%\\ increased\\ Monsters\\ per\\ fed\\ soul$"
+    "pattern": "^Abyss\\ Chasms\\ in\\ Area\\ spawn\\ ([-0-9,.]\u002B)%\\ increased\\ Monsters\\ per\\ fed\\ Soul$"
   },
   {
-    "text": "Abyss Chasms in Area spawn #% reduced Monsters per fed soul",
+    "text": "Abyss Chasms in Area spawn #% reduced Monsters per fed Soul",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^Abyss\\ Chasms\\ in\\ Area\\ spawn\\ ([-0-9,.]\u002B)%\\ reduced\\ Monsters\\ per\\ fed\\ soul$"
+    "pattern": "^Abyss\\ Chasms\\ in\\ Area\\ spawn\\ ([-0-9,.]\u002B)%\\ reduced\\ Monsters\\ per\\ fed\\ Soul$"
   },
   {
     "text": "Abyss Cracks in your Maps have #% chance to spawn 100% increased Monsters",
@@ -23076,7 +23076,8 @@
     "text": "Adds # to # Cold Damage while you have Avian\u0027s Might",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3485231932"
+      "explicit.stat_3485231932",
+      "implicit.stat_3485231932"
     ],
     "pattern": "^Adds\\ ([-0-9,.]\u002B)\\ to\\ ([-0-9,.]\u002B)\\ Cold\\ Damage\\ while\\ you\\ have\\ Avian\u0027s\\ Might$"
   },
@@ -23202,8 +23203,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3434279150",
-      "explicit.stat_761505024"
+      "explicit.stat_3434279150"
     ],
     "pattern": "^Adds\\ ([-0-9,.]\u002B)\\ to\\ ([-0-9,.]\u002B)\\ Fire\\ Damage\\ per\\ Buff\\ on\\ you$"
   },
@@ -30934,16 +30934,23 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2460506030|12597",
+      "explicit.stat_2460506030|17315",
+      "explicit.stat_2460506030|17988",
+      "explicit.stat_2460506030|23169",
+      "explicit.stat_2460506030|30919",
+      "explicit.stat_2460506030|31700",
+      "explicit.stat_2460506030|3184",
+      "explicit.stat_2460506030|34567",
+      "explicit.stat_2460506030|34774",
       "explicit.stat_2460506030|38180",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
-      "explicit.stat_2460506030|4194",
       "explicit.stat_2460506030|43122",
       "explicit.stat_2460506030|43195",
       "explicit.stat_2460506030|44482",
       "explicit.stat_2460506030|45313",
       "explicit.stat_2460506030|55867",
-      "explicit.stat_2460506030|57052",
       "explicit.stat_2460506030|58827",
       "explicit.stat_2460506030|61627",
       "explicit.stat_2460506030|6778",
@@ -30957,16 +30964,23 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1190333629|12597",
+      "explicit.stat_1190333629|17315",
+      "explicit.stat_1190333629|17988",
+      "explicit.stat_1190333629|23169",
+      "explicit.stat_1190333629|30919",
+      "explicit.stat_1190333629|31700",
+      "explicit.stat_1190333629|3184",
+      "explicit.stat_1190333629|34567",
+      "explicit.stat_1190333629|34774",
       "explicit.stat_1190333629|38180",
       "explicit.stat_1190333629|39598",
       "explicit.stat_1190333629|39790",
-      "explicit.stat_1190333629|4194",
       "explicit.stat_1190333629|43122",
       "explicit.stat_1190333629|43195",
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|45313",
       "explicit.stat_1190333629|55867",
-      "explicit.stat_1190333629|57052",
       "explicit.stat_1190333629|58827",
       "explicit.stat_1190333629|61627",
       "explicit.stat_1190333629|6778",
@@ -33804,7 +33818,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2299389484",
-      "explicit.stat_3294034100",
       "explicit.stat_3955574239"
     ],
     "pattern": "^Area\\ contains\\ an\\ additional\\ Perandus\\ Chest$"
@@ -39712,12 +39725,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1435748744",
       "crafted.stat_289885185",
       "explicit.stat_1214762172",
+      "explicit.stat_1435748744",
       "explicit.stat_289885185",
       "explicit.stat_547412107",
+      "fractured.stat_1435748744",
       "fractured.stat_289885185",
       "fractured.stat_547412107",
+      "implicit.stat_1435748744",
       "implicit.stat_2546859843",
       "implicit.stat_547412107"
     ],
@@ -39739,12 +39756,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1435748744",
       "crafted.stat_289885185",
       "explicit.stat_1214762172",
+      "explicit.stat_1435748744",
       "explicit.stat_289885185",
       "explicit.stat_547412107",
+      "fractured.stat_1435748744",
       "fractured.stat_289885185",
       "fractured.stat_547412107",
+      "implicit.stat_1435748744",
       "implicit.stat_2546859843",
       "implicit.stat_547412107"
     ],
@@ -43303,6 +43324,15 @@
     "pattern": "^Chaos\\ Inoculation$"
   },
   {
+    "text": "Chaos Orbs drop as Divine Orbs instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2106095595"
+    ],
+    "pattern": "^Chaos\\ Orbs\\ drop\\ as\\ Divine\\ Orbs\\ instead$"
+  },
+  {
     "text": "Chaos Orbs found in your Maps have #% chance to drop as a full stack",
     "lines": 1,
     "tradeIds": [
@@ -46550,18 +46580,6 @@
     "pattern": "^DNT\\ Inflict\\ Fire\\ Exposure\\ on\\ Nearby\\ Enemies\\ when\\ you\\ reach\\ Maximum\\ Rage$"
   },
   {
-    "text": "DNT Killing a Burning Enemy creates a Ghostflame Soul",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^DNT\\ Killing\\ a\\ Burning\\ Enemy\\ creates\\ a\\ Ghostflame\\ Soul$"
-  },
-  {
-    "text": "DNT Killing a Burning Enemy has a #% chance to create a Ghostflame Soul",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^DNT\\ Killing\\ a\\ Burning\\ Enemy\\ has\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ create\\ a\\ Ghostflame\\ Soul$"
-  },
-  {
     "text": "DNT Link Skills Cost Life instead of Mana",
     "lines": 1,
     "tradeIds": [],
@@ -46616,25 +46634,10 @@
     "pattern": "^DNT\\ Sirus\u0027\\ Meteors\\ rain\\ down\\ in\\ Area$"
   },
   {
-    "text": "DNT Socketed Gems are Supported by Level # Crustaceous Grasp",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2854183975"
-    ],
-    "pattern": "^DNT\\ Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Crustaceous\\ Grasp$"
-  },
-  {
     "text": "DNT Socketed Gems are Supported by Level # Rings of Light",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^DNT\\ Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Rings\\ of\\ Light$"
-  },
-  {
-    "text": "DNT Trigger Ghost Furnace when you Ignite an Enemy",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^DNT\\ Trigger\\ Ghost\\ Furnace\\ when\\ you\\ Ignite\\ an\\ Enemy$"
   },
   {
     "text": "DNT Triggers Level # Violent Path when Equipped",
@@ -48056,23 +48059,16 @@
     "tradeIds": [
       "enchant.stat_1803598623",
       "enchant.stat_2549369799",
-      "enchant.stat_2721871046",
       "enchant.stat_2963485753",
-      "enchant.stat_325889252",
       "enchant.stat_900639351",
       "explicit.stat_1803598623",
       "explicit.stat_2549369799",
-      "explicit.stat_2721871046",
       "explicit.stat_2963485753",
-      "explicit.stat_325889252",
       "explicit.stat_900639351",
       "fractured.stat_2549369799",
-      "fractured.stat_325889252",
       "fractured.stat_900639351",
       "implicit.stat_1803598623",
       "implicit.stat_2549369799",
-      "implicit.stat_2721871046",
-      "implicit.stat_325889252",
       "implicit.stat_900639351"
     ],
     "pattern": "^Defiance\\ Banner\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Mana\\ Reservation\\ Efficiency$"
@@ -48094,23 +48090,16 @@
     "tradeIds": [
       "enchant.stat_1803598623",
       "enchant.stat_2549369799",
-      "enchant.stat_2721871046",
       "enchant.stat_2963485753",
-      "enchant.stat_325889252",
       "enchant.stat_900639351",
       "explicit.stat_1803598623",
       "explicit.stat_2549369799",
-      "explicit.stat_2721871046",
       "explicit.stat_2963485753",
-      "explicit.stat_325889252",
       "explicit.stat_900639351",
       "fractured.stat_2549369799",
-      "fractured.stat_325889252",
       "fractured.stat_900639351",
       "implicit.stat_1803598623",
       "implicit.stat_2549369799",
-      "implicit.stat_2721871046",
-      "implicit.stat_325889252",
       "implicit.stat_900639351"
     ],
     "pattern": "^Defiance\\ Banner\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -49575,34 +49564,33 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_168308685",
       "enchant.stat_1803598623",
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
       "enchant.stat_2549369799",
       "enchant.stat_2963485753",
       "enchant.stat_3484910620",
       "enchant.stat_3817220109",
       "enchant.stat_3959101898",
       "enchant.stat_3993865658",
+      "enchant.stat_4216444167",
       "enchant.stat_804667127",
       "enchant.stat_900639351",
       "enchant.stat_939320550",
+      "explicit.stat_168308685",
       "explicit.stat_1803598623",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
       "explicit.stat_2549369799",
       "explicit.stat_2963485753",
       "explicit.stat_3484910620",
       "explicit.stat_3817220109",
       "explicit.stat_3959101898",
       "explicit.stat_3993865658",
+      "explicit.stat_4216444167",
       "explicit.stat_900639351",
-      "fractured.stat_2156140483",
       "fractured.stat_2549369799",
       "fractured.stat_3993865658",
       "fractured.stat_900639351",
+      "implicit.stat_168308685",
       "implicit.stat_1803598623",
-      "implicit.stat_2156140483",
       "implicit.stat_2549369799",
       "implicit.stat_3993865658",
       "implicit.stat_900639351"
@@ -49624,34 +49612,33 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_168308685",
       "enchant.stat_1803598623",
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
       "enchant.stat_2549369799",
       "enchant.stat_2963485753",
       "enchant.stat_3484910620",
       "enchant.stat_3817220109",
       "enchant.stat_3959101898",
       "enchant.stat_3993865658",
+      "enchant.stat_4216444167",
       "enchant.stat_804667127",
       "enchant.stat_900639351",
       "enchant.stat_939320550",
+      "explicit.stat_168308685",
       "explicit.stat_1803598623",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
       "explicit.stat_2549369799",
       "explicit.stat_2963485753",
       "explicit.stat_3484910620",
       "explicit.stat_3817220109",
       "explicit.stat_3959101898",
       "explicit.stat_3993865658",
+      "explicit.stat_4216444167",
       "explicit.stat_900639351",
-      "fractured.stat_2156140483",
       "fractured.stat_2549369799",
       "fractured.stat_3993865658",
       "fractured.stat_900639351",
+      "implicit.stat_168308685",
       "implicit.stat_1803598623",
-      "implicit.stat_2156140483",
       "implicit.stat_2549369799",
       "implicit.stat_3993865658",
       "implicit.stat_900639351"
@@ -58603,6 +58590,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_273476097",
       "explicit.stat_979246511",
       "fractured.stat_979246511",
       "implicit.stat_979246511"
@@ -67374,7 +67362,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2378065031",
-      "explicit.stat_2597985144",
       "explicit.stat_3120620173",
       "explicit.stat_4189061307"
     ],
@@ -67386,13 +67373,10 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1435748744",
-      "crafted.stat_289885185",
       "explicit.stat_1214762172",
       "explicit.stat_1435748744",
-      "explicit.stat_289885185",
       "explicit.stat_547412107",
       "fractured.stat_1435748744",
-      "fractured.stat_289885185",
       "fractured.stat_547412107",
       "implicit.stat_1435748744",
       "implicit.stat_2546859843",
@@ -67407,7 +67391,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2378065031",
-      "explicit.stat_2597985144",
       "explicit.stat_3120620173",
       "explicit.stat_4189061307"
     ],
@@ -67420,13 +67403,10 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1435748744",
-      "crafted.stat_289885185",
       "explicit.stat_1214762172",
       "explicit.stat_1435748744",
-      "explicit.stat_289885185",
       "explicit.stat_547412107",
       "fractured.stat_1435748744",
-      "fractured.stat_289885185",
       "fractured.stat_547412107",
       "implicit.stat_1435748744",
       "implicit.stat_2546859843",
@@ -68709,8 +68689,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_176085824",
-      "explicit.stat_4089969970"
+      "explicit.stat_176085824"
     ],
     "pattern": "^If\\ you\u0027ve\\ Hit\\ an\\ Enemy\\ Recently,\\ you\\ and\\ nearby\\ Allies\\ Regenerate\\ ([-0-9,.]\u002B)%\\ of\\ Life\\ per\\ second$"
   },
@@ -69823,6 +69802,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1290611485",
       "explicit.stat_779592324",
       "explicit.stat_866391849"
     ],
@@ -69929,6 +69909,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1071676747",
+      "explicit.stat_1290611485",
       "explicit.stat_3265666559"
     ],
     "pattern": "^In\\ Heists\\ Orbs\\ of\\ Transmutation\\ drop\\ as\\ Regal\\ Orbs\\ instead$"
@@ -71186,6 +71168,25 @@
     "pattern": "^Intimidate\\ nearby\\ Enemies\\ for\\ ([-0-9,.]\u002B)\\ seconds$"
   },
   {
+    "text": "Intimidate you inflict applies an extra \u002B#% increased Attack Damage taken",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Intimidate\\ you\\ inflict\\ applies\\ an\\ extra\\ \\\u002B([-0-9,.]\u002B)%\\ increased\\ Attack\\ Damage\\ taken$"
+  },
+  {
+    "text": "Intimidate you inflict causes targets to deal #% less Damage",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Intimidate\\ you\\ inflict\\ causes\\ targets\\ to\\ deal\\ ([-0-9,.]\u002B)%\\ less\\ Damage$"
+  },
+  {
+    "text": "Intimidate you inflict causes targets to deal #% more Damage",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Intimidate\\ you\\ inflict\\ causes\\ targets\\ to\\ deal\\ ([-0-9,.]\u002B)%\\ more\\ Damage$"
+  },
+  {
     "text": "Intimidating Cry",
     "lines": 1,
     "tradeIds": [
@@ -72011,8 +72012,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1852765051",
-      "explicit.stat_2736953654"
+      "explicit.stat_1852765051"
     ],
     "pattern": "^Items\\ dropped\\ by\\ Synthesised\\ Monsters\\ are\\ Corrupted$"
   },
@@ -72021,8 +72021,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1852765051",
-      "explicit.stat_2736953654"
+      "explicit.stat_1852765051"
     ],
     "pattern": "^Items\\ dropped\\ by\\ Synthesised\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ be\\ Corrupted$"
   },
@@ -72282,6 +72281,15 @@
     "pattern": "^Izaro\\ will\\ drop\\ an\\ additional\\ Unique\\ Item\\ on\\ Death$"
   },
   {
+    "text": "Jeweller\u0027s Orbs drop as Chromatic Orbs instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1764672620"
+    ],
+    "pattern": "^Jeweller\u0027s\\ Orbs\\ drop\\ as\\ Chromatic\\ Orbs\\ instead$"
+  },
+  {
     "text": "Jeweller\u0027s Orbs found in your Maps have #% chance to drop as a full stack",
     "lines": 1,
     "tradeIds": [
@@ -72473,6 +72481,18 @@
       "crucible.mod_31906"
     ],
     "pattern": "^Killing\\ Blows\\ with\\ Lightning\\ Conduit\\ and\\ Galvanic\\ Field\\ Shatter\\ Enemies\\ as\\ though\\ Frozen$"
+  },
+  {
+    "text": "Killing a Burning Enemy creates an Allflame Soul",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Killing\\ a\\ Burning\\ Enemy\\ creates\\ an\\ Allflame\\ Soul$"
+  },
+  {
+    "text": "Killing a Burning Enemy has a #% chance to create an Allflame Soul",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Killing\\ a\\ Burning\\ Enemy\\ has\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ create\\ an\\ Allflame\\ Soul$"
   },
   {
     "text": "Killing a Rare Monster consumes # Petals if possible to convert dropped Items to be the same type",
@@ -78150,10 +78170,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1898978455",
-      "explicit.stat_2101383955",
-      "fractured.stat_1898978455",
-      "fractured.stat_2101383955",
-      "implicit.stat_2101383955"
+      "fractured.stat_1898978455"
     ],
     "pattern": "^Mine\\ Damage\\ Penetrates\\ ([-0-9,.]\u002B)%\\ Elemental\\ Resistances$"
   },
@@ -78202,7 +78219,8 @@
     "text": "Mines have a #% chance to be Detonated an Additional Time",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2445634879"
+      "explicit.stat_2445634879",
+      "fractured.stat_2445634879"
     ],
     "pattern": "^Mines\\ have\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ be\\ Detonated\\ an\\ Additional\\ Time$"
   },
@@ -85023,15 +85041,6 @@
     "pattern": "^Monsters\\ cannot\\ steal\\ or\\ remove\\ your\\ Power,\\ Frenzy\\ or\\ Endurance\\ charges\\ on\\ Hit$"
   },
   {
-    "text": "Monsters cannot steal your Power, Frenzy or Endurance charges on Hit",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1455353008"
-    ],
-    "pattern": "^Monsters\\ cannot\\ steal\\ your\\ Power,\\ Frenzy\\ or\\ Endurance\\ charges\\ on\\ Hit$"
-  },
-  {
     "text": "Monsters contained in Strongboxes deal #% increased Damage",
     "lines": 1,
     "tradeIds": [],
@@ -85955,6 +85964,12 @@
       "sanctum.stat_3554249693"
     ],
     "pattern": "^Monsters\\ impact\\ ([-0-9,.]\u002B)%\\ increased\\ Resolve$"
+  },
+  {
+    "text": "Monsters in Area have increased Toughness and Reward",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Monsters\\ in\\ Area\\ have\\ increased\\ Toughness\\ and\\ Reward$"
   },
   {
     "text": "Monsters in Nightmare Regenerate #% of Life per second",
@@ -88950,6 +88965,12 @@
     "pattern": "^Orbs\\ of\\ Alteration\\ found\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ drop\\ as\\ a\\ full\\ stack$"
   },
   {
+    "text": "Orbs of Chance drop as Ancient Orbs instead",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Orbs\\ of\\ Chance\\ drop\\ as\\ Ancient\\ Orbs\\ instead$"
+  },
+  {
     "text": "Orbs of Chance found in your Maps have #% chance to drop as a full stack",
     "lines": 1,
     "tradeIds": [
@@ -88974,12 +88995,30 @@
     "pattern": "^Orbs\\ of\\ Regret\\ found\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ drop\\ as\\ a\\ stack\\ of\\ 20\\ Orbs\\ of\\ Regret\\ instead$"
   },
   {
+    "text": "Orbs of Scouring drop as Orbs of Annulment instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2845459668"
+    ],
+    "pattern": "^Orbs\\ of\\ Scouring\\ drop\\ as\\ Orbs\\ of\\ Annulment\\ instead$"
+  },
+  {
     "text": "Orbs of Scouring found in your Maps have #% chance to drop as a full stack",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4252890057"
     ],
     "pattern": "^Orbs\\ of\\ Scouring\\ found\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ drop\\ as\\ a\\ full\\ stack$"
+  },
+  {
+    "text": "Orbs of Transmutation drop as Chaos Orbs instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3265666559"
+    ],
+    "pattern": "^Orbs\\ of\\ Transmutation\\ drop\\ as\\ Chaos\\ Orbs\\ instead$"
   },
   {
     "text": "Orbs of Transmutation found in your Maps have #% chance to drop as a full stack",
@@ -95596,6 +95635,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crucible.mod_48348",
       "crucible.mod_56565"
     ],
     "pattern": "^Raised\\ Zombies\\ and\\ Spectres\\ gain\\ Adrenaline\\ for\\ ([-0-9,.]\u002B)\\ seconds\\ when\\ Raised$"
@@ -101822,6 +101862,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1048062553",
+      "explicit.stat_2507275343",
+      "explicit.stat_3070577277",
+      "explicit.stat_316950976",
+      "explicit.stat_3866432319",
       "explicit.stat_723578929",
       "explicit.stat_9949109"
     ],
@@ -103672,8 +103717,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|134",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|139",
@@ -103687,7 +103730,6 @@
       "explicit.stat_4089743927|1|4",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
-      "explicit.stat_4089743927|1|78",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
@@ -103696,7 +103738,6 @@
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|131",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|139",
@@ -103705,7 +103746,6 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|4",
       "explicit.stat_4089743927|2|49",
@@ -103737,23 +103777,20 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -104340,14 +104377,6 @@
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Boots\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fist\\ of\\ War$"
   },
   {
-    "text": "Skills Socketed in your Boots are Supported by level # Flamewood",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|3|150"
-    ],
-    "pattern": "^Skills\\ Socketed\\ in\\ your\\ Boots\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Flamewood$"
-  },
-  {
     "text": "Skills Socketed in your Boots are Supported by level # Focused Ballista",
     "lines": 1,
     "tradeIds": [
@@ -104383,7 +104412,8 @@
     "text": "Skills Socketed in your Boots are Supported by level # Fresh Meat",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|3|149"
+      "explicit.stat_4089743927|3|149",
+      "explicit.stat_4089743927|3|150"
     ],
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Boots\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fresh\\ Meat$"
   },
@@ -105144,8 +105174,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|134",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|139",
@@ -105159,7 +105187,6 @@
       "explicit.stat_4089743927|1|4",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
-      "explicit.stat_4089743927|1|78",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
@@ -105168,7 +105195,6 @@
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|131",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|139",
@@ -105177,7 +105203,6 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|4",
       "explicit.stat_4089743927|2|49",
@@ -105209,23 +105234,20 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -105812,14 +105834,6 @@
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Gloves\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fist\\ of\\ War$"
   },
   {
-    "text": "Skills Socketed in your Gloves are Supported by level # Flamewood",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|2|150"
-    ],
-    "pattern": "^Skills\\ Socketed\\ in\\ your\\ Gloves\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Flamewood$"
-  },
-  {
     "text": "Skills Socketed in your Gloves are Supported by level # Focused Ballista",
     "lines": 1,
     "tradeIds": [
@@ -105855,7 +105869,8 @@
     "text": "Skills Socketed in your Gloves are Supported by level # Fresh Meat",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|2|149"
+      "explicit.stat_4089743927|2|149",
+      "explicit.stat_4089743927|2|150"
     ],
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Gloves\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fresh\\ Meat$"
   },
@@ -106616,8 +106631,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|134",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|139",
@@ -106631,7 +106644,6 @@
       "explicit.stat_4089743927|1|4",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
-      "explicit.stat_4089743927|1|78",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
@@ -106640,7 +106652,6 @@
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|131",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|139",
@@ -106649,7 +106660,6 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|4",
       "explicit.stat_4089743927|2|49",
@@ -106681,23 +106691,20 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -107284,14 +107291,6 @@
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Helmet\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fist\\ of\\ War$"
   },
   {
-    "text": "Skills Socketed in your Helmet are Supported by level # Flamewood",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|1|150"
-    ],
-    "pattern": "^Skills\\ Socketed\\ in\\ your\\ Helmet\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Flamewood$"
-  },
-  {
     "text": "Skills Socketed in your Helmet are Supported by level # Focused Ballista",
     "lines": 1,
     "tradeIds": [
@@ -107327,7 +107326,8 @@
     "text": "Skills Socketed in your Helmet are Supported by level # Fresh Meat",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|149"
+      "explicit.stat_4089743927|1|149",
+      "explicit.stat_4089743927|1|150"
     ],
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Helmet\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fresh\\ Meat$"
   },
@@ -108358,8 +108358,6 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
-      "explicit.stat_4089743927|1|131",
-      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|134",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|139",
@@ -108373,7 +108371,6 @@
       "explicit.stat_4089743927|1|4",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
-      "explicit.stat_4089743927|1|78",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
@@ -108382,7 +108379,6 @@
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|131",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|139",
@@ -108391,7 +108387,6 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|4",
       "explicit.stat_4089743927|2|49",
@@ -108423,23 +108418,20 @@
       "explicit.stat_4089743927|3|79",
       "explicit.stat_4089743927|3|8",
       "explicit.stat_4089743927|3|91",
+      "explicit.stat_4089743927|4|105",
+      "explicit.stat_4089743927|4|116",
+      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -109026,14 +109018,6 @@
     "pattern": "^Skills\\ granted\\ by\\ your\\ Passive\\ Tree\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fist\\ of\\ War$"
   },
   {
-    "text": "Skills granted by your Passive Tree are Supported by level # Flamewood",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|4|150"
-    ],
-    "pattern": "^Skills\\ granted\\ by\\ your\\ Passive\\ Tree\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Flamewood$"
-  },
-  {
     "text": "Skills granted by your Passive Tree are Supported by level # Focused Ballista",
     "lines": 1,
     "tradeIds": [
@@ -109069,7 +109053,8 @@
     "text": "Skills granted by your Passive Tree are Supported by level # Fresh Meat",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|4|149"
+      "explicit.stat_4089743927|4|149",
+      "explicit.stat_4089743927|4|150"
     ],
     "pattern": "^Skills\\ granted\\ by\\ your\\ Passive\\ Tree\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Fresh\\ Meat$"
   },
@@ -112113,19 +112098,15 @@
       "explicit.indexable_support_105",
       "explicit.indexable_support_107",
       "explicit.indexable_support_12",
-      "explicit.indexable_support_50",
-      "explicit.indexable_support_65",
+      "explicit.indexable_support_150",
       "explicit.stat_1674086814",
+      "explicit.stat_1715139253",
       "explicit.stat_1828254451",
       "explicit.stat_2020568221",
       "explicit.stat_2643665787",
-      "explicit.stat_3826977109",
-      "explicit.stat_407317553",
       "explicit.stat_833438017",
       "explicit.stat_961135393",
       "explicit.stat_991044906",
-      "fractured.stat_3826977109",
-      "fractured.stat_407317553",
       "fractured.stat_961135393",
       "implicit.stat_2643665787"
     ],
@@ -112213,10 +112194,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_113",
-      "explicit.stat_2325632050",
-      "fractured.stat_2325632050",
-      "implicit.stat_2325632050"
+      "explicit.indexable_support_113"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Awakened\\ Cast\\ On\\ Critical\\ Strike$"
   },
@@ -112225,6 +112203,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_108",
       "explicit.stat_1316646496",
       "fractured.stat_1316646496"
     ],
@@ -112575,39 +112554,25 @@
     "tradeIds": [
       "explicit.indexable_support_115",
       "explicit.indexable_support_118",
-      "explicit.indexable_support_119",
       "explicit.indexable_support_120",
       "explicit.indexable_support_140",
       "explicit.indexable_support_142",
       "explicit.indexable_support_16",
-      "explicit.indexable_support_24",
-      "explicit.indexable_support_33",
       "explicit.indexable_support_4",
       "explicit.indexable_support_44",
-      "explicit.indexable_support_60",
       "explicit.indexable_support_80",
       "explicit.stat_1019145105",
-      "explicit.stat_1106668565",
       "explicit.stat_1792524915",
       "explicit.stat_1859244771",
-      "explicit.stat_1866911844",
       "explicit.stat_1876637240",
-      "explicit.stat_254728692",
       "explicit.stat_2805586447",
       "explicit.stat_28821524",
       "explicit.stat_3356013982",
       "explicit.stat_3581578643",
       "explicit.stat_3827538724",
-      "explicit.stat_539747809",
-      "explicit.stat_749770518",
       "explicit.stat_970734352",
-      "fractured.stat_1106668565",
-      "fractured.stat_1866911844",
       "fractured.stat_3581578643",
-      "implicit.stat_1866911844",
-      "implicit.stat_254728692",
-      "implicit.stat_3356013982",
-      "implicit.stat_539747809"
+      "implicit.stat_3356013982"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Bonespire$"
   },
@@ -112645,11 +112610,9 @@
       "explicit.indexable_support_40",
       "explicit.indexable_support_50",
       "explicit.indexable_support_78",
-      "explicit.indexable_support_8",
       "explicit.indexable_support_80",
       "explicit.indexable_support_99",
       "explicit.stat_1002855537",
-      "explicit.stat_1122134690",
       "explicit.stat_1715139253",
       "explicit.stat_2962840349",
       "explicit.stat_3030692053",
@@ -112657,7 +112620,6 @@
       "explicit.stat_479453859",
       "explicit.stat_550444281",
       "explicit.stat_807186595",
-      "fractured.stat_1122134690",
       "fractured.stat_2962840349",
       "fractured.stat_3030692053",
       "fractured.stat_3826977109",
@@ -112933,6 +112895,22 @@
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Corrupting\\ Cry$"
   },
   {
+    "text": "Socketed Gems are Supported by Level # Coursing Current",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.indexable_support_105",
+      "explicit.indexable_support_155",
+      "explicit.indexable_support_160",
+      "explicit.stat_1674086814",
+      "explicit.stat_1828254451",
+      "explicit.stat_3486166615",
+      "explicit.stat_961135393",
+      "fractured.stat_961135393"
+    ],
+    "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Coursing\\ Current$"
+  },
+  {
     "text": "Socketed Gems are Supported by Level # Critical Strike Affliction",
     "lines": 1,
     "tradeIds": [
@@ -112957,19 +112935,21 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_107",
+      "explicit.indexable_support_114",
+      "explicit.indexable_support_136",
       "explicit.indexable_support_14",
       "explicit.indexable_support_150",
       "explicit.indexable_support_172",
-      "explicit.indexable_support_79",
-      "explicit.indexable_support_8",
-      "explicit.stat_107118693",
-      "explicit.stat_1122134690",
+      "explicit.stat_1679136",
       "explicit.stat_1715139253",
+      "explicit.stat_2643665787",
       "explicit.stat_696805682",
-      "fractured.stat_107118693",
-      "fractured.stat_1122134690",
+      "explicit.stat_715256302",
       "fractured.stat_696805682",
-      "implicit.stat_107118693"
+      "fractured.stat_715256302",
+      "implicit.stat_1679136",
+      "implicit.stat_2643665787"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Crystalfall$"
   },
@@ -113079,12 +113059,23 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_134",
+      "explicit.indexable_support_16",
+      "explicit.indexable_support_161",
+      "explicit.indexable_support_50",
       "explicit.indexable_support_79",
       "explicit.indexable_support_91",
       "explicit.stat_107118693",
+      "explicit.stat_1792524915",
+      "explicit.stat_1876637240",
+      "explicit.stat_28821524",
+      "explicit.stat_3111091501",
       "explicit.stat_3207084920",
+      "explicit.stat_3826977109",
       "explicit.stat_3924539382",
+      "explicit.stat_794471597",
       "fractured.stat_107118693",
+      "fractured.stat_3826977109",
       "fractured.stat_3924539382",
       "implicit.stat_107118693"
     ],
@@ -113308,11 +113299,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_142",
+      "explicit.indexable_support_152",
+      "explicit.indexable_support_161",
       "explicit.indexable_support_33",
       "explicit.indexable_support_80",
       "explicit.stat_2433615566",
       "explicit.stat_254728692",
+      "explicit.stat_2820883532",
       "explicit.stat_3207084920",
+      "explicit.stat_794471597",
+      "explicit.stat_970734352",
       "implicit.stat_254728692"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Fissure$"
@@ -113377,10 +113374,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_152",
       "explicit.indexable_support_8",
       "explicit.indexable_support_80",
       "explicit.stat_1122134690",
       "explicit.stat_2062753054",
+      "explicit.stat_2820883532",
       "fractured.stat_1122134690",
       "implicit.stat_2062753054"
     ],
@@ -113409,18 +113408,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_120",
       "explicit.indexable_support_122",
       "explicit.indexable_support_150",
       "explicit.indexable_support_28",
       "explicit.indexable_support_70",
-      "explicit.indexable_support_8",
       "explicit.indexable_support_80",
-      "explicit.stat_1122134690",
       "explicit.stat_1715139253",
       "explicit.stat_1900098804",
       "explicit.stat_3652278215",
       "explicit.stat_369650395",
-      "fractured.stat_1122134690",
+      "explicit.stat_3827538724",
       "implicit.stat_1900098804",
       "implicit.stat_369650395"
     ],
@@ -113441,15 +113439,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_12",
-      "explicit.indexable_support_136",
-      "explicit.indexable_support_156",
-      "explicit.indexable_support_172",
-      "explicit.indexable_support_36",
-      "explicit.stat_1679136",
-      "explicit.stat_2696557965",
-      "explicit.stat_4184135167",
-      "fractured.stat_2696557965",
-      "implicit.stat_1679136"
+      "explicit.indexable_support_172"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Gluttony$"
   },
@@ -113638,19 +113628,27 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_107",
+      "explicit.indexable_support_118",
+      "explicit.indexable_support_130",
+      "explicit.indexable_support_132",
       "explicit.indexable_support_152",
       "explicit.indexable_support_172",
       "explicit.indexable_support_33",
       "explicit.indexable_support_80",
       "explicit.indexable_support_93",
       "explicit.indexable_support_95",
+      "explicit.stat_1609369521",
+      "explicit.stat_2127532091",
       "explicit.stat_2172297405",
       "explicit.stat_2433615566",
       "explicit.stat_254728692",
+      "explicit.stat_2643665787",
       "explicit.stat_2697741965",
       "explicit.stat_2820883532",
       "explicit.stat_4082662318",
-      "implicit.stat_254728692"
+      "implicit.stat_254728692",
+      "implicit.stat_2643665787"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Hiveborn$"
   },
@@ -113810,6 +113808,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_107",
+      "explicit.indexable_support_118",
+      "explicit.indexable_support_12",
       "explicit.indexable_support_139",
       "explicit.indexable_support_16",
       "explicit.indexable_support_24",
@@ -113822,13 +113823,15 @@
       "explicit.stat_1876637240",
       "explicit.stat_2172297405",
       "explicit.stat_2201102274",
+      "explicit.stat_2643665787",
       "explicit.stat_28821524",
       "explicit.stat_749770518",
       "explicit.stat_833438017",
       "explicit.stat_991044906",
       "fractured.stat_1106668565",
       "fractured.stat_1866911844",
-      "implicit.stat_1866911844"
+      "implicit.stat_1866911844",
+      "implicit.stat_2643665787"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Invention$"
   },
@@ -114016,22 +114019,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_107",
-      "explicit.indexable_support_24",
-      "explicit.indexable_support_50",
-      "explicit.indexable_support_62",
-      "explicit.indexable_support_63",
-      "explicit.stat_1337327984",
       "explicit.stat_1674086814",
-      "explicit.stat_1866911844",
       "explicit.stat_2643665787",
-      "explicit.stat_3826977109",
-      "explicit.stat_749770518",
       "explicit.stat_833438017",
-      "explicit.stat_995332031",
-      "fractured.stat_1337327984",
-      "fractured.stat_1866911844",
-      "fractured.stat_3826977109",
-      "implicit.stat_1866911844",
       "implicit.stat_2643665787"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Machinations$"
@@ -114041,9 +114031,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_161",
+      "explicit.indexable_support_28",
       "explicit.indexable_support_50",
+      "explicit.stat_369650395",
       "explicit.stat_3826977109",
-      "fractured.stat_3826977109"
+      "explicit.stat_794471597",
+      "fractured.stat_3826977109",
+      "implicit.stat_369650395"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Magnetism$"
   },
@@ -114252,17 +114247,11 @@
       "explicit.indexable_support_140",
       "explicit.indexable_support_144",
       "explicit.indexable_support_153",
-      "explicit.indexable_support_33",
-      "explicit.indexable_support_8",
       "explicit.indexable_support_93",
       "explicit.stat_1019145105",
-      "explicit.stat_1122134690",
-      "explicit.stat_254728692",
       "explicit.stat_3462081007",
       "explicit.stat_3713917371",
-      "explicit.stat_4082662318",
-      "fractured.stat_1122134690",
-      "implicit.stat_254728692"
+      "explicit.stat_4082662318"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Overheat$"
   },
@@ -114287,8 +114276,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_158",
       "explicit.indexable_support_161",
       "explicit.indexable_support_50",
+      "explicit.stat_2302807931",
       "explicit.stat_3826977109",
       "explicit.stat_794471597",
       "fractured.stat_3826977109"
@@ -114388,16 +114379,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_28",
       "explicit.indexable_support_33",
-      "explicit.indexable_support_8",
       "explicit.indexable_support_80",
       "explicit.indexable_support_93",
-      "explicit.stat_1122134690",
       "explicit.stat_2433615566",
       "explicit.stat_254728692",
+      "explicit.stat_369650395",
       "explicit.stat_4082662318",
-      "fractured.stat_1122134690",
-      "implicit.stat_254728692"
+      "implicit.stat_254728692",
+      "implicit.stat_369650395"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Pyre$"
   },
@@ -114703,20 +114694,12 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_100",
-      "explicit.indexable_support_24",
-      "explicit.indexable_support_3",
       "explicit.indexable_support_82",
-      "explicit.stat_1002855537",
-      "explicit.stat_1866911844",
       "explicit.stat_1979658770",
       "explicit.stat_1991958615",
       "explicit.stat_3265951306",
-      "explicit.stat_749770518",
-      "fractured.stat_1866911844",
       "fractured.stat_1979658770",
-      "fractured.stat_1991958615",
-      "implicit.stat_1002855537",
-      "implicit.stat_1866911844"
+      "fractured.stat_1991958615"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Vaal\\ Temptation$"
   },
@@ -114761,26 +114744,38 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_105",
+      "explicit.indexable_support_117",
+      "explicit.indexable_support_118",
+      "explicit.indexable_support_129",
+      "explicit.indexable_support_132",
+      "explicit.indexable_support_150",
+      "explicit.indexable_support_152",
+      "explicit.indexable_support_156",
       "explicit.indexable_support_161",
       "explicit.indexable_support_166",
-      "explicit.indexable_support_33",
       "explicit.indexable_support_36",
       "explicit.indexable_support_37",
       "explicit.indexable_support_50",
       "explicit.indexable_support_80",
       "explicit.indexable_support_93",
-      "explicit.indexable_support_99",
-      "explicit.stat_254728692",
+      "explicit.stat_1609369521",
+      "explicit.stat_1715139253",
+      "explicit.stat_1828254451",
+      "explicit.stat_2419657101",
       "explicit.stat_2696557965",
+      "explicit.stat_2820883532",
       "explicit.stat_3237923082",
       "explicit.stat_3826977109",
       "explicit.stat_4082662318",
-      "explicit.stat_550444281",
+      "explicit.stat_4184135167",
       "explicit.stat_794471597",
+      "explicit.stat_804508379",
+      "explicit.stat_961135393",
       "fractured.stat_2696557965",
       "fractured.stat_3237923082",
       "fractured.stat_3826977109",
-      "implicit.stat_254728692",
+      "fractured.stat_961135393",
       "implicit.stat_3237923082"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Voidstorm$"
@@ -114809,6 +114804,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_107",
+      "explicit.indexable_support_118",
+      "explicit.indexable_support_120",
       "explicit.indexable_support_140",
       "explicit.indexable_support_161",
       "explicit.indexable_support_171",
@@ -114821,14 +114819,17 @@
       "explicit.stat_1019145105",
       "explicit.stat_1122134690",
       "explicit.stat_2172297405",
+      "explicit.stat_2643665787",
       "explicit.stat_3370631451",
       "explicit.stat_369650395",
       "explicit.stat_3826977109",
+      "explicit.stat_3827538724",
       "explicit.stat_388696990",
       "explicit.stat_4082662318",
       "explicit.stat_794471597",
       "fractured.stat_1122134690",
       "fractured.stat_3826977109",
+      "implicit.stat_2643665787",
       "implicit.stat_369650395"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Ward$"
@@ -122626,9 +122627,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2758454849",
-      "explicit.stat_628716294",
-      "fractured.stat_2758454849",
-      "implicit.stat_628716294"
+      "fractured.stat_2758454849"
     ],
     "pattern": "^Totems\u0027\\ Action\\ Speed\\ cannot\\ be\\ modified\\ to\\ below\\ Base\\ Value$"
   },
@@ -123305,6 +123304,12 @@
       "enchant.stat_1711789839"
     ],
     "pattern": "^Trigger\\ Edict\\ of\\ the\\ Tempest\\ on\\ Hit$"
+  },
+  {
+    "text": "Trigger Ghost Furnace when you Ignite an Enemy",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Trigger\\ Ghost\\ Furnace\\ when\\ you\\ Ignite\\ an\\ Enemy$"
   },
   {
     "text": "Trigger Level 1 Blood Rage when you Kill an Enemy",
@@ -124460,6 +124465,12 @@
       "implicit.stat_3664803307"
     ],
     "pattern": "^Triggers\\ Level\\ ([-0-9,.]\u002B)\\ Summon\\ Arbalists\\ when\\ Equipped$"
+  },
+  {
+    "text": "Triggers Level # Summon Bone Feeders when Allocated",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Triggers\\ Level\\ ([-0-9,.]\u002B)\\ Summon\\ Bone\\ Feeders\\ when\\ Allocated$"
   },
   {
     "text": "Triggers Level # Summon Triggerbots when Allocated",
@@ -127866,8 +127877,6 @@
     "tradeIds": [
       "enchant.stat_1761642973",
       "enchant.stat_1803598623",
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
       "enchant.stat_2549369799",
       "enchant.stat_2963485753",
       "enchant.stat_3444518809",
@@ -127878,21 +127887,17 @@
       "enchant.stat_939320550",
       "explicit.stat_1761642973",
       "explicit.stat_1803598623",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
       "explicit.stat_2549369799",
       "explicit.stat_2963485753",
       "explicit.stat_3444518809",
       "explicit.stat_3484910620",
       "explicit.stat_3993865658",
       "explicit.stat_900639351",
-      "fractured.stat_2156140483",
       "fractured.stat_2549369799",
       "fractured.stat_3444518809",
       "fractured.stat_3993865658",
       "fractured.stat_900639351",
       "implicit.stat_1803598623",
-      "implicit.stat_2156140483",
       "implicit.stat_2549369799",
       "implicit.stat_3444518809",
       "implicit.stat_3993865658",
@@ -127917,8 +127922,6 @@
     "tradeIds": [
       "enchant.stat_1761642973",
       "enchant.stat_1803598623",
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
       "enchant.stat_2549369799",
       "enchant.stat_2963485753",
       "enchant.stat_3444518809",
@@ -127929,21 +127932,17 @@
       "enchant.stat_939320550",
       "explicit.stat_1761642973",
       "explicit.stat_1803598623",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
       "explicit.stat_2549369799",
       "explicit.stat_2963485753",
       "explicit.stat_3444518809",
       "explicit.stat_3484910620",
       "explicit.stat_3993865658",
       "explicit.stat_900639351",
-      "fractured.stat_2156140483",
       "fractured.stat_2549369799",
       "fractured.stat_3444518809",
       "fractured.stat_3993865658",
       "fractured.stat_900639351",
       "implicit.stat_1803598623",
-      "implicit.stat_2156140483",
       "implicit.stat_2549369799",
       "implicit.stat_3444518809",
       "implicit.stat_3993865658",
@@ -129050,6 +129049,14 @@
       "implicit.stat_2689351720"
     ],
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Freezes\\ you\\ inflict\\ spread\\ to\\ other\\ Enemies\\ within\\ ([-0-9,.]\u002B)\\ metre$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Gain 1 Rage on Hit with Attacks",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_1774362541"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Gain\\ 1\\ Rage\\ on\\ Hit\\ with\\ Attacks$"
   },
   {
     "text": "While a Pinnacle Atlas Boss is in your Presence, Gain # Rage on Attack Hit",
@@ -134292,6 +134299,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^While\\ you\\ have\\ at\\ least\\ ([-0-9,.]\u002B)\\ Hypnotic\\ Eye\\ Jewels\\ socketed:$"
+  },
+  {
+    "text": "While you have at least # Murderous Eye Jewels socketed:",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^While\\ you\\ have\\ at\\ least\\ ([-0-9,.]\u002B)\\ Murderous\\ Eye\\ Jewels\\ socketed:$"
   },
   {
     "text": "While you have at least # Searching Eye Jewels socketed:",
@@ -142689,8 +142702,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1226049915",
-      "explicit.stat_3986347319"
+      "explicit.stat_1226049915"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ additional\\ Physical\\ Damage\\ Reduction\\ per\\ Endurance\\ Charge$"
   },
@@ -142939,6 +142951,15 @@
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Blight\\ Chests\\ to\\ contain\\ an\\ additional\\ Reward$"
   },
   {
+    "text": "#% chance for Chaos Orbs to drop as Divine Orbs instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2106095595"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Chaos\\ Orbs\\ to\\ drop\\ as\\ Divine\\ Orbs\\ instead$"
+  },
+  {
     "text": "#% chance for Cold Snap and Creeping Frost to Sap Enemies in Chilling Areas",
     "lines": 1,
     "tradeIds": [],
@@ -143145,6 +143166,15 @@
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Incursion\\ Architects\\ in\\ your\\ Maps\\ to\\ be\\ Possessed\\ by\\ a\\ Tormented\\ Spirit$"
   },
   {
+    "text": "#% chance for Jeweller\u0027s Orbs to drop as Chromatic Orbs instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1764672620"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Jeweller\u0027s\\ Orbs\\ to\\ drop\\ as\\ Chromatic\\ Orbs\\ instead$"
+  },
+  {
     "text": "#% chance for Kills to count twice for Rampage",
     "lines": 1,
     "tradeIds": [
@@ -143207,6 +143237,30 @@
       "explicit.stat_3856820324"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Orbs\\ of\\ Annulment\\ to\\ drop\\ as\\ 3\\ Orbs\\ of\\ Annulment\\ instead\\ in\\ your\\ Maps$"
+  },
+  {
+    "text": "#% chance for Orbs of Chance to drop as Ancient Orbs instead",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Orbs\\ of\\ Chance\\ to\\ drop\\ as\\ Ancient\\ Orbs\\ instead$"
+  },
+  {
+    "text": "#% chance for Orbs of Scouring to drop as Orbs of Annulment instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2845459668"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Orbs\\ of\\ Scouring\\ to\\ drop\\ as\\ Orbs\\ of\\ Annulment\\ instead$"
+  },
+  {
+    "text": "#% chance for Orbs of Transmutation to drop as Chaos Orbs instead",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3265666559"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Orbs\\ of\\ Transmutation\\ to\\ drop\\ as\\ Chaos\\ Orbs\\ instead$"
   },
   {
     "text": "#% chance for Pack to be upgraded to Magic",
@@ -143706,6 +143760,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1290611485",
       "explicit.stat_779592324",
       "explicit.stat_866391849"
     ],
@@ -143812,6 +143867,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1071676747",
+      "explicit.stat_1290611485",
       "explicit.stat_3265666559"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ in\\ Heists\\ for\\ Orbs\\ of\\ Transmutation\\ to\\ drop\\ as\\ Regal\\ Orbs\\ instead$"
@@ -147133,6 +147190,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crucible.mod_19663",
       "crucible.mod_40803",
       "crucible.mod_59800",
       "crucible.mod_8431"
@@ -149531,6 +149589,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1463604143",
+      "explicit.stat_1852069308",
+      "explicit.stat_2581419165",
       "explicit.stat_2610785454",
       "explicit.stat_3145607602",
       "explicit.stat_3835470471",
@@ -149617,6 +149678,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1361025326",
       "explicit.stat_1463604143",
       "explicit.stat_1485150248",
       "explicit.stat_1852069308",
@@ -149667,12 +149729,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1361025326",
+      "explicit.stat_1463604143",
+      "explicit.stat_1852069308",
+      "explicit.stat_2454528473",
       "explicit.stat_2610785454",
       "explicit.stat_2917742181",
       "explicit.stat_3145607602",
       "explicit.stat_4146386957",
       "explicit.stat_73487979",
-      "explicit.stat_854906305",
       "explicit.stat_953018841"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ receive\\ an\\ additional\\ Heist\\ Target\\ when\\ opening\\ a\\ Reward\\ Chest\\ in\\ a\\ Heist$"
@@ -150289,10 +150354,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2241902512",
-      "explicit.stat_3948776386",
-      "fractured.stat_3948776386",
-      "implicit.stat_2241902512",
-      "implicit.stat_3948776386"
+      "implicit.stat_2241902512"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Area\\ Damage\\ per\\ 12\\ Strength$"
   },
@@ -151926,9 +151988,7 @@
     "text": "#% increased Attack and Cast Speed if you\u0027ve been Hit Recently",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_223937937",
-      "explicit.stat_4137521191",
-      "fractured.stat_4137521191"
+      "explicit.stat_223937937"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Attack\\ and\\ Cast\\ Speed\\ if\\ you\u0027ve\\ been\\ Hit\\ Recently$"
   },
@@ -152780,6 +152840,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1604393896",
       "explicit.stat_269590092",
       "explicit.stat_3548561213",
       "implicit.stat_3548561213"
@@ -152799,9 +152860,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1136768410",
-      "explicit.stat_4268321763",
-      "implicit.stat_4268321763"
+      "explicit.stat_1136768410"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Cast\\ Speed\\ when\\ on\\ Full\\ Life$"
   },
@@ -153219,12 +153278,9 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1073942215",
-      "crafted.stat_3485067555",
       "explicit.stat_1073942215",
-      "explicit.stat_3485067555",
       "fractured.stat_1073942215",
-      "implicit.stat_1073942215",
-      "implicit.stat_3485067555"
+      "implicit.stat_1073942215"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Chill\\ and\\ Freeze\\ Duration\\ on\\ Enemies$"
   },
@@ -153983,7 +154039,9 @@
     "text": "#% increased Critical Strike Chance against Cursed Enemies",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3699490848"
+      "explicit.stat_1345659139",
+      "explicit.stat_3699490848",
+      "fractured.stat_1345659139"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ against\\ Cursed\\ Enemies$"
   },
@@ -154057,9 +154115,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1345659139",
       "explicit.stat_1939202111",
       "explicit.stat_276103140",
       "explicit.stat_3699490848",
+      "fractured.stat_1345659139",
       "fractured.stat_1939202111",
       "fractured.stat_276103140"
     ],
@@ -154287,7 +154347,6 @@
     "tradeIds": [
       "explicit.stat_2102212273",
       "explicit.stat_2547511866",
-      "explicit.stat_707887043",
       "implicit.stat_2102212273"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ per\\ Inspiration\\ Charge$"
@@ -154428,7 +154487,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -154450,13 +154511,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1192661666",
-      "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
-      "fractured.stat_2091591880",
-      "fractured.stat_214031493",
-      "implicit.stat_2091591880",
-      "scourge.stat_2091591880"
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ with\\ Daggers$"
   },
@@ -154542,13 +154599,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1192661666",
-      "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
-      "fractured.stat_2091591880",
-      "fractured.stat_214031493",
-      "implicit.stat_2091591880",
-      "scourge.stat_2091591880"
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ with\\ Staves$"
   },
@@ -154557,7 +154610,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -154608,13 +154663,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1192661666",
-      "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
-      "fractured.stat_2091591880",
-      "fractured.stat_214031493",
-      "implicit.stat_2091591880",
-      "scourge.stat_2091591880"
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ with\\ Wands$"
   },
@@ -154857,8 +154908,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1064477264",
-      "explicit.stat_908650225"
+      "explicit.stat_1064477264"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ if\\ you\u0027ve\\ Shattered\\ an\\ Enemy\\ Recently$"
   },
@@ -155912,12 +155962,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1069260037",
       "explicit.stat_1290399200",
       "explicit.stat_3314142259",
       "explicit.stat_379328644",
       "explicit.stat_4087089130",
       "explicit.stat_4188894176",
       "explicit.stat_690707482",
+      "fractured.stat_1069260037",
       "fractured.stat_1290399200",
       "fractured.stat_3314142259",
       "fractured.stat_379328644",
@@ -156081,10 +156133,8 @@
       "explicit.stat_1790172543",
       "explicit.stat_3503466234",
       "explicit.stat_3565956680",
-      "explicit.stat_485151258",
       "explicit.stat_539970476",
-      "fractured.stat_539970476",
-      "implicit.stat_485151258"
+      "fractured.stat_539970476"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ with\\ Hits\\ and\\ Ailments\\ against\\ Burning\\ Enemies$"
   },
@@ -156151,6 +156201,8 @@
     "text": "#% increased Damage with Hits and Ailments against Taunted Enemies",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3503466234",
+      "explicit.stat_3565956680",
       "explicit.stat_485151258",
       "explicit.stat_528422616",
       "explicit.stat_539970476",
@@ -156163,6 +156215,9 @@
     "text": "#% increased Damage with Hits and Ailments against Unique Enemies",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3503466234",
+      "explicit.stat_3565956680",
+      "explicit.stat_3747189159",
       "explicit.stat_485151258",
       "explicit.stat_528422616",
       "explicit.stat_539970476",
@@ -159793,9 +159848,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1174076861",
-      "explicit.stat_1585344030",
-      "fractured.stat_1174076861",
-      "fractured.stat_1585344030"
+      "fractured.stat_1174076861"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Flask\\ Charges\\ gained\\ if\\ you\u0027ve\\ dealt\\ a\\ Critical\\ Strike\\ Recently$"
   },
@@ -160093,8 +160146,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2078274993",
-      "enchant.stat_3449510470"
+      "enchant.stat_2078274993"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Frost\\ Wall\\ Damage$"
   },
@@ -160794,13 +160846,10 @@
       "crafted.stat_986397080",
       "enchant.stat_986397080",
       "explicit.stat_117667746",
-      "explicit.stat_2357996603",
-      "explicit.stat_3651611160",
       "explicit.stat_986397080",
       "fractured.stat_117667746",
       "fractured.stat_986397080",
       "implicit.stat_986397080",
-      "scourge.stat_2357996603",
       "scourge.stat_986397080"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Ignite\\ Duration$"
@@ -162422,8 +162471,11 @@
     "text": "#% increased Maximum total Life, Mana and Energy Shield Recovery per second from Leech",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2013799819",
       "explicit.stat_2946888410",
-      "fractured.stat_2946888410"
+      "fractured.stat_2013799819",
+      "fractured.stat_2946888410",
+      "implicit.stat_2013799819"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Maximum\\ total\\ Life,\\ Mana\\ and\\ Energy\\ Shield\\ Recovery\\ per\\ second\\ from\\ Leech$"
   },
@@ -162487,17 +162539,10 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1002362373",
-      "crafted.stat_3291658075",
       "enchant.stat_1002362373",
-      "enchant.stat_3291658075",
       "explicit.stat_1002362373",
-      "explicit.stat_3291658075",
       "fractured.stat_1002362373",
-      "fractured.stat_3291658075",
-      "implicit.stat_1002362373",
-      "implicit.stat_3291658075",
-      "pseudo.pseudo_increased_cold_damage",
-      "scourge.stat_3291658075"
+      "implicit.stat_1002362373"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Melee\\ Cold\\ Damage$"
   },
@@ -163111,9 +163156,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2546417825",
-      "explicit.stat_279227559",
-      "fractured.stat_279227559"
+      "explicit.stat_2546417825"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ if\\ you\\ have\\ Pierced\\ Recently$"
   },
@@ -163201,9 +163244,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1174076861",
-      "explicit.stat_1585344030",
-      "fractured.stat_1174076861",
-      "fractured.stat_1585344030"
+      "fractured.stat_1174076861"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ if\\ you\u0027ve\\ dealt\\ a\\ Critical\\ Strike\\ Recently$"
   },
@@ -163355,9 +163396,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3265807022",
-      "explicit.stat_542923416",
-      "explicit.stat_581625445"
+      "explicit.stat_3265807022"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ while\\ Fortified$"
   },
@@ -163441,9 +163480,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1612163368",
-      "explicit.stat_3805075944",
       "fractured.stat_1612163368",
-      "fractured.stat_3805075944",
       "implicit.stat_1612163368"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ while\\ holding\\ a\\ Shield$"
@@ -163842,8 +163879,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2008219439",
       "explicit.stat_3814560373",
+      "fractured.stat_2008219439",
       "fractured.stat_3814560373",
+      "implicit.stat_2008219439",
       "implicit.stat_3814560373"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Physical\\ Damage\\ with\\ Axes\\ or\\ Swords$"
@@ -164423,8 +164463,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1342790450",
-      "explicit.stat_3304763863",
-      "explicit.stat_3433676080"
+      "explicit.stat_3304763863"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Quantity\\ of\\ Items\\ Dropped\\ by\\ Slain\\ Maimed\\ Enemies$"
   },
@@ -164954,6 +164993,7 @@
     "text": "#% increased Rarity of Items Dropped by Slain Enemies",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3188291252",
       "explicit.stat_3433676080"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Rarity\\ of\\ Items\\ Dropped\\ by\\ Slain\\ Enemies$"
@@ -166957,6 +166997,12 @@
       "fractured.stat_3851254963"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Totem\\ Range$"
+  },
+  {
+    "text": "#% increased Toughness of Monsters in Area",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Toughness\\ of\\ Monsters\\ in\\ Area$"
   },
   {
     "text": "#% increased Trap Damage",
@@ -169117,6 +169163,19 @@
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Damage\\ taken\\ while\\ there\\ are\\ at\\ least\\ two\\ Rare\\ or\\ Unique\\ Enemies\\ nearby$"
   },
   {
+    "text": "#% less Damage taken while you have a Totem",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ less\\ Damage\\ taken\\ while\\ you\\ have\\ a\\ Totem$"
+  },
+  {
+    "text": "#% less Damage taken while you have a Totem",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ less\\ Damage\\ taken\\ while\\ you\\ have\\ a\\ Totem$"
+  },
+  {
     "text": "#% less Damage when expending a Power Charge",
     "negate": true,
     "lines": 1,
@@ -170652,9 +170711,7 @@
     "text": "#% more Damage with Hits and Ailments against Burning Enemies",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1790172543",
-      "explicit.stat_3503466234",
-      "explicit.stat_3565956680"
+      "explicit.stat_1790172543"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ more\\ Damage\\ with\\ Hits\\ and\\ Ailments\\ against\\ Burning\\ Enemies$"
   },
@@ -171603,7 +171660,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1939452467",
-      "explicit.stat_4201339891",
       "fractured.stat_1939452467"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Chaos\\ Damage\\ Leeched\\ as\\ Energy\\ Shield$"
@@ -172280,11 +172336,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_11106713",
-      "explicit.stat_1939452467",
-      "explicit.stat_3885409671",
-      "explicit.stat_4201339891",
-      "fractured.stat_1939452467",
-      "fractured.stat_3885409671",
       "implicit.stat_11106713"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Elemental\\ Damage\\ Leeched\\ as\\ Energy\\ Shield$"
@@ -173285,11 +173336,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_11106713",
       "explicit.stat_1939452467",
       "explicit.stat_3885409671",
       "explicit.stat_4201339891",
       "fractured.stat_1939452467",
-      "fractured.stat_3885409671"
+      "fractured.stat_3885409671",
+      "implicit.stat_11106713"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Physical\\ Damage\\ Leeched\\ as\\ Energy\\ Shield$"
   },
@@ -173346,7 +173399,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3423022686",
       "explicit.stat_407390981",
+      "fractured.stat_3423022686",
       "fractured.stat_407390981"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Physical\\ Damage\\ Leeched\\ by\\ Enemy\\ as\\ Mana$"
@@ -174115,10 +174170,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2241902512",
-      "explicit.stat_3948776386",
-      "fractured.stat_3948776386",
-      "implicit.stat_2241902512",
-      "implicit.stat_3948776386"
+      "implicit.stat_2241902512"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Area\\ Damage\\ per\\ 12\\ Strength$"
   },
@@ -176545,6 +176597,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1604393896",
       "explicit.stat_269590092",
       "explicit.stat_3548561213",
       "implicit.stat_3548561213"
@@ -176557,9 +176610,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1136768410",
-      "explicit.stat_4268321763",
-      "implicit.stat_4268321763"
+      "explicit.stat_1136768410"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Cast\\ Speed\\ when\\ on\\ Full\\ Life$"
   },
@@ -176982,12 +177033,9 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1073942215",
-      "crafted.stat_3485067555",
       "explicit.stat_1073942215",
-      "explicit.stat_3485067555",
       "fractured.stat_1073942215",
-      "implicit.stat_1073942215",
-      "implicit.stat_3485067555"
+      "implicit.stat_1073942215"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Chill\\ and\\ Freeze\\ Duration\\ on\\ Enemies$"
   },
@@ -177781,9 +177829,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1345659139",
       "explicit.stat_1939202111",
       "explicit.stat_276103140",
       "explicit.stat_3699490848",
+      "fractured.stat_1345659139",
       "fractured.stat_1939202111",
       "fractured.stat_276103140"
     ],
@@ -177990,7 +178040,6 @@
     "tradeIds": [
       "explicit.stat_2102212273",
       "explicit.stat_2547511866",
-      "explicit.stat_707887043",
       "implicit.stat_2102212273"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Strike\\ Chance\\ per\\ Inspiration\\ Charge$"
@@ -178111,7 +178160,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -178135,13 +178186,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1192661666",
-      "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
-      "fractured.stat_2091591880",
-      "fractured.stat_214031493",
-      "implicit.stat_2091591880",
-      "scourge.stat_2091591880"
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Strike\\ Chance\\ with\\ Daggers$"
   },
@@ -178218,13 +178265,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1192661666",
-      "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
-      "fractured.stat_2091591880",
-      "fractured.stat_214031493",
-      "implicit.stat_2091591880",
-      "scourge.stat_2091591880"
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Strike\\ Chance\\ with\\ Staves$"
   },
@@ -178234,7 +178277,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -178290,13 +178335,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1192661666",
-      "explicit.stat_2091591880",
       "explicit.stat_214031493",
       "fractured.stat_1192661666",
-      "fractured.stat_2091591880",
-      "fractured.stat_214031493",
-      "implicit.stat_2091591880",
-      "scourge.stat_2091591880"
+      "fractured.stat_214031493"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Strike\\ Chance\\ with\\ Wands$"
   },
@@ -178535,8 +178576,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1064477264",
-      "explicit.stat_908650225"
+      "explicit.stat_1064477264"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ if\\ you\u0027ve\\ Shattered\\ an\\ Enemy\\ Recently$"
   },
@@ -179524,12 +179564,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1069260037",
       "explicit.stat_1290399200",
       "explicit.stat_3314142259",
       "explicit.stat_379328644",
       "explicit.stat_4087089130",
       "explicit.stat_4188894176",
       "explicit.stat_690707482",
+      "fractured.stat_1069260037",
       "fractured.stat_1290399200",
       "fractured.stat_3314142259",
       "fractured.stat_379328644",
@@ -183269,9 +183311,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1174076861",
-      "explicit.stat_1585344030",
-      "fractured.stat_1174076861",
-      "fractured.stat_1585344030"
+      "fractured.stat_1174076861"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Flask\\ Charges\\ gained\\ if\\ you\u0027ve\\ dealt\\ a\\ Critical\\ Strike\\ Recently$"
   },
@@ -183584,8 +183624,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2078274993",
-      "enchant.stat_3449510470"
+      "enchant.stat_2078274993"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Frost\\ Wall\\ Damage$"
   },
@@ -184070,13 +184109,10 @@
       "crafted.stat_986397080",
       "enchant.stat_986397080",
       "explicit.stat_117667746",
-      "explicit.stat_2357996603",
-      "explicit.stat_3651611160",
       "explicit.stat_986397080",
       "fractured.stat_117667746",
       "fractured.stat_986397080",
       "implicit.stat_986397080",
-      "scourge.stat_2357996603",
       "scourge.stat_986397080"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Ignite\\ Duration$"
@@ -185739,17 +185775,10 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1002362373",
-      "crafted.stat_3291658075",
       "enchant.stat_1002362373",
-      "enchant.stat_3291658075",
       "explicit.stat_1002362373",
-      "explicit.stat_3291658075",
       "fractured.stat_1002362373",
-      "fractured.stat_3291658075",
-      "implicit.stat_1002362373",
-      "implicit.stat_3291658075",
-      "pseudo.pseudo_increased_cold_damage",
-      "scourge.stat_3291658075"
+      "implicit.stat_1002362373"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Melee\\ Cold\\ Damage$"
   },
@@ -186246,9 +186275,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2546417825",
-      "explicit.stat_279227559",
-      "fractured.stat_279227559"
+      "explicit.stat_2546417825"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ if\\ you\\ have\\ Pierced\\ Recently$"
   },
@@ -186465,9 +186492,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3265807022",
-      "explicit.stat_542923416",
-      "explicit.stat_581625445"
+      "explicit.stat_3265807022"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ while\\ Fortified$"
   },
@@ -186540,9 +186565,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1612163368",
-      "explicit.stat_3805075944",
       "fractured.stat_1612163368",
-      "fractured.stat_3805075944",
       "implicit.stat_1612163368"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ while\\ holding\\ a\\ Shield$"
@@ -186862,8 +186885,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2008219439",
       "explicit.stat_3814560373",
+      "fractured.stat_2008219439",
       "fractured.stat_3814560373",
+      "implicit.stat_2008219439",
       "implicit.stat_3814560373"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Physical\\ Damage\\ with\\ Axes\\ or\\ Swords$"
@@ -187401,8 +187427,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1342790450",
-      "explicit.stat_3304763863",
-      "explicit.stat_3433676080"
+      "explicit.stat_3304763863"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Quantity\\ of\\ Items\\ Dropped\\ by\\ Slain\\ Maimed\\ Enemies$"
   },
@@ -189517,6 +189542,13 @@
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Totem\\ Range$"
   },
   {
+    "text": "#% reduced Toughness of Monsters in Area",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Toughness\\ of\\ Monsters\\ in\\ Area$"
+  },
+  {
     "text": "#% reduced Trap Damage",
     "negate": true,
     "lines": 1,
@@ -191359,10 +191391,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1040189894",
       "explicit.stat_1298238534",
       "explicit.stat_133683091",
       "explicit.stat_311030839",
       "explicit.stat_3303015",
+      "fractured.stat_1040189894",
       "fractured.stat_1298238534",
       "fractured.stat_133683091",
       "fractured.stat_311030839",
@@ -192515,8 +192549,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1569407745",
       "explicit.stat_2307547323",
       "explicit.stat_915908446",
+      "fractured.stat_1569407745",
       "fractured.stat_2307547323",
       "fractured.stat_915908446"
     ],
@@ -194029,9 +194065,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_599749213",
-      "explicit.stat_67169579",
-      "fractured.stat_599749213",
-      "fractured.stat_67169579"
+      "fractured.stat_599749213"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Curse\\ Skill\\ Gems$"
   },
@@ -194588,6 +194622,9 @@
     "text": "\u002B# to Level of all # Gems",
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_skill_190",
+      "explicit.indexable_skill_197",
+      "explicit.indexable_skill_241",
       "explicit.indexable_skill_61"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ ([-0-9,.]\u002B)\\ Gems$"
@@ -195887,16 +195924,20 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_124131830",
       "enchant.stat_4283407333",
       "explicit.stat_1078455967",
+      "explicit.stat_124131830",
       "explicit.stat_4283407333",
       "explicit.stat_599749213",
       "explicit.stat_67169579",
       "explicit.stat_9187492",
       "fractured.stat_1078455967",
+      "fractured.stat_124131830",
       "fractured.stat_4283407333",
       "fractured.stat_599749213",
-      "fractured.stat_67169579"
+      "fractured.stat_67169579",
+      "scourge.stat_124131830"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Totem\\ Skill\\ Gems$"
   },
@@ -196958,10 +196999,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1065580342",
-      "explicit.stat_1164882313",
       "explicit.stat_3422008440",
       "implicit.stat_1065580342",
-      "implicit.stat_1164882313",
       "implicit.stat_3280600715",
       "implicit.stat_3422008440",
       "implicit.stat_768982451"

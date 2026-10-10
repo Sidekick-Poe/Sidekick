@@ -1,4 +1,4 @@
-﻿using Sidekick.Apis.Poe.Trade.Trade.Models;
+﻿using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Game;
 using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Ninja;

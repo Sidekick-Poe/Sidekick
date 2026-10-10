@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Sidekick.Common.Converters;
-namespace Sidekick.Apis.Poe.Trade.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Models;
 
 public class ApiItemModifierMagnitude
 {

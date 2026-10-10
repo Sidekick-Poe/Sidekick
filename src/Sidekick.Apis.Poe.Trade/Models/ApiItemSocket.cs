@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-namespace Sidekick.Apis.Poe.Trade.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Models;
 
 public class ApiItemSocket
 {

@@ -1,5 +1,5 @@
-using Sidekick.Apis.Poe.Trade.Trade.Models;
-namespace Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Results;
 
 public class TradeResult
 {

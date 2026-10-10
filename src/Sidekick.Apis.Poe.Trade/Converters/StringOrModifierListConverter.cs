@@ -1,8 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Sidekick.Apis.Poe.Trade.Trade.Models;
-
-namespace Sidekick.Apis.Poe.Trade.Trade.Converters;
+using Sidekick.Apis.Poe.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Converters;
 
 public class StringOrModifierListConverter : JsonConverter<List<ApiItemModifier>>
 {

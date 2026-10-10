@@ -38913,7 +38913,7 @@
   },
   {
     "id": "explicit.stat_3408048164",
-    "text": "F\u00FCgt Zaubern # minimalen K\u00E4lteschaden pro Energie-Ladung hinzu"
+    "text": "F\u00FCgt Zaubern # bis # K\u00E4lteschaden pro Energie-Ladung hinzu"
   },
   {
     "id": "explicit.stat_3408085256",
@@ -43653,7 +43653,7 @@
   },
   {
     "id": "explicit.stat_4089743927|1|150",
-    "text": "Fertigkeiten, die in Euren Helm eingefasst sind, werden unterst\u00FCtzt durch \u0027Brennholz\u0027 Stufe #"
+    "text": "Fertigkeiten, die in Euren Helm eingefasst sind, werden unterst\u00FCtzt durch \u0027Frischfleisch\u0027 Stufe #"
   },
   {
     "id": "explicit.stat_4089743927|1|151",
@@ -44309,7 +44309,7 @@
   },
   {
     "id": "explicit.stat_4089743927|2|150",
-    "text": "Fertigkeiten, die in Eure Handschuhe eingefasst sind, werden unterst\u00FCtzt durch \u0027Brennholz\u0027 Stufe #"
+    "text": "Fertigkeiten, die in Eure Handschuhe eingefasst sind, werden unterst\u00FCtzt durch \u0027Frischfleisch\u0027 Stufe #"
   },
   {
     "id": "explicit.stat_4089743927|2|151",
@@ -44965,7 +44965,7 @@
   },
   {
     "id": "explicit.stat_4089743927|3|150",
-    "text": "Fertigkeiten, die in Eure Stiefel eingefasst sind, werden unterst\u00FCtzt durch \u0027Brennholz\u0027 Stufe #"
+    "text": "Fertigkeiten, die in Eure Stiefel eingefasst sind, werden unterst\u00FCtzt durch \u0027Frischfleisch\u0027 Stufe #"
   },
   {
     "id": "explicit.stat_4089743927|3|151",
@@ -45621,7 +45621,7 @@
   },
   {
     "id": "explicit.stat_4089743927|4|150",
-    "text": "Fertigkeiten, die von Eurem Fertigkeitenbaum gew\u00E4hrt werden, werden unterst\u00FCtzt durch \u0027Brennholz\u0027 Stufe #"
+    "text": "Fertigkeiten, die von Eurem Fertigkeitenbaum gew\u00E4hrt werden, werden unterst\u00FCtzt durch \u0027Frischfleisch\u0027 Stufe #"
   },
   {
     "id": "explicit.stat_4089743927|4|151",
@@ -53908,6 +53908,10 @@
     "text": "Durch Euch verursachte Entz\u00FCndungen verursachen den Schaden #% schneller"
   },
   {
+    "id": "fractured.stat_2445634879",
+    "text": "Minen haben #% Chance, ein zus\u00E4tzliches Mal zu z\u00FCnden"
+  },
+  {
     "id": "fractured.stat_2448920197",
     "text": "#% erh\u00F6hte Wirkung"
   },
@@ -55685,7 +55689,7 @@
   },
   {
     "id": "fractured.stat_3408048164",
-    "text": "F\u00FCgt Zaubern # minimalen K\u00E4lteschaden pro Energie-Ladung hinzu"
+    "text": "F\u00FCgt Zaubern # bis # K\u00E4lteschaden pro Energie-Ladung hinzu"
   },
   {
     "id": "fractured.stat_3410752193",
@@ -60604,6 +60608,10 @@
     "text": "Linker Ring-Platz: Erleidet #% des Feuerschadens von Treffern als Blitzschaden"
   },
   {
+    "id": "implicit.stat_1774362541",
+    "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: Erhaltet 1 Rausch bei Treffer mit Angriffen"
+  },
+  {
     "id": "implicit.stat_1774370437",
     "text": "L\u00F6st \u0027Verspottende Vorrichtung beschw\u00F6ren\u0027 Stufe # aus, wenn Ihr ein Fl\u00E4schchen benutzt"
   },
@@ -63790,6 +63798,10 @@
   {
     "id": "implicit.stat_3485067555",
     "text": "#% verl\u00E4ngerte Unterk\u00FChlungsdauer bei Gegnern"
+  },
+  {
+    "id": "implicit.stat_3485231932",
+    "text": "F\u00FCgt # bis # K\u00E4lteschaden hinzu, w\u00E4hrend Ihr \u00FCber \u0027Macht des Vogels\u0027 verf\u00FCgt"
   },
   {
     "id": "implicit.stat_348693938",

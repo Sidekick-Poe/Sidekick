@@ -4417,7 +4417,7 @@
   },
   {
     "id": "desecrated.stat_1102738251",
-    "text": "Frascos de vida ganham # cargas por segundo"
+    "text": "Frascos de vida ganham # carga(s) por segundo"
   },
   {
     "id": "desecrated.stat_1103616075",
@@ -4453,7 +4453,7 @@
   },
   {
     "id": "desecrated.stat_1148433552",
-    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de vida ganham # cargas por segundo"
+    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de vida ganham # carga(s) por segundo"
   },
   {
     "id": "desecrated.stat_115425161",
@@ -5265,7 +5265,7 @@
   },
   {
     "id": "desecrated.stat_2200293569",
-    "text": "Frascos de mana ganham # cargas por segundo"
+    "text": "Frascos de mana ganham # carga(s) por segundo"
   },
   {
     "id": "desecrated.stat_2200661314",
@@ -6629,7 +6629,7 @@
   },
   {
     "id": "desecrated.stat_3939216292",
-    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de mana ganham # cargas por segundo"
+    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de mana ganham # carga(s) por segundo"
   },
   {
     "id": "desecrated.stat_394473632",
@@ -7369,7 +7369,7 @@
   },
   {
     "id": "enchant.stat_1102738251",
-    "text": "Frascos de vida ganham # cargas por segundo"
+    "text": "Frascos de vida ganham # carga(s) por segundo"
   },
   {
     "id": "enchant.stat_124859000",
@@ -7489,7 +7489,7 @@
   },
   {
     "id": "enchant.stat_2200293569",
-    "text": "Frascos de mana ganham # cargas por segundo"
+    "text": "Frascos de mana ganham # carga(s) por segundo"
   },
   {
     "id": "enchant.stat_2223678961",
@@ -11613,7 +11613,7 @@
   },
   {
     "id": "explicit.stat_1102738251",
-    "text": "Frascos de vida ganham # cargas por segundo"
+    "text": "Frascos de vida ganham # carga(s) por segundo"
   },
   {
     "id": "explicit.stat_1103616075",
@@ -11630,6 +11630,10 @@
   {
     "id": "explicit.stat_110659965",
     "text": "Revela fraquezas contra inimigos raros e \u00FAnicos"
+  },
+  {
+    "id": "explicit.stat_1109460697",
+    "text": "Expedi\u00E7\u00F5es cont\u00EAm 1 Sentinela de Ver\u00EDsio adicional no mapa"
   },
   {
     "id": "explicit.stat_111835965",
@@ -11709,7 +11713,7 @@
   },
   {
     "id": "explicit.stat_1148433552",
-    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de vida ganham # cargas por segundo"
+    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de vida ganham # carga(s) por segundo"
   },
   {
     "id": "explicit.stat_1150343007",
@@ -11802,6 +11806,10 @@
   {
     "id": "explicit.stat_1181501418",
     "text": "# \u00E0 f\u00FAria m\u00E1xima"
+  },
+  {
+    "id": "explicit.stat_1183698646",
+    "text": "Expedi\u00E7\u00F5es cont\u00EAm 1 chefe encapsulado no gelo adicional no mapa"
   },
   {
     "id": "explicit.stat_1185341308",
@@ -13028,6 +13036,10 @@
     "text": "Inimigos esfriados pelos seus ataques sofrem dano aumentado conforme a intensidade do esfriamento"
   },
   {
+    "id": "explicit.stat_181823691",
+    "text": "Expedi\u00E7\u00F5es cont\u00EAm 1 caixa-forte enterrada no mapa"
+  },
+  {
     "id": "explicit.stat_1818915622",
     "text": "Habilidades passivas pequenas conquistadas tamb\u00E9m concedem velocidade de regenera\u00E7\u00E3o de mana aumentada em #%"
   },
@@ -13637,7 +13649,7 @@
   },
   {
     "id": "explicit.stat_2200293569",
-    "text": "Frascos de mana ganham # cargas por segundo"
+    "text": "Frascos de mana ganham # carga(s) por segundo"
   },
   {
     "id": "explicit.stat_2200661314",
@@ -15116,6 +15128,10 @@
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Habilidades meta ganham energia aumentada em #%"
   },
   {
+    "id": "explicit.stat_2852112245",
+    "text": "Expedi\u00E7\u00F5es cont\u00EAm 1 Rel\u00EDquia Vaal no mapa"
+  },
+  {
     "id": "explicit.stat_2853314994",
     "text": "Regenera # de f\u00FAria por segundo"
   },
@@ -15254,6 +15270,10 @@
   {
     "id": "explicit.stat_2901986750",
     "text": "#% a todas as resist\u00EAncias elementais"
+  },
+  {
+    "id": "explicit.stat_2905096233",
+    "text": "Raridade de monstro de Expedi\u00E7\u00E3o no mapa aumentada em #%"
   },
   {
     "id": "explicit.stat_2905515354",
@@ -19001,7 +19021,7 @@
   },
   {
     "id": "explicit.stat_3039133122",
-    "text": "#% increased Expedition Explosive Area of Effect in Map"
+    "text": "\u00C1rea de efeito do explosivo da Expedi\u00E7\u00E3o no mapa aumentado em #%"
   },
   {
     "id": "explicit.stat_3040571529",
@@ -20124,6 +20144,10 @@
     "text": "#% de chance de ganhar Arconte da Natureza quando suas plantas t\u00EAm crescimento descontrolado"
   },
   {
+    "id": "explicit.stat_3520418269",
+    "text": "Monstros dos Vest\u00EDgios de Ver\u00EDsio largam uma quantidade de ver\u00EDsio aumentada em #%"
+  },
+  {
     "id": "explicit.stat_352044736",
     "text": "Cada f\u00FAria tamb\u00E9m concede resist\u00EAncia-limite a atordoamento aumentada em #%"
   },
@@ -20390,6 +20414,10 @@
   {
     "id": "explicit.stat_3650992555",
     "text": "Penalidades infligidas por voc\u00EA t\u00EAm a intensidade da desacelera\u00E7\u00E3o aumentada em #%"
+  },
+  {
+    "id": "explicit.stat_3653794255",
+    "text": "Expedi\u00E7\u00F5es t\u00EAm \u002B#% de chance superior de conter 1 Vest\u00EDgio de Ver\u00EDsio adicional"
   },
   {
     "id": "explicit.stat_3655769732",
@@ -20920,6 +20948,10 @@
     "text": "Inimigos t\u00EAm a penalidade de precis\u00E3o contra voc\u00EA com base na dist\u00E2ncia"
   },
   {
+    "id": "explicit.stat_3871299443",
+    "text": "Vest\u00EDgios de Ver\u00EDsio t\u00EAm \u002B#% de chance de adicionar 1 modificador r\u00FAnico adicional no mapa"
+  },
+  {
     "id": "explicit.stat_3871530702",
     "text": "Habilidades passivas de atributo conquistadas tamb\u00E9m concedem # \u00E0 For\u00E7a"
   },
@@ -21065,7 +21097,7 @@
   },
   {
     "id": "explicit.stat_3939216292",
-    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de mana ganham # cargas por segundo"
+    "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem Frascos de mana ganham # carga(s) por segundo"
   },
   {
     "id": "explicit.stat_3942946753",
@@ -21126,6 +21158,10 @@
   {
     "id": "explicit.stat_3963171183",
     "text": "Alvos afetados por Devasta\u00E7\u00E3o Abissal infligida por voc\u00EA s\u00E3o cegados"
+  },
+  {
+    "id": "explicit.stat_3963944561",
+    "text": "O primeiro monstro r\u00FAnico desenterrado ser\u00E1 um monstro raro no mapa"
   },
   {
     "id": "explicit.stat_3969608626",
@@ -23324,6 +23360,10 @@
     "text": "Mapa cont\u00E9m 1 esp\u00EDrito azmeri adicional"
   },
   {
+    "id": "explicit.stat_779964546",
+    "text": "Expedi\u00E7\u00F5es t\u00EAm \u002B#% de chance superior de duplicar os monstros r\u00FAnicos no mapa"
+  },
+  {
     "id": "explicit.stat_782941180",
     "text": "#% do dano m\u00E1gico \u00E9 roubado como vida"
   },
@@ -25112,6 +25152,10 @@
     "text": "Atribui Magia Controladora"
   },
   {
+    "id": "fractured.stat_2954116742|13844",
+    "text": "Atribui Perigo Crescente"
+  },
+  {
     "id": "fractured.stat_2954116742|13895",
     "text": "Atribui Ponto Preciso"
   },
@@ -25344,6 +25388,10 @@
     "text": "Atribui Veredicto Devastador"
   },
   {
+    "id": "fractured.stat_2954116742|1861",
+    "text": "Atribui Cavaleiro de Tarcus"
+  },
+  {
     "id": "fractured.stat_2954116742|19044",
     "text": "Atribui Intensidade Arcana"
   },
@@ -25528,6 +25576,10 @@
     "text": "Atribui Gelado at\u00E9 os Ossos"
   },
   {
+    "id": "fractured.stat_2954116742|2344",
+    "text": "Atribui Ponto Fraco Dimensional"
+  },
+  {
     "id": "fractured.stat_2954116742|23630",
     "text": "Atribui Imola\u00E7\u00E3o Pr\u00F3pria"
   },
@@ -25558,6 +25610,10 @@
   {
     "id": "fractured.stat_2954116742|2397",
     "text": "Atribui \u00DAltimo Recurso"
+  },
+  {
+    "id": "fractured.stat_2954116742|24062",
+    "text": "Atribui Inf\u00E2mia Imortal"
   },
   {
     "id": "fractured.stat_2954116742|24087",
@@ -25786,6 +25842,10 @@
   {
     "id": "fractured.stat_2954116742|29762",
     "text": "Atribui Urro Gutural"
+  },
+  {
+    "id": "fractured.stat_2954116742|29800",
+    "text": "Atribui Limite Eletrificante"
   },
   {
     "id": "fractured.stat_2954116742|29899",
@@ -26554,6 +26614,10 @@
   {
     "id": "fractured.stat_2954116742|46972",
     "text": "Atribui Compostos Arcanos"
+  },
+  {
+    "id": "fractured.stat_2954116742|47088",
+    "text": "Atribui Parta para Cima"
   },
   {
     "id": "fractured.stat_2954116742|4709",
@@ -27498,6 +27562,10 @@
   {
     "id": "fractured.stat_2954116742|9736",
     "text": "Atribui Passos Isolantes"
+  },
+  {
+    "id": "fractured.stat_2954116742|9863",
+    "text": "Atribui Cavaleiro de Izaro"
   },
   {
     "id": "fractured.stat_2954116742|9908",
@@ -28542,6 +28610,10 @@
   {
     "id": "fractured.stat_73032170",
     "text": "Lacaios t\u00EAm a velocidade de habilidades de comando aumentada em #%"
+  },
+  {
+    "id": "fractured.stat_731781020",
+    "text": "Frascos ganham # cargas por segundo"
   },
   {
     "id": "fractured.stat_734614379",
@@ -29628,8 +29700,16 @@
     "text": "Vinculado: # \u00E0 f\u00FAria m\u00E1xima"
   },
   {
+    "id": "rune.stat_1062190843",
+    "text": "# ao n\u00EDvel de todas as habilidades de tempestade"
+  },
+  {
     "id": "rune.stat_1073847159",
     "text": "# ao esp\u00EDrito por \u00EDdolo encaixado em seus equipamentos"
+  },
+  {
+    "id": "rune.stat_1078570138",
+    "text": "# ao n\u00EDvel de todas as habilidades de amea\u00E7a"
   },
   {
     "id": "rune.stat_1083521623",
@@ -29782,6 +29862,10 @@
   {
     "id": "rune.stat_1382805233",
     "text": "Taxa de deflex\u00E3o durante o movimento aumentada em #%"
+  },
+  {
+    "id": "rune.stat_138373935",
+    "text": "#% \u00E0 resist\u00EAncia a dano de caos por item corrompido equipado"
   },
   {
     "id": "rune.stat_1386257341",
@@ -30076,6 +30160,10 @@
     "text": "Vinculado: Recupera #% de vida m\u00E1xima quando um dos seus lacaios \u00E9 revivido"
   },
   {
+    "id": "rune.stat_1839315243",
+    "text": "# ao n\u00EDvel de todas as habilidades de pancada"
+  },
+  {
     "id": "rune.stat_185580205",
     "text": "Patu\u00E1s ganham # cargas por segundo"
   },
@@ -30172,6 +30260,10 @@
     "text": "Vinculado: Intensidade de Atrofia aumentada em #%"
   },
   {
+    "id": "rune.stat_1992191903",
+    "text": "# ao n\u00EDvel de todas as habilidades de marca"
+  },
+  {
     "id": "rune.stat_1995345015",
     "text": "Ganha Salvaguarda R\u00FAnica m\u00E1xima equivalente a #% do dano m\u00E1ximo desta arma"
   },
@@ -30256,6 +30348,14 @@
     "text": "Vinculado: #% de chance de o dano dos ataques dos inimigos sofrido por voc\u00EA ser Azarado"
   },
   {
+    "id": "rune.stat_2139847597",
+    "text": "Corromper sempre resultar\u00E1 em mudan\u00E7a"
+  },
+  {
+    "id": "rune.stat_2148999925",
+    "text": "# ao n\u00EDvel de todas as habilidades de clamor"
+  },
+  {
     "id": "rune.stat_2153364323",
     "text": "# ao requisito de Intelig\u00EAncia"
   },
@@ -30280,6 +30380,10 @@
     "text": "#% da armadura tamb\u00E9m se aplica ao dano el\u00E9trico"
   },
   {
+    "id": "rune.stat_2203195791",
+    "text": "Velocidade de habilidades aumentada em #% por item corrompido equipado"
+  },
+  {
     "id": "rune.stat_2211478554",
     "text": "Se voc\u00EA for ganhar uma carga de frenesi, os aliados em sua presen\u00E7a recebem essa carga no seu lugar"
   },
@@ -30302,6 +30406,10 @@
   {
     "id": "rune.stat_2246411426",
     "text": "Vinculado: Vida m\u00E1xima aumentada em #%"
+  },
+  {
+    "id": "rune.stat_2247017114",
+    "text": "Esp\u00EDrito aumentado em #% por item corrompido equipado"
   },
   {
     "id": "rune.stat_2248594298",
@@ -30340,8 +30448,16 @@
     "text": "Aumentos e redu\u00E7\u00F5es de velocidade de ataque dos lacaios tamb\u00E9m afetam voc\u00EA"
   },
   {
+    "id": "rune.stat_2296009672",
+    "text": "# ao n\u00EDvel de todas as habilidades de planta"
+  },
+  {
     "id": "rune.stat_2301852600",
     "text": "Causa #% de dano de massacre aos inimigos a at\u00E9 2 metros do inimigo morto"
+  },
+  {
+    "id": "rune.stat_2305301734",
+    "text": "# ao n\u00EDvel de todas as habilidades de golpe"
   },
   {
     "id": "rune.stat_2310741722",
@@ -30358,6 +30474,10 @@
   {
     "id": "rune.stat_2336012075",
     "text": "Vinculado: Efici\u00EAncia de custo de mana aumentada em #%"
+  },
+  {
+    "id": "rune.stat_2336703514",
+    "text": "# ao n\u00EDvel de todas as habilidade de totem"
   },
   {
     "id": "rune.stat_2339757871",
@@ -30450,6 +30570,10 @@
   {
     "id": "rune.stat_2481353198",
     "text": "Chance de bloqueio aumentada em #% (Local)"
+  },
+  {
+    "id": "rune.stat_2487305362",
+    "text": "Intensidade dos envenenamentos infligidos por voc\u00EA aumentada em #%"
   },
   {
     "id": "rune.stat_2502507413",
@@ -30860,6 +30984,10 @@
     "text": "Mana recuperado com regenera\u00E7\u00E3o tamb\u00E9m se aplica \u00E0 Salvaguarda R\u00FAnica"
   },
   {
+    "id": "rune.stat_3148103963",
+    "text": "# ao n\u00EDvel de todas as habilidades de nova"
+  },
+  {
     "id": "rune.stat_3151560620",
     "text": "Dano aumentado em #% por cada companheiro diferente em sua presen\u00E7a"
   },
@@ -30906,6 +31034,10 @@
   {
     "id": "rune.stat_3266426611",
     "text": "Vinculado: Dano de espinhos aumentado em #%"
+  },
+  {
+    "id": "rune.stat_3268281424",
+    "text": "# ao n\u00EDvel de todas as habilidades de granada"
   },
   {
     "id": "rune.stat_326965591",
@@ -31328,6 +31460,10 @@
     "text": "Esp\u00EDrito aumentado em #%"
   },
   {
+    "id": "rune.stat_3985867204",
+    "text": "Dura\u00E7\u00E3o do aprisionamento aumentada em #%"
+  },
+  {
     "id": "rune.stat_3986710072",
     "text": "Vinculado: # de cargas de frenesi m\u00E1ximas"
   },
@@ -31380,6 +31516,10 @@
     "text": "# \u00E0 For\u00E7a"
   },
   {
+    "id": "rune.stat_4081947835",
+    "text": "Proj\u00E9teis t\u00EAm #% de chance de se propagar mais uma vez do terreno"
+  },
+  {
     "id": "rune.stat_408302348",
     "text": "Vinculado: #% \u00E0 resist\u00EAncia a dano de fogo m\u00E1xima"
   },
@@ -31426,6 +31566,10 @@
   {
     "id": "rune.stat_4168500604",
     "text": "Vinculado: Mana e vida recuperados de frascos aumentados em #%"
+  },
+  {
+    "id": "rune.stat_4169430079",
+    "text": "Vida m\u00E1xima aumentada em #% por item corrompido equipado"
   },
   {
     "id": "rune.stat_4200448078",
@@ -31604,6 +31748,10 @@
     "text": "Velocidade de movimento aumentada em #% em vida baixa"
   },
   {
+    "id": "rune.stat_653358410",
+    "text": "# ao n\u00EDvel de todas as habilidades de vento"
+  },
+  {
     "id": "rune.stat_666077204",
     "text": "Companheiros t\u00EAm a velocidade de ataque aumentada em #%"
   },
@@ -31706,6 +31854,10 @@
   {
     "id": "rune.stat_774059442",
     "text": "# \u00E0 Salvaguarda R\u00FAnica m\u00E1xima"
+  },
+  {
+    "id": "rune.stat_776287420",
+    "text": "# ao n\u00EDvel de todas as habilidades de arauto"
   },
   {
     "id": "rune.stat_782230869",

@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Trade.Trade.Results;
+namespace Sidekick.Apis.Poe.Trade.Results;
 
 public class TradeSearchResult<T>
 {

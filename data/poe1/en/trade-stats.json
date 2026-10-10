@@ -38913,7 +38913,7 @@
   },
   {
     "id": "explicit.stat_3408048164",
-    "text": "Adds # minimum Cold Damage to Spells per Power Charge"
+    "text": "Adds # to # Cold Damage to Spells per Power Charge"
   },
   {
     "id": "explicit.stat_3408085256",
@@ -43653,7 +43653,7 @@
   },
   {
     "id": "explicit.stat_4089743927|1|150",
-    "text": "Skills Socketed in your Helmet are Supported by level # Flamewood"
+    "text": "Skills Socketed in your Helmet are Supported by level # Fresh Meat"
   },
   {
     "id": "explicit.stat_4089743927|1|151",
@@ -44309,7 +44309,7 @@
   },
   {
     "id": "explicit.stat_4089743927|2|150",
-    "text": "Skills Socketed in your Gloves are Supported by level # Flamewood"
+    "text": "Skills Socketed in your Gloves are Supported by level # Fresh Meat"
   },
   {
     "id": "explicit.stat_4089743927|2|151",
@@ -44965,7 +44965,7 @@
   },
   {
     "id": "explicit.stat_4089743927|3|150",
-    "text": "Skills Socketed in your Boots are Supported by level # Flamewood"
+    "text": "Skills Socketed in your Boots are Supported by level # Fresh Meat"
   },
   {
     "id": "explicit.stat_4089743927|3|151",
@@ -45621,7 +45621,7 @@
   },
   {
     "id": "explicit.stat_4089743927|4|150",
-    "text": "Skills granted by your Passive Tree are Supported by level # Flamewood"
+    "text": "Skills granted by your Passive Tree are Supported by level # Fresh Meat"
   },
   {
     "id": "explicit.stat_4089743927|4|151",
@@ -53908,6 +53908,10 @@
     "text": "Ignites you inflict deal Damage #% faster"
   },
   {
+    "id": "fractured.stat_2445634879",
+    "text": "Mines have a #% chance to be Detonated an Additional Time"
+  },
+  {
     "id": "fractured.stat_2448920197",
     "text": "#% increased effect"
   },
@@ -55685,7 +55689,7 @@
   },
   {
     "id": "fractured.stat_3408048164",
-    "text": "Adds # minimum Cold Damage to Spells per Power Charge"
+    "text": "Adds # to # Cold Damage to Spells per Power Charge"
   },
   {
     "id": "fractured.stat_3410752193",
@@ -60604,6 +60608,10 @@
     "text": "Left ring slot: #% of Fire Damage from Hits taken as Lightning Damage"
   },
   {
+    "id": "implicit.stat_1774362541",
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Gain 1 Rage on Hit with Attacks"
+  },
+  {
     "id": "implicit.stat_1774370437",
     "text": "Trigger Level # Summon Taunting Contraption when you use a Flask"
   },
@@ -63790,6 +63798,10 @@
   {
     "id": "implicit.stat_3485067555",
     "text": "#% increased Chill Duration on Enemies"
+  },
+  {
+    "id": "implicit.stat_3485231932",
+    "text": "Adds # to # Cold Damage while you have Avian\u0027s Might"
   },
   {
     "id": "implicit.stat_348693938",

@@ -65,7 +65,7 @@
   },
   {
     "id": "crafted.stat_124131830",
-    "text": "# zur Stufe aller Zauber-Fertigkeiten"
+    "text": "# zur Stufe aller Zauberfertigkeiten"
   },
   {
     "id": "crafted.stat_1241625305",
@@ -4513,7 +4513,7 @@
   },
   {
     "id": "desecrated.stat_124131830",
-    "text": "# zur Stufe aller Zauber-Fertigkeiten"
+    "text": "# zur Stufe aller Zauberfertigkeiten"
   },
   {
     "id": "desecrated.stat_1241625305",
@@ -11632,6 +11632,10 @@
     "text": "Enth\u00FCllt Schwachstellen bei seltenen und einzigartigen Gegnern"
   },
   {
+    "id": "explicit.stat_1109460697",
+    "text": "Expeditionen in der Karte enthalten 1 zus\u00E4tzlichen Verisium-W\u00E4chter"
+  },
+  {
     "id": "explicit.stat_111835965",
     "text": "Bedeutende Passive Fertigkeiten im Radius gew\u00E4hren auch #% erh\u00F6hte Angriffsgeschwindigkeit mit Kampfst\u00E4ben"
   },
@@ -11804,6 +11808,10 @@
     "text": "# zu maximalem Rausch"
   },
   {
+    "id": "explicit.stat_1183698646",
+    "text": "Expeditionen in der Karte enthalten 1 zus\u00E4tzlichen Boss, der in Eis eingeschlossen ist"
+  },
+  {
     "id": "explicit.stat_1185341308",
     "text": "Bedeutende Passive Fertigkeiten im Radius gew\u00E4hren auch #% erh\u00F6hte Lebensregenerations-Rate"
   },
@@ -11889,7 +11897,7 @@
   },
   {
     "id": "explicit.stat_124131830",
-    "text": "# zur Stufe aller Zauber-Fertigkeiten"
+    "text": "# zur Stufe aller Zauberfertigkeiten"
   },
   {
     "id": "explicit.stat_1241625305",
@@ -12737,7 +12745,7 @@
   },
   {
     "id": "explicit.stat_1675120891",
-    "text": "Chance auf Abwenden ist g\u00FCnstig w\u00E4hrend bei niedrigem Leben"
+    "text": "Chance auf Abwenden ist bei niedrigem Leben g\u00FCnstig"
   },
   {
     "id": "explicit.stat_1679776108",
@@ -13026,6 +13034,10 @@
   {
     "id": "explicit.stat_1816894864",
     "text": "Durch Eure Treffer unterk\u00FChlte Gegner erleiden erh\u00F6hten Schaden durch die Magnitude von Unterk\u00FChlen"
+  },
+  {
+    "id": "explicit.stat_181823691",
+    "text": "Expeditionen in der Karte enthalten 1 vergrabenen Tresor"
   },
   {
     "id": "explicit.stat_1818915622",
@@ -15116,6 +15128,10 @@
     "text": "Bedeutende Passive Fertigkeiten im Radius gew\u00E4hren auch Meta-Fertigkeiten erhalten #% erh\u00F6hte Energie"
   },
   {
+    "id": "explicit.stat_2852112245",
+    "text": "Expeditionen in der Karte enthalten 1 Vaal-Relikt"
+  },
+  {
     "id": "explicit.stat_2853314994",
     "text": "Regeneriert # Rausch pro Sekunde"
   },
@@ -15149,7 +15165,7 @@
   },
   {
     "id": "explicit.stat_2880019685",
-    "text": "#% Chance, Euren Dornenschaden bei Gegnern zu verursachen, die Ihr mit Nahkampf-Angriffen trefft"
+    "text": "#% Chance, Euren Dornenschaden bei Gegnern zu verursachen, die Ihr mit Nahkampfangriffen trefft"
   },
   {
     "id": "explicit.stat_2881298780",
@@ -15254,6 +15270,10 @@
   {
     "id": "explicit.stat_2901986750",
     "text": "#% zu allen Elementarwiderst\u00E4nden"
+  },
+  {
+    "id": "explicit.stat_2905096233",
+    "text": "#% erh\u00F6hte Monsterseltenheit bei Expeditionen in der Karte"
   },
   {
     "id": "explicit.stat_2905515354",
@@ -19001,7 +19021,7 @@
   },
   {
     "id": "explicit.stat_3039133122",
-    "text": "#% increased Expedition Explosive Area of Effect in Map"
+    "text": "#% vergr\u00F6\u00DFerter Wirkungsbereich von Expedition-Sprengstoffen in der Karte"
   },
   {
     "id": "explicit.stat_3040571529",
@@ -20124,6 +20144,10 @@
     "text": "#% Chance, Naturarchon zu erhalten, wenn Eure Pflanzen \u00FCberwachsen"
   },
   {
+    "id": "explicit.stat_3520418269",
+    "text": "Monster von Verisium-Relikten lassen #% erh\u00F6htes Verisium fallen"
+  },
+  {
     "id": "explicit.stat_352044736",
     "text": "Jeder Rausch gew\u00E4hrt auch #% erh\u00F6hte Bet\u00E4ubungsschwelle"
   },
@@ -20392,6 +20416,10 @@
     "text": "Von Euch verursachte Schw\u00E4chungen haben #% erh\u00F6hte Verlangsamungsmagnitude"
   },
   {
+    "id": "explicit.stat_3653794255",
+    "text": "Expeditionen in der Karte haben \u002B#% \u00FCbertreffende Chance, ein zus\u00E4tzliches Verisium-Relikt zu enthalten"
+  },
+  {
     "id": "explicit.stat_3655769732",
     "text": "#% zur Qualit\u00E4t aller Fertigkeiten"
   },
@@ -20457,7 +20485,7 @@
   },
   {
     "id": "explicit.stat_36954843",
-    "text": "Ihr und Verb\u00FCndete in Eurer Pr\u00E4senz haben #% beschleunigte Abklingzeitrate"
+    "text": "Ihr und Verb\u00FCndete in Eurer Pr\u00E4senz haben #% beschleunigte Abklingzeit-Rate"
   },
   {
     "id": "explicit.stat_3695891184",
@@ -20920,6 +20948,10 @@
     "text": "Gegner haben einen Genauigkeitsmalus gegen Euch basierend auf der Distanz"
   },
   {
+    "id": "explicit.stat_3871299443",
+    "text": "Verisium-Relikte in der Karte haben \u002B#% Chance, einen zus\u00E4tzlichen Runen-Modifikator hinzuzuf\u00FCgen"
+  },
+  {
     "id": "explicit.stat_3871530702",
     "text": "Eroberte Attribut-Passive gew\u00E4hren auch: # zu St\u00E4rke"
   },
@@ -21126,6 +21158,10 @@
   {
     "id": "explicit.stat_3963171183",
     "text": "Ziele, die von Abgr\u00FCndiger Verw\u00FCstung betroffen sind, die Ihr verursacht, sind geblendet"
+  },
+  {
+    "id": "explicit.stat_3963944561",
+    "text": "Das erste freigelegte Runenmonster in der Karte wird ein seltenes Monster sein"
   },
   {
     "id": "explicit.stat_3969608626",
@@ -21433,7 +21469,7 @@
   },
   {
     "id": "explicit.stat_4145314483",
-    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit w\u00E4hrend bei vollem Mana"
+    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit bei vollem Mana"
   },
   {
     "id": "explicit.stat_4147510958",
@@ -23324,6 +23360,10 @@
     "text": "Karte enth\u00E4lt einen zus\u00E4tzlichen Azmeri-Geist"
   },
   {
+    "id": "explicit.stat_779964546",
+    "text": "Expeditionen in der Karte haben \u002B#% \u00FCbertreffende Chance, Runenmonster zu duplizieren"
+  },
+  {
     "id": "explicit.stat_782941180",
     "text": "#% des Zauberschadens werden als Leben geraubt"
   },
@@ -23893,7 +23933,7 @@
   },
   {
     "id": "fractured.stat_124131830",
-    "text": "# zur Stufe aller Zauber-Fertigkeiten"
+    "text": "# zur Stufe aller Zauberfertigkeiten"
   },
   {
     "id": "fractured.stat_1241625305",
@@ -25112,6 +25152,10 @@
     "text": "Weist zu: Kontrollierende Magie"
   },
   {
+    "id": "fractured.stat_2954116742|13844",
+    "text": "Weist zu: Wachsende Gefahr"
+  },
+  {
     "id": "fractured.stat_2954116742|13895",
     "text": "Weist zu: Pr\u00E4ziser Punkt"
   },
@@ -25344,6 +25388,10 @@
     "text": "Weist zu: Vernichtendes Urteil"
   },
   {
+    "id": "fractured.stat_2954116742|1861",
+    "text": "Weist zu: Ritter von Tarcus"
+  },
+  {
     "id": "fractured.stat_2954116742|19044",
     "text": "Weist zu: Arkane Intensit\u00E4t"
   },
@@ -25528,6 +25576,10 @@
     "text": "Weist zu: Bis auf die Knochen durchgefroren"
   },
   {
+    "id": "fractured.stat_2954116742|2344",
+    "text": "Weist zu: Dimensionaler Schwachpunkt"
+  },
+  {
     "id": "fractured.stat_2954116742|23630",
     "text": "Weist zu: Selbstverbrennung"
   },
@@ -25558,6 +25610,10 @@
   {
     "id": "fractured.stat_2954116742|2397",
     "text": "Weist zu: Letzter Widerstand"
+  },
+  {
+    "id": "fractured.stat_2954116742|24062",
+    "text": "Weist zu: Unsterblicher Ruhm"
   },
   {
     "id": "fractured.stat_2954116742|24087",
@@ -25786,6 +25842,10 @@
   {
     "id": "fractured.stat_2954116742|29762",
     "text": "Weist zu: Tiefes Br\u00FCllen"
+  },
+  {
+    "id": "fractured.stat_2954116742|29800",
+    "text": "Weist zu: Schockendes Limit"
   },
   {
     "id": "fractured.stat_2954116742|29899",
@@ -26554,6 +26614,10 @@
   {
     "id": "fractured.stat_2954116742|46972",
     "text": "Weist zu: Arkane Mixturen"
+  },
+  {
+    "id": "fractured.stat_2954116742|47088",
+    "text": "Weist zu: Fass!"
   },
   {
     "id": "fractured.stat_2954116742|4709",
@@ -27498,6 +27562,10 @@
   {
     "id": "fractured.stat_2954116742|9736",
     "text": "Weist zu: Isolierte Schritte"
+  },
+  {
+    "id": "fractured.stat_2954116742|9863",
+    "text": "Weist zu: Ritter von Izaro"
   },
   {
     "id": "fractured.stat_2954116742|9908",
@@ -28544,6 +28612,10 @@
     "text": "Kreaturen haben #% erh\u00F6hte Fertigkeitengeschwindigkeit mit Befehls-Fertigkeiten"
   },
   {
+    "id": "fractured.stat_731781020",
+    "text": "Fl\u00E4schchen erhalten # F\u00FCllungen pro Sekunde"
+  },
+  {
     "id": "fractured.stat_734614379",
     "text": "#% erh\u00F6hte St\u00E4rke"
   },
@@ -29105,7 +29177,7 @@
   },
   {
     "id": "implicit.stat_3051490307",
-    "text": "#% erh\u00F6hte Anzahl von Expedition-Sprengladungen"
+    "text": "#% erh\u00F6hte Anzahl von Expedition-Sprengstoffen"
   },
   {
     "id": "implicit.stat_3100523498",
@@ -29628,8 +29700,16 @@
     "text": "Verbunden: # zu maximalem Rausch"
   },
   {
+    "id": "rune.stat_1062190843",
+    "text": "# zur Stufe aller Sturm-Fertigkeitengemmen"
+  },
+  {
     "id": "rune.stat_1073847159",
     "text": "# zu Wille pro G\u00F6tze, der in Eurer Ausr\u00FCstung eingefasst ist"
+  },
+  {
+    "id": "rune.stat_1078570138",
+    "text": "# zur Stufe aller Gefahr-Fertigkeitengemmen"
   },
   {
     "id": "rune.stat_1083521623",
@@ -29693,7 +29773,7 @@
   },
   {
     "id": "rune.stat_124131830",
-    "text": "# zur Stufe aller Zauber-Fertigkeiten"
+    "text": "# zur Stufe aller Zauberfertigkeiten"
   },
   {
     "id": "rune.stat_1250712710",
@@ -29782,6 +29862,10 @@
   {
     "id": "rune.stat_1382805233",
     "text": "#% erh\u00F6hter Abwendungswert, w\u00E4hrend Ihr in Bewegung seid"
+  },
+  {
+    "id": "rune.stat_138373935",
+    "text": "#% zu Chaoswiderstand f\u00FCr jeden ausger\u00FCsteten verderbten Gegenstand"
   },
   {
     "id": "rune.stat_1386257341",
@@ -30076,6 +30160,10 @@
     "text": "Verbunden: Stellt #% des maximalen Lebens wieder her, wenn eine Eurer Kreaturen wiederbelebt wird"
   },
   {
+    "id": "rune.stat_1839315243",
+    "text": "# zur Stufe aller Hieb-Fertigkeitengemmen"
+  },
+  {
     "id": "rune.stat_185580205",
     "text": "Phiolen erhalten # F\u00FCllung pro Sekunde"
   },
@@ -30172,6 +30260,10 @@
     "text": "Verbunden: #% erh\u00F6hte Magnitude von Verk\u00FCmmerung"
   },
   {
+    "id": "rune.stat_1992191903",
+    "text": "# zur Stufe aller Mal-Fertigkeiten"
+  },
+  {
     "id": "rune.stat_1995345015",
     "text": "Erhaltet maximalen Runenschutz in H\u00F6he von #% des maximalen Schadens dieser Waffe"
   },
@@ -30256,6 +30348,14 @@
     "text": "Verbunden: #% Chance, dass Schaden von Gegnern, die Euch treffen, ung\u00FCnstig ist"
   },
   {
+    "id": "rune.stat_2139847597",
+    "text": "Das Verderben f\u00FChrt immer zu einer Ver\u00E4nderung"
+  },
+  {
+    "id": "rune.stat_2148999925",
+    "text": "# zur Stufe aller Kriegsschrei-Fertigkeitengemmen"
+  },
+  {
     "id": "rune.stat_2153364323",
     "text": "# Intelligenz-Anforderung"
   },
@@ -30273,11 +30373,15 @@
   },
   {
     "id": "rune.stat_2191621386",
-    "text": "#% der R\u00FCstung werden auch auf Chaosschaden angewendet w\u00E4hrend bei vollem Energieschild"
+    "text": "#% der R\u00FCstung werden bei vollem Energieschild auch auf Chaosschaden angewendet"
   },
   {
     "id": "rune.stat_2200571612",
     "text": "#% der R\u00FCstung werden auch auf Blitzschaden angewendet"
+  },
+  {
+    "id": "rune.stat_2203195791",
+    "text": "#% erh\u00F6hte Fertigkeitengeschwindigkeit f\u00FCr jeden ausger\u00FCsteten verderbten Gegenstand"
   },
   {
     "id": "rune.stat_2211478554",
@@ -30302,6 +30406,10 @@
   {
     "id": "rune.stat_2246411426",
     "text": "Verbunden: #% erh\u00F6htes maximales Leben"
+  },
+  {
+    "id": "rune.stat_2247017114",
+    "text": "#% erh\u00F6hter Wille f\u00FCr jeden ausger\u00FCsteten verderbten Gegenstand"
   },
   {
     "id": "rune.stat_2248594298",
@@ -30340,8 +30448,16 @@
     "text": "Erh\u00F6hungen und Verringerungen der Kreaturen-Angriffsgeschwindigkeit wirken auch auf Euch"
   },
   {
+    "id": "rune.stat_2296009672",
+    "text": "# zur Stufe aller Pflanzen-Fertigkeitengemmen"
+  },
+  {
     "id": "rune.stat_2301852600",
     "text": "Verursacht #% des \u00FCberz\u00E4hligen Schadens bei Gegnern innerhalb von 2 Metern des get\u00F6teten Gegners"
+  },
+  {
+    "id": "rune.stat_2305301734",
+    "text": "# zur Stufe aller Schlag-Fertigkeitengemmen"
   },
   {
     "id": "rune.stat_2310741722",
@@ -30358,6 +30474,10 @@
   {
     "id": "rune.stat_2336012075",
     "text": "Verbunden: #% erh\u00F6hte Manakosteneffizienz"
+  },
+  {
+    "id": "rune.stat_2336703514",
+    "text": "# zur Stufe aller Totem-Fertigkeitengemmen"
   },
   {
     "id": "rune.stat_2339757871",
@@ -30450,6 +30570,10 @@
   {
     "id": "rune.stat_2481353198",
     "text": "#% erh\u00F6hte Blockchance (Lokal)"
+  },
+  {
+    "id": "rune.stat_2487305362",
+    "text": "#% erh\u00F6hte Magnitude von Gift, das Ihr anwendet"
   },
   {
     "id": "rune.stat_2502507413",
@@ -30860,6 +30984,10 @@
     "text": "Manawiederherstellung durch Regeneration wird auch auf den Runenschutz angewendet"
   },
   {
+    "id": "rune.stat_3148103963",
+    "text": "# zur Stufe aller Nova-Fertigkeitengemmen"
+  },
+  {
     "id": "rune.stat_3151560620",
     "text": "#% erh\u00F6hter Schaden f\u00FCr jeden unterschiedlichen Gef\u00E4hrten in Eurer Pr\u00E4senz"
   },
@@ -30906,6 +31034,10 @@
   {
     "id": "rune.stat_3266426611",
     "text": "Verbunden: #% erh\u00F6hter Dornenschaden"
+  },
+  {
+    "id": "rune.stat_3268281424",
+    "text": "# zur Stufe aller Granaten-Fertigkeitengemmen"
   },
   {
     "id": "rune.stat_326965591",
@@ -31293,7 +31425,7 @@
   },
   {
     "id": "rune.stat_3903510399",
-    "text": "Erhaltet R\u00FCstung in H\u00F6he von #% der Lebenskosten von Treffern in den letzten 8 Sekunden"
+    "text": "Erhaltet R\u00FCstung in H\u00F6he von #% der Lebensverlusts von Treffern in den letzten 8 Sekunden"
   },
   {
     "id": "rune.stat_3909696841",
@@ -31326,6 +31458,10 @@
   {
     "id": "rune.stat_3984865854",
     "text": "#% erh\u00F6hter Wille"
+  },
+  {
+    "id": "rune.stat_3985867204",
+    "text": "#% verl\u00E4ngerte Festsetzungsdauer"
   },
   {
     "id": "rune.stat_3986710072",
@@ -31380,6 +31516,10 @@
     "text": "# zu St\u00E4rke"
   },
   {
+    "id": "rune.stat_4081947835",
+    "text": "Projektile haben #% Chance, sich vom Gel\u00E4nde aus ein zus\u00E4tzliches Mal zu verketten"
+  },
+  {
     "id": "rune.stat_408302348",
     "text": "Verbunden: #% zu maximalem Feuerwiderstand"
   },
@@ -31426,6 +31566,10 @@
   {
     "id": "rune.stat_4168500604",
     "text": "Verbunden: #% erh\u00F6hte Lebens- und Manawiederherstellung von Fl\u00E4schchen"
+  },
+  {
+    "id": "rune.stat_4169430079",
+    "text": "#% erh\u00F6htes maximales Leben f\u00FCr jeden ausger\u00FCsteten verderbten Gegenstand"
   },
   {
     "id": "rune.stat_4200448078",
@@ -31525,7 +31669,7 @@
   },
   {
     "id": "rune.stat_532897212",
-    "text": "Verbunden: #% erh\u00F6hte Manakosteneffizienz w\u00E4hrend bei niedrigem Mana"
+    "text": "Verbunden: #% erh\u00F6hte Manakosteneffizienz bei niedrigem Mana"
   },
   {
     "id": "rune.stat_538981065",
@@ -31602,6 +31746,10 @@
   {
     "id": "rune.stat_649025131",
     "text": "#% erh\u00F6hte Bewegungsgeschwindigkeit bei niedrigem Leben"
+  },
+  {
+    "id": "rune.stat_653358410",
+    "text": "# zur Stufe aller Wind-Fertigkeitengemmen"
   },
   {
     "id": "rune.stat_666077204",
@@ -31706,6 +31854,10 @@
   {
     "id": "rune.stat_774059442",
     "text": "# zu maximalem Runenschutz"
+  },
+  {
+    "id": "rune.stat_776287420",
+    "text": "# zur Stufe aller Herold-Fertigkeitengemmen"
   },
   {
     "id": "rune.stat_782230869",
