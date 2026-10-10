@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Sidekick.Apis.Poe.Trade.Trade.Models;
+using Sidekick.Apis.Poe.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Account.Stash.Models;
 

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
@@ -14,7 +14,7 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Models;
 using Sidekick.Game.Providers;
-namespace Sidekick.Apis.Poe.Trade.Trade;
+namespace Sidekick.Apis.Poe.Trade;
 
 public class ItemTradeService
 (

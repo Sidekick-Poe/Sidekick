@@ -1,5 +1,5 @@
-using Sidekick.Apis.Poe.Trade.Trade;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Exceptions;
 using Sidekick.Game;
 using Sidekick.Game.Parser.Filters.Types;
@@ -19,7 +19,7 @@ public class TradeService
 
     public TradeSearchResult<string>? ItemTradeResult { get; private set; }
 
-    public List<Apis.Poe.Trade.Trade.Results.TradeResult> TradeItems { get; private set; } = [];
+    public List<Apis.Poe.Trade.Results.TradeResult> TradeItems { get; private set; } = [];
 
     public void Init()
     {

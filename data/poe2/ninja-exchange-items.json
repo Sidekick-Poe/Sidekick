@@ -152,6 +152,12 @@
   {
     "type": "Delirium",
     "url": "liquid-emotions",
+    "detailsId": "ancient-potent-liquid-ferocity",
+    "id": "ancient-potent-liquid-ferocity"
+  },
+  {
+    "type": "Delirium",
+    "url": "liquid-emotions",
     "detailsId": "ancient-potent-liquid-melancholy",
     "id": "ancient-potent-liquid-melancholy"
   },
@@ -516,12 +522,6 @@
     "id": "chaos"
   },
   {
-    "type": "Runes",
-    "url": "runes",
-    "detailsId": "charging-rune",
-    "id": "charging-rune"
-  },
-  {
     "type": "Breach",
     "url": "breach-catalyst",
     "detailsId": "chayulas-catalyst",
@@ -550,6 +550,12 @@
     "url": "soul-cores",
     "detailsId": "citaqualotls-soul-core-of-foulness",
     "id": "citaqualotls-soul-core-of-foulness"
+  },
+  {
+    "type": "SoulCores",
+    "url": "soul-cores",
+    "detailsId": "citaqualotls-thesis",
+    "id": "citaqualotls-thesis"
   },
   {
     "type": "Delirium",
@@ -738,6 +744,12 @@
     "id": "eshs-prowess"
   },
   {
+    "type": "LineageSupportGems",
+    "url": "lineage-support-gems",
+    "detailsId": "eshs-radiance",
+    "id": "eshs-radiance"
+  },
+  {
     "type": "Essences",
     "url": "essences",
     "detailsId": "essence-of-abrasion",
@@ -748,12 +760,6 @@
     "url": "essences",
     "detailsId": "essence-of-alacrity",
     "id": "essence-of-alacrity"
-  },
-  {
-    "type": "Essences",
-    "url": "essences",
-    "detailsId": "essence-of-command",
-    "id": "essence-of-command"
   },
   {
     "type": "Essences",
@@ -814,12 +820,6 @@
     "url": "essences",
     "detailsId": "essence-of-insanity",
     "id": "essence-of-insanity"
-  },
-  {
-    "type": "Essences",
-    "url": "essences",
-    "detailsId": "essence-of-insulation",
-    "id": "essence-of-insulation"
   },
   {
     "type": "Essences",
@@ -1290,6 +1290,12 @@
     "id": "guatelitzis-soul-core-of-endurance"
   },
   {
+    "type": "SoulCores",
+    "url": "soul-cores",
+    "detailsId": "guatelitzis-thesis",
+    "id": "guatelitzis-thesis"
+  },
+  {
     "type": "Idols",
     "url": "idols",
     "detailsId": "hawk-idol",
@@ -1542,6 +1548,12 @@
     "id": "jiquanis-soul-core-of-thundering"
   },
   {
+    "type": "SoulCores",
+    "url": "soul-cores",
+    "detailsId": "jiquanis-thesis",
+    "id": "jiquanis-thesis"
+  },
+  {
     "type": "LineageSupportGems",
     "url": "lineage-support-gems",
     "detailsId": "kalisas-crescendo",
@@ -1646,6 +1658,12 @@
   {
     "type": "Essences",
     "url": "essences",
+    "detailsId": "lesser-essence-of-battle",
+    "id": "lesser-essence-of-battle"
+  },
+  {
+    "type": "Essences",
+    "url": "essences",
     "detailsId": "lesser-essence-of-command",
     "id": "lesser-essence-of-command"
   },
@@ -1734,6 +1752,12 @@
     "id": "lesser-essence-of-the-infinite"
   },
   {
+    "type": "Essences",
+    "url": "essences",
+    "detailsId": "lesser-essence-of-the-mind",
+    "id": "lesser-essence-of-the-mind"
+  },
+  {
     "type": "Runes",
     "url": "runes",
     "detailsId": "lesser-glacial-rune",
@@ -1792,6 +1816,18 @@
     "url": "runes",
     "detailsId": "lesser-storm-rune",
     "id": "lesser-storm-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "lesser-vision-rune",
+    "id": "lesser-vision-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "lesser-ward-rune",
+    "id": "lesser-ward-rune"
   },
   {
     "type": "Delirium",
@@ -1918,6 +1954,12 @@
     "url": "lineage-support-gems",
     "detailsId": "olroths-hubris",
     "id": "olroths-hubris"
+  },
+  {
+    "type": "Fragments",
+    "url": "fragments",
+    "detailsId": "olroths-reliquary-key",
+    "id": "olroths-reliquary-key"
   },
   {
     "type": "Expedition",
@@ -2232,10 +2274,28 @@
     "id": "passion-of-aldur"
   },
   {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "perfect-adept-rune",
+    "id": "perfect-adept-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "perfect-body-rune",
+    "id": "perfect-body-rune"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "perfect-chaos-orb",
     "id": "perfect-chaos-orb"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "perfect-charging-rune",
+    "id": "perfect-charging-rune"
   },
   {
     "type": "Runes",
@@ -2378,6 +2438,12 @@
   {
     "type": "Runes",
     "url": "runes",
+    "detailsId": "perfect-inspiration-rune",
+    "id": "perfect-inspiration-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
     "detailsId": "perfect-iron-rune",
     "id": "perfect-iron-rune"
   },
@@ -2406,6 +2472,12 @@
     "id": "perfect-orb-of-transmutation"
   },
   {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "perfect-rebirth-rune",
+    "id": "perfect-rebirth-rune"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "perfect-regal-orb",
@@ -2420,8 +2492,32 @@
   {
     "type": "Runes",
     "url": "runes",
+    "detailsId": "perfect-robust-rune",
+    "id": "perfect-robust-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "perfect-stone-rune",
+    "id": "perfect-stone-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
     "detailsId": "perfect-storm-rune",
     "id": "perfect-storm-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "perfect-vision-rune",
+    "id": "perfect-vision-rune"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
+    "detailsId": "perfect-ward-rune",
+    "id": "perfect-ward-rune"
   },
   {
     "type": "Delirium",
@@ -2496,6 +2592,12 @@
     "id": "quipolatls-soul-core-of-flow"
   },
   {
+    "type": "SoulCores",
+    "url": "soul-cores",
+    "detailsId": "quipolatls-thesis",
+    "id": "quipolatls-thesis"
+  },
+  {
     "type": "Idols",
     "url": "idols",
     "detailsId": "rabbit-idol",
@@ -2512,6 +2614,12 @@
     "url": "lineage-support-gems",
     "detailsId": "rathas-assault",
     "id": "rathas-assault"
+  },
+  {
+    "type": "SoulCores",
+    "url": "soul-cores",
+    "detailsId": "raven-touched-shard",
+    "id": "raven-touched-shard"
   },
   {
     "type": "Fragments",
@@ -2534,8 +2642,20 @@
   {
     "type": "Breach",
     "url": "breach-catalyst",
+    "detailsId": "refined-adaptive-catalyst",
+    "id": "refined-adaptive-catalyst"
+  },
+  {
+    "type": "Breach",
+    "url": "breach-catalyst",
     "detailsId": "refined-carapace-catalyst",
     "id": "refined-carapace-catalyst"
+  },
+  {
+    "type": "Breach",
+    "url": "breach-catalyst",
+    "detailsId": "refined-chayulas-catalyst",
+    "id": "refined-chayulas-catalyst"
   },
   {
     "type": "Breach",
@@ -2546,8 +2666,20 @@
   {
     "type": "Breach",
     "url": "breach-catalyst",
+    "detailsId": "refined-flesh-catalyst",
+    "id": "refined-flesh-catalyst"
+  },
+  {
+    "type": "Breach",
+    "url": "breach-catalyst",
     "detailsId": "refined-necrotic-catalyst",
     "id": "refined-necrotic-catalyst"
+  },
+  {
+    "type": "Breach",
+    "url": "breach-catalyst",
+    "detailsId": "refined-neural-catalyst",
+    "id": "refined-neural-catalyst"
   },
   {
     "type": "Breach",
@@ -2564,20 +2696,32 @@
   {
     "type": "Breach",
     "url": "breach-catalyst",
+    "detailsId": "refined-skittering-catalyst",
+    "id": "refined-skittering-catalyst"
+  },
+  {
+    "type": "Breach",
+    "url": "breach-catalyst",
+    "detailsId": "refined-tuls-catalyst",
+    "id": "refined-tuls-catalyst"
+  },
+  {
+    "type": "Breach",
+    "url": "breach-catalyst",
     "detailsId": "refined-uul-netols-catalyst",
     "id": "refined-uul-netols-catalyst"
+  },
+  {
+    "type": "Breach",
+    "url": "breach-catalyst",
+    "detailsId": "refined-xophs-catalyst",
+    "id": "refined-xophs-catalyst"
   },
   {
     "type": "Currency",
     "url": "currency",
     "detailsId": "regal-orb",
     "id": "regal"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "regal-shard",
-    "id": "regal-shard"
   },
   {
     "type": "Runes",
@@ -2596,6 +2740,12 @@
     "url": "lineage-support-gems",
     "detailsId": "rigwalds-ferocity",
     "id": "rigwalds-ferocity"
+  },
+  {
+    "type": "Fragments",
+    "url": "fragments",
+    "detailsId": "ritualistic-reliquary-key",
+    "id": "ritualistic-reliquary-key"
   },
   {
     "type": "Runes",
@@ -2888,14 +3038,20 @@
   {
     "type": "Runes",
     "url": "runes",
-    "detailsId": "stone-rune",
-    "id": "stone-rune"
-  },
-  {
-    "type": "Runes",
-    "url": "runes",
     "detailsId": "storm-rune",
     "id": "storm-rune"
+  },
+  {
+    "type": "LineageSupportGems",
+    "url": "lineage-support-gems",
+    "detailsId": "styrns-ferocity",
+    "id": "styrns-ferocity"
+  },
+  {
+    "type": "LineageSupportGems",
+    "url": "lineage-support-gems",
+    "detailsId": "styrns-mountain",
+    "id": "styrns-mountain"
   },
   {
     "type": "Verisium",
@@ -2914,6 +3070,12 @@
     "url": "soul-cores",
     "detailsId": "tacatis-soul-core-of-affliction",
     "id": "tacatis-soul-core-of-affliction"
+  },
+  {
+    "type": "Fragments",
+    "url": "fragments",
+    "detailsId": "tangmazus-reliquary-key",
+    "id": "tangmazus-reliquary-key"
   },
   {
     "type": "LineageSupportGems",
@@ -3018,6 +3180,12 @@
     "id": "thaumaturgic-flux-20"
   },
   {
+    "type": "Fragments",
+    "url": "fragments",
+    "detailsId": "the-arbiters-reliquary-key",
+    "id": "the-arbiters-reliquary-key"
+  },
+  {
     "type": "Runes",
     "url": "runes",
     "detailsId": "the-greatwolfs-rune-of-claws",
@@ -3070,6 +3238,12 @@
     "url": "verisium",
     "detailsId": "transcendent-alloy",
     "id": "transcendent-alloy"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "transmutation-shard",
+    "id": "transmutation-shard"
   },
   {
     "type": "LineageSupportGems",
@@ -3590,6 +3764,12 @@
   {
     "type": "Runes",
     "url": "runes",
+    "detailsId": "warding-rune-of-courage",
+    "id": "warding-rune-of-courage"
+  },
+  {
+    "type": "Runes",
+    "url": "runes",
     "detailsId": "warding-rune-of-desperation",
     "id": "warding-rune-of-desperation"
   },
@@ -3604,12 +3784,6 @@
     "url": "runes",
     "detailsId": "warding-rune-of-equinox",
     "id": "warding-rune-of-equinox"
-  },
-  {
-    "type": "Runes",
-    "url": "runes",
-    "detailsId": "warding-rune-of-glancing",
-    "id": "warding-rune-of-glancing"
   },
   {
     "type": "Runes",
@@ -3684,6 +3858,12 @@
     "id": "wolf-idol"
   },
   {
+    "type": "Fragments",
+    "url": "fragments",
+    "detailsId": "xeshts-reliquary-key",
+    "id": "xeshts-reliquary-key"
+  },
+  {
     "type": "LineageSupportGems",
     "url": "lineage-support-gems",
     "detailsId": "xibaquas-rending",
@@ -3708,10 +3888,22 @@
     "id": "xophs-catalyst"
   },
   {
+    "type": "LineageSupportGems",
+    "url": "lineage-support-gems",
+    "detailsId": "xophs-pyre",
+    "id": "xophs-pyre"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "yaomacs-orb-of-sacrifice",
     "id": "yaomacs-orb-of-sacrifice"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "yuguls-orb-of-sacrifice",
+    "id": "yuguls-orb-of-sacrifice"
   },
   {
     "type": "SoulCores",
@@ -3724,6 +3916,12 @@
     "url": "lineage-support-gems",
     "detailsId": "zarokhs-refrain",
     "id": "zarokhs-refrain"
+  },
+  {
+    "type": "Fragments",
+    "url": "fragments",
+    "detailsId": "zarokhs-reliquary-key:-against-the-darkness",
+    "id": "against-the-darkness"
   },
   {
     "type": "LineageSupportGems",

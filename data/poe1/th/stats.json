@@ -272,12 +272,30 @@
     "pattern": "^Chaos\\ Inoculation$"
   },
   {
+    "text": "Chaos Orb \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Divine Orb \u0E41\u0E17\u0E19",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2106095595"
+    ],
+    "pattern": "^Chaos\\ Orb\\ \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Divine\\ Orb\\ \u0E41\u0E17\u0E19$"
+  },
+  {
     "text": "Chaos Orb \u0E17\u0E35\u0E48\u0E1E\u0E1A\u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E41\u0E1A\u0E1A\u0E04\u0E23\u0E1A\u0E01\u0E2D\u0E07 #%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3586007174"
     ],
     "pattern": "^Chaos\\ Orb\\ \u0E17\u0E35\u0E48\u0E1E\u0E1A\u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E41\u0E1A\u0E1A\u0E04\u0E23\u0E1A\u0E01\u0E2D\u0E07\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Chaos Orb \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Divine Orb \u0E41\u0E17\u0E19 #%",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2106095595"
+    ],
+    "pattern": "^Chaos\\ Orb\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Divine\\ Orb\\ \u0E41\u0E17\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Chaos Orb \u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E23\u0E01\u0E23\u0E23\u0E21 \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Ancient Orb \u0E41\u0E17\u0E19",
@@ -675,18 +693,6 @@
     "pattern": "^DNT\\ Inflict\\ Fire\\ Exposure\\ on\\ Nearby\\ Enemies\\ when\\ you\\ reach\\ Maximum\\ Rage$"
   },
   {
-    "text": "DNT Killing a Burning Enemy creates a Ghostflame Soul",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^DNT\\ Killing\\ a\\ Burning\\ Enemy\\ creates\\ a\\ Ghostflame\\ Soul$"
-  },
-  {
-    "text": "DNT Killing a Burning Enemy has a #% chance to create a Ghostflame Soul",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^DNT\\ Killing\\ a\\ Burning\\ Enemy\\ has\\ a\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ create\\ a\\ Ghostflame\\ Soul$"
-  },
-  {
     "text": "DNT Link Skills Cost Life instead of Mana",
     "lines": 1,
     "tradeIds": [],
@@ -741,22 +747,10 @@
     "pattern": "^DNT\\ Sirus\u0027\\ Meteors\\ rain\\ down\\ in\\ Area$"
   },
   {
-    "text": "DNT Socketed Gems are Supported by Level # Crustaceous Grasp",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^DNT\\ Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Crustaceous\\ Grasp$"
-  },
-  {
     "text": "DNT Socketed Gems are Supported by Level # Rings of Light",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^DNT\\ Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ ([-0-9,.]\u002B)\\ Rings\\ of\\ Light$"
-  },
-  {
-    "text": "DNT Trigger Ghost Furnace when you Ignite an Enemy",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^DNT\\ Trigger\\ Ghost\\ Furnace\\ when\\ you\\ Ignite\\ an\\ Enemy$"
   },
   {
     "text": "DNT Triggers Level # Violent Path when Equipped",
@@ -2682,6 +2676,12 @@
     "pattern": "^Jeweller\u0027s\\ Orb\\ \u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E23\u0E01\u0E23\u0E23\u0E21\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Chromatic\\ Orb\\ \u0E41\u0E17\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Jeweller\u0027s Orbs drop as Chromatic Orbs instead",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Jeweller\u0027s\\ Orbs\\ drop\\ as\\ Chromatic\\ Orbs\\ instead$"
+  },
+  {
     "text": "Knockback",
     "lines": 1,
     "tradeIds": [
@@ -2704,13 +2704,6 @@
       "mercenary.support_3240"
     ],
     "pattern": "^Leech$"
-  },
-  {
-    "text": "Left ring slot: you and your Minions prevent \u002B#% of Reflected Elemental Damage",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Left\\ ring\\ slot:\\ you\\ and\\ your\\ Minions\\ prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Elemental\\ Damage$"
   },
   {
     "text": "Leo\u0027s Veiled",
@@ -3283,13 +3276,6 @@
     "pattern": "^Minion\\ Life$"
   },
   {
-    "text": "Minions prevent \u002B#% of Reflected Damage they would take",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Minions\\ prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Damage\\ they\\ would\\ take$"
-  },
-  {
     "text": "Mirage Archer",
     "lines": 1,
     "tradeIds": [
@@ -3510,12 +3496,24 @@
     "pattern": "^Orb\\ of\\ Augmentation\\ \u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E23\u0E01\u0E23\u0E23\u0E21\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Regal\\ Orb\\ \u0E41\u0E17\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Orb of Chance \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Ancient Orb \u0E41\u0E17\u0E19",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Orb\\ of\\ Chance\\ \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Ancient\\ Orb\\ \u0E41\u0E17\u0E19$"
+  },
+  {
     "text": "Orb of Chance \u0E17\u0E35\u0E48\u0E1E\u0E1A\u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E41\u0E1A\u0E1A\u0E04\u0E23\u0E1A\u0E01\u0E2D\u0E07 #%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3559931431"
     ],
     "pattern": "^Orb\\ of\\ Chance\\ \u0E17\u0E35\u0E48\u0E1E\u0E1A\u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E41\u0E1A\u0E1A\u0E04\u0E23\u0E1A\u0E01\u0E2D\u0E07\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Orb of Chance \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Ancient Orb \u0E41\u0E17\u0E19 #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Orb\\ of\\ Chance\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Ancient\\ Orb\\ \u0E41\u0E17\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Orb of Fusing \u0E17\u0E35\u0E48\u0E1E\u0E1A\u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E41\u0E1A\u0E1A\u0E04\u0E23\u0E1A\u0E01\u0E2D\u0E07 #%",
@@ -3566,12 +3564,30 @@
     "pattern": "^Orb\\ of\\ Regret\\ \u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E23\u0E01\u0E23\u0E23\u0E21\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Orb\\ of\\ Annulment\\ \u0E41\u0E17\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Orb of Scouring \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Orb of Annulment \u0E41\u0E17\u0E19",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2845459668"
+    ],
+    "pattern": "^Orb\\ of\\ Scouring\\ \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Orb\\ of\\ Annulment\\ \u0E41\u0E17\u0E19$"
+  },
+  {
     "text": "Orb of Scouring \u0E17\u0E35\u0E48\u0E1E\u0E1A\u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E41\u0E1A\u0E1A\u0E04\u0E23\u0E1A\u0E01\u0E2D\u0E07 #%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4252890057"
     ],
     "pattern": "^Orb\\ of\\ Scouring\\ \u0E17\u0E35\u0E48\u0E1E\u0E1A\u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E41\u0E1A\u0E1A\u0E04\u0E23\u0E1A\u0E01\u0E2D\u0E07\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Orb of Scouring \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Orb of Annulment \u0E41\u0E17\u0E19 #%",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2845459668"
+    ],
+    "pattern": "^Orb\\ of\\ Scouring\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Orb\\ of\\ Annulment\\ \u0E41\u0E17\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Orb of Scouring \u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E23\u0E01\u0E23\u0E23\u0E21 \u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19 Orb of Annulment \u0E41\u0E17\u0E19",
@@ -3660,6 +3676,12 @@
     "pattern": "^Orb\\ of\\ Transmutation\\ \u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E23\u0E01\u0E23\u0E23\u0E21\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B\u0E40\u0E1B\u0E47\u0E19\\ Regal\\ Orb\\ \u0E41\u0E17\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Orbs of Transmutation drop as Chaos Orbs instead",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Orbs\\ of\\ Transmutation\\ drop\\ as\\ Chaos\\ Orbs\\ instead$"
+  },
+  {
     "text": "Pain Attunement",
     "lines": 1,
     "tradeIds": [
@@ -3727,41 +3749,6 @@
       "explicit.stat_4096273663"
     ],
     "pattern": "^Precise\\ Technique$"
-  },
-  {
-    "text": "Prevent \u002B#% of Reflected Cold Damage you would take while affected by Purity of Ice",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Cold\\ Damage\\ you\\ would\\ take\\ while\\ affected\\ by\\ Purity\\ of\\ Ice$"
-  },
-  {
-    "text": "Prevent \u002B#% of Reflected Elemental Damage you would take while\naffected by Purity of Elements",
-    "negate": true,
-    "lines": 2,
-    "tradeIds": [],
-    "pattern": "^Prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Elemental\\ Damage\\ you\\ would\\ take\\ while\\naffected\\ by\\ Purity\\ of\\ Elements$"
-  },
-  {
-    "text": "Prevent \u002B#% of Reflected Fire Damage you would take while affected by Purity of Fire",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Fire\\ Damage\\ you\\ would\\ take\\ while\\ affected\\ by\\ Purity\\ of\\ Fire$"
-  },
-  {
-    "text": "Prevent \u002B#% of Reflected Lightning Damage you would take while\naffected by Purity of Lightning",
-    "negate": true,
-    "lines": 2,
-    "tradeIds": [],
-    "pattern": "^Prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Lightning\\ Damage\\ you\\ would\\ take\\ while\\naffected\\ by\\ Purity\\ of\\ Lightning$"
-  },
-  {
-    "text": "Prevent \u002B#% of Reflected Physical Damage you would take while affected by Determination",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Physical\\ Damage\\ you\\ would\\ take\\ while\\ affected\\ by\\ Determination$"
   },
   {
     "text": "Pulverise",
@@ -3880,13 +3867,6 @@
       "mercenary.support_5293"
     ],
     "pattern": "^Return$"
-  },
-  {
-    "text": "Right ring slot: you and your Minions prevent \u002B#% of Reflected Physical Damage",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Right\\ ring\\ slot:\\ you\\ and\\ your\\ Minions\\ prevent\\ \\\u002B([-0-9,.]\u002B)%\\ of\\ Reflected\\ Physical\\ Damage$"
   },
   {
     "text": "Rin\u0027s Veiled",
@@ -4387,6 +4367,18 @@
       "scourge.stat_632761194"
     ],
     "pattern": "^Zealot\u0027s\\ Oath$"
+  },
+  {
+    "text": "#% chance for Jeweller\u0027s Orbs to drop as Chromatic Orbs instead",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Jeweller\u0027s\\ Orbs\\ to\\ drop\\ as\\ Chromatic\\ Orbs\\ instead$"
+  },
+  {
+    "text": "#% chance for Orbs of Transmutation to drop as Chaos Orbs instead",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Orbs\\ of\\ Transmutation\\ to\\ drop\\ as\\ Chaos\\ Orbs\\ instead$"
   },
   {
     "text": "of Aisling\u0027s Veil",
@@ -5946,6 +5938,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_2479762395",
       "enchant.stat_3524326896",
       "enchant.stat_815588902",
       "enchant.stat_918308703"
@@ -5957,6 +5950,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_2479762395",
       "enchant.stat_3524326896",
       "enchant.stat_815588902",
       "enchant.stat_918308703"
@@ -7380,21 +7374,6 @@
     "pattern": "^\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E21\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E02\u0E2D\u0E07\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E28\u0E31\u0E15\u0E23\u0E39\\ \u0E2A\u0E25\u0E31\u0E1A\u0E02\u0E31\u0E49\u0E27\u0E1A\u0E27\u0E01\u0E25\u0E1A\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30 \u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E2A\u0E35\u0E22\u0E02\u0E27\u0E31\u0E0D \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25 \u0E40\u0E27\u0E17 \u0E25\u0E14\u0E25\u0E07 \u002B#%",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\\ \u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E2A\u0E35\u0E22\u0E02\u0E27\u0E31\u0E0D\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\\ \u0E40\u0E27\u0E17\\ \u0E25\u0E14\u0E25\u0E07\\ \\\u002B([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30 \u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E2A\u0E35\u0E22\u0E02\u0E27\u0E31\u0E0D \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25 \u0E40\u0E27\u0E17 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 \u002B#%",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2090693207"
-    ],
-    "pattern": "^\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\\ \u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E2A\u0E35\u0E22\u0E02\u0E27\u0E31\u0E0D\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\\ \u0E40\u0E27\u0E17\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ \\\u002B([-0-9,.]\u002B)%$"
-  },
-  {
     "text": "\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30 \u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25 \u0E25\u0E14\u0E25\u0E07 #%",
     "negate": true,
     "lines": 1,
@@ -8131,6 +8110,15 @@
     "pattern": "^\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\u0E40\u0E27\u0E17\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E1E\u0E34\u0E29$"
   },
   {
+    "text": "\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E2A\u0E35\u0E22\u0E02\u0E27\u0E31\u0E0D \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25 \u0E40\u0E27\u0E17 \u0E25\u0E14\u0E25\u0E07 #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2090693207"
+    ],
+    "pattern": "^\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E2A\u0E35\u0E22\u0E02\u0E27\u0E31\u0E0D\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\\ \u0E40\u0E27\u0E17\\ \u0E25\u0E14\u0E25\u0E07\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E2A\u0E35\u0E22\u0E02\u0E27\u0E31\u0E0D \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25 \u0E40\u0E27\u0E17 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #%",
     "lines": 1,
     "tradeIds": [
@@ -8608,6 +8596,18 @@
       "explicit.stat_3036422124"
     ],
     "pattern": "^\u0E01\u0E32\u0E23\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\u0E28\u0E31\u0E15\u0E23\u0E39\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E40\u0E23\u0E35\u0E22\u0E01\\ \u0E1B\u0E23\u0E30\u0E15\u0E39\u0E15\u0E48\u0E32\u0E07\u0E21\u0E34\u0E15\u0E34\\ 1\\ \u0E41\u0E2B\u0E48\u0E07\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u0E01\u0E32\u0E23\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E15\u0E34\u0E14\u0E44\u0E1F \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07 \u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13\u0E2D\u0E2D\u0E25\u0E40\u0E1F\u0E25\u0E21 1 \u0E14\u0E27\u0E07 #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E01\u0E32\u0E23\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E15\u0E34\u0E14\u0E44\u0E1F\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\\ \u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13\u0E2D\u0E2D\u0E25\u0E40\u0E1F\u0E25\u0E21\\ 1\\ \u0E14\u0E27\u0E07\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u0E01\u0E32\u0E23\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E15\u0E34\u0E14\u0E44\u0E1F \u0E2A\u0E23\u0E49\u0E32\u0E07 \u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13\u0E2D\u0E2D\u0E25\u0E40\u0E1F\u0E25\u0E21 1 \u0E14\u0E27\u0E07",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E01\u0E32\u0E23\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E15\u0E34\u0E14\u0E44\u0E1F\\ \u0E2A\u0E23\u0E49\u0E32\u0E07\\ \u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13\u0E2D\u0E2D\u0E25\u0E40\u0E1F\u0E25\u0E21\\ 1\\ \u0E14\u0E27\u0E07$"
   },
   {
     "text": "\u0E01\u0E32\u0E23\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49\u0E01\u0E31\u0E19 \u0E14\u0E36\u0E07\u0E14\u0E39\u0E14 \u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E15\u0E48\u0E32\u0E07\u0E21\u0E34\u0E15\u0E34",
@@ -14969,9 +14969,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_380759151",
-      "explicit.stat_932096321",
-      "fractured.stat_380759151",
-      "fractured.stat_932096321"
+      "fractured.stat_380759151"
     ],
     "pattern": "^\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E44\u0E1F\\ \u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07\\ \u0E44\u0E14\u0E49$"
   },
@@ -18648,7 +18646,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4263540840"
+      "explicit.stat_4164247992",
+      "explicit.stat_4263540840",
+      "scourge.stat_4164247992"
     ],
     "pattern": "^\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\\ \u0E23\u0E35\u0E0A\u0E32\u0E23\u0E4C\u0E08\u0E2B\u0E23\u0E37\u0E2D\u0E1F\u0E37\u0E49\u0E19\u0E1F\u0E39\\ \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\\ \u0E44\u0E14\u0E49$"
   },
@@ -19506,12 +19506,12 @@
     "pattern": "^\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38\\ \u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\\ \\\u002B([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E21\u0E35\u0E1C\u0E25$"
   },
   {
-    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01 \u0E18\u0E32\u0E15\u0E38\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C",
+    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u002B#% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01 \u0E18\u0E32\u0E15\u0E38\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3234824465"
     ],
-    "pattern": "^\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38\\ \u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\\ \\\u002B([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01\\ \u0E18\u0E32\u0E15\u0E38\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C$"
+    "pattern": "^\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38\\ \u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\\\u002B([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01\\ \u0E18\u0E32\u0E15\u0E38\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C$"
   },
   {
     "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E17\u0E38\u0E01\u0E18\u0E32\u0E15\u0E38 \u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 \u002B#% \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E22\u0E31\u0E1A\u0E22\u0E31\u0E49\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E40\u0E27\u0E17 \u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
@@ -19651,13 +19651,13 @@
     "pattern": "^\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E16\u0E39\u0E01\u0E08\u0E33\u0E01\u0E31\u0E14\u0E14\u0E49\u0E27\u0E22\\ \u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\\ \u0E02\u0E2D\u0E07\u0E18\u0E32\u0E15\u0E38\u0E17\u0E35\u0E48\u0E2A\u0E39\u0E07\u0E17\u0E35\u0E48\u0E2A\u0E38\u0E14\\ \u0E41\u0E17\u0E19$"
   },
   {
-    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E18\u0E32\u0E15\u0E38 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 #",
+    "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E18\u0E32\u0E15\u0E38 \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14 \u002B#%",
     "lines": 1,
     "tradeIds": [
       "pseudo.pseudo_count_elemental_resistances",
       "pseudo.pseudo_total_elemental_resistance"
     ],
-    "pattern": "^\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\\ ([-0-9,.]\u002B)$"
+    "pattern": "^\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
     "text": "\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E18\u0E32\u0E15\u0E38 \u0E19\u0E31\u0E1A\u0E27\u0E48\u0E32\u0E40\u0E1B\u0E47\u0E19 90% \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\u0E02\u0E2D\u0E07\u0E28\u0E31\u0E15\u0E23\u0E39",
@@ -21115,13 +21115,13 @@
     "pattern": "^\u0E04\u0E48\u0E32\u0E40\u0E01\u0E23\u0E32\u0E30\\ ([-0-9,.]\u002B)%\\ \u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\\ \u0E44\u0E1F,\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07,\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\\ \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A$"
   },
   {
-    "text": "\u0E04\u0E48\u0E32\u0E40\u0E01\u0E23\u0E32\u0E30 \u002B#% \u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E30\u0E17\u0E30 \u0E44\u0E1F, \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07, \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E1A\u0E25\u0E47\u0E2D\u0E04\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
+    "text": "\u0E04\u0E48\u0E32\u0E40\u0E01\u0E23\u0E32\u0E30 #% \u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E30\u0E17\u0E30 \u0E44\u0E1F, \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07, \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E1A\u0E25\u0E47\u0E2D\u0E04\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1239225602",
       "fractured.stat_1239225602"
     ],
-    "pattern": "^\u0E04\u0E48\u0E32\u0E40\u0E01\u0E23\u0E32\u0E30\\ \\\u002B([-0-9,.]\u002B)%\\ \u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\\ \u0E44\u0E1F,\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07,\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\\ \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E1A\u0E25\u0E47\u0E2D\u0E04\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
+    "pattern": "^\u0E04\u0E48\u0E32\u0E40\u0E01\u0E23\u0E32\u0E30\\ ([-0-9,.]\u002B)%\\ \u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\\ \u0E44\u0E1F,\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07,\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\\ \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E1A\u0E25\u0E47\u0E2D\u0E04\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
   {
     "text": "\u0E04\u0E48\u0E32\u0E40\u0E01\u0E23\u0E32\u0E30 \u002B# \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E1A\u0E25\u0E47\u0E2D\u0E04\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
@@ -23166,6 +23166,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crucible.mod_48348",
       "crucible.mod_56565"
     ],
     "pattern": "^\u0E0B\u0E2D\u0E21\u0E1A\u0E35\u0E49\u0E41\u0E25\u0E30\u0E2A\u0E40\u0E1B\u0E04\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E17\u0E35\u0E48\u0E1B\u0E25\u0E38\u0E01\\ \u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2D\u0E30\u0E14\u0E23\u0E35\u0E19\u0E32\u0E25\u0E35\u0E19\\ ([-0-9,.]\u002B)\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E16\u0E39\u0E01\u0E1B\u0E25\u0E38\u0E01$"
@@ -24096,6 +24097,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1625933063",
+      "explicit.stat_3750917270",
       "explicit.stat_447636597",
       "explicit.stat_748813744"
     ],
@@ -24546,8 +24549,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_308127151",
-      "explicit.stat_4201339891"
+      "explicit.stat_308127151"
     ],
     "pattern": "^\u0E14\u0E39\u0E14\u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E$"
   },
@@ -24564,7 +24566,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4201339891"
+      "explicit.stat_3885409671",
+      "explicit.stat_4201339891",
+      "fractured.stat_3885409671"
     ],
     "pattern": "^\u0E14\u0E39\u0E14\u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38$"
   },
@@ -26586,13 +26590,13 @@
     "pattern": "^\u0E14\u0E48\u0E32\u0E19\u0E21\u0E35\\ \u0E1E\u0E32\u0E22\u0E38\u0E2A\u0E25\u0E32\u0E22\u0E01\u0E32\u0E22\u0E27\u0E34\u0E20\u0E32\u0E04\\ \u0E02\u0E2D\u0E07\u0E44\u0E0B\u0E23\u0E31\u0E2A$"
   },
   {
-    "text": "\u0E14\u0E48\u0E32\u0E19\u0E21\u0E35 \u0E1E\u0E37\u0E49\u0E19\u0E04\u0E33\u0E41\u0E0A\u0E48\u0E07 \u0E17\u0E35\u0E48\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E25\u0E30\u0E2A\u0E23\u0E49\u0E32\u0E07 \u0E2A\u0E32\u0E1B\u0E41\u0E0A\u0E48\u0E07\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21",
+    "text": "\u0E14\u0E48\u0E32\u0E19\u0E21\u0E35 \u0E1E\u0E37\u0E49\u0E19\u0E04\u0E33\u0E41\u0E0A\u0E48\u0E07 \u0E17\u0E35\u0E48\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E1B\u0E41\u0E0A\u0E48\u0E07\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2796704737",
       "fractured.stat_2796704737"
     ],
-    "pattern": "^\u0E14\u0E48\u0E32\u0E19\u0E21\u0E35\\ \u0E1E\u0E37\u0E49\u0E19\u0E04\u0E33\u0E41\u0E0A\u0E48\u0E07\\ \u0E17\u0E35\u0E48\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E25\u0E30\u0E2A\u0E23\u0E49\u0E32\u0E07\\ \u0E2A\u0E32\u0E1B\u0E41\u0E0A\u0E48\u0E07\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21$"
+    "pattern": "^\u0E14\u0E48\u0E32\u0E19\u0E21\u0E35\\ \u0E1E\u0E37\u0E49\u0E19\u0E04\u0E33\u0E41\u0E0A\u0E48\u0E07\\ \u0E17\u0E35\u0E48\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E25\u0E30\u0E2A\u0E32\u0E1B\u0E41\u0E0A\u0E48\u0E07\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21$"
   },
   {
     "text": "\u0E14\u0E48\u0E32\u0E19\u0E21\u0E35 \u0E1E\u0E37\u0E49\u0E19\u0E0A\u0E47\u0E2D\u0E04 \u0E40\u0E1B\u0E47\u0E19\u0E1A\u0E32\u0E07\u0E2A\u0E48\u0E27\u0E19",
@@ -32166,6 +32170,12 @@
     "pattern": "^\u0E16\u0E49\u0E32\u0E43\u0E2A\u0E48\u0E08\u0E34\u0E27\u0E40\u0E27\u0E25\\ Hypnotic\\ Eye:\\ \u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E01\u0E23\u0E30\u0E41\u0E2A\u0E2D\u0E32\u0E04\u0E21\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\u0E40\u0E27\u0E17$"
   },
   {
+    "text": "\u0E16\u0E49\u0E32\u0E43\u0E2A\u0E48\u0E08\u0E34\u0E27\u0E40\u0E27\u0E25 Murderous Eye \u0E2D\u0E22\u0E48\u0E32\u0E07\u0E19\u0E49\u0E2D\u0E22 # \u0E40\u0E21\u0E47\u0E14:",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E16\u0E49\u0E32\u0E43\u0E2A\u0E48\u0E08\u0E34\u0E27\u0E40\u0E27\u0E25\\ Murderous\\ Eye\\ \u0E2D\u0E22\u0E48\u0E32\u0E07\u0E19\u0E49\u0E2D\u0E22\\ ([-0-9,.]\u002B)\\ \u0E40\u0E21\u0E47\u0E14:$"
+  },
+  {
     "text": "\u0E16\u0E49\u0E32\u0E43\u0E2A\u0E48\u0E08\u0E34\u0E27\u0E40\u0E27\u0E25 Murderous Eye: \u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30 \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E43\u0E2B\u0E49\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E15\u0E31\u0E49\u0E07\u0E21\u0E31\u0E48\u0E19 #%",
     "lines": 1,
     "tradeIds": [
@@ -33244,6 +33254,12 @@
     "pattern": "^\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C\\ \u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E21\u0E23\u0E13\u0E30\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E2A\u0E27\u0E21\u0E43\u0E2A\u0E48$"
   },
   {
+    "text": "\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C \u0E2D\u0E31\u0E0D\u0E40\u0E0A\u0E34\u0E0D\u0E15\u0E31\u0E27\u0E01\u0E34\u0E19\u0E01\u0E23\u0E30\u0E14\u0E39\u0E01  \u0E40\u0E25\u0E40\u0E27\u0E25 # \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E2D\u0E31\u0E1E",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C\\ \u0E2D\u0E31\u0E0D\u0E40\u0E0A\u0E34\u0E0D\u0E15\u0E31\u0E27\u0E01\u0E34\u0E19\u0E01\u0E23\u0E30\u0E14\u0E39\u0E01\\ \\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E2D\u0E31\u0E1E$"
+  },
+  {
     "text": "\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C \u0E2D\u0E31\u0E0D\u0E40\u0E0A\u0E34\u0E0D\u0E17\u0E2B\u0E32\u0E23\u0E2B\u0E19\u0E49\u0E32\u0E44\u0E21\u0E49  \u0E40\u0E25\u0E40\u0E27\u0E25 # \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E2A\u0E27\u0E21\u0E43\u0E2A\u0E48",
     "lines": 1,
     "tradeIds": [
@@ -33447,6 +33463,12 @@
       "explicit.stat_1663239249"
     ],
     "pattern": "^\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C\\ \u0E40\u0E0B\u0E48\u0E19\u0E44\u0E2B\u0E27\u0E49\u0E14\u0E49\u0E27\u0E22\u0E01\u0E23\u0E30\u0E14\u0E39\u0E01\\ ,\\ \u0E40\u0E0B\u0E48\u0E19\u0E44\u0E2B\u0E27\u0E49\u0E14\u0E49\u0E27\u0E22\u0E40\u0E19\u0E37\u0E49\u0E2D\u0E2B\u0E19\u0E31\u0E07\\ ,\\ \u0E40\u0E0B\u0E48\u0E19\u0E44\u0E2B\u0E27\u0E49\u0E14\u0E49\u0E27\u0E22\u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13\\ \\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)\\ \u0E15\u0E32\u0E21\u0E25\u0E33\u0E14\u0E31\u0E1A\u0E17\u0E38\u0E01\\ 5\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35\\n\u0E2A\u0E01\u0E34\u0E25\u0E40\u0E0B\u0E48\u0E19\u0E44\u0E2B\u0E27\u0E49\u0E17\u0E35\u0E48\u0E16\u0E39\u0E01\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C\u0E27\u0E34\u0E18\u0E35\u0E19\u0E35\u0E49\\ \u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E38\u0E13\u0E40\u0E0A\u0E48\u0E19\u0E01\u0E31\u0E19$"
+  },
+  {
+    "text": "\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C \u0E40\u0E15\u0E32\u0E40\u0E1C\u0E32\u0E1C\u0E35  \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E25\u0E38\u0E01\u0E44\u0E2B\u0E21\u0E49 \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C\\ \u0E40\u0E15\u0E32\u0E40\u0E1C\u0E32\u0E1C\u0E35\\ \\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E25\u0E38\u0E01\u0E44\u0E2B\u0E21\u0E49\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39$"
   },
   {
     "text": "\u0E17\u0E23\u0E34\u0E01\u0E40\u0E01\u0E2D\u0E23\u0E4C \u0E40\u0E19\u0E37\u0E49\u0E2D\u0E2B\u0E19\u0E31\u0E07\u0E21\u0E34\u0E2A\u0E34\u0E49\u0E19  \u0E40\u0E25\u0E40\u0E27\u0E25 # 1 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E17\u0E38\u0E01 1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
@@ -34695,7 +34717,8 @@
     "text": "\u0E17\u0E38\u0E48\u0E19\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E08\u0E38\u0E14\u0E0A\u0E19\u0E27\u0E19 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 1 \u0E04\u0E23\u0E31\u0E49\u0E07 #%",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2445634879"
+      "explicit.stat_2445634879",
+      "fractured.stat_2445634879"
     ],
     "pattern": "^\u0E17\u0E38\u0E48\u0E19\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E08\u0E38\u0E14\u0E0A\u0E19\u0E27\u0E19\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ 1\\ \u0E04\u0E23\u0E31\u0E49\u0E07\\ ([-0-9,.]\u002B)%$"
   },
@@ -35110,9 +35133,7 @@
     "tradeIds": [
       "enchant.stat_1233806203",
       "enchant.stat_1692887998",
-      "enchant.stat_1920370417",
       "enchant.stat_2081344089",
-      "enchant.stat_2156140483",
       "enchant.stat_2721871046",
       "enchant.stat_325889252",
       "enchant.stat_3266567165",
@@ -35123,22 +35144,18 @@
       "enchant.stat_804667127",
       "enchant.stat_939320550",
       "explicit.stat_1692887998",
-      "explicit.stat_1920370417",
       "explicit.stat_2081344089",
-      "explicit.stat_2156140483",
       "explicit.stat_2721871046",
       "explicit.stat_325889252",
       "explicit.stat_3266567165",
       "explicit.stat_3383226338",
       "explicit.stat_3484910620",
       "explicit.stat_3993865658",
-      "fractured.stat_2156140483",
       "fractured.stat_325889252",
       "fractured.stat_3993865658",
       "implicit.stat_1233806203",
       "implicit.stat_1692887998",
       "implicit.stat_2081344089",
-      "implicit.stat_2156140483",
       "implicit.stat_2721871046",
       "implicit.stat_325889252",
       "implicit.stat_3383226338",
@@ -35154,9 +35171,7 @@
     "tradeIds": [
       "enchant.stat_1233806203",
       "enchant.stat_1692887998",
-      "enchant.stat_1920370417",
       "enchant.stat_2081344089",
-      "enchant.stat_2156140483",
       "enchant.stat_2721871046",
       "enchant.stat_325889252",
       "enchant.stat_3266567165",
@@ -35167,22 +35182,18 @@
       "enchant.stat_804667127",
       "enchant.stat_939320550",
       "explicit.stat_1692887998",
-      "explicit.stat_1920370417",
       "explicit.stat_2081344089",
-      "explicit.stat_2156140483",
       "explicit.stat_2721871046",
       "explicit.stat_325889252",
       "explicit.stat_3266567165",
       "explicit.stat_3383226338",
       "explicit.stat_3484910620",
       "explicit.stat_3993865658",
-      "fractured.stat_2156140483",
       "fractured.stat_325889252",
       "fractured.stat_3993865658",
       "implicit.stat_1233806203",
       "implicit.stat_1692887998",
       "implicit.stat_2081344089",
-      "implicit.stat_2156140483",
       "implicit.stat_2721871046",
       "implicit.stat_325889252",
       "implicit.stat_3383226338",
@@ -35214,28 +35225,48 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1761642973",
+      "enchant.stat_1803598623",
+      "enchant.stat_2351239732",
+      "enchant.stat_2605040931",
       "enchant.stat_2721871046",
       "enchant.stat_3059700363",
       "enchant.stat_325889252",
       "enchant.stat_3266567165",
       "enchant.stat_3383226338",
       "enchant.stat_3395872960",
+      "enchant.stat_3444518809",
       "enchant.stat_3484910620",
       "enchant.stat_3993865658",
+      "enchant.stat_900639351",
+      "explicit.stat_1761642973",
+      "explicit.stat_1803598623",
+      "explicit.stat_2351239732",
+      "explicit.stat_2605040931",
       "explicit.stat_2721871046",
       "explicit.stat_3059700363",
       "explicit.stat_325889252",
       "explicit.stat_3266567165",
       "explicit.stat_3383226338",
       "explicit.stat_3395872960",
+      "explicit.stat_3444518809",
       "explicit.stat_3484910620",
       "explicit.stat_3993865658",
+      "explicit.stat_900639351",
+      "fractured.stat_2351239732",
+      "fractured.stat_2605040931",
       "fractured.stat_325889252",
+      "fractured.stat_3444518809",
       "fractured.stat_3993865658",
+      "fractured.stat_900639351",
+      "implicit.stat_1803598623",
+      "implicit.stat_2351239732",
       "implicit.stat_2721871046",
       "implicit.stat_325889252",
       "implicit.stat_3383226338",
-      "implicit.stat_3993865658"
+      "implicit.stat_3444518809",
+      "implicit.stat_3993865658",
+      "implicit.stat_900639351"
     ],
     "pattern": "^\u0E18\u0E07\u0E41\u0E02\u0E47\u0E07\u0E02\u0E37\u0E19\\ \\ \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32\\ \u0E25\u0E14\u0E25\u0E07\\ ([-0-9,.]\u002B)%$"
   },
@@ -35244,28 +35275,48 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1761642973",
+      "enchant.stat_1803598623",
+      "enchant.stat_2351239732",
+      "enchant.stat_2605040931",
       "enchant.stat_2721871046",
       "enchant.stat_3059700363",
       "enchant.stat_325889252",
       "enchant.stat_3266567165",
       "enchant.stat_3383226338",
       "enchant.stat_3395872960",
+      "enchant.stat_3444518809",
       "enchant.stat_3484910620",
       "enchant.stat_3993865658",
+      "enchant.stat_900639351",
+      "explicit.stat_1761642973",
+      "explicit.stat_1803598623",
+      "explicit.stat_2351239732",
+      "explicit.stat_2605040931",
       "explicit.stat_2721871046",
       "explicit.stat_3059700363",
       "explicit.stat_325889252",
       "explicit.stat_3266567165",
       "explicit.stat_3383226338",
       "explicit.stat_3395872960",
+      "explicit.stat_3444518809",
       "explicit.stat_3484910620",
       "explicit.stat_3993865658",
+      "explicit.stat_900639351",
+      "fractured.stat_2351239732",
+      "fractured.stat_2605040931",
       "fractured.stat_325889252",
+      "fractured.stat_3444518809",
       "fractured.stat_3993865658",
+      "fractured.stat_900639351",
+      "implicit.stat_1803598623",
+      "implicit.stat_2351239732",
       "implicit.stat_2721871046",
       "implicit.stat_325889252",
       "implicit.stat_3383226338",
-      "implicit.stat_3993865658"
+      "implicit.stat_3444518809",
+      "implicit.stat_3993865658",
+      "implicit.stat_900639351"
     ],
     "pattern": "^\u0E18\u0E07\u0E41\u0E02\u0E47\u0E07\u0E02\u0E37\u0E19\\ \\ \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ ([-0-9,.]\u002B)%$"
   },
@@ -36637,8 +36688,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2791271819",
-      "enchant.stat_3569393676"
+      "enchant.stat_2791271819"
     ],
     "pattern": "^\u0E1A\u0E23\u0E35\u0E0A\\ \u0E21\u0E35\u0E1E\u0E37\u0E49\u0E19\u0E17\u0E35\u0E48\u0E2A\u0E48\u0E07\u0E1C\u0E25\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ ([-0-9,.]\u002B)%$"
   },
@@ -36999,10 +37049,10 @@
     "pattern": "^\u0E1A\u0E2D\u0E25\u0E44\u0E1F\\ \\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E25\u0E38\u0E01\u0E44\u0E2B\u0E21\u0E49\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
-    "text": "\u0E1A\u0E2D\u0E25\u0E44\u0E1F  \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E41\u0E1C\u0E14\u0E40\u0E1C\u0E32 #%",
+    "text": "\u0E1A\u0E2D\u0E25\u0E44\u0E1F  \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E41\u0E1C\u0E14\u0E40\u0E1C\u0E32 \u002B#%",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^\u0E1A\u0E2D\u0E25\u0E44\u0E1F\\ \\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E1C\u0E14\u0E40\u0E1C\u0E32\\ ([-0-9,.]\u002B)%$"
+    "pattern": "^\u0E1A\u0E2D\u0E25\u0E44\u0E1F\\ \\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E1C\u0E14\u0E40\u0E1C\u0E32\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
     "text": "\u0E1A\u0E2D\u0E25\u0E44\u0E1F  \u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E25\u0E38\u0E01\u0E44\u0E2B\u0E21\u0E49 \u0E40\u0E2A\u0E21\u0E2D",
@@ -37399,8 +37449,12 @@
   },
   {
     "text": "\u0E1A\u0E2D\u0E2A\u0E22\u0E39\u0E19\u0E34\u0E04 \u0E14\u0E23\u0E2D\u0E1B \u0E44\u0E2D\u0E40\u0E17\u0E21\u0E17\u0E35\u0E48\u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_804187877",
+      "implicit.stat_804187877"
+    ],
     "pattern": "^\u0E1A\u0E2D\u0E2A\u0E22\u0E39\u0E19\u0E34\u0E04\\ \u0E14\u0E23\u0E2D\u0E1B\\ \u0E44\u0E2D\u0E40\u0E17\u0E21\u0E17\u0E35\u0E48\u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19$"
   },
   {
@@ -37632,8 +37686,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1236638414",
       "explicit.stat_979246511",
       "fractured.stat_979246511",
+      "implicit.stat_1236638414",
       "implicit.stat_979246511"
     ],
     "pattern": "^\u0E1A\u0E2D\u0E2A\u0E22\u0E39\u0E19\u0E34\u0E04\\ \u0E19\u0E33\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)%\\ \u0E44\u0E1B\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E40\u0E1B\u0E47\u0E19\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07$"
@@ -37654,8 +37710,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3217428772",
       "explicit.stat_369494213",
       "fractured.stat_369494213",
+      "implicit.stat_3217428772",
       "implicit.stat_369494213"
     ],
     "pattern": "^\u0E1A\u0E2D\u0E2A\u0E22\u0E39\u0E19\u0E34\u0E04\\ \u0E19\u0E33\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)%\\ \u0E44\u0E1B\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E40\u0E1B\u0E47\u0E19\\ \u0E44\u0E1F$"
@@ -52326,15 +52384,6 @@
     "pattern": "^\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\\ \u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E14\u0E39\u0E14\\ \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15,\\ \u0E21\u0E32\u0E19\u0E32\\ \u0E2B\u0E23\u0E37\u0E2D\\ \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19$"
   },
   {
-    "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C \u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E02\u0E42\u0E21\u0E22 Power, Frenzy \u0E2B\u0E23\u0E37\u0E2D Endurance Charge \u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1455353008"
-    ],
-    "pattern": "^\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\\ \u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E02\u0E42\u0E21\u0E22\\ Power,\\ Frenzy\\ \u0E2B\u0E23\u0E37\u0E2D\\ Endurance\\ Charge\\ \u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30$"
-  },
-  {
     "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C \u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E02\u0E42\u0E21\u0E22\u0E2B\u0E23\u0E37\u0E2D\u0E01\u0E33\u0E08\u0E31\u0E14 Power, Frenzy \u0E2B\u0E23\u0E37\u0E2D Endurance Charge \u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30",
     "lines": 1,
     "tradeIds": [
@@ -53556,13 +53605,13 @@
     "pattern": "^\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E21\u0E35\\ \u0E1B\u0E49\u0E2D\u0E07\u0E01\u0E31\u0E19\u0E2A\u0E32\u0E1B\u0E2A\u0E30\u0E01\u0E14$"
   },
   {
-    "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E22\u0E39\u0E19\u0E34\u0E04 \u0E14\u0E23\u0E2D\u0E1B\u0E44\u0E2D\u0E40\u0E17\u0E21 \u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19",
+    "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E22\u0E39\u0E19\u0E34\u0E04 \u0E14\u0E23\u0E2D\u0E1B \u0E44\u0E2D\u0E40\u0E17\u0E21\u0E17\u0E35\u0E48\u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_804187877",
       "implicit.stat_804187877"
     ],
-    "pattern": "^\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E22\u0E39\u0E19\u0E34\u0E04\\ \u0E14\u0E23\u0E2D\u0E1B\u0E44\u0E2D\u0E40\u0E17\u0E21\\ \u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19$"
+    "pattern": "^\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E22\u0E39\u0E19\u0E34\u0E04\\ \u0E14\u0E23\u0E2D\u0E1B\\ \u0E44\u0E2D\u0E40\u0E17\u0E21\u0E17\u0E35\u0E48\u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19$"
   },
   {
     "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E22\u0E39\u0E19\u0E34\u0E04 \u0E17\u0E35\u0E48\u0E16\u0E39\u0E01\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\u0E17\u0E35\u0E48 \u0E41\u0E17\u0E48\u0E19\u0E1E\u0E34\u0E18\u0E35\u0E01\u0E23\u0E23\u0E21 \u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E43\u0E2B\u0E49 \u0E1A\u0E23\u0E23\u0E13\u0E32\u0E01\u0E32\u0E23 \u0E25\u0E14\u0E25\u0E07 \u0E2D\u0E35\u0E01 #%",
@@ -54910,6 +54959,12 @@
       "explicit.stat_1238581103"
     ],
     "pattern": "^\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E41\u0E25\u0E30\u0E2B\u0E35\u0E1A\\ \u0E43\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\\ \u0E14\u0E23\u0E2D\u0E1B\u0E44\u0E2D\u0E40\u0E17\u0E21\u0E17\u0E35\u0E48\u0E21\u0E35\\ \u0E44\u0E2D\u0E40\u0E17\u0E21\u0E40\u0E25\u0E40\u0E27\u0E25\\ \\\u002B1\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E43\u0E19\u0E14\u0E48\u0E32\u0E19 \u0E21\u0E35\u0E04\u0E27\u0E32\u0E21\u0E17\u0E23\u0E2B\u0E14\u0E41\u0E25\u0E30\u0E02\u0E2D\u0E07\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E43\u0E19\u0E14\u0E48\u0E32\u0E19\\ \u0E21\u0E35\u0E04\u0E27\u0E32\u0E21\u0E17\u0E23\u0E2B\u0E14\u0E41\u0E25\u0E30\u0E02\u0E2D\u0E07\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19$"
   },
   {
     "text": "\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E43\u0E19\u0E14\u0E48\u0E32\u0E19 \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E21\u0E35 \u0E14\u0E2D\u0E01\u0E23\u0E33\u0E25\u0E36\u0E01 \u0E25\u0E14\u0E25\u0E07 #%",
@@ -57746,6 +57801,7 @@
   },
   {
     "text": "\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19 \u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E17\u0E35\u0E48\u0E21\u0E31\u0E19\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u002B#%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "implicit.stat_2467518140"
@@ -59889,11 +59945,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2727256287",
-      "explicit.stat_490098963",
-      "fractured.stat_2727256287",
-      "fractured.stat_490098963",
-      "implicit.stat_490098963",
-      "scourge.stat_490098963"
+      "fractured.stat_2727256287"
     ],
     "pattern": "^\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\\ \u0E41\u0E1B\u0E25\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)%\\ \u0E40\u0E1B\u0E47\u0E19\\ \u0E40\u0E04\u0E2D\u0E2D\u0E2A$"
   },
@@ -61636,7 +61688,6 @@
   },
   {
     "text": "\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C  \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 1 \u0E25\u0E39\u0E01",
-    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -61649,14 +61700,8 @@
   },
   {
     "text": "\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C  \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 # \u0E25\u0E39\u0E01",
-    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1011373762",
-      "explicit.stat_1309819744",
-      "explicit.stat_736847554",
-      "fractured.stat_1309819744"
-    ],
+    "tradeIds": [],
     "pattern": "^\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C\\ \\ \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ ([-0-9,.]\u002B)\\ \u0E25\u0E39\u0E01$"
   },
   {
@@ -61684,19 +61729,19 @@
     "pattern": "^\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C\\ \\ \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07\\ 2\\ \u0E25\u0E39\u0E01\\ \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19\\ 1\\ \u0E40\u0E25\u0E48\u0E21$"
   },
   {
-    "text": "\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C  \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C  \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07 # \u0E25\u0E39\u0E01 \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19 1 \u0E40\u0E25\u0E48\u0E21",
+    "text": "\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C  \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07 # \u0E25\u0E39\u0E01 \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19 1 \u0E40\u0E25\u0E48\u0E21",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C\\ \\ \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07\\ ([-0-9,.]\u002B)\\ \u0E25\u0E39\u0E01\\ \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19\\ 1\\ \u0E40\u0E25\u0E48\u0E21$"
+  },
+  {
+    "text": "\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C  \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07 # \u0E25\u0E39\u0E01 \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19 1 \u0E40\u0E25\u0E48\u0E21",
     "value": -1,
     "lines": 1,
     "tradeIds": [
       "crucible.mod_18766",
       "crucible.mod_22295"
     ],
-    "pattern": "^\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C\\ \\ \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \\ \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07\\ ([-0-9,.]\u002B)\\ \u0E25\u0E39\u0E01\\ \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19\\ 1\\ \u0E40\u0E25\u0E48\u0E21$"
-  },
-  {
-    "text": "\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C  \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07 # \u0E25\u0E39\u0E01 \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19 1 \u0E40\u0E25\u0E48\u0E21",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^\u0E21\u0E35\u0E14\u0E40\u0E27\u0E17\u0E21\u0E19\u0E15\u0E23\u0E4C\\ \\ \u0E2D\u0E32\u0E28\u0E31\u0E22\u0E01\u0E32\u0E23\u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \u0E19\u0E49\u0E2D\u0E22\u0E25\u0E07\\ ([-0-9,.]\u002B)\\ \u0E25\u0E39\u0E01\\ \u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E17\u0E34\u0E49\u0E07\u0E21\u0E35\u0E14\u0E04\u0E49\u0E32\u0E07\u0E1E\u0E37\u0E49\u0E19\\ 1\\ \u0E40\u0E25\u0E48\u0E21$"
   },
   {
@@ -65345,6 +65390,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crucible.mod_19663",
       "crucible.mod_40803",
       "crucible.mod_59800",
       "crucible.mod_8431"
@@ -65671,11 +65717,7 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1012291104",
-      "enchant.stat_318953428",
-      "explicit.stat_318953428",
-      "fractured.stat_318953428",
-      "implicit.stat_2795267150",
-      "implicit.stat_318953428"
+      "implicit.stat_2795267150"
     ],
     "pattern": "^\u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E15\u0E32\u0E1A\u0E2D\u0E14\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\\ ([-0-9,.]\u002B)%\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\\ \u0E21\u0E37\u0E2D\u0E23\u0E2D\u0E07$"
   },
@@ -66616,9 +66658,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2332726055",
-      "explicit.stat_3888064854",
-      "explicit.stat_97064873",
-      "fractured.stat_97064873"
+      "explicit.stat_3888064854"
     ],
     "pattern": "^\u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07,\\ \u0E0A\u0E47\u0E2D\u0E04,\\ \u0E25\u0E38\u0E01\u0E44\u0E2B\u0E21\u0E49\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E21\u0E35\u0E1C\u0E25\u0E08\u0E32\u0E01\u0E02\u0E27\u0E14\u0E22\u0E32\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14$"
   },
@@ -67219,8 +67259,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2889664727",
       "explicit.stat_42242677",
+      "fractured.stat_2889664727",
       "fractured.stat_42242677",
+      "implicit.stat_2889664727",
       "implicit.stat_42242677"
     ],
     "pattern": "^\u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E2B\u0E25\u0E35\u0E01\u0E40\u0E25\u0E35\u0E48\u0E22\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\\ \u0E40\u0E04\u0E2D\u0E2D\u0E2A\\ ([-0-9,.]\u002B)%$"
@@ -68050,7 +68093,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1514657588",
+      "explicit.stat_2542650946",
       "explicit.stat_417188801",
+      "fractured.stat_2542650946",
       "fractured.stat_417188801"
     ],
     "pattern": "^\u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ Endurance\\ Charge\\ 1\\ \u0E25\u0E39\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E04\u0E38\u0E13\u0E43\u0E0A\u0E49\\ \u0E2A\u0E01\u0E34\u0E25\u0E44\u0E1F$"
@@ -68828,10 +68874,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1361025326",
       "explicit.stat_1463604143",
       "explicit.stat_1485150248",
       "explicit.stat_2454528473",
-      "explicit.stat_2581419165",
       "explicit.stat_2610785454",
       "explicit.stat_3145607602",
       "explicit.stat_3876876906",
@@ -69806,6 +69852,7 @@
   },
   {
     "text": "\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u002B#% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01 \u0E1B\u0E13\u0E34\u0E18\u0E32\u0E19",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2255585376"
@@ -69842,11 +69889,42 @@
   },
   {
     "text": "\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E18\u0E32\u0E15\u0E38 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u002B#%\n\u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01 \u0E18\u0E32\u0E15\u0E38\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C",
+    "negate": true,
     "lines": 2,
     "tradeIds": [
       "explicit.stat_1574578643"
     ],
     "pattern": "^\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \\\u002B([-0-9,.]\u002B)%\\n\u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01\\ \u0E18\u0E32\u0E15\u0E38\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C$"
+  },
+  {
+    "text": "\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u002B#% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C",
+    "negate": true,
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1574578643"
+    ],
+    "pattern": "^\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \\\u002B([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C$"
+  },
+  {
+    "text": "\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u002B#%\n\u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C",
+    "negate": true,
+    "matchedFuzzily": true,
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_1574578643"
+    ],
+    "pattern": "^\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \\\u002B([-0-9,.]\u002B)%\\n\u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C$"
+  },
+  {
+    "text": "\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E44\u0E1F \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u002B#% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01 \u0E44\u0E1F\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C",
+    "negate": true,
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1574578643"
+    ],
+    "pattern": "^\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\\ \u0E44\u0E1F\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \\\u002B([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1C\u0E25\u0E08\u0E32\u0E01\\ \u0E44\u0E1F\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C$"
   },
   {
     "text": "\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E40\u0E27\u0E17 \u0E17\u0E35\u0E48\u0E16\u0E39\u0E01\u0E22\u0E31\u0E1A\u0E22\u0E31\u0E49\u0E07 \u002B#%",
@@ -72709,6 +72787,13 @@
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E16\u0E35\u0E48\u0E43\u0E19\u0E01\u0E32\u0E23\u0E17\u0E33\u0E07\u0E32\u0E19\u0E02\u0E2D\u0E07\\ \u0E15\u0E23\u0E32\u0E40\u0E27\u0E17\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E43\u0E0A\u0E49\\ \u0E2A\u0E01\u0E34\u0E25\u0E15\u0E23\u0E32\u0E40\u0E27\u0E17\\ \u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
   {
+    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E17\u0E23\u0E2B\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E43\u0E19\u0E14\u0E48\u0E32\u0E19 #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E17\u0E23\u0E2B\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E43\u0E19\u0E14\u0E48\u0E32\u0E19\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E21\u0E31\u0E48\u0E19\u0E04\u0E07\u0E43\u0E19\u0E01\u0E32\u0E23\u0E2B\u0E21\u0E38\u0E19\u0E40\u0E1A\u0E47\u0E14 #%",
     "negate": true,
     "lines": 1,
@@ -73896,6 +73981,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crucible.mod_10092",
       "crucible.mod_33499",
       "crucible.mod_37408",
       "crucible.mod_38842",
@@ -73917,6 +74003,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1136768410",
       "explicit.stat_4268321763",
       "implicit.stat_4268321763"
     ],
@@ -74082,9 +74169,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1476643878",
-      "explicit.stat_1788635023",
-      "fractured.stat_1476643878",
-      "fractured.stat_1788635023"
+      "fractured.stat_1476643878"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E23\u0E48\u0E32\u0E22\u0E14\u0E49\u0E27\u0E22\\ \u0E2A\u0E01\u0E34\u0E25\u0E18\u0E32\u0E15\u0E38\\ ([-0-9,.]\u002B)%$"
   },
@@ -74124,9 +74209,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1476643878",
-      "explicit.stat_1788635023",
-      "fractured.stat_1476643878",
-      "fractured.stat_1788635023"
+      "fractured.stat_1476643878"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E23\u0E48\u0E32\u0E22\u0E14\u0E49\u0E27\u0E22\\ \u0E2A\u0E01\u0E34\u0E25\u0E40\u0E04\u0E2D\u0E2D\u0E2A\\ ([-0-9,.]\u002B)%$"
   },
@@ -74541,9 +74624,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2546417825",
-      "explicit.stat_279227559",
-      "fractured.stat_279227559"
+      "explicit.stat_2546417825"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
@@ -74621,6 +74702,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1285172810",
       "explicit.stat_2546417825",
       "explicit.stat_3178542354",
       "fractured.stat_3178542354"
@@ -76480,11 +76562,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2008219439",
-      "explicit.stat_3814560373",
       "fractured.stat_2008219439",
-      "fractured.stat_3814560373",
-      "implicit.stat_2008219439",
-      "implicit.stat_3814560373"
+      "implicit.stat_2008219439"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E02\u0E27\u0E32\u0E19\u0E2B\u0E23\u0E37\u0E2D\u0E14\u0E32\u0E1A\\ ([-0-9,.]\u002B)%$"
   },
@@ -76545,11 +76624,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2008219439",
       "explicit.stat_3814560373",
       "explicit.stat_402920808",
       "explicit.stat_766615564",
+      "fractured.stat_2008219439",
       "fractured.stat_3814560373",
       "fractured.stat_402920808",
+      "implicit.stat_2008219439",
       "implicit.stat_3814560373",
       "implicit.stat_402920808",
       "implicit.stat_766615564"
@@ -77309,13 +77391,13 @@
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E1E\u0E34\u0E29\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E15\u0E34\u0E14$"
   },
   {
-    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A #% \u0E15\u0E48\u0E2D  250 Dexterity",
+    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A #% \u0E15\u0E48\u0E2D 250 Dexterity",
     "negate": true,
     "lines": 1,
     "tradeIds": [
       "implicit.stat_2477636501"
     ],
-    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\\ \\ 250\\ Dexterity$"
+    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\\ 250\\ Dexterity$"
   },
   {
     "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A #% \u0E15\u0E48\u0E2D 250 Intelligence",
@@ -77412,8 +77494,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_402920808",
       "explicit.stat_4188894176",
-      "fractured.stat_4188894176"
+      "fractured.stat_402920808",
+      "fractured.stat_4188894176",
+      "implicit.stat_402920808"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E18\u0E19\u0E39\\ ([-0-9,.]\u002B)%$"
   },
@@ -77465,8 +77550,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3150967823",
-      "explicit.stat_782323220"
+      "explicit.stat_3150967823"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E2D\u0E32\u0E27\u0E38\u0E18\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E21\u0E35\u0E1C\u0E25\u0E08\u0E32\u0E01\u0E02\u0E27\u0E14\u0E22\u0E32\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14$"
   },
@@ -77487,8 +77571,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2769075491",
       "explicit.stat_379328644",
-      "fractured.stat_379328644"
+      "fractured.stat_2769075491",
+      "fractured.stat_379328644",
+      "implicit.stat_2769075491"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E44\u0E21\u0E49\u0E01\u0E32\u0E22\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E4C\\ ([-0-9,.]\u002B)%$"
   },
@@ -77498,8 +77585,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3150705301",
       "explicit.stat_4087089130",
-      "fractured.stat_4087089130"
+      "fractured.stat_3150705301",
+      "fractured.stat_4087089130",
+      "implicit.stat_3150705301"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E44\u0E21\u0E49\u0E1E\u0E25\u0E2D\u0E07\\ ([-0-9,.]\u002B)%$"
   },
@@ -77543,10 +77633,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2241902512",
       "explicit.stat_3948776386",
       "explicit.stat_4249521944",
       "fractured.stat_3948776386",
       "fractured.stat_4249521944",
+      "implicit.stat_2241902512",
       "implicit.stat_3948776386",
       "implicit.stat_4249521944",
       "implicit.stat_4274080377"
@@ -77709,6 +77801,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1064477264",
       "explicit.stat_908650225"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2B\u0E19\u0E32\u0E27\u0E40\u0E22\u0E47\u0E19\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
@@ -78146,11 +78239,11 @@
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
   },
   {
-    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14  #% \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07",
+    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14 #% \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\\ \\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07$"
+    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07$"
   },
   {
     "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14 \u0E2D\u0E35\u0E01 #% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E15\u0E34\u0E14\u0E44\u0E1F",
@@ -78177,10 +78270,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1002362373",
       "crafted.stat_2974417149",
+      "enchant.stat_1002362373",
       "enchant.stat_2974417149",
+      "explicit.stat_1002362373",
       "explicit.stat_2974417149",
+      "fractured.stat_1002362373",
       "fractured.stat_2974417149",
+      "implicit.stat_1002362373",
       "implicit.stat_2974417149",
       "pseudo.pseudo_increased_spell_damage",
       "scourge.stat_2974417149"
@@ -78288,6 +78386,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4194900521",
       "explicit.stat_485151258",
       "implicit.stat_485151258"
     ],
@@ -78335,6 +78434,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3691641145",
       "explicit.stat_3743301799",
       "explicit.stat_3846810663",
       "fractured.stat_3743301799",
@@ -78399,9 +78499,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1678690824",
-      "explicit.stat_444174528",
       "fractured.stat_1678690824",
-      "fractured.stat_444174528",
       "implicit.stat_1678690824"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E16\u0E37\u0E2D\\ \u0E2D\u0E32\u0E27\u0E38\u0E18\u0E04\u0E39\u0E48$"
@@ -78624,6 +78722,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1601181226",
       "explicit.stat_3503466234",
       "explicit.stat_3565956680"
     ],
@@ -79657,6 +79756,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2094646950",
       "explicit.stat_4084331136"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E40\u0E27\u0E17\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19\u0E40\u0E25\u0E40\u0E27\u0E25$"
@@ -79869,7 +79969,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1274831335",
       "explicit.stat_1393393937",
+      "fractured.stat_1274831335",
       "fractured.stat_1393393937"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E42\u0E08\u0E21\u0E15\u0E35\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E16\u0E37\u0E2D\\ \u0E42\u0E25\u0E48$"
@@ -80684,8 +80786,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2423221070",
-      "enchant.stat_3026752303"
+      "enchant.stat_2423221070"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E02\u0E2D\u0E07\\ \u0E01\u0E33\u0E41\u0E1E\u0E07\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ \\ ([-0-9,.]\u002B)%$"
   },
@@ -82301,14 +82402,14 @@
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E22\u0E31\u0E48\u0E27\u0E22\u0E38$"
   },
   {
-    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A  #% \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25",
+    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A #% \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25",
     "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1165847826"
     ],
-    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
+    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
   },
   {
     "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A #% \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19 Frenzy Charge",
@@ -82440,6 +82541,19 @@
       "implicit.stat_514187658"
     ],
     "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E2D\u0E35\u0E01\\ 1%\\ \u0E15\u0E48\u0E2D\\ ([-0-9,.]\u002B)\\ Strength\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\\ \u0E2D\u0E20\u0E34\u0E21\u0E2B\u0E32\u0E1A\u0E2D\u0E2A\u0E41\u0E2D\u0E15\u0E25\u0E32\u0E2A\\ \u0E2D\u0E22\u0E39\u0E48\u0E43\u0E19\u0E23\u0E30\u0E22\u0E30\u0E1B\u0E23\u0E32\u0E01\u0E0F\u0E01\u0E32\u0E22\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13$"
+  },
+  {
+    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u0E2D\u0E35\u0E01 #% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E21\u0E35\u0E42\u0E17\u0E40\u0E17\u0E21",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E21\u0E35\u0E42\u0E17\u0E40\u0E17\u0E21$"
+  },
+  {
+    "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u0E2D\u0E35\u0E01 #% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E21\u0E35\u0E42\u0E17\u0E40\u0E17\u0E21",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E21\u0E35\u0E42\u0E17\u0E40\u0E17\u0E21$"
   },
   {
     "text": "\u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u0E2D\u0E35\u0E01 #% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E21\u0E35 \u0E28\u0E31\u0E15\u0E23\u0E39\u0E41\u0E23\u0E23\u0E4C\u0E2B\u0E23\u0E37\u0E2D\u0E22\u0E39\u0E19\u0E34\u0E04 \u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E19\u0E49\u0E2D\u0E22 2 \u0E15\u0E31\u0E27",
@@ -89484,8 +89598,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1073942215",
       "crafted.stat_3485067555",
+      "explicit.stat_1073942215",
       "explicit.stat_3485067555",
+      "fractured.stat_1073942215",
+      "implicit.stat_1073942215",
       "implicit.stat_3485067555"
     ],
     "pattern": "^\u0E25\u0E14\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32\u0E02\u0E2D\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2B\u0E19\u0E32\u0E27\u0E40\u0E22\u0E47\u0E19\u0E41\u0E25\u0E30\u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\\ ([-0-9,.]\u002B)%$"
@@ -89991,14 +90109,14 @@
     "pattern": "^\u0E25\u0E14\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E23\u0E48\u0E32\u0E22\\ \u0E1E\u0E38\u0E48\u0E07\u0E15\u0E31\u0E27\\ \\ \u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
   {
-    "text": "\u0E25\u0E14\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01  #% \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
+    "text": "\u0E25\u0E14\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01 #% \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
     "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1073310669",
       "implicit.stat_1073310669"
     ],
-    "pattern": "^\u0E25\u0E14\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01\\ \\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
+    "pattern": "^\u0E25\u0E14\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
   {
     "text": "\u0E25\u0E14\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01 \u0E2D\u0E35\u0E01 #%",
@@ -90817,12 +90935,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1345659139",
-      "explicit.stat_1939202111",
-      "explicit.stat_276103140",
-      "explicit.stat_3699490848",
-      "fractured.stat_1345659139",
-      "fractured.stat_1939202111",
-      "fractured.stat_276103140"
+      "fractured.stat_1345659139"
     ],
     "pattern": "^\u0E25\u0E14\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E22\u0E31\u0E48\u0E27\u0E22\u0E38$"
   },
@@ -91305,7 +91418,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -91340,7 +91455,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -94882,8 +94999,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1588094148",
-      "explicit.stat_849085925"
+      "explicit.stat_1588094148"
     ],
     "pattern": "^\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E0A\u0E47\u0E2D\u0E04\u0E2B\u0E23\u0E37\u0E2D\u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07\\ \u0E08\u0E32\u0E01\u0E04\u0E38\u0E13\\ \u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E25\u0E14\u0E25\u0E07\\ ([-0-9,.]\u002B)%$"
   },
@@ -94892,8 +95008,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1588094148",
-      "explicit.stat_849085925"
+      "explicit.stat_1588094148"
     ],
     "pattern": "^\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E0A\u0E47\u0E2D\u0E04\u0E2B\u0E23\u0E37\u0E2D\u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07\\ \u0E08\u0E32\u0E01\u0E04\u0E38\u0E13\\ \u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ ([-0-9,.]\u002B)%$"
   },
@@ -98393,14 +98508,6 @@
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E16\u0E38\u0E07\u0E21\u0E37\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fist\\ of\\ War\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
   {
-    "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E16\u0E38\u0E07\u0E21\u0E37\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Flamewood \u0E40\u0E25\u0E40\u0E27\u0E25 #",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|2|150"
-    ],
-    "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E16\u0E38\u0E07\u0E21\u0E37\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Flamewood\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
-  },
-  {
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E16\u0E38\u0E07\u0E21\u0E37\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Focused Ballista \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
@@ -98436,7 +98543,8 @@
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E16\u0E38\u0E07\u0E21\u0E37\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Fresh Meat \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|2|149"
+      "explicit.stat_4089743927|2|149",
+      "explicit.stat_4089743927|2|150"
     ],
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E16\u0E38\u0E07\u0E21\u0E37\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fresh\\ Meat\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -99157,6 +99265,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|146",
@@ -99164,13 +99273,14 @@
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|164",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
+      "explicit.stat_4089743927|2|105",
+      "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|146",
@@ -99178,16 +99288,16 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|49",
       "explicit.stat_4089743927|2|69",
       "explicit.stat_4089743927|2|79",
       "explicit.stat_4089743927|2|8",
       "explicit.stat_4089743927|2|91",
+      "explicit.stat_4089743927|3|105",
+      "explicit.stat_4089743927|3|116",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|137",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|148",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|164",
@@ -99203,7 +99313,6 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
@@ -99214,11 +99323,8 @@
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -99778,14 +99884,6 @@
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E23\u0E2D\u0E07\u0E40\u0E17\u0E49\u0E32\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fist\\ of\\ War\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
   {
-    "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E23\u0E2D\u0E07\u0E40\u0E17\u0E49\u0E32\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Flamewood \u0E40\u0E25\u0E40\u0E27\u0E25 #",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|3|150"
-    ],
-    "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E23\u0E2D\u0E07\u0E40\u0E17\u0E49\u0E32\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Flamewood\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
-  },
-  {
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E23\u0E2D\u0E07\u0E40\u0E17\u0E49\u0E32\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Focused Ballista \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
@@ -99821,7 +99919,8 @@
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E23\u0E2D\u0E07\u0E40\u0E17\u0E49\u0E32\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Fresh Meat \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|3|149"
+      "explicit.stat_4089743927|3|149",
+      "explicit.stat_4089743927|3|150"
     ],
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E23\u0E2D\u0E07\u0E40\u0E17\u0E49\u0E32\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fresh\\ Meat\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -100542,6 +100641,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|146",
@@ -100549,13 +100649,14 @@
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|164",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
+      "explicit.stat_4089743927|2|105",
+      "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|146",
@@ -100563,16 +100664,16 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|49",
       "explicit.stat_4089743927|2|69",
       "explicit.stat_4089743927|2|79",
       "explicit.stat_4089743927|2|8",
       "explicit.stat_4089743927|2|91",
+      "explicit.stat_4089743927|3|105",
+      "explicit.stat_4089743927|3|116",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|137",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|148",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|164",
@@ -100588,7 +100689,6 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
@@ -100599,11 +100699,8 @@
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -101163,14 +101260,6 @@
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E2B\u0E21\u0E27\u0E01\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fist\\ of\\ War\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
   {
-    "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E2B\u0E21\u0E27\u0E01\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Flamewood \u0E40\u0E25\u0E40\u0E27\u0E25 #",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|1|150"
-    ],
-    "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E2B\u0E21\u0E27\u0E01\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Flamewood\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
-  },
-  {
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E2B\u0E21\u0E27\u0E01\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Focused Ballista \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
@@ -101206,7 +101295,8 @@
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19 \u0E2B\u0E21\u0E27\u0E01\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Fresh Meat \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|1|149"
+      "explicit.stat_4089743927|1|149",
+      "explicit.stat_4089743927|1|150"
     ],
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\u0E43\u0E19\\ \u0E2B\u0E21\u0E27\u0E01\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fresh\\ Meat\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -101927,6 +102017,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|146",
@@ -101934,13 +102025,14 @@
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|164",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
+      "explicit.stat_4089743927|2|105",
+      "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|146",
@@ -101948,16 +102040,16 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|49",
       "explicit.stat_4089743927|2|69",
       "explicit.stat_4089743927|2|79",
       "explicit.stat_4089743927|2|8",
       "explicit.stat_4089743927|2|91",
+      "explicit.stat_4089743927|3|105",
+      "explicit.stat_4089743927|3|116",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|137",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|148",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|164",
@@ -101973,7 +102065,6 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
@@ -101984,11 +102075,8 @@
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -102548,14 +102636,6 @@
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E08\u0E32\u0E01\\ \u0E15\u0E32\u0E23\u0E32\u0E07\u0E1E\u0E32\u0E2A\u0E0B\u0E35\u0E1F\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fist\\ of\\ War\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
   {
-    "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E08\u0E32\u0E01 \u0E15\u0E32\u0E23\u0E32\u0E07\u0E1E\u0E32\u0E2A\u0E0B\u0E35\u0E1F\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Flamewood \u0E40\u0E25\u0E40\u0E27\u0E25 #",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4089743927|4|150"
-    ],
-    "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E08\u0E32\u0E01\\ \u0E15\u0E32\u0E23\u0E32\u0E07\u0E1E\u0E32\u0E2A\u0E0B\u0E35\u0E1F\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Flamewood\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
-  },
-  {
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E08\u0E32\u0E01 \u0E15\u0E32\u0E23\u0E32\u0E07\u0E1E\u0E32\u0E2A\u0E0B\u0E35\u0E1F\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Focused Ballista \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
@@ -102591,7 +102671,8 @@
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E08\u0E32\u0E01 \u0E15\u0E32\u0E23\u0E32\u0E07\u0E1E\u0E32\u0E2A\u0E0B\u0E35\u0E1F\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Fresh Meat \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_4089743927|4|149"
+      "explicit.stat_4089743927|4|149",
+      "explicit.stat_4089743927|4|150"
     ],
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E08\u0E32\u0E01\\ \u0E15\u0E32\u0E23\u0E32\u0E07\u0E1E\u0E32\u0E2A\u0E0B\u0E35\u0E1F\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Fresh\\ Meat\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -103312,6 +103393,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|12",
       "explicit.stat_4089743927|1|137",
       "explicit.stat_4089743927|1|146",
@@ -103319,13 +103401,14 @@
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|164",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|49",
       "explicit.stat_4089743927|1|69",
       "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
       "explicit.stat_4089743927|1|91",
+      "explicit.stat_4089743927|2|105",
+      "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|137",
       "explicit.stat_4089743927|2|146",
@@ -103333,16 +103416,16 @@
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|164",
       "explicit.stat_4089743927|2|27",
-      "explicit.stat_4089743927|2|32",
       "explicit.stat_4089743927|2|35",
       "explicit.stat_4089743927|2|49",
       "explicit.stat_4089743927|2|69",
       "explicit.stat_4089743927|2|79",
       "explicit.stat_4089743927|2|8",
       "explicit.stat_4089743927|2|91",
+      "explicit.stat_4089743927|3|105",
+      "explicit.stat_4089743927|3|116",
       "explicit.stat_4089743927|3|12",
       "explicit.stat_4089743927|3|137",
-      "explicit.stat_4089743927|3|146",
       "explicit.stat_4089743927|3|148",
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|164",
@@ -103358,7 +103441,6 @@
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|12",
-      "explicit.stat_4089743927|4|131",
       "explicit.stat_4089743927|4|133",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
@@ -103369,11 +103451,8 @@
       "explicit.stat_4089743927|4|164",
       "explicit.stat_4089743927|4|27",
       "explicit.stat_4089743927|4|32",
-      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|4",
       "explicit.stat_4089743927|4|49",
-      "explicit.stat_4089743927|4|69",
-      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|79",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|91"
@@ -103975,10 +104054,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2505291583",
-      "explicit.stat_2567751411",
-      "fractured.stat_2567751411",
-      "implicit.stat_1967040409",
-      "implicit.stat_2567751411"
+      "implicit.stat_1967040409"
     ],
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E27\u0E32\u0E25\u0E4C\\ \u0E21\u0E35\u0E1E\u0E37\u0E49\u0E19\u0E17\u0E35\u0E48\u0E2A\u0E48\u0E07\u0E1C\u0E25\\ \u0E25\u0E14\u0E25\u0E07\\ ([-0-9,.]\u002B)%$"
   },
@@ -103988,10 +104064,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2505291583",
-      "explicit.stat_2567751411",
-      "fractured.stat_2567751411",
-      "implicit.stat_1967040409",
-      "implicit.stat_2567751411"
+      "implicit.stat_1967040409"
     ],
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E27\u0E32\u0E25\u0E4C\\ \u0E21\u0E35\u0E1E\u0E37\u0E49\u0E19\u0E17\u0E35\u0E48\u0E2A\u0E48\u0E07\u0E1C\u0E25\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ ([-0-9,.]\u002B)%$"
   },
@@ -105432,12 +105505,6 @@
     "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E42\u0E15\u0E49\u0E01\u0E25\u0E31\u0E1A\\ \u0E21\u0E35\u0E2D\u0E33\u0E19\u0E32\u0E08\u0E2D\u0E32\u0E04\u0E21\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "\u0E2A\u0E01\u0E34\u0E25\u0E42\u0E15\u0E49\u0E01\u0E25\u0E31\u0E1A \u0E21\u0E35\u0E40\u0E27\u0E25\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^\u0E2A\u0E01\u0E34\u0E25\u0E42\u0E15\u0E49\u0E01\u0E25\u0E31\u0E1A\\ \u0E21\u0E35\u0E40\u0E27\u0E25\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ 1\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35$"
-  },
-  {
     "text": "\u0E2A\u0E01\u0E34\u0E25\u0E42\u0E15\u0E49\u0E01\u0E25\u0E31\u0E1A \u0E21\u0E35\u0E40\u0E27\u0E25\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 # \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
     "lines": 1,
     "tradeIds": [],
@@ -105647,12 +105714,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1571899068",
       "explicit.stat_1762451150",
       "explicit.stat_1849225887",
       "explicit.stat_1858240316",
       "explicit.stat_2263557454",
       "explicit.stat_2477998669",
-      "explicit.stat_2584308379",
       "explicit.stat_2810822634",
       "explicit.stat_3070577277",
       "explicit.stat_3346769137",
@@ -106295,6 +106362,25 @@
     "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E02\u0E32\u0E2B\u0E31\u0E01\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\\ \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\u0E17\u0E35\u0E48\u0E40\u0E1B\u0E49\u0E32\u0E2B\u0E21\u0E32\u0E22\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E02\u0E48\u0E21\u0E02\u0E39\u0E48 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07 \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E40\u0E1B\u0E49\u0E32\u0E2B\u0E21\u0E32\u0E22\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E25\u0E14\u0E25\u0E07 \u0E2D\u0E35\u0E01 #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E02\u0E48\u0E21\u0E02\u0E39\u0E48\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\\ \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E40\u0E1B\u0E49\u0E32\u0E2B\u0E21\u0E32\u0E22\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E25\u0E14\u0E25\u0E07\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E02\u0E48\u0E21\u0E02\u0E39\u0E48 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07 \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E40\u0E1B\u0E49\u0E32\u0E2B\u0E21\u0E32\u0E22\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 \u0E2D\u0E35\u0E01 #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E02\u0E48\u0E21\u0E02\u0E39\u0E48\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\\ \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E40\u0E1B\u0E49\u0E32\u0E2B\u0E21\u0E32\u0E22\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E02\u0E48\u0E21\u0E02\u0E39\u0E48 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07 \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E42\u0E08\u0E21\u0E15\u0E35 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 \u002B#%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E02\u0E48\u0E21\u0E02\u0E39\u0E48\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\\ \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E42\u0E08\u0E21\u0E15\u0E35\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ \\\u002B([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E04\u0E25\u0E31\u0E48\u0E07 \u0E21\u0E2D\u0E1A \u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E23\u0E48\u0E32\u0E22 \u0E41\u0E17\u0E19 \u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35",
     "lines": 1,
     "tradeIds": [
@@ -106480,17 +106566,17 @@
     "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E15\u0E32\u0E1A\u0E2D\u0E14\\ \u0E44\u0E21\u0E48\u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E1B\u0E30\u0E17\u0E30\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13$"
   },
   {
-    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25 \u0E25\u0E14\u0E25\u0E07 #%  \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32 \u0E2B\u0E21\u0E14\u0E44\u0E1B 1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
+    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25 \u0E25\u0E14\u0E25\u0E07 #% \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32 \u0E2B\u0E21\u0E14\u0E44\u0E1B 1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25\\ \u0E25\u0E14\u0E25\u0E07\\ ([-0-9,.]\u002B)%\\ \\ \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32\\ \u0E2B\u0E21\u0E14\u0E44\u0E1B\\ 1\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35$"
+    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25\\ \u0E25\u0E14\u0E25\u0E07\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32\\ \u0E2B\u0E21\u0E14\u0E44\u0E1B\\ 1\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35$"
   },
   {
-    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #%  \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32 \u0E2B\u0E21\u0E14\u0E44\u0E1B 1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
+    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #% \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32 \u0E2B\u0E21\u0E14\u0E44\u0E1B 1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ ([-0-9,.]\u002B)%\\ \\ \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32\\ \u0E2B\u0E21\u0E14\u0E44\u0E1B\\ 1\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35$"
+    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32\\ \u0E2B\u0E21\u0E14\u0E44\u0E1B\\ 1\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35$"
   },
   {
     "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E17\u0E34\u0E48\u0E21\u0E41\u0E17\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E1B\u0E30\u0E17\u0E30\u0E44\u0E14\u0E49 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 1 \u0E04\u0E23\u0E31\u0E49\u0E07",
@@ -106756,21 +106842,21 @@
     "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E18\u0E32\u0E15\u0E38\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E18\u0E32\u0E15\u0E38\u0E19\u0E31\u0E49\u0E19\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
-    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 #%",
+    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 \u002B#%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_600221736"
     ],
-    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ ([-0-9,.]\u002B)%$"
+    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
-    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E44\u0E1F \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F #%",
+    "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E44\u0E1F \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19 \u0E44\u0E1F \u002B#%",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3306713700"
     ],
-    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E44\u0E1F\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E44\u0E1F\\ ([-0-9,.]\u002B)%$"
+    "pattern": "^\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E1E\u0E48\u0E32\u0E22\u0E41\u0E01\u0E48\u0E44\u0E1F\\ \u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E08\u0E30\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E04\u0E48\u0E32\u0E15\u0E49\u0E32\u0E19\u0E17\u0E32\u0E19\\ \u0E44\u0E1F\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
     "text": "\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E22\u0E31\u0E48\u0E27\u0E22\u0E38 \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35",
@@ -109278,9 +109364,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2332726055",
-      "explicit.stat_3888064854",
-      "explicit.stat_97064873",
-      "fractured.stat_97064873"
+      "explicit.stat_3888064854"
     ],
     "pattern": "^\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07,\\ \u0E0A\u0E47\u0E2D\u0E04,\\ \u0E25\u0E38\u0E01\u0E44\u0E2B\u0E21\u0E49\\ \u0E40\u0E2A\u0E21\u0E2D\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E21\u0E35\u0E1C\u0E25\u0E08\u0E32\u0E01\u0E02\u0E27\u0E14\u0E22\u0E32\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14$"
   },
@@ -113505,8 +113589,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2889664727",
       "explicit.stat_42242677",
+      "fractured.stat_2889664727",
       "fractured.stat_42242677",
+      "implicit.stat_2889664727",
       "implicit.stat_42242677"
     ],
     "pattern": "^\u0E2B\u0E25\u0E35\u0E01\u0E40\u0E25\u0E35\u0E48\u0E22\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\\ \u0E40\u0E04\u0E2D\u0E2D\u0E2A$"
@@ -113846,8 +113933,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_176085824",
-      "explicit.stat_4089969970"
+      "explicit.stat_176085824"
     ],
     "pattern": "^\u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E1B\u0E30\u0E17\u0E30\u0E28\u0E31\u0E15\u0E23\u0E39\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49\\ \u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49\\ \u0E1F\u0E37\u0E49\u0E19\u0E1F\u0E39\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35$"
   },
@@ -114602,33 +114688,18 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_115",
-      "explicit.indexable_support_119",
       "explicit.indexable_support_140",
       "explicit.indexable_support_16",
-      "explicit.indexable_support_24",
-      "explicit.indexable_support_33",
       "explicit.indexable_support_44",
-      "explicit.indexable_support_60",
       "explicit.indexable_support_80",
       "explicit.stat_1019145105",
-      "explicit.stat_1106668565",
       "explicit.stat_1792524915",
       "explicit.stat_1859244771",
-      "explicit.stat_1866911844",
       "explicit.stat_1876637240",
       "explicit.stat_2062753054",
-      "explicit.stat_2433615566",
-      "explicit.stat_254728692",
       "explicit.stat_2805586447",
       "explicit.stat_28821524",
-      "explicit.stat_539747809",
-      "explicit.stat_749770518",
-      "fractured.stat_1106668565",
-      "fractured.stat_1866911844",
-      "implicit.stat_1866911844",
-      "implicit.stat_2062753054",
-      "implicit.stat_254728692",
-      "implicit.stat_539747809"
+      "implicit.stat_2062753054"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Bonespire\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -114665,6 +114736,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_172",
       "explicit.stat_3361806635"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Call\\ To\\ Arms\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
@@ -115038,6 +115110,16 @@
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Corrupting\\ Cry\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
   {
+    "text": "\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Coursing Current \u0E40\u0E25\u0E40\u0E27\u0E25 #",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.indexable_support_155",
+      "explicit.stat_3486166615"
+    ],
+    "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Coursing\\ Current\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
+  },
+  {
     "text": "\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48 \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22 Crab Totem \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
@@ -115242,12 +115324,23 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_134",
+      "explicit.indexable_support_16",
+      "explicit.indexable_support_161",
+      "explicit.indexable_support_50",
       "explicit.indexable_support_79",
       "explicit.indexable_support_91",
       "explicit.stat_107118693",
+      "explicit.stat_1792524915",
+      "explicit.stat_1876637240",
+      "explicit.stat_28821524",
+      "explicit.stat_3111091501",
       "explicit.stat_3207084920",
+      "explicit.stat_3826977109",
       "explicit.stat_3924539382",
+      "explicit.stat_794471597",
       "fractured.stat_107118693",
+      "fractured.stat_3826977109",
       "fractured.stat_3924539382",
       "implicit.stat_107118693"
     ],
@@ -115707,10 +115800,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_152",
       "explicit.indexable_support_8",
       "explicit.indexable_support_80",
       "explicit.stat_1122134690",
       "explicit.stat_2062753054",
+      "explicit.stat_2820883532",
       "fractured.stat_1122134690",
       "implicit.stat_2062753054"
     ],
@@ -115739,11 +115834,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_120",
       "explicit.indexable_support_122",
-      "explicit.indexable_support_28",
       "explicit.stat_3652278215",
-      "explicit.stat_369650395",
-      "implicit.stat_369650395"
+      "explicit.stat_3827538724"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Frostmage\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -115771,12 +115865,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_12",
-      "explicit.indexable_support_136",
-      "explicit.indexable_support_156",
-      "explicit.stat_1679136",
-      "explicit.stat_4184135167",
       "explicit.stat_689720069",
-      "implicit.stat_1679136",
       "implicit.stat_689720069"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Gluttony\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
@@ -115975,16 +116064,21 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_107",
+      "explicit.indexable_support_130",
       "explicit.indexable_support_152",
       "explicit.indexable_support_33",
       "explicit.indexable_support_80",
       "explicit.stat_2062753054",
+      "explicit.stat_2127532091",
       "explicit.stat_2172297405",
       "explicit.stat_2433615566",
       "explicit.stat_254728692",
+      "explicit.stat_2643665787",
       "explicit.stat_2820883532",
       "implicit.stat_2062753054",
-      "implicit.stat_254728692"
+      "implicit.stat_254728692",
+      "implicit.stat_2643665787"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Hiveborn\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -116282,11 +116376,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_139",
+      "explicit.indexable_support_16",
       "explicit.indexable_support_24",
       "explicit.indexable_support_61",
       "explicit.stat_1674086814",
+      "explicit.stat_1792524915",
       "explicit.stat_1866911844",
+      "explicit.stat_1876637240",
       "explicit.stat_2201102274",
+      "explicit.stat_28821524",
       "explicit.stat_749770518",
       "explicit.stat_833438017",
       "fractured.stat_1866911844",
@@ -116535,19 +116634,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_107",
-      "explicit.indexable_support_24",
-      "explicit.indexable_support_50",
-      "explicit.indexable_support_63",
-      "explicit.stat_1337327984",
-      "explicit.stat_1866911844",
       "explicit.stat_2643665787",
-      "explicit.stat_3826977109",
-      "explicit.stat_749770518",
       "explicit.stat_833438017",
-      "fractured.stat_1337327984",
-      "fractured.stat_1866911844",
-      "fractured.stat_3826977109",
-      "implicit.stat_1866911844",
       "implicit.stat_2643665787"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Machinations\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
@@ -116850,6 +116938,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_139",
       "explicit.indexable_support_140",
       "explicit.indexable_support_144",
       "explicit.stat_1019145105",
@@ -116868,11 +116957,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_158",
       "explicit.indexable_support_161",
-      "explicit.indexable_support_50",
-      "explicit.stat_3826977109",
-      "explicit.stat_794471597",
-      "fractured.stat_3826977109"
+      "explicit.stat_2302807931",
+      "explicit.stat_794471597"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Pacifism\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -117547,17 +117635,9 @@
     "tradeIds": [
       "explicit.indexable_support_161",
       "explicit.indexable_support_166",
-      "explicit.indexable_support_50",
-      "explicit.indexable_support_80",
       "explicit.indexable_support_93",
-      "explicit.indexable_support_99",
-      "explicit.stat_2062753054",
-      "explicit.stat_3826977109",
       "explicit.stat_4082662318",
-      "explicit.stat_550444281",
-      "explicit.stat_794471597",
-      "fractured.stat_3826977109",
-      "implicit.stat_2062753054"
+      "explicit.stat_794471597"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Voidstorm\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -117594,6 +117674,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_107",
+      "explicit.indexable_support_120",
       "explicit.indexable_support_140",
       "explicit.indexable_support_161",
       "explicit.indexable_support_171",
@@ -117607,15 +117689,18 @@
       "explicit.stat_1122134690",
       "explicit.stat_2062753054",
       "explicit.stat_2172297405",
+      "explicit.stat_2643665787",
       "explicit.stat_3370631451",
       "explicit.stat_369650395",
       "explicit.stat_3826977109",
+      "explicit.stat_3827538724",
       "explicit.stat_388696990",
       "explicit.stat_4082662318",
       "explicit.stat_794471597",
       "fractured.stat_1122134690",
       "fractured.stat_3826977109",
       "implicit.stat_2062753054",
+      "implicit.stat_2643665787",
       "implicit.stat_369650395"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Ward\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
@@ -117701,7 +117786,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1803865171",
-      "explicit.stat_2249251344",
       "explicit.stat_3739157305"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ \u0E2B\u0E34\u0E19\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E08\u0E38\u0E15\u0E34\\ Arrow\\ Nova\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
@@ -117747,6 +117831,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_108",
       "explicit.stat_1316646496",
       "fractured.stat_1316646496"
     ],
@@ -117822,7 +117907,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2133566731",
-      "explicit.stat_2249251344",
       "explicit.stat_3428829446"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ \u0E2B\u0E34\u0E19\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E08\u0E38\u0E15\u0E34\\ Enlighten\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
@@ -117865,7 +117949,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1803865171",
-      "explicit.stat_2249251344",
       "explicit.stat_3428829446",
       "explicit.stat_48859060"
     ],
@@ -117980,6 +118063,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.indexable_support_107",
       "explicit.indexable_support_12",
       "explicit.indexable_support_28",
       "explicit.indexable_support_50",
@@ -117988,6 +118072,7 @@
       "explicit.indexable_support_92",
       "explicit.stat_1122134690",
       "explicit.stat_2062753054",
+      "explicit.stat_2643665787",
       "explicit.stat_369650395",
       "explicit.stat_3826977109",
       "explicit.stat_388696990",
@@ -117995,6 +118080,7 @@
       "fractured.stat_1122134690",
       "fractured.stat_3826977109",
       "implicit.stat_2062753054",
+      "implicit.stat_2643665787",
       "implicit.stat_369650395",
       "implicit.stat_689720069"
     ],
@@ -119075,17 +119161,17 @@
     "pattern": "^\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14:\\ \u0E1F\u0E37\u0E49\u0E19\u0E1F\u0E39\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35\u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19$"
   },
   {
-    "text": "\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14: \u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23 \u0E40\u0E15\u0E34\u0E21\n \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15, \u0E21\u0E32\u0E19\u0E32, \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19 #%",
+    "text": "\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14: \u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23 \u0E40\u0E15\u0E34\u0E21\n\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15, \u0E21\u0E32\u0E19\u0E32, \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19 #%",
     "negate": true,
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14:\\ \u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\\ \u0E40\u0E15\u0E34\u0E21\\n\\ \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15,\\ \u0E21\u0E32\u0E19\u0E32,\\ \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\\ \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19\\ ([-0-9,.]\u002B)%$"
+    "pattern": "^\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14:\\ \u0E25\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\\ \u0E40\u0E15\u0E34\u0E21\\n\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15,\\ \u0E21\u0E32\u0E19\u0E32,\\ \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\\ \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14: \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23 \u0E40\u0E15\u0E34\u0E21\n \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15, \u0E21\u0E32\u0E19\u0E32, \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19 #%",
+    "text": "\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14: \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23 \u0E40\u0E15\u0E34\u0E21\n\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15, \u0E21\u0E32\u0E19\u0E32, \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19 #%",
     "lines": 2,
     "tradeIds": [],
-    "pattern": "^\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14:\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\\ \u0E40\u0E15\u0E34\u0E21\\n\\ \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15,\\ \u0E21\u0E32\u0E19\u0E32,\\ \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\\ \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19\\ ([-0-9,.]\u002B)%$"
+    "pattern": "^\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\\ \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14:\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\\ \u0E40\u0E15\u0E34\u0E21\\n\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15,\\ \u0E21\u0E32\u0E19\u0E32,\\ \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\\ \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "\u0E2D\u0E2D\u0E23\u0E48\u0E32\u0E08\u0E32\u0E01\u0E2A\u0E01\u0E34\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E21\u0E2D\u0E1A\u0E21\u0E47\u0E2D\u0E14: \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E01\u0E31\u0E1A\u0E23\u0E48\u0E32\u0E22 #% \u0E43\u0E2B\u0E49\u0E01\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19",
@@ -126387,16 +126473,23 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2460506030|12597",
+      "explicit.stat_2460506030|17315",
+      "explicit.stat_2460506030|17988",
+      "explicit.stat_2460506030|23169",
+      "explicit.stat_2460506030|30919",
+      "explicit.stat_2460506030|31700",
+      "explicit.stat_2460506030|3184",
+      "explicit.stat_2460506030|34567",
+      "explicit.stat_2460506030|34774",
       "explicit.stat_2460506030|38180",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
-      "explicit.stat_2460506030|4194",
       "explicit.stat_2460506030|43122",
       "explicit.stat_2460506030|43195",
       "explicit.stat_2460506030|44482",
       "explicit.stat_2460506030|45313",
       "explicit.stat_2460506030|55867",
-      "explicit.stat_2460506030|57052",
       "explicit.stat_2460506030|58827",
       "explicit.stat_2460506030|61627",
       "explicit.stat_2460506030|6778",
@@ -126413,16 +126506,20 @@
       "explicit.stat_1190333629|12597",
       "explicit.stat_1190333629|17315",
       "explicit.stat_1190333629|17988",
+      "explicit.stat_1190333629|23169",
+      "explicit.stat_1190333629|30919",
+      "explicit.stat_1190333629|31700",
+      "explicit.stat_1190333629|3184",
+      "explicit.stat_1190333629|34567",
+      "explicit.stat_1190333629|34774",
       "explicit.stat_1190333629|38180",
       "explicit.stat_1190333629|39598",
       "explicit.stat_1190333629|39790",
-      "explicit.stat_1190333629|4194",
       "explicit.stat_1190333629|43122",
       "explicit.stat_1190333629|43195",
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|45313",
       "explicit.stat_1190333629|55867",
-      "explicit.stat_1190333629|57052",
       "explicit.stat_1190333629|58827",
       "explicit.stat_1190333629|61627",
       "explicit.stat_1190333629|6778",
@@ -130449,6 +130546,12 @@
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E16\u0E35\u0E48\u0E43\u0E19\u0E01\u0E32\u0E23\u0E17\u0E33\u0E07\u0E32\u0E19\u0E02\u0E2D\u0E07\\ \u0E15\u0E23\u0E32\u0E40\u0E27\u0E17\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E43\u0E0A\u0E49\\ \u0E2A\u0E01\u0E34\u0E25\u0E15\u0E23\u0E32\u0E40\u0E27\u0E17\\ \u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
   {
+    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E17\u0E23\u0E2B\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E43\u0E19\u0E14\u0E48\u0E32\u0E19 #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E17\u0E23\u0E2B\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E43\u0E19\u0E14\u0E48\u0E32\u0E19\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E21\u0E31\u0E48\u0E19\u0E04\u0E07\u0E43\u0E19\u0E01\u0E32\u0E23\u0E2B\u0E21\u0E38\u0E19\u0E40\u0E1A\u0E47\u0E14 #%",
     "lines": 1,
     "tradeIds": [
@@ -131938,6 +132041,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crucible.mod_10092",
       "crucible.mod_33499",
       "crucible.mod_37408",
       "crucible.mod_38842",
@@ -132053,6 +132157,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1136768410",
       "explicit.stat_4268321763",
       "implicit.stat_4268321763"
     ],
@@ -132209,9 +132314,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1476643878",
-      "explicit.stat_1788635023",
-      "fractured.stat_1476643878",
-      "fractured.stat_1788635023"
+      "fractured.stat_1476643878"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E23\u0E48\u0E32\u0E22\u0E14\u0E49\u0E27\u0E22\\ \u0E2A\u0E01\u0E34\u0E25\u0E18\u0E32\u0E15\u0E38\\ ([-0-9,.]\u002B)%$"
   },
@@ -132247,9 +132350,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1476643878",
-      "explicit.stat_1788635023",
-      "fractured.stat_1476643878",
-      "fractured.stat_1788635023"
+      "fractured.stat_1476643878"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E23\u0E48\u0E32\u0E22\u0E14\u0E49\u0E27\u0E22\\ \u0E2A\u0E01\u0E34\u0E25\u0E40\u0E04\u0E2D\u0E2D\u0E2A\\ ([-0-9,.]\u002B)%$"
   },
@@ -132803,9 +132904,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2546417825",
-      "explicit.stat_279227559",
-      "fractured.stat_279227559"
+      "explicit.stat_2546417825"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
@@ -132875,6 +132974,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1285172810",
       "explicit.stat_2546417825",
       "explicit.stat_3178542354",
       "fractured.stat_3178542354"
@@ -134018,11 +134118,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1394963553",
-      "explicit.stat_2538566497",
       "fractured.stat_1394963553",
-      "fractured.stat_2538566497",
-      "implicit.stat_1394963553",
-      "implicit.stat_2538566497"
+      "implicit.stat_1394963553"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E14\u0E49\u0E27\u0E22\\ \u0E21\u0E37\u0E2D\u0E23\u0E2D\u0E07\\ ([-0-9,.]\u002B)%$"
   },
@@ -134909,11 +135006,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2008219439",
-      "explicit.stat_3814560373",
       "fractured.stat_2008219439",
-      "fractured.stat_3814560373",
-      "implicit.stat_2008219439",
-      "implicit.stat_3814560373"
+      "implicit.stat_2008219439"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E02\u0E27\u0E32\u0E19\u0E2B\u0E23\u0E37\u0E2D\u0E14\u0E32\u0E1A\\ ([-0-9,.]\u002B)%$"
   },
@@ -134968,11 +135062,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2008219439",
       "explicit.stat_3814560373",
       "explicit.stat_402920808",
       "explicit.stat_766615564",
+      "fractured.stat_2008219439",
       "fractured.stat_3814560373",
       "fractured.stat_402920808",
+      "implicit.stat_2008219439",
       "implicit.stat_3814560373",
       "implicit.stat_402920808",
       "implicit.stat_766615564"
@@ -136037,8 +136134,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_402920808",
       "explicit.stat_4188894176",
-      "fractured.stat_4188894176"
+      "fractured.stat_402920808",
+      "fractured.stat_4188894176",
+      "implicit.stat_402920808"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E18\u0E19\u0E39\\ ([-0-9,.]\u002B)%$"
   },
@@ -136085,8 +136185,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3150967823",
-      "explicit.stat_782323220"
+      "explicit.stat_3150967823"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E2D\u0E32\u0E27\u0E38\u0E18\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E21\u0E35\u0E1C\u0E25\u0E08\u0E32\u0E01\u0E02\u0E27\u0E14\u0E22\u0E32\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14$"
   },
@@ -136113,8 +136212,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2769075491",
       "explicit.stat_379328644",
-      "fractured.stat_379328644"
+      "fractured.stat_2769075491",
+      "fractured.stat_379328644",
+      "implicit.stat_2769075491"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E44\u0E21\u0E49\u0E01\u0E32\u0E22\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E4C\\ ([-0-9,.]\u002B)%$"
   },
@@ -136123,8 +136225,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3150705301",
       "explicit.stat_4087089130",
-      "fractured.stat_4087089130"
+      "fractured.stat_3150705301",
+      "fractured.stat_4087089130",
+      "implicit.stat_3150705301"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ \u0E14\u0E49\u0E27\u0E22\\ \u0E44\u0E21\u0E49\u0E1E\u0E25\u0E2D\u0E07\\ ([-0-9,.]\u002B)%$"
   },
@@ -136164,10 +136269,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2241902512",
       "explicit.stat_3948776386",
       "explicit.stat_4249521944",
       "fractured.stat_3948776386",
       "fractured.stat_4249521944",
+      "implicit.stat_2241902512",
       "implicit.stat_3948776386",
       "implicit.stat_4249521944",
       "implicit.stat_4274080377"
@@ -136350,6 +136457,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1064477264",
       "explicit.stat_908650225"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E18\u0E32\u0E15\u0E38\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2B\u0E19\u0E32\u0E27\u0E40\u0E22\u0E47\u0E19\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
@@ -136910,12 +137018,12 @@
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
   },
   {
-    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14  #% \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07",
+    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14 #% \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1196902248"
     ],
-    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\\ \\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07$"
+    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07$"
   },
   {
     "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E1B\u0E23\u0E30\u0E0A\u0E34\u0E14 \u0E2D\u0E35\u0E01 #% \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E15\u0E34\u0E14\u0E44\u0E1F",
@@ -136939,10 +137047,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1002362373",
       "crafted.stat_2974417149",
+      "enchant.stat_1002362373",
       "enchant.stat_2974417149",
+      "explicit.stat_1002362373",
       "explicit.stat_2974417149",
+      "fractured.stat_1002362373",
       "fractured.stat_2974417149",
+      "implicit.stat_1002362373",
       "implicit.stat_2974417149",
       "pseudo.pseudo_increased_spell_damage",
       "scourge.stat_2974417149"
@@ -137040,6 +137153,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4194900521",
       "explicit.stat_485151258",
       "implicit.stat_485151258"
     ],
@@ -137099,6 +137213,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3691641145",
       "explicit.stat_3743301799",
       "explicit.stat_3846810663",
       "fractured.stat_3743301799",
@@ -137198,9 +137313,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1678690824",
-      "explicit.stat_444174528",
       "fractured.stat_1678690824",
-      "fractured.stat_444174528",
       "implicit.stat_1678690824"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E16\u0E37\u0E2D\\ \u0E2D\u0E32\u0E27\u0E38\u0E18\u0E04\u0E39\u0E48$"
@@ -137340,9 +137453,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3747189159",
-      "explicit.stat_485151258",
-      "explicit.stat_528422616",
-      "implicit.stat_485151258"
+      "explicit.stat_528422616"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E1B\u0E30\u0E17\u0E30\u0E41\u0E25\u0E30\u0E40\u0E08\u0E47\u0E1A\u0E1B\u0E48\u0E27\u0E22\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E22\u0E31\u0E48\u0E27\u0E22\u0E38$"
   },
@@ -137409,6 +137520,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1601181226",
       "explicit.stat_3503466234",
       "explicit.stat_3565956680"
     ],
@@ -139068,6 +139180,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2094646950",
       "explicit.stat_4084331136"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E40\u0E27\u0E17\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19\u0E40\u0E25\u0E40\u0E27\u0E25$"
@@ -139339,7 +139452,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1274831335",
       "explicit.stat_1393393937",
+      "fractured.stat_1274831335",
       "fractured.stat_1393393937"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E42\u0E08\u0E21\u0E15\u0E35\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E16\u0E37\u0E2D\\ \u0E42\u0E25\u0E48$"
@@ -140269,8 +140384,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2423221070",
-      "enchant.stat_3026752303"
+      "enchant.stat_2423221070"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E02\u0E2D\u0E07\\ \u0E01\u0E33\u0E41\u0E1E\u0E07\u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ \\ ([-0-9,.]\u002B)%$"
   },
@@ -142154,13 +142268,13 @@
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E22\u0E31\u0E48\u0E27\u0E22\u0E38$"
   },
   {
-    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A  #% \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25",
+    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A #% \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1165847826"
     ],
-    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
+    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
   },
   {
     "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A #% \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19 Frenzy Charge",
@@ -143559,10 +143673,10 @@
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E48\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E21\u0E32\u0E19\u0E32\u0E02\u0E2D\u0E07\\ \u0E2A\u0E01\u0E34\u0E25\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E48\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E21\u0E32\u0E19\u0E32\u0E02\u0E2D\u0E07 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E0A\u0E34\u0E48\u0E07  \u0E41\u0E25\u0E30  \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E22\u0E01  #%",
+    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E48\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E21\u0E32\u0E19\u0E32\u0E02\u0E2D\u0E07 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E0A\u0E34\u0E48\u0E07  \u0E41\u0E25\u0E30 \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E22\u0E01  #%",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E48\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E21\u0E32\u0E19\u0E32\u0E02\u0E2D\u0E07\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E0A\u0E34\u0E48\u0E07\\ \\ \u0E41\u0E25\u0E30\\ \\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E22\u0E01\\ \\ ([-0-9,.]\u002B)%$"
+    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E48\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E21\u0E32\u0E19\u0E32\u0E02\u0E2D\u0E07\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E0A\u0E34\u0E48\u0E07\\ \\ \u0E41\u0E25\u0E30\\ \u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E41\u0E22\u0E01\\ \\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E48\u0E32\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E21\u0E32\u0E19\u0E32\u0E02\u0E2D\u0E07\u0E2A\u0E01\u0E34\u0E25 #% 2 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35 \u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01 \u0E08\u0E48\u0E32\u0E22\u0E21\u0E32\u0E19\u0E32 \u0E04\u0E23\u0E1A 800",
@@ -151605,8 +151719,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1073942215",
       "crafted.stat_3485067555",
+      "explicit.stat_1073942215",
       "explicit.stat_3485067555",
+      "fractured.stat_1073942215",
+      "implicit.stat_1073942215",
       "implicit.stat_3485067555"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32\u0E02\u0E2D\u0E07\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2B\u0E19\u0E32\u0E27\u0E40\u0E22\u0E47\u0E19\u0E41\u0E25\u0E30\u0E41\u0E0A\u0E48\u0E41\u0E02\u0E47\u0E07\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\\ ([-0-9,.]\u002B)%$"
@@ -152376,10 +152494,10 @@
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E23\u0E48\u0E32\u0E22\\ \u0E1E\u0E38\u0E48\u0E07\u0E15\u0E31\u0E27\\ \\ \u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
   {
-    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01  #% \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
+    "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01 #% \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46 \u0E19\u0E35\u0E49",
     "lines": 1,
     "tradeIds": [],
-    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01\\ \\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
+    "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E21\u0E32\u0E40\u0E23\u0E47\u0E27\u0E46\\ \u0E19\u0E35\u0E49$"
   },
   {
     "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E31\u0E15\u0E23\u0E32\u0E01\u0E32\u0E23\u0E2B\u0E25\u0E1A\u0E2B\u0E25\u0E35\u0E01 \u0E2D\u0E35\u0E01 #%",
@@ -153439,12 +153557,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1345659139",
-      "explicit.stat_1939202111",
-      "explicit.stat_276103140",
-      "explicit.stat_3699490848",
-      "fractured.stat_1345659139",
-      "fractured.stat_1939202111",
-      "fractured.stat_276103140"
+      "fractured.stat_1345659139"
     ],
     "pattern": "^\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E22\u0E31\u0E48\u0E27\u0E22\u0E38$"
   },
@@ -153929,7 +154042,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -153961,7 +154076,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1192661666",
       "explicit.stat_2091591880",
+      "fractured.stat_1192661666",
       "fractured.stat_2091591880",
       "implicit.stat_2091591880",
       "scourge.stat_2091591880"
@@ -154751,17 +154868,6 @@
     "pattern": "^\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\\ \u0E1C\u0E39\u0E49\u0E40\u0E25\u0E48\u0E19\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E21\u0E47\u0E2D\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21\\n\u0E08\u0E32\u0E01\u0E25\u0E14\u0E25\u0E07\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E44\u0E1B\u0E08\u0E19\u0E16\u0E36\u0E07\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E19\u0E01\u0E27\u0E48\u0E32\u0E08\u0E30\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E2D\u0E35\u0E01\u0E04\u0E23\u0E31\u0E49\u0E07$"
   },
   {
-    "text": "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30 \u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u0E21\u0E47\u0E2D\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21 \u0E08\u0E32\u0E01\u0E25\u0E14\u0E25\u0E07 \u0E2D\u0E35\u0E01 #% \u0E44\u0E1B\u0E08\u0E19\u0E16\u0E36\u0E07 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 \u0E2D\u0E35\u0E01 #% \u0E08\u0E19\u0E01\u0E27\u0E48\u0E32\u0E08\u0E30\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E2D\u0E35\u0E01\u0E04\u0E23\u0E31\u0E49\u0E07",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1718051959",
-      "explicit.stat_3281809492",
-      "implicit.stat_3281809492"
-    ],
-    "pattern": "^\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\\ \u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E21\u0E47\u0E2D\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21\\ \u0E08\u0E32\u0E01\u0E25\u0E14\u0E25\u0E07\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E44\u0E1B\u0E08\u0E19\u0E16\u0E36\u0E07\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E08\u0E19\u0E01\u0E27\u0E48\u0E32\u0E08\u0E30\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E2D\u0E35\u0E01\u0E04\u0E23\u0E31\u0E49\u0E07$"
-  },
-  {
     "text": "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30 \u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A \u0E21\u0E47\u0E2D\u0E14\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E41\u0E1A\u0E1A\u0E2A\u0E38\u0E48\u0E21 \u0E08\u0E32\u0E01\u0E25\u0E14\u0E25\u0E07 #% \u0E44\u0E1B\u0E08\u0E19\u0E16\u0E36\u0E07 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #% \u0E08\u0E19\u0E01\u0E27\u0E48\u0E32\u0E08\u0E30\u0E16\u0E39\u0E01\u0E1B\u0E30\u0E17\u0E30\u0E2D\u0E35\u0E01\u0E04\u0E23\u0E31\u0E49\u0E07",
     "lines": 1,
     "tradeIds": [
@@ -154818,12 +154924,12 @@
     "pattern": "^\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E40\u0E25\u0E48\u0E19\u0E2A\u0E31\u0E07\u0E2B\u0E32\u0E23\\ \u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E41\u0E23\u0E23\u0E4C\\ \u0E40\u0E02\u0E32\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ \u0E21\u0E47\u0E2D\u0E14\\ 1\\ \u0E2D\u0E22\u0E48\u0E32\u0E07\u0E02\u0E2D\u0E07\u0E21\u0E31\u0E19\\ 20\\ \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35$"
   },
   {
-    "text": "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E15\u0E32\u0E22 \u0E21\u0E31\u0E19\u0E08\u0E30\u0E01\u0E23\u0E30\u0E08\u0E32\u0E22 \u0E1E\u0E37\u0E49\u0E19\u0E01\u0E31\u0E14\u0E01\u0E23\u0E48\u0E2D\u0E19 \u0E17\u0E35\u0E48\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35 \u0E40\u0E17\u0E48\u0E32\u0E01\u0E31\u0E1A  #% \u0E02\u0E2D\u0E07 \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E31\u0E19",
+    "text": "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E15\u0E32\u0E22 \u0E21\u0E31\u0E19\u0E08\u0E30\u0E01\u0E23\u0E30\u0E08\u0E32\u0E22 \u0E1E\u0E37\u0E49\u0E19\u0E01\u0E31\u0E14\u0E01\u0E23\u0E48\u0E2D\u0E19 \u0E17\u0E35\u0E48\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E40\u0E04\u0E2D\u0E2D\u0E2A \u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35 \u0E40\u0E17\u0E48\u0E32\u0E01\u0E31\u0E1A #% \u0E02\u0E2D\u0E07 \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E31\u0E19",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_688802590"
     ],
-    "pattern": "^\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E15\u0E32\u0E22\\ \u0E21\u0E31\u0E19\u0E08\u0E30\u0E01\u0E23\u0E30\u0E08\u0E32\u0E22\\ \u0E1E\u0E37\u0E49\u0E19\u0E01\u0E31\u0E14\u0E01\u0E23\u0E48\u0E2D\u0E19\\ \u0E17\u0E35\u0E48\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E40\u0E04\u0E2D\u0E2D\u0E2A\\ \u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35\\ \u0E40\u0E17\u0E48\u0E32\u0E01\u0E31\u0E1A\\ \\ ([-0-9,.]\u002B)%\\ \u0E02\u0E2D\u0E07\\ \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E31\u0E19$"
+    "pattern": "^\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E15\u0E32\u0E22\\ \u0E21\u0E31\u0E19\u0E08\u0E30\u0E01\u0E23\u0E30\u0E08\u0E32\u0E22\\ \u0E1E\u0E37\u0E49\u0E19\u0E01\u0E31\u0E14\u0E01\u0E23\u0E48\u0E2D\u0E19\\ \u0E17\u0E35\u0E48\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E40\u0E04\u0E2D\u0E2D\u0E2A\\ \u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35\\ \u0E40\u0E17\u0E48\u0E32\u0E01\u0E31\u0E1A\\ ([-0-9,.]\u002B)%\\ \u0E02\u0E2D\u0E07\\ \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E31\u0E19$"
   },
   {
     "text": "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E15\u0E32\u0E22 \u0E21\u0E31\u0E19\u0E08\u0E30\u0E01\u0E23\u0E30\u0E08\u0E32\u0E22 \u0E1E\u0E37\u0E49\u0E19\u0E25\u0E38\u0E01\u0E44\u0E2B\u0E21\u0E49 \u0E17\u0E35\u0E48\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E44\u0E1F \u0E15\u0E48\u0E2D\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35 \u0E40\u0E17\u0E48\u0E32\u0E01\u0E31\u0E1A #% \u0E02\u0E2D\u0E07 \u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u0E02\u0E2D\u0E07\u0E21\u0E31\u0E19",
@@ -158369,7 +158475,6 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_4283407333",
-      "enchant.stat_776287420",
       "explicit.stat_4283407333",
       "explicit.stat_67169579",
       "fractured.stat_4283407333",
@@ -158612,11 +158717,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_124131830",
-      "enchant.stat_4283407333",
       "explicit.stat_124131830",
-      "explicit.stat_4283407333",
       "fractured.stat_124131830",
-      "fractured.stat_4283407333",
       "scourge.stat_124131830"
     ],
     "pattern": "^\u0E40\u0E25\u0E40\u0E27\u0E25\u0E02\u0E2D\u0E07\\ \u0E2B\u0E34\u0E19\u0E2A\u0E01\u0E34\u0E25\u0E42\u0E17\u0E40\u0E17\u0E21\\ \u0E17\u0E38\u0E01\u0E40\u0E21\u0E47\u0E14\\ \\\u002B([-0-9,.]\u002B)$"
@@ -160867,8 +160969,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1040189894",
+      "explicit.stat_1298238534",
       "explicit.stat_1760576992",
       "explicit.stat_311030839",
+      "fractured.stat_1040189894",
+      "fractured.stat_1298238534",
       "fractured.stat_1760576992",
       "fractured.stat_311030839",
       "implicit.stat_1760576992"
@@ -161036,17 +161142,14 @@
     "tradeIds": [
       "explicit.stat_1040189894",
       "explicit.stat_1298238534",
-      "explicit.stat_1760576992",
       "explicit.stat_311030839",
       "explicit.stat_3303015",
       "explicit.stat_69898010",
       "fractured.stat_1040189894",
       "fractured.stat_1298238534",
-      "fractured.stat_1760576992",
       "fractured.stat_311030839",
       "fractured.stat_3303015",
-      "fractured.stat_69898010",
-      "implicit.stat_1760576992"
+      "fractured.stat_69898010"
     ],
     "pattern": "^\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)\\ \u0E16\u0E36\u0E07\\ ([-0-9,.]\u002B)\\ \u0E43\u0E2B\u0E49\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E14\u0E49\u0E27\u0E22\\ \u0E21\u0E37\u0E2D\u0E40\u0E1B\u0E25\u0E48\u0E32$"
   },
@@ -161787,7 +161890,8 @@
     "text": "\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07 # \u0E16\u0E36\u0E07 # \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E21\u0E35\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E04\u0E27\u0E32\u0E21\u0E2D\u0E07\u0E2D\u0E32\u0E08\u0E02\u0E2D\u0E07\u0E19\u0E01",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3485231932"
+      "explicit.stat_3485231932",
+      "implicit.stat_3485231932"
     ],
     "pattern": "^\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E19\u0E49\u0E33\u0E41\u0E02\u0E47\u0E07\\ ([-0-9,.]\u002B)\\ \u0E16\u0E36\u0E07\\ ([-0-9,.]\u002B)\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E21\u0E35\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E04\u0E27\u0E32\u0E21\u0E2D\u0E07\u0E2D\u0E32\u0E08\u0E02\u0E2D\u0E07\u0E19\u0E01$"
   },
@@ -165222,8 +165326,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1226049915",
-      "explicit.stat_3986347319"
+      "explicit.stat_1226049915"
     ],
     "pattern": "^\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E04\u0E48\u0E32\u0E1B\u0E49\u0E2D\u0E07\u0E01\u0E31\u0E19\u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19\\ Endurance\\ Charge$"
   },
@@ -168366,6 +168469,7 @@
   },
   {
     "text": "\u0E41\u0E2B\u0E27\u0E19\u0E0A\u0E48\u0E2D\u0E07\u0E02\u0E27\u0E32: \u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E01\u0E32\u0E22\u0E20\u0E32\u0E1E \u002B#%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3829555156"
@@ -168540,6 +168644,7 @@
   },
   {
     "text": "\u0E41\u0E2B\u0E27\u0E19\u0E0A\u0E48\u0E2D\u0E07\u0E0B\u0E49\u0E32\u0E22: \u0E04\u0E38\u0E13\u0E41\u0E25\u0E30\u0E21\u0E34\u0E40\u0E19\u0E35\u0E22\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 \u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22 \u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19 \u0E18\u0E32\u0E15\u0E38 \u002B#%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3991837781"
@@ -169617,18 +169722,18 @@
     "pattern": "^\u0E42\u0E17\u0E40\u0E17\u0E21\\ \u0E21\u0E35\u0E1E\u0E25\u0E31\u0E07\u0E0A\u0E35\u0E27\u0E34\u0E15\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19\\ \u0E2D\u0E35\u0E01\\ ([-0-9,.]\u002B)%\\ \u0E15\u0E48\u0E2D\u0E08\u0E33\u0E19\u0E27\u0E19\u0E42\u0E17\u0E40\u0E17\u0E21\u0E2D\u0E31\u0E0D\u0E40\u0E0A\u0E34\u0E0D\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14$"
   },
   {
-    "text": "\u0E42\u0E17\u0E40\u0E17\u0E21 \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C  \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 # \u0E25\u0E39\u0E01",
+    "text": "\u0E42\u0E17\u0E40\u0E17\u0E21 \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 # \u0E25\u0E39\u0E01",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u0E42\u0E17\u0E40\u0E17\u0E21\\ \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ ([-0-9,.]\u002B)\\ \u0E25\u0E39\u0E01$"
+  },
+  {
+    "text": "\u0E42\u0E17\u0E40\u0E17\u0E21 \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 # \u0E25\u0E39\u0E01",
     "value": 1,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_736847554"
     ],
-    "pattern": "^\u0E42\u0E17\u0E40\u0E17\u0E21\\ \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ ([-0-9,.]\u002B)\\ \u0E25\u0E39\u0E01$"
-  },
-  {
-    "text": "\u0E42\u0E17\u0E40\u0E17\u0E21 \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 # \u0E25\u0E39\u0E01",
-    "lines": 1,
-    "tradeIds": [],
     "pattern": "^\u0E42\u0E17\u0E40\u0E17\u0E21\\ \u0E22\u0E34\u0E07\u0E42\u0E1E\u0E23\u0E40\u0E08\u0E01\u0E44\u0E17\u0E25\u0E4C\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ ([-0-9,.]\u002B)\\ \u0E25\u0E39\u0E01$"
   },
   {
@@ -172555,7 +172660,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_138741818",
       "explicit.stat_938645499",
+      "fractured.stat_138741818",
       "fractured.stat_938645499"
     ],
     "pattern": "^\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E1A\u0E25\u0E47\u0E2D\u0E04\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\\ \u0E40\u0E27\u0E17\\ \\\u002B([-0-9,.]\u002B)%\\ \u0E02\u0E13\u0E30\u0E16\u0E37\u0E2D\\ \u0E18\u0E19\u0E39$"
@@ -174118,7 +174225,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2542650946",
-      "explicit.stat_2609824731",
       "fractured.stat_2542650946"
     ],
     "pattern": "^\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\\ Endurance\\ Charge\\ 1\\ \u0E25\u0E39\u0E01\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E04\u0E23\u0E34\u0E15\u0E34\u0E04\u0E2D\u0E25$"
@@ -176200,12 +176306,12 @@
     "pattern": "^\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E01\u0E34\u0E25\\ \u0E01\u0E23\u0E30\u0E08\u0E48\u0E32\u0E07\\ \\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
   {
-    "text": "\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E01\u0E34\u0E25 \u0E01\u0E23\u0E30\u0E1E\u0E37\u0E2D\u0E40\u0E1E\u0E25\u0E34\u0E07   \u0E40\u0E25\u0E40\u0E27\u0E25 #",
+    "text": "\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E01\u0E34\u0E25 \u0E01\u0E23\u0E30\u0E1E\u0E37\u0E2D\u0E40\u0E1E\u0E25\u0E34\u0E07  \u0E40\u0E25\u0E40\u0E27\u0E25 #",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3696252104"
     ],
-    "pattern": "^\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E01\u0E34\u0E25\\ \u0E01\u0E23\u0E30\u0E1E\u0E37\u0E2D\u0E40\u0E1E\u0E25\u0E34\u0E07\\ \\ \\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
+    "pattern": "^\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E01\u0E34\u0E25\\ \u0E01\u0E23\u0E30\u0E1E\u0E37\u0E2D\u0E40\u0E1E\u0E25\u0E34\u0E07\\ \\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
   {
     "text": "\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E01\u0E34\u0E25 \u0E01\u0E23\u0E30\u0E2B\u0E32\u0E22\u0E40\u0E19\u0E37\u0E49\u0E2D  \u0E40\u0E25\u0E40\u0E27\u0E25 #",
@@ -177374,6 +177480,14 @@
     "pattern": "^\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E04\u0E25\u0E31\u0E48\u0E07\\ 1\\ \u0E23\u0E30\u0E14\u0E31\u0E1A\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\\ \u0E28\u0E31\u0E15\u0E23\u0E39\u0E22\u0E39\u0E19\u0E34\u0E04\\ \u0E2D\u0E22\u0E39\u0E48\u0E43\u0E19\u0E23\u0E30\u0E22\u0E30\u0E1B\u0E23\u0E32\u0E01\u0E0F\u0E01\u0E32\u0E22\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13$"
   },
   {
+    "text": "\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E04\u0E25\u0E31\u0E48\u0E07 1 \u0E23\u0E30\u0E14\u0E31\u0E1A \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35 \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48 \u0E2D\u0E20\u0E34\u0E21\u0E2B\u0E32\u0E1A\u0E2D\u0E2A\u0E41\u0E2D\u0E15\u0E25\u0E32\u0E2A \u0E2D\u0E22\u0E39\u0E48\u0E43\u0E19\u0E23\u0E30\u0E22\u0E30\u0E1B\u0E23\u0E32\u0E01\u0E0F\u0E01\u0E32\u0E22\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_1774362541"
+    ],
+    "pattern": "^\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E04\u0E25\u0E31\u0E48\u0E07\\ 1\\ \u0E23\u0E30\u0E14\u0E31\u0E1A\\ \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\\ \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\\ \u0E2D\u0E20\u0E34\u0E21\u0E2B\u0E32\u0E1A\u0E2D\u0E2A\u0E41\u0E2D\u0E15\u0E25\u0E32\u0E2A\\ \u0E2D\u0E22\u0E39\u0E48\u0E43\u0E19\u0E23\u0E30\u0E22\u0E30\u0E1B\u0E23\u0E32\u0E01\u0E0F\u0E01\u0E32\u0E22\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13$"
+  },
+  {
     "text": "\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E04\u0E25\u0E31\u0E48\u0E07 1 \u0E23\u0E30\u0E14\u0E31\u0E1A \u0E40\u0E21\u0E37\u0E48\u0E2D\u0E1B\u0E30\u0E17\u0E30\u0E14\u0E49\u0E27\u0E22\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35 \u0E41\u0E15\u0E48\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19 1 \u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E38\u0E01 # \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35",
     "lines": 1,
     "tradeIds": [],
@@ -178436,12 +178550,12 @@
     "pattern": "^\u0E44\u0E21\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2A\u0E15\u0E31\u0E19\\ \u0E02\u0E13\u0E30\\ \u0E01\u0E33\u0E25\u0E31\u0E07\u0E14\u0E39\u0E14$"
   },
   {
-    "text": "\u0E44\u0E21\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E2A\u0E15\u0E31\u0E19  \u0E02\u0E13\u0E30\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25",
+    "text": "\u0E44\u0E21\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E2A\u0E15\u0E31\u0E19 \u0E02\u0E13\u0E30\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2638865425"
     ],
-    "pattern": "^\u0E44\u0E21\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2A\u0E15\u0E31\u0E19\\ \\ \u0E02\u0E13\u0E30\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
+    "pattern": "^\u0E44\u0E21\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E2A\u0E15\u0E31\u0E19\\ \u0E02\u0E13\u0E30\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30\\ \u0E40\u0E25\u0E37\u0E2D\u0E14\u0E44\u0E2B\u0E25$"
   },
   {
     "text": "\u0E44\u0E21\u0E48\u0E15\u0E34\u0E14\u0E2A\u0E16\u0E32\u0E19\u0E30 \u0E2A\u0E15\u0E31\u0E19 \u0E02\u0E13\u0E30\u0E17\u0E35\u0E48\u0E04\u0E38\u0E13\u0E21\u0E35 \u0E42\u0E25\u0E48\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19",
@@ -180623,7 +180737,6 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "crucible.mod_38368",
       "crucible.mod_60323"
     ],
     "pattern": "^\u0E44\u0E2D\u0E40\u0E17\u0E21\u0E02\u0E32\u0E22\u0E44\u0E14\u0E49\\ Regal\\ Orb\\ \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\\ 1\\ \u0E0A\u0E34\u0E49\u0E19$"
