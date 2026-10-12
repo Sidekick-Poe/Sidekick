@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Game.Languages;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Providers;
 
 public class DataProvider

@@ -1,5 +1,5 @@
 
-namespace Sidekick.Game.Languages.Implementations;
+namespace Sidekick.Game.Providers.Languages.Implementations;
 
 public class GameLanguageEn : IGameLanguage
 {
@@ -11,15 +11,6 @@ public class GameLanguageEn : IGameLanguage
     public string Poe2TradeBaseUrl => "https://www.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://www.pathofexile.com/api/trade2/";
 
-    public string RarityUnique => "Unique";
-    public string RarityRare => "Rare";
-    public string RarityMagic => "Magic";
-    public string RarityNormal => "Normal";
-    public string RarityCurrency => "Currency";
-    public string RarityGem => "Gem";
-    public string RarityDivinationCard => "Divination Card";
-
-    public string DescriptionRarity => "Rarity";
     public string DescriptionUnidentified => "Unidentified";
     public string DescriptionQuality => "Quality";
     public string DescriptionLevel => "Level";
@@ -48,8 +39,6 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionMapTier => "Map Tier";
     public string DescriptionReward => "Reward";
     public string DescriptionItemQuantity => "Item Quantity";
-    public string DescriptionItemRarity => "Item Rarity";
-    public string DescriptionMonsterPackSize => "Monster Pack Size";
     public string DescriptionMoreMaps => "More Maps";
     public string DescriptionMoreScarabs => "More Scarabs";
     public string DescriptionMoreCurrency => "More Currency";

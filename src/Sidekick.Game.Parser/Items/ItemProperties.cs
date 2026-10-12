@@ -78,6 +78,8 @@ public class ItemProperties
 
     public int ItemRarity { get; set; }
 
+    public int MonsterEffectiveness { get; set; }
+
     public int WaystoneDropChance { get; set; }
 
     public bool Foulborn { get; set; }

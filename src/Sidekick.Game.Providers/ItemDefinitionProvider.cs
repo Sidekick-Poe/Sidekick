@@ -1,7 +1,7 @@
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Providers;
 
 public class ItemDefinitionProvider(

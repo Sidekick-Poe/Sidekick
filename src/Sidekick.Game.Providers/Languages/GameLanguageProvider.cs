@@ -1,6 +1,6 @@
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
-namespace Sidekick.Game.Languages;
+namespace Sidekick.Game.Providers.Languages;
 
 public class GameLanguageProvider : IGameLanguageProvider
 {

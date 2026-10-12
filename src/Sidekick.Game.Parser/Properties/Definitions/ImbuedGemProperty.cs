@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Filters.AutoSelect;

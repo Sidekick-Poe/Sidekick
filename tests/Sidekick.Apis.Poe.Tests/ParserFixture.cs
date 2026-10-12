@@ -13,7 +13,6 @@ using Sidekick.Common;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
 using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Filters.AutoSelect;
@@ -21,6 +20,7 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Properties;
 using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
 using Xunit;
 using TradeFilter=Sidekick.Game.Parser.Filters.Types.TradeFilter;
 

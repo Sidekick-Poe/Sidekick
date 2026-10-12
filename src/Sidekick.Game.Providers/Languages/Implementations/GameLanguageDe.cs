@@ -1,5 +1,5 @@
 
-namespace Sidekick.Game.Languages.Implementations;
+namespace Sidekick.Game.Providers.Languages.Implementations;
 
 public class GameLanguageDe : IGameLanguage
 {
@@ -11,15 +11,6 @@ public class GameLanguageDe : IGameLanguage
     public string Poe2TradeBaseUrl => "https://de.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://de.pathofexile.com/api/trade2/";
 
-    public string RarityUnique => "Einzigartig";
-    public string RarityRare => "Selten";
-    public string RarityMagic => "Magisch";
-    public string RarityNormal => "Normal";
-    public string RarityCurrency => "Währung";
-    public string RarityGem => "Gemme";
-    public string RarityDivinationCard => "Weissagungskarte";
-
-    public string DescriptionRarity => "Seltenheit";
     public string DescriptionUnidentified => "Nicht identifiziert";
     public string DescriptionQuality => "Qualität";
     public string DescriptionLevel => "Stufe";
@@ -48,8 +39,6 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionMapTier => "Kartenlevel";
     public string DescriptionReward => "Belohnung";
     public string DescriptionItemQuantity => "Gegenstandsmenge";
-    public string DescriptionItemRarity => "Gegenstandsseltenheit";
-    public string DescriptionMonsterPackSize => "Monstergruppengröße";
     public string DescriptionMoreMaps => "Mehr Karten";
     public string DescriptionMoreScarabs => "Mehr Skarabäen";
     public string DescriptionMoreCurrency => "Mehr Währung";
@@ -88,9 +77,5 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionHeistHighValue => "Hoher Wert";
     public string DescriptionHeistPrecious => "Kostbar";
     public string DescriptionHeistPriceless => "Unschätzbar";
-
-    public string AffixSuperior => "(hochwertig)";
-    public string AffixBlighted => "Befallene";
-    public string AffixBlightRavaged => "Extrem befallene";
 }
 

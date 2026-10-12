@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game;
 using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Parser.Filters.Types;
@@ -14,6 +13,7 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Models;
 using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Apis.Poe.Trade;
 
 public class ItemTradeService

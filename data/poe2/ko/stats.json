@@ -13084,17 +13084,14 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3196512240",
-      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3196512240",
-      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3196512240",
-      "fractured.stat_3206904707",
       "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
@@ -13107,17 +13104,14 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3196512240",
-      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_3196512240",
-      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_3196512240",
-      "fractured.stat_3206904707",
       "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
@@ -13335,16 +13329,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_231689132",
-      "desecrated.stat_3196512240",
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "explicit.stat_231689132",
-      "explicit.stat_3196512240",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "fractured.stat_231689132",
-      "fractured.stat_3196512240",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^\uBE44\uACE0\uC815\\ \uD53C\uD574\\ \uC18D\uC131\\ \uBD80\uC5EC\\ \uADDC\uBAA8\\ ([-0-9,.]\u002B)%\\ \uAC10\uC18C$"
@@ -13355,16 +13343,10 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_231689132",
-      "desecrated.stat_3196512240",
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "explicit.stat_231689132",
-      "explicit.stat_3196512240",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "fractured.stat_231689132",
-      "fractured.stat_3196512240",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^\uBE44\uACE0\uC815\\ \uD53C\uD574\\ \uC18D\uC131\\ \uBD80\uC5EC\\ \uADDC\uBAA8\\ ([-0-9,.]\u002B)%\\ \uC99D\uAC00$"
@@ -13376,8 +13358,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3206904707",
+      "desecrated.stat_3624940721",
       "explicit.stat_3206904707",
-      "fractured.stat_3206904707"
+      "explicit.stat_3624940721",
+      "fractured.stat_3206904707",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^\uBE44\uACE0\uC815\\ \uC0DD\uBA85\uB825\\ \uC18D\uC131\\ \uBD80\uC5EC\\ \uADDC\uBAA8\\ ([-0-9,.]\u002B)%\\ \uAC10\uC18C$"
   },
@@ -13387,8 +13372,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3206904707",
+      "desecrated.stat_3624940721",
       "explicit.stat_3206904707",
-      "fractured.stat_3206904707"
+      "explicit.stat_3624940721",
+      "fractured.stat_3206904707",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^\uBE44\uACE0\uC815\\ \uC0DD\uBA85\uB825\\ \uC18D\uC131\\ \uBD80\uC5EC\\ \uADDC\uBAA8\\ ([-0-9,.]\u002B)%\\ \uC99D\uAC00$"
   },
@@ -13518,13 +13506,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_1335369947",
       "desecrated.stat_3196512240",
       "desecrated.stat_3514984677",
-      "explicit.stat_1335369947",
       "explicit.stat_3196512240",
       "explicit.stat_3514984677",
-      "fractured.stat_1335369947",
       "fractured.stat_3196512240",
       "fractured.stat_3514984677"
     ],
@@ -13535,13 +13520,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_1335369947",
       "desecrated.stat_3196512240",
       "desecrated.stat_3514984677",
-      "explicit.stat_1335369947",
       "explicit.stat_3196512240",
       "explicit.stat_3514984677",
-      "fractured.stat_1335369947",
       "fractured.stat_3196512240",
       "fractured.stat_3514984677"
     ],
@@ -28977,7 +28959,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3076483222|45026",
-      "explicit.stat_3076483222|49977",
       "explicit.stat_3076483222|64921"
     ],
     "pattern": "^\uCD5C\uB300\\ ([-0-9,.]\u002B)\uAE4C\uC9C0\\ \uC18C\uBAA8\uD558\uC5EC\\ \uC2DC\uB828\\ \uC644\uB8CC\\ \uC2DC\\ 2\uBC30\\ \uD68D\uB4DD$"
@@ -39883,8 +39864,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1135928777",
+      "desecrated.stat_3759735052",
       "explicit.stat_1135928777",
-      "fractured.stat_1135928777"
+      "explicit.stat_3759735052",
+      "fractured.stat_1135928777",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^\uB3C4\uB07C\\ \uC0AC\uC6A9\\ \uC2DC\\ \uACF5\uACA9\\ \uC18D\uB3C4\\ ([-0-9,.]\u002B)%\\ \uAC10\uC18C$"
   },
@@ -39894,8 +39878,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1135928777",
+      "desecrated.stat_3759735052",
       "explicit.stat_1135928777",
-      "fractured.stat_1135928777"
+      "explicit.stat_3759735052",
+      "fractured.stat_1135928777",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^\uB3C4\uB07C\\ \uC0AC\uC6A9\\ \uC2DC\\ \uACF5\uACA9\\ \uC18D\uB3C4\\ ([-0-9,.]\u002B)%\\ \uC99D\uAC00$"
   },
@@ -47560,13 +47547,10 @@
     "tradeIds": [
       "desecrated.stat_1135928777",
       "desecrated.stat_1165163804",
-      "desecrated.stat_3759735052",
       "explicit.stat_1135928777",
       "explicit.stat_1165163804",
-      "explicit.stat_3759735052",
       "fractured.stat_1135928777",
-      "fractured.stat_1165163804",
-      "fractured.stat_3759735052"
+      "fractured.stat_1165163804"
     ],
     "pattern": "^\uAC80\\ \uC0AC\uC6A9\\ \uC2DC\\ \uACF5\uACA9\\ \uC18D\uB3C4\\ ([-0-9,.]\u002B)%\\ \uAC10\uC18C$"
   },
@@ -47577,13 +47561,10 @@
     "tradeIds": [
       "desecrated.stat_1135928777",
       "desecrated.stat_1165163804",
-      "desecrated.stat_3759735052",
       "explicit.stat_1135928777",
       "explicit.stat_1165163804",
-      "explicit.stat_3759735052",
       "fractured.stat_1135928777",
-      "fractured.stat_1165163804",
-      "fractured.stat_3759735052"
+      "fractured.stat_1165163804"
     ],
     "pattern": "^\uAC80\\ \uC0AC\uC6A9\\ \uC2DC\\ \uACF5\uACA9\\ \uC18D\uB3C4\\ ([-0-9,.]\u002B)%\\ \uC99D\uAC00$"
   },
@@ -90799,11 +90780,8 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1135928777",
-      "desecrated.stat_3283482523",
       "explicit.stat_1135928777",
-      "explicit.stat_3283482523",
-      "fractured.stat_1135928777",
-      "fractured.stat_3283482523"
+      "fractured.stat_1135928777"
     ],
     "pattern": "^\uC800\uACA9\\ \uC0AC\uC6A9\\ \uC2DC\\ \uACF5\uACA9\\ \uC18D\uB3C4\\ ([-0-9,.]\u002B)%\\ \uAC10\uC18C$"
   },
@@ -90813,11 +90791,8 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1135928777",
-      "desecrated.stat_3283482523",
       "explicit.stat_1135928777",
-      "explicit.stat_3283482523",
-      "fractured.stat_1135928777",
-      "fractured.stat_3283482523"
+      "fractured.stat_1135928777"
     ],
     "pattern": "^\uC800\uACA9\\ \uC0AC\uC6A9\\ \uC2DC\\ \uACF5\uACA9\\ \uC18D\uB3C4\\ ([-0-9,.]\u002B)%\\ \uC99D\uAC00$"
   },
@@ -101382,6 +101357,7 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1070816711",
       "explicit.stat_3040603554",
       "explicit.stat_3240183538"
     ],
@@ -107634,7 +107610,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1436812886",
-      "explicit.stat_1436812886"
+      "desecrated.stat_1689473577",
+      "desecrated.stat_4130878258",
+      "explicit.stat_1436812886",
+      "explicit.stat_1689473577",
+      "explicit.stat_4130878258"
     ],
     "pattern": "^\uC9C0\uC5ED\uC5D0\\ \uB3C5\uC131\\ \uBAAC\uC2A4\uD130\\ \uBB34\uB9AC\\ ([-0-9,.]\u002B)\uAC1C\\ \uCD94\uAC00\\ \uB4F1\uC7A5$"
   },
@@ -108423,12 +108403,10 @@
       "desecrated.stat_1689473577",
       "desecrated.stat_3309089125",
       "desecrated.stat_4130878258",
-      "desecrated.stat_4181857719",
       "explicit.stat_1436812886",
       "explicit.stat_1689473577",
       "explicit.stat_3309089125",
-      "explicit.stat_4130878258",
-      "explicit.stat_4181857719"
+      "explicit.stat_4130878258"
     ],
     "pattern": "^\uC9C0\uC5ED\uC5D0\\ \uC815\uD654\uB41C\\ \uBAAC\uC2A4\uD130\\ \uBB34\uB9AC\\ ([-0-9,.]\u002B)\uAC1C\\ \uCD94\uAC00\\ \uB4F1\uC7A5$"
   },
@@ -108528,9 +108506,7 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1436812886",
-      "desecrated.stat_4181857719",
-      "explicit.stat_1436812886",
-      "explicit.stat_4181857719"
+      "explicit.stat_1436812886"
     ],
     "pattern": "^\uC9C0\uC5ED\uC5D0\\ \uB9C8\uBC95\\ \uBAAC\uC2A4\uD130\\ \uBB34\uB9AC\\ 1\uAC1C\\ \uCD94\uAC00\\ \uB4F1\uC7A5$"
   },
@@ -122365,8 +122341,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2506820610",
+      "desecrated.stat_95221307",
       "explicit.stat_2506820610",
-      "fractured.stat_2506820610"
+      "explicit.stat_95221307",
+      "fractured.stat_2506820610",
+      "fractured.stat_95221307"
     ],
     "pattern": "^\uBAAC\uC2A4\uD130\uAC00\\ \uBA85\uC911\\ \uC2DC\\ \uC2E4\uBA85\\ \uC720\uBC1C$"
   },
@@ -122489,8 +122468,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2506820610",
+      "desecrated.stat_95221307",
       "explicit.stat_2506820610",
-      "fractured.stat_2506820610"
+      "explicit.stat_95221307",
+      "fractured.stat_2506820610",
+      "fractured.stat_95221307"
     ],
     "pattern": "^\uBAAC\uC2A4\uD130\uAC00\\ \uBA85\uC911\\ \uC2DC\\ ([-0-9,.]\u002B)%\uC758\\ \uD655\uB960\uB85C\\ \uC2E4\uBA85\\ \uC720\uBC1C$"
   },
@@ -128529,8 +128511,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_3885634897",
+      "explicit.stat_3885634897",
       "explicit.stat_3954735777",
-      "implicit.stat_3954735777"
+      "implicit.stat_3954735777",
+      "rune.stat_3885634897"
     ],
     "pattern": "^\uB0C9\uAE30\\ \uC2A4\uD0AC\\ \uBA85\uC911\\ \uC2DC\\ ([-0-9,.]\u002B)%\uC758\\ \uD655\uB960\uB85C\\ \uC911\uB3C5\\ \uC720\uBC1C$"
   },
@@ -132083,7 +132068,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2812872407",
       "implicit.stat_2650263616",
       "rune.stat_2650263616"
     ],
@@ -133410,9 +133394,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1478653032",
-      "explicit.stat_2955966707",
-      "explicit.stat_3801067695",
-      "rune.stat_3801067695"
+      "explicit.stat_2955966707"
     ],
     "pattern": "^\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C\\ \uC801\uC6A9\uB418\uB294\\ \uB9F9\uACF5\\ \uD6A8\uACFC\\ ([-0-9,.]\u002B)%\\ \uAC10\uC18C$"
   },
@@ -133422,9 +133404,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1478653032",
-      "explicit.stat_2955966707",
-      "explicit.stat_3801067695",
-      "rune.stat_3801067695"
+      "explicit.stat_2955966707"
     ],
     "pattern": "^\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C\\ \uC801\uC6A9\uB418\uB294\\ \uB9F9\uACF5\\ \uD6A8\uACFC\\ ([-0-9,.]\u002B)%\\ \uC99D\uAC00$"
   },
@@ -133723,7 +133703,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1224838456"
+      "explicit.stat_1224838456",
+      "explicit.stat_4258251165"
     ],
     "pattern": "^\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C\\ \uC811\uADFC\uD574\\ \uC788\uB294\\ \uBC18\uB824\uC218\uB4E4\uC774\\ \uD53C\uD574\uC758\\ ([-0-9,.]\u002B)%\uB97C\\ \uCD94\uAC00\\ \uCE74\uC624\uC2A4\\ \uD53C\uD574\uB85C\\ \uD68D\uB4DD$"
   },
@@ -157355,11 +157336,8 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2753083623",
-      "desecrated.stat_491450213",
       "explicit.stat_2753083623",
-      "explicit.stat_491450213",
       "fractured.stat_2753083623",
-      "fractured.stat_491450213",
       "rune.stat_915264788"
     ],
     "pattern": "^\uD1A0\uD15C\\ \uC2A4\uD0AC\\ \uCE58\uBA85\uD0C0\\ \uBA85\uC911\\ \uD655\uB960\\ ([-0-9,.]\u002B)%\\ \uAC10\uC18C$"
@@ -157370,11 +157348,8 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2753083623",
-      "desecrated.stat_491450213",
       "explicit.stat_2753083623",
-      "explicit.stat_491450213",
       "fractured.stat_2753083623",
-      "fractured.stat_491450213",
       "rune.stat_915264788"
     ],
     "pattern": "^\uD1A0\uD15C\\ \uC2A4\uD0AC\\ \uCE58\uBA85\uD0C0\\ \uBA85\uC911\\ \uD655\uB960\\ ([-0-9,.]\u002B)%\\ \uC99D\uAC00$"

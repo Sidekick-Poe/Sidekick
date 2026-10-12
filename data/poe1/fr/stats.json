@@ -22041,17 +22041,20 @@
       "explicit.stat_1190333629|34774",
       "explicit.stat_1190333629|39598",
       "explicit.stat_1190333629|39790",
+      "explicit.stat_1190333629|42144",
       "explicit.stat_1190333629|43122",
       "explicit.stat_1190333629|43195",
       "explicit.stat_1190333629|44297",
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|5443",
       "explicit.stat_1190333629|55867",
+      "explicit.stat_1190333629|57052",
       "explicit.stat_1190333629|5819",
       "explicit.stat_1190333629|58827",
       "explicit.stat_1190333629|61072",
       "explicit.stat_1190333629|62595",
-      "explicit.stat_1190333629|6778"
+      "explicit.stat_1190333629|6778",
+      "explicit.stat_1190333629|8656"
     ],
     "pattern": "^Attribue\\ ([-0-9,.]\u002B)\\ si\\ vous\\ avez\\ un\\ modificateur\\ similaire\\ sur\\ Chair\\ interdite$"
   },
@@ -22069,18 +22072,15 @@
       "explicit.stat_2460506030|31700",
       "explicit.stat_2460506030|3184",
       "explicit.stat_2460506030|32816",
-      "explicit.stat_2460506030|34774",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
       "explicit.stat_2460506030|42144",
       "explicit.stat_2460506030|43122",
-      "explicit.stat_2460506030|43195",
       "explicit.stat_2460506030|43962",
       "explicit.stat_2460506030|44297",
       "explicit.stat_2460506030|44482",
       "explicit.stat_2460506030|5443",
       "explicit.stat_2460506030|55867",
-      "explicit.stat_2460506030|57052",
       "explicit.stat_2460506030|5819",
       "explicit.stat_2460506030|58827",
       "explicit.stat_2460506030|61072",
@@ -53018,8 +53018,11 @@
   },
   {
     "text": "Le Boss de fin c\u00E8de # Objets Uniques suppl\u00E9mentaires",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_3760667977"
+    ],
     "pattern": "^Le\\ Boss\\ de\\ fin\\ c\u00E8de\\ ([-0-9,.]\u002B)\\ Objets\\ Uniques\\ suppl\u00E9mentaires$"
   },
   {
@@ -53039,6 +53042,7 @@
   },
   {
     "text": "Le Boss de fin c\u00E8de un Objet Unique suppl\u00E9mentaire",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -55404,6 +55408,7 @@
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
+      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -55418,9 +55423,6 @@
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|8",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
@@ -56737,6 +56739,7 @@
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
+      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -56751,9 +56754,6 @@
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|8",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
@@ -58079,6 +58079,7 @@
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
+      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -58093,9 +58094,6 @@
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|8",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
@@ -61282,6 +61280,7 @@
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
+      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -61296,9 +61295,6 @@
       "explicit.stat_4089743927|3|27",
       "explicit.stat_4089743927|3|35",
       "explicit.stat_4089743927|3|8",
-      "explicit.stat_4089743927|4|131",
-      "explicit.stat_4089743927|4|133",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
@@ -73723,7 +73719,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1736172673",
       "explicit.stat_2101383955",
+      "explicit.stat_2499808413",
       "fractured.stat_2101383955",
       "implicit.stat_2101383955"
     ],
@@ -75990,6 +75988,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1282219780",
       "explicit.stat_1588094148"
     ],
     "pattern": "^Les\\ Ennemis\\ que\\ vous\\ Pacifiez\\ ont\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ subis$"
@@ -76000,6 +75999,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1282219780",
       "explicit.stat_1588094148"
     ],
     "pattern": "^Les\\ Ennemis\\ que\\ vous\\ Pacifiez\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ des\\ D\u00E9g\u00E2ts\\ subis$"
@@ -80476,9 +80476,14 @@
     "lines": 1,
     "tradeIds": [
       "crucible.mod_2830",
+      "crucible.mod_50319",
+      "crucible.mod_52502",
       "crucible.mod_59412",
+      "crucible.mod_9520",
+      "explicit.indexable_support_144",
       "explicit.indexable_support_161",
       "explicit.indexable_support_28",
+      "explicit.stat_3462081007",
       "explicit.stat_369650395",
       "explicit.stat_794471597",
       "implicit.stat_369650395"
@@ -101235,8 +101240,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2766470009",
-      "explicit.stat_709446441",
-      "explicit.stat_866391849"
+      "explicit.stat_709446441"
     ],
     "pattern": "^Pendant\\ les\\ Casses,\\ les\\ Orbes\\ royaux\\ c\u00E9d\u00E9s\\ deviennent\\ des\\ Orbes\\ b\u00E9nis$"
   },
@@ -133874,11 +133878,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1078455967",
       "explicit.stat_2339012908",
       "explicit.stat_599749213",
       "explicit.stat_9187492",
-      "fractured.stat_1078455967",
       "fractured.stat_599749213"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ au\\ Niveau\\ de\\ toutes\\ les\\ Gemmes\\ d\u0027Aptitude\\ de\\ Lien$"
@@ -142261,10 +142263,8 @@
     "tradeIds": [
       "explicit.stat_1476643878",
       "explicit.stat_1788635023",
-      "explicit.stat_928238845",
       "fractured.stat_1476643878",
-      "fractured.stat_1788635023",
-      "fractured.stat_928238845"
+      "fractured.stat_1788635023"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ Vitesse\\ d\u0027attaque\\ et\\ d\u0027incantation\\ avec\\ les\\ Aptitudes\\ de\\ bouclier$"
   },
@@ -145928,6 +145928,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3257279374",
+      "explicit.stat_3503466234",
+      "explicit.stat_3565956680",
+      "explicit.stat_528422616",
       "fractured.stat_3257279374",
       "implicit.stat_3257279374"
     ],
@@ -160868,10 +160871,8 @@
     "tradeIds": [
       "explicit.stat_1476643878",
       "explicit.stat_1788635023",
-      "explicit.stat_928238845",
       "fractured.stat_1476643878",
-      "fractured.stat_1788635023",
-      "fractured.stat_928238845"
+      "fractured.stat_1788635023"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ d\u0027attaque\\ et\\ d\u0027incantation\\ avec\\ les\\ Aptitudes\\ de\\ bouclier$"
   },
@@ -164493,6 +164494,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3257279374",
+      "explicit.stat_3503466234",
+      "explicit.stat_3565956680",
+      "explicit.stat_528422616",
       "fractured.stat_3257279374",
       "implicit.stat_3257279374"
     ],
@@ -177303,8 +177307,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2766470009",
-      "explicit.stat_709446441",
-      "explicit.stat_866391849"
+      "explicit.stat_709446441"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ pendant\\ les\\ Casses\\ que\\ les\\ Orbes\\ royaux\\ c\u00E9d\u00E9s\\ deviennent\\ des\\ Orbes\\ b\u00E9nis$"
   },
@@ -177992,8 +177995,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_593279674",
-      "explicit.stat_748813744"
+      "explicit.stat_593279674"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ Drainent\\ de\\ la\\ Vie\\ aux\\ Ennemis\\ Empoisonn\u00E9s$"
   },

@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Game;
-using Sidekick.Game.Languages;
+using Sidekick.Game.Providers.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
 

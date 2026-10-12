@@ -2,12 +2,12 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Parser.Properties.Definitions;
 using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Parser.Properties;
 
 public class PropertyParser
@@ -55,13 +55,13 @@ public class PropertyParser
             new BlightRavagedProperty(game, gameTextProvider),
             new MapTierProperty(game, currentGameLanguage),
             new RewardProperty(game, currentGameLanguage, itemDefinitionProvider),
-            new RevivesAvailableProperty(game, currentGameLanguage),
-            new MonsterPackSizeProperty(game, currentGameLanguage),
-
-            new MagicMonstersProperty(game, currentGameLanguage),
-            new RareMonstersProperty(game, currentGameLanguage),
+            new RevivesAvailableProperty(game, gameTextProvider),
+            new MonsterPackSizeProperty(game, gameTextProvider),
+            new MagicMonstersProperty(game, gameTextProvider),
+            new RareMonstersProperty(game, gameTextProvider),
             new ItemQuantityProperty(game, currentGameLanguage),
-            new ItemRarityProperty(game, currentGameLanguage),
+            new ItemRarityProperty(game, gameTextProvider),
+            new MonsterEffectivenessProperty(game, gameTextProvider),
             new MoreMapsProperty(game, currentGameLanguage),
             new MoreScarabsProperty(game, currentGameLanguage),
             new MoreCurrencyProperty(game, currentGameLanguage),
@@ -71,7 +71,7 @@ public class PropertyParser
             new QualityCardsProperty(game, currentGameLanguage),
             new QualityPackSizeProperty(game, currentGameLanguage),
             new QualityRarityProperty(game, currentGameLanguage),
-            new WaystoneDropChanceProperty(game, currentGameLanguage),
+            new WaystoneDropChanceProperty(game, gameTextProvider),
             new AreaLevelProperty(game, currentGameLanguage),
 
             new HeistWingsRevealedProperty(game, currentGameLanguage, tradeFilterProvider),

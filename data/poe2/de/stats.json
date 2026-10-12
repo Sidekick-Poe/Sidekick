@@ -9848,12 +9848,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_2200661314",
       "explicit.stat_1049080093",
       "explicit.stat_1484500028",
-      "explicit.stat_2200661314",
-      "explicit.stat_261503687",
-      "fractured.stat_2200661314"
+      "explicit.stat_261503687"
     ],
     "pattern": "^Angriffe\\ verursachen\\ ([-0-9,.]\u002B)%\\ des\\ Schadens\\ als\\ extra\\ Chaosschaden$"
   },
@@ -62737,6 +62734,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "implicit.stat_129891052",
       "rune.stat_1927467683"
     ],
     "pattern": "^Kann\\ Totem-Modifikatoren\\ annehmen$"
@@ -79131,7 +79129,6 @@
     "tradeIds": [
       "explicit.stat_3076483222|32821",
       "explicit.stat_3076483222|38303",
-      "explicit.stat_3076483222|4897",
       "explicit.stat_3076483222|49977",
       "explicit.stat_3076483222|61382",
       "explicit.stat_3076483222|62634",
@@ -126836,11 +126833,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_1165163804",
       "desecrated.stat_3759735052",
-      "explicit.stat_1165163804",
       "explicit.stat_3759735052",
-      "fractured.stat_1165163804",
       "fractured.stat_3759735052"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Angriffsgeschwindigkeit\\ mit\\ Flegeln$"
@@ -130842,11 +130836,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3206904707",
       "desecrated.stat_3624940721",
-      "explicit.stat_3206904707",
       "explicit.stat_3624940721",
-      "fractured.stat_3206904707",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Magnituden\\ von\\ expliziten\\ Attribut-Modifikatoren$"
@@ -151415,11 +151406,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_1165163804",
       "desecrated.stat_3759735052",
-      "explicit.stat_1165163804",
       "explicit.stat_3759735052",
-      "fractured.stat_1165163804",
       "fractured.stat_3759735052"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Angriffsgeschwindigkeit\\ mit\\ Flegeln$"
@@ -155295,11 +155283,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3206904707",
       "desecrated.stat_3624940721",
-      "explicit.stat_3206904707",
       "explicit.stat_3624940721",
-      "fractured.stat_3206904707",
       "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Magnituden\\ von\\ expliziten\\ Attribut-Modifikatoren$"
@@ -173328,8 +173313,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1062190843",
-      "rune.stat_2336703514",
       "rune.stat_3268281424"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ zur\\ Stufe\\ aller\\ Armbr\u00FCsten-Fertigkeitengemmen$"
@@ -175181,6 +175164,7 @@
       "rune.stat_1839315243",
       "rune.stat_2305301734",
       "rune.stat_3148103963",
+      "rune.stat_3268281424",
       "rune.stat_653358410",
       "rune.stat_776287420"
     ],

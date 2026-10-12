@@ -42,6 +42,13 @@ public class GameText
     public string ItemPropertyRarityDivinationCard { get; set; } = string.Empty;
 
     public string ItemPropertyMapArea { get; set; } = string.Empty;
+    public string ItemPropertyRevivesAvailable { get; set; } = string.Empty;
+    public string ItemPropertyMonsterEffectiveness { get; set; } = string.Empty;
+    public string ItemPropertyItemRarity { get; set; } = string.Empty;
+    public string ItemPropertyPackSize { get; set; } = string.Empty;
+    public string ItemPropertyWaystoneDropChance { get; set; } = string.Empty;
+    public string ItemPropertyMagicMonsters { get; set; } = string.Empty;
+    public string ItemPropertyRareMonsters { get; set; } = string.Empty;
 
     public string ItemPropertyArmour { get; set; } = string.Empty;
     public string ItemPropertyEvasionRating { get; set; } = string.Empty;

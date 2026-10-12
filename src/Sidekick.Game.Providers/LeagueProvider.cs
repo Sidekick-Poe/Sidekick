@@ -1,8 +1,8 @@
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Extensions;
-using Sidekick.Game.Languages;
 using Sidekick.Game.Leagues;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Providers;
 
 public class LeagueProvider(

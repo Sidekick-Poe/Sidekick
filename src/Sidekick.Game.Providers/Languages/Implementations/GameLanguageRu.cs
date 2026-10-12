@@ -1,5 +1,5 @@
 
-namespace Sidekick.Game.Languages.Implementations;
+namespace Sidekick.Game.Providers.Languages.Implementations;
 
 public class GameLanguageRu : IGameLanguage
 {
@@ -11,15 +11,6 @@ public class GameLanguageRu : IGameLanguage
     public string Poe2TradeBaseUrl => "https://ru.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://ru.pathofexile.com/api/trade2/";
 
-    public string RarityUnique => "Уникальный";
-    public string RarityRare => "Редкий";
-    public string RarityMagic => "Волшебный";
-    public string RarityNormal => "Обычный";
-    public string RarityCurrency => "Валюта";
-    public string RarityGem => "Камень";
-    public string RarityDivinationCard => "Гадальная карта";
-
-    public string DescriptionRarity => "Редкость";
     public string DescriptionUnidentified => "Неопознано";
     public string DescriptionQuality => "Качество";
     public string DescriptionLevel => "Уровень";
@@ -48,8 +39,6 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionMapTier => "Уровень карты";
     public string DescriptionReward => "Награда";
     public string DescriptionItemQuantity => "Количество предметов";
-    public string DescriptionItemRarity => "Редкость предметов";
-    public string DescriptionMonsterPackSize => "Размер групп монстров";
     public string DescriptionMoreMaps => "Больше карт";
     public string DescriptionMoreScarabs => "Больше скарабеев";
     public string DescriptionMoreCurrency => "Больше валюты";
@@ -88,9 +77,5 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionHeistHighValue => "ценный";
     public string DescriptionHeistPrecious => "драгоценный";
     public string DescriptionHeistPriceless => "бесценный";
-
-    public string AffixSuperior => "высокого качества";
-    public string AffixBlighted => "Заражённая";
-    public string AffixBlightRavaged => "Разорённая Скверной";
 }
 
