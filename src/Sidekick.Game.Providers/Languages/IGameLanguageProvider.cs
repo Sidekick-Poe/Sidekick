@@ -1,4 +1,4 @@
-namespace Sidekick.Game.Languages;
+namespace Sidekick.Game.Providers.Languages;
 
 public interface IGameLanguageProvider
 {

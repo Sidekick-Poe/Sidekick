@@ -1,4 +1,4 @@
-namespace Sidekick.Game.Languages;
+namespace Sidekick.Game.Providers.Languages;
 
 public interface IGameLanguage
 {
@@ -21,8 +21,6 @@ public interface IGameLanguage
     string DescriptionReward { get; }
     string DescriptionAreaLevel { get; }
     string DescriptionItemQuantity { get; }
-    string DescriptionItemRarity { get; }
-    string DescriptionMonsterPackSize { get; }
     string DescriptionMoreMaps { get; }
     string DescriptionMoreScarabs { get; }
     string DescriptionMoreCurrency { get; }
@@ -32,29 +30,17 @@ public interface IGameLanguage
     string DescriptionQualityCards { get; }
     string DescriptionQualityPackSize { get; }
     string DescriptionQualityRarity { get; }
-    string DescriptionMagicMonsters { get; }
-    string DescriptionRareMonsters { get; }
-    string DescriptionRevivesAvailable { get; }
-    string DescriptionWaystoneDropChance { get; }
-    string DescriptionExperience { get; }
     string DescriptionPhysicalDamage { get; }
     string DescriptionElementalDamage { get; }
     string DescriptionFireDamage { get; }
     string DescriptionColdDamage { get; }
     string DescriptionLightningDamage { get; }
     string DescriptionChaosDamage { get; }
-    string DescriptionAttacksPerSecond { get; }
-    string DescriptionCriticalStrikeChance { get; }
-    string DescriptionCriticalHitChance { get; }
     string DescriptionEnergyShield { get; }
-    string DescriptionEnergyShieldAlternate { get; }
     string DescriptionArmour { get; }
     string DescriptionEvasion { get; }
-    string DescriptionChanceToBlock { get; }
-    string DescriptionBlockChance { get; }
     string DescriptionSpirit { get; }
     string DescriptionLevel { get; }
-    string DescriptionUnusable { get; }
     string DescriptionMemoryStrands { get; }
     string DescriptionRequirements { get; }
     string DescriptionRequires { get; }

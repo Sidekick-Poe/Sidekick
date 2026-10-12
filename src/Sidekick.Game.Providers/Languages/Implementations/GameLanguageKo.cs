@@ -1,5 +1,5 @@
 
-namespace Sidekick.Game.Languages.Implementations;
+namespace Sidekick.Game.Providers.Languages.Implementations;
 
 public class GameLanguageKo : IGameLanguage
 {
@@ -11,15 +11,6 @@ public class GameLanguageKo : IGameLanguage
     public string Poe2TradeBaseUrl => "https://poe.kakaogames.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://poe.kakaogames.com/api/trade2/";
 
-    public string RarityUnique => "고유";
-    public string RarityRare => "희귀";
-    public string RarityMagic => "마법";
-    public string RarityNormal => "일반";
-    public string RarityCurrency => "화폐";
-    public string RarityGem => "젬";
-    public string RarityDivinationCard => "점술 카드";
-
-    public string DescriptionRarity => "아이템 희귀도";
     public string DescriptionUnidentified => "미확인";
     public string DescriptionQuality => "퀄리티";
     public string DescriptionLevel => "레벨";
@@ -48,8 +39,6 @@ public class GameLanguageKo : IGameLanguage
     public string DescriptionMapTier => "지도 등급";
     public string DescriptionReward => "보상";
     public string DescriptionItemQuantity => "아이템 수량";
-    public string DescriptionItemRarity => "아이템 희귀도";
-    public string DescriptionMonsterPackSize => "몬스터 무리 규모";
     public string DescriptionMoreMaps => "지도 더 많음";
     public string DescriptionMoreScarabs => "갑충석 더 많음";
     public string DescriptionMoreCurrency => "화폐 더 많음";
@@ -88,9 +77,5 @@ public class GameLanguageKo : IGameLanguage
     public string DescriptionHeistHighValue => "높은 가치";
     public string DescriptionHeistPrecious => "귀중한 가치";
     public string DescriptionHeistPriceless => "환산 불가능한 가치";
-
-    public string AffixSuperior => "상";
-    public string AffixBlighted => "역병";
-    public string AffixBlightRavaged => "역병에 유린당한";
 }
 

@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.RegularExpressions;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Filters.Types;
@@ -9,6 +8,7 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
 using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class HeistAgilityProperty(

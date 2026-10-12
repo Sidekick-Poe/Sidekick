@@ -1,6 +1,6 @@
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Settings.Languages;
+using Sidekick.Game.Providers.Languages;
 using Sidekick.Game.Scout;
 namespace Sidekick.Game.Providers;
 

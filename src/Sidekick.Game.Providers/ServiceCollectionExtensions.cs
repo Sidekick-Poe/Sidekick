@@ -1,8 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
-using Sidekick.Common.Settings.Languages;
-using Sidekick.Game.Languages;
+using Sidekick.Game.Providers.Languages;
 
 namespace Sidekick.Game.Providers;
 

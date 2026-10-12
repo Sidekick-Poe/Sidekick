@@ -1,5 +1,5 @@
 
-namespace Sidekick.Game.Languages.Implementations;
+namespace Sidekick.Game.Providers.Languages.Implementations;
 
 public class GameLanguageJa : IGameLanguage
 {
@@ -11,15 +11,6 @@ public class GameLanguageJa : IGameLanguage
     public string Poe2TradeBaseUrl => "https://jp.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://jp.pathofexile.com/api/trade2/";
 
-    public string RarityUnique => "ユニーク";
-    public string RarityRare => "レア";
-    public string RarityMagic => "マジック";
-    public string RarityNormal => "ノーマル";
-    public string RarityCurrency => "カレンシー";
-    public string RarityGem => "ジェム";
-    public string RarityDivinationCard => "占いカード";
-
-    public string DescriptionRarity => "レアリティ";
     public string DescriptionUnidentified => "未鑑定";
     public string DescriptionQuality => "品質";
     public string DescriptionLevel => "レベル";
@@ -48,8 +39,6 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionMapTier => "マップティア";
     public string DescriptionReward => "報酬";
     public string DescriptionItemQuantity => "アイテム数量";
-    public string DescriptionItemRarity => "アイテムレアリティ";
-    public string DescriptionMonsterPackSize => "モンスターパックサイズ";
     public string DescriptionMoreMaps => "マップ量が上昇";
     public string DescriptionMoreScarabs => "スカラベ量が上昇";
     public string DescriptionMoreCurrency => "カレンシー量が上昇";
@@ -88,9 +77,5 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionHeistHighValue => "高価値";
     public string DescriptionHeistPrecious => "貴重";
     public string DescriptionHeistPriceless => "プライスレス";
-
-    public string AffixSuperior => "上質な";
-    public string AffixBlighted => "ブライト";
-    public string AffixBlightRavaged => "ブライトに破壊された";
 }
 

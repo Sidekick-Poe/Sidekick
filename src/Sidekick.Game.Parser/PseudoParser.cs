@@ -3,11 +3,11 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
 using Sidekick.Game.Pseudo;
 namespace Sidekick.Game.Parser;
 

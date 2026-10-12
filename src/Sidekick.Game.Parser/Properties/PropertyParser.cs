@@ -2,12 +2,12 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Parser.Properties.Definitions;
 using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Parser.Properties;
 
 public class PropertyParser

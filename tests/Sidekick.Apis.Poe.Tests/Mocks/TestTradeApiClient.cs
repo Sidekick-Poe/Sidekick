@@ -5,7 +5,7 @@ using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Exceptions;
 using Sidekick.Game;
-using Sidekick.Game.Languages;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Apis.Poe.Tests.Mocks;
 
 /// <summary>

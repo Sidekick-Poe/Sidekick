@@ -1,10 +1,10 @@
 using FuzzySharp;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Parser;
 
 public class ItemDefinitionParser(

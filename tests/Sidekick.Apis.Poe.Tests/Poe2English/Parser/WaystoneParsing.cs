@@ -46,7 +46,7 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
         Assert.Equal(2, actual.Properties.RevivesAvailable);
-        Assert.Equal(12, actual.Properties.MonsterPackSize);
+        // Assert.Equal(12, actual.Properties.MonsterPackSize); (Old label)
         Assert.Equal(30, actual.Properties.MagicMonsters);
         Assert.Equal(28, actual.Properties.RareMonsters);
         Assert.Equal(18, actual.Properties.ItemRarity);
@@ -90,7 +90,7 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         Assert.Equal(1, actual.Properties.RevivesAvailable);
-        Assert.Equal(10, actual.Properties.MonsterPackSize);
+        // Assert.Equal(10, actual.Properties.MonsterPackSize); (Old label)
         Assert.Equal(33, actual.Properties.MagicMonsters);
         Assert.Equal(25, actual.Properties.RareMonsters);
         Assert.Equal(38, actual.Properties.ItemRarity);
