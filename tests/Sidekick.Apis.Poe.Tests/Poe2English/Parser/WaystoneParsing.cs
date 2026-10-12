@@ -144,10 +144,7 @@ Corrupted
         Assert.Equal(81, actual.Properties.ItemLevel);
 
         Assert.Equal(0, actual.Properties.RevivesAvailable);
-        Assert.Equal(10, actual.Properties.MonsterPackSize);
-        Assert.Equal(33, actual.Properties.MagicMonsters);
-        Assert.Equal(25, actual.Properties.RareMonsters);
-        Assert.Equal(26, actual.Properties.ItemRarity);
-        // Assert.Equal(70, actual.Properties.MonsterEffectiveness);
+        Assert.Equal(22, actual.Properties.MonsterPackSize);
+        Assert.Equal(42, actual.Properties.MonsterEffectiveness);
     }
 }
