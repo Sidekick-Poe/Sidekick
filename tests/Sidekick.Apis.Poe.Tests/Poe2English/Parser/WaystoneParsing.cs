@@ -96,4 +96,58 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
         Assert.Equal(38, actual.Properties.ItemRarity);
         Assert.Equal(70, actual.Properties.WaystoneDropChance);
     }
+
+    [Fact]
+    public void BarrenResolve()
+    {
+        var actual = parser.ParseItem(
+        @"Item Class: Waystones
+Rarity: Rare
+Barren Resolve
+Waystone (Tier 15)
+--------
+Revives Available: 0 (augmented)
+Item Rarity: +26% (augmented)
+Pack Size: +22% (augmented)
+Monster Effectiveness: +42% (augmented)
+Waystone Drop Chance: +100% (augmented)
+--------
+Item Level: 81
+--------
+{ Prefix Modifier ""Infernal"" (Tier: 1) }
+Monsters deal 16(15-19)% of Damage as Extra Fire
+{ Prefix Modifier ""Precise"" (Tier: 1) }
+Monsters have 40(30-40)% increased Accuracy Rating
+{ Prefix Modifier ""Puncturing"" (Tier: 1) }
+Monsters have 20(15-20)% chance to inflict Bleeding on Hit
+{ Prefix Modifier ""Destructive"" (Tier: 1) }
+Monsters have 240(200-240)% increased Critical Hit Chance
+Monsters have +22(21-25)% Critical Damage Bonus
+{ Suffix Modifier ""of Evasion"" (Tier: 1) }
+Monsters are Evasive
+{ Suffix Modifier ""of Fatigue"" (Tier: 1) }
+Players have 29(30-25)% less Cooldown Recovery Rate
+{ Suffix Modifier ""of the Unwavering"" (Tier: 1) }
+Monsters have 75(70-79)% increased Ailment Threshold
+Monsters have 64(60-69)% increased Stun Threshold
+{ Suffix Modifier ""of the Prism"" (Tier: 1) }
++31(30-34)% Monster Elemental Resistances
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
+        Assert.Equal("Waystone (Tier 15)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal(81, actual.Properties.ItemLevel);
+
+        Assert.Equal(0, actual.Properties.RevivesAvailable);
+        Assert.Equal(10, actual.Properties.MonsterPackSize);
+        Assert.Equal(33, actual.Properties.MagicMonsters);
+        Assert.Equal(25, actual.Properties.RareMonsters);
+        Assert.Equal(26, actual.Properties.ItemRarity);
+        // Assert.Equal(70, actual.Properties.MonsterEffectiveness);
+    }
 }

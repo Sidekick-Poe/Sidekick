@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.ItemClasses;

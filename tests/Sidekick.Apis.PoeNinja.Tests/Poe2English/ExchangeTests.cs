@@ -34,4 +34,22 @@ Shift click to unstack.
         Assert.NotNull(item.InvariantDefinition?.NinjaExchangeItem);
         Assert.Equal("voranas-carnage", item.InvariantDefinition?.NinjaExchangeItem?.Id);
     }
+
+    [Fact]
+    public void SacredBloom()
+    {
+        var item = parser.ParseItem(@"Item Class: Map Fragments
+Rarity: Currency
+Sacred Bloom
+--------
+Adds a Viridian Wildwood to a Map and all Maps connected to it
+--------
+It neither blooms nor withers.
+--------
+Right click this item then left click an Endgame World Area to apply it.
+");
+
+        Assert.NotNull(item.InvariantDefinition?.NinjaExchangeItem);
+        Assert.Equal("sacred-bloom", item.InvariantDefinition?.NinjaExchangeItem?.Id);
+    }
 }

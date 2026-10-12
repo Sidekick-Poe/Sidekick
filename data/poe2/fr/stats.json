@@ -37979,19 +37979,16 @@
     "tradeIds": [
       "desecrated.stat_1335369947",
       "desecrated.stat_3196512240",
-      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_1335369947",
       "explicit.stat_3196512240",
-      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_1335369947",
       "fractured.stat_3196512240",
-      "fractured.stat_3206904707",
       "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
@@ -38006,19 +38003,16 @@
     "tradeIds": [
       "desecrated.stat_1335369947",
       "desecrated.stat_3196512240",
-      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_1335369947",
       "explicit.stat_3196512240",
-      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_1335369947",
       "fractured.stat_3196512240",
-      "fractured.stat_3206904707",
       "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
@@ -68329,6 +68323,7 @@
     "tradeIds": [
       "desecrated.stat_2083058281",
       "explicit.stat_2083058281",
+      "explicit.stat_849085925",
       "rune.stat_1984310483"
     ],
     "pattern": "^Les\\ Ennemis\\ que\\ vous\\ Mutilez\\ ont\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ sur\\ la\\ dur\u00E9e\\ subis$"
@@ -68349,6 +68344,7 @@
     "tradeIds": [
       "desecrated.stat_2083058281",
       "explicit.stat_2083058281",
+      "explicit.stat_849085925",
       "rune.stat_1984310483"
     ],
     "pattern": "^Les\\ Ennemis\\ que\\ vous\\ Mutilez\\ ont\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ des\\ D\u00E9g\u00E2ts\\ sur\\ la\\ dur\u00E9e\\ subis$"
@@ -72951,7 +72947,6 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3811191316",
-      "explicit.stat_1708461270",
       "explicit.stat_3811191316",
       "fractured.stat_3811191316"
     ],
@@ -72997,7 +72992,6 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3811191316",
-      "explicit.stat_1708461270",
       "explicit.stat_3811191316",
       "fractured.stat_3811191316"
     ],
@@ -83871,11 +83865,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3787460122",
       "desecrated.stat_770672621",
-      "explicit.stat_3787460122",
       "explicit.stat_770672621",
-      "fractured.stat_3787460122",
       "fractured.stat_770672621",
       "rune.stat_770672621"
     ],
@@ -83918,11 +83909,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3787460122",
       "desecrated.stat_770672621",
-      "explicit.stat_3787460122",
       "explicit.stat_770672621",
-      "fractured.stat_3787460122",
       "fractured.stat_770672621",
       "rune.stat_770672621"
     ],
@@ -132500,11 +132488,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2393315299",
       "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
+      "explicit.stat_2393315299",
       "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
+      "fractured.stat_2393315299",
       "fractured.stat_3196512240",
+      "fractured.stat_3206904707",
       "fractured.stat_3514984677"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027amplitude\\ des\\ Modificateurs\\ Explicites\\ d\u0027Alt\u00E9ration$"
@@ -132699,19 +132693,16 @@
     "tradeIds": [
       "desecrated.stat_1335369947",
       "desecrated.stat_3196512240",
-      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_1335369947",
       "explicit.stat_3196512240",
-      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_1335369947",
       "fractured.stat_3196512240",
-      "fractured.stat_3206904707",
       "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
@@ -139250,8 +139241,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "desecrated.stat_427684353",
+      "explicit.stat_1181419800",
+      "explicit.stat_2696027455",
       "explicit.stat_427684353",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455",
       "fractured.stat_427684353"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ avec\\ les\\ baguettes$"
@@ -139624,8 +139621,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1002362373",
       "desecrated.stat_1569159338",
+      "explicit.stat_1002362373",
       "explicit.stat_1569159338",
+      "fractured.stat_1002362373",
       "fractured.stat_1569159338"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ de\\ Balayage$"
@@ -152370,11 +152370,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2393315299",
       "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
+      "explicit.stat_2393315299",
       "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
+      "fractured.stat_2393315299",
       "fractured.stat_3196512240",
+      "fractured.stat_3206904707",
       "fractured.stat_3514984677"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027amplitude\\ des\\ Modificateurs\\ Explicites\\ d\u0027Alt\u00E9ration$"
@@ -152563,19 +152569,16 @@
     "tradeIds": [
       "desecrated.stat_1335369947",
       "desecrated.stat_3196512240",
-      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "desecrated.stat_3624940721",
       "explicit.stat_1335369947",
       "explicit.stat_3196512240",
-      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "explicit.stat_3624940721",
       "fractured.stat_1335369947",
       "fractured.stat_3196512240",
-      "fractured.stat_3206904707",
       "fractured.stat_3514984677",
       "fractured.stat_3574578302",
       "fractured.stat_3624940721"
@@ -159140,8 +159143,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "desecrated.stat_427684353",
+      "explicit.stat_1181419800",
+      "explicit.stat_2696027455",
       "explicit.stat_427684353",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455",
       "fractured.stat_427684353"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ des\\ D\u00E9g\u00E2ts\\ avec\\ les\\ baguettes$"
@@ -159527,8 +159536,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1002362373",
       "desecrated.stat_1569159338",
+      "explicit.stat_1002362373",
       "explicit.stat_1569159338",
+      "fractured.stat_1002362373",
       "fractured.stat_1569159338"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ des\\ D\u00E9g\u00E2ts\\ de\\ Balayage$"
@@ -172177,8 +172189,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2109189637",
-      "explicit.stat_2295988214"
+      "explicit.stat_2109189637"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ Physiques\\ sont\\ Convertis\\ en\\ D\u00E9g\u00E2ts\\ de\\ Chaos$"
   },

@@ -1,24 +1,24 @@
 using System.Text.RegularExpressions;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
+using Sidekick.Game.Providers;
 using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class MagicMonstersProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMagicMonsters.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyMagicMonsters.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionMagicMonsters.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyMagicMonsters.ToRegexIsAugmented();
 
-    public override string Label => currentGameLanguage.Language.DescriptionMagicMonsters;
+    public override string Label => gameTextProvider.Texts.ItemPropertyMagicMonsters;
 
     public override void Parse(Item item)
     {

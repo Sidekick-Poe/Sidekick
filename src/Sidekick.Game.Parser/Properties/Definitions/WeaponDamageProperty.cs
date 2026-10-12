@@ -1,7 +1,6 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings.Languages;
 using Sidekick.Game.Parser.Filters.AutoSelect;
