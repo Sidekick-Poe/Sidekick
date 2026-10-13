@@ -11,20 +11,11 @@ public class GameLanguageZh : IGameLanguage
     public string Poe2TradeBaseUrl => "http://www.pathofexile.tw/trade2/";
     public string Poe2TradeApiBaseUrl => "http://www.pathofexile.tw/api/trade2/";
 
-    public string DescriptionPhysicalDamage => "物理傷害";
-    public string DescriptionElementalDamage => "元素傷害";
-    public string DescriptionFireDamage => "火焰傷害";
-    public string DescriptionColdDamage => "冰冷傷害";
-    public string DescriptionLightningDamage => "閃電傷害";
-    public string DescriptionChaosDamage => "混沌傷害";
     public string DescriptionQualityCurrency => "";
     public string DescriptionQualityScarabs => "";
     public string DescriptionQualityCards => "";
     public string DescriptionQualityPackSize => "";
     public string DescriptionQualityRarity => "";
-    public string DescriptionHeistWings => "";
-    public string DescriptionHeistRoutes => "";
-    public string DescriptionHeistRooms => "";
     public string DescriptionHeistLockpicking => "";
     public string DescriptionHeistDemolition => "";
     public string DescriptionHeistAgility => "";

@@ -11,20 +11,11 @@ public class GameLanguageRu : IGameLanguage
     public string Poe2TradeBaseUrl => "https://ru.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://ru.pathofexile.com/api/trade2/";
 
-    public string DescriptionPhysicalDamage => "Физический урон";
-    public string DescriptionElementalDamage => "Урон от стихий";
-    public string DescriptionFireDamage => "Урон от огня";
-    public string DescriptionColdDamage => "Урон от холода";
-    public string DescriptionLightningDamage => "Урон от молнии";
-    public string DescriptionChaosDamage => "Урон хаосом";
     public string DescriptionQualityCurrency => "Качество (валюта)";
     public string DescriptionQualityScarabs => "Качество (скарабеи)";
     public string DescriptionQualityCards => "Качество (гадальные карты)";
     public string DescriptionQualityPackSize => "Качество (размер группы)";
     public string DescriptionQualityRarity => "Качество (редкость)";
-    public string DescriptionHeistWings => "Крыльев обнаружено";
-    public string DescriptionHeistRoutes => "Путей отхода обнаружено";
-    public string DescriptionHeistRooms => "Комнат с наградами обнаружено";
     public string DescriptionHeistLockpicking => "Требуется взлом (# уровень)";
     public string DescriptionHeistDemolition => "Требуется взрывное дело (# уровень)";
     public string DescriptionHeistAgility => "Требуется проворство (# уровень)";

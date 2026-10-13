@@ -16,9 +16,6 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionQualityCards => "Quality (Divination Cards)";
     public string DescriptionQualityPackSize => "Quality (Pack Size)";
     public string DescriptionQualityRarity => "Quality (Rarity)";
-    public string DescriptionHeistWings => "Wings Revealed";
-    public string DescriptionHeistRoutes => "Escape Routes Revealed";
-    public string DescriptionHeistRooms => "Reward Rooms Revealed";
     public string DescriptionHeistLockpicking => "Requires Lockpicking (Level #)";
     public string DescriptionHeistDemolition => "Requires Demolition (Level #)";
     public string DescriptionHeistAgility => "Requires Agility (Level #)";

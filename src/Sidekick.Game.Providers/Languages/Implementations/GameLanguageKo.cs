@@ -11,20 +11,11 @@ public class GameLanguageKo : IGameLanguage
     public string Poe2TradeBaseUrl => "https://poe.kakaogames.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://poe.kakaogames.com/api/trade2/";
 
-    public string DescriptionPhysicalDamage => "물리 피해";
-    public string DescriptionElementalDamage => "원소 피해";
-    public string DescriptionFireDamage => "화염 피해";
-    public string DescriptionColdDamage => "냉기 피해";
-    public string DescriptionLightningDamage => "번개 피해";
-    public string DescriptionChaosDamage => "카오스 피해";
     public string DescriptionQualityCurrency => "퀄리티 (화폐)";
     public string DescriptionQualityScarabs => "퀄리티 (갑충석)";
     public string DescriptionQualityCards => "퀄리티 (점술 카드)";
     public string DescriptionQualityPackSize => "퀄리티 (무리 규모)";
     public string DescriptionQualityRarity => "퀄리티 (희귀도)";
-    public string DescriptionHeistWings => "부속 건물 드러남";
-    public string DescriptionHeistRoutes => "탈출 경로 드러남";
-    public string DescriptionHeistRooms => "보물 창고 드러남";
     public string DescriptionHeistLockpicking => "자물쇠 따기 필요(#레벨)";
     public string DescriptionHeistDemolition => "파괴 공작 필요(#레벨)";
     public string DescriptionHeistAgility => "민첩함 필요(#레벨)";

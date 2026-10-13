@@ -11,20 +11,11 @@ public class GameLanguagePt : IGameLanguage
     public string Poe2TradeBaseUrl => "https://br.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://br.pathofexile.com/api/trade2/";
 
-    public string DescriptionPhysicalDamage => "Dano Físico";
-    public string DescriptionElementalDamage => "Dano Elemental";
-    public string DescriptionFireDamage => "Dano de Fogo";
-    public string DescriptionColdDamage => "Dano de Gelo";
-    public string DescriptionLightningDamage => "Dano de Raio";
-    public string DescriptionChaosDamage => "Dano de Caos";
     public string DescriptionQualityCurrency => "Qualidade (Moedas)";
     public string DescriptionQualityScarabs => "Qualidade (Escaravelhos)";
     public string DescriptionQualityCards => "Qualidade (Cartas de Adivinhação)";
     public string DescriptionQualityPackSize => "Qualidade (Tamanho de Grupos)";
     public string DescriptionQualityRarity => "Qualidade (Raridade)";
-    public string DescriptionHeistWings => "Alas Reveladas";
-    public string DescriptionHeistRoutes => "Rotas de Escape Reveladas";
-    public string DescriptionHeistRooms => "Salas de Recompensas Reveladas";
     public string DescriptionHeistLockpicking => "Requer Arrombamento (Nível #)";
     public string DescriptionHeistDemolition => "Requer Demolição (Nível #)";
     public string DescriptionHeistAgility => "Requer Agilidade (Nível #)";
