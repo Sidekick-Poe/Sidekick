@@ -93,6 +93,10 @@ public class GameText
     public string ItemPropertyMirrored { get; set; } = string.Empty;
     public string ItemPropertyUnidentified { get; set; } = string.Empty;
 
+    public string ItemPropertyHeistWings { get; set; } = string.Empty;
+    public string ItemPropertyHeistRoutes { get; set; } = string.Empty;
+    public string ItemPropertyHeistRooms { get; set; } = string.Empty;
+
     #endregion
 
     #region ItemTextIds

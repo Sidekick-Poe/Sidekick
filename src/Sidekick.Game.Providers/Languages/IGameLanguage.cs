@@ -15,9 +15,6 @@ public interface IGameLanguage
     string DescriptionQualityCards { get; }
     string DescriptionQualityPackSize { get; }
     string DescriptionQualityRarity { get; }
-    string DescriptionHeistWings { get; }
-    string DescriptionHeistRoutes { get; }
-    string DescriptionHeistRooms { get; }
     string DescriptionHeistLockpicking { get; }
     string DescriptionHeistDemolition { get; }
     string DescriptionHeistAgility { get; }

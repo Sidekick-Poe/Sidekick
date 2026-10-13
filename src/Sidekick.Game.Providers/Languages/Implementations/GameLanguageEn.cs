@@ -11,12 +11,6 @@ public class GameLanguageEn : IGameLanguage
     public string Poe2TradeBaseUrl => "https://www.pathofexile.com/trade2/";
     public string Poe2TradeApiBaseUrl => "https://www.pathofexile.com/api/trade2/";
 
-    public string DescriptionPhysicalDamage => "Physical Damage";
-    public string DescriptionElementalDamage => "Elemental Damage";
-    public string DescriptionFireDamage => "Fire Damage";
-    public string DescriptionColdDamage => "Cold Damage";
-    public string DescriptionLightningDamage => "Lightning Damage";
-    public string DescriptionChaosDamage => "Chaos Damage";
     public string DescriptionQualityCurrency => "Quality (Currency)";
     public string DescriptionQualityScarabs => "Quality (Scarabs)";
     public string DescriptionQualityCards => "Quality (Divination Cards)";

@@ -6,17 +6,16 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
 using Sidekick.Game.Providers;
-using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class HeistWingsRevealedProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage,
+    GameTextProvider gameTextProvider,
     TradeFilterProvider tradeFilterProvider) : PropertyDefinition
 {
     public override string Label => tradeFilterProvider.HeistCategory?.Filters.FirstOrDefault(x => x.Id == "heist_wings")?.Text ?? "Wings Revealed";
 
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionHeistWings.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyHeistWings.ToRegexIntProperty();
 
     public override void Parse(Item item)
     {
