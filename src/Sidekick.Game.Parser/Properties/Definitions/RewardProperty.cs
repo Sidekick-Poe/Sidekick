@@ -7,17 +7,16 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
 using Sidekick.Game.Providers;
-using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class RewardProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage,
+    GameTextProvider gameTextProvider,
     ItemDefinitionProvider itemDefinitionProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyReward.ToRegexStringProperty();
 
-    public override string Label => currentGameLanguage.Language.DescriptionReward;
+    public override string Label => gameTextProvider.Texts.ItemPropertyReward;
 
     public override void Parse(Item item)
     {

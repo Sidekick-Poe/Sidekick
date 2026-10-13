@@ -5,25 +5,25 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
-using Sidekick.Game.Providers.Languages;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class RequiresLevelProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionLevel.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyLevel.ToRegexIntProperty();
 
-    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*{currentGameLanguage.Language.DescriptionLevel}\s*(\d+)");
+    private Regex RequiresPattern { get; } = new($@"^{gameTextProvider.Texts.ItemPropertyRequires}.*{gameTextProvider.Texts.ItemPropertyLevel}\s*(\d+)");
 
-    public override string Label => currentGameLanguage.Language.DescriptionRequiresLevel;
+    public override string Label => gameTextProvider.Texts.ItemPropertyLevel;
 
     public override void Parse(Item item)
     {
         if (item.ItemClass.IsGem()) return;
 
-        var block = item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(currentGameLanguage.Language.DescriptionRequires, StringComparison.InvariantCultureIgnoreCase));
-        block ??= item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(currentGameLanguage.Language.DescriptionRequirements, StringComparison.InvariantCultureIgnoreCase));
+        var block = item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(gameTextProvider.Texts.ItemPropertyRequires, StringComparison.InvariantCultureIgnoreCase));
+        block ??= item.Text.Blocks.FirstOrDefault(x => x.Text.StartsWith(gameTextProvider.Texts.ItemPropertyRequirements, StringComparison.InvariantCultureIgnoreCase));
         if (block == null) return;
 
         item.Properties.RequiresLevel = GetInt(Pattern, block);

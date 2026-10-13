@@ -5,16 +5,16 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
-using Sidekick.Game.Providers.Languages;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class SocketCountProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = new Regex($"^{Regex.Escape(currentGameLanguage.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
+    private Regex Pattern { get; } = new Regex($"^{Regex.Escape(gameTextProvider.Texts.ItemPropertySockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
 
-    public override string Label => currentGameLanguage.Language.DescriptionSockets;
+    public override string Label => gameTextProvider.Texts.ItemPropertySockets;
 
     public override void Parse(Item item)
     {

@@ -5,16 +5,16 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
-using Sidekick.Game.Providers.Languages;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class CorruptedProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionCorrupted.ToRegexLine();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyCorrupted.ToRegexLine();
 
-    public override string Label => currentGameLanguage.Language.DescriptionCorrupted;
+    public override string Label => gameTextProvider.Texts.ItemPropertyCorrupted;
 
     public override void Parse(Item item)
     {

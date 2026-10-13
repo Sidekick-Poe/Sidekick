@@ -39738,8 +39738,12 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3668351662",
+      "desecrated.stat_3824372849",
       "explicit.stat_3668351662",
+      "explicit.stat_3824372849",
       "fractured.stat_3668351662",
+      "fractured.stat_3824372849",
+      "rune.stat_3824372849",
       "rune.stat_3985867204"
     ],
     "pattern": "^Duraci\u00F3n\\ de\\ la\\ provocaci\u00F3n\\ aumentada\\ un\\ ([-0-9,.]\u002B)%$"
@@ -39751,8 +39755,12 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3668351662",
+      "desecrated.stat_3824372849",
       "explicit.stat_3668351662",
+      "explicit.stat_3824372849",
       "fractured.stat_3668351662",
+      "fractured.stat_3824372849",
+      "rune.stat_3824372849",
       "rune.stat_3985867204"
     ],
     "pattern": "^Duraci\u00F3n\\ de\\ la\\ provocaci\u00F3n\\ reducida\\ un\\ ([-0-9,.]\u002B)%$"
@@ -54660,7 +54668,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_648019518"
+      "explicit.stat_648019518",
+      "explicit.stat_959641748"
     ],
     "pattern": "^Elimina\\ el\\ ([-0-9,.]\u002B)%\\ de\\ la\\ vida\\ recuperada\\ de\\ la\\ vida\\ cuando\\ lo\\ usas$"
   },
@@ -59053,7 +59062,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2415497478"
+      "explicit.stat_2415497478",
+      "explicit.stat_2889664727",
+      "explicit.stat_3743375737",
+      "explicit.stat_42242677"
     ],
     "pattern": "^Evitas\\ todo\\ el\\ da\u00F1o\\ de\\ los\\ impactos$"
   },
@@ -119435,15 +119447,9 @@
     "text": "Magnitudes de los modificadores de atributos expl\u00EDcitos aumentadas un #%",
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_2393315299",
       "desecrated.stat_3196512240",
-      "desecrated.stat_3624940721",
-      "explicit.stat_2393315299",
       "explicit.stat_3196512240",
-      "explicit.stat_3624940721",
-      "fractured.stat_2393315299",
-      "fractured.stat_3196512240",
-      "fractured.stat_3624940721"
+      "fractured.stat_3196512240"
     ],
     "pattern": "^Magnitudes\\ de\\ los\\ modificadores\\ de\\ atributos\\ expl\u00EDcitos\\ aumentadas\\ un\\ ([-0-9,.]\u002B)%$"
   },
@@ -125388,6 +125394,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "skill.parry",
       "skill.trinity"
     ],
     "pattern": "^Otorga\\ la\\ habilidad\\ Claridad\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
@@ -134069,7 +134076,6 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "implicit.stat_129891052",
       "rune.stat_201332984"
     ],
     "pattern": "^Puede\\ generar\\ modificadores\\ de\\ esbirros$"
@@ -142246,10 +142252,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2839557359",
-      "explicit.stat_3403424702",
-      "explicit.stat_3504441212",
-      "explicit.stat_3685424517"
+      "explicit.stat_2839557359"
     ],
     "pattern": "^Te\\ posee\\ un\\ esp\u00EDritu\\ aleatorio\\ durante\\ ([-0-9,.]\u002B)\\ segundos\\ cuando\\ se\\ usa$"
   },
@@ -159929,6 +159932,7 @@
       "rune.stat_2296009672",
       "rune.stat_2305301734",
       "rune.stat_2336703514",
+      "rune.stat_3148103963",
       "rune.stat_653358410"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ al\\ nivel\\ de\\ todas\\ las\\ gemas\\ de\\ habilidad\\ de\\ ballestas$"
@@ -165516,7 +165520,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2415497478"
+      "explicit.stat_2415497478",
+      "explicit.stat_2889664727",
+      "explicit.stat_3743375737",
+      "explicit.stat_42242677"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ evitar\\ todo\\ el\\ da\u00F1o\\ de\\ los\\ impactos$"
   },

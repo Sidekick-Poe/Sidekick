@@ -6,16 +6,16 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
-using Sidekick.Game.Providers.Languages;
+using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class MapTierProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = new(@"^[^\(]+\([^\d]+(\d+)\)$");
 
-    public override string Label => currentGameLanguage.Language.DescriptionMapTier;
+    public override string Label => gameTextProvider.Texts.ItemPropertyMapTier;
 
     public override void Parse(Item item)
     {

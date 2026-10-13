@@ -249,6 +249,14 @@
     "tradeIds": [
       "crucible.mod_34672"
     ],
+    "pattern": "^-1\\ to\\ Maximum\\ Endurance\\ Charges\\n12%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ per\\ Endurance\\ Charge$"
+  },
+  {
+    "text": "-1 to Maximum Endurance Charges\n12% increased Area of Effect per Endurance Charge",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_34672"
+    ],
     "pattern": "^-1\\ to\\ Maximum\\ Endurance\\ Charges\\n12%\\ increased\\ Area\\ of\\ Effect\\ per\\ Endurance\\ Charge$"
   },
   {
@@ -259,6 +267,14 @@
       "crucible.mod_55768"
     ],
     "pattern": "^-1\\ to\\ Maximum\\ Endurance\\ Charges\\n8%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ per\\ Endurance\\ Charge$"
+  },
+  {
+    "text": "-1 to Maximum Endurance Charges\n8% increased Area of Effect per Endurance Charge",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_55768"
+    ],
+    "pattern": "^-1\\ to\\ Maximum\\ Endurance\\ Charges\\n8%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ per\\ Endurance\\ Charge$"
   },
   {
     "text": "-1 to Maximum Endurance Charges\n8% increased Area of Effect per Endurance Charge",
@@ -4777,6 +4793,14 @@
   },
   {
     "text": "10% reduced Area of Effect\n25% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_11829"
+    ],
+    "pattern": "^10%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n25%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ at\\ least\\ 5\\ Enemies\\ Recently$"
+  },
+  {
+    "text": "10% reduced Area of Effect\n25% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -4791,6 +4815,14 @@
       "crucible.mod_11829"
     ],
     "pattern": "^10%\\ reduced\\ Area\\ of\\ Effect\\n25%\\ increased\\ Area\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ at\\ least\\ 5\\ Enemies\\ Recently$"
+  },
+  {
+    "text": "10% reduced Area of Effect\n30% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_12748"
+    ],
+    "pattern": "^10%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n30%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ at\\ least\\ 5\\ Enemies\\ Recently$"
   },
   {
     "text": "10% reduced Area of Effect\n30% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
@@ -6038,6 +6070,14 @@
     "tradeIds": [
       "crucible.mod_37005"
     ],
+    "pattern": "^14%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
+  },
+  {
+    "text": "14% increased Area of Effect if Intelligence is below 100",
+    "lines": 1,
+    "tradeIds": [
+      "crucible.mod_37005"
+    ],
     "pattern": "^14%\\ increased\\ Area\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
   },
   {
@@ -6140,6 +6180,14 @@
       "crucible.mod_27502"
     ],
     "pattern": "^140%\\ increased\\ Endurance,\\ Frenzy\\ and\\ Power\\ Charge\\ Duration$"
+  },
+  {
+    "text": "15% chance for Firestorm and Bladefall to affect the same area again when they finish",
+    "lines": 1,
+    "tradeIds": [
+      "crucible.mod_28927"
+    ],
+    "pattern": "^15%\\ chance\\ for\\ Firestorm\\ and\\ Bladefall\\ to\\ affect\\ the\\ same\\ (?:map|Map)\\ again\\ when\\ they\\ finish$"
   },
   {
     "text": "15% chance for Firestorm and Bladefall to affect the same area again when they finish",
@@ -7937,6 +7985,14 @@
     "tradeIds": [
       "crucible.mod_23168"
     ],
+    "pattern": "^20%\\ increased\\ (?:map|Map)\\ of\\ Effect\\n10%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
+  },
+  {
+    "text": "20% increased Area of Effect\n10% reduced Area of Effect if you\u0027ve Killed Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_23168"
+    ],
     "pattern": "^20%\\ increased\\ Area\\ of\\ Effect\\n10%\\ reduced\\ Area\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
   },
   {
@@ -7947,6 +8003,14 @@
       "crucible.mod_12751"
     ],
     "pattern": "^20%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
+  },
+  {
+    "text": "20% increased Area of Effect if Intelligence is below 100",
+    "lines": 1,
+    "tradeIds": [
+      "crucible.mod_12751"
+    ],
+    "pattern": "^20%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
   },
   {
     "text": "20% increased Area of Effect if Intelligence is below 100",
@@ -8664,6 +8728,14 @@
     "tradeIds": [
       "crucible.mod_30458"
     ],
+    "pattern": "^20%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 20%\\ reduced\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "20% increased Warcry Buff Effect\nWarcry Skills have 20% reduced Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_30458"
+    ],
     "pattern": "^20%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 20%\\ reduced\\ Area\\ of\\ Effect$"
   },
   {
@@ -8913,6 +8985,14 @@
   },
   {
     "text": "20% reduced Area of Effect\n50% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_27279"
+    ],
+    "pattern": "^20%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n50%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ at\\ least\\ 5\\ Enemies\\ Recently$"
+  },
+  {
+    "text": "20% reduced Area of Effect\n50% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -8927,6 +9007,14 @@
       "crucible.mod_27279"
     ],
     "pattern": "^20%\\ reduced\\ Area\\ of\\ Effect\\n50%\\ increased\\ Area\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ at\\ least\\ 5\\ Enemies\\ Recently$"
+  },
+  {
+    "text": "20% reduced Area of Effect\n60% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_19630"
+    ],
+    "pattern": "^20%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n60%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ at\\ least\\ 5\\ Enemies\\ Recently$"
   },
   {
     "text": "20% reduced Area of Effect\n60% increased Area of Effect if you\u0027ve Killed at least 5 Enemies Recently",
@@ -8947,6 +9035,14 @@
   },
   {
     "text": "20% reduced Area of Effect of Hex Skills\nHex Skills have 40% increased Skill Effect Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_31704"
+    ],
+    "pattern": "^20%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ of\\ Hex\\ Skills\\nHex\\ Skills\\ have\\ 40%\\ increased\\ Skill\\ Effect\\ Duration$"
+  },
+  {
+    "text": "20% reduced Area of Effect of Hex Skills\nHex Skills have 40% increased Skill Effect Duration",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -8961,6 +9057,14 @@
       "crucible.mod_31704"
     ],
     "pattern": "^20%\\ reduced\\ Area\\ of\\ Effect\\ of\\ Hex\\ Skills\\nHex\\ Skills\\ have\\ 40%\\ increased\\ Skill\\ Effect\\ Duration$"
+  },
+  {
+    "text": "20% reduced Area of Effect of Hex Skills\nHex Skills have 50% increased Skill Effect Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_56162"
+    ],
+    "pattern": "^20%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ of\\ Hex\\ Skills\\nHex\\ Skills\\ have\\ 50%\\ increased\\ Skill\\ Effect\\ Duration$"
   },
   {
     "text": "20% reduced Area of Effect of Hex Skills\nHex Skills have 50% increased Skill Effect Duration",
@@ -9536,6 +9640,14 @@
     "tradeIds": [
       "crucible.mod_61296"
     ],
+    "pattern": "^24%\\ increased\\ (?:map|Map)\\ of\\ Effect\\n10%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
+  },
+  {
+    "text": "24% increased Area of Effect\n10% reduced Area of Effect if you\u0027ve Killed Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_61296"
+    ],
     "pattern": "^24%\\ increased\\ Area\\ of\\ Effect\\n10%\\ reduced\\ Area\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
   },
   {
@@ -9546,6 +9658,14 @@
       "crucible.mod_45395"
     ],
     "pattern": "^24%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
+  },
+  {
+    "text": "24% increased Area of Effect if Intelligence is below 100",
+    "lines": 1,
+    "tradeIds": [
+      "crucible.mod_45395"
+    ],
+    "pattern": "^24%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
   },
   {
     "text": "24% increased Area of Effect if Intelligence is below 100",
@@ -9722,6 +9842,14 @@
       "crucible.mod_37160"
     ],
     "pattern": "^25%\\ chance\\ for\\ Bleeding\\ inflicted\\ with\\ Cobra\\ Lash\\ or\\ Venom\\ Gyre\\ to\\ deal\\ 100%\\ more\\ Damage\\nCobra\\ Lash\\ and\\ Venom\\ Gyre\\ have\\ -60%\\ of\\ Physical\\ Damage\\ Converted\\ to\\ Chaos\\ Damage$"
+  },
+  {
+    "text": "25% chance for Firestorm and Bladefall to affect the same area again when they finish",
+    "lines": 1,
+    "tradeIds": [
+      "crucible.mod_60714"
+    ],
+    "pattern": "^25%\\ chance\\ for\\ Firestorm\\ and\\ Bladefall\\ to\\ affect\\ the\\ same\\ (?:map|Map)\\ again\\ when\\ they\\ finish$"
   },
   {
     "text": "25% chance for Firestorm and Bladefall to affect the same area again when they finish",
@@ -11762,6 +11890,14 @@
     "tradeIds": [
       "crucible.mod_12271"
     ],
+    "pattern": "^30%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 20%\\ reduced\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "30% increased Warcry Buff Effect\nWarcry Skills have 20% reduced Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_12271"
+    ],
     "pattern": "^30%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 20%\\ reduced\\ Area\\ of\\ Effect$"
   },
   {
@@ -11876,6 +12012,14 @@
   },
   {
     "text": "30% reduced Area of Effect of Hex Skills\nHex Skills have 100% increased Skill Effect Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_13592"
+    ],
+    "pattern": "^30%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ of\\ Hex\\ Skills\\nHex\\ Skills\\ have\\ 100%\\ increased\\ Skill\\ Effect\\ Duration$"
+  },
+  {
+    "text": "30% reduced Area of Effect of Hex Skills\nHex Skills have 100% increased Skill Effect Duration",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -11890,6 +12034,14 @@
       "crucible.mod_13592"
     ],
     "pattern": "^30%\\ reduced\\ Area\\ of\\ Effect\\ of\\ Hex\\ Skills\\nHex\\ Skills\\ have\\ 100%\\ increased\\ Skill\\ Effect\\ Duration$"
+  },
+  {
+    "text": "30% reduced Area of Effect of Hex Skills\nHex Skills have 80% increased Skill Effect Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_26338"
+    ],
+    "pattern": "^30%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ of\\ Hex\\ Skills\\nHex\\ Skills\\ have\\ 80%\\ increased\\ Skill\\ Effect\\ Duration$"
   },
   {
     "text": "30% reduced Area of Effect of Hex Skills\nHex Skills have 80% increased Skill Effect Duration",
@@ -12045,6 +12197,14 @@
     "tradeIds": [
       "crucible.mod_45341"
     ],
+    "pattern": "^32%\\ increased\\ (?:map|Map)\\ of\\ Effect\\n20%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
+  },
+  {
+    "text": "32% increased Area of Effect\n20% reduced Area of Effect if you\u0027ve Killed Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_45341"
+    ],
     "pattern": "^32%\\ increased\\ Area\\ of\\ Effect\\n20%\\ reduced\\ Area\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
   },
   {
@@ -12055,6 +12215,14 @@
       "crucible.mod_54589"
     ],
     "pattern": "^32%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
+  },
+  {
+    "text": "32% increased Area of Effect if Intelligence is below 100",
+    "lines": 1,
+    "tradeIds": [
+      "crucible.mod_54589"
+    ],
+    "pattern": "^32%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ Intelligence\\ is\\ below\\ 100$"
   },
   {
     "text": "32% increased Area of Effect if Intelligence is below 100",
@@ -12493,6 +12661,14 @@
     "tradeIds": [
       "crucible.mod_37061"
     ],
+    "pattern": "^35%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 30%\\ reduced\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "35% increased Warcry Buff Effect\nWarcry Skills have 30% reduced Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_37061"
+    ],
     "pattern": "^35%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 30%\\ reduced\\ Area\\ of\\ Effect$"
   },
   {
@@ -12909,6 +13085,14 @@
       "crucible.mod_16087"
     ],
     "pattern": "^40%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\n20%\\ reduced\\ Area\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
+  },
+  {
+    "text": "40% increased Area of Effect\n20% reduced Area of Effect if you\u0027ve Killed Recently",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_16087"
+    ],
+    "pattern": "^40%\\ increased\\ (?:map|Map)\\ of\\ Effect\\n20%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\ if\\ you\u0027ve\\ Killed\\ Recently$"
   },
   {
     "text": "40% increased Area of Effect\n20% reduced Area of Effect if you\u0027ve Killed Recently",
@@ -13539,6 +13723,14 @@
   },
   {
     "text": "40% reduced Trap Trigger Area of Effect\n12% increased Trap Throwing Speed",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_33321"
+    ],
+    "pattern": "^40%\\ reduced\\ Trap\\ Trigger\\ (?:map|Map)\\ of\\ Effect\\n12%\\ increased\\ Trap\\ Throwing\\ Speed$"
+  },
+  {
+    "text": "40% reduced Trap Trigger Area of Effect\n12% increased Trap Throwing Speed",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -13553,6 +13745,14 @@
       "crucible.mod_33321"
     ],
     "pattern": "^40%\\ reduced\\ Trap\\ Trigger\\ Area\\ of\\ Effect\\n12%\\ increased\\ Trap\\ Throwing\\ Speed$"
+  },
+  {
+    "text": "40% reduced Trap Trigger Area of Effect\n16% increased Trap Throwing Speed",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_59272"
+    ],
+    "pattern": "^40%\\ reduced\\ Trap\\ Trigger\\ (?:map|Map)\\ of\\ Effect\\n16%\\ increased\\ Trap\\ Throwing\\ Speed$"
   },
   {
     "text": "40% reduced Trap Trigger Area of Effect\n16% increased Trap Throwing Speed",
@@ -14754,6 +14954,14 @@
     "tradeIds": [
       "crucible.mod_42216"
     ],
+    "pattern": "^50%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 30%\\ reduced\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "50% increased Warcry Buff Effect\nWarcry Skills have 30% reduced Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_42216"
+    ],
     "pattern": "^50%\\ increased\\ Warcry\\ Buff\\ Effect\\nWarcry\\ Skills\\ have\\ 30%\\ reduced\\ Area\\ of\\ Effect$"
   },
   {
@@ -14813,6 +15021,14 @@
   },
   {
     "text": "50% reduced Consecrated Ground Area\n30% increased Effect of Consecrated Ground you create",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_32031"
+    ],
+    "pattern": "^50%\\ reduced\\ Consecrated\\ Ground\\ (?:map|Map)\\n30%\\ increased\\ Effect\\ of\\ Consecrated\\ Ground\\ you\\ create$"
+  },
+  {
+    "text": "50% reduced Consecrated Ground Area\n30% increased Effect of Consecrated Ground you create",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -14827,6 +15043,14 @@
       "crucible.mod_32031"
     ],
     "pattern": "^50%\\ reduced\\ Consecrated\\ Ground\\ Area\\n30%\\ increased\\ Effect\\ of\\ Consecrated\\ Ground\\ you\\ create$"
+  },
+  {
+    "text": "50% reduced Consecrated Ground Area\n50% increased Effect of Consecrated Ground you create",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_59438"
+    ],
+    "pattern": "^50%\\ reduced\\ Consecrated\\ Ground\\ (?:map|Map)\\n50%\\ increased\\ Effect\\ of\\ Consecrated\\ Ground\\ you\\ create$"
   },
   {
     "text": "50% reduced Consecrated Ground Area\n50% increased Effect of Consecrated Ground you create",
@@ -15592,6 +15816,14 @@
   },
   {
     "text": "60% reduced Trap Trigger Area of Effect\n18% increased Trap Throwing Speed",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_55819"
+    ],
+    "pattern": "^60%\\ reduced\\ Trap\\ Trigger\\ (?:map|Map)\\ of\\ Effect\\n18%\\ increased\\ Trap\\ Throwing\\ Speed$"
+  },
+  {
+    "text": "60% reduced Trap Trigger Area of Effect\n18% increased Trap Throwing Speed",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -15606,6 +15838,14 @@
       "crucible.mod_55819"
     ],
     "pattern": "^60%\\ reduced\\ Trap\\ Trigger\\ Area\\ of\\ Effect\\n18%\\ increased\\ Trap\\ Throwing\\ Speed$"
+  },
+  {
+    "text": "60% reduced Trap Trigger Area of Effect\n25% increased Trap Throwing Speed",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_24408"
+    ],
+    "pattern": "^60%\\ reduced\\ Trap\\ Trigger\\ (?:map|Map)\\ of\\ Effect\\n25%\\ increased\\ Trap\\ Throwing\\ Speed$"
   },
   {
     "text": "60% reduced Trap Trigger Area of Effect\n25% increased Trap Throwing Speed",
@@ -17135,6 +17375,14 @@
       "enchant.stat_3948993189|31"
     ],
     "pattern": "^Added\\ Small\\ Passive\\ Skills\\ grant:\\ 10%\\ (?:reduced|Reduced)\\ Area\\ Damage$"
+  },
+  {
+    "text": "Added Small Passive Skills grant: 10% increased Area Damage",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3948993189|31"
+    ],
+    "pattern": "^Added\\ Small\\ Passive\\ Skills\\ grant:\\ 10%\\ increased\\ (?:map|Map)\\ Damage$"
   },
   {
     "text": "Added Small Passive Skills grant: 10% increased Area Damage",
@@ -23898,7 +24146,23 @@
     "tradeIds": [
       "crucible.mod_47007"
     ],
+    "pattern": "^All\\ Damage\\ from\\ Cold\\ Snap\\ and\\ Creeping\\ Frost\\ can\\ Sap\\n25%\\ chance\\ for\\ Cold\\ Snap\\ and\\ Creeping\\ Frost\\ to\\ Sap\\ Enemies\\ in\\ Chilling\\ (?:map|Map)s$"
+  },
+  {
+    "text": "All Damage from Cold Snap and Creeping Frost can Sap\n25% chance for Cold Snap and Creeping Frost to Sap Enemies in Chilling Areas",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_47007"
+    ],
     "pattern": "^All\\ Damage\\ from\\ Cold\\ Snap\\ and\\ Creeping\\ Frost\\ can\\ Sap\\n25%\\ chance\\ for\\ Cold\\ Snap\\ and\\ Creeping\\ Frost\\ to\\ Sap\\ Enemies\\ in\\ Chilling\\ Areas$"
+  },
+  {
+    "text": "All Damage from Cold Snap and Creeping Frost can Sap\n50% chance for Cold Snap and Creeping Frost to Sap Enemies in Chilling Areas",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_22434"
+    ],
+    "pattern": "^All\\ Damage\\ from\\ Cold\\ Snap\\ and\\ Creeping\\ Frost\\ can\\ Sap\\n50%\\ chance\\ for\\ Cold\\ Snap\\ and\\ Creeping\\ Frost\\ to\\ Sap\\ Enemies\\ in\\ Chilling\\ (?:map|Map)s$"
   },
   {
     "text": "All Damage from Cold Snap and Creeping Frost can Sap\n50% chance for Cold Snap and Creeping Frost to Sap Enemies in Chilling Areas",
@@ -30946,11 +31210,13 @@
       "explicit.stat_2460506030|38180",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
+      "explicit.stat_2460506030|4194",
       "explicit.stat_2460506030|43122",
       "explicit.stat_2460506030|43195",
       "explicit.stat_2460506030|44482",
       "explicit.stat_2460506030|45313",
       "explicit.stat_2460506030|55867",
+      "explicit.stat_2460506030|57052",
       "explicit.stat_2460506030|58827",
       "explicit.stat_2460506030|61627",
       "explicit.stat_2460506030|6778",
@@ -33819,6 +34085,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2299389484",
+      "explicit.stat_3294034100",
       "explicit.stat_3955574239"
     ],
     "pattern": "^Area\\ contains\\ an\\ additional\\ Perandus\\ Chest$"
@@ -39097,6 +39364,14 @@
     "tradeIds": [
       "crucible.mod_24028"
     ],
+    "pattern": "^Blight\\ has\\ 50%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%\\nWither\\ has\\ 50%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%$"
+  },
+  {
+    "text": "Blight has 50% increased Area of Effect per second you have been Channelling, up to a maximum of 200%\nWither has 50% increased Area of Effect per second you have been Channelling, up to a maximum of 200%",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_24028"
+    ],
     "pattern": "^Blight\\ has\\ 50%\\ increased\\ Area\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%\\nWither\\ has\\ 50%\\ increased\\ Area\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%$"
   },
   {
@@ -39107,6 +39382,14 @@
       "crucible.mod_7729"
     ],
     "pattern": "^Blight\\ has\\ 80%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%\\nWither\\ has\\ 80%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%$"
+  },
+  {
+    "text": "Blight has 80% increased Area of Effect per second you have been Channelling, up to a maximum of 200%\nWither has 80% increased Area of Effect per second you have been Channelling, up to a maximum of 200%",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_7729"
+    ],
+    "pattern": "^Blight\\ has\\ 80%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%\\nWither\\ has\\ 80%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ per\\ second\\ you\\ have\\ been\\ Channelling,\\ up\\ to\\ a\\ maximum\\ of\\ 200%$"
   },
   {
     "text": "Blight has 80% increased Area of Effect per second you have been Channelling, up to a maximum of 200%\nWither has 80% increased Area of Effect per second you have been Channelling, up to a maximum of 200%",
@@ -39933,6 +40216,14 @@
     "tradeIds": [
       "crucible.mod_23336"
     ],
+    "pattern": "^Brands\\ have\\ 25%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 20%\\ reduced\\ Duration$"
+  },
+  {
+    "text": "Brands have 25% increased Area of Effect if 50% of Attached Duration expired\nBrand Skills have 20% reduced Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_23336"
+    ],
     "pattern": "^Brands\\ have\\ 25%\\ increased\\ Area\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 20%\\ reduced\\ Duration$"
   },
   {
@@ -39943,6 +40234,14 @@
       "crucible.mod_60324"
     ],
     "pattern": "^Brands\\ have\\ 40%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 20%\\ reduced\\ Duration$"
+  },
+  {
+    "text": "Brands have 40% increased Area of Effect if 50% of Attached Duration expired\nBrand Skills have 20% reduced Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_60324"
+    ],
+    "pattern": "^Brands\\ have\\ 40%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 20%\\ reduced\\ Duration$"
   },
   {
     "text": "Brands have 40% increased Area of Effect if 50% of Attached Duration expired\nBrand Skills have 20% reduced Duration",
@@ -39967,6 +40266,14 @@
     "tradeIds": [
       "crucible.mod_46069"
     ],
+    "pattern": "^Brands\\ have\\ 45%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 30%\\ reduced\\ Duration$"
+  },
+  {
+    "text": "Brands have 45% increased Area of Effect if 50% of Attached Duration expired\nBrand Skills have 30% reduced Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_46069"
+    ],
     "pattern": "^Brands\\ have\\ 45%\\ increased\\ Area\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 30%\\ reduced\\ Duration$"
   },
   {
@@ -39977,6 +40284,14 @@
       "crucible.mod_60029"
     ],
     "pattern": "^Brands\\ have\\ 60%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 30%\\ reduced\\ Duration$"
+  },
+  {
+    "text": "Brands have 60% increased Area of Effect if 50% of Attached Duration expired\nBrand Skills have 30% reduced Duration",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_60029"
+    ],
+    "pattern": "^Brands\\ have\\ 60%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ if\\ 50%\\ of\\ Attached\\ Duration\\ expired\\nBrand\\ Skills\\ have\\ 30%\\ reduced\\ Duration$"
   },
   {
     "text": "Brands have 60% increased Area of Effect if 50% of Attached Duration expired\nBrand Skills have 30% reduced Duration",
@@ -54140,6 +54455,14 @@
     "tradeIds": [
       "crucible.mod_42442"
     ],
+    "pattern": "^Fireball\\ and\\ Rolling\\ Magma\\ have\\ 100%\\ more\\ (?:map|Map)\\ of\\ Effect\\nModifiers\\ to\\ number\\ of\\ Projectiles\\ do\\ not\\ apply\\ to\\ Fireball\\ and\\ Rolling\\ Magma$"
+  },
+  {
+    "text": "Fireball and Rolling Magma have 100% more Area of Effect\nModifiers to number of Projectiles do not apply to Fireball and Rolling Magma",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_42442"
+    ],
     "pattern": "^Fireball\\ and\\ Rolling\\ Magma\\ have\\ 100%\\ more\\ Area\\ of\\ Effect\\nModifiers\\ to\\ number\\ of\\ Projectiles\\ do\\ not\\ apply\\ to\\ Fireball\\ and\\ Rolling\\ Magma$"
   },
   {
@@ -54150,6 +54473,14 @@
       "crucible.mod_26179"
     ],
     "pattern": "^Fireball\\ and\\ Rolling\\ Magma\\ have\\ 200%\\ (?:less|Less)\\ Area\\ of\\ Effect\\nModifiers\\ to\\ number\\ of\\ Projectiles\\ do\\ not\\ apply\\ to\\ Fireball\\ and\\ Rolling\\ Magma$"
+  },
+  {
+    "text": "Fireball and Rolling Magma have 200% more Area of Effect\nModifiers to number of Projectiles do not apply to Fireball and Rolling Magma",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_26179"
+    ],
+    "pattern": "^Fireball\\ and\\ Rolling\\ Magma\\ have\\ 200%\\ more\\ (?:map|Map)\\ of\\ Effect\\nModifiers\\ to\\ number\\ of\\ Projectiles\\ do\\ not\\ apply\\ to\\ Fireball\\ and\\ Rolling\\ Magma$"
   },
   {
     "text": "Fireball and Rolling Magma have 200% more Area of Effect\nModifiers to number of Projectiles do not apply to Fireball and Rolling Magma",
@@ -55458,6 +55789,14 @@
     "tradeIds": [
       "crucible.mod_49502"
     ],
+    "pattern": "^Frost\\ Bombs\\ gain\\ 50%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ when\\ you\\ Cast\\ Frostblink\\nStrikes\\ from\\ Orb\\ of\\ Storms\\ caused\\ by\\ Channelling\\ near\\ the\\ Orb\\ occur\\ with\\ 40%\\ increased\\ frequency$"
+  },
+  {
+    "text": "Frost Bombs gain 50% increased Area of Effect when you Cast Frostblink\nStrikes from Orb of Storms caused by Channelling near the Orb occur with 40% increased frequency",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_49502"
+    ],
     "pattern": "^Frost\\ Bombs\\ gain\\ 50%\\ increased\\ Area\\ of\\ Effect\\ when\\ you\\ Cast\\ Frostblink\\nStrikes\\ from\\ Orb\\ of\\ Storms\\ caused\\ by\\ Channelling\\ near\\ the\\ Orb\\ occur\\ with\\ 40%\\ increased\\ frequency$"
   },
   {
@@ -55468,6 +55807,14 @@
       "crucible.mod_27519"
     ],
     "pattern": "^Frost\\ Bombs\\ gain\\ 75%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ when\\ you\\ Cast\\ Frostblink\\nStrikes\\ from\\ Orb\\ of\\ Storms\\ caused\\ by\\ Channelling\\ near\\ the\\ Orb\\ occur\\ with\\ 60%\\ (?:reduced|Reduced)\\ frequency$"
+  },
+  {
+    "text": "Frost Bombs gain 75% increased Area of Effect when you Cast Frostblink\nStrikes from Orb of Storms caused by Channelling near the Orb occur with 60% increased frequency",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_27519"
+    ],
+    "pattern": "^Frost\\ Bombs\\ gain\\ 75%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ when\\ you\\ Cast\\ Frostblink\\nStrikes\\ from\\ Orb\\ of\\ Storms\\ caused\\ by\\ Channelling\\ near\\ the\\ Orb\\ occur\\ with\\ 60%\\ increased\\ frequency$"
   },
   {
     "text": "Frost Bombs gain 75% increased Area of Effect when you Cast Frostblink\nStrikes from Orb of Storms caused by Channelling near the Orb occur with 60% increased frequency",
@@ -59264,6 +59611,14 @@
     "tradeIds": [
       "mercenary.support_28387"
     ],
+    "pattern": "^Gilded\\ (?:map|Map)\\ per\\ Projectile$"
+  },
+  {
+    "text": "Gilded Area per Projectile",
+    "lines": 1,
+    "tradeIds": [
+      "mercenary.support_28387"
+    ],
     "pattern": "^Gilded\\ Area\\ per\\ Projectile$"
   },
   {
@@ -61855,6 +62210,14 @@
     "tradeIds": [
       "mercenary.support_19113"
     ],
+    "pattern": "^Greater\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Greater Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "mercenary.support_19113"
+    ],
     "pattern": "^Greater\\ Area\\ of\\ Effect$"
   },
   {
@@ -63914,7 +64277,23 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_battleground_graves"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Battleground\\ Graves$"
+  },
+  {
+    "text": "Has Logbook Area: Battleground Graves",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_battleground_graves"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Battleground\\ Graves$"
+  },
+  {
+    "text": "Has Logbook Area: Bluffs",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_bluffs"
+    ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Bluffs$"
   },
   {
     "text": "Has Logbook Area: Bluffs",
@@ -63930,7 +64309,23 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_cemetery"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Cemetery$"
+  },
+  {
+    "text": "Has Logbook Area: Cemetery",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_cemetery"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Cemetery$"
+  },
+  {
+    "text": "Has Logbook Area: Desert Ruins",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_desert_ruins"
+    ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Desert\\ Ruins$"
   },
   {
     "text": "Has Logbook Area: Desert Ruins",
@@ -63946,7 +64341,23 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_dried_riverbed"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Dried\\ Riverbed$"
+  },
+  {
+    "text": "Has Logbook Area: Dried Riverbed",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_dried_riverbed"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Dried\\ Riverbed$"
+  },
+  {
+    "text": "Has Logbook Area: Forest Ruins",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_forest_ruins"
+    ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Forest\\ Ruins$"
   },
   {
     "text": "Has Logbook Area: Forest Ruins",
@@ -63962,7 +64373,23 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_karui_wargraves"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Karui\\ Wargraves$"
+  },
+  {
+    "text": "Has Logbook Area: Karui Wargraves",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_karui_wargraves"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Karui\\ Wargraves$"
+  },
+  {
+    "text": "Has Logbook Area: Mountainside",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_mountainside"
+    ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Mountainside$"
   },
   {
     "text": "Has Logbook Area: Mountainside",
@@ -63978,7 +64405,23 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_rotting_temple"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Rotting\\ Temple$"
+  },
+  {
+    "text": "Has Logbook Area: Rotting Temple",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_rotting_temple"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Rotting\\ Temple$"
+  },
+  {
+    "text": "Has Logbook Area: Sarn Slums",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_sarn_slums"
+    ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Sarn\\ Slums$"
   },
   {
     "text": "Has Logbook Area: Sarn Slums",
@@ -63994,7 +64437,23 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_scrublands"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Scrublands$"
+  },
+  {
+    "text": "Has Logbook Area: Scrublands",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_scrublands"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Scrublands$"
+  },
+  {
+    "text": "Has Logbook Area: Shipwreck Reef",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_shipwreck_reef"
+    ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Shipwreck\\ Reef$"
   },
   {
     "text": "Has Logbook Area: Shipwreck Reef",
@@ -64010,6 +64469,14 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_utzaal_outskirts"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Utzaal\\ Outskirts$"
+  },
+  {
+    "text": "Has Logbook Area: Utzaal Outskirts",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_utzaal_outskirts"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Utzaal\\ Outskirts$"
   },
   {
@@ -64018,7 +64485,23 @@
     "tradeIds": [
       "pseudo.pseudo_logbook_area_vaal_temple"
     ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Vaal\\ Temple$"
+  },
+  {
+    "text": "Has Logbook Area: Vaal Temple",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_vaal_temple"
+    ],
     "pattern": "^Has\\ Logbook\\ Area:\\ Vaal\\ Temple$"
+  },
+  {
+    "text": "Has Logbook Area: Volcanic Island",
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_logbook_area_volcano"
+    ],
+    "pattern": "^Has\\ Logbook\\ (?:map|Map):\\ Volcanic\\ Island$"
   },
   {
     "text": "Has Logbook Area: Volcanic Island",
@@ -70009,6 +70492,14 @@
     "tradeIds": [
       "mercenary.support_53342"
     ],
+    "pattern": "^Increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "mercenary.support_53342"
+    ],
     "pattern": "^Increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -73910,6 +74401,14 @@
       "mercenary.support_22670"
     ],
     "pattern": "^Lesser\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Lesser Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "mercenary.support_22670"
+    ],
+    "pattern": "^Lesser\\ Increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Lesser Increased Area of Effect",
@@ -77943,6 +78442,14 @@
     "tradeIds": [
       "explicit.stat_1039536123"
     ],
+    "pattern": "^Melee\\ Strike\\ Skills\\ deal\\ Splash\\ Damage\\ to\\ surrounding\\ targets,\\ with\\ ([-0-9,.]\u002B)%\\ reduced\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Melee Strike Skills deal Splash Damage to surrounding targets, with #% reduced Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1039536123"
+    ],
     "pattern": "^Melee\\ Strike\\ Skills\\ deal\\ Splash\\ Damage\\ to\\ surrounding\\ targets,\\ with\\ ([-0-9,.]\u002B)%\\ reduced\\ Area\\ of\\ Effect$"
   },
   {
@@ -79472,6 +79979,14 @@
     "tradeIds": [
       "crucible.mod_2619"
     ],
+    "pattern": "^Minions\\ deal\\ 15%\\ reduced\\ Damage\\nMinions\\ have\\ 20%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Minions deal 15% reduced Damage\nMinions have 20% increased Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_2619"
+    ],
     "pattern": "^Minions\\ deal\\ 15%\\ reduced\\ Damage\\nMinions\\ have\\ 20%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -79482,6 +79997,14 @@
       "crucible.mod_4643"
     ],
     "pattern": "^Minions\\ deal\\ 15%\\ reduced\\ Damage\\nMinions\\ have\\ 30%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Minions deal 15% reduced Damage\nMinions have 30% increased Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_4643"
+    ],
+    "pattern": "^Minions\\ deal\\ 15%\\ reduced\\ Damage\\nMinions\\ have\\ 30%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Minions deal 15% reduced Damage\nMinions have 30% increased Area of Effect",
@@ -80106,6 +80629,14 @@
     "tradeIds": [
       "crucible.mod_49539"
     ],
+    "pattern": "^Minions\\ deal\\ 30%\\ reduced\\ Damage\\nMinions\\ have\\ 40%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Minions deal 30% reduced Damage\nMinions have 40% increased Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_49539"
+    ],
     "pattern": "^Minions\\ deal\\ 30%\\ reduced\\ Damage\\nMinions\\ have\\ 40%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -80116,6 +80647,14 @@
       "crucible.mod_7122"
     ],
     "pattern": "^Minions\\ deal\\ 30%\\ reduced\\ Damage\\nMinions\\ have\\ 60%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Minions deal 30% reduced Damage\nMinions have 60% increased Area of Effect",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_7122"
+    ],
+    "pattern": "^Minions\\ deal\\ 30%\\ reduced\\ Damage\\nMinions\\ have\\ 60%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Minions deal 30% reduced Damage\nMinions have 60% increased Area of Effect",
@@ -103783,7 +104322,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
@@ -104545,6 +105083,14 @@
     "tradeIds": [
       "explicit.stat_4089743927|3|68"
     ],
+    "pattern": "^Skills\\ Socketed\\ in\\ your\\ Boots\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Skills Socketed in your Boots are Supported by level # Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_4089743927|3|68"
+    ],
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Boots\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -105240,7 +105786,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
@@ -106002,6 +106547,14 @@
     "tradeIds": [
       "explicit.stat_4089743927|2|68"
     ],
+    "pattern": "^Skills\\ Socketed\\ in\\ your\\ Gloves\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Skills Socketed in your Gloves are Supported by level # Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_4089743927|2|68"
+    ],
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Gloves\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -106697,7 +107250,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
@@ -107452,6 +108004,14 @@
       "explicit.stat_4089743927|1|68"
     ],
     "pattern": "^Skills\\ Socketed\\ in\\ your\\ Helmet\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Skills Socketed in your Helmet are Supported by level # Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_4089743927|1|68"
+    ],
+    "pattern": "^Skills\\ Socketed\\ in\\ your\\ Helmet\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Skills Socketed in your Helmet are Supported by level # Increased Area of Effect",
@@ -108424,7 +108984,6 @@
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|134",
       "explicit.stat_4089743927|4|137",
-      "explicit.stat_4089743927|4|139",
       "explicit.stat_4089743927|4|146",
       "explicit.stat_4089743927|4|148",
       "explicit.stat_4089743927|4|157",
@@ -109186,6 +109745,14 @@
     "tradeIds": [
       "explicit.stat_4089743927|4|68"
     ],
+    "pattern": "^Skills\\ granted\\ by\\ your\\ Passive\\ Tree\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Skills granted by your Passive Tree are Supported by level # Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_4089743927|4|68"
+    ],
     "pattern": "^Skills\\ granted\\ by\\ your\\ Passive\\ Tree\\ are\\ Supported\\ by\\ level\\ ([-0-9,.]\u002B)\\ Increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -109872,6 +110439,14 @@
   },
   {
     "text": "Skills used by Mines have 40% reduced Area of Effect\n25% increased Effect of Auras from Mines",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_65267"
+    ],
+    "pattern": "^Skills\\ used\\ by\\ Mines\\ have\\ 40%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n25%\\ increased\\ Effect\\ of\\ Auras\\ from\\ Mines$"
+  },
+  {
+    "text": "Skills used by Mines have 40% reduced Area of Effect\n25% increased Effect of Auras from Mines",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -109886,6 +110461,14 @@
       "crucible.mod_65267"
     ],
     "pattern": "^Skills\\ used\\ by\\ Mines\\ have\\ 40%\\ reduced\\ Area\\ of\\ Effect\\n25%\\ increased\\ Effect\\ of\\ Auras\\ from\\ Mines$"
+  },
+  {
+    "text": "Skills used by Mines have 40% reduced Area of Effect\n40% increased Effect of Auras from Mines",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_2040"
+    ],
+    "pattern": "^Skills\\ used\\ by\\ Mines\\ have\\ 40%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n40%\\ increased\\ Effect\\ of\\ Auras\\ from\\ Mines$"
   },
   {
     "text": "Skills used by Mines have 40% reduced Area of Effect\n40% increased Effect of Auras from Mines",
@@ -109906,6 +110489,14 @@
   },
   {
     "text": "Skills used by Mines have 60% reduced Area of Effect\n50% increased Effect of Auras from Mines",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_31177"
+    ],
+    "pattern": "^Skills\\ used\\ by\\ Mines\\ have\\ 60%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n50%\\ increased\\ Effect\\ of\\ Auras\\ from\\ Mines$"
+  },
+  {
+    "text": "Skills used by Mines have 60% reduced Area of Effect\n50% increased Effect of Auras from Mines",
     "negate": true,
     "lines": 2,
     "tradeIds": [
@@ -109920,6 +110511,14 @@
       "crucible.mod_31177"
     ],
     "pattern": "^Skills\\ used\\ by\\ Mines\\ have\\ 60%\\ reduced\\ Area\\ of\\ Effect\\n50%\\ increased\\ Effect\\ of\\ Auras\\ from\\ Mines$"
+  },
+  {
+    "text": "Skills used by Mines have 60% reduced Area of Effect\n70% increased Effect of Auras from Mines",
+    "lines": 2,
+    "tradeIds": [
+      "crucible.mod_28618"
+    ],
+    "pattern": "^Skills\\ used\\ by\\ Mines\\ have\\ 60%\\ reduced\\ (?:map|Map)\\ of\\ Effect\\n70%\\ increased\\ Effect\\ of\\ Auras\\ from\\ Mines$"
   },
   {
     "text": "Skills used by Mines have 60% reduced Area of Effect\n70% increased Effect of Auras from Mines",
@@ -110318,6 +110917,14 @@
       "explicit.stat_137115575"
     ],
     "pattern": "^Skills\\ used\\ by\\ this\\ Graft\\ have\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Skills used by this Graft have #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_137115575"
+    ],
+    "pattern": "^Skills\\ used\\ by\\ this\\ Graft\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Skills used by this Graft have #% increased Area of Effect",
@@ -110800,6 +111407,14 @@
     "tradeIds": [
       "explicit.stat_2863957119"
     ],
+    "pattern": "^Smuggler\u0027s\\ Caches\\ drop\\ ([-0-9,.]\u002B)%\\ more\\ Rogue\\ Markers\\ for\\ each\\ Smuggler\u0027s\\ Cache\\ opened\\ in\\ the\\ (?:map|Map)$"
+  },
+  {
+    "text": "Smuggler\u0027s Caches drop #% more Rogue Markers for each Smuggler\u0027s Cache opened in the Area",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2863957119"
+    ],
     "pattern": "^Smuggler\u0027s\\ Caches\\ drop\\ ([-0-9,.]\u002B)%\\ more\\ Rogue\\ Markers\\ for\\ each\\ Smuggler\u0027s\\ Cache\\ opened\\ in\\ the\\ Area$"
   },
   {
@@ -111196,6 +111811,15 @@
       "crucible.mod_4568"
     ],
     "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ 10\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Socketed Gems are Supported by Level 10 Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "crucible.mod_25007",
+      "crucible.mod_4568"
+    ],
+    "pattern": "^Socketed\\ Gems\\ are\\ Supported\\ by\\ Level\\ 10\\ Increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Socketed Gems are Supported by Level 10 Increased Area of Effect",
@@ -119561,6 +120185,14 @@
     "tradeIds": [
       "imbued.pseudo_built_in_support|1466145569"
     ],
+    "pattern": "^Supported\\ by\\ Level\\ 1\\ Increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Supported by Level 1 Increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "imbued.pseudo_built_in_support|1466145569"
+    ],
     "pattern": "^Supported\\ by\\ Level\\ 1\\ Increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -121871,6 +122503,15 @@
       "explicit.stat_1389615049"
     ],
     "pattern": "^The\\ stars\\ are\\ aligned\\ if\\ you\\ have\\ 6\\ Influence\\ types\\ among\\ other\\ Equipped\\ Items$"
+  },
+  {
+    "text": "This Area\u0027s Modifiers to Quantity of Items found also apply to Rarity",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_436556261",
+      "fractured.stat_436556261"
+    ],
+    "pattern": "^This\\ (?:map|Map)\u0027s\\ Modifiers\\ to\\ Quantity\\ of\\ Items\\ found\\ also\\ apply\\ to\\ Rarity$"
   },
   {
     "text": "This Area\u0027s Modifiers to Quantity of Items found also apply to Rarity",
@@ -126708,6 +127349,14 @@
     "tradeIds": [
       "explicit.stat_1516986886"
     ],
+    "pattern": "^Vaal\\ Side\\ (?:map|Map)s\\ in\\ your\\ Maps\\ are\\ no\\ longer\\ Corrupted$"
+  },
+  {
+    "text": "Vaal Side Areas in your Maps are no longer Corrupted",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1516986886"
+    ],
     "pattern": "^Vaal\\ Side\\ Areas\\ in\\ your\\ Maps\\ are\\ no\\ longer\\ Corrupted$"
   },
   {
@@ -126717,6 +127366,14 @@
       "explicit.stat_4131593417"
     ],
     "pattern": "^Vaal\\ Side\\ Areas\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ for\\ Rewards\\ from\\ Vaal\\ Vessels\\ to\\ be\\ Duplicated$"
+  },
+  {
+    "text": "Vaal Side Areas in your Maps have #% chance to be an Alluring Vaal Side Area",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2063734057"
+    ],
+    "pattern": "^Vaal\\ Side\\ (?:map|Map)s\\ in\\ your\\ Maps\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ be\\ an\\ Alluring\\ Vaal\\ Side\\ (?:map|Map)$"
   },
   {
     "text": "Vaal Side Areas in your Maps have #% chance to be an Alluring Vaal Side Area",
@@ -127320,6 +127977,14 @@
       "explicit.stat_468012134"
     ],
     "pattern": "^Violent\\ Desire\\ used\\ by\\ this\\ Graft\\ also\\ grants\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ with\\ Attacks$"
+  },
+  {
+    "text": "Violent Desire used by this Graft also grants #% increased Area of Effect with Attacks",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_468012134"
+    ],
+    "pattern": "^Violent\\ Desire\\ used\\ by\\ this\\ Graft\\ also\\ grants\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ with\\ Attacks$"
   },
   {
     "text": "Violent Desire used by this Graft also grants #% increased Area of Effect with Attacks",
@@ -129040,6 +129705,14 @@
     "tradeIds": [
       "implicit.stat_764963982"
     ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Flesh and Stone has #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_764963982"
+    ],
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -129316,6 +129989,14 @@
       "implicit.stat_2260273147"
     ],
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Infernal\\ Cry\\ has\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, Infernal Cry has #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_2260273147"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ Infernal\\ Cry\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "While a Pinnacle Atlas Boss is in your Presence, Infernal Cry has #% increased Area of Effect",
@@ -129863,6 +130544,14 @@
       "implicit.stat_568930056"
     ],
     "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_568930056"
+    ],
+    "pattern": "^While\\ a\\ Pinnacle\\ Atlas\\ Boss\\ is\\ in\\ your\\ Presence,\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Area of Effect",
@@ -131826,6 +132515,14 @@
     "tradeIds": [
       "implicit.stat_820932852"
     ],
+    "pattern": "^While\\ a\\ Unique\\ Enemy\\ is\\ in\\ your\\ Presence,\\ Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "While a Unique Enemy is in your Presence, Flesh and Stone has #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_820932852"
+    ],
     "pattern": "^While\\ a\\ Unique\\ Enemy\\ is\\ in\\ your\\ Presence,\\ Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -132102,6 +132799,14 @@
       "implicit.stat_1373026185"
     ],
     "pattern": "^While\\ a\\ Unique\\ Enemy\\ is\\ in\\ your\\ Presence,\\ Infernal\\ Cry\\ has\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "While a Unique Enemy is in your Presence, Infernal Cry has #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_1373026185"
+    ],
+    "pattern": "^While\\ a\\ Unique\\ Enemy\\ is\\ in\\ your\\ Presence,\\ Infernal\\ Cry\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "While a Unique Enemy is in your Presence, Infernal Cry has #% increased Area of Effect",
@@ -132649,6 +133354,14 @@
       "implicit.stat_1847660463"
     ],
     "pattern": "^While\\ a\\ Unique\\ Enemy\\ is\\ in\\ your\\ Presence,\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "While a Unique Enemy is in your Presence, #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_1847660463"
+    ],
+    "pattern": "^While\\ a\\ Unique\\ Enemy\\ is\\ in\\ your\\ Presence,\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "While a Unique Enemy is in your Presence, #% increased Area of Effect",
@@ -140758,6 +141471,15 @@
       "explicit.stat_495465216"
     ],
     "pattern": "^Your\\ Maps\\ have\\ \\\u002B([-0-9,.]\u002B)%\\ chance\\ to\\ contain\\ a\\ Trial\\ of\\ Ascendancy$"
+  },
+  {
+    "text": "Your Maps have \u002B#% chance to contain a Vaal Side Area",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2156201537",
+      "implicit.stat_2156201537"
+    ],
+    "pattern": "^Your\\ Maps\\ have\\ \\\u002B([-0-9,.]\u002B)%\\ chance\\ to\\ contain\\ a\\ Vaal\\ Side\\ (?:map|Map)$"
   },
   {
     "text": "Your Maps have \u002B#% chance to contain a Vaal Side Area",
@@ -154418,6 +155140,15 @@
       "explicit.stat_1051688002",
       "fractured.stat_1051688002"
     ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown\\nPlayers\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown$"
+  },
+  {
+    "text": "#% increased Critical Strike Chance while area is not in Lockdown\nPlayers have #% increased Critical Strike Chance while area is not in Lockdown",
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_1051688002",
+      "fractured.stat_1051688002"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ while\\ area\\ is\\ not\\ in\\ Lockdown\\nPlayers\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Critical\\ Strike\\ Chance\\ while\\ area\\ is\\ not\\ in\\ Lockdown$"
   },
   {
@@ -155632,6 +156363,15 @@
       "explicit.stat_1312481589",
       "fractured.stat_1312481589"
     ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown\\nPlayers\\ deal\\ ([-0-9,.]\u002B)%\\ increased\\ Damage\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown$"
+  },
+  {
+    "text": "#% increased Damage while area is not in Lockdown\nPlayers deal #% increased Damage while area is not in Lockdown",
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_1312481589",
+      "fractured.stat_1312481589"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ while\\ area\\ is\\ not\\ in\\ Lockdown\\nPlayers\\ deal\\ ([-0-9,.]\u002B)%\\ increased\\ Damage\\ while\\ area\\ is\\ not\\ in\\ Lockdown$"
   },
   {
@@ -156525,6 +157265,14 @@
       "explicit.stat_1605192338"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Dead\\ Man\u0027s\\ Sulphur\\ found\\ in\\ this\\ Area$"
+  },
+  {
+    "text": "#% increased Dead Man\u0027s Sulphur found in this Area",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1605192338"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Dead\\ Man\u0027s\\ Sulphur\\ found\\ in\\ this\\ (?:map|Map)$"
   },
   {
     "text": "#% increased Dead Man\u0027s Sulphur found in this Area",
@@ -163142,7 +163890,8 @@
     "tradeIds": [
       "crucible.mod_15586",
       "crucible.mod_19742",
-      "crucible.mod_46224"
+      "crucible.mod_46224",
+      "crucible.mod_50754"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ if\\ Dexterity\\ is\\ below\\ 100$"
   },
@@ -163459,6 +164208,15 @@
       "fractured.stat_902577520"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Movement\\ Speed\\ while\\ area\\ is\\ not\\ in\\ Lockdown\\nPlayers\\ have\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Movement\\ Speed\\ while\\ area\\ is\\ not\\ in\\ Lockdown$"
+  },
+  {
+    "text": "#% increased Movement Speed while area is not in Lockdown\nPlayers have #% increased Movement Speed while area is not in Lockdown",
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_902577520",
+      "fractured.stat_902577520"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown\\nPlayers\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Movement\\ Speed\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown$"
   },
   {
     "text": "#% increased Movement Speed while area is not in Lockdown\nPlayers have #% increased Movement Speed while area is not in Lockdown",
@@ -192394,6 +193152,15 @@
       "explicit.stat_1817023621"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ to\\ Critical\\ Strike\\ Multiplier\\ while\\ affected\\ by\\ Precision$"
+  },
+  {
+    "text": "\u002B#% to Critical Strike Multiplier while area is not in Lockdown\nPlayers have \u002B#% to Critical Strike Multiplier while area is not in Lockdown",
+    "lines": 2,
+    "tradeIds": [
+      "explicit.stat_3128272024",
+      "fractured.stat_3128272024"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ to\\ Critical\\ Strike\\ Multiplier\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown\\nPlayers\\ have\\ \\\u002B([-0-9,.]\u002B)%\\ to\\ Critical\\ Strike\\ Multiplier\\ while\\ (?:map|Map)\\ is\\ not\\ in\\ Lockdown$"
   },
   {
     "text": "\u002B#% to Critical Strike Multiplier while area is not in Lockdown\nPlayers have \u002B#% to Critical Strike Multiplier while area is not in Lockdown",

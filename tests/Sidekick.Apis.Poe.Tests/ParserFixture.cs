@@ -6,7 +6,6 @@ using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
