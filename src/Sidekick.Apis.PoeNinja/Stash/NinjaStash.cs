@@ -1,6 +1,5 @@
 ﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Stash.Models;
-using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Ninja;
 namespace Sidekick.Apis.PoeNinja.Stash;
 

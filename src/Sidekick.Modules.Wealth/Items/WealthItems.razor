@@ -2,7 +2,7 @@
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Common.Settings
-@using Sidekick.Game.Providers.Languages
+@using Sidekick.Game.Providers
 @using Sidekick.Modules.Wealth.Provider
 @using Sidekick.Modules.Wealth.Components
 
@@ -20,11 +20,11 @@
                 <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
                 @if (item.GemLevel > 0)
                 {
-                    <TextCaption Class="text-gray-400">@CurrentGameLanguage.Language.DescriptionLevel: @item.GemLevel</TextCaption>
+                    <TextCaption Class="text-gray-400">@GameTextProvider.Texts.ItemPropertyLevel: @item.GemLevel</TextCaption>
                 }
                 @if (item.MapTier > 0)
                 {
-                    <TextCaption Class="text-gray-400">@CurrentGameLanguage.Language.DescriptionMapTier: @item.MapTier</TextCaption>
+                    <TextCaption Class="text-gray-400">@GameTextProvider.Texts.ItemPropertyMapTier: @item.MapTier</TextCaption>
                 }
             </div>
         </div>
@@ -37,7 +37,7 @@
 @inject WealthProvider WealthProvider
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
-@inject ICurrentGameLanguage CurrentGameLanguage
+@inject GameTextProvider GameTextProvider
 @implements IDisposable
 
 @code {

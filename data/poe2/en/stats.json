@@ -8726,6 +8726,17 @@
       "explicit.stat_2954116742|16626",
       "fractured.stat_2954116742|16626"
     ],
+    "pattern": "^Allocates\\ Impact\\ (?:map|Map)$"
+  },
+  {
+    "text": "Allocates Impact Area",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_2954116742|16626",
+      "enchant.stat_2954116742|16626",
+      "explicit.stat_2954116742|16626",
+      "fractured.stat_2954116742|16626"
+    ],
     "pattern": "^Allocates\\ Impact\\ Area$"
   },
   {
@@ -15497,8 +15508,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447",
-      "explicit.stat_2396719220"
+      "explicit.stat_231864447"
     ],
     "pattern": "^Area\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Perandus\\ Chests$"
   },
@@ -16235,8 +16245,7 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_231864447",
-      "explicit.stat_2396719220"
+      "explicit.stat_231864447"
     ],
     "pattern": "^Area\\ contains\\ an\\ additional\\ Perandus\\ Chest$"
   },
@@ -18427,7 +18436,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1484500028"
+      "explicit.stat_1484500028",
+      "explicit.stat_261503687"
     ],
     "pattern": "^Attacks\\ Gain\\ ([-0-9,.]\u002B)%\\ of\\ Damage\\ as\\ extra\\ Chaos\\ Damage$"
   },
@@ -22085,6 +22095,14 @@
     "tradeIds": [
       "rune.stat_1816212773"
     ],
+    "pattern": "^Bonded:\\ Companions\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Bonded: Companions have #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_1816212773"
+    ],
     "pattern": "^Bonded:\\ Companions\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -22406,6 +22424,14 @@
     "tradeIds": [
       "rune.stat_3449499156"
     ],
+    "pattern": "^Bonded:\\ Minions\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Bonded: Minions have #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_3449499156"
+    ],
     "pattern": "^Bonded:\\ Minions\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -22620,6 +22646,14 @@
     "tradeIds": [
       "rune.stat_3969727699"
     ],
+    "pattern": "^Bonded:\\ Warcry\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Bonded: Warcry Skills have #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_3969727699"
+    ],
     "pattern": "^Bonded:\\ Warcry\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -22736,6 +22770,14 @@
     "tradeIds": [
       "rune.stat_3724971246"
     ],
+    "pattern": "^Bonded:\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ for\\ Attacks$"
+  },
+  {
+    "text": "Bonded: #% increased Area of Effect for Attacks",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_3724971246"
+    ],
     "pattern": "^Bonded:\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect\\ for\\ Attacks$"
   },
   {
@@ -22746,6 +22788,14 @@
       "rune.stat_3854332662"
     ],
     "pattern": "^Bonded:\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ of\\ Curses$"
+  },
+  {
+    "text": "Bonded: #% increased Area of Effect of Curses",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_3854332662"
+    ],
+    "pattern": "^Bonded:\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ of\\ Curses$"
   },
   {
     "text": "Bonded: #% increased Area of Effect of Curses",
@@ -23902,6 +23952,14 @@
       "rune.stat_2894111835"
     ],
     "pattern": "^Bonded:\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Presence\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Bonded: #% increased Presence Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_2894111835"
+    ],
+    "pattern": "^Bonded:\\ ([-0-9,.]\u002B)%\\ increased\\ Presence\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Bonded: #% increased Presence Area of Effect",
@@ -74235,6 +74293,16 @@
       "explicit.stat_2534359663",
       "fractured.stat_2534359663"
     ],
+    "pattern": "^Notable\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ Minions\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
+  },
+  {
+    "text": "Notable Passive Skills in Radius also grant Minions have #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_2534359663",
+      "explicit.stat_2534359663",
+      "fractured.stat_2534359663"
+    ],
     "pattern": "^Notable\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ Minions\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Area\\ of\\ Effect$"
   },
   {
@@ -74433,6 +74501,16 @@
       "fractured.stat_3859848445"
     ],
     "pattern": "^Notable\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect\\ of\\ Curses$"
+  },
+  {
+    "text": "Notable Passive Skills in Radius also grant #% increased Area of Effect of Curses",
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_3859848445",
+      "explicit.stat_3859848445",
+      "fractured.stat_3859848445"
+    ],
+    "pattern": "^Notable\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect\\ of\\ Curses$"
   },
   {
     "text": "Notable Passive Skills in Radius also grant #% increased Area of Effect of Curses",
@@ -75478,6 +75556,16 @@
       "fractured.stat_4032352472"
     ],
     "pattern": "^Notable\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Presence\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Notable Passive Skills in Radius also grant #% increased Presence Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_4032352472",
+      "explicit.stat_4032352472",
+      "fractured.stat_4032352472"
+    ],
+    "pattern": "^Notable\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ ([-0-9,.]\u002B)%\\ increased\\ Presence\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Notable Passive Skills in Radius also grant #% increased Presence Area of Effect",
@@ -90326,6 +90414,16 @@
       "fractured.stat_4142814612"
     ],
     "pattern": "^Small\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ Banner\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ (?:reduced|Reduced)\\ Area\\ of\\ Effect$"
+  },
+  {
+    "text": "Small Passive Skills in Radius also grant Banner Skills have #% increased Area of Effect",
+    "lines": 1,
+    "tradeIds": [
+      "desecrated.stat_4142814612",
+      "explicit.stat_4142814612",
+      "fractured.stat_4142814612"
+    ],
+    "pattern": "^Small\\ Passive\\ Skills\\ in\\ Radius\\ also\\ grant\\ Banner\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:map|Map)\\ of\\ Effect$"
   },
   {
     "text": "Small Passive Skills in Radius also grant Banner Skills have #% increased Area of Effect",
@@ -133922,6 +134020,14 @@
     "tradeIds": [
       "explicit.stat_3039133122"
     ],
+    "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Expedition\\ Explosive\\ (?:map|Map)\\ of\\ Effect\\ in\\ Map$"
+  },
+  {
+    "text": "#% increased Expedition Explosive Area of Effect in Map",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3039133122"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Expedition\\ Explosive\\ Area\\ of\\ Effect\\ in\\ Map$"
   },
   {
@@ -134091,14 +134197,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3206904707",
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
-      "explicit.stat_3206904707",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
-      "fractured.stat_3206904707",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Ailment\\ Modifier\\ magnitudes$"
@@ -134254,8 +134354,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3624940721",
+      "fractured.stat_3514984677",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Minion\\ Modifier\\ magnitudes$"
   },
@@ -160184,14 +160287,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "desecrated.stat_3206904707",
-      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
-      "explicit.stat_3206904707",
-      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
-      "fractured.stat_3206904707",
-      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Ailment\\ Modifier\\ magnitudes$"
@@ -160356,8 +160453,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3624940721",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3624940721",
+      "fractured.stat_3514984677",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Minion\\ Modifier\\ magnitudes$"
   },
@@ -175694,6 +175794,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "rune.stat_1062190843",
+      "rune.stat_1839315243",
+      "rune.stat_2336703514",
       "rune.stat_776287420"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Trap\\ Skill\\ Gems$"

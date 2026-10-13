@@ -22041,20 +22041,17 @@
       "explicit.stat_1190333629|34774",
       "explicit.stat_1190333629|39598",
       "explicit.stat_1190333629|39790",
-      "explicit.stat_1190333629|42144",
       "explicit.stat_1190333629|43122",
       "explicit.stat_1190333629|43195",
       "explicit.stat_1190333629|44297",
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|5443",
       "explicit.stat_1190333629|55867",
-      "explicit.stat_1190333629|57052",
       "explicit.stat_1190333629|5819",
       "explicit.stat_1190333629|58827",
       "explicit.stat_1190333629|61072",
       "explicit.stat_1190333629|62595",
-      "explicit.stat_1190333629|6778",
-      "explicit.stat_1190333629|8656"
+      "explicit.stat_1190333629|6778"
     ],
     "pattern": "^Attribue\\ ([-0-9,.]\u002B)\\ si\\ vous\\ avez\\ un\\ modificateur\\ similaire\\ sur\\ Chair\\ interdite$"
   },
@@ -22074,7 +22071,6 @@
       "explicit.stat_2460506030|32816",
       "explicit.stat_2460506030|39598",
       "explicit.stat_2460506030|39790",
-      "explicit.stat_2460506030|42144",
       "explicit.stat_2460506030|43122",
       "explicit.stat_2460506030|43962",
       "explicit.stat_2460506030|44297",
@@ -22085,8 +22081,7 @@
       "explicit.stat_2460506030|58827",
       "explicit.stat_2460506030|61072",
       "explicit.stat_2460506030|62595",
-      "explicit.stat_2460506030|6778",
-      "explicit.stat_2460506030|8656"
+      "explicit.stat_2460506030|6778"
     ],
     "pattern": "^Attribue\\ ([-0-9,.]\u002B)\\ si\\ vous\\ avez\\ un\\ modificateur\\ similaire\\ sur\\ Flamme\\ interdite$"
   },
@@ -53018,11 +53013,8 @@
   },
   {
     "text": "Le Boss de fin c\u00E8de # Objets Uniques suppl\u00E9mentaires",
-    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3760667977"
-    ],
+    "tradeIds": [],
     "pattern": "^Le\\ Boss\\ de\\ fin\\ c\u00E8de\\ ([-0-9,.]\u002B)\\ Objets\\ Uniques\\ suppl\u00E9mentaires$"
   },
   {
@@ -53042,7 +53034,6 @@
   },
   {
     "text": "Le Boss de fin c\u00E8de un Objet Unique suppl\u00E9mentaire",
-    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -55402,13 +55393,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -55426,6 +55418,7 @@
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
+      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|8"
     ],
     "pattern": "^Les\\ Aptitudes\\ Ench\u00E2ss\u00E9es\\ dans\\ vos\\ Bottes\\ sont\\ Modifi\u00E9es\\ par\\ ([-0-9,.]\u002B)$"
@@ -56733,13 +56726,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -56757,6 +56751,7 @@
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
+      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|8"
     ],
     "pattern": "^Les\\ Aptitudes\\ Ench\u00E2ss\u00E9es\\ dans\\ vos\\ Gants\\ sont\\ Modifi\u00E9es\\ par\\ ([-0-9,.]\u002B)$"
@@ -58073,13 +58068,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -58097,6 +58093,7 @@
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
+      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|8"
     ],
     "pattern": "^Les\\ Aptitudes\\ Ench\u00E2ss\u00E9es\\ dans\\ votre\\ Casque\\ sont\\ Modifi\u00E9es\\ par\\ ([-0-9,.]\u002B)$"
@@ -61274,13 +61271,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|2|133",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|157",
       "explicit.stat_4089743927|2|163",
@@ -61298,6 +61296,7 @@
       "explicit.stat_4089743927|4|157",
       "explicit.stat_4089743927|4|163",
       "explicit.stat_4089743927|4|27",
+      "explicit.stat_4089743927|4|35",
       "explicit.stat_4089743927|4|8"
     ],
     "pattern": "^Les\\ Aptitudes\\ octroy\u00E9es\\ par\\ votre\\ Arbre\\ des\\ Talents\\ sont\\ Modifi\u00E9es\\ par\\ ([-0-9,.]\u002B)$"
@@ -81104,10 +81103,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1046449631",
       "explicit.stat_2222752567",
-      "explicit.stat_2249251344",
-      "explicit.stat_48859060"
+      "explicit.stat_2249251344"
     ],
     "pattern": "^Les\\ Gemmes\\ Ench\u00E2ss\u00E9es\\ sont\\ modifi\u00E9es\\ par\\ la\\ version\\ \u00E9veill\u00E9e\\ de\\ Nova\\ de\\ fl\u00E8ches$"
   },
@@ -133890,13 +133887,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1078455967",
       "explicit.stat_146924886",
       "explicit.stat_2339012908",
       "explicit.stat_599749213",
       "explicit.stat_67169579",
       "explicit.stat_9187492",
-      "fractured.stat_1078455967",
       "fractured.stat_599749213",
       "fractured.stat_67169579"
     ],
@@ -145090,11 +145085,8 @@
       "explicit.stat_1345659139",
       "explicit.stat_1939202111",
       "explicit.stat_2282705842",
-      "explicit.stat_276103140",
-      "explicit.stat_3699490848",
       "fractured.stat_1345659139",
-      "fractured.stat_1939202111",
-      "fractured.stat_276103140"
+      "fractured.stat_1939202111"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ Chances\\ de\\ Coup\\ critique\\ contre\\ les\\ Ennemis\\ Maudits$"
   },
@@ -163655,11 +163647,8 @@
       "explicit.stat_1345659139",
       "explicit.stat_1939202111",
       "explicit.stat_2282705842",
-      "explicit.stat_276103140",
-      "explicit.stat_3699490848",
       "fractured.stat_1345659139",
-      "fractured.stat_1939202111",
-      "fractured.stat_276103140"
+      "fractured.stat_1939202111"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ des\\ Chances\\ de\\ Coup\\ critique\\ contre\\ les\\ Ennemis\\ Maudits$"
   },
@@ -181031,7 +181020,13 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1740848995",
-      "enchant.stat_3563089138"
+      "enchant.stat_1761642973",
+      "enchant.stat_3444518809",
+      "enchant.stat_3563089138",
+      "explicit.stat_1761642973",
+      "explicit.stat_3444518809",
+      "fractured.stat_3444518809",
+      "implicit.stat_3444518809"
     ],
     "pattern": "^\u00C9tendard\\ de\\ guerre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
@@ -181051,7 +181046,13 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1740848995",
-      "enchant.stat_3563089138"
+      "enchant.stat_1761642973",
+      "enchant.stat_3444518809",
+      "enchant.stat_3563089138",
+      "explicit.stat_1761642973",
+      "explicit.stat_3444518809",
+      "fractured.stat_3444518809",
+      "implicit.stat_3444518809"
     ],
     "pattern": "^\u00C9tendard\\ de\\ guerre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },

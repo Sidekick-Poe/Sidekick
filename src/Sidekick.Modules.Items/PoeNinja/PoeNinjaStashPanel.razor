@@ -3,7 +3,7 @@
 @using Sidekick.Game.Parser.Properties
 @using Sidekick.Game.Parser.Properties.Definitions
 @using Sidekick.Game.Parser.Stats
-@using Sidekick.Game.Providers.Languages
+@using Sidekick.Game.Providers
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.PoeNinja.Localization
 
@@ -31,21 +31,21 @@
 
     @if (Stash.Item.ItemLevel > 0)
     {
-        <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionItemLevel"
+        <ItemPropertyText Label="@GameTextProvider.Texts.ItemPropertyItemLevel"
                           Value="@Stash.Item.ItemLevel.ToString()"
                           Class="text-center justify-center"/>
     }
 
     @if (Stash.Item.GemLevel > 0)
     {
-        <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionLevel"
+        <ItemPropertyText Label="@GameTextProvider.Texts.ItemPropertyLevel"
                           Value="@Stash.Item.GemLevel.ToString()"
                           Class="text-center justify-center"/>
     }
 
     @if (Stash.Item.GemQuality > 0)
     {
-        <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionQuality"
+        <ItemPropertyText Label="@GameTextProvider.Texts.ItemPropertyQuality"
                           Value="@Stash.Item.GemQuality.ToString()"
                           Class="text-center justify-center"/>
     }
@@ -88,7 +88,7 @@
 </div>
 
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
-@inject ICurrentGameLanguage CurrentGameLanguage
+@inject GameTextProvider GameTextProvider
 @inject PropertyParser PropertyParser
 @inject StatParser StatParser
 

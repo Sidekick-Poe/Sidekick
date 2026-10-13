@@ -114690,6 +114690,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_115",
+      "explicit.indexable_support_119",
       "explicit.indexable_support_140",
       "explicit.indexable_support_16",
       "explicit.indexable_support_44",
@@ -114701,7 +114702,9 @@
       "explicit.stat_2062753054",
       "explicit.stat_2805586447",
       "explicit.stat_28821524",
-      "implicit.stat_2062753054"
+      "explicit.stat_539747809",
+      "implicit.stat_2062753054",
+      "implicit.stat_539747809"
     ],
     "pattern": "^\u0E2B\u0E34\u0E19\u0E17\u0E35\u0E48\u0E43\u0E2A\u0E48\\ \u0E16\u0E39\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E14\u0E49\u0E27\u0E22\\ Bonespire\\ \u0E40\u0E25\u0E40\u0E27\u0E25\\ ([-0-9,.]\u002B)$"
   },
@@ -126521,6 +126524,7 @@
       "explicit.stat_1190333629|44482",
       "explicit.stat_1190333629|45313",
       "explicit.stat_1190333629|55867",
+      "explicit.stat_1190333629|57052",
       "explicit.stat_1190333629|58827",
       "explicit.stat_1190333629|61627",
       "explicit.stat_1190333629|6778",

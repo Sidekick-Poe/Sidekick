@@ -5,20 +5,20 @@ using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
-using Sidekick.Game.Providers.Languages;
+using Sidekick.Game.Providers;
 using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class MoreCurrencyProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMoreCurrency.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyMoreCurrency.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionMoreCurrency.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyMoreCurrency.ToRegexIsAugmented();
 
-    public override string Label => currentGameLanguage.Language.DescriptionMoreCurrency;
+    public override string Label => gameTextProvider.Texts.ItemPropertyMoreCurrency;
 
     public override void Parse(Item item)
     {

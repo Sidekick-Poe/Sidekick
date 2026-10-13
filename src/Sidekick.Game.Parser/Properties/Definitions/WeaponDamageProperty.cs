@@ -8,14 +8,13 @@ using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
 using Sidekick.Game.Providers;
-using Sidekick.Game.Providers.Languages;
 using ItemProperties=Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class WeaponDamageProperty(
     GameType game,
-    ICurrentGameLanguage currentGameLanguage,
+    GameTextProvider gameTextProvider,
     IServiceProvider serviceProvider,
     TradeFilterProvider tradeFilterProvider) : PropertyDefinition
 {
@@ -34,23 +33,20 @@ public class WeaponDamageProperty(
         {
             var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();
 
-            var isElemental = lineText.StartsWith(currentGameLanguage.Language.DescriptionElementalDamage);
+            var isElemental = lineText.StartsWith(gameTextProvider.Texts.ItemPropertyElementalDamage);
             if (isElemental)
             {
                 ParseElementalDamage(lineText, item.Properties);
                 continue;
             }
 
-            var isPhysical = lineText.StartsWith(currentGameLanguage.Language.DescriptionPhysicalDamage);
-            var isChaos = lineText.StartsWith(currentGameLanguage.Language.DescriptionChaosDamage);
-            var isFire = lineText.StartsWith(currentGameLanguage.Language.DescriptionFireDamage);
-            var isCold = lineText.StartsWith(currentGameLanguage.Language.DescriptionColdDamage);
-            var isLightning = lineText.StartsWith(currentGameLanguage.Language.DescriptionLightningDamage);
+            var isPhysical = !string.IsNullOrEmpty(gameTextProvider.Texts.ItemPropertyPhysicalDamage) && lineText.StartsWith(gameTextProvider.Texts.ItemPropertyPhysicalDamage);
+            var isChaos = !string.IsNullOrEmpty(gameTextProvider.Texts.ItemPropertyChaosDamage) && lineText.StartsWith(gameTextProvider.Texts.ItemPropertyChaosDamage);
+            var isFire = !string.IsNullOrEmpty(gameTextProvider.Texts.ItemPropertyFireDamage) && lineText.StartsWith(gameTextProvider.Texts.ItemPropertyFireDamage);
+            var isCold = !string.IsNullOrEmpty(gameTextProvider.Texts.ItemPropertyColdDamage) && lineText.StartsWith(gameTextProvider.Texts.ItemPropertyColdDamage);
+            var isLightning = !string.IsNullOrEmpty(gameTextProvider.Texts.ItemPropertyLightningDamage) && lineText.StartsWith(gameTextProvider.Texts.ItemPropertyLightningDamage);
 
-            if (!isPhysical && !isChaos && !isFire && !isCold && !isLightning)
-            {
-                continue;
-            }
+            if (!isPhysical && !isChaos && !isFire && !isCold && !isLightning) continue;
 
             if (isPhysical && lineText.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.PhysicalDamage));
             if (isChaos && lineText.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ChaosDamage));
@@ -117,7 +113,7 @@ public class WeaponDamageProperty(
         // In Path of Exile 1, the elemental damage properties have (augmented) as suffix instead of the easier to parse (fire|cold|lightning).
         foreach (var line in item.Text.Blocks.SelectMany(x => x.Lines))
         {
-            var isElemental = line.Text.StartsWith(currentGameLanguage.Language.DescriptionElementalDamage);
+            var isElemental = line.Text.StartsWith(gameTextProvider.Texts.ItemPropertyElementalDamage);
             if (!isElemental) continue;
 
             var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();

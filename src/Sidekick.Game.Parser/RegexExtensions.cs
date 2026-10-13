@@ -7,7 +7,12 @@ public static class RegexExtensions
 
     public static Regex ToRegexDoubleProperty(this string input) => new($@"^{Regex.Escape(input)}:\s*\+?([\d,\.]+)");
 
-    public static Regex ToRegexStringProperty(this string input) => new($@"^{Regex.Escape(input)}:\s*(.+)$");
+    public static Regex ToRegexStringProperty(this string input)
+    {
+        input = Regex.Escape(input);
+        input = input.Replace(@"\#", @"(.+)");
+        return new($@"^{input}$");
+    }
 
     public static Regex ToRegexIsAugmented(this string input) => new($@"^{Regex.Escape(input)}.*\)$");
 

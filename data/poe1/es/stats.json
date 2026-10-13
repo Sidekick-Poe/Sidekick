@@ -34549,6 +34549,7 @@
     "tradeIds": [
       "enchant.stat_1086309398",
       "enchant.stat_1794090421",
+      "enchant.stat_3026752303",
       "enchant.stat_3729006707",
       "enchant.stat_3910961021",
       "explicit.stat_3910961021"
@@ -34563,6 +34564,7 @@
     "tradeIds": [
       "enchant.stat_1086309398",
       "enchant.stat_1794090421",
+      "enchant.stat_3026752303",
       "enchant.stat_3729006707",
       "enchant.stat_3910961021",
       "explicit.stat_3910961021"
@@ -61466,7 +61468,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1071676747"
+      "explicit.stat_1071676747",
+      "explicit.stat_2106095595"
     ],
     "pattern": "^En\\ los\\ atracos,\\ los\\ Orbes\\ de\\ alquimia\\ caen\\ como\\ Orbes\\ benditos$"
   },
@@ -80074,7 +80077,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_support_154"
+      "explicit.indexable_support_118",
+      "explicit.indexable_support_154",
+      "explicit.indexable_support_36"
     ],
     "pattern": "^Las\\ gemas\\ asistidas\\ est\u00E1n\\ asistidas\\ por\\ ([-0-9,.]\u002B)\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
   },
@@ -81803,10 +81808,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2065361612",
       "explicit.stat_2133566731",
-      "explicit.stat_3739157305",
-      "fractured.stat_2065361612"
+      "explicit.stat_3739157305"
     ],
     "pattern": "^Las\\ gemas\\ engarzadas\\ est\u00E1n\\ asistidas\\ por\\ Iluminar\\ despertada\\ de\\ nivel\\ ([-0-9,.]\u002B)$"
   },
@@ -81932,6 +81935,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1019145105",
+      "explicit.stat_1106668565",
       "explicit.stat_1385879224",
       "explicit.stat_1609369521",
       "explicit.stat_1674086814",
@@ -81943,6 +81947,7 @@
       "explicit.stat_749770518",
       "explicit.stat_833438017",
       "explicit.stat_991044906",
+      "fractured.stat_1106668565",
       "fractured.stat_1866911844",
       "fractured.stat_2065361612",
       "implicit.stat_1866911844"
@@ -87422,12 +87427,13 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|1|4",
@@ -87441,7 +87447,6 @@
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|131",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|148",
       "explicit.stat_4089743927|2|157",
@@ -88817,12 +88822,13 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|1|4",
@@ -88836,7 +88842,6 @@
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|131",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|148",
       "explicit.stat_4089743927|2|157",
@@ -90212,12 +90217,13 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|1|4",
@@ -90231,7 +90237,6 @@
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|131",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|148",
       "explicit.stat_4089743927|2|157",
@@ -91715,12 +91720,13 @@
       "explicit.stat_4089743927|1|116",
       "explicit.stat_4089743927|1|118",
       "explicit.stat_4089743927|1|12",
+      "explicit.stat_4089743927|1|131",
+      "explicit.stat_4089743927|1|133",
       "explicit.stat_4089743927|1|139",
       "explicit.stat_4089743927|1|148",
       "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|27",
-      "explicit.stat_4089743927|1|32",
       "explicit.stat_4089743927|1|35",
       "explicit.stat_4089743927|1|36",
       "explicit.stat_4089743927|1|4",
@@ -91734,7 +91740,6 @@
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|118",
       "explicit.stat_4089743927|2|12",
-      "explicit.stat_4089743927|2|131",
       "explicit.stat_4089743927|2|139",
       "explicit.stat_4089743927|2|148",
       "explicit.stat_4089743927|2|157",
@@ -119287,7 +119292,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1742567045",
-      "fractured.stat_1742567045"
+      "explicit.stat_406353061",
+      "fractured.stat_1742567045",
+      "fractured.stat_406353061"
     ],
     "pattern": "^Los\\ monstruos\\ tienen\\ un\\ ([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ eliminar\\ una\\ carga\\ de\\ frasco\\ con\\ cada\\ golpe$"
   },
@@ -177248,7 +177255,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1071676747"
+      "explicit.stat_1071676747",
+      "explicit.stat_2106095595"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ probabilidad\\ de\\ que\\ los\\ Orbes\\ de\\ alquimia\\ caigan\\ como\\ Orbes\\ benditos\\ dentro\\ de\\ los\\ atracos$"
   },

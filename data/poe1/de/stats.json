@@ -35971,7 +35971,9 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2120297997",
+      "explicit.stat_938645499",
       "fractured.stat_2120297997",
+      "fractured.stat_938645499",
       "implicit.stat_2120297997"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ Chance,\\ Zauberschaden\\ zu\\ blocken\\ beim\\ Tragen\\ eines\\ Bogens$"
@@ -36764,6 +36766,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1361025326",
+      "explicit.stat_1463604143",
+      "explicit.stat_4146386957",
       "explicit.stat_73487979"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ Chance\\ auf\\ zus\u00E4tzliche\\ verderbte\\ Gegenst\u00E4nde,\\ wenn\\ Ihr\\ in\\ einem\\ Raub\u00FCberfall\\ eine\\ Belohnungstruhe\\ \u00F6ffnet$"
@@ -45895,6 +45900,7 @@
     "tradeIds": [
       "explicit.indexable_support_102",
       "explicit.indexable_support_117",
+      "explicit.indexable_support_118",
       "explicit.indexable_support_12",
       "explicit.indexable_support_150",
       "explicit.indexable_support_158",
@@ -45915,6 +45921,7 @@
       "explicit.stat_1385879224",
       "explicit.stat_1715139253",
       "explicit.stat_2062753054",
+      "explicit.stat_2223640518",
       "explicit.stat_2302807931",
       "explicit.stat_2608615082",
       "explicit.stat_3237923082",
@@ -45928,9 +45935,11 @@
       "explicit.stat_804508379",
       "fractured.stat_1106668565",
       "fractured.stat_1122134690",
+      "fractured.stat_2223640518",
       "fractured.stat_2608615082",
       "fractured.stat_3237923082",
       "implicit.stat_2062753054",
+      "implicit.stat_2223640518",
       "implicit.stat_3237923082",
       "implicit.stat_369650395",
       "implicit.stat_689720069"
@@ -47314,7 +47323,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_107",
-      "explicit.stat_2336972637",
       "explicit.stat_2643665787",
       "implicit.stat_2643665787"
     ],
@@ -48781,8 +48789,6 @@
     "lines": 1,
     "tradeIds": [
       "explicit.indexable_support_145",
-      "explicit.indexable_support_92",
-      "explicit.stat_388696990",
       "explicit.stat_3998071134"
     ],
     "pattern": "^Eingefasste\\ Gemmen\\ werden\\ unterst\u00FCtzt\\ durch\\ \u0027Verachtender\\ Herold\u0027\\ Stufe\\ ([-0-9,.]\u002B)$"
@@ -62326,26 +62332,18 @@
       "explicit.stat_4089743927|1|132",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
-      "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|164",
-      "explicit.stat_4089743927|1|36",
-      "explicit.stat_4089743927|1|43",
       "explicit.stat_4089743927|1|48",
-      "explicit.stat_4089743927|1|59",
-      "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
-      "explicit.stat_4089743927|2|100",
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|119",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|132",
-      "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|141",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|154",
@@ -62370,6 +62368,7 @@
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
       "explicit.stat_4089743927|3|36",
+      "explicit.stat_4089743927|3|43",
       "explicit.stat_4089743927|3|48",
       "explicit.stat_4089743927|3|59",
       "explicit.stat_4089743927|3|8",
@@ -62381,7 +62380,6 @@
       "explicit.stat_4089743927|4|115",
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|119",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|120",
@@ -62403,8 +62401,7 @@
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|51",
       "explicit.stat_4089743927|4|59",
-      "explicit.stat_4089743927|4|64",
-      "explicit.stat_4089743927|4|72",
+      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|90",
       "explicit.stat_4089743927|4|91"
@@ -63821,26 +63818,18 @@
       "explicit.stat_4089743927|1|132",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
-      "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|164",
-      "explicit.stat_4089743927|1|36",
-      "explicit.stat_4089743927|1|43",
       "explicit.stat_4089743927|1|48",
-      "explicit.stat_4089743927|1|59",
-      "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
-      "explicit.stat_4089743927|2|100",
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|119",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|132",
-      "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|141",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|154",
@@ -63865,6 +63854,7 @@
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
       "explicit.stat_4089743927|3|36",
+      "explicit.stat_4089743927|3|43",
       "explicit.stat_4089743927|3|48",
       "explicit.stat_4089743927|3|59",
       "explicit.stat_4089743927|3|8",
@@ -63876,7 +63866,6 @@
       "explicit.stat_4089743927|4|115",
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|119",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|120",
@@ -63898,8 +63887,7 @@
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|51",
       "explicit.stat_4089743927|4|59",
-      "explicit.stat_4089743927|4|64",
-      "explicit.stat_4089743927|4|72",
+      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|90",
       "explicit.stat_4089743927|4|91"
@@ -65316,26 +65304,18 @@
       "explicit.stat_4089743927|1|132",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
-      "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|164",
-      "explicit.stat_4089743927|1|36",
-      "explicit.stat_4089743927|1|43",
       "explicit.stat_4089743927|1|48",
-      "explicit.stat_4089743927|1|59",
-      "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
-      "explicit.stat_4089743927|2|100",
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|119",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|132",
-      "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|141",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|154",
@@ -65360,6 +65340,7 @@
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
       "explicit.stat_4089743927|3|36",
+      "explicit.stat_4089743927|3|43",
       "explicit.stat_4089743927|3|48",
       "explicit.stat_4089743927|3|59",
       "explicit.stat_4089743927|3|8",
@@ -65371,7 +65352,6 @@
       "explicit.stat_4089743927|4|115",
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|119",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|120",
@@ -65393,8 +65373,7 @@
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|51",
       "explicit.stat_4089743927|4|59",
-      "explicit.stat_4089743927|4|64",
-      "explicit.stat_4089743927|4|72",
+      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|90",
       "explicit.stat_4089743927|4|91"
@@ -66826,26 +66805,18 @@
       "explicit.stat_4089743927|1|132",
       "explicit.stat_4089743927|1|146",
       "explicit.stat_4089743927|1|154",
-      "explicit.stat_4089743927|1|157",
       "explicit.stat_4089743927|1|161",
       "explicit.stat_4089743927|1|163",
       "explicit.stat_4089743927|1|164",
-      "explicit.stat_4089743927|1|36",
-      "explicit.stat_4089743927|1|43",
       "explicit.stat_4089743927|1|48",
-      "explicit.stat_4089743927|1|59",
-      "explicit.stat_4089743927|1|79",
       "explicit.stat_4089743927|1|8",
-      "explicit.stat_4089743927|1|90",
       "explicit.stat_4089743927|1|91",
-      "explicit.stat_4089743927|2|100",
       "explicit.stat_4089743927|2|114",
       "explicit.stat_4089743927|2|115",
       "explicit.stat_4089743927|2|116",
       "explicit.stat_4089743927|2|119",
       "explicit.stat_4089743927|2|12",
       "explicit.stat_4089743927|2|132",
-      "explicit.stat_4089743927|2|134",
       "explicit.stat_4089743927|2|141",
       "explicit.stat_4089743927|2|146",
       "explicit.stat_4089743927|2|154",
@@ -66870,6 +66841,7 @@
       "explicit.stat_4089743927|3|157",
       "explicit.stat_4089743927|3|161",
       "explicit.stat_4089743927|3|36",
+      "explicit.stat_4089743927|3|43",
       "explicit.stat_4089743927|3|48",
       "explicit.stat_4089743927|3|59",
       "explicit.stat_4089743927|3|8",
@@ -66881,7 +66853,6 @@
       "explicit.stat_4089743927|4|115",
       "explicit.stat_4089743927|4|116",
       "explicit.stat_4089743927|4|117",
-      "explicit.stat_4089743927|4|118",
       "explicit.stat_4089743927|4|119",
       "explicit.stat_4089743927|4|12",
       "explicit.stat_4089743927|4|120",
@@ -66903,8 +66874,7 @@
       "explicit.stat_4089743927|4|48",
       "explicit.stat_4089743927|4|51",
       "explicit.stat_4089743927|4|59",
-      "explicit.stat_4089743927|4|64",
-      "explicit.stat_4089743927|4|72",
+      "explicit.stat_4089743927|4|78",
       "explicit.stat_4089743927|4|8",
       "explicit.stat_4089743927|4|90",
       "explicit.stat_4089743927|4|91"
@@ -73079,8 +73049,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1298238534",
+      "explicit.stat_311030839",
       "explicit.stat_3303015",
-      "fractured.stat_3303015"
+      "explicit.stat_69898010",
+      "fractured.stat_1298238534",
+      "fractured.stat_311030839",
+      "fractured.stat_3303015",
+      "fractured.stat_69898010"
     ],
     "pattern": "^F\u00FCgt\\ Angriffen\\ mit\\ Waffen\\ ([-0-9,.]\u002B)\\ bis\\ ([-0-9,.]\u002B)\\ physischen\\ Schaden\\ hinzu$"
   },
@@ -81094,7 +81070,8 @@
     "lines": 1,
     "tradeIds": [
       "crucible.mod_20871",
-      "crucible.mod_4343"
+      "crucible.mod_4343",
+      "crucible.mod_62042"
     ],
     "pattern": "^Gegenstand\\ erzielt\\ beim\\ Verkauf\\ eine\\ zus\u00E4tzliche\\ Sph\u00E4re\\ der\\ L\u00E4uterung$"
   },
@@ -149115,6 +149092,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2158060122",
       "explicit.stat_723832351"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ Blitzschadens\\ werden\\ in\\ Feuerschaden\\ umgewandelt$"
@@ -154375,8 +154353,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2222186378",
       "explicit.stat_821241191",
       "implicit.stat_821241191",
+      "scourge.stat_2222186378",
       "scourge.stat_821241191"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Lebens-\\ und\\ Manawiederherstellung\\ von\\ Fl\u00E4schchen$"
@@ -158870,8 +158850,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1612163368",
       "explicit.stat_2066542501",
+      "fractured.stat_1612163368",
       "fractured.stat_2066542501",
+      "implicit.stat_1612163368",
       "implicit.stat_2066542501"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ erh\u00F6hte\\ Zaubergeschwindigkeit\\ beim\\ Tragen\\ eines\\ Bogens$"
@@ -176229,8 +176212,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_2222186378",
       "explicit.stat_821241191",
       "implicit.stat_821241191",
+      "scourge.stat_2222186378",
       "scourge.stat_821241191"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Lebens-\\ und\\ Manawiederherstellung\\ von\\ Fl\u00E4schchen$"
@@ -180052,8 +180037,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1612163368",
       "explicit.stat_2066542501",
+      "fractured.stat_1612163368",
       "fractured.stat_2066542501",
+      "implicit.stat_1612163368",
       "implicit.stat_2066542501"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Zaubergeschwindigkeit\\ beim\\ Tragen\\ eines\\ Bogens$"
@@ -190120,6 +190108,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "implicit.stat_2811834828",
       "implicit.stat_3998601568"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ zu\\ Multiplikator\\ f\u00FCr\\ kritische\\ Treffer\\ mit\\ Klauen\\ oder\\ Dolchen$"
@@ -190280,11 +190269,9 @@
     "tradeIds": [
       "explicit.stat_1569407745",
       "explicit.stat_2307547323",
-      "explicit.stat_2441475928",
       "explicit.stat_915908446",
       "fractured.stat_1569407745",
       "fractured.stat_2307547323",
-      "fractured.stat_2441475928",
       "fractured.stat_915908446"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ zu\\ Multiplikator\\ f\u00FCr\\ kritische\\ Treffer\\ von\\ Herold-Fertigkeiten$"
@@ -192603,7 +192590,6 @@
     "text": "\u002B# zur Stufe aller #-Gemmen",
     "lines": 1,
     "tradeIds": [
-      "explicit.indexable_skill_62",
       "explicit.indexable_skill_68",
       "explicit.indexable_skill_70"
     ],
