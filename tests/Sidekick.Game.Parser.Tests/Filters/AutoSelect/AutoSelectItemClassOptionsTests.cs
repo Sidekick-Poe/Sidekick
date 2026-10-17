@@ -2,7 +2,7 @@ using Sidekick.Game;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Xunit;
-namespace Sidekick.Apis.Poe.Tests.AutoSelect;
+namespace Sidekick.Game.Parser.Tests.Filters.AutoSelect;
 
 public class AutoSelectItemClassOptionsTests
 {
