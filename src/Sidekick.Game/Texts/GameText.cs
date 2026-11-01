@@ -55,6 +55,7 @@ public class GameText
     public string ItemPropertyWaystoneDropChance { get; set; } = string.Empty;
     public string ItemPropertyMagicMonsters { get; set; } = string.Empty;
     public string ItemPropertyRareMonsters { get; set; } = string.Empty;
+    public string ItemPropertyMonsterRarity { get; set; } = string.Empty;
     public string ItemPropertyReward { get; set; } = string.Empty;
     public string ItemPropertyMoreMaps { get; set; } = string.Empty;
     public string ItemPropertyMoreScarabs { get; set; } = string.Empty;

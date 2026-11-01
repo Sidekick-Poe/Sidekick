@@ -21,13 +21,4 @@
     <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Unique\UniqueResult.razor" />
-    <UpToDateCheckInput Remove="Unique\UniqueTab.razor" />
-    <UpToDateCheckInput Remove="Trade\Bulk\BulkResult.razor" />
-    <UpToDateCheckInput Remove="Trade\Bulk\BulkSticky.razor" />
-    <UpToDateCheckInput Remove="Settings\SettingsContent.razor" />
-    <UpToDateCheckInput Remove="Settings\SettingsPage.razor" />
-  </ItemGroup>
-
 </Project>

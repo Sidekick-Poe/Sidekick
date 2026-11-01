@@ -20,6 +20,9 @@ internal class AuthenticationService
     BrowserDialogProvider browserDialogProvider
 ) : IAuthenticationService
 {
+    public const string SettingsTokenName = "PoeAccountToken";
+    public const string SettingsExpirationName = "PoeAccountExpiration";
+
     public event Action? OnStateChanged;
 
     private Task? AuthenticateTask { get; set; }
@@ -28,10 +31,15 @@ internal class AuthenticationService
     {
         if (AuthenticateTask != null) return AuthenticationState.InProgress;
 
-        var bearerToken = await settingsService.GetString(SettingKeys.BearerToken);
-        var bearerExpiration = await settingsService.GetDateTime(SettingKeys.BearerExpiration);
+        var bearerToken = await settingsService.GetString(SettingsTokenName);
+        var bearerExpiration = await settingsService.GetDateTime(SettingsExpirationName);
         if (bearerExpiration == null || string.IsNullOrEmpty(bearerToken)) return AuthenticationState.Unauthenticated;
         return DateTimeOffset.Now < bearerExpiration ? AuthenticationState.Authenticated : AuthenticationState.Unauthenticated;
+    }
+
+    public async Task<DateTimeOffset?> GetExpiration()
+    {
+        return await settingsService.GetDateTime(SettingsExpirationName);
     }
 
     private async Task<string?> GetToken()
@@ -41,7 +49,7 @@ internal class AuthenticationService
         var currentState = await GetCurrentState();
         if (currentState != AuthenticationState.Authenticated) return null;
 
-        return await settingsService.GetString(SettingKeys.BearerToken);
+        return await settingsService.GetString(SettingsTokenName);
     }
 
     public async Task InitializeHttpRequest(HttpRequestMessage request)
@@ -117,8 +125,8 @@ internal class AuthenticationService
             return;
         }
 
-        await settingsService.Set(SettingKeys.BearerToken, token.access_token);
-        await settingsService.Set(SettingKeys.BearerExpiration, DateTimeOffset.Now.AddSeconds(token.expires_in));
+        await settingsService.Set(SettingsTokenName, token.access_token);
+        await settingsService.Set(SettingsExpirationName, DateTimeOffset.Now.AddSeconds(token.expires_in));
         AuthenticateTask = null;
         OnStateChanged?.Invoke();
     }

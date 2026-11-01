@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Common.Cloudflare;
 using Sidekick.Apis.Common.Limiter;
 using Sidekick.Apis.Common.States;
+using Sidekick.Apis.Poe.Trade.Authentication;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Exceptions;
 using Sidekick.Game.Providers.Languages;
@@ -17,7 +18,8 @@ public class TradeApiHandler
     ApiLimiterProvider limitProvider,
     IApiStateProvider apiStateProvider,
     ICurrentGameLanguage currentGameLanguage,
-    ILogger<TradeApiHandler> logger
+    ILogger<TradeApiHandler> logger,
+    IAuthenticationService authenticationService
 ) : DelegatingHandler
 {
     private JsonSerializerOptions JsonSerializerOptions { get; } = new()
@@ -30,6 +32,7 @@ public class TradeApiHandler
     {
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
         await cloudflareService.InitializeHttpRequest(TradeApiClient.ClientName, request, cancellationToken);
+        await authenticationService.InitializeHttpRequest(request);
 
         apiStateProvider.Update(TradeApiClient.ClientName, ApiState.Throttled);
 
