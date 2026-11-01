@@ -62,6 +62,7 @@ public class PropertyParser
             new ItemQuantityProperty(game, gameTextProvider),
             new ItemRarityProperty(game, gameTextProvider),
             new MonsterEffectivenessProperty(game, gameTextProvider),
+            new MonsterRarityProperty(game, gameTextProvider),
             new MoreMapsProperty(game, gameTextProvider),
             new MoreScarabsProperty(game, gameTextProvider),
             new MoreCurrencyProperty(game, gameTextProvider),
