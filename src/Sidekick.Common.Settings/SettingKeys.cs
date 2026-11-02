@@ -4,9 +4,6 @@ public static class SettingKeys
 {
     public const string Version = nameof(Version);
 
-    public const string BearerToken = nameof(BearerToken);
-    public const string BearerExpiration = nameof(BearerExpiration);
-
     public const string OpenHomeOnLaunch = nameof(OpenHomeOnLaunch);
     public const string SilentStart = nameof(SilentStart);
     public const string Zoom = nameof(Zoom);

@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sidekick.Apis.Poe.Trade.Authentication;
 using Sidekick.Apis.Poe.Trade.Clients;
 
 namespace Sidekick.Apis.Poe.Trade;
@@ -15,6 +16,7 @@ public static class StartupExtensions
 
         services.TryAddTransient<ITradeApiClient, TradeApiClient>();
         services.TryAddSingleton<IItemTradeService, ItemTradeService>();
+        services.TryAddSingleton<IAuthenticationService, AuthenticationService>();
 
         return services;
     }

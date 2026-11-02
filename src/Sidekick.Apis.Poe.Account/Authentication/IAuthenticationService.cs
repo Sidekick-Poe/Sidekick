@@ -6,6 +6,8 @@ public interface IAuthenticationService
 
     Task<AuthenticationState> GetCurrentState();
 
+    Task<DateTimeOffset?> GetExpiration();
+
     Task InitializeHttpRequest(HttpRequestMessage request);
 
     Task Authenticate(bool reauthenticate = false, CancellationToken cancellationToken = default);

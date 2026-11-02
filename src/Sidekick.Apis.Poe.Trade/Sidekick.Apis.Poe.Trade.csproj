@@ -13,4 +13,8 @@
         <ProjectReference Include="..\Sidekick.Game.Providers\Sidekick.Game.Providers.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+    </ItemGroup>
+
 </Project>

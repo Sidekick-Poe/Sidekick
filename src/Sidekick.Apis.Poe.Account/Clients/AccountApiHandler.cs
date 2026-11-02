@@ -143,8 +143,8 @@ public class AccountApiHandler
     {
         if (response.StatusCode != HttpStatusCode.Unauthorized) return;
 
-        await settingsService.Set(SettingKeys.BearerToken, null);
-        await settingsService.Set(SettingKeys.BearerExpiration, null);
+        await settingsService.Set(AuthenticationService.SettingsTokenName, null);
+        await settingsService.Set(AuthenticationService.SettingsExpirationName, null);
         logger.LogWarning("[PoeApiHandler] Unauthorized.");
         throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
     }
