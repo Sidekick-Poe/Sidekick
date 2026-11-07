@@ -18,10 +18,15 @@
 
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
     <TopContent>
-        <AppBar>
-            <AppSettings Href="/settings/game"/>
-            <AppClose/>
-        </AppBar>
+        <div class="dark:bg-stone-950 flex items-center flex-wrap py-2 pl-4">
+            <h1 class="font-medium leading-none text-lg flex items-center gap-4 select-none">
+                <img src="@Assets["_content/Sidekick.Common.Ui/images/orbs/ExaltedOrb.png"]" alt="logo" class="w-6 h-6" />
+                <span>Sidekick</span>
+            </h1>
+            <div class="ml-auto flex flex-nowrap items-stretch">
+                <AppSettings Href="/settings/game"/>
+            </div>
+        </div>
     </TopContent>
     <LeftContent>
         @if (Item != null)

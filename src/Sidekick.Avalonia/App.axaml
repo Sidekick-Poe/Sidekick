@@ -1,8 +1,115 @@
-<Application xmlns="https://github.com/avaloniaui"
+﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Sidekick.Avalonia.App"
              RequestedThemeVariant="Dark">
+    <Application.Resources>
+        <FontFamily x:Key="FontinFont">Assets/Fonts/fontin-regular-webfont.ttf#Fontin</FontFamily>
+        <FontFamily x:Key="FontinSmallCapsFont">Assets/Fonts/fontin-smallcaps-webfont.ttf#Fontin SmallCaps</FontFamily>
+
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#181816" />
+        <SolidColorBrush x:Key="PanelBorderBrush" Color="#252525" />
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#6D28D9" />
+        <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#8B5CF6" />
+        <SolidColorBrush x:Key="PrimaryPressedBrush" Color="#5B21B6" />
+        <SolidColorBrush x:Key="SecondaryBrush" Color="#2D2D2D" />
+        <SolidColorBrush x:Key="SecondaryHoverBrush" Color="#3A3A3A" />
+        <SolidColorBrush x:Key="SecondaryPressedBrush" Color="#242424" />
+        <SolidColorBrush x:Key="FocusBrush" Color="#A78BFA" />
+    </Application.Resources>
+
     <Application.Styles>
-        <FluentTheme />
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <ColorPaletteResources x:Key="Dark"
+                                       Accent="#57534E"
+                                       RegionColor="#1C1917"
+                                       ChromeBlackLow="#1C1917"
+                                       ChromeBlackMediumLow="#1C1917"
+                                       ChromeBlackMedium="#1C1917"
+                                       ChromeBlackHigh="#1C1917"
+                                       ChromeLow="#1C1917"
+                                       ChromeMediumLow="#1C1917"
+                                       ChromeMedium="#1C1917"
+                                       ChromeHigh="#1C1917"
+                                       ChromeDisabledLow="#1C1917"
+                                       ChromeDisabledHigh="#1C1917"
+                                       BaseLow="#1C1917"
+                                       BaseMediumLow="#1C1917"
+                                       BaseMedium="#1C1917"
+                                       BaseMediumHigh="#1C1917"
+                                       BaseHigh="#1C1917"
+                                       AltLow="#1C1917"
+                                       AltMediumLow="#1C1917"
+                                       AltMedium="#1C1917"
+                                       AltMediumHigh="#1C1917"
+                                       AltHigh="#1C1917" />
+            </FluentTheme.Palettes>
+
+            <Style Selector="Button.primary">
+                <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
+
+            <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{StaticResource PrimaryHoverBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryHoverBrush}" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+            </Style>
+
+            <Style Selector="Button.primary:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="{StaticResource PrimaryPressedBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryPressedBrush}" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+            </Style>
+
+            <Style Selector="Button.secondary">
+                <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+                <Setter Property="BorderBrush" Value="#555555" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
+
+            <Style Selector="Button.secondary:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{StaticResource SecondaryHoverBrush}" />
+                <Setter Property="BorderBrush" Value="#555555" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+            </Style>
+
+            <Style Selector="Button.secondary:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="{StaticResource SecondaryPressedBrush}" />
+                <Setter Property="BorderBrush" Value="#555555" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+            </Style>
+        </FluentTheme>
+
+        <!-- Hide the built-in title text in WindowDrawnDecorations -->
+        <Style Selector="WindowDrawnDecorations TextBlock">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
+        <!-- Hide Fullscreen Button -->
+        <Style Selector="WindowDrawnDecorations /template/ Button#PART_FullScreenButton">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
+        <!-- Minimize Button Hover -->
+        <Style Selector="WindowDrawnDecorations /template/ Button#PART_MinimizeButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#44403b" />
+        </Style>
+
+        <!-- Maximize Button Hover -->
+        <Style Selector="WindowDrawnDecorations /template/ Button#PART_MaximizeButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#44403b" />
+        </Style>
+
+        <!-- Close Button Hover (Standard Red Accent) -->
+        <Style Selector="WindowDrawnDecorations /template/ Button#PART_CloseButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#c10007" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
     </Application.Styles>
 </Application>

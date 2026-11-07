@@ -16,24 +16,4 @@ public class CurrentView(IViewLocator viewLocator)
     {
         viewLocator.Close(CurrentViewType);
     }
-
-    public void Maximize()
-    {
-        viewLocator.Maximize(CurrentViewType);
-    }
-
-    public void Minimize()
-    {
-        viewLocator.Minimize(CurrentViewType);
-    }
-
-    public void StartMoving(int pageX, int pageY)
-    {
-        viewLocator.StartMoving(CurrentViewType, pageX, pageY);
-    }
-
-    public void StopMoving()
-    {
-        viewLocator.StopMoving(CurrentViewType);
-    }
 }

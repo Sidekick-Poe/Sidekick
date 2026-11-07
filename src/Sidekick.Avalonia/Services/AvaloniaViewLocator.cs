@@ -1,14 +1,10 @@
 using Avalonia;
-using Avalonia.Controls;
-using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.EventArgs;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Avalonia.Services;
 
 public class AvaloniaViewLocator(
-    ILogger<AvaloniaViewLocator> logger,
-    IInputProvider inputProvider) : IViewLocator
+    ILogger<AvaloniaViewLocator> logger) : IViewLocator
 {
 
     public SidekickViewType LastOpenedType { get; private set; }
@@ -16,8 +12,6 @@ public class AvaloniaViewLocator(
     private StandardWindow? StandardWindow { get; set; }
     private OverlayWindow? OverlayWindow { get; set; }
     private SplashWindow? SplashWindow { get; set; }
-
-    private Action<DraggedEventArgs>? OnMouseDrag { get; set; }
 
     private Application GetApplication() => Application.Current ?? throw new Exception("Application is not initialized.");
 
@@ -73,36 +67,6 @@ public class AvaloniaViewLocator(
         });
     }
 
-    public void Maximize(SidekickViewType type)
-    {
-        GetApplication().Dispatcher.Invoke(() =>
-        {
-            switch (type)
-            {
-                case SidekickViewType.Standard:
-                    StandardWindow?.MaximizeView();
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-        });
-    }
-
-    public void Minimize(SidekickViewType type)
-    {
-        GetApplication().Dispatcher.Invoke(() =>
-        {
-            switch (type)
-            {
-                case SidekickViewType.Standard:
-                    StandardWindow?.MinimizeView();
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-        });
-    }
-
     public bool IsOpened(SidekickViewType type)
     {
         return GetApplication().Dispatcher.Invoke(() =>
@@ -116,67 +80,4 @@ public class AvaloniaViewLocator(
         });
     }
 
-    public void StartMoving(SidekickViewType type, int pageX, int pageY)
-    {
-        StopMoving(type);
-
-        PixelPoint? initialWindowPosition = null;
-        PixelPoint? initialMousePosition = null;
-
-        OnMouseDrag = args =>
-        {
-            GetApplication().Dispatcher.Invoke(() =>
-            {
-                Window? window = type switch
-                {
-                    SidekickViewType.Overlay => OverlayWindow,
-                    SidekickViewType.Splash => SplashWindow,
-                    _ => StandardWindow,
-                };
-                if (window == null || !window.IsVisible || window.WindowState == WindowState.Maximized) return;
-
-                var mousePosition = new PixelPoint(args.X, args.Y);
-
-                if (initialWindowPosition == null || initialMousePosition == null)
-                {
-                    initialWindowPosition = window.Position;
-                    initialMousePosition = mousePosition;
-                    return;
-                }
-
-                var deltaX = mousePosition.X - initialMousePosition.Value.X;
-                var deltaY = mousePosition.Y - initialMousePosition.Value.Y;
-
-                window.Position = new PixelPoint(initialWindowPosition.Value.X + deltaX, initialWindowPosition.Value.Y + deltaY);
-            });
-        };
-
-        inputProvider.OnMouseDrag += OnMouseDrag;
-    }
-
-    public void StopMoving(SidekickViewType type)
-    {
-        if (OnMouseDrag == null) return;
-
-        inputProvider.OnMouseDrag -= OnMouseDrag;
-        OnMouseDrag = null;
-
-        if (type == SidekickViewType.Standard)
-        {
-            GetApplication().Dispatcher.Invoke(async () =>
-            {
-                if (StandardWindow == null) return;
-                await StandardWindow.SavePosition();
-            });
-        }
-
-        if (type == SidekickViewType.Overlay)
-        {
-            GetApplication().Dispatcher.Invoke(async () =>
-            {
-                if (OverlayWindow == null) return;
-                await OverlayWindow.SavePosition();
-            });
-        }
-    }
 }
