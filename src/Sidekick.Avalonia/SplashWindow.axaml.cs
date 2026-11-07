@@ -1,30 +1,19 @@
 using System.Globalization;
 using System.Text.Json;
 using Avalonia.Controls;
-using Avalonia.Media;
+using Sidekick.Avalonia.Controls;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Avalonia;
 
-public partial class SplashWindow : Window
+public partial class SplashWindow : BaseWindow
 {
     private const int WIDTH = 600;
     private const int HEIGHT = 500;
 
-    private IServiceProvider ServiceProvider => App.RequiredServerAppHost.Application.Services;
-
-    public SplashWindow()
+    public SplashWindow() :
+        base(HEIGHT, WIDTH)
     {
-        Title = "Sidekick";
-        Width = WIDTH;
-        Height = HEIGHT;
-        Background = Brushes.Transparent;
-        WindowDecorations = WindowDecorations.None;
-        WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        Topmost = false;
-        ShowInTaskbar = true;
-        CanResize = false;
-
         InitializeComponent();
     }
 
@@ -58,17 +47,5 @@ public partial class SplashWindow : Window
         Width = WIDTH * zoom;
         MinWidth = Width;
         MinHeight = Height;
-    }
-
-    public void CloseView()
-    {
-        Hide();
-    }
-
-    protected override void OnClosing(WindowClosingEventArgs e)
-    {
-        CloseView();
-        e.Cancel = true;
-        base.OnClosing(e);
     }
 }

@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using Microsoft.Extensions.Localization;
 using Sidekick.Common.Dialogs;
@@ -27,6 +28,7 @@ public partial class DialogWindow : Window
         Background = new SolidColorBrush(Color.FromRgb(12, 10, 10));
         WindowDecorations = WindowDecorations.None;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        RequestedThemeVariant = ThemeVariant.Dark;
         ShowActivated = true;
         Topmost = false;
         ShowInTaskbar = true;

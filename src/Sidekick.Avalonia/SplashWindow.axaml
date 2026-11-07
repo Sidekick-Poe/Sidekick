@@ -1,8 +1,15 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:utilities="clr-namespace:Sidekick.Avalonia.Utilities"
-        x:Class="Sidekick.Avalonia.SplashWindow">
-    <Grid Name="Grid">
-        <utilities:SidekickWebView Name="WebView" />
+        xmlns:controls="clr-namespace:Sidekick.Avalonia.Controls"
+        x:Class="Sidekick.Avalonia.SplashWindow"
+        WindowDecorations="None"
+        Topmost="False"
+        ShowInTaskbar="True"
+        CanResize="False">
+    <Grid RowDefinitions="Auto,*">
+        <Grid Grid.Row="1"
+              Name="Grid">
+            <controls:SidekickWebView Name="WebView" />
+        </Grid>
     </Grid>
 </Window>

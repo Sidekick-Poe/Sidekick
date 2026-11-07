@@ -1,15 +1,15 @@
 using System.Net;
 using Avalonia.Controls;
-using Avalonia.Media;
 using Avalonia.Threading;
+using Sidekick.Avalonia.Controls;
 using Sidekick.Common.Dialogs;
 
 namespace Sidekick.Avalonia;
 
-public partial class BrowserWindow : Window
+public partial class BrowserWindow : BaseWindow
 {
-    private const int WIDTH = 800;
-    private const int HEIGHT = 600;
+    private const int WIDTH = 968;
+    private const int HEIGHT = 768;
 
     private readonly ILogger logger;
     private readonly BrowserDialogProvider.OpenedArgs args;
@@ -17,32 +17,18 @@ public partial class BrowserWindow : Window
     private string? userAgent;
     private bool resultSet;
 
-    public BrowserWindow(ILogger logger, BrowserDialogProvider.OpenedArgs args)
+    public BrowserWindow(ILogger logger, BrowserDialogProvider.OpenedArgs args) :
+        base(HEIGHT, WIDTH, "BrowserWindow")
     {
         this.logger = logger;
         this.args = args;
 
-        Title = "Sidekick";
-        Width = WIDTH;
-        Height = HEIGHT;
-        MinWidth = WIDTH;
-        MinHeight = HEIGHT;
-        Background = new SolidColorBrush(Color.FromRgb(12, 10, 10));
-        WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        WindowDecorations = WindowDecorations.Full;
-        Topmost = true;
-        ShowInTaskbar = true;
-        CanResize = false;
-
         InitializeComponent();
 
         WebView.NavigationCompleted += WebView_NavigationCompleted;
-
-        Opened += BrowserWindow_Opened;
-        Closed += BrowserWindow_Closed;
     }
 
-    private void BrowserWindow_Opened(object? sender, EventArgs e)
+    protected override void OnOpened(EventArgs e)
     {
         _ = Dispatcher.InvokeAsync(async () =>
         {
@@ -62,27 +48,33 @@ public partial class BrowserWindow : Window
                 logger.LogError(ex, "[BrowserWindow] Error opening the browser window.");
 
                 SetResult(new BrowserDialogProvider.Result(
-                    Uri: WebView.Source,
-                    Success: false,
-                    UserAgent: userAgent,
-                    Cookies: new Dictionary<string, string>(),
-                    JsonContent: null));
+                          Uri: WebView.Source,
+                          Success: false,
+                          UserAgent: userAgent,
+                          Cookies: new Dictionary<string, string>(),
+                          JsonContent: null));
 
                 Close();
             }
+
+            await NormalizeView();
         }, DispatcherPriority.ApplicationIdle);
+
+        base.OnOpened(e);
     }
 
-    private void BrowserWindow_Closed(object? sender, EventArgs e)
+    protected override void OnClosing(WindowClosingEventArgs e)
     {
         logger.LogInformation("[BrowserWindow] Closing the window.");
 
         SetResult(new BrowserDialogProvider.Result(
-            Uri: WebView.Source,
-            Success: false,
-            UserAgent: userAgent,
-            Cookies: new Dictionary<string, string>(),
-            JsonContent: null));
+                  Uri: WebView.Source,
+                  Success: false,
+                  UserAgent: userAgent,
+                  Cookies: new Dictionary<string, string>(),
+                  JsonContent: null));
+
+        base.OnClosing(e);
     }
 
     private async void WebView_NavigationCompleted(object? sender, WebViewNavigationCompletedEventArgs e)
