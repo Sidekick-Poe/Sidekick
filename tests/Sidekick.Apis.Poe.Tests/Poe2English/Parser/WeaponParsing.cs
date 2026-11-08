@@ -463,4 +463,60 @@ Gain 19 Mana per enemy killed
         Assert.Equal(60, actual.Properties.RequiresStrength);
         Assert.Equal(52, actual.Properties.RequiresLevel);
     }
+
+    [Fact]
+    public void ParseSanctifiedCrossbowWithCombinedModsAndFixedRangeValue()
+    {
+        var actual = parser.ParseItem(
+        @"Item Class: Crossbows
+Rarity: Rare
+Gloom Core
+Elegant Crossbow
+--------
+Quality: +20% (augmented)
+Physical Damage: 37-148 (augmented)
+Fire Damage: 373-601 (fire)
+Critical Hit Chance: 5.00%
+Attacks per Second: 1.65
+Reload Time: 0.85
+--------
+Requires: Level 78, 89 Str, 89 Dex
+--------
+Sockets: S S
+--------
+Item Level: 81
+--------
+Forged by the Passion of Aldur (rune)
+40% increased Ignite Magnitude (rune)
+--------
+{ Implicit Modifier }
+35(20-30)% chance to Pierce an Enemy
+--------
+{ Prefix Modifier ""Carbonising"" (Tier: 1) — Damage, Elemental, Fire, Attack }
+Adds 174(135-156) to 260(205-236) Fire Damage
+{ Prefix Modifier ""Carbonising"" (Tier: 1) — Damage, Elemental, Fire, Attack }
+Adds 151(135-156) to 250(205-236) Fire Damage
+{ Prefix Modifier ""Incinerating"" (Tier: 4) — Damage, Elemental, Fire, Attack }
+Adds 48(56-70) to 91(84-107) Fire Damage
+{ Desecrated Suffix Modifier ""of Amanamu"" (Tier: 1) }
+8(5-10)% increased Spirit Reservation Efficiency of Skills
+{ Crafted Suffix Modifier ""of the Essence"" — Speed }
+20(20-25)% chance to gain Onslaught on Killing Hits with this Weapon
+{ Crafted Suffix Modifier ""of the Essence"" — Attack }
++4(3) to Level of all Attack Skills
+--------
+Sanctified
+");
+
+        Assert.Equal(ItemClass.Crossbow, actual.ItemClass.Type);
+
+        // Three fire prefixes are merged by the game; both min and max must be summed.
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Fire Damage", 373, 601);
+        Assert.Single(actual.Stats, x => x.Text.StartsWith("Adds") && x.Text.EndsWith("Fire Damage"));
+
+        // Sanctified values can leave a fixed range, e.g. +4(3).
+        fixture.AssertHasStat(actual, StatCategory.Crafted, "# to Level of all Attack Skills", 4);
+        fixture.AssertHasStat(actual, StatCategory.Crafted, "#% chance to gain Onslaught on Killing Hits with this Weapon", 20);
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% chance to Pierce an Enemy", 35);
+    }
 }
