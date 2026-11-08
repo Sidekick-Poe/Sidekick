@@ -406,8 +406,6 @@ public class InputProvider
 
     public event Action<ScrollEventArgs>? OnScrollUp;
 
-    public event Action<DraggedEventArgs>? OnMouseDrag;
-
     private List<KeybindHandler> KeybindHandlers { get; init; } =
         [];
 
@@ -473,7 +471,6 @@ public class InputProvider
 
         // Initialize mouse hooks
         Hook.MouseWheel += OnMouseWheel;
-        Hook.MouseDragged += OnMouseDragged;
         Hook.MouseMoved += OnMouseMoved;
 
         HookTask = Hook.RunAsync();
@@ -531,7 +528,6 @@ public class InputProvider
             // Ensure hook itself is set to null
             Hook.KeyPressed -= OnKeyPressed;
             Hook.MouseWheel -= OnMouseWheel;
-            Hook.MouseDragged -= OnMouseDragged;
             Hook.Dispose();
             Hook = null;
 
@@ -762,13 +758,6 @@ public class InputProvider
         }
 
         if (eventArgs.Suppress) args.SuppressEvent = true;
-    }
-
-    private void OnMouseDragged(object? sender, MouseHookEventArgs args)
-    {
-        if (!Enabled) return;
-
-        OnMouseDrag?.Invoke(new(args.Data.X, args.Data.Y));
     }
 
     public async Task WiggleMouse()
