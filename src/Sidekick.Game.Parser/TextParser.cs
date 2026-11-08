@@ -16,7 +16,8 @@ public class TextParser
 ) : IInitializableService
 {
     private Regex ParanthesesCategory { get; } = new(@"\s*\([a-z]+\)$");
-    private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+\-[-+\d,.]+\)");
+    // Matches "174(135-156)" and also a fixed range like "+4(3)", which sanctified items can roll outside of.
+    private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+(?:\-[-+\d,.]+)?\)");
     private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\s?\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
 
     private GameType Game { get; set; }
@@ -88,24 +89,30 @@ public class TextParser
 
                     try
                     {
-                        var prevMatch = AdvancedDigitsFormat.Match(previousLine.Text);
-                        var currMatch = AdvancedDigitsFormat.Match(line.Text);
+                        var prevMatches = AdvancedDigitsFormat.Matches(previousLine.Text);
+                        var currMatches = AdvancedDigitsFormat.Matches(line.Text);
 
-                        if (!prevMatch.Success || !currMatch.Success)
+                        if (prevMatches.Count == 0 || prevMatches.Count != currMatches.Count)
                         {
                             combinedLines.Add(line);
                             continue;
                         }
 
-                        var prevValue = decimal.Parse(prevMatch.Groups[1].Value, CultureInfo.InvariantCulture);
-                        var currValue = decimal.Parse(currMatch.Groups[1].Value, CultureInfo.InvariantCulture);
+                        // Sum every value position, e.g. both min and max of "Adds # to # Fire Damage".
+                        var sums = prevMatches
+                            .Select((match, i) => decimal.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture)
+                                                  + decimal.Parse(currMatches[i].Groups[1].Value, CultureInfo.InvariantCulture))
+                            .ToList();
 
-                        var sum = prevValue + currValue;
-                        var sumText = sum % 1 == 0
-                            ? ((int)sum).ToString(CultureInfo.InvariantCulture)
-                            : sum.ToString(CultureInfo.InvariantCulture);
-
-                        previousLine.Text = AdvancedDigitsFormat.Replace(previousLine.Text, $"{sumText}(0-999)", 1);
+                        var index = 0;
+                        previousLine.Text = AdvancedDigitsFormat.Replace(previousLine.Text, _ =>
+                        {
+                            var sum = sums[index++];
+                            var sumText = sum % 1 == 0
+                                ? ((int)sum).ToString(CultureInfo.InvariantCulture)
+                                : sum.ToString(CultureInfo.InvariantCulture);
+                            return $"{sumText}(0-999)";
+                        });
                     }
                     catch (Exception)
                     {
