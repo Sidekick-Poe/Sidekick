@@ -1,21 +1,18 @@
 ﻿using System.Globalization;
-using System.Runtime.InteropServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Sidekick.Common.Settings;
+
+#if WINDOWS
+using Win32Interop = Sidekick.Avalonia.Utilities.WindowsNativeMethods;
+#endif
+
 namespace Sidekick.Avalonia.Controls;
 
 public abstract class BaseWindow : Window
 {
-    [DllImport("dwmapi.dll", PreserveSig = true)]
-    private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int value, int size);
-
-    private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
-    private const int DWMWA_BORDER_COLOR = 34;
-    private const int DWMWA_COLOR_NONE = unchecked((int)0xFFFFFFFE);
-
     protected IServiceProvider ServiceProvider => App.RequiredServerAppHost.Application.Services;
 
     private int DefaultHeight { get; }
@@ -45,19 +42,19 @@ public abstract class BaseWindow : Window
 
     private void BaseWindow_Opened(object? sender, EventArgs e)
     {
+#if WINDOWS
+        // This code block is entirely omitted on Linux/macOS builds
         var platformHandle = TryGetPlatformHandle();
-        if (platformHandle != null && OperatingSystem.IsWindows())
+        if (platformHandle != null)
         {
-            var hWnd = platformHandle.Handle;
+            IntPtr hWnd = platformHandle.Handle;
+            int useDarkMode = 1;
+            Win32Interop.DwmSetWindowAttribute(hWnd, 20, ref useDarkMode, sizeof(int));
 
-            // 1. Force dark mode for the native title bar/buttons
-            var useDarkMode = 1;
-            DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ref useDarkMode, sizeof(int));
-
-            // 2. Remove the Windows 11 active accent border line
-            var borderColor = DWMWA_COLOR_NONE;
-            DwmSetWindowAttribute(hWnd, DWMWA_BORDER_COLOR, ref borderColor, sizeof(int));
+            int borderColor = unchecked((int)0xFFFFFFFE);
+            Win32Interop.DwmSetWindowAttribute(hWnd, 34, ref borderColor, sizeof(int));
         }
+#endif
     }
 
     public void CloseView()

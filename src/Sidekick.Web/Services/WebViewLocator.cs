@@ -19,13 +19,5 @@ public class WebViewLocator : IViewLocator
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
 
-    public void Maximize(SidekickViewType type)
-    {
-    }
-
-    public void Minimize(SidekickViewType type)
-    {
-    }
-
     public bool IsOpened(SidekickViewType type) => false;
 }

@@ -4,7 +4,7 @@
 
 @inherits LayoutComponentBase
 
-<MenuList>
+<div class="h-full flex flex-col">
     <MenuItem Href="/home">@Resources["Home"]</MenuItem>
     @if (Configuration.Value.ApplicationType.SupportsAuthentication())
     {
@@ -36,7 +36,7 @@
     <div class="py-4 flex justify-center items-center">
         <AppBuyMeACoffeeButton/>
     </div>
-</MenuList>
+</div>
 
 @inject IStringLocalizer<UiResources> Resources
 @inject IOptions<SidekickConfiguration> Configuration
