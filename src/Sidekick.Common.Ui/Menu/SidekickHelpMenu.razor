@@ -1,0 +1,9 @@
+﻿@using Sidekick.Common.Ui.Localization
+
+<MenuContainer>
+    <MenuLegend Legend="@Resources["Help"]"/>
+    <MenuItem Href="/help">@Resources["About"]</MenuItem>
+    <MenuItem Href="/help/logs">@Resources["Logs"]</MenuItem>
+</MenuContainer>
+
+@inject IStringLocalizer<UiResources> Resources
