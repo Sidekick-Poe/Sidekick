@@ -4,37 +4,41 @@
 
 @inherits LayoutComponentBase
 
-<div class="h-full flex flex-col">
-    <MenuItem Href="/home">@Resources["Home"]</MenuItem>
-    @if (Configuration.Value.ApplicationType.SupportsAuthentication())
-    {
-        <MenuItem Href="/wealth">@Resources["WealthTracker"]</MenuItem>
-    }
+<div class="relative overflow-auto min-w-48 z-10">
+    <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
+        <div class="h-full flex flex-col">
+            <MenuItem Href="/home">@Resources["Home"]</MenuItem>
+            @if (Configuration.Value.ApplicationType.SupportsAuthentication())
+            {
+                <MenuItem Href="/wealth">@Resources["WealthTracker"]</MenuItem>
+            }
 
-    <MenuLegend Legend="@Resources["Settings"]"/>
-    <MenuItem Href="/settings/game">@Resources["Game"]</MenuItem>
-    <MenuItem Href="/settings/application">@Resources["Application"]</MenuItem>
+            <MenuLegend Legend="@Resources["Settings"]"/>
+            <MenuItem Href="/settings/game">@Resources["Game"]</MenuItem>
+            <MenuItem Href="/settings/application">@Resources["Application"]</MenuItem>
 
-    @if (Configuration.Value.ApplicationType.SupportsKeybinds())
-    {
-        <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
-        <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
-    }
+            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
+            {
+                <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
+                <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
+            }
 
-    <MenuLegend Legend="@Resources["Help"]"/>
-    <MenuItem Href="/about">@Resources["About"]</MenuItem>
-    <MenuItem Href="/logs">@Resources["Logs"]</MenuItem>
+            <MenuLegend Legend="@Resources["Help"]"/>
+            <MenuItem Href="/about">@Resources["About"]</MenuItem>
+            <MenuItem Href="/logs">@Resources["Logs"]</MenuItem>
 
-    @if (Debugger.IsAttached)
-    {
-        <MenuLegend Legend="@Resources["Development"]"/>
-        <MenuItem Href="/development">@Resources["Development"]</MenuItem>
-    }
+            @if (Debugger.IsAttached)
+            {
+                <MenuLegend Legend="@Resources["Development"]"/>
+                <MenuItem Href="/development">@Resources["Development"]</MenuItem>
+            }
 
-    <div class="grow"></div>
+            <div class="grow"></div>
 
-    <div class="py-4 flex justify-center items-center">
-        <AppBuyMeACoffeeButton/>
+            <div class="py-4 flex justify-center items-center">
+                <AppBuyMeACoffeeButton/>
+            </div>
+        </div>
     </div>
 </div>
 

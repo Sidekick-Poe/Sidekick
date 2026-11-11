@@ -1,8 +1,6 @@
 <div class="h-full flex flex-col">
-    <div class="dark:bg-stone-950">
-        @TopContent
-    </div>
     <div class="grow flex flex-nowrap items-stretch dark:bg-stone-900">
+        <SidekickMenu/>
         <div id="@LeftContentId"
              class="relative min-w-80 max-w-140 overflow-auto"
              style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
@@ -11,7 +9,7 @@
             </div>
         </div>
         <div class="h-full flex flex-col grow">
-            <AppUpdate />
+            <AppUpdate/>
             <ConfigurationFlagError/>
             <div class="grow relative">
                 <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
@@ -56,9 +54,6 @@
 @inject SafeJsRuntime JsRuntime
 
 @code {
-
-    [Parameter]
-    public RenderFragment? TopContent { get; set; }
 
     [Parameter]
     public RenderFragment? LeftContent { get; set; }
