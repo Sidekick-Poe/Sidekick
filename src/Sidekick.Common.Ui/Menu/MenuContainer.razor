@@ -1,0 +1,8 @@
+﻿<div class="flex flex-col rounded-md dark:bg-stone-950 p-1">
+    @ChildContent
+</div>
+
+@code{
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

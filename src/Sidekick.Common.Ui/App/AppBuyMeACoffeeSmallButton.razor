@@ -1,0 +1,23 @@
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Ui.Localization
+
+<Tooltip Text="@Resources["BuyMeACoffee"]">
+    <button @onclick="@OpenWebsite"
+            class="flex flex-col items-center justify-center">
+        <img src="@Assets["_content/Sidekick.Common.Ui/images/app/bmc-logo.svg"]" alt="@Resources["BuyMeACoffee"]"
+             class="w-7"/>
+        <div class="text-center text-sm pt-0.5">Donate</div>
+    </button>
+</Tooltip>
+
+@inject IBrowserProvider BrowserProvider
+@inject IStringLocalizer<UiResources> Resources
+
+@code {
+
+    private void OpenWebsite()
+    {
+        BrowserProvider.OpenUri(new Uri("https://buymeacoffee.com/sidekickpoe"));
+    }
+
+}

@@ -7,37 +7,45 @@
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Menu
 @using Sidekick.Modules.General.Localization
 @using Sidekick.Common.Ui.Settings
 
 <LayoutMenu>
-    <AppContainer>
-        <FormFieldset Legend="@SettingsResources["General_Settings"]">
-            <InterfaceLanguageEditor/>
-            <ZoomEditor/>
-            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
-            {
-                <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
-                                       Label="@Resources["General_RetainClipboard"]"/>
-            }
-            <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]" />
-            <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
-        </FormFieldset>
-
-        @if (Configuration.Value.ApplicationType.SupportsDesktop())
-        {
-            <FormFieldset Legend="@SettingsResources["Other"]">
-                <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"
-                                       Label="@SettingsResources["UseHardwareAcceleration"]"
-                                       Tooltip="@SettingsResources["RestartRequired"]"/>
+    <LeftContent>
+        <SidekickSettingsMenu/>
+    </LeftContent>
+    <ChildContent>
+        <AppContainer>
+            <FormFieldset Legend="@SettingsResources["General_Settings"]">
+                <InterfaceLanguageEditor/>
+                <ZoomEditor/>
+                @if (Configuration.Value.ApplicationType.SupportsKeybinds())
+                {
+                    <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
+                                           Label="@Resources["General_RetainClipboard"]"/>
+                }
+                <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch"
+                                       Label="@SettingsResources["OpenHomeOnLaunch"]"
+                                       Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]"/>
             </FormFieldset>
-        }
 
-        <div class="flex justify-center mb-1">
-            <ButtonPrimary Disabled="!AreSettingsModified"
-                           OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
-        </div>
-    </AppContainer>
+            @if (Configuration.Value.ApplicationType.SupportsDesktop())
+            {
+                <FormFieldset Legend="@SettingsResources["Other"]">
+                    <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"
+                                           Label="@SettingsResources["UseHardwareAcceleration"]"
+                                           Tooltip="@SettingsResources["RestartRequired"]"/>
+                </FormFieldset>
+            }
+
+            <div class="flex justify-center mb-1">
+                <ButtonPrimary Disabled="!AreSettingsModified"
+                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+            </div>
+        </AppContainer>
+    </ChildContent>
 </LayoutMenu>
 
 @page "/settings/application"

@@ -1,0 +1,49 @@
+﻿@using System.Diagnostics
+@using Sidekick.Common.Ui.Localization
+@using Microsoft.Extensions.Options
+
+@inherits LayoutComponentBase
+
+<div class="relative overflow-hidden w-16 z-10">
+    <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
+        <div class="h-full flex flex-col p-1">
+            <NavigationItem Href="/home"
+                            Label="@Resources["Items"]"
+                            Icon="@UiIcons.Sword"/>
+            @if (Configuration.Value.ApplicationType.SupportsAuthentication())
+            {
+                <NavigationItem Href="/wealth"
+                                Label="@Resources["Wealth"]"
+                                Icon="@UiIcons.Wealth"/>
+            }
+
+            <LayoutDivider/>
+
+            <NavigationItem Href="/settings"
+                            Label="@Resources["Settings"]"
+                            Icon="@UiIcons.Cog"/>
+            <NavigationItem Href="/help"
+                            Label="@Resources["Help"]"
+                            Icon="@UiIcons.Help"/>
+
+            @if (Debugger.IsAttached)
+            {
+                <LayoutDivider/>
+                <NavigationItem Href="/development"
+                                Label="@Resources["DevTools"]"
+                                Icon="@UiIcons.Toolbox"/>
+            }
+
+            <div class="grow"></div>
+
+            <LayoutDivider/>
+
+            <div class="py-4 flex justify-center items-center">
+                <AppBuyMeACoffeeSmallButton/>
+            </div>
+        </div>
+    </div>
+</div>
+
+@inject IStringLocalizer<UiResources> Resources
+@inject IOptions<SidekickConfiguration> Configuration
