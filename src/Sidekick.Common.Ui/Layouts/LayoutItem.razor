@@ -1,14 +1,29 @@
+@using Microsoft.Extensions.Options
+@using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Navigation
 <div class="h-full flex flex-col">
+    @if (SidekickConfiguration.Value.ApplicationType == SidekickApplicationType.Web)
+    {
+        <div class="flex justify-start items-center py-1 px-3">
+            <img src="@Assets["_content/Sidekick.Common.Ui/images/orbs/ExaltedOrb.png"]" class="w-6 h-6" alt="logo"/>
+            <Heading3 Class="font-caps ml-4 text-white">Sidekick</Heading3>
+        </div>
+    }
+
     <div class="grow flex flex-nowrap items-stretch dark:bg-stone-900">
+        @if (CurrentView.CurrentViewType == SidekickViewType.Standard)
+        {
+            <SidekickNavigation/>
+        }
         <div id="@LeftContentId"
-             class="relative min-w-80 max-w-140 overflow-auto"
+             class="relative min-w-80 max-w-140 overflow-auto @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "m-3" : string.Empty)"
              style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
-            <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
+            <div
+                class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden rounded-md dark:bg-stone-950">
                 @LeftContent
             </div>
         </div>
-        <div class="h-full flex flex-col grow">
+        <div class="h-full flex flex-col grow  @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "[*_.sidekick-container]:!pl-0" : string.Empty)">
             <AppUpdate/>
             <ConfigurationFlagError/>
             <div class="grow relative">
@@ -52,14 +67,15 @@
 </script>
 
 @inject SafeJsRuntime JsRuntime
+@inject ISettingsService SettingsService
+@inject IOptions<SidekickConfiguration> SidekickConfiguration
+@inject CurrentView CurrentView
 
 @code {
+    private const string WidthKey = "LayoutItem_SidebarWidth";
 
     [Parameter]
     public RenderFragment? LeftContent { get; set; }
-
-    [Parameter]
-    public int LeftContentWidth { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
@@ -67,14 +83,19 @@
     [Parameter]
     public RenderFragment? BottomContent { get; set; }
 
-    [Parameter]
-    public EventCallback<int> OnLeftContentResize { get; set; }
+    private int LeftContentWidth { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        LeftContentWidth = await SettingsService.GetInt(WidthKey);
+    }
 
     private string LeftContentId { get; } = UiUtilities.GenerateId();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && OnLeftContentResize.HasDelegate)
+        if (firstRender)
         {
             var dotNetReference = DotNetObjectReference.Create(this);
             await JsRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
@@ -82,11 +103,11 @@
     }
 
     [JSInvokable]
-    public void ResizeLeftContent(int width)
+    public async Task ResizeLeftContent(int width)
     {
         if (width != 0)
         {
-            OnLeftContentResize.InvokeAsync(width);
+            await SettingsService.Set(WidthKey, width);
         }
     }
 

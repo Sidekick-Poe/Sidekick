@@ -1,8 +1,11 @@
-﻿@using Sidekick.Web.Services
+﻿@using Microsoft.Extensions.Options
+@using Sidekick.Common
+@using Sidekick.Web.Services
 
 <Sidekick.Common.Ui.Main/>
 
 @inject IServiceProvider ServiceProvider
+@inject IOptions<SidekickConfiguration> Configuration
 @implements IDisposable
 
 @code {
@@ -16,6 +19,11 @@
         if (viewLocator != null)
         {
             viewLocator.Views.Add(this);
+        }
+
+        if (Configuration.Value.ApplicationType == SidekickApplicationType.Web)
+        {
+            _ = ServiceProvider.GetRequiredService<WebDialogsHandler>();
         }
 
         base.OnInitialized();

@@ -11,8 +11,8 @@ using Sidekick.Common;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Ui.Localization;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Modules.General.Home;
 using Sidekick.Web;
 
 namespace Sidekick.Avalonia;
@@ -125,7 +125,7 @@ public partial class App : Application
 
     private void InitializeTray()
     {
-        var resources = RequiredServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<HomeResources>>();
+        var resources = RequiredServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<UiResources>>();
         var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "favicon.ico");
 
         var trayIcon = new TrayIcon
@@ -133,7 +133,7 @@ public partial class App : Application
             Command = new SimpleCommand(() =>
             {
                 var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-                viewLocator.Open(SidekickViewType.Standard, "/home");
+                viewLocator.Open(SidekickViewType.Standard, "/item");
             }),
             Menu = new NativeMenu
             {
@@ -146,7 +146,7 @@ public partial class App : Application
                     Command = new SimpleCommand(() =>
                     {
                         var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-                        viewLocator.Open(SidekickViewType.Standard, "/home");
+                        viewLocator.Open(SidekickViewType.Standard, "/item");
                     }),
                 },
                 new NativeMenuItem(resources["Open_Website"])

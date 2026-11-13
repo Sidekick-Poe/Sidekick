@@ -1,16 +1,8 @@
-@page "/home"
-@using Microsoft.Extensions.Localization
+@page "/item"
 @using Microsoft.Extensions.Options
 @using Sidekick.Common
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Ui.Views
-@using Sidekick.Common.Ui.Layouts
-@using Sidekick.Common.Ui.App
-@using Sidekick.Common.Ui.Forms
-@using Sidekick.Common.Ui.Typography
-@using Sidekick.Common.Ui.Buttons
-@using Sidekick.Modules.General.Settings
 @using Sidekick.Common.Ui.Settings
 
 <LayoutMenu>
@@ -34,32 +26,16 @@
                 </TextBase>
                 <FormTextarea @bind-Value="ItemText"/>
                 <div class="*:w-full">
-                    <ButtonPrimary OnClick="ItemOverlay">@Resources["Item_Box_Submit"]</ButtonPrimary>
+                    <ButtonPrimary OnClick="GoToItem">@Resources["Item_Box_Submit"]</ButtonPrimary>
                 </div>
             </FormFieldset>
-
-            <div class="flex items-center">
-                <AppBuyMeACoffeeButton/>
-            </div>
         </AppContainer>
     </ChildContent>
-    <BottomContent>
-        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
-        {
-            <div class="flex justify-end py-2 px-3">
-                <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch"
-                                       Label="@SettingsResources["OpenHomeOnLaunch"]"
-                                       Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]"
-                                       HasResetButton="false"/>
-            </div>
-        }
-    </BottomContent>
 </LayoutMenu>
 
 @inject ISettingsService SettingsService
-@inject IStringLocalizer<HomeResources> Resources
-@inject IStringLocalizer<SettingsResources> SettingsResources
-@inject IViewLocator ViewLocator
+@inject IStringLocalizer<ParseResources> Resources
+@inject NavigationManager NavigationManager
 @inject IOptions<SidekickConfiguration> Configuration
 
 @code {
@@ -78,11 +54,11 @@
         await base.OnInitializedAsync();
     }
 
-    private void ItemOverlay()
+    private void GoToItem()
     {
         if (ItemText != null)
         {
-            ViewLocator.Open(SidekickViewType.Overlay, $"/item/{ItemText.EncodeBase64Url()}");
+            NavigationManager.NavigateTo($"/item/{ItemText.EncodeBase64Url()}");
         }
     }
 

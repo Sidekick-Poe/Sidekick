@@ -118,33 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Price_Check_Tip" xml:space="preserve">
-    <value>Faites {0} sur un item dans le jeu pour utiliser.</value>
-  </data>
-  <data name="Close_Notification" xml:space="preserve">
-    <value>Fermer cette fenêtre va réduire Sidekick dans la barre d'état système.</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Configurations</value>
-  </data>
-  <data name="Exit" xml:space="preserve">
-    <value>Quitter</value>
-  </data>
-  <data name="Open_Website" xml:space="preserve">
-    <value>Ouvrir le site web</value>
-  </data>
-  <data name="Item_Box_Legend" xml:space="preserve">
-    <value>Vérifier un item manuellement</value>
-  </data>
-  <data name="Item_Box_Text" xml:space="preserve">
-    <value>Vous pouvez copier et coller manuellement le texte d'un item du jeu dans le champ ci-dessous.</value>
-  </data>
-  <data name="Item_Box_Submit" xml:space="preserve">
-    <value>Vérifier un item</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
+    <value>사용하려는 아이템 위에서 {0} 키를 눌러주세요.</value>
   </data>
   <data name="Close_Overlay_Tip" xml:space="preserve">
-    <value>Faites {0} pour fermer la fenêtre.</value>
+    <value>창을 닫으려면 {0} 키를 눌러주세요.</value>
   </data>
 </root>
