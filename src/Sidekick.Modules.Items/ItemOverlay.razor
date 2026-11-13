@@ -1,7 +1,6 @@
 @page "/item/{itemText}"
 @using Sidekick.Apis.Poe.Trade.Clients
 @using Sidekick.Common.Extensions
-@using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Api
 @using Sidekick.Common.Ui.Tabs
 @using Sidekick.Game.Parser
@@ -16,7 +15,7 @@
 @using Sidekick.Modules.Items.Wiki
 @using Sidekick.Modules.Items.Trade
 
-<LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
+<LayoutItem>
     <LeftContent>
         @if (Item != null)
         {
@@ -81,9 +80,8 @@
             <ApiStatusAndLimits ApiClientName="@TradeApiClient.ClientName"/>
         </div>
     </BottomContent>
-</LayoutTwoColumn>
+</LayoutItem>
 
-@inject ISettingsService SettingsService
 @inject TradeService TradeService
 @inject ItemParser ItemParser
 
@@ -92,17 +90,9 @@
     [Parameter]
     public required string ItemText { get; set; }
 
-    private int LeftContentWidth { get; set; }
-
     private Item? Item { get; set; }
 
     private TabList? TabList { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        LeftContentWidth = await SettingsService.GetInt(SettingKeys.PriceCheckSidebarWidth);
-    }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -118,11 +108,6 @@
         Item = ItemParser.ParseItem(itemText);
 
         await base.OnParametersSetAsync();
-    }
-
-    private async Task OnLeftContentResize(int width)
-    {
-        await SettingsService.Set(SettingKeys.PriceCheckSidebarWidth, width);
     }
 
 }

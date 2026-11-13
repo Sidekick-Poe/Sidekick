@@ -16,7 +16,7 @@ public class WebViewLocator : IViewLocator
 
     public void Close(SidekickViewType type)
     {
-        Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
+        Views.ForEach(x => x.NavigationManager.NavigateTo("/item"));
     }
 
     public bool IsOpened(SidekickViewType type) => false;

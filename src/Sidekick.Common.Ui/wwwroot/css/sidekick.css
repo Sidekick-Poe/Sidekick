@@ -1021,6 +1021,9 @@
   .-m-3 {
     margin: calc(var(--spacing) * -3);
   }
+  .m-3 {
+    margin: calc(var(--spacing) * 3);
+  }
   .mx-1 {
     margin-inline: var(--spacing);
   }
@@ -2870,6 +2873,9 @@
   }
   .\[\&\:\:selection\]\:text-violet-200::selection {
     color: var(--color-violet-200);
+  }
+  .\[\*_\.sidekick-container\]\:\!pl-0:is(* .sidekick-container) {
+    padding-left: 0px !important;
   }
 }
 @layer base {

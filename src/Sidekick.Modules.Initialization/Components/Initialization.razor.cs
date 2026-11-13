@@ -107,7 +107,7 @@ public partial class Initialization
         if (redirectToHome)
         {
             ViewLocator.Close(SidekickViewType.Splash);
-            ViewLocator.Open(SidekickViewType.Standard, "/home");
+            ViewLocator.Open(SidekickViewType.Standard, "/item");
         }
         else
         {
