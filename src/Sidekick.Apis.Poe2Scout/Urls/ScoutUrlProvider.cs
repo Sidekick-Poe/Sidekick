@@ -7,6 +7,9 @@ public class ScoutUrlProvider(LeagueProvider leagueProvider)
 {
     public Uri? GetUri(Item item)
     {
+        var league = leagueProvider.Current.ScoutValue;
+        if (string.IsNullOrEmpty(league)) return null;
+
         var realm = GetRealm(item);
 
         var scoutItem = item.Definition.ScoutItems?.FirstOrDefault();
@@ -14,7 +17,7 @@ public class ScoutUrlProvider(LeagueProvider leagueProvider)
 
         var type = scoutItem.IsCurrency ? "currencies" : "uniques";
 
-        return new Uri($"https://poe2scout.com/{realm}/{leagueProvider.Current.ScoutValue}/economy/{type}/{scoutItem.CategoryApiId}");
+        return new Uri($"https://poe2scout.com/{realm}/{league}/economy/{type}/{scoutItem.CategoryApiId}");
     }
 
     private string GetRealm(Item item)
