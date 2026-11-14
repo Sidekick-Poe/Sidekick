@@ -5949,6 +5949,25 @@
   {
     "type": "ClusterJewel",
     "url": "cluster-jewels",
+    "detailsId": "12-increased-damage-with-bows-12-increased-damage-over-time-with-bow-skills-11-passives-50",
+    "itemLevel": 50,
+    "variant": "11 passives",
+    "stats": [
+      {
+        "id": "enchant.stat_3948993189#4",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "enchant.stat_3086156145",
+        "min": 11,
+        "max": 11
+      }
+    ]
+  },
+  {
+    "type": "ClusterJewel",
+    "url": "cluster-jewels",
     "detailsId": "12-increased-damage-with-bows-12-increased-damage-over-time-with-bow-skills-11-passives-68",
     "itemLevel": 68,
     "variant": "11 passives",
@@ -10110,6 +10129,25 @@
   {
     "type": "ClusterJewel",
     "url": "cluster-jewels",
+    "detailsId": "15-to-lightning-resistance-2-passives-50",
+    "itemLevel": 50,
+    "variant": "2 passives",
+    "stats": [
+      {
+        "id": "enchant.stat_3948993189#48",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "enchant.stat_3086156145",
+        "min": 2,
+        "max": 2
+      }
+    ]
+  },
+  {
+    "type": "ClusterJewel",
+    "url": "cluster-jewels",
     "detailsId": "15-to-lightning-resistance-2-passives-68",
     "itemLevel": 68,
     "variant": "2 passives",
@@ -11915,7 +11953,7 @@
     "url": "skill-gems",
     "detailsId": "absolution-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -11936,7 +11974,7 @@
     "corrupted": true,
     "gemLevel": 1,
     "gemQuality": 23,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/23c",
     "stats": []
   },
@@ -12101,6 +12139,13 @@
     "gemLevel": 21,
     "itemLevel": 72,
     "variant": "21c",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "abyssal-axe-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -12450,7 +12495,7 @@
     "url": "skill-gems",
     "detailsId": "added-chaos-damage-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 58,
     "variant": "1",
     "stats": []
   },
@@ -12543,7 +12588,7 @@
     "url": "skill-gems",
     "detailsId": "added-cold-damage-support-1",
     "gemLevel": 1,
-    "itemLevel": 8,
+    "itemLevel": 17,
     "variant": "1",
     "stats": []
   },
@@ -12553,7 +12598,7 @@
     "detailsId": "added-cold-damage-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 8,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -12912,7 +12957,7 @@
     "url": "skill-gems",
     "detailsId": "advanced-traps-support-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -13532,6 +13577,18 @@
     "detailsId": "al-hezmin-map-tier-16-t0--gen-24",
     "mapTier": 16,
     "variant": ", Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_2563183002|3"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
+    "detailsId": "al-hezmin-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
     "stats": [
       {
         "id": "implicit.stat_2563183002|3"
@@ -14228,7 +14285,7 @@
     "url": "skill-gems",
     "detailsId": "ambush-1",
     "gemLevel": 1,
-    "itemLevel": 44,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -16274,7 +16331,7 @@
     "url": "skill-gems",
     "detailsId": "anger-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -16746,7 +16803,7 @@
     "detailsId": "animate-weapon-of-ranged-arms-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -17588,7 +17645,7 @@
     "type": "UniqueWeapon",
     "url": "unique-weapons",
     "detailsId": "arakaalis-fang-fiend-dagger",
-    "itemLevel": 53,
+    "itemLevel": 62,
     "stats": []
   },
   {
@@ -17609,7 +17666,7 @@
     "url": "skill-gems",
     "detailsId": "arc-1",
     "gemLevel": 1,
-    "itemLevel": 19,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -17619,7 +17676,7 @@
     "detailsId": "arc-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -17712,7 +17769,7 @@
     "url": "skill-gems",
     "detailsId": "arc-of-oscillating-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 35,
     "variant": "1",
     "stats": []
   },
@@ -17722,7 +17779,7 @@
     "detailsId": "arc-of-oscillating-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 62,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -17783,7 +17840,7 @@
     "url": "skill-gems",
     "detailsId": "arc-of-surging-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 19,
     "variant": "1",
     "stats": []
   },
@@ -17793,7 +17850,7 @@
     "detailsId": "arc-of-surging-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 50,
+    "itemLevel": 12,
     "variant": "1/20",
     "stats": []
   },
@@ -17987,6 +18044,25 @@
     "url": "valdo-maps",
     "detailsId": "arcane-den-t0",
     "variant": "Foil Cortex",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "arcane-link-1",
+    "gemLevel": 1,
+    "itemLevel": 34,
+    "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "arcane-link-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 34,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -19170,7 +19246,7 @@
     "url": "skill-gems",
     "detailsId": "arctic-armour-1",
     "gemLevel": 1,
-    "itemLevel": 16,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -19180,7 +19256,7 @@
     "detailsId": "arctic-armour-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 16,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -19894,7 +19970,7 @@
     "url": "skill-gems",
     "detailsId": "artillery-ballista-of-cross-strafe-1",
     "gemLevel": 1,
-    "itemLevel": 44,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -21192,6 +21268,14 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "astrolabe-amulet-82-shaper-elder-crusader-redeemer-warlord-hunter",
+    "itemLevel": 82,
+    "variant": "Shaper/Elder/Crusader/Redeemer/Warlord/Hunter",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "astrolabe-amulet-83-shaper-elder-crusader-redeemer-warlord-hunter",
     "itemLevel": 83,
     "variant": "Shaper/Elder/Crusader/Redeemer/Warlord/Hunter",
@@ -21702,7 +21786,7 @@
     "url": "skill-gems",
     "detailsId": "automation-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -22640,7 +22724,7 @@
     "detailsId": "ball-lightning-of-orbiting-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -22733,7 +22817,7 @@
     "detailsId": "ball-lightning-of-static-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 64,
+    "itemLevel": 28,
     "variant": "1/20",
     "stats": []
   },
@@ -22907,7 +22991,7 @@
     "detailsId": "bane-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 24,
+    "itemLevel": 48,
     "variant": "1/20",
     "stats": []
   },
@@ -22989,7 +23073,7 @@
     "detailsId": "bane-of-condemnation-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 62,
+    "itemLevel": 24,
     "variant": "1/20",
     "stats": []
   },
@@ -23056,6 +23140,18 @@
     "detailsId": "baran-map-tier-16-t0--gen-24",
     "mapTier": 16,
     "variant": ", Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_2563183002|1"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
+    "detailsId": "baran-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
     "stats": [
       {
         "id": "implicit.stat_2563183002|1"
@@ -23312,6 +23408,16 @@
     "gemLevel": 1,
     "itemLevel": 12,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "barrage-of-volley-fire-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 12,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -24354,6 +24460,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "bear-trap-of-skewers-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 67,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "bear-trap-of-skewers-21-20c",
     "corrupted": true,
     "gemLevel": 21,
@@ -24778,6 +24894,15 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "berserk-20",
+    "gemLevel": 20,
+    "itemLevel": 70,
+    "variant": "20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "berserk-20-20",
     "gemLevel": 20,
     "gemQuality": 20,
@@ -24927,7 +25052,7 @@
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "black-sun-crest-lacquered-helmet",
-    "itemLevel": 60,
+    "itemLevel": 51,
     "stats": []
   },
   {
@@ -25351,7 +25476,7 @@
     "detailsId": "blade-flurry-of-incision-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 64,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -25515,7 +25640,7 @@
     "url": "skill-gems",
     "detailsId": "blade-trap-of-greatswords-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -25708,7 +25833,7 @@
     "url": "skill-gems",
     "detailsId": "blade-vortex-of-the-scythe-1",
     "gemLevel": 1,
-    "itemLevel": 59,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -25718,7 +25843,7 @@
     "detailsId": "blade-vortex-of-the-scythe-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -26157,7 +26282,7 @@
     "url": "skill-gems",
     "detailsId": "bladestorm-of-uncertainty-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 28,
     "variant": "1",
     "stats": []
   },
@@ -26240,7 +26365,7 @@
     "url": "skill-gems",
     "detailsId": "blasphemy-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -26494,7 +26619,7 @@
     "detailsId": "blastchain-mine-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 8,
+    "itemLevel": 55,
     "variant": "1/20",
     "stats": []
   },
@@ -27291,6 +27416,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "blight-of-atrophy-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 67,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "blight-of-atrophy-20-20",
     "gemLevel": 20,
     "gemQuality": 20,
@@ -27427,7 +27562,7 @@
     "url": "blight-ravaged-maps",
     "detailsId": "blight-ravaged-map-tier-16-t0-gen-24",
     "mapTier": 16,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27451,7 +27586,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-11-t0-gen-24",
     "mapTier": 11,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27499,7 +27634,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-2-t0-gen-24",
     "mapTier": 2,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27507,7 +27642,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-3-t0-gen-24",
     "mapTier": 3,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27515,7 +27650,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-4-t0-gen-24",
     "mapTier": 4,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27523,7 +27658,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-5-t0-gen-24",
     "mapTier": 5,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27531,7 +27666,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-6-t0-gen-24",
     "mapTier": 6,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27539,7 +27674,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-7-t0-gen-24",
     "mapTier": 7,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27547,7 +27682,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-8-t0-gen-24",
     "mapTier": 8,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27555,7 +27690,7 @@
     "url": "blighted-maps",
     "detailsId": "blighted-map-tier-9-t0-gen-24",
     "mapTier": 9,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -27572,6 +27707,16 @@
     "gemLevel": 1,
     "itemLevel": 8,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "blind-support-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 8,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -27736,7 +27881,7 @@
     "detailsId": "blink-arrow-of-bombarding-clones-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 48,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -27796,7 +27941,7 @@
     "detailsId": "blink-arrow-of-prismatic-clones-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 17,
+    "itemLevel": 10,
     "variant": "1/20",
     "stats": []
   },
@@ -28116,7 +28261,7 @@
     "url": "skill-gems",
     "detailsId": "blood-and-sand-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 70,
     "variant": "1",
     "stats": []
   },
@@ -28126,7 +28271,7 @@
     "detailsId": "blood-and-sand-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 70,
     "variant": "1/20",
     "stats": []
   },
@@ -28192,7 +28337,7 @@
     "url": "skill-gems",
     "detailsId": "blood-rage-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -28668,7 +28813,7 @@
     "url": "skill-gems",
     "detailsId": "bloodlust-support-1",
     "gemLevel": 1,
-    "itemLevel": 50,
+    "itemLevel": 38,
     "variant": "1",
     "stats": []
   },
@@ -29222,7 +29367,7 @@
     "url": "skill-gems",
     "detailsId": "bodyswap-1",
     "gemLevel": 1,
-    "itemLevel": 21,
+    "itemLevel": 10,
     "variant": "1",
     "stats": []
   },
@@ -29296,6 +29441,16 @@
     "gemLevel": 1,
     "itemLevel": 10,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "bodyswap-of-sacrifice-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 10,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -30076,7 +30231,7 @@
     "url": "skill-gems",
     "detailsId": "bonechill-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -30979,6 +31134,13 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "brass-spirit-shield-82",
+    "itemLevel": 82,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "brass-spirit-shield-83",
     "itemLevel": 83,
     "stats": []
@@ -31867,7 +32029,7 @@
     "url": "skill-gems",
     "detailsId": "brutality-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -32151,7 +32313,7 @@
     "url": "skill-gems",
     "detailsId": "burning-arrow-1",
     "gemLevel": 1,
-    "itemLevel": 1,
+    "itemLevel": 20,
     "variant": "1",
     "stats": []
   },
@@ -32232,7 +32394,7 @@
     "url": "skill-gems",
     "detailsId": "burning-arrow-of-vigour-1",
     "gemLevel": 1,
-    "itemLevel": 56,
+    "itemLevel": 1,
     "variant": "1",
     "stats": []
   },
@@ -32291,7 +32453,7 @@
     "url": "skill-gems",
     "detailsId": "burning-damage-support-1",
     "gemLevel": 1,
-    "itemLevel": 40,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -33961,7 +34123,7 @@
     "url": "skill-gems",
     "detailsId": "cast-on-critical-strike-support-1",
     "gemLevel": 1,
-    "itemLevel": 40,
+    "itemLevel": 38,
     "variant": "1",
     "stats": []
   },
@@ -34063,7 +34225,7 @@
     "url": "skill-gems",
     "detailsId": "cast-on-death-support-1",
     "gemLevel": 1,
-    "itemLevel": 67,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -34281,7 +34443,7 @@
     "url": "skill-gems",
     "detailsId": "cast-when-damage-taken-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 67,
     "variant": "1",
     "stats": []
   },
@@ -34291,7 +34453,7 @@
     "detailsId": "cast-when-damage-taken-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 38,
+    "itemLevel": 69,
     "variant": "1/20",
     "stats": []
   },
@@ -34722,7 +34884,7 @@
     "url": "skill-gems",
     "detailsId": "caustic-arrow-of-poison-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 1,
     "variant": "1",
     "stats": []
   },
@@ -35405,6 +35567,14 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "chain-boots-85-shaper",
+    "itemLevel": 85,
+    "variant": "Shaper",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "chain-gloves-83",
     "itemLevel": 83,
     "stats": []
@@ -35987,7 +36157,7 @@
     "url": "skill-gems",
     "detailsId": "chance-to-bleed-support-1",
     "gemLevel": 1,
-    "itemLevel": 32,
+    "itemLevel": 1,
     "variant": "1",
     "stats": []
   },
@@ -36079,7 +36249,7 @@
     "url": "skill-gems",
     "detailsId": "chance-to-flee-support-1",
     "gemLevel": 1,
-    "itemLevel": 17,
+    "itemLevel": 8,
     "variant": "1",
     "stats": []
   },
@@ -36128,7 +36298,7 @@
     "url": "skill-gems",
     "detailsId": "chance-to-poison-support-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -36529,7 +36699,7 @@
     "url": "skill-gems",
     "detailsId": "charged-dash-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 42,
     "variant": "1",
     "stats": []
   },
@@ -36599,7 +36769,7 @@
     "url": "skill-gems",
     "detailsId": "charged-dash-of-projection-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -36741,7 +36911,7 @@
     "url": "skill-gems",
     "detailsId": "charged-traps-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -37952,7 +38122,7 @@
     "url": "skill-gems",
     "detailsId": "clarity-1",
     "gemLevel": 1,
-    "itemLevel": 45,
+    "itemLevel": 54,
     "variant": "1",
     "stats": []
   },
@@ -37962,7 +38132,7 @@
     "detailsId": "clarity-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 10,
+    "itemLevel": 29,
     "variant": "1/20",
     "stats": []
   },
@@ -38720,7 +38890,7 @@
     "detailsId": "close-combat-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 44,
+    "itemLevel": 18,
     "variant": "1/20",
     "stats": []
   },
@@ -39070,7 +39240,7 @@
     "url": "skill-gems",
     "detailsId": "cluster-traps-support-1",
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 38,
     "variant": "1",
     "stats": []
   },
@@ -39188,7 +39358,7 @@
     "url": "skill-gems",
     "detailsId": "cobra-lash-1",
     "gemLevel": 1,
-    "itemLevel": 1,
+    "itemLevel": 11,
     "variant": "1",
     "stats": []
   },
@@ -39921,7 +40091,7 @@
     "url": "skill-gems",
     "detailsId": "cold-penetration-support-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -40111,7 +40281,7 @@
     "url": "skill-gems",
     "detailsId": "cold-snap-of-power-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 16,
     "variant": "1",
     "stats": []
   },
@@ -40121,7 +40291,7 @@
     "detailsId": "cold-snap-of-power-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 16,
+    "itemLevel": 60,
     "variant": "1/20",
     "stats": []
   },
@@ -40157,6 +40327,17 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "cold-snap-of-power-21-20c",
+    "corrupted": true,
+    "gemLevel": 21,
+    "gemQuality": 20,
+    "itemLevel": 72,
+    "variant": "21/20c",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "cold-snap-of-power-21-23c",
     "corrupted": true,
     "gemLevel": 21,
@@ -40182,6 +40363,16 @@
     "gemLevel": 1,
     "itemLevel": 18,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "cold-to-fire-support-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -40492,6 +40683,13 @@
     "detailsId": "colossal-tower-shield-86-warlord",
     "itemLevel": 86,
     "variant": "Warlord",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "colosseum-plate-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -41408,7 +41606,7 @@
     "url": "skill-gems",
     "detailsId": "conductivity-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -42923,7 +43121,7 @@
     "url": "skill-gems",
     "detailsId": "consecrated-path-of-endurance-1",
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 28,
     "variant": "1",
     "stats": []
   },
@@ -42933,7 +43131,7 @@
     "detailsId": "consecrated-path-of-endurance-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -43132,7 +43330,7 @@
     "url": "skill-gems",
     "detailsId": "contagion-of-transference-1",
     "gemLevel": 1,
-    "itemLevel": 67,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -44160,6 +44358,14 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "coral-amulet-84-warlord",
+    "itemLevel": 84,
+    "variant": "Warlord",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "coral-amulet-85",
     "itemLevel": 85,
     "stats": []
@@ -44507,6 +44713,13 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "coronal-leather-84",
+    "itemLevel": 84,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "coronal-leather-84-crusader",
     "itemLevel": 84,
     "variant": "Crusader",
@@ -44714,6 +44927,13 @@
     "stats": []
   },
   {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "corpse-rose-imbued-wand",
+    "itemLevel": 59,
+    "stats": []
+  },
+  {
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "corpsewalker-carnal-boots",
@@ -44907,7 +45127,7 @@
     "url": "skill-gems",
     "detailsId": "corrupting-fever-1",
     "gemLevel": 1,
-    "itemLevel": 16,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -45473,7 +45693,7 @@
     "detailsId": "crackling-lance-of-branching-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -45555,7 +45775,7 @@
     "detailsId": "crackling-lance-of-disintegration-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -45732,7 +45952,7 @@
     "url": "skill-gems",
     "detailsId": "creeping-frost-1",
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -45824,7 +46044,7 @@
     "url": "skill-gems",
     "detailsId": "creeping-frost-of-floes-1",
     "gemLevel": 1,
-    "itemLevel": 27,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -45941,6 +46161,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "cremation-of-exhuming-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 40,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "cremation-of-exhuming-20-20",
     "gemLevel": 20,
     "gemQuality": 20,
@@ -45974,7 +46204,7 @@
     "detailsId": "cremation-of-the-volcano-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -47574,7 +47804,7 @@
     "detailsId": "crushing-fist-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -48478,7 +48708,7 @@
     "url": "skill-gems",
     "detailsId": "culling-strike-support-1",
     "gemLevel": 1,
-    "itemLevel": 18,
+    "itemLevel": 32,
     "variant": "1",
     "stats": []
   },
@@ -48627,7 +48857,7 @@
     "url": "skill-gems",
     "detailsId": "cursed-ground-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -49095,7 +49325,7 @@
     "detailsId": "cyclone-of-tumult-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -49205,7 +49435,7 @@
     "url": "skill-gems",
     "detailsId": "damage-on-full-life-support-1",
     "gemLevel": 1,
-    "itemLevel": 18,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -49708,6 +49938,14 @@
     "stats": []
   },
   {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "darkscorn-assassin-bow-5l",
+    "links": 5,
+    "itemLevel": 62,
+    "stats": []
+  },
+  {
     "type": "BaseType",
     "url": "base-types",
     "detailsId": "darkwood-sceptre-83",
@@ -49719,7 +49957,7 @@
     "url": "skill-gems",
     "detailsId": "dash-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 9,
     "variant": "1",
     "stats": []
   },
@@ -50080,7 +50318,7 @@
     "url": "skill-gems",
     "detailsId": "decay-support-1",
     "gemLevel": 1,
-    "itemLevel": 58,
+    "itemLevel": 38,
     "variant": "1",
     "stats": []
   },
@@ -52415,7 +52653,7 @@
     "url": "skill-gems",
     "detailsId": "destructive-link-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -52519,7 +52757,7 @@
     "detailsId": "determination-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 24,
     "variant": "1/20",
     "stats": []
   },
@@ -52643,7 +52881,7 @@
     "corrupted": true,
     "gemLevel": 1,
     "gemQuality": 23,
-    "itemLevel": 64,
+    "itemLevel": 4,
     "variant": "1/23c",
     "stats": []
   },
@@ -52734,7 +52972,7 @@
     "detailsId": "detonate-dead-of-chain-reaction-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -53840,7 +54078,7 @@
     "url": "skill-gems",
     "detailsId": "discharge-of-misery-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 44,
     "variant": "1",
     "stats": []
   },
@@ -54153,7 +54391,7 @@
     "url": "skill-gems",
     "detailsId": "divine-blast-of-radiance-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 28,
     "variant": "1",
     "stats": []
   },
@@ -54163,7 +54401,7 @@
     "detailsId": "divine-blast-of-radiance-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -54563,6 +54801,15 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "divine-ire-of-disintegration-1",
+    "gemLevel": 1,
+    "itemLevel": 66,
+    "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "divine-ire-of-disintegration-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
@@ -54607,7 +54854,7 @@
     "detailsId": "divine-ire-of-holy-lightning-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -54965,7 +55212,7 @@
     "url": "skill-gems",
     "detailsId": "dominating-blow-of-inspiring-1",
     "gemLevel": 1,
-    "itemLevel": 48,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -54975,7 +55222,7 @@
     "detailsId": "dominating-blow-of-inspiring-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 28,
     "variant": "1/20",
     "stats": []
   },
@@ -55280,7 +55527,7 @@
     "url": "skill-gems",
     "detailsId": "double-strike-1",
     "gemLevel": 1,
-    "itemLevel": 67,
+    "itemLevel": 20,
     "variant": "1",
     "stats": []
   },
@@ -55371,7 +55618,7 @@
     "detailsId": "double-strike-of-impaling-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 1,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -56234,7 +56481,7 @@
     "detailsId": "dread-banner-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 24,
+    "itemLevel": 62,
     "variant": "1/20",
     "stats": []
   },
@@ -56247,6 +56494,15 @@
     "gemQuality": 23,
     "itemLevel": 24,
     "variant": "1/23c",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "dread-banner-20",
+    "gemLevel": 20,
+    "itemLevel": 70,
+    "variant": "20",
     "stats": []
   },
   {
@@ -56668,6 +56924,18 @@
     "detailsId": "drox-map-tier-16-t0--gen-24",
     "mapTier": 16,
     "variant": ", Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_2563183002|4"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
+    "detailsId": "drox-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
     "stats": [
       {
         "id": "implicit.stat_2563183002|4"
@@ -57399,7 +57667,7 @@
     "url": "skill-gems",
     "detailsId": "earthshatter-of-fragility-1",
     "gemLevel": 1,
-    "itemLevel": 35,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -57409,7 +57677,7 @@
     "detailsId": "earthshatter-of-fragility-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1/20",
     "stats": []
   },
@@ -58006,6 +58274,13 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "eelskin-boots-82",
+    "itemLevel": 82,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "eelskin-boots-82-elder",
     "itemLevel": 82,
     "variant": "Elder",
@@ -58101,6 +58376,13 @@
     "detailsId": "eelskin-boots-86-warlord",
     "itemLevel": 86,
     "variant": "Warlord",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "eelskin-gloves-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -58245,7 +58527,7 @@
     "url": "skill-gems",
     "detailsId": "efficacy-support-1",
     "gemLevel": 1,
-    "itemLevel": 8,
+    "itemLevel": 67,
     "variant": "1",
     "stats": []
   },
@@ -58848,7 +59130,7 @@
     "url": "skill-gems",
     "detailsId": "elemental-army-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -58858,7 +59140,7 @@
     "detailsId": "elemental-army-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 31,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -58940,7 +59222,7 @@
     "url": "skill-gems",
     "detailsId": "elemental-damage-with-attacks-support-1",
     "gemLevel": 1,
-    "itemLevel": 18,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -58950,7 +59232,7 @@
     "detailsId": "elemental-damage-with-attacks-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 18,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -59053,7 +59335,7 @@
     "url": "skill-gems",
     "detailsId": "elemental-focus-support-1",
     "gemLevel": 1,
-    "itemLevel": 18,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -59063,7 +59345,7 @@
     "detailsId": "elemental-focus-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 18,
     "variant": "1/20",
     "stats": []
   },
@@ -59246,7 +59528,7 @@
     "detailsId": "elemental-hit-of-the-spectrum-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1/20",
     "stats": []
   },
@@ -59491,7 +59773,7 @@
     "url": "skill-gems",
     "detailsId": "elemental-weakness-1",
     "gemLevel": 1,
-    "itemLevel": 48,
+    "itemLevel": 24,
     "variant": "1",
     "stats": []
   },
@@ -59749,7 +60031,7 @@
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "emperors-vigilance-steel-kite-shield",
-    "itemLevel": 46,
+    "itemLevel": 66,
     "stats": []
   },
   {
@@ -60379,7 +60661,7 @@
     "url": "skill-gems",
     "detailsId": "enfeeble-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 27,
     "variant": "1",
     "stats": []
   },
@@ -60592,6 +60874,13 @@
     "detailsId": "engraved-greatsword-86-shaper",
     "itemLevel": 86,
     "variant": "Shaper",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "engraved-hatchet-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -61217,7 +61506,7 @@
     "detailsId": "essence-drain-of-desperation-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 62,
+    "itemLevel": 12,
     "variant": "1/20",
     "stats": []
   },
@@ -62171,7 +62460,7 @@
     "detailsId": "ethereal-knives-of-the-massacre-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 1,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -62765,6 +63054,25 @@
   {
     "type": "ClusterJewel",
     "url": "cluster-jewels",
+    "detailsId": "exerted-attacks-deal-20-increased-damage-5-passives-50",
+    "itemLevel": 50,
+    "variant": "5 passives",
+    "stats": [
+      {
+        "id": "enchant.stat_3948993189#28",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "enchant.stat_3086156145",
+        "min": 5,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "type": "ClusterJewel",
+    "url": "cluster-jewels",
     "detailsId": "exerted-attacks-deal-20-increased-damage-5-passives-68",
     "itemLevel": 68,
     "variant": "5 passives",
@@ -62933,7 +63241,7 @@
     "detailsId": "expert-retaliation-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 31,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -63218,6 +63526,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "explosive-concoction-of-destruction-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "explosive-concoction-of-destruction-20-20",
     "gemLevel": 20,
     "gemQuality": 20,
@@ -63386,7 +63704,7 @@
     "detailsId": "explosive-trap-of-shrapnel-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -64140,7 +64458,7 @@
     "url": "skill-gems",
     "detailsId": "eye-of-winter-of-finality-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 28,
     "variant": "1",
     "stats": []
   },
@@ -64150,7 +64468,7 @@
     "detailsId": "eye-of-winter-of-finality-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 28,
     "variant": "1/20",
     "stats": []
   },
@@ -66088,7 +66406,7 @@
     "url": "skill-gems",
     "detailsId": "faster-projectiles-support-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 62,
     "variant": "1",
     "stats": []
   },
@@ -66098,7 +66416,7 @@
     "detailsId": "faster-projectiles-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 50,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -66522,7 +66840,7 @@
     "url": "skill-gems",
     "detailsId": "feeding-frenzy-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -67609,7 +67927,7 @@
     "url": "skill-gems",
     "detailsId": "fire-penetration-support-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -67895,7 +68213,7 @@
     "url": "skill-gems",
     "detailsId": "fireball-1",
     "gemLevel": 1,
-    "itemLevel": 1,
+    "itemLevel": 7,
     "variant": "1",
     "stats": []
   },
@@ -67994,6 +68312,25 @@
     "stats": []
   },
   {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "fireball-of-radiation-1",
+    "gemLevel": 1,
+    "itemLevel": 1,
+    "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "fireball-of-radiation-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 1,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
     "type": "UniqueJewel",
     "url": "unique-jewels",
     "detailsId": "firesong-crimson-jewel",
@@ -68004,7 +68341,7 @@
     "url": "skill-gems",
     "detailsId": "firestorm-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -68123,7 +68460,7 @@
     "url": "skill-gems",
     "detailsId": "firestorm-of-pelting-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -68133,7 +68470,7 @@
     "detailsId": "firestorm-of-pelting-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -68428,7 +68765,7 @@
     "url": "skill-gems",
     "detailsId": "flame-dash-1",
     "gemLevel": 1,
-    "itemLevel": 57,
+    "itemLevel": 10,
     "variant": "1",
     "stats": []
   },
@@ -68642,7 +68979,7 @@
     "detailsId": "flame-link-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -68848,7 +69185,7 @@
     "url": "skill-gems",
     "detailsId": "flame-surge-of-combusting-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 62,
     "variant": "1",
     "stats": []
   },
@@ -68950,7 +69287,7 @@
     "detailsId": "flame-wall-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -69121,7 +69458,7 @@
     "detailsId": "flameblast-of-celerity-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -69171,7 +69508,7 @@
     "url": "skill-gems",
     "detailsId": "flameblast-of-contraction-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -69320,7 +69657,7 @@
     "url": "skill-gems",
     "detailsId": "flamethrower-trap-of-stability-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 46,
     "variant": "1",
     "stats": []
   },
@@ -69709,7 +70046,7 @@
     "url": "skill-gems",
     "detailsId": "flesh-and-stone-1",
     "gemLevel": 1,
-    "itemLevel": 52,
+    "itemLevel": 16,
     "variant": "1",
     "stats": []
   },
@@ -69818,7 +70155,7 @@
     "url": "skill-gems",
     "detailsId": "flesh-offering-1",
     "gemLevel": 1,
-    "itemLevel": 53,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -70382,7 +70719,7 @@
     "url": "skill-gems",
     "detailsId": "focused-ballista-support-1",
     "gemLevel": 1,
-    "itemLevel": 40,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -72965,7 +73302,7 @@
     "detailsId": "forbidden-rite-of-soul-sacrifice-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 16,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -73378,7 +73715,7 @@
     "url": "skill-gems",
     "detailsId": "fortify-support-1",
     "gemLevel": 1,
-    "itemLevel": 54,
+    "itemLevel": 46,
     "variant": "1",
     "stats": []
   },
@@ -73388,7 +73725,7 @@
     "detailsId": "fortify-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 31,
     "variant": "1/20",
     "stats": []
   },
@@ -73547,6 +73884,14 @@
     "detailsId": "fossilised-spirit-shield-84-elder",
     "itemLevel": 84,
     "variant": "Elder",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "fossilised-spirit-shield-84-hunter",
+    "itemLevel": 84,
+    "variant": "Hunter",
     "stats": []
   },
   {
@@ -74453,7 +74798,11 @@
     "foulborn": true,
     "itemLevel": 20,
     "variant": "Shock Explosion",
-    "stats": []
+    "stats": [
+      {
+        "id": "explicit.stat_2706994884"
+      }
+    ]
   },
   {
     "type": "UniqueArmour",
@@ -74627,9 +74976,6 @@
         "id": "explicit.indexable_support_16",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_28821524"
       }
     ]
   },
@@ -75312,6 +75658,9 @@
         "id": "explicit.stat_2545584555",
         "min": 0,
         "max": 0
+      },
+      {
+        "id": "enchant.stat_2545584555"
       }
     ]
   },
@@ -75443,6 +75792,9 @@
         "id": "explicit.stat_3680664274",
         "min": 0,
         "max": 0
+      },
+      {
+        "id": "crafted.stat_3680664274"
       }
     ]
   },
@@ -75510,9 +75862,6 @@
         "id": "explicit.indexable_support_133",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_3227145554"
       }
     ]
   },
@@ -76207,7 +76556,7 @@
     "url": "unique-armours",
     "detailsId": "foulborn-ghostwrithe-life-to-shield-silken-vest",
     "foulborn": true,
-    "itemLevel": 11,
+    "itemLevel": 55,
     "variant": "Life to Shield",
     "stats": [
       {
@@ -76984,12 +77333,9 @@
     "variant": "Channelling",
     "stats": [
       {
-        "id": "explicit.indexable_support_165",
+        "id": "explicit.effect_2653742489",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_1948535732"
       }
     ]
   },
@@ -77651,12 +77997,9 @@
     "variant": "Arrow Nova",
     "stats": [
       {
-        "id": "explicit.indexable_support_121",
+        "id": "explicit.effect_1405334938",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_1331336999"
       }
     ]
   },
@@ -78491,6 +78834,9 @@
         "id": "explicit.stat_118398748",
         "min": 0,
         "max": 0
+      },
+      {
+        "id": "crafted.stat_118398748"
       }
     ]
   },
@@ -78554,12 +78900,9 @@
     "variant": "Awakened Cascade",
     "stats": [
       {
-        "id": "explicit.stat_2222752567",
+        "id": "explicit.effect_1865320540",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_2292610865"
       }
     ]
   },
@@ -78617,12 +78960,9 @@
     "variant": "Frigid Bond",
     "stats": [
       {
-        "id": "explicit.indexable_support_159",
+        "id": "explicit.effect_4154493255",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_3031999964"
       }
     ]
   },
@@ -78770,6 +79110,42 @@
         "id": "explicit.stat_1301612627",
         "min": 0,
         "max": 0
+      }
+    ]
+  },
+  {
+    "type": "UniqueAccessory",
+    "url": "unique-accessories",
+    "detailsId": "foulborn-sareshs-darkness-avoid-poison-chain-belt",
+    "foulborn": true,
+    "itemLevel": 24,
+    "variant": "Avoid Poison",
+    "stats": [
+      {
+        "id": "explicit.stat_4053951709",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "enchant.stat_4053951709"
+      }
+    ]
+  },
+  {
+    "type": "UniqueAccessory",
+    "url": "unique-accessories",
+    "detailsId": "foulborn-sareshs-darkness-chaos-damage-chain-belt",
+    "foulborn": true,
+    "itemLevel": 24,
+    "variant": "Chaos Damage",
+    "stats": [
+      {
+        "id": "explicit.stat_736967255",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "crafted.stat_736967255"
       }
     ]
   },
@@ -79125,9 +79501,6 @@
         "id": "explicit.indexable_support_154",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_285773939"
       }
     ]
   },
@@ -79739,9 +80112,6 @@
         "id": "explicit.indexable_support_161",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_794471597"
       }
     ]
   },
@@ -80004,6 +80374,21 @@
     ]
   },
   {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "foulborn-the-desecrated-chalice-chaos-resist-coronal-maul",
+    "foulborn": true,
+    "itemLevel": 69,
+    "variant": "Chaos Resist",
+    "stats": [
+      {
+        "id": "explicit.stat_2923486259",
+        "min": 0,
+        "max": 0
+      }
+    ]
+  },
+  {
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "foulborn-the-embalmer-fast-poison-carnal-mitts",
@@ -80130,9 +80515,6 @@
         "id": "explicit.indexable_support_63",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_1337327984"
       }
     ]
   },
@@ -82014,6 +82396,9 @@
         "id": "explicit.stat_1050105434",
         "min": 0,
         "max": 0
+      },
+      {
+        "id": "crafted.stat_1050105434"
       }
     ]
   },
@@ -82462,12 +82847,9 @@
     "variant": "Manaforged Arrows",
     "stats": [
       {
-        "id": "explicit.indexable_support_147",
+        "id": "explicit.effect_1787679190",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_4022502578"
       }
     ]
   },
@@ -82611,12 +82993,9 @@
     "variant": "Returning Projectiles",
     "stats": [
       {
-        "id": "explicit.indexable_support_149",
+        "id": "explicit.effect_2714845045",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_1549219417"
       }
     ]
   },
@@ -82797,12 +83176,9 @@
     "variant": "Immolate",
     "stats": [
       {
-        "id": "explicit.indexable_support_71",
+        "id": "explicit.effect_1199731147",
         "min": 0,
         "max": 0
-      },
-      {
-        "id": "explicit.stat_2420410470"
       }
     ]
   },
@@ -83199,7 +83575,7 @@
     "detailsId": "frenzy-of-onslaught-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 64,
+    "itemLevel": 16,
     "variant": "1/20",
     "stats": []
   },
@@ -83270,7 +83646,7 @@
     "url": "skill-gems",
     "detailsId": "fresh-meat-support-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 18,
     "variant": "1",
     "stats": []
   },
@@ -83718,7 +84094,7 @@
     "detailsId": "frost-blades-of-katabasis-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -83881,7 +84257,7 @@
     "url": "skill-gems",
     "detailsId": "frost-bomb-of-forthcoming-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 6,
     "variant": "1",
     "stats": []
   },
@@ -83891,7 +84267,7 @@
     "detailsId": "frost-bomb-of-forthcoming-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -83911,7 +84287,7 @@
     "url": "skill-gems",
     "detailsId": "frost-bomb-of-instability-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 32,
     "variant": "1",
     "stats": []
   },
@@ -84264,7 +84640,7 @@
     "url": "skill-gems",
     "detailsId": "frostblink-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 9,
     "variant": "1",
     "stats": []
   },
@@ -84387,7 +84763,7 @@
     "detailsId": "frostblink-of-wintry-blast-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 32,
     "variant": "1/20",
     "stats": []
   },
@@ -84621,7 +84997,7 @@
     "url": "skill-gems",
     "detailsId": "frozen-legion-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -84683,7 +85059,7 @@
     "url": "skill-gems",
     "detailsId": "frozen-legion-of-rallying-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -85750,7 +86126,7 @@
     "detailsId": "galvanic-arrow-of-surging-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -85860,7 +86236,7 @@
     "url": "skill-gems",
     "detailsId": "galvanic-field-of-intensity-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 16,
     "variant": "1",
     "stats": []
   },
@@ -86618,7 +86994,7 @@
     "url": "skill-gems",
     "detailsId": "generals-cry-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 24,
     "variant": "1",
     "stats": []
   },
@@ -87868,7 +88244,7 @@
     "detailsId": "glacial-cascade-of-the-fissure-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -88031,7 +88407,7 @@
     "url": "skill-gems",
     "detailsId": "glacial-hammer-of-shattering-1",
     "gemLevel": 1,
-    "itemLevel": 48,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -89017,6 +89393,13 @@
     "type": "Beast",
     "url": "beasts",
     "detailsId": "goatman-stomper",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "goatman-talisman-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -90880,6 +91263,13 @@
     "stats": []
   },
   {
+    "type": "IncursionTemple",
+    "url": "temples",
+    "detailsId": "grand-reactor-tier-2-temple",
+    "mapTier": 2,
+    "stats": []
+  },
+  {
     "type": "BaseType",
     "url": "base-types",
     "detailsId": "grand-ringmail-82",
@@ -91493,6 +91883,13 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "great-maw-talisman-84",
+    "itemLevel": 84,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "great-maw-talisman-84-shaper-crusader",
     "itemLevel": 84,
     "variant": "Shaper/Crusader",
@@ -91612,6 +92009,13 @@
     "url": "unique-armours",
     "detailsId": "great-old-ones-ward-corrugated-buckler",
     "itemLevel": 46,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "great-white-claw-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -92518,7 +92922,7 @@
     "url": "skill-gems",
     "detailsId": "greater-volley-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -93059,7 +93463,7 @@
     "detailsId": "ground-slam-of-earthshaking-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 11,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -94569,7 +94973,7 @@
     "url": "skill-gems",
     "detailsId": "haste-1",
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -94738,7 +95142,7 @@
     "url": "skill-gems",
     "detailsId": "hatred-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -94748,7 +95152,7 @@
     "detailsId": "hatred-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 24,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -95202,6 +95606,13 @@
     "detailsId": "headmans-sword-86-shaper",
     "itemLevel": 86,
     "variant": "Shaper",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "headsman-axe-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -96239,7 +96650,7 @@
     "url": "skill-gems",
     "detailsId": "heavy-strike-of-trarthus-1",
     "gemLevel": 1,
-    "itemLevel": 1,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -96718,7 +97129,7 @@
     "url": "skill-gems",
     "detailsId": "herald-of-agony-1",
     "gemLevel": 1,
-    "itemLevel": 16,
+    "itemLevel": 24,
     "variant": "1",
     "stats": []
   },
@@ -97471,6 +97882,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "hexblast-of-contradiction-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 66,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "hexblast-of-contradiction-20",
     "gemLevel": 20,
     "itemLevel": 70,
@@ -97742,7 +98163,7 @@
     "url": "skill-gems",
     "detailsId": "hextouch-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -97899,6 +98320,13 @@
     "stats": []
   },
   {
+    "type": "UniqueArmour",
+    "url": "unique-armours",
+    "detailsId": "hide-of-the-vendigo-exquisite-leather",
+    "itemLevel": 62,
+    "stats": []
+  },
+  {
     "type": "SkillGem",
     "url": "skill-gems",
     "detailsId": "high-impact-mine-support-1",
@@ -97988,6 +98416,13 @@
     "gemLevel": 21,
     "itemLevel": 72,
     "variant": "21c",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "highborn-bow-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -98687,7 +99122,7 @@
     "detailsId": "holy-hammers-of-spirals-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -98933,7 +99368,7 @@
     "url": "skill-gems",
     "detailsId": "holy-sweep-of-hammerfalls-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -99145,6 +99580,14 @@
     "url": "base-types",
     "detailsId": "hubris-circlet-82",
     "itemLevel": 82,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "hubris-circlet-82-elder",
+    "itemLevel": 82,
+    "variant": "Elder",
     "stats": []
   },
   {
@@ -99839,7 +100282,7 @@
     "url": "skill-gems",
     "detailsId": "hydrosphere-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -99980,7 +100423,7 @@
     "url": "skill-gems",
     "detailsId": "hypothermia-support-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 44,
     "variant": "1",
     "stats": []
   },
@@ -99990,7 +100433,7 @@
     "detailsId": "hypothermia-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 31,
+    "itemLevel": 60,
     "variant": "1/20",
     "stats": []
   },
@@ -100302,7 +100745,7 @@
     "url": "skill-gems",
     "detailsId": "ice-crash-of-cadence-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 28,
     "variant": "1",
     "stats": []
   },
@@ -100456,8 +100899,18 @@
     "url": "skill-gems",
     "detailsId": "ice-nova-of-deep-freeze-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "ice-nova-of-deep-freeze-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 35,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -100497,7 +100950,7 @@
     "detailsId": "ice-nova-of-frostbolts-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 38,
     "variant": "1/20",
     "stats": []
   },
@@ -100659,7 +101112,7 @@
     "detailsId": "ice-shot-of-penetration-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 1,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -101200,6 +101653,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "icicle-mine-of-fanning-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "icicle-mine-of-fanning-20",
     "gemLevel": 20,
     "itemLevel": 70,
@@ -101277,6 +101740,16 @@
     "gemLevel": 1,
     "itemLevel": 12,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "icicle-mine-of-sabotage-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -101381,7 +101854,7 @@
     "url": "skill-gems",
     "detailsId": "ignite-proliferation-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 54,
     "variant": "1",
     "stats": []
   },
@@ -101592,7 +102065,7 @@
     "url": "skill-gems",
     "detailsId": "immortal-call-1",
     "gemLevel": 1,
-    "itemLevel": 54,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -101602,7 +102075,7 @@
     "detailsId": "immortal-call-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 46,
+    "itemLevel": 34,
     "variant": "1/20",
     "stats": []
   },
@@ -101761,7 +102234,7 @@
     "url": "skill-gems",
     "detailsId": "impale-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 60,
     "variant": "1",
     "stats": []
   },
@@ -103323,7 +103796,7 @@
     "detailsId": "incinerate-of-venting-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 56,
     "variant": "1/20",
     "stats": []
   },
@@ -103394,8 +103867,18 @@
     "url": "skill-gems",
     "detailsId": "increased-area-of-effect-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 62,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "increased-area-of-effect-support-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 38,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -103609,7 +104092,7 @@
     "detailsId": "increased-critical-strikes-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 8,
     "variant": "1/20",
     "stats": []
   },
@@ -103979,7 +104462,7 @@
     "url": "skill-gems",
     "detailsId": "infernal-blow-of-immolation-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 44,
     "variant": "1",
     "stats": []
   },
@@ -104030,7 +104513,7 @@
     "url": "skill-gems",
     "detailsId": "infernal-cry-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -105204,7 +105687,7 @@
     "detailsId": "intimidating-cry-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 10,
+    "itemLevel": 51,
     "variant": "1/20",
     "stats": []
   },
@@ -105753,7 +106236,7 @@
     "url": "skill-gems",
     "detailsId": "iron-grip-support-1",
     "gemLevel": 1,
-    "itemLevel": 50,
+    "itemLevel": 18,
     "variant": "1",
     "stats": []
   },
@@ -106124,7 +106607,7 @@
     "url": "skill-gems",
     "detailsId": "iron-will-support-1",
     "gemLevel": 1,
-    "itemLevel": 50,
+    "itemLevel": 18,
     "variant": "1",
     "stats": []
   },
@@ -106467,7 +106950,7 @@
     "detailsId": "item-rarity-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 31,
+    "itemLevel": 62,
     "variant": "1/20",
     "stats": []
   },
@@ -108305,6 +108788,13 @@
     "stats": []
   },
   {
+    "type": "UniqueAccessory",
+    "url": "unique-accessories",
+    "detailsId": "khatals-weeping-lapis-amulet",
+    "itemLevel": 56,
+    "stats": []
+  },
+  {
     "type": "UniqueFlask",
     "url": "unique-flasks",
     "detailsId": "kiaras-determination",
@@ -108535,7 +109025,7 @@
     "url": "skill-gems",
     "detailsId": "kinetic-bolt-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 67,
     "variant": "1",
     "stats": []
   },
@@ -108648,7 +109138,7 @@
     "url": "skill-gems",
     "detailsId": "kinetic-bolt-of-fragmentation-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 1,
     "variant": "1",
     "stats": []
   },
@@ -108712,6 +109202,16 @@
     "gemLevel": 1,
     "itemLevel": 12,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "kinetic-fusillade-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 12,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -108813,7 +109313,7 @@
     "url": "skill-gems",
     "detailsId": "kinetic-fusillade-of-detonation-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -108875,7 +109375,7 @@
     "url": "skill-gems",
     "detailsId": "kinetic-instability-support-1",
     "gemLevel": 1,
-    "itemLevel": 35,
+    "itemLevel": 18,
     "variant": "1",
     "stats": []
   },
@@ -109050,7 +109550,7 @@
     "url": "skill-gems",
     "detailsId": "kinetic-rain-of-impact-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 28,
     "variant": "1",
     "stats": []
   },
@@ -109912,7 +110412,7 @@
     "url": "skill-gems",
     "detailsId": "lacerate-of-butchering-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -109922,7 +110422,7 @@
     "detailsId": "lacerate-of-butchering-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -109993,7 +110493,7 @@
     "detailsId": "lacerate-of-haemorrhage-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 38,
     "variant": "1/20",
     "stats": []
   },
@@ -110903,7 +111403,7 @@
     "detailsId": "lancing-steel-of-spraying-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -111663,7 +112163,7 @@
     "url": "skill-gems",
     "detailsId": "leap-slam-1",
     "gemLevel": 1,
-    "itemLevel": 33,
+    "itemLevel": 10,
     "variant": "1",
     "stats": []
   },
@@ -113894,7 +114394,7 @@
     "url": "skill-gems",
     "detailsId": "life-leech-support-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -114227,7 +114727,7 @@
     "url": "skill-gems",
     "detailsId": "lightning-arrow-of-electrocution-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 15,
     "variant": "1",
     "stats": []
   },
@@ -114391,8 +114891,18 @@
     "url": "skill-gems",
     "detailsId": "lightning-conduit-of-the-heavens-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "lightning-conduit-of-the-heavens-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -114463,7 +114973,7 @@
     "url": "skill-gems",
     "detailsId": "lightning-penetration-support-1",
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -114473,7 +114983,7 @@
     "detailsId": "lightning-penetration-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 36,
+    "itemLevel": 31,
     "variant": "1/20",
     "stats": []
   },
@@ -114657,7 +115167,7 @@
     "url": "skill-gems",
     "detailsId": "lightning-spire-trap-of-overloading-1",
     "gemLevel": 1,
-    "itemLevel": 37,
+    "itemLevel": 52,
     "variant": "1",
     "stats": []
   },
@@ -114861,7 +115371,7 @@
     "detailsId": "lightning-strike-of-arcing-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1/20",
     "stats": []
   },
@@ -115076,7 +115586,7 @@
     "detailsId": "lightning-tendrils-of-eccentricity-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -115178,7 +115688,7 @@
     "detailsId": "lightning-tendrils-of-escalation-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 1,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -115270,7 +115780,7 @@
     "url": "skill-gems",
     "detailsId": "lightning-trap-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -115362,7 +115872,7 @@
     "url": "skill-gems",
     "detailsId": "lightning-trap-of-sparking-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 53,
     "variant": "1",
     "stats": []
   },
@@ -115372,7 +115882,7 @@
     "detailsId": "lightning-trap-of-sparking-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1/20",
     "stats": []
   },
@@ -115423,7 +115933,7 @@
     "url": "skill-gems",
     "detailsId": "lightning-warp-1",
     "gemLevel": 1,
-    "itemLevel": 10,
+    "itemLevel": 63,
     "variant": "1",
     "stats": []
   },
@@ -115940,7 +116450,7 @@
     "url": "skill-gems",
     "detailsId": "living-lightning-support-1",
     "gemLevel": 1,
-    "itemLevel": 18,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -115950,7 +116460,7 @@
     "detailsId": "living-lightning-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 18,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -117163,7 +117673,7 @@
     "url": "skill-gems",
     "detailsId": "maim-support-1",
     "gemLevel": 1,
-    "itemLevel": 8,
+    "itemLevel": 58,
     "variant": "1",
     "stats": []
   },
@@ -117721,7 +118231,7 @@
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "maligaros-virtuosity-deerskin-gloves",
-    "itemLevel": 21,
+    "itemLevel": 52,
     "stats": []
   },
   {
@@ -118288,7 +118798,7 @@
     "url": "maps",
     "detailsId": "map-tier-1-t0-gen-24",
     "mapTier": 1,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118296,7 +118806,7 @@
     "url": "maps",
     "detailsId": "map-tier-10-t0-gen-24",
     "mapTier": 10,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118304,7 +118814,7 @@
     "url": "maps",
     "detailsId": "map-tier-11-t0-gen-24",
     "mapTier": 11,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118312,7 +118822,7 @@
     "url": "maps",
     "detailsId": "map-tier-12-t0-gen-24",
     "mapTier": 12,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118320,7 +118830,7 @@
     "url": "maps",
     "detailsId": "map-tier-13-t0-gen-24",
     "mapTier": 13,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118328,7 +118838,7 @@
     "url": "maps",
     "detailsId": "map-tier-14-t0-gen-24",
     "mapTier": 14,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118336,7 +118846,7 @@
     "url": "maps",
     "detailsId": "map-tier-15-t0-gen-24",
     "mapTier": 15,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118344,7 +118854,7 @@
     "url": "maps",
     "detailsId": "map-tier-16-t0-gen-24",
     "mapTier": 16,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118352,7 +118862,7 @@
     "url": "maps",
     "detailsId": "map-tier-2-t0-gen-24",
     "mapTier": 2,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118360,7 +118870,7 @@
     "url": "maps",
     "detailsId": "map-tier-3-t0-gen-24",
     "mapTier": 3,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118368,7 +118878,7 @@
     "url": "maps",
     "detailsId": "map-tier-4-t0-gen-24",
     "mapTier": 4,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118376,7 +118886,7 @@
     "url": "maps",
     "detailsId": "map-tier-5-t0-gen-24",
     "mapTier": 5,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118384,7 +118894,7 @@
     "url": "maps",
     "detailsId": "map-tier-6-t0-gen-24",
     "mapTier": 6,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118392,7 +118902,7 @@
     "url": "maps",
     "detailsId": "map-tier-7-t0-gen-24",
     "mapTier": 7,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118400,7 +118910,7 @@
     "url": "maps",
     "detailsId": "map-tier-8-t0-gen-24",
     "mapTier": 8,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118408,7 +118918,7 @@
     "url": "maps",
     "detailsId": "map-tier-9-t0-gen-24",
     "mapTier": 9,
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -118764,7 +119274,7 @@
     "url": "skill-gems",
     "detailsId": "mark-on-hit-support-1",
     "gemLevel": 1,
-    "itemLevel": 67,
+    "itemLevel": 38,
     "variant": "1",
     "stats": []
   },
@@ -119641,7 +120151,7 @@
     "url": "skill-gems",
     "detailsId": "melee-physical-damage-support-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 18,
     "variant": "1",
     "stats": []
   },
@@ -119651,7 +120161,7 @@
     "detailsId": "melee-physical-damage-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 18,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -119743,7 +120253,7 @@
     "url": "skill-gems",
     "detailsId": "melee-splash-support-1",
     "gemLevel": 1,
-    "itemLevel": 8,
+    "itemLevel": 67,
     "variant": "1",
     "stats": []
   },
@@ -120529,7 +121039,7 @@
     "detailsId": "minefield-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 38,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -120635,7 +121145,7 @@
     "detailsId": "minion-damage-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 8,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -120727,7 +121237,7 @@
     "url": "skill-gems",
     "detailsId": "minion-life-support-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 18,
     "variant": "1",
     "stats": []
   },
@@ -120829,7 +121339,7 @@
     "url": "skill-gems",
     "detailsId": "minion-speed-support-1",
     "gemLevel": 1,
-    "itemLevel": 18,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -122447,7 +122957,7 @@
     "detailsId": "molten-shell-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 66,
+    "itemLevel": 16,
     "variant": "1/20",
     "stats": []
   },
@@ -123415,7 +123925,7 @@
     "detailsId": "more-duration-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 31,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -123695,7 +124205,7 @@
     "url": "skill-gems",
     "detailsId": "multiple-projectiles-support-1",
     "gemLevel": 1,
-    "itemLevel": 8,
+    "itemLevel": 21,
     "variant": "1",
     "stats": []
   },
@@ -123984,7 +124494,7 @@
     "detailsId": "multistrike-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 38,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -125490,6 +126000,13 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "nightmare-mace-82",
+    "itemLevel": 82,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "nightmare-mace-83",
     "itemLevel": 83,
     "stats": []
@@ -125583,7 +126100,7 @@
     "type": "Map",
     "url": "maps",
     "detailsId": "nightmare-map-t0-gen-24",
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -125763,6 +126280,13 @@
     "url": "unique-accessories",
     "detailsId": "nimis-topaz-ring",
     "itemLevel": 48,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "noble-axe-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -126374,6 +126898,14 @@
     "type": "UniqueWeapon",
     "url": "unique-weapons",
     "detailsId": "nulls-inclination-ranger-bow",
+    "itemLevel": 60,
+    "stats": []
+  },
+  {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "nulls-inclination-ranger-bow-5l",
+    "links": 5,
     "itemLevel": 60,
     "stats": []
   },
@@ -127896,7 +128428,7 @@
     "url": "skill-gems",
     "detailsId": "orb-of-storms-of-squalls-1",
     "gemLevel": 1,
-    "itemLevel": 55,
+    "itemLevel": 40,
     "variant": "1",
     "stats": []
   },
@@ -128549,6 +129081,16 @@
     "gemLevel": 1,
     "itemLevel": 38,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "overexertion-support-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 38,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -130877,7 +131419,7 @@
     "detailsId": "penance-brand-of-dissipation-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 34,
     "variant": "1/20",
     "stats": []
   },
@@ -131479,7 +132021,7 @@
     "url": "skill-gems",
     "detailsId": "perforate-of-bloodshed-1",
     "gemLevel": 1,
-    "itemLevel": 1,
+    "itemLevel": 40,
     "variant": "1",
     "stats": []
   },
@@ -131539,7 +132081,7 @@
     "url": "skill-gems",
     "detailsId": "perforate-of-duality-1",
     "gemLevel": 1,
-    "itemLevel": 44,
+    "itemLevel": 67,
     "variant": "1",
     "stats": []
   },
@@ -131549,7 +132091,7 @@
     "detailsId": "perforate-of-duality-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 1,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -131592,6 +132134,13 @@
     "gemQuality": 23,
     "itemLevel": 72,
     "variant": "21/23c",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "pernach-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -132663,7 +133212,7 @@
     "url": "skill-gems",
     "detailsId": "pierce-support-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 61,
     "variant": "1",
     "stats": []
   },
@@ -134155,7 +134704,7 @@
     "url": "skill-gems",
     "detailsId": "poachers-mark-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 16,
     "variant": "1",
     "stats": []
   },
@@ -134539,7 +135088,7 @@
     "detailsId": "poisonous-concoction-of-bouncing-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 66,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -134818,7 +135367,7 @@
     "corrupted": true,
     "gemLevel": 1,
     "gemQuality": 23,
-    "itemLevel": 18,
+    "itemLevel": 68,
     "variant": "1/23c",
     "stats": []
   },
@@ -134910,7 +135459,7 @@
     "url": "skill-gems",
     "detailsId": "power-siphon-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -135908,7 +136457,7 @@
     "url": "skill-gems",
     "detailsId": "pride-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -137466,7 +138015,7 @@
     "url": "skill-gems",
     "detailsId": "protective-link-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -137603,7 +138152,7 @@
     "url": "skill-gems",
     "detailsId": "pulverise-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 62,
     "variant": "1",
     "stats": []
   },
@@ -138063,7 +138612,7 @@
     "url": "skill-gems",
     "detailsId": "purifying-flame-of-revelations-1",
     "gemLevel": 1,
-    "itemLevel": 11,
+    "itemLevel": 56,
     "variant": "1",
     "stats": []
   },
@@ -138073,7 +138622,7 @@
     "detailsId": "purifying-flame-of-revelations-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 11,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -138145,7 +138694,7 @@
     "url": "skill-gems",
     "detailsId": "purity-of-elements-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -138258,7 +138807,7 @@
     "url": "skill-gems",
     "detailsId": "purity-of-fire-1",
     "gemLevel": 1,
-    "itemLevel": 52,
+    "itemLevel": 24,
     "variant": "1",
     "stats": []
   },
@@ -138371,7 +138920,7 @@
     "url": "skill-gems",
     "detailsId": "purity-of-ice-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -138381,7 +138930,7 @@
     "detailsId": "purity-of-ice-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 24,
     "variant": "1/20",
     "stats": []
   },
@@ -138584,6 +139133,12 @@
     "url": "valdo-maps",
     "detailsId": "putrid-frontier-t0",
     "variant": "Foil Severed in Sleep",
+    "stats": []
+  },
+  {
+    "type": "UniqueJewel",
+    "url": "unique-jewels",
+    "detailsId": "putrid-seed-mycelium-core",
     "stats": []
   },
   {
@@ -139284,7 +139839,7 @@
     "detailsId": "rage-vortex-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 62,
     "variant": "1/20",
     "stats": []
   },
@@ -139472,7 +140027,7 @@
     "detailsId": "rain-of-arrows-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -139550,6 +140105,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "rain-of-arrows-of-artillery-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 12,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "rain-of-arrows-of-artillery-21-20c",
     "corrupted": true,
     "gemLevel": 21,
@@ -139584,7 +140149,7 @@
     "detailsId": "rain-of-arrows-of-saturation-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -139767,6 +140332,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "raise-spectre-of-transience-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "raise-spectre-of-transience-20",
     "gemLevel": 20,
     "itemLevel": 70,
@@ -139820,7 +140395,7 @@
     "detailsId": "raise-zombie-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 1,
+    "itemLevel": 67,
     "variant": "1/20",
     "stats": []
   },
@@ -139922,7 +140497,7 @@
     "detailsId": "raise-zombie-of-falling-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 24,
     "variant": "1/20",
     "stats": []
   },
@@ -139983,7 +140558,7 @@
     "url": "skill-gems",
     "detailsId": "raise-zombie-of-slamming-1",
     "gemLevel": 1,
-    "itemLevel": 1,
+    "itemLevel": 28,
     "variant": "1",
     "stats": []
   },
@@ -140780,7 +141355,7 @@
     "detailsId": "reap-of-butchery-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 52,
     "variant": "1/20",
     "stats": []
   },
@@ -140867,6 +141442,14 @@
   {
     "type": "UniqueWeapon",
     "url": "unique-weapons",
+    "detailsId": "reapers-pursuit-shadow-axe-5l",
+    "links": 5,
+    "itemLevel": 33,
+    "stats": []
+  },
+  {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
     "detailsId": "reapers-pursuit-shadow-axe-6l",
     "links": 6,
     "itemLevel": 33,
@@ -140894,7 +141477,7 @@
     "detailsId": "reave-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 47,
     "variant": "1/20",
     "stats": []
   },
@@ -140997,7 +141580,7 @@
     "detailsId": "reave-of-refraction-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -143370,6 +143953,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "righteous-fire-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 16,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "righteous-fire-1-23c",
     "corrupted": true,
     "gemLevel": 1,
@@ -143476,7 +144069,7 @@
     "detailsId": "righteous-fire-of-arcane-devotion-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 16,
     "variant": "1/20",
     "stats": []
   },
@@ -143943,6 +144536,13 @@
     "detailsId": "riveted-gloves-86-warlord",
     "itemLevel": 86,
     "variant": "Warlord",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "rock-breaker-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -144582,6 +145182,13 @@
     "detailsId": "royal-burgonet-86-shaper-elder",
     "itemLevel": 86,
     "variant": "Shaper/Elder",
+    "stats": []
+  },
+  {
+    "type": "IncursionTemple",
+    "url": "temples",
+    "detailsId": "royal-forge-tier-2-temple",
+    "mapTier": 2,
     "stats": []
   },
   {
@@ -146176,7 +146783,7 @@
     "url": "skill-gems",
     "detailsId": "ruthless-support-1",
     "gemLevel": 1,
-    "itemLevel": 1,
+    "itemLevel": 56,
     "variant": "1",
     "stats": []
   },
@@ -146529,7 +147136,7 @@
     "url": "skill-gems",
     "detailsId": "sacred-wisps-support-1",
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -146620,7 +147227,7 @@
     "url": "skill-gems",
     "detailsId": "sacrifice-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -148885,6 +149492,13 @@
     "stats": []
   },
   {
+    "type": "UniqueAccessory",
+    "url": "unique-accessories",
+    "detailsId": "sareshs-darkness-chain-belt",
+    "itemLevel": 24,
+    "stats": []
+  },
+  {
     "type": "BaseType",
     "url": "base-types",
     "detailsId": "satin-gloves-82",
@@ -148981,6 +149595,13 @@
     "detailsId": "satin-gloves-86-shaper",
     "itemLevel": 86,
     "variant": "Shaper",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "satin-slippers-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -150105,7 +150726,7 @@
     "url": "skill-gems",
     "detailsId": "searing-bond-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 50,
     "variant": "1",
     "stats": []
   },
@@ -150284,7 +150905,7 @@
     "url": "skill-gems",
     "detailsId": "second-wind-support-1",
     "gemLevel": 1,
-    "itemLevel": 52,
+    "itemLevel": 58,
     "variant": "1",
     "stats": []
   },
@@ -150428,7 +151049,7 @@
     "url": "skill-gems",
     "detailsId": "seismic-cry-1",
     "gemLevel": 1,
-    "itemLevel": 16,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -151457,6 +152078,7 @@
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "seven-league-step-rawhide-boots",
+    "itemLevel": 42,
     "stats": []
   },
   {
@@ -152266,7 +152888,7 @@
     "type": "Map",
     "url": "maps",
     "detailsId": "shaper-guardian-map-t0-gen-24",
-    "variant": ", Gen-24",
+    "variant": "Gen-24",
     "stats": []
   },
   {
@@ -153112,7 +153734,7 @@
     "url": "skill-gems",
     "detailsId": "shield-crush-1",
     "gemLevel": 1,
-    "itemLevel": 48,
+    "itemLevel": 1,
     "variant": "1",
     "stats": []
   },
@@ -153215,7 +153837,7 @@
     "url": "skill-gems",
     "detailsId": "shield-crush-of-the-chieftain-1",
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 1,
     "variant": "1",
     "stats": []
   },
@@ -153225,7 +153847,7 @@
     "detailsId": "shield-crush-of-the-chieftain-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 56,
     "variant": "1/20",
     "stats": []
   },
@@ -153568,7 +154190,7 @@
     "url": "skill-gems",
     "detailsId": "shockwave-support-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 18,
     "variant": "1",
     "stats": []
   },
@@ -153600,6 +154222,16 @@
     "gemLevel": 20,
     "itemLevel": 70,
     "variant": "20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "shockwave-support-20-20",
+    "gemLevel": 20,
+    "gemQuality": 20,
+    "itemLevel": 70,
+    "variant": "20/20",
     "stats": []
   },
   {
@@ -154483,7 +155115,7 @@
     "url": "skill-gems",
     "detailsId": "sigil-of-power-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -156088,7 +156720,7 @@
     "url": "skill-gems",
     "detailsId": "slower-projectiles-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -156565,6 +157197,13 @@
     "gemLevel": 21,
     "itemLevel": 72,
     "variant": "21c",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "sniper-bow-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -157333,6 +157972,13 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "soldiers-brigandine-82",
+    "itemLevel": 82,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "soldiers-brigandine-83",
     "itemLevel": 83,
     "stats": []
@@ -157373,6 +158019,13 @@
     "detailsId": "soldiers-brigandine-86-warlord",
     "itemLevel": 86,
     "variant": "Warlord",
+    "stats": []
+  },
+  {
+    "type": "UniqueAccessory",
+    "url": "unique-accessories",
+    "detailsId": "solerais-radiance-chain-belt",
+    "itemLevel": 24,
     "stats": []
   },
   {
@@ -157832,7 +158485,7 @@
     "url": "skill-gems",
     "detailsId": "soul-link-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 52,
     "variant": "1",
     "stats": []
   },
@@ -158069,7 +158722,7 @@
     "url": "skill-gems",
     "detailsId": "soulrend-of-reaping-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 52,
     "variant": "1",
     "stats": []
   },
@@ -158079,7 +158732,7 @@
     "detailsId": "soulrend-of-reaping-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -158173,6 +158826,16 @@
     "gemLevel": 1,
     "itemLevel": 37,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "soulrend-of-the-spiral-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -158381,7 +159044,7 @@
     "url": "skill-gems",
     "detailsId": "spark-1",
     "gemLevel": 1,
-    "itemLevel": 16,
+    "itemLevel": 60,
     "variant": "1",
     "stats": []
   },
@@ -158483,7 +159146,7 @@
     "detailsId": "spark-of-the-nova-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -158575,7 +159238,7 @@
     "detailsId": "spark-of-unpredictability-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -158958,7 +159621,7 @@
     "url": "skill-gems",
     "detailsId": "spectral-shield-throw-of-shattering-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -159238,7 +159901,7 @@
     "url": "skill-gems",
     "detailsId": "spectral-throw-of-materialising-1",
     "gemLevel": 1,
-    "itemLevel": 36,
+    "itemLevel": 1,
     "variant": "1",
     "stats": []
   },
@@ -159490,7 +160153,7 @@
     "url": "skill-gems",
     "detailsId": "spell-echo-support-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -159786,7 +160449,7 @@
     "url": "skill-gems",
     "detailsId": "spellslinger-1",
     "gemLevel": 1,
-    "itemLevel": 56,
+    "itemLevel": 24,
     "variant": "1",
     "stats": []
   },
@@ -159909,6 +160572,13 @@
     "type": "Corpse",
     "url": "corpses",
     "detailsId": "spider-matriarch",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "spidersilk-robe-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -160064,6 +160734,14 @@
     "detailsId": "spike-point-arrow-quiver-83-elder",
     "itemLevel": 83,
     "variant": "Elder",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "spike-point-arrow-quiver-83-redeemer",
+    "itemLevel": 83,
+    "variant": "Redeemer",
     "stats": []
   },
   {
@@ -161262,7 +161940,7 @@
     "url": "skill-gems",
     "detailsId": "split-arrow-of-splitting-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 56,
     "variant": "1",
     "stats": []
   },
@@ -161310,6 +161988,17 @@
     "gemQuality": 20,
     "itemLevel": 1,
     "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "splitting-steel-1-23c",
+    "corrupted": true,
+    "gemLevel": 1,
+    "gemQuality": 23,
+    "itemLevel": 1,
+    "variant": "1/23c",
     "stats": []
   },
   {
@@ -162368,7 +163057,7 @@
     "url": "skill-gems",
     "detailsId": "static-strike-of-gathering-lightning-1",
     "gemLevel": 1,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -162378,7 +163067,7 @@
     "detailsId": "static-strike-of-gathering-lightning-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -163021,6 +163710,13 @@
   {
     "type": "BaseType",
     "url": "base-types",
+    "detailsId": "steel-kite-shield-82",
+    "itemLevel": 82,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
     "detailsId": "steel-kite-shield-83",
     "itemLevel": 83,
     "stats": []
@@ -163422,7 +164118,7 @@
     "url": "skill-gems",
     "detailsId": "steelskin-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 6,
     "variant": "1",
     "stats": []
   },
@@ -163650,7 +164346,7 @@
     "url": "skill-gems",
     "detailsId": "storm-brand-1",
     "gemLevel": 1,
-    "itemLevel": 19,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -163763,7 +164459,7 @@
     "detailsId": "storm-brand-of-indecision-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 64,
     "variant": "1/20",
     "stats": []
   },
@@ -163916,7 +164612,7 @@
     "url": "skill-gems",
     "detailsId": "storm-burst-of-repulsion-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 62,
     "variant": "1",
     "stats": []
   },
@@ -163926,7 +164622,7 @@
     "detailsId": "storm-burst-of-repulsion-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 12,
     "variant": "1/20",
     "stats": []
   },
@@ -164460,8 +165156,18 @@
     "url": "skill-gems",
     "detailsId": "stormbind-of-teleportation-1",
     "gemLevel": 1,
-    "itemLevel": 60,
+    "itemLevel": 28,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "stormbind-of-teleportation-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -165795,7 +166501,7 @@
     "detailsId": "summon-carrion-golem-of-hordes-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 58,
     "variant": "1/20",
     "stats": []
   },
@@ -165855,7 +166561,7 @@
     "detailsId": "summon-carrion-golem-of-scavenging-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 56,
     "variant": "1/20",
     "stats": []
   },
@@ -166078,7 +166784,7 @@
     "url": "skill-gems",
     "detailsId": "summon-chaos-golem-of-the-maelstrom-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 40,
     "variant": "1",
     "stats": []
   },
@@ -166169,7 +166875,7 @@
     "url": "skill-gems",
     "detailsId": "summon-flame-golem-1",
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -166282,7 +166988,7 @@
     "url": "skill-gems",
     "detailsId": "summon-flame-golem-of-hordes-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -166292,7 +166998,7 @@
     "detailsId": "summon-flame-golem-of-hordes-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -166373,7 +167079,7 @@
     "url": "skill-gems",
     "detailsId": "summon-flame-golem-of-the-meteor-1",
     "gemLevel": 1,
-    "itemLevel": 36,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -166495,7 +167201,7 @@
     "detailsId": "summon-holy-relic-of-conviction-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 64,
+    "itemLevel": 4,
     "variant": "1/20",
     "stats": []
   },
@@ -166701,7 +167407,7 @@
     "detailsId": "summon-ice-golem-of-hordes-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 69,
     "variant": "1/20",
     "stats": []
   },
@@ -166771,7 +167477,7 @@
     "detailsId": "summon-ice-golem-of-shattering-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 69,
     "variant": "1/20",
     "stats": []
   },
@@ -166831,7 +167537,7 @@
     "detailsId": "summon-lightning-golem-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 64,
+    "itemLevel": 34,
     "variant": "1/20",
     "stats": []
   },
@@ -166944,7 +167650,7 @@
     "detailsId": "summon-lightning-golem-of-hordes-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 69,
     "variant": "1/20",
     "stats": []
   },
@@ -167015,7 +167721,7 @@
     "url": "skill-gems",
     "detailsId": "summon-phantasm-support-1",
     "gemLevel": 1,
-    "itemLevel": 6,
+    "itemLevel": 61,
     "variant": "1",
     "stats": []
   },
@@ -167025,7 +167731,7 @@
     "detailsId": "summon-phantasm-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 64,
     "variant": "1/20",
     "stats": []
   },
@@ -167209,7 +167915,7 @@
     "url": "skill-gems",
     "detailsId": "summon-raging-spirit-of-enormity-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 58,
     "variant": "1",
     "stats": []
   },
@@ -167389,6 +168095,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "summon-reaper-of-eviscerating-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 68,
+    "variant": "1/20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "summon-reaper-of-eviscerating-20",
     "gemLevel": 20,
     "itemLevel": 70,
@@ -167443,7 +168159,7 @@
     "url": "skill-gems",
     "detailsId": "summon-reaper-of-revenants-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 54,
     "variant": "1",
     "stats": []
   },
@@ -167453,7 +168169,7 @@
     "detailsId": "summon-reaper-of-revenants-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -167513,7 +168229,7 @@
     "url": "skill-gems",
     "detailsId": "summon-skeletons-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 10,
     "variant": "1",
     "stats": []
   },
@@ -167615,7 +168331,7 @@
     "detailsId": "summon-skeletons-of-archers-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 66,
+    "itemLevel": 10,
     "variant": "1/20",
     "stats": []
   },
@@ -167685,7 +168401,7 @@
     "detailsId": "summon-skeletons-of-mages-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 10,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -167994,7 +168710,7 @@
     "url": "skill-gems",
     "detailsId": "summon-stone-golem-of-hordes-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 46,
     "variant": "1",
     "stats": []
   },
@@ -168004,7 +168720,7 @@
     "detailsId": "summon-stone-golem-of-hordes-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 69,
+    "itemLevel": 34,
     "variant": "1/20",
     "stats": []
   },
@@ -168075,7 +168791,7 @@
     "url": "skill-gems",
     "detailsId": "summon-stone-golem-of-safeguarding-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -168085,7 +168801,7 @@
     "detailsId": "summon-stone-golem-of-safeguarding-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 66,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -168341,7 +169057,7 @@
     "url": "skill-gems",
     "detailsId": "sunder-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -169195,7 +169911,7 @@
     "detailsId": "swift-affliction-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 68,
+    "itemLevel": 31,
     "variant": "1/20",
     "stats": []
   },
@@ -169287,7 +170003,7 @@
     "url": "skill-gems",
     "detailsId": "swift-assembly-support-1",
     "gemLevel": 1,
-    "itemLevel": 4,
+    "itemLevel": 67,
     "variant": "1",
     "stats": []
   },
@@ -169379,8 +170095,18 @@
     "url": "skill-gems",
     "detailsId": "swiftbrand-support-1",
     "gemLevel": 1,
-    "itemLevel": 31,
+    "itemLevel": 68,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "swiftbrand-support-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 66,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -169461,7 +170187,7 @@
     "detailsId": "swordstorm-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 16,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -170224,7 +170950,7 @@
     "url": "skill-gems",
     "detailsId": "tectonic-slam-1",
     "gemLevel": 1,
-    "itemLevel": 28,
+    "itemLevel": 31,
     "variant": "1",
     "stats": []
   },
@@ -171480,6 +172206,13 @@
     "stats": []
   },
   {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "the-bane-of-hope-maraketh-bow",
+    "itemLevel": 71,
+    "stats": []
+  },
+  {
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "the-baron-close-helmet",
@@ -171540,6 +172273,14 @@
     "type": "UniqueWeapon",
     "url": "unique-weapons",
     "detailsId": "the-blood-reaper-headsman-axe",
+    "itemLevel": 45,
+    "stats": []
+  },
+  {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "the-blood-reaper-headsman-axe-5l",
+    "links": 5,
     "itemLevel": 45,
     "stats": []
   },
@@ -171699,6 +172440,18 @@
   {
     "type": "Map",
     "url": "maps",
+    "detailsId": "the-constrictor-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_3624393862|3"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
     "detailsId": "the-constrictor-vaal-temple-map-t0-atlas",
     "variant": "Atlas",
     "stats": [
@@ -171826,6 +172579,13 @@
     "stats": []
   },
   {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "the-desecrated-chalice-coronal-maul",
+    "itemLevel": 69,
+    "stats": []
+  },
+  {
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "the-devourer-of-minds-pig-faced-bascinet",
@@ -171875,6 +172635,18 @@
   {
     "type": "Map",
     "url": "maps",
+    "detailsId": "the-enslaver-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_3624393862|1"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
     "detailsId": "the-enslaver-vaal-temple-map-t0-atlas",
     "variant": "Atlas",
     "stats": [
@@ -171896,6 +172668,18 @@
     "detailsId": "the-eradicator-map-tier-16-t0--gen-24",
     "mapTier": 16,
     "variant": ", Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_3624393862|2"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
+    "detailsId": "the-eradicator-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
     "stats": [
       {
         "id": "implicit.stat_3624393862|2"
@@ -171961,6 +172745,13 @@
     "url": "unique-relics",
     "detailsId": "the-first-crest-tainted-currency-relic",
     "variant": "Tainted Currency",
+    "stats": []
+  },
+  {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "the-flame-of-hope-maraketh-bow",
+    "itemLevel": 71,
     "stats": []
   },
   {
@@ -172234,7 +173025,6 @@
     "type": "UniqueJewel",
     "url": "unique-jewels",
     "detailsId": "the-interrogation-small-cluster-jewel",
-    "itemLevel": 26,
     "stats": []
   },
   {
@@ -172444,6 +173234,18 @@
   {
     "type": "Map",
     "url": "maps",
+    "detailsId": "the-purifier-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_3624393862|4"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
     "detailsId": "the-purifier-vaal-temple-map-t0-atlas",
     "variant": "Atlas",
     "stats": [
@@ -172492,6 +173294,14 @@
     "type": "UniqueArmour",
     "url": "unique-armours",
     "detailsId": "the-rat-cage-sharkskin-tunic",
+    "itemLevel": 56,
+    "stats": []
+  },
+  {
+    "type": "UniqueArmour",
+    "url": "unique-armours",
+    "detailsId": "the-rat-cage-sharkskin-tunic-5l",
+    "links": 5,
     "itemLevel": 56,
     "stats": []
   },
@@ -172714,6 +173524,13 @@
     "url": "unique-armours",
     "detailsId": "the-surrender-ezomyte-tower-shield",
     "itemLevel": 64,
+    "stats": []
+  },
+  {
+    "type": "UniqueWeapon",
+    "url": "unique-weapons",
+    "detailsId": "the-sword-of-ages-exquisite-blade",
+    "itemLevel": 70,
     "stats": []
   },
   {
@@ -175372,7 +176189,7 @@
     "url": "skill-gems",
     "detailsId": "tornado-1",
     "gemLevel": 1,
-    "itemLevel": 34,
+    "itemLevel": 66,
     "variant": "1",
     "stats": []
   },
@@ -175473,7 +176290,7 @@
     "detailsId": "tornado-of-elemental-turbulence-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 48,
     "variant": "1/20",
     "stats": []
   },
@@ -175575,7 +176392,7 @@
     "detailsId": "tornado-shot-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -176505,7 +177322,7 @@
     "detailsId": "toxic-rain-of-withering-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -176823,8 +177640,18 @@
     "url": "skill-gems",
     "detailsId": "trap-and-mine-damage-support-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 18,
     "variant": "1",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "trap-and-mine-damage-support-1-20",
+    "gemLevel": 1,
+    "gemQuality": 20,
+    "itemLevel": 18,
+    "variant": "1/20",
     "stats": []
   },
   {
@@ -176926,7 +177753,7 @@
     "url": "skill-gems",
     "detailsId": "trap-support-1",
     "gemLevel": 1,
-    "itemLevel": 8,
+    "itemLevel": 58,
     "variant": "1",
     "stats": []
   },
@@ -176936,7 +177763,7 @@
     "detailsId": "trap-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 8,
+    "itemLevel": 33,
     "variant": "1/20",
     "stats": []
   },
@@ -177362,7 +178189,7 @@
     "detailsId": "trinity-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 18,
+    "itemLevel": 41,
     "variant": "1/20",
     "stats": []
   },
@@ -179285,7 +180112,7 @@
     "url": "skill-gems",
     "detailsId": "unbound-ailments-support-1",
     "gemLevel": 1,
-    "itemLevel": 8,
+    "itemLevel": 52,
     "variant": "1",
     "stats": []
   },
@@ -179295,7 +180122,7 @@
     "detailsId": "unbound-ailments-support-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 67,
+    "itemLevel": 8,
     "variant": "1/20",
     "stats": []
   },
@@ -179632,7 +180459,7 @@
     "url": "skill-gems",
     "detailsId": "unleash-support-1",
     "gemLevel": 1,
-    "itemLevel": 67,
+    "itemLevel": 38,
     "variant": "1",
     "stats": []
   },
@@ -180090,6 +180917,13 @@
     "url": "valdo-maps",
     "detailsId": "untouched-refuge-t0",
     "variant": "Foil Shattershard",
+    "stats": []
+  },
+  {
+    "type": "UniqueAccessory",
+    "url": "unique-accessories",
+    "detailsId": "unwilling-embrace-bone-ring",
+    "itemLevel": 52,
     "stats": []
   },
   {
@@ -180666,7 +181500,7 @@
     "detailsId": "vaal-arctic-armour-1c",
     "corrupted": true,
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 16,
     "variant": "1c",
     "stats": []
   },
@@ -181748,6 +182582,16 @@
   {
     "type": "SkillGem",
     "url": "skill-gems",
+    "detailsId": "vaal-detonate-dead-detonate-dead-of-scavenging-1c",
+    "corrupted": true,
+    "gemLevel": 1,
+    "itemLevel": 28,
+    "variant": "1c",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
     "detailsId": "vaal-detonate-dead-detonate-dead-of-scavenging-20-20c",
     "corrupted": true,
     "gemLevel": 20,
@@ -182721,7 +183565,7 @@
     "detailsId": "vaal-ground-slam-ground-slam-of-earthshaking-1c",
     "corrupted": true,
     "gemLevel": 1,
-    "itemLevel": 64,
+    "itemLevel": 32,
     "variant": "1c",
     "stats": []
   },
@@ -182753,7 +183597,7 @@
     "detailsId": "vaal-haste-1c",
     "corrupted": true,
     "gemLevel": 1,
-    "itemLevel": 62,
+    "itemLevel": 56,
     "variant": "1c",
     "stats": []
   },
@@ -182797,6 +183641,13 @@
     "gemLevel": 21,
     "itemLevel": 72,
     "variant": "21c",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "vaal-hatchet-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -182958,6 +183809,16 @@
     "gemQuality": 20,
     "itemLevel": 72,
     "variant": "21/20c",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "vaal-ice-nova-ice-nova-of-frostbolts-1c",
+    "corrupted": true,
+    "gemLevel": 1,
+    "itemLevel": 12,
+    "variant": "1c",
     "stats": []
   },
   {
@@ -185742,7 +186603,7 @@
     "url": "skill-gems",
     "detailsId": "vengeful-cry-1",
     "gemLevel": 1,
-    "itemLevel": 50,
+    "itemLevel": 24,
     "variant": "1",
     "stats": []
   },
@@ -185926,6 +186787,18 @@
     "detailsId": "veritania-map-tier-16-t0--gen-24",
     "mapTier": 16,
     "variant": ", Gen-24",
+    "stats": [
+      {
+        "id": "implicit.stat_2563183002|2"
+      }
+    ]
+  },
+  {
+    "type": "Map",
+    "url": "maps",
+    "detailsId": "veritania-map-tier-16-t0-gen-24",
+    "mapTier": 16,
+    "variant": "Gen-24",
     "stats": [
       {
         "id": "implicit.stat_2563183002|2"
@@ -186984,7 +187857,7 @@
     "detailsId": "viper-strike-of-the-mamba-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 4,
+    "itemLevel": 1,
     "variant": "1/20",
     "stats": []
   },
@@ -187823,7 +188696,7 @@
     "url": "skill-gems",
     "detailsId": "void-sphere-1",
     "gemLevel": 1,
-    "itemLevel": 56,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -187855,6 +188728,16 @@
     "gemLevel": 20,
     "itemLevel": 70,
     "variant": "20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "void-sphere-20-20",
+    "gemLevel": 20,
+    "gemQuality": 20,
+    "itemLevel": 70,
+    "variant": "20/20",
     "stats": []
   },
   {
@@ -187916,7 +188799,7 @@
     "url": "skill-gems",
     "detailsId": "void-sphere-of-rending-1",
     "gemLevel": 1,
-    "itemLevel": 66,
+    "itemLevel": 34,
     "variant": "1",
     "stats": []
   },
@@ -187926,7 +188809,7 @@
     "detailsId": "void-sphere-of-rending-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 34,
+    "itemLevel": 69,
     "variant": "1/20",
     "stats": []
   },
@@ -188107,7 +188990,7 @@
     "url": "skill-gems",
     "detailsId": "volatile-dead-1",
     "gemLevel": 1,
-    "itemLevel": 47,
+    "itemLevel": 12,
     "variant": "1",
     "stats": []
   },
@@ -188117,7 +189000,7 @@
     "detailsId": "volatile-dead-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -188210,7 +189093,7 @@
     "url": "skill-gems",
     "detailsId": "volatile-dead-of-confinement-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 38,
     "variant": "1",
     "stats": []
   },
@@ -188269,7 +189152,7 @@
     "detailsId": "volatile-dead-of-seething-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -188544,7 +189427,7 @@
     "detailsId": "volcanic-fissure-of-snaking-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 12,
+    "itemLevel": 62,
     "variant": "1/20",
     "stats": []
   },
@@ -188655,6 +189538,16 @@
     "gemLevel": 20,
     "itemLevel": 70,
     "variant": "20",
+    "stats": []
+  },
+  {
+    "type": "SkillGem",
+    "url": "skill-gems",
+    "detailsId": "volley-support-20-20",
+    "gemLevel": 20,
+    "gemQuality": 20,
+    "itemLevel": 70,
+    "variant": "20/20",
     "stats": []
   },
   {
@@ -188975,7 +189868,7 @@
     "detailsId": "vortex-of-projection-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 62,
+    "itemLevel": 68,
     "variant": "1/20",
     "stats": []
   },
@@ -189591,6 +190484,25 @@
   {
     "type": "ClusterJewel",
     "url": "cluster-jewels",
+    "detailsId": "wand-attacks-deal-12-increased-damage-with-hits-and-ailments-12-passives-50",
+    "itemLevel": 50,
+    "variant": "12 passives",
+    "stats": [
+      {
+        "id": "enchant.stat_3948993189#5",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "enchant.stat_3086156145",
+        "min": 12,
+        "max": 12
+      }
+    ]
+  },
+  {
+    "type": "ClusterJewel",
+    "url": "cluster-jewels",
     "detailsId": "wand-attacks-deal-12-increased-damage-with-hits-and-ailments-12-passives-68",
     "itemLevel": 68,
     "variant": "12 passives",
@@ -189980,6 +190892,13 @@
     "gemLevel": 21,
     "itemLevel": 72,
     "variant": "21c",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "war-buckler-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -191881,7 +192800,7 @@
     "detailsId": "winter-orb-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 28,
+    "itemLevel": 66,
     "variant": "1/20",
     "stats": []
   },
@@ -191991,7 +192910,7 @@
     "url": "skill-gems",
     "detailsId": "wintertide-brand-1",
     "gemLevel": 1,
-    "itemLevel": 12,
+    "itemLevel": 68,
     "variant": "1",
     "stats": []
   },
@@ -192099,7 +193018,7 @@
     "url": "skill-gems",
     "detailsId": "wither-1",
     "gemLevel": 1,
-    "itemLevel": 10,
+    "itemLevel": 51,
     "variant": "1",
     "stats": []
   },
@@ -192109,7 +193028,7 @@
     "detailsId": "wither-1-20",
     "gemLevel": 1,
     "gemQuality": 20,
-    "itemLevel": 10,
+    "itemLevel": 21,
     "variant": "1/20",
     "stats": []
   },
@@ -192304,7 +193223,7 @@
     "url": "skill-gems",
     "detailsId": "withering-touch-support-1",
     "gemLevel": 1,
-    "itemLevel": 38,
+    "itemLevel": 64,
     "variant": "1",
     "stats": []
   },
@@ -192927,7 +193846,7 @@
     "url": "skill-gems",
     "detailsId": "wrath-1",
     "gemLevel": 1,
-    "itemLevel": 52,
+    "itemLevel": 24,
     "variant": "1",
     "stats": []
   },
@@ -193081,6 +194000,13 @@
     "url": "valdo-maps",
     "detailsId": "wretched-ward-t0",
     "variant": "Foil Breathstealer",
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "wrist-chopper-82",
+    "itemLevel": 82,
     "stats": []
   },
   {
@@ -193383,6 +194309,13 @@
     "url": "base-types",
     "detailsId": "wyrmscale-doublet-84",
     "itemLevel": 84,
+    "stats": []
+  },
+  {
+    "type": "BaseType",
+    "url": "base-types",
+    "detailsId": "wyrmscale-doublet-85",
+    "itemLevel": 85,
     "stats": []
   },
   {
@@ -194024,6 +194957,13 @@
   {
     "type": "UniqueArmour",
     "url": "unique-armours",
+    "detailsId": "yriels-fostering-exquisite-leather",
+    "itemLevel": 62,
+    "stats": []
+  },
+  {
+    "type": "UniqueArmour",
+    "url": "unique-armours",
     "detailsId": "yriels-fostering-maim-exquisite-leather",
     "itemLevel": 62,
     "variant": "Maim",
@@ -194421,7 +195361,7 @@
     "url": "skill-gems",
     "detailsId": "zealotry-1",
     "gemLevel": 1,
-    "itemLevel": 24,
+    "itemLevel": 62,
     "variant": "1",
     "stats": []
   },
