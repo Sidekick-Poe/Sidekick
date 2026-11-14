@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AngleSharp"/>
         <PackageReference Include="bunit.web"/>
         <PackageReference Include="coverlet.collector">
             <PrivateAssets>all</PrivateAssets>
