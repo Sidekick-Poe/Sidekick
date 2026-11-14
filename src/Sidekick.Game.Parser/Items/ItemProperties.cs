@@ -54,7 +54,7 @@ public class ItemProperties
 
     public int MoreMaps { get; set; }
 
-    public int MoreScarabs { get; set; }
+    public int MoreThreads { get; set; }
 
     public int MoreCurrency { get; set; }
 
