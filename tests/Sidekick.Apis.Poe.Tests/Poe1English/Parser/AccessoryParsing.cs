@@ -204,7 +204,7 @@ Adds 8(6-9) to 15(13-15) Physical Damage to Attacks
         Assert.Equal("Pearlescent Amulet", actual.TradeItem?.Type);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 15);
-        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found", 9);
+        // Removed in 3.30 // fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found", 9);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Strength", 8);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all Elemental Resistances", 6);
     }

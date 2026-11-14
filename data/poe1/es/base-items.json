@@ -9972,7 +9972,7 @@
     "itemClassId": "Belt",
     "name": "Faja estigia",
     "req": {
-      "lvl": 1
+      "lvl": 75
     }
   },
   {
@@ -10028,7 +10028,7 @@
     "itemClassId": "Belt",
     "name": "Cintur\u00F3n de cuerda",
     "req": {
-      "lvl": 1
+      "lvl": 75
     }
   },
   {
@@ -11184,6 +11184,22 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/AstrolabeBestiary",
+    "itemClassId": "StackableCurrency",
+    "name": "Astrolabio feral",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/AstrolabeBetrayal",
+    "itemClassId": "StackableCurrency",
+    "name": "Astrolabio inmortal",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/AstrolabeBlight",
     "itemClassId": "StackableCurrency",
     "name": "Astrolabio f\u00FAngico",
@@ -11227,6 +11243,14 @@
     "id": "Metadata/Items/Currency/AstrolabeHarvest",
     "itemClassId": "StackableCurrency",
     "name": "Astrolabio cultivador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/AstrolabeIncursion",
+    "itemClassId": "StackableCurrency",
+    "name": "Astrolabio real",
     "req": {
       "lvl": 1
     }
@@ -11626,7 +11650,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyAfflictionOrbScarabs",
     "itemClassId": "StackableCurrency",
-    "name": "Orbe de delirio escurridizo",
+    "name": "Orbe de delirio hilado",
     "req": {
       "lvl": 1
     }
@@ -12872,6 +12896,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyEssenceUber1",
+    "itemClassId": "StackableCurrency",
+    "name": "Esencia de ilusionismo",
+    "req": {
+      "lvl": 82
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyEssenceWoe1",
     "itemClassId": "StackableCurrency",
     "name": "Esencia susurrante de aflicci\u00F3n",
@@ -13762,7 +13794,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionCorrupt1",
     "itemClassId": "StackableCurrency",
-    "name": "Corrupci\u00F3n",
+    "name": "Corrupto",
     "req": {
       "lvl": 1
     }
@@ -13770,7 +13802,15 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionCorrupt2",
     "itemClassId": "StackableCurrency",
-    "name": "Corrupci\u00F3n",
+    "name": "Corrupto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorrupt3",
+    "itemClassId": "StackableCurrency",
+    "name": "Corrupto",
     "req": {
       "lvl": 1
     }
@@ -13778,7 +13818,23 @@
   {
     "id": "Metadata/Items/Currency/CurrencyIncursionCorruptGem",
     "itemClassId": "StackableCurrency",
-    "name": "Corrupci\u00F3n",
+    "name": "Corrupto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorruptGem2",
+    "itemClassId": "StackableCurrency",
+    "name": "Corrupto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorruptMap",
+    "itemClassId": "StackableCurrency",
+    "name": "Corrupto",
     "req": {
       "lvl": 1
     }
@@ -13788,7 +13844,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Vial de sacrificio",
     "req": {
-      "lvl": 68
+      "lvl": 81
     }
   },
   {
@@ -13796,7 +13852,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Vial del fantasma",
     "req": {
-      "lvl": 68
+      "lvl": 81
     }
   },
   {
@@ -13804,7 +13860,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Vial de trascendencia",
     "req": {
-      "lvl": 50
+      "lvl": 68
     }
   },
   {
@@ -13866,7 +13922,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyItemiseCapturedMonster",
     "itemClassId": "StackableCurrency",
-    "name": "Orbe Bestiary",
+    "name": "Orbe de bestiario",
     "req": {
       "lvl": 15
     }
@@ -13890,7 +13946,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyItemisedCapturedMonster",
     "itemClassId": "StackableCurrency",
-    "name": "Orbe Bestiary Copiado",
+    "name": "Orbe de bestiario copiado",
     "req": {
       "lvl": 1
     }
@@ -14122,7 +14178,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyMapQualityScarabs",
     "itemClassId": "StackableCurrency",
-    "name": "Cincel de la Especialista de escarabajos",
+    "name": "Cincel de la Especialista de hilos",
     "req": {
       "lvl": 1
     }
@@ -14488,6 +14544,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyStackedThread",
+    "itemClassId": "StackableCurrency",
+    "name": "Hilo ra\u00EDdo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyStrongboxQuality",
     "itemClassId": "StackableCurrency",
     "name": "Orbe del ingeniero",
@@ -14556,7 +14620,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Orbe de azar",
     "req": {
-      "lvl": 2
+      "lvl": 24
     }
   },
   {
@@ -14640,9 +14704,17 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyWishSupportGem",
+    "itemClassId": "StackableCurrency",
+    "name": "N\u00FAcleo de alma de inestabilidad",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemBlue",
     "itemClassId": "StackableCurrency",
-    "name": "Moneda de sabidur\u00EDa",
+    "name": "N\u00FAcleo de alma de intelecto",
     "req": {
       "lvl": 68
     }
@@ -14650,7 +14722,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemGreen",
     "itemClassId": "StackableCurrency",
-    "name": "Moneda de habilidad",
+    "name": "N\u00FAcleo de alma de sutileza",
     "req": {
       "lvl": 68
     }
@@ -14658,7 +14730,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemRed",
     "itemClassId": "StackableCurrency",
-    "name": "Moneda de poder",
+    "name": "N\u00FAcleo de alma de poder\u00EDo",
     "req": {
       "lvl": 68
     }
@@ -14835,6 +14907,14 @@
     "id": "Metadata/Items/Currency/LegionCocoonHelmet",
     "itemClassId": "StackableCurrency",
     "name": "Cristal envolvente vaal",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/LegionCocoonQuiver",
+    "itemClassId": "StackableCurrency",
+    "name": "Cristal envolvente afarud",
     "req": {
       "lvl": 1
     }
@@ -15733,6 +15813,14 @@
     "name": "Recombinador de armas",
     "req": {
       "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/StackedAstrolabe",
+    "itemClassId": "StackableCurrency",
+    "name": "Astrolabio cr\u00EDptico",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -18228,7 +18316,7 @@
     "itemClassId": "DivinationCard",
     "name": "El tonto",
     "req": {
-      "lvl": 23
+      "lvl": 24
     }
   },
   {
@@ -20864,6 +20952,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemConstriction",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de constricci\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemControlledBlaze",
     "itemClassId": "Support Skill Gem",
     "name": "Asistencia de Llamarada controlada",
@@ -21008,11 +21104,35 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemDestitution",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de destituci\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemDevour",
     "itemClassId": "Support Skill Gem",
     "name": "Asistencia de Devorar",
     "req": {
       "lvl": 8
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemDiminishment",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de disminuci\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemDisempower",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de desempoderamiento",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -21109,6 +21229,14 @@
     "name": "Asistencia despertada de Empoderar",
     "req": {
       "lvl": 72
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemEncumbrance",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de impedimento",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -21632,6 +21760,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemImpotence",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de impotencia",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemIncreasedAreaOfEffect",
     "itemClassId": "Support Skill Gem",
     "name": "Asistencia de \u00C1rea de efecto\u00A0aumentada",
@@ -21816,6 +21952,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemLethargy",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de letargo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemLifeGainOnHit",
     "itemClassId": "Support Skill Gem",
     "name": "Asistencia de Vida ganada por golpe",
@@ -21941,6 +22085,14 @@
     "name": "Asistencia de escudo de carne",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemMediocrity",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de mediocridad",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -22120,6 +22272,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemNullification",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de anulaci\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemOnslaught",
     "itemClassId": "Support Skill Gem",
     "name": "Asistencia de Momentum",
@@ -22192,6 +22352,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemPenance",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de penitencia",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemPhysicalProjectileAttackDamage",
     "itemClassId": "Support Skill Gem",
     "name": "Asistencia de Proyectiles despiadados",
@@ -22245,6 +22413,14 @@
     "name": "Asistencia de Aflicci\u00F3n por golpe cr\u00EDtico",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemPoverty",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de pobreza",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -22589,6 +22765,14 @@
     "name": "Asistencia de Marca veloz",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemTaxation",
+    "itemClassId": "Support Skill Gem",
+    "name": "Asistencia de tributaci\u00F3n",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -24944,6 +25128,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Jewels/JewelBlighted",
+    "itemClassId": "Jewel",
+    "name": "N\u00FAcleo de micelio",
+    "req": {
+      "lvl": 20
+    }
+  },
+  {
     "id": "Metadata/Items/Jewels/JewelDex",
     "itemClassId": "Jewel",
     "name": "Joya viridiana",
@@ -25216,6 +25408,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Legion/CocoonedQuiver",
+    "itemClassId": "CocoonedItem",
+    "name": "Carcaj envuelto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Legion/CocoonedShield",
     "itemClassId": "CocoonedItem",
     "name": "Escudo envuelto",
@@ -25264,6 +25464,14 @@
     }
   },
   {
+    "id": "Metadata/Items/MapFragments/AtlasAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "Brasa de la Llama eterna de la multitud",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/MapFragments/AtlasMemory/CurrencyBenevolenceKey",
     "itemClassId": "MapFragment",
     "name": "Eco de reverencia",
@@ -25289,7 +25497,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/BetrayalAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna de Kulemak",
     "req": {
       "lvl": 1
@@ -25345,8 +25553,16 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CleansedAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna de los et\u00E9reos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CloisterAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "Brasa de la Llama eterna de claustro",
     "req": {
       "lvl": 1
     }
@@ -25373,6 +25589,14 @@
     "name": "Simulacro",
     "req": {
       "lvl": 75
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyAuguryBossKey",
+    "itemClassId": "MapFragment",
+    "name": "Mu\u00F1eca maldita",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -25633,7 +25857,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CurrencyFragmentPantheonFlask",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Recipiente divino",
     "req": {
       "lvl": 68
@@ -25645,6 +25869,14 @@
     "name": "Brote sagrado",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyIncursionUberFragment",
+    "itemClassId": "StackableCurrency",
+    "name": "Rostro real",
+    "req": {
+      "lvl": 68
     }
   },
   {
@@ -26113,7 +26345,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/GoldAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna de los dorados",
     "req": {
       "lvl": 1
@@ -26297,7 +26529,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/MeatSackAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna de carne",
     "req": {
       "lvl": 1
@@ -26307,6 +26539,14 @@
     "id": "Metadata/Items/MapFragments/MercenaryWarrant",
     "itemClassId": "MapFragment",
     "name": "Acuerdo de mercenario",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/PantheonAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "Brasa de la Llama eterna de los divinos",
     "req": {
       "lvl": 1
     }
@@ -26345,7 +26585,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/PropagationAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna de propagaci\u00F3n",
     "req": {
       "lvl": 1
@@ -26385,7 +26625,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/RatsAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "[DNT - UNUSED] Allflame Ember of Rats",
     "req": {
       "lvl": 1
@@ -26393,7 +26633,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/ResplendenceAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna de resplandor",
     "req": {
       "lvl": 1
@@ -26452,12 +26692,12 @@
     "itemClassId": "VaultKey",
     "name": "Llave del Relicario nacido del vac\u00EDo",
     "req": {
-      "lvl": 35
+      "lvl": 68
     }
   },
   {
     "id": "Metadata/Items/MapFragments/ToadAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna de sapos",
     "req": {
       "lvl": 1
@@ -26620,12 +26860,12 @@
     "itemClassId": "VaultKey",
     "name": "Llave del Relicario nacido del vac\u00EDo",
     "req": {
-      "lvl": 35
+      "lvl": 68
     }
   },
   {
     "id": "Metadata/Items/MapFragments/WildwoodAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Brasa de la Llama eterna del Bosque viridino",
     "req": {
       "lvl": 1
@@ -31682,7 +31922,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada de Mal\u00EDgaro, el mutilador",
+    "name": "Alma capturada de Thraxia",
     "req": {
       "lvl": 1
     }
@@ -31690,7 +31930,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada de Armala, la viuda",
+    "name": "Alma capturada del Persuasor de podredumbre",
     "req": {
       "lvl": 1
     }
@@ -31698,7 +31938,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada del Rhoa furioso de la sequ\u00EDa",
+    "name": "Alma capturada de Armala, la viuda",
     "req": {
       "lvl": 1
     }
@@ -31706,7 +31946,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada de Nassar, Le\u00F3n de los mares",
+    "name": "Alma capturada de Merveil, la Retornada",
     "req": {
       "lvl": 1
     }
@@ -31714,7 +31954,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada del Capit\u00E1n Tanner Pies Ligeros",
+    "name": "Alma capturada de Belcer, el Se\u00F1or pirata",
     "req": {
       "lvl": 1
     }
@@ -31722,7 +31962,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada de Conmoci\u00F3n y horror",
+    "name": "Alma capturada de Nassar, Le\u00F3n de los mares",
     "req": {
       "lvl": 1
     }
@@ -31730,7 +31970,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulGarukhanUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada del Herrero",
+    "name": "Alma capturada del Acechador de las dunas interminables",
     "req": {
       "lvl": 1
     }
@@ -31746,7 +31986,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada del Capit\u00E1n Clayborne, el Maldito",
+    "name": "Alma capturada del L\u00EDder Vientomudo",
     "req": {
       "lvl": 1
     }
@@ -31754,7 +31994,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada del Fragmento de invierno",
+    "name": "Alma capturada del Conmoci\u00F3n y horror",
     "req": {
       "lvl": 1
     }
@@ -31762,7 +32002,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada de Glace",
+    "name": "Alma capturada de Sebbert, Cuarto creciente",
     "req": {
       "lvl": 1
     }
@@ -31794,7 +32034,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada de Oak el Poderoso",
+    "name": "Alma capturada del Bosque de llamas",
     "req": {
       "lvl": 1
     }
@@ -31802,7 +32042,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada de Kitava, el Destructor",
+    "name": "Alma capturada del Rey infernal",
     "req": {
       "lvl": 1
     }
@@ -31810,7 +32050,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Alma capturada del Bosque de llamas",
+    "name": "Alma capturada de Jorus, el Filo del cielo",
     "req": {
       "lvl": 1
     }
@@ -34664,6 +34904,86 @@
     }
   },
   {
+    "id": "Metadata/Items/Threads/ThreadAbyss",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de abismo",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBestiary",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de bestiario",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBetrayal",
+    "itemClassId": "MapFragment",
+    "name": "Hilo del sindicato",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBlight",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de plaga",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBreach",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de fisura",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadExpedition",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de expedici\u00F3n",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadIncursion",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de incursi\u00F3n",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadLegion",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de legi\u00F3n",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadRitual",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de ritual",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadUltimatum",
+    "itemClassId": "MapFragment",
+    "name": "Hilo de ultim\u00E1tum",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
     "id": "Metadata/Items/Tinctures/Tincture1",
     "itemClassId": "Tincture",
     "name": "Tintura prism\u00E1tica",
@@ -35195,6 +35515,1334 @@
     "id": "Metadata/Items/UniqueFragments/FragmentUniqueSword1_3",
     "itemClassId": "UniqueFragment",
     "name": "Fragmento de Espada de Legi\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAbberath",
+    "itemClassId": "Viscera",
+    "name": "Pezu\u00F1a de cabra llameante",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAidan",
+    "itemClassId": "Viscera",
+    "name": "Pie de primate",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAlHezmin",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de Al-Hezmin",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAlira",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la bruja bandida",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAmarissa",
+    "itemClassId": "Viscera",
+    "name": "Tent\u00E1culo galv\u00E1nico",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackBear",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de oso",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackBoar",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de jabal\u00ED",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackStag",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de ciervo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraArakaali",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la reina de las ara\u00F1as",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraArchbishopGeofri",
+    "itemClassId": "Viscera",
+    "name": "Calavera de templario",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAureltheHungry",
+    "itemClassId": "Viscera",
+    "name": "Brazo ensangrentado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAvariusReassembled",
+    "itemClassId": "Viscera",
+    "name": "Pierna prost\u00E9tica",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBannerofLunaris",
+    "itemClassId": "Viscera",
+    "name": "Estandarte del campe\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBaran",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de Baran",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBarkhul",
+    "itemClassId": "Viscera",
+    "name": "Coraz\u00F3n del gladiador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBasilisk",
+    "itemClassId": "Viscera",
+    "name": "Ojo quimerino",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBlackDeath",
+    "itemClassId": "Viscera",
+    "name": "Colmillos ar\u00E1cnidos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneAmalgam",
+    "itemClassId": "Viscera",
+    "name": "Guada\u00F1a \u00F3sea",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneQueen",
+    "itemClassId": "Viscera",
+    "name": "Pierna quitinosa",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneSculptor",
+    "itemClassId": "Viscera",
+    "name": "M\u00E1scara del nigromante",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneshaper",
+    "itemClassId": "Viscera",
+    "name": "Costillas del acechahuesos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoulderback",
+    "itemClassId": "Viscera",
+    "name": "Ancas l\u00EDticas",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBravalo",
+    "itemClassId": "Viscera",
+    "name": "Calavera hueca",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBringerofBlood",
+    "itemClassId": "Viscera",
+    "name": "Casco del luchador del pozo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBroodPrincess",
+    "itemClassId": "Viscera",
+    "name": "Tent\u00E1culo de bruja marina",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBrutus",
+    "itemClassId": "Viscera",
+    "name": "Brazo del encarcelador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBundleofWoe",
+    "itemClassId": "Viscera",
+    "name": "Pierna calcificada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCalaf",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del asesino",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCaligaImperatrix",
+    "itemClassId": "Viscera",
+    "name": "Torso del arist\u00F3crata",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCaptainAurelianus",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del soldado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCato",
+    "itemClassId": "Viscera",
+    "name": "Tomo her\u00E9tico",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChatters",
+    "itemClassId": "Viscera",
+    "name": "Pierna de guerrero esquel\u00E9tico",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChilloftheMountain",
+    "itemClassId": "Viscera",
+    "name": "Colmillos g\u00E9lidos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChimera",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la Quimera",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCoagulationofGore",
+    "itemClassId": "Viscera",
+    "name": "Esencia coagulada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraConstrictor",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Constrictor",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCovenQueen",
+    "itemClassId": "Viscera",
+    "name": "Corona de la Reina del aquelarre",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDaresso",
+    "itemClassId": "Viscera",
+    "name": "Filo del Maestro de las espadas",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityDoedre",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la saga",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityMaligaro",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del inquisidor",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityShavronne",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la bruja",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDishonouredQueen",
+    "itemClassId": "Viscera",
+    "name": "Arco de la exploradora",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDoedretheVile",
+    "itemClassId": "Viscera",
+    "name": "Est\u00F3mago de la saga",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDominusHighTemplar",
+    "itemClassId": "Viscera",
+    "name": "Pu\u00F1o del d\u00E9spota",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDroolmaw",
+    "itemClassId": "Viscera",
+    "name": "Brazo desollado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDrox",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de Drox",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDweller",
+    "itemClassId": "Viscera",
+    "name": "Pinza de crust\u00E1ceo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEaterofWorlds",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Devorador de mundos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEffigyofFear",
+    "itemClassId": "Viscera",
+    "name": "Horquilla del espantap\u00E1jaros",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraElder",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Antiguo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEnslaver",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Esclavizador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEradicator",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Erradicador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFairgraves",
+    "itemClassId": "Viscera",
+    "name": "Tricornio del marinero",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFidelitas",
+    "itemClassId": "Viscera",
+    "name": "Aguij\u00F3n cercenado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFireFury",
+    "itemClassId": "Viscera",
+    "name": "Brazo calcinado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFleetfreak",
+    "itemClassId": "Viscera",
+    "name": "Rueda del esqueleto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraForgottenDaughter",
+    "itemClassId": "Viscera",
+    "name": "Mano cortante amputada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGarukhan",
+    "itemClassId": "Viscera",
+    "name": "Corona de la reina del desierto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGemlingCaptain",
+    "itemClassId": "Viscera",
+    "name": "Torso de gemita",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGeneralAdus",
+    "itemClassId": "Viscera",
+    "name": "Calavera voltaica",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGeneralGravicius",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del general",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGneiss",
+    "itemClassId": "Viscera",
+    "name": "Piedra de golem",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGrandReliquarian",
+    "itemClassId": "Viscera",
+    "name": "Pierna del erudito",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGrappler",
+    "itemClassId": "Viscera",
+    "name": "Aparato voltaico",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGreatWhiteBeast",
+    "itemClassId": "Viscera",
+    "name": "Garras gigantes",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGreust",
+    "itemClassId": "Viscera",
+    "name": "Torso ornamentado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGruthkul",
+    "itemClassId": "Viscera",
+    "name": "Pulmones ennegrecidos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGuardCaptain",
+    "itemClassId": "Viscera",
+    "name": "Pierna del capit\u00E1n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHammerstorm",
+    "itemClassId": "Viscera",
+    "name": "Brazo marcado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHarbingerofLunaris",
+    "itemClassId": "Viscera",
+    "name": "Arco lunar",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHarbingerofSolaris",
+    "itemClassId": "Viscera",
+    "name": "Cetro resplandeciente",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHatebeat",
+    "itemClassId": "Viscera",
+    "name": "N\u00FAcleo fundido",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHectorTitucius",
+    "itemClassId": "Viscera",
+    "name": "Pierna acorazada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHighTemplarAvarius",
+    "itemClassId": "Viscera",
+    "name": "S\u00EDmbolo sagrado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHollowskull",
+    "itemClassId": "Viscera",
+    "name": "Torso infestado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHundredFootShadow",
+    "itemClassId": "Viscera",
+    "name": "Tripas del buitre",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHydra",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la Hidra",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofDread",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la Encarnaci\u00F3n del temor",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofFear",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de la Encarnaci\u00F3n del miedo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofNeglect",
+    "itemClassId": "Viscera",
+    "name": "Cubo de la Encarnaci\u00F3n del abandono",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIronpoint",
+    "itemClassId": "Viscera",
+    "name": "Brazo de arquero esquel\u00E9tico",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraJusticarCasticus",
+    "itemClassId": "Viscera",
+    "name": "Casco del justiciero",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKaom",
+    "itemClassId": "Viscera",
+    "name": "Calavera incendiada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKitava",
+    "itemClassId": "Viscera",
+    "name": "Calavera voraz",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKole",
+    "itemClassId": "Viscera",
+    "name": "Brazo del bruto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKraityn",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del renegado bandido",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKuduku",
+    "itemClassId": "Viscera",
+    "name": "Rostro tot\u00E9mico",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraLivingKnowledge",
+    "itemClassId": "Viscera",
+    "name": "Busto quebrado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraLunaris",
+    "itemClassId": "Viscera",
+    "name": "Filo de medialuna",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMalachaiNightmare",
+    "itemClassId": "Viscera",
+    "name": "Caparaz\u00F3n corrupto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMaligaro",
+    "itemClassId": "Viscera",
+    "name": "Garra del inquisidor",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMarceustheDefaced",
+    "itemClassId": "Viscera",
+    "name": "Busto vandalizado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMatriarch",
+    "itemClassId": "Viscera",
+    "name": "Forja ardiente",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMaven",
+    "itemClassId": "Viscera",
+    "name": "Planetario de la Especialista",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMerveil",
+    "itemClassId": "Viscera",
+    "name": "Tent\u00E1culo de la sirena",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMessengeroftheDesert",
+    "itemClassId": "Viscera",
+    "name": "Espada del desierto",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMinotaur",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Minotauro",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMuruk",
+    "itemClassId": "Viscera",
+    "name": "N\u00FAcleo del g\u00F3lem de caos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightbringerLucius",
+    "itemClassId": "Viscera",
+    "name": "Pierna del Guardia negro",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofCatarina",
+    "itemClassId": "Viscera",
+    "name": "Alas de Catarina de pesadilla",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofDepravedTrinity",
+    "itemClassId": "Viscera",
+    "name": "Libro de depravaci\u00F3n de pesadilla",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofLycia",
+    "itemClassId": "Viscera",
+    "name": "Alas de Lycia de pesadilla",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofUhtred",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de Uhtred de pesadilla",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofUnbreakable",
+    "itemClassId": "Viscera",
+    "name": "N\u00FAcleo del Irrompible de pesadilla",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOak",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del guerrero bandido",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOndar",
+    "itemClassId": "Viscera",
+    "name": "Garra fantasmal",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOozeback",
+    "itemClassId": "Viscera",
+    "name": "Cabeza cortada de Rhoa",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOverseerKrow",
+    "itemClassId": "Viscera",
+    "name": "L\u00E1tigo del capataz",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPerpetus",
+    "itemClassId": "Viscera",
+    "name": "Garras espinosas",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPhoenix",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del F\u00E9nix",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPiety",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del taumaturgo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPietyAbomination",
+    "itemClassId": "Viscera",
+    "name": "Ojo abultado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPikerivet",
+    "itemClassId": "Viscera",
+    "name": "Pierna marcada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPlagueRetch",
+    "itemClassId": "Viscera",
+    "name": "Pierna infectada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPlaguewing",
+    "itemClassId": "Viscera",
+    "name": "Ala enferma",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPrayerLeader",
+    "itemClassId": "Viscera",
+    "name": "Corona del seguidor",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPurifier",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Purificador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraQuru",
+    "itemClassId": "Viscera",
+    "name": "Carne de oso",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRaihara",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del sabueso siam\u00E9s",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRegulus",
+    "itemClassId": "Viscera",
+    "name": "Pierna calcinada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRhys",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del noble",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRyslatha",
+    "itemClassId": "Viscera",
+    "name": "Ooteca ar\u00E1cnida",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSearingExarch",
+    "itemClassId": "Viscera",
+    "name": "S\u00EDmbolo del Exarca abrasador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSeleslatha",
+    "itemClassId": "Viscera",
+    "name": "Cola de cobra",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShakari",
+    "itemClassId": "Viscera",
+    "name": "Aguij\u00F3n del escorpi\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShaper",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del Creador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShavronne",
+    "itemClassId": "Viscera",
+    "name": "Rostro desollado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShredderofGladiators",
+    "itemClassId": "Viscera",
+    "name": "Garra del le\u00F3n",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShreikerEihal",
+    "itemClassId": "Viscera",
+    "name": "Alas del murci\u00E9lago",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSirus",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de Sirus",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSkeletalAbomination",
+    "itemClassId": "Viscera",
+    "name": "Cola esquel\u00E9tica",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSkeletonCage",
+    "itemClassId": "Viscera",
+    "name": "Garras \u00F3seas",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSolaris",
+    "itemClassId": "Viscera",
+    "name": "Escudo solar",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraStranglecharm",
+    "itemClassId": "Viscera",
+    "name": "Esencia elemental",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSwordofLunaris",
+    "itemClassId": "Viscera",
+    "name": "Peto descolorido",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTarga",
+    "itemClassId": "Viscera",
+    "name": "Pierna del cazador furtivo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheBurningMan",
+    "itemClassId": "Viscera",
+    "name": "Farol fundido en carne",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheForgottenShade",
+    "itemClassId": "Viscera",
+    "name": "Capucha espectral",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheGoddessofPurity",
+    "itemClassId": "Viscera",
+    "name": "Pierna de estatua",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheInfernalSeal",
+    "itemClassId": "Viscera",
+    "name": "Lazo ardiente",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheShipyardTerror",
+    "itemClassId": "Viscera",
+    "name": "Pierna del portador de vac\u00EDo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheWhiteDeath",
+    "itemClassId": "Viscera",
+    "name": "Garras de wendigo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraThistlesage",
+    "itemClassId": "Viscera",
+    "name": "Caparaz\u00F3n con pinchos",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTolman",
+    "itemClassId": "Viscera",
+    "name": "Ankh dorado",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTorchoakGrove",
+    "itemClassId": "Viscera",
+    "name": "Ancas cortadas",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraToweringAberration",
+    "itemClassId": "Viscera",
+    "name": "Cabeza disecada",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTrinianIntellectusPrime",
+    "itemClassId": "Viscera",
+    "name": "Brazo del erudito",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTsoagoth",
+    "itemClassId": "Viscera",
+    "name": "Tenaza del Rey cangrejo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTukohama",
+    "itemClassId": "Viscera",
+    "name": "Mazo del ancestro",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTunnelworm",
+    "itemClassId": "Viscera",
+    "name": "Antena del devorador",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTyrannursusMaximus",
+    "itemClassId": "Viscera",
+    "name": "Pierna de bestia esquel\u00E9tica",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraUnendingFeast",
+    "itemClassId": "Viscera",
+    "name": "Est\u00F3mago distendido",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraUngulath",
+    "itemClassId": "Viscera",
+    "name": "Cuerno de hombre cabra",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOverseer",
+    "itemClassId": "Viscera",
+    "name": "Ap\u00E9ndice vaal",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul",
+    "itemClassId": "Viscera",
+    "name": "Ap\u00E9ndice artificial",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul2",
+    "itemClassId": "Viscera",
+    "name": "Ap\u00E9ndice artificial",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul3",
+    "itemClassId": "Viscera",
+    "name": "Ap\u00E9ndice artificial",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalSentry",
+    "itemClassId": "Viscera",
+    "name": "Cabeza del constructo",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVenarius",
+    "itemClassId": "Viscera",
+    "name": "Escritura de Venarius",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVeritania",
+    "itemClassId": "Viscera",
+    "name": "Cabeza de Veritania",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVilenta",
+    "itemClassId": "Viscera",
+    "name": "Pierna ardiente",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVoll",
+    "itemClassId": "Viscera",
+    "name": "Estandarte templario",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWailingWraith",
+    "itemClassId": "Viscera",
+    "name": "Garras espectrales",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWeaponsSmuggler",
+    "itemClassId": "Viscera",
+    "name": "Mano del contrabandista",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWeaver",
+    "itemClassId": "Viscera",
+    "name": "Pierna de ar\u00E1cnido",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraYugul",
+    "itemClassId": "Viscera",
+    "name": "Fauces aterradoras",
     "req": {
       "lvl": 1
     }
@@ -39034,6 +40682,11 @@
     "name": "Manto arcano"
   },
   {
+    "id": "arcane_link",
+    "itemClassId": "Active Skill Gem",
+    "name": "V\u00EDnculo arcano"
+  },
+  {
     "id": "arcane_wake",
     "itemClassId": "Active Skill Gem",
     "name": "Rastro arcano"
@@ -39489,6 +41142,11 @@
     "name": "Sangre y arena"
   },
   {
+    "id": "blood_flower",
+    "itemClassId": "Active Skill Gem",
+    "name": "Brote sangriento"
+  },
+  {
     "id": "blood_offering",
     "itemClassId": "Active Skill Gem",
     "name": "Ofrenda de sangre"
@@ -39602,6 +41260,26 @@
     "id": "breach_mass_flicker_strike",
     "itemClassId": "Active Skill Gem",
     "name": "Golpe repentino"
+  },
+  {
+    "id": "breach_mod_skill_esh_lightning_ring",
+    "itemClassId": "Active Skill Gem",
+    "name": "Envuelto en luz"
+  },
+  {
+    "id": "breach_mod_skill_tul_tornado",
+    "itemClassId": "Active Skill Gem",
+    "name": "Baile en el blanco"
+  },
+  {
+    "id": "breach_mod_skill_uulnetol_hand_slam",
+    "itemClassId": "Active Skill Gem",
+    "name": "Regresar al polvo"
+  },
+  {
+    "id": "breach_mod_skill_xoph_geyser_explosion",
+    "itemClassId": "Active Skill Gem",
+    "name": "Su mensaje ardiente"
   },
   {
     "id": "brine_torrent",
@@ -40721,7 +42399,7 @@
   {
     "id": "fireball_alt_x",
     "itemClassId": "Active Skill Gem",
-    "name": "[DNT] FireballAltX"
+    "name": "Bola de fuego de radiaci\u00F3n"
   },
   {
     "id": "fireball_alt_y",
@@ -40936,7 +42614,7 @@
   {
     "id": "frost_blades_alt_x",
     "itemClassId": "Active Skill Gem",
-    "name": "Filos\u00A0de escarcha de retirada"
+    "name": "Filos\u00A0de escarcha de cat\u00E1basis"
   },
   {
     "id": "frost_blades_alt_y",
@@ -41237,6 +42915,11 @@
     "id": "gravity_sphere_triggered",
     "itemClassId": "Active Skill Gem",
     "name": "Esfera de gravedad"
+  },
+  {
+    "id": "grim_bonfire",
+    "itemClassId": "Active Skill Gem",
+    "name": "Pira del cazador de brujas"
   },
   {
     "id": "ground_fire_self",
@@ -41779,6 +43462,11 @@
     "name": "Salto con impacto"
   },
   {
+    "id": "lesser_raise_spiders",
+    "itemClassId": "Active Skill Gem",
+    "name": "Levantar ara\u00F1as menor"
+  },
+  {
     "id": "lightning_arrow",
     "itemClassId": "Active Skill Gem",
     "name": "Flecha de rayo"
@@ -42177,6 +43865,11 @@
     "id": "oil_arrow",
     "itemClassId": "Active Skill Gem",
     "name": "Disparo inflamable"
+  },
+  {
+    "id": "oozing_aura",
+    "itemClassId": "Active Skill Gem",
+    "name": "[DNT] Oozing Aura"
   },
   {
     "id": "orb_of_storms",
@@ -43724,6 +45417,11 @@
     "name": "Invocar esp\u00EDritu de Utula"
   },
   {
+    "id": "summon_squid_spawn",
+    "itemClassId": "Active Skill Gem",
+    "name": "[DNT] Summon Squid Spawn"
+  },
+  {
     "id": "summon_stone_golem",
     "itemClassId": "Active Skill Gem",
     "name": "Invocar g\u00F3lem de piedra"
@@ -43802,6 +45500,11 @@
     "id": "suspend_in_time",
     "itemClassId": "Active Skill Gem",
     "name": "Suspender en el tiempo"
+  },
+  {
+    "id": "suspend_in_time_sword",
+    "itemClassId": "Active Skill Gem",
+    "name": "Espejismo temporal"
   },
   {
     "id": "sweep",
@@ -44022,6 +45725,11 @@
     "id": "triggered_lightning_spell_on_hit",
     "itemClassId": "Active Skill Gem",
     "name": "Descarga de rayo"
+  },
+  {
+    "id": "triggered_moonfall",
+    "itemClassId": "Active Skill Gem",
+    "name": "Ca\u00EDda lunar"
   },
   {
     "id": "triggered_starfall",

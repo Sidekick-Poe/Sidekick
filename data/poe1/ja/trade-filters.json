@@ -434,6 +434,26 @@
         }
       },
       {
+        "id": "twice_corrupted",
+        "text": "\u4E8C\u91CD\u30B3\u30E9\u30D7\u30C8",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "",
+              "text": "\u6307\u5B9A\u306A\u3057"
+            }
+          ]
+        }
+      },
+      {
         "id": "quality",
         "text": "\u54C1\u8CEA",
         "option": {
@@ -463,6 +483,13 @@
       {
         "id": "intangibility",
         "text": "\u5E7D\u4F53\u5316\u5EA6",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "\u672A\u9451\u5B9A\u30C6\u30A3\u30A2",
         "option": {
           "options": []
         }
@@ -548,6 +575,26 @@
         "text": "\u84C4\u3048\u3089\u308C\u305F\u7D4C\u9A13\u5024",
         "option": {
           "options": []
+        }
+      },
+      {
+        "id": "fated",
+        "text": "\u904B\u547D",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "\u3044\u3044\u3048"
+            },
+            {
+              "id": "true",
+              "text": "\u306F\u3044"
+            },
+            {
+              "id": "",
+              "text": "\u6307\u5B9A\u306A\u3057"
+            }
+          ]
         }
       },
       {
@@ -1031,7 +1078,7 @@
   },
   {
     "id": "map_filters",
-    "title": "\u30DE\u30C3\u30D7/\u6D77\u56F3\u30D5\u30A3\u30EB\u30BF\u30FC",
+    "title": "\u30DE\u30C3\u30D7\u30D5\u30A3\u30EB\u30BF\u30FC",
     "filters": [
       {
         "id": "map_iir",
@@ -1043,6 +1090,13 @@
       {
         "id": "map_iiq",
         "text": "\u30A2\u30A4\u30C6\u30E0\u6570\u91CF\u5897\u52A0(IIQ)",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "\u30A2\u30C8\u30E9\u30B9\u30C9\u30ED\u30C3\u30D7",
         "option": {
           "options": []
         }
@@ -1234,52 +1288,6 @@
         "option": {
           "options": []
         }
-      },
-      {
-        "id": "chart_shape",
-        "text": "\u6D77\u56F3\u306E\u5F62",
-        "option": {
-          "options": [
-            {
-              "id": "5",
-              "text": "\u4EA4\u5DEE"
-            },
-            {
-              "id": "4",
-              "text": "\u5206\u5C90"
-            },
-            {
-              "id": "",
-              "text": "\u6307\u5B9A\u306A\u3057"
-            },
-            {
-              "id": "3",
-              "text": "\u76F4\u7DDA"
-            },
-            {
-              "id": "1",
-              "text": "\u7D42\u4E86"
-            },
-            {
-              "id": "2",
-              "text": "\u89D2"
-            }
-          ]
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "\u6D77\u56F3\u30B4\u30FC\u30EB\u30C9",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_sulphur",
-        "text": "\u6D77\u56F3\u786B\u9EC4",
-        "option": {
-          "options": []
-        }
       }
     ]
   },
@@ -1415,6 +1423,10 @@
             {
               "id": "weapon.dagger",
               "text": "\u3044\u305A\u308C\u304B\u306E\u77ED\u5263"
+            },
+            {
+              "id": "viscera",
+              "text": "\u3044\u305A\u308C\u304B\u306E\u81D3\u5668"
             },
             {
               "id": "armour",
@@ -1645,12 +1657,24 @@
               "text": "\u77E2\u7B52"
             },
             {
+              "id": "viscera.body",
+              "text": "\u80F4\u4F53\u81D3\u5668"
+            },
+            {
+              "id": "viscera.arm",
+              "text": "\u8155\u81D3\u5668"
+            },
+            {
               "id": "gem.supportgemplus",
               "text": "\u899A\u9192\u306E\u30B5\u30DD\u30FC\u30C8\u30B8\u30A7\u30E0"
             },
             {
               "id": "monster.redbeast",
               "text": "\u8D64\u30D3\u30FC\u30B9\u30C8"
+            },
+            {
+              "id": "viscera.leg",
+              "text": "\u8DB3\u81D3\u5668"
             },
             {
               "id": "weapon.rod",
@@ -1667,6 +1691,10 @@
             {
               "id": "armour.boots",
               "text": "\u9774"
+            },
+            {
+              "id": "viscera.head",
+              "text": "\u982D\u90E8\u81D3\u5668"
             },
             {
               "id": "monster.yellowbeast",

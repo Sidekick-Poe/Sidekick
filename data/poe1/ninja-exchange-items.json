@@ -372,12 +372,6 @@
     "id": "blacksmiths-delirium-orb"
   },
   {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "blacksmiths-whetstone",
-    "id": "whetstone"
-  },
-  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "blazing-fragment",
@@ -526,12 +520,6 @@
     "url": "scarabs",
     "detailsId": "cartography-scarab-of-the-multitude",
     "id": "cartography-scarab-of-the-multitude"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "chaos-orb",
-    "id": "chaos"
   },
   {
     "type": "Astrolabe",
@@ -906,12 +894,6 @@
     "id": "divine-justice"
   },
   {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "divine-orb",
-    "id": "divine"
-  },
-  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "divine-vessel",
@@ -1084,12 +1066,6 @@
     "url": "divination-cards",
     "detailsId": "eternal-bonds",
     "id": "eternal-bonds"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "exalted-orb",
-    "id": "exalted"
   },
   {
     "type": "Currency",
@@ -1320,12 +1296,6 @@
     "id": "gemcutters-mercy"
   },
   {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "gemcutters-prism",
-    "id": "gcp"
-  },
-  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "gift-of-asenath",
@@ -1342,12 +1312,6 @@
     "url": "fossils",
     "detailsId": "gilded-fossil",
     "id": "gilded-fossil"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "glassblowers-bauble",
-    "id": "bauble"
   },
   {
     "type": "Fossil",
@@ -1592,12 +1556,6 @@
   {
     "type": "Currency",
     "url": "currency",
-    "detailsId": "instilling-orb",
-    "id": "instilling-orb"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
     "detailsId": "intrinsic-catalyst",
     "id": "intrinsic-catalyst"
   },
@@ -1612,12 +1570,6 @@
     "url": "delirium-orbs",
     "detailsId": "jewellers-delirium-orb",
     "id": "jewellers-delirium-orb"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "jewellers-orb",
-    "id": "jewellers"
   },
   {
     "type": "Tattoo",
@@ -2036,18 +1988,6 @@
   {
     "type": "Currency",
     "url": "currency",
-    "detailsId": "orb-of-alchemy",
-    "id": "alch"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "orb-of-alteration",
-    "id": "alt"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
     "detailsId": "orb-of-annulment",
     "id": "annul"
   },
@@ -2066,12 +2006,6 @@
   {
     "type": "Currency",
     "url": "currency",
-    "detailsId": "orb-of-chance",
-    "id": "chance"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
     "detailsId": "orb-of-conflict",
     "id": "orb-of-conflict"
   },
@@ -2084,38 +2018,14 @@
   {
     "type": "Currency",
     "url": "currency",
-    "detailsId": "orb-of-fusing",
-    "id": "fusing"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
     "detailsId": "orb-of-intention",
     "id": "orb-of-intention"
   },
   {
     "type": "Currency",
     "url": "currency",
-    "detailsId": "orb-of-regret",
-    "id": "regret"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
     "detailsId": "orb-of-remembrance",
     "id": "orb-of-remembrance"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "orb-of-scouring",
-    "id": "scour"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "orb-of-transmutation",
-    "id": "transmute"
   },
   {
     "type": "Currency",
@@ -2268,12 +2178,6 @@
     "id": "reflective-oil"
   },
   {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "regal-orb",
-    "id": "regal"
-  },
-  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "remembrance",
@@ -2320,12 +2224,6 @@
     "url": "fragments",
     "detailsId": "ritual-vessel",
     "id": "ritual-vessel"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "rogues-marker",
-    "id": "rogues-marker"
   },
   {
     "type": "Ducat",
@@ -3408,12 +3306,6 @@
     "id": "the-breach"
   },
   {
-    "type": "DivinationCard",
-    "url": "divination-cards",
-    "detailsId": "the-chains-that-bind",
-    "id": "the-chains-that-bind"
-  },
-  {
     "type": "Ducat",
     "url": "ducats",
     "detailsId": "the-changelings-ducat",
@@ -4174,12 +4066,6 @@
     "url": "enshrouding-crystals",
     "detailsId": "vaal-enshrouding-crystal",
     "id": "vaal-enshrouding-crystal"
-  },
-  {
-    "type": "Currency",
-    "url": "currency",
-    "detailsId": "vaal-orb",
-    "id": "vaal"
   },
   {
     "type": "Fragment",

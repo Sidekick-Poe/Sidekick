@@ -516,6 +516,10 @@
               "text": "\u0E02\u0E27\u0E32\u0E19\u0E2A\u0E2D\u0E07\u0E21\u0E37\u0E2D"
             },
             {
+              "id": "viscera.leg",
+              "text": "\u0E02\u0E32"
+            },
+            {
               "id": "weapon.sceptre",
               "text": "\u0E04\u0E17\u0E32"
             },
@@ -632,6 +636,10 @@
               "text": "\u0E25\u0E32\u0E22\u0E2A\u0E31\u0E01"
             },
             {
+              "id": "viscera.body",
+              "text": "\u0E25\u0E33\u0E15\u0E31\u0E27"
+            },
+            {
               "id": "sanctum.relic",
               "text": "\u0E27\u0E31\u0E15\u0E16\u0E38\u0E15\u0E01\u0E17\u0E2D\u0E14\u0E40\u0E17\u0E27\u0E2A\u0E16\u0E32\u0E19"
             },
@@ -684,6 +692,10 @@
               "text": "\u0E2B\u0E31\u0E15\u0E16\u0E4C\u0E43\u0E14\u0E01\u0E47\u0E44\u0E14\u0E49"
             },
             {
+              "id": "viscera.head",
+              "text": "\u0E2B\u0E31\u0E27"
+            },
+            {
               "id": "gem",
               "text": "\u0E2B\u0E34\u0E19\u0E17\u0E38\u0E01\u0E0A\u0E19\u0E34\u0E14"
             },
@@ -698,6 +710,10 @@
             {
               "id": "gem.supportgemplus",
               "text": "\u0E2B\u0E34\u0E19\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E08\u0E38\u0E15\u0E34"
+            },
+            {
+              "id": "viscera",
+              "text": "\u0E2D\u0E27\u0E31\u0E22\u0E27\u0E30\u0E43\u0E14\u0E01\u0E47\u0E44\u0E14\u0E49"
             },
             {
               "id": "",
@@ -778,6 +794,10 @@
             {
               "id": "armour.chest",
               "text": "\u0E40\u0E2A\u0E37\u0E49\u0E2D\u0E40\u0E01\u0E23\u0E32\u0E30"
+            },
+            {
+              "id": "viscera.arm",
+              "text": "\u0E41\u0E02\u0E19"
             },
             {
               "id": "map",
@@ -934,25 +954,11 @@
   },
   {
     "id": "map_filters",
-    "title": "\u0E15\u0E31\u0E27\u0E01\u0E23\u0E2D\u0E07\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48/\u0E1C\u0E31\u0E07\u0E1B\u0E23\u0E30\u0E14\u0E32\u0E19\u0E49\u0E33",
+    "title": "\u0E15\u0E31\u0E27\u0E01\u0E23\u0E2D\u0E07\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48",
     "filters": [
       {
         "id": "map_completion_reward",
         "text": "\u0E02\u0E2D\u0E07\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25\u0E08\u0E32\u0E01\u0E01\u0E32\u0E23\u0E1C\u0E48\u0E32\u0E19\u0E41\u0E1C\u0E19\u0E17\u0E35\u0E48",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_sulphur",
-        "text": "\u0E0B\u0E31\u0E25\u0E40\u0E1F\u0E2D\u0E23\u0E4C\u0E02\u0E2D\u0E07\u0E1C\u0E31\u0E07\u0E1B\u0E23\u0E30\u0E14\u0E32\u0E19\u0E49\u0E33",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "\u0E17\u0E2D\u0E07\u0E02\u0E2D\u0E07\u0E1C\u0E31\u0E07\u0E1B\u0E23\u0E30\u0E14\u0E32\u0E19\u0E49\u0E33",
         "option": {
           "options": []
         }
@@ -1085,38 +1091,6 @@
         }
       },
       {
-        "id": "chart_shape",
-        "text": "\u0E23\u0E39\u0E1B\u0E1C\u0E31\u0E07\u0E1B\u0E23\u0E30\u0E14\u0E32\u0E19\u0E49\u0E33",
-        "option": {
-          "options": [
-            {
-              "id": "1",
-              "text": "\u0E08\u0E1A"
-            },
-            {
-              "id": "3",
-              "text": "\u0E15\u0E23\u0E07"
-            },
-            {
-              "id": "2",
-              "text": "\u0E21\u0E38\u0E21"
-            },
-            {
-              "id": "4",
-              "text": "\u0E2A\u0E32\u0E21\u0E41\u0E22\u0E01"
-            },
-            {
-              "id": "5",
-              "text": "\u0E2A\u0E35\u0E48\u0E41\u0E22\u0E01"
-            },
-            {
-              "id": "",
-              "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
-            }
-          ]
-        }
-      },
-      {
         "id": "map_packsize",
         "text": "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E19\u0E32\u0E14\u0E01\u0E2D\u0E07\u0E21\u0E2D\u0E19\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C",
         "option": {
@@ -1182,6 +1156,13 @@
               "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
             }
           ]
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "\u0E41\u0E2D\u0E15\u0E25\u0E32\u0E2A\u0E14\u0E23\u0E2D\u0E1B",
+        "option": {
+          "options": []
         }
       }
     ]
@@ -1356,6 +1337,26 @@
         }
       },
       {
+        "id": "fated",
+        "text": "\u0E15\u0E49\u0E2D\u0E07\u0E0A\u0E30\u0E15\u0E32",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+            },
+            {
+              "id": "true",
+              "text": "\u0E43\u0E0A\u0E48"
+            },
+            {
+              "id": "false",
+              "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+            }
+          ]
+        }
+      },
+      {
         "id": "crafted",
         "text": "\u0E16\u0E39\u0E01\u0E04\u0E23\u0E32\u0E1F\u0E17\u0E4C",
         "option": {
@@ -1476,8 +1477,35 @@
         }
       },
       {
+        "id": "twice_corrupted",
+        "text": "\u0E21\u0E35\u0E21\u0E25\u0E17\u0E34\u0E19\u0E04\u0E39\u0E48",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E44\u0E14\u0E49"
+            },
+            {
+              "id": "true",
+              "text": "\u0E43\u0E0A\u0E48"
+            },
+            {
+              "id": "false",
+              "text": "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48"
+            }
+          ]
+        }
+      },
+      {
         "id": "scourge_tier",
         "text": "\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E2D\u0E32\u0E1A\u0E21\u0E34\u0E15\u0E34\u0E2D\u0E2A\u0E39\u0E23",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A",
         "option": {
           "options": []
         }

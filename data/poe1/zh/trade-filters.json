@@ -271,6 +271,26 @@
         }
       },
       {
+        "id": "fated",
+        "text": "\u547D\u5B9A",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            }
+          ]
+        }
+      },
+      {
         "id": "quality",
         "text": "\u54C1\u8CEA",
         "option": {
@@ -412,6 +432,13 @@
               "text": "\u662F"
             }
           ]
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "\u672A\u9451\u5B9A\u968E\u7D1A",
+        "option": {
+          "options": []
         }
       },
       {
@@ -739,6 +766,26 @@
         }
       },
       {
+        "id": "twice_corrupted",
+        "text": "\u96D9\u91CD\u8150\u5316",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "\u4EFB\u4F55"
+            },
+            {
+              "id": "false",
+              "text": "\u5426"
+            },
+            {
+              "id": "true",
+              "text": "\u662F"
+            }
+          ]
+        }
+      },
+      {
         "id": "foreseeing",
         "text": "\u9810\u898B",
         "option": {
@@ -901,7 +948,7 @@
   },
   {
     "id": "map_filters",
-    "title": "\u5730\u5716/\u6D77\u5716\u7BE9\u9078\u5668",
+    "title": "\u5730\u5716\u7BE9\u9078",
     "filters": [
       {
         "id": "map_blighted",
@@ -1092,52 +1139,6 @@
         }
       },
       {
-        "id": "chart_shape",
-        "text": "\u6D77\u5716\u5F62\u72C0",
-        "option": {
-          "options": [
-            {
-              "id": "4",
-              "text": "\u4EA4\u754C\u8655"
-            },
-            {
-              "id": "",
-              "text": "\u4EFB\u4F55"
-            },
-            {
-              "id": "5",
-              "text": "\u5341\u5B57\u53E3"
-            },
-            {
-              "id": "3",
-              "text": "\u76F4\u7DDA"
-            },
-            {
-              "id": "1",
-              "text": "\u7D42\u9EDE"
-            },
-            {
-              "id": "2",
-              "text": "\u8F49\u89D2"
-            }
-          ]
-        }
-      },
-      {
-        "id": "chart_sulphur",
-        "text": "\u6D77\u5716\u786B\u9178",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "\u6D77\u5716\u91D1\u5E63",
-        "option": {
-          "options": []
-        }
-      },
-      {
         "id": "map_iiq",
         "text": "\u7269\u54C1\u6578\u91CF\u589E\u52A0",
         "option": {
@@ -1147,6 +1148,13 @@
       {
         "id": "map_iir",
         "text": "\u7269\u54C1\u7A00\u6709\u5EA6\u589E\u52A0",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "\u8F3F\u5716\u6389\u843D",
         "option": {
           "options": []
         }
@@ -1559,6 +1567,10 @@
               "text": "\u4EFB\u4F55\u80CE\u8D08"
             },
             {
+              "id": "viscera",
+              "text": "\u4EFB\u4F55\u81DF\u5668"
+            },
+            {
               "id": "tincture",
               "text": "\u4EFB\u4F55\u8403\u53D6\u7269"
             },
@@ -1679,6 +1691,10 @@
               "text": "\u624B\u5957"
             },
             {
+              "id": "viscera.arm",
+              "text": "\u624B\u90E8\u81DF\u5668"
+            },
+            {
               "id": "gem.activegem",
               "text": "\u6280\u80FD\u5BF6\u77F3"
             },
@@ -1755,6 +1771,10 @@
               "text": "\u8170\u5E36"
             },
             {
+              "id": "viscera.leg",
+              "text": "\u817F\u90E8\u81DF\u5668"
+            },
+            {
               "id": "flask",
               "text": "\u85E5\u5291"
             },
@@ -1769,6 +1789,10 @@
             {
               "id": "memoryline",
               "text": "\u8A18\u61B6\u7DDA"
+            },
+            {
+              "id": "viscera.body",
+              "text": "\u8EAB\u9AD4\u81DF\u5668"
             },
             {
               "id": "gem.supportgem",
@@ -1821,6 +1845,10 @@
             {
               "id": "armour.helmet",
               "text": "\u982D\u76D4"
+            },
+            {
+              "id": "viscera.head",
+              "text": "\u982D\u90E8\u81DF\u5668"
             },
             {
               "id": "accessory.trinket",

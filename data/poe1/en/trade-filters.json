@@ -220,11 +220,18 @@
   },
   {
     "id": "map_filters",
-    "title": "Map/Chart Filters",
+    "title": "Map Filters",
     "filters": [
       {
         "id": "area_level",
         "text": "Area Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "Atlas Drops",
         "option": {
           "options": []
         }
@@ -267,52 +274,6 @@
               "text": "Yes"
             }
           ]
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "Chart Gold",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_shape",
-        "text": "Chart Shape",
-        "option": {
-          "options": [
-            {
-              "id": "",
-              "text": "Any"
-            },
-            {
-              "id": "2",
-              "text": "Corner"
-            },
-            {
-              "id": "5",
-              "text": "Crossing"
-            },
-            {
-              "id": "1",
-              "text": "End"
-            },
-            {
-              "id": "4",
-              "text": "Junction"
-            },
-            {
-              "id": "3",
-              "text": "Straight"
-            }
-          ]
-        }
-      },
-      {
-        "id": "chart_sulphur",
-        "text": "Chart Sulphur",
-        "option": {
-          "options": []
         }
       },
       {
@@ -595,6 +556,26 @@
       {
         "id": "tangled_item",
         "text": "Eater of Worlds Item",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Any"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fated",
+        "text": "Fated",
         "option": {
           "options": [
             {
@@ -949,6 +930,33 @@
               "text": "Yes"
             }
           ]
+        }
+      },
+      {
+        "id": "twice_corrupted",
+        "text": "Twice Corrupted",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Any"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            },
+            {
+              "id": "true",
+              "text": "Yes"
+            }
+          ]
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "Unidentified Tier",
+        "option": {
+          "options": []
         }
       },
       {
@@ -1423,12 +1431,20 @@
               "text": "Any Tincture"
             },
             {
+              "id": "viscera",
+              "text": "Any Viscera"
+            },
+            {
               "id": "weapon",
               "text": "Any Weapon"
             },
             {
               "id": "wombgift",
               "text": "Any Wombgift"
+            },
+            {
+              "id": "viscera.arm",
+              "text": "Arm Viscera"
             },
             {
               "id": "gem.supportgemplus",
@@ -1461,6 +1477,10 @@
             {
               "id": "armour.chest",
               "text": "Body Armour"
+            },
+            {
+              "id": "viscera.body",
+              "text": "Body Viscera"
             },
             {
               "id": "armour.boots",
@@ -1507,6 +1527,10 @@
               "text": "Gloves"
             },
             {
+              "id": "viscera.head",
+              "text": "Head Viscera"
+            },
+            {
               "id": "heistmission.blueprint",
               "text": "Heist Blueprint"
             },
@@ -1545,6 +1569,10 @@
             {
               "id": "leaguestone",
               "text": "Leaguestone"
+            },
+            {
+              "id": "viscera.leg",
+              "text": "Leg Viscera"
             },
             {
               "id": "map",

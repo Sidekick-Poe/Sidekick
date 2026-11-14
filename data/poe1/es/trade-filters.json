@@ -586,11 +586,11 @@
   },
   {
     "id": "map_filters",
-    "title": "Filtros de mapas/cartas",
+    "title": "Filtros de mapas",
     "filters": [
       {
-        "id": "chart_sulphur",
-        "text": "Azufre de las cartas de navegaci\u00F3n",
+        "id": "map_bonus",
+        "text": "Bot\u00EDn del Atlas",
         "option": {
           "options": []
         }
@@ -600,38 +600,6 @@
         "text": "Cantidad de objetos aumentada",
         "option": {
           "options": []
-        }
-      },
-      {
-        "id": "chart_shape",
-        "text": "Forma de carta de navegaci\u00F3n",
-        "option": {
-          "options": [
-            {
-              "id": "5",
-              "text": "Cruce"
-            },
-            {
-              "id": "",
-              "text": "Cualquiera"
-            },
-            {
-              "id": "2",
-              "text": "Esquina"
-            },
-            {
-              "id": "4",
-              "text": "Intersecci\u00F3n"
-            },
-            {
-              "id": "3",
-              "text": "Recta"
-            },
-            {
-              "id": "1",
-              "text": "Terminar"
-            }
-          ]
         }
       },
       {
@@ -684,13 +652,6 @@
       {
         "id": "area_level",
         "text": "Nivel del \u00E1rea",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "Oro de las cartas de navegaci\u00F3n",
         "option": {
           "options": []
         }
@@ -1178,6 +1139,26 @@
             {
               "id": "weapon.wand",
               "text": "Varita"
+            },
+            {
+              "id": "viscera.arm",
+              "text": "V\u00EDscera: brazo"
+            },
+            {
+              "id": "viscera.head",
+              "text": "V\u00EDscera: cabeza"
+            },
+            {
+              "id": "viscera",
+              "text": "V\u00EDscera: cualquiera"
+            },
+            {
+              "id": "viscera.body",
+              "text": "V\u00EDscera: cuerpo"
+            },
+            {
+              "id": "viscera.leg",
+              "text": "V\u00EDscera: pierna"
             }
           ]
         }
@@ -1279,8 +1260,48 @@
         }
       },
       {
+        "id": "fated",
+        "text": "Destinado",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Cualquiera"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            },
+            {
+              "id": "true",
+              "text": "S\u00ED"
+            }
+          ]
+        }
+      },
+      {
         "id": "split",
         "text": "Dividir",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Cualquiera"
+            },
+            {
+              "id": "false",
+              "text": "No"
+            },
+            {
+              "id": "true",
+              "text": "S\u00ED"
+            }
+          ]
+        }
+      },
+      {
+        "id": "twice_corrupted",
+        "text": "Doblemente corrupto",
         "option": {
           "options": [
             {
@@ -1408,6 +1429,13 @@
       {
         "id": "scourge_tier",
         "text": "Grado de Calamidad",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "Grado no identificado",
         "option": {
           "options": []
         }
