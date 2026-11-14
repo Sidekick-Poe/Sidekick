@@ -2,21 +2,40 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (web)",
+            "name": "Sidekick (desktop)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Sidekick.Web/bin/Debug/net8.0/Sidekick.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src/Sidekick.Web",
-            "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            "preLaunchTask": "build desktop",
+            // Launch the .exe, not the .dll: WebView2 stores its data next to the running executable,
+            // which would be dotnet.exe in Program Files (access denied).
+            "program": "${workspaceFolder}/src/Sidekick.Avalonia/bin/Debug/net10.0/Sidekick.exe",
+            "linux": {
+                "program": "${workspaceFolder}/src/Sidekick.Avalonia/bin/Debug/net10.0/Sidekick"
             },
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Sidekick.Avalonia",
+            "stopAtEntry": false,
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
+        },
+        {
+            "name": "Sidekick (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build web",
+            "program": "${workspaceFolder}/src/Sidekick.Web/bin/Debug/net10.0/Sidekick.Web.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Sidekick.Web",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Attach to process",
+            "type": "coreclr",
+            "request": "attach"
         }
     ]
 }
