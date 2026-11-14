@@ -31,6 +31,13 @@ public class ScoutHistoryProvider(
     {
         if (item.Definition.ScoutItems == null) return [];
 
+        // Poe2Scout does not support every league (for example, a new league before Poe2Scout adds it).
+        if (string.IsNullOrEmpty(leagueProvider.Current.ScoutValue))
+        {
+            logger.LogDebug("The league {League} is not supported by Poe2Scout.", leagueProvider.Current.Id);
+            return [];
+        }
+
         var results = new List<ScoutHistory>();
         foreach (var scoutItem in item.Definition.ScoutItems)
         {
@@ -53,13 +60,13 @@ public class ScoutHistoryProvider(
 
         if (result.Exalted == null && result.Divine == null && result.Chaos == null)
         {
-            logger.LogError("No history found for {ItemId}", scoutItem.ItemId);
+            logger.LogDebug("No history found for {ItemId}", scoutItem.ItemId);
             return null;
         }
 
         if ((result.Exalted?.Count ?? 0) == 0 && (result.Divine?.Count ?? 0) == 0 && (result.Chaos?.Count ?? 0) == 0)
         {
-            logger.LogError("No history found for {ItemId}", scoutItem.ItemId);
+            logger.LogDebug("No history found for {ItemId}", scoutItem.ItemId);
             return null;
         }
 
