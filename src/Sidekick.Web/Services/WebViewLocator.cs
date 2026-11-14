@@ -20,4 +20,14 @@ public class WebViewLocator : IViewLocator
     }
 
     public bool IsOpened(SidekickViewType type) => false;
+
+    /// <summary>
+    /// Does nothing, since the browser decides the size of the page.
+    /// </summary>
+    public void SetSize(SidekickViewType type, int width, int height, object owner) { }
+
+    /// <summary>
+    /// Does nothing, since the browser decides the size of the page.
+    /// </summary>
+    public void ResetSize(SidekickViewType type, object owner) { }
 }

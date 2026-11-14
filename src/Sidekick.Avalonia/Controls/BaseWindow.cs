@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Platform;
 using Avalonia.Styling;
 using Sidekick.Common.Settings;
 
@@ -66,6 +67,11 @@ public abstract class BaseWindow : Window
             saveCancellation?.Cancel();
             Hide();
             IsPlaced = false;
+
+            // The page that requested a size is no longer shown; the next page requests its own size.
+            RequestedSizeOwner = null;
+            RequestedWidth = null;
+            RequestedHeight = null;
             _ = SavePlacement(placement);
         });
     }
@@ -87,13 +93,10 @@ public abstract class BaseWindow : Window
         if (IsPlaced && IsVisible) return;
 
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
-        if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
+        var zoom = await GetZoom();
 
-        var width = DefaultWidth * zoom;
-        var height = DefaultHeight * zoom;
-        MinWidth = width;
-        MinHeight = height;
+        var width = (RequestedWidth ?? DefaultWidth) * zoom;
+        var height = (RequestedHeight ?? DefaultHeight) * zoom;
 
         PixelPoint? savedPosition = null;
         if (!string.IsNullOrEmpty(PositionPrefix))
@@ -116,35 +119,128 @@ public abstract class BaseWindow : Window
             }
         }
 
-        Width = width;
-        Height = height;
-
         var screen = (savedPosition != null ? Screens.ScreenFromPoint(savedPosition.Value) : null)
                      ?? Screens.ScreenFromWindow(this)
                      ?? Screens.Primary;
         if (screen != null)
         {
-            // Width and Height are in device-independent units, while positions are in physical pixels.
-            var workingArea = screen.WorkingArea;
-            var pixelWidth = (int)Math.Ceiling(width * screen.Scaling);
-            var pixelHeight = (int)Math.Ceiling(height * screen.Scaling);
+            (width, height) = FitToScreen(screen, width, height);
+        }
 
+        ApplySize(width, height);
+
+        if (screen != null)
+        {
+            var (pixelWidth, pixelHeight) = ToPixels(screen, width, height);
+            var workingArea = screen.WorkingArea;
             var position = savedPosition ?? new PixelPoint(
                 workingArea.X + (workingArea.Width - pixelWidth) / 2,
                 workingArea.Y + (workingArea.Height - pixelHeight) / 2);
-
-            // Keep the window within the screen.
-            var maxX = Math.Max(workingArea.X, workingArea.Right - pixelWidth);
-            var maxY = Math.Max(workingArea.Y, workingArea.Bottom - pixelHeight);
-            Position = new PixelPoint(
-                Math.Clamp(position.X, workingArea.X, maxX),
-                Math.Clamp(position.Y, workingArea.Y, maxY));
+            Position = ClampToScreen(screen, position, pixelWidth, pixelHeight);
         }
 
         // Remember the placement we just applied, so that it is not saved again unless the user changes it.
         lastSavedPlacement = new WindowPlacement(Width, Height, Position.X, Position.Y);
         IsPlaced = true;
     }
+
+    #region Requested Size
+
+    private int? RequestedWidth { get; set; }
+    private int? RequestedHeight { get; set; }
+
+    /// <summary>
+    /// The page that requested the current size. A page that is no longer shown cannot reset the size requested by another one.
+    /// </summary>
+    private object? RequestedSizeOwner { get; set; }
+
+    public Task SetRequestedSize(int width, int height, object owner)
+    {
+        RequestedSizeOwner = owner;
+        return ApplyRequestedSize(width, height);
+    }
+
+    public Task ResetRequestedSize(object owner)
+    {
+        if (!ReferenceEquals(RequestedSizeOwner, owner)) return Task.CompletedTask;
+
+        RequestedSizeOwner = null;
+        return ApplyRequestedSize(null, null);
+    }
+
+    /// <summary>
+    /// Applies the requested size, or the default when null.
+    /// An open window is resized around its current center, a hidden window uses the size the next time it opens.
+    /// </summary>
+    private async Task ApplyRequestedSize(int? width, int? height)
+    {
+        if (RequestedWidth == width && RequestedHeight == height) return;
+
+        RequestedWidth = width;
+        RequestedHeight = height;
+        if (!IsPlaced || !IsVisible) return;
+
+        var zoom = await GetZoom();
+        var screen = Screens.ScreenFromWindow(this) ?? Screens.Primary;
+        if (screen == null) return;
+
+        // Keep the window centered on where it currently is, so that a window the user moved does not jump.
+        var (currentPixelWidth, currentPixelHeight) = ToPixels(screen, Width, Height);
+        var centerX = Position.X + currentPixelWidth / 2;
+        var centerY = Position.Y + currentPixelHeight / 2;
+
+        var (newWidth, newHeight) = FitToScreen(screen, (width ?? DefaultWidth) * zoom, (height ?? DefaultHeight) * zoom);
+        ApplySize(newWidth, newHeight);
+
+        var (pixelWidth, pixelHeight) = ToPixels(screen, newWidth, newHeight);
+        Position = ClampToScreen(screen, new PixelPoint(centerX - pixelWidth / 2, centerY - pixelHeight / 2), pixelWidth, pixelHeight);
+
+        // A size requested by a page is not the user's choice, so it is not saved.
+        lastSavedPlacement = new WindowPlacement(Width, Height, Position.X, Position.Y);
+    }
+
+    #endregion
+
+    #region Screen Helpers
+
+    private async Task<double> GetZoom()
+    {
+        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
+        return double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom) ? zoom : 1;
+    }
+
+    private void ApplySize(double width, double height)
+    {
+        // The minimum is set first, so that the window can both grow and shrink.
+        MinWidth = width;
+        MinHeight = height;
+        Width = width;
+        Height = height;
+    }
+
+    private static (double Width, double Height) FitToScreen(Screen screen, double width, double height)
+    {
+        return (Math.Min(width, screen.WorkingArea.Width / screen.Scaling),
+                Math.Min(height, screen.WorkingArea.Height / screen.Scaling));
+    }
+
+    private static (int Width, int Height) ToPixels(Screen screen, double width, double height)
+    {
+        return ((int)Math.Ceiling(width * screen.Scaling), (int)Math.Ceiling(height * screen.Scaling));
+    }
+
+    private static PixelPoint ClampToScreen(Screen screen, PixelPoint position, int pixelWidth, int pixelHeight)
+    {
+        var workingArea = screen.WorkingArea;
+        var maxX = Math.Max(workingArea.X, workingArea.Right - pixelWidth);
+        var maxY = Math.Max(workingArea.Y, workingArea.Bottom - pixelHeight);
+        return new PixelPoint(
+            Math.Clamp(position.X, workingArea.X, maxX),
+            Math.Clamp(position.Y, workingArea.Y, maxY));
+    }
+
+    #endregion
 
     #region Save Placement
 

@@ -1,33 +1,53 @@
 @using Sidekick.Modules.Updater.Localization
 @using Sidekick.Common.Ui.Extensions
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Platform
 
-@if (ShowBackButton)
-{
-    <ButtonSecondary OnClick="Exit">@Resources["Back"]</ButtonSecondary>
-}
-else
+@if (!IsOpenedLater)
 {
     <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
 }
+else if (IsInSplashWindow)
+{
+    <ButtonSecondary OnClick="Exit">@UiResources["Close"]</ButtonSecondary>
+}
+else
+{
+    <ButtonSecondary OnClick="Exit">@Resources["Back"]</ButtonSecondary>
+}
 
 @inject IStringLocalizer<UpdateResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IApplicationService ApplicationService
 @inject NavigationManager NavigationManager
+@inject CurrentView CurrentView
 
 @code {
 
-    private bool ShowBackButton => NavigationManager.QueryString("back") != null;
+    /// <summary>
+    /// The back parameter means the update page was opened while Sidekick is running, not at startup.
+    /// </summary>
+    private bool IsOpenedLater => !string.IsNullOrEmpty(NavigationManager.QueryString("back"));
+
+    /// <summary>
+    /// The update page opens in its own splash window from the About page, or inside the main window from the update available button.
+    /// </summary>
+    private bool IsInSplashWindow => CurrentView.CurrentViewType == SidekickViewType.Splash;
 
     private void Exit()
     {
-        if (!string.IsNullOrEmpty(NavigationManager.QueryString("back")))
+        if (!IsOpenedLater)
         {
-            NavigationManager.NavigateTo(NavigationManager.QueryString("back")!);
+            ApplicationService.Shutdown();
+        }
+        else if (IsInSplashWindow)
+        {
+            // The main window is still open, so only close this window instead of navigating inside it.
+            CurrentView.Close();
         }
         else
         {
-            ApplicationService.Shutdown();
+            NavigationManager.NavigateTo(NavigationManager.QueryString("back")!);
         }
     }
 
