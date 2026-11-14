@@ -1,30 +1,35 @@
+using System.Collections.Concurrent;
+
 namespace Sidekick.Apis.Common.States;
 
 public class ApiStateProvider : IApiStateProvider
 {
     public event Action? OnChange;
 
-    private Dictionary<string, ApiState> States { get; set; } = new();
+    // Updated from concurrent API requests, so the dictionary must be thread-safe.
+    private ConcurrentDictionary<string, ApiState> States { get; } = new();
 
     public ApiState Get(string clientName)
     {
-        if (States.TryGetValue(clientName, out var currentState))
-        {
-            return currentState;
-        }
-
-        return ApiState.Unknown;
+        return States.TryGetValue(clientName, out var currentState) ? currentState : ApiState.Unknown;
     }
 
     public void Update(string clientName, ApiState state)
     {
-        if (States.TryGetValue(clientName, out var currentState) && state == currentState)
-        {
-            return;
-        }
+        var previousState = ApiState.Unknown;
+        var hadState = false;
+        States.AddOrUpdate(
+            clientName,
+            state,
+            (_, currentState) =>
+            {
+                hadState = true;
+                previousState = currentState;
+                return state;
+            });
 
-        States.Remove(clientName);
-        States.Add(clientName, state);
+        if (hadState && previousState == state) return;
+
         OnChange?.Invoke();
     }
 }
