@@ -91,6 +91,11 @@
             <Setter Property="IsVisible" Value="False" />
         </Style>
 
+        <!-- Force light text color on tray popup menus and menu items -->
+        <Style Selector="TrayIcon MenuItem">
+            <Setter Property="Foreground" Value="#FFFFFF" />
+        </Style>
+
         <!-- Hide Fullscreen Button -->
         <Style Selector="WindowDrawnDecorations /template/ Button#PART_FullScreenButton">
             <Setter Property="IsVisible" Value="False" />

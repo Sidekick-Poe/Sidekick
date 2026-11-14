@@ -57,4 +57,7 @@ public interface IInputProvider : IInitializableService
     Task WiggleMouse();
 
     HashSet<string?> UsedKeybinds { get; }
+
+    short MousePositionX { get; }
+    short MousePositionY { get; }
 }

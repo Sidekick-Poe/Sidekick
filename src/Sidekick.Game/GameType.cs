@@ -1,5 +1,4 @@
-using Sidekick.Common.Enums;
-
+using Sidekick.Game.Enums;
 namespace Sidekick.Game;
 
 public enum GameType : byte

@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Enums;
+namespace Sidekick.Game.Enums;
 
 /// <summary>
 ///     Contains extension methods for enums.

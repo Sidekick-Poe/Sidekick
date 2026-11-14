@@ -1,6 +1,6 @@
 using System.Text.Json;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Game.Enums;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;

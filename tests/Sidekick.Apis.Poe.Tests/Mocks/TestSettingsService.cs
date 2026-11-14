@@ -2,10 +2,10 @@
 using System.Text.Json;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Extensions;
 using Sidekick.Game;
+using Sidekick.Game.Enums;
 namespace Sidekick.Apis.Poe.Tests.Mocks;
 
 public class TestSettingsService(IOptions<SidekickConfiguration> configuration) : ISettingsService

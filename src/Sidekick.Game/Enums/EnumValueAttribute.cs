@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Enums;
+namespace Sidekick.Game.Enums;
 
 /// <summary>
 ///     Attribute associating a string value to the enum.

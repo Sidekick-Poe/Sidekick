@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Sidekick.Common.Enums;
+using Sidekick.Game.Enums;
 namespace Sidekick.Game.Parser.Trade.Requests.Filters;
 
 public class StatFilterGroup

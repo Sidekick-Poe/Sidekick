@@ -4,8 +4,8 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
+using Sidekick.Game.Enums;
 using Sidekick.Game.Providers.Languages;
 namespace Sidekick.Game.Providers;
 

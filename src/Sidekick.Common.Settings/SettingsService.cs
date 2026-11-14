@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Settings.Extensions;
 using Sidekick.Game;
+using Sidekick.Game.Enums;
 
 namespace Sidekick.Common.Settings;
 

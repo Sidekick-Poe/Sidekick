@@ -472,6 +472,7 @@ public class InputProvider
         // Initialize mouse hooks
         Hook.MouseWheel += OnMouseWheel;
         Hook.MouseMoved += OnMouseMoved;
+        Hook.MousePressed += OnMousePressed;
 
         HookTask = Hook.RunAsync();
 
@@ -528,6 +529,8 @@ public class InputProvider
             // Ensure hook itself is set to null
             Hook.KeyPressed -= OnKeyPressed;
             Hook.MouseWheel -= OnMouseWheel;
+            Hook.MouseMoved -= OnMouseMoved;
+            Hook.MousePressed -= OnMousePressed;
             Hook.Dispose();
             Hook = null;
 
@@ -711,10 +714,16 @@ public class InputProvider
 
     #region Mouse
 
-    private short MousePositionX { get; set; }
-    private short MousePositionY { get; set; }
+    public short MousePositionX { get; private set; }
+    public short MousePositionY { get; private set; }
 
     private void OnMouseMoved(object? sender, MouseHookEventArgs e)
+    {
+        MousePositionX = e.Data.X;
+        MousePositionY = e.Data.Y;
+    }
+
+    private void OnMousePressed(object? sender, MouseHookEventArgs e)
     {
         MousePositionX = e.Data.X;
         MousePositionY = e.Data.Y;
