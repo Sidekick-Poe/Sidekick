@@ -4751,7 +4751,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/ThesisOfSacrifice"
     ],
-    "ninjaExchange": "citaqualotls-thesis",
     "scout": [
       5202
     ],
@@ -5926,9 +5925,9 @@
     "baseItemIds": [
       "demon_form"
     ],
-    "name": "D\u00E4monenform",
+    "name": "D\u00E4monengestalt",
     "tradeItems": [],
-    "typePattern": "(?\u003C!\\p{L})D\u00E4monenform(?!\\p{L})"
+    "typePattern": "(?\u003C!\\p{L})D\u00E4monengestalt(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -8034,7 +8033,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneIntelligence"
     ],
-    "ninjaExchange": "resolve-rune",
     "scout": [
       4027
     ],
@@ -9042,7 +9040,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceCritical"
     ],
-    "ninjaExchange": "essence-of-seeking",
     "scout": [
       4451
     ],
@@ -9174,7 +9171,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceCold"
     ],
-    "ninjaExchange": "essence-of-ice",
     "scout": [
       362
     ],
@@ -9268,7 +9264,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceLife"
     ],
-    "ninjaExchange": "essence-of-the-body",
     "scout": [
       357
     ],
@@ -9306,7 +9301,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceAttribute"
     ],
-    "ninjaExchange": "essence-of-the-infinite",
     "scout": [
       368
     ],
@@ -9325,7 +9319,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceChaos"
     ],
-    "ninjaExchange": "essence-of-ruin",
     "scout": [
       364
     ],
@@ -12648,15 +12641,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Gems/SkillGemSpiritVessel",
-      "spirit_vessel_companion"
-    ],
-    "name": "Geistergef\u00E4\u00DF",
-    "tradeItems": [],
-    "typePattern": "(?\u003C!\\p{L})Geistergef\u00E4\u00DF(?!\\p{L})"
-  },
-  {
-    "baseItemIds": [
       "phantasmal_arrow"
     ],
     "name": "Geisterhafter Pfeil",
@@ -12691,9 +12675,17 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/Gems/SkillGemSpiritVessel",
+      "spirit_vessel_companion"
+    ],
+    "name": "Geistgef\u00E4\u00DF",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Geistgef\u00E4\u00DF(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/SoulCores/RuneMana"
     ],
-    "ninjaExchange": "mind-rune",
     "scout": [
       327
     ],
@@ -12880,7 +12872,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceLightning"
     ],
-    "ninjaExchange": "lesser-essence-of-electricity",
     "scout": [
       4417
     ],
@@ -12899,7 +12890,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceLightningResist"
     ],
-    "ninjaExchange": "lesser-essence-of-grounding",
     "scout": [
       4419
     ],
@@ -12918,7 +12908,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceFire"
     ],
-    "ninjaExchange": "lesser-essence-of-flames",
     "scout": [
       4409
     ],
@@ -12956,7 +12945,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceFireResist"
     ],
-    "ninjaExchange": "lesser-essence-of-insulation",
     "scout": [
       4411
     ],
@@ -12975,7 +12963,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceSpeedCaster"
     ],
-    "ninjaExchange": "lesser-essence-of-alacrity",
     "scout": [
       4431
     ],
@@ -12994,7 +12981,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceCritical"
     ],
-    "ninjaExchange": "lesser-essence-of-seeking",
     "scout": [
       4435
     ],
@@ -13051,7 +13037,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceColdResist"
     ],
-    "ninjaExchange": "lesser-essence-of-thawing",
     "scout": [
       4415
     ],
@@ -13070,7 +13055,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceAlly"
     ],
-    "ninjaExchange": "lesser-essence-of-command",
     "scout": [
       4423
     ],
@@ -13108,7 +13092,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceMana"
     ],
-    "ninjaExchange": "lesser-essence-of-the-mind",
     "scout": [
       4403
     ],
@@ -13127,7 +13110,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceAttack"
     ],
-    "ninjaExchange": "lesser-essence-of-battle",
     "scout": [
       4425
     ],
@@ -13146,7 +13128,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceLife"
     ],
-    "ninjaExchange": "lesser-essence-of-the-body",
     "scout": [
       4401
     ],
@@ -13165,7 +13146,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceAttribute"
     ],
-    "ninjaExchange": "lesser-essence-of-the-infinite",
     "scout": [
       4433
     ],
@@ -13184,7 +13164,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceChaos"
     ],
-    "ninjaExchange": "lesser-essence-of-ruin",
     "scout": [
       4421
     ],
@@ -13203,7 +13182,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceRarity"
     ],
-    "ninjaExchange": "lesser-essence-of-opulence",
     "scout": [
       4437
     ],
@@ -14048,8 +14026,13 @@
   },
   {
     "baseItemIds": [
-      "toxic_domain"
+      "viper_strike"
     ],
+    "name": "Giftiger Schlag",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Giftiger\\ Schlag(?!\\p{L})"
+  },
+  {
     "name": "Giftiges Reich",
     "tradeItems": [
       {
@@ -14060,9 +14043,6 @@
     "typePattern": "(?\u003C!\\p{L})Giftiges\\ Reich(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "toxic_growth"
-    ],
     "name": "Giftiges Wachstum",
     "tradeItems": [
       {
@@ -15104,16 +15084,7 @@
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Beinschienen(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneEnhanceGreater"
-    ],
-    "ninjaExchange": "greater-iron-rune",
-    "scout": [
-      335
-    ],
-    "exchangeId": "greater-iron-rune",
     "name": "Gro\u00DFe Eisen-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvRW5oYW5jZVJ1bmVUaWVyMiIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/5fdc6a72ed/EnhanceRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe Eisen-Rune",
@@ -15121,6 +15092,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Eisen-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneEnhanceGreater"
+    ],
+    "scout": [
+      335
+    ],
+    "name": "Gro\u00DFe Eisenrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Eisenrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -15142,16 +15124,7 @@
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Entschlossenheit-Rune(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneManaGreater"
-    ],
-    "ninjaExchange": "greater-mind-rune",
-    "scout": [
-      337
-    ],
-    "exchangeId": "greater-mind-rune",
     "name": "Gro\u00DFe Gedanken-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTWFuYVJ1bmVUaWVyMiIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/49619b701f/ManaRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe Gedanken-Rune",
@@ -15170,15 +15143,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneColdGreater"
+      "Metadata/Items/SoulCores/RuneManaGreater"
     ],
-    "ninjaExchange": "greater-glacial-rune",
     "scout": [
-      333
+      337
     ],
-    "exchangeId": "greater-glacial-rune",
+    "name": "Gro\u00DFe Geistrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Geistrune(?!\\p{L})"
+  },
+  {
     "name": "Gro\u00DFe Gletscher-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvQ29sZFJ1bmVUaWVyMiIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/9770dc929d/ColdRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe Gletscher-Rune",
@@ -15189,15 +15164,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneManaRecoveryGreater"
+      "Metadata/Items/SoulCores/RuneColdGreater"
     ],
-    "ninjaExchange": "greater-inspiration-rune",
     "scout": [
-      339
+      333
     ],
-    "exchangeId": "greater-inspiration-rune",
+    "name": "Gro\u00DFe Gletscherrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Gletscherrune(?!\\p{L})"
+  },
+  {
     "name": "Gro\u00DFe Inspirations-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTWFuYVJlY292ZXJ5UnVuZVRpZXIyIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/9c6cc572d8/ManaRecoveryRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe Inspirations-Rune",
@@ -15208,6 +15185,17 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneManaRecoveryGreater"
+    ],
+    "scout": [
+      339
+    ],
+    "name": "Gro\u00DFe Inspirationsrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Inspirationsrune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandMaces/FourTwoHandMace11"
     ],
     "name": "Gro\u00DFe Keule",
@@ -15215,16 +15203,7 @@
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Keule(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneLifeGreater"
-    ],
-    "ninjaExchange": "greater-body-rune",
-    "scout": [
-      336
-    ],
-    "exchangeId": "greater-body-rune",
     "name": "Gro\u00DFe K\u00F6rper-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTGlmZVJ1bmVUaWVyMiIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/c553b97136/LifeRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe K\u00F6rper-Rune",
@@ -15232,6 +15211,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ K\u00F6rper-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneLifeGreater"
+    ],
+    "scout": [
+      336
+    ],
+    "name": "Gro\u00DFe K\u00F6rperrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ K\u00F6rperrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -15326,7 +15316,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneSpecial4"
     ],
-    "ninjaExchange": "greater-rune-of-nobility",
     "scout": [
       345
     ],
@@ -15399,16 +15388,7 @@
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Sph\u00E4re\\ des\\ Goldschmieds(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneStunGreater"
-    ],
-    "ninjaExchange": "greater-stone-rune",
-    "scout": [
-      340
-    ],
-    "exchangeId": "greater-stone-rune",
     "name": "Gro\u00DFe Stein-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvU3R1blJ1bmVUaWVyMiIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/836627f793/StunRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe Stein-Rune",
@@ -15419,6 +15399,17 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneStunGreater"
+    ],
+    "scout": [
+      340
+    ],
+    "name": "Gro\u00DFe Steinrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Steinrune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Armours/Gloves/FourGlovesStr8"
     ],
     "name": "Gro\u00DFe Stulpenhandschuhe",
@@ -15426,16 +15417,7 @@
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Stulpenhandschuhe(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneLightningGreater"
-    ],
-    "ninjaExchange": "greater-storm-rune",
-    "scout": [
-      334
-    ],
-    "exchangeId": "greater-storm-rune",
     "name": "Gro\u00DFe Sturm-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTGlnaHRuaW5nUnVuZVRpZXIyIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/47c9eb3f9e/LightningRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe Sturm-Rune",
@@ -15446,6 +15428,17 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneLightningGreater"
+    ],
+    "scout": [
+      334
+    ],
+    "name": "Gro\u00DFe Sturmrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Sturmrune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Armours/Shields/FourShieldStrDex11"
     ],
     "name": "Gro\u00DFe Tartsche",
@@ -15453,16 +15446,7 @@
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Tartsche(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneAccuracyGreater"
-    ],
-    "ninjaExchange": "greater-vision-rune",
-    "scout": [
-      341
-    ],
-    "exchangeId": "greater-vision-rune",
     "name": "Gro\u00DFe Visions-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvQWNjdXJhY3lSdW5lVGllcjIiLCJzY2FsZSI6MSwicmVhbG0iOiJwb2UyIn1d/88ab9b96b4/AccuracyRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe Visions-Rune",
@@ -15470,6 +15454,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Visions-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneAccuracyGreater"
+    ],
+    "scout": [
+      341
+    ],
+    "name": "Gro\u00DFe Visionsrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Visionsrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -15491,16 +15486,7 @@
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ Wiederbelebungsrune(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneFireGreater"
-    ],
-    "ninjaExchange": "greater-desert-rune",
-    "scout": [
-      332
-    ],
-    "exchangeId": "greater-desert-rune",
     "name": "Gro\u00DFe W\u00FCsten-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvRmlyZVJ1bmVUaWVyMiIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/2c6986b94c/FireRuneTier2.png",
     "tradeItems": [
       {
         "type": "Gro\u00DFe W\u00FCsten-Rune",
@@ -15508,6 +15494,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ W\u00FCsten-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneFireGreater"
+    ],
+    "scout": [
+      332
+    ],
+    "name": "Gro\u00DFe W\u00FCstenrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Gro\u00DFe\\ W\u00FCstenrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -16075,7 +16072,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyGreaterEssenceAttack"
     ],
-    "ninjaExchange": "greater-essence-of-battle",
     "scout": [
       377
     ],
@@ -16603,7 +16599,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/IdolSpecial7"
     ],
-    "ninjaExchange": "idol-of-silk",
     "scout": [
       13975
     ],
@@ -16921,6 +16916,28 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Hand\\ von\\ Chayula(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Currency/CurrencyAddEquipmentSocketShard"
+    ],
+    "scout": [
+      281
+    ],
+    "name": "Handwerkerscherbe",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Handwerkerscherbe(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Currency/CurrencyAddEquipmentSocket"
+    ],
+    "scout": [
+      293
+    ],
+    "name": "Handwerkersph\u00E4re",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Handwerkersph\u00E4re(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -17899,9 +17916,9 @@
     "baseItemIds": [
       "hyena_cackle"
     ],
-    "name": "Hy\u00E4nenclan",
+    "name": "Hy\u00E4nenrudel",
     "tradeItems": [],
-    "typePattern": "(?\u003C!\\p{L})Hy\u00E4nenclan(?!\\p{L})"
+    "typePattern": "(?\u003C!\\p{L})Hy\u00E4nenrudel(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -18215,7 +18232,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneManaRecovery"
     ],
-    "ninjaExchange": "inspiration-rune",
     "scout": [
       329
     ],
@@ -18492,7 +18508,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/SoulCoreSpecial25"
     ],
-    "ninjaExchange": "jiquanis-soul-core-of-snares",
     "scout": [
       15425
     ],
@@ -19628,16 +19643,7 @@
     "typePattern": "(?\u003C!\\p{L})Kleine\\ Adept-Rune(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneEnhanceLesser"
-    ],
-    "ninjaExchange": "lesser-iron-rune",
-    "scout": [
-      315
-    ],
-    "exchangeId": "lesser-iron-rune",
     "name": "Kleine Eisen-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvRW5oYW5jZVJ1bmVUaWVyMSIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/719e7a07b9/EnhanceRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine Eisen-Rune",
@@ -19645,6 +19651,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Kleine\\ Eisen-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneEnhanceLesser"
+    ],
+    "scout": [
+      315
+    ],
+    "name": "Kleine Eisenrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ Eisenrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -19666,16 +19683,7 @@
     "typePattern": "(?\u003C!\\p{L})Kleine\\ Entschlossenheit-Rune(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneManaLesser"
-    ],
-    "ninjaExchange": "lesser-mind-rune",
-    "scout": [
-      317
-    ],
-    "exchangeId": "lesser-mind-rune",
     "name": "Kleine Gedanken-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTWFuYVJ1bmVUaWVyMSIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/7ae4e735dd/ManaRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine Gedanken-Rune",
@@ -19694,15 +19702,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneColdLesser"
+      "Metadata/Items/SoulCores/RuneManaLesser"
     ],
-    "ninjaExchange": "lesser-glacial-rune",
     "scout": [
-      313
+      317
     ],
-    "exchangeId": "lesser-glacial-rune",
+    "name": "Kleine Geistrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ Geistrune(?!\\p{L})"
+  },
+  {
     "name": "Kleine Gletscher-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvQ29sZFJ1bmVUaWVyMSIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/69c7e6d2a3/ColdRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine Gletscher-Rune",
@@ -19713,15 +19723,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneManaRecoveryLesser"
+      "Metadata/Items/SoulCores/RuneColdLesser"
     ],
-    "ninjaExchange": "lesser-inspiration-rune",
     "scout": [
-      319
+      313
     ],
-    "exchangeId": "lesser-inspiration-rune",
+    "name": "Kleine Gletscherrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ Gletscherrune(?!\\p{L})"
+  },
+  {
     "name": "Kleine Inspirations-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTWFuYVJlY292ZXJ5UnVuZVRpZXIxIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/965d9a093b/ManaRecoveryRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine Inspirations-Rune",
@@ -19732,15 +19744,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneLifeLesser"
+      "Metadata/Items/SoulCores/RuneManaRecoveryLesser"
     ],
-    "ninjaExchange": "lesser-body-rune",
     "scout": [
-      316
+      319
     ],
-    "exchangeId": "lesser-body-rune",
+    "name": "Kleine Inspirationsrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ Inspirationsrune(?!\\p{L})"
+  },
+  {
     "name": "Kleine K\u00F6rper-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTGlmZVJ1bmVUaWVyMSIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/edcef0a1c6/LifeRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine K\u00F6rper-Rune",
@@ -19748,6 +19762,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Kleine\\ K\u00F6rper-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneLifeLesser"
+    ],
+    "scout": [
+      316
+    ],
+    "name": "Kleine K\u00F6rperrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ K\u00F6rperrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -19781,7 +19806,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneWard1Lesser"
     ],
-    "ninjaExchange": "lesser-ward-rune",
     "scout": [
       13511
     ],
@@ -19816,16 +19840,7 @@
     "typePattern": "(?\u003C!\\p{L})Kleine\\ Sph\u00E4re\\ des\\ Goldschmieds(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneStunLesser"
-    ],
-    "ninjaExchange": "lesser-stone-rune",
-    "scout": [
-      320
-    ],
-    "exchangeId": "lesser-stone-rune",
     "name": "Kleine Stein-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvU3R1blJ1bmVUaWVyMSIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/904db23238/StunRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine Stein-Rune",
@@ -19836,15 +19851,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneLightningLesser"
+      "Metadata/Items/SoulCores/RuneStunLesser"
     ],
-    "ninjaExchange": "lesser-storm-rune",
     "scout": [
-      314
+      320
     ],
-    "exchangeId": "lesser-storm-rune",
+    "name": "Kleine Steinrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ Steinrune(?!\\p{L})"
+  },
+  {
     "name": "Kleine Sturm-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvTGlnaHRuaW5nUnVuZVRpZXIxIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/c84f26f318/LightningRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine Sturm-Rune",
@@ -19855,15 +19872,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneAccuracyLesser"
+      "Metadata/Items/SoulCores/RuneLightningLesser"
     ],
-    "ninjaExchange": "lesser-vision-rune",
     "scout": [
-      321
+      314
     ],
-    "exchangeId": "lesser-vision-rune",
+    "name": "Kleine Sturmrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ Sturmrune(?!\\p{L})"
+  },
+  {
     "name": "Kleine Visions-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvQWNjdXJhY3lSdW5lVGllcjEiLCJzY2FsZSI6MSwicmVhbG0iOiJwb2UyIn1d/2a3b508ed5/AccuracyRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine Visions-Rune",
@@ -19871,6 +19890,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Kleine\\ Visions-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneAccuracyLesser"
+    ],
+    "scout": [
+      321
+    ],
+    "name": "Kleine Visionsrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ Visionsrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -19892,16 +19922,7 @@
     "typePattern": "(?\u003C!\\p{L})Kleine\\ Wiederbelebungsrune(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneFireLesser"
-    ],
-    "ninjaExchange": "lesser-desert-rune",
-    "scout": [
-      312
-    ],
-    "exchangeId": "lesser-desert-rune",
     "name": "Kleine W\u00FCsten-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvRmlyZVJ1bmVUaWVyMSIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/fdc8d95dd7/FireRuneTier1.png",
     "tradeItems": [
       {
         "type": "Kleine W\u00FCsten-Rune",
@@ -19909,6 +19930,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Kleine\\ W\u00FCsten-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneFireLesser"
+    ],
+    "scout": [
+      312
+    ],
+    "name": "Kleine W\u00FCstenrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Kleine\\ W\u00FCstenrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -22023,6 +22055,7 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/Gem/SupportGemLivingLightning",
       "triggered_living_lightning"
     ],
     "name": "Lebendiger Blitz",
@@ -22030,9 +22063,6 @@
     "typePattern": "(?\u003C!\\p{L})Lebendiger\\ Blitz(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/Gem/SupportGemLivingLightning"
-    ],
     "name": "Lebendiger Blitz I",
     "tradeItems": [
       {
@@ -24086,14 +24116,6 @@
   },
   {
     "baseItemIds": [
-      "dark_effigy_projectile"
-    ],
-    "name": "Niedertr\u00E4chtige Ausstr\u00F6mung",
-    "tradeItems": [],
-    "typePattern": "(?\u003C!\\p{L})Niedertr\u00E4chtige\\ Ausstr\u00F6mung(?!\\p{L})"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandAxes/FourTwoHandAxe13"
     ],
     "name": "Niedertr\u00E4chtige Gro\u00DFaxt",
@@ -24104,6 +24126,14 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Niedertr\u00E4chtige\\ Gro\u00DFaxt(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "dark_effigy_projectile"
+    ],
+    "name": "Niedertr\u00E4chtiger Schwall",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Niedertr\u00E4chtiger\\ Schwall(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -25800,16 +25830,7 @@
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Chaossph\u00E4re(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneEnhancePerfect"
-    ],
-    "ninjaExchange": "perfect-iron-rune",
-    "scout": [
-      13529
-    ],
-    "exchangeId": "perfect-iron-rune",
     "name": "Perfekte Eisen-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVFbmhhbmNlIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/4e46d225f8/PerfectRuneEnhance.png",
     "tradeItems": [
       {
         "type": "Perfekte Eisen-Rune",
@@ -25817,6 +25838,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Eisen-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneEnhancePerfect"
+    ],
+    "scout": [
+      13529
+    ],
+    "name": "Perfekte Eisenrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Eisenrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -26218,16 +26250,7 @@
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Essenz\\ des\\ \u00DCberflusses(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneManaPerfect"
-    ],
-    "ninjaExchange": "perfect-mind-rune",
-    "scout": [
-      13533
-    ],
-    "exchangeId": "perfect-mind-rune",
     "name": "Perfekte Gedanken-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVNYW5hIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/96a5dfe7d6/PerfectRuneMana.png",
     "tradeItems": [
       {
         "type": "Perfekte Gedanken-Rune",
@@ -26238,15 +26261,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneColdPerfect"
+      "Metadata/Items/SoulCores/RuneManaPerfect"
     ],
-    "ninjaExchange": "perfect-glacial-rune",
     "scout": [
-      13525
+      13533
     ],
-    "exchangeId": "perfect-glacial-rune",
+    "name": "Perfekte Geistrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Geistrune(?!\\p{L})"
+  },
+  {
     "name": "Perfekte Gletscher-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVDb2xkIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/5f8f2f9b29/PerfectRuneCold.png",
     "tradeItems": [
       {
         "type": "Perfekte Gletscher-Rune",
@@ -26254,6 +26279,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Gletscher-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneColdPerfect"
+    ],
+    "scout": [
+      13525
+    ],
+    "name": "Perfekte Gletscherrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Gletscherrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -26275,16 +26311,7 @@
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Hoheitliche\\ Sph\u00E4re(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneManaRecoveryPerfect"
-    ],
-    "ninjaExchange": "perfect-inspiration-rune",
-    "scout": [
-      13537
-    ],
-    "exchangeId": "perfect-inspiration-rune",
     "name": "Perfekte Inspirations-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVNYW5hUmVjb3ZlcnkiLCJzY2FsZSI6MSwicmVhbG0iOiJwb2UyIn1d/0941528f57/PerfectRuneManaRecovery.png",
     "tradeItems": [
       {
         "type": "Perfekte Inspirations-Rune",
@@ -26295,15 +26322,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneLifePerfect"
+      "Metadata/Items/SoulCores/RuneManaRecoveryPerfect"
     ],
-    "ninjaExchange": "perfect-body-rune",
     "scout": [
-      13531
+      13537
     ],
-    "exchangeId": "perfect-body-rune",
+    "name": "Perfekte Inspirationsrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Inspirationsrune(?!\\p{L})"
+  },
+  {
     "name": "Perfekte K\u00F6rper-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVMaWZlIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/77d2019212/PerfectRuneLife.png",
     "tradeItems": [
       {
         "type": "Perfekte K\u00F6rper-Rune",
@@ -26311,6 +26340,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ K\u00F6rper-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneLifePerfect"
+    ],
+    "scout": [
+      13531
+    ],
+    "name": "Perfekte K\u00F6rperrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ K\u00F6rperrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -26389,16 +26429,7 @@
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Sph\u00E4re\\ des\\ Goldschmieds(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneStunPerfect"
-    ],
-    "ninjaExchange": "perfect-stone-rune",
-    "scout": [
-      13539
-    ],
-    "exchangeId": "perfect-stone-rune",
     "name": "Perfekte Stein-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVTdHVuIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/063776d28b/PerfectRuneStun.png",
     "tradeItems": [
       {
         "type": "Perfekte Stein-Rune",
@@ -26409,15 +26440,17 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneLightningPerfect"
+      "Metadata/Items/SoulCores/RuneStunPerfect"
     ],
-    "ninjaExchange": "perfect-storm-rune",
     "scout": [
-      13527
+      13539
     ],
-    "exchangeId": "perfect-storm-rune",
+    "name": "Perfekte Steinrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Steinrune(?!\\p{L})"
+  },
+  {
     "name": "Perfekte Sturm-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVMaWdodG5pbmciLCJzY2FsZSI6MSwicmVhbG0iOiJwb2UyIn1d/d08ab44bac/PerfectRuneLightning.png",
     "tradeItems": [
       {
         "type": "Perfekte Sturm-Rune",
@@ -26425,6 +26458,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Sturm-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneLightningPerfect"
+    ],
+    "scout": [
+      13527
+    ],
+    "name": "Perfekte Sturmrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Sturmrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -26446,16 +26490,7 @@
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Umwandlungssph\u00E4re(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneAccuracyPerfect"
-    ],
-    "ninjaExchange": "perfect-vision-rune",
-    "scout": [
-      13541
-    ],
-    "exchangeId": "perfect-vision-rune",
     "name": "Perfekte Visions-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVBY2N1cmFjeSIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/4b7c49d286/PerfectRuneAccuracy.png",
     "tradeItems": [
       {
         "type": "Perfekte Visions-Rune",
@@ -26466,15 +26501,28 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneAccuracyPerfect"
+    ],
+    "scout": [
+      13541
+    ],
+    "name": "Perfekte Visionsrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Visionsrune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/SoulCores/RuneLifeRecoveryPerfect"
     ],
-    "ninjaExchange": "perfect-rebirth-rune",
     "scout": [
       13535
     ],
-    "exchangeId": "perfect-rebirth-rune",
+    "name": "Perfekte Wiederbelebungsrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ Wiederbelebungsrune(?!\\p{L})"
+  },
+  {
     "name": "Perfekte Wiedergeburt-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVMaWZlUmVjb3ZlcnkiLCJzY2FsZSI6MSwicmVhbG0iOiJwb2UyIn1d/dc0702aabd/PerfectRuneLifeRecovery.png",
     "tradeItems": [
       {
         "type": "Perfekte Wiedergeburt-Rune",
@@ -26484,16 +26532,7 @@
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ Wiedergeburt-Rune(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneFirePerfect"
-    ],
-    "ninjaExchange": "perfect-desert-rune",
-    "scout": [
-      13523
-    ],
-    "exchangeId": "perfect-desert-rune",
     "name": "Perfekte W\u00FCsten-Rune",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUnVuZXMvUGVyZmVjdFJ1bmVGaXJlIiwic2NhbGUiOjEsInJlYWxtIjoicG9lMiJ9XQ/b398960637/PerfectRuneFire.png",
     "tradeItems": [
       {
         "type": "Perfekte W\u00FCsten-Rune",
@@ -26501,6 +26540,17 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Perfekte\\ W\u00FCsten-Rune(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneFirePerfect"
+    ],
+    "scout": [
+      13523
+    ],
+    "name": "Perfekte W\u00FCstenrune",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Perfekte\\ W\u00FCstenrune(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -27785,7 +27835,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/ThesisOfExperiments"
     ],
-    "ninjaExchange": "quipolatls-thesis",
     "scout": [
       5206
     ],
@@ -28790,7 +28839,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneStrength"
     ],
-    "ninjaExchange": "robust-rune",
     "scout": [
       4023
     ],
@@ -29182,7 +29230,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneOfTheAncients26"
     ],
-    "ninjaExchange": "rune-of-confrontation",
     "scout": [
       13577
     ],
@@ -29199,9 +29246,19 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/SoulCores/RuneOfTheAncients17"
+    ],
+    "scout": [
+      13559
+    ],
+    "name": "Rune der Kulmination",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Rune\\ der\\ Kulmination(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/SoulCores/RuneOfTheAncients25"
     ],
-    "ninjaExchange": "rune-of-vital-flame",
     "scout": [
       13575
     ],
@@ -29263,16 +29320,7 @@
     "typePattern": "(?\u003C!\\p{L})Rune\\ der\\ Vitalit\u00E4t(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/SoulCores/RuneOfTheAncients17"
-    ],
-    "ninjaExchange": "rune-of-culmination",
-    "scout": [
-      13559
-    ],
-    "exchangeId": "rune-of-culmination",
     "name": "Rune des Kulmination",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXhwZWRpdGlvbjIvRWFybHlNeXRoaWNSdW5lNCIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/c3b6dea9ad/EarlyMythicRune4.png",
     "tradeItems": [
       {
         "type": "Rune des Kulmination",
@@ -34686,9 +34734,6 @@
     "typePattern": "(?\u003C!\\p{L})Runengeschmiedeter\\ Stoiker-Wappenschild(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/Armours/BodyArmours/FourBodyDexInt6CruelVerisium"
-    ],
     "name": "Runengeschmiedeter Stra\u00DFenh\u00E4ndler-Rock",
     "tradeItems": [
       {
@@ -34697,6 +34742,14 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Runengeschmiedeter\\ Stra\u00DFenh\u00E4ndler-Rock(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Armours/BodyArmours/FourBodyDexInt6CruelVerisium"
+    ],
+    "name": "Runengeschmiedeter Stra\u00DFenh\u00E4ndlerrock",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Runengeschmiedeter\\ Stra\u00DFenh\u00E4ndlerrock(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -39324,16 +39377,7 @@
     "typePattern": "(?\u003C!\\p{L})Scherbe\\ des\\ Ingenieurs(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/Currency/CurrencyAddEquipmentSocketShard"
-    ],
-    "ninjaExchange": "artificers-shard",
-    "scout": [
-      281
-    ],
-    "exchangeId": "artificers-shard",
     "name": "Scherbe des Kunsthandwerkers",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBZGRFcXVpcG1lbnRTb2NrZXRTaGFyZCIsInNjYWxlIjoxLCJyZWFsbSI6InBvZTIifV0/cdcdd8bf3f/CurrencyAddEquipmentSocketShard.png",
     "tradeItems": [
       {
         "type": "Scherbe des Kunsthandwerkers",
@@ -39834,7 +39878,6 @@
     "baseItemIds": [
       "Metadata/Items/MapFragments/VaultKeyBreach"
     ],
-    "ninjaExchange": "xeshts-reliquary-key",
     "scout": [
       471
     ],
@@ -41060,7 +41103,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneWardSpecial8"
     ],
-    "ninjaExchange": "warding-rune-of-symbiosis",
     "scout": [
       13617
     ],
@@ -41155,6 +41197,7 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneWardSpecial13"
     ],
+    "ninjaExchange": "warding-rune-of-glancing",
     "scout": [
       13623
     ],
@@ -41192,7 +41235,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneWardSpecial9"
     ],
-    "ninjaExchange": "warding-rune-of-courage",
     "scout": [
       13619
     ],
@@ -42808,16 +42850,7 @@
     "typePattern": "(?\u003C!\\p{L})Sph\u00E4re\\ des\\ Konflikts(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/Currency/CurrencyAddEquipmentSocket"
-    ],
-    "ninjaExchange": "artificers-orb",
-    "scout": [
-      293
-    ],
-    "exchangeId": "artificers",
     "name": "Sph\u00E4re des Kunsthandwerkers",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBZGRFcXVpcG1lbnRTb2NrZXQiLCJzY2FsZSI6MSwicmVhbG0iOiJwb2UyIn1d/5131fd4774/CurrencyAddEquipmentSocket.png",
     "tradeItems": [
       {
         "type": "Sph\u00E4re des Kunsthandwerkers",
@@ -43793,9 +43826,6 @@
     "typePattern": "(?\u003C!\\p{L})Strammes\\ Bein(?!\\p{L})"
   },
   {
-    "baseItemIds": [
-      "Metadata/Items/Armours/BodyArmours/FourBodyDexInt6Cruel"
-    ],
     "name": "Stra\u00DFenh\u00E4ndler-Rock",
     "tradeItems": [
       {
@@ -43804,6 +43834,14 @@
       }
     ],
     "typePattern": "(?\u003C!\\p{L})Stra\u00DFenh\u00E4ndler-Rock(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Armours/BodyArmours/FourBodyDexInt6Cruel"
+    ],
+    "name": "Stra\u00DFenh\u00E4ndlerrock",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Stra\u00DFenh\u00E4ndlerrock(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -44795,7 +44833,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel13"
     ],
-    "ninjaExchange": "thaumaturgic-flux-level-13",
     "scout": [
       13837
     ],
@@ -44814,7 +44851,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel14"
     ],
-    "ninjaExchange": "thaumaturgic-flux-level-14",
     "scout": [
       13839
     ],
@@ -44852,7 +44888,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel16"
     ],
-    "ninjaExchange": "thaumaturgic-flux-level-16",
     "scout": [
       13843
     ],
@@ -45471,6 +45506,22 @@
   },
   {
     "baseItemIds": [
+      "toxic_domain"
+    ],
+    "name": "Toxisches Reich",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Toxisches\\ Reich(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "toxic_growth"
+    ],
+    "name": "Toxisches Wachstum",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Toxisches\\ Wachstum(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
       "explosive_transmutation"
     ],
     "name": "Transmutationsexplosion",
@@ -45677,7 +45728,6 @@
     "baseItemIds": [
       "Metadata/Items/Gem/SupportGemTulsAvalanche"
     ],
-    "ninjaExchange": "tuls-avalanche",
     "scout": [
       14023
     ],
@@ -46212,7 +46262,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyUpgradeToMagicShard"
     ],
-    "ninjaExchange": "transmutation-shard",
     "scout": [
       278
     ],
@@ -47595,7 +47644,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneOfTheAncients7"
     ],
-    "ninjaExchange": "ancient-rune-of-discovery",
     "scout": [
       13655
     ],
@@ -47614,7 +47662,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneOfTheAncients11"
     ],
-    "ninjaExchange": "ancient-rune-of-animosity",
     "scout": [
       13663
     ],
@@ -47671,7 +47718,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneOfTheAncients6"
     ],
-    "ninjaExchange": "ancient-rune-of-control",
     "scout": [
       13653
     ],
@@ -47728,7 +47774,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneOfTheAncients13"
     ],
-    "ninjaExchange": "ancient-rune-of-retaliation",
     "scout": [
       13667
     ],
@@ -47865,7 +47910,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/DistilledEmotionTimeLost3"
     ],
-    "ninjaExchange": "ancient-diluted-liquid-greed",
     "scout": [
       13895
     ],
@@ -47884,7 +47928,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/DistilledEmotionTimeLost2"
     ],
-    "ninjaExchange": "ancient-diluted-liquid-guilt",
     "scout": [
       13893
     ],
@@ -48024,7 +48067,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/DistilledEmotionTimeLost1"
     ],
-    "ninjaExchange": "ancient-diluted-liquid-ire",
     "scout": [
       13891
     ],
@@ -51757,7 +51799,6 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyVerisiumAlloy3"
     ],
-    "ninjaExchange": "protective-alloy",
     "scout": [
       13479
     ],
@@ -52314,14 +52355,6 @@
   },
   {
     "baseItemIds": [
-      "viper_strike"
-    ],
-    "name": "Vipernschlag",
-    "tradeItems": [],
-    "typePattern": "(?\u003C!\\p{L})Vipernschlag(?!\\p{L})"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/AtlasUpgrades/AtlasRegionUpgrade3_1",
       "Metadata/Items/AtlasUpgrades/AtlasRegionUpgrade3_2",
       "Metadata/Items/AtlasUpgrades/AtlasRegionUpgrade3_3",
@@ -52352,7 +52385,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneAccuracy"
     ],
-    "ninjaExchange": "vision-rune",
     "scout": [
       331
     ],
@@ -53508,7 +53540,6 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneLifeRecovery"
     ],
-    "ninjaExchange": "rebirth-rune",
     "scout": [
       328
     ],
@@ -54992,6 +55023,14 @@
     "name": "Zenitgewand",
     "tradeItems": [],
     "typePattern": "(?\u003C!\\p{L})Zenitgewand(?!\\p{L})"
+  },
+  {
+    "baseItemIds": [
+      "mtx_centaur_transformation"
+    ],
+    "name": "Zentaurengestalt",
+    "tradeItems": [],
+    "typePattern": "(?\u003C!\\p{L})Zentaurengestalt(?!\\p{L})"
   },
   {
     "baseItemIds": [
@@ -58210,9 +58249,6 @@
     "baseItemIds": [
       "Metadata/Items/Rings/FourRing10"
     ],
-    "ninjaStash": [
-      "andvarius-gold-ring"
-    ],
     "scout": [
       1
     ],
@@ -58322,10 +58358,6 @@
   {
     "uniqueIds": [
       "FourUniqueFocus7_"
-    ],
-    "ninjaStash": [
-      "apeps-supremacy-runemastered-voodoo-focus",
-      "apeps-supremacy-voodoo-focus"
     ],
     "scout": [
       537
@@ -58605,8 +58637,7 @@
       "FourUniqueHelmetDexInt4"
     ],
     "ninjaStash": [
-      "atsaks-sight-runemastered-veiled-mask",
-      "atsaks-sight-veiled-mask"
+      "atsaks-sight-runemastered-veiled-mask"
     ],
     "scout": [
       68
@@ -58713,8 +58744,7 @@
       "FourUniqueBodyStrDexInt2"
     ],
     "ninjaStash": [
-      "atziris-splendour-runemastered-sacrificial-regalia",
-      "atziris-splendour-sacrificial-regalia"
+      "atziris-splendour-runemastered-sacrificial-regalia"
     ],
     "scout": [
       5336
@@ -59079,8 +59109,7 @@
       "FourUniqueRitual2"
     ],
     "ninjaStash": [
-      "beetlebite-runemastered-velour-shoes",
-      "beetlebite-velour-shoes"
+      "beetlebite-runemastered-velour-shoes"
     ],
     "scout": [
       72
@@ -59251,9 +59280,6 @@
     "uniqueIds": [
       "FourUniqueBreach3"
     ],
-    "ninjaStash": [
-      "beyond-reach-visceral-quiver"
-    ],
     "scout": [
       74
     ],
@@ -59265,9 +59291,6 @@
   {
     "uniqueIds": [
       "FourUniqueBelt15"
-    ],
-    "ninjaStash": [
-      "bijouborne-double-belt"
     ],
     "scout": [
       482
@@ -59297,8 +59320,7 @@
       "FourUniqueBootsStr5"
     ],
     "ninjaStash": [
-      "birth-of-fury-runemastered-stone-greaves",
-      "birth-of-fury-stone-greaves"
+      "birth-of-fury-runemastered-stone-greaves"
     ],
     "scout": [
       75
@@ -59373,10 +59395,6 @@
     "uniqueIds": [
       "FourUniqueHelmetStr3"
     ],
-    "ninjaStash": [
-      "black-sun-crest-runemastered-wrapped-greathelm",
-      "black-sun-crest-wrapped-greathelm"
-    ],
     "scout": [
       79
     ],
@@ -59404,9 +59422,6 @@
   {
     "uniqueIds": [
       "FourUniqueRing17"
-    ],
-    "ninjaStash": [
-      "blackflame-amethyst-ring"
     ],
     "scout": [
       5
@@ -59847,8 +59862,7 @@
       "FourUniqueBodyStr1"
     ],
     "ninjaStash": [
-      "bramblejack-runemastered-rusted-cuirass",
-      "bramblejack-rusted-cuirass"
+      "bramblejack-runemastered-rusted-cuirass"
     ],
     "scout": [
       83
@@ -60002,7 +60016,6 @@
       "FourUniqueOneHandMace9"
     ],
     "ninjaStash": [
-      "brutus-lead-sprinkler-morning-star",
       "brutus-lead-sprinkler-runeforged-morning-star"
     ],
     "scout": [
@@ -60259,8 +60272,7 @@
       "FourUniqueGlovesInt2"
     ],
     "ninjaStash": [
-      "candlemaker-runemastered-sombre-gloves",
-      "candlemaker-sombre-gloves"
+      "candlemaker-runemastered-sombre-gloves"
     ],
     "scout": [
       89
@@ -60273,9 +60285,6 @@
   {
     "uniqueIds": [
       "FourUniqueAmulet6"
-    ],
-    "ninjaStash": [
-      "carnage-heart-amber-amulet"
     ],
     "scout": [
       10
@@ -60463,8 +60472,7 @@
       "FourUniqueBodyInt5"
     ],
     "ninjaStash": [
-      "cloak-of-flame-runemastered-silk-robe",
-      "cloak-of-flame-silk-robe"
+      "cloak-of-flame-runemastered-silk-robe"
     ],
     "scout": [
       91
@@ -60508,10 +60516,6 @@
   {
     "uniqueIds": [
       "FourUniqueHelmetDex6"
-    ],
-    "ninjaStash": [
-      "constricting-command-runemastered-viper-cap",
-      "constricting-command-viper-cap"
     ],
     "scout": [
       3945
@@ -60573,10 +60577,6 @@
   {
     "uniqueIds": [
       "FourUniqueHelmetStr6"
-    ],
-    "ninjaStash": [
-      "corona-of-the-red-sun-runemastered-warrior-greathelm",
-      "corona-of-the-red-sun-warrior-greathelm"
     ],
     "scout": [
       94
@@ -60714,10 +60714,6 @@
     "uniqueIds": [
       "FourUniqueHelmetInt7"
     ],
-    "ninjaStash": [
-      "crown-of-eyes-runemastered-vermeil-circlet",
-      "crown-of-eyes-vermeil-circlet"
-    ],
     "scout": [
       493
     ],
@@ -60731,8 +60727,7 @@
       "FourUniqueHelmetInt1"
     ],
     "ninjaStash": [
-      "crown-of-thorns-runemastered-twig-circlet",
-      "crown-of-thorns-twig-circlet"
+      "crown-of-thorns-runemastered-twig-circlet"
     ],
     "scout": [
       100
@@ -60838,9 +60833,6 @@
   {
     "uniqueIds": [
       "FourUniqueBelt23"
-    ],
-    "ninjaStash": [
-      "darkness-enthroned-fine-belt"
     ],
     "scout": [
       4993
@@ -61141,9 +61133,6 @@
     "uniqueIds": [
       "FourUniqueRing20"
     ],
-    "ninjaStash": [
-      "death-rush-emerald-ring"
-    ],
     "scout": [
       14
     ],
@@ -61173,8 +61162,7 @@
       "FourUniqueFocus1"
     ],
     "ninjaStash": [
-      "deathrattle-runemastered-twig-focus",
-      "deathrattle-twig-focus"
+      "deathrattle-runemastered-twig-focus"
     ],
     "scout": [
       103
@@ -62542,8 +62530,7 @@
       "Metadata/Items/Armours/Shields/FourShieldStr1VerisiumUnique1"
     ],
     "ninjaStash": [
-      "dionadair-runemastered-splintered-tower-shield",
-      "dionadair-splintered-tower-shield"
+      "dionadair-runemastered-splintered-tower-shield"
     ],
     "scout": [
       107
@@ -62587,8 +62574,7 @@
       "FourUniqueGlovesInt3"
     ],
     "ninjaStash": [
-      "doedres-tenure-runemastered-stitched-gloves",
-      "doedres-tenure-stitched-gloves"
+      "doedres-tenure-runemastered-stitched-gloves"
     ],
     "scout": [
       108
@@ -62860,8 +62846,7 @@
       "FourUniqueBodyStrDex6"
     ],
     "ninjaStash": [
-      "doryanis-prototype-runemastered-scale-mail",
-      "doryanis-prototype-scale-mail"
+      "doryanis-prototype-runemastered-scale-mail"
     ],
     "scout": [
       110
@@ -63096,8 +63081,7 @@
       "FourUniqueBodyDex6"
     ],
     "ninjaStash": [
-      "dustbloom-runemastered-studded-vest",
-      "dustbloom-studded-vest"
+      "dustbloom-runemastered-studded-vest"
     ],
     "scout": [
       111
@@ -63478,8 +63462,7 @@
       "FourUniqueGlovesStr7"
     ],
     "ninjaStash": [
-      "empires-grasp-runemastered-titan-mitts",
-      "empires-grasp-titan-mitts"
+      "empires-grasp-runemastered-titan-mitts"
     ],
     "scout": [
       497
@@ -63710,9 +63693,6 @@
     "uniqueIds": [
       "FourUniqueAmulet19_"
     ],
-    "ninjaStash": [
-      "eye-of-chayula-gold-amulet"
-    ],
     "scout": [
       18
     ],
@@ -63724,10 +63704,6 @@
   {
     "uniqueIds": [
       "FourUniqueShieldStrDex12"
-    ],
-    "ninjaStash": [
-      "eyes-of-the-runefather-runemastered-venerable-defender",
-      "eyes-of-the-runefather-venerable-defender"
     ],
     "scout": [
       14791
@@ -63742,8 +63718,7 @@
       "FourUniqueHelmetStr2"
     ],
     "ninjaStash": [
-      "ezomyte-peak-runemastered-soldier-greathelm",
-      "ezomyte-peak-soldier-greathelm"
+      "ezomyte-peak-runemastered-soldier-greathelm"
     ],
     "scout": [
       116
@@ -63758,8 +63733,7 @@
       "FourUniqueGlovesStr1"
     ],
     "ninjaStash": [
-      "facebreaker-runemastered-stocky-mitts",
-      "facebreaker-stocky-mitts"
+      "facebreaker-runemastered-stocky-mitts"
     ],
     "scout": [
       14416
@@ -64043,9 +64017,6 @@
   {
     "uniqueIds": [
       "FourUniqueSceptre4"
-    ],
-    "ninjaStash": [
-      "font-of-power-omen-sceptre"
     ],
     "scout": [
       238
@@ -64749,8 +64720,7 @@
       "FourUniqueBootsDexInt2"
     ],
     "ninjaStash": [
-      "ghostmarch-runemastered-threaded-shoes",
-      "ghostmarch-threaded-shoes"
+      "ghostmarch-runemastered-threaded-shoes"
     ],
     "scout": [
       121
@@ -64765,8 +64735,7 @@
       "FourUniqueBodyInt1_"
     ],
     "ninjaStash": [
-      "ghostwrithe-runemastered-tattered-robe",
-      "ghostwrithe-tattered-robe"
+      "ghostwrithe-runemastered-tattered-robe"
     ],
     "scout": [
       122
@@ -64811,8 +64780,7 @@
       "FourUniqueUltimatum1"
     ],
     "ninjaStash": [
-      "glimpse-of-chaos-runemastered-tribal-mask",
-      "glimpse-of-chaos-tribal-mask"
+      "glimpse-of-chaos-runemastered-tribal-mask"
     ],
     "scout": [
       123
@@ -64841,10 +64809,6 @@
   {
     "uniqueIds": [
       "FourUniqueBodyDexInt2"
-    ],
-    "ninjaStash": [
-      "gloomform-runemastered-waxed-jacket",
-      "gloomform-waxed-jacket"
     ],
     "scout": [
       124
@@ -65120,8 +65084,7 @@
       "FourUniqueBodyStr8"
     ],
     "ninjaStash": [
-      "greeds-embrace-runemastered-vaal-cuirass",
-      "greeds-embrace-vaal-cuirass"
+      "greeds-embrace-runemastered-vaal-cuirass"
     ],
     "scout": [
       127
@@ -65289,9 +65252,6 @@
       "FourUniqueRing33_b",
       "FourUniqueRing33_c",
       "FourUniqueRing33_d"
-    ],
-    "ninjaStash": [
-      "grip-of-kulemak-abyssal-signet"
     ],
     "scout": [
       4673
@@ -65480,10 +65440,6 @@
     "uniqueIds": [
       "FourUniqueBreach2"
     ],
-    "ninjaStash": [
-      "hand-of-wisdom-and-action-runemastered-spiral-wraps",
-      "hand-of-wisdom-and-action-spiral-wraps"
-    ],
     "scout": [
       130
     ],
@@ -65557,8 +65513,7 @@
       "FourUniqueUltimatum4"
     ],
     "ninjaStash": [
-      "hateforge-moulded-mitts",
-      "hateforge-runemastered-moulded-mitts"
+      "hateforge-moulded-mitts"
     ],
     "scout": [
       131
@@ -65648,8 +65603,7 @@
       "FourUniqueHelmetDex9"
     ],
     "ninjaStash": [
-      "heatshiver-runemastered-velvet-cap",
-      "heatshiver-velvet-cap"
+      "heatshiver-runemastered-velvet-cap"
     ],
     "scout": [
       570
@@ -65937,7 +65891,6 @@
       "FourUniqueTwoHandMace1"
     ],
     "ninjaStash": [
-      "hoghunt-felled-greatclub",
       "hoghunt-runeforged-felled-greatclub",
       "hoghunt-runemastered-felled-greatclub"
     ],
@@ -65954,8 +65907,7 @@
       "FourUniqueHelmetStr1a"
     ],
     "ninjaStash": [
-      "horns-of-bynden-runemastered-rusted-greathelm",
-      "horns-of-bynden-rusted-greathelm"
+      "horns-of-bynden-runemastered-rusted-greathelm"
     ],
     "scout": [
       132
@@ -65985,7 +65937,6 @@
       "FourUniqueTwoHandMace2"
     ],
     "ninjaStash": [
-      "hrimnors-hymn-oak-greathammer",
       "hrimnors-hymn-runeforged-oak-greathammer",
       "hrimnors-hymn-runemastered-oak-greathammer"
     ],
@@ -66093,7 +66044,6 @@
       "FourUniqueTalisman4"
     ],
     "ninjaStash": [
-      "hyssegs-claw-familial-talisman",
       "hyssegs-claw-runeforged-familial-talisman",
       "hyssegs-claw-runemastered-familial-talisman"
     ],
@@ -66750,8 +66700,7 @@
       "FourUniqueGlovesDex4"
     ],
     "ninjaStash": [
-      "idle-hands-runemastered-sectioned-bracers",
-      "idle-hands-sectioned-bracers"
+      "idle-hands-runemastered-sectioned-bracers"
     ],
     "scout": [
       135
@@ -66764,9 +66713,6 @@
   {
     "uniqueIds": [
       "FourUniqueAmulet2"
-    ],
-    "ninjaStash": [
-      "idol-of-uldurn-crimson-amulet"
     ],
     "scout": [
       24
@@ -66782,9 +66728,6 @@
     ],
     "baseItemIds": [
       "Metadata/Items/Amulets/FourAmulet1"
-    ],
-    "ninjaStash": [
-      "igniferis-crimson-amulet"
     ],
     "scout": [
       25
@@ -66917,8 +66860,7 @@
       "Metadata/Items/Armours/Helmets/FourHelmetDex1VerisiumUnique1"
     ],
     "ninjaStash": [
-      "innsmouth-runemastered-shabby-hood",
-      "innsmouth-shabby-hood"
+      "innsmouth-runemastered-shabby-hood"
     ],
     "scout": [
       136
@@ -66963,8 +66905,7 @@
       "FourUniqueBodyStrDex3_"
     ],
     "ninjaStash": [
-      "irongrasp-runemastered-vagabond-armour",
-      "irongrasp-vagabond-armour"
+      "irongrasp-runemastered-vagabond-armour"
     ],
     "scout": [
       137
@@ -66977,10 +66918,6 @@
   {
     "uniqueIds": [
       "FourUniqueHelmetStrDex3"
-    ],
-    "ninjaStash": [
-      "ironride-runemastered-visored-helm",
-      "ironride-visored-helm"
     ],
     "scout": [
       138
@@ -67169,8 +67106,7 @@
       "FourUniqueExpedition2"
     ],
     "ninjaStash": [
-      "keeper-of-the-arc-runemastered-spiritbone-crown",
-      "keeper-of-the-arc-spiritbone-crown"
+      "keeper-of-the-arc-runemastered-spiritbone-crown"
     ],
     "scout": [
       141
@@ -67972,8 +67908,7 @@
       "FourUniqueGlovesStr3"
     ],
     "ninjaStash": [
-      "lochtonial-caress-runemastered-tempered-mitts",
-      "lochtonial-caress-tempered-mitts"
+      "lochtonial-caress-runemastered-tempered-mitts"
     ],
     "scout": [
       147
@@ -68034,8 +67969,7 @@
       "FourUniqueBootsInt1"
     ],
     "ninjaStash": [
-      "luminous-pace-runemastered-straw-sandals",
-      "luminous-pace-straw-sandals"
+      "luminous-pace-runemastered-straw-sandals"
     ],
     "scout": [
       148
@@ -68605,9 +68539,6 @@
     "uniqueIds": [
       "FourUniqueRing16"
     ],
-    "ninjaStash": [
-      "mings-heart-amethyst-ring"
-    ],
     "scout": [
       34
     ],
@@ -68636,7 +68567,6 @@
       "FourUniqueCrossbow1"
     ],
     "ninjaStash": [
-      "mist-whisper-makeshift-crossbow",
       "mist-whisper-runeforged-makeshift-crossbow"
     ],
     "scout": [
@@ -68763,9 +68693,6 @@
   {
     "uniqueIds": [
       "FourUniqueQuiver6_"
-    ],
-    "ninjaStash": [
-      "murkshaft-toxic-quiver"
     ],
     "scout": [
       3947
@@ -68936,9 +68863,6 @@
     ],
     "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandMaces/FourOneHandMace12"
-    ],
-    "ninjaStash": [
-      "nebuloch-execratus-hammer"
     ],
     "scout": [
       555
@@ -69113,10 +69037,6 @@
     "uniqueIds": [
       "FourUniqueShieldDex2"
     ],
-    "ninjaStash": [
-      "nocturne-runemastered-wooden-buckler",
-      "nocturne-wooden-buckler"
-    ],
     "scout": [
       500
     ],
@@ -69190,8 +69110,7 @@
       "FourUniqueGlovesDex1____"
     ],
     "ninjaStash": [
-      "northpaw-runemastered-suede-bracers",
-      "northpaw-suede-bracers"
+      "northpaw-runemastered-suede-bracers"
     ],
     "scout": [
       158
@@ -69206,8 +69125,7 @@
       "FourUniqueShieldStrInt2"
     ],
     "ninjaStash": [
-      "oaksworn-runemastered-sigil-crest-shield",
-      "oaksworn-sigil-crest-shield"
+      "oaksworn-runemastered-sigil-crest-shield"
     ],
     "scout": [
       159
@@ -69222,8 +69140,7 @@
       "FourUniqueBootsStrDex3"
     ],
     "ninjaStash": [
-      "oberns-bastion-runemastered-stacked-sabatons",
-      "oberns-bastion-stacked-sabatons"
+      "oberns-bastion-runemastered-stacked-sabatons"
     ],
     "scout": [
       160
@@ -69346,9 +69263,6 @@
     "uniqueIds": [
       "FourUniqueRing18"
     ],
-    "ninjaStash": [
-      "original-sin-amethyst-ring"
-    ],
     "scout": [
       35
     ],
@@ -69362,8 +69276,7 @@
       "FourUniqueGlovesInt1"
     ],
     "ninjaStash": [
-      "painters-servant-runemastered-torn-gloves",
-      "painters-servant-torn-gloves"
+      "painters-servant-runemastered-torn-gloves"
     ],
     "scout": [
       161
@@ -69404,9 +69317,6 @@
   {
     "uniqueIds": [
       "FourUniqueRing28"
-    ],
-    "ninjaStash": [
-      "perandus-seal-gold-ring"
     ],
     "scout": [
       36
@@ -69587,7 +69497,6 @@
       "FourUniqueQuarterstaff2"
     ],
     "ninjaStash": [
-      "pillar-of-the-caged-god-long-quarterstaff",
       "pillar-of-the-caged-god-runeforged-long-quarterstaff",
       "pillar-of-the-caged-god-runemastered-long-quarterstaff"
     ],
@@ -69834,8 +69743,7 @@
       "FourUniqueBodyDex8"
     ],
     "ninjaStash": [
-      "quatls-molt-runemastered-serpentscale-coat",
-      "quatls-molt-serpentscale-coat"
+      "quatls-molt-runemastered-serpentscale-coat"
     ],
     "scout": [
       168
@@ -69914,8 +69822,7 @@
       "FourUniqueBodyDex10"
     ],
     "ninjaStash": [
-      "queen-of-the-forest-runemastered-smuggler-coat",
-      "queen-of-the-forest-smuggler-coat"
+      "queen-of-the-forest-runemastered-smuggler-coat"
     ],
     "scout": [
       169
@@ -70024,8 +69931,7 @@
       "FourUniqueFocus8"
     ],
     "ninjaStash": [
-      "rathpith-globe-runemastered-plumed-focus",
-      "rathpith-globe-sacred-focus"
+      "rathpith-globe-runemastered-plumed-focus"
     ],
     "scout": [
       574
@@ -70119,9 +70025,6 @@
     "uniqueIds": [
       "FourUniqueAmulet5"
     ],
-    "ninjaStash": [
-      "revered-resin-amber-amulet"
-    ],
     "scout": [
       38
     ],
@@ -70135,8 +70038,7 @@
       "FourUniqueBodyStrInt4"
     ],
     "ninjaStash": [
-      "reverie-runemastered-shaman-mantle",
-      "reverie-shaman-mantle"
+      "reverie-runemastered-shaman-mantle"
     ],
     "scout": [
       13441
@@ -70480,9 +70382,6 @@
     "uniqueIds": [
       "FourUniqueOneHandMace14"
     ],
-    "ninjaStash": [
-      "sadists-mercy-flanged-mace"
-    ],
     "scout": [
       14599
     ],
@@ -70678,8 +70577,7 @@
       "FourUniqueBodyDex4"
     ],
     "ninjaStash": [
-      "sands-of-silk-runemastered-shrouded-vest",
-      "sands-of-silk-shrouded-vest"
+      "sands-of-silk-runemastered-shrouded-vest"
     ],
     "scout": [
       541
@@ -71218,7 +71116,6 @@
       "FourUniqueOneHandMace6_"
     ],
     "ninjaStash": [
-      "seeing-stars-marching-mace",
       "seeing-stars-runeforged-marching-mace"
     ],
     "scout": [
@@ -71402,9 +71299,6 @@
     "uniqueIds": [
       "FourUniqueAmulet20"
     ],
-    "ninjaStash": [
-      "serpents-egg-gold-amulet"
-    ],
     "scout": [
       43
     ],
@@ -71418,8 +71312,7 @@
       "FourUniqueFocus5"
     ],
     "ninjaStash": [
-      "serpents-lesson-runemastered-tonal-focus",
-      "serpents-lesson-tonal-focus"
+      "serpents-lesson-runemastered-tonal-focus"
     ],
     "scout": [
       175
@@ -71482,9 +71375,6 @@
   {
     "uniqueIds": [
       "FourUniqueBelt21_"
-    ],
-    "ninjaStash": [
-      "shavronnes-satchel-fine-belt"
     ],
     "scout": [
       44
@@ -71670,8 +71560,7 @@
       "FourUniqueShieldDex6_"
     ],
     "ninjaStash": [
-      "silverthorne-runemastered-spiked-buckler",
-      "silverthorne-spiked-buckler"
+      "silverthorne-runemastered-spiked-buckler"
     ],
     "scout": [
       505
@@ -71783,8 +71672,7 @@
       "FourUniqueGlovesDex5_"
     ],
     "ninjaStash": [
-      "snakebite-runemastered-spined-bracers",
-      "snakebite-spined-bracers"
+      "snakebite-runemastered-spined-bracers"
     ],
     "scout": [
       180
@@ -71878,8 +71766,7 @@
       "FourUniqueBodyStrInt6"
     ],
     "ninjaStash": [
-      "soul-mantle-runemastered-sacrificial-mantle",
-      "soul-mantle-sacrificial-mantle"
+      "soul-mantle-runemastered-sacrificial-mantle"
     ],
     "scout": [
       506
@@ -71984,7 +71871,6 @@
       "FourUniqueTalisman2_"
     ],
     "ninjaStash": [
-      "spiteful-floret-nettle-talisman",
       "spiteful-floret-runeforged-nettle-talisman",
       "spiteful-floret-runemastered-nettle-talisman"
     ],
@@ -72546,9 +72432,6 @@
     "uniqueIds": [
       "FourUniqueTalisman10"
     ],
-    "ninjaStash": [
-      "surge-of-the-tide-lumbering-talisman"
-    ],
     "scout": [
       14602
     ],
@@ -72728,8 +72611,7 @@
       "Metadata/Items/Armours/BodyArmours/FourBodyInt5VerisiumUnique1"
     ],
     "ninjaStash": [
-      "temporalis-runemastered-silk-robe",
-      "temporalis-silk-robe"
+      "temporalis-runemastered-silk-robe"
     ],
     "scout": [
       183
@@ -72756,10 +72638,6 @@
   {
     "uniqueIds": [
       "FourUniqueBodyInt7"
-    ],
-    "ninjaStash": [
-      "tetzlapokals-desire-runemastered-votive-raiment",
-      "tetzlapokals-desire-votive-raiment"
     ],
     "scout": [
       184
@@ -72817,9 +72695,6 @@
   {
     "uniqueIds": [
       "FourUniqueAmulet13"
-    ],
-    "ninjaStash": [
-      "the-anvil-bloodstone-amulet"
     ],
     "scout": [
       49
@@ -73022,10 +72897,6 @@
     "uniqueIds": [
       "FourUniqueBodyDexInt4"
     ],
-    "ninjaStash": [
-      "the-dancing-mirage-runemastered-wayfarer-jacket",
-      "the-dancing-mirage-wayfarer-jacket"
-    ],
     "scout": [
       189
     ],
@@ -73064,10 +72935,6 @@
   {
     "uniqueIds": [
       "FourUniqueHelmetInt2_"
-    ],
-    "ninjaStash": [
-      "the-devouring-diadem-runemastered-wicker-tiara",
-      "the-devouring-diadem-wicker-tiara"
     ],
     "scout": [
       190
@@ -73112,9 +72979,6 @@
   {
     "uniqueIds": [
       "FourUniqueAmulet3"
-    ],
-    "ninjaStash": [
-      "the-everlasting-gaze-azure-amulet"
     ],
     "scout": [
       51
@@ -73264,9 +73128,6 @@
     "uniqueIds": [
       "FourUniqueQuiver3"
     ],
-    "ninjaStash": [
-      "the-lethal-draw-sacral-quiver"
-    ],
     "scout": [
       510
     ],
@@ -73326,8 +73187,7 @@
       "FourUniqueGlovesStrInt4"
     ],
     "ninjaStash": [
-      "the-prisoners-manacles-kalguuran-cuffs",
-      "the-prisoners-manacles-runemastered-verisium-cuffs"
+      "the-prisoners-manacles-kalguuran-cuffs"
     ],
     "scout": [
       511
@@ -73342,8 +73202,7 @@
       "FourUniqueBodyDex7"
     ],
     "ninjaStash": [
-      "the-rat-cage-runemastered-scouts-vest",
-      "the-rat-cage-scouts-vest"
+      "the-rat-cage-runemastered-scouts-vest"
     ],
     "scout": [
       196
@@ -73356,9 +73215,6 @@
   {
     "uniqueIds": [
       "FourUniqueStaff18"
-    ],
-    "ninjaStash": [
-      "the-ravens-flock-perching-staff"
     ],
     "scout": [
       14885
@@ -73449,8 +73305,7 @@
       "FourUniqueShieldStr8"
     ],
     "ninjaStash": [
-      "the-surrender-runemastered-vaal-tower-shield",
-      "the-surrender-vaal-tower-shield"
+      "the-surrender-runemastered-vaal-tower-shield"
     ],
     "scout": [
       198
@@ -73480,8 +73335,7 @@
       "FourUniqueHelmetDexInt6"
     ],
     "ninjaStash": [
-      "the-three-dragons-runemastered-solid-mask",
-      "the-three-dragons-solid-mask"
+      "the-three-dragons-runemastered-solid-mask"
     ],
     "scout": [
       199
@@ -73527,8 +73381,7 @@
       "FourUniqueHelmetDexInt5__"
     ],
     "ninjaStash": [
-      "the-vertex-runemastered-tribal-mask",
-      "the-vertex-tribal-mask"
+      "the-vertex-runemastered-tribal-mask"
     ],
     "scout": [
       200
@@ -73543,8 +73396,7 @@
       "FourUniqueHelmetStrDex5"
     ],
     "ninjaStash": [
-      "the-vile-knight-runemastered-shielded-helm",
-      "the-vile-knight-shielded-helm"
+      "the-vile-knight-runemastered-shielded-helm"
     ],
     "scout": [
       201
@@ -73569,9 +73421,6 @@
   {
     "uniqueIds": [
       "FourUniqueStaff14__"
-    ],
-    "ninjaStash": [
-      "the-whispering-ice-permafrost-staff"
     ],
     "scout": [
       4009
@@ -73600,9 +73449,6 @@
     "uniqueIds": [
       "FourUniqueRing21"
     ],
-    "ninjaStash": [
-      "thiefs-torment-emerald-ring"
-    ],
     "scout": [
       53
     ],
@@ -73614,10 +73460,6 @@
   {
     "uniqueIds": [
       "FourUniqueFocus2"
-    ],
-    "ninjaStash": [
-      "threaded-light-runemastered-woven-focus",
-      "threaded-light-woven-focus"
     ],
     "scout": [
       203
@@ -73632,8 +73474,7 @@
       "FourUniqueHelmetStr4"
     ],
     "ninjaStash": [
-      "thrillsteel-runemastered-spired-greathelm",
-      "thrillsteel-spired-greathelm"
+      "thrillsteel-runemastered-spired-greathelm"
     ],
     "scout": [
       204
@@ -73663,8 +73504,7 @@
       "FourUniqueGlovesDexInt6"
     ],
     "ninjaStash": [
-      "thunderfist-runemastered-utility-wraps",
-      "thunderfist-utility-wraps"
+      "thunderfist-runemastered-utility-wraps"
     ],
     "scout": [
       4909
@@ -73858,8 +73698,7 @@
       "FourUniqueBootsStr4_"
     ],
     "ninjaStash": [
-      "trampletoe-runemastered-trimmed-greaves",
-      "trampletoe-trimmed-greaves"
+      "trampletoe-runemastered-trimmed-greaves"
     ],
     "scout": [
       207
@@ -73970,7 +73809,6 @@
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandMaces/FourTwoHandMaceVerisium3"
     ],
     "ninjaStash": [
-      "trephina-forge-maul",
       "trephina-runeforged-forge-maul"
     ],
     "scout": [
@@ -74332,9 +74170,6 @@
     "uniqueIds": [
       "FourUniqueAmulet4"
     ],
-    "ninjaStash": [
-      "ungils-harmony-azure-amulet"
-    ],
     "scout": [
       54
     ],
@@ -74558,9 +74393,6 @@
   {
     "uniqueIds": [
       "FourUniqueRing34_"
-    ],
-    "ninjaStash": [
-      "veilpiercer-amethyst-ring"
     ],
     "scout": [
       14036
@@ -74893,8 +74725,7 @@
       "FourUniqueHelmetStrInt9"
     ],
     "ninjaStash": [
-      "vestige-of-darkness-runemastered-tenebrous-crown",
-      "vestige-of-darkness-tenebrous-crown"
+      "vestige-of-darkness-runemastered-tenebrous-crown"
     ],
     "scout": [
       14421
@@ -74907,9 +74738,6 @@
   {
     "uniqueIds": [
       "FourUniqueRing19"
-    ],
-    "ninjaStash": [
-      "vigilant-view-emerald-ring"
     ],
     "scout": [
       487
@@ -75066,9 +74894,6 @@
     "uniqueIds": [
       "FourUniqueBow7"
     ],
-    "ninjaStash": [
-      "voltaxic-rift-fanatic-bow"
-    ],
     "scout": [
       564
     ],
@@ -75128,8 +74953,7 @@
       "FourUniqueBootsStrInt2"
     ],
     "ninjaStash": [
-      "wake-of-destruction-runemastered-secured-leggings",
-      "wake-of-destruction-secured-leggings"
+      "wake-of-destruction-runemastered-secured-leggings"
     ],
     "scout": [
       212
@@ -75144,8 +74968,7 @@
       "FourUniqueBodyStr6"
     ],
     "ninjaStash": [
-      "wandering-reliquary-runemastered-steel-plate",
-      "wandering-reliquary-steel-plate"
+      "wandering-reliquary-runemastered-steel-plate"
     ],
     "scout": [
       213
@@ -75162,10 +74985,6 @@
     "baseItemIds": [
       "Metadata/Items/Armours/Boots/FourBootsInt2",
       "Metadata/Items/Armours/Boots/FourBootsInt2VerisiumUnique1"
-    ],
-    "ninjaStash": [
-      "wanderlust-runemastered-wrapped-sandals",
-      "wanderlust-wrapped-sandals"
     ],
     "scout": [
       214
@@ -75284,8 +75103,7 @@
       "FourUniqueBodyStrInt8"
     ],
     "ninjaStash": [
-      "waveshaper-runemastered-tideseer-mantle",
-      "waveshaper-tideseer-mantle"
+      "waveshaper-runemastered-tideseer-mantle"
     ],
     "scout": [
       513
@@ -75469,8 +75287,7 @@
       "FourUniqueHelmetStr1b"
     ],
     "ninjaStash": [
-      "wings-of-caelyn-runemastered-rusted-greathelm",
-      "wings-of-caelyn-rusted-greathelm"
+      "wings-of-caelyn-runemastered-rusted-greathelm"
     ],
     "scout": [
       216
@@ -75623,8 +75440,7 @@
       "FourUniqueBootsInt4_"
     ],
     "ninjaStash": [
-      "wondertrap-runemastered-silk-slippers",
-      "wondertrap-silk-slippers"
+      "wondertrap-runemastered-silk-slippers"
     ],
     "scout": [
       217
@@ -75728,9 +75544,6 @@
     "uniqueIds": [
       "FourUniqueBreach4a"
     ],
-    "ninjaStash": [
-      "xophs-blood-amber-amulet"
-    ],
     "scout": [
       57
     ],
@@ -75758,9 +75571,6 @@
     "uniqueIds": [
       "FourUniqueAmulet14"
     ],
-    "ninjaStash": [
-      "yoke-of-suffering-bloodstone-amulet"
-    ],
     "scout": [
       567
     ],
@@ -75774,8 +75584,7 @@
       "FourUniqueBodyDex11"
     ],
     "ninjaStash": [
-      "yriels-fostering-runemastered-strider-vest",
-      "yriels-fostering-strider-vest"
+      "yriels-fostering-runemastered-strider-vest"
     ],
     "scout": [
       546
@@ -75865,8 +75674,7 @@
       "FourUniqueBodyDexInt6"
     ],
     "ninjaStash": [
-      "zerphis-serape-runemastered-scalpers-jacket",
-      "zerphis-serape-scalpers-jacket"
+      "zerphis-serape-runemastered-scalpers-jacket"
     ],
     "scout": [
       547

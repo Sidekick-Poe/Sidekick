@@ -4188,7 +4188,7 @@
   {
     "id": "Metadata/Items/Armours/Boots/BootsStrDex7",
     "itemClassId": "Boots",
-    "name": "\u30D2\u30E5\u30C9\u30E9\u9C57\u306E\u30D6\u30FC\u30C4",
+    "name": "\u30D2\u30C9\u30E9\u9C57\u306E\u30D6\u30FC\u30C4",
     "prop": {
       "ar": {
         "min": 106,
@@ -5605,7 +5605,7 @@
   {
     "id": "Metadata/Items/Armours/Gloves/GlovesStrDex7",
     "itemClassId": "Gloves",
-    "name": "\u30D2\u30E5\u30C9\u30E9\u9C57\u306E\u30AC\u30F3\u30C8\u30EC\u30C3\u30C8",
+    "name": "\u30D2\u30C9\u30E9\u9C57\u306E\u30AC\u30F3\u30C8\u30EC\u30C3\u30C8",
     "prop": {
       "ar": {
         "min": 106,
@@ -9972,7 +9972,7 @@
     "itemClassId": "Belt",
     "name": "\u30B9\u30C6\u30A3\u30AE\u30A2\u30F3\u30D0\u30A4\u30B9",
     "req": {
-      "lvl": 1
+      "lvl": 75
     }
   },
   {
@@ -10028,7 +10028,7 @@
     "itemClassId": "Belt",
     "name": "\u30B3\u30FC\u30C9\u30D9\u30EB\u30C8",
     "req": {
-      "lvl": 1
+      "lvl": 75
     }
   },
   {
@@ -11184,6 +11184,22 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/AstrolabeBestiary",
+    "itemClassId": "StackableCurrency",
+    "name": "\u91CE\u751F\u306E\u30A2\u30B9\u30C8\u30ED\u30E9\u30FC\u30D9",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/AstrolabeBetrayal",
+    "itemClassId": "StackableCurrency",
+    "name": "\u4E0D\u6B7B\u306E\u30A2\u30B9\u30C8\u30ED\u30E9\u30FC\u30D9",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/AstrolabeBlight",
     "itemClassId": "StackableCurrency",
     "name": "\u83CC\u7CF8\u306E\u30A2\u30B9\u30C8\u30ED\u30E9\u30FC\u30D9",
@@ -11227,6 +11243,14 @@
     "id": "Metadata/Items/Currency/AstrolabeHarvest",
     "itemClassId": "StackableCurrency",
     "name": "\u679C\u5B9F\u306E\u30A2\u30B9\u30C8\u30ED\u30E9\u30FC\u30D9",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/AstrolabeIncursion",
+    "itemClassId": "StackableCurrency",
+    "name": "\u738B\u5BB6\u306E\u30A2\u30B9\u30C8\u30ED\u30E9\u30FC\u30D9",
     "req": {
       "lvl": 1
     }
@@ -11626,7 +11650,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyAfflictionOrbScarabs",
     "itemClassId": "StackableCurrency",
-    "name": "\u63A0\u3081\u98DB\u3076\u30C7\u30EA\u30EA\u30A6\u30E0\u30AA\u30FC\u30D6",
+    "name": "\u30B9\u30EC\u30C3\u30C9\u306E\u30C7\u30EA\u30EA\u30A6\u30E0\u30AA\u30FC\u30D6",
     "req": {
       "lvl": 1
     }
@@ -12872,6 +12896,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyEssenceUber1",
+    "itemClassId": "StackableCurrency",
+    "name": "\u6B3A\u779E\u306E\u30A8\u30C3\u30BB\u30F3\u30B9",
+    "req": {
+      "lvl": 82
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyEssenceWoe1",
     "itemClassId": "StackableCurrency",
     "name": "\u56C1\u304D\u306E\u30A8\u30C3\u30BB\u30F3\u30B9\uFF08\u60B2\u75DB\uFF09",
@@ -13776,7 +13808,31 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorrupt3",
+    "itemClassId": "StackableCurrency",
+    "name": "\u30B3\u30E9\u30D7\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyIncursionCorruptGem",
+    "itemClassId": "StackableCurrency",
+    "name": "\u30B3\u30E9\u30D7\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorruptGem2",
+    "itemClassId": "StackableCurrency",
+    "name": "\u30B3\u30E9\u30D7\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorruptMap",
     "itemClassId": "StackableCurrency",
     "name": "\u30B3\u30E9\u30D7\u30C8",
     "req": {
@@ -13788,7 +13844,7 @@
     "itemClassId": "StackableCurrency",
     "name": "\u751F\u8D04\u306E\u5C0F\u74F6",
     "req": {
-      "lvl": 68
+      "lvl": 81
     }
   },
   {
@@ -13796,7 +13852,7 @@
     "itemClassId": "StackableCurrency",
     "name": "\u5E7D\u970A\u306E\u5C0F\u74F6",
     "req": {
-      "lvl": 68
+      "lvl": 81
     }
   },
   {
@@ -13804,7 +13860,7 @@
     "itemClassId": "StackableCurrency",
     "name": "\u8D85\u8D8A\u306E\u5C0F\u74F6",
     "req": {
-      "lvl": 50
+      "lvl": 68
     }
   },
   {
@@ -14122,7 +14178,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyMapQualityScarabs",
     "itemClassId": "StackableCurrency",
-    "name": "\u30E1\u30A4\u30F4\u30A7\u30F3\u306E\u30B9\u30AB\u30E9\u30D9\u306E\u30C1\u30BC\u30EB",
+    "name": "\u30E1\u30A4\u30F4\u30A7\u30F3\u306E\u30B9\u30EC\u30C3\u30C9\u306E\u30C1\u30BC\u30EB",
     "req": {
       "lvl": 1
     }
@@ -14488,6 +14544,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyStackedThread",
+    "itemClassId": "StackableCurrency",
+    "name": "\u8B0E\u306E\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyStrongboxQuality",
     "itemClassId": "StackableCurrency",
     "name": "\u6280\u5E2B\u306E\u30AA\u30FC\u30D6",
@@ -14556,7 +14620,7 @@
     "itemClassId": "StackableCurrency",
     "name": "\u53EF\u80FD\u6027\u306E\u30AA\u30FC\u30D6",
     "req": {
-      "lvl": 2
+      "lvl": 24
     }
   },
   {
@@ -14640,9 +14704,17 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyWishSupportGem",
+    "itemClassId": "StackableCurrency",
+    "name": "\u4E0D\u5B89\u5B9A\u306E\u30BD\u30A6\u30EB\u30B3\u30A2",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemBlue",
     "itemClassId": "StackableCurrency",
-    "name": "\u77E5\u8B58\u306E\u30B3\u30A4\u30F3",
+    "name": "\u77E5\u8B58\u306E\u30BD\u30A6\u30EB\u30B3\u30A2",
     "req": {
       "lvl": 68
     }
@@ -14650,7 +14722,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemGreen",
     "itemClassId": "StackableCurrency",
-    "name": "\u6280\u306E\u30B3\u30A4\u30F3",
+    "name": "\u6280\u306E\u30BD\u30A6\u30EB\u30B3\u30A2",
     "req": {
       "lvl": 68
     }
@@ -14658,7 +14730,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemRed",
     "itemClassId": "StackableCurrency",
-    "name": "\u529B\u306E\u30B3\u30A4\u30F3",
+    "name": "\u529B\u306E\u30BD\u30A6\u30EB\u30B3\u30A2",
     "req": {
       "lvl": 68
     }
@@ -14835,6 +14907,14 @@
     "id": "Metadata/Items/Currency/LegionCocoonHelmet",
     "itemClassId": "StackableCurrency",
     "name": "\u30F4\u30A1\u30FC\u30EB\u306E\u30A8\u30F3\u30B7\u30E5\u30E9\u30A6\u30C9\u30AF\u30EA\u30B9\u30BF\u30EB",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/LegionCocoonQuiver",
+    "itemClassId": "StackableCurrency",
+    "name": "\u30A2\u30D5\u30A1\u30EB\u30C9\u306E\u30A8\u30F3\u30B7\u30E5\u30E9\u30A6\u30C9\u30AF\u30EA\u30B9\u30BF\u30EB",
     "req": {
       "lvl": 1
     }
@@ -15733,6 +15813,14 @@
     "name": "\u6B66\u5668\u30EA\u30B3\u30F3\u30D3\u30CD\u30FC\u30BF\u30FC",
     "req": {
       "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/StackedAstrolabe",
+    "itemClassId": "StackableCurrency",
+    "name": "\u8B0E\u306E\u30A2\u30B9\u30C8\u30ED\u30E9\u30FC\u30D9",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -18228,7 +18316,7 @@
     "itemClassId": "DivinationCard",
     "name": "\u611A\u304B\u8005",
     "req": {
-      "lvl": 23
+      "lvl": 24
     }
   },
   {
@@ -20864,6 +20952,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemConstriction",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u7DE0\u3081\u4ED8\u3051\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemControlledBlaze",
     "itemClassId": "Support Skill Gem",
     "name": "\u767A\u706B\u5236\u5FA1\u30B5\u30DD\u30FC\u30C8",
@@ -21008,11 +21104,35 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemDestitution",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u56F0\u7AAE\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemDevour",
     "itemClassId": "Support Skill Gem",
     "name": "\u6355\u98DF\u30B5\u30DD\u30FC\u30C8",
     "req": {
       "lvl": 8
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemDiminishment",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u6E1B\u8870\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemDisempower",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u8131\u529B\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -21109,6 +21229,14 @@
     "name": "\u899A\u9192\u306E\u30A8\u30F3\u30D1\u30EF\u30FC\u30B5\u30DD\u30FC\u30C8",
     "req": {
       "lvl": 72
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemEncumbrance",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u91CD\u8377\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -21632,6 +21760,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemImpotence",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u7121\u529B\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemIncreasedAreaOfEffect",
     "itemClassId": "Support Skill Gem",
     "name": "\u52B9\u679C\u7BC4\u56F2\u5897\u52A0\u30B5\u30DD\u30FC\u30C8",
@@ -21816,6 +21952,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemLethargy",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u5026\u6020\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemLifeGainOnHit",
     "itemClassId": "Support Skill Gem",
     "name": "\u30D2\u30C3\u30C8\u6642\u30E9\u30A4\u30D5\u7372\u5F97\u30B5\u30DD\u30FC\u30C8",
@@ -21941,6 +22085,14 @@
     "name": "\u8089\u306E\u58C1\u30B5\u30DD\u30FC\u30C8",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemMediocrity",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u51E1\u5EB8\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -22120,6 +22272,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemNullification",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u7121\u52B9\u5316\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemOnslaught",
     "itemClassId": "Support Skill Gem",
     "name": "\u30E2\u30FC\u30E1\u30F3\u30BF\u30E0\u30B5\u30DD\u30FC\u30C8",
@@ -22192,6 +22352,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemPenance",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u8D16\u7F6A\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemPhysicalProjectileAttackDamage",
     "itemClassId": "Support Skill Gem",
     "name": "\u51F6\u60AA\u306A\u6295\u5C04\u7269\u30B5\u30DD\u30FC\u30C8",
@@ -22245,6 +22413,14 @@
     "name": "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30A2\u30D5\u30EA\u30AF\u30B7\u30E7\u30F3\u30B5\u30DD\u30FC\u30C8",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemPoverty",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u8CA7\u56F0\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -22589,6 +22765,14 @@
     "name": "\u30B9\u30A6\u30A3\u30D5\u30C8\u30D6\u30E9\u30F3\u30C9\u30B5\u30DD\u30FC\u30C8",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemTaxation",
+    "itemClassId": "Support Skill Gem",
+    "name": "\u5FB4\u7A0E\u30B5\u30DD\u30FC\u30C8",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -24474,7 +24658,7 @@
   {
     "id": "Metadata/Items/ItemisedCorpses/HydraHigh",
     "itemClassId": "ItemisedCorpse",
-    "name": "\u5B8C\u5168\u4F53\u306E\u30D2\u30E5\u30C9\u30E9",
+    "name": "\u5B8C\u5168\u4F53\u306E\u30D2\u30C9\u30E9",
     "req": {
       "lvl": 81
     }
@@ -24482,7 +24666,7 @@
   {
     "id": "Metadata/Items/ItemisedCorpses/HydraLow",
     "itemClassId": "ItemisedCorpse",
-    "name": "\u4E0D\u5B8C\u5168\u306A\u30D2\u30E5\u30C9\u30E9",
+    "name": "\u4E0D\u5B8C\u5168\u306A\u30D2\u30C9\u30E9",
     "req": {
       "lvl": 81
     }
@@ -24490,7 +24674,7 @@
   {
     "id": "Metadata/Items/ItemisedCorpses/HydraMid",
     "itemClassId": "ItemisedCorpse",
-    "name": "\u30D2\u30E5\u30C9\u30E9",
+    "name": "\u30D2\u30C9\u30E9",
     "req": {
       "lvl": 81
     }
@@ -24944,6 +25128,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Jewels/JewelBlighted",
+    "itemClassId": "Jewel",
+    "name": "\u30DF\u30BB\u30EA\u30A6\u30E0\u30B3\u30A2",
+    "req": {
+      "lvl": 20
+    }
+  },
+  {
     "id": "Metadata/Items/Jewels/JewelDex",
     "itemClassId": "Jewel",
     "name": "\u30D3\u30EA\u30B8\u30A2\u30F3\u30B8\u30E5\u30A8\u30EB",
@@ -24962,7 +25154,7 @@
   {
     "id": "Metadata/Items/Jewels/JewelPassiveTreeExpansionLarge",
     "itemClassId": "Jewel",
-    "name": "\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB (\u5927)",
+    "name": "\u30E9\u30FC\u30B8\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB",
     "req": {
       "lvl": 1
     }
@@ -24970,7 +25162,7 @@
   {
     "id": "Metadata/Items/Jewels/JewelPassiveTreeExpansionMedium",
     "itemClassId": "Jewel",
-    "name": "\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB (\u4E2D)",
+    "name": "\u30DF\u30C7\u30A3\u30A2\u30E0\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB",
     "req": {
       "lvl": 1
     }
@@ -24978,7 +25170,7 @@
   {
     "id": "Metadata/Items/Jewels/JewelPassiveTreeExpansionSmall",
     "itemClassId": "Jewel",
-    "name": "\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB (\u5C0F)",
+    "name": "\u30B9\u30E2\u30FC\u30EB\u30AF\u30E9\u30B9\u30BF\u30FC\u30B8\u30E5\u30A8\u30EB",
     "req": {
       "lvl": 1
     }
@@ -25216,6 +25408,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Legion/CocoonedQuiver",
+    "itemClassId": "CocoonedItem",
+    "name": "\u30A8\u30F3\u30B7\u30E5\u30E9\u30A6\u30C9\u77E2\u7B52",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Legion/CocoonedShield",
     "itemClassId": "CocoonedItem",
     "name": "\u30A8\u30F3\u30B7\u30E5\u30E9\u30A6\u30C9\u30B7\u30FC\u30EB\u30C9",
@@ -25264,6 +25464,14 @@
     }
   },
   {
+    "id": "Metadata/Items/MapFragments/AtlasAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "\u7FA4\u8846\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/MapFragments/AtlasMemory/CurrencyBenevolenceKey",
     "itemClassId": "MapFragment",
     "name": "\u754F\u656C\u306E\u53CD\u97FF",
@@ -25289,7 +25497,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/BetrayalAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u30AF\u30FC\u30E9\u30DE\u30AF\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
@@ -25345,8 +25553,16 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CleansedAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u30A8\u30BB\u30EA\u30A2\u30EB\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CloisterAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "\u5B66\u5712\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
     }
@@ -25373,6 +25589,14 @@
     "name": "\u30B7\u30DF\u30E5\u30E9\u30AF\u30E9\u30E0",
     "req": {
       "lvl": 75
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyAuguryBossKey",
+    "itemClassId": "MapFragment",
+    "name": "\u546A\u3044\u306E\u4EBA\u5F62",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -25633,7 +25857,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CurrencyFragmentPantheonFlask",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u795E\u306E\u5668",
     "req": {
       "lvl": 68
@@ -25645,6 +25869,14 @@
     "name": "\u8056\u306A\u308B\u82B1",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyIncursionUberFragment",
+    "itemClassId": "StackableCurrency",
+    "name": "\u738B\u5BB6\u306E\u4EEE\u9762",
+    "req": {
+      "lvl": 68
     }
   },
   {
@@ -25850,7 +26082,7 @@
   {
     "id": "Metadata/Items/MapFragments/CurrencyShaperFragment4",
     "itemClassId": "MapFragment",
-    "name": "\u30D2\u30E5\u30C9\u30E9\u30FB\u30D5\u30E9\u30B0\u30E1\u30F3\u30C8",
+    "name": "\u30D2\u30C9\u30E9\u30FB\u30D5\u30E9\u30B0\u30E1\u30F3\u30C8",
     "req": {
       "lvl": 84
     }
@@ -26113,7 +26345,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/GoldAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u91D1\u8272\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
@@ -26297,7 +26529,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/MeatSackAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u8089\u4F53\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
@@ -26307,6 +26539,14 @@
     "id": "Metadata/Items/MapFragments/MercenaryWarrant",
     "itemClassId": "MapFragment",
     "name": "\u50AD\u5175\u306E\u53EC\u559A\u72B6",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/PantheonAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "\u795E\u6027\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
     }
@@ -26345,7 +26585,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/PropagationAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u4F1D\u64AD\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
@@ -26385,7 +26625,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/RatsAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "[DNT - UNUSED] Allflame Ember of Rats",
     "req": {
       "lvl": 1
@@ -26393,7 +26633,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/ResplendenceAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u5149\u8F1D\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
@@ -26442,7 +26682,7 @@
   {
     "id": "Metadata/Items/MapFragments/ShaperFragment4",
     "itemClassId": "MapFragment",
-    "name": "\u30D2\u30E5\u30C9\u30E9\u30FB\u30D5\u30E9\u30B0\u30E1\u30F3\u30C8",
+    "name": "\u30D2\u30C9\u30E9\u30FB\u30D5\u30E9\u30B0\u30E1\u30F3\u30C8",
     "req": {
       "lvl": 84
     }
@@ -26452,12 +26692,12 @@
     "itemClassId": "VaultKey",
     "name": "\u30F4\u30A9\u30A4\u30C9\u30DC\u30FC\u30F3\u306E\u8056\u5EDF\u306E\u9375",
     "req": {
-      "lvl": 35
+      "lvl": 68
     }
   },
   {
     "id": "Metadata/Items/MapFragments/ToadAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u30D2\u30AD\u30AC\u30A8\u30EB\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
@@ -26620,12 +26860,12 @@
     "itemClassId": "VaultKey",
     "name": "\u30F4\u30A9\u30A4\u30C9\u30DC\u30FC\u30F3\u306E\u8056\u5EDF\u306E\u9375",
     "req": {
-      "lvl": 35
+      "lvl": 68
     }
   },
   {
     "id": "Metadata/Items/MapFragments/WildwoodAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "\u30EF\u30A4\u30EB\u30C9\u30A6\u30C3\u30C9\u306E\u30AA\u30FC\u30EB\u30D5\u30EC\u30A4\u30E0\u306E\u6B8B\u308A\u706B",
     "req": {
       "lvl": 1
@@ -27962,7 +28202,7 @@
   {
     "id": "Metadata/Items/Maps/MapAtlasHydra",
     "itemClassId": "Map",
-    "name": "\u30D2\u30E5\u30C9\u30E9\u306E\u5DE3\u306E\u30DE\u30C3\u30D7",
+    "name": "\u30D2\u30C9\u30E9\u306E\u5DE3\u306E\u30DE\u30C3\u30D7",
     "req": {
       "lvl": 83
     }
@@ -30042,7 +30282,7 @@
   {
     "id": "Metadata/Items/Maps/MapWorldsHydra",
     "itemClassId": "Map",
-    "name": "\u30D2\u30E5\u30C9\u30E9\u306E\u5DE3\u306E\u30DE\u30C3\u30D7",
+    "name": "\u30D2\u30C9\u30E9\u306E\u5DE3\u306E\u30DE\u30C3\u30D7",
     "req": {
       "lvl": 83
     }
@@ -31682,7 +31922,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "\u5207\u65AD\u8005\u3001\u30DE\u30EA\u30AC\u30ED\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u30B9\u30E9\u30AF\u30B7\u30A2\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31690,7 +31930,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "\u30A6\u30A3\u30C9\u30A6\u3001\u30A2\u30EB\u30DE\u30E9\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u8150\u6557\u306E\u8A98\u60D1\u8005\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31698,7 +31938,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "\u65F1\u9B43\u306B\u82E6\u3057\u3080\u30ED\u30A2\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u672A\u4EA1\u4EBA\u3001\u30A2\u30EB\u30DE\u30E9\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31706,7 +31946,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "\u6D77\u306E\u7345\u5B50\u3001\u30CA\u30B5\u30FC\u30EB\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u8607\u3063\u305F\u30DE\u30FC\u30F4\u30A7\u30A4\u30EB\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31714,7 +31954,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "\u30BF\u30CA\u30FC\u30FB\u30E9\u30A4\u30C8\u30D5\u30C3\u30C8\u968A\u9577\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u6D77\u8CCA\u738B\u3001\u30D9\u30EB\u30B5\u30FC\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31722,7 +31962,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "\u96FB\u6483\u3068\u6050\u6016\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u6D77\u306E\u7345\u5B50\u3001\u30CA\u30B5\u30FC\u30EB\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31730,7 +31970,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulGarukhanUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "\u935B\u51B6\u5C4B\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u679C\u3066\u306A\u304D\u7802\u4E18\u306E\u8FFD\u8DE1\u8005\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31746,7 +31986,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "\u546A\u308F\u308C\u3057\u30AF\u30EC\u30FC\u30DC\u30FC\u30F3\u8239\u9577\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u30DF\u30E5\u30FC\u30C8\u30A6\u30A3\u30F3\u30C9\u306E\u9996\u9818\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31754,7 +31994,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "\u51AC\u306E\u65AD\u7247\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u96FB\u6483\u3068\u6050\u6016\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31762,7 +32002,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "\u30B0\u30E9\u30B9\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u4E09\u65E5\u6708\u306E\u5148\u7AEF\u3001\u30BB\u30D0\u30FC\u30C8\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31794,7 +32034,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "\u5F37\u8005\u3001\u30AA\u30FC\u30AF\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u6797\u7ACB\u3059\u308B\u708E\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31802,7 +32042,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "\u7834\u58CA\u8005\u3001\u30AD\u30BF\u30F4\u30A1\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u5730\u7344\u306E\u738B\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -31810,7 +32050,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "\u6797\u7ACB\u3059\u308B\u708E\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
+    "name": "\u5929\u7A7A\u306E\u7AEF\u3001\u30B8\u30E7\u30E9\u30B9\u306E\u6355\u7372\u3055\u308C\u305F\u9B42",
     "req": {
       "lvl": 1
     }
@@ -34664,6 +34904,86 @@
     }
   },
   {
+    "id": "Metadata/Items/Threads/ThreadAbyss",
+    "itemClassId": "MapFragment",
+    "name": "\u30A2\u30D3\u30B9\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBestiary",
+    "itemClassId": "MapFragment",
+    "name": "\u30D9\u30B9\u30C6\u30A3\u30A2\u30EA\u30FC\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBetrayal",
+    "itemClassId": "MapFragment",
+    "name": "\u30D3\u30C8\u30EC\u30A4\u30A2\u30EB\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBlight",
+    "itemClassId": "MapFragment",
+    "name": "\u30D6\u30E9\u30A4\u30C8\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBreach",
+    "itemClassId": "MapFragment",
+    "name": "\u30D6\u30EA\u30FC\u30C1\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadExpedition",
+    "itemClassId": "MapFragment",
+    "name": "\u30A8\u30AF\u30B9\u30DA\u30C7\u30A3\u30B7\u30E7\u30F3\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadIncursion",
+    "itemClassId": "MapFragment",
+    "name": "\u30A4\u30F3\u30AB\u30FC\u30B8\u30E7\u30F3\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadLegion",
+    "itemClassId": "MapFragment",
+    "name": "\u30EA\u30FC\u30B8\u30E7\u30F3\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadRitual",
+    "itemClassId": "MapFragment",
+    "name": "\u30EA\u30C1\u30E5\u30A2\u30EB\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadUltimatum",
+    "itemClassId": "MapFragment",
+    "name": "\u30A2\u30EB\u30C6\u30A3\u30E1\u30A4\u30BF\u30E0\u30B9\u30EC\u30C3\u30C9",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
     "id": "Metadata/Items/Tinctures/Tincture1",
     "itemClassId": "Tincture",
     "name": "\u30D7\u30EA\u30BA\u30DE\u30C1\u30C3\u30AF\u30C1\u30F3\u30AD",
@@ -35195,6 +35515,1334 @@
     "id": "Metadata/Items/UniqueFragments/FragmentUniqueSword1_3",
     "itemClassId": "UniqueFragment",
     "name": "\u30EA\u30FC\u30B8\u30E7\u30F3\u30BD\u30FC\u30C9\u306E\u6B20\u7247",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAbberath",
+    "itemClassId": "Viscera",
+    "name": "\u708E\u3092\u307E\u3068\u3063\u305F\u5C71\u7F8A\u306E\u8E44",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAidan",
+    "itemClassId": "Viscera",
+    "name": "\u970A\u9577\u985E\u306E\u8DB3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAlHezmin",
+    "itemClassId": "Viscera",
+    "name": "\u30A2\u30EB\uFF1D\u30D8\u30BA\u30DF\u30F3\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAlira",
+    "itemClassId": "Viscera",
+    "name": "\u5C71\u8CCA\u30A6\u30A3\u30C3\u30C1\u306E\u982D",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAmarissa",
+    "itemClassId": "Viscera",
+    "name": "\u96FB\u6C17\u3092\u5E2F\u3073\u305F\u89E6\u624B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackBear",
+    "itemClassId": "Viscera",
+    "name": "\u718A\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackBoar",
+    "itemClassId": "Viscera",
+    "name": "\u30A4\u30CE\u30B7\u30B7\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackStag",
+    "itemClassId": "Viscera",
+    "name": "\u30B7\u30AB\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraArakaali",
+    "itemClassId": "Viscera",
+    "name": "\u8718\u86DB\u306E\u5973\u738B\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraArchbishopGeofri",
+    "itemClassId": "Viscera",
+    "name": "\u30C6\u30F3\u30D7\u30E9\u30FC\u306E\u982D\u84CB\u9AA8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAureltheHungry",
+    "itemClassId": "Viscera",
+    "name": "\u8840\u307E\u307F\u308C\u306E\u8155",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAvariusReassembled",
+    "itemClassId": "Viscera",
+    "name": "\u7FA9\u8DB3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBannerofLunaris",
+    "itemClassId": "Viscera",
+    "name": "\u30C1\u30E3\u30F3\u30D4\u30AA\u30F3\u306E\u8ECD\u65D7",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBaran",
+    "itemClassId": "Viscera",
+    "name": "\u30D0\u30E9\u30F3\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBarkhul",
+    "itemClassId": "Viscera",
+    "name": "\u5263\u95D8\u58EB\u306E\u5FC3\u81D3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBasilisk",
+    "itemClassId": "Viscera",
+    "name": "\u30AD\u30E1\u30E9\u306E\u76EE",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBlackDeath",
+    "itemClassId": "Viscera",
+    "name": "\u8718\u86DB\u306E\u7259",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneAmalgam",
+    "itemClassId": "Viscera",
+    "name": "\u9AA8\u88FD\u306E\u5927\u938C",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneQueen",
+    "itemClassId": "Viscera",
+    "name": "\u30AD\u30C1\u30F3\u8CEA\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneSculptor",
+    "itemClassId": "Viscera",
+    "name": "\u30CD\u30AF\u30ED\u30DE\u30F3\u30B5\u30FC\u306E\u4EEE\u9762",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneshaper",
+    "itemClassId": "Viscera",
+    "name": "\u30DC\u30FC\u30F3\u30B9\u30C8\u30FC\u30AB\u30FC\u306E\u80F8\u90ED",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoulderback",
+    "itemClassId": "Viscera",
+    "name": "\u77F3\u8CEA\u306E\u5F8C\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBravalo",
+    "itemClassId": "Viscera",
+    "name": "\u304F\u308A\u629C\u304B\u308C\u305F\u982D\u84CB\u9AA8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBringerofBlood",
+    "itemClassId": "Viscera",
+    "name": "\u95D8\u62F3\u5834\u306E\u95D8\u58EB\u306E\u515C",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBroodPrincess",
+    "itemClassId": "Viscera",
+    "name": "\u30B7\u30FC\u30A6\u30A3\u30C3\u30C1\u306E\u89E6\u624B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBrutus",
+    "itemClassId": "Viscera",
+    "name": "\u770B\u5B88\u306E\u8155",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBundleofWoe",
+    "itemClassId": "Viscera",
+    "name": "\u77F3\u7070\u5316\u3057\u305F\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCalaf",
+    "itemClassId": "Viscera",
+    "name": "\u6BBA\u3057\u5C4B\u306E\u982D",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCaligaImperatrix",
+    "itemClassId": "Viscera",
+    "name": "\u8CB4\u65CF\u306E\u80F4\u4F53",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCaptainAurelianus",
+    "itemClassId": "Viscera",
+    "name": "\u5175\u58EB\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCato",
+    "itemClassId": "Viscera",
+    "name": "\u7570\u7AEF\u8005\u306E\u66F8\u7269",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChatters",
+    "itemClassId": "Viscera",
+    "name": "\u30B9\u30B1\u30EB\u30C8\u30F3\u30A6\u30A9\u30EA\u30A2\u30FC\u306E\u8DB3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChilloftheMountain",
+    "itemClassId": "Viscera",
+    "name": "\u51CD\u3066\u3064\u304F\u7259",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChimera",
+    "itemClassId": "Viscera",
+    "name": "\u30AD\u30E1\u30E9\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCoagulationofGore",
+    "itemClassId": "Viscera",
+    "name": "\u51DD\u56FA\u3057\u305F\u30A8\u30C3\u30BB\u30F3\u30B9",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraConstrictor",
+    "itemClassId": "Viscera",
+    "name": "\u30B3\u30F3\u30B9\u30C8\u30EA\u30AF\u30BF\u30FC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCovenQueen",
+    "itemClassId": "Viscera",
+    "name": "\u30AB\u30F4\u30F3\u30AF\u30A3\u30FC\u30F3\u306E\u51A0",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDaresso",
+    "itemClassId": "Viscera",
+    "name": "\u5263\u8C6A\u306E\u5203",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityDoedre",
+    "itemClassId": "Viscera",
+    "name": "\u30CF\u30B0\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityMaligaro",
+    "itemClassId": "Viscera",
+    "name": "\u30A4\u30F3\u30AF\u30A4\u30B8\u30BF\u30FC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityShavronne",
+    "itemClassId": "Viscera",
+    "name": "\u30A6\u30A3\u30C3\u30C1\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDishonouredQueen",
+    "itemClassId": "Viscera",
+    "name": "\u65A5\u5019\u306E\u5F13",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDoedretheVile",
+    "itemClassId": "Viscera",
+    "name": "\u30CF\u30B0\u306E\u80C3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDominusHighTemplar",
+    "itemClassId": "Viscera",
+    "name": "\u66B4\u541B\u306E\u62F3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDroolmaw",
+    "itemClassId": "Viscera",
+    "name": "\u76AE\u3092\u5265\u304C\u308C\u305F\u8155",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDrox",
+    "itemClassId": "Viscera",
+    "name": "\u30C9\u30ED\u30C3\u30AF\u30B9\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDweller",
+    "itemClassId": "Viscera",
+    "name": "\u7532\u6BBB\u985E\u306E\u92CF",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEaterofWorlds",
+    "itemClassId": "Viscera",
+    "name": "\u30A4\u30FC\u30BF\u30FC\u30AA\u30D6\u30EF\u30FC\u30EB\u30C9\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEffigyofFear",
+    "itemClassId": "Viscera",
+    "name": "\u304B\u304B\u3057\u306E\u718A\u624B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraElder",
+    "itemClassId": "Viscera",
+    "name": "\u30A8\u30EB\u30C0\u30FC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEnslaver",
+    "itemClassId": "Viscera",
+    "name": "\u30A8\u30F3\u30B9\u30EC\u30A4\u30D0\u30FC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEradicator",
+    "itemClassId": "Viscera",
+    "name": "\u30A8\u30E9\u30C7\u30A3\u30B1\u30A4\u30BF\u30FC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFairgraves",
+    "itemClassId": "Viscera",
+    "name": "\u8239\u4E57\u308A\u306E\u4E09\u89D2\u5E3D",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFidelitas",
+    "itemClassId": "Viscera",
+    "name": "\u5207\u308A\u843D\u3068\u3055\u308C\u305F\u6BD2\u91DD",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFireFury",
+    "itemClassId": "Viscera",
+    "name": "\u713C\u3051\u7126\u3052\u305F\u8155",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFleetfreak",
+    "itemClassId": "Viscera",
+    "name": "\u9AB8\u9AA8\u306E\u8ECA\u8F2A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraForgottenDaughter",
+    "itemClassId": "Viscera",
+    "name": "\u5207\u65AD\u3055\u308C\u305F\u938C\u306E\u624B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGarukhan",
+    "itemClassId": "Viscera",
+    "name": "\u7802\u6F20\u306E\u5973\u738B\u306E\u51A0",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGemlingCaptain",
+    "itemClassId": "Viscera",
+    "name": "\u30B8\u30A7\u30E0\u30EA\u30F3\u30B0\u306E\u80F4\u4F53",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGeneralAdus",
+    "itemClassId": "Viscera",
+    "name": "\u5E2F\u96FB\u3057\u305F\u982D\u84CB\u9AA8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGeneralGravicius",
+    "itemClassId": "Viscera",
+    "name": "\u5C06\u8ECD\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGneiss",
+    "itemClassId": "Viscera",
+    "name": "\u30B4\u30FC\u30EC\u30E0\u306E\u77F3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGrandReliquarian",
+    "itemClassId": "Viscera",
+    "name": "\u5B66\u8005\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGrappler",
+    "itemClassId": "Viscera",
+    "name": "\u5E2F\u96FB\u88C5\u7F6E",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGreatWhiteBeast",
+    "itemClassId": "Viscera",
+    "name": "\u5DE8\u5927\u306A\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGreust",
+    "itemClassId": "Viscera",
+    "name": "\u83EF\u9E97\u306A\u80F4\u4F53",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGruthkul",
+    "itemClassId": "Viscera",
+    "name": "\u9ED2\u305A\u3093\u3060\u80BA",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGuardCaptain",
+    "itemClassId": "Viscera",
+    "name": "\u8239\u9577\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHammerstorm",
+    "itemClassId": "Viscera",
+    "name": "\u3042\u3070\u305F\u306E\u3042\u308B\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHarbingerofLunaris",
+    "itemClassId": "Viscera",
+    "name": "\u6708\u306E\u5F13",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHarbingerofSolaris",
+    "itemClassId": "Viscera",
+    "name": "\u71E6\u7136\u305F\u308B\u30BB\u30D7\u30BF\u30FC",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHatebeat",
+    "itemClassId": "Viscera",
+    "name": "\u30DE\u30B0\u30DE\u306E\u6838",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHectorTitucius",
+    "itemClassId": "Viscera",
+    "name": "\u88C5\u7532\u306B\u8986\u308F\u308C\u305F\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHighTemplarAvarius",
+    "itemClassId": "Viscera",
+    "name": "\u8056\u306A\u308B\u898B\u901A\u3057",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHollowskull",
+    "itemClassId": "Viscera",
+    "name": "\u5BC4\u751F\u3055\u308C\u305F\u80F4\u4F53",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHundredFootShadow",
+    "itemClassId": "Viscera",
+    "name": "\u30CF\u30B2\u30EF\u30B7\u306E\u8178",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHydra",
+    "itemClassId": "Viscera",
+    "name": "\u30D2\u30C9\u30E9\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofDread",
+    "itemClassId": "Viscera",
+    "name": "\u754F\u6016\u306E\u5316\u8EAB\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofFear",
+    "itemClassId": "Viscera",
+    "name": "\u6050\u6016\u306E\u5316\u8EAB\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofNeglect",
+    "itemClassId": "Viscera",
+    "name": "\u7121\u8996\u306E\u5316\u8EAB\u306E\u7ACB\u65B9\u4F53",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIronpoint",
+    "itemClassId": "Viscera",
+    "name": "\u30B9\u30B1\u30EB\u30C8\u30F3\u30A2\u30FC\u30C1\u30E3\u30FC\u306E\u8155",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraJusticarCasticus",
+    "itemClassId": "Viscera",
+    "name": "\u88C1\u5224\u5B98\u306E\u51A0",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKaom",
+    "itemClassId": "Viscera",
+    "name": "\u71C3\u3048\u76DB\u308B\u982D\u84CB\u9AA8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKitava",
+    "itemClassId": "Viscera",
+    "name": "\u98E2\u3048\u305F\u982D\u84CB\u9AA8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKole",
+    "itemClassId": "Viscera",
+    "name": "\u5927\u7537\u306E\u8155",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKraityn",
+    "itemClassId": "Viscera",
+    "name": "\u5C71\u8CCA\u30ED\u30FC\u30B0\u306E\u982D",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKuduku",
+    "itemClassId": "Viscera",
+    "name": "\u30C8\u30FC\u30C6\u30E0\u306E\u9854",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraLivingKnowledge",
+    "itemClassId": "Viscera",
+    "name": "\u58CA\u308C\u305F\u80F8\u50CF",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraLunaris",
+    "itemClassId": "Viscera",
+    "name": "\u4E09\u65E5\u6708\u306E\u5203",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMalachaiNightmare",
+    "itemClassId": "Viscera",
+    "name": "\u7A62\u308C\u305F\u7532\u7F85",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMaligaro",
+    "itemClassId": "Viscera",
+    "name": "\u5BE9\u554F\u5B98\u306E\u9264\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMarceustheDefaced",
+    "itemClassId": "Viscera",
+    "name": "\u9854\u3092\u640D\u58CA\u3055\u308C\u305F\u80F8\u50CF",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMatriarch",
+    "itemClassId": "Viscera",
+    "name": "\u71C3\u3048\u76DB\u308B\u7089",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMaven",
+    "itemClassId": "Viscera",
+    "name": "\u30E1\u30A4\u30F4\u30A7\u30F3\u306E\u5929\u7403\u5100",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMerveil",
+    "itemClassId": "Viscera",
+    "name": "\u30BB\u30A4\u30EC\u30FC\u30F3\u306E\u89E6\u624B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMessengeroftheDesert",
+    "itemClassId": "Viscera",
+    "name": "\u7802\u6F20\u306E\u5263",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMinotaur",
+    "itemClassId": "Viscera",
+    "name": "\u30DF\u30CE\u30BF\u30A6\u30ED\u30B9\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMuruk",
+    "itemClassId": "Viscera",
+    "name": "\u30AB\u30AA\u30B9\u30B4\u30FC\u30EC\u30E0\u306E\u6838",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightbringerLucius",
+    "itemClassId": "Viscera",
+    "name": "\u30D6\u30E9\u30C3\u30AF\u30AC\u30FC\u30C9\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofCatarina",
+    "itemClassId": "Viscera",
+    "name": "\u30AB\u30BF\u30EA\u30CA\u306E\u60AA\u5922\u306E\u7FFC",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofDepravedTrinity",
+    "itemClassId": "Viscera",
+    "name": "\u90AA\u60AA\u306E\u60AA\u5922\u306E\u672C",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofLycia",
+    "itemClassId": "Viscera",
+    "name": "\u30EA\u30B7\u30A2\u306E\u60AA\u5922\u306E\u7FFC",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofUhtred",
+    "itemClassId": "Viscera",
+    "name": "\u30A6\u30FC\u30C8\u30EC\u30C3\u30C9\u306E\u60AA\u5922\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofUnbreakable",
+    "itemClassId": "Viscera",
+    "name": "\u7834\u58CA\u3067\u304D\u306C\u3082\u306E\u306E\u60AA\u5922\u306E\u30B3\u30A2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOak",
+    "itemClassId": "Viscera",
+    "name": "\u5C71\u8CCA\u30A6\u30A9\u30FC\u30EA\u30A2\u30FC\u306E\u982D",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOndar",
+    "itemClassId": "Viscera",
+    "name": "\u5E7D\u970A\u306E\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOozeback",
+    "itemClassId": "Viscera",
+    "name": "\u5207\u308A\u843D\u3068\u3055\u308C\u305F\u30ED\u30A2\u306E\u982D",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOverseerKrow",
+    "itemClassId": "Viscera",
+    "name": "\u76E3\u7763\u5B98\u306E\u97AD",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPerpetus",
+    "itemClassId": "Viscera",
+    "name": "\u68D8\u306E\u3042\u308B\u9264\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPhoenix",
+    "itemClassId": "Viscera",
+    "name": "\u30D5\u30A7\u30CB\u30C3\u30AF\u30B9\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPiety",
+    "itemClassId": "Viscera",
+    "name": "\u9B54\u8853\u5E2B\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPietyAbomination",
+    "itemClassId": "Viscera",
+    "name": "\u81A8\u308C\u4E0A\u304C\u3063\u305F\u773C\u7403",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPikerivet",
+    "itemClassId": "Viscera",
+    "name": "\u3042\u3070\u305F\u306E\u3042\u308B\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPlagueRetch",
+    "itemClassId": "Viscera",
+    "name": "\u611F\u67D3\u3057\u305F\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPlaguewing",
+    "itemClassId": "Viscera",
+    "name": "\u75C5\u306B\u4FB5\u3055\u308C\u305F\u7FFC",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPrayerLeader",
+    "itemClassId": "Viscera",
+    "name": "\u4FE1\u5949\u8005\u306E\u51A0",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPurifier",
+    "itemClassId": "Viscera",
+    "name": "\u30D4\u30E5\u30EA\u30D5\u30A1\u30A4\u30A2\u30FC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraQuru",
+    "itemClassId": "Viscera",
+    "name": "\u718A\u306E\u8089",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRaihara",
+    "itemClassId": "Viscera",
+    "name": "\u7D50\u5408\u3057\u305F\u731F\u72AC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRegulus",
+    "itemClassId": "Viscera",
+    "name": "\u9ED2\u7126\u3052\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRhys",
+    "itemClassId": "Viscera",
+    "name": "\u8CB4\u65CF\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRyslatha",
+    "itemClassId": "Viscera",
+    "name": "\u30A2\u30E9\u30AF\u30CB\u30C9\u306E\u5375\u56A2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSearingExarch",
+    "itemClassId": "Viscera",
+    "name": "\u30B7\u30A2\u30EA\u30F3\u30B0\u30A8\u30B0\u30B6\u30FC\u30AF\u306E\u773C",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSeleslatha",
+    "itemClassId": "Viscera",
+    "name": "\u30B3\u30D6\u30E9\u306E\u5C3E",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShakari",
+    "itemClassId": "Viscera",
+    "name": "\u30B5\u30BD\u30EA\u306E\u6BD2\u91DD",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShaper",
+    "itemClassId": "Viscera",
+    "name": "\u30B7\u30A7\u30A4\u30D1\u30FC\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShavronne",
+    "itemClassId": "Viscera",
+    "name": "\u76AE\u3092\u5265\u304C\u308C\u305F\u982D",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShredderofGladiators",
+    "itemClassId": "Viscera",
+    "name": "\u30E9\u30A4\u30AA\u30F3\u306E\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShreikerEihal",
+    "itemClassId": "Viscera",
+    "name": "\u30B3\u30A6\u30E2\u30EA\u306E\u7FFC",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSirus",
+    "itemClassId": "Viscera",
+    "name": "\u30B7\u30E9\u30B9\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSkeletalAbomination",
+    "itemClassId": "Viscera",
+    "name": "\u9AB8\u9AA8\u306E\u5C3B\u5C3E",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSkeletonCage",
+    "itemClassId": "Viscera",
+    "name": "\u9AA8\u8CEA\u306E\u9264\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSolaris",
+    "itemClassId": "Viscera",
+    "name": "\u592A\u967D\u306E\u76FE",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraStranglecharm",
+    "itemClassId": "Viscera",
+    "name": "\u5143\u7D20\u306E\u7CBE\u9AC4",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSwordofLunaris",
+    "itemClassId": "Viscera",
+    "name": "\u65E5\u306B\u6652\u3055\u308C\u305F\u80F8\u5F53\u3066",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTarga",
+    "itemClassId": "Viscera",
+    "name": "\u5BC6\u731F\u8005\u306E\u8DB3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheBurningMan",
+    "itemClassId": "Viscera",
+    "name": "\u8089\u3068\u878D\u5408\u3057\u305F\u30E9\u30F3\u30BF\u30F3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheForgottenShade",
+    "itemClassId": "Viscera",
+    "name": "\u970A\u4F53\u306E\u30D5\u30FC\u30C9",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheGoddessofPurity",
+    "itemClassId": "Viscera",
+    "name": "\u5F6B\u50CF\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheInfernalSeal",
+    "itemClassId": "Viscera",
+    "name": "\u71C3\u3048\u308B\u30EA\u30DC\u30F3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheShipyardTerror",
+    "itemClassId": "Viscera",
+    "name": "\u30F4\u30A9\u30A4\u30C9\u30D9\u30A2\u30E9\u30FC\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheWhiteDeath",
+    "itemClassId": "Viscera",
+    "name": "\u30F4\u30A7\u30F3\u30C7\u30A3\u30B4\u306E\u9264\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraThistlesage",
+    "itemClassId": "Viscera",
+    "name": "\u68D8\u4ED8\u304D\u306E\u7532\u7F85",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTolman",
+    "itemClassId": "Viscera",
+    "name": "\u9EC4\u91D1\u306E\u30A2\u30F3\u30AF",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTorchoakGrove",
+    "itemClassId": "Viscera",
+    "name": "\u5F6B\u523B\u3055\u308C\u305F\u81C0\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraToweringAberration",
+    "itemClassId": "Viscera",
+    "name": "\u5E72\u304B\u3089\u3073\u305F\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTrinianIntellectusPrime",
+    "itemClassId": "Viscera",
+    "name": "\u5B66\u8005\u306E\u8155",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTsoagoth",
+    "itemClassId": "Viscera",
+    "name": "\u30AD\u30F3\u30B0\u30AF\u30E9\u30D6\u306E\u30CF\u30B5\u30DF",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTukohama",
+    "itemClassId": "Viscera",
+    "name": "\u7956\u5148\u306E\u68CD\u68D2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTunnelworm",
+    "itemClassId": "Viscera",
+    "name": "\u30C7\u30F4\u30A1\u30A6\u30E9\u30FC\u306E\u89E6\u89D2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTyrannursusMaximus",
+    "itemClassId": "Viscera",
+    "name": "\u9AB8\u9AA8\u306E\u7363\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraUnendingFeast",
+    "itemClassId": "Viscera",
+    "name": "\u81A8\u5F35\u3057\u305F\u80C3",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraUngulath",
+    "itemClassId": "Viscera",
+    "name": "\u30B4\u30FC\u30C8\u30DE\u30F3\u306E\u89D2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOverseer",
+    "itemClassId": "Viscera",
+    "name": "\u30F4\u30A1\u30FC\u30EB\u306E\u80A2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul",
+    "itemClassId": "Viscera",
+    "name": "\u4EBA\u5DE5\u306E\u80A2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul2",
+    "itemClassId": "Viscera",
+    "name": "\u4EBA\u5DE5\u306E\u80A2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul3",
+    "itemClassId": "Viscera",
+    "name": "\u4EBA\u5DE5\u306E\u80A2",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalSentry",
+    "itemClassId": "Viscera",
+    "name": "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30C8\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVenarius",
+    "itemClassId": "Viscera",
+    "name": "\u30F4\u30A7\u30CA\u30EA\u30A6\u30B9\u306E\u8056\u5178",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVeritania",
+    "itemClassId": "Viscera",
+    "name": "\u30F4\u30A7\u30EA\u30BF\u30CB\u30A2\u306E\u982D\u90E8",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVilenta",
+    "itemClassId": "Viscera",
+    "name": "\u304F\u3059\u3076\u308B\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVoll",
+    "itemClassId": "Viscera",
+    "name": "\u30C6\u30F3\u30D7\u30E9\u30FC\u306E\u65D7",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWailingWraith",
+    "itemClassId": "Viscera",
+    "name": "\u6028\u970A\u306E\u9264\u722A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWeaponsSmuggler",
+    "itemClassId": "Viscera",
+    "name": "\u5BC6\u8F38\u696D\u8005\u306E\u624B",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWeaver",
+    "itemClassId": "Viscera",
+    "name": "\u8718\u86DB\u306E\u811A",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraYugul",
+    "itemClassId": "Viscera",
+    "name": "\u6050\u308D\u3057\u3044\u5927\u53E3",
     "req": {
       "lvl": 1
     }
@@ -39034,6 +40682,11 @@
     "name": "\u30A2\u30FC\u30B1\u30A4\u30F3\u30AF\u30ED\u30FC\u30AF"
   },
   {
+    "id": "arcane_link",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30A2\u30FC\u30B1\u30A4\u30F3\u30EA\u30F3\u30AF"
+  },
+  {
     "id": "arcane_wake",
     "itemClassId": "Active Skill Gem",
     "name": "\u30A2\u30FC\u30B1\u30A4\u30F3\u30A6\u30A7\u30FC\u30AF"
@@ -39449,6 +41102,11 @@
     "name": "\u30D6\u30E9\u30C3\u30C9\u30A2\u30F3\u30C9\u30B5\u30F3\u30C9"
   },
   {
+    "id": "blood_flower",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30B4\u30A2\u30D6\u30ED\u30C3\u30B5\u30E0"
+  },
+  {
     "id": "blood_offering",
     "itemClassId": "Active Skill Gem",
     "name": "\u30D6\u30E9\u30C3\u30C9\u30AA\u30D5\u30A1\u30EA\u30F3\u30B0"
@@ -39562,6 +41220,26 @@
     "id": "breach_mass_flicker_strike",
     "itemClassId": "Active Skill Gem",
     "name": "\u30D5\u30EA\u30C3\u30AB\u30FC\u30B9\u30C8\u30E9\u30A4\u30AF"
+  },
+  {
+    "id": "breach_mod_skill_esh_lightning_ring",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30EA\u30FC\u30B9\u30C9\u30A4\u30F3\u30B6\u30E9\u30A4\u30C8"
+  },
+  {
+    "id": "breach_mod_skill_tul_tornado",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30C0\u30F3\u30B9\u30A4\u30F3\u30B6\u30DB\u30EF\u30A4\u30C8"
+  },
+  {
+    "id": "breach_mod_skill_uulnetol_hand_slam",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30EA\u30BF\u30FC\u30F3\u30C8\u30A5\u30C0\u30B9\u30C8"
+  },
+  {
+    "id": "breach_mod_skill_xoph_geyser_explosion",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30D2\u30BA\u30D0\u30FC\u30CB\u30F3\u30B0\u30E1\u30C3\u30BB\u30FC\u30B8"
   },
   {
     "id": "brine_torrent",
@@ -40681,7 +42359,7 @@
   {
     "id": "fireball_alt_x",
     "itemClassId": "Active Skill Gem",
-    "name": "[DNT] FireballAltX"
+    "name": "\u5149\u8F1D\u306E\u30D5\u30A1\u30A4\u30E4\u30FC\u30DC\u30FC\u30EB"
   },
   {
     "id": "fireball_alt_y",
@@ -41197,6 +42875,11 @@
     "id": "gravity_sphere_triggered",
     "itemClassId": "Active Skill Gem",
     "name": "\u30B0\u30E9\u30F4\u30A3\u30C6\u30A3\u30B9\u30D5\u30A3\u30A2"
+  },
+  {
+    "id": "grim_bonfire",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30A6\u30A4\u30C3\u30C1\u30CF\u30F3\u30BF\u30FC\u30BA\u30D1\u30A4\u30A2"
   },
   {
     "id": "ground_fire_self",
@@ -41734,6 +43417,11 @@
     "name": "\u30EA\u30FC\u30D7\u30B9\u30E9\u30E0"
   },
   {
+    "id": "lesser_raise_spiders",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30EC\u30C3\u30B5\u30FC\u30B9\u30D1\u30A4\u30C0\u30FC\u53EC\u559A"
+  },
+  {
     "id": "lightning_arrow",
     "itemClassId": "Active Skill Gem",
     "name": "\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u30A2\u30ED\u30FC"
@@ -42127,6 +43815,11 @@
     "id": "oil_arrow",
     "itemClassId": "Active Skill Gem",
     "name": "\u30D5\u30E9\u30DE\u30D6\u30EB\u30B7\u30E7\u30C3\u30C8"
+  },
+  {
+    "id": "oozing_aura",
+    "itemClassId": "Active Skill Gem",
+    "name": "[DNT] Oozing Aura"
   },
   {
     "id": "orb_of_storms",
@@ -43659,6 +45352,11 @@
     "name": "\u30A6\u30C8\u30A5\u30FC\u30E9\u306E\u970A\u9B42\u53EC\u559A"
   },
   {
+    "id": "summon_squid_spawn",
+    "itemClassId": "Active Skill Gem",
+    "name": "[DNT] Summon Squid Spawn"
+  },
+  {
     "id": "summon_stone_golem",
     "itemClassId": "Active Skill Gem",
     "name": "\u30B9\u30C8\u30FC\u30F3\u30B4\u30FC\u30EC\u30E0\u53EC\u559A"
@@ -43737,6 +45435,11 @@
     "id": "suspend_in_time",
     "itemClassId": "Active Skill Gem",
     "name": "\u30B5\u30B9\u30DA\u30F3\u30C9\u30A4\u30F3\u30BF\u30A4\u30E0"
+  },
+  {
+    "id": "suspend_in_time_sword",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u6642\u7A7A\u306E\u30DF\u30E9\u30FC\u30B8\u30E5"
   },
   {
     "id": "sweep",
@@ -43952,6 +45655,11 @@
     "id": "triggered_lightning_spell_on_hit",
     "itemClassId": "Active Skill Gem",
     "name": "\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u30DC\u30EB\u30C8"
+  },
+  {
+    "id": "triggered_moonfall",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30E0\u30FC\u30F3\u30D5\u30A9\u30FC\u30EB"
   },
   {
     "id": "triggered_starfall",

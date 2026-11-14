@@ -9166,7 +9166,7 @@
   {
     "id": "Metadata/Items/Armours/Boots/FourBootsInt8",
     "itemClassId": "Boots",
-    "name": "\u7CBE\u5DE7\u306A\u30B5\u30D0\u30C8\u30F3",
+    "name": "\u7CBE\u5DE7\u306A\u30B5\u30F3\u30C0\u30EB",
     "prop": {
       "es": {
         "min": 68,
@@ -9181,7 +9181,7 @@
   {
     "id": "Metadata/Items/Armours/Boots/FourBootsInt8Verisium",
     "itemClassId": "Boots",
-    "name": "\u30EB\u30FC\u30F3\u30D5\u30A9\u30FC\u30B8\u306E\u7CBE\u5DE7\u306A\u30B5\u30D0\u30C8\u30F3",
+    "name": "\u30EB\u30FC\u30F3\u30D5\u30A9\u30FC\u30B8\u306E\u7CBE\u5DE7\u306A\u30B5\u30F3\u30C0\u30EB",
     "prop": {
       "ward": {
         "min": 211,
@@ -10407,7 +10407,7 @@
   {
     "id": "Metadata/Items/Armours/Boots/FourBootsStrDexInt1",
     "itemClassId": "Boots",
-    "name": "\u5927\u3044\u306A\u308B\u811B\u5F53\u3066",
+    "name": "\u5927\u3044\u306A\u308B\u817F\u5F53\u3066",
     "prop": {
       "ar": {
         "min": 89,
@@ -10432,7 +10432,7 @@
   {
     "id": "Metadata/Items/Armours/Boots/FourBootsStrDexInt1Verisium",
     "itemClassId": "Boots",
-    "name": "\u30EB\u30FC\u30F3\u30D5\u30A9\u30FC\u30B8\u306E\u5927\u3044\u306A\u308B\u811B\u5F53\u3066",
+    "name": "\u30EB\u30FC\u30F3\u30D5\u30A9\u30FC\u30B8\u306E\u5927\u3044\u306A\u308B\u817F\u5F53\u3066",
     "prop": {
       "ar": {
         "min": 67,
@@ -10461,7 +10461,7 @@
   {
     "id": "Metadata/Items/Armours/Boots/FourBootsStrDexInt1VerisiumUnique1",
     "itemClassId": "Boots",
-    "name": "\u30EB\u30FC\u30F3\u30DE\u30B9\u30BF\u30FC\u306E\u5927\u3044\u306A\u308B\u811B\u5F53\u3066",
+    "name": "\u30EB\u30FC\u30F3\u30DE\u30B9\u30BF\u30FC\u306E\u5927\u3044\u306A\u308B\u817F\u5F53\u3066",
     "prop": {
       "ar": {
         "min": 45,
@@ -19362,7 +19362,7 @@
   {
     "id": "Metadata/Items/Armours/Helmets/FourHelmetStrDex4Cruel",
     "itemClassId": "Helmet",
-    "name": "\u79D8\u6559\u306E\u51A0",
+    "name": "\u79D8\u6559\u306E\u515C",
     "prop": {
       "ar": {
         "min": 151,
@@ -32061,7 +32061,7 @@
   {
     "id": "Metadata/Items/Gem/SupportGemInterludeThree",
     "itemClassId": "Support Skill Gem",
-    "name": "\u30EC\u30E0\u30CA\u30F3\u30C8\u30D6\u30FC\u30B9\u30C8 III",
+    "name": "\u30EC\u30E0\u30CA\u30F3\u30C8\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB III",
     "req": {
       "lvl": 1
     }
@@ -34901,7 +34901,7 @@
   {
     "id": "Metadata/Items/Gems/SupportGemExplosiveGrowth",
     "itemClassId": "Support Skill Gem",
-    "name": "\u6210\u9577\u306E\u52A0\u901F",
+    "name": "\u6025\u901F\u306A\u6210\u9577",
     "req": {
       "lvl": 1
     }
@@ -50505,6 +50505,11 @@
     "name": "\u8FEB\u6483\u30B9\u30AD\u30EB"
   },
   {
+    "id": "mtx_centaur_transformation",
+    "itemClassId": "Active Skill Gem",
+    "name": "\u30B1\u30F3\u30BF\u30A6\u30ED\u30B9\u30D5\u30A9\u30FC\u30E0"
+  },
+  {
     "id": "mtx_coin_flip",
     "itemClassId": "Active Skill Gem",
     "name": "\u30B3\u30A4\u30F3\u30C8\u30B9"
@@ -51277,7 +51282,7 @@
   {
     "id": "shock_grenade",
     "itemClassId": "Active Skill Gem",
-    "name": "\u30F4\u30A9\u30EB\u30BF\u30A4\u30FC\u30AF\u30B0\u30EC\u30CD\u30FC\u30C9"
+    "name": "\u30DC\u30EB\u30BF\u30A4\u30C3\u30AF\u30B0\u30EC\u30CD\u30FC\u30C9"
   },
   {
     "id": "shockburst_rounds",

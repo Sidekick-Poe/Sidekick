@@ -586,52 +586,13 @@
   },
   {
     "id": "map_filters",
-    "title": "Filtros de Mapas/Cartas",
+    "title": "Filtros de Mapas",
     "filters": [
       {
-        "id": "chart_sulphur",
-        "text": "Cartografar Enxofre",
+        "id": "map_bonus",
+        "text": "Itens do Atlas",
         "option": {
           "options": []
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "Cartografar Ouro",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_shape",
-        "text": "Formato da Carta",
-        "option": {
-          "options": [
-            {
-              "id": "2",
-              "text": "Canto"
-            },
-            {
-              "id": "5",
-              "text": "Cruzamento"
-            },
-            {
-              "id": "1",
-              "text": "Fim"
-            },
-            {
-              "id": "4",
-              "text": "Jun\u00E7\u00E3o"
-            },
-            {
-              "id": "",
-              "text": "Qualquer"
-            },
-            {
-              "id": "3",
-              "text": "Reta"
-            }
-          ]
         }
       },
       {
@@ -1152,6 +1113,10 @@
               "text": "Qualquer Tintura"
             },
             {
+              "id": "viscera",
+              "text": "Qualquer V\u00EDscera"
+            },
+            {
               "id": "idol",
               "text": "Qualquer \u00CDdolo"
             },
@@ -1178,6 +1143,22 @@
             {
               "id": "weapon.wand",
               "text": "Varinha"
+            },
+            {
+              "id": "viscera.arm",
+              "text": "V\u00EDsceras de Bra\u00E7o"
+            },
+            {
+              "id": "viscera.head",
+              "text": "V\u00EDsceras de Cabe\u00E7a"
+            },
+            {
+              "id": "viscera.body",
+              "text": "V\u00EDsceras de Corpo"
+            },
+            {
+              "id": "viscera.leg",
+              "text": "V\u00EDsceras de Perna"
             }
           ]
         }
@@ -1321,6 +1302,46 @@
       {
         "id": "corrupted",
         "text": "Corrompido",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            },
+            {
+              "id": "",
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            }
+          ]
+        }
+      },
+      {
+        "id": "twice_corrupted",
+        "text": "Corrompido Duas Vezes",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "N\u00E3o"
+            },
+            {
+              "id": "",
+              "text": "Qualquer"
+            },
+            {
+              "id": "true",
+              "text": "Sim"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fated",
+        "text": "Destinado",
         "option": {
           "options": [
             {
@@ -1697,6 +1718,13 @@
       {
         "id": "scourge_tier",
         "text": "Tier do Castigo",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "Tier n\u00E3o Identificado",
         "option": {
           "options": []
         }

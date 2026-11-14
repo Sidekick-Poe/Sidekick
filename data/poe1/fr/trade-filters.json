@@ -130,6 +130,26 @@
         }
       },
       {
+        "id": "twice_corrupted",
+        "text": "Double corruption",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "Non"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "",
+              "text": "Tous"
+            }
+          ]
+        }
+      },
+      {
         "id": "stored_experience",
         "text": "Exp\u00E9rience stock\u00E9e",
         "option": {
@@ -385,6 +405,33 @@
         }
       },
       {
+        "id": "unidentified_tier",
+        "text": "Palier non identifi\u00E9",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "fated",
+        "text": "Pr\u00E9destin\u00E9",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "Non"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "",
+              "text": "Tous"
+            }
+          ]
+        }
+      },
+      {
         "id": "foreseeing",
         "text": "Pr\u00E9voir",
         "option": {
@@ -566,260 +613,6 @@
             {
               "id": "",
               "text": "Tous"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "id": "map_filters",
-    "title": "Filtrer de Cartes/Cartes maritimes",
-    "filters": [
-      {
-        "id": "map_iiq",
-        "text": "Augmentation de Quantit\u00E9 des objets",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_iir",
-        "text": "Augmentation de Raret\u00E9 des objets",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_packsize",
-        "text": "Augmentation de Taille des Groupes",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_blighted",
-        "text": "Carte infest\u00E9e",
-        "option": {
-          "options": [
-            {
-              "id": "false",
-              "text": "Non"
-            },
-            {
-              "id": "true",
-              "text": "Oui"
-            },
-            {
-              "id": "",
-              "text": "Tous"
-            }
-          ]
-        }
-      },
-      {
-        "id": "map_uberblighted",
-        "text": "Carte ravag\u00E9e par l\u0027Infestation",
-        "option": {
-          "options": [
-            {
-              "id": "false",
-              "text": "Non"
-            },
-            {
-              "id": "true",
-              "text": "Oui"
-            },
-            {
-              "id": "",
-              "text": "Tous"
-            }
-          ]
-        }
-      },
-      {
-        "id": "chart_shape",
-        "text": "Forme de Carte maritime",
-        "option": {
-          "options": [
-            {
-              "id": "2",
-              "text": "Coin"
-            },
-            {
-              "id": "5",
-              "text": "Croisement"
-            },
-            {
-              "id": "3",
-              "text": "Droit"
-            },
-            {
-              "id": "1",
-              "text": "Fin"
-            },
-            {
-              "id": "4",
-              "text": "Jonction"
-            },
-            {
-              "id": "",
-              "text": "Tous"
-            }
-          ]
-        }
-      },
-      {
-        "id": "area_level",
-        "text": "Niveau de la zone",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "Or de Carte maritime",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_tier",
-        "text": "Palier de la Carte",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_completion_reward",
-        "text": "R\u00E9compense de Carte termin\u00E9e",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_sulphur",
-        "text": "Soufre de Carte maritime",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_series",
-        "text": "S\u00E9ries de Cartes",
-        "option": {
-          "options": [
-            {
-              "id": "azmeri",
-              "text": "Affliction"
-            },
-            {
-              "id": "ancestor",
-              "text": "Ancestor"
-            },
-            {
-              "id": "archnemesis",
-              "text": "Archnemesis"
-            },
-            {
-              "id": "betrayal",
-              "text": "Betrayal"
-            },
-            {
-              "id": "blight",
-              "text": "Blight"
-            },
-            {
-              "id": "crucible",
-              "text": "Crucible"
-            },
-            {
-              "id": "delirium",
-              "text": "D\u00E9lire"
-            },
-            {
-              "id": "expedition",
-              "text": "Exp\u00E9dition"
-            },
-            {
-              "id": "harvest",
-              "text": "Harvest"
-            },
-            {
-              "id": "heist",
-              "text": "Heist"
-            },
-            {
-              "id": "original",
-              "text": "H\u00E9ritage"
-            },
-            {
-              "id": "lake",
-              "text": "Kalandra"
-            },
-            {
-              "id": "keepers",
-              "text": "Keepers"
-            },
-            {
-              "id": "atlasofworlds",
-              "text": "L\u0027Atlas des Mondes"
-            },
-            {
-              "id": "theawakening",
-              "text": "L\u0027\u00C9veil"
-            },
-            {
-              "id": "warfortheatlas",
-              "text": "La Guerre de l\u2019Atlas"
-            },
-            {
-              "id": "legion",
-              "text": "Legion"
-            },
-            {
-              "id": "mercenary",
-              "text": "Mercenaries"
-            },
-            {
-              "id": "metamorph",
-              "text": "Metamorph"
-            },
-            {
-              "id": "necropolis",
-              "text": "N\u00E9cropole"
-            },
-            {
-              "id": "ritual",
-              "text": "Rituel"
-            },
-            {
-              "id": "sanctum",
-              "text": "Sanctuaire"
-            },
-            {
-              "id": "scourge",
-              "text": "Scourge"
-            },
-            {
-              "id": "sentinel",
-              "text": "Sentinel"
-            },
-            {
-              "id": "settlers",
-              "text": "Settlers"
-            },
-            {
-              "id": "synthesis",
-              "text": "Synthesis"
-            },
-            {
-              "id": "",
-              "text": "Tous"
-            },
-            {
-              "id": "current",
-              "text": "Version actuelle"
             }
           ]
         }
@@ -1180,6 +973,221 @@
             {
               "id": "any",
               "text": "Tous"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "map_filters",
+    "title": "Filtres de Cartes",
+    "filters": [
+      {
+        "id": "map_iiq",
+        "text": "Augmentation de Quantit\u00E9 des objets",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "Augmentation de Raret\u00E9 des objets",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "Augmentation de Taille des Groupes",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "Butin de l\u0027Atlas",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_blighted",
+        "text": "Carte infest\u00E9e",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "Non"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "",
+              "text": "Tous"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_uberblighted",
+        "text": "Carte ravag\u00E9e par l\u0027Infestation",
+        "option": {
+          "options": [
+            {
+              "id": "false",
+              "text": "Non"
+            },
+            {
+              "id": "true",
+              "text": "Oui"
+            },
+            {
+              "id": "",
+              "text": "Tous"
+            }
+          ]
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "Niveau de la zone",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_tier",
+        "text": "Palier de la Carte",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_completion_reward",
+        "text": "R\u00E9compense de Carte termin\u00E9e",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_series",
+        "text": "S\u00E9ries de Cartes",
+        "option": {
+          "options": [
+            {
+              "id": "azmeri",
+              "text": "Affliction"
+            },
+            {
+              "id": "ancestor",
+              "text": "Ancestor"
+            },
+            {
+              "id": "archnemesis",
+              "text": "Archnemesis"
+            },
+            {
+              "id": "betrayal",
+              "text": "Betrayal"
+            },
+            {
+              "id": "blight",
+              "text": "Blight"
+            },
+            {
+              "id": "crucible",
+              "text": "Crucible"
+            },
+            {
+              "id": "delirium",
+              "text": "D\u00E9lire"
+            },
+            {
+              "id": "expedition",
+              "text": "Exp\u00E9dition"
+            },
+            {
+              "id": "harvest",
+              "text": "Harvest"
+            },
+            {
+              "id": "heist",
+              "text": "Heist"
+            },
+            {
+              "id": "original",
+              "text": "H\u00E9ritage"
+            },
+            {
+              "id": "lake",
+              "text": "Kalandra"
+            },
+            {
+              "id": "keepers",
+              "text": "Keepers"
+            },
+            {
+              "id": "atlasofworlds",
+              "text": "L\u0027Atlas des Mondes"
+            },
+            {
+              "id": "theawakening",
+              "text": "L\u0027\u00C9veil"
+            },
+            {
+              "id": "warfortheatlas",
+              "text": "La Guerre de l\u2019Atlas"
+            },
+            {
+              "id": "legion",
+              "text": "Legion"
+            },
+            {
+              "id": "mercenary",
+              "text": "Mercenaries"
+            },
+            {
+              "id": "metamorph",
+              "text": "Metamorph"
+            },
+            {
+              "id": "necropolis",
+              "text": "N\u00E9cropole"
+            },
+            {
+              "id": "ritual",
+              "text": "Rituel"
+            },
+            {
+              "id": "sanctum",
+              "text": "Sanctuaire"
+            },
+            {
+              "id": "scourge",
+              "text": "Scourge"
+            },
+            {
+              "id": "sentinel",
+              "text": "Sentinel"
+            },
+            {
+              "id": "settlers",
+              "text": "Settlers"
+            },
+            {
+              "id": "synthesis",
+              "text": "Synthesis"
+            },
+            {
+              "id": "",
+              "text": "Tous"
+            },
+            {
+              "id": "current",
+              "text": "Version actuelle"
             }
           ]
         }
@@ -1703,6 +1711,26 @@
             {
               "id": "gem",
               "text": "Toutes les Gemmes"
+            },
+            {
+              "id": "viscera.arm",
+              "text": "Visc\u00E8re (bras)"
+            },
+            {
+              "id": "viscera.leg",
+              "text": "Visc\u00E8re (jambe)"
+            },
+            {
+              "id": "viscera",
+              "text": "Visc\u00E8re (tous)"
+            },
+            {
+              "id": "viscera.body",
+              "text": "Visc\u00E8re (tronc)"
+            },
+            {
+              "id": "viscera.head",
+              "text": "Visc\u00E8re (t\u00EAte)"
             },
             {
               "id": "weapon.basesword",

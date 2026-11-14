@@ -9972,7 +9972,7 @@
     "itemClassId": "Belt",
     "name": "Stygian Vise",
     "req": {
-      "lvl": 1
+      "lvl": 75
     }
   },
   {
@@ -10028,7 +10028,7 @@
     "itemClassId": "Belt",
     "name": "Cord Belt",
     "req": {
-      "lvl": 1
+      "lvl": 75
     }
   },
   {
@@ -11184,6 +11184,22 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/AstrolabeBestiary",
+    "itemClassId": "StackableCurrency",
+    "name": "Feral Astrolabe",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/AstrolabeBetrayal",
+    "itemClassId": "StackableCurrency",
+    "name": "Immortal Astrolabe",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/AstrolabeBlight",
     "itemClassId": "StackableCurrency",
     "name": "Fungal Astrolabe",
@@ -11227,6 +11243,14 @@
     "id": "Metadata/Items/Currency/AstrolabeHarvest",
     "itemClassId": "StackableCurrency",
     "name": "Fruiting Astrolabe",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/AstrolabeIncursion",
+    "itemClassId": "StackableCurrency",
+    "name": "Royal Astrolabe",
     "req": {
       "lvl": 1
     }
@@ -11626,7 +11650,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyAfflictionOrbScarabs",
     "itemClassId": "StackableCurrency",
-    "name": "Skittering Delirium Orb",
+    "name": "Threaded Delirium Orb",
     "req": {
       "lvl": 1
     }
@@ -12872,6 +12896,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyEssenceUber1",
+    "itemClassId": "StackableCurrency",
+    "name": "Essence of Trickery",
+    "req": {
+      "lvl": 82
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyEssenceWoe1",
     "itemClassId": "StackableCurrency",
     "name": "Whispering Essence of Woe",
@@ -13776,7 +13808,31 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorrupt3",
+    "itemClassId": "StackableCurrency",
+    "name": "Corrupt",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyIncursionCorruptGem",
+    "itemClassId": "StackableCurrency",
+    "name": "Corrupt",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorruptGem2",
+    "itemClassId": "StackableCurrency",
+    "name": "Corrupt",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyIncursionCorruptMap",
     "itemClassId": "StackableCurrency",
     "name": "Corrupt",
     "req": {
@@ -13788,7 +13844,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Vial of Sacrifice",
     "req": {
-      "lvl": 68
+      "lvl": 81
     }
   },
   {
@@ -13796,7 +13852,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Vial of the Ghost",
     "req": {
-      "lvl": 68
+      "lvl": 81
     }
   },
   {
@@ -13804,7 +13860,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Vial of Transcendence",
     "req": {
-      "lvl": 50
+      "lvl": 68
     }
   },
   {
@@ -14122,7 +14178,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyMapQualityScarabs",
     "itemClassId": "StackableCurrency",
-    "name": "Maven\u0027s Chisel of Scarabs",
+    "name": "Maven\u0027s Chisel of Threads",
     "req": {
       "lvl": 1
     }
@@ -14488,6 +14544,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyStackedThread",
+    "itemClassId": "StackableCurrency",
+    "name": "Frayed Thread",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyStrongboxQuality",
     "itemClassId": "StackableCurrency",
     "name": "Engineer\u0027s Orb",
@@ -14556,7 +14620,7 @@
     "itemClassId": "StackableCurrency",
     "name": "Orb of Chance",
     "req": {
-      "lvl": 2
+      "lvl": 24
     }
   },
   {
@@ -14640,9 +14704,17 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyWishSupportGem",
+    "itemClassId": "StackableCurrency",
+    "name": "Soul Core of Instability",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemBlue",
     "itemClassId": "StackableCurrency",
-    "name": "Coin of Knowledge",
+    "name": "Soul Core of Intellect",
     "req": {
       "lvl": 68
     }
@@ -14650,7 +14722,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemGreen",
     "itemClassId": "StackableCurrency",
-    "name": "Coin of Skill",
+    "name": "Soul Core of Finesse",
     "req": {
       "lvl": 68
     }
@@ -14658,7 +14730,7 @@
   {
     "id": "Metadata/Items/Currency/CurrencyWishSupportGemRed",
     "itemClassId": "StackableCurrency",
-    "name": "Coin of Power",
+    "name": "Soul Core of Might",
     "req": {
       "lvl": 68
     }
@@ -14835,6 +14907,14 @@
     "id": "Metadata/Items/Currency/LegionCocoonHelmet",
     "itemClassId": "StackableCurrency",
     "name": "Vaal Enshrouding Crystal",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/LegionCocoonQuiver",
+    "itemClassId": "StackableCurrency",
+    "name": "Afarud Enshrouding Crystal",
     "req": {
       "lvl": 1
     }
@@ -15733,6 +15813,14 @@
     "name": "Weapon Recombinator",
     "req": {
       "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/StackedAstrolabe",
+    "itemClassId": "StackableCurrency",
+    "name": "Cryptic Astrolabe",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -18228,7 +18316,7 @@
     "itemClassId": "DivinationCard",
     "name": "The Fool",
     "req": {
-      "lvl": 23
+      "lvl": 24
     }
   },
   {
@@ -20864,6 +20952,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemConstriction",
+    "itemClassId": "Support Skill Gem",
+    "name": "Constriction Support",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemControlledBlaze",
     "itemClassId": "Support Skill Gem",
     "name": "Controlled Blaze Support",
@@ -21008,11 +21104,35 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemDestitution",
+    "itemClassId": "Support Skill Gem",
+    "name": "Destitution Support",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemDevour",
     "itemClassId": "Support Skill Gem",
     "name": "Devour Support",
     "req": {
       "lvl": 8
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemDiminishment",
+    "itemClassId": "Support Skill Gem",
+    "name": "Diminishment Support",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemDisempower",
+    "itemClassId": "Support Skill Gem",
+    "name": "Disempower Support",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -21109,6 +21229,14 @@
     "name": "Awakened Empower Support",
     "req": {
       "lvl": 72
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemEncumbrance",
+    "itemClassId": "Support Skill Gem",
+    "name": "Encumbrance Support",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -21632,6 +21760,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemImpotence",
+    "itemClassId": "Support Skill Gem",
+    "name": "Impotence Support",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemIncreasedAreaOfEffect",
     "itemClassId": "Support Skill Gem",
     "name": "Increased Area of Effect Support",
@@ -21816,6 +21952,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemLethargy",
+    "itemClassId": "Support Skill Gem",
+    "name": "Lethargy Support",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemLifeGainOnHit",
     "itemClassId": "Support Skill Gem",
     "name": "Life Gain on Hit Support",
@@ -21941,6 +22085,14 @@
     "name": "Meat Shield Support",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemMediocrity",
+    "itemClassId": "Support Skill Gem",
+    "name": "Mediocrity Support",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -22120,6 +22272,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemNullification",
+    "itemClassId": "Support Skill Gem",
+    "name": "Nullification Support",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemOnslaught",
     "itemClassId": "Support Skill Gem",
     "name": "Momentum Support",
@@ -22192,6 +22352,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Gems/SupportGemPenance",
+    "itemClassId": "Support Skill Gem",
+    "name": "Penance Support",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Gems/SupportGemPhysicalProjectileAttackDamage",
     "itemClassId": "Support Skill Gem",
     "name": "Vicious Projectiles Support",
@@ -22245,6 +22413,14 @@
     "name": "Critical Strike Affliction Support",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemPoverty",
+    "itemClassId": "Support Skill Gem",
+    "name": "Poverty Support",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -22589,6 +22765,14 @@
     "name": "Swiftbrand Support",
     "req": {
       "lvl": 31
+    }
+  },
+  {
+    "id": "Metadata/Items/Gems/SupportGemTaxation",
+    "itemClassId": "Support Skill Gem",
+    "name": "Taxation Support",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -24944,6 +25128,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Jewels/JewelBlighted",
+    "itemClassId": "Jewel",
+    "name": "Mycelium Core",
+    "req": {
+      "lvl": 20
+    }
+  },
+  {
     "id": "Metadata/Items/Jewels/JewelDex",
     "itemClassId": "Jewel",
     "name": "Viridian Jewel",
@@ -25216,6 +25408,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Legion/CocoonedQuiver",
+    "itemClassId": "CocoonedItem",
+    "name": "Enshrouded Quiver",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/Legion/CocoonedShield",
     "itemClassId": "CocoonedItem",
     "name": "Enshrouded Shield",
@@ -25264,6 +25464,14 @@
     }
   },
   {
+    "id": "Metadata/Items/MapFragments/AtlasAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "Allflame Ember of the Multitude",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
     "id": "Metadata/Items/MapFragments/AtlasMemory/CurrencyBenevolenceKey",
     "itemClassId": "MapFragment",
     "name": "Echo of Reverence",
@@ -25289,7 +25497,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/BetrayalAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of Kulemak",
     "req": {
       "lvl": 1
@@ -25345,8 +25553,16 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CleansedAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of the Ethereal",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CloisterAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "Allflame Ember of the Cloister",
     "req": {
       "lvl": 1
     }
@@ -25373,6 +25589,14 @@
     "name": "Simulacrum",
     "req": {
       "lvl": 75
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyAuguryBossKey",
+    "itemClassId": "MapFragment",
+    "name": "Cursed Poppet",
+    "req": {
+      "lvl": 1
     }
   },
   {
@@ -25633,7 +25857,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/CurrencyFragmentPantheonFlask",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Divine Vessel",
     "req": {
       "lvl": 68
@@ -25645,6 +25869,14 @@
     "name": "Sacred Blossom",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/CurrencyIncursionUberFragment",
+    "itemClassId": "StackableCurrency",
+    "name": "Royal Visage",
+    "req": {
+      "lvl": 68
     }
   },
   {
@@ -26113,7 +26345,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/GoldAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of the Gilded",
     "req": {
       "lvl": 1
@@ -26297,7 +26529,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/MeatSackAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of Flesh",
     "req": {
       "lvl": 1
@@ -26307,6 +26539,14 @@
     "id": "Metadata/Items/MapFragments/MercenaryWarrant",
     "itemClassId": "MapFragment",
     "name": "Mercenary Warrant",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/MapFragments/PantheonAllflamePack",
+    "itemClassId": "StackableCurrency",
+    "name": "Allflame Ember of the Divine",
     "req": {
       "lvl": 1
     }
@@ -26345,7 +26585,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/PropagationAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of Propagation",
     "req": {
       "lvl": 1
@@ -26385,7 +26625,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/RatsAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "[DNT - UNUSED] Allflame Ember of Rats",
     "req": {
       "lvl": 1
@@ -26393,7 +26633,7 @@
   },
   {
     "id": "Metadata/Items/MapFragments/ResplendenceAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of Resplendence",
     "req": {
       "lvl": 1
@@ -26452,12 +26692,12 @@
     "itemClassId": "VaultKey",
     "name": "Voidborn Reliquary Key",
     "req": {
-      "lvl": 35
+      "lvl": 68
     }
   },
   {
     "id": "Metadata/Items/MapFragments/ToadAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of Toads",
     "req": {
       "lvl": 1
@@ -26620,12 +26860,12 @@
     "itemClassId": "VaultKey",
     "name": "Voidborn Reliquary Key",
     "req": {
-      "lvl": 35
+      "lvl": 68
     }
   },
   {
     "id": "Metadata/Items/MapFragments/WildwoodAllflamePack",
-    "itemClassId": "MapFragment",
+    "itemClassId": "StackableCurrency",
     "name": "Allflame Ember of the Wildwood",
     "req": {
       "lvl": 1
@@ -31682,7 +31922,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Maligaro the Mutilator",
+    "name": "Captured Soul of Thraxia",
     "req": {
       "lvl": 1
     }
@@ -31690,7 +31930,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Armala, the Widow",
+    "name": "Captured Soul of Enticer of Rot",
     "req": {
       "lvl": 1
     }
@@ -31698,7 +31938,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulArakaaliUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Drought-Maddened Rhoa",
+    "name": "Captured Soul of Armala, the Widow",
     "req": {
       "lvl": 1
     }
@@ -31706,7 +31946,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Nassar, Lion of the Seas",
+    "name": "Captured Soul of Merveil, the Returned",
     "req": {
       "lvl": 1
     }
@@ -31714,7 +31954,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Captain Tanner Lightfoot",
+    "name": "Captured Soul of Belcer, the Pirate Lord",
     "req": {
       "lvl": 1
     }
@@ -31722,7 +31962,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulBrineKingUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Shock and Horror",
+    "name": "Captured Soul of Nassar, Lion of the Seas",
     "req": {
       "lvl": 1
     }
@@ -31730,7 +31970,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulGarukhanUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of The Blacksmith",
+    "name": "Captured Soul of Stalker of the Endless Dunes",
     "req": {
       "lvl": 1
     }
@@ -31746,7 +31986,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Captain Clayborne, The Accursed",
+    "name": "Captured Soul of Mutewind Leader",
     "req": {
       "lvl": 1
     }
@@ -31754,7 +31994,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Fragment of Winter",
+    "name": "Captured Soul of Shock and Horror",
     "req": {
       "lvl": 1
     }
@@ -31762,7 +32002,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulLunarisUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Glace",
+    "name": "Captured Soul of Sebbert, Crescent\u0027s Point",
     "req": {
       "lvl": 1
     }
@@ -31794,7 +32034,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade1",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Oak the Mighty",
+    "name": "Captured Soul of Forest of Flames",
     "req": {
       "lvl": 1
     }
@@ -31802,7 +32042,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade2",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Kitava, The Destroyer",
+    "name": "Captured Soul of The Infernal King",
     "req": {
       "lvl": 1
     }
@@ -31810,7 +32050,7 @@
   {
     "id": "Metadata/Items/PantheonSouls/PantheonSoulSolarisUpgrade3",
     "itemClassId": "PantheonSoul",
-    "name": "Captured Soul of Forest of Flames",
+    "name": "Captured Soul of Jorus, Sky\u0027s Edge",
     "req": {
       "lvl": 1
     }
@@ -34664,6 +34904,86 @@
     }
   },
   {
+    "id": "Metadata/Items/Threads/ThreadAbyss",
+    "itemClassId": "MapFragment",
+    "name": "Abyss Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBestiary",
+    "itemClassId": "MapFragment",
+    "name": "Bestiary Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBetrayal",
+    "itemClassId": "MapFragment",
+    "name": "Betrayal Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBlight",
+    "itemClassId": "MapFragment",
+    "name": "Blight Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadBreach",
+    "itemClassId": "MapFragment",
+    "name": "Breach Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadExpedition",
+    "itemClassId": "MapFragment",
+    "name": "Expedition Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadIncursion",
+    "itemClassId": "MapFragment",
+    "name": "Incursion Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadLegion",
+    "itemClassId": "MapFragment",
+    "name": "Legion Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadRitual",
+    "itemClassId": "MapFragment",
+    "name": "Ritual Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
+    "id": "Metadata/Items/Threads/ThreadUltimatum",
+    "itemClassId": "MapFragment",
+    "name": "Ultimatum Thread",
+    "req": {
+      "lvl": 68
+    }
+  },
+  {
     "id": "Metadata/Items/Tinctures/Tincture1",
     "itemClassId": "Tincture",
     "name": "Prismatic Tincture",
@@ -35195,6 +35515,1334 @@
     "id": "Metadata/Items/UniqueFragments/FragmentUniqueSword1_3",
     "itemClassId": "UniqueFragment",
     "name": "Legion Sword Piece",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAbberath",
+    "itemClassId": "Viscera",
+    "name": "Flaming Goat Hoof",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAidan",
+    "itemClassId": "Viscera",
+    "name": "Primate Foot",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAlHezmin",
+    "itemClassId": "Viscera",
+    "name": "Al-Hezmin\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAlira",
+    "itemClassId": "Viscera",
+    "name": "Bandit Witch\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAmarissa",
+    "itemClassId": "Viscera",
+    "name": "Galvanic Tentacle",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackBear",
+    "itemClassId": "Viscera",
+    "name": "Bear Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackBoar",
+    "itemClassId": "Viscera",
+    "name": "Boar Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAnimalPackStag",
+    "itemClassId": "Viscera",
+    "name": "Stag Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraArakaali",
+    "itemClassId": "Viscera",
+    "name": "Spider Queen\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraArchbishopGeofri",
+    "itemClassId": "Viscera",
+    "name": "Templar Skull",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAureltheHungry",
+    "itemClassId": "Viscera",
+    "name": "Bloodied Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraAvariusReassembled",
+    "itemClassId": "Viscera",
+    "name": "Prosthetic Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBannerofLunaris",
+    "itemClassId": "Viscera",
+    "name": "Champion\u0027s Banner",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBaran",
+    "itemClassId": "Viscera",
+    "name": "Baran\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBarkhul",
+    "itemClassId": "Viscera",
+    "name": "Gladiator\u0027s Heart",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBasilisk",
+    "itemClassId": "Viscera",
+    "name": "Chimeral Eye",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBlackDeath",
+    "itemClassId": "Viscera",
+    "name": "Arachnid Fangs",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneAmalgam",
+    "itemClassId": "Viscera",
+    "name": "Osseous Scythe",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneQueen",
+    "itemClassId": "Viscera",
+    "name": "Chitinous Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneSculptor",
+    "itemClassId": "Viscera",
+    "name": "Necromancer\u0027s Mask",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoneshaper",
+    "itemClassId": "Viscera",
+    "name": "Bonestalker\u0027s Ribcage",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBoulderback",
+    "itemClassId": "Viscera",
+    "name": "Lithic Haunches",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBravalo",
+    "itemClassId": "Viscera",
+    "name": "Hollowed Skull",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBringerofBlood",
+    "itemClassId": "Viscera",
+    "name": "Pit Fighter\u0027s Helm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBroodPrincess",
+    "itemClassId": "Viscera",
+    "name": "Sea Witch\u0027s Tentacle",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBrutus",
+    "itemClassId": "Viscera",
+    "name": "Warden\u0027s Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraBundleofWoe",
+    "itemClassId": "Viscera",
+    "name": "Calcified Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCalaf",
+    "itemClassId": "Viscera",
+    "name": "Cutthroat\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCaligaImperatrix",
+    "itemClassId": "Viscera",
+    "name": "Aristocrat\u0027s Torso",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCaptainAurelianus",
+    "itemClassId": "Viscera",
+    "name": "Soldier\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCato",
+    "itemClassId": "Viscera",
+    "name": "Heretical Tome",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChatters",
+    "itemClassId": "Viscera",
+    "name": "Skeletal Warrior\u0027s Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChilloftheMountain",
+    "itemClassId": "Viscera",
+    "name": "Gelid Fangs",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraChimera",
+    "itemClassId": "Viscera",
+    "name": "Chimera\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCoagulationofGore",
+    "itemClassId": "Viscera",
+    "name": "Coagulated Essence",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraConstrictor",
+    "itemClassId": "Viscera",
+    "name": "Constrictor\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraCovenQueen",
+    "itemClassId": "Viscera",
+    "name": "Coven Queen\u0027s Crown",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDaresso",
+    "itemClassId": "Viscera",
+    "name": "Swordmaster\u0027s Blade",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityDoedre",
+    "itemClassId": "Viscera",
+    "name": "Hag\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityMaligaro",
+    "itemClassId": "Viscera",
+    "name": "Inquisitor\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDepravedTrinityShavronne",
+    "itemClassId": "Viscera",
+    "name": "Witch\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDishonouredQueen",
+    "itemClassId": "Viscera",
+    "name": "Scout\u0027s Bow",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDoedretheVile",
+    "itemClassId": "Viscera",
+    "name": "Hag\u0027s Stomach",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDominusHighTemplar",
+    "itemClassId": "Viscera",
+    "name": "Despot\u0027s Fist",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDroolmaw",
+    "itemClassId": "Viscera",
+    "name": "Flayed Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDrox",
+    "itemClassId": "Viscera",
+    "name": "Drox\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraDweller",
+    "itemClassId": "Viscera",
+    "name": "Crustacean\u0027s Claw",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEaterofWorlds",
+    "itemClassId": "Viscera",
+    "name": "Eater of Worlds\u0027 Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEffigyofFear",
+    "itemClassId": "Viscera",
+    "name": "Scarecrow\u0027s Pitchfork",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraElder",
+    "itemClassId": "Viscera",
+    "name": "Elder\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEnslaver",
+    "itemClassId": "Viscera",
+    "name": "Enslaver\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraEradicator",
+    "itemClassId": "Viscera",
+    "name": "Eradicator\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFairgraves",
+    "itemClassId": "Viscera",
+    "name": "Mariner\u0027s Tricorne",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFidelitas",
+    "itemClassId": "Viscera",
+    "name": "Severed Stinger",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFireFury",
+    "itemClassId": "Viscera",
+    "name": "Scorched Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraFleetfreak",
+    "itemClassId": "Viscera",
+    "name": "Skeleton Wheel",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraForgottenDaughter",
+    "itemClassId": "Viscera",
+    "name": "Severed Scythe-hand",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGarukhan",
+    "itemClassId": "Viscera",
+    "name": "Desert Queen\u0027s Crown",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGemlingCaptain",
+    "itemClassId": "Viscera",
+    "name": "Gemling Torso",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGeneralAdus",
+    "itemClassId": "Viscera",
+    "name": "Voltaic Skull",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGeneralGravicius",
+    "itemClassId": "Viscera",
+    "name": "General\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGneiss",
+    "itemClassId": "Viscera",
+    "name": "Golemic Stone",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGrandReliquarian",
+    "itemClassId": "Viscera",
+    "name": "Scholar\u0027s Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGrappler",
+    "itemClassId": "Viscera",
+    "name": "Voltaic Apparatus",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGreatWhiteBeast",
+    "itemClassId": "Viscera",
+    "name": "Gargantuan Claws",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGreust",
+    "itemClassId": "Viscera",
+    "name": "Ornate Torso",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGruthkul",
+    "itemClassId": "Viscera",
+    "name": "Blackened Lungs",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraGuardCaptain",
+    "itemClassId": "Viscera",
+    "name": "Captain\u0027s Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHammerstorm",
+    "itemClassId": "Viscera",
+    "name": "Pocked Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHarbingerofLunaris",
+    "itemClassId": "Viscera",
+    "name": "Lunar Bow",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHarbingerofSolaris",
+    "itemClassId": "Viscera",
+    "name": "Resplendent Sceptre",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHatebeat",
+    "itemClassId": "Viscera",
+    "name": "Molten Core",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHectorTitucius",
+    "itemClassId": "Viscera",
+    "name": "Armoured Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHighTemplarAvarius",
+    "itemClassId": "Viscera",
+    "name": "Hallowed Descry",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHollowskull",
+    "itemClassId": "Viscera",
+    "name": "Infested Torso",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHundredFootShadow",
+    "itemClassId": "Viscera",
+    "name": "Vulture\u0027s Gut",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraHydra",
+    "itemClassId": "Viscera",
+    "name": "Hydra\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofDread",
+    "itemClassId": "Viscera",
+    "name": "Incarnation of Dread\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofFear",
+    "itemClassId": "Viscera",
+    "name": "Incarnation of Fear\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIncarnationofNeglect",
+    "itemClassId": "Viscera",
+    "name": "Incarnation of Neglect\u0027s Cube",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraIronpoint",
+    "itemClassId": "Viscera",
+    "name": "Skeletal Archer\u0027s Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraJusticarCasticus",
+    "itemClassId": "Viscera",
+    "name": "Justicar\u0027s Helm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKaom",
+    "itemClassId": "Viscera",
+    "name": "Blazing Skull",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKitava",
+    "itemClassId": "Viscera",
+    "name": "Ravenous Skull",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKole",
+    "itemClassId": "Viscera",
+    "name": "Brute\u0027s Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKraityn",
+    "itemClassId": "Viscera",
+    "name": "Bandit Rogue\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraKuduku",
+    "itemClassId": "Viscera",
+    "name": "Totemic Visage",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraLivingKnowledge",
+    "itemClassId": "Viscera",
+    "name": "Broken Bust",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraLunaris",
+    "itemClassId": "Viscera",
+    "name": "Crescent Blade",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMalachaiNightmare",
+    "itemClassId": "Viscera",
+    "name": "Corrupted Carapace",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMaligaro",
+    "itemClassId": "Viscera",
+    "name": "Inquisitor\u0027s Claw",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMarceustheDefaced",
+    "itemClassId": "Viscera",
+    "name": "Defaced Bust",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMatriarch",
+    "itemClassId": "Viscera",
+    "name": "Flaming Furnace",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMaven",
+    "itemClassId": "Viscera",
+    "name": "Maven\u0027s Orrery",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMerveil",
+    "itemClassId": "Viscera",
+    "name": "Siren\u0027s Tentacle",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMessengeroftheDesert",
+    "itemClassId": "Viscera",
+    "name": "Desert Sword",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMinotaur",
+    "itemClassId": "Viscera",
+    "name": "Minotaur\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraMuruk",
+    "itemClassId": "Viscera",
+    "name": "Chaos Golem\u0027s Core",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightbringerLucius",
+    "itemClassId": "Viscera",
+    "name": "Blackguard\u0027s Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofCatarina",
+    "itemClassId": "Viscera",
+    "name": "Nightmarish Wings of Catarina",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofDepravedTrinity",
+    "itemClassId": "Viscera",
+    "name": "Nightmarish Book of Depravity",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofLycia",
+    "itemClassId": "Viscera",
+    "name": "Nightmarish Wings of Lycia",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofUhtred",
+    "itemClassId": "Viscera",
+    "name": "Nightmarish Head of Uhtred",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraNightmareofUnbreakable",
+    "itemClassId": "Viscera",
+    "name": "Nightmarish Core of the Unbreakable",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOak",
+    "itemClassId": "Viscera",
+    "name": "Bandit Warrior\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOndar",
+    "itemClassId": "Viscera",
+    "name": "Ghostly Claw",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOozeback",
+    "itemClassId": "Viscera",
+    "name": "Severed Rhoa Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraOverseerKrow",
+    "itemClassId": "Viscera",
+    "name": "Overseer\u0027s Whip",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPerpetus",
+    "itemClassId": "Viscera",
+    "name": "Spined Claws",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPhoenix",
+    "itemClassId": "Viscera",
+    "name": "Phoenix\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPiety",
+    "itemClassId": "Viscera",
+    "name": "Thaumaturge\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPietyAbomination",
+    "itemClassId": "Viscera",
+    "name": "Engorged Eye",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPikerivet",
+    "itemClassId": "Viscera",
+    "name": "Pocked Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPlagueRetch",
+    "itemClassId": "Viscera",
+    "name": "Infected Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPlaguewing",
+    "itemClassId": "Viscera",
+    "name": "Diseased Wing",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPrayerLeader",
+    "itemClassId": "Viscera",
+    "name": "Adherent\u0027s Crown",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraPurifier",
+    "itemClassId": "Viscera",
+    "name": "Purifier\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraQuru",
+    "itemClassId": "Viscera",
+    "name": "Ursine Flesh",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRaihara",
+    "itemClassId": "Viscera",
+    "name": "Conjoined Hound Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRegulus",
+    "itemClassId": "Viscera",
+    "name": "Charred Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRhys",
+    "itemClassId": "Viscera",
+    "name": "Noble\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraRyslatha",
+    "itemClassId": "Viscera",
+    "name": "Arachnid Egg Sac",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSearingExarch",
+    "itemClassId": "Viscera",
+    "name": "Searing Exarch\u0027s Descry",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSeleslatha",
+    "itemClassId": "Viscera",
+    "name": "Cobra Tail",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShakari",
+    "itemClassId": "Viscera",
+    "name": "Scorpion Stinger",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShaper",
+    "itemClassId": "Viscera",
+    "name": "Shaper\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShavronne",
+    "itemClassId": "Viscera",
+    "name": "Flayed Visage",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShredderofGladiators",
+    "itemClassId": "Viscera",
+    "name": "Lion\u0027s Claws",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraShreikerEihal",
+    "itemClassId": "Viscera",
+    "name": "Bat\u0027s Wings",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSirus",
+    "itemClassId": "Viscera",
+    "name": "Sirus\u0027 Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSkeletalAbomination",
+    "itemClassId": "Viscera",
+    "name": "Skeletal Tail",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSkeletonCage",
+    "itemClassId": "Viscera",
+    "name": "Osseous Talon",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSolaris",
+    "itemClassId": "Viscera",
+    "name": "Solar Shield",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraStranglecharm",
+    "itemClassId": "Viscera",
+    "name": "Elemental Essence",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraSwordofLunaris",
+    "itemClassId": "Viscera",
+    "name": "Sun-bleached Breastplate",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTarga",
+    "itemClassId": "Viscera",
+    "name": "Poacher\u0027s Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheBurningMan",
+    "itemClassId": "Viscera",
+    "name": "Flesh-fused Lantern",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheForgottenShade",
+    "itemClassId": "Viscera",
+    "name": "Spectral Hood",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheGoddessofPurity",
+    "itemClassId": "Viscera",
+    "name": "Statue Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheInfernalSeal",
+    "itemClassId": "Viscera",
+    "name": "Flaming Ribbon",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheShipyardTerror",
+    "itemClassId": "Viscera",
+    "name": "Voidbearer\u0027s Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTheWhiteDeath",
+    "itemClassId": "Viscera",
+    "name": "Vendigo Claws",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraThistlesage",
+    "itemClassId": "Viscera",
+    "name": "Spiked Carapace",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTolman",
+    "itemClassId": "Viscera",
+    "name": "Golden Ankh",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTorchoakGrove",
+    "itemClassId": "Viscera",
+    "name": "Carved Haunches",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraToweringAberration",
+    "itemClassId": "Viscera",
+    "name": "Dessicated Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTrinianIntellectusPrime",
+    "itemClassId": "Viscera",
+    "name": "Scholar\u0027s Arm",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTsoagoth",
+    "itemClassId": "Viscera",
+    "name": "King Crab\u0027s Claw",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTukohama",
+    "itemClassId": "Viscera",
+    "name": "Ancestor\u0027s Club",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTunnelworm",
+    "itemClassId": "Viscera",
+    "name": "Devourer\u0027s Antenna",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraTyrannursusMaximus",
+    "itemClassId": "Viscera",
+    "name": "Skeletal Beast Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraUnendingFeast",
+    "itemClassId": "Viscera",
+    "name": "Distended Stomach",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraUngulath",
+    "itemClassId": "Viscera",
+    "name": "Goatman\u0027s Horn",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOverseer",
+    "itemClassId": "Viscera",
+    "name": "Vaal Appendage",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul",
+    "itemClassId": "Viscera",
+    "name": "Artificial Appendage",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul2",
+    "itemClassId": "Viscera",
+    "name": "Artificial Appendage",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalOversoul3",
+    "itemClassId": "Viscera",
+    "name": "Artificial Appendage",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVaalSentry",
+    "itemClassId": "Viscera",
+    "name": "Construct\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVenarius",
+    "itemClassId": "Viscera",
+    "name": "Venarius\u0027 Scripture",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVeritania",
+    "itemClassId": "Viscera",
+    "name": "Veritania\u0027s Head",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVilenta",
+    "itemClassId": "Viscera",
+    "name": "Smouldering Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraVoll",
+    "itemClassId": "Viscera",
+    "name": "Templar Banner",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWailingWraith",
+    "itemClassId": "Viscera",
+    "name": "Wraith Claws",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWeaponsSmuggler",
+    "itemClassId": "Viscera",
+    "name": "Smuggler\u0027s Hand",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraWeaver",
+    "itemClassId": "Viscera",
+    "name": "Arachnid Leg",
+    "req": {
+      "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Viscera/VisceraYugul",
+    "itemClassId": "Viscera",
+    "name": "Terrifying Maw",
     "req": {
       "lvl": 1
     }
@@ -39029,6 +40677,11 @@
     "name": "Arcane Cloak"
   },
   {
+    "id": "arcane_link",
+    "itemClassId": "Active Skill Gem",
+    "name": "Arcane Link"
+  },
+  {
     "id": "arcane_wake",
     "itemClassId": "Active Skill Gem",
     "name": "Arcane Wake"
@@ -39444,6 +41097,11 @@
     "name": "Blood and Sand"
   },
   {
+    "id": "blood_flower",
+    "itemClassId": "Active Skill Gem",
+    "name": "Goreblossom"
+  },
+  {
     "id": "blood_offering",
     "itemClassId": "Active Skill Gem",
     "name": "Blood Offering"
@@ -39557,6 +41215,26 @@
     "id": "breach_mass_flicker_strike",
     "itemClassId": "Active Skill Gem",
     "name": "Flicker Strike"
+  },
+  {
+    "id": "breach_mod_skill_esh_lightning_ring",
+    "itemClassId": "Active Skill Gem",
+    "name": "Wreathed in Light"
+  },
+  {
+    "id": "breach_mod_skill_tul_tornado",
+    "itemClassId": "Active Skill Gem",
+    "name": "Dance in the White"
+  },
+  {
+    "id": "breach_mod_skill_uulnetol_hand_slam",
+    "itemClassId": "Active Skill Gem",
+    "name": "Return to Dust"
+  },
+  {
+    "id": "breach_mod_skill_xoph_geyser_explosion",
+    "itemClassId": "Active Skill Gem",
+    "name": "His Burning Message"
   },
   {
     "id": "brine_torrent",
@@ -40676,7 +42354,7 @@
   {
     "id": "fireball_alt_x",
     "itemClassId": "Active Skill Gem",
-    "name": "[DNT] FireballAltX"
+    "name": "Fireball of Radiation"
   },
   {
     "id": "fireball_alt_y",
@@ -41192,6 +42870,11 @@
     "id": "gravity_sphere_triggered",
     "itemClassId": "Active Skill Gem",
     "name": "Gravity Sphere"
+  },
+  {
+    "id": "grim_bonfire",
+    "itemClassId": "Active Skill Gem",
+    "name": "Witchhunter\u0027s Pyre"
   },
   {
     "id": "ground_fire_self",
@@ -41729,6 +43412,11 @@
     "name": "Leap Slam"
   },
   {
+    "id": "lesser_raise_spiders",
+    "itemClassId": "Active Skill Gem",
+    "name": "Lesser Raise Spiders"
+  },
+  {
     "id": "lightning_arrow",
     "itemClassId": "Active Skill Gem",
     "name": "Lightning Arrow"
@@ -42122,6 +43810,11 @@
     "id": "oil_arrow",
     "itemClassId": "Active Skill Gem",
     "name": "Flammable Shot"
+  },
+  {
+    "id": "oozing_aura",
+    "itemClassId": "Active Skill Gem",
+    "name": "[DNT] Oozing Aura"
   },
   {
     "id": "orb_of_storms",
@@ -43654,6 +45347,11 @@
     "name": "Summon Spirit of Utula"
   },
   {
+    "id": "summon_squid_spawn",
+    "itemClassId": "Active Skill Gem",
+    "name": "[DNT] Summon Squid Spawn"
+  },
+  {
     "id": "summon_stone_golem",
     "itemClassId": "Active Skill Gem",
     "name": "Summon Stone Golem"
@@ -43732,6 +45430,11 @@
     "id": "suspend_in_time",
     "itemClassId": "Active Skill Gem",
     "name": "Suspend in Time"
+  },
+  {
+    "id": "suspend_in_time_sword",
+    "itemClassId": "Active Skill Gem",
+    "name": "Temporal Mirage"
   },
   {
     "id": "sweep",
@@ -43947,6 +45650,11 @@
     "id": "triggered_lightning_spell_on_hit",
     "itemClassId": "Active Skill Gem",
     "name": "Lightning Bolt"
+  },
+  {
+    "id": "triggered_moonfall",
+    "itemClassId": "Active Skill Gem",
+    "name": "Moonfall"
   },
   {
     "id": "triggered_starfall",

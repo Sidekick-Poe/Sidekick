@@ -486,8 +486,35 @@
         }
       },
       {
+        "id": "twice_corrupted",
+        "text": "\uB450 \uBC88 \uD0C0\uB77D",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "\uBAA8\uB450"
+            },
+            {
+              "id": "false",
+              "text": "\uC544\uB2C8\uC694"
+            },
+            {
+              "id": "true",
+              "text": "\uC608"
+            }
+          ]
+        }
+      },
+      {
         "id": "intangibility",
         "text": "\uBB34\uD615\uC131",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "unidentified_tier",
+        "text": "\uBBF8\uD655\uC778 \uB4F1\uAE09",
         "option": {
           "options": []
         }
@@ -828,6 +855,26 @@
       {
         "id": "foreseeing",
         "text": "\uC608\uACAC",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "\uBAA8\uB450"
+            },
+            {
+              "id": "false",
+              "text": "\uC544\uB2C8\uC694"
+            },
+            {
+              "id": "true",
+              "text": "\uC608"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fated",
+        "text": "\uC608\uACAC\uB41C",
         "option": {
           "options": [
             {
@@ -1273,6 +1320,10 @@
               "text": "\uB178\uB780 \uC57C\uC218"
             },
             {
+              "id": "viscera.leg",
+              "text": "\uB2E4\uB9AC \uC0B4\uB369\uC774"
+            },
+            {
               "id": "weapon.rapier",
               "text": "\uB808\uC774\uD53C\uC5B4"
             },
@@ -1287,6 +1338,10 @@
             {
               "id": "weapon.wand",
               "text": "\uB9C8\uBC95\uBD09"
+            },
+            {
+              "id": "viscera.head",
+              "text": "\uBA38\uB9AC \uC0B4\uB369\uC774"
             },
             {
               "id": "map.invitation",
@@ -1315,6 +1370,10 @@
             {
               "id": "armour",
               "text": "\uBAA8\uB4E0 \uBC29\uC5B4\uAD6C"
+            },
+            {
+              "id": "viscera",
+              "text": "\uBAA8\uB4E0 \uC0B4\uB369\uC774"
             },
             {
               "id": "wombgift",
@@ -1371,6 +1430,10 @@
             {
               "id": "accessory.amulet",
               "text": "\uBAA9\uAC78\uC774"
+            },
+            {
+              "id": "viscera.body",
+              "text": "\uBAB8 \uC0B4\uB369\uC774"
             },
             {
               "id": "currency.tattoo",
@@ -1485,6 +1548,10 @@
               "text": "\uD22C\uAD6C"
             },
             {
+              "id": "viscera.arm",
+              "text": "\uD314 \uC0B4\uB369\uC774"
+            },
+            {
               "id": "monster.beast",
               "text": "\uD3EC\uD68D\uD55C \uC57C\uC218"
             },
@@ -1563,7 +1630,7 @@
   },
   {
     "id": "map_filters",
-    "title": "\uC9C0\uB3C4/\uD574\uB3C4 \uD544\uD130",
+    "title": "\uC9C0\uB3C4 \uD544\uD130",
     "filters": [
       {
         "id": "map_packsize",
@@ -1582,6 +1649,13 @@
       {
         "id": "map_iir",
         "text": "\uC544\uC774\uD15C \uD76C\uADC0\uB3C4 \uC99D\uAC00",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_bonus",
+        "text": "\uC544\uD2C0\uB77C\uC2A4 \uD68D\uB4DD\uBB3C",
         "option": {
           "options": []
         }
@@ -1765,52 +1839,6 @@
         "text": "\uC9C0\uC5ED \uB808\uBCA8",
         "option": {
           "options": []
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "\uD574\uB3C4 \uACE8\uB4DC",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_sulphur",
-        "text": "\uD574\uB3C4 \uC720\uD669",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_shape",
-        "text": "\uD574\uB3C4 \uD615\uD0DC",
-        "option": {
-          "options": [
-            {
-              "id": "5",
-              "text": "\uAD50\uCC28"
-            },
-            {
-              "id": "",
-              "text": "\uBAA8\uB450"
-            },
-            {
-              "id": "2",
-              "text": "\uBAA8\uC11C\uB9AC"
-            },
-            {
-              "id": "4",
-              "text": "\uC811\uC810"
-            },
-            {
-              "id": "1",
-              "text": "\uC885\uB8CC"
-            },
-            {
-              "id": "3",
-              "text": "\uC9C1\uC120"
-            }
-          ]
         }
       }
     ]

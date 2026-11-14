@@ -453,6 +453,221 @@
     ]
   },
   {
+    "id": "map_filters",
+    "title": "Filter: Karten",
+    "filters": [
+      {
+        "id": "map_bonus",
+        "text": "Atlasbeute",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_blighted",
+        "text": "Befallene Karte",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "map_iiq",
+        "text": "Erh\u00F6hte Gegenstandsmenge",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_iir",
+        "text": "Erh\u00F6hte Gegenstandsseltenheit",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_packsize",
+        "text": "Erh\u00F6hte Gruppengr\u00F6\u00DFe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_uberblighted",
+        "text": "Extrem befallene Karte",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "area_level",
+        "text": "Gebietsstufe",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_completion_reward",
+        "text": "Kartenabschluss-Belohnung",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_tier",
+        "text": "Kartenlevel",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "map_series",
+        "text": "Kartenserie",
+        "option": {
+          "options": [
+            {
+              "id": "azmeri",
+              "text": "Affliction"
+            },
+            {
+              "id": "current",
+              "text": "Aktuell"
+            },
+            {
+              "id": "ancestor",
+              "text": "Ancestor"
+            },
+            {
+              "id": "archnemesis",
+              "text": "Archnemesis"
+            },
+            {
+              "id": "atlasofworlds",
+              "text": "Atlas der Welten"
+            },
+            {
+              "id": "",
+              "text": "Beliebig"
+            },
+            {
+              "id": "betrayal",
+              "text": "Betrayal"
+            },
+            {
+              "id": "blight",
+              "text": "Blight"
+            },
+            {
+              "id": "crucible",
+              "text": "Crucible"
+            },
+            {
+              "id": "theawakening",
+              "text": "Das Erwachen"
+            },
+            {
+              "id": "delirium",
+              "text": "Delirium"
+            },
+            {
+              "id": "expedition",
+              "text": "Expedition"
+            },
+            {
+              "id": "harvest",
+              "text": "Harvest"
+            },
+            {
+              "id": "heist",
+              "text": "Heist"
+            },
+            {
+              "id": "lake",
+              "text": "Kalandra"
+            },
+            {
+              "id": "keepers",
+              "text": "Keepers"
+            },
+            {
+              "id": "warfortheatlas",
+              "text": "Krieg um den Atlas"
+            },
+            {
+              "id": "original",
+              "text": "Legacy"
+            },
+            {
+              "id": "legion",
+              "text": "Legion"
+            },
+            {
+              "id": "mercenary",
+              "text": "Mercenaries"
+            },
+            {
+              "id": "metamorph",
+              "text": "Metamorph"
+            },
+            {
+              "id": "necropolis",
+              "text": "Necropolis"
+            },
+            {
+              "id": "ritual",
+              "text": "Ritual"
+            },
+            {
+              "id": "sanctum",
+              "text": "Sanctum"
+            },
+            {
+              "id": "scourge",
+              "text": "Scourge"
+            },
+            {
+              "id": "sentinel",
+              "text": "Sentinel"
+            },
+            {
+              "id": "settlers",
+              "text": "Siedler"
+            },
+            {
+              "id": "synthesis",
+              "text": "Synthesis"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
     "id": "armour_filters",
     "title": "Filter: R\u00FCstung",
     "filters": [
@@ -494,6 +709,40 @@
       {
         "id": "ward",
         "text": "Schutz",
+        "option": {
+          "options": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "sanctum_filters",
+    "title": "Filter: Sanktum",
+    "filters": [
+      {
+        "id": "sanctum_gold",
+        "text": "Aurei",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_inspiration",
+        "text": "Inspiration",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_max_resolve",
+        "text": "Maximale Willenskraft",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "sanctum_resolve",
+        "text": "Willenskraft",
         "option": {
           "options": []
         }
@@ -567,6 +816,26 @@
       {
         "id": "crucible_item",
         "text": "Crucible-Gegenstand",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
+        }
+      },
+      {
+        "id": "twice_corrupted",
+        "text": "Doppelt verderbt",
         "option": {
           "options": [
             {
@@ -819,10 +1088,37 @@
         }
       },
       {
+        "id": "unidentified_tier",
+        "text": "Nicht identifiziertes Level",
+        "option": {
+          "options": []
+        }
+      },
+      {
         "id": "quality",
         "text": "Qualit\u00E4t",
         "option": {
           "options": []
+        }
+      },
+      {
+        "id": "fated",
+        "text": "Schicksal",
+        "option": {
+          "options": [
+            {
+              "id": "",
+              "text": "Beliebig"
+            },
+            {
+              "id": "true",
+              "text": "Ja"
+            },
+            {
+              "id": "false",
+              "text": "Nein"
+            }
+          ]
         }
       },
       {
@@ -1171,6 +1467,10 @@
               "text": "Beliebiges Juwel"
             },
             {
+              "id": "viscera",
+              "text": "Beliebiges K\u00F6rperteil"
+            },
+            {
               "id": "graft",
               "text": "Beliebiges Transplantat"
             },
@@ -1289,6 +1589,22 @@
             {
               "id": "armour.chest",
               "text": "K\u00F6rperr\u00FCstung"
+            },
+            {
+              "id": "viscera.arm",
+              "text": "K\u00F6rperteil: Arm"
+            },
+            {
+              "id": "viscera.leg",
+              "text": "K\u00F6rperteil: Bein"
+            },
+            {
+              "id": "viscera.head",
+              "text": "K\u00F6rperteil: Kopf"
+            },
+            {
+              "id": "viscera.body",
+              "text": "K\u00F6rperteil: K\u00F6rper"
             },
             {
               "id": "leaguestone",
@@ -1424,344 +1740,8 @@
     ]
   },
   {
-    "id": "weapon_filters",
-    "title": "Filter: Waffen",
-    "filters": [
-      {
-        "id": "aps",
-        "text": "Angriffe pro Sekunde",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "edps",
-        "text": "Elementarer SPS",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "crit",
-        "text": "Kritische Trefferchance",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "pdps",
-        "text": "Physischer SPS",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "damage",
-        "text": "Schaden",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "dps",
-        "text": "Schaden pro Sekunde",
-        "option": {
-          "options": []
-        }
-      }
-    ]
-  },
-  {
-    "id": "map_filters",
-    "title": "Karten/Seekarten-Filter",
-    "filters": [
-      {
-        "id": "map_blighted",
-        "text": "Befallene Karte",
-        "option": {
-          "options": [
-            {
-              "id": "",
-              "text": "Beliebig"
-            },
-            {
-              "id": "true",
-              "text": "Ja"
-            },
-            {
-              "id": "false",
-              "text": "Nein"
-            }
-          ]
-        }
-      },
-      {
-        "id": "map_iiq",
-        "text": "Erh\u00F6hte Gegenstandsmenge",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_iir",
-        "text": "Erh\u00F6hte Gegenstandsseltenheit",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_packsize",
-        "text": "Erh\u00F6hte Gruppengr\u00F6\u00DFe",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_uberblighted",
-        "text": "Extrem befallene Karte",
-        "option": {
-          "options": [
-            {
-              "id": "",
-              "text": "Beliebig"
-            },
-            {
-              "id": "true",
-              "text": "Ja"
-            },
-            {
-              "id": "false",
-              "text": "Nein"
-            }
-          ]
-        }
-      },
-      {
-        "id": "area_level",
-        "text": "Gebietsstufe",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_completion_reward",
-        "text": "Kartenabschluss-Belohnung",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_tier",
-        "text": "Kartenlevel",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "map_series",
-        "text": "Kartenserie",
-        "option": {
-          "options": [
-            {
-              "id": "azmeri",
-              "text": "Affliction"
-            },
-            {
-              "id": "current",
-              "text": "Aktuell"
-            },
-            {
-              "id": "ancestor",
-              "text": "Ancestor"
-            },
-            {
-              "id": "archnemesis",
-              "text": "Archnemesis"
-            },
-            {
-              "id": "atlasofworlds",
-              "text": "Atlas der Welten"
-            },
-            {
-              "id": "",
-              "text": "Beliebig"
-            },
-            {
-              "id": "betrayal",
-              "text": "Betrayal"
-            },
-            {
-              "id": "blight",
-              "text": "Blight"
-            },
-            {
-              "id": "crucible",
-              "text": "Crucible"
-            },
-            {
-              "id": "theawakening",
-              "text": "Das Erwachen"
-            },
-            {
-              "id": "delirium",
-              "text": "Delirium"
-            },
-            {
-              "id": "expedition",
-              "text": "Expedition"
-            },
-            {
-              "id": "harvest",
-              "text": "Harvest"
-            },
-            {
-              "id": "heist",
-              "text": "Heist"
-            },
-            {
-              "id": "lake",
-              "text": "Kalandra"
-            },
-            {
-              "id": "keepers",
-              "text": "Keepers"
-            },
-            {
-              "id": "warfortheatlas",
-              "text": "Krieg um den Atlas"
-            },
-            {
-              "id": "original",
-              "text": "Legacy"
-            },
-            {
-              "id": "legion",
-              "text": "Legion"
-            },
-            {
-              "id": "mercenary",
-              "text": "Mercenaries"
-            },
-            {
-              "id": "metamorph",
-              "text": "Metamorph"
-            },
-            {
-              "id": "necropolis",
-              "text": "Necropolis"
-            },
-            {
-              "id": "ritual",
-              "text": "Ritual"
-            },
-            {
-              "id": "sanctum",
-              "text": "Sanctum"
-            },
-            {
-              "id": "scourge",
-              "text": "Scourge"
-            },
-            {
-              "id": "sentinel",
-              "text": "Sentinel"
-            },
-            {
-              "id": "settlers",
-              "text": "Siedler"
-            },
-            {
-              "id": "synthesis",
-              "text": "Synthesis"
-            }
-          ]
-        }
-      },
-      {
-        "id": "map_gold",
-        "text": "Seekarten-Gold",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_sulphur",
-        "text": "Seekarten-Schwefel",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "chart_shape",
-        "text": "Seekartenform",
-        "option": {
-          "options": [
-            {
-              "id": "",
-              "text": "Beliebig"
-            },
-            {
-              "id": "2",
-              "text": "Ecke"
-            },
-            {
-              "id": "1",
-              "text": "Ende"
-            },
-            {
-              "id": "3",
-              "text": "Gerade"
-            },
-            {
-              "id": "5",
-              "text": "Kreuzung"
-            },
-            {
-              "id": "4",
-              "text": "Verbindung"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "id": "sanctum_filters",
-    "title": "Sanktum-Filter",
-    "filters": [
-      {
-        "id": "sanctum_gold",
-        "text": "Aurei",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "sanctum_inspiration",
-        "text": "Inspiration",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "sanctum_max_resolve",
-        "text": "Maximale Willenskraft",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "sanctum_resolve",
-        "text": "Willenskraft",
-        "option": {
-          "options": []
-        }
-      }
-    ]
-  },
-  {
     "id": "ultimatum_filters",
-    "title": "Ultimatum-Filter",
+    "title": "Filter: Ultimatum",
     "filters": [
       {
         "id": "ultimatum_reward",
@@ -1831,6 +1811,54 @@
               "text": "\u00DCberlebt"
             }
           ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "weapon_filters",
+    "title": "Filter: Waffen",
+    "filters": [
+      {
+        "id": "aps",
+        "text": "Angriffe pro Sekunde",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "edps",
+        "text": "Elementarer SPS",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "crit",
+        "text": "Kritische Trefferchance",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "pdps",
+        "text": "Physischer SPS",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "damage",
+        "text": "Schaden",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "dps",
+        "text": "Schaden pro Sekunde",
+        "option": {
+          "options": []
         }
       }
     ]
