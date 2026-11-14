@@ -40,7 +40,7 @@ public class ItemDefinitionParser(
         else if (item.Definition.UniqueIds != null && item.Definition.UniqueIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.UniqueIds.First());
         else if (item.Definition.BaseItemIds != null && item.Definition.BaseItemIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.BaseItemIds.First());
 
-        item.TradeItem = GetTradeItem(item.Definition.TradeItems, item.Type);
+        item.TradeItem = GetMapAreaTradeItem(item) ?? GetTradeItem(item.Definition.TradeItems, item.Type);
         if (item.InvariantDefinition != null) item.InvariantTradeItem = GetTradeItem(item.InvariantDefinition.TradeItems, item.InvariantDefinition.Name);
 
         return;
@@ -120,6 +120,20 @@ public class ItemDefinitionParser(
             .OrderByDescending(x => x.Ratio);
 
         return orderedResults.Select(x => x.Definition).FirstOrDefault();
+    }
+
+    /// <summary>
+    /// Some items (e.g. Scrying Orbs) are listed on the trade site once per map area, as "Scrying Orb (Mesa)".
+    /// </summary>
+    private TradeItem? GetMapAreaTradeItem(Item item)
+    {
+        if (string.IsNullOrEmpty(item.Properties.MapArea) || string.IsNullOrEmpty(item.Type)) return null;
+
+        var text = $"{item.Type} ({item.Properties.MapArea})";
+        return itemDefinitionProvider.Definitions
+            .Where(definition => !definition.IsUnique)
+            .SelectMany(definition => definition.TradeItems ?? [])
+            .FirstOrDefault(tradeItem => string.Equals(tradeItem.Text, text, StringComparison.Ordinal));
     }
 
     private static TradeItem? GetTradeItem(List<TradeItem>? tradeItems, string? type)

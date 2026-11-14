@@ -137,4 +137,26 @@ Can be used as part of Allflame Crafting aboard The Sovereign.
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("The Changeling's Ducat", actual.TradeItem?.Type);
     }
+
+    [Fact]
+    public void ScryingOrb()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Scrying Orb
+--------
+Map Area: Mesa
+--------
+Scries a Map on your Atlas
+--------
+Right click on this item then left click a Map on your Atlas.
+");
+
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Scrying Orb", actual.Definition.Name);
+        Assert.Equal("Mesa", actual.Properties.MapArea);
+        Assert.Equal("Scrying Orb (Mesa)", actual.TradeItem?.Text);
+        Assert.Equal("19999", actual.TradeItem?.Type);
+        Assert.Equal("scrying_orb", actual.TradeItem?.Discriminator);
+    }
 }
