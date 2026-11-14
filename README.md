@@ -59,7 +59,7 @@ docker build --tag sidekickpoe:latest --file Dockerfile .
 ```
 4. Run it with:
 ```powershell copy
-docker run -p 5000:5000 -v ./sidekick-data:/app/src/Sidekick.Web/sidekick sidekickpoe:latest
+docker run -p 5000:5000 -v ./sidekick-data:/app/sidekick sidekickpoe:latest
 ```
 5. Access through http://localhost:5000
 
