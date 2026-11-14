@@ -40,7 +40,10 @@ public class ItemDefinitionParser(
         else if (item.Definition.UniqueIds != null && item.Definition.UniqueIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.UniqueIds.First());
         else if (item.Definition.BaseItemIds != null && item.Definition.BaseItemIds.Count != 0) item.InvariantDefinition = itemDefinitionProvider.InvariantDictionary.GetValueOrDefault(item.Definition.BaseItemIds.First());
 
-        item.TradeItem = GetMapAreaTradeItem(item) ?? GetTradeItem(item.Definition.TradeItems, item.Type);
+        // The invariant definition above stays on the generic item (it carries the base item ids used by wiki and poedb links).
+        item.Definition = GetMapAreaDefinition(item) ?? item.Definition;
+
+        item.TradeItem = GetTradeItem(item.Definition.TradeItems, item.Type);
         if (item.InvariantDefinition != null) item.InvariantTradeItem = GetTradeItem(item.InvariantDefinition.TradeItems, item.InvariantDefinition.Name);
 
         return;
@@ -123,17 +126,15 @@ public class ItemDefinitionParser(
     }
 
     /// <summary>
-    /// Some items (e.g. Scrying Orbs) are listed on the trade site once per map area, as "Scrying Orb (Mesa)".
+    /// Some items (e.g. Scrying Orbs) show "Map Area: Mesa" in game, while the trade site lists one item per area, as "Scrying Orb (Mesa)".
+    /// Returns that area definition, or null when the item has no map area or the area has no trade item.
     /// </summary>
-    private TradeItem? GetMapAreaTradeItem(Item item)
+    private ItemDefinition? GetMapAreaDefinition(Item item)
     {
-        if (string.IsNullOrEmpty(item.Properties.MapArea) || string.IsNullOrEmpty(item.Type)) return null;
+        if (string.IsNullOrEmpty(item.Properties.MapArea) || string.IsNullOrEmpty(item.Definition.Name)) return null;
 
-        var text = $"{item.Type} ({item.Properties.MapArea})";
-        return itemDefinitionProvider.Definitions
-            .Where(definition => !definition.IsUnique)
-            .SelectMany(definition => definition.TradeItems ?? [])
-            .FirstOrDefault(tradeItem => string.Equals(tradeItem.Text, text, StringComparison.Ordinal));
+        var name = $"{item.Definition.Name} ({item.Properties.MapArea})";
+        return itemDefinitionProvider.Definitions.FirstOrDefault(definition => !definition.IsUnique && string.Equals(definition.Name, name, StringComparison.Ordinal));
     }
 
     private static TradeItem? GetTradeItem(List<TradeItem>? tradeItems, string? type)
