@@ -3,6 +3,12 @@
 @using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
+@* Hidden until the first request to this API, since the status is unknown before that. *@
+@if (CurrentState == ApiState.Unknown)
+{
+    return;
+}
+
 <div class="flex flex-nowrap items-center gap-1">
     <div class="text-neutral-400 text-sm whitespace-nowrap">@Resources["Api_Status"]:</div>
     <div class="flex flex-nowrap items-center gap-1">
