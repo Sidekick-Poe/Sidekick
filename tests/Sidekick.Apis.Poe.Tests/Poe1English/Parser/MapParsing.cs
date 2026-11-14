@@ -122,7 +122,7 @@ Corrupted
         Assert.Equal(62, actual.Properties.ItemRarity);
         Assert.Equal(39, actual.Properties.MonsterPackSize);
         Assert.Equal(110, actual.Properties.MoreMaps);
-        Assert.Equal(35, actual.Properties.MoreScarabs);
+        Assert.Equal(35, actual.Properties.MoreThreads);
         Assert.Equal(45, actual.Properties.MoreCurrency);
         Assert.True(actual.Properties.Corrupted);
     }
@@ -177,7 +177,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
-        Assert.Equal(50, actual.Properties.MoreScarabs);
+        Assert.Equal(50, actual.Properties.MoreThreads);
         Assert.Equal(20, actual.Properties.QualityScarabs);
     }
 

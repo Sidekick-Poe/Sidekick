@@ -10,47 +10,47 @@ using ItemProperties = Sidekick.Game.Parser.Items.ItemProperties;
 
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
-public class MoreScarabsProperty(
+public class MoreThreadsProperty(
     GameType game,
     GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyMoreScarabs.ToRegexIntProperty();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyMoreThreads.ToRegexIntProperty();
 
-    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyMoreScarabs.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = gameTextProvider.Texts.ItemPropertyMoreThreads.ToRegexIsAugmented();
 
-    public override string Label => gameTextProvider.Texts.ItemPropertyMoreScarabs;
+    public override string Label => gameTextProvider.Texts.ItemPropertyMoreThreads;
 
     public override void Parse(Item item)
     {
         if (game != GameType.Poe1) return;
 
-        item.Properties.MoreScarabs = GetInt(Pattern, item.Text);
-        if (item.Properties.MoreScarabs == 0) return;
+        item.Properties.MoreThreads = GetInt(Pattern, item.Text);
+        if (item.Properties.MoreThreads == 0) return;
 
-        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MoreScarabs));
+        if (GetBool(IsAugmentedPattern, item.Text)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MoreThreads));
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game != GameType.Poe1 || item.Properties.MoreScarabs <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (game != GameType.Poe1 || item.Properties.MoreThreads <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new MoreScarabsFilter
+        var filter = new MoreThreadsFilter
         {
             Text = Label,
-            Value = item.Properties.MoreScarabs,
+            Value = item.Properties.MoreThreads,
             ValuePrefix = "+",
             ValueSuffix = "%",
-            Augmented = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.MoreScarabs)),
-            AutoSelectSettingKey = $"Trade_Filter_{nameof(MoreScarabsProperty)}_{game.GetValueAttribute()}",
+            Augmented = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.MoreThreads)),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(MoreThreadsProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
 }
 
-public class MoreScarabsFilter : IntPropertyFilter
+public class MoreThreadsFilter : IntPropertyFilter
 {
-    public MoreScarabsFilter()
+    public MoreThreadsFilter()
     {
         DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
