@@ -18,7 +18,6 @@ public abstract class BaseWindow : Window
     private int DefaultHeight { get; }
     private int DefaultWidth { get; }
     private string? PositionPrefix { get; }
-    private bool IsReady { get; set; }
 
     protected BaseWindow(int defaultHeight, int defaultWidth, string? positionPrefix = null) : base()
     {
@@ -38,6 +37,7 @@ public abstract class BaseWindow : Window
         ExtendClientAreaTitleBarHeightHint = -1;
         Background = SolidColorBrush.Parse("#1C1917");
         Opened += BaseWindow_Opened;
+        PositionChanged += BaseWindow_PositionChanged;
     }
 
     private void BaseWindow_Opened(object? sender, EventArgs e)
@@ -59,7 +59,15 @@ public abstract class BaseWindow : Window
 
     public void CloseView()
     {
-        Dispatcher.Invoke(Hide);
+        Dispatcher.Invoke(() =>
+        {
+            // Save the final placement now, since a hidden window cannot be measured anymore.
+            var placement = GetPlacement();
+            saveCancellation?.Cancel();
+            Hide();
+            IsPlaced = false;
+            _ = SavePlacement(placement);
+        });
     }
 
     protected override void OnClosing(WindowClosingEventArgs e)
@@ -69,106 +77,158 @@ public abstract class BaseWindow : Window
         base.OnClosing(e);
     }
 
+    /// <summary>
+    /// Sizes and places the window after it is shown: always the saved size, and the saved position when the setting is enabled, otherwise centered on the screen.
+    /// A window that is already open and placed is left where the user put it.
+    /// </summary>
     protected async Task NormalizeView()
     {
         WindowState = WindowState.Normal;
+        if (IsPlaced && IsVisible) return;
+
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
         var zoomString = await settingsService.GetString(SettingKeys.Zoom);
         if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
 
-        Height = DefaultHeight * zoom;
-        Width = DefaultWidth * zoom;
-        MinWidth = Width;
-        MinHeight = Height;
+        var width = DefaultWidth * zoom;
+        var height = DefaultHeight * zoom;
+        MinWidth = width;
+        MinHeight = height;
 
+        PixelPoint? savedPosition = null;
         if (!string.IsNullOrEmpty(PositionPrefix))
         {
-            if (await settingsService.GetBool(SettingKeys.SaveWindowPositions))
+            // The size is always remembered. The setting only controls the position.
+            var savedWidth = await settingsService.GetDouble($"{PositionPrefix}_Width");
+            var savedHeight = await settingsService.GetDouble($"{PositionPrefix}_Height");
+            if (savedWidth >= width && savedHeight >= height)
+            {
+                width = savedWidth;
+                height = savedHeight;
+            }
+
+            // A saved width of 0 means that no placement was saved yet.
+            if (savedWidth > 0 && await settingsService.GetBool(SettingKeys.SaveWindowPositions))
             {
                 var positionX = await settingsService.GetInt($"{PositionPrefix}_PositionX");
                 var positionY = await settingsService.GetInt($"{PositionPrefix}_PositionY");
-                Position = new PixelPoint(positionX, positionY);
-            }
-
-            var height = await settingsService.GetDouble($"{PositionPrefix}_Height");
-            var width = await settingsService.GetDouble($"{PositionPrefix}_Width");
-            if (height >= Height && width >= Width)
-            {
-                Height = height;
-                Width = width;
+                savedPosition = new PixelPoint(positionX, positionY);
             }
         }
 
-        // EnsurePositionWithinScreenBounds
-        var screen = Screens.ScreenFromPoint(Position) ?? Screens.Primary;
-        if (screen == null)
+        Width = width;
+        Height = height;
+
+        var screen = (savedPosition != null ? Screens.ScreenFromPoint(savedPosition.Value) : null)
+                     ?? Screens.ScreenFromWindow(this)
+                     ?? Screens.Primary;
+        if (screen != null)
+        {
+            // Width and Height are in device-independent units, while positions are in physical pixels.
+            var workingArea = screen.WorkingArea;
+            var pixelWidth = (int)Math.Ceiling(width * screen.Scaling);
+            var pixelHeight = (int)Math.Ceiling(height * screen.Scaling);
+
+            var position = savedPosition ?? new PixelPoint(
+                workingArea.X + (workingArea.Width - pixelWidth) / 2,
+                workingArea.Y + (workingArea.Height - pixelHeight) / 2);
+
+            // Keep the window within the screen.
+            var maxX = Math.Max(workingArea.X, workingArea.Right - pixelWidth);
+            var maxY = Math.Max(workingArea.Y, workingArea.Bottom - pixelHeight);
+            Position = new PixelPoint(
+                Math.Clamp(position.X, workingArea.X, maxX),
+                Math.Clamp(position.Y, workingArea.Y, maxY));
+        }
+
+        // Remember the placement we just applied, so that it is not saved again unless the user changes it.
+        lastSavedPlacement = new WindowPlacement(Width, Height, Position.X, Position.Y);
+        IsPlaced = true;
+    }
+
+    #region Save Placement
+
+    private static readonly SemaphoreSlim SavePlacementSemaphore = new(1, 1);
+
+    private CancellationTokenSource? saveCancellation;
+
+    private WindowPlacement? lastSavedPlacement;
+
+    private bool IsPlaced { get; set; }
+
+    private record WindowPlacement(double Width, double Height, int X, int Y);
+
+    protected override void OnResized(WindowResizedEventArgs e)
+    {
+        // Only resizes made by the user are saved, not the ones made by the code (placement, zoom, layout).
+        if (e.Reason == WindowResizeReason.User) ScheduleSavePlacement();
+        base.OnResized(e);
+    }
+
+    private void BaseWindow_PositionChanged(object? sender, PixelPointEventArgs e)
+    {
+        ScheduleSavePlacement();
+    }
+
+    /// <summary>
+    /// Saves the placement shortly after the last move or resize, so that dragging the window does not write the settings continuously.
+    /// </summary>
+    private void ScheduleSavePlacement()
+    {
+        if (!IsPlaced || string.IsNullOrEmpty(PositionPrefix)) return;
+
+        saveCancellation?.Cancel();
+        saveCancellation = new CancellationTokenSource();
+        _ = SavePlacementAfterDelay(saveCancellation.Token);
+    }
+
+    private async Task SavePlacementAfterDelay(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(TimeSpan.FromMilliseconds(500), cancellationToken);
+        }
+        catch (OperationCanceledException)
         {
             return;
         }
 
-        var workingArea = screen.WorkingArea;
-        var maxX = Math.Max(workingArea.X, workingArea.Right - (int)Width);
-        var maxY = Math.Max(workingArea.Y, workingArea.Bottom - (int)Height);
-
-        var x = Math.Clamp(Position.X, workingArea.X, maxX);
-        var y = Math.Clamp(Position.Y, workingArea.Y, maxY);
-
-        Position = new PixelPoint(x, y);
-        IsReady = true;
+        var placement = await Dispatcher.InvokeAsync(GetPlacement);
+        await SavePlacement(placement);
     }
 
-    #region Save Position
-
-    private static readonly SemaphoreSlim SavePositionSemaphore = new(1, 1);
-
-    protected override void OnResized(WindowResizedEventArgs e)
+    private WindowPlacement? GetPlacement()
     {
-        Dispatcher.Invoke(SavePosition);
-        base.OnResized(e);
+        if (!IsPlaced || !IsVisible || !CanResize || WindowState != WindowState.Normal) return null;
+
+        return new WindowPlacement(Width, Height, Position.X, Position.Y);
     }
 
-    private async Task SavePosition()
+    private async Task SavePlacement(WindowPlacement? placement)
     {
-        if (!IsReady || string.IsNullOrEmpty(PositionPrefix)) return;
-        if (!await SavePositionSemaphore.WaitAsync(0)) return;
+        if (placement == null || string.IsNullOrEmpty(PositionPrefix)) return;
 
+        await SavePlacementSemaphore.WaitAsync();
         try
         {
-            var position = await Dispatcher.InvokeAsync(() =>
-            {
-                if (!IsVisible || !CanResize || WindowState == WindowState.Maximized)
-                {
-                    return null;
-                }
-
-                return new
-                {
-                    Width,
-                    Height,
-                    Position.X,
-                    Position.Y,
-                };
-            });
-
-            if (position == null)
-            {
-                return;
-            }
+            // Each setting write notifies all settings listeners, so skip the save when nothing changed.
+            if (placement == lastSavedPlacement) return;
 
             var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-            await settingsService.Set($"{PositionPrefix}_Width", position.Width);
-            await settingsService.Set($"{PositionPrefix}_Height", position.Height);
-            await settingsService.Set($"{PositionPrefix}_PositionX", position.X);
-            await settingsService.Set($"{PositionPrefix}_PositionY", position.Y);
+            await settingsService.Set($"{PositionPrefix}_Width", placement.Width);
+            await settingsService.Set($"{PositionPrefix}_Height", placement.Height);
+            await settingsService.Set($"{PositionPrefix}_PositionX", placement.X);
+            await settingsService.Set($"{PositionPrefix}_PositionY", placement.Y);
+            lastSavedPlacement = placement;
         }
         catch (Exception e)
         {
-            var logger = ServiceProvider.GetRequiredService<ILogger<StandardWindow>>();
-            logger.LogError(e, "[StandardWindow] Error saving position");
+            var logger = ServiceProvider.GetRequiredService<ILogger<BaseWindow>>();
+            logger.LogError(e, "[BaseWindow] Error saving the window placement.");
         }
         finally
         {
-            SavePositionSemaphore.Release();
+            SavePlacementSemaphore.Release();
         }
     }
 

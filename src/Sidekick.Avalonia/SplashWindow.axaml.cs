@@ -1,8 +1,5 @@
-using System.Globalization;
 using System.Text.Json;
-using Avalonia.Controls;
 using Sidekick.Avalonia.Controls;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Avalonia;
 
@@ -34,18 +31,5 @@ public partial class SplashWindow : BaseWindow
 
             await NormalizeView();
         });
-    }
-
-    private async Task NormalizeView()
-    {
-        WindowState = WindowState.Normal;
-        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
-        if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
-
-        Height = HEIGHT * zoom;
-        Width = WIDTH * zoom;
-        MinWidth = Width;
-        MinHeight = Height;
     }
 }
