@@ -3,18 +3,7 @@
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Platform
 
-@if (!IsOpenedLater)
-{
-    <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
-}
-else if (IsInSplashWindow)
-{
-    <ButtonSecondary OnClick="Exit">@UiResources["Close"]</ButtonSecondary>
-}
-else
-{
-    <ButtonSecondary OnClick="Exit">@Resources["Back"]</ButtonSecondary>
-}
+<ButtonSecondary OnClick="Exit">@(IsOpenedLater ? UiResources["Close"] : Resources["Exit"])</ButtonSecondary>
 
 @inject IStringLocalizer<UpdateResources> Resources
 @inject IStringLocalizer<UiResources> UiResources
@@ -29,26 +18,15 @@ else
     /// </summary>
     private bool IsOpenedLater => !string.IsNullOrEmpty(NavigationManager.QueryString("back"));
 
-    /// <summary>
-    /// The update page opens in its own splash window from the About page, or inside the main window from the update available button.
-    /// </summary>
-    private bool IsInSplashWindow => CurrentView.CurrentViewType == SidekickViewType.Splash;
-
     private void Exit()
     {
-        if (!IsOpenedLater)
+        if (IsOpenedLater)
         {
-            ApplicationService.Shutdown();
-        }
-        else if (IsInSplashWindow)
-        {
-            // The main window is still open, so only close this window instead of navigating inside it.
             CurrentView.Close();
+            return;
         }
-        else
-        {
-            NavigationManager.NavigateTo(NavigationManager.QueryString("back")!);
-        }
+
+        ApplicationService.Shutdown();
     }
 
 }

@@ -48,20 +48,15 @@
     private const int WIDTH = 800;
     private const int HEIGHT = 700;
 
-    /// <summary>
-    /// The notes can also show inside the main window (update available button), which keeps the size the user chose.
-    /// </summary>
-    private bool IsInSplashWindow => CurrentView.CurrentViewType == SidekickViewType.Splash;
-
     protected override void OnInitialized()
     {
-        if (IsInSplashWindow) CurrentView.SetSize(WIDTH, HEIGHT);
+        CurrentView.SetSize(WIDTH, HEIGHT);
         base.OnInitialized();
     }
 
     public void Dispose()
     {
-        if (IsInSplashWindow) CurrentView.ResetSize();
+        CurrentView.ResetSize();
     }
 
     [Parameter]

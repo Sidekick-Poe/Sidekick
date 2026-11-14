@@ -6,9 +6,7 @@
 <FormFieldset Legend="Splash window">
     <div class="flex flex-wrap gap-2">
         <ButtonPrimary OnClick="OpenSetup">Open the setup form</ButtonPrimary>
-        <ButtonPrimary OnClick="OpenReleaseNotes">Open the release notes</ButtonPrimary>
-        <ButtonPrimary OnClick="OpenReleaseNotesInMainWindow">Open the release notes in the main window</ButtonPrimary>
-    </div>
+        <ButtonPrimary OnClick="OpenReleaseNotes">Open the release notes</ButtonPrimary>    </div>
 </FormFieldset>
 
 @inject IViewLocator ViewLocator
@@ -26,12 +24,6 @@
     {
         // The back parameter makes the page behave like when it is opened from the About page.
         ViewLocator.Open(SidekickViewType.Splash, $"/update?devFakeNotes=true&back={Uri.EscapeDataString(NavigationManager.Uri)}");
-    }
-
-    private void OpenReleaseNotesInMainWindow()
-    {
-        // Same as the update available button: navigates inside the current window instead of opening the splash window.
-        NavigationManager.NavigateTo($"/update?devFakeNotes=true&back={Uri.EscapeDataString(NavigationManager.Uri)}");
     }
 
 }
