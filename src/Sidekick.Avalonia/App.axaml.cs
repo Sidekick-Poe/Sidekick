@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -11,6 +12,7 @@ using Sidekick.Common;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings.Localization;
 using Sidekick.Common.Ui.Localization;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Web;
@@ -128,44 +130,69 @@ public partial class App : Application
         var resources = RequiredServerAppHost.Application.Services.GetRequiredService<IStringLocalizer<UiResources>>();
         var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "favicon.ico");
 
-        var trayIcon = new TrayIcon
+        var openHomeCommand = new SimpleCommand(() =>
+        {
+            var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
+            viewLocator.Open(SidekickViewType.Standard, "/item");
+        });
+
+        var homeItem = new NativeMenuItem
+        {
+            Command = openHomeCommand,
+        };
+
+        var openWebsiteItem = new NativeMenuItem
         {
             Command = new SimpleCommand(() =>
             {
-                var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-                viewLocator.Open(SidekickViewType.Standard, "/item");
+                var browserProvider = RequiredServerAppHost.Application.Services.GetRequiredService<IBrowserProvider>();
+                browserProvider.OpenUri(browserProvider.SidekickWebsite);
             }),
+        };
+
+        var exitItem = new NativeMenuItem
+        {
+            Command = new SimpleCommand(() =>
+            {
+                var applicationService = RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>();
+                applicationService.Shutdown();
+            }),
+        };
+
+        void UpdateLabels()
+        {
+            homeItem.Header = resources["Home"];
+            openWebsiteItem.Header = resources["Open_Website"];
+            exitItem.Header = resources["Exit"];
+        }
+
+        UpdateLabels();
+
+        var trayIcon = new TrayIcon
+        {
+            Command = openHomeCommand,
             Menu = new NativeMenu
             {
                 new NativeMenuItem("Sidekick - " + RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
                 {
                     IsEnabled = false,
                 },
-                new NativeMenuItem(resources["Home"])
-                {
-                    Command = new SimpleCommand(() =>
-                    {
-                        var viewLocator = RequiredServerAppHost.Application.Services.GetRequiredService<IViewLocator>();
-                        viewLocator.Open(SidekickViewType.Standard, "/item");
-                    }),
-                },
-                new NativeMenuItem(resources["Open_Website"])
-                {
-                    Command = new SimpleCommand(() =>
-                    {
-                        var browserProvider = RequiredServerAppHost.Application.Services.GetRequiredService<IBrowserProvider>();
-                        browserProvider.OpenUri(browserProvider.SidekickWebsite);
-                    }),
-                },
-                new NativeMenuItem(resources["Exit"])
-                {
-                    Command = new SimpleCommand(() =>
-                    {
-                        var applicationService = RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>();
-                        applicationService.Shutdown();
-                    }),
-                },
+                homeItem,
+                openWebsiteItem,
+                exitItem,
             }
+        };
+
+        // The menu labels are plain strings, so refresh them when the user changes the language.
+        var uiLanguageProvider = RequiredServerAppHost.Application.Services.GetRequiredService<IUiLanguageProvider>();
+        uiLanguageProvider.OnLanguageChanged += cultureInfo =>
+        {
+            _ = Dispatcher.InvokeAsync(() =>
+            {
+                // Set the culture here too, since the culture handler may not have updated the UI thread yet.
+                CultureInfo.CurrentUICulture = cultureInfo;
+                UpdateLabels();
+            });
         };
 
         if (File.Exists(iconPath))
