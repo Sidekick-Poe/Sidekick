@@ -80,6 +80,7 @@
 @inject CurrentView CurrentView
 @inject IApplicationService ApplicationService
 @inject NavigationManager NavigationManager
+@implements IDisposable
 
 @code {
 
@@ -87,6 +88,25 @@
     public RenderFragment? ChildContent { get; set; }
 
     private SidekickErrorBoundary? ErrorBoundary { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // Any navigation leaves the error page, for example when the window is reopened from the tray after being closed with its X button.
+        NavigationManager.LocationChanged += RecoverOnNavigation;
+        base.OnInitialized();
+    }
+
+    private void RecoverOnNavigation(object? sender, LocationChangedEventArgs e)
+    {
+        if (ErrorBoundary?.Exception == null) return;
+
+        ErrorBoundary.Recover();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= RecoverOnNavigation;
+    }
 
     private string GetButtonClass(bool isCritical)
     {
