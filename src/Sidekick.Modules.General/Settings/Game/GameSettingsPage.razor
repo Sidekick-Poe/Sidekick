@@ -8,71 +8,79 @@
 @using Sidekick.Modules.General.Localization
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Menu
 @using Sidekick.Modules.General.Settings.Components
 @using Sidekick.Common.Ui.Settings
 @using Sidekick.Modules.General.Keybinds
 
 <LayoutMenu>
-    <AppContainer>
-        <FormFieldset Legend="@SettingResources["General_Settings"]">
-            <LanguageParserEditor/>
-            <LeagueIdEditor/>
-        </FormFieldset>
+    <LeftContent>
+        <SidekickSettingsMenu/>
+    </LeftContent>
+    <ChildContent>
+        <AppContainer>
+            <FormFieldset Legend="@SettingResources["General_Settings"]">
+                <LanguageParserEditor/>
+                <LeagueIdEditor/>
+            </FormFieldset>
 
-        <FormFieldset Legend="@SettingResources["Item_Overlay"]">
+            <FormFieldset Legend="@SettingResources["Item_Overlay"]">
+                @if (Configuration.Value.ApplicationType.SupportsKeybinds())
+                {
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck"
+                                          Label="@SettingResources["Key_OpenItem"]"/>
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]"/>
+                }
+
+                @if (SidekickFlags.PoePricesEnabled)
+                {
+                    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled"
+                                           Label="@SettingResources["ItemOverlay_Prediction_Enable"]"/>
+                }
+
+                <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
+                                       Label="@Resources["SaveWindowPositions"]"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
+                                       Label="@Resources["OverlayCloseWithMouse"]"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
+                                       Label="@Resources["EscapeClosesOverlays"]"/>
+            </FormFieldset>
+
             @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
-                <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@SettingResources["Key_OpenItem"]"/>
-                <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
+                <FormFieldset Legend="@Resources["Wiki"]">
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
+                    <PreferredWikiEditor/>
+                </FormFieldset>
             }
 
-            @if (SidekickFlags.PoePricesEnabled)
+            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
-                <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled"
-                                       Label="@SettingResources["ItemOverlay_Prediction_Enable"]"/>
+                <FormFieldset Legend="@SettingResources["Other_Settings"]">
+                    <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">
+                        <TextWithKeybinds Text="@Resources["MouseWheelNavigateStash"]"
+                                          Keybinds="@(["Ctrl+MWheel"])"/>
+                    </SettingCheckboxEditor>
+                    <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse"
+                                           Label="@Resources["MouseWheelNavigateStashReverse"]"/>
+                    <SettingCheckboxEditor SettingKey="@DisableMovementWhenScreenshottingHandler.Key"
+                                           Label="@Resources["DisableMovementWhenScreenshotting"]"
+                                           Tooltip="@Resources["DisableMovementWhenScreenshotting_Tooltip"]"/>
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]"/>
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile"
+                                          Label="@Resources["Key_Open_In_Craft_Of_Exile"]"/>
+                </FormFieldset>
             }
 
-            <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
-                                   Label="@Resources["SaveWindowPositions"]"/>
-            <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
-                                   Label="@Resources["OverlayCloseWithMouse"]"/>
-            <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
-                                   Label="@Resources["EscapeClosesOverlays"]"/>
-        </FormFieldset>
-
-        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
-        {
-            <FormFieldset Legend="@Resources["Wiki"]">
-                <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
-                <PreferredWikiEditor/>
-            </FormFieldset>
-        }
-
-        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
-        {
-            <FormFieldset Legend="@SettingResources["Other_Settings"]">
-                <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">
-                    <TextWithKeybinds Text="@Resources["MouseWheelNavigateStash"]"
-                                      Keybinds="@(["Ctrl+MWheel"])"/>
-                </SettingCheckboxEditor>
-                <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse"
-                                       Label="@Resources["MouseWheelNavigateStashReverse"]"/>
-                <SettingCheckboxEditor SettingKey="@DisableMovementWhenScreenshottingHandler.Key"
-                                       Label="@Resources["DisableMovementWhenScreenshotting"]"
-                                       Tooltip="@Resources["DisableMovementWhenScreenshotting_Tooltip"]"/>
-                <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]"/>
-                <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile"
-                                      Label="@Resources["Key_Open_In_Craft_Of_Exile"]"/>
-            </FormFieldset>
-        }
-
-        <div class="flex justify-center mb-1">
-            <ButtonPrimary Disabled="!AreSettingsModified"
-                           OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
-        </div>
-    </AppContainer>
+            <div class="flex justify-center mb-1">
+                <ButtonPrimary Disabled="!AreSettingsModified"
+                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+            </div>
+        </AppContainer>
+    </ChildContent>
 </LayoutMenu>
 
+@page "/settings"
 @page "/settings/game"
 @inject IStringLocalizer<SettingsResources> SettingResources
 @inject IStringLocalizer<UiResources> UiResources

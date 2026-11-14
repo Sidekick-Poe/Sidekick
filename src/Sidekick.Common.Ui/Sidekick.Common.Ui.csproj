@@ -21,6 +21,11 @@
         <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Menu\MenuItem.razor" />
+      <AdditionalFiles Include="Menu\MenuLegend.razor" />
+    </ItemGroup>
+
     <Target Name="NpmBuild"
             BeforeTargets="ResolveStaticWebAssetsInputs"
             Condition="$([MSBuild]::IsOSPlatform('Linux')) != 'true'">

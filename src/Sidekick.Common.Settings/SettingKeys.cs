@@ -37,7 +37,6 @@ public static class SettingKeys
 
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
-    public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

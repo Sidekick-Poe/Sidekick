@@ -1021,6 +1021,9 @@
   .-m-3 {
     margin: calc(var(--spacing) * -3);
   }
+  .m-3 {
+    margin: calc(var(--spacing) * 3);
+  }
   .mx-1 {
     margin-inline: var(--spacing);
   }
@@ -1305,14 +1308,23 @@
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
+  .w-7 {
+    width: calc(var(--spacing) * 7);
+  }
   .w-12 {
     width: calc(var(--spacing) * 12);
+  }
+  .w-16 {
+    width: calc(var(--spacing) * 16);
   }
   .w-24 {
     width: calc(var(--spacing) * 24);
   }
   .w-40 {
     width: calc(var(--spacing) * 40);
+  }
+  .w-60 {
+    width: calc(var(--spacing) * 60);
   }
   .w-64 {
     width: calc(var(--spacing) * 64);
@@ -1394,9 +1406,6 @@
   }
   .min-w-40 {
     min-width: calc(var(--spacing) * 40);
-  }
-  .min-w-48 {
-    min-width: calc(var(--spacing) * 48);
   }
   .min-w-64 {
     min-width: calc(var(--spacing) * 64);
@@ -2103,6 +2112,9 @@
   }
   .py-px {
     padding-block: 1px;
+  }
+  .pt-0\.5 {
+    padding-top: calc(var(--spacing) * 0.5);
   }
   .pt-1 {
     padding-top: var(--spacing);
@@ -2861,6 +2873,9 @@
   }
   .\[\&\:\:selection\]\:text-violet-200::selection {
     color: var(--color-violet-200);
+  }
+  .\[\*_\.sidekick-container\]\:\!pl-0:is(* .sidekick-container) {
+    padding-left: 0px !important;
   }
 }
 @layer base {

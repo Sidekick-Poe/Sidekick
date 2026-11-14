@@ -15,6 +15,7 @@ host.Start(services =>
     services.TryAddSingleton<IViewLocator, WebViewLocator>();
     services.TryAddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
     services.TryAddSingleton<IApplicationService, WebApplicationService>();
+    services.TryAddScoped<WebDialogsHandler>();
 });
 
 // Open the browser

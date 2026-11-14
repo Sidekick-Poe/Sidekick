@@ -7,53 +7,60 @@
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Menu
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Modules.Chat.Localization
 
 <LayoutMenu>
-    <AppContainer>
-        <FormFieldset Legend="@UiResources["Chat_Commands"]">
-            <div>
-                <ButtonLink OnClick="OpenWikiChatCommands">@WikiChatCommands.ToString()</ButtonLink>
+    <LeftContent>
+        <SidekickSettingsMenu/>
+    </LeftContent>
+    <ChildContent>
+        <AppContainer>
+            <FormFieldset Legend="@UiResources["Chat_Commands"]">
+                <div>
+                    <ButtonLink OnClick="OpenWikiChatCommands">@WikiChatCommands.ToString()</ButtonLink>
 
-                <div class="my-3">
-                    <TextBase>@Resources["Chat_Common_Commands"]</TextBase>
-                </div>
+                    <div class="my-3">
+                        <TextBase>@Resources["Chat_Common_Commands"]</TextBase>
+                    </div>
 
-                <div class="flex gap-3 mb-1">
-                    <code class="bg-stone-950 px-1 min-w-[8em]">/hideout</code>
-                    <TextBase>@Resources["Chat_Commands_Hideout"]</TextBase>
-                </div>
-                <div class="flex gap-3 mb-1">
-                    <code class="bg-stone-950 px-1 min-w-[8em]">/leave</code>
-                    <TextBase>@Resources["Chat_Commands_Leave"]</TextBase>
-                </div>
-                <div class="flex gap-3 mb-1">
-                    <code class="bg-stone-950 px-1 min-w-[8em]">/exit</code>
-                    <TextBase>@Resources["Chat_Commands_Exit"]</TextBase>
-                </div>
-                <div class="flex gap-3 mb-1">
-                    <code class="bg-stone-950 px-1 min-w-[8em]">/invite @@last</code>
-                    <TextBase>@Resources["Chat_Commands_Invite"]</TextBase>
-                </div>
-                <div class="flex gap-3 mb-3">
-                    <code class="bg-stone-950 px-1 min-w-[8em]">/kick @@last</code>
-                    <TextBase>@Resources["Chat_Commands_Kick"]</TextBase>
-                </div>
+                    <div class="flex gap-3 mb-1">
+                        <code class="bg-stone-950 px-1 min-w-[8em]">/hideout</code>
+                        <TextBase>@Resources["Chat_Commands_Hideout"]</TextBase>
+                    </div>
+                    <div class="flex gap-3 mb-1">
+                        <code class="bg-stone-950 px-1 min-w-[8em]">/leave</code>
+                        <TextBase>@Resources["Chat_Commands_Leave"]</TextBase>
+                    </div>
+                    <div class="flex gap-3 mb-1">
+                        <code class="bg-stone-950 px-1 min-w-[8em]">/exit</code>
+                        <TextBase>@Resources["Chat_Commands_Exit"]</TextBase>
+                    </div>
+                    <div class="flex gap-3 mb-1">
+                        <code class="bg-stone-950 px-1 min-w-[8em]">/invite @@last</code>
+                        <TextBase>@Resources["Chat_Commands_Invite"]</TextBase>
+                    </div>
+                    <div class="flex gap-3 mb-3">
+                        <code class="bg-stone-950 px-1 min-w-[8em]">/kick @@last</code>
+                        <TextBase>@Resources["Chat_Commands_Kick"]</TextBase>
+                    </div>
 
-                <div class="flex gap-3">
-                    <code class="bg-stone-950 px-1 min-w-[8em]">@@last</code>
-                    <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
+                    <div class="flex gap-3">
+                        <code class="bg-stone-950 px-1 min-w-[8em]">@@last</code>
+                        <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
+                    </div>
                 </div>
+            </FormFieldset>
+
+            <ChatCommandEditor/>
+
+            <div class="flex justify-center mb-1">
+                <ButtonPrimary Disabled="!AreSettingsModified"
+                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
             </div>
-        </FormFieldset>
-
-        <ChatCommandEditor />
-
-        <div class="flex justify-center mb-1">
-            <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
-        </div>
-    </AppContainer>
+        </AppContainer>
+    </ChildContent>
 </LayoutMenu>
 
 @inject IStringLocalizer<UiResources> UiResources

@@ -1,6 +1,24 @@
+@using Microsoft.Extensions.Options
+@using Sidekick.Common.Ui.Navigation
 <div class="h-full flex flex-col">
+    @if (SidekickConfiguration.Value.ApplicationType == SidekickApplicationType.Web)
+    {
+        <div class="flex justify-start items-center py-1 px-3">
+            <img src="@Assets["_content/Sidekick.Common.Ui/images/orbs/ExaltedOrb.png"]" class="w-6 h-6" alt="logo"/>
+            <Heading3 Class="font-caps ml-4 text-white">Sidekick</Heading3>
+        </div>
+    }
+
     <div class="grow flex flex-nowrap items-stretch">
-        <SidekickMenu/>
+        <SidekickNavigation/>
+        @if (LeftContent != null)
+        {
+            <div class="relative w-60 overflow-auto dark:bg-stone-900">
+                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden p-3">
+                    @LeftContent
+                </div>
+            </div>
+        }
         <div class="h-full flex flex-col grow dark:bg-stone-900">
             <AppUpdate/>
             <ConfigurationFlagError/>
@@ -16,7 +34,12 @@
     </div>
 </div>
 
+@inject IOptions<SidekickConfiguration> SidekickConfiguration
+
 @code {
+
+    [Parameter]
+    public RenderFragment? LeftContent { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }

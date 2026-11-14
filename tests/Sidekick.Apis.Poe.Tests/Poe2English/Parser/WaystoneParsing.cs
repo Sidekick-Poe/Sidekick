@@ -1,5 +1,8 @@
+using System.Text.Json;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser;
+using Sidekick.Game.Parser.Properties.Definitions;
+using Sidekick.Game.Parser.Trade.Requests;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -146,5 +149,67 @@ Corrupted
         Assert.Equal(0, actual.Properties.RevivesAvailable);
         Assert.Equal(22, actual.Properties.MonsterPackSize);
         Assert.Equal(42, actual.Properties.MonsterEffectiveness);
+    }
+
+    [Fact]
+    public async Task MonsterRarity()
+    {
+        var actual = parser.ParseItem(
+        @"Item Class: Waystones
+Rarity: Rare
+Barren Frontier
+Waystone (Tier 15)
+--------
+Revives Available: 0 (augmented)
+Item Rarity: +40% (augmented)
+Monster Rarity: +103% (augmented)
+Waystone Drop Chance: +120% (augmented)
+--------
+Item Level: 81
+--------
+{ Prefix Modifier ""Tough"" (Tier: 1) }
+23(20-25)% more Monster Life
+{ Prefix Modifier ""Shattering"" (Tier: 1) }
+Monsters Break Armour equal to 26(25-30)% of Physical Damage dealt
+{ Prefix Modifier ""Painful"" (Tier: 1) }
+18(15-19)% increased Monster Damage
+{ Prefix Modifier ""Penetrating"" (Tier: 1) }
+Monster Damage Penetrates 14(12-14)% Elemental Resistances
+{ Suffix Modifier ""of Enduring"" (Tier: 1) }
+Monsters are Armoured
+{ Suffix Modifier ""of Obstruction"" (Tier: 1) }
+Monsters take 29(26-30)% reduced Extra Damage from Critical Hits
+{ Suffix Modifier ""of Buffering"" (Tier: 1) }
+Monsters gain 15(12-25)% of maximum Life as Extra maximum Energy Shield
+{ Suffix Modifier ""of Overpowering"" (Tier: 1) }
+Monster have 106(100-119)% increased Elemental Ailment Application
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
+        Assert.Equal("Waystone (Tier 15)", actual.TradeItem?.Type);
+        Assert.Equal(81, actual.Properties.ItemLevel);
+
+        Assert.Equal(0, actual.Properties.RevivesAvailable);
+        Assert.Equal(103, actual.Properties.MonsterRarity);
+        Assert.Equal(0, actual.Properties.RareMonsters);
+        Assert.Equal(40, actual.Properties.ItemRarity);
+        Assert.Equal(120, actual.Properties.WaystoneDropChance);
+
+        var filters = await fixture.GetPropertyFilters(actual);
+        var filter = Assert.Single(filters.OfType<MonsterRarityFilter>());
+        Assert.Equal(103, filter.Value);
+        Assert.True(filter.Augmented);
+
+        filter.Checked = true;
+        filter.Min = filter.Value;
+        var query = new Query();
+        filter.PrepareTradeRequest(query, actual);
+
+        var mapFilters = JsonSerializer.Serialize(query.Filters.GetOrCreateMapFilters().Filters);
+        Assert.Contains(@"""map_rare_monsters"":{""Option"":null,""Min"":103", mapFilters);
     }
 }

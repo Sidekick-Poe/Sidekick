@@ -1,6 +1,5 @@
 @using System.Text.Json
 @using Sidekick.Game
-@using Sidekick.Game.ItemClasses
 @using Sidekick.Game.Parser.Filters.AutoSelect
 @using Sidekick.Game.Parser.Items
 @using Sidekick.Game.Parser.Stats
@@ -61,17 +60,21 @@
 
     private bool IsChecked(SelectOption option) => Condition.Value?.Contains($"\"{option.Value ?? "null"}\"") ?? false;
 
-    private async Task ToggleCheck(SelectOption option, bool isChecked)
+    private List<string> GetValues()
     {
-        List<string> value;
         try
         {
-            value = JsonSerializer.Deserialize<List<string>>(Condition.Value ?? "[]", AutoSelectPreferences.JsonSerializerOptions) ?? [];
+            return JsonSerializer.Deserialize<List<string>>(Condition.Value ?? "[]", AutoSelectPreferences.JsonSerializerOptions) ?? [];
         }
         catch (Exception)
         {
-            value = [];
+            return [];
         }
+    }
+
+    private async Task ToggleCheck(SelectOption option, bool isChecked)
+    {
+        var value = GetValues();
 
         if (isChecked)
         {
@@ -121,45 +124,13 @@
 
         if (Condition.Type == AutoSelectConditionType.ItemClass)
         {
-            return
-            [
-                CreateItemClass(ItemClass.AbyssJewel),
-                CreateItemClass(ItemClass.Amulet),
-                CreateItemClass(ItemClass.Belt),
-                CreateItemClass(ItemClass.BodyArmour),
-                CreateItemClass(ItemClass.Boots),
-                CreateItemClass(ItemClass.Bow),
-                CreateItemClass(ItemClass.Claw),
-                CreateItemClass(ItemClass.Crossbow),
-                CreateItemClass(ItemClass.Dagger),
-                CreateItemClass(ItemClass.FishingRod),
-                CreateItemClass(ItemClass.Flask),
-                CreateItemClass(ItemClass.Gloves),
-                CreateItemClass(ItemClass.Helmet),
-                CreateItemClass(ItemClass.Jewel),
-                CreateItemClass(ItemClass.OneHandAxe),
-                CreateItemClass(ItemClass.OneHandMace),
-                CreateItemClass(ItemClass.OneHandSword),
-                CreateItemClass(ItemClass.Quiver),
-                CreateItemClass(ItemClass.Ring),
-                CreateItemClass(ItemClass.Sceptre),
-                CreateItemClass(ItemClass.Shield),
-                CreateItemClass(ItemClass.Staff),
-                CreateItemClass(ItemClass.TwoHandAxe),
-                CreateItemClass(ItemClass.TwoHandMace),
-                CreateItemClass(ItemClass.TwoHandSword),
-                CreateItemClass(ItemClass.Wand),
-                CreateItemClass(ItemClass.Warstaff),
-            ];
-
-            SelectOption CreateItemClass(ItemClass itemClass)
-            {
-                return new SelectOption()
+            return AutoSelectItemClassOptions.Get(Item.Game, ItemClassProvider.Definitions, GetValues())
+                .Select(x => new SelectOption()
                 {
-                    Label = ItemClassProvider.Definitions.FirstOrDefault(x => x.Type == itemClass)?.Name ?? itemClass.ToString(),
-                    Value = itemClass.ToString(),
-                };
-            }
+                    Label = x.Label,
+                    Value = x.Type.ToString(),
+                })
+                .ToList();
         }
 
         if (Condition.Type == AutoSelectConditionType.StatCategory)

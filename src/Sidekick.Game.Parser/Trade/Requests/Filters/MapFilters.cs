@@ -37,6 +37,13 @@ public class MapFilters
         set => MagicMonsters = value;
     }
 
+    [JsonIgnore]
+    public StatFilterValue? MonsterRarity
+    {
+        get => RareMonsters;
+        set => RareMonsters = value;
+    }
+
     [JsonPropertyName("map_bonus")]
     public StatFilterValue? WaystoneDropChance { get; set; }
 

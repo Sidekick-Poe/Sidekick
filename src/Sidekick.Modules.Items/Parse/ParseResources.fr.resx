@@ -118,36 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Price_Check_Tip" xml:space="preserve">
-    <value>Press {0} over an item in-game to use.</value>
+    <value>Faites {0} sur un item dans le jeu pour utiliser.</value>
   </data>
   <data name="Close_Notification" xml:space="preserve">
-    <value>Closing this window will minimize the application to the system tray.</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Fermer cette fenêtre va réduire Sidekick dans la barre d'état système.</value>
   </data>
   <data name="Open_Website" xml:space="preserve">
-    <value>Open website</value>
+    <value>Ouvrir le site web</value>
   </data>
   <data name="Item_Box_Legend" xml:space="preserve">
-    <value>Manual Item Check</value>
+    <value>Vérifier un item manuellement</value>
   </data>
   <data name="Item_Box_Text" xml:space="preserve">
-    <value>You can manually copy and paste items from the game into the field below.</value>
+    <value>Vous pouvez copier et coller manuellement le texte d'un item du jeu dans le champ ci-dessous.</value>
   </data>
   <data name="Item_Box_Submit" xml:space="preserve">
-    <value>Open Item View</value>
-  </data>
-  <data name="Item_Box_Map" xml:space="preserve">
-    <value>Check Map</value>
+    <value>Vérifier un item</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Accueil</value>
   </data>
   <data name="Close_Overlay_Tip" xml:space="preserve">
-    <value>Press {0} to close overlay.</value>
+    <value>Faites {0} pour fermer la fenêtre.</value>
   </data>
 </root>

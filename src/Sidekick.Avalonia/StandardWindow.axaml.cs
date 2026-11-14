@@ -5,8 +5,8 @@ namespace Sidekick.Avalonia;
 
 public partial class StandardWindow : BaseWindow
 {
-    private const int WIDTH = 968;
-    private const int HEIGHT = 768;
+    private const int WIDTH = 768;
+    private const int HEIGHT = 600;
 
     public StandardWindow() : base(HEIGHT, WIDTH, "StandardWindow")
     {
