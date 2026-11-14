@@ -7,7 +7,7 @@ public class ExchangeTests(NinjaPoe1TestFixture fixture)
 {
     private readonly ItemParser parser = fixture.Parser;
 
-    [Fact(Skip = "Fails in 3.30 - Needs investigation")]
+    [Fact]
     public void ChaosOrb()
     {
         var item = parser.ParseItem(@"Item Class: Stackable Currency
@@ -26,7 +26,7 @@ Shift click to unstack.
         Assert.Equal("chaos", item.InvariantDefinition?.NinjaExchangeItem?.Id);
     }
 
-    [Fact(Skip = "Fails in 3.30 - Needs investigation")]
+    [Fact]
     public void ExaltedOrb()
     {
         var item = parser.ParseItem(@"Item Class: Stackable Currency
