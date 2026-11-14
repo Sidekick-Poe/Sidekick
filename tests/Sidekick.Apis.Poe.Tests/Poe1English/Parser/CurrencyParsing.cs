@@ -137,4 +137,50 @@ Can be used as part of Allflame Crafting aboard The Sovereign.
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("The Changeling's Ducat", actual.TradeItem?.Type);
     }
+
+    [Theory]
+    [InlineData("Mesa", "19999")]
+    [InlineData("Volcano", "30639")]
+    public void ScryingOrb(string mapArea, string tradeType)
+    {
+        var actual = parser.ParseItem($@"Item Class: Stackable Currency
+Rarity: Currency
+Scrying Orb
+--------
+Map Area: {mapArea}
+--------
+Scries a Map on your Atlas
+--------
+Right click on this item then left click a Map on your Atlas.
+");
+
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal($"Scrying Orb ({mapArea})", actual.Definition.Name);
+        Assert.Equal("Scrying Orb", actual.InvariantDefinition?.Name);
+        Assert.Equal(mapArea, actual.Properties.MapArea);
+        Assert.Equal($"Scrying Orb ({mapArea})", actual.TradeItem?.Text);
+        Assert.Equal(tradeType, actual.TradeItem?.Type);
+        Assert.Equal("scrying_orb", actual.TradeItem?.Discriminator);
+    }
+
+    [Fact]
+    public void ScryingOrbWithoutAreaTradeItem()
+    {
+        // Necropolis is a map area, but the trade site has no "Scrying Orb (Necropolis)" item.
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Scrying Orb
+--------
+Map Area: Necropolis
+--------
+Scries a Map on your Atlas
+--------
+Right click on this item then left click a Map on your Atlas.
+");
+
+        Assert.Equal("Necropolis", actual.Properties.MapArea);
+        Assert.Equal("Scrying Orb", actual.Definition.Name);
+        Assert.Equal("Scrying Orb", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Discriminator);
+    }
 }

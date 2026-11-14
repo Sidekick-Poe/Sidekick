@@ -46,6 +46,8 @@ public class ItemProperties
 
     public string? Reward { get; set; }
 
+    public string? MapArea { get; set; }
+
     public int AreaLevel { get; set; }
 
     public int RevivesAvailable { get; set; }

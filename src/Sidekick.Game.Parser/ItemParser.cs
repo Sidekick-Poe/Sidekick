@@ -39,6 +39,8 @@ public class ItemParser
 
             // Rarity property is required for definition parsing. This means that it must be parsed first.
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
+            // Map area selects the area-specific trade item (e.g. Scrying Orb (Mesa)), so it is also needed before definition parsing.
+            propertyParser.GetDefinition<MapAreaProperty>().Parse(item);
 
             itemClassParser.Parse(item);
             itemDefinitionParser.Parse(item);

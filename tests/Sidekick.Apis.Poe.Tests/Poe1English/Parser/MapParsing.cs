@@ -36,6 +36,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Null(actual.TradeItem?.Name);
         Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(2, actual.Properties.MapTier);
+        Assert.Null(actual.Properties.MapArea);
 
         fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% Monster Physical Damage Reduction", 20);
     }
@@ -398,8 +399,58 @@ Foil (Celestial Amethyst)
         Assert.Null(actual.TradeItem?.Name);
         Assert.Equal("Valdo Map", actual.TradeItem?.Type);
         Assert.Equal("Foil The Dancing Dervish", actual.Properties.Reward);
+        Assert.Equal("Arsenal", actual.Properties.MapArea);
         Assert.Equal(50, actual.Properties.ItemRarity);
         Assert.Equal(26, actual.Properties.MonsterPackSize);
+    }
+
+    [Fact]
+    public void ValdoMapAtoll()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Haunted Shard
+Valdo Map
+--------
+Map Area: Atoll
+Reward: Foil Aegis Aurora
+Atlas Drops: +186% (augmented)
+Item Rarity: +36% (augmented)
+Monster Pack Size: +8% (augmented)
+--------
+Chance for dropped Maps to convert to:
+Threads: 62% (augmented)
+--------
+Item Level: 100
+--------
+Monster Level: 84
+--------
+Monsters fire 6 additional Projectiles
+Area contains The Feared
+Players have 50% reduced Movement Speed
+Players' Travel Skills are Disabled
+Rare Monsters each have 3 additional Modifiers
+Maximum number of Players in Area is one
+When Hit, Players gain a random Movement Speed
+modifier from 50% less to 50% more, until Hit again
+--------
+Travel to this Map by using it in a personal Map Device. Maps can only be used once. Defeat 90% of all monsters in this Map, including all Rare and Unique enemies to obtain the Reward. The area created is not affected by your Atlas Passive Tree, and cannot be augmented via the Map Device.
+--------
+Unmodifiable
+--------
+Foil (Celestial Amethyst)
+--------
+Note: ~b/o 55 chaos
+");
+
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Valdo Map", actual.TradeItem?.Type);
+        Assert.Equal("Atoll", actual.Properties.MapArea);
+        Assert.Equal("Foil Aegis Aurora", actual.Properties.Reward);
+        Assert.Equal(36, actual.Properties.ItemRarity);
+        Assert.Equal(8, actual.Properties.MonsterPackSize);
     }
 
     [Fact]
@@ -430,6 +481,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.True(actual.Properties.Blighted);
         Assert.False(actual.Properties.BlightRavaged);
         Assert.Equal(13, actual.Properties.MapTier);
+        Assert.Equal("Necropolis", actual.Properties.MapArea);
     }
 
     [Fact]
@@ -462,6 +514,7 @@ Note: ~b/o 1 chaos
         Assert.True(actual.Properties.Blighted);
         Assert.False(actual.Properties.BlightRavaged);
         Assert.Equal(3, actual.Properties.MapTier);
+        Assert.Equal("Tropical Island", actual.Properties.MapArea);
     }
 
     [Fact]
@@ -496,5 +549,6 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
         Assert.False(actual.Properties.Blighted);
         Assert.True(actual.Properties.BlightRavaged);
         Assert.Equal(16, actual.Properties.MapTier);
+        Assert.Equal("Foundry", actual.Properties.MapArea);
     }
 }

@@ -54,6 +54,7 @@ public class PropertyParser
             new BlightedProperty(game, gameTextProvider),
             new BlightRavagedProperty(game, gameTextProvider),
             new MapTierProperty(game, gameTextProvider),
+            new MapAreaProperty(game, gameTextProvider),
             new RewardProperty(game, gameTextProvider, itemDefinitionProvider),
             new RevivesAvailableProperty(game, gameTextProvider),
             new MonsterPackSizeProperty(game, gameTextProvider),
