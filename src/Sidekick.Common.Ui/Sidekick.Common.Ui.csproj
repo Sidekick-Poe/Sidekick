@@ -26,9 +26,7 @@
       <AdditionalFiles Include="Menu\MenuLegend.razor" />
     </ItemGroup>
 
-    <Target Name="NpmBuild"
-            BeforeTargets="ResolveStaticWebAssetsInputs"
-            Condition="$([MSBuild]::IsOSPlatform('Linux')) != 'true'">
+    <Target Name="NpmBuild" BeforeTargets="ResolveStaticWebAssetsInputs">
         <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)"/>
     </Target>
 
