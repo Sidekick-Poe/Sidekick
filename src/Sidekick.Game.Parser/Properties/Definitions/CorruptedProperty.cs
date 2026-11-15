@@ -14,8 +14,6 @@ public class CorruptedProperty(
 {
     private Regex Pattern { get; } = gameTextProvider.Texts.ItemPropertyCorrupted.ToRegexLine();
 
-    private Regex? TwiceCorruptedPattern { get; } = string.IsNullOrEmpty(gameTextProvider.Texts.ItemPropertyTwiceCorrupted) ? null : gameTextProvider.Texts.ItemPropertyTwiceCorrupted.ToRegexLine();
-
     public override string Label => gameTextProvider.Texts.ItemPropertyCorrupted;
 
     public override void Parse(Item item)
@@ -26,9 +24,7 @@ public class CorruptedProperty(
             item.Properties.Rarity != Rarity.Unique &&
             item.Properties.Rarity != Rarity.Gem) return;
 
-        // The game prints either the corrupted line or the twice corrupted line, never both.
-        item.Properties.TwiceCorrupted = TwiceCorruptedPattern != null && GetBool(TwiceCorruptedPattern, item.Text);
-        item.Properties.Corrupted = item.Properties.TwiceCorrupted || GetBool(Pattern, item.Text);
+        item.Properties.Corrupted = GetBool(Pattern, item.Text);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

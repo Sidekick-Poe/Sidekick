@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Sidekick.Game.Enums;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Filters.Types;
@@ -8,15 +9,29 @@ using Sidekick.Game.Providers;
 namespace Sidekick.Game.Parser.Properties.Definitions;
 
 /// <remarks>
-/// Parsing happens in <see cref="CorruptedProperty"/>, since a twice corrupted item is also corrupted.
+/// Must be parsed after <see cref="CorruptedProperty"/>. The game prints either the corrupted line or the twice corrupted line, never both, and a twice corrupted item is also corrupted.
 /// </remarks>
 public class TwiceCorruptedProperty(
     GameType game,
     GameTextProvider gameTextProvider) : PropertyDefinition
 {
+    private Regex? Pattern { get; } = string.IsNullOrEmpty(gameTextProvider.Texts.ItemPropertyTwiceCorrupted) ? null : gameTextProvider.Texts.ItemPropertyTwiceCorrupted.ToRegexLine();
+
     public override string Label => gameTextProvider.Texts.ItemPropertyTwiceCorrupted;
 
-    public override void Parse(Item item) {}
+    public override void Parse(Item item)
+    {
+        if (Pattern == null) return;
+
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique &&
+            item.Properties.Rarity != Rarity.Gem) return;
+
+        item.Properties.TwiceCorrupted = GetBool(Pattern, item.Text);
+        if (item.Properties.TwiceCorrupted) item.Properties.Corrupted = true;
+    }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
