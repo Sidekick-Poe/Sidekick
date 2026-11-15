@@ -1,0 +1,15 @@
+@using Sidekick.Common.Debugging
+@using Sidekick.Common.Ui.Forms
+
+<FormFieldset Legend="Debug mode">
+    <FormCheckbox Value="DebugService.IsDebug"
+                  ValueChanged="value => DebugService.IsDebug = value">
+        Show the setup form and sample release notes in the splash window previews
+    </FormCheckbox>
+    <FormCheckbox Value="DebugService.HotkeysInAnyWindow"
+                  ValueChanged="value => DebugService.HotkeysInAnyWindow = value">
+        Hotkeys work in any window, including chat commands like F5
+    </FormCheckbox>
+</FormFieldset>
+
+@inject DebugService DebugService

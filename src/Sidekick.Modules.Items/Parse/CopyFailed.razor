@@ -1,0 +1,22 @@
+@page "/item/copy-failed"
+@using Sidekick.Common.Exceptions
+
+@inject IStringLocalizer<ParseResources> Resources
+
+@code {
+
+    /// <summary>
+    /// KDE asks the user before an X11 app can send keys on Wayland, and denying it makes every copy fail until Sidekick restarts.
+    /// </summary>
+    private static bool IsKdeWayland => Environment.GetEnvironmentVariable("XDG_SESSION_TYPE") == "wayland"
+                                        && (Environment.GetEnvironmentVariable("XDG_CURRENT_DESKTOP")?.Contains("KDE") ?? false);
+
+    protected override void OnInitialized()
+    {
+        throw new SidekickException(Resources["Copy_Failed"], IsKdeWayland ? Resources["Copy_Failed_Kde"] : Resources["Copy_Failed_Linux"])
+        {
+            IsCritical = false,
+        };
+    }
+
+}
