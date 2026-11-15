@@ -29,7 +29,7 @@
             </div>
         </div>
         <div
-            class="h-full flex flex-col grow  @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "[*_.sidekick-container]:!pl-0" : string.Empty)">
+            class="h-full flex flex-col grow @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "[&_.sidekick-container]:!pl-0" : string.Empty)">
             <AppUpdate/>
             <ConfigurationFlagError/>
             <div class="grow relative">
