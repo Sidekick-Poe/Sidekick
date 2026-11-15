@@ -100,7 +100,7 @@
 #endif
 
     private const int FORM_WIDTH = 520;
-    private const int FORM_HEIGHT = 380;
+    private const int FORM_HEIGHT = 480;
 
     public void Dispose()
     {
@@ -133,6 +133,9 @@
                 NewLeagues = true;
                 await CacheProvider.Clear();
             }
+
+            // Development only: shows the tallest form in the preview.
+            if (IsForcedSetup) NewLeagues = true;
 
             // Check to see if we should run Setup first before running the rest of the initialization process
             var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
