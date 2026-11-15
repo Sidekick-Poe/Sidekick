@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "devDependencies": {
+    "@tailwindcss/cli": "4.3.5",
     "esbuild": "^0.25.2",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "4.3.5"
   },
   "scripts": {
-    "build": "npm install && node ./Scripts/esbuild.js && npx @tailwindcss/cli -i ./Styles/main.css -o ./wwwroot/css/sidekick.css"
+    "build": "npm install && node ./Scripts/esbuild.js && tailwindcss -i ./Styles/main.css -o ./wwwroot/css/sidekick.css"
   },
   "dependencies": {
     "flowbite": "^3.1.2"

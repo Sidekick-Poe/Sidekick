@@ -1,0 +1,29 @@
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Views
+
+@* Opens the splash window steps and the update page, which are hard to reach in development, to check their window size, content and buttons. *@
+<FormFieldset Legend="Splash window">
+    <div class="flex flex-wrap gap-2">
+        <ButtonPrimary OnClick="OpenSetup">Open the setup form</ButtonPrimary>
+        <ButtonPrimary OnClick="OpenReleaseNotes">Open the release notes</ButtonPrimary>    </div>
+</FormFieldset>
+
+@inject IViewLocator ViewLocator
+@inject NavigationManager NavigationManager
+
+@code {
+
+    private void OpenSetup()
+    {
+        // The back parameter makes the page behave like when it is opened while Sidekick is running.
+        ViewLocator.Open(SidekickViewType.Splash, $"/setup?devForceSetup=true&back={Uri.EscapeDataString(NavigationManager.Uri)}");
+    }
+
+    private void OpenReleaseNotes()
+    {
+        // The back parameter makes the page behave like when it is opened from the About page.
+        ViewLocator.Open(SidekickViewType.Splash, $"/update?devFakeNotes=true&back={Uri.EscapeDataString(NavigationManager.Uri)}");
+    }
+
+}

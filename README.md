@@ -16,19 +16,19 @@ Sidekick requires the following packages to be installed
 #### Arch-based
 
 ```sh
-sudo pacman -S --needed xsel webkit2gtk-4.1 dotnet-runtime-8.0
+sudo pacman -S --needed xsel webkit2gtk-4.1
 ```
 
 #### Ubuntu
 
 ```sh
-sudo apt install xsel libwebkit2gtk-4.1-0 dotnet-runtime-8.0
+sudo apt install xsel libwebkit2gtk-4.1-0
 ```
 
 #### Fedora
 
 ```sh
-sudo dnf install xsel webkit2gtk4.1 dotnet-runtime-8.0
+sudo dnf install xsel webkit2gtk4.1
 ```
 
 ### Download and run
@@ -42,14 +42,20 @@ chmod +x Sidekick-linux-stable.AppImage
 ## Development
 We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it. We are also available on [Discord](https://discord.gg/R9HyCpV).
 #### Running the code:
-1. Install **.NET SDK**
-2. Install **Node** and **NPM** (for the stylesheets)
+1. Install the **.NET 10 SDK**
+2. Install **Node** and **NPM** (the build uses them to generate the stylesheets and scripts)
 3. Clone the repository
-4. Open **.sln** with your IDE of choice. Recommended IDEs are: **Visual Studio 2022**, **Rider** or **Visual Studio Code**
-5. Run the **WPF** project (VS2022 or Rider) or **Web** project. Can also be done with **dotnet CLI**
+4. Open **Sidekick.sln** with your IDE of choice. Recommended IDEs are: **Visual Studio 2026**, **Rider** or **Visual Studio Code**
+5. Run one of the two startup projects:
+   - **Sidekick.Avalonia**: the desktop application.
+   - **Sidekick.Web**: the same interface as a web application, opened in your browser.
+
+   In **Visual Studio Code**, pick **Sidekick (desktop)** or **Sidekick (web)** in the Run and Debug panel and press F5. With the **dotnet CLI**, use `dotnet run --project src/Sidekick.Avalonia` or `dotnet run --project src/Sidekick.Web`.
+
+Closing the desktop window only hides it in the system tray. Exit Sidekick from the tray icon before building again, otherwise the build fails because its files are in use.
 
 #### Implementation Notes
-The application is a web application that is running inside a WebView2 provided by WPF. Development can also be done using the Web project.
+The interface is a Blazor web application. The desktop application (Avalonia) hosts it in a native WebView (WebView2 on Windows, WebKitGTK on Linux). Development can also be done using the Web project.
 
 #### Running webapp in docker
 1. Clone the repository
@@ -57,11 +63,11 @@ The application is a web application that is running inside a WebView2 provided 
 ```powershell copy
 docker build --tag sidekickpoe:latest --file Dockerfile .
 ```
-4. Run it with:
+3. Run it with:
 ```powershell copy
-docker run -p 5000:5000 -v ./sidekick-data:/app/src/Sidekick.Web/sidekick sidekickpoe:latest
+docker run -p 5000:5000 -v ./sidekick-data:/app/sidekick sidekickpoe:latest
 ```
-5. Access through http://localhost:5000
+4. Access through http://localhost:5000
 
 #### Running webapp with docker compose (requires [Docker Compose](https://docs.docker.com/compose/install/))
 1. Clone the repository

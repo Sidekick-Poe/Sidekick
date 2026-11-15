@@ -89,7 +89,7 @@ Item Quantity: +101% (augmented)
 Item Rarity: +62% (augmented)
 Monster Pack Size: +39% (augmented)
 More Maps: +110% (augmented)
-More Scarabs: +35% (augmented)
+More Threads: +35% (augmented)
 More Currency: +45% (augmented)
 --------
 Item Level: 85
@@ -122,7 +122,7 @@ Corrupted
         Assert.Equal(62, actual.Properties.ItemRarity);
         Assert.Equal(39, actual.Properties.MonsterPackSize);
         Assert.Equal(110, actual.Properties.MoreMaps);
-        // Removed in 3.30 // Assert.Equal(35, actual.Properties.MoreScarabs);
+        Assert.Equal(35, actual.Properties.MoreThreads);
         Assert.Equal(45, actual.Properties.MoreCurrency);
         Assert.True(actual.Properties.Corrupted);
     }
@@ -161,7 +161,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
 Rarity: Normal
 Map (Tier 16)
 --------
-More Scarabs: +50% (augmented)
+More Threads: +50% (augmented)
 Quality (Scarabs): +20% (augmented)
 --------
 Item Level: 83
@@ -177,7 +177,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
         Assert.Equal(16, actual.Properties.MapTier);
-        // Removed in 3.30 // Assert.Equal(50, actual.Properties.MoreScarabs);
+        Assert.Equal(50, actual.Properties.MoreThreads);
         Assert.Equal(20, actual.Properties.QualityScarabs);
     }
 

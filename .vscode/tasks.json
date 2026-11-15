@@ -2,16 +2,43 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build desktop",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Sidekick.slnx",
+                "${workspaceFolder}/src/Sidekick.Avalonia/Sidekick.Avalonia.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "build web",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Sidekick.Web/Sidekick.Web.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "watch web",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/src/Sidekick.Web/Sidekick.Web.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "isBackground": true
         }
     ]
 }

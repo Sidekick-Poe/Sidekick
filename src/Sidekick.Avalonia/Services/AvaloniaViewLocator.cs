@@ -1,3 +1,4 @@
+using Sidekick.Avalonia.Controls;
 using Avalonia;
 using Sidekick.Common.Ui.Views;
 
@@ -80,4 +81,28 @@ public class AvaloniaViewLocator(
         });
     }
 
+    public void SetSize(SidekickViewType type, int width, int height, object owner)
+    {
+        GetApplication().Dispatcher.InvokeAsync(async () =>
+        {
+            var window = GetWindow(type);
+            if (window != null) await window.SetRequestedSize(width, height, owner);
+        });
+    }
+
+    public void ResetSize(SidekickViewType type, object owner)
+    {
+        GetApplication().Dispatcher.InvokeAsync(async () =>
+        {
+            var window = GetWindow(type);
+            if (window != null) await window.ResetRequestedSize(owner);
+        });
+    }
+
+    private BaseWindow? GetWindow(SidekickViewType type) => type switch
+    {
+        SidekickViewType.Overlay => OverlayWindow,
+        SidekickViewType.Splash => SplashWindow,
+        _ => StandardWindow,
+    };
 }

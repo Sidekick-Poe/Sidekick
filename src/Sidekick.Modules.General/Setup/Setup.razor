@@ -8,6 +8,8 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.Extensions
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Alerts
@@ -57,7 +59,7 @@
         {
             <div class="px-3 py-2 flex justify-center gap-2">
                 <ButtonSecondary OnClick="Exit">
-                    @Resources["Exit"]
+                    @ExitLabel
                 </ButtonSecondary>
                 <ButtonPrimary OnClick="() => Save()">
                     @Resources["Save"]
@@ -68,7 +70,7 @@
         {
             <div class="px-3 py-2 flex justify-center gap-2">
                 <ButtonSecondary OnClick="Exit">
-                    @Resources["Exit"]
+                    @ExitLabel
                 </ButtonSecondary>
             </div>
         }
@@ -80,11 +82,30 @@
 @inject LeagueProvider LeagueProvider
 @inject ICacheProvider CacheProvider
 @inject IStringLocalizer<Setup> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject NavigationManager NavigationManager
 @inject CurrentView CurrentView
 @inject ILogger<Setup> Logger
+@implements IDisposable
 
 @code {
+
+    /// <summary>
+    /// Development only: set by the Development page to preview the setup form. Always false in release builds.
+    /// </summary>
+#if DEBUG
+    private bool IsForcedSetup => NavigationManager.QueryString("devForceSetup") == "true";
+#else
+    private bool IsForcedSetup => false;
+#endif
+
+    private const int FORM_WIDTH = 520;
+    private const int FORM_HEIGHT = 380;
+
+    public void Dispose()
+    {
+        if (RequiresSetup) CurrentView.ResetSize();
+    }
 
     private bool RequiresSetup { get; set; }
 
@@ -116,9 +137,10 @@
             // Check to see if we should run Setup first before running the rest of the initialization process
             var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
             var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
-            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Value != leagueId) || NewLeagues || parserLanguage == null)
+            if (IsForcedSetup || string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Value != leagueId) || NewLeagues || parserLanguage == null)
             {
                 RequiresSetup = true;
+                CurrentView.SetSize(FORM_WIDTH, FORM_HEIGHT);
             }
             else
             {
@@ -148,8 +170,21 @@
 
     }
 
+    /// <summary>
+    /// The back parameter means the setup was opened while Sidekick is running, not at startup.
+    /// </summary>
+    private bool IsOpenedLater => !string.IsNullOrEmpty(NavigationManager.QueryString("back"));
+
+    private string ExitLabel => IsOpenedLater ? UiResources["Close"] : Resources["Exit"];
+
     public void Exit()
     {
+        if (IsOpenedLater)
+        {
+            CurrentView.Close();
+            return;
+        }
+
         ApplicationService.Shutdown();
     }
 
@@ -165,6 +200,14 @@
 
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
+
+        // Development only: the app is already initialized, so just close the preview.
+        if (IsForcedSetup)
+        {
+            CurrentView.Close();
+            return;
+        }
+
         NavigationManager.NavigateTo("/initialize");
     }
 

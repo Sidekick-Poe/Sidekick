@@ -1,15 +1,19 @@
-using System.Globalization;
 using System.Text.Json;
-using Avalonia.Controls;
 using Sidekick.Avalonia.Controls;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Avalonia;
 
 public partial class SplashWindow : BaseWindow
 {
-    private const int WIDTH = 600;
-    private const int HEIGHT = 500;
+    /// <summary>
+    /// The default width, which fits the initialization and update check steps. Steps that need more room request a bigger size.
+    /// </summary>
+    private const int WIDTH = 480;
+
+    /// <summary>
+    /// The default height, which fits the initialization and update check steps. Steps that need more room request a bigger size.
+    /// </summary>
+    private const int HEIGHT = 320;
 
     public SplashWindow() :
         base(HEIGHT, WIDTH)
@@ -34,18 +38,5 @@ public partial class SplashWindow : BaseWindow
 
             await NormalizeView();
         });
-    }
-
-    private async Task NormalizeView()
-    {
-        WindowState = WindowState.Normal;
-        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
-        if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
-
-        Height = HEIGHT * zoom;
-        Width = WIDTH * zoom;
-        MinWidth = Width;
-        MinHeight = Height;
     }
 }

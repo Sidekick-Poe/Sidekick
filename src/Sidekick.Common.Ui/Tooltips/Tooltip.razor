@@ -16,7 +16,7 @@
 </FlowbiteComponent>
 
 <BodySectionContent SectionName="@Id">
-    <div id="@Id" role="tooltip" class="bg-stone-950 p-2 max-w-60 rounded-lg border border-solid border-stone-800
+    <div id="@Id" role="tooltip" class="bg-stone-950 p-2 @MaxWidthClass rounded-lg border border-solid border-stone-800
             absolute z-50 invisible transition-opacity duration-300 shadow-xs opacity-0 tooltip text-white">
         @if (TooltipContent is not null)
         {
@@ -45,6 +45,12 @@
 
     [Parameter]
     public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
+
+    /// <summary>
+    /// The maximum width class of the tooltip box. Use "max-w-none" to fit content that must not wrap.
+    /// </summary>
+    [Parameter]
+    public string MaxWidthClass { get; set; } = "max-w-60";
 
     private string Id { get; } = UiUtilities.GenerateId();
 

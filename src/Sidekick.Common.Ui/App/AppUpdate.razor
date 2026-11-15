@@ -15,6 +15,7 @@
 @inject IGitHubClient GitHubClient
 @inject IStringLocalizer<UiResources> Resources
 @inject NavigationManager NavigationManager
+@inject IViewLocator ViewLocator
 
 @code {
 
@@ -30,7 +31,7 @@
 
     private void OnClick()
     {
-        NavigationManager.NavigateTo($"/update?back={Uri.EscapeDataString(NavigationManager.Uri)}");
+        ViewLocator.Open(SidekickViewType.Splash, $"/update?back={Uri.EscapeDataString(NavigationManager.Uri)}");
     }
 
 }

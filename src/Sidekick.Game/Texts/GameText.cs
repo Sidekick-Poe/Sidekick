@@ -58,7 +58,7 @@ public class GameText
     public string ItemPropertyMonsterRarity { get; set; } = string.Empty;
     public string ItemPropertyReward { get; set; } = string.Empty;
     public string ItemPropertyMoreMaps { get; set; } = string.Empty;
-    public string ItemPropertyMoreScarabs { get; set; } = string.Empty;
+    public string ItemPropertyMoreThreads { get; set; } = string.Empty;
     public string ItemPropertyMoreCurrency { get; set; } = string.Empty;
     public string ItemPropertyMoreCards { get; set; } = string.Empty;
 

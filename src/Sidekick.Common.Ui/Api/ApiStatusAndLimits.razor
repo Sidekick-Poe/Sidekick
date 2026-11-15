@@ -3,19 +3,25 @@
 @using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
+@* Hidden until the first request to this API, since the status is unknown before that. *@
+@if (CurrentState == ApiState.Unknown)
+{
+    return;
+}
+
 <div class="flex flex-nowrap items-center gap-1">
-    <div class="text-neutral-400 text-sm">@Resources["Api_Status"]:</div>
+    <div class="text-neutral-400 text-sm whitespace-nowrap">@Resources["Api_Status"]:</div>
     <div class="flex flex-nowrap items-center gap-1">
         <div class="@StatusColor rounded-full w-2 h-2"></div>
-        <div class="text-neutral-400 text-xs">@StatusText</div>
+        <div class="text-neutral-400 text-xs whitespace-nowrap">@StatusText</div>
     </div>
 
     @if (ClosestLimit != null)
     {
-        <Tooltip>
+        <Tooltip MaxWidthClass="max-w-none">
             <ChildContent>
                 <div
-                    class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1 cursor-help">
+                    class="text-xs font-mono whitespace-nowrap text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1 cursor-help">
                     <div class="@GetLimitBackground(ClosestLimit) rounded-full w-2 h-2 -my-0.5"></div>
                     <div>
                         @Resources["Api_RateLimit"]: @ClosestLimit.Used/@ClosestLimit.MaxHitCount @Resources["Api_RateLimit_In"] @ClosestLimit.TimePeriod @Resources["Api_RateLimit_Seconds"]
@@ -28,7 +34,7 @@
                     @foreach (var rule in CurrentRules)
                     {
                         <div
-                            class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
+                            class="text-xs font-mono whitespace-nowrap text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
                             <div class="@GetLimitBackground(rule) rounded-full w-2 h-2 -my-0.5"></div>
                             <div>
                                 @rule.Policy: @rule.Used/@rule.MaxHitCount @Resources["Api_RateLimit_In"] @rule.TimePeriod @Resources["Api_RateLimit_Seconds"]
