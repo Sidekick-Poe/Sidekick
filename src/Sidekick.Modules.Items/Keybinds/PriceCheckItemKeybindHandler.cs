@@ -1,3 +1,4 @@
+using Sidekick.Common.Cache;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
@@ -11,6 +12,7 @@ public class PriceCheckItemKeybindHandler
     IClipboardProvider clipboardProvider,
     IProcessProvider processProvider,
     ISettingsService settingsService,
+    IScopedCacheProvider scopedCacheProvider,
     IInputProvider input
 ) : KeybindHandler(settingsService, SettingKeys.KeyOpenPriceCheck)
 {
@@ -32,6 +34,7 @@ public class PriceCheckItemKeybindHandler
             return;
         }
 
+        scopedCacheProvider.Clear();
         viewLocator.Open(SidekickViewType.Overlay, $"/item/{text.EncodeBase64Url()}");
     }
 }

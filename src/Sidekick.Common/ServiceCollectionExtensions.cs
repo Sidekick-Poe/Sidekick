@@ -21,6 +21,7 @@ public static class ServiceCollectionExtensions
 
         services.TryAddSingleton<IBrowserProvider, BrowserProvider>();
         services.TryAddSingleton<ICacheProvider, CacheProvider>();
+        services.TryAddSingleton<IScopedCacheProvider, ScopedCacheProvider>();
         services.TryAddSingleton<IFolderProvider, FolderProvider>();
 
         services.Configure<SidekickConfiguration>(configuration =>
