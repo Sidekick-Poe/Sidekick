@@ -282,4 +282,25 @@
   <data name="Exit" xml:space="preserve">
       <value>Exit</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+      <value>Copy</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+      <value>Copied</value>
+  </data>
+  <data name="Linux_Dependencies_Title" xml:space="preserve">
+      <value>Missing packages</value>
+  </data>
+  <data name="Linux_Dependencies_Introduction" xml:space="preserve">
+      <value>Sidekick needs these packages to run on Linux:</value>
+  </data>
+  <data name="Linux_Dependencies_Xsel" xml:space="preserve">
+      <value>xsel, which copies items from Path of Exile</value>
+  </data>
+  <data name="Linux_Dependencies_WebKitGtk" xml:space="preserve">
+      <value>WebKitGTK, which shows the Sidekick windows</value>
+  </data>
+  <data name="Linux_Dependencies_Instructions" xml:space="preserve">
+      <value>Install them in a terminal with the command for your distribution, then start Sidekick again:</value>
+  </data>
 </root>

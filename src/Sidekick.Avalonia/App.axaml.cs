@@ -40,9 +40,6 @@ public partial class App : Application
                 throw new Exception("Unsupported application type.");
             }
 
-            var missingDependencies = LinuxDependencyChecker.GetMissingDependencies().ToList();
-            if (missingDependencies.Count > 0) throw new Exception(LinuxDependencyChecker.BuildDialogMessage(missingDependencies));
-
             AppDomain.CurrentDomain.UnhandledException += (_, e)
                 => HandleException(e.ExceptionObject as Exception ?? new Exception("Unknown exception"));
 
@@ -71,6 +68,15 @@ public partial class App : Application
             });
 
             tcs.Task.GetAwaiter().GetResult();
+
+            // Checked once the services are started, so that the message can be translated.
+            var missingDependencies = LinuxDependencyChecker.GetMissingDependencies().ToList();
+            if (missingDependencies.Count > 0)
+            {
+                ShowLinuxDependencies(missingDependencies);
+                base.OnFrameworkInitializationCompleted();
+                return;
+            }
 
             _ = CheckIsAlreadyRunning();
 
@@ -101,6 +107,19 @@ public partial class App : Application
         {
             HandleException(ex);
         }
+    }
+
+    private static void ShowLinuxDependencies(IReadOnlyList<LinuxDependency> missingDependencies)
+    {
+        var services = RequiredServerAppHost.Application.Services;
+
+        // The culture is otherwise set asynchronously, after the window would already be built.
+        var uiLanguageProvider = services.GetRequiredService<IUiLanguageProvider>();
+        CultureInfo.CurrentUICulture = Task.Run(uiLanguageProvider.Get).GetAwaiter().GetResult();
+
+        var window = new LinuxDependenciesWindow(missingDependencies, services.GetRequiredService<IStringLocalizer<UiResources>>());
+        window.Closed += (_, _) => Environment.Exit(0);
+        window.Show();
     }
 
     private async Task CheckIsAlreadyRunning()
