@@ -282,4 +282,22 @@
   <data name="Exit" xml:space="preserve">
       <value>Exit</value>
   </data>
+  <data name="Error_Unexpected_Title" xml:space="preserve">
+      <value>Something went wrong.</value>
+  </data>
+  <data name="Error_Unexpected_Description" xml:space="preserve">
+      <value>Sidekick may stop responding until it is restarted. If this keeps happening, let us know on Discord or GitHub.</value>
+  </data>
+  <data name="Error_Unparsable_Title" xml:space="preserve">
+      <value>Sidekick couldn&apos;t read this item.</value>
+  </data>
+  <data name="Error_Unparsable_Settings" xml:space="preserve">
+      <value>Make sure the game language and league are set correctly in the settings.</value>
+  </data>
+  <data name="Error_Unparsable_Mistakes" xml:space="preserve">
+      <value>Sidekick can make mistakes, so let us know on Discord or GitHub.</value>
+  </data>
+  <data name="Error_Item_Text" xml:space="preserve">
+      <value>Item text</value>
+  </data>
 </root>

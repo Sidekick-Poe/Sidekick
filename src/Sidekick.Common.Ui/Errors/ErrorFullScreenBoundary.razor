@@ -1,76 +1,66 @@
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Localization
 
 <SidekickErrorBoundary @ref="ErrorBoundary">
     <ChildContent>
         @ChildContent
     </ChildContent>
     <ErrorContent>
-        <div class="fixed top-0 left-0 h-full w-full text-xl overflow-auto">
-            <div class="flex min-w-full min-h-full items-center justify-center text-center p-4 flex-col">
-                @if (context.IsCritical)
-                {
-                    <Icon Svg="@UiIcons.Error" Class="text-red-600" Size="@UiIconSize.Large" />
-                }
-                else
-                {
-                    <Icon Svg="@UiIcons.Warning" Class="text-orange-600" Size="@UiIconSize.Large" />
-                }
+        @{
+            string title = context.SidekickException switch
+            {
+                UnparsableException => Resources["Error_Unparsable_Title"],
+                not null => context.Message,
+                null => Resources["Error_Unexpected_Title"],
+            };
+            List<string> details = context.SidekickException switch
+            {
+                UnparsableException => [Resources["Error_Unparsable_Settings"], Resources["Error_Unparsable_Mistakes"]],
+                not null => context.AdditionalInformation,
+                null => [Resources["Error_Unexpected_Description"]],
+            };
+            var itemText = (context.SidekickException as UnparsableException)?.ItemText;
 
-                <div class="my-3 text-white">
-                    @if (!string.IsNullOrEmpty(context.Message))
+            var isLeftAligned = context.SidekickException is UnparsableException;
+
+            var actions = context.SidekickException?.Actions ?? 0;
+            if (actions == 0) actions = ExceptionActions.CloseWindow;
+        }
+
+        <div class="fixed top-0 left-0 h-full w-full overflow-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div class="w-full max-w-lg rounded-xl border border-stone-700 bg-stone-900 p-6 shadow-lg @(isLeftAligned ? "text-left" : "text-center")">
+                    <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-stone-800 @(context.IsCritical ? "text-red-500" : "text-orange-500")">
+                        <Icon Svg="@(context.IsCritical ? UiIcons.Error : UiIcons.Warning)" Size="@UiIconSize.Medium" />
+                    </div>
+
+                    <Heading2 Class="text-white leading-snug text-center">@title</Heading2>
+
+                    @foreach (var detail in details)
                     {
-                        <Heading1>@context.Message</Heading1>
+                        <TextBase Class="mt-3 text-stone-300">@detail</TextBase>
+                    }
 
-                        @if (context.AdditionalInformation.Any())
+                    @if (!string.IsNullOrWhiteSpace(itemText))
+                    {
+                        <label class="mt-4 block">
+                            <TextBase Class="text-stone-300">@Resources["Error_Item_Text"]</TextBase>
+                            <textarea readonly class="@UiClasses.FormInputClasses mt-2 h-48 w-full resize-none p-2 text-sm">@itemText</textarea>
+                        </label>
+                    }
+
+                    <div class="mt-6 flex items-center justify-center gap-2">
+                        @if (actions.HasFlag(ExceptionActions.ExitApplication))
                         {
-                            <Heading3 Class="mt-4">Additional Information</Heading3>
-                            <ul>
-                                @foreach (var additionalInformation in context.AdditionalInformation)
-                                {
-                                    <li>
-                                        <TextBase Class="mt-1">@additionalInformation</TextBase>
-                                    </li>
-                                }
-                            </ul>
+                            <ButtonSecondary OnClick="ApplicationService.Shutdown">@Resources["Exit"]</ButtonSecondary>
                         }
-
-                        @if (context.SidekickException is UnparsableException unparsableException && !string.IsNullOrWhiteSpace(unparsableException.ItemText))
+                        @if (actions.HasFlag(ExceptionActions.CloseWindow))
                         {
-                            <label class="w-full h-64 mt-2">
-                                <TextBase>Here's the item's text</TextBase>
-                                <textarea class="@UiClasses.FormInputClasses mt-2 p-2 text-base w-full h-64 resize-none">@unparsableException.ItemText</textarea>
-                            </label>
+                            <ButtonPrimary OnClick="Close">@Resources["Close"]</ButtonPrimary>
                         }
-                    }
-                    else
-                    {
-                        <span>An error has occurred. This application may no longer respond until reloaded.<br />If this issue keeps reoccurring, please open a ticket on our github page.</span>
-                    }
-                </div>
-
-                @{
-                    var actions = ExceptionActions.CloseWindow;
-                    if (context.SidekickException != null)
-                    {
-                        actions = context.SidekickException.Actions;
-                    }
-
-                    if (actions == 0)
-                    {
-                        actions = ExceptionActions.CloseWindow;
-                    }
-                }
-
-                <div class="flex items-center justify-center gap-2">
-                    @if (actions.HasFlag(ExceptionActions.ExitApplication))
-                    {
-                        <a class="@GetButtonClass(context.IsCritical)" @onclick="ApplicationService.Shutdown">Exit Application</a>
-                    }
-                    @if (actions.HasFlag(ExceptionActions.CloseWindow))
-                    {
-                        <a class="@GetButtonClass(context.IsCritical)" @onclick="Close">Close</a>
-                    }
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,6 +70,7 @@
 @inject CurrentView CurrentView
 @inject IApplicationService ApplicationService
 @inject NavigationManager NavigationManager
+@inject IStringLocalizer<UiResources> Resources
 @implements IDisposable
 
 @code {
@@ -106,12 +97,6 @@
     public void Dispose()
     {
         NavigationManager.LocationChanged -= RecoverOnNavigation;
-    }
-
-    private string GetButtonClass(bool isCritical)
-    {
-        var colors = isCritical ? "bg-red-600 hover:bg-red-400" : "bg-orange-600 hover:bg-orange-400";
-        return $"disabled:opacity-50 inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-wide text-white transition-colors duration-200 cursor-pointer rounded-md {colors} {UiClasses.FocusClasses}";
     }
 
     private void Close()
