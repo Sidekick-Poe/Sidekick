@@ -1,0 +1,52 @@
+﻿@inherits LayoutComponentBase
+
+<div class="flex flex-wrap border-t-1 gap-x-2 px-2 py-0.5 border-stone-700 dark:bg-stone-950">
+    @foreach (var item in Items)
+    {
+        if (item.IsSeparator)
+        {
+            <div class="mx-auto"></div>
+            continue;
+        }
+
+        var isActive = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).AbsolutePath.StartsWith(item.Route);
+        <button type="button"
+                onclick="@(() => NavigateTo(item))"
+                class="flex flex-nowrap gap-1 font-caps items-center justify-center rounded-md focus:outline-hidden focus:ring-inset cursor-pointer select-none focus:ring-2 dark:focus:ring-violet-400 py-0.5 px-2 text-base font-medium tracking-wide text-white transition-colors duration-200 @(isActive ? "bg-stone-700 hover:bg-stone-500" : "bg-transparent hover:text-violet-500")">
+            <Icon Svg="@item.Icon" Size="UiIconSize.Small"/>
+            <div class="text-sm">@item.Label</div>
+        </button>
+    }
+</div>
+
+@inject NavigationItemProvider NavigationItemProvider
+@inject NavigationManager NavigationManager
+@implements IDisposable
+
+@code{
+
+    private List<NavigationItemProvider.NavigationItem> Items { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
+        Items = NavigationItemProvider.GetItems();
+
+        base.OnInitialized();
+    }
+
+    private void NavigateTo(NavigationItemProvider.NavigationItem item)
+    {
+        NavigationManager.NavigateTo(item.Route);
+    }
+
+    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
+    }
+}

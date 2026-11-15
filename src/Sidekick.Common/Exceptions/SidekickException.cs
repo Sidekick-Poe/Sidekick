@@ -20,6 +20,11 @@ public class SidekickException : Exception
 
     public List<string> AdditionalInformation { get; set; } = [];
 
+    /// <summary>
+    /// The text of the item the error is about, shown so the user can check or report it.
+    /// </summary>
+    public string? ItemText { get; init; }
+
     public virtual bool IsCritical { get; init; } = true;
 
     /// <summary>

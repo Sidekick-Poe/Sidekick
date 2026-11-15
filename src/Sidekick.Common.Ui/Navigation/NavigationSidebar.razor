@@ -1,0 +1,64 @@
+﻿@inherits LayoutComponentBase
+
+<div class="relative overflow-hidden w-20 z-10">
+    <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
+        <div class="h-full flex flex-col p-1">
+            @foreach (var item in Items)
+            {
+                if (item.IsSeparator)
+                {
+                    <LayoutDivider/>
+                    continue;
+                }
+
+                var isActive = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).AbsolutePath.StartsWith(item.Route);
+                <button type="button"
+                        onclick="@(() => NavigateTo(item))"
+                        class="flex flex-col font-caps items-center justify-center rounded-md focus:outline-hidden focus:ring-inset cursor-pointer select-none focus:ring-2 dark:focus:ring-violet-400 px-1 pt-2 pb-1 text-base font-medium tracking-wide text-white transition-colors duration-200 @(isActive ? "bg-violet-700 hover:bg-violet-500" : "bg-transparent hover:text-violet-500")">
+                    <Icon Svg="@item.Icon"/>
+                    <div class="text-sm">@item.Label</div>
+                </button>
+            }
+
+            <div class="grow"></div>
+
+            <LayoutDivider/>
+
+            <div class="py-4 flex justify-center items-center">
+                <AppBuyMeACoffeeSmallButton/>
+            </div>
+        </div>
+    </div>
+</div>
+
+@inject NavigationItemProvider NavigationItemProvider
+@inject NavigationManager NavigationManager
+@implements IDisposable
+
+@code{
+
+    private List<NavigationItemProvider.NavigationItem> Items { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
+        Items = NavigationItemProvider.GetItems();
+
+        base.OnInitialized();
+    }
+
+    private void NavigateTo(NavigationItemProvider.NavigationItem item)
+    {
+        NavigationManager.NavigateTo(item.Route);
+    }
+
+    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
+    }
+}

@@ -1,8 +1,13 @@
+@using Sidekick.Common.Exceptions
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Buttons
 
 <FormFieldset Legend="Exceptions">
-    <ButtonPrimary OnClick="NormalException">Throw an exception</ButtonPrimary>
+    <div class="flex flex-wrap gap-2">
+        <ButtonPrimary OnClick="NormalException">Throw an exception</ButtonPrimary>
+        <ButtonPrimary OnClick="WarningException">Throw a warning</ButtonPrimary>
+        <ButtonPrimary OnClick="UnparsableItemException">Throw an unparsable item</ButtonPrimary>
+    </div>
 </FormFieldset>
 
 @code {
@@ -12,6 +17,22 @@
         #pragma warning disable S112 // General exceptions should never be thrown
         throw new Exception("[Development] This is a test exception.");
         #pragma warning restore S112 // General exceptions should never be thrown
+    }
+
+    private void WarningException()
+    {
+        throw new SidekickException("[Development] This is a test warning.", "This is the first detail.", "This is the second detail.")
+        {
+            IsCritical = false,
+        };
+    }
+
+    private void UnparsableItemException()
+    {
+        throw new UnparsableException("[Development] This is a test unparsable item.", "This is the first detail.", "This is the second detail.")
+        {
+            ItemText = "Item Class: Unknown\nRarity: Rare\nTest Item\n--------\n[Development] This is a test item.",
+        };
     }
 
 }
