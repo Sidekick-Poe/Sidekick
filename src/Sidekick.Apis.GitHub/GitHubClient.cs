@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -6,13 +5,15 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Api;
 using Sidekick.Apis.GitHub.Models;
+using Sidekick.Common.Debugging;
 
 namespace Sidekick.Apis.GitHub;
 
 public class GitHubClient
 (
     IHttpClientFactory httpClientFactory,
-    ILogger<GitHubClient> logger
+    ILogger<GitHubClient> logger,
+    DebugService debugService
 ) : IGitHubClient
 {
     private DateTimeOffset? LastUpdateCheck { get; set; }
@@ -33,7 +34,7 @@ public class GitHubClient
 
         LastUpdateCheck = DateTimeOffset.Now;
 
-        if (Debugger.IsAttached)
+        if (debugService.IsDeveloperMode)
         {
             return new GitHubRelease()
             {

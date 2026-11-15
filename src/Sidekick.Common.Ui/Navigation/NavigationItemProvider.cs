@@ -1,13 +1,14 @@
-using System.Diagnostics;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
+using Sidekick.Common.Debugging;
 using Sidekick.Common.Ui.Icons;
 using Sidekick.Common.Ui.Localization;
 namespace Sidekick.Common.Ui.Navigation;
 
 public class NavigationItemProvider(
     IStringLocalizer<UiResources> resources,
-    IOptions<SidekickConfiguration> configuration)
+    IOptions<SidekickConfiguration> configuration,
+    DebugService debugService)
 {
     public record NavigationItem(string Icon, string Label, string Route, bool IsSeparator = false);
 
@@ -22,7 +23,7 @@ public class NavigationItemProvider(
             result.Add(new NavigationItem(UiIcons.Wealth, resources["Wealth"], "/wealth"));
         }
 
-        if (Debugger.IsAttached)
+        if (debugService.IsDeveloperMode)
         {
             result.Add(new NavigationItem("", "", "", true));
             result.Add(new NavigationItem(UiIcons.Toolbox, resources["DevTools"], "/development"));

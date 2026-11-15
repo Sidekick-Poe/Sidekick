@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
+using Sidekick.Common.Debugging;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Providers;
 using Sidekick.Game.Providers.Languages.Implementations;
@@ -14,7 +15,8 @@ public static class GameData
 {
     private static readonly DataProvider DataProvider = new(
         Options.Create(new SidekickConfiguration { ApplicationType = SidekickApplicationType.Test }),
-        NullLogger<DataProvider>.Instance);
+        NullLogger<DataProvider>.Instance,
+        new DebugService());
 
     private static readonly ConcurrentDictionary<GameType, Task<List<ItemClassDefinition>>> ItemClasses = new();
 
