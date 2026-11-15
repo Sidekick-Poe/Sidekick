@@ -48,7 +48,12 @@
                     <ItemSeparator Rarity="Result.Item.Rarity"/>
                     <ItemStatText Category="StatCategory.Explicit">@(PropertyParser.GetDefinition<SplitProperty>().Label)</ItemStatText>
                 }
-                @if (Result.Item.Corrupted)
+                @if (Result.Item.TwiceCorrupted)
+                {
+                    <ItemSeparator Rarity="Result.Item.Rarity"/>
+                    <ItemStatText Category="StatCategory.Corrupted">@(PropertyParser.GetDefinition<TwiceCorruptedProperty>().Label)</ItemStatText>
+                }
+                else if (Result.Item.Corrupted)
                 {
                     <ItemSeparator Rarity="Result.Item.Rarity"/>
                     <ItemStatText Category="StatCategory.Corrupted">@(PropertyParser.GetDefinition<CorruptedProperty>().Label)</ItemStatText>
