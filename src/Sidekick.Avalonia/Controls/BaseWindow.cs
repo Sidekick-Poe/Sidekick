@@ -5,6 +5,7 @@ using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Styling;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 
 #if WINDOWS
@@ -40,6 +41,17 @@ public abstract class BaseWindow : Window
         Background = SolidColorBrush.Parse("#1C1917");
         Opened += BaseWindow_Opened;
         PositionChanged += BaseWindow_PositionChanged;
+        Deactivated += BaseWindow_Deactivated;
+    }
+
+    /// <summary>
+    /// A hotkey being recorded in the settings stops when the window loses focus, so that a key pressed in the game is not recorded.
+    /// The web view can't detect this on Linux, since it does not fire blur events.
+    /// </summary>
+    private void BaseWindow_Deactivated(object? sender, EventArgs e)
+    {
+        var input = ServiceProvider.GetService<IInputProvider>();
+        if (input != null) input.IsRecordingKeybind = false;
     }
 
     private void BaseWindow_Opened(object? sender, EventArgs e)

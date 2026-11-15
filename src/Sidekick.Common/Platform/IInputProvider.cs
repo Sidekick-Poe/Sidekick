@@ -58,6 +58,16 @@ public interface IInputProvider : IInitializableService
 
     HashSet<string?> UsedKeybinds { get; }
 
+    /// <summary>
+    /// While a hotkey is being changed in the settings, key presses only raise <see cref="OnKeyDown"/>: they don't run any hotkey and, where the platform allows it, don't reach any window.
+    /// </summary>
+    bool IsRecordingKeybind { get; set; }
+
+    /// <summary>
+    /// Raised when <see cref="IsRecordingKeybind"/> is turned off, for example when the window loses focus, so that the hotkey editor stops listening.
+    /// </summary>
+    event Action? OnRecordingKeybindStopped;
+
     short MousePositionX { get; }
     short MousePositionY { get; }
 }

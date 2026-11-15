@@ -411,6 +411,35 @@ public class InputProvider
 
     public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
 
+    public bool IsRecordingKeybind
+    {
+        get => isRecordingKeybind;
+        set
+        {
+            if (isRecordingKeybind == value) return;
+
+            isRecordingKeybind = value;
+            if (!value) OnRecordingKeybindStopped?.Invoke();
+        }
+    }
+
+    private bool isRecordingKeybind;
+
+    /// <summary>
+    /// System shortcuts that switch or close windows. They can't be used as hotkeys, so pressing one while recording stops the recording and lets the system handle it.
+    /// </summary>
+    private static readonly HashSet<string> SystemShortcuts =
+    [
+        "Alt+Tab",
+        "Shift+Alt+Tab",
+        "Alt+Esc",
+        "Alt+F4",
+        "Ctrl+Esc",
+        "Ctrl+Shift+Esc",
+    ];
+
+    public event Action? OnRecordingKeybindStopped;
+
     private bool Enabled { get; set; } = true;
 
     /// <inheritdoc/>
@@ -588,7 +617,19 @@ public class InputProvider
 
         str.Append(key);
         var keybind = str.ToString();
+        if (IsRecordingKeybind && SystemShortcuts.Contains(keybind))
+        {
+            IsRecordingKeybind = false;
+            return;
+        }
+
         OnKeyDown?.Invoke(keybind);
+        if (IsRecordingKeybind)
+        {
+            // The key is only being recorded, so it should not also act in the window, like Space scrolling the page or F5 reloading it.
+            args.SuppressEvent = true;
+            return;
+        }
 
         foreach (var keybindHandler in KeybindHandlers.Where(keybindHandler => keybindHandler.Keybinds.Contains(keybind) && keybindHandler.IsValid(keybind)))
         {

@@ -3,8 +3,8 @@ import navigationManager from "./app/navigationManager";
 import scrollToBottom from "./app/scrollToBottom";
 import zoomHandler from "./app/zoomHandler";
 
+import keybindRecorder from "./forms/keybindRecorder.js";
 import contentEditable from "./forms/contentEditable";
-import removeFocus from "./forms/removeFocus.js";
 import setIndeterminate from "./forms/setIndeterminate.js";
 import numberInputWheel from "./forms/numberInputWheel.js";
 
@@ -26,7 +26,7 @@ window.sidekick = {
     },
     forms: {
         contentEditable,
-        removeFocus,
+        keybindRecorder,
         setIndeterminate,
         numberInputWheel,
     },

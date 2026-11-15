@@ -1,12 +1,12 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Ui.Localization
-@implements IDisposable
+@implements IAsyncDisposable
 
 <div>
     @if (!string.IsNullOrEmpty(Label))
     {
-        <label for="@Id"
-               class="flex gap-1 mb-1 text-base font-medium dark:text-zinc-300">
+        <label class="flex gap-1 mb-1 text-base font-medium dark:text-zinc-300"
+               @onclick="Activate">
             @Label
             @if (Tooltip is not null)
             {
@@ -16,13 +16,11 @@
     }
 
     <div class="flex flex-nowrap items-center gap-1">
-        <button id="@Id"
-                class="min-w-40 grow p-2 text-left cursor-pointer select-none @UiClasses.FormInputClasses"
-                tabindex="-1"
-                @onfocus="Focus"
-                @onblur="Blur">
+        <div id="@Id"
+             class="min-w-40 grow p-2 text-left cursor-pointer select-none @UiClasses.FormInputClasses @(IsActive ? "ring-2 ring-violet-400" : "")"
+             @onclick="Activate">
             <KeybindDisplay Keybind="@InputValue"/>
-        </button>
+        </div>
 
         @if (ShowClearButton)
         {
@@ -34,11 +32,11 @@
         @AdornmentContent
     </div>
 
-    @if (IsDuplicated)
+    @if (Warning != null)
     {
         <label class="mt-1 text-base font-medium text-amber-500 flex items-center flex-nowrap gap-2">
             <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium"/>
-            <TextWithKeybinds Text="@Resources["Keybind_Already_In_Use"]" Keybinds="[DuplicatedKey]"/>
+            <TextWithKeybinds Text="@Resources[Warning]" Keybinds="[WarningKeybind]"/>
         </label>
     }
 </div>
@@ -64,7 +62,12 @@
     [Parameter]
     public RenderFragment? AdornmentContent { get; set; }
 
-    private bool IsActive { get; set; }
+    /// <summary>
+    /// Only one editor listens for a key at a time.
+    /// </summary>
+    private static KeybindEditorInternal? ActiveEditor { get; set; }
+
+    private bool IsActive => ActiveEditor == this;
 
     private static event Action? CurrentEditorChanged;
 
@@ -72,9 +75,16 @@
 
     protected string Id { get; } = UiUtilities.GenerateId();
 
-    private bool IsDuplicated { get; set; }
+    /// <summary>
+    /// The resource key of the warning shown under the field when the pressed key can't be used.
+    /// </summary>
+    private string? Warning { get; set; }
 
-    private string? DuplicatedKey { get; set; }
+    private string? WarningKeybind { get; set; }
+
+    private DotNetObjectReference<KeybindEditorInternal>? DotNetReference { get; set; }
+
+    private SafeJsObjectReference? Recorder { get; set; }
 
     private string? InputValue
     {
@@ -92,25 +102,53 @@
     protected override void OnInitialized()
     {
         Input.OnKeyDown += OnKeyDown;
+        Input.OnRecordingKeybindStopped += OnRecordingKeybindStopped;
         CurrentEditorChanged += StateHasChanged;
         base.OnInitialized();
     }
 
-    private async Task RemoveFocusAsync()
+    private async Task Activate()
     {
-        await JsRuntime.InvokeVoidAsync("sidekick.forms.removeFocus", Id);
+        if (IsActive) return;
+
+        ActiveEditor = this;
+        Input.IsRecordingKeybind = true;
+        CurrentEditorChanged?.Invoke();
+
+        DotNetReference ??= DotNetObjectReference.Create(this);
+        var recorder = await JsRuntime.InvokeObjectAsync("sidekick.forms.keybindRecorder", Id, DotNetReference, nameof(Deactivate));
+        if (IsActive)
+        {
+            Recorder = recorder;
+            return;
+        }
+
+        // A key was pressed while the recorder was starting, so the editor already stopped listening.
+        if (recorder == null) return;
+        await recorder.InvokeVoidAsync("dispose");
+        await recorder.DisposeAsync();
     }
 
-    public void Focus()
+    [JSInvokable]
+    public async Task Deactivate()
     {
-        IsActive = true;
+        if (Recorder != null)
+        {
+            await Recorder.InvokeVoidAsync("dispose");
+            await Recorder.DisposeAsync();
+            Recorder = null;
+        }
+
+        if (!IsActive) return;
+
+        ActiveEditor = null;
+        Input.IsRecordingKeybind = false;
         CurrentEditorChanged?.Invoke();
     }
 
-    public void Blur()
+    private void OnRecordingKeybindStopped()
     {
-        IsActive = false;
-        CurrentEditorChanged?.Invoke();
+        InvokeAsync(Deactivate);
     }
 
     private void OnKeyDown(string key)
@@ -124,41 +162,45 @@
 
             if (key != "Esc")
             {
+                WarningKeybind = key;
                 if (key == Value)
                 {
-                    IsDuplicated = false;
+                    Warning = null;
+                }
+                else if (GameKeybinds.Reserved.Contains(key))
+                {
+                    Warning = "Keybind_Reserved";
                 }
                 else if (Input.UsedKeybinds.Contains(key))
                 {
-                    DuplicatedKey = key;
-                    IsDuplicated = true;
+                    Warning = "Keybind_Already_In_Use";
                 }
                 else
                 {
-                    IsDuplicated = false;
+                    Warning = null;
                     await ValueChanged.InvokeAsync(key);
                 }
             }
 
-            await RemoveFocusAsync();
-            IsActive = false;
-            CurrentEditorChanged?.Invoke();
+            await Deactivate();
             StateHasChanged();
         });
     }
 
     public async Task Clear()
     {
-        IsDuplicated = false;
-        IsActive = false;
-        CurrentEditorChanged?.Invoke();
+        Warning = null;
+        await Deactivate();
         await ValueChanged.InvokeAsync("");
     }
 
-    public void Dispose()
+    public async ValueTask DisposeAsync()
     {
         Input.OnKeyDown -= OnKeyDown;
+        Input.OnRecordingKeybindStopped -= OnRecordingKeybindStopped;
         CurrentEditorChanged -= StateHasChanged;
+        await Deactivate();
+        DotNetReference?.Dispose();
     }
 
 }
