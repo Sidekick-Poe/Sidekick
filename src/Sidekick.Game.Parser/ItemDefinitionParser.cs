@@ -24,7 +24,7 @@ public class ItemDefinitionParser(
 
         // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
         item.Definition = GetDefinition(itemDefinitionProvider.Definitions, item.Properties.Rarity, item.ItemClass?.Id, item.Type, item.Name)!;
-        if (item.Definition == null) throw new UnparsableException(item.Text.Text);
+        if (item.Definition == null) throw new UnparsableException("The item definition could not be found.");
 
         // Poe.ninja does not include item class in the text, so we fill it here in case.
         if (item.Definition.BaseItemIds != null && item.ItemClass == null!)
@@ -32,7 +32,7 @@ public class ItemDefinitionParser(
             var baseItem = baseItemProvider.Definitions.FirstOrDefault(x => item.Definition.BaseItemIds.Contains(x.Id));
             item.ItemClass ??= itemClassProvider.Definitions.FirstOrDefault(x => x.Id == baseItem?.ItemClassId)!;
         }
-        if (item.ItemClass == null) throw new UnparsableException(item.Text.Text);
+        if (item.ItemClass == null) throw new UnparsableException("The item class could not be found.");
 
         ParseVaalGem();
 

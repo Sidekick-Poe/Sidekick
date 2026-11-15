@@ -9,21 +9,10 @@
     </ChildContent>
     <ErrorContent>
         @{
-            string title = context.SidekickException switch
-            {
-                UnparsableException => Resources["Error_Unparsable_Title"],
-                not null => context.Message,
-                null => Resources["Error_Unexpected_Title"],
-            };
-            List<string> details = context.SidekickException switch
-            {
-                UnparsableException => [Resources["Error_Unparsable_Settings"], Resources["Error_Unparsable_Mistakes"]],
-                not null => context.AdditionalInformation,
-                null => [Resources["Error_Unexpected_Description"]],
-            };
-            var itemText = (context.SidekickException as UnparsableException)?.ItemText;
-
-            var isLeftAligned = context.SidekickException is UnparsableException;
+            var title = context.SidekickException?.Message ?? Resources["Error_Unexpected_Title"];
+            var details = context.SidekickException != null ? context.AdditionalInformation : [Resources["Error_Unexpected_Description"]];
+            var itemText = context.SidekickException?.ItemText;
+            var isLeftAligned = !string.IsNullOrEmpty(itemText);
 
             var actions = context.SidekickException?.Actions ?? 0;
             if (actions == 0) actions = ExceptionActions.CloseWindow;

@@ -29,7 +29,10 @@
 
     private void UnparsableItemException()
     {
-        throw new UnparsableException("Item Class: Unknown\nRarity: Rare\nTest Item\n--------\n[Development] This is a test item.");
+        throw new UnparsableException("[Development] This is a test unparsable item.", "This is the first detail.", "This is the second detail.")
+        {
+            ItemText = "Item Class: Unknown\nRarity: Rare\nTest Item\n--------\n[Development] This is a test item.",
+        };
     }
 
 }

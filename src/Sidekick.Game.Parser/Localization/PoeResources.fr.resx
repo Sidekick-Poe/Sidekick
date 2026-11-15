@@ -24,4 +24,13 @@
     <data name="Item_Class" xml:space="preserve">
     <value>Classe d'item</value>
   </data>
+  <data name="Unparsable_Title" xml:space="preserve">
+    <value>Sidekick n'a pas pu lire cet item.</value>
+  </data>
+  <data name="Unparsable_Settings" xml:space="preserve">
+    <value>Assurez-vous que la langue du jeu et la ligue sont bien configurées dans les paramètres.</value>
+  </data>
+  <data name="Unparsable_Mistakes" xml:space="preserve">
+    <value>Sidekick peut faire des erreurs, alors faites-le-nous savoir sur Discord ou GitHub.</value>
+  </data>
 </root>
