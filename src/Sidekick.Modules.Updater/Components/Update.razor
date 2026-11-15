@@ -50,11 +50,6 @@ else
 
     private bool IsInitialization => string.IsNullOrEmpty(NavigationManager.QueryString("back"));
 
-    /// <summary>
-    /// In debug mode, sample release notes show instead of checking for updates, so they can be checked from the Development page.
-    /// </summary>
-    private bool IsFakeReleaseNotes => DebugService.IsDebug;
-
     private static UpdateInfo CreateFakeUpdateInfo()
     {
         var enhancements = string.Join("", Enumerable.Range(1, 12).Select(i => $"<li>Sample enhancement {i}, with a description long enough to wrap on a second line in the window.</li>"));
@@ -81,7 +76,8 @@ else
 
     private async Task Check()
     {
-        if (IsFakeReleaseNotes)
+        // In debug mode, sample release notes show instead of checking for updates, so they can be checked from the Development page.
+        if (DebugService.IsDebug)
         {
             UpdateInfo = CreateFakeUpdateInfo();
             StateHasChanged();
@@ -141,7 +137,7 @@ else
         if (UpdateInfo == null) throw new SidekickException("Could not apply the update successfully.");
 
         // The sample release notes cannot be installed.
-        if (IsFakeReleaseNotes) return;
+        if (DebugService.IsDebug) return;
 
         try
         {
