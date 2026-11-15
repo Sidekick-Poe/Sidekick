@@ -195,6 +195,9 @@
   <data name="Keybind_Already_In_Use" xml:space="preserve">
     <value>Keybind {0} is already in use, please choose another one.</value>
   </data>
+  <data name="Keybind_Reserved" xml:space="preserve">
+    <value>Keybind {0} is used by Path of Exile, please choose another one.</value>
+  </data>
   <data name="Keybind_Active" xml:space="preserve">
     <value>&lt;Press a key&gt;</value>
   </data>
