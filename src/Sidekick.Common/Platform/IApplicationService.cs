@@ -20,7 +20,7 @@ public interface IApplicationService
             "Sidekick.Web",
         ];
         var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => assemblies.Contains(x.Name))?.Version;
-        return version?.ToString();
+        return version?.ToString(3);
     }
 
     /// <summary>
