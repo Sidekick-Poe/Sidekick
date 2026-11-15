@@ -1,0 +1,77 @@
+<Window
+    x:Class="Sidekick.Avalonia.LinuxDependenciesWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Window.Resources>
+        <FontFamily x:Key="MonospaceFont">DejaVu Sans Mono, Liberation Mono, Noto Sans Mono, monospace</FontFamily>
+    </Window.Resources>
+
+    <Grid RowDefinitions="Auto,Auto,Auto">
+        <Border Grid.Row="0" Padding="16">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Image
+                    Width="48"
+                    Height="48"
+                    Margin="0,0,12,0"
+                    Source="Assets/ExaltedOrb.png"
+                    Stretch="Uniform" />
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource FontinSmallCapsFont}"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="#FFFFFF"
+                    Text="Sidekick" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            Padding="20,16"
+            Background="{StaticResource PanelBackgroundBrush}"
+            BorderBrush="{StaticResource PanelBorderBrush}"
+            BorderThickness="0,1,0,1">
+
+            <StackPanel Spacing="12">
+                <TextBlock
+                    x:Name="TitleTextBlock"
+                    FontFamily="{StaticResource FontinFont}"
+                    FontSize="20"
+                    Foreground="#FFFFFF" />
+
+                <TextBlock
+                    x:Name="IntroductionTextBlock"
+                    FontFamily="{StaticResource FontinFont}"
+                    FontSize="16"
+                    Foreground="#D6D3D1"
+                    TextWrapping="Wrap" />
+
+                <StackPanel x:Name="DependenciesPanel" Margin="12,0,0,0" Spacing="4" />
+
+                <TextBlock
+                    x:Name="InstructionsTextBlock"
+                    FontFamily="{StaticResource FontinFont}"
+                    FontSize="16"
+                    Foreground="#D6D3D1"
+                    TextWrapping="Wrap" />
+
+                <StackPanel x:Name="CommandsPanel" Spacing="8" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Padding="16">
+            <Button
+                x:Name="CloseButton"
+                HorizontalAlignment="Center"
+                Classes="primary"
+                Click="CloseButton_Click"
+                FontFamily="{StaticResource FontinFont}"
+                IsDefault="True" />
+        </Border>
+    </Grid>
+</Window>

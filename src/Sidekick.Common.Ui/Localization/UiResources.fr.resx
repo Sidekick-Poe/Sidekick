@@ -225,6 +225,27 @@
   <data name="Exit" xml:space="preserve">
       <value>Quitter</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+      <value>Copier</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+      <value>Copié</value>
+  </data>
+  <data name="Linux_Dependencies_Title" xml:space="preserve">
+      <value>Paquets manquants</value>
+  </data>
+  <data name="Linux_Dependencies_Introduction" xml:space="preserve">
+      <value>Sidekick a besoin de ces paquets pour fonctionner sous Linux :</value>
+  </data>
+  <data name="Linux_Dependencies_Xsel" xml:space="preserve">
+      <value>xsel, qui copie les items de Path of Exile</value>
+  </data>
+  <data name="Linux_Dependencies_WebKitGtk" xml:space="preserve">
+      <value>WebKitGTK, qui affiche les fenêtres de Sidekick</value>
+  </data>
+  <data name="Linux_Dependencies_Instructions" xml:space="preserve">
+      <value>Installez-les dans un terminal avec la commande de votre distribution, puis relancez Sidekick :</value>
+  </data>
   <data name="Error_Unexpected_Title" xml:space="preserve">
       <value>Une erreur est survenue.</value>
   </data>
