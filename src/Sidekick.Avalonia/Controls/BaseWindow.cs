@@ -95,8 +95,10 @@ public abstract class BaseWindow : Window
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
         var zoom = await GetZoom();
 
-        var width = (RequestedWidth ?? DefaultWidth) * zoom;
-        var height = (RequestedHeight ?? DefaultHeight) * zoom;
+        var minWidth = (RequestedWidth ?? DefaultWidth) * zoom;
+        var minHeight = (RequestedHeight ?? DefaultHeight) * zoom;
+        var width = minWidth;
+        var height = minHeight;
 
         PixelPoint? savedPosition = null;
         if (!string.IsNullOrEmpty(PositionPrefix))
@@ -125,9 +127,11 @@ public abstract class BaseWindow : Window
         if (screen != null)
         {
             (width, height) = FitToScreen(screen, width, height);
+            (minWidth, minHeight) = FitToScreen(screen, minWidth, minHeight);
         }
 
-        ApplySize(width, height);
+        // The saved size is the user's choice, but they can still shrink the window back to the default or requested size.
+        ApplySize(width, height, minWidth, minHeight);
 
         if (screen != null)
         {
@@ -190,7 +194,7 @@ public abstract class BaseWindow : Window
         var centerY = Position.Y + currentPixelHeight / 2;
 
         var (newWidth, newHeight) = FitToScreen(screen, (width ?? DefaultWidth) * zoom, (height ?? DefaultHeight) * zoom);
-        ApplySize(newWidth, newHeight);
+        ApplySize(newWidth, newHeight, newWidth, newHeight);
 
         var (pixelWidth, pixelHeight) = ToPixels(screen, newWidth, newHeight);
         Position = ClampToScreen(screen, new PixelPoint(centerX - pixelWidth / 2, centerY - pixelHeight / 2), pixelWidth, pixelHeight);
@@ -210,11 +214,11 @@ public abstract class BaseWindow : Window
         return double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom) ? zoom : 1;
     }
 
-    private void ApplySize(double width, double height)
+    private void ApplySize(double width, double height, double minWidth, double minHeight)
     {
         // The minimum is set first, so that the window can both grow and shrink.
-        MinWidth = width;
-        MinHeight = height;
+        MinWidth = minWidth;
+        MinHeight = minHeight;
         Width = width;
         Height = height;
     }
