@@ -16,4 +16,14 @@ public class CurrentView(IViewLocator viewLocator)
     {
         viewLocator.Close(CurrentViewType);
     }
+
+    public void SetSize(int width, int height)
+    {
+        viewLocator.SetSize(CurrentViewType, width, height, this);
+    }
+
+    public void ResetSize()
+    {
+        viewLocator.ResetSize(CurrentViewType, this);
+    }
 }

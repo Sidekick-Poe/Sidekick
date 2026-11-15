@@ -48,6 +48,30 @@ else
 
     private bool IsInitialization => string.IsNullOrEmpty(NavigationManager.QueryString("back"));
 
+#if DEBUG
+    /// <summary>
+    /// Development only: set by the Development page to preview the release notes.
+    /// </summary>
+    private bool IsFakeReleaseNotes => NavigationManager.QueryString("devFakeNotes") == "true";
+
+    private static UpdateInfo CreateFakeUpdateInfo()
+    {
+        var enhancements = string.Join("", Enumerable.Range(1, 12).Select(i => $"<li>Sample enhancement {i}, with a description long enough to wrap on a second line in the window.</li>"));
+        var fixes = string.Join("", Enumerable.Range(1, 8).Select(i => $"<li>Sample bug fix {i}.</li>"));
+        var notes = $"<h1>Sidekick 9.9.9</h1><h2>Enhancements</h2><ul>{enhancements}</ul><h2>Bug fixes</h2><ul>{fixes}</ul>";
+
+        var release = new VelopackAsset
+        {
+            PackageId = "Sidekick",
+            Version = SemanticVersion.Parse("9.9.9"),
+            FileName = "Sidekick-9.9.9-full.nupkg",
+            NotesHTML = notes,
+        };
+
+        return new UpdateInfo(release, false, null!, []);
+    }
+#endif
+
     protected override async Task OnInitializedAsync()
     {
         _ = Check();
@@ -57,6 +81,16 @@ else
 
     private async Task Check()
     {
+#if DEBUG
+        // Development only: show the release notes with sample notes, without checking for updates.
+        if (IsFakeReleaseNotes)
+        {
+            UpdateInfo = CreateFakeUpdateInfo();
+            StateHasChanged();
+            return;
+        }
+#endif
+
         try
         {
             if (AutoUpdater.IsUpdaterInstalled())
@@ -108,6 +142,11 @@ else
     public async Task Download()
     {
         if (UpdateInfo == null) throw new SidekickException("Could not apply the update successfully.");
+
+#if DEBUG
+        // Development only: the sample release notes cannot be installed.
+        if (IsFakeReleaseNotes) return;
+#endif
 
         try
         {

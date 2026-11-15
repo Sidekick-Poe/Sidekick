@@ -40,8 +40,24 @@
 </LayoutSimple>
 
 @inject IStringLocalizer<UpdateResources> Resources
+@inject CurrentView CurrentView
+@implements IDisposable
 
 @code {
+
+    private const int WIDTH = 800;
+    private const int HEIGHT = 700;
+
+    protected override void OnInitialized()
+    {
+        CurrentView.SetSize(WIDTH, HEIGHT);
+        base.OnInitialized();
+    }
+
+    public void Dispose()
+    {
+        CurrentView.ResetSize();
+    }
 
     [Parameter]
     public required UpdateInfo UpdateInfo { get; set; }

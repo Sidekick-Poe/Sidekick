@@ -1,34 +1,32 @@
 @using Sidekick.Modules.Updater.Localization
 @using Sidekick.Common.Ui.Extensions
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Platform
 
-@if (ShowBackButton)
-{
-    <ButtonSecondary OnClick="Exit">@Resources["Back"]</ButtonSecondary>
-}
-else
-{
-    <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
-}
+<ButtonSecondary OnClick="Exit">@(IsOpenedLater ? UiResources["Close"] : Resources["Exit"])</ButtonSecondary>
 
 @inject IStringLocalizer<UpdateResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IApplicationService ApplicationService
 @inject NavigationManager NavigationManager
+@inject CurrentView CurrentView
 
 @code {
 
-    private bool ShowBackButton => NavigationManager.QueryString("back") != null;
+    /// <summary>
+    /// The back parameter means the update page was opened while Sidekick is running, not at startup.
+    /// </summary>
+    private bool IsOpenedLater => !string.IsNullOrEmpty(NavigationManager.QueryString("back"));
 
     private void Exit()
     {
-        if (!string.IsNullOrEmpty(NavigationManager.QueryString("back")))
+        if (IsOpenedLater)
         {
-            NavigationManager.NavigateTo(NavigationManager.QueryString("back")!);
+            CurrentView.Close();
+            return;
         }
-        else
-        {
-            ApplicationService.Shutdown();
-        }
+
+        ApplicationService.Shutdown();
     }
 
 }
