@@ -9,8 +9,16 @@
         </div>
     }
 
+    @if (CurrentView.CurrentViewType == SidekickViewType.Overlay)
+    {
+        <NavigationAppbar/>
+    }
+
     <div class="grow flex flex-nowrap items-stretch">
-        <SidekickNavigation/>
+        @if (CurrentView.CurrentViewType == SidekickViewType.Standard)
+        {
+            <NavigationSidebar/>
+        }
         @if (LeftContent != null)
         {
             <div class="relative w-60 overflow-auto dark:bg-stone-900">
@@ -35,6 +43,7 @@
 </div>
 
 @inject IOptions<SidekickConfiguration> SidekickConfiguration
+@inject CurrentView CurrentView
 
 @code {
 

@@ -10,10 +10,15 @@
         </div>
     }
 
+    @if (CurrentView.CurrentViewType == SidekickViewType.Overlay)
+    {
+        <NavigationAppbar/>
+    }
+
     <div class="grow flex flex-nowrap items-stretch dark:bg-stone-900">
         @if (CurrentView.CurrentViewType == SidekickViewType.Standard)
         {
-            <SidekickNavigation/>
+            <NavigationSidebar/>
         }
         <div id="@LeftContentId"
              class="relative min-w-80 max-w-140 overflow-auto @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "m-3" : string.Empty)"
@@ -23,7 +28,8 @@
                 @LeftContent
             </div>
         </div>
-        <div class="h-full flex flex-col grow  @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "[*_.sidekick-container]:!pl-0" : string.Empty)">
+        <div
+            class="h-full flex flex-col grow  @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "[*_.sidekick-container]:!pl-0" : string.Empty)">
             <AppUpdate/>
             <ConfigurationFlagError/>
             <div class="grow relative">
