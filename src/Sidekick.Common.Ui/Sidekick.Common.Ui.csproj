@@ -26,8 +26,13 @@
       <AdditionalFiles Include="Menu\MenuLegend.razor" />
     </ItemGroup>
 
-    <Target Name="NpmBuild" BeforeTargets="ResolveStaticWebAssetsInputs">
+    <Target Name="NpmBuild" BeforeTargets="ResolveProjectStaticWebAssets">
         <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)"/>
+
+        <!-- The files are created after MSBuild lists the wwwroot content, so a clean build would leave them out. -->
+        <ItemGroup>
+            <Content Include="wwwroot\css\sidekick.css;wwwroot\js\sidekick.js" Exclude="@(Content)"/>
+        </ItemGroup>
     </Target>
 
 </Project>
