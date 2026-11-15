@@ -1,5 +1,6 @@
 @page "/update"
 @page "/"
+@using Sidekick.Common.Debugging
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Ui.Extensions
 @using Velopack
@@ -33,6 +34,7 @@ else
 @inject ILogger<Update> Logger
 @inject IAutoUpdater AutoUpdater
 @inject NavigationManager NavigationManager
+@inject DebugService DebugService
 
 @code {
 
@@ -48,11 +50,10 @@ else
 
     private bool IsInitialization => string.IsNullOrEmpty(NavigationManager.QueryString("back"));
 
-#if DEBUG
     /// <summary>
-    /// Development only: set by the Development page to preview the release notes.
+    /// In debug mode, sample release notes show instead of checking for updates, so they can be checked from the Development page.
     /// </summary>
-    private bool IsFakeReleaseNotes => NavigationManager.QueryString("devFakeNotes") == "true";
+    private bool IsFakeReleaseNotes => DebugService.IsDebug;
 
     private static UpdateInfo CreateFakeUpdateInfo()
     {
@@ -70,7 +71,6 @@ else
 
         return new UpdateInfo(release, false, null!, []);
     }
-#endif
 
     protected override async Task OnInitializedAsync()
     {
@@ -81,15 +81,12 @@ else
 
     private async Task Check()
     {
-#if DEBUG
-        // Development only: show the release notes with sample notes, without checking for updates.
         if (IsFakeReleaseNotes)
         {
             UpdateInfo = CreateFakeUpdateInfo();
             StateHasChanged();
             return;
         }
-#endif
 
         try
         {
@@ -143,10 +140,8 @@ else
     {
         if (UpdateInfo == null) throw new SidekickException("Could not apply the update successfully.");
 
-#if DEBUG
-        // Development only: the sample release notes cannot be installed.
+        // The sample release notes cannot be installed.
         if (IsFakeReleaseNotes) return;
-#endif
 
         try
         {

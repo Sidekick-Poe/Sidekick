@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Security.Principal;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Debugging;
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform.Localization;
 using Sidekick.Common.Platform.Windows.DllImport;
@@ -16,7 +17,8 @@ public class ProcessProvider
     ILogger<ProcessProvider> logger,
     IApplicationService applicationService,
     DialogProvider dialogProvider,
-    IStringLocalizer<PlatformResources> resources
+    IStringLocalizer<PlatformResources> resources,
+    DebugService debugService
 ) : IProcessProvider, IDisposable
 {
     private const string POE_PROCESS_STARTS_WITH = "PathOfExile";
@@ -95,6 +97,8 @@ public class ProcessProvider
     {
         get
         {
+            if (debugService.HotkeysInAnyWindow) return true;
+
             var focusedProcessName = GetFocusedProcessName();
             if (focusedProcessName == null) return false;
 

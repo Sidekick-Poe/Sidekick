@@ -12,6 +12,12 @@ public class ClipboardProvider
     ILogger<ClipboardProvider> logger
 ) : IClipboardProvider
 {
+    /// <summary>
+    /// The text put in the clipboard before copying, so a failed copy can be detected. An empty text would not work,
+    /// since setting it on Linux keeps the previous text. Users can paste it by accident, so it says where it comes from.
+    /// </summary>
+    private const string CopyPlaceholderText = "Sidekick tried to copy an item from Path of Exile, but no item was copied.";
+
     /// <inheritdoc/>
     public async Task<string?> Copy(bool? withAlt = false)
     {
@@ -23,7 +29,7 @@ public class ClipboardProvider
             logger.LogDebug("[Clipboard] Retained clipboard.");
         }
 
-        await SetText(string.Empty);
+        await SetText(CopyPlaceholderText);
 
         if (withAlt == true)
         {
@@ -50,7 +56,7 @@ public class ClipboardProvider
             logger.LogDebug("[Clipboard] Reset clipboard to retained value.");
         }
 
-        return string.IsNullOrEmpty(result) ? null : result;
+        return string.IsNullOrEmpty(result) || result == CopyPlaceholderText ? null : result;
     }
 
     /// <inheritdoc/>

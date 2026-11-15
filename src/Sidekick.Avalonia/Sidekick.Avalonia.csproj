@@ -27,7 +27,8 @@
         <ApplicationManifest>app.manifest</ApplicationManifest>
     </PropertyGroup>
 
-    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <!-- Uses the target runtime when there is one, so a Linux build made on Windows leaves out the Windows code. -->
+    <PropertyGroup Condition="('$(RuntimeIdentifier)' == '' And $([MSBuild]::IsOSPlatform('Windows'))) Or $(RuntimeIdentifier.StartsWith('win'))">
         <DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
     </PropertyGroup>
 

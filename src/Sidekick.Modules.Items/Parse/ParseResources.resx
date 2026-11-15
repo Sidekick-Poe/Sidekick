@@ -135,4 +135,13 @@
   <data name="Close_Overlay_Tip" xml:space="preserve">
     <value>Press {0} to close overlay.</value>
   </data>
+  <data name="Copy_Failed" xml:space="preserve">
+    <value>Sidekick couldn&apos;t copy an item. Make sure your cursor is over an item in the game.</value>
+  </data>
+  <data name="Copy_Failed_Kde" xml:space="preserve">
+    <value>On KDE Plasma, Sidekick needs permission to control input devices. Allow it in the Remote Control prompt, or restart Sidekick to be asked again if you denied it.</value>
+  </data>
+  <data name="Copy_Failed_Linux" xml:space="preserve">
+    <value>Make sure the xsel package is installed.</value>
+  </data>
 </root>

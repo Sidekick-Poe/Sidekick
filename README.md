@@ -39,6 +39,10 @@ chmod +x Sidekick-linux-stable.AppImage
 ./Sidekick-linux-stable.AppImage
 ```
 
+### KDE Plasma on Wayland
+
+The first time you price check, KDE asks whether Sidekick can control input devices ("Remote Control"). Sidekick needs this to copy the item from the game, so click **Allow** (check "Always allow" to not be asked again). If you clicked **Deny** or closed the prompt, restart Sidekick to be asked again.
+
 ## Development
 We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it. We are also available on [Discord](https://discord.gg/R9HyCpV).
 #### Running the code:

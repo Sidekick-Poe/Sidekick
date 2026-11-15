@@ -3,6 +3,7 @@
 @using Microsoft.Extensions.Localization
 @using Microsoft.Extensions.Logging
 @using Sidekick.Common.Cache
+@using Sidekick.Common.Debugging
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
@@ -86,18 +87,15 @@
 @inject NavigationManager NavigationManager
 @inject CurrentView CurrentView
 @inject ILogger<Setup> Logger
+@inject DebugService DebugService
 @implements IDisposable
 
 @code {
 
     /// <summary>
-    /// Development only: set by the Development page to preview the setup form. Always false in release builds.
+    /// In debug mode, the form always shows, with the new leagues alert, so it can be checked from the Development page.
     /// </summary>
-#if DEBUG
-    private bool IsForcedSetup => NavigationManager.QueryString("devForceSetup") == "true";
-#else
-    private bool IsForcedSetup => false;
-#endif
+    private bool IsForcedSetup => DebugService.IsDebug;
 
     private const int FORM_WIDTH = 520;
     private const int FORM_HEIGHT = 480;
@@ -134,7 +132,6 @@
                 await CacheProvider.Clear();
             }
 
-            // Development only: shows the tallest form in the preview.
             if (IsForcedSetup) NewLeagues = true;
 
             // Check to see if we should run Setup first before running the rest of the initialization process
@@ -204,7 +201,7 @@
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
-        // Development only: the app is already initialized, so just close the preview.
+        // In debug mode, the app is already initialized, so the window only closes.
         if (IsForcedSetup)
         {
             CurrentView.Close();

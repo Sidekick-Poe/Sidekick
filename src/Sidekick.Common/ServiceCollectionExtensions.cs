@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Debugging;
 using Sidekick.Common.Folder;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform.Input;
@@ -22,6 +23,7 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<IBrowserProvider, BrowserProvider>();
         services.TryAddSingleton<ICacheProvider, CacheProvider>();
         services.TryAddSingleton<IFolderProvider, FolderProvider>();
+        services.TryAddSingleton<DebugService>();
 
         services.Configure<SidekickConfiguration>(configuration =>
         {
