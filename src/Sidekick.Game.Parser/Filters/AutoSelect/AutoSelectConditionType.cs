@@ -40,6 +40,10 @@ public enum AutoSelectConditionType
 
     [AutoSelectComparison(AutoSelectComparisonType.True,
                           AutoSelectComparisonType.False)]
+    TwiceCorrupted,
+
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
     Split,
 
     [AutoSelectComparison(AutoSelectComparisonType.True,

@@ -10,6 +10,8 @@ public class ItemProperties
 
     public bool Corrupted { get; set; }
 
+    public bool TwiceCorrupted { get; set; }
+
     public bool Split { get; set; }
 
     public bool Mirrored { get; set; }
