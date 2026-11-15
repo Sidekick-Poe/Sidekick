@@ -53,7 +53,8 @@ public class DataProvider
 
             while (dir != null)
             {
-                var sln = dir.EnumerateFiles("*.sln", SearchOption.TopDirectoryOnly)
+                var sln = dir.EnumerateFiles("*.slnx", SearchOption.TopDirectoryOnly)
+                    .Concat(dir.EnumerateFiles("*.sln", SearchOption.TopDirectoryOnly))
                     .OrderBy(f => f.Name, StringComparer.OrdinalIgnoreCase)
                     .FirstOrDefault();
 
