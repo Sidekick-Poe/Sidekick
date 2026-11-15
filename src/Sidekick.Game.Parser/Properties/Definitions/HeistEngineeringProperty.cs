@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.RegularExpressions;
-using Sidekick.Common.Enums;
+using Sidekick.Game.Enums;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Filters.Types;

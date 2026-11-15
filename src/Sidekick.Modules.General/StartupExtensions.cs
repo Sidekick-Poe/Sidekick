@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Game.Enums;
 using Sidekick.Modules.General.Keybinds;
 using Sidekick.Modules.General.Settings;
 

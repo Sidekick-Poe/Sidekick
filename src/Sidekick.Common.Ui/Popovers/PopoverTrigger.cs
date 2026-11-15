@@ -1,5 +1,4 @@
-using Sidekick.Common.Enums;
-
+using Sidekick.Game.Enums;
 namespace Sidekick.Common.Ui.Popovers;
 
 public enum PopoverTrigger

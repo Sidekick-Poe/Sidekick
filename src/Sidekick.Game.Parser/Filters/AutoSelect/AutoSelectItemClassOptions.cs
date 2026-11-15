@@ -1,4 +1,4 @@
-using Sidekick.Common.Enums;
+using Sidekick.Game.Enums;
 using Sidekick.Game.ItemClasses;
 namespace Sidekick.Game.Parser.Filters.AutoSelect;
 

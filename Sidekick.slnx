@@ -1,0 +1,128 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Linux-Debug" />
+    <BuildType Name="Linux-Release" />
+    <BuildType Name="Release" />
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Apis/">
+    <Project Path="src/Sidekick.Apis.Common/Sidekick.Apis.Common.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Apis.GitHub/Sidekick.Apis.GitHub.csproj" />
+    <Project Path="src/Sidekick.Apis.Poe.Account/Sidekick.Apis.Poe.Account.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Apis.Poe.Trade/Sidekick.Apis.Poe.Trade.csproj" />
+    <Project Path="src/Sidekick.Apis.Poe2Scout/Sidekick.Apis.Poe2Scout.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Release" />
+    </Project>
+    <Project Path="src/Sidekick.Apis.PoeDb/Sidekick.Apis.PoeDb.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Apis.PoeNinja/Sidekick.Apis.PoeNinja.csproj" />
+    <Project Path="src/Sidekick.Apis.PoePriceInfo/Sidekick.Apis.PoePriceInfo.csproj" />
+    <Project Path="src/Sidekick.Apis.PoeWiki/Sidekick.Apis.PoeWiki.csproj" />
+  </Folder>
+  <Folder Name="/Common/">
+    <Project Path="src/Sidekick.Common.Database/Sidekick.Common.Database.csproj" />
+    <Project Path="src/Sidekick.Common.Dialogs/Sidekick.Common.Dialogs.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Common.Platform/Sidekick.Common.Platform.csproj" />
+    <Project Path="src/Sidekick.Common.Settings/Sidekick.Common.Settings.csproj">
+      <BuildType Solution="Linux-Debug|*" Project="Debug" />
+      <BuildType Solution="Linux-Release|*" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Common.Ui/Sidekick.Common.Ui.csproj" />
+    <Project Path="src/Sidekick.Common/Sidekick.Common.csproj" />
+  </Folder>
+  <Folder Name="/Game/">
+    <Project Path="src/Sidekick.Game.Parser/Sidekick.Game.Parser.csproj">
+      <BuildType Solution="Linux-Debug|*" Project="Debug" />
+      <BuildType Solution="Linux-Release|*" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Game.Providers/Sidekick.Game.Providers.csproj">
+      <BuildType Solution="Linux-Debug|*" Project="Debug" />
+      <BuildType Solution="Linux-Release|*" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Game/Sidekick.Game.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/Modules/">
+    <Project Path="src/Sidekick.Modules.About/Sidekick.Modules.About.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Modules.Chat/Sidekick.Modules.Chat.csproj" />
+    <Project Path="src/Sidekick.Modules.Development/Sidekick.Modules.Development.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Modules.General/Sidekick.Modules.General.csproj" />
+    <Project Path="src/Sidekick.Modules.Initialization/Sidekick.Modules.Initialization.csproj">
+      <BuildType Solution="Linux-Debug|*" Project="Debug" />
+      <BuildType Solution="Linux-Release|*" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Modules.Items/Sidekick.Modules.Items.csproj" />
+    <Project Path="src/Sidekick.Modules.Logs/Sidekick.Modules.Logs.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="src/Sidekick.Modules.RegexHotkeys/Sidekick.Modules.RegexHotkeys.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Release" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Release" />
+    </Project>
+    <Project Path="src/Sidekick.Modules.Updater/Sidekick.Modules.Updater.csproj" />
+    <Project Path="src/Sidekick.Modules.Wealth/Sidekick.Modules.Wealth.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/Sidekick.Apis.Poe.Tests/Sidekick.Apis.Poe.Tests.csproj" />
+    <Project Path="tests/Sidekick.Apis.PoeNinja.Tests/Sidekick.Apis.PoeNinja.Tests.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="tests/Sidekick.Common.Tests/Sidekick.Common.Tests.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="tests/Sidekick.Game.Parser.Tests/Sidekick.Game.Parser.Tests.csproj">
+      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
+      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/_Configuration/">
+    <File Path=".editorconfig" />
+    <File Path=".filenesting.json" />
+    <File Path=".gitattributes" />
+    <File Path=".github/FUNDING.yml" />
+    <File Path=".github/release-drafter.yml" />
+    <File Path=".github/workflows/release.yml" />
+    <File Path=".github/workflows/tests.yml" />
+    <File Path=".gitignore" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/_Configuration/Docker/">
+    <File Path=".dockerignore" />
+    <File Path="docker-compose.yml" />
+    <File Path="Dockerfile" />
+  </Folder>
+  <Project Path="src/Sidekick.Avalonia/Sidekick.Avalonia.csproj">
+    <BuildType Solution="Linux-Debug|*" Project="Release" />
+    <BuildType Solution="Linux-Release|*" Project="Release" />
+  </Project>
+  <Project Path="src/Sidekick.Web/Sidekick.Web.csproj" />
+</Solution>

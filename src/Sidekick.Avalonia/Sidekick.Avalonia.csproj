@@ -61,14 +61,4 @@
             <Link>_data\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Content>
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Controls\TitleBar.axaml.cs">
-        <DependentUpon>App.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="App.axaml.cs">
-        <DependentUpon>TitleBar.axaml</DependentUpon>
-      </Compile>
-    </ItemGroup>
 </Project>

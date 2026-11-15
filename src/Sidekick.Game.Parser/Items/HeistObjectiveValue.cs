@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Enums;
+﻿using Sidekick.Game.Enums;
 namespace Sidekick.Game.Parser.Items;
 
 public enum HeistObjectiveValue
