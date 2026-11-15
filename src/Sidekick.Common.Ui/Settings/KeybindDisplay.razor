@@ -1,5 +1,10 @@
 @using System.Net
 
+@if (Keybind == null)
+{
+    return;
+}
+
 <span class="keybind-display -mt-px">
     @GetFormattedKeybind()
 </span>
@@ -7,12 +12,14 @@
 @code {
 
     [Parameter]
-    public string Keybind { get; set; } = string.Empty;
+    public string? Keybind { get; set; }
 
     private string KbdClass => "px-2 py-1 text-sm font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500 leading-4";
 
     private MarkupString GetFormattedKeybind()
     {
+        if (Keybind == null) return new MarkupString(string.Empty);
+
         var keys = Keybind.Split('+').Select(x => $@"<kbd class=""{KbdClass}"">{WebUtility.HtmlEncode(x)}</kbd>");
 
         return new MarkupString(string.Join("<span> + </span>", keys));

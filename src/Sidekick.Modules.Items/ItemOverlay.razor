@@ -1,5 +1,6 @@
 @page "/item/{itemText}"
 @using Sidekick.Apis.Poe.Trade.Clients
+@using Sidekick.Common.Cache
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Ui.Api
 @using Sidekick.Common.Ui.Tabs
@@ -84,8 +85,11 @@
 
 @inject TradeService TradeService
 @inject ItemParser ItemParser
+@inject IScopedCacheProvider ScopedCacheProvider
 
 @code {
+
+    public const string ScopedCacheKey = "ItemText";
 
     [Parameter]
     public required string ItemText { get; set; }
@@ -106,6 +110,8 @@
         TradeService.Init();
         var itemText = ItemText.DecodeBase64Url();
         Item = ItemParser.ParseItem(itemText);
+
+        ScopedCacheProvider.Set(ScopedCacheKey, itemText ?? "");
 
         await base.OnParametersSetAsync();
     }

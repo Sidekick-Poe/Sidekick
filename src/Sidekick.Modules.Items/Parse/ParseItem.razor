@@ -1,6 +1,7 @@
 @page "/item"
 @using Microsoft.Extensions.Options
 @using Sidekick.Common
+@using Sidekick.Common.Cache
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Settings
@@ -12,8 +13,12 @@
             @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
                 <div class="mx-auto text-center">
-                    <TextBase><TextWithKeybinds Text="@Resources["Price_Check_Tip"]" Keybinds="[KeyOpenPriceCheck]" /></TextBase>
-                    <TextBase Class="my-3"><TextWithKeybinds Text="@Resources["Close_Overlay_Tip"]" Keybinds="[KeyClose]" /></TextBase>
+                    <TextBase>
+                        <TextWithKeybinds Text="@Resources["Price_Check_Tip"]" Keybinds="[KeyOpenPriceCheck]"/>
+                    </TextBase>
+                    <TextBase Class="my-3">
+                        <TextWithKeybinds Text="@Resources["Close_Overlay_Tip"]" Keybinds="[KeyClose]"/>
+                    </TextBase>
                     <TextCaption>@Resources["Close_Notification"]</TextCaption>
                 </div>
 
@@ -37,6 +42,8 @@
 @inject IStringLocalizer<ParseResources> Resources
 @inject NavigationManager NavigationManager
 @inject IOptions<SidekickConfiguration> Configuration
+@inject IScopedCacheProvider ScopedCacheProvider
+@inject CurrentView CurrentView
 
 @code {
 
@@ -48,9 +55,16 @@
 
     protected override async Task OnInitializedAsync()
     {
+        ItemText = ScopedCacheProvider.Get<string>(ItemOverlay.ScopedCacheKey);
+        if (ItemText != null && CurrentView.CurrentViewType == SidekickViewType.Overlay)
+        {
+            GoToItem();
+            await base.OnInitializedAsync();
+            return;
+        }
+
         KeyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
         KeyClose = await SettingsService.GetString(SettingKeys.KeyClose);
-
         await base.OnInitializedAsync();
     }
 

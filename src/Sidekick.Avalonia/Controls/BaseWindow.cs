@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Styling;
+using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
 
 #if WINDOWS
@@ -60,6 +61,9 @@ public abstract class BaseWindow : Window
 
     public void CloseView()
     {
+        var scopedCache = ServiceProvider.GetRequiredService<IScopedCacheProvider>();
+        scopedCache.Clear();
+
         Dispatcher.Invoke(() =>
         {
             // Save the final placement now, since a hidden window cannot be measured anymore.
