@@ -22,15 +22,15 @@ public class NavigationItemProvider(
             result.Add(new NavigationItem(UiIcons.Wealth, resources["Wealth"], "/wealth"));
         }
 
-        result.Add(new NavigationItem("", "", "", true));
-        result.Add(new NavigationItem(UiIcons.Cog, resources["Settings"], "/settings"));
-        result.Add(new NavigationItem(UiIcons.Help, resources["Help"], "/help"));
-
         if (Debugger.IsAttached)
         {
             result.Add(new NavigationItem("", "", "", true));
             result.Add(new NavigationItem(UiIcons.Toolbox, resources["DevTools"], "/development"));
         }
+
+        result.Add(new NavigationItem("", "", "", true));
+        result.Add(new NavigationItem(UiIcons.Cog, resources["Settings"], "/settings"));
+        result.Add(new NavigationItem(UiIcons.Help, resources["Help"], "/help"));
 
         return result;
     }
