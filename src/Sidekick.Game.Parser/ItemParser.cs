@@ -1,8 +1,10 @@
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Localization;
 using Sidekick.Game.Parser.Properties;
 using Sidekick.Game.Parser.Properties.Definitions;
 namespace Sidekick.Game.Parser;
@@ -16,7 +18,8 @@ public class ItemParser
     ItemDefinitionParser itemDefinitionParser,
     ISettingsService settingsService,
     ItemClassParser itemClassParser,
-    TextParser textParser
+    TextParser textParser,
+    IStringLocalizer<PoeResources> resources
 ) : IInitializableService
 {
     private GameType Game { get; set; }
@@ -28,12 +31,12 @@ public class ItemParser
 
     public Item ParseItem(string? text)
     {
-        if (string.IsNullOrEmpty(text)) throw new UnparsableException(text);
+        if (string.IsNullOrEmpty(text)) throw CreateUnparsableException(text);
 
         try
         {
             var rawText = textParser.NormalizeText(text);
-            if (rawText == null) throw new UnparsableException(text);
+            if (rawText == null) throw CreateUnparsableException(text);
 
             var item = new Item(Game, rawText);
 
@@ -52,7 +55,15 @@ public class ItemParser
         catch (Exception e)
         {
             logger.LogWarning(e, "Could not parse item.");
-            throw new UnparsableException(text);
+            throw CreateUnparsableException(text);
         }
+    }
+
+    private UnparsableException CreateUnparsableException(string? text)
+    {
+        return new UnparsableException(resources["Unparsable_Title"], resources["Unparsable_Settings"], resources["Unparsable_Mistakes"])
+        {
+            ItemText = text,
+        };
     }
 }

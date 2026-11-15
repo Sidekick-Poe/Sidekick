@@ -225,4 +225,13 @@
   <data name="Exit" xml:space="preserve">
       <value>Quitter</value>
   </data>
+  <data name="Error_Unexpected_Title" xml:space="preserve">
+      <value>Une erreur est survenue.</value>
+  </data>
+  <data name="Error_Unexpected_Description" xml:space="preserve">
+      <value>Sidekick pourrait ne plus répondre jusqu'à ce qu'il soit redémarré. Si cela se reproduit, faites-le-nous savoir sur Discord ou GitHub.</value>
+  </data>
+  <data name="Error_Item_Text" xml:space="preserve">
+      <value>Texte de l'item</value>
+  </data>
 </root>
