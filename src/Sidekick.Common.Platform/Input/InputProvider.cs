@@ -413,17 +413,15 @@ public class InputProvider
 
     public bool IsRecordingKeybind
     {
-        get => isRecordingKeybind;
+        get;
         set
         {
-            if (isRecordingKeybind == value) return;
+            if (field == value) return;
 
-            isRecordingKeybind = value;
+            field = value;
             if (!value) OnRecordingKeybindStopped?.Invoke();
         }
     }
-
-    private bool isRecordingKeybind;
 
     /// <summary>
     /// System shortcuts that switch or close windows. They can't be used as hotkeys, so pressing one while recording stops the recording and lets the system handle it.
