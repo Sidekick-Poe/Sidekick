@@ -1,8 +1,10 @@
+using System.Diagnostics;
+
 namespace Sidekick.Common.Debugging;
 
 /// <summary>
-/// Test options, turned on from the Development page, that make some features easier to test.
-/// They are off at every launch, so they never affect users or normal debugging.
+/// Options that make Sidekick easier to develop and test.
+/// The Development page options are off at every launch, so they never affect users or normal debugging.
 /// </summary>
 public class DebugService
 {
@@ -16,4 +18,10 @@ public class DebugService
     /// Kept apart from <see cref="IsDebug"/>, since chat commands like F5 would then also fire in the IDE.
     /// </summary>
     public bool HotkeysInAnyWindow { get; set; }
+
+    /// <summary>
+    /// Developer mode shows the DevTools, skips the update check, and reads the game data from the repository.
+    /// Setting the SIDEKICK_DEVELOPER_MODE environment variable to 1 forces it, to test a build without a debugger.
+    /// </summary>
+    public bool IsDeveloperMode { get; } = Debugger.IsAttached || Environment.GetEnvironmentVariable("SIDEKICK_DEVELOPER_MODE") == "1";
 }

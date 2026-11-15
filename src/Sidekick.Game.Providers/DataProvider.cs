@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
+using Sidekick.Common.Debugging;
 using Sidekick.Common.Exceptions;
 using Sidekick.Game.Enums;
 using Sidekick.Game.Providers.Languages;
@@ -26,7 +26,7 @@ public class DataProvider
 
     public string DataDirectory { get; }
 
-    public DataProvider(IOptions<SidekickConfiguration> configuration, ILogger<DataProvider> logger)
+    public DataProvider(IOptions<SidekickConfiguration> configuration, ILogger<DataProvider> logger, DebugService debugService)
     {
         this.logger = logger;
         DataDirectory = GetDataDirectory();
@@ -35,7 +35,7 @@ public class DataProvider
 
         string GetDataDirectory()
         {
-            if (Debugger.IsAttached || configuration.Value.ApplicationType == SidekickApplicationType.Test)
+            if (debugService.IsDeveloperMode || configuration.Value.ApplicationType == SidekickApplicationType.Test)
             {
                 var solutionDirectory = FindSolutionDirectory();
                 if (!string.IsNullOrEmpty(solutionDirectory))

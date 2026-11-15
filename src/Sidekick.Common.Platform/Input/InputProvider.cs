@@ -416,6 +416,7 @@ public class InputProvider
     /// <inheritdoc/>
     public Task Initialize()
     {
+        // A breakpoint hit while a global keyboard hook is installed can freeze the keyboard of the whole system.
         if (Debugger.IsAttached || !configuration.Value.ApplicationType.SupportsKeybinds()) return Task.CompletedTask;
 
         // Add missing key codes that were not manually curated.
