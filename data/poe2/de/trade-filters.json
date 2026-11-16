@@ -112,6 +112,13 @@
         }
       },
       {
+        "id": "total_augment_sockets",
+        "text": "Gesamte Augmentationsfassungen",
+        "option": {
+          "options": []
+        }
+      },
+      {
         "id": "crit",
         "text": "Kritische Trefferchance",
         "option": {
@@ -156,13 +163,6 @@
       {
         "id": "dps",
         "text": "Schaden pro Sekunde",
-        "option": {
-          "options": []
-        }
-      },
-      {
-        "id": "total_augment_sockets",
-        "text": "Total Augment Sockets",
         "option": {
           "options": []
         }

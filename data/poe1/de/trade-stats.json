@@ -224,6 +224,10 @@
     "text": "#% Chance, bei T\u00F6tung \u0027Spektralwolf beschw\u00F6ren\u0027 Stufe 18 auszul\u00F6sen"
   },
   {
+    "id": "crafted.stat_181387736",
+    "text": "# Pr\u00E4fix-Modifikator kann nicht ver\u00E4ndert werden"
+  },
+  {
     "id": "crafted.stat_1839076647",
     "text": "#% erh\u00F6hter Projektilschaden"
   },
@@ -426,6 +430,10 @@
   {
     "id": "crafted.stat_2387423236",
     "text": "F\u00FCgt # bis # K\u00E4lteschaden hinzu"
+  },
+  {
+    "id": "crafted.stat_2390914662",
+    "text": "# Suffix-Modifikator kann nicht ver\u00E4ndert werden"
   },
   {
     "id": "crafted.stat_2402136583",
@@ -10796,6 +10804,10 @@
     "text": "Delirium-Belohnungstyp: Waffen"
   },
   {
+    "id": "enchant.effect_2236653998",
+    "text": "Gew\u00E4hrt \u0022Neid\u0022 Stufe #"
+  },
+  {
     "id": "enchant.stat_1000620493",
     "text": "Befall-Begegnungen enthalten bis zu # zus\u00E4tzlichen befallenen Boss"
   },
@@ -11178,6 +11190,10 @@
   {
     "id": "enchant.stat_1239233415",
     "text": "\u002B# zu maximalen Scharfschuss-Phasen"
+  },
+  {
+    "id": "enchant.stat_1240937795",
+    "text": "# Monstergruppen im Gebiet werden durch Pilzschamanen ersetzt\nSeltene Gruppenmonster, die sterben, \u00FCbertragen Modifikatoren auf andere seltene Monster im Gebiet"
   },
   {
     "id": "enchant.stat_124131830",
@@ -11624,6 +11640,10 @@
     "text": "\u0027Tektonischer Schlag\u0027 hat \u002B#% Chance auf Nebenrisse"
   },
   {
+    "id": "enchant.stat_1527404187",
+    "text": "Gebiete sind gequ\u00E4lt"
+  },
+  {
     "id": "enchant.stat_1528965411",
     "text": "#% erh\u00F6hte Fluchwirkung von \u0027Mal des Kriegsf\u00FCrsten\u0027"
   },
@@ -12002,6 +12022,10 @@
   {
     "id": "enchant.stat_1765389199",
     "text": "Lebensraub von Treffern mit dieser Waffe erfolgt sofort"
+  },
+  {
+    "id": "enchant.stat_1776086971",
+    "text": "# Monstergruppen im Gebiet werden durch ein einziges, \u00FCppiges Monster ersetzt"
   },
   {
     "id": "enchant.stat_1778800422",
@@ -12846,6 +12870,10 @@
   {
     "id": "enchant.stat_2284801675",
     "text": "#% erh\u00F6hte St\u00E4rkungswirkung Eurer Steingolems"
+  },
+  {
+    "id": "enchant.stat_228481227",
+    "text": "# Monstergruppen im Gebiet werden durch Gruppen ersetzt, die\nkeine Ausr\u00FCstung, Fl\u00E4schchen oder Tinkturen fallen lassen k\u00F6nnen"
   },
   {
     "id": "enchant.stat_2287764959",
@@ -16716,6 +16744,10 @@
     "text": "\u0027Seismischer Schrei\u0027 hat einen St\u00E4rkegrad von mindestens #"
   },
   {
+    "id": "enchant.stat_3552182293",
+    "text": "# Monstergruppen im Gebiet werden durch Gruppen mit schwierigen und lohnenden Monstern ersetzt,\ndie 300% erh\u00F6hte Karten fallen lassen"
+  },
+  {
     "id": "enchant.stat_3554587210",
     "text": "Erleidet #% des K\u00E4lte- und Blitzschadens von Treffern als Feuerschaden"
   },
@@ -16776,8 +16808,44 @@
     "text": "Wird benutzt, wenn Ihr ein Lebensfl\u00E4schchen benutzt"
   },
   {
+    "id": "enchant.stat_3599615742|10016",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Henker"
+  },
+  {
+    "id": "enchant.stat_3599615742|1006",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Willensst\u00E4rke"
+  },
+  {
+    "id": "enchant.stat_3599615742|10115",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verschwenderische Perfektion"
+  },
+  {
     "id": "enchant.stat_3599615742|10511",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Toleranz"
+  },
+  {
+    "id": "enchant.stat_3599615742|10542",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Stacheliges Bollwerk"
+  },
+  {
+    "id": "enchant.stat_3599615742|10835",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tr\u00E4umer"
+  },
+  {
+    "id": "enchant.stat_3599615742|11420",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Herrschaft der Arkanisten"
+  },
+  {
+    "id": "enchant.stat_3599615742|11645",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Atem des Blitzes"
+  },
+  {
+    "id": "enchant.stat_3599615742|11730",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Widerstandsf\u00E4higkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|11784",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vampirismus"
   },
   {
     "id": "enchant.stat_3599615742|11820",
@@ -16788,12 +16856,40 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Atem der Flammen"
   },
   {
+    "id": "enchant.stat_3599615742|12033",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Niedertr\u00E4chtige Klinge"
+  },
+  {
     "id": "enchant.stat_3599615742|12143",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Einfluss"
   },
   {
+    "id": "enchant.stat_3599615742|12702",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Pfad des Kriegers"
+  },
+  {
+    "id": "enchant.stat_3599615742|12795",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vielseitigkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|12809",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Berserkerwut"
+  },
+  {
+    "id": "enchant.stat_3599615742|12878",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gegenschlag"
+  },
+  {
     "id": "enchant.stat_3599615742|13164",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: G\u00F6ttliches Urteil"
+  },
+  {
+    "id": "enchant.stat_3599615742|1325",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Golems Blut"
+  },
+  {
+    "id": "enchant.stat_3599615742|13375",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mehrfachschuss"
   },
   {
     "id": "enchant.stat_3599615742|1340",
@@ -16804,44 +16900,400 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wissensbarriere"
   },
   {
+    "id": "enchant.stat_3599615742|13703",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Unbeugsamer Widerstand"
+  },
+  {
+    "id": "enchant.stat_3599615742|13739",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Immer w\u00FCtend"
+  },
+  {
+    "id": "enchant.stat_3599615742|1382",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Leere des Geistes"
+  },
+  {
+    "id": "enchant.stat_3599615742|13922",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Standhaft"
+  },
+  {
+    "id": "enchant.stat_3599615742|13935",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Nervenkitzel der Schlacht"
+  },
+  {
+    "id": "enchant.stat_3599615742|14001",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Unbeugsam"
+  },
+  {
+    "id": "enchant.stat_3599615742|1405",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Aus den Schatten"
+  },
+  {
     "id": "enchant.stat_3599615742|14079",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Holz, Stein und Zauber"
+  },
+  {
+    "id": "enchant.stat_3599615742|14587",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Anpassungsf\u00E4higer Stahl"
+  },
+  {
+    "id": "enchant.stat_3599615742|14606",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Abschlachten"
+  },
+  {
+    "id": "enchant.stat_3599615742|14665",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: G\u00F6ttlicher Zorn"
+  },
+  {
+    "id": "enchant.stat_3599615742|14813",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: W\u00FCstes Gelage"
+  },
+  {
+    "id": "enchant.stat_3599615742|15046",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Erl\u00F6sung"
+  },
+  {
+    "id": "enchant.stat_3599615742|15085",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Beidh\u00E4ndigkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|15226",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Grausame Antwort"
+  },
+  {
+    "id": "enchant.stat_3599615742|15290",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wacht\u00FCrme"
+  },
+  {
+    "id": "enchant.stat_3599615742|15344",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Bewegungsfreiheit"
+  },
+  {
+    "id": "enchant.stat_3599615742|15400",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Rausch der Runen"
   },
   {
     "id": "enchant.stat_3599615742|15437",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Umlenkung"
   },
   {
+    "id": "enchant.stat_3599615742|15614",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Klauen des Adlers"
+  },
+  {
+    "id": "enchant.stat_3599615742|1568",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: T\u00F6dliche Klinge"
+  },
+  {
+    "id": "enchant.stat_3599615742|15711",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Explosionsradius"
+  },
+  {
     "id": "enchant.stat_3599615742|15842",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eins mit der Natur"
+  },
+  {
+    "id": "enchant.stat_3599615742|15852",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Himmlisches Mahl"
+  },
+  {
+    "id": "enchant.stat_3599615742|16236",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Giftige Schl\u00E4ge"
+  },
+  {
+    "id": "enchant.stat_3599615742|16243",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Salve"
   },
   {
     "id": "enchant.stat_3599615742|16246",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gelassenheit"
   },
   {
+    "id": "enchant.stat_3599615742|16703",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sch\u00E4delbersten"
+  },
+  {
+    "id": "enchant.stat_3599615742|17171",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Blitzeinfrierung"
+  },
+  {
+    "id": "enchant.stat_3599615742|17608",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Leise Schritte"
+  },
+  {
+    "id": "enchant.stat_3599615742|18174",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mystisches Bollwerk"
+  },
+  {
+    "id": "enchant.stat_3599615742|18357",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Katzenhafte Schnelligkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|18703",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Anmutiger Angriff"
+  },
+  {
+    "id": "enchant.stat_3599615742|18707",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Perfektionist"
+  },
+  {
+    "id": "enchant.stat_3599615742|18769",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mit Blut geschrieben"
+  },
+  {
+    "id": "enchant.stat_3599615742|18865",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verschmelzung"
+  },
+  {
+    "id": "enchant.stat_3599615742|19069",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Robuste Haut"
+  },
+  {
+    "id": "enchant.stat_3599615742|19103",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Armee der Rechtschaffenheit"
+  },
+  {
+    "id": "enchant.stat_3599615742|19144",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wache"
+  },
+  {
+    "id": "enchant.stat_3599615742|19506",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Pfad des J\u00E4gers"
+  },
+  {
+    "id": "enchant.stat_3599615742|19730",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sicherer Schlag"
+  },
+  {
+    "id": "enchant.stat_3599615742|19794",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ersch\u00FCtternde Kraft"
+  },
+  {
+    "id": "enchant.stat_3599615742|19858",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kr\u00E4uterkunde"
+  },
+  {
+    "id": "enchant.stat_3599615742|19897",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: T\u00F6dliche Einstimmung"
+  },
+  {
+    "id": "enchant.stat_3599615742|20261",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Besinnliche Meditation"
+  },
+  {
     "id": "enchant.stat_3599615742|203",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Weinbergsbl\u00FCte"
+  },
+  {
+    "id": "enchant.stat_3599615742|20528",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Instabilit\u00E4t"
+  },
+  {
+    "id": "enchant.stat_3599615742|20605",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Keine Vergebung"
+  },
+  {
+    "id": "enchant.stat_3599615742|20832",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Heiligtum"
+  },
+  {
+    "id": "enchant.stat_3599615742|20835",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Spiel mit dem Feuer"
+  },
+  {
+    "id": "enchant.stat_3599615742|21228",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Durchbohrende Geschosse"
+  },
+  {
+    "id": "enchant.stat_3599615742|21297",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sprengstoffe"
+  },
+  {
+    "id": "enchant.stat_3599615742|21330",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schnelle Erholung"
+  },
+  {
+    "id": "enchant.stat_3599615742|21389",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Runenk\u00FCnstler"
+  },
+  {
+    "id": "enchant.stat_3599615742|21413",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kampfkondition"
+  },
+  {
+    "id": "enchant.stat_3599615742|21435",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tuch und Kette"
+  },
+  {
+    "id": "enchant.stat_3599615742|21460",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Atem des Raureifs"
+  },
+  {
+    "id": "enchant.stat_3599615742|21602",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zerst\u00F6rerische Apparatur"
   },
   {
     "id": "enchant.stat_3599615742|21634",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkane Chemie"
   },
   {
+    "id": "enchant.stat_3599615742|21958",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Grausame Vorbereitung"
+  },
+  {
+    "id": "enchant.stat_3599615742|21973",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schutz vor Verfall"
+  },
+  {
+    "id": "enchant.stat_3599615742|22133",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Belebende Glut"
+  },
+  {
+    "id": "enchant.stat_3599615742|2225",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Adlerauge"
+  },
+  {
+    "id": "enchant.stat_3599615742|22356",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Blutsauger"
+  },
+  {
+    "id": "enchant.stat_3599615742|22535",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Todesfl\u00FCstern"
+  },
+  {
     "id": "enchant.stat_3599615742|22702",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Haltung der Schlange"
+  },
+  {
+    "id": "enchant.stat_3599615742|22706",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Intensit\u00E4t des Wilden"
+  },
+  {
+    "id": "enchant.stat_3599615742|2275",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Naturgemisch"
+  },
+  {
+    "id": "enchant.stat_3599615742|22972",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zauberstabschwinger"
+  },
+  {
+    "id": "enchant.stat_3599615742|23038",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gemetzel"
+  },
+  {
+    "id": "enchant.stat_3599615742|23066",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Raserei"
+  },
+  {
+    "id": "enchant.stat_3599615742|23549",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: K\u00F6rperlos"
+  },
+  {
+    "id": "enchant.stat_3599615742|23690",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Essenz-Infusion"
+  },
+  {
+    "id": "enchant.stat_3599615742|24050",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eiskalte Berechnung"
+  },
+  {
+    "id": "enchant.stat_3599615742|24067",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Instinkt"
+  },
+  {
+    "id": "enchant.stat_3599615742|24133",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: \u00DCberlebensk\u00FCnstler"
+  },
+  {
+    "id": "enchant.stat_3599615742|24256",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Dynamo"
+  },
+  {
+    "id": "enchant.stat_3599615742|24324",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Explosiver Aufprall"
+  },
+  {
+    "id": "enchant.stat_3599615742|24358",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gezielte Pr\u00E4zision"
+  },
+  {
+    "id": "enchant.stat_3599615742|24362",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tiefsinnige Gedanken"
+  },
+  {
+    "id": "enchant.stat_3599615742|24383",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kriegerblut"
+  },
+  {
+    "id": "enchant.stat_3599615742|24716",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kriegstrance"
+  },
+  {
+    "id": "enchant.stat_3599615742|24721",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Rippenbrecher"
+  },
+  {
+    "id": "enchant.stat_3599615742|24858",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Harpunier"
   },
   {
     "id": "enchant.stat_3599615742|25058",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Blutentleerung"
   },
   {
+    "id": "enchant.stat_3599615742|25178",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Urgeist"
+  },
+  {
+    "id": "enchant.stat_3599615742|25367",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Klingenmeister"
+  },
+  {
+    "id": "enchant.stat_3599615742|25409",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Unbezwingbare Armee"
+  },
+  {
+    "id": "enchant.stat_3599615742|25411",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verst\u00E4rkt"
+  },
+  {
     "id": "enchant.stat_3599615742|25439",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Leichenbestatter"
   },
   {
+    "id": "enchant.stat_3599615742|25456",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Derwisch"
+  },
+  {
+    "id": "enchant.stat_3599615742|2550",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Brandstifter"
+  },
+  {
+    "id": "enchant.stat_3599615742|25738",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Unerbittliche Verfolgung"
+  },
+  {
     "id": "enchant.stat_3599615742|25970",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verbitterung"
+  },
+  {
+    "id": "enchant.stat_3599615742|25989",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Nomadische Lehren"
+  },
+  {
+    "id": "enchant.stat_3599615742|2599",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vorbereitete Antwort"
+  },
+  {
+    "id": "enchant.stat_3599615742|26023",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tiefe Wunden"
+  },
+  {
+    "id": "enchant.stat_3599615742|26096",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kriegsbeilmeister"
+  },
+  {
+    "id": "enchant.stat_3599615742|26294",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Blutvergie\u00DFen"
   },
   {
     "id": "enchant.stat_3599615742|26557",
@@ -16856,24 +17308,200 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verderbtheit"
   },
   {
+    "id": "enchant.stat_3599615742|26763",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Perfektionierte Formel"
+  },
+  {
+    "id": "enchant.stat_3599615742|26866",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Heiligkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|26960",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Voraussicht"
+  },
+  {
+    "id": "enchant.stat_3599615742|27119",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wilde Barbarei"
+  },
+  {
+    "id": "enchant.stat_3599615742|27137",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Reine Gedanken"
+  },
+  {
+    "id": "enchant.stat_3599615742|2715",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schnellschritt"
+  },
+  {
+    "id": "enchant.stat_3599615742|27163",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkaner Wille"
+  },
+  {
+    "id": "enchant.stat_3599615742|27190",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Bestens vorbereitet"
+  },
+  {
+    "id": "enchant.stat_3599615742|27203",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Herz und Seele"
+  },
+  {
+    "id": "enchant.stat_3599615742|27301",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kampferfahrung"
+  },
+  {
+    "id": "enchant.stat_3599615742|27308",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Grabespakt"
+  },
+  {
+    "id": "enchant.stat_3599615742|27422",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kampfgeist"
+  },
+  {
+    "id": "enchant.stat_3599615742|27611",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: F\u00FCrst der Toten"
+  },
+  {
     "id": "enchant.stat_3599615742|27623",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Harte Lektionen"
+  },
+  {
+    "id": "enchant.stat_3599615742|27781",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verehrung des befallenen Herzens"
+  },
+  {
+    "id": "enchant.stat_3599615742|27788",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Bluttrinker"
+  },
+  {
+    "id": "enchant.stat_3599615742|27806",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wie der Donner"
+  },
+  {
+    "id": "enchant.stat_3599615742|27929",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tiefe Weisheit"
+  },
+  {
+    "id": "enchant.stat_3599615742|28034",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verst\u00E4rkende Bindung"
+  },
+  {
+    "id": "enchant.stat_3599615742|28449",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Energieschub"
   },
   {
     "id": "enchant.stat_3599615742|28503",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Lebensr\u00E4uber"
   },
   {
+    "id": "enchant.stat_3599615742|28754",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Attentat"
+  },
+  {
+    "id": "enchant.stat_3599615742|28878",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gnadenlos"
+  },
+  {
     "id": "enchant.stat_3599615742|29049",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Heiliges Feuer"
+  },
+  {
+    "id": "enchant.stat_3599615742|29381",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gefr\u00E4\u00DFige Horde"
+  },
+  {
+    "id": "enchant.stat_3599615742|29522",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tanz der Klingen"
+  },
+  {
+    "id": "enchant.stat_3599615742|2959",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zeit des Eises"
+  },
+  {
+    "id": "enchant.stat_3599615742|29861",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Explosive Runen"
+  },
+  {
+    "id": "enchant.stat_3599615742|30160",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Abwehren"
+  },
+  {
+    "id": "enchant.stat_3599615742|30225",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Blitzl\u00E4ufer"
+  },
+  {
+    "id": "enchant.stat_3599615742|30302",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wacker"
+  },
+  {
+    "id": "enchant.stat_3599615742|30439",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Lavahieb"
+  },
+  {
+    "id": "enchant.stat_3599615742|30471",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wahrer Schlag"
+  },
+  {
+    "id": "enchant.stat_3599615742|30693",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: G\u00F6ttlicher Eifer"
+  },
+  {
+    "id": "enchant.stat_3599615742|30974",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Meisterj\u00E4ger"
+  },
+  {
+    "id": "enchant.stat_3599615742|31033",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Robust"
+  },
+  {
+    "id": "enchant.stat_3599615742|31257",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Nat\u00FCrliche Autorit\u00E4t"
+  },
+  {
+    "id": "enchant.stat_3599615742|31359",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: T\u00F6dliche Toxine"
+  },
+  {
+    "id": "enchant.stat_3599615742|31473",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Meister der Wunden"
+  },
+  {
+    "id": "enchant.stat_3599615742|31508",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Aspekt des Luchses"
   },
   {
     "id": "enchant.stat_3599615742|31513",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: T\u00F6dliche N\u00E4he"
   },
   {
+    "id": "enchant.stat_3599615742|31585",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vorsichtige Einteilung"
+  },
+  {
+    "id": "enchant.stat_3599615742|3195",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verm\u00E4chtnis der Wildnis"
+  },
+  {
     "id": "enchant.stat_3599615742|32059",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gewaltige Schl\u00E4ge"
+  },
+  {
+    "id": "enchant.stat_3599615742|32176",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Seelendieb"
+  },
+  {
+    "id": "enchant.stat_3599615742|32227",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ber\u00FChrung der Kreuzotter"
+  },
+  {
+    "id": "enchant.stat_3599615742|32455",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sturmweber"
+  },
+  {
+    "id": "enchant.stat_3599615742|32681",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zur Jagd freigegeben"
+  },
+  {
+    "id": "enchant.stat_3599615742|32738",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mauer aus Stahl"
   },
   {
     "id": "enchant.stat_3599615742|32853",
@@ -16884,8 +17512,28 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Souver\u00E4nit\u00E4t"
   },
   {
+    "id": "enchant.stat_3599615742|33082",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schwertschneide"
+  },
+  {
+    "id": "enchant.stat_3599615742|3309",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Leichtf\u00FC\u00DFigkeit"
+  },
+  {
     "id": "enchant.stat_3599615742|33287",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Koloss"
+  },
+  {
+    "id": "enchant.stat_3599615742|33435",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Heilige Herrschaft"
+  },
+  {
+    "id": "enchant.stat_3599615742|33545",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sp\u00FCrhund"
+  },
+  {
+    "id": "enchant.stat_3599615742|33582",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gewaltsames Aufspie\u00DFen"
   },
   {
     "id": "enchant.stat_3599615742|33718",
@@ -16900,8 +17548,16 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Prahlerei"
   },
   {
+    "id": "enchant.stat_3599615742|33777",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verheerende Vorrichtungen"
+  },
+  {
     "id": "enchant.stat_3599615742|33903",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wille der Klingen"
+  },
+  {
+    "id": "enchant.stat_3599615742|34009",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Meister der Arena"
   },
   {
     "id": "enchant.stat_3599615742|34173",
@@ -16916,36 +17572,260 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Golem-Kommandant"
   },
   {
+    "id": "enchant.stat_3599615742|3452",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Weitblick"
+  },
+  {
+    "id": "enchant.stat_3599615742|34591",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: B\u00F6swillige Absicht"
+  },
+  {
+    "id": "enchant.stat_3599615742|34661",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Feuerl\u00E4ufer"
+  },
+  {
+    "id": "enchant.stat_3599615742|34666",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zerst\u00F6rer"
+  },
+  {
     "id": "enchant.stat_3599615742|34973",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gemessene Wut"
+  },
+  {
+    "id": "enchant.stat_3599615742|34978",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kolloidale Mixtur"
+  },
+  {
+    "id": "enchant.stat_3599615742|35233",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zwietrachts\u00E4her"
+  },
+  {
+    "id": "enchant.stat_3599615742|35436",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kinetische Schl\u00E4ge"
+  },
+  {
+    "id": "enchant.stat_3599615742|35663",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Starker Arm"
+  },
+  {
+    "id": "enchant.stat_3599615742|35685",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Furchteinfl\u00F6\u00DFende Macht"
+  },
+  {
+    "id": "enchant.stat_3599615742|35894",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: List"
+  },
+  {
+    "id": "enchant.stat_3599615742|35958",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Glaube und Stahl"
+  },
+  {
+    "id": "enchant.stat_3599615742|36281",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Macht der Urgewalten"
   },
   {
     "id": "enchant.stat_3599615742|36490",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: H\u00E4uten"
   },
   {
+    "id": "enchant.stat_3599615742|36687",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Inkarnation der Jagd"
+  },
+  {
+    "id": "enchant.stat_3599615742|36736",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Brennende Brutalit\u00E4t"
+  },
+  {
+    "id": "enchant.stat_3599615742|36859",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eiserne Haltung"
+  },
+  {
     "id": "enchant.stat_3599615742|36915",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Opfer"
+  },
+  {
+    "id": "enchant.stat_3599615742|36949",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Hingabe"
+  },
+  {
+    "id": "enchant.stat_3599615742|37078",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Pfad des Gelehrten"
+  },
+  {
+    "id": "enchant.stat_3599615742|37326",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kondition"
   },
   {
     "id": "enchant.stat_3599615742|37403",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gest\u00E4rkter K\u00F6rper"
   },
   {
+    "id": "enchant.stat_3599615742|37425",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ge\u00FCbte Wiederanwendung"
+  },
+  {
+    "id": "enchant.stat_3599615742|37504",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Intuition"
+  },
+  {
+    "id": "enchant.stat_3599615742|37512",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Bastion des Glaubens"
+  },
+  {
+    "id": "enchant.stat_3599615742|37647",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zerst\u00FCckelung"
+  },
+  {
+    "id": "enchant.stat_3599615742|38246",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Omen"
+  },
+  {
+    "id": "enchant.stat_3599615742|38516",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gerechter Erlass"
+  },
+  {
+    "id": "enchant.stat_3599615742|38706",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Weg des Kriegers"
+  },
+  {
+    "id": "enchant.stat_3599615742|38849",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Versengende Hitze"
+  },
+  {
+    "id": "enchant.stat_3599615742|38922",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Goliath"
+  },
+  {
+    "id": "enchant.stat_3599615742|39530",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vitalit\u00E4t der Leere"
+  },
+  {
+    "id": "enchant.stat_3599615742|39657",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schmied der Schmerzen"
+  },
+  {
+    "id": "enchant.stat_3599615742|39743",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Dunkle K\u00FCnste"
+  },
+  {
+    "id": "enchant.stat_3599615742|39761",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gegengewicht"
+  },
+  {
     "id": "enchant.stat_3599615742|39904",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Brutales Aufspie\u00DFen"
+  },
+  {
+    "id": "enchant.stat_3599615742|39986",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Entweihte Kr\u00E4fte"
+  },
+  {
+    "id": "enchant.stat_3599615742|40619",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ehrfurcht und Schrecken"
+  },
+  {
+    "id": "enchant.stat_3599615742|40645",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Knochenbrecher"
+  },
+  {
+    "id": "enchant.stat_3599615742|40743",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kristallhaut"
+  },
+  {
+    "id": "enchant.stat_3599615742|40849",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Beharrlichkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|41119",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Letalit\u00E4t"
+  },
+  {
+    "id": "enchant.stat_3599615742|41137",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Feldmedizin"
   },
   {
     "id": "enchant.stat_3599615742|41169",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Scharfe Wunden"
   },
   {
+    "id": "enchant.stat_3599615742|41305",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vernichtende Antwort"
+  },
+  {
+    "id": "enchant.stat_3599615742|41307",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: T\u00F6dliche Vorlieben"
+  },
+  {
+    "id": "enchant.stat_3599615742|41420",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Naturheilmittel"
+  },
+  {
+    "id": "enchant.stat_3599615742|41472",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Disziplin und Training"
+  },
+  {
+    "id": "enchant.stat_3599615742|41476",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Macht der \u00C4ltesten"
+  },
+  {
     "id": "enchant.stat_3599615742|41595",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Dem Tod geweiht"
   },
   {
+    "id": "enchant.stat_3599615742|4177",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Spiritueller Beistand"
+  },
+  {
+    "id": "enchant.stat_3599615742|41870",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Winterliche Umarmung"
+  },
+  {
+    "id": "enchant.stat_3599615742|41989",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Einfallsreichtum"
+  },
+  {
     "id": "enchant.stat_3599615742|42009",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Seele aus Stahl"
+  },
+  {
+    "id": "enchant.stat_3599615742|42041",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Profane Chemie"
+  },
+  {
+    "id": "enchant.stat_3599615742|4207",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: G\u00FCnstige Gelegenheit"
+  },
+  {
+    "id": "enchant.stat_3599615742|42443",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Frenetisch"
+  },
+  {
+    "id": "enchant.stat_3599615742|42649",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schneegeschmiedet"
+  },
+  {
+    "id": "enchant.stat_3599615742|42686",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Elementarfokus"
+  },
+  {
+    "id": "enchant.stat_3599615742|42720",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Starke Zugkraft"
+  },
+  {
+    "id": "enchant.stat_3599615742|42795",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkaner Fokus"
+  },
+  {
+    "id": "enchant.stat_3599615742|42804",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gedankenschl\u00FCrfer"
+  },
+  {
+    "id": "enchant.stat_3599615742|42917",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wirbelnde Barriere"
+  },
+  {
+    "id": "enchant.stat_3599615742|43385",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Seele des Winters"
   },
   {
     "id": "enchant.stat_3599615742|4354",
@@ -16956,16 +17836,92 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Spirituelle Herrschaft"
   },
   {
+    "id": "enchant.stat_3599615742|44102",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Effiziente Sprengmittel"
+  },
+  {
+    "id": "enchant.stat_3599615742|44103",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Reflexe"
+  },
+  {
+    "id": "enchant.stat_3599615742|44191",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wie der Berg"
+  },
+  {
+    "id": "enchant.stat_3599615742|44207",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schildkr\u00F6tenformation"
+  },
+  {
+    "id": "enchant.stat_3599615742|44347",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: G\u00F6ttliche Rache"
+  },
+  {
+    "id": "enchant.stat_3599615742|44562",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Herrschaft des Schamanen"
+  },
+  {
+    "id": "enchant.stat_3599615742|44788",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: M\u00E4chtige Bindungen"
+  },
+  {
+    "id": "enchant.stat_3599615742|4481",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Naturgewalten"
+  },
+  {
     "id": "enchant.stat_3599615742|44824",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mystik"
+  },
+  {
+    "id": "enchant.stat_3599615742|44955",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Frostl\u00E4ufer"
   },
   {
     "id": "enchant.stat_3599615742|44988",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verw\u00FCstung"
   },
   {
+    "id": "enchant.stat_3599615742|45067",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mordlust"
+  },
+  {
+    "id": "enchant.stat_3599615742|45283",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: In die Enge getriebene Beute"
+  },
+  {
+    "id": "enchant.stat_3599615742|45317",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Asche, Frost und Sturm"
+  },
+  {
     "id": "enchant.stat_3599615742|45329",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kunstschuss"
+  },
+  {
+    "id": "enchant.stat_3599615742|45350",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ruhm des Befehls"
+  },
+  {
+    "id": "enchant.stat_3599615742|45608",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sukzessive Detonationen"
+  },
+  {
+    "id": "enchant.stat_3599615742|45657",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Pr\u00FCfung des Glaubens"
+  },
+  {
+    "id": "enchant.stat_3599615742|45803",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Erfahrener Soldat"
+  },
+  {
+    "id": "enchant.stat_3599615742|45945",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Herbeigezauberte Barriere"
+  },
+  {
+    "id": "enchant.stat_3599615742|46408",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Fangz\u00E4hne der Viper"
+  },
+  {
+    "id": "enchant.stat_3599615742|46471",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: M\u00E4chtige Bindung"
   },
   {
     "id": "enchant.stat_3599615742|46842",
@@ -16976,6 +17932,34 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkane Zuflucht"
   },
   {
+    "id": "enchant.stat_3599615742|46965",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Saboteur"
+  },
+  {
+    "id": "enchant.stat_3599615742|47065",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Meister der Klingen"
+  },
+  {
+    "id": "enchant.stat_3599615742|47306",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kehlensucher"
+  },
+  {
+    "id": "enchant.stat_3599615742|47471",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: \u00DCberladen"
+  },
+  {
+    "id": "enchant.stat_3599615742|47484",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tiefenwahrnehmung"
+  },
+  {
+    "id": "enchant.stat_3599615742|47743",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Weitsicht"
+  },
+  {
+    "id": "enchant.stat_3599615742|48298",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Einsicht"
+  },
+  {
     "id": "enchant.stat_3599615742|4833",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Lebenskraft"
   },
@@ -16984,44 +17968,368 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tapferkeit"
   },
   {
+    "id": "enchant.stat_3599615742|4854",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zuflucht"
+  },
+  {
+    "id": "enchant.stat_3599615742|48556",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Dunkles Herz"
+  },
+  {
+    "id": "enchant.stat_3599615742|48614",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Inbrunst"
+  },
+  {
+    "id": "enchant.stat_3599615742|48698",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Barriere der Leere"
+  },
+  {
+    "id": "enchant.stat_3599615742|48807",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kampfkunst des Gladiators"
+  },
+  {
+    "id": "enchant.stat_3599615742|48823",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: T\u00F6dliche Zugkraft"
+  },
+  {
+    "id": "enchant.stat_3599615742|4918",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gnadenlose Rache"
+  },
+  {
+    "id": "enchant.stat_3599615742|49254",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vergeltung"
+  },
+  {
+    "id": "enchant.stat_3599615742|49318",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Abrissbirne"
+  },
+  {
     "id": "enchant.stat_3599615742|49379",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Angeheuerter Meuchler"
+  },
+  {
+    "id": "enchant.stat_3599615742|4940",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Spalten"
+  },
+  {
+    "id": "enchant.stat_3599615742|49416",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Hartn\u00E4ckig"
+  },
+  {
+    "id": "enchant.stat_3599615742|49445",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Tiefe Atemz\u00FCge"
+  },
+  {
+    "id": "enchant.stat_3599615742|49459",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: K\u00F6nig des Berges"
+  },
+  {
+    "id": "enchant.stat_3599615742|49538",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ungehorsam"
+  },
+  {
+    "id": "enchant.stat_3599615742|49621",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sch\u00E4rfe"
+  },
+  {
+    "id": "enchant.stat_3599615742|49645",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kauterisation"
+  },
+  {
+    "id": "enchant.stat_3599615742|49772",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: \u00DCberragende Kraft"
+  },
+  {
+    "id": "enchant.stat_3599615742|49969",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mut"
   },
   {
     "id": "enchant.stat_3599615742|50029",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Unnat\u00FCrliche Ruhe"
   },
   {
+    "id": "enchant.stat_3599615742|50338",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ballistik"
+  },
+  {
+    "id": "enchant.stat_3599615742|50690",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Belebende Tr\u00E4nke"
+  },
+  {
+    "id": "enchant.stat_3599615742|50842",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zorn des Veteranen"
+  },
+  {
+    "id": "enchant.stat_3599615742|50858",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mahner"
+  },
+  {
+    "id": "enchant.stat_3599615742|51108",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkaner Kondensator"
+  },
+  {
+    "id": "enchant.stat_3599615742|51212",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Entropie"
+  },
+  {
+    "id": "enchant.stat_3599615742|5126",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Genickbrecher"
+  },
+  {
+    "id": "enchant.stat_3599615742|51360",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gemischte Munition"
+  },
+  {
+    "id": "enchant.stat_3599615742|51440",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Druidenritual"
+  },
+  {
+    "id": "enchant.stat_3599615742|51559",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zertr\u00FCmmernde Schl\u00E4ge"
+  },
+  {
+    "id": "enchant.stat_3599615742|51748",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Letzte \u00D6lung"
+  },
+  {
     "id": "enchant.stat_3599615742|51881",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Meisterpfeilmacher"
+  },
+  {
+    "id": "enchant.stat_3599615742|52030",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Energieschub"
+  },
+  {
+    "id": "enchant.stat_3599615742|52031",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zerfall"
+  },
+  {
+    "id": "enchant.stat_3599615742|52090",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: F\u00E4llender Richter"
+  },
+  {
+    "id": "enchant.stat_3599615742|52157",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Seelenentleerung"
+  },
+  {
+    "id": "enchant.stat_3599615742|52230",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wilder J\u00E4ger"
   },
   {
     "id": "enchant.stat_3599615742|52282",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Z\u00E4higkeit"
   },
   {
+    "id": "enchant.stat_3599615742|52742",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vorzeitiges Ableben"
+  },
+  {
+    "id": "enchant.stat_3599615742|52789",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Lebenskreis"
+  },
+  {
+    "id": "enchant.stat_3599615742|5289",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kampfweckruf"
+  },
+  {
+    "id": "enchant.stat_3599615742|529",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Giftige Fangz\u00E4hne"
+  },
+  {
+    "id": "enchant.stat_3599615742|53013",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Atrophie"
+  },
+  {
+    "id": "enchant.stat_3599615742|53042",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Au\u00DFergew\u00F6hnliche Leistung"
+  },
+  {
+    "id": "enchant.stat_3599615742|53114",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Rache der Verfolgten"
+  },
+  {
     "id": "enchant.stat_3599615742|53118",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Barbarei"
+  },
+  {
+    "id": "enchant.stat_3599615742|53493",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vernichtung"
   },
   {
     "id": "enchant.stat_3599615742|53573",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkane Ausdehnung"
   },
   {
+    "id": "enchant.stat_3599615742|53652",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Von Entweihung durchdrungen"
+  },
+  {
+    "id": "enchant.stat_3599615742|53757",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zorn des Schamanen"
+  },
+  {
     "id": "enchant.stat_3599615742|53759",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gereinigte Gedanken"
+  },
+  {
+    "id": "enchant.stat_3599615742|53802",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Essenzextraktion"
+  },
+  {
+    "id": "enchant.stat_3599615742|53840",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Vergeltung"
+  },
+  {
+    "id": "enchant.stat_3599615742|54142",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Finesse"
+  },
+  {
+    "id": "enchant.stat_3599615742|54268",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Klingenbarriere"
+  },
+  {
+    "id": "enchant.stat_3599615742|5430",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Magmatische Schl\u00E4ge"
+  },
+  {
+    "id": "enchant.stat_3599615742|544",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: \u00DCberwachung"
+  },
+  {
+    "id": "enchant.stat_3599615742|54629",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kompromisslos"
+  },
+  {
+    "id": "enchant.stat_3599615742|54694",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Licht der G\u00F6ttlichkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|54713",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kraftgestalter"
+  },
+  {
+    "id": "enchant.stat_3599615742|54776",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Manafluss"
+  },
+  {
+    "id": "enchant.stat_3599615742|54791",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Klauen der Elster"
+  },
+  {
+    "id": "enchant.stat_3599615742|55002",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gerechter Zorn"
+  },
+  {
+    "id": "enchant.stat_3599615742|55027",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Strahlende Gerechtigkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|55114",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: \u00DCberragender Intellekt"
+  },
+  {
+    "id": "enchant.stat_3599615742|55194",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Niedergehende Asche"
+  },
+  {
+    "id": "enchant.stat_3599615742|55380",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Clevere Konstruktion"
+  },
+  {
+    "id": "enchant.stat_3599615742|55381",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkane Vergeltung"
   },
   {
     "id": "enchant.stat_3599615742|55485",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Konstitution"
   },
   {
+    "id": "enchant.stat_3599615742|5574",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Macht der Finsternis"
+  },
+  {
+    "id": "enchant.stat_3599615742|55772",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Hammer und Nagel"
+  },
+  {
+    "id": "enchant.stat_3599615742|56094",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Stabmeister"
+  },
+  {
     "id": "enchant.stat_3599615742|56146",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Brutalit\u00E4t mit voller Absicht"
   },
   {
+    "id": "enchant.stat_3599615742|56207",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verh\u00E4rtete Narben"
+  },
+  {
+    "id": "enchant.stat_3599615742|5624",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kreuzritter"
+  },
+  {
+    "id": "enchant.stat_3599615742|56274",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Anhaltender Sturm"
+  },
+  {
+    "id": "enchant.stat_3599615742|56276",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Nachtpirscher"
+  },
+  {
+    "id": "enchant.stat_3599615742|56330",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Rhythmus des Kampfes"
+  },
+  {
+    "id": "enchant.stat_3599615742|56359",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kannibalischer Ritus"
+  },
+  {
+    "id": "enchant.stat_3599615742|56648",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Klauen des Falken"
+  },
+  {
+    "id": "enchant.stat_3599615742|56716",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Donnerherz"
+  },
+  {
     "id": "enchant.stat_3599615742|570",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Blendende Schl\u00E4ge"
+  },
+  {
+    "id": "enchant.stat_3599615742|57006",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Bittere Rache"
+  },
+  {
+    "id": "enchant.stat_3599615742|57199",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Fangz\u00E4hne des Frostes"
+  },
+  {
+    "id": "enchant.stat_3599615742|57839",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Klinge der Gerissenheit"
+  },
+  {
+    "id": "enchant.stat_3599615742|57900",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Herrschaft des Stahls"
+  },
+  {
+    "id": "enchant.stat_3599615742|58032",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Listiger Zauberschwinger"
+  },
+  {
+    "id": "enchant.stat_3599615742|58168",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Hochspannung"
+  },
+  {
+    "id": "enchant.stat_3599615742|58198",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Finger des Frostes"
+  },
+  {
+    "id": "enchant.stat_3599615742|58218",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Reinheit des Fleisches"
+  },
+  {
+    "id": "enchant.stat_3599615742|5823",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Koordination"
   },
   {
     "id": "enchant.stat_3599615742|58382",
@@ -17032,12 +18340,84 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: F\u00FCr den Kampf geboren"
   },
   {
+    "id": "enchant.stat_3599615742|58831",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ausweiden"
+  },
+  {
     "id": "enchant.stat_3599615742|58851",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Anf\u00FChrer des Rudels"
   },
   {
+    "id": "enchant.stat_3599615742|58921",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Disziplin des Schlachtens"
+  },
+  {
+    "id": "enchant.stat_3599615742|59151",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Brutale Klinge"
+  },
+  {
+    "id": "enchant.stat_3599615742|59423",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eskalation"
+  },
+  {
+    "id": "enchant.stat_3599615742|59556",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schnelle Munition"
+  },
+  {
+    "id": "enchant.stat_3599615742|59605",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Instabile Munition"
+  },
+  {
+    "id": "enchant.stat_3599615742|59766",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schmutzige Techniken"
+  },
+  {
+    "id": "enchant.stat_3599615742|59866",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Verschanzen"
+  },
+  {
+    "id": "enchant.stat_3599615742|59976",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sorgf\u00E4ltiger Gegenangriff"
+  },
+  {
     "id": "enchant.stat_3599615742|6",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zwillingsschrecken"
+  },
+  {
+    "id": "enchant.stat_3599615742|60002",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zornesblitze"
+  },
+  {
+    "id": "enchant.stat_3599615742|60031",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Prismatische Haut"
+  },
+  {
+    "id": "enchant.stat_3599615742|60085",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkane Konservierung"
+  },
+  {
+    "id": "enchant.stat_3599615742|60501",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Flammenherz"
+  },
+  {
+    "id": "enchant.stat_3599615742|60619",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Galvanischer Hammer"
+  },
+  {
+    "id": "enchant.stat_3599615742|60737",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Fingerfertigkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|60781",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Inspirierende Bindung"
+  },
+  {
+    "id": "enchant.stat_3599615742|61039",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wilder Hunger"
+  },
+  {
+    "id": "enchant.stat_3599615742|61190",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Zusammenf\u00FChrende Ikone"
   },
   {
     "id": "enchant.stat_3599615742|61198",
@@ -17048,12 +18428,44 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Erweitern"
   },
   {
+    "id": "enchant.stat_3599615742|61689",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Explosive Elemente"
+  },
+  {
     "id": "enchant.stat_3599615742|61981",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Todeszauber"
   },
   {
+    "id": "enchant.stat_3599615742|61982",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: D\u00FCstere Absichten"
+  },
+  {
+    "id": "enchant.stat_3599615742|62094",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Blutr\u00FCnstig"
+  },
+  {
+    "id": "enchant.stat_3599615742|6233",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Druckwellen"
+  },
+  {
+    "id": "enchant.stat_3599615742|6237",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Pr\u00E4zision"
+  },
+  {
+    "id": "enchant.stat_3599615742|62577",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Essenzschwall"
+  },
+  {
     "id": "enchant.stat_3599615742|62596",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Geheime Talente"
+  },
+  {
+    "id": "enchant.stat_3599615742|62802",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Am Rande des Todes"
+  },
+  {
+    "id": "enchant.stat_3599615742|62849",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eisk\u00E4fig"
   },
   {
     "id": "enchant.stat_3599615742|6289",
@@ -17064,6 +18476,14 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Bannertr\u00E4ger"
   },
   {
+    "id": "enchant.stat_3599615742|63150",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eisenholz"
+  },
+  {
+    "id": "enchant.stat_3599615742|63207",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sturmexplosion"
+  },
+  {
     "id": "enchant.stat_3599615742|63251",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eingefleischt"
   },
@@ -17072,16 +18492,72 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gier nach Gemetzel"
   },
   {
+    "id": "enchant.stat_3599615742|63453",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: \u00DCbersch\u00FCssige Nahrung"
+  },
+  {
+    "id": "enchant.stat_3599615742|63635",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Manifestation des Ursprungs"
+  },
+  {
+    "id": "enchant.stat_3599615742|63727",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Ausdauer des Gladiators"
+  },
+  {
+    "id": "enchant.stat_3599615742|63921",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: \u00DCberragende Geschicklichkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|63933",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eifer des Totems"
+  },
+  {
+    "id": "enchant.stat_3599615742|63944",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Prismawelle"
+  },
+  {
+    "id": "enchant.stat_3599615742|63976",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gestalter"
+  },
+  {
+    "id": "enchant.stat_3599615742|64077",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Kampfausbildung"
+  },
+  {
     "id": "enchant.stat_3599615742|64217",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Hart wie Stein"
+  },
+  {
+    "id": "enchant.stat_3599615742|64226",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Br\u00FCllende Herausforderung"
+  },
+  {
+    "id": "enchant.stat_3599615742|64355",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Best\u00E4ndige Zeichen"
+  },
+  {
+    "id": "enchant.stat_3599615742|64395",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Stumpfes Trauma"
   },
   {
     "id": "enchant.stat_3599615742|64882",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Disziplin des Unaufhaltsamen"
   },
   {
+    "id": "enchant.stat_3599615742|65053",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Essenz des Geistes"
+  },
+  {
+    "id": "enchant.stat_3599615742|65093",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Meister des Schwerts"
+  },
+  {
     "id": "enchant.stat_3599615742|65097",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: F\u00FChrerschaft"
+  },
+  {
+    "id": "enchant.stat_3599615742|65107",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Rammbock"
   },
   {
     "id": "enchant.stat_3599615742|65108",
@@ -17092,6 +18568,14 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Eichenherz"
   },
   {
+    "id": "enchant.stat_3599615742|65224",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Aspekt des Adlers"
+  },
+  {
+    "id": "enchant.stat_3599615742|65273",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schillernde Reichweite"
+  },
+  {
     "id": "enchant.stat_3599615742|65308",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Diamanthaut"
   },
@@ -17100,12 +18584,116 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Herzsucher"
   },
   {
+    "id": "enchant.stat_3599615742|6615",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Knisternde Schl\u00E4ge"
+  },
+  {
+    "id": "enchant.stat_3599615742|6770",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Arkane Abwehr"
+  },
+  {
+    "id": "enchant.stat_3599615742|6783",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wildes Aufspie\u00DFen"
+  },
+  {
+    "id": "enchant.stat_3599615742|6799",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Charisma"
+  },
+  {
     "id": "enchant.stat_3599615742|6967",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sicherung"
   },
   {
+    "id": "enchant.stat_3599615742|7069",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Geteilter Schuss"
+  },
+  {
+    "id": "enchant.stat_3599615742|7085",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Waffenkunst"
+  },
+  {
+    "id": "enchant.stat_3599615742|7136",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Meisterpionier"
+  },
+  {
+    "id": "enchant.stat_3599615742|7263",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schnelles Gift"
+  },
+  {
+    "id": "enchant.stat_3599615742|7440",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Hackender Richter"
+  },
+  {
+    "id": "enchant.stat_3599615742|7555",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Knisternde Geschwindigkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|7688",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Langlebige Bindung"
+  },
+  {
+    "id": "enchant.stat_3599615742|7918",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schillernde Verteidigung"
+  },
+  {
+    "id": "enchant.stat_3599615742|8001",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Cleverer Dieb"
+  },
+  {
+    "id": "enchant.stat_3599615742|8135",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Praktische Anwendung"
+  },
+  {
+    "id": "enchant.stat_3599615742|8458",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Fernschuss"
+  },
+  {
+    "id": "enchant.stat_3599615742|861",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Aggressive Defensive"
+  },
+  {
+    "id": "enchant.stat_3599615742|8833",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Herz aus Eis"
+  },
+  {
     "id": "enchant.stat_3599615742|8920",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Dolchsto\u00DF"
+  },
+  {
+    "id": "enchant.stat_3599615742|9015",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Entsetzliche Qu\u00E4lerei"
+  },
+  {
+    "id": "enchant.stat_3599615742|9055",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Explosive Minen"
+  },
+  {
+    "id": "enchant.stat_3599615742|9194",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gnadenloses Aufspie\u00DFen"
+  },
+  {
+    "id": "enchant.stat_3599615742|9261",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Anh\u00E4nger des Verbotenen"
+  },
+  {
+    "id": "enchant.stat_3599615742|9432",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Mentale Schnelligkeit"
+  },
+  {
+    "id": "enchant.stat_3599615742|9535",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schachzug des J\u00E4gers"
+  },
+  {
+    "id": "enchant.stat_3599615742|9567",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Lichtverschlinger"
+  },
+  {
+    "id": "enchant.stat_3599615742|9788",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Gewandtheit"
+  },
+  {
+    "id": "enchant.stat_3599615742|9864",
+    "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Wachstum und Verfall"
   },
   {
     "id": "enchant.stat_3600749521",
@@ -17206,6 +18794,10 @@
   {
     "id": "enchant.stat_3655769732",
     "text": "\u002B#% zur Qualit\u00E4t aller Fertigkeitengemmen"
+  },
+  {
+    "id": "enchant.stat_3661377675",
+    "text": "Seltene Monster, die urspr\u00FCngliche Bewohner sind, sind kalzifiziert"
   },
   {
     "id": "enchant.stat_3664950032",
@@ -18124,6 +19716,10 @@
     "text": "Eiserner Wille"
   },
   {
+    "id": "enchant.stat_4093253847",
+    "text": "# Monstergruppen im Gebiet werden durch Gruppen ersetzt, die\nfallen gelassene Ausr\u00FCstung in Gold umwandeln"
+  },
+  {
     "id": "enchant.stat_4095671657",
     "text": "\u002B#% zu maximalem Feuerwiderstand"
   },
@@ -18226,6 +19822,10 @@
   {
     "id": "enchant.stat_4148932984",
     "text": "#% Chance, beim Zerschmettern eines Gegners geweihten Boden zu erzeugen"
+  },
+  {
+    "id": "enchant.stat_4151275322",
+    "text": "# Monstergruppen im Gebiet werden durch Ergebene Doedres ersetzt"
   },
   {
     "id": "enchant.stat_4151555126",
@@ -18336,6 +19936,10 @@
     "text": "#% erh\u00F6hter Schaden von \u0027Eisfalle\u0027"
   },
   {
+    "id": "enchant.stat_4224467226",
+    "text": "# Monstergruppen im Gebiet werden durch Gruppen ersetzt, die keine Gegenst\u00E4nde fallen lassen\nGruppenmonster gew\u00E4hren bei T\u00F6tung erh\u00F6hte Gegenstandsseltenheit, bis zu 400%, die \u00FCber Zeit nachl\u00E4sst"
+  },
+  {
     "id": "enchant.stat_4224588066",
     "text": "\u0027Verdammung\u0027 hat #% vergr\u00F6\u00DFerten Wirkungsbereich"
   },
@@ -18428,8 +20032,16 @@
     "text": "#% erh\u00F6hte Zeit vor der Abriegelung"
   },
   {
+    "id": "enchant.stat_429929284",
+    "text": "# Monstergruppen im Gebiet werden durch Gruppen ersetzt, die von einem Pantheon-ber\u00FChrten seltenen Monster angef\u00FChrt werden"
+  },
+  {
     "id": "enchant.stat_430890565",
     "text": "#% erh\u00F6hter Schaden von \u0027Feuerschwall\u0027 mit Treffern und Beeintr\u00E4chtigungen gegen brennende Gegner"
+  },
+  {
+    "id": "enchant.stat_434437344",
+    "text": "# Monstergruppen im Gebiet werden durch Syndikatsmitglieder ersetzt\nGruppenmonster werden wiederbelebt, nachdem der finale Kartenboss besiegt wurde"
   },
   {
     "id": "enchant.stat_435519320",
@@ -19120,6 +20732,10 @@
     "text": "\u0027Hast\u0027 hat #% erh\u00F6hte Mana-Reservierungseffizienz"
   },
   {
+    "id": "enchant.stat_940539199",
+    "text": "# Monstergruppen im Gebiet werden durch durch Finsterwald-Unholde ersetzt\nGruppenanf\u00FChrer verst\u00E4rken Kartenbosse bei T\u00F6tung mit Finsterwald-Irrlichtern"
+  },
+  {
     "id": "enchant.stat_942531362",
     "text": "Treffer ignorieren die physische Schadensminderung gegnerischer Monster"
   },
@@ -19196,20 +20812,76 @@
     "text": "Delirium-Belohnungstyp: R\u00FCstung"
   },
   {
+    "id": "explicit.delirium_reward_blight",
+    "text": "Delirium-Belohnungstyp: Befall-Gegenst\u00E4nde"
+  },
+  {
     "id": "explicit.delirium_reward_currency",
     "text": "Delirium-Belohnungstyp: W\u00E4hrung"
+  },
+  {
+    "id": "explicit.delirium_reward_divinationcards",
+    "text": "Delirium-Belohnungstyp: Weissagungskarten"
+  },
+  {
+    "id": "explicit.delirium_reward_essences",
+    "text": "Delirium-Belohnungstyp: Essenzen"
+  },
+  {
+    "id": "explicit.delirium_reward_gems",
+    "text": "Delirium-Belohnungstyp: Gemmen"
+  },
+  {
+    "id": "explicit.delirium_reward_maps",
+    "text": "Delirium-Belohnungstyp: Kartengegenst\u00E4nde"
+  },
+  {
+    "id": "explicit.delirium_reward_scarabs",
+    "text": "Delirium-Belohnungstyp: F\u00E4den"
   },
   {
     "id": "explicit.delirium_reward_trinkets",
     "text": "Delirium-Belohnungstyp: Schmuck"
   },
   {
+    "id": "explicit.delirium_reward_uniques",
+    "text": "Delirium-Belohnungstyp: Einzigartige Gegenst\u00E4nde"
+  },
+  {
     "id": "explicit.delirium_reward_weapon",
     "text": "Delirium-Belohnungstyp: Waffen"
   },
   {
+    "id": "explicit.effect_1059201360",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Physisch zu Blitz\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1115172759",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schneller Verfall\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1134484173",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Entfesselte Beeintr\u00E4chtigungen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1149451356",
+    "text": "Gew\u00E4hrt \u0022Vaal-Unreinheit des Eises\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_115345895",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Mehrfachschlag\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1153652646",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Projektilaufteilung\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_1199731147",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Feueropferung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1200122555",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Brandschaden\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1214076534",
@@ -19224,8 +20896,24 @@
     "text": "Gew\u00E4hrt \u0022Widerstandsschrei\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_1263906374",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Segen des W\u00E4chters\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1276857842",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Langsamere Projektile\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1303915392",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Konzentriertes Kanalisieren\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_1306984944",
     "text": "Gew\u00E4hrt \u0022L\u00F6sen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1311270539",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Verkettung\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1315696378",
@@ -19236,8 +20924,20 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schnelleres Zaubern\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_1329591193",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: T\u00F6dliche Beeintr\u00E4chtigungen\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_1339810278",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gro\u00DFz\u00FCgigkeit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1355803435",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Erh\u00F6hte kritische Trefferchance\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1380260970",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Kreaturenschaden\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1389174793",
@@ -19260,8 +20960,24 @@
     "text": "Gew\u00E4hrt \u0022Aspekt der Spinne\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_1505316781",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Nachtklinge\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_153063788",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verfall\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_1543118831",
     "text": "Gew\u00E4hrt \u0022Todeswunsch\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1544569957",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Mehr Dauer\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_155410994",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verringerte Blockchance\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1561428496",
@@ -19272,6 +20988,10 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Feuerschaden\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_1602381821",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gefecht\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_1633788232",
     "text": "Gew\u00E4hrt \u0022Gro\u00DFen Vorboten der Zeit beschw\u00F6ren\u0022"
   },
@@ -19280,8 +21000,16 @@
     "text": "Gew\u00E4hrt \u0022Herold des Eises\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_1659734482",
+    "text": "Gew\u00E4hrt \u0022Vorboten der Brutalit\u00E4t beschw\u00F6ren\u0022"
+  },
+  {
     "id": "explicit.effect_1673391040",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Chaosschaden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1702053472",
+    "text": "Gew\u00E4hrt \u0022Schlachtruf\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1708392771",
@@ -19296,12 +21024,40 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern w\u00E4hrend Kanalisierung\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_1726066205",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verschlingen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1733367133",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gegenstandsmenge\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1740076026",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Arroganz\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_174595432",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Kreaturenschaden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1749703704",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verhexende Ber\u00FChrung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1770376530",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schnellere Projektile\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_1787679190",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Manageschmiedete Pfeile\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1795027869",
     "text": "Gew\u00E4hrt \u0022Gro\u00DFen Vorboten des Fokus beschw\u00F6ren\u0022"
+  },
+  {
+    "id": "explicit.effect_1825763431",
+    "text": "Gew\u00E4hrt \u0022Scheiterhaufen des Hexenj\u00E4gers\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1854569159",
@@ -19316,8 +21072,40 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gr\u00F6\u00DFere Zauberkaskade\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_1878151040",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Bet\u00E4uben\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_189485532",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Kontrollierter Brand\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1899953379",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Gabelung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_192206434",
+    "text": "Gew\u00E4hrt \u0022Vaal-Unreinheit des Feuers\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_1931234481",
     "text": "Gew\u00E4hrt \u0022Blutdurst\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1933760319",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Fleischschild\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1954139129",
+    "text": "Gew\u00E4hrt \u0022Vorboten des Arkanen beschw\u00F6ren\u0022"
+  },
+  {
+    "id": "explicit.effect_1961292105",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Todessto\u00DF\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_1974816132",
+    "text": "Gew\u00E4hrt \u0022Befrieden\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_1979264894",
@@ -19332,12 +21120,20 @@
     "text": "Gew\u00E4hrt \u0022Wut\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2052193809",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Zus\u00E4tzlicher Chaosschaden\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_2092916684",
     "text": "Gew\u00E4hrt \u0022Ursa-Biest beschw\u00F6ren\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2100902429",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Mehrfachschlag\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2107340112",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gr\u00F6\u00DFere Projektilaufteilung\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2109649836",
@@ -19348,20 +21144,60 @@
     "text": "Gew\u00E4hrt \u0022Herold des Donners\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2129634187",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Rasante Zeichen\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_2141384509",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Chance auf Vergiften\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2142007278",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schneller Aufbau\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2142148729",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Sadismus\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2174769737",
     "text": "Gew\u00E4hrt \u0022Reinheit der Elemente\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2190102120",
+    "text": "Gew\u00E4hrt \u0022Klarheit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_222199368",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Ewige Segnung\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_2236653998",
     "text": "Gew\u00E4hrt \u0022Neid\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2242579123",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Dreieinigkeit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2251567057",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Grausamkeit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2260732373",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Physischer Nahkampfschaden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2264294898",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Legion des H\u00F6llenfeuers\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_2282649307",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Scharfschuss\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2307564778",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Zauberecho\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2338856567",
@@ -19372,6 +21208,18 @@
     "text": "Gew\u00E4hrt \u0022Sammeln\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2343871202",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Feuer\u00FCbertragung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2360840648",
+    "text": "Gew\u00E4hrt \u0022Zeichenwoge\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2367771894",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Brutalit\u00E4t\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_2377502094",
     "text": "Gew\u00E4hrt \u0022Schlangen-Biest beschw\u00F6ren\u0022 Stufe #"
   },
@@ -19380,8 +21228,28 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Erfrierung\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2439286871",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Phantasma beschw\u00F6ren\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2447178998",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gr\u00F6\u00DFere Projektilsalve\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2455845502",
+    "text": "Gew\u00E4hrt \u0022Schneidende K\u00E4lte\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2461314210",
+    "text": "Gew\u00E4hrt \u0022Zorn\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_2496940419",
     "text": "Gew\u00E4hrt \u0022Pr\u00E4zision\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2513678384",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Elementarfokus\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2559654739",
@@ -19392,8 +21260,40 @@
     "text": "Gew\u00E4hrt \u0022Wille der F\u00FCrsten\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2581493934",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei erlittenem Schaden\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_2589518277",
     "text": "Gew\u00E4hrt \u0022B\u00E4renfalle\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2594535436",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei Schutzbruch\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2612646353",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Bannen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2617381612",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Minenfeld\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2638439725",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Geladene Minen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2640673956",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei Nahkampft\u00F6tung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2649350521",
+    "text": "Gew\u00E4hrt \u0022Vitalit\u00E4t\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2653498431",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Manipulation der Leere\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2653742489",
@@ -19402,6 +21302,10 @@
   {
     "id": "explicit.effect_265550805",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Aderlass\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2686067790",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Ballistentotem\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2698327786",
@@ -19416,8 +21320,16 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Projektilr\u00FCckkehr\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2722476813",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Elementarfokus\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_273196120",
     "text": "Gew\u00E4hrt \u0022Frostspurt\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2742501709",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Manipulation der Leere\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_2753888557",
@@ -19428,8 +21340,36 @@
     "text": "Gew\u00E4hrt \u0022Zerschmetternde Faust\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_2795990092",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Wirkmacht\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2820548076",
+    "text": "Gew\u00E4hrt \u0022Illusionsteleport\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2912209560",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Zus\u00E4tzlicher K\u00E4lteschaden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2937199581",
+    "text": "Gew\u00E4hrt \u0022Spurt\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_2937933274",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Phantombogensch\u00FCtze\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_293985888",
     "text": "Gew\u00E4hrt \u0022Gro\u00DFen Vorboten des Arkanen beschw\u00F6ren\u0022"
+  },
+  {
+    "id": "explicit.effect_2959432267",
+    "text": "Gew\u00E4hrt \u0022Vorboten der Richtungen beschw\u00F6ren\u0022"
+  },
+  {
+    "id": "explicit.effect_2963700146",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Erzmagier\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_299595248",
@@ -19440,8 +21380,20 @@
     "text": "Gew\u00E4hrt \u0022Steingolem beschw\u00F6ren\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3002947169",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Vergr\u00F6\u00DFerter Wirkungsbereich\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3006785117",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Aufwertung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3009566559",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verkettung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3022937704",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Projektilsalve\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_3024539694",
@@ -19452,6 +21404,10 @@
     "text": "Gew\u00E4hrt \u0022Hass\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3059751250",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Erm\u00E4chtigung\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3082206530",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Minenkettenexplosion\u0022 Stufe #"
   },
@@ -19460,8 +21416,20 @@
     "text": "Gew\u00E4hrt \u0022Aspekt des Vogels\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3121158131",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Regelumkehr\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3124293229",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Blutlust\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3161048706",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: G\u00F6ttliche Segnung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3161142268",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Durchdringendes Feuer\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_3184099572",
@@ -19476,12 +21444,28 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Durchdringende Elemente\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3257625635",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Blasphemie\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3293595800",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Konzentrierte Wirkung\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3311634296",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Zus\u00E4tzlicher Blitzschaden\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3318957131",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Chance in die Flucht zu schlagen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3334987531",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gegenstandsseltenheit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3337525114",
+    "text": "Gew\u00E4hrt \u0022Einsch\u00FCchternder Schrei\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_3362019776",
@@ -19492,6 +21476,14 @@
     "text": "Gew\u00E4hrt \u0022Aspekt des Krebses\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_338557223",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzliche Treffgenauigkeit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3419961156",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Aufspie\u00DFen\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3431656752",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Kontrollierte Zerst\u00F6rung\u0022 Stufe #"
   },
@@ -19500,12 +21492,32 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Arkane Woge\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3457811678",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Durchbohren\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3460970428",
+    "text": "Gew\u00E4hrt \u0022Vaal-Unreinheit des Blitzes\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3467858890",
     "text": "Gew\u00E4hrt \u0022Ruf des Stahls\u0022"
   },
   {
     "id": "explicit.effect_3474714415",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei Bet\u00E4ubung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3479500684",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Fortschrittliche Fallen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3482292969",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verheerende Minen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3498266457",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Volatilit\u00E4t\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_3512123051",
@@ -19524,6 +21536,14 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gr\u00F6\u00DFeres Zauberecho\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3553187279",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gabelung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3568418482",
+    "text": "Gew\u00E4hrt \u0022Anmut\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_360069007",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Erm\u00E4chtigung\u0022 Stufe #"
   },
@@ -19532,16 +21552,52 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Blitzschaden\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3628997762",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Fressrausch\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3654111757",
+    "text": "Gew\u00E4hrt \u0022Aspekt von Solaris\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3672428602",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Ruf der Ahnen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3676299820",
+    "text": "Gew\u00E4hrt \u0022Aspekt von Arakaali\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3678242906",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zauberkaskade\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_369135889",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Physischer Nahkampfschaden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3737573678",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Aus n\u00E4chster N\u00E4he\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_3737592146",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Vergr\u00F6\u00DFerter Wirkungsbereich\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3745700985",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Schneller Verfall\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3756080110",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: K\u00E4lte zu Feuer\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3805221392",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Sperrfeuer\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3808743835",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Fallenverbund\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_3828086965",
@@ -19556,8 +21612,44 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Durchdringende K\u00E4lte\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3858590323",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Kreaturenleben\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3869346801",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Brutalit\u00E4t\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3872728076",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Geladene Fallen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3874278368",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Durchdringender Blitz\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3879545743",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: T\u00F6dliche Beeintr\u00E4chtigungen\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3880597684",
     "text": "Gew\u00E4hrt \u0022Scharfschuss\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_388828889",
+    "text": "Gew\u00E4hrt \u0022Gefr\u00E4\u00DFig\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3893320621",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Momentum\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3897784788",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Enthaupten\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3921181872",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Unbarmherzigkeit\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_3947742455",
@@ -19568,6 +21660,14 @@
     "text": "Gew\u00E4hrt \u0022Eissturm\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3959464467",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Finsternis\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3960686014",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Gr\u00F6\u00DFere Projektilaufteilung\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3963374775",
     "text": "Gew\u00E4hrt \u0022Aspekt des Gischtk\u00F6nigs\u0022 Stufe #"
   },
@@ -19576,12 +21676,32 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Blenden\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3984157052",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verfluchter Boden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_3985111281",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Entflammen\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3995245401",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zauberecho\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_400129667",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Elementararmee\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_4004746559",
     "text": "Gew\u00E4hrt \u0022Sengender Strahl\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_4028786187",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Brandschaden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_4055657913",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zauberklinge\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_405979710",
@@ -19592,6 +21712,14 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Mehrere Totems\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_4119948431",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: B\u00F6sartige Projektile\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_4121000032",
+    "text": "Gew\u00E4hrt \u0022Vorboten des Fokus beschw\u00F6ren\u0022"
+  },
+  {
     "id": "explicit.effect_415209642",
     "text": "Gew\u00E4hrt \u0022Herold der Asche\u0022 Stufe #"
   },
@@ -19600,12 +21728,24 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Eisiges Band\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_4154731776",
+    "text": "Gew\u00E4hrt \u0022Reinheit des Eises\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_4174205387",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Fallen- und Minenschaden\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_4185976903",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Weniger Dauer\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_4195991223",
     "text": "Gew\u00E4hrt \u0022Rhoa-Biest beschw\u00F6ren\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_4211392390",
+    "text": "Gew\u00E4hrt \u0022Blitzteleportation\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_426005818",
@@ -19620,8 +21760,20 @@
     "text": "Gew\u00E4hrt \u0022Aspekt von Lunaris\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_4278342035",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Erh\u00F6hter kritischer Trefferschaden\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_4282732147",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Lebenserhalt bei Treffer\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_4291787627",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schnellere Angriffe\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_429242364",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Intensivieren\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_434885230",
@@ -19632,12 +21784,44 @@
     "text": "Gew\u00E4hrt \u0022Elementv\u00F6llerei\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_459241192",
+    "text": "Gew\u00E4hrt \u0022Verfall\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_468251502",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Elementarschaden mit Angriffen\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_476766308",
     "text": "Gew\u00E4hrt \u0022K\u00F6dertotem\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_482188560",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: B\u00F6sartige Projektile\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_540595610",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Kreaturengeschwindigkeit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_548051260",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verhexte Bl\u00FCte\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_582742716",
+    "text": "Gew\u00E4hrt \u0022Zeichen des Winters\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_599791292",
     "text": "Gew\u00E4hrt \u0022Disziplin\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_602297583",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verk\u00FCmmernde Ber\u00FChrung\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_602948540",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Kritische Beeintr\u00E4chtigungen\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_603152644",
@@ -19648,6 +21832,18 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei Tod\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_668260863",
+    "text": "Gew\u00E4hrt \u0022Vorboten der St\u00FCrme beschw\u00F6ren\u0022"
+  },
+  {
+    "id": "explicit.effect_669480840",
+    "text": "Gew\u00E4hrt \u0022Gebot der K\u00F6nigin\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_672697655",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Nahkampf-Streuschaden\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_682681978",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Nahkampf-Streuschaden\u0022 Stufe #"
   },
@@ -19656,8 +21852,28 @@
     "text": "Gew\u00E4hrt \u0022Nahende Flammen\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_707288393",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: \u00DCberladen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_723113949",
+    "text": "Gew\u00E4hrt \u0022Entschlossenheit\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_724848072",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Durchdringender Blitz\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_771254875",
     "text": "Gew\u00E4hrt \u0022Aspekt der Katze\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_786034009",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Erweckte Unterst\u00FCtzung: Elementarschaden mit Angriffen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_813521895",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Faust des Krieges\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_838736469",
@@ -19668,12 +21884,40 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Inspiration\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_865121484",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Eiserner Griff\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_876810709",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zweite Luft\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_880096186",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Entfesselte Beeintr\u00E4chtigungen\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_907088360",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gr\u00F6\u00DFerer Mehrfachschlag\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_918792330",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schaden bei vollem Leben\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_9279802",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Energieraub\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_949715883",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Energie-Ladung bei kritischem Treffer\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_952649073",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Manaraub\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_967395006",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Frischfleisch\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_971650107",
@@ -20522,6 +22766,10 @@
   {
     "id": "explicit.indexable_skill_287",
     "text": "\u002B# zur Stufe aller Manaverst\u00E4rkter Stab-Gemmen"
+  },
+  {
+    "id": "explicit.indexable_skill_288",
+    "text": "\u002B# zur Stufe aller Arkane Verbindung-Gemmen"
   },
   {
     "id": "explicit.indexable_skill_29",
@@ -21904,6 +24152,10 @@
     "text": "Eure Karten, die einfangbare Bestien enthalten, haben #% Chance, eine zus\u00E4tzliche rote Bestie zu enthalten"
   },
   {
+    "id": "explicit.stat_1045292082",
+    "text": "Kreaturen wandeln #% des physischen Schadens in Feuerschaden um"
+  },
+  {
     "id": "explicit.stat_1045438865",
     "text": "Kann # zus\u00E4tzliche Runenschmiede-Verzauberung haben"
   },
@@ -22382,6 +24634,10 @@
   {
     "id": "explicit.stat_1123291426",
     "text": "Schaden mit Waffen durchdringt #% Feuerwiderstand"
+  },
+  {
+    "id": "explicit.stat_1123294660",
+    "text": "#% erh\u00F6hte Wirkung von Grausamkeit"
   },
   {
     "id": "explicit.stat_1123357133",
@@ -23880,6 +26136,10 @@
     "text": "Fertigkeiten, die von diesem Transplantat benutzt werden, haben #% Chance, bei Treffer \u0027Bestrafung\u0027 anzuwenden"
   },
   {
+    "id": "explicit.stat_1248307887",
+    "text": "Ihr seid von Delirium-Nebel betroffen"
+  },
+  {
     "id": "explicit.stat_1248507170",
     "text": "Bei mindestens 40 St\u00E4rke im Radius verst\u00E4rken Treffer mit \u0027Spalten\u0027"
   },
@@ -24042,6 +26302,10 @@
   {
     "id": "explicit.stat_1274200851",
     "text": "Schaden mit Treffern von unterst\u00FCtzten Vaal-Fertigkeiten ist \u0027G\u00FCnstig\u0027"
+  },
+  {
+    "id": "explicit.stat_1274429432",
+    "text": "Verursacht zus\u00E4tzlichen Zauberschaden in H\u00F6he von #% des Schadens des ausger\u00FCsteten Zauberstabs\nBei zwei ausger\u00FCsteten Zauberst\u00E4ben wird jede Waffe zu 60% auf den zus\u00E4tzlichen Schaden angerechnet"
   },
   {
     "id": "explicit.stat_1274505521",
@@ -24692,6 +26956,10 @@
     "text": "#% erh\u00F6hter Erfahrungsgewinn f\u00FCr Ingenieurwesen"
   },
   {
+    "id": "explicit.stat_1373957102",
+    "text": "Regeneriert #% des Lebens pro Sekunde, wenn Ihr k\u00FCrzlich eine Mine gez\u00FCndet habt"
+  },
+  {
     "id": "explicit.stat_1375431760",
     "text": "#% erh\u00F6hte Manakosten von Fertigkeiten f\u00FCr 2 Sekunden, nachdem Ihr insgesamt 800 Mana verbraucht habt"
   },
@@ -25326,6 +27594,10 @@
   {
     "id": "explicit.stat_1478305007",
     "text": "Mit 40 Intelligenz im Radius wird #% des physischen Schadens von \u0027Frostwelle\u0027 in K\u00E4lteschaden umgewandelt"
+  },
+  {
+    "id": "explicit.stat_1478637533",
+    "text": "Auf Euch angewendete Granitfl\u00E4schchen haben #% erh\u00F6hte Wirkung"
   },
   {
     "id": "explicit.stat_1478653032",
@@ -25972,6 +28244,10 @@
     "text": "#% Chance, bei Treffer eine Raserei-Ladung zu erhalten, wenn 4 Erl\u00F6serin-Gegenst\u00E4nde ausger\u00FCstet sind"
   },
   {
+    "id": "explicit.stat_1571797746",
+    "text": "Verhindert \u002B#% des reflektierten Schadens"
+  },
+  {
     "id": "explicit.stat_1572854306",
     "text": "#% erh\u00F6hte Wirkung von nicht sch\u00E4digenden Beeintr\u00E4chtigungen, die Ihr mit kritischen Treffern verursacht, pro 100 maximalem Leben des Charakters"
   },
@@ -26034,6 +28310,10 @@
   {
     "id": "explicit.stat_1583498502",
     "text": "Beschworene Heilige Relikte haben #% verlangsamte Abklingzeit-Rate"
+  },
+  {
+    "id": "explicit.stat_1584440377",
+    "text": "#% erh\u00F6hte unbewaffnete Angriffsgeschwindigkeit mit Nahkampf-Fertigkeiten"
   },
   {
     "id": "explicit.stat_158467587",
@@ -26142,6 +28422,10 @@
   {
     "id": "explicit.stat_159726667",
     "text": "Bei Ritual-Alt\u00E4ren geopferte Monster in Euren Karten gew\u00E4hren #% erh\u00F6hten Tribut"
+  },
+  {
+    "id": "explicit.stat_1597503116",
+    "text": "\u0027Blutige Bl\u00FCte\u0027 hat maximal \u002B# Bl\u00FCte"
   },
   {
     "id": "explicit.stat_1599775597",
@@ -27160,6 +29444,10 @@
     "text": "#% verringerte Manakosten pro Widerstands-Ladung"
   },
   {
+    "id": "explicit.stat_1775318819",
+    "text": "Letzte Wiederholung von Zaubern hat #% vergr\u00F6\u00DFerten Wirkungsbereich"
+  },
+  {
     "id": "explicit.stat_1776612984",
     "text": "#% des physischen Schadens werden in ein zuf\u00E4lliges Element umgewandelt"
   },
@@ -27400,6 +29688,10 @@
     "text": "Gebiet ist von Ziegenmenschen besiedelt"
   },
   {
+    "id": "explicit.stat_181387736",
+    "text": "# Pr\u00E4fix-Modifikator kann nicht ver\u00E4ndert werden"
+  },
+  {
     "id": "explicit.stat_1814782245",
     "text": "#% mehr physischer Schaden mit unbewaffneten Nahkampfangriffen"
   },
@@ -27470,6 +29762,10 @@
   {
     "id": "explicit.stat_18234720",
     "text": "#% erh\u00F6hte Intelligenz-Anforderung"
+  },
+  {
+    "id": "explicit.stat_1823668305",
+    "text": "Von Euch verursachtes Blenden ist permanent"
   },
   {
     "id": "explicit.stat_1823903967",
@@ -27904,6 +30200,10 @@
     "text": "Ihr k\u00F6nnt nicht von Bluten betroffen werden"
   },
   {
+    "id": "explicit.stat_1901408736",
+    "text": "#% erh\u00F6hte R\u00FCstung von ausger\u00FCsteten Stiefeln und Handschuhen"
+  },
+  {
     "id": "explicit.stat_1901628087",
     "text": "Ultimatum-Modifikatoren in Euren Karten starten einen Level h\u00F6her falls m\u00F6glich"
   },
@@ -27942,6 +30242,10 @@
   {
     "id": "explicit.stat_1907260000",
     "text": "Treffer mit dieser Waffe haben #% Chance, die gegnerische physische Schadensminderung zu ignorieren"
+  },
+  {
+    "id": "explicit.stat_1909401378",
+    "text": "\u002B#% zu kritischer Trefferchance"
   },
   {
     "id": "explicit.stat_1910157106",
@@ -28032,6 +30336,10 @@
     "text": "\u002B# zu Ausweichwert, w\u00E4hrend Ihr in der Sandhaltung seid"
   },
   {
+    "id": "explicit.stat_1923210508",
+    "text": "Projektile verursachen #% erh\u00F6hten Schaden mit Treffern und Beeintr\u00E4chtigungen f\u00FCr jede Verkettung"
+  },
+  {
     "id": "explicit.stat_1923879260",
     "text": "Angriffe haben #% Chance, Bluten zu verursachen"
   },
@@ -28068,8 +30376,16 @@
     "text": "#% erh\u00F6hter Angriffsschaden pro 450 R\u00FCstung"
   },
   {
+    "id": "explicit.stat_1928468569",
+    "text": "Kritische Treffer mit B\u00F6gen haben #% Chance, den Gegner zu vergiften"
+  },
+  {
     "id": "explicit.stat_1928796626",
     "text": "Bei T\u00F6tung des ersten einzigartigen Monsters aus dem Jenseits f\u00E4llt ein einzigartiger Jenseits-Gegenstand"
+  },
+  {
+    "id": "explicit.stat_1930039303",
+    "text": "Angriffe mit dieser Waffe haben #% Chance, dreifachen Schaden zu verursachen"
   },
   {
     "id": "explicit.stat_19313391",
@@ -28490,6 +30806,10 @@
   {
     "id": "explicit.stat_2001747092",
     "text": "#% erh\u00F6hter Schaden mit Treffern und Beeintr\u00E4chtigungen gegen Maltragenden Gegner"
+  },
+  {
+    "id": "explicit.stat_2001753918",
+    "text": "#% erh\u00F6hter Zauberschaden pro beschworenem Skelett"
   },
   {
     "id": "explicit.stat_2002028881",
@@ -30164,6 +32484,10 @@
     "text": "In Euren Karten fallen gelassene F\u00E4den haben #% erh\u00F6hte Chance, Ultimatum-F\u00E4den zu sein"
   },
   {
+    "id": "explicit.stat_2264031073",
+    "text": "Kann angreifen, als ob eine Klaue benutzt w\u00FCrde, w\u00E4hrend die Haupthand frei ist"
+  },
+  {
     "id": "explicit.stat_2264039874",
     "text": "Gebiet enth\u00E4lt zus\u00E4tzliche Gruppen von Ruhelosen Toten"
   },
@@ -30902,6 +33226,10 @@
   {
     "id": "explicit.stat_2390273715",
     "text": "Bei mindestens 40 Intelligenz im Radius haben Erweckte Schemen #% Chance, bei T\u00F6tung f\u00FCr 20 Sekunden Seelenfresser zu erhalten"
+  },
+  {
+    "id": "explicit.stat_2390914662",
+    "text": "# Suffix-Modifikator kann nicht ver\u00E4ndert werden"
   },
   {
     "id": "explicit.stat_2391255504",
@@ -32352,6 +34680,10 @@
     "text": "Kreaturen regenerieren #% Leben pro Sekunde"
   },
   {
+    "id": "explicit.stat_2480498143",
+    "text": "Fertigkeiten kosten Leben statt #% der Manakosten"
+  },
+  {
     "id": "explicit.stat_2480873346",
     "text": "Gegner innerhalb von 6 Metern werden unterk\u00FChlt"
   },
@@ -33504,6 +35836,10 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Selbsterf\u00FCllende Prophezeiung"
   },
   {
+    "id": "explicit.stat_2644626772",
+    "text": "F\u00FCgt unbewaffneten Angriffen # bis # K\u00E4lteschaden hinzu"
+  },
+  {
     "id": "explicit.stat_264552782",
     "text": "In Euren Karten fallen gelassene F\u00E4den k\u00F6nnen keine Ultimatum-F\u00E4den sein"
   },
@@ -33648,6 +35984,10 @@
     "text": "Hinzugef\u00FCgte kleine passive Fertigkeiten gew\u00E4hren auch: \u002B#% zu allen Elementarwiderst\u00E4nden"
   },
   {
+    "id": "explicit.stat_2670735758",
+    "text": "Eure verbundenen Ziele verursachen #% erh\u00F6hten Schaden"
+  },
+  {
     "id": "explicit.stat_2670993553",
     "text": "Schaden kann nicht reflektiert werden"
   },
@@ -33694,6 +36034,10 @@
   {
     "id": "explicit.stat_2678065384",
     "text": "#% erh\u00F6hter Erfahrungsgewinn f\u00FCr T\u00E4uschung"
+  },
+  {
+    "id": "explicit.stat_2680060124",
+    "text": "\u0027Sammeln\u0027 hat #% beschleunigte Abklingzeit-Rate"
   },
   {
     "id": "explicit.stat_2681416653",
@@ -34052,6 +36396,10 @@
     "text": "#% vergr\u00F6\u00DFerter Lichtradius w\u00E4hrend der Wirkung"
   },
   {
+    "id": "explicit.stat_2746497881",
+    "text": "#% Chance, bei kritischem Nahkampftreffer Mondsturz Stufe 20 auszul\u00F6sen"
+  },
+  {
     "id": "explicit.stat_274716455",
     "text": "\u002B#% zu Multiplikator f\u00FCr kritische Treffer f\u00FCr Zauberschaden"
   },
@@ -34346,6 +36694,10 @@
   {
     "id": "explicit.stat_2792863714",
     "text": "#% erh\u00F6hte Wirkung von expliziten Modifikatoren auf Euren Karten pro explizitem Kartenmodifikator"
+  },
+  {
+    "id": "explicit.stat_2795287443",
+    "text": "\u0027Zeichen zur\u00FCckrufen\u0027 hat #% beschleunigte Abklingzeit-Rate"
   },
   {
     "id": "explicit.stat_2796308895",
@@ -35404,6 +37756,10 @@
     "text": "Projektile k\u00F6nnen sich von einer beliebigen Anzahl von zus\u00E4tzlichen Zielen in kurzer Distanz verketten"
   },
   {
+    "id": "explicit.stat_2941183243",
+    "text": "#% erh\u00F6hter Angriffsschaden pro erwecktem Zombie"
+  },
+  {
     "id": "explicit.stat_294140055",
     "text": "Ultimatum-Belohnungen in Euren Karten haben #% erh\u00F6hte Chance, Inschriften des Ultimatums zu sein"
   },
@@ -35498,6 +37854,10 @@
   {
     "id": "explicit.stat_2961372685",
     "text": "Stellt bei gelandetem kritischem Treffer # F\u00FCllung wieder her"
+  },
+  {
+    "id": "explicit.stat_2961618300",
+    "text": "#% Chance, Blenden zu vermeiden"
   },
   {
     "id": "explicit.stat_2962020005",
@@ -35820,6 +38180,10 @@
     "text": "Monstergruppen in Euren Karten, die vom Sch\u00F6pfer beeinflusst sind, haben #% erh\u00F6hte Gruppengr\u00F6\u00DFe"
   },
   {
+    "id": "explicit.stat_301822628",
+    "text": "Ihr k\u00F6nnt kein Leben regenerieren oder wiedergewinnen"
+  },
+  {
     "id": "explicit.stat_3018691556",
     "text": "#% erh\u00F6htes maximales Leben und verringerter Feuerwiderstand"
   },
@@ -35906,6 +38270,10 @@
   {
     "id": "explicit.stat_3034509000",
     "text": "Wilde Abtr\u00FCnnige Verbannte in Euren Karten haben #% Chance, von einer Gequ\u00E4lten Seele besessen zu sein"
+  },
+  {
+    "id": "explicit.stat_3034695397",
+    "text": "Jenseits-D\u00E4monen in Euren Karten haben #% erh\u00F6hte Chance, Anh\u00E4nger von Ghorr zu sein"
   },
   {
     "id": "explicit.stat_303527630",
@@ -37228,6 +39596,10 @@
     "text": "Beschworene Golems haben #% beschleunigte Abklingzeit-Rate"
   },
   {
+    "id": "explicit.stat_3246496608",
+    "text": "Der erste # auf Euch angewendeten Stapel Manabrand hat keine Wirkung"
+  },
+  {
     "id": "explicit.stat_3247931236",
     "text": "Stellt #% des Manas wieder her, wenn Ihr w\u00E4hrend der Wirkung einen Gegner t\u00F6tet"
   },
@@ -37364,6 +39736,10 @@
     "text": "Eingefasste Bewegungsfertigkeiten kosten kein Mana"
   },
   {
+    "id": "explicit.stat_326480871",
+    "text": "Angriffe mit \u00C4xten oder Schwertern gew\u00E4hren # Rausch bei Treffer"
+  },
+  {
     "id": "explicit.stat_3265124719",
     "text": "In Euren Karten fallen gelassene Metamorph-Proben haben #% erh\u00F6hte Chance, eine Belohnung zu enthalten"
   },
@@ -37390,6 +39766,10 @@
   {
     "id": "explicit.stat_3266609002",
     "text": "Verhexungen (Auren ausgenommen) erhalten 20% erh\u00F6hte Wirkung pro Sekunde"
+  },
+  {
+    "id": "explicit.stat_3267026680",
+    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit, wenn Ihr k\u00FCrzliche eine Angriffs-Bewegungsfertigkeit benutzt habt"
   },
   {
     "id": "explicit.stat_3268519799",
@@ -38568,6 +40948,10 @@
     "text": "Alle magischen und normalen Monster im Gebiet sind in einer Einheit der Seelen"
   },
   {
+    "id": "explicit.stat_3459071185",
+    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit pro Gegner in kurzer Distanz"
+  },
+  {
     "id": "explicit.stat_346029096",
     "text": "Inkarnation des Feuers"
   },
@@ -38714,6 +41098,10 @@
   {
     "id": "explicit.stat_3479987487",
     "text": "#% beschleunigte Bet\u00E4ubungs- und Blockerholung w\u00E4hrend der Wirkung"
+  },
+  {
+    "id": "explicit.stat_3481254135",
+    "text": "Verursacht zus\u00E4tzlichen Zauberschaden in H\u00F6he von #% des Schadens des ausger\u00FCsteten Dolchs\nBei zwei ausger\u00FCsteten Dolchen wird jede Waffe zu 60% auf den zus\u00E4tzlichen Schaden angerechnet"
   },
   {
     "id": "explicit.stat_3481736410",
@@ -38880,6 +41268,10 @@
     "text": "Gegner erleiden #% erh\u00F6hten Elementarschaden durch Eure Treffer f\u00FCr\njede Verk\u00FCmmerung, die Ihr ihnen zugef\u00FCgt habt"
   },
   {
+    "id": "explicit.stat_3509362078",
+    "text": "#% erh\u00F6hter Ausweichwert von ausger\u00FCsteter K\u00F6rperr\u00FCstung"
+  },
+  {
     "id": "explicit.stat_3509724289",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Naturtalent"
   },
@@ -38996,6 +41388,10 @@
     "text": "Spieler k\u00F6nnen keine Widerstands-Ladungen erhalten"
   },
   {
+    "id": "explicit.stat_3532157821",
+    "text": "#% Chance, doppelten Schaden mit Angriffen zu verursachen, wenn die Angriffszeit l\u00E4nger ist als 1 Sekunde"
+  },
+  {
     "id": "explicit.stat_353291915",
     "text": "Die Anzahl der Sprengladungen betr\u00E4gt 1"
   },
@@ -39054,6 +41450,10 @@
   {
     "id": "explicit.stat_3547189490",
     "text": "Gegner innerhalb von 6 Metern gew\u00E4hren #% erh\u00F6hte Fl\u00E4schchenf\u00FCllungen"
+  },
+  {
+    "id": "explicit.stat_3547436813",
+    "text": "\u002B#% zu kritischer Trefferchance der Nebenhand beim Tragen zweier Waffen"
   },
   {
     "id": "explicit.stat_35476451",
@@ -39720,6 +42120,10 @@
     "text": "Unbeeinflusst von unterk\u00FChltem Boden"
   },
   {
+    "id": "explicit.stat_3653779134",
+    "text": "Erhaltet f\u00FCr # Sekunden eine zuf\u00E4llige Schreinst\u00E4rkung, wenn Ihr einen\nnicht geblendeten seltenen oder einzigartigen Gegner blendet"
+  },
+  {
     "id": "explicit.stat_3654074125",
     "text": "Angriffe haben #% Chance auf Vergiften, w\u00E4hrend Ihr maximale Raserei-Ladungen habt"
   },
@@ -39754,6 +42158,10 @@
   {
     "id": "explicit.stat_3663580344",
     "text": "#% verl\u00E4ngerte Dauer von \u0027Phantombogensch\u00FCtze\u0027"
+  },
+  {
+    "id": "explicit.stat_3664562804",
+    "text": "Maximales Bitterblut entspricht Eurem maximalen Leben"
   },
   {
     "id": "explicit.stat_3664778308",
@@ -41548,6 +43956,10 @@
     "text": "#% Chance eine Energie-Ladung zu erhalten, wenn Ihr blockt"
   },
   {
+    "id": "explicit.stat_3945412713",
+    "text": "Erhaltet Bitterblut in H\u00F6he des verbrauchten Lebens"
+  },
+  {
     "id": "explicit.stat_3945685369",
     "text": "Eure Bewegungsgeschwindigkeit betr\u00E4gt #% des Basiswerts"
   },
@@ -42146,6 +44558,10 @@
   {
     "id": "explicit.stat_403369937",
     "text": "Tresore in Euren Karten haben #% Chance, von einer zus\u00E4tzlichen Monstergruppe bewacht zu werden"
+  },
+  {
+    "id": "explicit.stat_4034618287",
+    "text": "L\u00F6st Blutige Bl\u00FCte Stufe 20 aus, nachdem Ihr #% Eures maximalen Lebens f\u00FCr Zauber verbraucht habt"
   },
   {
     "id": "explicit.stat_4036575250",
@@ -48180,6 +50596,10 @@
     "text": "Legion-Begegnungen in Euren Karten haben #% verl\u00E4ngerte Dauer"
   },
   {
+    "id": "explicit.stat_699502241",
+    "text": "Das Blenden eines nicht geblendeten Atlas-Endbosses mit dieser Waffe\nstielt einen Modifikator f\u00FCr diesen Gegenstand (# Modifikator \u00FCbrig)"
+  },
+  {
     "id": "explicit.stat_699756626",
     "text": "Von Euch benutzte Quecksilberfl\u00E4schchen wirken auch auf Verb\u00FCndete innerhalb von 6 Metern"
   },
@@ -48540,6 +50960,10 @@
     "text": "Gebiet enth\u00E4lt die Gef\u00FCrchteten"
   },
   {
+    "id": "explicit.stat_758685542",
+    "text": "Auf Euch angewendete Rubinfl\u00E4schchen haben #% erh\u00F6hte Wirkung"
+  },
+  {
     "id": "explicit.stat_759294825",
     "text": "Beseelter W\u00E4chter verursacht #% erh\u00F6hten Schaden pro beseelter Waffe"
   },
@@ -48650,6 +51074,10 @@
   {
     "id": "explicit.stat_771127912",
     "text": "Verliert # Leben pro Sekunde"
+  },
+  {
+    "id": "explicit.stat_771469730",
+    "text": "Lebensraub von kritischen Treffern wird sofort angewendet"
   },
   {
     "id": "explicit.stat_773731062",
@@ -50180,6 +52608,10 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Sturmhand"
   },
   {
+    "id": "fractured.stat_1123294660",
+    "text": "#% erh\u00F6hte Wirkung von Grausamkeit"
+  },
+  {
     "id": "fractured.stat_1124657098",
     "text": "Der Einsatz von Ingenieurwesen w\u00E4hrend der Abriegelung erfordert keine zus\u00E4tzliche Zeit"
   },
@@ -50676,6 +53108,10 @@
     "text": "#% erh\u00F6hter Erfahrungsgewinn f\u00FCr Ingenieurwesen"
   },
   {
+    "id": "fractured.stat_1373957102",
+    "text": "Regeneriert #% des Lebens pro Sekunde, wenn Ihr k\u00FCrzlich eine Mine gez\u00FCndet habt"
+  },
+  {
     "id": "fractured.stat_1379411836",
     "text": "\u002B# zu allen Attributen"
   },
@@ -50992,6 +53428,10 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Uneingeschr\u00E4nkte Konzentration"
   },
   {
+    "id": "fractured.stat_1571797746",
+    "text": "Verhindert \u002B#% des reflektierten Schadens"
+  },
+  {
     "id": "fractured.stat_1572897579",
     "text": "Ihr habt w\u00E4hrend der \u0027Kein Seelenerhalt\u0027-Dauer Ansturm"
   },
@@ -51184,6 +53624,10 @@
     "text": "#% erh\u00F6hter Zauberschaden beim Tragen zweier Waffen"
   },
   {
+    "id": "fractured.stat_1678831767",
+    "text": "Stellt # Leben wieder her, wenn Ihr blockt"
+  },
+  {
     "id": "fractured.stat_1681904129",
     "text": "Eingefasste Gemmen haben \u002B#% kritische Trefferchance"
   },
@@ -51310,6 +53754,10 @@
   {
     "id": "fractured.stat_1773891268",
     "text": "Gegner haben #% verringertes Ausweichen, wenn Ihr sie k\u00FCrzlich getroffen habt"
+  },
+  {
+    "id": "fractured.stat_1775318819",
+    "text": "Letzte Wiederholung von Zaubern hat #% vergr\u00F6\u00DFerten Wirkungsbereich"
   },
   {
     "id": "fractured.stat_1776945532",
@@ -51480,6 +53928,10 @@
     "text": "Raub\u00FCberfall-Truhen haben #% Chance, enthaltene Delirium-Sph\u00E4ren und -Splitter zu duplizieren"
   },
   {
+    "id": "fractured.stat_1870732546",
+    "text": "Fertigkeiten, die ein Totem beschw\u00F6ren, haben #% Chance, zwei Totems statt eins zu beschw\u00F6ren"
+  },
+  {
     "id": "fractured.stat_1871056256",
     "text": "Erleidet #% des physischen Schadens von Treffern als K\u00E4lteschaden"
   },
@@ -51522,6 +53974,10 @@
   {
     "id": "fractured.stat_1898978455",
     "text": "Monsterschaden durchdringt #% Elementarwiderst\u00E4nde"
+  },
+  {
+    "id": "fractured.stat_1901408736",
+    "text": "#% erh\u00F6hte R\u00FCstung von ausger\u00FCsteten Stiefeln und Handschuhen"
   },
   {
     "id": "fractured.stat_1902595112",
@@ -51586,6 +54042,10 @@
   {
     "id": "fractured.stat_1919892065",
     "text": "Von Euch eingesch\u00FCchterte Gegner haben #% verl\u00E4ngerte Dauer von auf sie gerichtete Bet\u00E4ubungen"
+  },
+  {
+    "id": "fractured.stat_1923210508",
+    "text": "Projektile verursachen #% erh\u00F6hten Schaden mit Treffern und Beeintr\u00E4chtigungen f\u00FCr jede Verkettung"
   },
   {
     "id": "fractured.stat_1923879260",
@@ -51658,6 +54118,10 @@
   {
     "id": "fractured.stat_1974445926",
     "text": "Kreaturen haben #% Chance, Gegner bei Treffer zu vergiften"
+  },
+  {
+    "id": "fractured.stat_1975119765",
+    "text": "Gebiet enth\u00E4lt den Viridischen Finsterwald"
   },
   {
     "id": "fractured.stat_1976069869",
@@ -52072,6 +54536,10 @@
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Schnell und t\u00F6dlich"
   },
   {
+    "id": "fractured.stat_2171629017",
+    "text": "#% verl\u00E4ngerte Ladungsdauer"
+  },
+  {
     "id": "fractured.stat_2174134106",
     "text": "Kriegsschreie k\u00F6nnen keine Fortbewegungsfertigkeiten potenzieren"
   },
@@ -52468,6 +54936,10 @@
     "text": "\u002B#% zu maximaler Chance, Zauberschaden zu blocken"
   },
   {
+    "id": "fractured.stat_2390914662",
+    "text": "# Suffix-Modifikator kann nicht ver\u00E4ndert werden"
+  },
+  {
     "id": "fractured.stat_2396755365",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Fleisch-V\u00F6llerei"
   },
@@ -52486,6 +54958,10 @@
   {
     "id": "fractured.stat_2406605753",
     "text": "Stellt bei T\u00F6tung #% des Energieschilds wieder her"
+  },
+  {
+    "id": "fractured.stat_240857668",
+    "text": "#% erh\u00F6hte Wirkung von Schattenhaft"
   },
   {
     "id": "fractured.stat_2408625104",
@@ -52646,6 +55122,10 @@
   {
     "id": "fractured.stat_2479683456",
     "text": "Kreaturen regenerieren #% Leben pro Sekunde"
+  },
+  {
+    "id": "fractured.stat_2480498143",
+    "text": "Fertigkeiten kosten Leben statt #% der Manakosten"
   },
   {
     "id": "fractured.stat_2481353198",
@@ -52960,6 +55440,10 @@
     "text": "Hinzugef\u00FCgte kleine passive Fertigkeiten gew\u00E4hren auch: \u002B#% zu allen Elementarwiderst\u00E4nden"
   },
   {
+    "id": "fractured.stat_2670735758",
+    "text": "Eure verbundenen Ziele verursachen #% erh\u00F6hten Schaden"
+  },
+  {
     "id": "fractured.stat_2671663397",
     "text": "F\u00FCgt Zaubern beim Tragen eines Schilds # bis # K\u00E4lteschaden hinzu"
   },
@@ -52978,6 +55462,10 @@
   {
     "id": "fractured.stat_2678065384",
     "text": "#% erh\u00F6hter Erfahrungsgewinn f\u00FCr T\u00E4uschung"
+  },
+  {
+    "id": "fractured.stat_2680060124",
+    "text": "\u0027Sammeln\u0027 hat #% beschleunigte Abklingzeit-Rate"
   },
   {
     "id": "fractured.stat_2692578539",
@@ -53154,6 +55642,10 @@
   {
     "id": "fractured.stat_279227559",
     "text": "#% erh\u00F6hte Bewegungsgeschwindigkeit, wenn Ihr k\u00FCrzlich get\u00F6tet habt"
+  },
+  {
+    "id": "fractured.stat_2795287443",
+    "text": "\u0027Zeichen zur\u00FCckrufen\u0027 hat #% beschleunigte Abklingzeit-Rate"
   },
   {
     "id": "fractured.stat_2796704737",
@@ -53478,6 +55970,10 @@
   {
     "id": "fractured.stat_2961018200",
     "text": "Gebiet ist von Abscheulichkeiten besiedelt"
+  },
+  {
+    "id": "fractured.stat_2961618300",
+    "text": "#% Chance, Blenden zu vermeiden"
   },
   {
     "id": "fractured.stat_2964800094",
@@ -53956,6 +56452,10 @@
     "text": "Gebiet hat stellenweise schockenden Boden, der den erlittenen Schaden um #% erh\u00F6ht"
   },
   {
+    "id": "fractured.stat_3246496608",
+    "text": "Der erste # auf Euch angewendeten Stapel Manabrand hat keine Wirkung"
+  },
+  {
     "id": "fractured.stat_3248691197",
     "text": "F\u00FCgt Angriffen mit Dolchen # bis # Chaosschaden hinzu"
   },
@@ -54368,6 +56868,10 @@
     "text": "Alle magischen und normalen Monster im Gebiet sind in einer Einheit der Seelen"
   },
   {
+    "id": "fractured.stat_3459071185",
+    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit pro Gegner in kurzer Distanz"
+  },
+  {
     "id": "fractured.stat_346029096",
     "text": "Inkarnation des Feuers"
   },
@@ -54472,6 +56976,10 @@
     "text": "\u002B# Meter zur Waffenreichweite"
   },
   {
+    "id": "fractured.stat_3509362078",
+    "text": "#% erh\u00F6hter Ausweichwert von ausger\u00FCsteter K\u00F6rperr\u00FCstung"
+  },
+  {
     "id": "fractured.stat_3509724289",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Naturtalent"
   },
@@ -54516,6 +57024,10 @@
     "text": "Spieler k\u00F6nnen keine Widerstands-Ladungen erhalten"
   },
   {
+    "id": "fractured.stat_3532157821",
+    "text": "#% Chance, doppelten Schaden mit Angriffen zu verursachen, wenn die Angriffszeit l\u00E4nger ist als 1 Sekunde"
+  },
+  {
     "id": "fractured.stat_3533432197",
     "text": "Vaal-Fertigkeiten (Aura-Fertigkeiten ausgenommen) erfordern #% verringerte Seelen pro Nutzung"
   },
@@ -54526,6 +57038,10 @@
   {
     "id": "fractured.stat_3539175001",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Den Moment auskosten"
+  },
+  {
+    "id": "fractured.stat_3547436813",
+    "text": "\u002B#% zu kritischer Trefferchance der Nebenhand beim Tragen zweier Waffen"
   },
   {
     "id": "fractured.stat_3550168289",
@@ -54698,6 +57214,10 @@
   {
     "id": "fractured.stat_365540634",
     "text": "\u002B#% zu Monster-Chaoswiderstand"
+  },
+  {
+    "id": "fractured.stat_3663580344",
+    "text": "#% verl\u00E4ngerte Dauer von \u0027Phantombogensch\u00FCtze\u0027"
   },
   {
     "id": "fractured.stat_3666934677",
@@ -57028,6 +59548,10 @@
     "text": "Unterst\u00FCtzt durch \u0027Ewige Segnung\u0027 Stufe 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|1452519409",
+    "text": "Unterst\u00FCtzt durch \u0027Verminderung\u0027 Stufe 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|1466145569",
     "text": "Unterst\u00FCtzt durch \u0027Vergr\u00F6\u00DFerter Wirkungsbereich\u0027 Stufe 1"
   },
@@ -57148,6 +59672,10 @@
     "text": "Unterst\u00FCtzt durch \u0027Phantasma beschw\u00F6ren\u0027 Stufe 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|2208650143",
+    "text": "Unterst\u00FCtzt durch \u0027Armut\u0027 Stufe 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|2222630080",
     "text": "Unterst\u00FCtzt durch \u0027Fallen- und Minenschaden\u0027 Stufe 1"
   },
@@ -57174,6 +59702,10 @@
   {
     "id": "imbued.pseudo_built_in_support|2300092378",
     "text": "Unterst\u00FCtzt durch \u0027Verkettung\u0027 Stufe 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|2327564307",
+    "text": "Unterst\u00FCtzt durch \u0027Bed\u00FCrftigkeit\u0027 Stufe 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|2342654864",
@@ -57232,6 +59764,10 @@
     "text": "Unterst\u00FCtzt durch \u0027Fortschrittliche Fallen\u0027 Stufe 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|2642139747",
+    "text": "Unterst\u00FCtzt durch \u0027Einschn\u00FCrung\u0027 Stufe 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|2679148081",
     "text": "Unterst\u00FCtzt durch \u0027B\u00F6sartige Projektile\u0027 Stufe 1"
   },
@@ -57258,6 +59794,10 @@
   {
     "id": "imbued.pseudo_built_in_support|282207976",
     "text": "Unterst\u00FCtzt durch \u0027Inspiration\u0027 Stufe 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|2842604691",
+    "text": "Unterst\u00FCtzt durch \u0027Zaubern bei erlittenem Schaden\u0027 Stufe 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|2883596469",
@@ -57304,8 +59844,16 @@
     "text": "Unterst\u00FCtzt durch \u0027Frischfleisch\u0027 Stufe 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3186808105",
+    "text": "Unterst\u00FCtzt durch \u0027Mittelma\u00DF\u0027 Stufe 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|318949620",
     "text": "Unterst\u00FCtzt durch \u0027Verhexte Bl\u00FCte\u0027 Stufe 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|3192305202",
+    "text": "Unterst\u00FCtzt durch \u0027Entmachtung\u0027 Stufe 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|3226210172",
@@ -57392,6 +59940,10 @@
     "text": "Unterst\u00FCtzt durch \u0027Momentum\u0027 Stufe 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3435483009",
+    "text": "Unterst\u00FCtzt durch \u0027Lethargie\u0027 Stufe 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|344293939",
     "text": "Unterst\u00FCtzt durch \u0027Kreaturenschaden\u0027 Stufe 1"
   },
@@ -57428,6 +59980,10 @@
     "text": "Unterst\u00FCtzt durch \u0027Physischer Nahkampfschaden\u0027 Stufe 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3674002686",
+    "text": "Unterst\u00FCtzt durch \u0027Impotenz\u0027 Stufe 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|3676897366",
     "text": "Unterst\u00FCtzt durch \u0027\u00DCberpotenzierung\u0027 Stufe 1"
   },
@@ -57448,12 +60004,20 @@
     "text": "Unterst\u00FCtzt durch \u0027Elementararmee\u0027 Stufe 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3870057454",
+    "text": "Unterst\u00FCtzt durch \u0027Bu\u00DFe\u0027 Stufe 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|3918067187",
     "text": "Unterst\u00FCtzt durch \u0027Aderlass\u0027 Stufe 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|3950169394",
     "text": "Unterst\u00FCtzt durch \u0027Gr\u00F6\u00DFere Projektilaufteilung\u0027 Stufe 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|3989015253",
+    "text": "Unterst\u00FCtzt durch \u0027Belastung\u0027 Stufe 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|3990013913",
@@ -57514,6 +60078,10 @@
   {
     "id": "imbued.pseudo_built_in_support|578583560",
     "text": "Unterst\u00FCtzt durch \u0027Aufspie\u00DFen\u0027 Stufe 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|601991273",
+    "text": "Unterst\u00FCtzt durch \u0027Aufhebung\u0027 Stufe 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|619178891",
@@ -57608,20 +60176,76 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Projektilaufteilung\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_120392055",
+    "text": "Gew\u00E4hrt \u0022Verwundbarkeit\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_1270291096",
     "text": "Gew\u00E4hrt \u0022Stolz\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_1324938267",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schnelleres Zaubern\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_1463464665",
+    "text": "Gew\u00E4hrt \u0022Versteinerungsstatue\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_149184016",
+    "text": "Gew\u00E4hrt \u0022Aspekt der Spinne\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_1571191461",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Feuerschaden\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_1576376285",
+    "text": "Gew\u00E4hrt \u0022Mal des Assassinen\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_1673391040",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Chaosschaden\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_1710445055",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Entfesseln\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_1770376530",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schnellere Projektile\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_1795027869",
+    "text": "Gew\u00E4hrt \u0022Gro\u00DFen Vorboten des Fokus beschw\u00F6ren\u0022"
+  },
+  {
+    "id": "implicit.effect_1858870975",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubertotem\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_1878151040",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Bet\u00E4uben\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_2014162730",
     "text": "Gew\u00E4hrt \u0022Wut\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2092916684",
+    "text": "Gew\u00E4hrt \u0022Ursa-Biest beschw\u00F6ren\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2100902429",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Mehrfachschlag\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2109649836",
+    "text": "Gew\u00E4hrt \u0022Blutopfer\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2141384509",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Chance auf Vergiften\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_2174769737",
@@ -57632,6 +60256,18 @@
     "text": "Gew\u00E4hrt \u0022Klarheit\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_2251567057",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Grausamkeit\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2377502094",
+    "text": "Gew\u00E4hrt \u0022Schlangen-Biest beschw\u00F6ren\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2455845502",
+    "text": "Gew\u00E4hrt \u0022Schneidende K\u00E4lte\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_2461314210",
     "text": "Gew\u00E4hrt \u0022Zorn\u0022 Stufe #"
   },
@@ -57640,8 +60276,28 @@
     "text": "Gew\u00E4hrt \u0022Hast\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_2579976590",
+    "text": "Gew\u00E4hrt \u0022Wille der F\u00FCrsten\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2649350521",
+    "text": "Gew\u00E4hrt \u0022Vitalit\u00E4t\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_265550805",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Aderlass\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2698327786",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Niedertr\u00E4chtiges Gift\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2713755048",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Lebensraub\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_2753888557",
+    "text": "Gew\u00E4hrt \u0022Doryanis Ber\u00FChrung\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_2765861847",
@@ -57656,6 +60312,10 @@
     "text": "Gew\u00E4hrt \u0022Leitf\u00E4higkeit\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_2890244883",
+    "text": "Gew\u00E4hrt \u0022Mal des Scharfsch\u00FCtzen\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_3009566559",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Verkettung\u0022 Stufe #"
   },
@@ -57664,8 +60324,20 @@
     "text": "Gew\u00E4hrt \u0022Hass\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_3115071909",
+    "text": "Gew\u00E4hrt \u0022Aspekt des Vogels\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_3232631539",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Durchdringende Elemente\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_3293595800",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Konzentrierte Wirkung\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_3362019776",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher K\u00E4lteschaden\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_338557223",
@@ -57674,6 +60346,14 @@
   {
     "id": "implicit.effect_3419961156",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Aufspie\u00DFen\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_3457811678",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Durchbohren\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_3474714415",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei Bet\u00E4ubung\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_3512123051",
@@ -57696,8 +60376,24 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Blitzschaden\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_3636926002",
+    "text": "Gew\u00E4hrt \u0022Fesseln der Zeit\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_3737592146",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Vergr\u00F6\u00DFerter Wirkungsbereich\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_3828086965",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Elementar\u00FCbertragung\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_3850673820",
+    "text": "Gew\u00E4hrt \u0022Gro\u00DFen Vorboten der St\u00FCrme beschw\u00F6ren\u0022"
+  },
+  {
+    "id": "implicit.effect_388828889",
+    "text": "Gew\u00E4hrt \u0022Gefr\u00E4\u00DFig\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_3893320621",
@@ -57708,20 +60404,60 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Blenden\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_405979710",
+    "text": "Gew\u00E4hrt \u0022Wilde Seepocke\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_4121000032",
+    "text": "Gew\u00E4hrt \u0022Vorboten des Fokus beschw\u00F6ren\u0022"
+  },
+  {
     "id": "implicit.effect_4154731776",
     "text": "Gew\u00E4hrt \u0022Reinheit des Eises\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_4195991223",
+    "text": "Gew\u00E4hrt \u0022Rhoa-Biest beschw\u00F6ren\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_426005818",
     "text": "Gew\u00E4hrt \u0022Reinheit des Blitzes\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_4267977279",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei kritischem Treffer\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_4278342035",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Erh\u00F6hter kritischer Trefferschaden\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_4282732147",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Lebenserhalt bei Treffer\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_4291787627",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Schnellere Angriffe\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_434885230",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Blasphemie\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_468251502",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Elementarschaden mit Angriffen\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_479399165",
+    "text": "Gew\u00E4hrt \u0022Entflammbarkeit\u0022 Stufe #"
+  },
+  {
     "id": "implicit.effect_599791292",
     "text": "Gew\u00E4hrt \u0022Disziplin\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_626699959",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei Tod\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_682681978",
@@ -57836,6 +60572,10 @@
     "text": "Euer Blitzschaden kann einfrieren, aber nicht schocken"
   },
   {
+    "id": "implicit.stat_1012433600",
+    "text": "Verflucht Gegner bei Treffer mit \u0027Schneidende K\u00E4lte\u0027, wenn 5 Erl\u00F6serin-Gegenst\u00E4nde ausger\u00FCstet sind"
+  },
+  {
     "id": "implicit.stat_1016130575",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: F\u00FCgt Angriffen # bis # K\u00E4lteschaden hinzu"
   },
@@ -57850,6 +60590,14 @@
   {
     "id": "implicit.stat_1018817416",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: F\u00FCgt Zaubern # bis # K\u00E4lteschaden hinzu"
+  },
+  {
+    "id": "implicit.stat_1019020209",
+    "text": "#% erh\u00F6hter Schaden pro Fluch auf Euch"
+  },
+  {
+    "id": "implicit.stat_1019891080",
+    "text": "Pfeile verursachen #% erh\u00F6hten Schaden mit Treffern und Beeintr\u00E4chtigungen gegen Ziele, die sie durchbohren"
   },
   {
     "id": "implicit.stat_1021552211",
@@ -57984,12 +60732,20 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: \u0027Herold der Asche\u0027 hat #% erh\u00F6hte St\u00E4rkungswirkung"
   },
   {
+    "id": "implicit.stat_1091613629",
+    "text": "Erhaltet f\u00FCr 10 Sekunden \u0027Pr\u00E4senz des Sch\u00F6pfers\u0027, wenn Ihr einen seltenen oder einzigartigen Gegner t\u00F6tet"
+  },
+  {
     "id": "implicit.stat_1092987622",
     "text": "Reflektiert #% des erlittenen physischen Nahkampfschadens auf Angreifer"
   },
   {
     "id": "implicit.stat_1101403182",
     "text": "#% verringerter erlittener Schaden von Schaden \u00FCber Zeit"
+  },
+  {
+    "id": "implicit.stat_1107877645",
+    "text": "Regeneriert #% Eures Lebens pro Sekunde, wenn Ihr k\u00FCrzlich eine Leiche verbraucht habt"
   },
   {
     "id": "implicit.stat_1109700751",
@@ -58066,6 +60822,10 @@
   {
     "id": "implicit.stat_1139878780",
     "text": "Euer Chaosschaden kann entz\u00FCnden"
+  },
+  {
+    "id": "implicit.stat_1144742318",
+    "text": "Pakt-Fertigkeiten haben #% beschleunigte Abklingzeit-Rate"
   },
   {
     "id": "implicit.stat_1145451936",
@@ -58160,6 +60920,10 @@
     "text": "\u002B# zu maximalem Rausch"
   },
   {
+    "id": "implicit.stat_1183036145",
+    "text": "Fertigkeiten, die Leben kosten, haben #% Chance, doppelten Schaden zu verursachen"
+  },
+  {
     "id": "implicit.stat_118398748",
     "text": "#% erh\u00F6hte Fallen-Wurfgeschwindigkeit"
   },
@@ -58176,12 +60940,28 @@
     "text": "Fl\u00E4schchen erhalten alle 3 Sekunden # F\u00FCllungen"
   },
   {
+    "id": "implicit.stat_1195319608",
+    "text": "#% erh\u00F6hter Energieschild von ausger\u00FCsteter K\u00F6rperr\u00FCstung"
+  },
+  {
     "id": "implicit.stat_1211769158",
     "text": "Schaden mit Waffen durchdringt #% K\u00E4ltewiderstand"
   },
   {
     "id": "implicit.stat_1212083058",
     "text": "#% erh\u00F6hte Mana-Reservierungseffizienz von Fertigkeiten pro 250 Gesamtattribute"
+  },
+  {
+    "id": "implicit.stat_1214232297",
+    "text": "#% Chance, s\u00E4mtliches Leben wiederherzustellen, wenn Ihr einen Gegner t\u00F6tet"
+  },
+  {
+    "id": "implicit.stat_1214601201",
+    "text": "#% mehr maximales Leben"
+  },
+  {
+    "id": "implicit.stat_1217730254",
+    "text": "Gegner erleiden #% erh\u00F6hten Schaden f\u00FCr jeden Typ von Beeintr\u00E4chtigung, den Ihr bei ihnen verursacht habt"
   },
   {
     "id": "implicit.stat_1217759839",
@@ -58198,6 +60978,10 @@
   {
     "id": "implicit.stat_1220361974",
     "text": "Gegner, die Ihr t\u00F6tet, explodieren und verursachen #% ihres maximalen Lebens als physischen Schaden"
+  },
+  {
+    "id": "implicit.stat_1225383362",
+    "text": "\u002B# zu maximaler Anzahl von Skeletten"
   },
   {
     "id": "implicit.stat_122841557",
@@ -58244,12 +61028,20 @@
     "text": "Gew\u00E4hrt bei T\u00F6tung Verb\u00FCndeten innerhalb von 4 Metern eine Raserei-Ladung"
   },
   {
+    "id": "implicit.stat_1244494473",
+    "text": "Erleidet #% des Blitzschadens als Feuerschaden"
+  },
+  {
     "id": "implicit.stat_1247498990",
     "text": "F\u00FCgt unbewaffneten Angriffen # bis # K\u00E4lteschaden hinzu"
   },
   {
     "id": "implicit.stat_124859000",
     "text": "#% erh\u00F6hter Ausweichwert (Lokal)"
+  },
+  {
+    "id": "implicit.stat_125218179",
+    "text": "\u002B# zu maximaler Anzahl von Schemen"
   },
   {
     "id": "implicit.stat_1253537227",
@@ -58266,6 +61058,10 @@
   {
     "id": "implicit.stat_1263695895",
     "text": "#% vergr\u00F6\u00DFerter Lichtradius"
+  },
+  {
+    "id": "implicit.stat_1264919148",
+    "text": "Fertigkeiten, die durch \u0027Entfesseln\u0027 unterst\u00FCtzt werden, haben \u002B# zu maximaler Anzahl von Siegeln"
   },
   {
     "id": "implicit.stat_1269219558",
@@ -58290,6 +61086,10 @@
   {
     "id": "implicit.stat_128585622",
     "text": "Kreaturen sind aggressiv"
+  },
+  {
+    "id": "implicit.stat_1289472451",
+    "text": "Verflucht Gegner bei Treffer mit \u0027Leitf\u00E4higkeit\u0027, wenn 5 Kreuzritter-Gegenst\u00E4nde ausger\u00FCstet sind"
   },
   {
     "id": "implicit.stat_1290399200",
@@ -58324,8 +61124,16 @@
     "text": "\u002B#% zu maximalem Chaoswiderstand"
   },
   {
+    "id": "implicit.stat_1302845655",
+    "text": "#% Chance, eine Raserei-Ladung zu erhalten f\u00FCr jeden Gegner, den Ihr kritisch trefft"
+  },
+  {
     "id": "implicit.stat_1308467455",
     "text": "Ewige Jugend"
+  },
+  {
+    "id": "implicit.stat_1309492287",
+    "text": "Regeneriert #% des Manas pro Sekunde, wenn Ihr k\u00FCrzlich eine Leiche verbraucht habt"
   },
   {
     "id": "implicit.stat_1309840354",
@@ -58336,8 +61144,16 @@
     "text": "#% erh\u00F6hter globaler physischer Schaden"
   },
   {
+    "id": "implicit.stat_1311723478",
+    "text": "Ignoriert alle Bewegungseinschr\u00E4nkungen durch R\u00FCstungen"
+  },
+  {
     "id": "implicit.stat_1313503107",
     "text": "Erleidet #% des K\u00E4lteschadens von Treffern als Blitzschaden"
+  },
+  {
+    "id": "implicit.stat_1313678015",
+    "text": "#% erh\u00F6hter Schaden, w\u00E4hrend Ihr in der Bluthaltung seid"
   },
   {
     "id": "implicit.stat_1314617696",
@@ -58416,6 +61232,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% Chance, Zauberschaden zu blocken"
   },
   {
+    "id": "implicit.stat_13590525",
+    "text": "\u002B# zu maximaler Anzahl Heiliger Irrlichter\n\u002B# zur Anzahl beschworener Heiliger Irrlichter"
+  },
+  {
     "id": "implicit.stat_1360723495",
     "text": "#% erh\u00F6hte Bewegungsgeschwindigkeit f\u00FCr jeden Giftstapel, der auf Euch wirkt, bis zu einem Maximum von 50%"
   },
@@ -58446,6 +61266,14 @@
   {
     "id": "implicit.stat_1373026185",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: \u0027H\u00F6llischer Schrei\u0027 hat #% vergr\u00F6\u00DFerten Wirkungsbereich"
+  },
+  {
+    "id": "implicit.stat_1373673887",
+    "text": "Ersch\u00F6pft Gegner mit vollem Leben bei Treffer f\u00FCr 4 Sekunden"
+  },
+  {
+    "id": "implicit.stat_137377270",
+    "text": "#% mehr maximales Leben"
   },
   {
     "id": "implicit.stat_1379411836",
@@ -58484,6 +61312,10 @@
     "text": "\u0027Reinheit des Eises\u0027 hat #% erh\u00F6hte Mana-Reservierungseffizienz"
   },
   {
+    "id": "implicit.stat_1400414838",
+    "text": "\u002B#% zu maximaler Unterk\u00FChlungswirkung"
+  },
+  {
     "id": "implicit.stat_140429540",
     "text": "#% erh\u00F6hte kritische Trefferchance von Zaubern beim Tragen eines Stabs"
   },
@@ -58494,6 +61326,10 @@
   {
     "id": "implicit.stat_1412947753",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte kritische Zaubertrefferchance"
+  },
+  {
+    "id": "implicit.stat_1417918566",
+    "text": "Verursacht bei Gegnern innerhalb von 6 Metern jede Sekunde f\u00FCr # Sekunden Verk\u00FCmmerung"
   },
   {
     "id": "implicit.stat_141810208",
@@ -58592,12 +61428,20 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: Von Euch k\u00FCrzlich getroffene Gegner haben #% verringerte Lebensregenerations-Rate"
   },
   {
+    "id": "implicit.stat_1450081919",
+    "text": "#% mehr Schaden gegen untote Monster"
+  },
+  {
     "id": "implicit.stat_1450978702",
     "text": "\u0027Reinheit des Blitzes\u0027 hat #% erh\u00F6hte Mana-Reservierungseffizienz"
   },
   {
     "id": "implicit.stat_1452809865",
     "text": "#% erh\u00F6hte Anzahl erhaltener Fl\u00E4schchenf\u00FCllungen"
+  },
+  {
+    "id": "implicit.stat_1453197917",
+    "text": "#% Chance, bei Treffer eine Energie-Ladung zu erhalten"
   },
   {
     "id": "implicit.stat_1455812442",
@@ -58642,6 +61486,10 @@
   {
     "id": "implicit.stat_1478653032",
     "text": "#% verringerte Unterk\u00FChlungswirkung auf Euch"
+  },
+  {
+    "id": "implicit.stat_1480595847",
+    "text": "#% erh\u00F6hte Wirkung von Aufspie\u00DFungen, die mit Zaubern verursacht wurden"
   },
   {
     "id": "implicit.stat_1481249164",
@@ -58698,6 +61546,10 @@
   {
     "id": "implicit.stat_1510714129",
     "text": "Angriffe haben #% Chance, bei Treffer zu verst\u00FCmmeln"
+  },
+  {
+    "id": "implicit.stat_151300265",
+    "text": "Bogenangriffe opfern eine zuf\u00E4llige Kreatur, die Schaden erleiden kann, um # zus\u00E4tzlichen Pfeil abzufeuern"
   },
   {
     "id": "implicit.stat_1513279759",
@@ -58836,6 +61688,10 @@
     "text": "Kreaturen verursachen #% erh\u00F6hten Schaden"
   },
   {
+    "id": "implicit.stat_1590183647",
+    "text": "#% erh\u00F6hte erhaltene Boni von ausger\u00FCsteten Stiefeln"
+  },
+  {
     "id": "implicit.stat_1590336483",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hter Feuerschaden"
   },
@@ -58858,6 +61714,10 @@
   {
     "id": "implicit.stat_1604984482",
     "text": "Euer Blitzschaden kann vergiften"
+  },
+  {
+    "id": "implicit.stat_1607193320",
+    "text": "Fortbewegungsfertigkeiten haben #% Chance, bei Nutzung keine Abklingzeit zu verbrauchen"
   },
   {
     "id": "implicit.stat_1609260458",
@@ -58924,12 +61784,24 @@
     "text": "#% Chance, mit Nahkampfwaffen Bluten zu verursachen"
   },
   {
+    "id": "implicit.stat_1631195850",
+    "text": "Gegenschlag-Fertigkeiten werden alle # Sekunden benutzbar"
+  },
+  {
+    "id": "implicit.stat_1633157811",
+    "text": "#% erh\u00F6hte R\u00FCstung von ausger\u00FCstetem Helm"
+  },
+  {
     "id": "implicit.stat_1633778432",
     "text": "L\u00F6st Flammenspurt Stufe # aus, wenn Ihr eine eingefasste Fertigkeit benutzt"
   },
   {
     "id": "implicit.stat_1640259660",
     "text": "Von Euch verursachte Schocks \u00FCbertragen sich auf andere Gegner innerhalb von 1.5 Metern"
+  },
+  {
+    "id": "implicit.stat_1640937241",
+    "text": "Erleidet #% des physischen Schadens \u00FCber Zeit als Chaosschaden"
   },
   {
     "id": "implicit.stat_1640965354",
@@ -58940,12 +61812,20 @@
     "text": "Eure Karten enthalten #% erh\u00F6hte Anzahl von Markierungen f\u00FCr Runenmonster"
   },
   {
+    "id": "implicit.stat_1642347505",
+    "text": "Erleidet #% des K\u00E4lteschadens als Feuerschaden"
+  },
+  {
     "id": "implicit.stat_1643688236",
     "text": "Unbeeinflusst von brennendem Boden"
   },
   {
     "id": "implicit.stat_1645459191",
     "text": "\u002B# zur Stufe eingefasster K\u00E4lte-Gemmen"
+  },
+  {
+    "id": "implicit.stat_1645957840",
+    "text": "Verbraucht alle 3 Sekunden eine Leiche innerhalb von 5 Metern und stellt #% des Manas wieder her"
   },
   {
     "id": "implicit.stat_1648511635",
@@ -58982,6 +61862,10 @@
   {
     "id": "implicit.stat_1662974426",
     "text": "#% erh\u00F6hte Fluchwirkung von \u0027Fesseln der Zeit\u0027"
+  },
+  {
+    "id": "implicit.stat_1666645630",
+    "text": "Gegner innerhalb von 6 Metern von Leichen, die Ihr k\u00FCrzlich erzeugt habt,\nhaben #% verringerte Lebensregenerations-Rate"
   },
   {
     "id": "implicit.stat_1668340466",
@@ -59048,6 +61932,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: Kreaturen verhindern \u002B#% des reflektierten Schadens, den sie erleiden w\u00FCrden"
   },
   {
+    "id": "implicit.stat_1698276268",
+    "text": "Verkettete Projektile verursachen #% des Schadens (Chaosschaden ausgenommen) als extra Chaosschaden"
+  },
+  {
     "id": "implicit.stat_1698847655",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: Von Euch verursachte Entz\u00FCndungen \u00FCbertragen sich auf andere Gegner innerhalb von # Meter"
   },
@@ -59074,6 +61962,10 @@
   {
     "id": "implicit.stat_1708506642",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% Chance, Gegner bei Treffer f\u00FCr 4 Sekunden zu entmutigen"
+  },
+  {
+    "id": "implicit.stat_1710381148",
+    "text": "#% verl\u00E4ngerte Bet\u00E4ubungsdauer gegen Gegner mit vollem Leben"
   },
   {
     "id": "implicit.stat_1712221299",
@@ -59236,6 +62128,14 @@
     "text": "#% mehr physischer Schaden mit unbewaffneten Nahkampfangriffen"
   },
   {
+    "id": "implicit.stat_1816894864",
+    "text": "Durch Eure Treffer unterk\u00FChlte Gegner erleiden erh\u00F6hten Schaden durch die Unterk\u00FChlungswirkung"
+  },
+  {
+    "id": "implicit.stat_1818773442",
+    "text": "#% erh\u00F6hter Schaden mit Treffern und Beeintr\u00E4chtigungen pro Fluch auf dem Gegner"
+  },
+  {
     "id": "implicit.stat_1825301877",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hter Ausweichwert von ausger\u00FCstetem Helm und Stiefeln"
   },
@@ -59280,6 +62180,10 @@
     "text": "#% vergr\u00F6\u00DFerter Wirkungsbereich von Angriffen"
   },
   {
+    "id": "implicit.stat_1846105968",
+    "text": "Gegner, die Ihr blendet, w\u00E4hrend Ihr in der Sandhaltung seid, erleiden #% erh\u00F6hten Schaden"
+  },
+  {
     "id": "implicit.stat_1847660463",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% vergr\u00F6\u00DFerter Wirkungsbereich"
   },
@@ -59310,6 +62214,10 @@
   {
     "id": "implicit.stat_1869144397",
     "text": "L\u00F6st Leerenblick Stufe # aus, wenn Ihr eine Fertigkeit benutzt"
+  },
+  {
+    "id": "implicit.stat_1870732546",
+    "text": "Fertigkeiten, die ein Totem beschw\u00F6ren, haben #% Chance, zwei Totems statt eins zu beschw\u00F6ren"
   },
   {
     "id": "implicit.stat_1870961528",
@@ -59408,6 +62316,10 @@
     "text": "Gebiet enth\u00E4lt #% erh\u00F6hte Anzahl von Markierungen f\u00FCr Monster"
   },
   {
+    "id": "implicit.stat_1916233589",
+    "text": "Erh\u00F6hungen und Verringerungen der Manaregenerations-Rate gelten auch f\u00FCr die Energieschild-Wiederaufladungsrate"
+  },
+  {
     "id": "implicit.stat_1916706958",
     "text": "#% Chance, Bet\u00E4ubungen zu ignorieren, w\u00E4hrend Ihr zaubert"
   },
@@ -59442,6 +62354,10 @@
   {
     "id": "implicit.stat_1923210508",
     "text": "Projektile verursachen #% erh\u00F6hten Schaden mit Treffern und Beeintr\u00E4chtigungen f\u00FCr jede Verkettung"
+  },
+  {
+    "id": "implicit.stat_192371942",
+    "text": "Von Euch verursachte Entz\u00FCndungen \u00FCbertragen sich auf andere Gegner innerhalb eines Radius von 1.5 Metern"
   },
   {
     "id": "implicit.stat_1923879260",
@@ -59518,6 +62434,10 @@
   {
     "id": "implicit.stat_1973340656",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: Kreaturen verhindern \u002B#% des reflektierten Schadens, den sie erleiden w\u00FCrden"
+  },
+  {
+    "id": "implicit.stat_1978899297",
+    "text": "\u002B#% zu allen maximalen Elementarwiderst\u00E4nden"
   },
   {
     "id": "implicit.stat_1980216452",
@@ -59664,6 +62584,10 @@
     "text": "\u002B# zu maximaler Anzahl beschworener Heiliger Relikte"
   },
   {
+    "id": "implicit.stat_2059097830",
+    "text": "Fertigkeiten, die in ausger\u00FCsteten Stiefeln eingefasst sind, haben #% erh\u00F6hte Manakosteneffizienz"
+  },
+  {
     "id": "implicit.stat_2059771038",
     "text": "Angriffe verursachen immer Bluten, w\u00E4hrend Ihr \u00FCber \u0027List der Katze\u0027 verf\u00FCgt"
   },
@@ -59724,6 +62648,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte globale Treffgenauigkeit"
   },
   {
+    "id": "implicit.stat_2087475423",
+    "text": "#% Chance, bei Treffer eine Widerstands-Ladung zu erhalten"
+  },
+  {
     "id": "implicit.stat_2089652545",
     "text": "#% Chance, Gegner bei Treffer f\u00FCr 4 Sekunden einzusch\u00FCchtern"
   },
@@ -59754,6 +62682,10 @@
   {
     "id": "implicit.stat_2101383955",
     "text": "Schaden durchdringt #% Elementarwiderst\u00E4nde"
+  },
+  {
+    "id": "implicit.stat_2101631651",
+    "text": "Fertigkeiten verursachen #% erh\u00F6hten Projektilschaden pro erzeugtem Projektil"
   },
   {
     "id": "implicit.stat_2102212273",
@@ -59796,6 +62728,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte Kriegsschrei-Geschwindigkeit"
   },
   {
+    "id": "implicit.stat_2118708619",
+    "text": "#% erh\u00F6hter Schaden, wenn Ihr k\u00FCrzlich eine Leiche verbraucht habt"
+  },
+  {
     "id": "implicit.stat_2120297997",
     "text": "\u002B#% Chance, Zauberschaden zu blocken beim Tragen eines Stabs"
   },
@@ -59818,6 +62754,10 @@
   {
     "id": "implicit.stat_2137878565",
     "text": "#% erh\u00F6hter Schaden gegen seltene Monster"
+  },
+  {
+    "id": "implicit.stat_2138799639",
+    "text": "Pfeile durchbohren alle Ziele, nachdem sie sich aufgegabelt haben"
   },
   {
     "id": "implicit.stat_2139660169",
@@ -59968,6 +62908,10 @@
     "text": "#% der R\u00FCstung werden auch auf von Treffern erlittenen Blitzschaden angewendet"
   },
   {
+    "id": "implicit.stat_2201614328",
+    "text": "Regeneriert #% des Lebens pro Sekunde, wenn Ihr k\u00FCrzlich getroffen wurdet"
+  },
+  {
     "id": "implicit.stat_2204282073",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% des physischen Schadens werden in Chaosschaden umgewandelt"
   },
@@ -59988,6 +62932,10 @@
     "text": "Die Treffer von Nahkampf-Schl\u00E4gen von beschworenen Flammensch\u00E4deln verursachen nur\nfeuerbasierten Streuschaden auf umliegende Ziele"
   },
   {
+    "id": "implicit.stat_2216127021",
+    "text": "#% vergr\u00F6\u00DFerter Wirkungsbereich w\u00E4hrend unbewaffnet"
+  },
+  {
     "id": "implicit.stat_221690080",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: \u0027Reinheit der Elemente\u0027 hat #% erh\u00F6hte Aurawirkung"
   },
@@ -59998,6 +62946,10 @@
   {
     "id": "implicit.stat_2218095219",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: Von Euch verursachte Schocks \u00FCbertragen sich auf andere Gegner innerhalb von # Meter"
+  },
+  {
+    "id": "implicit.stat_2221035608",
+    "text": "Versteinerung auf Euch klingt #% schneller ab"
   },
   {
     "id": "implicit.stat_2221570601",
@@ -60176,6 +63128,10 @@
     "text": "#% Chance auf Schocken mit Nahkampfwaffen"
   },
   {
+    "id": "implicit.stat_2316295572",
+    "text": "Auf Euch angewendete Eisenfl\u00E4schchen haben #% erh\u00F6hte Wirkung"
+  },
+  {
     "id": "implicit.stat_2316658489",
     "text": "\u002B# zu R\u00FCstung und Ausweichwert"
   },
@@ -60194,6 +63150,10 @@
   {
     "id": "implicit.stat_2324668473",
     "text": "#% erh\u00F6hte Wirkung von nicht sch\u00E4digenden Beeintr\u00E4chtigungen f\u00FCr jede blaue Fertigkeitengemme, die Ihr eingefasst habt"
+  },
+  {
+    "id": "implicit.stat_2337295272",
+    "text": "Kreaturen verursachen #% erh\u00F6hten Schaden, wenn Ihr k\u00FCrzlich einen Gegner getroffen habt"
   },
   {
     "id": "implicit.stat_2339757871",
@@ -60228,6 +63188,10 @@
     "text": "#% erh\u00F6hter physischer Nahkampfschaden pro 10 Geschick"
   },
   {
+    "id": "implicit.stat_2356684802",
+    "text": "Von Euch verursachte Feuer-Anf\u00E4lligkeit wendet zus\u00E4tzlich \u002B#% zu Feuerwiderstand an"
+  },
+  {
     "id": "implicit.stat_2358015838",
     "text": "Ausweichwert wird erh\u00F6ht durch \u00FCbergedeckelten K\u00E4ltewiderstand"
   },
@@ -60240,12 +63204,20 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hte Mana-Reservierungseffizienz von Fertigkeiten"
   },
   {
+    "id": "implicit.stat_2360921519",
+    "text": "Gegner, die Ihr t\u00F6tet, haben #% Chance zu explodieren und ein Zehntel ihres maximalen Lebens als Schaden eines zuf\u00E4lligen Elements zu verursachen"
+  },
+  {
     "id": "implicit.stat_2366356855",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: \u0027Entschlossenheit\u0027 hat #% erh\u00F6hte Aurawirkung"
   },
   {
     "id": "implicit.stat_2367680009",
     "text": "#% Chance, Verb\u00FCndeten innerhalb von 4 Metern bei T\u00F6tung eine Energie-Ladung zu gew\u00E4hren"
+  },
+  {
+    "id": "implicit.stat_2370748292",
+    "text": "Kreaturen erhalten zus\u00E4tzliche Widerst\u00E4nde in H\u00F6he von #% Eurer Widerst\u00E4nde"
   },
   {
     "id": "implicit.stat_2374340020",
@@ -60258,6 +63230,10 @@
   {
     "id": "implicit.stat_2377438118",
     "text": "#% erh\u00F6hte Verst\u00E4rkung"
+  },
+  {
+    "id": "implicit.stat_2378187488",
+    "text": "\u002B# zur Stufe aller Bewegungs-Fertigkeitengemmen"
   },
   {
     "id": "implicit.stat_2382196858",
@@ -60274,6 +63250,10 @@
   {
     "id": "implicit.stat_2388574377",
     "text": "\u002B#% zu maximaler Chance, Zauberschaden zu blocken"
+  },
+  {
+    "id": "implicit.stat_2390518055",
+    "text": "\u002B#% zu Multiplikator f\u00FCr physischen Schaden \u00FCber Zeit, w\u00E4hrend Ihr blutet"
   },
   {
     "id": "implicit.stat_2391109128",
@@ -60320,8 +63300,16 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hte Wirkung von Schattenhaft"
   },
   {
+    "id": "implicit.stat_2414462207",
+    "text": "Kreaturen, die k\u00FCrzlich erzeugt wurden, haben Ansturm"
+  },
+  {
     "id": "implicit.stat_2415020123",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hter Schaden pro Raserei-Ladung"
+  },
+  {
+    "id": "implicit.stat_2415497478",
+    "text": "#% Chance, physischen Schaden von Treffern zu vermeiden"
   },
   {
     "id": "implicit.stat_2419712247",
@@ -60384,6 +63372,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte Angriffsgeschwindigkeit"
   },
   {
+    "id": "implicit.stat_2450413567",
+    "text": "#% Chance auf einen M\u00FCnzregen bei T\u00F6tung"
+  },
+  {
     "id": "implicit.stat_2451060005",
     "text": "Ihr k\u00F6nnt verderbte Fische fangen"
   },
@@ -60430,6 +63422,10 @@
   {
     "id": "implicit.stat_247168950",
     "text": "Kreaturen verursachen #% des Elementarschadens als extra Chaosschaden"
+  },
+  {
+    "id": "implicit.stat_2474564741",
+    "text": "Gegner erleiden durch Euren erzeugten geweihten Boden #% erh\u00F6hten Schaden"
   },
   {
     "id": "implicit.stat_2477636501",
@@ -60592,6 +63588,10 @@
     "text": "\u0027Reinheit des Feuers\u0027 hat #% erh\u00F6hte Aurawirkung"
   },
   {
+    "id": "implicit.stat_2545584555",
+    "text": "#% erh\u00F6hte Wirkung von Verk\u00FCmmerung"
+  },
+  {
     "id": "implicit.stat_2545907302",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hter globaler physischer Schaden"
   },
@@ -60656,6 +63656,10 @@
     "text": "Kriegsschrei-Fertigkeiten haben #% vergr\u00F6\u00DFerten Wirkungsbereich"
   },
   {
+    "id": "implicit.stat_2567919918",
+    "text": "Hilfsfl\u00E4schchen erhalten alle 3 Sekunden # Ladung"
+  },
+  {
     "id": "implicit.stat_2570943032",
     "text": "Gebiet enth\u00E4lt einen Tresor"
   },
@@ -60684,6 +63688,10 @@
     "text": "L\u00F6st Elementarobhut Stufe # aus, wenn ausger\u00FCstet"
   },
   {
+    "id": "implicit.stat_2602664175",
+    "text": "Kreaturen stellen bei T\u00F6tung eines vergifteten Gegners #% des Lebens wieder her"
+  },
+  {
     "id": "implicit.stat_2603798371",
     "text": "L\u00F6st bei erlittenem Treffer Schattenform Stufe 30 aus"
   },
@@ -60710,6 +63718,10 @@
   {
     "id": "implicit.stat_261654754",
     "text": "Erleidet \u002B# K\u00E4lteschaden von Treffern"
+  },
+  {
+    "id": "implicit.stat_261712318",
+    "text": "#% mehr maximaler Blitzschaden"
   },
   {
     "id": "implicit.stat_2619970520",
@@ -60742,6 +63754,10 @@
   {
     "id": "implicit.stat_2634574895",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: \u002B#% zu Multiplikator f\u00FCr Chaosschaden \u00FCber Zeit"
+  },
+  {
+    "id": "implicit.stat_2635385320",
+    "text": "Kritische Nahkampftreffer haben #% Chance, den Gegner zu vergiften"
   },
   {
     "id": "implicit.stat_2638071469",
@@ -60860,6 +63876,10 @@
     "text": "#% Chance, Bluten bei Zielen, die Ihr mit Angriffen trefft, zu verschlimmern"
   },
   {
+    "id": "implicit.stat_2705969278",
+    "text": "Treffer haben #% Chance, die Werte des gegnerischen Blitzwiderstands als invertiert zu behandeln"
+  },
+  {
     "id": "implicit.stat_2706994884",
     "text": "Geschockte Gegner, die Ihr t\u00F6tet, explodieren und verursachen #% ihres\nmaximalen Lebens als Blitzschaden, der nicht schocken kann"
   },
@@ -60908,6 +63928,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: \u0027Hast\u0027 hat #% erh\u00F6hte Aurawirkung"
   },
   {
+    "id": "implicit.stat_2736829661",
+    "text": "#% Chance, bei T\u00F6tung eines seltenen Monsters einen seiner Modifikatoren f\u00FCr 10 Sekunden zu erhalten"
+  },
+  {
     "id": "implicit.stat_2739830820",
     "text": "\u002B# zur Stufe aller \u0027Zombie erwecken\u0027-Gemmen"
   },
@@ -60924,12 +63948,24 @@
     "text": "#% erh\u00F6htes maximales Mana"
   },
   {
+    "id": "implicit.stat_2751374419",
+    "text": "Wenn Ihr ein nicht vergiftetes Ziel vergiftet, wendet Ihr auch # Verk\u00FCmmerungs-Schw\u00E4chungen an, die 2 Sekunden anhalten"
+  },
+  {
     "id": "implicit.stat_2752131673",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte Aurawirkung von \u0027Disziplin\u0027"
   },
   {
+    "id": "implicit.stat_2755326667",
+    "text": "Ihr k\u00F6nnt nicht bet\u00E4ubt werden, wenn Ihr k\u00FCrzlich bet\u00E4ubt wurdet oder in den letzten 2 Sekunden einen bet\u00E4ubenden Treffer geblockt habt"
+  },
+  {
     "id": "implicit.stat_2759003954",
     "text": "Kreaturen haben \u002B#% zu Multiplikator f\u00FCr Schaden \u00FCber Zeit"
+  },
+  {
+    "id": "implicit.stat_2761237769",
+    "text": "#% des erlittenen Nahkampf-K\u00E4lteschadens werden auf Angreifer reflektiert"
   },
   {
     "id": "implicit.stat_2761472996",
@@ -61036,12 +64072,24 @@
     "text": "Erhaltet 1 Rausch bei Treffer mit Angriffen"
   },
   {
+    "id": "implicit.stat_280530196",
+    "text": "Angriffe haben #% verl\u00E4ngerte Entz\u00FCndungsdauer"
+  },
+  {
+    "id": "implicit.stat_2805714016",
+    "text": "#% erh\u00F6hter Schaden mit Treffern gegen unterk\u00FChlte Gegner"
+  },
+  {
     "id": "implicit.stat_280731498",
     "text": "#% vergr\u00F6\u00DFerter Wirkungsbereich"
   },
   {
     "id": "implicit.stat_2809284200",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hter Schaden pro Energie-Ladung"
+  },
+  {
+    "id": "implicit.stat_2809802678",
+    "text": "Fertigkeiten feuern ein zus\u00E4tzliches Projektil, wenn Ihr k\u00FCrzlich eine Bewegungsfertigkeit benutzt habt"
   },
   {
     "id": "implicit.stat_2809900883",
@@ -61132,8 +64180,16 @@
     "text": "Treffer haben #% Chance, die physische Schadensminderung gegnerischer Monster zu ignorieren"
   },
   {
+    "id": "implicit.stat_2840285057",
+    "text": "#% erh\u00F6hte R\u00FCstung von ausger\u00FCsteter K\u00F6rperr\u00FCstung"
+  },
+  {
     "id": "implicit.stat_2841027131",
     "text": "Regeneriert # Leben pro Sekunde, w\u00E4hrend Ihr in Bewegung seid"
+  },
+  {
+    "id": "implicit.stat_2841618445",
+    "text": "Regeneriert #% des Lebens pro Sekunde f\u00FCr jeden erweckten Zombie"
   },
   {
     "id": "implicit.stat_2843100721",
@@ -61154,6 +64210,10 @@
   {
     "id": "implicit.stat_284496119",
     "text": "Monsterstufe: #"
+  },
+  {
+    "id": "implicit.stat_2846448337",
+    "text": "#% verringerte gegnerische Blockchance gegen Schwertangriffe"
   },
   {
     "id": "implicit.stat_2847548062",
@@ -61332,6 +64392,10 @@
     "text": "#% Chance auf 4 Sekunden Schemenform bei T\u00F6tung"
   },
   {
+    "id": "implicit.stat_2920230984",
+    "text": "#% Chance, dass get\u00F6tete Monster eine zus\u00E4tzliche Identifikationsrolle fallen lassen"
+  },
+  {
     "id": "implicit.stat_2922377850",
     "text": "Verflucht Gegner mit \u0027Bestrafung\u0027, wenn Ihr ihren Nahkampfschaden blockt, wobei das Fluch-Maximum ignoriert wird"
   },
@@ -61420,12 +64484,20 @@
     "text": "#% des erlittenen Blitzschadens werden als Leben wiedergewonnen"
   },
   {
+    "id": "implicit.stat_2973498992",
+    "text": "Euer Chaosschaden kann einfrieren"
+  },
+  {
     "id": "implicit.stat_2974417149",
     "text": "#% erh\u00F6hter Zauberschaden"
   },
   {
     "id": "implicit.stat_298106626",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: Nahkampftreffer verst\u00E4rken"
+  },
+  {
+    "id": "implicit.stat_298173317",
+    "text": "#% erh\u00F6hte Wirkung von Aufspie\u00DFen"
   },
   {
     "id": "implicit.stat_2986495340",
@@ -61442,6 +64514,10 @@
   {
     "id": "implicit.stat_2994708956",
     "text": "Kann Kreaturen-Modifikatoren annehmen"
+  },
+  {
+    "id": "implicit.stat_2994988431",
+    "text": "#% mehr maximaler physischer Angriffsschaden"
   },
   {
     "id": "implicit.stat_2996280658",
@@ -61510,6 +64586,10 @@
   {
     "id": "implicit.stat_3019083030",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hte Bewegungsgeschwindigkeit"
+  },
+  {
+    "id": "implicit.stat_3019598671",
+    "text": "Projektile durchbohren, gabeln sich auf oder verketten sich zuf\u00E4llig ein zus\u00E4tzliches Mal"
   },
   {
     "id": "implicit.stat_3023957681",
@@ -61624,6 +64704,14 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: Hinterl\u00E4sst versengten Boden w\u00E4hrend in Bewegung, der # Sekunden anh\u00E4lt"
   },
   {
+    "id": "implicit.stat_3098087057",
+    "text": "#% erh\u00F6hter Schaden auf brennendem Boden"
+  },
+  {
+    "id": "implicit.stat_3101897388",
+    "text": "#% erh\u00F6hte maximale Wiederherstellung pro Lebensraub"
+  },
+  {
     "id": "implicit.stat_310246444",
     "text": "#% erh\u00F6hter Schaden w\u00E4hrend des Raubs"
   },
@@ -61632,8 +64720,20 @@
     "text": "\u002B#% zu Multiplikator f\u00FCr kritische Treffer mit Schwertern"
   },
   {
+    "id": "implicit.stat_3115319277",
+    "text": "Verursacht #% des Blitzschadens als extra Chaosschaden pro Energie-Ladung"
+  },
+  {
+    "id": "implicit.stat_3119292058",
+    "text": "Gegner, die durch Eure Treffer unterk\u00FChlt werden, k\u00F6nnen zerschmettert werden, als ob sie eingefroren w\u00E4ren"
+  },
+  {
     "id": "implicit.stat_3120164895",
     "text": "F\u00FCgt Angriffen mit B\u00F6gen # bis # Feuerschaden hinzu"
+  },
+  {
+    "id": "implicit.stat_3120620173",
+    "text": "Pakt-Fertigkeiten haben #% erh\u00F6hte Zaubergeschwindigkeit"
   },
   {
     "id": "implicit.stat_3123599008",
@@ -61748,6 +64848,10 @@
     "text": "Regeneriert #% des Manas pro Sekunde"
   },
   {
+    "id": "implicit.stat_3188898882",
+    "text": "Sch\u00E4digende Beeintr\u00E4chtigungen, die von Kreaturen verursacht werden, verursachen den Schaden #% schneller"
+  },
+  {
     "id": "implicit.stat_318953428",
     "text": "#% Chance, Gegner bei Treffer mit Angriffen zu blenden"
   },
@@ -61758,6 +64862,10 @@
   {
     "id": "implicit.stat_3192966873",
     "text": "\u0027Reinheit des Eises\u0027 hat #% verringerte Reservierung"
+  },
+  {
+    "id": "implicit.stat_3193713651",
+    "text": "#% erh\u00F6hte Lebenswiederherstellungs-Rate pro 5% fehlendem unreservierten Lebens"
   },
   {
     "id": "implicit.stat_3199183447",
@@ -61782,6 +64890,10 @@
   {
     "id": "implicit.stat_3209267362",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte Wirkung von Ansturm auf Euch"
+  },
+  {
+    "id": "implicit.stat_3209419976",
+    "text": "#% erh\u00F6hte R\u00FCstung von ausger\u00FCstetem Helm, K\u00F6rperr\u00FCstung, Handschuhen und Stiefeln"
   },
   {
     "id": "implicit.stat_321077055",
@@ -61844,6 +64956,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: Verursacht bei Treffer Feuer-Anf\u00E4lligkeit, was #% zu Feuerwiderstand anwendet"
   },
   {
+    "id": "implicit.stat_32458272",
+    "text": "L\u00F6st bei T\u00F6tung \u0027Niedere Spinnen erwecken\u0027 Stufe 20 aus"
+  },
+  {
     "id": "implicit.stat_3250579936",
     "text": "L\u00F6st Abberaths Wut Stufe # aus, wenn ausger\u00FCstet"
   },
@@ -61868,12 +64984,24 @@
     "text": "\u002B# zu Geschick"
   },
   {
+    "id": "implicit.stat_3262016885",
+    "text": "Kreaturen sind aggressiv, wenn Ihr k\u00FCrzlich eine Kreaturen-Fertigkeit benutzt habt"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: Von Euch verursachte Verk\u00FCmmerung klingt #% schneller ab"
   },
   {
+    "id": "implicit.stat_3262991862",
+    "text": "Verursacht Bluten bei kritischem Nahkampftreffer"
+  },
+  {
     "id": "implicit.stat_3264420229",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% Chance, elementare Beeintr\u00E4chtigungen zu vermeiden"
+  },
+  {
+    "id": "implicit.stat_3266394681",
+    "text": "Angriffsfertigkeiten haben \u002B# zu maximaler Anzahl beschworener Totems"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -61980,6 +65108,10 @@
     "text": "\u002B#% Chance, Angriffsschaden von verfluchten Gegnern zu blocken"
   },
   {
+    "id": "implicit.stat_3307066983",
+    "text": "Chance, Projektil-Angriffsschaden zu blocken, ist g\u00FCnstig"
+  },
+  {
     "id": "implicit.stat_3309607228",
     "text": "#% verringerter erlittener Schaden, falls verderbt"
   },
@@ -61994,6 +65126,10 @@
   {
     "id": "implicit.stat_3312732077",
     "text": "#% erh\u00F6hte Geschwindigkeit von Schlossknacken"
+  },
+  {
+    "id": "implicit.stat_3313028660",
+    "text": "\u002B#% zu Multiplikator f\u00FCr Chaosschaden \u00FCber Zeit, w\u00E4hrend vergiftet"
   },
   {
     "id": "implicit.stat_331731406",
@@ -62096,6 +65232,10 @@
     "text": "Kreaturen haben #% erh\u00F6hte Angriffsgeschwindigkeit"
   },
   {
+    "id": "implicit.stat_3376335115",
+    "text": "#% mehr maximaler physischer Angriffsschaden"
+  },
+  {
     "id": "implicit.stat_3377888098",
     "text": "#% verl\u00E4ngerte Fertigkeitseffektdauer"
   },
@@ -62150,6 +65290,10 @@
   {
     "id": "implicit.stat_3401410854",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hte Angriffsgeschwindigkeit"
+  },
+  {
+    "id": "implicit.stat_3402448478",
+    "text": "Treffer haben #% Chance, die Werte des gegnerischen K\u00E4ltewiderstands als invertiert zu behandeln"
   },
   {
     "id": "implicit.stat_3407849389",
@@ -62216,6 +65360,10 @@
     "text": "Erleidet \u002B# physischen Schaden von Angriffstreffern"
   },
   {
+    "id": "implicit.stat_3442107889",
+    "text": "Erhaltet f\u00FCr 10 Sekunden \u0027B\u00F6sartiger Wahnsinn\u0027, wenn Ihr einen seltenen oder einzigartigen Gegner t\u00F6tet"
+  },
+  {
     "id": "implicit.stat_3444518809",
     "text": "\u0027Zorn\u0027 hat #% erh\u00F6hte Mana-Reservierungseffizienz"
   },
@@ -62264,6 +65412,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% des Feuerschadens werden als Leben geraubt"
   },
   {
+    "id": "implicit.stat_3482421817",
+    "text": "#% erh\u00F6hter Ausweichwert von ausger\u00FCstetem Helm, K\u00F6rperr\u00FCstung, Handschuhen und Stiefeln"
+  },
+  {
     "id": "implicit.stat_3483999943",
     "text": "#% Chance, Unterk\u00FChlen zu vermeiden"
   },
@@ -62308,6 +65460,10 @@
     "text": "Ihr habt Schemenform, wenn Ihr k\u00FCrzlich geblockt habt"
   },
   {
+    "id": "implicit.stat_3493440964",
+    "text": "Erhaltet f\u00FCr # Sekunden eine zuf\u00E4llige Schreinst\u00E4rkung, wenn Ihr einen seltenen oder einzigartigen Gegner t\u00F6tet"
+  },
+  {
     "id": "implicit.stat_3496944181",
     "text": "#% erh\u00F6hter Zauberschaden beim Tragen eines Stabs"
   },
@@ -62320,12 +65476,20 @@
     "text": "#% des Angriffsschadens werden als Mana geraubt"
   },
   {
+    "id": "implicit.stat_3503466234",
+    "text": "#% erh\u00F6hter Schaden mit Treffern und Beeintr\u00E4chtigungen gegen geblendete Gegner"
+  },
+  {
     "id": "implicit.stat_3504652942",
     "text": "\u002B#% zu Multiplikator f\u00FCr Schaden \u00FCber Zeit f\u00FCr Gift f\u00FCr jede Raserei-Ladung"
   },
   {
     "id": "implicit.stat_350598685",
     "text": "\u002B# Meter zur Waffenreichweite"
+  },
+  {
+    "id": "implicit.stat_3509362078",
+    "text": "#% erh\u00F6hter Ausweichwert von ausger\u00FCsteter K\u00F6rperr\u00FCstung"
   },
   {
     "id": "implicit.stat_3512432760",
@@ -62400,6 +65564,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hte Fluchwirkung von \u0027Leitf\u00E4higkeit\u0027"
   },
   {
+    "id": "implicit.stat_3548404923",
+    "text": "#% erh\u00F6hte Aktionsgeschwindigkeit, w\u00E4hrend entz\u00FCndet"
+  },
+  {
     "id": "implicit.stat_3548561213",
     "text": "#% erh\u00F6hte Angriffsgeschwindigkeit pro Raserei-Ladung"
   },
@@ -62446,6 +65614,10 @@
   {
     "id": "implicit.stat_3562211447",
     "text": "#% Chance, bei T\u00F6tung Unheilige Macht f\u00FCr 3 Sekunden zu erhalten"
+  },
+  {
+    "id": "implicit.stat_3565956680",
+    "text": "#% erh\u00F6hter Schaden mit Treffern und Beeintr\u00E4chtigungen gegen geblendete Gegner"
   },
   {
     "id": "implicit.stat_3567752586",
@@ -62580,6 +65752,10 @@
     "text": "Der Schaden von gegnerischen Treffern ist \u0027Ung\u00FCnstig\u0027, w\u00E4hrend Ihr bei vollem Leben seid"
   },
   {
+    "id": "implicit.stat_3633399302",
+    "text": "#% des Feuerschadens werden als Leben geraubt, w\u00E4hrend Ihr entz\u00FCndet seid"
+  },
+  {
     "id": "implicit.stat_3635566977",
     "text": "\u002B#% zu allen maximalen Widerst\u00E4nden, w\u00E4hrend Ihr \u00FCber keine Widerstands-Ladungen verf\u00FCgt"
   },
@@ -62600,6 +65776,10 @@
     "text": "# bis # zus\u00E4tzlicher K\u00E4lteschaden pro Raserei-Ladung"
   },
   {
+    "id": "implicit.stat_3652380199",
+    "text": "Erleidet pro Stufe \u002B# physischen Schaden von Treffern"
+  },
+  {
     "id": "implicit.stat_3653191834",
     "text": "Unbeeinflusst von unterk\u00FChltem Boden"
   },
@@ -62608,8 +65788,20 @@
     "text": "\u0027Entschlossenheit\u0027 hat #% erh\u00F6hte Aurawirkung"
   },
   {
+    "id": "implicit.stat_3655769732",
+    "text": "\u002B#% zur Qualit\u00E4t aller Fertigkeitengemmen"
+  },
+  {
     "id": "implicit.stat_3657377047",
     "text": "#% Chance, eingefassten Fluchzauber auszul\u00F6sen, wenn Ihr einen Fluchzauber wirkt, mit einer Abklingzeit von 0.25 Sekunden"
+  },
+  {
+    "id": "implicit.stat_3660138886",
+    "text": "Immun gegen L\u00E4hmung"
+  },
+  {
+    "id": "implicit.stat_3660255193",
+    "text": "Von Euch erzeugter geweihter Boden gew\u00E4hrt Euch und Verb\u00FCndeten #% verringerten erlittenen Schaden"
   },
   {
     "id": "implicit.stat_3660450649",
@@ -62660,6 +65852,10 @@
     "text": "Stellt Energieschild entsprechend #% der R\u00FCstung wieder her, wenn Ihr blockt"
   },
   {
+    "id": "implicit.stat_3682839745",
+    "text": "#% Chance, statt einer Widerstands-Ladung eine Gischt-Ladung zu erhalten"
+  },
+  {
     "id": "implicit.stat_3683150361",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% Chance, Bluten bei Zielen, die Ihr mit Angriffen trefft, zu verschlimmern"
   },
@@ -62700,6 +65896,10 @@
     "text": "\u002B# zu minimaler Anzahl von Widerstands-Ladungen"
   },
   {
+    "id": "implicit.stat_3708520172",
+    "text": "Erh\u00F6hungen und Verringerungen des Lichtradius gelten zu #% ihres Werts auch f\u00FCr die Lebensregenerations-Rate"
+  },
+  {
     "id": "implicit.stat_3710240762",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hte kritische Trefferchance mit Angriffen"
   },
@@ -62718,6 +65918,10 @@
   {
     "id": "implicit.stat_3720627346",
     "text": "#% erh\u00F6hte Angriffsgeschwindigkeit mit Zauberst\u00E4ben"
+  },
+  {
+    "id": "implicit.stat_3723063276",
+    "text": "Von Euch verfluchte Gegner k\u00F6nnen keine kritischen Treffer landen"
   },
   {
     "id": "implicit.stat_3731630482",
@@ -62780,6 +65984,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: 1% weniger erlittener Schaden pro # Geschick"
   },
   {
+    "id": "implicit.stat_3750544543",
+    "text": "Vergiftungen, die Ihr auf nicht vergiftete Gegner anwendet, verursachen #% erh\u00F6hten Schaden"
+  },
+  {
     "id": "implicit.stat_3753703249",
     "text": "Verursacht #% des physischen Schadens als extra Schaden eines zuf\u00E4lligen Elements"
   },
@@ -62812,6 +66020,10 @@
     "text": "Regeneriert # Mana pro Sekunde beim Tragen eines Schilds"
   },
   {
+    "id": "implicit.stat_3764198549",
+    "text": "Verbraucht alle 3 Sekunden eine Leiche innerhalb von 5 Metern und stellt #% des Lebens wieder her"
+  },
+  {
     "id": "implicit.stat_3764265320",
     "text": "#% des physischen Schadens werden als Leben geraubt"
   },
@@ -62822,6 +66034,10 @@
   {
     "id": "implicit.stat_3767873853",
     "text": "Reflektiert # physischen Schaden auf Nahkampfangreifer"
+  },
+  {
+    "id": "implicit.stat_3769211656",
+    "text": "#% Chance, eine Raserei-Ladung zu erhalten, wenn Ihr blockt"
   },
   {
     "id": "implicit.stat_3771516363",
@@ -63080,6 +66296,10 @@
     "text": "Ihr habt unterk\u00FChlende, schockende und entz\u00FCndende Konfluenz, w\u00E4hrend Ihr unter dem Einfluss von \u0027Herrlicher Wahnsinn\u0027 steht"
   },
   {
+    "id": "implicit.stat_3913936991",
+    "text": "#% des von bet\u00E4ubenden Treffern erlittenen Schadens werden als Leben wiederhergestellt"
+  },
+  {
     "id": "implicit.stat_3915702459",
     "text": "Erhaltet # Leben, wenn Ihr eine Widerstands-Ladung verliert"
   },
@@ -63110,6 +66330,10 @@
   {
     "id": "implicit.stat_3927388937",
     "text": "#% Chance, dass Aufspie\u00DFungen auf von Euch get\u00F6teten Gegnern den Schaden auf Gegner innerhalb von 2.2 Metern reflektieren"
+  },
+  {
+    "id": "implicit.stat_3931566161",
+    "text": "Verflucht Gegner bei Treffer mit \u0027Verzweiflung\u0027, wenn 5 J\u00E4ger-Gegenst\u00E4nde ausger\u00FCstet sind"
   },
   {
     "id": "implicit.stat_3935031607",
@@ -63198,6 +66422,10 @@
   {
     "id": "implicit.stat_3966666111",
     "text": "#% erh\u00F6hter Schaden pro 100 Intelligenz"
+  },
+  {
+    "id": "implicit.stat_3966765615",
+    "text": "Verflucht Gegner bei Treffer mit \u0027Entflammbarkeit\u0027, wenn 5 Kriegsf\u00FCrst-Gegenst\u00E4nde ausger\u00FCstet sind"
   },
   {
     "id": "implicit.stat_3967028570",
@@ -63364,6 +66592,10 @@
     "text": "\u002B# zu maximalem Energieschild (Lokal)"
   },
   {
+    "id": "implicit.stat_4052113003",
+    "text": "T\u00F6tet untote Gegner, die 15% Leben oder weniger haben, wenn sie durch Eure Fertigkeiten getroffen werden"
+  },
+  {
     "id": "implicit.stat_4052117756",
     "text": "S\u00E4mtlicher Schaden kann einfrieren"
   },
@@ -63388,6 +66620,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: Kreaturen haben #% erh\u00F6htes maximales Leben"
   },
   {
+    "id": "implicit.stat_4058190193",
+    "text": "Von Euch erzeugter geweihter Boden hat #% erh\u00F6hte Wirkung"
+  },
+  {
     "id": "implicit.stat_40584863",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte Fluchwirkung von \u0027Bestrafung\u0027"
   },
@@ -63406,6 +66642,10 @@
   {
     "id": "implicit.stat_4067062424",
     "text": "F\u00FCgt Angriffen # bis # K\u00E4lteschaden hinzu"
+  },
+  {
+    "id": "implicit.stat_4067960074",
+    "text": "#% Chance, eine Widerstands-Ladung zu erhalten, wenn Ihr einen Gegner mit einem Nahkampftreffer bet\u00E4ubt"
   },
   {
     "id": "implicit.stat_4070754804",
@@ -63438,6 +66678,10 @@
   {
     "id": "implicit.stat_4084536353",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: \u002B#% zu Multiplikator f\u00FCr physischen Schaden \u00FCber Zeit"
+  },
+  {
+    "id": "implicit.stat_4088932395",
+    "text": "Banner gew\u00E4hren Euch und Euren Verb\u00FCndeten auch #% des physischen Schadens als extra Feuerschaden"
   },
   {
     "id": "implicit.stat_4091694419",
@@ -63494,6 +66738,10 @@
   {
     "id": "implicit.stat_4108186648",
     "text": "\u002B#% Chance, Zauberschaden w\u00E4hrend des Kanalisierens zu unterdr\u00FCcken"
+  },
+  {
+    "id": "implicit.stat_4113372195",
+    "text": "Effekte von geweihtem Boden, den Ihr erzeugt, dauern 1 Sekunde an"
   },
   {
     "id": "implicit.stat_4116705863",
@@ -63616,6 +66864,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: #% erh\u00F6hte Fluchwirkung von \u0027Bestrafung\u0027"
   },
   {
+    "id": "implicit.stat_417188801",
+    "text": "#% Chance eine Widerstands-Ladung zu erhalten, wenn Ihr blockt"
+  },
+  {
     "id": "implicit.stat_4175197580",
     "text": "\u0027Boshaftigkeit\u0027 hat #% erh\u00F6hte Aurawirkung"
   },
@@ -63642,6 +66894,10 @@
   {
     "id": "implicit.stat_4202507508",
     "text": "#% erh\u00F6hte Reservierungseffizienz von Fertigkeiten"
+  },
+  {
+    "id": "implicit.stat_420435377",
+    "text": "\u002B#% zu Multiplikator f\u00FCr Feuerschaden \u00FCber Zeit, w\u00E4hrend entz\u00FCndet"
   },
   {
     "id": "implicit.stat_4206255461",
@@ -63740,8 +66996,16 @@
     "text": "Von Euch verursachte Schocks \u00FCbertragen sich auf andere Gegner innerhalb von # Meter"
   },
   {
+    "id": "implicit.stat_4246915004",
+    "text": "Von Euch erzeugte Opfer gew\u00E4hren auch #% erh\u00F6hten Schaden"
+  },
+  {
     "id": "implicit.stat_4247488219",
     "text": "\u0027Stolz\u0027 hat #% erh\u00F6hte Aurawirkung"
+  },
+  {
+    "id": "implicit.stat_4249220643",
+    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit beim Tragen zweier Waffen"
   },
   {
     "id": "implicit.stat_4249521944",
@@ -63768,6 +67032,10 @@
     "text": "Streifhieb"
   },
   {
+    "id": "implicit.stat_4268284087",
+    "text": "Banner gew\u00E4hren Euch und Euren Verb\u00FCndeten auch #% des physischen Schadens als extra K\u00E4lteschaden"
+  },
+  {
     "id": "implicit.stat_4268321763",
     "text": "#% erh\u00F6hte Angriffsgeschwindigkeit bei vollem Leben"
   },
@@ -63790,6 +67058,10 @@
   {
     "id": "implicit.stat_4274080377",
     "text": "#% erh\u00F6hter Schaden pro 100 St\u00E4rke"
+  },
+  {
+    "id": "implicit.stat_4276479762",
+    "text": "#% erh\u00F6hter Schaden gegen Bestien"
   },
   {
     "id": "implicit.stat_4277795662",
@@ -63832,8 +67104,16 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% verringerte Schockwirkung auf Euch"
   },
   {
+    "id": "implicit.stat_434725481",
+    "text": "#% Chance, verderbtes Blut zu vermeiden"
+  },
+  {
     "id": "implicit.stat_438468314",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hte St\u00E4rkungswirkung Eurer Steingolems"
+  },
+  {
+    "id": "implicit.stat_440826461",
+    "text": "#% mehr maximaler Blitzschaden"
   },
   {
     "id": "implicit.stat_44159086",
@@ -63886,6 +67166,10 @@
   {
     "id": "implicit.stat_474294393",
     "text": "#% verringerte Manakosten von Fertigkeiten"
+  },
+  {
+    "id": "implicit.stat_474853513",
+    "text": "#% des Schadens von Treffern werden zuerst vom Leben Eurer Kreatur abgezogen, die Schaden erleiden kann"
   },
   {
     "id": "implicit.stat_475684070",
@@ -63992,6 +67276,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: 1% weniger erlittener Schaden pro # St\u00E4rke"
   },
   {
+    "id": "implicit.stat_514698677",
+    "text": "#% Chance, beim selben Ziel ein zus\u00E4tzliches Gift anzuwenden, wenn Ihr einen Gegner vergiftet"
+  },
+  {
     "id": "implicit.stat_516565950",
     "text": "\u002B# zur Stufe eingefasster physischer Gemmen"
   },
@@ -64072,6 +67360,10 @@
     "text": "#% des physischen Angriffsschadens werden als Leben geraubt (Lokal)"
   },
   {
+    "id": "implicit.stat_560643297",
+    "text": "Treffer haben #% Chance, die Werte des gegnerischen Feuerwiderstands als invertiert zu behandeln"
+  },
+  {
     "id": "implicit.stat_561307714",
     "text": "#% Chance, Zauberschaden zu blocken"
   },
@@ -64144,6 +67436,10 @@
     "text": "Der f\u00FCnfte Fl\u00E4schchenplatz kann nicht benutzt werden"
   },
   {
+    "id": "implicit.stat_59033544",
+    "text": "#% Chance, eine Seele zu fressen, wenn Ihr die Leiche eines seltenen Monsters verbraucht"
+  },
+  {
     "id": "implicit.stat_591105508",
     "text": "\u002B# zur Stufe aller Feuerzauber-Fertigkeitengemmen"
   },
@@ -64206,6 +67502,10 @@
   {
     "id": "implicit.stat_628716294",
     "text": "Aktionsgeschwindigkeit kann nicht unter den Basiswert modifiziert werden"
+  },
+  {
+    "id": "implicit.stat_62884658",
+    "text": "#% Chance, bei Treffer Schemenform zu erhalten"
   },
   {
     "id": "implicit.stat_631097842",
@@ -64312,6 +67612,10 @@
     "text": "#% erh\u00F6hte Angriffsgeschwindigkeit"
   },
   {
+    "id": "implicit.stat_683595855",
+    "text": "Bereichsfertigkeiten haben #% Chance, doppelten Schaden zu verursachen"
+  },
+  {
     "id": "implicit.stat_683892962",
     "text": "#% erh\u00F6hter Schaden pro Kreatur, bis zu einem Maximum von 40%"
   },
@@ -64396,6 +67700,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: Von Euch verursachtes Bluten verursacht den Schaden #% schneller"
   },
   {
+    "id": "implicit.stat_738897289",
+    "text": "#% erh\u00F6hte Lebenswiederherstellungs-Rate, w\u00E4hrend Ihr Leben wiedergewinnt"
+  },
+  {
     "id": "implicit.stat_740797388",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% erh\u00F6hter Schaden pro Widerstands-Ladung"
   },
@@ -64430,6 +67738,14 @@
   {
     "id": "implicit.stat_752930724",
     "text": "Gegenst\u00E4nde und Gemmen haben #% erh\u00F6hte Attributanforderungen"
+  },
+  {
+    "id": "implicit.stat_755922799",
+    "text": "Kreaturen haben #% Chance, doppelten Schaden zu verursachen"
+  },
+  {
+    "id": "implicit.stat_759530725",
+    "text": "Gegner, die durch Eure Kriegsschreie verspottet wurden, haben #% erh\u00F6hte Aktionsgeschwindigkeit"
   },
   {
     "id": "implicit.stat_760444887",
@@ -64470,6 +67786,10 @@
   {
     "id": "implicit.stat_768982451",
     "text": "\u002B#% zur Qualit\u00E4t eingefasster Wirkungsbereich-Gemmen"
+  },
+  {
+    "id": "implicit.stat_769783486",
+    "text": "F\u00FCgt Angriffen # bis # K\u00E4lteschaden pro 10 Geschick hinzu"
   },
   {
     "id": "implicit.stat_770672621",
@@ -64628,6 +67948,14 @@
     "text": "#% erh\u00F6hte Lebenswiederherstellung von Fl\u00E4schchen"
   },
   {
+    "id": "implicit.stat_822106893",
+    "text": "T\u00F6dliche Schl\u00E4ge verbrauchen Leichen und stellen #% des Manas wieder her"
+  },
+  {
+    "id": "implicit.stat_822568652",
+    "text": "#% des erlittenen Schadens werden als Energieschild wiedergewonnen"
+  },
+  {
     "id": "implicit.stat_824762042",
     "text": "1% weniger erlittener Schaden pro # Geschick"
   },
@@ -64724,6 +68052,10 @@
     "text": "Erlittener Chaosschaden umgeht nicht den Energieschild, w\u00E4hrend Ihr nicht bei niedrigem Leben seid"
   },
   {
+    "id": "implicit.stat_893038512",
+    "text": "Eure Chance, Monster in die Flucht zu schlagen, entspricht der Chance, Monster bei Treffer zu ver\u00E4ngstigen"
+  },
+  {
     "id": "implicit.stat_895264825",
     "text": "#% vergr\u00F6\u00DFerter Wirkungsbereich von Aura-Fertigkeiten"
   },
@@ -64804,6 +68136,10 @@
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: \u002B#% zu maximalem Chaoswiderstand"
   },
   {
+    "id": "implicit.stat_947144250",
+    "text": "Gegner im Umkreis Eures Banners erleiden #% erh\u00F6hten K\u00E4lteschaden"
+  },
+  {
     "id": "implicit.stat_948600126",
     "text": "\u002B#% Gruppengr\u00F6\u00DFe"
   },
@@ -64872,6 +68208,14 @@
     "text": "#% verk\u00FCrzte Entz\u00FCndungsdauer bei Euch"
   },
   {
+    "id": "implicit.stat_986616727",
+    "text": "Verhexungen werden auf alle Gegner innerhalb von 3 Metern \u00FCbertragen, wenn der verhexte Gegner stirbt"
+  },
+  {
+    "id": "implicit.stat_988207959",
+    "text": "Fertigkeiten feuern ein zus\u00E4tzliches Projektil, wenn Ihr k\u00FCrzlich getroffen wurdet"
+  },
+  {
     "id": "implicit.stat_988575597",
     "text": "#% erh\u00F6hte Energieschildwiederherstellungs-Rate"
   },
@@ -64886,6 +68230,10 @@
   {
     "id": "implicit.stat_989948703",
     "text": "Gegenstandsmenge erh\u00F6ht die Menge von Belohnungen, die vom Boss gelassen werden, um #% ihres Werts"
+  },
+  {
+    "id": "implicit.stat_990219738",
+    "text": "#% erh\u00F6hter Blitzschaden pro 10 Intelligenz"
   },
   {
     "id": "implicit.stat_990377349",
@@ -69798,6 +73146,42 @@
   {
     "id": "sanctum.stat_889527415",
     "text": "Erhaltet # Willenskraft, wenn Ihr einen Boss t\u00F6tet"
+  },
+  {
+    "id": "scourge.effect_1659491511",
+    "text": "Gew\u00E4hrt \u0022Herold des Eises\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_1673391040",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Chaosschaden\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_2054781369",
+    "text": "Gew\u00E4hrt \u0022Herold der Reinheit\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_2128724272",
+    "text": "Gew\u00E4hrt \u0022Herold des Donners\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_237745710",
+    "text": "Gew\u00E4hrt \u0022Herold der Agonie\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_2890244883",
+    "text": "Gew\u00E4hrt \u0022Mal des Scharfsch\u00FCtzen\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_3362019776",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher K\u00E4lteschaden\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_3607696303",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zus\u00E4tzlicher Blitzschaden\u0022 Stufe #"
+  },
+  {
+    "id": "scourge.effect_415209642",
+    "text": "Gew\u00E4hrt \u0022Herold der Asche\u0022 Stufe #"
   },
   {
     "id": "scourge.stat_1004011302",

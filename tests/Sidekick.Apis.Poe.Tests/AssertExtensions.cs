@@ -1,4 +1,5 @@
 using Sidekick.Game.Parser.Filters.Types;
+using Sidekick.Game.Parser.Items;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
@@ -10,6 +11,12 @@ public static class AssertExtensions
         var actual2 = actual ?? 0d;
         Assert.True(Math.Abs(actual2 - expected) < tolerance,
                     $"Expected {expected}, but got {actual} which is outside the tolerance of {tolerance}");
+    }
+
+    public static void AssertHasNinjaExchange(this Item item, string expectedId)
+    {
+        Assert.NotNull(item.InvariantDefinition?.NinjaExchangeItems);
+        Assert.Contains(item.InvariantDefinition.NinjaExchangeItems, x => x.Id == expectedId);
     }
 
     public static List<TradeFilter> Flatten(this List<TradeFilter> filters)

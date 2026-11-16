@@ -67,7 +67,7 @@ public class CorruptedFilter : TriStatePropertyFilter
                 },
                 new()
                 {
-                    Checked = null,
+                    Checked = true,
                     Conditions =
                     [
                         new()

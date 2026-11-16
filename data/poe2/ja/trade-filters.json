@@ -895,13 +895,6 @@
         }
       },
       {
-        "id": "total_augment_sockets",
-        "text": "Total Augment Sockets",
-        "option": {
-          "options": []
-        }
-      },
-      {
         "id": "ar",
         "text": "\u30A2\u30FC\u30DE\u30FC",
         "option": {
@@ -917,7 +910,7 @@
       },
       {
         "id": "rune_sockets",
-        "text": "\u30AA\u30FC\u30B0\u30E1\u30F3\u30C8\u3092\u306F\u3081\u3089\u308C\u308B\u30BD\u30B1\u30C3\u30C8",
+        "text": "\u30AA\u30FC\u30B0\u30E1\u30F3\u30C8\u53EF\u80FD\u30BD\u30B1\u30C3\u30C8",
         "option": {
           "options": []
         }
@@ -967,6 +960,13 @@
       {
         "id": "edps",
         "text": "\u5143\u7D20DPS",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "total_augment_sockets",
+        "text": "\u5408\u8A08\u30AA\u30FC\u30B0\u30E1\u30F3\u30C8\u30BD\u30B1\u30C3\u30C8",
         "option": {
           "options": []
         }

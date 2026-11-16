@@ -221,11 +221,12 @@ internal class WealthProvider
             return (price, sparkLine);
         }
 
-        if (itemDefinition.NinjaExchangeItem != null)
+        if (itemDefinition.NinjaExchangeItems?.Any() ?? false)
         {
-            var info = await ninjaExchangeProvider.GetInfo(itemDefinition.NinjaExchangeItem);
-            price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
-            sparkLine = info?.Sparkline;
+            var info = await ninjaExchangeProvider.GetInfo(itemDefinition);
+            var trade = info.FirstOrDefault();
+            price = trade?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
+            sparkLine = trade?.Sparkline;
         }
         else
         {

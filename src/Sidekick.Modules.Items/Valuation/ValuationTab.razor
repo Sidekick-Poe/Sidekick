@@ -32,8 +32,8 @@
 
     private bool CheckNinja()
     {
-        if (Item.InvariantDefinition?.NinjaExchangeItem != null) return false;
-        return Item.InvariantDefinition?.NinjaStashItems != null && Item.InvariantDefinition.NinjaStashItems.Count > 0;
+        if (Item.InvariantDefinition?.NinjaExchangeItems is { Count: > 0 }) return false;
+        return Item.InvariantDefinition?.NinjaStashItems is { Count: > 0 };
     }
 
     private bool CheckPrediction()

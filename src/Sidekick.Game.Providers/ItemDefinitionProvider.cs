@@ -89,8 +89,16 @@ public class ItemDefinitionProvider(
         {
             foreach (var definition in definitions)
             {
-                if (definition.NinjaExchangeItemId == null) continue;
-                definition.NinjaExchangeItem = ninjaProvider.ExchangeItems.GetValueOrDefault(definition.NinjaExchangeItemId);
+                if (definition.NinjaExchangeItemIds == null) continue;
+                definition.NinjaExchangeItems =
+                [
+                    .. definition.NinjaExchangeItemIds
+                        .SelectMany(x =>
+                        {
+                            if (ninjaProvider.ExchangeItems.TryGetValue(x, out var value)) return value;
+                            return [];
+                        }),
+                ];
             }
         }
 
@@ -99,10 +107,15 @@ public class ItemDefinitionProvider(
             foreach (var definition in definitions)
             {
                 if (definition.NinjaStashItemIds == null) continue;
-                definition.NinjaStashItems = definition.NinjaStashItemIds
-                    .Select(x => ninjaProvider.StashItems.GetValueOrDefault(x))
-                    .Where(x => x != null)
-                    .ToList()!;
+                definition.NinjaStashItems =
+                [
+                    .. definition.NinjaStashItemIds
+                        .SelectMany(x =>
+                        {
+                            if (ninjaProvider.StashItems.TryGetValue(x, out var value)) return value;
+                            return [];
+                        }),
+                ];
             }
         }
 

@@ -30,12 +30,15 @@ public class TwiceCorruptedProperty(
             item.Properties.Rarity != Rarity.Gem) return;
 
         item.Properties.TwiceCorrupted = GetBool(Pattern, item.Text);
-        if (item.Properties.TwiceCorrupted) item.Properties.Corrupted = true;
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Corrupted || string.IsNullOrEmpty(Label)) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity != Rarity.Normal &&
+            item.Properties.Rarity != Rarity.Magic &&
+            item.Properties.Rarity != Rarity.Rare &&
+            item.Properties.Rarity != Rarity.Unique &&
+            item.Properties.Rarity != Rarity.Gem) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new TwiceCorruptedFilter
         {
@@ -55,30 +58,6 @@ public class TwiceCorruptedFilter : TriStatePropertyFilter
             Mode = AutoSelectMode.Default,
             Rules =
             [
-                new()
-                {
-                    Checked = true,
-                    Conditions =
-                    [
-                        new()
-                        {
-                            Type = AutoSelectConditionType.TwiceCorrupted,
-                            Comparison = AutoSelectComparisonType.True,
-                        },
-                    ],
-                },
-                new()
-                {
-                    Checked = false,
-                    Conditions =
-                    [
-                        new()
-                        {
-                            Type = AutoSelectConditionType.TwiceCorrupted,
-                            Comparison = AutoSelectComparisonType.False,
-                        },
-                    ],
-                },
                 new()
                 {
                     Checked = null,

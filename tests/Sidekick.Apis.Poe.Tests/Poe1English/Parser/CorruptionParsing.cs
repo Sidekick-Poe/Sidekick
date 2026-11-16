@@ -43,15 +43,15 @@ Twice Corrupted
 
         var filters = await fixture.GetPropertyFilters(actual);
         var corrupted = Assert.Single(filters.OfType<CorruptedFilter>());
-        var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
         Assert.True(corrupted.Checked);
-        Assert.True(twiceCorrupted.Checked);
+        var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
+        Assert.Null(twiceCorrupted.Checked);
 
         var query = new Query();
         corrupted.PrepareTradeRequest(query, actual);
         twiceCorrupted.PrepareTradeRequest(query, actual);
         var miscFilters = query.Filters.GetOrCreateMiscFilters().Filters;
         Assert.Equal("true", miscFilters.Corrupted?.Option);
-        Assert.Equal("true", miscFilters.TwiceCorrupted?.Option);
+        Assert.Null(miscFilters.TwiceCorrupted?.Option);
     }
 }

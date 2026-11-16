@@ -28,7 +28,7 @@ Note: ~b/o 2 blessed
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Chaos Orb", actual.TradeItem?.Type);
-        Assert.Equal("chaos", actual.InvariantDefinition?.NinjaExchangeItem?.Id);
+        actual.AssertHasNinjaExchange("chaos");
 
         Assert.Empty(actual.Stats);
     }
@@ -50,7 +50,7 @@ Right click this item then left click a rare item to apply it. Rare items can ha
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Exalted Orb", actual.TradeItem?.Type);
-        Assert.Equal("exalted", actual.InvariantDefinition?.NinjaExchangeItem?.Id);
+        actual.AssertHasNinjaExchange("exalted");
 
         Assert.Empty(actual.Stats);
     }
@@ -94,29 +94,6 @@ Shift click to unstack.
     }
 
     [Fact]
-    public void TrarthanScarabOfInfamy()
-    {
-        var actual = parser.ParseItem(@"Item Class: Map Fragments
-Rarity: Normal
-Trarthan Scarab of Infamy
---------
-Stack Size: 1/20
-Limit: 1
---------
-Mercenaries found in Area are Infamous
-Mercenaries found in Area are accompanied by two Wild Mercenaries
---------
-Some men must make their own way.
---------
-Can be used in a personal Map Device to add modifiers to a Map.
-");
-
-        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
-        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Trarthan Scarab of Infamy", actual.TradeItem?.Type);
-    }
-
-    [Fact]
     public void Ducat()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
@@ -136,5 +113,25 @@ Can be used as part of Allflame Crafting aboard The Sovereign.
         Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("The Changeling's Ducat", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void UltimatumThread()
+    {
+        var actual = parser.ParseItem(@"Item Class: Map Fragments
+Rarity: Normal
+Ultimatum Thread
+--------
+Stack Size: 34/100
+--------
+Threads an Ultimatum Encounter into an Area
+--------
+Can be used in a personal Map Device to add content to a Map.
+");
+
+        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Ultimatum Thread", actual.TradeItem?.Type);
+        actual.AssertHasNinjaExchange("ultimatum-thread");
     }
 }

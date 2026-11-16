@@ -3,7 +3,7 @@
 @using Sidekick.Apis.PoeNinja.Exchange
 @using Sidekick.Game.Parser.Items
 
-@if (Item.InvariantDefinition?.NinjaExchangeItem == null && (Item.InvariantDefinition?.NinjaStashItems == null || Item.InvariantDefinition?.NinjaStashItems.Count == 0))
+@if (!(Item.InvariantDefinition?.NinjaExchangeItems?.Any() ?? false) && !(Item.InvariantDefinition?.NinjaStashItems?.Any() ?? false))
 {
     return;
 }
@@ -16,14 +16,14 @@
     {
         <AppLoading/>
     }
-    else if (Currency == null && Stashes.Count == 0)
+    else if (Currencies.Count == 0 && Stashes.Count == 0)
     {
         <AlertInfo Flat="true">@Resources["NoData"]</AlertInfo>
     }
 
-    @if (Currency != null)
+    @foreach (var currency in Currencies)
     {
-        <PoeNinjaCurrencyPanel Currency="Currency"/>
+        <PoeNinjaCurrencyPanel Currency="currency"/>
     }
 
     @foreach (var stash in Stashes)
@@ -42,7 +42,7 @@
 
     private List<NinjaStash> Stashes { get; set; } = [];
 
-    private NinjaCurrency? Currency { get; set; }
+    private List<NinjaCurrency> Currencies { get; set; } = [];
 
     private bool Loading { get; set; }
 
@@ -50,17 +50,17 @@
     {
         await base.OnInitializedAsync();
 
-        if (Item.InvariantDefinition?.NinjaExchangeItem != null)
+        if (Item.InvariantDefinition?.NinjaExchangeItems is { Count: > 0 })
         {
             Loading = true;
             StateHasChanged();
 
-            Currency = await NinjaExchangeProvider.GetInfo(Item.InvariantDefinition.NinjaExchangeItem);
+            Currencies = await NinjaExchangeProvider.GetInfo(Item);
 
             Loading = false;
             StateHasChanged();
         }
-        else if (Item.InvariantDefinition?.NinjaStashItems != null && Item.InvariantDefinition.NinjaStashItems.Count > 0)
+        else if (Item.InvariantDefinition?.NinjaStashItems is { Count: > 0 })
         {
             Loading = true;
             StateHasChanged();

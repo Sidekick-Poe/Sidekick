@@ -3,7 +3,9 @@ using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Uris;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
+using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Ninja;
+using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Providers;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
@@ -19,7 +21,22 @@ public class NinjaExchangeProvider(
         return $"PoeNinjaExchange_{leagueProvider.Current.Id}_{type}";
     }
 
-    public async Task<NinjaCurrency?> GetInfo(NinjaExchangeItem? exchange)
+    public Task<List<NinjaCurrency>> GetInfo(Item item) => GetInfo(item.InvariantDefinition);
+
+    public async Task<List<NinjaCurrency>> GetInfo(ItemDefinition? itemDefinition)
+    {
+        if (itemDefinition == null) return [];
+        if (itemDefinition.NinjaExchangeItems == null) return [];
+
+        var exchangeTasks = itemDefinition.NinjaExchangeItems
+            .Select(FetchInfo)
+            .ToList();
+        var exchanges = await Task.WhenAll(exchangeTasks);
+
+        return exchanges.Where(x => x != null).Select(x => x!).ToList();
+    }
+
+    private async Task<NinjaCurrency?> FetchInfo(NinjaExchangeItem? exchange)
     {
         if (exchange == null) return null;
 

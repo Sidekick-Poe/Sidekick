@@ -595,13 +595,6 @@
     "title": "\u88DD\u5099\u7BE9\u9078\u5668",
     "filters": [
       {
-        "id": "total_augment_sockets",
-        "text": "Total Augment Sockets",
-        "option": {
-          "options": []
-        }
-      },
-      {
         "id": "damage",
         "text": "\u50B7\u5BB3",
         "option": {
@@ -667,6 +660,13 @@
       {
         "id": "spirit",
         "text": "\u7CBE\u9B42",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "total_augment_sockets",
+        "text": "\u7E3D\u589E\u5E45\u63D2\u69FD",
         "option": {
           "options": []
         }

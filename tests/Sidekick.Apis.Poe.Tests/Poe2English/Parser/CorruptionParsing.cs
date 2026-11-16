@@ -63,30 +63,24 @@ Lavianga, Advisor to Kaom
         var filters = await fixture.GetPropertyFilters(actual);
         Assert.True(Assert.Single(filters.OfType<CorruptedFilter>()).Checked);
         var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
-        Assert.False(twiceCorrupted.Checked);
-
-        var query = new Query();
-        twiceCorrupted.PrepareTradeRequest(query, actual);
-        Assert.Null(query.Filters.MiscFilters?.Filters.TwiceCorrupted);
+        Assert.Null(twiceCorrupted.Checked);
     }
 
     [Fact]
     public async Task TwiceCorruptedHeadhunter()
     {
-        var once = parser.ParseItem(Copy("Corrupted"));
         var actual = parser.ParseItem(Copy("Twice Corrupted"));
 
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.True(actual.Properties.Corrupted);
+        Assert.False(actual.Properties.Corrupted);
         Assert.True(actual.Properties.TwiceCorrupted);
         fixture.AssertHasStat(actual, StatCategory.Enchant, "#% to Lightning Resistance", 25);
-        Assert.Equal(once.Stats.Count, actual.Stats.Count);
 
         var filters = await fixture.GetPropertyFilters(actual);
         var corrupted = Assert.Single(filters.OfType<CorruptedFilter>());
-        var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
         Assert.True(corrupted.Checked);
-        Assert.True(twiceCorrupted.Checked);
+        var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
+        Assert.Null(twiceCorrupted.Checked);
         Assert.Equal("Twice Corrupted", twiceCorrupted.Text);
 
         var query = new Query();
@@ -94,18 +88,6 @@ Lavianga, Advisor to Kaom
         twiceCorrupted.PrepareTradeRequest(query, actual);
         var miscFilters = query.Filters.GetOrCreateMiscFilters().Filters;
         Assert.Equal("true", miscFilters.Corrupted?.Option);
-        Assert.Equal("true", miscFilters.TwiceCorrupted?.Option);
-    }
-
-    [Fact]
-    public async Task UncorruptedHeadhunterHasNoTwiceCorruptedFilter()
-    {
-        var actual = parser.ParseItem(Copy(null));
-
-        Assert.False(actual.Properties.Corrupted);
-        Assert.False(actual.Properties.TwiceCorrupted);
-
-        var filters = await fixture.GetPropertyFilters(actual);
-        Assert.Empty(filters.OfType<TwiceCorruptedFilter>());
+        Assert.Null(miscFilters.TwiceCorrupted?.Option);
     }
 }

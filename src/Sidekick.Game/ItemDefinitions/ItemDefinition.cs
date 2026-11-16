@@ -13,7 +13,7 @@ public class ItemDefinition
     public List<string>? BaseItemIds { get; set; }
 
     [JsonPropertyName("ninjaExchange")]
-    public string? NinjaExchangeItemId { get; set; }
+    public List<string>? NinjaExchangeItemIds { get; set; }
 
     [JsonPropertyName("ninjaStash")]
     public List<string>? NinjaStashItemIds { get; set; }
@@ -56,7 +56,7 @@ public class ItemDefinition
     public List<BaseItemDefinition> BaseItems { get; set; } = [];
 
     [JsonIgnore]
-    public NinjaExchangeItem? NinjaExchangeItem { get; set; }
+    public List<NinjaExchangeItem>? NinjaExchangeItems { get; set; }
 
     [JsonIgnore]
     public List<NinjaStashItem>? NinjaStashItems { get; set; }
@@ -69,7 +69,7 @@ public class ItemDefinition
     {
         get
         {
-            if (NinjaExchangeItem != null) return false;
+            if (NinjaExchangeItems != null && NinjaExchangeItems.Any()) return false;
             if (ScoutItems != null && ScoutItems.All(x => x.IsCurrency)) return false;
 
             return true;

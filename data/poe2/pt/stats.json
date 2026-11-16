@@ -14,7 +14,6 @@
   {
     "text": "-#% de efici\u00EAncia na reserva de esp\u00EDrito das habilidades",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_53386210",
@@ -536,6 +535,7 @@
   },
   {
     "text": "A n\u00E9voa de Del\u00EDrio em seus mapas aplicam #% mais del\u00EDrio aos jogadores",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1769611692"
@@ -545,8 +545,11 @@
   {
     "text": "A n\u00E9voa de Del\u00EDrio em seus mapas aplicam #% menos del\u00EDrio aos jogadores",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1769611692"
+    ],
     "pattern": "^A\\ n\u00E9voa\\ de\\ Del\u00EDrio\\ em\\ seus\\ mapas\\ aplicam\\ ([-0-9,.]\u002B)%\\ menos\\ del\u00EDrio\\ aos\\ jogadores$"
   },
   {
@@ -1121,6 +1124,7 @@
   },
   {
     "text": "Abismos t\u00EAm uma chance aumentada em #% de levar a uma Profundeza Abissal",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2722831300"
@@ -1130,8 +1134,11 @@
   {
     "text": "Abismos t\u00EAm uma chance reduzida em #% de levar a uma Profundeza Abissal",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2722831300"
+    ],
     "pattern": "^Abismos\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ levar\\ a\\ uma\\ Profundeza\\ Abissal$"
   },
   {
@@ -1384,8 +1391,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1697447343",
       "desecrated.stat_872504239",
+      "explicit.stat_1697447343",
       "explicit.stat_872504239",
+      "fractured.stat_1697447343",
       "fractured.stat_872504239"
     ],
     "pattern": "^Ac\u00FAmulo\\ de\\ atordoamento\\ com\\ bast\u00F5es\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -1396,8 +1406,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1697447343",
       "desecrated.stat_872504239",
+      "explicit.stat_1697447343",
       "explicit.stat_872504239",
+      "fractured.stat_1697447343",
       "fractured.stat_872504239"
     ],
     "pattern": "^Ac\u00FAmulo\\ de\\ atordoamento\\ com\\ bast\u00F5es\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -2008,7 +2021,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_674553446"
+      "crafted.stat_2223678961",
+      "desecrated.stat_2223678961",
+      "enchant.stat_2223678961",
+      "explicit.stat_2223678961",
+      "explicit.stat_674553446",
+      "fractured.stat_2223678961",
+      "rune.stat_2223678961"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ caos\\ a\\ magias$"
   },
@@ -2107,11 +2126,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_709508406",
       "desecrated.stat_1573130764",
+      "desecrated.stat_709508406",
+      "enchant.stat_709508406",
       "explicit.stat_1573130764",
+      "explicit.stat_709508406",
       "fractured.stat_1573130764",
+      "fractured.stat_709508406",
       "implicit.stat_1573130764",
-      "rune.stat_1573130764"
+      "rune.stat_1573130764",
+      "rune.stat_709508406"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ fogo\\ a\\ magias$"
   },
@@ -2190,6 +2215,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "rune.stat_3734640451",
       "rune.stat_627339348"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ fogo\\ contra\\ inimigos\\ incendiados$"
@@ -2248,9 +2274,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1037193709",
+      "desecrated.stat_1037193709",
       "desecrated.stat_4067062424",
+      "enchant.stat_1037193709",
+      "explicit.stat_1037193709",
       "explicit.stat_4067062424",
-      "fractured.stat_4067062424"
+      "fractured.stat_1037193709",
+      "fractured.stat_4067062424",
+      "rune.stat_1037193709"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ frio\\ a\\ magias$"
   },
@@ -2259,9 +2291,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1573130764",
       "desecrated.stat_4067062424",
+      "explicit.stat_1573130764",
       "explicit.stat_4067062424",
-      "fractured.stat_4067062424"
+      "fractured.stat_1573130764",
+      "fractured.stat_4067062424",
+      "implicit.stat_1573130764",
+      "rune.stat_1573130764"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ de\\ frio\\ a\\ magias\\ e\\ aos\\ ataques$"
   },
@@ -2413,10 +2450,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3336890334",
       "desecrated.stat_1754445556",
+      "desecrated.stat_3336890334",
+      "enchant.stat_3336890334",
       "explicit.stat_1754445556",
+      "explicit.stat_3336890334",
       "fractured.stat_1754445556",
-      "implicit.stat_1754445556"
+      "fractured.stat_3336890334",
+      "implicit.stat_1754445556",
+      "rune.stat_3336890334"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ el\u00E9trico\\ a\\ magias$"
   },
@@ -2568,10 +2611,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1940865751",
+      "desecrated.stat_1940865751",
       "desecrated.stat_3032590688",
+      "explicit.stat_1940865751",
       "explicit.stat_3032590688",
+      "fractured.stat_1940865751",
       "fractured.stat_3032590688",
       "implicit.stat_3032590688",
+      "rune.stat_1940865751",
       "rune.stat_3032590688"
     ],
     "pattern": "^Adiciona\\ de\\ ([-0-9,.]\u002B)\\ a\\ ([-0-9,.]\u002B)\\ de\\ dano\\ f\u00EDsico\\ a\\ magias$"
@@ -3146,6 +3194,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1569159338",
+      "explicit.stat_1569159338",
+      "fractured.stat_1569159338",
       "implicit.stat_3398402065"
     ],
     "pattern": "^Alcance\\ de\\ aparo\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -3156,6 +3207,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1569159338",
+      "explicit.stat_1569159338",
+      "fractured.stat_1569159338",
       "implicit.stat_3398402065"
     ],
     "pattern": "^Alcance\\ de\\ aparo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -3332,6 +3386,7 @@
   },
   {
     "text": "Aliados em sua presen\u00E7a causam dano elemental aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1798257884",
@@ -3346,8 +3401,16 @@
   {
     "text": "Aliados em sua presen\u00E7a causam dano elemental reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_1798257884",
+      "desecrated.stat_1798257884",
+      "enchant.stat_1798257884",
+      "explicit.stat_1798257884",
+      "fractured.stat_1798257884",
+      "rune.stat_1798257884"
+    ],
     "pattern": "^Aliados\\ em\\ sua\\ presen\u00E7a\\ causam\\ dano\\ elemental\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -3840,6 +3903,7 @@
   },
   {
     "text": "Altares Ritual\u00EDsticos permitem recriar favores mais uma vez",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -3849,8 +3913,11 @@
   },
   {
     "text": "Altares Ritual\u00EDsticos permitem recriar favores mais # vezes",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_120737942"
+    ],
     "pattern": "^Altares\\ Ritual\u00EDsticos\\ permitem\\ recriar\\ favores\\ mais\\ ([-0-9,.]\u002B)\\ vezes$"
   },
   {
@@ -4343,14 +4410,6 @@
     "pattern": "^Am\u00E1lgamas\\ da\\ Corrup\u00E7\u00E3o\\ sempre\\ aparecem\\ com\\ varia\u00E7\u00F5es\\ mais\\ fortes$"
   },
   {
-    "text": "Ancestral Bond",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|1"
-    ],
-    "pattern": "^Ancestral\\ Bond$"
-  },
-  {
     "text": "Animais espirituais invocados por monstros possu\u00EDdos em seus mapas causam dano aumentado em #%",
     "lines": 1,
     "tradeIds": [],
@@ -4507,6 +4566,7 @@
   },
   {
     "text": "Ao consumir 1 carga, ativa F\u00FAria Elemental para ganhar # F\u00FAria de Fogo",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -4516,6 +4576,7 @@
   },
   {
     "text": "Ao consumir 1 carga, ativa F\u00FAria Elemental para ganhar # F\u00FAria de Frio",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -4531,14 +4592,20 @@
   },
   {
     "text": "Ao consumir 1 carga, ativa F\u00FAria Elemental para ganhar # F\u00FArias de Fogo",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_447757144"
+    ],
     "pattern": "^Ao\\ consumir\\ 1\\ carga,\\ ativa\\ F\u00FAria\\ Elemental\\ para\\ ganhar\\ ([-0-9,.]\u002B)\\ F\u00FArias\\ de\\ Fogo$"
   },
   {
     "text": "Ao consumir 1 carga, ativa F\u00FAria Elemental para ganhar # F\u00FArias de Frio",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_447757144"
+    ],
     "pattern": "^Ao\\ consumir\\ 1\\ carga,\\ ativa\\ F\u00FAria\\ Elemental\\ para\\ ganhar\\ ([-0-9,.]\u002B)\\ F\u00FArias\\ de\\ Frio$"
   },
   {
@@ -6158,6 +6225,7 @@
   },
   {
     "text": "Armadura aumentada em #%, se voc\u00EA consumiu 1 carga de toler\u00E2ncia recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_3037356641"
@@ -6804,8 +6872,11 @@
   {
     "text": "Armadura reduzida em #%, se voc\u00EA consumiu 1 carga de toler\u00E2ncia recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_3037356641"
+    ],
     "pattern": "^Armadura\\ reduzida\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ consumiu\\ 1\\ carga\\ de\\ toler\u00E2ncia\\ recentemente$"
   },
   {
@@ -7134,7 +7205,9 @@
   {
     "text": "Ataque Carmesim",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|26"
+    ],
     "pattern": "^Ataque\\ Carmesim$"
   },
   {
@@ -8356,6 +8429,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1049080093",
       "explicit.stat_1484500028"
     ],
     "pattern": "^Ataques\\ ganham\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ como\\ dano\\ f\u00EDsico\\ adicional$"
@@ -8492,6 +8566,7 @@
   },
   {
     "text": "Ataques m\u00E1gicos contra voc\u00EA t\u00EAm uma chance de golpe cr\u00EDtico aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_4270096386",
@@ -8502,8 +8577,12 @@
   {
     "text": "Ataques m\u00E1gicos contra voc\u00EA t\u00EAm uma chance de golpe cr\u00EDtico reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_4270096386",
+      "explicit.stat_4270096386"
+    ],
     "pattern": "^Ataques\\ m\u00E1gicos\\ contra\\ voc\u00EA\\ t\u00EAm\\ uma\\ chance\\ de\\ golpe\\ cr\u00EDtico\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -9393,20 +9472,11 @@
   },
   {
     "text": "Ativa Manifestar Dervixes Dan\u00E7arinos de n\u00EDvel # com a condi\u00E7\u00E3o Furor",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4007938693"
     ],
     "pattern": "^Ativa\\ Manifestar\\ Dervixes\\ Dan\u00E7arinos\\ de\\ n\u00EDvel\\ ([-0-9,.]\u002B)\\ com\\ a\\ condi\u00E7\u00E3o\\ Furor$"
-  },
-  {
-    "text": "Ativa Manifestar Dervixes Dan\u00E7arinos n\u00EDvel # com a condi\u00E7\u00E3o Furor",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_4007938693"
-    ],
-    "pattern": "^Ativa\\ Manifestar\\ Dervixes\\ Dan\u00E7arinos\\ n\u00EDvel\\ ([-0-9,.]\u002B)\\ com\\ a\\ condi\u00E7\u00E3o\\ Furor$"
   },
   {
     "text": "Ativa Manifesta\u00E7\u00E3o Elemental ao causar golpe cr\u00EDtico corpo a corpo",
@@ -10242,7 +10312,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|31129",
       "enchant.stat_2954116742|31129",
-      "explicit.stat_2954116742|31129"
+      "explicit.stat_2954116742|31129",
+      "fractured.stat_2954116742|31129"
     ],
     "pattern": "^Atribui\\ Amigo\\ de\\ uma\\ Vida$"
   },
@@ -12006,7 +12077,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|41905",
       "enchant.stat_2954116742|41905",
-      "explicit.stat_2954116742|41905"
+      "explicit.stat_2954116742|41905",
+      "fractured.stat_2954116742|41905"
     ],
     "pattern": "^Atribui\\ Coveiro$"
   },
@@ -13383,7 +13455,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|46499",
       "enchant.stat_2954116742|46499",
-      "explicit.stat_2954116742|46499"
+      "explicit.stat_2954116742|46499",
+      "fractured.stat_2954116742|46499"
     ],
     "pattern": "^Atribui\\ Est\u00F4mago$"
   },
@@ -13929,7 +14002,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|4579",
       "enchant.stat_2954116742|4579",
-      "explicit.stat_2954116742|4579"
+      "explicit.stat_2954116742|4579",
+      "fractured.stat_2954116742|4579"
     ],
     "pattern": "^Atribui\\ Frio\\ Imperturb\u00E1vel$"
   },
@@ -14931,7 +15005,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|13489",
       "enchant.stat_2954116742|13489",
-      "explicit.stat_2954116742|13489"
+      "explicit.stat_2954116742|13489",
+      "fractured.stat_2954116742|13489"
     ],
     "pattern": "^Atribui\\ Indestrut\u00EDvel$"
   },
@@ -14941,7 +15016,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|32932",
       "enchant.stat_2954116742|32932",
-      "explicit.stat_2954116742|32932"
+      "explicit.stat_2954116742|32932",
+      "fractured.stat_2954116742|32932"
     ],
     "pattern": "^Atribui\\ Inferno\\ de\\ Ichlotl$"
   },
@@ -14984,7 +15060,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|59387",
       "enchant.stat_2954116742|59387",
-      "explicit.stat_2954116742|59387"
+      "explicit.stat_2954116742|59387",
+      "fractured.stat_2954116742|59387"
     ],
     "pattern": "^Atribui\\ Infus\u00E3o\\ de\\ Poder$"
   },
@@ -15271,7 +15348,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|61354",
       "enchant.stat_2954116742|61354",
-      "explicit.stat_2954116742|61354"
+      "explicit.stat_2954116742|61354",
+      "fractured.stat_2954116742|61354"
     ],
     "pattern": "^Atribui\\ Limite\\ Infernal$"
   },
@@ -16424,7 +16502,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|43250",
       "enchant.stat_2954116742|43250",
-      "explicit.stat_2954116742|43250"
+      "explicit.stat_2954116742|43250",
+      "fractured.stat_2954116742|43250"
     ],
     "pattern": "^Atribui\\ Pele\\ Adapt\u00E1vel$"
   },
@@ -17278,7 +17357,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|48240",
       "enchant.stat_2954116742|48240",
-      "explicit.stat_2954116742|48240"
+      "explicit.stat_2954116742|48240",
+      "fractured.stat_2954116742|48240"
     ],
     "pattern": "^Atribui\\ Recupera\u00E7\u00E3o\\ R\u00E1pida$"
   },
@@ -17656,7 +17736,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|4931",
       "enchant.stat_2954116742|4931",
-      "explicit.stat_2954116742|4931"
+      "explicit.stat_2954116742|4931",
+      "fractured.stat_2954116742|4931"
     ],
     "pattern": "^Atribui\\ Salvaguarda\\ Condicional$"
   },
@@ -17820,7 +17901,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|59433",
       "enchant.stat_2954116742|59433",
-      "explicit.stat_2954116742|59433"
+      "explicit.stat_2954116742|59433",
+      "fractured.stat_2954116742|59433"
     ],
     "pattern": "^Atribui\\ Sede\\ de\\ Toler\u00E2ncia$"
   },
@@ -18910,7 +18992,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|35564",
       "enchant.stat_2954116742|35564",
-      "explicit.stat_2954116742|35564"
+      "explicit.stat_2954116742|35564",
+      "fractured.stat_2954116742|35564"
     ],
     "pattern": "^Atribui\\ Voltando\\ no\\ Tempo$"
   },
@@ -19566,7 +19649,10 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1400313697",
-      "explicit.stat_1400313697"
+      "crafted.stat_3368921525",
+      "explicit.stat_1400313697",
+      "explicit.stat_3368921525",
+      "fractured.stat_3368921525"
     ],
     "pattern": "^Aumentos\\ e\\ redu\u00E7\u00F5es\\ de\\ outros\\ tipos\\ de\\ dano\\ no\\ raio\\ de\\ alcance\\ s\u00E3o\\ transformados\\ para\\ aplicar\\ dano\\ de\\ fogo$"
   },
@@ -19689,16 +19775,10 @@
   {
     "text": "Avatar do Fogo",
     "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Avatar\\ do\\ Fogo$"
-  },
-  {
-    "text": "Avatar of Fire",
-    "lines": 1,
     "tradeIds": [
       "explicit.stat_3831171903|4"
     ],
-    "pattern": "^Avatar\\ of\\ Fire$"
+    "pattern": "^Avatar\\ do\\ Fogo$"
   },
   {
     "text": "A\u00E7o Estilha\u00E7ante causa dano aumentado em #%",
@@ -19872,7 +19952,9 @@
   {
     "text": "Baluarte",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|24"
+    ],
     "pattern": "^Baluarte$"
   },
   {
@@ -19892,8 +19974,18 @@
   },
   {
     "text": "Banhado no sangue de # sacrificados em nome de Ahuana \nPassivas no raio s\u00E3o conquistadas pelos vaal",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Banhado\\ no\\ sangue\\ de\\ ([-0-9,.]\u002B)\\ sacrificados\\ em\\ nome\\ de\\ Ahuana\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ vaal$"
   },
   {
@@ -19913,8 +20005,18 @@
   },
   {
     "text": "Banhado no sangue de # sacrificados em nome de Doryani \nPassivas no raio s\u00E3o conquistadas pelos vaal",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Banhado\\ no\\ sangue\\ de\\ ([-0-9,.]\u002B)\\ sacrificados\\ em\\ nome\\ de\\ Doryani\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ vaal$"
   },
   {
@@ -19934,6 +20036,7 @@
   },
   {
     "text": "Banhado no sangue de # sacrificados em nome de Xibaqua \nPassivas no raio s\u00E3o conquistadas pelos vaal",
+    "matchedFuzzily": true,
     "lines": 2,
     "tradeIds": [
       "explicit.stat_3418580811|21",
@@ -19941,7 +20044,9 @@
       "explicit.stat_3418580811|23",
       "explicit.stat_3418580811|24",
       "explicit.stat_3418580811|25",
-      "explicit.stat_3418580811|26"
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
     ],
     "pattern": "^Banhado\\ no\\ sangue\\ de\\ ([-0-9,.]\u002B)\\ sacrificados\\ em\\ nome\\ de\\ Xibaqua\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ vaal$"
   },
@@ -19962,8 +20067,18 @@
   },
   {
     "text": "Banhado no sangue de # sacrificados em nome de Zerphi \nPassivas no raio s\u00E3o conquistadas pelos vaal",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Banhado\\ no\\ sangue\\ de\\ ([-0-9,.]\u002B)\\ sacrificados\\ em\\ nome\\ de\\ Zerphi\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ vaal$"
   },
   {
@@ -20013,7 +20128,8 @@
     "text": "Bateria Sobrenatural",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2262736444"
+      "explicit.stat_2262736444",
+      "explicit.stat_3831171903|9"
     ],
     "pattern": "^Bateria\\ Sobrenatural$"
   },
@@ -20704,26 +20820,10 @@
     "pattern": "^Besteiros\\ invocados\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ mutilar\\ por\\ 4\\ segundos\\ ao\\ atingir$"
   },
   {
-    "text": "Blackflame Covenant",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|28"
-    ],
-    "pattern": "^Blackflame\\ Covenant$"
-  },
-  {
     "text": "Blasf\u00EAmia n\u00E3o tem reserva",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Blasf\u00EAmia\\ n\u00E3o\\ tem\\ reserva$"
-  },
-  {
-    "text": "Blood Magic",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|5"
-    ],
-    "pattern": "^Blood\\ Magic$"
   },
   {
     "text": "Bola de Fogo e Esfera Magm\u00E1tica t\u00EAm -#% de \u00E1rea de efeito",
@@ -20877,14 +20977,6 @@
     "pattern": "^Brilha\\ enquanto\\ estiver\\ em\\ uma\\ \u00E1rea\\ contendo\\ um\\ peixe\\ \u00FAnico$"
   },
   {
-    "text": "Bulwark",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|24"
-    ],
-    "pattern": "^Bulwark$"
-  },
-  {
     "text": "B\u00F4nus afetam membros do seu grupo",
     "lines": 1,
     "tradeIds": [],
@@ -21027,6 +21119,7 @@
   },
   {
     "text": "B\u00F4nus de dano cr\u00EDtico aumentado em #%, se voc\u00EA ganhou uma carga de poder recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_23669307"
@@ -21268,8 +21361,11 @@
   {
     "text": "B\u00F4nus de dano cr\u00EDtico reduzido em #%, se voc\u00EA ganhou uma carga de poder recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_23669307"
+    ],
     "pattern": "^B\u00F4nus\\ de\\ dano\\ cr\u00EDtico\\ reduzido\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ ganhou\\ uma\\ carga\\ de\\ poder\\ recentemente$"
   },
   {
@@ -21768,7 +21864,9 @@
   {
     "text": "Cad\u00EAncia do Ritual",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|29"
+    ],
     "pattern": "^Cad\u00EAncia\\ do\\ Ritual$"
   },
   {
@@ -24057,7 +24155,9 @@
     "text": "Chance de evitar a perda de Determina\u00E7\u00E3o com os ataques de proj\u00E9teis dos inimigos aumentada em #%",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "sanctum.stat_1798691236"
+    ],
     "pattern": "^Chance\\ de\\ evitar\\ a\\ perda\\ de\\ Determina\u00E7\u00E3o\\ com\\ os\\ ataques\\ de\\ proj\u00E9teis\\ dos\\ inimigos\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -24435,6 +24535,7 @@
   },
   {
     "text": "Chance de golpe cr\u00EDtico aumentada em #%, se voc\u00EA n\u00E3o causou um cr\u00EDtico recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2856328513"
@@ -25359,6 +25460,7 @@
   },
   {
     "text": "Chance de golpe cr\u00EDtico contra inimigos provocados aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1045789614",
@@ -25369,8 +25471,12 @@
   {
     "text": "Chance de golpe cr\u00EDtico contra inimigos provocados reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1045789614",
+      "explicit.stat_1045789614"
+    ],
     "pattern": "^Chance\\ de\\ golpe\\ cr\u00EDtico\\ contra\\ inimigos\\ provocados\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -26106,8 +26212,11 @@
   {
     "text": "Chance de golpe cr\u00EDtico reduzida em #%, se voc\u00EA n\u00E3o causou um cr\u00EDtico recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2856328513"
+    ],
     "pattern": "^Chance\\ de\\ golpe\\ cr\u00EDtico\\ reduzida\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ n\u00E3o\\ causou\\ um\\ cr\u00EDtico\\ recentemente$"
   },
   {
@@ -26298,6 +26407,7 @@
   },
   {
     "text": "Chance de os sinalizadores vaal invocarem monstros adicionais aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_632698321"
@@ -26315,8 +26425,11 @@
   {
     "text": "Chance de os sinalizadores vaal invocarem monstros adicionais reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_632698321"
+    ],
     "pattern": "^Chance\\ de\\ os\\ sinalizadores\\ vaal\\ invocarem\\ monstros\\ adicionais\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -26473,14 +26586,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ um\\ Espelho\\ Imponente\\ aparecer\\ em\\ um\\ mapa\\ pr\u00F3ximo\\ quando\\ chefes\\ de\\ mapa\\ forem\\ mortos\\ dentro\\ da\\ n\u00E9voa$"
-  },
-  {
-    "text": "Chaos Inoculation",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|8"
-    ],
-    "pattern": "^Chaos\\ Inoculation$"
   },
   {
     "text": "Chayula, o que Sonhou, tem #% de chance de ser duplicado em seus mapas",
@@ -28119,6 +28224,7 @@
   },
   {
     "text": "Colmeias da Fenda t\u00EAm 1 leva de monstros Nascidos da Colmeia adicional",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -28128,8 +28234,11 @@
   },
   {
     "text": "Colmeias da Fenda t\u00EAm # levas de monstros Nascidos da Colmeia adicionais",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2734787892"
+    ],
     "pattern": "^Colmeias\\ da\\ Fenda\\ t\u00EAm\\ ([-0-9,.]\u002B)\\ levas\\ de\\ monstros\\ Nascidos\\ da\\ Colmeia\\ adicionais$"
   },
   {
@@ -29270,7 +29379,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3811191316",
       "explicit.stat_1708461270",
+      "explicit.stat_3811191316",
+      "fractured.stat_3811191316",
       "rune.stat_1816212773"
     ],
     "pattern": "^Companheiros\\ t\u00EAm\\ a\\ \u00E1rea\\ de\\ efeito\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -29281,7 +29393,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3811191316",
       "explicit.stat_1708461270",
+      "explicit.stat_3811191316",
+      "fractured.stat_3811191316",
       "rune.stat_1816212773"
     ],
     "pattern": "^Companheiros\\ t\u00EAm\\ a\\ \u00E1rea\\ de\\ efeito\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -31340,14 +31455,6 @@
     "pattern": "^Concluir\\ um\\ Assalto\\ gera\\ uma\\ revela\u00E7\u00E3o\\ adicional$"
   },
   {
-    "text": "Conduit",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|13"
-    ],
-    "pattern": "^Conduit$"
-  },
-  {
     "text": "Condutividade n\u00E3o tem reserva, se conjurada como aura",
     "lines": 1,
     "tradeIds": [],
@@ -31375,7 +31482,9 @@
   {
     "text": "Condu\u00EDte",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|13"
+    ],
     "pattern": "^Condu\u00EDte$"
   },
   {
@@ -31506,6 +31615,7 @@
   },
   {
     "text": "Consome 1 carga de frenesi ao usar",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -31515,6 +31625,7 @@
   },
   {
     "text": "Consome 1 carga de poder ao usar",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -31530,26 +31641,38 @@
   },
   {
     "text": "Consome # cargas de frenesi ao usar",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_280890192"
+    ],
     "pattern": "^Consome\\ ([-0-9,.]\u002B)\\ cargas\\ de\\ frenesi\\ ao\\ usar$"
   },
   {
     "text": "Consome cargas de frenesi ao usar",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_280890192"
+    ],
     "pattern": "^Consome\\ cargas\\ de\\ frenesi\\ ao\\ usar$"
   },
   {
     "text": "Consome # cargas de poder ao usar",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2566921799"
+    ],
     "pattern": "^Consome\\ ([-0-9,.]\u002B)\\ cargas\\ de\\ poder\\ ao\\ usar$"
   },
   {
     "text": "Consome cargas de poder ao usar",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2566921799"
+    ],
     "pattern": "^Consome\\ cargas\\ de\\ poder\\ ao\\ usar$"
   },
   {
@@ -31998,7 +32121,9 @@
   {
     "text": "Copia um modificador aleat\u00F3rio de cada inimigo em sua presen\u00E7a quando\nvoc\u00EA se transforma em um animal\nModificadores obtidos desta maneira s\u00E3o perdidos ap\u00F3s # segundos ou quando voc\u00EA se transformar novamente",
     "lines": 3,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_885925163"
+    ],
     "pattern": "^Copia\\ um\\ modificador\\ aleat\u00F3rio\\ de\\ cada\\ inimigo\\ em\\ sua\\ presen\u00E7a\\ quando\\nvoc\u00EA\\ se\\ transforma\\ em\\ um\\ animal\\nModificadores\\ obtidos\\ desta\\ maneira\\ s\u00E3o\\ perdidos\\ ap\u00F3s\\ ([-0-9,.]\u002B)\\ segundos\\ ou\\ quando\\ voc\u00EA\\ se\\ transformar\\ novamente$"
   },
   {
@@ -32243,14 +32368,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Cria\\ uma\\ c\u00F3pia\\ das\\ feras\\ capturadas\\ na\\ \u00E1rea$"
-  },
-  {
-    "text": "Crimson Assault",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|26"
-    ],
-    "pattern": "^Crimson\\ Assault$"
   },
   {
     "text": "Cristais de Gelo t\u00EAm a vida m\u00E1xima aumentada em #% por 5% da sua resist\u00EAncia a dano de frio",
@@ -32894,14 +33011,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^DNT\\ ([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ Penalty\\ from\\ using\\ Spells\\ while\\ moving$"
-  },
-  {
-    "text": "Dance With Death",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|17"
-    ],
-    "pattern": "^Dance\\ With\\ Death$"
   },
   {
     "text": "Dano abrasador aumentado em #%",
@@ -33552,8 +33661,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^Dano\\ com\\ adagas\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -33577,8 +33689,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^Dano\\ com\\ adagas\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -33759,12 +33874,22 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2843214518",
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
+      "desecrated.stat_2843214518",
       "desecrated.stat_4045894391",
+      "desecrated.stat_427684353",
       "explicit.stat_1181419800",
+      "explicit.stat_2696027455",
+      "explicit.stat_2843214518",
       "explicit.stat_4045894391",
+      "explicit.stat_427684353",
       "fractured.stat_1181419800",
-      "fractured.stat_4045894391"
+      "fractured.stat_2696027455",
+      "fractured.stat_2843214518",
+      "fractured.stat_4045894391",
+      "fractured.stat_427684353"
     ],
     "pattern": "^Dano\\ com\\ ataques\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -34289,12 +34414,22 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2843214518",
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
+      "desecrated.stat_2843214518",
       "desecrated.stat_4045894391",
+      "desecrated.stat_427684353",
       "explicit.stat_1181419800",
+      "explicit.stat_2696027455",
+      "explicit.stat_2843214518",
       "explicit.stat_4045894391",
+      "explicit.stat_427684353",
       "fractured.stat_1181419800",
-      "fractured.stat_4045894391"
+      "fractured.stat_2696027455",
+      "fractured.stat_2843214518",
+      "fractured.stat_4045894391",
+      "fractured.stat_427684353"
     ],
     "pattern": "^Dano\\ com\\ ataques\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -34558,8 +34693,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1241625305",
+      "desecrated.stat_1241625305",
       "desecrated.stat_2518900926",
+      "explicit.stat_1241625305",
       "explicit.stat_2518900926",
+      "fractured.stat_1241625305",
       "fractured.stat_2518900926"
     ],
     "pattern": "^Dano\\ com\\ habilidades\\ de\\ deslocamento\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -34570,8 +34709,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1241625305",
+      "desecrated.stat_1241625305",
       "desecrated.stat_2518900926",
+      "explicit.stat_1241625305",
       "explicit.stat_2518900926",
+      "fractured.stat_1241625305",
       "fractured.stat_2518900926"
     ],
     "pattern": "^Dano\\ com\\ habilidades\\ de\\ deslocamento\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -34842,8 +34985,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^Dano\\ com\\ manguais\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -34854,8 +35000,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^Dano\\ com\\ manguais\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -34887,10 +35036,13 @@
     "tradeIds": [
       "desecrated.stat_1181419800",
       "desecrated.stat_2696027455",
+      "desecrated.stat_4188894176",
       "explicit.stat_1181419800",
       "explicit.stat_2696027455",
+      "explicit.stat_4188894176",
       "fractured.stat_1181419800",
-      "fractured.stat_2696027455"
+      "fractured.stat_2696027455",
+      "fractured.stat_4188894176"
     ],
     "pattern": "^Dano\\ com\\ varinhas\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -34908,10 +35060,13 @@
     "tradeIds": [
       "desecrated.stat_1181419800",
       "desecrated.stat_2696027455",
+      "desecrated.stat_4188894176",
       "explicit.stat_1181419800",
       "explicit.stat_2696027455",
+      "explicit.stat_4188894176",
       "fractured.stat_1181419800",
-      "fractured.stat_2696027455"
+      "fractured.stat_2696027455",
+      "fractured.stat_4188894176"
     ],
     "pattern": "^Dano\\ com\\ varinhas\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -36800,8 +36955,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1569159338",
       "desecrated.stat_1890519597",
+      "explicit.stat_1569159338",
       "explicit.stat_1890519597",
+      "fractured.stat_1569159338",
       "fractured.stat_1890519597"
     ],
     "pattern": "^Dano\\ de\\ Ripostar\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -36812,8 +36970,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1569159338",
       "desecrated.stat_1890519597",
+      "explicit.stat_1569159338",
       "explicit.stat_1890519597",
+      "fractured.stat_1569159338",
       "fractured.stat_1890519597"
     ],
     "pattern": "^Dano\\ de\\ Ripostar\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -36963,8 +37124,22 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
+      "crafted.stat_3962278098",
+      "crafted.stat_736967255",
       "desecrated.stat_3131442032",
-      "explicit.stat_3131442032"
+      "desecrated.stat_3291658075",
+      "desecrated.stat_3962278098",
+      "desecrated.stat_736967255",
+      "explicit.stat_3131442032",
+      "explicit.stat_3291658075",
+      "explicit.stat_3962278098",
+      "explicit.stat_736967255",
+      "fractured.stat_3291658075",
+      "fractured.stat_3962278098",
+      "fractured.stat_736967255",
+      "implicit.stat_736967255",
+      "rune.stat_3962278098"
     ],
     "pattern": "^Dano\\ de\\ Tornado\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -36974,8 +37149,22 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
+      "crafted.stat_3962278098",
+      "crafted.stat_736967255",
       "desecrated.stat_3131442032",
-      "explicit.stat_3131442032"
+      "desecrated.stat_3291658075",
+      "desecrated.stat_3962278098",
+      "desecrated.stat_736967255",
+      "explicit.stat_3131442032",
+      "explicit.stat_3291658075",
+      "explicit.stat_3962278098",
+      "explicit.stat_736967255",
+      "fractured.stat_3291658075",
+      "fractured.stat_3962278098",
+      "fractured.stat_736967255",
+      "implicit.stat_736967255",
+      "rune.stat_3962278098"
     ],
     "pattern": "^Dano\\ de\\ Tornado\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -37199,7 +37388,9 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1697951953",
+      "desecrated.stat_3131442032",
       "explicit.stat_1697951953",
+      "explicit.stat_3131442032",
       "fractured.stat_1697951953"
     ],
     "pattern": "^Dano\\ de\\ armadilha\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -37241,7 +37432,9 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1697951953",
+      "desecrated.stat_3131442032",
       "explicit.stat_1697951953",
+      "explicit.stat_3131442032",
       "fractured.stat_1697951953"
     ],
     "pattern": "^Dano\\ de\\ armadilha\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -37289,6 +37482,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2440073079",
+      "explicit.stat_2440073079",
+      "fractured.stat_2440073079",
       "rune.stat_674141348"
     ],
     "pattern": "^Dano\\ de\\ ataque\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ durante\\ a\\ transforma\u00E7\u00E3o$"
@@ -37898,6 +38094,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2440073079",
+      "explicit.stat_2440073079",
+      "fractured.stat_2440073079",
       "rune.stat_674141348"
     ],
     "pattern": "^Dano\\ de\\ ataque\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ durante\\ a\\ transforma\u00E7\u00E3o$"
@@ -38443,8 +38642,16 @@
   },
   {
     "text": "Dano de caos \u00E9 subtra\u00EDdo do mana antes da vida",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_458438597",
+      "desecrated.stat_458438597",
+      "explicit.stat_458438597",
+      "fractured.stat_458438597",
+      "implicit.stat_458438597",
+      "rune.stat_458438597"
+    ],
     "pattern": "^Dano\\ de\\ caos\\ \u00E9\\ subtra\u00EDdo\\ do\\ mana\\ antes\\ da\\ vida$"
   },
   {
@@ -38899,13 +39106,19 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2974417149",
       "crafted.stat_3962278098",
       "desecrated.stat_2768835289",
+      "desecrated.stat_2974417149",
       "desecrated.stat_3962278098",
+      "enchant.stat_2974417149",
       "explicit.stat_2768835289",
+      "explicit.stat_2974417149",
       "explicit.stat_3962278098",
       "fractured.stat_2768835289",
+      "fractured.stat_2974417149",
       "fractured.stat_3962278098",
+      "rune.stat_2974417149",
       "rune.stat_3962278098"
     ],
     "pattern": "^Dano\\ de\\ fogo\\ m\u00E1gico\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -38916,13 +39129,19 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2974417149",
       "crafted.stat_3962278098",
       "desecrated.stat_2768835289",
+      "desecrated.stat_2974417149",
       "desecrated.stat_3962278098",
+      "enchant.stat_2974417149",
       "explicit.stat_2768835289",
+      "explicit.stat_2974417149",
       "explicit.stat_3962278098",
       "fractured.stat_2768835289",
+      "fractured.stat_2974417149",
       "fractured.stat_3962278098",
+      "rune.stat_2974417149",
       "rune.stat_3962278098"
     ],
     "pattern": "^Dano\\ de\\ fogo\\ m\u00E1gico\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -39498,9 +39717,18 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
+      "crafted.stat_3962278098",
       "desecrated.stat_2768835289",
+      "desecrated.stat_3291658075",
+      "desecrated.stat_3962278098",
       "explicit.stat_2768835289",
-      "fractured.stat_2768835289"
+      "explicit.stat_3291658075",
+      "explicit.stat_3962278098",
+      "fractured.stat_2768835289",
+      "fractured.stat_3291658075",
+      "fractured.stat_3962278098",
+      "rune.stat_3962278098"
     ],
     "pattern": "^Dano\\ de\\ frio\\ m\u00E1gico\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -39510,9 +39738,18 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
+      "crafted.stat_3962278098",
       "desecrated.stat_2768835289",
+      "desecrated.stat_3291658075",
+      "desecrated.stat_3962278098",
       "explicit.stat_2768835289",
-      "fractured.stat_2768835289"
+      "explicit.stat_3291658075",
+      "explicit.stat_3962278098",
+      "fractured.stat_2768835289",
+      "fractured.stat_3291658075",
+      "fractured.stat_3962278098",
+      "rune.stat_3962278098"
     ],
     "pattern": "^Dano\\ de\\ frio\\ m\u00E1gico\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -40327,6 +40564,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1138708335",
+      "explicit.stat_3093465148",
       "explicit.stat_3588388638"
     ],
     "pattern": "^Dano\\ dos\\ monstros\\ ignora\\ ([-0-9,.]\u002B)%\\ da\\ resist\u00EAncia\\ a\\ dano\\ de\\ caos$"
@@ -40384,6 +40622,7 @@
   },
   {
     "text": "Dano elemental aumentado em #% durante a transforma\u00E7\u00E3o",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2440073079",
@@ -40823,8 +41062,13 @@
   {
     "text": "Dano elemental reduzido em #% durante a transforma\u00E7\u00E3o",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2440073079",
+      "explicit.stat_2440073079",
+      "fractured.stat_2440073079"
+    ],
     "pattern": "^Dano\\ elemental\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ durante\\ a\\ transforma\u00E7\u00E3o$"
   },
   {
@@ -42294,7 +42538,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "implicit.stat_3691641145"
+      "crafted.stat_1509134228",
+      "desecrated.stat_1509134228",
+      "desecrated.stat_2768835289",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "explicit.stat_2768835289",
+      "fractured.stat_1509134228",
+      "fractured.stat_2768835289",
+      "implicit.stat_3691641145",
+      "rune.stat_1509134228"
     ],
     "pattern": "^Dano\\ f\u00EDsico\\ sofrido\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -42338,6 +42591,7 @@
   },
   {
     "text": "Dano f\u00EDsico sofrido ignora o escudo de energia",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2448633171",
@@ -42351,7 +42605,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "implicit.stat_3691641145"
+      "crafted.stat_1509134228",
+      "desecrated.stat_1509134228",
+      "desecrated.stat_2768835289",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "explicit.stat_2768835289",
+      "fractured.stat_1509134228",
+      "fractured.stat_2768835289",
+      "implicit.stat_3691641145",
+      "rune.stat_1509134228"
     ],
     "pattern": "^Dano\\ f\u00EDsico\\ sofrido\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -42737,6 +43000,7 @@
   },
   {
     "text": "Dano m\u00E1gico aumentado em #% por 16 de Intelig\u00EAncia",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2818518881"
@@ -42746,8 +43010,11 @@
   {
     "text": "Dano m\u00E1gico aumentado em #% por 16 de Intelig\u00EAncia",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2818518881"
+    ],
     "pattern": "^Dano\\ m\u00E1gico\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 16\\ de\\ Intelig\u00EAncia$"
   },
   {
@@ -44284,7 +44551,9 @@
   {
     "text": "Dan\u00E7a com a Morte",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|17"
+    ],
     "pattern": "^Dan\u00E7a\\ com\\ a\\ Morte$"
   },
   {
@@ -44917,8 +45186,15 @@
   },
   {
     "text": "Devasta ao atingir",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_795138349",
+      "enchant.stat_2763429652",
+      "explicit.stat_795138349",
+      "fractured.stat_795138349",
+      "implicit.stat_2763429652"
+    ],
     "pattern": "^Devasta\\ ao\\ atingir$"
   },
   {
@@ -44975,7 +45251,9 @@
     "text": "Devasta\u00E7\u00E3o Abissal tamb\u00E9m aplica #% \u00E0 resist\u00EAncia a dano de fogo",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2991563371"
+    ],
     "pattern": "^Devasta\u00E7\u00E3o\\ Abissal\\ tamb\u00E9m\\ aplica\\ ([-0-9,.]\u002B)%\\ \u00E0\\ resist\u00EAncia\\ a\\ dano\\ de\\ fogo$"
   },
   {
@@ -44990,7 +45268,9 @@
     "text": "Devasta\u00E7\u00E3o Abissal tamb\u00E9m aplica #% \u00E0 resist\u00EAncia a dano de frio",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3979226081"
+    ],
     "pattern": "^Devasta\u00E7\u00E3o\\ Abissal\\ tamb\u00E9m\\ aplica\\ ([-0-9,.]\u002B)%\\ \u00E0\\ resist\u00EAncia\\ a\\ dano\\ de\\ frio$"
   },
   {
@@ -45005,7 +45285,9 @@
     "text": "Devasta\u00E7\u00E3o Abissal tamb\u00E9m aplica #% \u00E0 resist\u00EAncia a dano el\u00E9trico",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1726353460"
+    ],
     "pattern": "^Devasta\u00E7\u00E3o\\ Abissal\\ tamb\u00E9m\\ aplica\\ ([-0-9,.]\u002B)%\\ \u00E0\\ resist\u00EAncia\\ a\\ dano\\ el\u00E9trico$"
   },
   {
@@ -47486,6 +47768,7 @@
   },
   {
     "text": "Dura\u00E7\u00E3o do efeito de habilidades de arco aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2594634307",
@@ -47497,8 +47780,13 @@
   {
     "text": "Dura\u00E7\u00E3o do efeito de habilidades de arco reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2594634307",
+      "explicit.stat_2594634307",
+      "fractured.stat_2594634307"
+    ],
     "pattern": "^Dura\u00E7\u00E3o\\ do\\ efeito\\ de\\ habilidades\\ de\\ arco\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -47506,9 +47794,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3377888098",
       "desecrated.stat_2594634307",
+      "desecrated.stat_3377888098",
+      "enchant.stat_3377888098",
       "explicit.stat_2594634307",
-      "fractured.stat_2594634307"
+      "explicit.stat_3377888098",
+      "fractured.stat_2594634307",
+      "fractured.stat_3377888098",
+      "rune.stat_3377888098"
     ],
     "pattern": "^Dura\u00E7\u00E3o\\ do\\ efeito\\ de\\ habilidades\\ de\\ conex\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -47518,9 +47812,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3377888098",
       "desecrated.stat_2594634307",
+      "desecrated.stat_3377888098",
+      "enchant.stat_3377888098",
       "explicit.stat_2594634307",
-      "fractured.stat_2594634307"
+      "explicit.stat_3377888098",
+      "fractured.stat_2594634307",
+      "fractured.stat_3377888098",
+      "rune.stat_3377888098"
     ],
     "pattern": "^Dura\u00E7\u00E3o\\ do\\ efeito\\ de\\ habilidades\\ de\\ conex\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -48025,7 +48325,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1073942215"
+      "desecrated.stat_3485067555",
+      "explicit.stat_1073942215",
+      "explicit.stat_3485067555",
+      "fractured.stat_3485067555"
     ],
     "pattern": "^Dura\u00E7\u00E3o\\ dos\\ esfriamentos\\ e\\ congelamentos\\ em\\ inimigos\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -48035,7 +48338,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1073942215"
+      "desecrated.stat_3485067555",
+      "explicit.stat_1073942215",
+      "explicit.stat_3485067555",
+      "fractured.stat_3485067555"
     ],
     "pattern": "^Dura\u00E7\u00E3o\\ dos\\ esfriamentos\\ e\\ congelamentos\\ em\\ inimigos\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -51143,6 +51449,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1350127730",
       "rune.stat_4254029169"
     ],
     "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ habilidades\\ meta\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -51153,6 +51460,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1350127730",
       "rune.stat_4254029169"
     ],
     "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ habilidades\\ meta\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -51738,7 +52046,6 @@
   },
   {
     "text": "Efici\u00EAncia de reserva de esp\u00EDrito aumentada em #%",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_53386210",
@@ -51749,7 +52056,6 @@
   {
     "text": "Efici\u00EAncia de reserva de esp\u00EDrito das habilidades reduzida em #%",
     "negate": true,
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_53386210",
@@ -51801,22 +52107,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Einhar\\ tem\\ a\\ velocidade\\ de\\ recarga\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ em\\ seus\\ mapas$"
-  },
-  {
-    "text": "Eldritch Battery",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|9"
-    ],
-    "pattern": "^Eldritch\\ Battery$"
-  },
-  {
-    "text": "Elemental Equilibrium",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|23"
-    ],
-    "pattern": "^Elemental\\ Equilibrium$"
   },
   {
     "text": "Eletrifica atacantes por 4 segundos ao bloquear",
@@ -52285,7 +52575,9 @@
   {
     "text": "Empunhadura de Ferro",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3528245713"
+    ],
     "pattern": "^Empunhadura\\ de\\ Ferro$"
   },
   {
@@ -52371,7 +52663,9 @@
   {
     "text": "Encanto do Surto Selvagem",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|32"
+    ],
     "pattern": "^Encanto\\ do\\ Surto\\ Selvagem$"
   },
   {
@@ -52407,8 +52701,18 @@
   },
   {
     "text": "Encomendou # moedas para homenagear Cadiro \nPassivas no raio s\u00E3o conquistadas pelo Imp\u00E9rio Eterno",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Encomendou\\ ([-0-9,.]\u002B)\\ moedas\\ para\\ homenagear\\ Cadiro\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelo\\ Imp\u00E9rio\\ Eterno$"
   },
   {
@@ -52428,8 +52732,18 @@
   },
   {
     "text": "Encomendou # moedas para homenagear Caspiro \nPassivas no raio s\u00E3o conquistadas pelo Imp\u00E9rio Eterno",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Encomendou\\ ([-0-9,.]\u002B)\\ moedas\\ para\\ homenagear\\ Caspiro\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelo\\ Imp\u00E9rio\\ Eterno$"
   },
   {
@@ -52449,8 +52763,18 @@
   },
   {
     "text": "Encomendou # moedas para homenagear Chitus \nPassivas no raio s\u00E3o conquistadas pelo Imp\u00E9rio Eterno",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Encomendou\\ ([-0-9,.]\u002B)\\ moedas\\ para\\ homenagear\\ Chitus\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelo\\ Imp\u00E9rio\\ Eterno$"
   },
   {
@@ -52470,8 +52794,18 @@
   },
   {
     "text": "Encomendou # moedas para homenagear Victario \nPassivas no raio s\u00E3o conquistadas pelo Imp\u00E9rio Eterno",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Encomendou\\ ([-0-9,.]\u002B)\\ moedas\\ para\\ homenagear\\ Victario\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelo\\ Imp\u00E9rio\\ Eterno$"
   },
   {
@@ -52893,7 +53227,9 @@
   {
     "text": "Equil\u00EDbrio Elemental",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|23"
+    ],
     "pattern": "^Equil\u00EDbrio\\ Elemental$"
   },
   {
@@ -52927,7 +53263,9 @@
     "text": "Equipamento n\u00E3o tem requisitos de atributo",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2480151124"
+    ],
     "pattern": "^Equipamento\\ n\u00E3o\\ tem\\ requisitos\\ de\\ atributo$"
   },
   {
@@ -53050,8 +53388,11 @@
   },
   {
     "text": "Escudo de energia atual tamb\u00E9m concede redu\u00E7\u00E3o de dano elemental",
+    "value": 100,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2342939473"
+    ],
     "pattern": "^Escudo\\ de\\ energia\\ atual\\ tamb\u00E9m\\ concede\\ redu\u00E7\u00E3o\\ de\\ dano\\ elemental$"
   },
   {
@@ -53089,9 +53430,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1195319608",
       "desecrated.stat_3174700878",
+      "explicit.stat_1195319608",
       "explicit.stat_3174700878",
       "fractured.stat_3174700878",
+      "rune.stat_1195319608",
       "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ elmo\\ equipado\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -53102,9 +53446,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1195319608",
       "desecrated.stat_3174700878",
+      "explicit.stat_1195319608",
       "explicit.stat_3174700878",
       "fractured.stat_3174700878",
+      "rune.stat_1195319608",
       "rune.stat_3174700878"
     ],
     "pattern": "^Escudo\\ de\\ energia\\ do\\ elmo\\ equipado\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
@@ -53227,6 +53574,7 @@
   },
   {
     "text": "Escudo de energia m\u00E1ximo aumentado em #%, se voc\u00EA usou uma carga de poder recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_3745435177"
@@ -53334,8 +53682,11 @@
   {
     "text": "Escudo de energia m\u00E1ximo reduzido em #%, se voc\u00EA usou uma carga de poder recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_3745435177"
+    ],
     "pattern": "^Escudo\\ de\\ energia\\ m\u00E1ximo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ usou\\ uma\\ carga\\ de\\ poder\\ recentemente$"
   },
   {
@@ -53871,8 +54222,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2753083623",
+      "desecrated.stat_491450213",
       "explicit.stat_2753083623",
-      "fractured.stat_2753083623"
+      "explicit.stat_491450213",
+      "fractured.stat_2753083623",
+      "fractured.stat_491450213"
     ],
     "pattern": "^Espectros\\ t\u00EAm\\ a\\ chance\\ de\\ golpe\\ cr\u00EDtico\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -55020,14 +55374,6 @@
     "pattern": "^Estouro\\ Tempestuoso\\ tem\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ criar\\ um\\ orbe\\ adicional$"
   },
   {
-    "text": "Eternal Youth",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|15"
-    ],
-    "pattern": "^Eternal\\ Youth$"
-  },
-  {
     "text": "Evas\u00E3o aumentada em #%",
     "lines": 1,
     "tradeIds": [
@@ -55167,6 +55513,7 @@
   },
   {
     "text": "Evas\u00E3o aumentada em #%, se voc\u00EA n\u00E3o usou cambalhota evasiva recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1040569494"
@@ -55466,8 +55813,11 @@
   {
     "text": "Evas\u00E3o reduzida em #%, se voc\u00EA n\u00E3o usou cambalhota evasiva recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1040569494"
+    ],
     "pattern": "^Evas\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ n\u00E3o\\ usou\\ cambalhota\\ evasiva\\ recentemente$"
   },
   {
@@ -55641,8 +55991,18 @@
   },
   {
     "text": "Exaltando a profana\u00E7\u00E3o de # almas em homenagem a Amanamu \nPassivas no raio s\u00E3o conquistadas pelos abissais\nA profana\u00E7\u00E3o torna este item inst\u00E1vel",
+    "matchedFuzzily": true,
     "lines": 3,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Exaltando\\ a\\ profana\u00E7\u00E3o\\ de\\ ([-0-9,.]\u002B)\\ almas\\ em\\ homenagem\\ a\\ Amanamu\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ abissais\\nA\\ profana\u00E7\u00E3o\\ torna\\ este\\ item\\ inst\u00E1vel$"
   },
   {
@@ -55662,8 +56022,18 @@
   },
   {
     "text": "Exaltando a profana\u00E7\u00E3o de # almas em homenagem a Kulemak \nPassivas no raio s\u00E3o conquistadas pelos abissais\nA profana\u00E7\u00E3o torna este item inst\u00E1vel",
+    "matchedFuzzily": true,
     "lines": 3,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Exaltando\\ a\\ profana\u00E7\u00E3o\\ de\\ ([-0-9,.]\u002B)\\ almas\\ em\\ homenagem\\ a\\ Kulemak\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ abissais\\nA\\ profana\u00E7\u00E3o\\ torna\\ este\\ item\\ inst\u00E1vel$"
   },
   {
@@ -55683,8 +56053,18 @@
   },
   {
     "text": "Exaltando a profana\u00E7\u00E3o de # almas em homenagem a Kurgal \nPassivas no raio s\u00E3o conquistadas pelos abissais\nA profana\u00E7\u00E3o torna este item inst\u00E1vel",
+    "matchedFuzzily": true,
     "lines": 3,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Exaltando\\ a\\ profana\u00E7\u00E3o\\ de\\ ([-0-9,.]\u002B)\\ almas\\ em\\ homenagem\\ a\\ Kurgal\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ abissais\\nA\\ profana\u00E7\u00E3o\\ torna\\ este\\ item\\ inst\u00E1vel$"
   },
   {
@@ -55704,8 +56084,18 @@
   },
   {
     "text": "Exaltando a profana\u00E7\u00E3o de # almas em homenagem a Tecrod \nPassivas no raio s\u00E3o conquistadas pelos abissais\nA profana\u00E7\u00E3o torna este item inst\u00E1vel",
+    "matchedFuzzily": true,
     "lines": 3,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Exaltando\\ a\\ profana\u00E7\u00E3o\\ de\\ ([-0-9,.]\u002B)\\ almas\\ em\\ homenagem\\ a\\ Tecrod\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ abissais\\nA\\ profana\u00E7\u00E3o\\ torna\\ este\\ item\\ inst\u00E1vel$"
   },
   {
@@ -55725,8 +56115,18 @@
   },
   {
     "text": "Exaltando a profana\u00E7\u00E3o de # almas em homenagem a Ulaman \nPassivas no raio s\u00E3o conquistadas pelos abissais\nA profana\u00E7\u00E3o torna este item inst\u00E1vel",
+    "matchedFuzzily": true,
     "lines": 3,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Exaltando\\ a\\ profana\u00E7\u00E3o\\ de\\ ([-0-9,.]\u002B)\\ almas\\ em\\ homenagem\\ a\\ Ulaman\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ abissais\\nA\\ profana\u00E7\u00E3o\\ torna\\ este\\ item\\ inst\u00E1vel$"
   },
   {
@@ -56588,6 +56988,7 @@
   },
   {
     "text": "Favores adiados em altares ritual\u00EDsticos t\u00EAm o custo de tributo aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1345835998"
@@ -56597,8 +56998,11 @@
   {
     "text": "Favores adiados em altares ritual\u00EDsticos t\u00EAm o custo de tributo reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1345835998"
+    ],
     "pattern": "^Favores\\ adiados\\ em\\ altares\\ ritual\u00EDsticos\\ t\u00EAm\\ o\\ custo\\ de\\ tributo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -56685,6 +57089,7 @@
   },
   {
     "text": "Favores recriados em Altares Ritual\u00EDsticos t\u00EAm o custo de tributo aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2282052746"
@@ -56694,8 +57099,11 @@
   {
     "text": "Favores recriados em Altares Ritual\u00EDsticos t\u00EAm o custo de tributo reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2282052746"
+    ],
     "pattern": "^Favores\\ recriados\\ em\\ Altares\\ Ritual\u00EDsticos\\ t\u00EAm\\ o\\ custo\\ de\\ tributo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -56706,6 +57114,7 @@
   },
   {
     "text": "Favores ritual\u00EDsticos em seus mapas t\u00EAm uma chance aumentada em #% de serem Press\u00E1gios",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4219853180"
@@ -56722,8 +57131,11 @@
   {
     "text": "Favores ritual\u00EDsticos em seus mapas t\u00EAm uma chance reduzida em #% de serem Press\u00E1gios",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4219853180"
+    ],
     "pattern": "^Favores\\ ritual\u00EDsticos\\ em\\ seus\\ mapas\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ serem\\ Press\u00E1gios$"
   },
   {
@@ -56950,6 +57362,7 @@
   },
   {
     "text": "Fendas Inst\u00E1veis geram 1 monstro raro adicional quando estabilizadas",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -56959,18 +57372,25 @@
   },
   {
     "text": "Fendas Inst\u00E1veis geram # monstros raros adicionais quando estabilizadas",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3762913035"
+    ],
     "pattern": "^Fendas\\ Inst\u00E1veis\\ geram\\ ([-0-9,.]\u002B)\\ monstros\\ raros\\ adicionais\\ quando\\ estabilizadas$"
   },
   {
     "text": "Fendas Inst\u00E1veis levam # segundos a mais para colapsar ap\u00F3s o cron\u00F4metro ser completado",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4104094246"
+    ],
     "pattern": "^Fendas\\ Inst\u00E1veis\\ levam\\ ([-0-9,.]\u002B)\\ segundos\\ a\\ mais\\ para\\ colapsar\\ ap\u00F3s\\ o\\ cron\u00F4metro\\ ser\\ completado$"
   },
   {
     "text": "Fendas Inst\u00E1veis levam um segundo a mais para colapsar ap\u00F3s o cron\u00F4metro ser completado",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -58250,6 +58670,14 @@
     "pattern": "^Fogo\\ da\\ Justi\u00E7a\\ concede\\ dano\\ m\u00E1gico\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Fome Primal",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3831171903|16"
+    ],
+    "pattern": "^Fome\\ Primal$"
+  },
+  {
     "text": "Fontes t\u00EAm #% de chance de conceder o dobro de \u00C1gua Sagrada",
     "lines": 1,
     "tradeIds": [
@@ -58563,6 +58991,7 @@
   },
   {
     "text": "Fragmentos de Simulacrum encontrados em seus mapas t\u00EAm o tamanho da pilha aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3836551197",
@@ -58573,8 +59002,12 @@
   {
     "text": "Fragmentos de Simulacrum encontrados em seus mapas t\u00EAm o tamanho da pilha reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_3836551197",
+      "explicit.stat_3836551197"
+    ],
     "pattern": "^Fragmentos\\ de\\ Simulacrum\\ encontrados\\ em\\ seus\\ mapas\\ t\u00EAm\\ o\\ tamanho\\ da\\ pilha\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -58740,12 +59173,18 @@
   },
   {
     "text": "Frascos de vida ganham # carga a cada 3 segundos",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1102738251",
+      "enchant.stat_1102738251",
+      "explicit.stat_1102738251"
+    ],
     "pattern": "^Frascos\\ de\\ vida\\ ganham\\ ([-0-9,.]\u002B)\\ carga\\ a\\ cada\\ 3\\ segundos$"
   },
   {
     "text": "Frascos de vida ganham # carga a cada 3 segundos",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -59015,13 +59454,17 @@
   {
     "text": "F\u00E9 Marcada",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|30"
+    ],
     "pattern": "^F\u00E9\\ Marcada$"
   },
   {
     "text": "F\u00F4lego",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|18"
+    ],
     "pattern": "^F\u00F4lego$"
   },
   {
@@ -59804,12 +60247,6 @@
   },
   {
     "text": "Ganha Agressividade por 4 segundos ao matar",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Ganha\\ Agressividade\\ por\\ 4\\ segundos\\ ao\\ matar$"
-  },
-  {
-    "text": "Ganha Agressividade por 4 segundos ao matar",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -59845,8 +60282,11 @@
   },
   {
     "text": "Ganha Agressividade por # segundos ao matar",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1195849808"
+    ],
     "pattern": "^Ganha\\ Agressividade\\ por\\ ([-0-9,.]\u002B)\\ segundos\\ ao\\ matar$"
   },
   {
@@ -60364,6 +60804,7 @@
   },
   {
     "text": "Ganha # carga ao ser atingido por um inimigo",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -60412,8 +60853,14 @@
   },
   {
     "text": "Ganha # cargas ao ser atingido por um inimigo",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3292710273",
+      "explicit.stat_3292710273",
+      "fractured.stat_3292710273",
+      "rune.stat_3292710273"
+    ],
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)\\ cargas\\ ao\\ ser\\ atingido\\ por\\ um\\ inimigo$"
   },
   {
@@ -60756,6 +61203,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1321054058",
+      "desecrated.stat_1321054058",
+      "explicit.stat_1321054058",
+      "fractured.stat_1321054058",
       "rune.stat_1936645603"
     ],
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ de\\ dano\\ f\u00EDsico\\ como\\ dano\\ de\\ fogo\\ adicional\\ com\\ ataques$"
@@ -61181,6 +61632,7 @@
   },
   {
     "text": "Ganha # de vida por inimigo amaldi\u00E7oado atingido com ataques",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2797971005",
@@ -61194,8 +61646,15 @@
   {
     "text": "Ganha # de vida por inimigo amaldi\u00E7oado atingido com ataques",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2797971005",
+      "explicit.stat_2797971005",
+      "fractured.stat_2797971005",
+      "implicit.stat_2797971005",
+      "rune.stat_2797971005"
+    ],
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)\\ de\\ vida\\ por\\ inimigo\\ amaldi\u00E7oado\\ atingido\\ com\\ ataques$"
   },
   {
@@ -61583,7 +62042,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1936645603"
+      "crafted.stat_3015669065",
+      "desecrated.stat_3015669065",
+      "explicit.stat_3015669065",
+      "fractured.stat_3015669065",
+      "rune.stat_1936645603",
+      "rune.stat_3015669065"
     ],
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ de\\ frio\\ como\\ dano\\ de\\ fogo\\ adicional$"
   },
@@ -61707,7 +62171,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "rune.stat_1936645603"
+      "crafted.stat_3015669065",
+      "desecrated.stat_3015669065",
+      "explicit.stat_3015669065",
+      "fractured.stat_3015669065",
+      "rune.stat_1936645603",
+      "rune.stat_3015669065"
     ],
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ el\u00E9trico\\ como\\ dano\\ de\\ fogo\\ adicional$"
   },
@@ -62275,8 +62744,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3666934677",
       "explicit.stat_57434274",
-      "fractured.stat_57434274"
+      "fractured.stat_57434274",
+      "rune.stat_3666934677"
     ],
     "pattern": "^Ganho\\ de\\ experi\u00EAncia\\ de\\ gemas\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62299,8 +62770,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3666934677",
       "explicit.stat_57434274",
-      "fractured.stat_57434274"
+      "fractured.stat_57434274",
+      "rune.stat_3666934677"
     ],
     "pattern": "^Ganho\\ de\\ experi\u00EAncia\\ de\\ gemas\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -62445,11 +62918,14 @@
     "text": "Gemas de habilidade n\u00E3o t\u00EAm requisitos de atributo",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4245256219"
+    ],
     "pattern": "^Gemas\\ de\\ habilidade\\ n\u00E3o\\ t\u00EAm\\ requisitos\\ de\\ atributo$"
   },
   {
     "text": "Gemas de habilidade t\u00EAm #% mais requisitos de atributo",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
@@ -62459,8 +62935,11 @@
   {
     "text": "Gemas de habilidade t\u00EAm #% menos requisitos de atributo",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4245256219"
+    ],
     "pattern": "^Gemas\\ de\\ habilidade\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ menos\\ requisitos\\ de\\ atributo$"
   },
   {
@@ -64033,22 +64512,6 @@
     "pattern": "^Gera\u00E7\u00E3o\\ de\\ gl\u00F3ria\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "Giant\u0027s Blood",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|2"
-    ],
-    "pattern": "^Giant\u0027s\\ Blood$"
-  },
-  {
-    "text": "Glancing Blows",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|22"
-    ],
-    "pattern": "^Glancing\\ Blows$"
-  },
-  {
     "text": "Glifo Tempestuoso causa dano aumentado em #%",
     "lines": 1,
     "tradeIds": [],
@@ -64649,6 +65112,7 @@
     "text": "Golpe de Rasp\u00E3o",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3831171903|22",
       "explicit.stat_4266776872"
     ],
     "pattern": "^Golpe\\ de\\ Rasp\u00E3o$"
@@ -65645,8 +66109,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_2567751411",
+      "explicit.stat_1967040409",
       "explicit.stat_2567751411",
+      "fractured.stat_1967040409",
       "fractured.stat_2567751411"
     ],
     "pattern": "^Habilidades\\ de\\ arco\\ t\u00EAm\\ a\\ \u00E1rea\\ de\\ efeito\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -65657,8 +66125,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_2567751411",
+      "explicit.stat_1967040409",
       "explicit.stat_2567751411",
+      "fractured.stat_1967040409",
       "fractured.stat_2567751411"
     ],
     "pattern": "^Habilidades\\ de\\ arco\\ t\u00EAm\\ a\\ \u00E1rea\\ de\\ efeito\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -66052,6 +66524,7 @@
   },
   {
     "text": "Habilidades de caos t\u00EAm a \u00E1rea de efeito aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2567751411",
@@ -66063,8 +66536,13 @@
   {
     "text": "Habilidades de caos t\u00EAm a \u00E1rea de efeito reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2567751411",
+      "explicit.stat_2567751411",
+      "fractured.stat_2567751411"
+    ],
     "pattern": "^Habilidades\\ de\\ caos\\ t\u00EAm\\ a\\ \u00E1rea\\ de\\ efeito\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -66223,8 +66701,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
+      "desecrated.stat_2567751411",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
+      "explicit.stat_2567751411",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
+      "fractured.stat_2567751411",
       "fractured.stat_429143663"
     ],
     "pattern": "^Habilidades\\ de\\ detona\u00E7\u00E3o\\ t\u00EAm\\ a\\ \u00E1rea\\ de\\ efeito\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -66235,8 +66720,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
+      "desecrated.stat_2567751411",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
+      "explicit.stat_2567751411",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
+      "fractured.stat_2567751411",
       "fractured.stat_429143663"
     ],
     "pattern": "^Habilidades\\ de\\ detona\u00E7\u00E3o\\ t\u00EAm\\ a\\ \u00E1rea\\ de\\ efeito\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -66483,8 +66975,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2720982137",
       "desecrated.stat_2957407601",
+      "explicit.stat_2720982137",
       "explicit.stat_2957407601",
+      "fractured.stat_2720982137",
       "fractured.stat_2957407601"
     ],
     "pattern": "^Habilidades\\ de\\ guarda\\ t\u00EAm\\ a\\ dura\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -66495,8 +66990,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2720982137",
       "desecrated.stat_2957407601",
+      "explicit.stat_2720982137",
       "explicit.stat_2957407601",
+      "fractured.stat_2720982137",
       "fractured.stat_2957407601"
     ],
     "pattern": "^Habilidades\\ de\\ guarda\\ t\u00EAm\\ a\\ dura\u00E7\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -66584,10 +67082,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_2567751411",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
       "explicit.stat_2567751411",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
       "fractured.stat_2567751411",
       "fractured.stat_429143663"
     ],
@@ -66599,10 +67101,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_2567751411",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
       "explicit.stat_2567751411",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
       "fractured.stat_2567751411",
       "fractured.stat_429143663"
     ],
@@ -69223,6 +69729,7 @@
   },
   {
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem intensidade de maldi\u00E7\u00F5es aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2770044702",
@@ -69234,12 +69741,18 @@
   {
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem intensidade de maldi\u00E7\u00F5es reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2770044702",
+      "explicit.stat_2770044702",
+      "fractured.stat_2770044702"
+    ],
     "pattern": "^Habilidades\\ passivas\\ not\u00E1veis\\ ao\\ alcance\\ tamb\u00E9m\\ concedem\\ intensidade\\ de\\ maldi\u00E7\u00F5es\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem velocidade de proj\u00E9teis aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1777421941",
@@ -69251,8 +69764,13 @@
   {
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem velocidade de proj\u00E9teis reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1777421941",
+      "explicit.stat_1777421941",
+      "fractured.stat_1777421941"
+    ],
     "pattern": "^Habilidades\\ passivas\\ not\u00E1veis\\ ao\\ alcance\\ tamb\u00E9m\\ concedem\\ velocidade\\ de\\ proj\u00E9teis\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -69403,6 +69921,7 @@
   },
   {
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem \u00E1rea de efeito aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3391917254",
@@ -69415,8 +69934,14 @@
   {
     "text": "Habilidades passivas not\u00E1veis ao alcance tamb\u00E9m concedem \u00E1rea de efeito reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_3391917254",
+      "desecrated.stat_3391917254",
+      "explicit.stat_3391917254",
+      "fractured.stat_3391917254"
+    ],
     "pattern": "^Habilidades\\ passivas\\ not\u00E1veis\\ ao\\ alcance\\ tamb\u00E9m\\ concedem\\ \u00E1rea\\ de\\ efeito\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -71012,6 +71537,7 @@
   },
   {
     "text": "Habilidades passivas pequenas ao alcance tamb\u00E9m concedem armadura aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3858398337",
@@ -71024,8 +71550,14 @@
   {
     "text": "Habilidades passivas pequenas ao alcance tamb\u00E9m concedem armadura reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_3858398337",
+      "desecrated.stat_3858398337",
+      "explicit.stat_3858398337",
+      "fractured.stat_3858398337"
+    ],
     "pattern": "^Habilidades\\ passivas\\ pequenas\\ ao\\ alcance\\ tamb\u00E9m\\ concedem\\ armadura\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -71076,6 +71608,7 @@
   },
   {
     "text": "Habilidades passivas pequenas ao alcance tamb\u00E9m concedem escudo de energia m\u00E1ximo aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3665922113",
@@ -71088,26 +71621,45 @@
   {
     "text": "Habilidades passivas pequenas ao alcance tamb\u00E9m concedem escudo de energia m\u00E1ximo reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_3665922113",
+      "desecrated.stat_3665922113",
+      "explicit.stat_3665922113",
+      "fractured.stat_3665922113"
+    ],
     "pattern": "^Habilidades\\ passivas\\ pequenas\\ ao\\ alcance\\ tamb\u00E9m\\ concedem\\ escudo\\ de\\ energia\\ m\u00E1ximo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Habilidades passivas pequenas ao alcance tamb\u00E9m concedem evas\u00E3o aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1994296038",
       "desecrated.stat_1994296038",
+      "desecrated.stat_533892981",
       "explicit.stat_1994296038",
-      "fractured.stat_1994296038"
+      "explicit.stat_533892981",
+      "fractured.stat_1994296038",
+      "fractured.stat_533892981"
     ],
     "pattern": "^Habilidades\\ passivas\\ pequenas\\ ao\\ alcance\\ tamb\u00E9m\\ concedem\\ evas\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Habilidades passivas pequenas ao alcance tamb\u00E9m concedem evas\u00E3o reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_1994296038",
+      "desecrated.stat_1994296038",
+      "desecrated.stat_533892981",
+      "explicit.stat_1994296038",
+      "explicit.stat_533892981",
+      "fractured.stat_1994296038",
+      "fractured.stat_533892981"
+    ],
     "pattern": "^Habilidades\\ passivas\\ pequenas\\ ao\\ alcance\\ tamb\u00E9m\\ concedem\\ evas\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -72225,14 +72777,6 @@
     "pattern": "^Habitantes\\ naturais\\ desta\\ \u00E1rea\\ foram\\ removidos$"
   },
   {
-    "text": "Heartstopper",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|18"
-    ],
-    "pattern": "^Heartstopper$"
-  },
-  {
     "text": "Hidrosfera causa dano aumentado em #%",
     "lines": 1,
     "tradeIds": [],
@@ -72265,14 +72809,6 @@
       "explicit.stat_3787436548"
     ],
     "pattern": "^Hist\u00F3rico$"
-  },
-  {
-    "text": "Hollow Palm Technique",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|27"
-    ],
-    "pattern": "^Hollow\\ Palm\\ Technique$"
   },
   {
     "text": "Honra m\u00E1xima aumentada em #%",
@@ -72862,8 +73398,18 @@
   },
   {
     "text": "Indicou o servi\u00E7o de # dekhara na akhara de Asenath \nPassivas no raio s\u00E3o conquistadas pelos maraketh",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Indicou\\ o\\ servi\u00E7o\\ de\\ ([-0-9,.]\u002B)\\ dekhara\\ na\\ akhara\\ de\\ Asenath\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ maraketh$"
   },
   {
@@ -72883,8 +73429,18 @@
   },
   {
     "text": "Indicou o servi\u00E7o de # dekhara na akhara de Balbala \nPassivas no raio s\u00E3o conquistadas pelos maraketh",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Indicou\\ o\\ servi\u00E7o\\ de\\ ([-0-9,.]\u002B)\\ dekhara\\ na\\ akhara\\ de\\ Balbala\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ maraketh$"
   },
   {
@@ -72904,8 +73460,18 @@
   },
   {
     "text": "Indicou o servi\u00E7o de # dekhara na akhara de Deshret \nPassivas no raio s\u00E3o conquistadas pelos maraketh",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Indicou\\ o\\ servi\u00E7o\\ de\\ ([-0-9,.]\u002B)\\ dekhara\\ na\\ akhara\\ de\\ Deshret\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ maraketh$"
   },
   {
@@ -72925,8 +73491,18 @@
   },
   {
     "text": "Indicou o servi\u00E7o de # dekhara na akhara de Nasima \nPassivas no raio s\u00E3o conquistadas pelos maraketh",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Indicou\\ o\\ servi\u00E7o\\ de\\ ([-0-9,.]\u002B)\\ dekhara\\ na\\ akhara\\ de\\ Nasima\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ maraketh$"
   },
   {
@@ -74483,7 +75059,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1617268696"
+      "desecrated.stat_1776945532",
+      "explicit.stat_1617268696",
+      "explicit.stat_1776945532"
     ],
     "pattern": "^Inimigos\\ mortos\\ por\\ voc\u00EA\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ explodir\\ e\\ causar\\ 500%\\ da\\ pr\u00F3pria\\ vida\\ m\u00E1xima\\ como\\ dano\\ de\\ fogo$"
   },
@@ -75351,7 +75929,9 @@
   {
     "text": "Inocula\u00E7\u00E3o do Caos",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|8"
+    ],
     "pattern": "^Inocula\u00E7\u00E3o\\ do\\ Caos$"
   },
   {
@@ -76127,9 +76707,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2487305362",
       "desecrated.stat_440490623",
+      "explicit.stat_2487305362",
       "explicit.stat_440490623",
-      "fractured.stat_440490623"
+      "fractured.stat_2487305362",
+      "fractured.stat_440490623",
+      "rune.stat_2487305362"
     ],
     "pattern": "^Intensidade\\ dos\\ envenenamentos\\ infligidos\\ por\\ voc\u00EA\\ com\\ golpes\\ cr\u00EDticos\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -76139,9 +76723,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2487305362",
       "desecrated.stat_440490623",
+      "explicit.stat_2487305362",
       "explicit.stat_440490623",
-      "fractured.stat_440490623"
+      "fractured.stat_2487305362",
+      "fractured.stat_440490623",
+      "rune.stat_2487305362"
     ],
     "pattern": "^Intensidade\\ dos\\ envenenamentos\\ infligidos\\ por\\ voc\u00EA\\ com\\ golpes\\ cr\u00EDticos\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -76222,6 +76810,7 @@
   },
   {
     "text": "Intensidade dos esfriamentos infligidos por voc\u00EA ao roubar mana aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_828179689"
@@ -76231,8 +76820,11 @@
   {
     "text": "Intensidade dos esfriamentos infligidos por voc\u00EA ao roubar mana reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_828179689"
+    ],
     "pattern": "^Intensidade\\ dos\\ esfriamentos\\ infligidos\\ por\\ voc\u00EA\\ ao\\ roubar\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -76418,9 +77010,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3166958180",
       "desecrated.stat_440490623",
+      "explicit.stat_3166958180",
       "explicit.stat_440490623",
-      "fractured.stat_440490623"
+      "fractured.stat_3166958180",
+      "fractured.stat_440490623",
+      "implicit.stat_3166958180",
+      "rune.stat_3166958180"
     ],
     "pattern": "^Intensidade\\ dos\\ sangramentos\\ infligidos\\ por\\ voc\u00EA\\ com\\ golpes\\ cr\u00EDticos\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -76430,9 +77027,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3166958180",
       "desecrated.stat_440490623",
+      "explicit.stat_3166958180",
       "explicit.stat_440490623",
-      "fractured.stat_440490623"
+      "fractured.stat_3166958180",
+      "fractured.stat_440490623",
+      "implicit.stat_3166958180",
+      "rune.stat_3166958180"
     ],
     "pattern": "^Intensidade\\ dos\\ sangramentos\\ infligidos\\ por\\ voc\u00EA\\ com\\ golpes\\ cr\u00EDticos\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -76559,16 +77161,20 @@
   },
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de afec\u00E7\u00E3o aumentadas em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3196512240",
       "desecrated.stat_3206904707",
+      "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
+      "explicit.stat_3514984677",
       "explicit.stat_3574578302",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
+      "fractured.stat_3514984677",
       "fractured.stat_3574578302"
     ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ afec\u00E7\u00E3o\\ aumentadas\\ em\\ ([-0-9,.]\u002B)%$"
@@ -76576,16 +77182,37 @@
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de afec\u00E7\u00E3o reduzidas em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
+      "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
+      "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
+      "fractured.stat_3196512240",
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
+    ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ afec\u00E7\u00E3o\\ reduzidas\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de atributo aumentadas em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2393315299",
+      "desecrated.stat_3196512240",
       "desecrated.stat_3206904707",
+      "explicit.stat_2393315299",
+      "explicit.stat_3196512240",
       "explicit.stat_3206904707",
+      "fractured.stat_2393315299",
+      "fractured.stat_3196512240",
       "fractured.stat_3206904707"
     ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ atributo\\ aumentadas\\ em\\ ([-0-9,.]\u002B)%$"
@@ -76593,8 +77220,19 @@
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de atributo reduzidas em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2393315299",
+      "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
+      "explicit.stat_2393315299",
+      "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
+      "fractured.stat_2393315299",
+      "fractured.stat_3196512240",
+      "fractured.stat_3206904707"
+    ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ atributo\\ reduzidas\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -76641,14 +77279,24 @@
   },
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de dano aumentadas em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_231689132",
       "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "explicit.stat_231689132",
       "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
+      "fractured.stat_231689132",
       "fractured.stat_3196512240",
-      "fractured.stat_3514984677"
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ dano\\ aumentadas\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -76788,8 +77436,25 @@
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de dano reduzidas em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_231689132",
+      "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
+      "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "explicit.stat_231689132",
+      "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
+      "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
+      "fractured.stat_231689132",
+      "fractured.stat_3196512240",
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
+    ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ dano\\ reduzidas\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -76797,14 +77462,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1972391381",
       "desecrated.stat_3196512240",
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "explicit.stat_1972391381",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "fractured.stat_1972391381",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
@@ -76818,14 +77486,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1972391381",
       "desecrated.stat_3196512240",
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "explicit.stat_1972391381",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "fractured.stat_1972391381",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
@@ -76877,19 +77548,43 @@
   },
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de lacaio aumentadas em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2393315299",
       "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
+      "desecrated.stat_3514984677",
+      "explicit.stat_2393315299",
       "explicit.stat_3196512240",
-      "fractured.stat_3196512240"
+      "explicit.stat_3206904707",
+      "explicit.stat_3514984677",
+      "fractured.stat_2393315299",
+      "fractured.stat_3196512240",
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677"
     ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ lacaio\\ aumentadas\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de lacaio reduzidas em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2393315299",
+      "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
+      "desecrated.stat_3514984677",
+      "explicit.stat_2393315299",
+      "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
+      "explicit.stat_3514984677",
+      "fractured.stat_2393315299",
+      "fractured.stat_3196512240",
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677"
+    ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ lacaio\\ reduzidas\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -76957,6 +77652,7 @@
   },
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de vida aumentadas em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2393315299",
@@ -76983,8 +77679,28 @@
   {
     "text": "Intensidades dos modificadores expl\u00EDcitos de vida reduzidas em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2393315299",
+      "desecrated.stat_3196512240",
+      "desecrated.stat_3206904707",
+      "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "desecrated.stat_363924732",
+      "explicit.stat_2393315299",
+      "explicit.stat_3196512240",
+      "explicit.stat_3206904707",
+      "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
+      "explicit.stat_363924732",
+      "fractured.stat_2393315299",
+      "fractured.stat_3196512240",
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
+      "fractured.stat_363924732"
+    ],
     "pattern": "^Intensidades\\ dos\\ modificadores\\ expl\u00EDcitos\\ de\\ vida\\ reduzidas\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -77486,14 +78202,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ira\\ tem\\ o\\ efeito\\ de\\ aura\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Iron Reflexes",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|21"
-    ],
-    "pattern": "^Iron\\ Reflexes$"
   },
   {
     "text": "Isca Taumat\u00FArgica",
@@ -79089,8 +79797,12 @@
   },
   {
     "text": "Jogadores recebem Senten\u00E7a de Morte por # segundo\nap\u00F3s matarem um monstro raro ou \u00FAnico",
+    "value": 1000,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_436406826",
+      "explicit.stat_436406826"
+    ],
     "pattern": "^Jogadores\\ recebem\\ Senten\u00E7a\\ de\\ Morte\\ por\\ ([-0-9,.]\u002B)\\ segundo\\nap\u00F3s\\ matarem\\ um\\ monstro\\ raro\\ ou\\ \u00FAnico$"
   },
   {
@@ -79795,7 +80507,8 @@
     "text": "Juramento do Fan\u00E1tico",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1315418254"
+      "explicit.stat_1315418254",
+      "explicit.stat_3831171903|33"
     ],
     "pattern": "^Juramento\\ do\\ Fan\u00E1tico$"
   },
@@ -79808,7 +80521,9 @@
   {
     "text": "Juventude Eterna",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|15"
+    ],
     "pattern": "^Juventude\\ Eterna$"
   },
   {
@@ -81563,8 +82278,18 @@
   },
   {
     "text": "Lembran\u00E7a de # feitos dignos de can\u00E7\u00F5es da linhagem de Medved \nPassivas no raio s\u00E3o conquistadas pelos kalguuranos",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Lembran\u00E7a\\ de\\ ([-0-9,.]\u002B)\\ feitos\\ dignos\\ de\\ can\u00E7\u00F5es\\ da\\ linhagem\\ de\\ Medved\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ kalguuranos$"
   },
   {
@@ -81584,8 +82309,18 @@
   },
   {
     "text": "Lembran\u00E7a de # feitos dignos de can\u00E7\u00F5es da linhagem de Olroth \nPassivas no raio s\u00E3o conquistadas pelos kalguuranos",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Lembran\u00E7a\\ de\\ ([-0-9,.]\u002B)\\ feitos\\ dignos\\ de\\ can\u00E7\u00F5es\\ da\\ linhagem\\ de\\ Olroth\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ kalguuranos$"
   },
   {
@@ -81605,8 +82340,18 @@
   },
   {
     "text": "Lembran\u00E7a de # feitos dignos de can\u00E7\u00F5es da linhagem de Vorana \nPassivas no raio s\u00E3o conquistadas pelos kalguuranos",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Lembran\u00E7a\\ de\\ ([-0-9,.]\u002B)\\ feitos\\ dignos\\ de\\ can\u00E7\u00F5es\\ da\\ linhagem\\ de\\ Vorana\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ kalguuranos$"
   },
   {
@@ -81626,8 +82371,18 @@
   },
   {
     "text": "Liderou # guerreiros sob o comando de Akoya \nPassivas no raio s\u00E3o conquistadas pelos karui",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Liderou\\ ([-0-9,.]\u002B)\\ guerreiros\\ sob\\ o\\ comando\\ de\\ Akoya\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ karui$"
   },
   {
@@ -81647,8 +82402,18 @@
   },
   {
     "text": "Liderou # guerreiros sob o comando de Kaom \nPassivas no raio s\u00E3o conquistadas pelos karui",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Liderou\\ ([-0-9,.]\u002B)\\ guerreiros\\ sob\\ o\\ comando\\ de\\ Kaom\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ karui$"
   },
   {
@@ -81668,8 +82433,18 @@
   },
   {
     "text": "Liderou # guerreiros sob o comando de Kiloava \nPassivas no raio s\u00E3o conquistadas pelos karui",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Liderou\\ ([-0-9,.]\u002B)\\ guerreiros\\ sob\\ o\\ comando\\ de\\ Kiloava\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ karui$"
   },
   {
@@ -81689,8 +82464,18 @@
   },
   {
     "text": "Liderou # guerreiros sob o comando de Rakiata \nPassivas no raio s\u00E3o conquistadas pelos karui",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Liderou\\ ([-0-9,.]\u002B)\\ guerreiros\\ sob\\ o\\ comando\\ de\\ Rakiata\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ karui$"
   },
   {
@@ -81746,14 +82531,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Linfas\\ Sobrenaturais\\ encontradas\\ em\\ seus\\ mapas\\ influenciados\\ pelo\\ Devorador\\ de\\ Mundos\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ serem\\ duplicadas$"
-  },
-  {
-    "text": "Lord of the Wilds",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|31"
-    ],
-    "pattern": "^Lord\\ of\\ the\\ Wilds$"
   },
   {
     "text": "Loucura Furiosa tem a perda de f\u00FAria aumentada em #% por segundo",
@@ -81834,7 +82611,8 @@
     "text": "Magia de Sangue",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2801937280"
+      "explicit.stat_2801937280",
+      "explicit.stat_3831171903|5"
     ],
     "pattern": "^Magia\\ de\\ Sangue$"
   },
@@ -83563,6 +84341,7 @@
   },
   {
     "text": "Matar monstros em seus mapas pausa o temporizador do Espelho de Del\u00EDrio por 1 segundo",
+    "matchedFuzzily": true,
     "value": 1000,
     "lines": 1,
     "tradeIds": [
@@ -83572,12 +84351,16 @@
   },
   {
     "text": "Matar monstros em seus mapas pausa o temporizador do Espelho de Del\u00EDrio por # segundos",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2323782229"
+    ],
     "pattern": "^Matar\\ monstros\\ em\\ seus\\ mapas\\ pausa\\ o\\ temporizador\\ do\\ Espelho\\ de\\ Del\u00EDrio\\ por\\ ([-0-9,.]\u002B)\\ segundos$"
   },
   {
     "text": "Matar monstros raros em seus mapas pausa o temporizador do Espelho de Del\u00EDrio por 1 segundo",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -83587,8 +84370,11 @@
   },
   {
     "text": "Matar monstros raros em seus mapas pausa o temporizador do Espelho de Del\u00EDrio por # segundos",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2323782229"
+    ],
     "pattern": "^Matar\\ monstros\\ raros\\ em\\ seus\\ mapas\\ pausa\\ o\\ temporizador\\ do\\ Espelho\\ de\\ Del\u00EDrio\\ por\\ ([-0-9,.]\u002B)\\ segundos$"
   },
   {
@@ -84174,14 +84960,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Minas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ serem\\ detonadas\\ mais\\ uma\\ vez$"
-  },
-  {
-    "text": "Mind Over Matter",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|10"
-    ],
-    "pattern": "^Mind\\ Over\\ Matter$"
   },
   {
     "text": "Minimapa revelado",
@@ -85098,6 +85876,7 @@
   },
   {
     "text": "Monstros abissais t\u00EAm a efetividade aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -85107,12 +85886,16 @@
   {
     "text": "Monstros abissais t\u00EAm a efetividade aumentada em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ abissais\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Monstros abissais t\u00EAm a efetividade aumentada em #% por fosso fechado",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_664606484"
@@ -85122,6 +85905,16 @@
   {
     "text": "Monstros abissais t\u00EAm a efetividade aumentada em #% por fosso fechado",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_664606484"
+    ],
+    "pattern": "^Monstros\\ abissais\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ fosso\\ fechado$"
+  },
+  {
+    "text": "Monstros abissais t\u00EAm a efetividade aumentada em #% por fosso fechado",
+    "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_664606484"
@@ -85138,6 +85931,7 @@
   },
   {
     "text": "Monstros abissais t\u00EAm uma chance aumentada em #% de ter modificadores abissais",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2789248444"
@@ -85153,8 +85947,11 @@
   {
     "text": "Monstros abissais t\u00EAm uma chance reduzida em #% de ter modificadores abissais",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2789248444"
+    ],
     "pattern": "^Monstros\\ abissais\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ ter\\ modificadores\\ abissais$"
   },
   {
@@ -85739,6 +86536,7 @@
   },
   {
     "text": "Monstros da Fenda t\u00EAm a efetividade aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -85748,8 +86546,11 @@
   {
     "text": "Monstros da Fenda t\u00EAm a efetividade aumentada em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ da\\ Fenda\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -86417,6 +87218,7 @@
   },
   {
     "text": "Monstros do Labirinto t\u00EAm a velocidade de ataque, de conjura\u00E7\u00E3o e de movimento aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3909654181",
@@ -86429,8 +87231,14 @@
   {
     "text": "Monstros do Labirinto t\u00EAm a velocidade de ataque, de conjura\u00E7\u00E3o e de movimento reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3909654181",
+      "explicit.stat_3909654181",
+      "fractured.stat_3909654181",
+      "sanctum.stat_3909654181"
+    ],
     "pattern": "^Monstros\\ do\\ Labirinto\\ t\u00EAm\\ a\\ velocidade\\ de\\ ataque,\\ de\\ conjura\u00E7\u00E3o\\ e\\ de\\ movimento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -86470,7 +87278,9 @@
     "text": "Monstros dos Vest\u00EDgios de Ver\u00EDsio largam uma quantidade de ver\u00EDsio aumentada em #%",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3520418269"
+    ],
     "pattern": "^Monstros\\ dos\\ Vest\u00EDgios\\ de\\ Ver\u00EDsio\\ largam\\ uma\\ quantidade\\ de\\ ver\u00EDsio\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -86707,6 +87517,7 @@
   },
   {
     "text": "Monstros humanoides t\u00EAm a efetividade aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -86716,8 +87527,11 @@
   {
     "text": "Monstros humanoides t\u00EAm a efetividade aumentada em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ humanoides\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -87106,6 +87920,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "sanctum.stat_3114474137",
       "sanctum.stat_408585189"
     ],
     "pattern": "^Monstros\\ m\u00E1gicos\\ sofrem\\ dano\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
@@ -87116,12 +87931,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "sanctum.stat_3114474137",
       "sanctum.stat_408585189"
     ],
     "pattern": "^Monstros\\ m\u00E1gicos\\ sofrem\\ dano\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Monstros m\u00E1gicos t\u00EAm a efetividade aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -87131,8 +87948,11 @@
   {
     "text": "Monstros m\u00E1gicos t\u00EAm a efetividade aumentada em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ m\u00E1gicos\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -87207,6 +88027,7 @@
   },
   {
     "text": "Monstros normais t\u00EAm a efetividade aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -87216,8 +88037,11 @@
   {
     "text": "Monstros normais t\u00EAm a efetividade aumentada em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ normais\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -87891,6 +88715,7 @@
   },
   {
     "text": "Monstros raros t\u00EAm a efetividade aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -87900,8 +88725,11 @@
   {
     "text": "Monstros raros t\u00EAm a efetividade aumentada em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ raros\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -88083,6 +88911,7 @@
   },
   {
     "text": "Monstros revividos nos Altares Ritual\u00EDsticos t\u00EAm uma chance aumentada em #% de serem m\u00E1gicos",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1031644647"
@@ -88091,6 +88920,7 @@
   },
   {
     "text": "Monstros revividos nos Altares Ritual\u00EDsticos t\u00EAm uma chance aumentada em #% de serem raros",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3979184174"
@@ -88100,15 +88930,21 @@
   {
     "text": "Monstros revividos nos Altares Ritual\u00EDsticos t\u00EAm uma chance reduzida em #% de serem m\u00E1gicos",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1031644647"
+    ],
     "pattern": "^Monstros\\ revividos\\ nos\\ Altares\\ Ritual\u00EDsticos\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ serem\\ m\u00E1gicos$"
   },
   {
     "text": "Monstros revividos nos Altares Ritual\u00EDsticos t\u00EAm uma chance reduzida em #% de serem raros",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3979184174"
+    ],
     "pattern": "^Monstros\\ revividos\\ nos\\ Altares\\ Ritual\u00EDsticos\\ t\u00EAm\\ uma\\ chance\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ de\\ serem\\ raros$"
   },
   {
@@ -88176,6 +89012,7 @@
   },
   {
     "text": "Monstros sacrificados em Altares Ritual\u00EDsticos concedem tributo aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_159726667"
@@ -88185,19 +89022,26 @@
   {
     "text": "Monstros sacrificados em Altares Ritual\u00EDsticos concedem tributo reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_159726667"
+    ],
     "pattern": "^Monstros\\ sacrificados\\ em\\ Altares\\ Ritual\u00EDsticos\\ concedem\\ tributo\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Monstros sacrificados em Altares Ritual\u00EDsticos em seus mapas concedem -#% de tributo",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_159726667"
+    ],
     "pattern": "^Monstros\\ sacrificados\\ em\\ Altares\\ Ritual\u00EDsticos\\ em\\ seus\\ mapas\\ concedem\\ -([-0-9,.]\u002B)%\\ de\\ tributo$"
   },
   {
     "text": "Monstros sacrificados em Altares Ritual\u00EDsticos em seus mapas concedem \u002B#% de tributo",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_159726667"
@@ -88619,7 +89463,9 @@
     "text": "Monstros t\u00EAm a efetividade aumentada em #%",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -89115,6 +89961,7 @@
   },
   {
     "text": "Monstros \u00FAnicos t\u00EAm a efetividade aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -89124,8 +89971,11 @@
   {
     "text": "Monstros \u00FAnicos t\u00EAm a efetividade aumentada em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monstros\\ \u00FAnicos\\ t\u00EAm\\ a\\ efetividade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -89312,14 +90162,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^M\u00E3os\\ da\\ Fenda\\ s\u00E3o\\ pequenas$"
-  },
-  {
-    "text": "Necromantic Talisman",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|12"
-    ],
-    "pattern": "^Necromantic\\ Talisman$"
   },
   {
     "text": "Nova Glacial sempre congela",
@@ -91121,14 +91963,6 @@
     "pattern": "^O\\ \u00C1rbitro\\ tem\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ largar\\ uma\\ moeda\\ de\\ encaixe\\ valiosa$"
   },
   {
-    "text": "Oasis",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|19"
-    ],
-    "pattern": "^Oasis$"
-  },
-  {
     "text": "Oferenda Espiritual concede \u002B#% ao b\u00F4nus de dano cr\u00EDtico",
     "lines": 1,
     "tradeIds": [],
@@ -91800,30 +92634,27 @@
   {
     "text": "O\u00E1sis",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|19"
+    ],
     "pattern": "^O\u00E1sis$"
   },
   {
     "text": "Pacto Vaal",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2257118425"
+      "explicit.stat_2257118425",
+      "explicit.stat_3831171903|20"
     ],
     "pattern": "^Pacto\\ Vaal$"
   },
   {
     "text": "Pacto da Chama Negra",
     "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Pacto\\ da\\ Chama\\ Negra$"
-  },
-  {
-    "text": "Pain Attunement",
-    "lines": 1,
     "tradeIds": [
-      "explicit.stat_3831171903|7"
+      "explicit.stat_3831171903|28"
     ],
-    "pattern": "^Pain\\ Attunement$"
+    "pattern": "^Pacto\\ da\\ Chama\\ Negra$"
   },
   {
     "text": "Pancada Dominadora pode invocar 1 Sentinela da Domina\u00E7\u00E3o m\u00E1gica adicional",
@@ -92884,6 +93715,7 @@
   },
   {
     "text": "Penalidade de velocidade de movimento ao usar habilidades de fogo durante o movimento aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -92896,12 +93728,19 @@
   {
     "text": "Penalidade de velocidade de movimento ao usar habilidades de fogo durante o movimento reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^Penalidade\\ de\\ velocidade\\ de\\ movimento\\ ao\\ usar\\ habilidades\\ de\\ fogo\\ durante\\ o\\ movimento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Penalidade de velocidade de movimento ao usar habilidades de frio durante o movimento aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -92914,8 +93753,14 @@
   {
     "text": "Penalidade de velocidade de movimento ao usar habilidades de frio durante o movimento reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^Penalidade\\ de\\ velocidade\\ de\\ movimento\\ ao\\ usar\\ habilidades\\ de\\ frio\\ durante\\ o\\ movimento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -92997,6 +93842,7 @@
   },
   {
     "text": "Penalidades infligidas por amea\u00E7as t\u00EAm a intensidade da desacelera\u00E7\u00E3o aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3650992555",
@@ -93007,8 +93853,12 @@
   {
     "text": "Penalidades infligidas por amea\u00E7as t\u00EAm a intensidade da desacelera\u00E7\u00E3o reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_3650992555",
+      "explicit.stat_3650992555"
+    ],
     "pattern": "^Penalidades\\ infligidas\\ por\\ amea\u00E7as\\ t\u00EAm\\ a\\ intensidade\\ da\\ desacelera\u00E7\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -94535,6 +95385,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1683578560",
+      "explicit.stat_3831171903|3",
       "rune.stat_1683578560"
     ],
     "pattern": "^Postura\\ Inabal\u00E1vel$"
@@ -95253,14 +96104,6 @@
       "sanctum.stat_3096446459"
     ],
     "pattern": "^Pre\u00E7os\\ do\\ comerciante\\ reduzidos\\ em\\ ([-0-9,.]\u002B)%$"
-  },
-  {
-    "text": "Primal Hunger",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|16"
-    ],
-    "pattern": "^Primal\\ Hunger$"
   },
   {
     "text": "Primeiro lacaio invocado n\u00E3o tem reserva de esp\u00EDrito base",
@@ -96142,6 +96985,7 @@
   },
   {
     "text": "Proj\u00E9teis t\u00EAm o b\u00F4nus de dano cr\u00EDtico contra inimigos a mais de 6 m aumentado em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2573406169",
@@ -96152,8 +96996,12 @@
   {
     "text": "Proj\u00E9teis t\u00EAm o b\u00F4nus de dano cr\u00EDtico contra inimigos a mais de 6 m reduzido em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2573406169",
+      "explicit.stat_2573406169"
+    ],
     "pattern": "^Proj\u00E9teis\\ t\u00EAm\\ o\\ b\u00F4nus\\ de\\ dano\\ cr\u00EDtico\\ contra\\ inimigos\\ a\\ mais\\ de\\ 6\\ m\\ reduzido\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -96397,14 +97245,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Pulso\\ Congelante\\ dispara\\ ([-0-9,.]\u002B)\\ proj\u00E9teis\\ adicionais$"
-  },
-  {
-    "text": "Punho de Ferro",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3528245713"
-    ],
-    "pattern": "^Punho\\ de\\ Ferro$"
   },
   {
     "text": "Punhos Fechados do Chefe da Fenda em seus mapas geram um Chefe da Fenda quando abertos",
@@ -96761,6 +97601,7 @@
   },
   {
     "text": "Quando a Volatilidade em voc\u00EA explode, voc\u00EA recupera uma quantidade equivalente de Volatilidade",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2248594298"
@@ -96931,6 +97772,7 @@
   },
   {
     "text": "Quantidade de Fragmentos da Fenda largados por monstros da Fenda em seus mapas aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_624534143"
@@ -96940,8 +97782,11 @@
   {
     "text": "Quantidade de Fragmentos da Fenda largados por monstros da Fenda em seus mapas reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_624534143"
+    ],
     "pattern": "^Quantidade\\ de\\ Fragmentos\\ da\\ Fenda\\ largados\\ por\\ monstros\\ da\\ Fenda\\ em\\ seus\\ mapas\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -97052,6 +97897,7 @@
   },
   {
     "text": "Quantidade de Pedras-guia largadas por chefes de mapa na \u00E1rea aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1457896329"
@@ -97061,8 +97907,11 @@
   {
     "text": "Quantidade de Pedras-guia largadas por chefes de mapa na \u00E1rea reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1457896329"
+    ],
     "pattern": "^Quantidade\\ de\\ Pedras-guia\\ largadas\\ por\\ chefes\\ de\\ mapa\\ na\\ \u00E1rea\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -97549,6 +98398,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_3138466258",
       "explicit.stat_2390685262"
     ],
     "pattern": "^Quantidade\\ de\\ itens\\ encontrados\\ nesta\\ \u00E1rea\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -97559,6 +98409,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_3138466258",
       "explicit.stat_2390685262"
     ],
     "pattern": "^Quantidade\\ de\\ itens\\ encontrados\\ nesta\\ \u00E1rea\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -97936,6 +98787,7 @@
   },
   {
     "text": "Quantidade de marcadores de monstros r\u00FAnicos aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1640965354",
@@ -97984,8 +98836,12 @@
   {
     "text": "Quantidade de marcadores de monstros r\u00FAnicos reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1640965354",
+      "implicit.stat_1640965354"
+    ],
     "pattern": "^Quantidade\\ de\\ marcadores\\ de\\ monstros\\ r\u00FAnicos\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -98073,6 +98929,7 @@
   },
   {
     "text": "Quantidade de monstros raros da Expedi\u00E7\u00E3o aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2694800111"
@@ -98081,6 +98938,7 @@
   },
   {
     "text": "Quantidade de monstros raros da Expedi\u00E7\u00E3o na \u00E1rea aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2694800111"
@@ -98090,12 +98948,16 @@
   {
     "text": "Quantidade de monstros raros da Expedi\u00E7\u00E3o na \u00E1rea reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2694800111"
+    ],
     "pattern": "^Quantidade\\ de\\ monstros\\ raros\\ da\\ Expedi\u00E7\u00E3o\\ na\\ \u00E1rea\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Quantidade de monstros raros da Expedi\u00E7\u00E3o no mapa aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2694800111"
@@ -98105,15 +98967,21 @@
   {
     "text": "Quantidade de monstros raros da Expedi\u00E7\u00E3o no mapa reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2694800111"
+    ],
     "pattern": "^Quantidade\\ de\\ monstros\\ raros\\ da\\ Expedi\u00E7\u00E3o\\ no\\ mapa\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Quantidade de monstros raros da Expedi\u00E7\u00E3o reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2694800111"
+    ],
     "pattern": "^Quantidade\\ de\\ monstros\\ raros\\ da\\ Expedi\u00E7\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -98566,7 +99434,9 @@
   {
     "text": "Querer \u00E9 Poder",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|10"
+    ],
     "pattern": "^Querer\\ \u00E9\\ Poder$"
   },
   {
@@ -98970,8 +99840,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3917489142",
+      "desecrated.stat_3917489142",
       "enchant.stat_2306002879",
-      "explicit.stat_2306002879"
+      "enchant.stat_3917489142",
+      "explicit.stat_2306002879",
+      "explicit.stat_3917489142",
+      "fractured.stat_3917489142",
+      "implicit.stat_3917489142",
+      "rune.stat_3917489142"
     ],
     "pattern": "^Raridade\\ de\\ itens\\ encontrados\\ nesta\\ \u00E1rea\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -98981,8 +99858,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3917489142",
+      "desecrated.stat_3917489142",
       "enchant.stat_2306002879",
-      "explicit.stat_2306002879"
+      "enchant.stat_3917489142",
+      "explicit.stat_2306002879",
+      "explicit.stat_3917489142",
+      "fractured.stat_3917489142",
+      "implicit.stat_3917489142",
+      "rune.stat_3917489142"
     ],
     "pattern": "^Raridade\\ de\\ itens\\ encontrados\\ nesta\\ \u00E1rea\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -98991,8 +99875,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3917489142",
+      "desecrated.stat_3917489142",
       "enchant.stat_2306002879",
-      "explicit.stat_2306002879"
+      "enchant.stat_3917489142",
+      "explicit.stat_2306002879",
+      "explicit.stat_3917489142",
+      "fractured.stat_3917489142",
+      "implicit.stat_3917489142",
+      "rune.stat_3917489142"
     ],
     "pattern": "^Raridade\\ de\\ itens\\ encontrados\\ no\\ Pesadelo\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -99002,8 +99893,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3917489142",
+      "desecrated.stat_3917489142",
       "enchant.stat_2306002879",
-      "explicit.stat_2306002879"
+      "enchant.stat_3917489142",
+      "explicit.stat_2306002879",
+      "explicit.stat_3917489142",
+      "fractured.stat_3917489142",
+      "implicit.stat_3917489142",
+      "rune.stat_3917489142"
     ],
     "pattern": "^Raridade\\ de\\ itens\\ encontrados\\ no\\ Pesadelo\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -101260,6 +102158,7 @@
   },
   {
     "text": "Recupera\u00E7\u00E3o de vida aumentada em #% enquanto seu companheiro estiver em sua presen\u00E7a",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_1779262102",
@@ -101425,8 +102324,12 @@
   {
     "text": "Recupera\u00E7\u00E3o de vida reduzida em #% enquanto seu companheiro estiver em sua presen\u00E7a",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1779262102",
+      "rune.stat_2122116143"
+    ],
     "pattern": "^Recupera\u00E7\u00E3o\\ de\\ vida\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ seu\\ companheiro\\ estiver\\ em\\ sua\\ presen\u00E7a$"
   },
   {
@@ -101730,6 +102633,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_326965591",
+      "explicit.stat_3831171903|21",
       "rune.stat_326965591"
     ],
     "pattern": "^Reflexos\\ Firmes$"
@@ -102090,7 +102994,12 @@
     "text": "Regenera #% de vida m\u00E1xima por segundo",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_836936635",
+      "explicit.stat_836936635",
+      "implicit.stat_836936635",
+      "rune.stat_836936635"
+    ],
     "pattern": "^Regenera\\ ([-0-9,.]\u002B)%\\ de\\ vida\\ m\u00E1xima\\ por\\ segundo$"
   },
   {
@@ -103402,6 +104311,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3247805335",
+      "explicit.stat_3631920880",
       "explicit.stat_4207433208"
     ],
     "pattern": "^Resist\u00EAncia\\ a\\ dano\\ de\\ caos\\ n\u00E3o\\ \u00E9\\ afetada\\ por\\ penalidades\\ de\\ \u00E1rea$"
@@ -103688,6 +104598,7 @@
   },
   {
     "text": "Resist\u00EAncia-limite a atordoamento aumentada em #% para cada vez que voc\u00EA sofreu um atordoamento recente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1405298142",
@@ -103923,8 +104834,14 @@
   {
     "text": "Resist\u00EAncia-limite a atordoamento reduzido em #% para cada vez que voc\u00EA sofreu um atordoamento recente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1405298142",
+      "explicit.stat_1405298142",
+      "fractured.stat_1405298142",
+      "rune.stat_751944209"
+    ],
     "pattern": "^Resist\u00EAncia-limite\\ a\\ atordoamento\\ reduzido\\ em\\ ([-0-9,.]\u002B)%\\ para\\ cada\\ vez\\ que\\ voc\u00EA\\ sofreu\\ um\\ atordoamento\\ recente$"
   },
   {
@@ -104008,20 +104925,12 @@
     "pattern": "^Resist\u00EAncias\\ elementais\\ reduzidas\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
-    "text": "Resolute Technique",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|6"
-    ],
-    "pattern": "^Resolute\\ Technique$"
-  },
-  {
-    "text": "Resonance",
+    "text": "Resson\u00E2ncia",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3831171903|14"
     ],
-    "pattern": "^Resonance$"
+    "pattern": "^Resson\u00E2ncia$"
   },
   {
     "text": "Resta # utiliza\u00E7\u00E3o",
@@ -104148,14 +105057,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Rituais\\ t\u00EAm\\ 8%\\ de\\ chance\\ de\\ serem\\ o\\ Ritual\\ da\\ Rainha$"
-  },
-  {
-    "text": "Ritual Cadence",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|29"
-    ],
-    "pattern": "^Ritual\\ Cadence$"
   },
   {
     "text": "Ritual Proibido dispara 1 proj\u00E9til adicional",
@@ -104904,7 +105805,8 @@
     "text": "Sangue de Gigante",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1875158664"
+      "explicit.stat_1875158664",
+      "explicit.stat_3831171903|2"
     ],
     "pattern": "^Sangue\\ de\\ Gigante$"
   },
@@ -104945,14 +105847,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Sargentos\\ da\\ Legi\u00E3o\\ em\\ seus\\ mapas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ adicional\\ de\\ ter\\ recompensas$"
-  },
-  {
-    "text": "Scarred Faith",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|30"
-    ],
-    "pattern": "^Scarred\\ Faith$"
   },
   {
     "text": "Se cargas de um Frasco de Ametista forem consumidas, causa #% do dano f\u00EDsico como dano de caos adicional",
@@ -105056,12 +105950,16 @@
   {
     "text": "Se voc\u00EA estiver em vida cheia, o dano dos inimigos em voc\u00EA \u00E9 Azarado",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3753748365"
+    ],
     "pattern": "^Se\\ voc\u00EA\\ estiver\\ em\\ vida\\ cheia,\\ o\\ dano\\ dos\\ inimigos\\ em\\ voc\u00EA\\ \u00E9\\ Azarado$"
   },
   {
     "text": "Se voc\u00EA estiver em vida cheia, o dano dos inimigos em voc\u00EA \u00E9 Sortudo",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3753748365"
@@ -105543,7 +106441,9 @@
   {
     "text": "Senhor dos Ermos",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|31"
+    ],
     "pattern": "^Senhor\\ dos\\ Ermos$"
   },
   {
@@ -106127,6 +107027,7 @@
   },
   {
     "text": "Seus inc\u00EAndios se alastram para outros inimigos a at\u00E9 # metro por # segundo",
+    "matchedFuzzily": true,
     "value": 10,
     "lines": 1,
     "tradeIds": [
@@ -106136,8 +107037,11 @@
   },
   {
     "text": "Seus inc\u00EAndios se alastram para outros inimigos a at\u00E9 # metros por # segundo",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3314057862"
+    ],
     "pattern": "^Seus\\ inc\u00EAndios\\ se\\ alastram\\ para\\ outros\\ inimigos\\ a\\ at\u00E9\\ ([-0-9,.]\u002B)\\ metros\\ por\\ ([-0-9,.]\u002B)\\ segundo$"
   },
   {
@@ -106207,7 +107111,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466"
+      "explicit.stat_2440265466",
+      "explicit.stat_3049505189"
     ],
     "pattern": "^Seus\\ mapas\\ com\\ Fendas\\ cont\u00EAm\\ 10\\ Fendas\\ adicionais$"
   },
@@ -106243,7 +107148,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466"
+      "explicit.stat_2440265466",
+      "explicit.stat_3049505189"
     ],
     "pattern": "^Seus\\ mapas\\ com\\ Fendas\\ t\u00EAm\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ conter\\ 10\\ Fendas\\ adicionais$"
   },
@@ -107251,12 +108157,16 @@
   },
   {
     "text": "Seus mapas t\u00EAm # modificador aleat\u00F3rio adicional",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_588512487"
+    ],
     "pattern": "^Seus\\ mapas\\ t\u00EAm\\ ([-0-9,.]\u002B)\\ modificador\\ aleat\u00F3rio\\ adicional$"
   },
   {
     "text": "Seus mapas t\u00EAm # modificador aleat\u00F3rio adicional",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -107493,6 +108403,7 @@
     "text": "Sintonia com a Dor",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3831171903|7",
       "explicit.stat_98977150",
       "rune.stat_98977150"
     ],
@@ -108926,6 +109837,14 @@
     "pattern": "^Sufocado$"
   },
   {
+    "text": "Sussurros da Ru\u00EDna",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3831171903|11"
+    ],
+    "pattern": "^Sussurros\\ da\\ Ru\u00EDna$"
+  },
+  {
     "text": "Talhada para glorificar # novos fi\u00E9is convertidos pelo sumo templ\u00E1rio Avarius\nPassivas no raio de alcance s\u00E3o conquistadas pelos templ\u00E1rios",
     "lines": 2,
     "tradeIds": [
@@ -108942,8 +109861,18 @@
   },
   {
     "text": "Talhada para glorificar # novos fi\u00E9is convertidos pelo sumo templ\u00E1rio Avarius \nPassivas no raio s\u00E3o conquistadas pelos templ\u00E1rios",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Talhada\\ para\\ glorificar\\ ([-0-9,.]\u002B)\\ novos\\ fi\u00E9is\\ convertidos\\ pelo\\ sumo\\ templ\u00E1rio\\ Avarius\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ templ\u00E1rios$"
   },
   {
@@ -108963,8 +109892,18 @@
   },
   {
     "text": "Talhada para glorificar # novos fi\u00E9is convertidos pelo sumo templ\u00E1rio Dominus \nPassivas no raio s\u00E3o conquistadas pelos templ\u00E1rios",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Talhada\\ para\\ glorificar\\ ([-0-9,.]\u002B)\\ novos\\ fi\u00E9is\\ convertidos\\ pelo\\ sumo\\ templ\u00E1rio\\ Dominus\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ templ\u00E1rios$"
   },
   {
@@ -108984,8 +109923,18 @@
   },
   {
     "text": "Talhada para glorificar # novos fi\u00E9is convertidos pelo sumo templ\u00E1rio Maxarius \nPassivas no raio s\u00E3o conquistadas pelos templ\u00E1rios",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Talhada\\ para\\ glorificar\\ ([-0-9,.]\u002B)\\ novos\\ fi\u00E9is\\ convertidos\\ pelo\\ sumo\\ templ\u00E1rio\\ Maxarius\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ templ\u00E1rios$"
   },
   {
@@ -109005,9 +109954,27 @@
   },
   {
     "text": "Talhada para glorificar # novos fi\u00E9is convertidos pelo sumo templ\u00E1rio Venarius \nPassivas no raio s\u00E3o conquistadas pelos templ\u00E1rios",
+    "matchedFuzzily": true,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3418580811|21",
+      "explicit.stat_3418580811|22",
+      "explicit.stat_3418580811|23",
+      "explicit.stat_3418580811|24",
+      "explicit.stat_3418580811|25",
+      "explicit.stat_3418580811|26",
+      "explicit.stat_3418580811|27",
+      "explicit.stat_3418580811|28"
+    ],
     "pattern": "^Talhada\\ para\\ glorificar\\ ([-0-9,.]\u002B)\\ novos\\ fi\u00E9is\\ convertidos\\ pelo\\ sumo\\ templ\u00E1rio\\ Venarius\\ \\nPassivas\\ no\\ raio\\ s\u00E3o\\ conquistadas\\ pelos\\ templ\u00E1rios$"
+  },
+  {
+    "text": "Talism\u00E3 Necrom\u00E2ntico",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3831171903|12"
+    ],
+    "pattern": "^Talism\u00E3\\ Necrom\u00E2ntico$"
   },
   {
     "text": "Talism\u00E3s encontrados nesta \u00E1rea s\u00E3o de 1 n\u00EDvel mais alto",
@@ -110740,20 +111707,11 @@
   },
   {
     "text": "Todo segundo uso da habilidade de pancada durante a transforma\u00E7\u00E3o recebe Impulso Ancestral\nTodo segundo uso da habilidade de golpe durante a transforma\u00E7\u00E3o recebe Impulso Ancestral",
-    "matchedFuzzily": true,
     "lines": 2,
     "tradeIds": [
       "explicit.stat_2224139044"
     ],
     "pattern": "^Todo\\ segundo\\ uso\\ da\\ habilidade\\ de\\ pancada\\ durante\\ a\\ transforma\u00E7\u00E3o\\ recebe\\ Impulso\\ Ancestral\\nTodo\\ segundo\\ uso\\ da\\ habilidade\\ de\\ golpe\\ durante\\ a\\ transforma\u00E7\u00E3o\\ recebe\\ Impulso\\ Ancestral$"
-  },
-  {
-    "text": "Todo segundo uso da habilidade de pancada durante a transforma\u00E7\u00E3o recebe Refor\u00E7o Ancestral\nTodo segundo uso da habilidade de golpe durante a transforma\u00E7\u00E3o recebe Refor\u00E7o Ancestral",
-    "lines": 2,
-    "tradeIds": [
-      "explicit.stat_2224139044"
-    ],
-    "pattern": "^Todo\\ segundo\\ uso\\ da\\ habilidade\\ de\\ pancada\\ durante\\ a\\ transforma\u00E7\u00E3o\\ recebe\\ Refor\u00E7o\\ Ancestral\\nTodo\\ segundo\\ uso\\ da\\ habilidade\\ de\\ golpe\\ durante\\ a\\ transforma\u00E7\u00E3o\\ recebe\\ Refor\u00E7o\\ Ancestral$"
   },
   {
     "text": "Todos os Legados do Mago t\u00EAm o efeito aumentado em #% por Legado do Mago duplicado que voc\u00EA tiver",
@@ -111324,14 +112282,6 @@
     "pattern": "^Tropas\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ raridade\\ de\\ itens\\ largados$"
   },
   {
-    "text": "Trusted Kinship",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|25"
-    ],
-    "pattern": "^Trusted\\ Kinship$"
-  },
-  {
     "text": "Tul, Avalanche Insidiosa, tem #% de chance de ser duplicado em seus mapas",
     "lines": 1,
     "tradeIds": [],
@@ -111615,13 +112565,17 @@
   {
     "text": "T\u00E9cnica Resoluta",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|6"
+    ],
     "pattern": "^T\u00E9cnica\\ Resoluta$"
   },
   {
     "text": "T\u00E9cnica da Palma C\u00F4ncava",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|27"
+    ],
     "pattern": "^T\u00E9cnica\\ da\\ Palma\\ C\u00F4ncava$"
   },
   {
@@ -111726,14 +112680,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Uma\\ t\u00E1bua\\ adicional\\ pode\\ ser\\ usada\\ em\\ mapas\\ de\\ cidades$"
-  },
-  {
-    "text": "Unwavering Stance",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|3"
-    ],
-    "pattern": "^Unwavering\\ Stance$"
   },
   {
     "text": "Usado ao atingir um inimigo raro ou \u00FAnico, se o efeito j\u00E1 n\u00E3o estiver ativo",
@@ -111981,14 +112927,6 @@
     "pattern": "^Uul-Netol,\\ Carne\\ Liberta,\\ \u00E9\\ duplicado\\ em\\ seus\\ mapas$"
   },
   {
-    "text": "Vaal Pact",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|20"
-    ],
-    "pattern": "^Vaal\\ Pact$"
-  },
-  {
     "text": "Vantagens dos Renegados s\u00E3o duplicadas",
     "lines": 1,
     "tradeIds": [],
@@ -112155,8 +113093,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2250533757",
+      "desecrated.stat_2250533757",
       "desecrated.stat_710476746",
-      "explicit.stat_710476746"
+      "enchant.stat_2250533757",
+      "explicit.stat_2250533757",
+      "explicit.stat_710476746",
+      "fractured.stat_2250533757",
+      "implicit.stat_2250533757",
+      "rune.stat_2250533757",
+      "sanctum.stat_1416455556"
     ],
     "pattern": "^Velocidade\\ de\\ arrombamento\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -112166,8 +113112,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2250533757",
+      "desecrated.stat_2250533757",
       "desecrated.stat_710476746",
-      "explicit.stat_710476746"
+      "enchant.stat_2250533757",
+      "explicit.stat_2250533757",
+      "explicit.stat_710476746",
+      "fractured.stat_2250533757",
+      "implicit.stat_2250533757",
+      "rune.stat_2250533757",
+      "sanctum.stat_1416455556"
     ],
     "pattern": "^Velocidade\\ de\\ arrombamento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -112448,6 +113402,7 @@
   },
   {
     "text": "Velocidade de ataque aumentada em #%, se voc\u00EA causou um golpe cr\u00EDtico recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1174076861"
@@ -112585,12 +113540,15 @@
       "desecrated.stat_1135928777",
       "desecrated.stat_1165163804",
       "desecrated.stat_3283482523",
+      "desecrated.stat_3759735052",
       "explicit.stat_1135928777",
       "explicit.stat_1165163804",
       "explicit.stat_3283482523",
+      "explicit.stat_3759735052",
       "fractured.stat_1135928777",
       "fractured.stat_1165163804",
-      "fractured.stat_3283482523"
+      "fractured.stat_3283482523",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ adagas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -112603,12 +113561,15 @@
       "desecrated.stat_1135928777",
       "desecrated.stat_1165163804",
       "desecrated.stat_3283482523",
+      "desecrated.stat_3759735052",
       "explicit.stat_1135928777",
       "explicit.stat_1165163804",
       "explicit.stat_3283482523",
+      "explicit.stat_3759735052",
       "fractured.stat_1135928777",
       "fractured.stat_1165163804",
-      "fractured.stat_3283482523"
+      "fractured.stat_3283482523",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ adagas\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -112745,8 +113706,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1135928777",
+      "desecrated.stat_1165163804",
       "explicit.stat_1135928777",
-      "fractured.stat_1135928777"
+      "explicit.stat_1165163804",
+      "fractured.stat_1135928777",
+      "fractured.stat_1165163804"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ espadas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -112757,8 +113721,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1135928777",
+      "desecrated.stat_1165163804",
       "explicit.stat_1135928777",
-      "fractured.stat_1135928777"
+      "explicit.stat_1165163804",
+      "fractured.stat_1135928777",
+      "fractured.stat_1165163804"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ espadas\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -112767,8 +113734,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1165163804",
       "desecrated.stat_3759735052",
+      "explicit.stat_1165163804",
       "explicit.stat_3759735052",
+      "fractured.stat_1165163804",
       "fractured.stat_3759735052"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ garras\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
@@ -112779,8 +113749,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1165163804",
       "desecrated.stat_3759735052",
+      "explicit.stat_1165163804",
       "explicit.stat_3759735052",
+      "fractured.stat_1165163804",
       "fractured.stat_3759735052"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ garras\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
@@ -112911,10 +113884,13 @@
     "tradeIds": [
       "desecrated.stat_1165163804",
       "desecrated.stat_3283482523",
+      "desecrated.stat_3759735052",
       "explicit.stat_1165163804",
       "explicit.stat_3283482523",
+      "explicit.stat_3759735052",
       "fractured.stat_1165163804",
-      "fractured.stat_3283482523"
+      "fractured.stat_3283482523",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ varinhas\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -112926,10 +113902,13 @@
     "tradeIds": [
       "desecrated.stat_1165163804",
       "desecrated.stat_3283482523",
+      "desecrated.stat_3759735052",
       "explicit.stat_1165163804",
       "explicit.stat_3283482523",
+      "explicit.stat_3759735052",
       "fractured.stat_1165163804",
-      "fractured.stat_3283482523"
+      "fractured.stat_3283482523",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^Velocidade\\ de\\ ataque\\ com\\ varinhas\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -114378,8 +115357,11 @@
   {
     "text": "Velocidade de ataque reduzida em #%, se voc\u00EA causou um golpe cr\u00EDtico recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1174076861"
+    ],
     "pattern": "^Velocidade\\ de\\ ataque\\ reduzida\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ causou\\ um\\ golpe\\ cr\u00EDtico\\ recentemente$"
   },
   {
@@ -114763,7 +115745,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1136768410",
       "desecrated.stat_656291658",
+      "explicit.stat_1136768410",
       "explicit.stat_656291658"
     ],
     "pattern": "^Velocidade\\ de\\ conjura\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ incendiado$"
@@ -115397,7 +116381,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1136768410",
       "desecrated.stat_656291658",
+      "explicit.stat_1136768410",
       "explicit.stat_656291658"
     ],
     "pattern": "^Velocidade\\ de\\ conjura\u00E7\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ incendiado$"
@@ -115789,6 +116775,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_145581225",
+      "explicit.stat_610276769",
       "fractured.stat_145581225"
     ],
     "pattern": "^Velocidade\\ de\\ movimento\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ durante\\ o\\ efeito\\ de\\ um\\ frasco$"
@@ -116234,8 +117221,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2306522833",
       "explicit.stat_174664100",
-      "fractured.stat_174664100"
+      "explicit.stat_2306522833",
+      "fractured.stat_174664100",
+      "fractured.stat_2306522833"
     ],
     "pattern": "^Velocidade\\ de\\ movimento\\ dos\\ Golens\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -116245,8 +117235,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2306522833",
       "explicit.stat_174664100",
-      "fractured.stat_174664100"
+      "explicit.stat_2306522833",
+      "fractured.stat_174664100",
+      "fractured.stat_2306522833"
     ],
     "pattern": "^Velocidade\\ de\\ movimento\\ dos\\ Golens\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -116406,6 +117399,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_145581225",
+      "explicit.stat_610276769",
       "fractured.stat_145581225"
     ],
     "pattern": "^Velocidade\\ de\\ movimento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ durante\\ o\\ efeito\\ de\\ um\\ frasco$"
@@ -117271,6 +118265,7 @@
   },
   {
     "text": "Velocidade de recarga de habilidades de comando dos lacaios aumentada em #%",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_1611856026"
@@ -117280,8 +118275,11 @@
   {
     "text": "Velocidade de recarga de habilidades de comando dos lacaios reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1611856026"
+    ],
     "pattern": "^Velocidade\\ de\\ recarga\\ de\\ habilidades\\ de\\ comando\\ dos\\ lacaios\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
@@ -117419,12 +118417,20 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2408276841"
+      "crafted.stat_2339757871",
+      "desecrated.stat_2339757871",
+      "explicit.stat_2339757871",
+      "explicit.stat_2408276841",
+      "explicit.stat_988575597",
+      "fractured.stat_2339757871",
+      "implicit.stat_2339757871",
+      "rune.stat_2339757871"
     ],
     "pattern": "^Velocidade\\ de\\ recarga\\ do\\ escudo\\ de\\ energia\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 25\\ Tributos$"
   },
   {
     "text": "Velocidade de recarga do escudo de energia aumentada em #% por 4 de Destreza",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2408276841"
@@ -117456,6 +118462,7 @@
   },
   {
     "text": "Velocidade de recarga do escudo de energia aumentada em #%, se voc\u00EA n\u00E3o matou recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1079292660",
@@ -117539,15 +118546,25 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2408276841"
+      "crafted.stat_2339757871",
+      "desecrated.stat_2339757871",
+      "explicit.stat_2339757871",
+      "explicit.stat_2408276841",
+      "explicit.stat_988575597",
+      "fractured.stat_2339757871",
+      "implicit.stat_2339757871",
+      "rune.stat_2339757871"
     ],
     "pattern": "^Velocidade\\ de\\ recarga\\ do\\ escudo\\ de\\ energia\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 25\\ Tributos$"
   },
   {
     "text": "Velocidade de recarga do escudo de energia reduzida em #% por 4 de Destreza",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2408276841"
+    ],
     "pattern": "^Velocidade\\ de\\ recarga\\ do\\ escudo\\ de\\ energia\\ reduzida\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 4\\ de\\ Destreza$"
   },
   {
@@ -117579,8 +118596,12 @@
   {
     "text": "Velocidade de recarga do escudo de energia reduzida em #%, se voc\u00EA n\u00E3o matou recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1079292660",
+      "explicit.stat_1079292660"
+    ],
     "pattern": "^Velocidade\\ de\\ recarga\\ do\\ escudo\\ de\\ energia\\ reduzida\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ n\u00E3o\\ matou\\ recentemente$"
   },
   {
@@ -117835,6 +118856,7 @@
   },
   {
     "text": "Velocidade de regenera\u00E7\u00E3o de Salvaguarda R\u00FAnica aumentada em #%, se voc\u00EA causou um golpe cr\u00EDtico recentemente",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_1396011622"
@@ -117879,8 +118901,11 @@
   {
     "text": "Velocidade de regenera\u00E7\u00E3o de Salvaguarda R\u00FAnica reduzida em #%, se voc\u00EA causou um golpe cr\u00EDtico recentemente",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1396011622"
+    ],
     "pattern": "^Velocidade\\ de\\ regenera\u00E7\u00E3o\\ de\\ Salvaguarda\\ R\u00FAnica\\ reduzida\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ voc\u00EA\\ causou\\ um\\ golpe\\ cr\u00EDtico\\ recentemente$"
   },
   {
@@ -120059,6 +121084,23 @@
     "pattern": "^Vinculado:\\ Efici\u00EAncia\\ de\\ custo\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%,\\ se\\ em\\ mana\\ baixo$"
   },
   {
+    "text": "Vinculado: Efici\u00EAncia de reserva de esp\u00EDrito aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_3435915371"
+    ],
+    "pattern": "^Vinculado:\\ Efici\u00EAncia\\ de\\ reserva\\ de\\ esp\u00EDrito\\ (?:reduzido|Reduzido|reduzida|Reduzida|reduzidos|Reduzidos|reduzidas|Reduzidas)\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Vinculado: Efici\u00EAncia de reserva de esp\u00EDrito aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "rune.stat_3435915371"
+    ],
+    "pattern": "^Vinculado:\\ Efici\u00EAncia\\ de\\ reserva\\ de\\ esp\u00EDrito\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Vinculado: Empurra inimigos ao atingir",
     "lines": 1,
     "tradeIds": [
@@ -121469,14 +122511,6 @@
       "rune.stat_3291917242"
     ],
     "pattern": "^Vinculado:\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ os\\ patu\u00E1s\\ usados\\ por\\ voc\u00EA\\ n\u00E3o\\ consumirem\\ cargas$"
-  },
-  {
-    "text": "Vinculado: \u002B#% de efici\u00EAncia na reserva de esp\u00EDrito das habilidades",
-    "lines": 1,
-    "tradeIds": [
-      "rune.stat_3435915371"
-    ],
-    "pattern": "^Vinculado:\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ efici\u00EAncia\\ na\\ reserva\\ de\\ esp\u00EDrito\\ das\\ habilidades$"
   },
   {
     "text": "Vinculado: # de escudo de energia m\u00E1ximo",
@@ -123749,13 +124783,17 @@
   {
     "text": "V\u00EDnculo Ancestral",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|1"
+    ],
     "pattern": "^V\u00EDnculo\\ Ancestral$"
   },
   {
     "text": "V\u00EDnculo Confi\u00E1vel",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3831171903|25"
+    ],
     "pattern": "^V\u00EDnculo\\ Confi\u00E1vel$"
   },
   {
@@ -123833,22 +124871,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^WIP$"
-  },
-  {
-    "text": "Whispers of Doom",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|11"
-    ],
-    "pattern": "^Whispers\\ of\\ Doom$"
-  },
-  {
-    "text": "Wildsurge Incantation",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|32"
-    ],
-    "pattern": "^Wildsurge\\ Incantation$"
   },
   {
     "text": "Xoph, Brasas Sombrias, tem #% de chance de ser duplicado em seus mapas",
@@ -123952,14 +124974,6 @@
       "sanctum.stat_2226900052"
     ],
     "pattern": "^Zarokh,\\ o\\ Temporal,\\ sofre\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano$"
-  },
-  {
-    "text": "Zealot\u0027s Oath",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3831171903|33"
-    ],
-    "pattern": "^Zealot\u0027s\\ Oath$"
   },
   {
     "text": "Zonas de maldi\u00E7\u00E3o demoram #% mais para irromper",
@@ -125712,14 +126726,6 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ gemas\\ de\\ refor\u00E7o\\ relacionadas\\ a\\ cr\u00EDticos$"
   },
   {
-    "text": "# ao n\u00EDvel de todas as habilidade de totem",
-    "lines": 1,
-    "tradeIds": [
-      "rune.stat_2336703514"
-    ],
-    "pattern": "^([-0-9,.]\u002B)\\ ao\\ n\u00EDvel\\ de\\ todas\\ as\\ habilidade\\ de\\ totem$"
-  },
-  {
     "text": "# ao n\u00EDvel de todas as habilidades #",
     "negate": true,
     "lines": 1,
@@ -125987,7 +126993,6 @@
   },
   {
     "text": "\u002B# ao n\u00EDvel de todas as habilidades de totem",
-    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2336703514"
@@ -126024,9 +127029,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1600707273",
+      "desecrated.stat_4283407333",
+      "enchant.stat_1600707273",
+      "enchant.stat_4283407333",
       "explicit.stat_1078455967",
       "explicit.stat_1147690586",
+      "explicit.stat_1600707273",
+      "explicit.stat_4283407333",
       "explicit.stat_67169579",
+      "fractured.stat_1600707273",
       "implicit.stat_1078455967",
       "rune.stat_1147690586"
     ],
@@ -128402,6 +129414,7 @@
   },
   {
     "text": "#% de chance de devastar ao atingir",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_795138349",
@@ -128415,8 +129428,15 @@
   {
     "text": "#% de chance de devastar ao atingir",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_795138349",
+      "enchant.stat_2763429652",
+      "explicit.stat_795138349",
+      "fractured.stat_795138349",
+      "implicit.stat_2763429652"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ devastar\\ ao\\ atingir$"
   },
   {
@@ -128884,7 +129904,9 @@
     "text": "#% de chance de evitar a perda de Determina\u00E7\u00E3o com os ataques dos inimigos, se voc\u00EA foi atingido recentemente",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "sanctum.stat_2284543592"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ evitar\\ a\\ perda\\ de\\ Determina\u00E7\u00E3o\\ com\\ os\\ ataques\\ dos\\ inimigos,\\ se\\ voc\u00EA\\ foi\\ atingido\\ recentemente$"
   },
   {
@@ -129923,14 +130945,6 @@
   },
   {
     "text": "#% de chance de ganhar Agressividade por 4 segundos ao matar",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1195849808"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ ganhar\\ Agressividade\\ por\\ 4\\ segundos\\ ao\\ matar$"
-  },
-  {
-    "text": "#% de chance de ganhar Agressividade por 4 segundos ao matar",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -129952,8 +130966,11 @@
   },
   {
     "text": "#% de chance de ganhar Agressividade por # segundos ao matar",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1195849808"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ ganhar\\ Agressividade\\ por\\ ([-0-9,.]\u002B)\\ segundos\\ ao\\ matar$"
   },
   {
@@ -131146,6 +132163,7 @@
   },
   {
     "text": "#% de chance de o dano dos ataques dos inimigos sofrido por voc\u00EA ser Azarado",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2134854700"
@@ -131155,8 +132173,11 @@
   {
     "text": "#% de chance de o dano dos ataques dos inimigos sofrido por voc\u00EA ser Sortudo",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_2134854700"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ o\\ dano\\ dos\\ ataques\\ dos\\ inimigos\\ sofrido\\ por\\ voc\u00EA\\ ser\\ Sortudo$"
   },
   {
@@ -131748,8 +132769,11 @@
   },
   {
     "text": "#% de chance de, quando a Volatilidade em voc\u00EA explodir, voc\u00EA recuperar uma quantidade equivalente de Volatilidade",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_2248594298"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de,\\ quando\\ a\\ Volatilidade\\ em\\ voc\u00EA\\ explodir,\\ voc\u00EA\\ recuperar\\ uma\\ quantidade\\ equivalente\\ de\\ Volatilidade$"
   },
   {
@@ -132427,15 +133451,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ dano\\ sofrido\\ a\\ menos\\ de\\ dano\\ degenerativo$"
-  },
-  {
-    "text": "\u002B#% de efici\u00EAncia na reserva de esp\u00EDrito das habilidades",
-    "lines": 1,
-    "tradeIds": [
-      "desecrated.stat_53386210",
-      "explicit.stat_53386210"
-    ],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ efici\u00EAncia\\ na\\ reserva\\ de\\ esp\u00EDrito\\ das\\ habilidades$"
   },
   {
     "text": "# de encaixes m\u00E1ximos",
@@ -133171,6 +134186,7 @@
   },
   {
     "text": "#% do dano de caos \u00E9 subtra\u00EDdo do mana antes da vida",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_458438597",
@@ -133319,7 +134335,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3503160529"
+      "explicit.stat_1686824704",
+      "explicit.stat_3503160529",
+      "explicit.stat_3627052716",
+      "implicit.stat_3627052716"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ de\\ frio\\ convertido\\ em\\ dano\\ de\\ fogo$"
   },
@@ -133571,7 +134590,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_3198708642"
+      "crafted.stat_4129825612",
+      "explicit.stat_3198708642",
+      "explicit.stat_4129825612",
+      "explicit.stat_425242359",
+      "fractured.stat_4129825612"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ el\u00E9trico\\ dos\\ ataques\\ \u00E9\\ sofrido\\ como\\ dano\\ de\\ frio$"
   },
@@ -133882,8 +134905,12 @@
   },
   {
     "text": "#% do dano f\u00EDsico sofrido ignora o escudo de energia",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2448633171",
+      "rune.stat_2448633171"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ f\u00EDsico\\ sofrido\\ ignora\\ o\\ escudo\\ de\\ energia$"
   },
   {
@@ -133892,6 +134919,7 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1444556985",
+      "crafted.stat_1742651309",
       "crafted.stat_2970621759",
       "crafted.stat_3679418014",
       "desecrated.stat_1374654984",
@@ -133899,9 +134927,11 @@
       "enchant.stat_1444556985",
       "explicit.stat_1374654984",
       "explicit.stat_1444556985",
+      "explicit.stat_1742651309",
       "explicit.stat_2970621759",
       "explicit.stat_3679418014",
       "fractured.stat_1444556985",
+      "fractured.stat_1742651309",
       "fractured.stat_2970621759",
       "fractured.stat_3679418014",
       "implicit.stat_1444556985",
@@ -133980,6 +135010,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1004468512",
       "explicit.stat_425242359"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ f\u00EDsico\\ \u00E9\\ sofrido\\ como\\ dano\\ el\u00E9trico$"
@@ -134074,7 +135105,9 @@
     "text": "#% do dano sofrido durante o efeito \u00E9 recuperado como vida",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3598623697"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ durante\\ o\\ efeito\\ \u00E9\\ recuperado\\ como\\ vida$"
   },
   {
@@ -134107,7 +135140,12 @@
     "text": "#% do dano sofrido \u00E9 recuperado como mana",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_472520716",
+      "enchant.stat_472520716",
+      "explicit.stat_472520716",
+      "fractured.stat_472520716"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ \u00E9\\ recuperado\\ como\\ mana$"
   },
   {
@@ -134140,7 +135178,15 @@
     "text": "#% do dano sofrido \u00E9 recuperado como vida",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_1444556985",
+      "desecrated.stat_1444556985",
+      "enchant.stat_1444556985",
+      "explicit.stat_1444556985",
+      "fractured.stat_1444556985",
+      "implicit.stat_1444556985",
+      "rune.stat_1444556985"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ \u00E9\\ recuperado\\ como\\ vida$"
   },
   {
@@ -134488,8 +135534,11 @@
   },
   {
     "text": "\u002B# metro de alcance da cambalhota evasiva, se voc\u00EA a usou recentemente",
+    "value": -10,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_57896763"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metro\\ de\\ alcance\\ da\\ cambalhota\\ evasiva,\\ se\\ voc\u00EA\\ a\\ usou\\ recentemente$"
   },
   {
@@ -134503,8 +135552,11 @@
   },
   {
     "text": "\u002B# metro de alcance da cambalhota evasiva, se voc\u00EA n\u00E3o a usou recentemente",
+    "value": -10,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3350232544"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metro\\ de\\ alcance\\ da\\ cambalhota\\ evasiva,\\ se\\ voc\u00EA\\ n\u00E3o\\ a\\ usou\\ recentemente$"
   },
   {
@@ -134537,13 +135589,17 @@
   {
     "text": "\u002B# metros de alcance da cambalhota evasiva, se voc\u00EA a usou recentemente",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_57896763"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metros\\ de\\ alcance\\ da\\ cambalhota\\ evasiva,\\ se\\ voc\u00EA\\ a\\ usou\\ recentemente$"
   },
   {
     "text": "\u002B# metros de alcance da cambalhota evasiva, se voc\u00EA n\u00E3o a usou recentemente",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3350232544"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metros\\ de\\ alcance\\ da\\ cambalhota\\ evasiva,\\ se\\ voc\u00EA\\ n\u00E3o\\ a\\ usou\\ recentemente$"
   },
   {
@@ -134565,6 +135621,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_3273962791",
       "implicit.stat_2264295449"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metros\\ para\\ o\\ alcance\\ do\\ golpe\\ corpo\\ a\\ corpo\\ com\\ adagas$"
@@ -136258,7 +137315,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1436812886",
+      "desecrated.stat_3592067990",
+      "desecrated.stat_4130878258",
       "desecrated.stat_4181857719",
+      "explicit.stat_1436812886",
+      "explicit.stat_3592067990",
+      "explicit.stat_4130878258",
       "explicit.stat_4181857719"
     ],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ ([-0-9,.]\u002B)\\ grupos\\ de\\ monstros\\ raros\\ adicionais$"
@@ -136275,7 +137338,9 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3309089125",
-      "explicit.stat_3309089125"
+      "desecrated.stat_3592067990",
+      "explicit.stat_3309089125",
+      "explicit.stat_3592067990"
     ],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ ([-0-9,.]\u002B)\\ grupos\\ de\\ monstros\\ venenosos\\ adicionais$"
   },
@@ -136338,6 +137403,7 @@
   },
   {
     "text": "\u00C1rea cont\u00E9m # marcador de ba\u00FA comum adicional",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -136357,6 +137423,7 @@
   },
   {
     "text": "\u00C1rea cont\u00E9m # marcador de ba\u00FA raro adicional",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -136374,8 +137441,11 @@
   },
   {
     "text": "\u00C1rea cont\u00E9m # marcadores de ba\u00FA comuns adicionais",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "implicit.stat_4160330571"
+    ],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ ([-0-9,.]\u002B)\\ marcadores\\ de\\ ba\u00FA\\ comuns\\ adicionais$"
   },
   {
@@ -136389,8 +137459,11 @@
   },
   {
     "text": "\u00C1rea cont\u00E9m # marcadores de ba\u00FA raros adicionais",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "implicit.stat_4160330571"
+    ],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ ([-0-9,.]\u002B)\\ marcadores\\ de\\ ba\u00FA\\ raros\\ adicionais$"
   },
   {
@@ -136477,7 +137550,9 @@
   {
     "text": "\u00C1rea cont\u00E9m um C\u00EDrculo de Invoca\u00E7\u00E3o\n\u00C1rea cont\u00E9m # Runas de Reativa\u00E7\u00E3o",
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2839545956"
+    ],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ um\\ C\u00EDrculo\\ de\\ Invoca\u00E7\u00E3o\\n\u00C1rea\\ cont\u00E9m\\ ([-0-9,.]\u002B)\\ Runas\\ de\\ Reativa\u00E7\u00E3o$"
   },
   {
@@ -136617,7 +137692,13 @@
     "value": 1,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1436812886",
+      "desecrated.stat_3592067990",
+      "desecrated.stat_4130878258",
       "desecrated.stat_4181857719",
+      "explicit.stat_1436812886",
+      "explicit.stat_3592067990",
+      "explicit.stat_4130878258",
       "explicit.stat_4181857719"
     ],
     "pattern": "^\u00C1rea\\ cont\u00E9m\\ um\\ grupo\\ de\\ monstros\\ raros\\ adicional$"
@@ -137602,7 +138683,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_909236563"
+      "crafted.stat_101878827",
+      "desecrated.stat_101878827",
+      "enchant.stat_101878827",
+      "explicit.stat_101878827",
+      "explicit.stat_909236563",
+      "fractured.stat_101878827",
+      "rune.stat_101878827"
     ],
     "pattern": "^\u00C1rea\\ de\\ efeito\\ de\\ Tornado\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -137612,7 +138699,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_909236563"
+      "crafted.stat_101878827",
+      "desecrated.stat_101878827",
+      "enchant.stat_101878827",
+      "explicit.stat_101878827",
+      "explicit.stat_909236563",
+      "fractured.stat_101878827",
+      "rune.stat_101878827"
     ],
     "pattern": "^\u00C1rea\\ de\\ efeito\\ de\\ Tornado\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -137740,7 +138833,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_909236563"
+      "crafted.stat_1840985759",
+      "desecrated.stat_1840985759",
+      "explicit.stat_1840985759",
+      "explicit.stat_909236563",
+      "fractured.stat_1840985759",
+      "implicit.stat_1840985759"
     ],
     "pattern": "^\u00C1rea\\ de\\ efeito\\ de\\ V\u00F3rtice\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -137763,7 +138861,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_909236563"
+      "crafted.stat_1840985759",
+      "desecrated.stat_1840985759",
+      "explicit.stat_1840985759",
+      "explicit.stat_909236563",
+      "fractured.stat_1840985759",
+      "implicit.stat_1840985759"
     ],
     "pattern": "^\u00C1rea\\ de\\ efeito\\ de\\ V\u00F3rtice\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -137773,14 +138876,19 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_101878827",
+      "crafted.stat_1840985759",
       "desecrated.stat_101878827",
       "desecrated.stat_153777645",
+      "desecrated.stat_1840985759",
       "enchant.stat_101878827",
       "explicit.stat_101878827",
       "explicit.stat_153777645",
+      "explicit.stat_1840985759",
       "explicit.stat_909236563",
       "fractured.stat_101878827",
       "fractured.stat_153777645",
+      "fractured.stat_1840985759",
+      "implicit.stat_1840985759",
       "rune.stat_101878827",
       "rune.stat_153777645"
     ],
@@ -137793,14 +138901,19 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_101878827",
+      "crafted.stat_1840985759",
       "desecrated.stat_101878827",
       "desecrated.stat_153777645",
+      "desecrated.stat_1840985759",
       "enchant.stat_101878827",
       "explicit.stat_101878827",
       "explicit.stat_153777645",
+      "explicit.stat_1840985759",
       "explicit.stat_909236563",
       "fractured.stat_101878827",
       "fractured.stat_153777645",
+      "fractured.stat_1840985759",
+      "implicit.stat_1840985759",
       "rune.stat_101878827",
       "rune.stat_153777645"
     ],
@@ -139117,6 +140230,7 @@
   },
   {
     "text": "\u00C1reas com chefes de mapas poderosos cont\u00EAm 1 altar adicional",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -139164,8 +140278,11 @@
   },
   {
     "text": "\u00C1reas com chefes de mapas poderosos cont\u00EAm # altares adicionais",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3042527515"
+    ],
     "pattern": "^\u00C1reas\\ com\\ chefes\\ de\\ mapas\\ poderosos\\ cont\u00EAm\\ ([-0-9,.]\u002B)\\ altares\\ adicionais$"
   },
   {
@@ -141306,7 +142423,9 @@
     "text": "\u002B#% \u00E0 resist\u00EAncia a dano de fogo em vida baixa",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_38301299"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ resist\u00EAncia\\ a\\ dano\\ de\\ fogo\\ em\\ vida\\ baixa$"
   },
   {
@@ -143804,6 +144923,7 @@
   },
   {
     "text": "\u3164\u002B#% de Salvaguarda R\u00FAnica m\u00E1xima",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3336230913",
@@ -143848,6 +144968,7 @@
   },
   {
     "text": "\u3164\u002B#% de armadura",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3484657501",
@@ -143895,6 +145016,7 @@
   },
   {
     "text": "\u3164\u002B#% de b\u00F4nus de dano cr\u00EDtico",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2694482655",
@@ -143953,6 +145075,7 @@
   },
   {
     "text": "\u3164\u002B#% de chance de bloqueio",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1702195217",
@@ -143970,6 +145093,7 @@
   },
   {
     "text": "\u3164\u002B#% de chance de golpe cr\u00EDtico",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_518292764",
@@ -144239,6 +145363,7 @@
   },
   {
     "text": "\u3164\u002B#% de dano de frio sofrido de ataques",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_321765853"
@@ -144366,6 +145491,7 @@
   },
   {
     "text": "\u3164\u002B#% de dano f\u00EDsico sofrido de ataques",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_321765853"
@@ -144578,6 +145704,7 @@
   },
   {
     "text": "\u3164\u002B#% de escudo de energia m\u00E1ximo",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3489782002",
@@ -144616,6 +145743,7 @@
   },
   {
     "text": "\u3164\u002B#% de evas\u00E3o",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2144192055",
@@ -144787,6 +145915,7 @@
   },
   {
     "text": "\u3164\u002B#% de penalidade de velocidade de movimento ao usar habilidades durante o movimento",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -144798,6 +145927,7 @@
   },
   {
     "text": "\u3164\u002B#% de precis\u00E3o",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_691932474",
@@ -144853,6 +145983,7 @@
   },
   {
     "text": "\u3164\u002B#% de recupera\u00E7\u00E3o de frascos",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1972661424"
@@ -145180,8 +146311,17 @@
   {
     "text": "\u3164-#% de Salvaguarda R\u00FAnica m\u00E1xima",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_3336230913",
+      "explicit.stat_3336230913",
+      "explicit.stat_774059442",
+      "fractured.stat_3336230913",
+      "implicit.stat_3336230913",
+      "implicit.stat_774059442",
+      "rune.stat_774059442"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ Salvaguarda\\ R\u00FAnica\\ m\u00E1xima$"
   },
   {
@@ -145222,8 +146362,18 @@
   {
     "text": "\u3164-#% de armadura",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3484657501",
+      "desecrated.stat_809229260",
+      "explicit.stat_3484657501",
+      "explicit.stat_809229260",
+      "fractured.stat_3484657501",
+      "fractured.stat_809229260",
+      "implicit.stat_809229260",
+      "rune.stat_3484657501"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ armadura$"
   },
   {
@@ -145259,8 +146409,16 @@
   {
     "text": "\u3164-#% de b\u00F4nus de dano cr\u00EDtico",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2694482655",
+      "enchant.stat_2694482655",
+      "explicit.stat_2694482655",
+      "fractured.stat_2694482655",
+      "implicit.stat_2694482655",
+      "rune.stat_2694482655"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ b\u00F4nus\\ de\\ dano\\ cr\u00EDtico$"
   },
   {
@@ -145288,8 +146446,14 @@
   {
     "text": "\u3164-#% de chance de bloqueio",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1702195217",
+      "explicit.stat_1702195217",
+      "implicit.stat_1702195217",
+      "rune.stat_1702195217"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ bloqueio$"
   },
   {
@@ -145302,8 +146466,15 @@
   {
     "text": "\u3164-#% de chance de golpe cr\u00EDtico",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_518292764",
+      "desecrated.stat_518292764",
+      "explicit.stat_518292764",
+      "fractured.stat_518292764",
+      "rune.stat_518292764"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ golpe\\ cr\u00EDtico$"
   },
   {
@@ -145579,8 +146750,11 @@
   {
     "text": "\u3164-#% de dano de frio sofrido de ataques",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_321765853"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ dano\\ de\\ frio\\ sofrido\\ de\\ ataques$"
   },
   {
@@ -145705,8 +146879,11 @@
   {
     "text": "\u3164-#% de dano f\u00EDsico sofrido de ataques",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_321765853"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ dano\\ f\u00EDsico\\ sofrido\\ de\\ ataques$"
   },
   {
@@ -145928,8 +147105,19 @@
   {
     "text": "\u3164-#% de escudo de energia m\u00E1ximo",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3489782002",
+      "desecrated.stat_4052037485",
+      "explicit.stat_3489782002",
+      "explicit.stat_4052037485",
+      "fractured.stat_3489782002",
+      "fractured.stat_4052037485",
+      "implicit.stat_3489782002",
+      "rune.stat_3489782002",
+      "rune.stat_4052037485"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ escudo\\ de\\ energia\\ m\u00E1ximo$"
   },
   {
@@ -145944,8 +147132,17 @@
   {
     "text": "\u3164-#% de evas\u00E3o",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2144192055",
+      "desecrated.stat_53045048",
+      "explicit.stat_2144192055",
+      "explicit.stat_53045048",
+      "fractured.stat_2144192055",
+      "fractured.stat_53045048",
+      "rune.stat_53045048"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ evas\u00E3o$"
   },
   {
@@ -146060,15 +147257,35 @@
   {
     "text": "\u3164-#% de penalidade de velocidade de movimento ao usar habilidades durante o movimento",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ penalidade\\ de\\ velocidade\\ de\\ movimento\\ ao\\ usar\\ habilidades\\ durante\\ o\\ movimento$"
   },
   {
     "text": "\u3164-#% de precis\u00E3o",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_691932474",
+      "crafted.stat_803737631",
+      "desecrated.stat_691932474",
+      "desecrated.stat_803737631",
+      "enchant.stat_803737631",
+      "explicit.stat_691932474",
+      "explicit.stat_803737631",
+      "fractured.stat_691932474",
+      "fractured.stat_803737631",
+      "implicit.stat_803737631",
+      "rune.stat_691932474",
+      "rune.stat_803737631"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ precis\u00E3o$"
   },
   {
@@ -146108,8 +147325,11 @@
   {
     "text": "\u3164-#% de recupera\u00E7\u00E3o de frascos",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1972661424"
+    ],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ recupera\u00E7\u00E3o\\ de\\ frascos$"
   },
   {

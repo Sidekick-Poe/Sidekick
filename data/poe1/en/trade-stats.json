@@ -224,6 +224,10 @@
     "text": "#% Chance to Trigger Level 18 Summon Spectral Wolf on Kill"
   },
   {
+    "id": "crafted.stat_181387736",
+    "text": "# Prefix Modifier cannot be changed"
+  },
+  {
     "id": "crafted.stat_1839076647",
     "text": "#% increased Projectile Damage"
   },
@@ -426,6 +430,10 @@
   {
     "id": "crafted.stat_2387423236",
     "text": "Adds # to # Cold Damage"
+  },
+  {
+    "id": "crafted.stat_2390914662",
+    "text": "# Suffix Modifier cannot be changed"
   },
   {
     "id": "crafted.stat_2402136583",
@@ -10796,6 +10804,10 @@
     "text": "Delirium Reward Type: Weapons"
   },
   {
+    "id": "enchant.effect_2236653998",
+    "text": "Grants Level # Envy"
+  },
+  {
     "id": "enchant.stat_1000620493",
     "text": "Blight Encounters contain up to # additional Blight Boss"
   },
@@ -11178,6 +11190,10 @@
   {
     "id": "enchant.stat_1239233415",
     "text": "\u002B# to maximum Snipe Stages"
+  },
+  {
+    "id": "enchant.stat_1240937795",
+    "text": "# Monster Packs in Area are substituted with Fungal Shamans\nPack Monsters that die when Rare spread Modifiers to other Rare Monsters in Area"
   },
   {
     "id": "enchant.stat_124131830",
@@ -11624,6 +11640,10 @@
     "text": "Tectonic Slam has \u002B#% fissure branching chance"
   },
   {
+    "id": "enchant.stat_1527404187",
+    "text": "Area is Tormented"
+  },
+  {
     "id": "enchant.stat_1528965411",
     "text": "#% increased Warlord\u0027s Mark Curse Effect"
   },
@@ -12002,6 +12022,10 @@
   {
     "id": "enchant.stat_1765389199",
     "text": "Life Leech from Hits with this Weapon is instant"
+  },
+  {
+    "id": "enchant.stat_1776086971",
+    "text": "# Monster Packs in Area are substituted with a single meaty Monster"
   },
   {
     "id": "enchant.stat_1778800422",
@@ -12846,6 +12870,10 @@
   {
     "id": "enchant.stat_2284801675",
     "text": "#% increased Effect of the Buff granted by your Stone Golems"
+  },
+  {
+    "id": "enchant.stat_228481227",
+    "text": "# Monster Packs in Area are substituted with Packs that\ncannot drop Equipment, Flasks or Tinctures"
   },
   {
     "id": "enchant.stat_2287764959",
@@ -15796,6 +15824,10 @@
     "text": "Blink Arrow has #% increased Cooldown Recovery Rate"
   },
   {
+    "id": "enchant.stat_2987875489",
+    "text": "Deified"
+  },
+  {
     "id": "enchant.stat_3002506763",
     "text": "#% chance to Hinder Enemies on Hit with Spells"
   },
@@ -16712,6 +16744,10 @@
     "text": "Seismic Cry has a minimum of # Power"
   },
   {
+    "id": "enchant.stat_3552182293",
+    "text": "# Monster Packs in Area are substituted with Difficult and Rewarding Packs\nwhich drop 300% increased Maps"
+  },
+  {
     "id": "enchant.stat_3554587210",
     "text": "#% of Cold and Lightning Damage from Hits taken as Fire Damage"
   },
@@ -16772,16 +16808,88 @@
     "text": "Used when you use a Life Flask"
   },
   {
+    "id": "enchant.stat_3599615742|10016",
+    "text": "1 added passive skill is Executioner"
+  },
+  {
+    "id": "enchant.stat_3599615742|1006",
+    "text": "1 added passive skill is Potency of Will"
+  },
+  {
+    "id": "enchant.stat_3599615742|10115",
+    "text": "1 added passive skill is Prodigal Perfection"
+  },
+  {
     "id": "enchant.stat_3599615742|10511",
     "text": "1 added passive skill is Tolerance"
+  },
+  {
+    "id": "enchant.stat_3599615742|10542",
+    "text": "1 added passive skill is Spiked Bulwark"
+  },
+  {
+    "id": "enchant.stat_3599615742|10835",
+    "text": "1 added passive skill is Dreamer"
+  },
+  {
+    "id": "enchant.stat_3599615742|11420",
+    "text": "1 added passive skill is Arcanist\u0027s Dominion"
+  },
+  {
+    "id": "enchant.stat_3599615742|11645",
+    "text": "1 added passive skill is Breath of Lightning"
+  },
+  {
+    "id": "enchant.stat_3599615742|11730",
+    "text": "1 added passive skill is Endurance"
+  },
+  {
+    "id": "enchant.stat_3599615742|11784",
+    "text": "1 added passive skill is Vampirism"
+  },
+  {
+    "id": "enchant.stat_3599615742|11820",
+    "text": "1 added passive skill is Anointed Flesh"
   },
   {
     "id": "enchant.stat_3599615742|11924",
     "text": "1 added passive skill is Breath of Flames"
   },
   {
+    "id": "enchant.stat_3599615742|12033",
+    "text": "1 added passive skill is Wicked Blade"
+  },
+  {
+    "id": "enchant.stat_3599615742|12143",
+    "text": "1 added passive skill is Influence"
+  },
+  {
+    "id": "enchant.stat_3599615742|12702",
+    "text": "1 added passive skill is Path of the Warrior"
+  },
+  {
+    "id": "enchant.stat_3599615742|12795",
+    "text": "1 added passive skill is Versatility"
+  },
+  {
+    "id": "enchant.stat_3599615742|12809",
+    "text": "1 added passive skill is Berserking"
+  },
+  {
+    "id": "enchant.stat_3599615742|12878",
+    "text": "1 added passive skill is Retaliation"
+  },
+  {
     "id": "enchant.stat_3599615742|13164",
     "text": "1 added passive skill is Divine Judgement"
+  },
+  {
+    "id": "enchant.stat_3599615742|1325",
+    "text": "1 added passive skill is Golem\u0027s Blood"
+  },
+  {
+    "id": "enchant.stat_3599615742|13375",
+    "text": "1 added passive skill is Multishot"
   },
   {
     "id": "enchant.stat_3599615742|1340",
@@ -16792,44 +16900,400 @@
     "text": "1 added passive skill is Knowledge Barrier"
   },
   {
+    "id": "enchant.stat_3599615742|13703",
+    "text": "1 added passive skill is Defiant Stand"
+  },
+  {
+    "id": "enchant.stat_3599615742|13739",
+    "text": "1 added passive skill is Always Angry"
+  },
+  {
+    "id": "enchant.stat_3599615742|1382",
+    "text": "1 added passive skill is Spirit Void"
+  },
+  {
+    "id": "enchant.stat_3599615742|13922",
+    "text": "1 added passive skill is Steadfast"
+  },
+  {
+    "id": "enchant.stat_3599615742|13935",
+    "text": "1 added passive skill is Thrill of Battle"
+  },
+  {
+    "id": "enchant.stat_3599615742|14001",
+    "text": "1 added passive skill is Unfaltering"
+  },
+  {
+    "id": "enchant.stat_3599615742|1405",
+    "text": "1 added passive skill is From the Shadows"
+  },
+  {
     "id": "enchant.stat_3599615742|14079",
     "text": "1 added passive skill is Wood, Stone, and Spell"
+  },
+  {
+    "id": "enchant.stat_3599615742|14587",
+    "text": "1 added passive skill is Adaptive Steel"
+  },
+  {
+    "id": "enchant.stat_3599615742|14606",
+    "text": "1 added passive skill is Butchery"
+  },
+  {
+    "id": "enchant.stat_3599615742|14665",
+    "text": "1 added passive skill is Divine Wrath"
+  },
+  {
+    "id": "enchant.stat_3599615742|14813",
+    "text": "1 added passive skill is Revelry"
+  },
+  {
+    "id": "enchant.stat_3599615742|15046",
+    "text": "1 added passive skill is Redemption"
+  },
+  {
+    "id": "enchant.stat_3599615742|15085",
+    "text": "1 added passive skill is Ambidexterity"
+  },
+  {
+    "id": "enchant.stat_3599615742|15226",
+    "text": "1 added passive skill is Cruel Retort"
+  },
+  {
+    "id": "enchant.stat_3599615742|15290",
+    "text": "1 added passive skill is Watchtowers"
+  },
+  {
+    "id": "enchant.stat_3599615742|15344",
+    "text": "1 added passive skill is Freedom of Movement"
+  },
+  {
+    "id": "enchant.stat_3599615742|15400",
+    "text": "1 added passive skill is Skittering Runes"
   },
   {
     "id": "enchant.stat_3599615742|15437",
     "text": "1 added passive skill is Deflection"
   },
   {
+    "id": "enchant.stat_3599615742|15614",
+    "text": "1 added passive skill is Claws of the Hawk"
+  },
+  {
+    "id": "enchant.stat_3599615742|1568",
+    "text": "1 added passive skill is Fatal Blade"
+  },
+  {
+    "id": "enchant.stat_3599615742|15711",
+    "text": "1 added passive skill is Blast Radius"
+  },
+  {
     "id": "enchant.stat_3599615742|15842",
     "text": "1 added passive skill is One With Nature"
+  },
+  {
+    "id": "enchant.stat_3599615742|15852",
+    "text": "1 added passive skill is Ethereal Feast"
+  },
+  {
+    "id": "enchant.stat_3599615742|16236",
+    "text": "1 added passive skill is Toxic Strikes"
+  },
+  {
+    "id": "enchant.stat_3599615742|16243",
+    "text": "1 added passive skill is Fusillade"
   },
   {
     "id": "enchant.stat_3599615742|16246",
     "text": "1 added passive skill is Tranquility"
   },
   {
+    "id": "enchant.stat_3599615742|16703",
+    "text": "1 added passive skill is Skull Cracking"
+  },
+  {
+    "id": "enchant.stat_3599615742|17171",
+    "text": "1 added passive skill is Flash Freeze"
+  },
+  {
+    "id": "enchant.stat_3599615742|17608",
+    "text": "1 added passive skill is Silent Steps"
+  },
+  {
+    "id": "enchant.stat_3599615742|18174",
+    "text": "1 added passive skill is Mystic Bulwark"
+  },
+  {
+    "id": "enchant.stat_3599615742|18357",
+    "text": "1 added passive skill is Feline Swiftness"
+  },
+  {
+    "id": "enchant.stat_3599615742|18703",
+    "text": "1 added passive skill is Graceful Assault"
+  },
+  {
+    "id": "enchant.stat_3599615742|18707",
+    "text": "1 added passive skill is Perfectionist"
+  },
+  {
+    "id": "enchant.stat_3599615742|18769",
+    "text": "1 added passive skill is Written in Blood"
+  },
+  {
+    "id": "enchant.stat_3599615742|18865",
+    "text": "1 added passive skill is Melding"
+  },
+  {
+    "id": "enchant.stat_3599615742|19069",
+    "text": "1 added passive skill is Thick Skin"
+  },
+  {
+    "id": "enchant.stat_3599615742|19103",
+    "text": "1 added passive skill is Righteous Army"
+  },
+  {
+    "id": "enchant.stat_3599615742|19144",
+    "text": "1 added passive skill is Sentinel"
+  },
+  {
+    "id": "enchant.stat_3599615742|19506",
+    "text": "1 added passive skill is Path of the Hunter"
+  },
+  {
+    "id": "enchant.stat_3599615742|19730",
+    "text": "1 added passive skill is Assured Strike"
+  },
+  {
+    "id": "enchant.stat_3599615742|19794",
+    "text": "1 added passive skill is Concussive Force"
+  },
+  {
+    "id": "enchant.stat_3599615742|19858",
+    "text": "1 added passive skill is Herbalism"
+  },
+  {
+    "id": "enchant.stat_3599615742|19897",
+    "text": "1 added passive skill is Death Attunement"
+  },
+  {
+    "id": "enchant.stat_3599615742|20261",
+    "text": "1 added passive skill is Contemplative Meditation"
+  },
+  {
     "id": "enchant.stat_3599615742|203",
     "text": "1 added passive skill is Vinespike Cordial"
+  },
+  {
+    "id": "enchant.stat_3599615742|20528",
+    "text": "1 added passive skill is Instability"
+  },
+  {
+    "id": "enchant.stat_3599615742|20605",
+    "text": "1 added passive skill is No Forgiveness"
+  },
+  {
+    "id": "enchant.stat_3599615742|20832",
+    "text": "1 added passive skill is Sanctuary"
+  },
+  {
+    "id": "enchant.stat_3599615742|20835",
+    "text": "1 added passive skill is Brinkmanship"
+  },
+  {
+    "id": "enchant.stat_3599615742|21228",
+    "text": "1 added passive skill is Piercing Shots"
+  },
+  {
+    "id": "enchant.stat_3599615742|21297",
+    "text": "1 added passive skill is High Explosives"
+  },
+  {
+    "id": "enchant.stat_3599615742|21330",
+    "text": "1 added passive skill is Quick Recovery"
+  },
+  {
+    "id": "enchant.stat_3599615742|21389",
+    "text": "1 added passive skill is Runesmith"
+  },
+  {
+    "id": "enchant.stat_3599615742|21413",
+    "text": "1 added passive skill is Combat Stamina"
+  },
+  {
+    "id": "enchant.stat_3599615742|21435",
+    "text": "1 added passive skill is Cloth and Chain"
+  },
+  {
+    "id": "enchant.stat_3599615742|21460",
+    "text": "1 added passive skill is Breath of Rime"
+  },
+  {
+    "id": "enchant.stat_3599615742|21602",
+    "text": "1 added passive skill is Destructive Apparatus"
   },
   {
     "id": "enchant.stat_3599615742|21634",
     "text": "1 added passive skill is Arcane Chemistry"
   },
   {
+    "id": "enchant.stat_3599615742|21958",
+    "text": "1 added passive skill is Cruel Preparation"
+  },
+  {
+    "id": "enchant.stat_3599615742|21973",
+    "text": "1 added passive skill is Decay Ward"
+  },
+  {
+    "id": "enchant.stat_3599615742|22133",
+    "text": "1 added passive skill is Invigorating Blaze"
+  },
+  {
+    "id": "enchant.stat_3599615742|2225",
+    "text": "1 added passive skill is Eagle Eye"
+  },
+  {
+    "id": "enchant.stat_3599615742|22356",
+    "text": "1 added passive skill is Hematophagy"
+  },
+  {
+    "id": "enchant.stat_3599615742|22535",
+    "text": "1 added passive skill is Whispers of Doom"
+  },
+  {
     "id": "enchant.stat_3599615742|22702",
     "text": "1 added passive skill is Serpent Stance"
+  },
+  {
+    "id": "enchant.stat_3599615742|22706",
+    "text": "1 added passive skill is Savage Intensity"
+  },
+  {
+    "id": "enchant.stat_3599615742|2275",
+    "text": "1 added passive skill is Nature\u0027s Concoction"
+  },
+  {
+    "id": "enchant.stat_3599615742|22972",
+    "text": "1 added passive skill is Wandslinger"
+  },
+  {
+    "id": "enchant.stat_3599615742|23038",
+    "text": "1 added passive skill is Slaughter"
+  },
+  {
+    "id": "enchant.stat_3599615742|23066",
+    "text": "1 added passive skill is Savagery"
+  },
+  {
+    "id": "enchant.stat_3599615742|23549",
+    "text": "1 added passive skill is Incorporeal"
+  },
+  {
+    "id": "enchant.stat_3599615742|23690",
+    "text": "1 added passive skill is Essence Infusion"
+  },
+  {
+    "id": "enchant.stat_3599615742|24050",
+    "text": "1 added passive skill is Coldhearted Calculation"
+  },
+  {
+    "id": "enchant.stat_3599615742|24067",
+    "text": "1 added passive skill is Instinct"
+  },
+  {
+    "id": "enchant.stat_3599615742|24133",
+    "text": "1 added passive skill is Survivalist"
+  },
+  {
+    "id": "enchant.stat_3599615742|24256",
+    "text": "1 added passive skill is Dynamo"
+  },
+  {
+    "id": "enchant.stat_3599615742|24324",
+    "text": "1 added passive skill is Explosive Impact"
+  },
+  {
+    "id": "enchant.stat_3599615742|24358",
+    "text": "1 added passive skill is Selective Precision"
+  },
+  {
+    "id": "enchant.stat_3599615742|24362",
+    "text": "1 added passive skill is Deep Thoughts"
+  },
+  {
+    "id": "enchant.stat_3599615742|24383",
+    "text": "1 added passive skill is Warrior\u0027s Blood"
+  },
+  {
+    "id": "enchant.stat_3599615742|24716",
+    "text": "1 added passive skill is Battle Trance"
+  },
+  {
+    "id": "enchant.stat_3599615742|24721",
+    "text": "1 added passive skill is Ribcage Crusher"
+  },
+  {
+    "id": "enchant.stat_3599615742|24858",
+    "text": "1 added passive skill is Harpooner"
   },
   {
     "id": "enchant.stat_3599615742|25058",
     "text": "1 added passive skill is Blood Siphon"
   },
   {
+    "id": "enchant.stat_3599615742|25178",
+    "text": "1 added passive skill is Primal Spirit"
+  },
+  {
+    "id": "enchant.stat_3599615742|25367",
+    "text": "1 added passive skill is Blade Master"
+  },
+  {
+    "id": "enchant.stat_3599615742|25409",
+    "text": "1 added passive skill is Indomitable Army"
+  },
+  {
+    "id": "enchant.stat_3599615742|25411",
+    "text": "1 added passive skill is Infused"
+  },
+  {
     "id": "enchant.stat_3599615742|25439",
     "text": "1 added passive skill is Undertaker"
   },
   {
+    "id": "enchant.stat_3599615742|25456",
+    "text": "1 added passive skill is Dervish"
+  },
+  {
+    "id": "enchant.stat_3599615742|2550",
+    "text": "1 added passive skill is Arsonist"
+  },
+  {
+    "id": "enchant.stat_3599615742|25738",
+    "text": "1 added passive skill is Relentless Pursuit"
+  },
+  {
     "id": "enchant.stat_3599615742|25970",
     "text": "1 added passive skill is Acrimony"
+  },
+  {
+    "id": "enchant.stat_3599615742|25989",
+    "text": "1 added passive skill is Nomadic Teachings"
+  },
+  {
+    "id": "enchant.stat_3599615742|2599",
+    "text": "1 added passive skill is Prepared Response"
+  },
+  {
+    "id": "enchant.stat_3599615742|26023",
+    "text": "1 added passive skill is Savage Wounds"
+  },
+  {
+    "id": "enchant.stat_3599615742|26096",
+    "text": "1 added passive skill is Hatchet Master"
+  },
+  {
+    "id": "enchant.stat_3599615742|26294",
+    "text": "1 added passive skill is Bloodletting"
   },
   {
     "id": "enchant.stat_3599615742|26557",
@@ -16844,20 +17308,200 @@
     "text": "1 added passive skill is Corruption"
   },
   {
+    "id": "enchant.stat_3599615742|26763",
+    "text": "1 added passive skill is Perfected Formula"
+  },
+  {
+    "id": "enchant.stat_3599615742|26866",
+    "text": "1 added passive skill is Sanctity"
+  },
+  {
+    "id": "enchant.stat_3599615742|26960",
+    "text": "1 added passive skill is Forethought"
+  },
+  {
+    "id": "enchant.stat_3599615742|27119",
+    "text": "1 added passive skill is Tribal Fury"
+  },
+  {
+    "id": "enchant.stat_3599615742|27137",
+    "text": "1 added passive skill is Sanctum of Thought"
+  },
+  {
+    "id": "enchant.stat_3599615742|2715",
+    "text": "1 added passive skill is Quickstep"
+  },
+  {
+    "id": "enchant.stat_3599615742|27163",
+    "text": "1 added passive skill is Arcane Will"
+  },
+  {
+    "id": "enchant.stat_3599615742|27190",
+    "text": "1 added passive skill is Overprepared"
+  },
+  {
+    "id": "enchant.stat_3599615742|27203",
+    "text": "1 added passive skill is Heart and Soul"
+  },
+  {
+    "id": "enchant.stat_3599615742|27301",
+    "text": "1 added passive skill is Martial Experience"
+  },
+  {
+    "id": "enchant.stat_3599615742|27308",
+    "text": "1 added passive skill is Gravepact"
+  },
+  {
+    "id": "enchant.stat_3599615742|27422",
+    "text": "1 added passive skill is Spirit of War"
+  },
+  {
+    "id": "enchant.stat_3599615742|27611",
+    "text": "1 added passive skill is Lord of the Dead"
+  },
+  {
     "id": "enchant.stat_3599615742|27623",
     "text": "1 added passive skill is Harsh Lessons"
+  },
+  {
+    "id": "enchant.stat_3599615742|27781",
+    "text": "1 added passive skill is Worship the Blightheart"
+  },
+  {
+    "id": "enchant.stat_3599615742|27788",
+    "text": "1 added passive skill is Blood Drinker"
+  },
+  {
+    "id": "enchant.stat_3599615742|27806",
+    "text": "1 added passive skill is As The Thunder"
+  },
+  {
+    "id": "enchant.stat_3599615742|27929",
+    "text": "1 added passive skill is Deep Wisdom"
+  },
+  {
+    "id": "enchant.stat_3599615742|28034",
+    "text": "1 added passive skill is Empowered Bond"
+  },
+  {
+    "id": "enchant.stat_3599615742|28449",
+    "text": "1 added passive skill is Surge of Vigour"
+  },
+  {
+    "id": "enchant.stat_3599615742|28503",
+    "text": "1 added passive skill is Life Raker"
+  },
+  {
+    "id": "enchant.stat_3599615742|28754",
+    "text": "1 added passive skill is Assassination"
+  },
+  {
+    "id": "enchant.stat_3599615742|28878",
+    "text": "1 added passive skill is Relentless"
   },
   {
     "id": "enchant.stat_3599615742|29049",
     "text": "1 added passive skill is Holy Fire"
   },
   {
+    "id": "enchant.stat_3599615742|29381",
+    "text": "1 added passive skill is Ravenous Horde"
+  },
+  {
+    "id": "enchant.stat_3599615742|29522",
+    "text": "1 added passive skill is Dance of Blades"
+  },
+  {
+    "id": "enchant.stat_3599615742|2959",
+    "text": "1 added passive skill is Season of Ice"
+  },
+  {
+    "id": "enchant.stat_3599615742|29861",
+    "text": "1 added passive skill is Explosive Runes"
+  },
+  {
+    "id": "enchant.stat_3599615742|30160",
+    "text": "1 added passive skill is Fending"
+  },
+  {
+    "id": "enchant.stat_3599615742|30225",
+    "text": "1 added passive skill is Lightning Walker"
+  },
+  {
+    "id": "enchant.stat_3599615742|30302",
+    "text": "1 added passive skill is Hearty"
+  },
+  {
+    "id": "enchant.stat_3599615742|30439",
+    "text": "1 added passive skill is Lava Lash"
+  },
+  {
+    "id": "enchant.stat_3599615742|30471",
+    "text": "1 added passive skill is True Strike"
+  },
+  {
+    "id": "enchant.stat_3599615742|30693",
+    "text": "1 added passive skill is Divine Fervour"
+  },
+  {
+    "id": "enchant.stat_3599615742|30974",
+    "text": "1 added passive skill is Expert Hunter"
+  },
+  {
+    "id": "enchant.stat_3599615742|31033",
+    "text": "1 added passive skill is Robust"
+  },
+  {
+    "id": "enchant.stat_3599615742|31257",
+    "text": "1 added passive skill is Natural Authority"
+  },
+  {
+    "id": "enchant.stat_3599615742|31359",
+    "text": "1 added passive skill is Fatal Toxins"
+  },
+  {
+    "id": "enchant.stat_3599615742|31473",
+    "text": "1 added passive skill is Master of Wounds"
+  },
+  {
+    "id": "enchant.stat_3599615742|31508",
+    "text": "1 added passive skill is Aspect of the Lynx"
+  },
+  {
     "id": "enchant.stat_3599615742|31513",
     "text": "1 added passive skill is Adjacent Animosity"
   },
   {
+    "id": "enchant.stat_3599615742|31585",
+    "text": "1 added passive skill is Careful Conservationist"
+  },
+  {
+    "id": "enchant.stat_3599615742|3195",
+    "text": "1 added passive skill is Legacy of the Wilds"
+  },
+  {
     "id": "enchant.stat_3599615742|32059",
     "text": "1 added passive skill is Titanic Impacts"
+  },
+  {
+    "id": "enchant.stat_3599615742|32176",
+    "text": "1 added passive skill is Soul Thief"
+  },
+  {
+    "id": "enchant.stat_3599615742|32227",
+    "text": "1 added passive skill is Adder\u0027s Touch"
+  },
+  {
+    "id": "enchant.stat_3599615742|32455",
+    "text": "1 added passive skill is Storm Weaver"
+  },
+  {
+    "id": "enchant.stat_3599615742|32681",
+    "text": "1 added passive skill is Mark the Prey"
+  },
+  {
+    "id": "enchant.stat_3599615742|32738",
+    "text": "1 added passive skill is Wall of Steel"
   },
   {
     "id": "enchant.stat_3599615742|32853",
@@ -16868,8 +17512,28 @@
     "text": "1 added passive skill is Sovereignty"
   },
   {
+    "id": "enchant.stat_3599615742|33082",
+    "text": "1 added passive skill is Razor\u0027s Edge"
+  },
+  {
+    "id": "enchant.stat_3599615742|3309",
+    "text": "1 added passive skill is Fleetfoot"
+  },
+  {
     "id": "enchant.stat_3599615742|33287",
     "text": "1 added passive skill is Juggernaut"
+  },
+  {
+    "id": "enchant.stat_3599615742|33435",
+    "text": "1 added passive skill is Holy Dominion"
+  },
+  {
+    "id": "enchant.stat_3599615742|33545",
+    "text": "1 added passive skill is Harrier"
+  },
+  {
+    "id": "enchant.stat_3599615742|33582",
+    "text": "1 added passive skill is Forceful Skewering"
   },
   {
     "id": "enchant.stat_3599615742|33718",
@@ -16884,48 +17548,284 @@
     "text": "1 added passive skill is Swagger"
   },
   {
+    "id": "enchant.stat_3599615742|33777",
+    "text": "1 added passive skill is Devastating Devices"
+  },
+  {
     "id": "enchant.stat_3599615742|33903",
     "text": "1 added passive skill is Will of Blades"
+  },
+  {
+    "id": "enchant.stat_3599615742|34009",
+    "text": "1 added passive skill is Master of the Arena"
   },
   {
     "id": "enchant.stat_3599615742|34173",
     "text": "1 added passive skill is Overcharge"
   },
   {
+    "id": "enchant.stat_3599615742|34284",
+    "text": "1 added passive skill is Seasoned Swordplay"
+  },
+  {
     "id": "enchant.stat_3599615742|34506",
     "text": "1 added passive skill is Golem Commander"
+  },
+  {
+    "id": "enchant.stat_3599615742|3452",
+    "text": "1 added passive skill is Foresight"
+  },
+  {
+    "id": "enchant.stat_3599615742|34591",
+    "text": "1 added passive skill is Malicious Intent"
+  },
+  {
+    "id": "enchant.stat_3599615742|34661",
+    "text": "1 added passive skill is Fire Walker"
+  },
+  {
+    "id": "enchant.stat_3599615742|34666",
+    "text": "1 added passive skill is Destroyer"
   },
   {
     "id": "enchant.stat_3599615742|34973",
     "text": "1 added passive skill is Measured Fury"
   },
   {
+    "id": "enchant.stat_3599615742|34978",
+    "text": "1 added passive skill is Colloidal Mixture"
+  },
+  {
+    "id": "enchant.stat_3599615742|35233",
+    "text": "1 added passive skill is Discord Artisan"
+  },
+  {
+    "id": "enchant.stat_3599615742|35436",
+    "text": "1 added passive skill is Kinetic Impacts"
+  },
+  {
+    "id": "enchant.stat_3599615742|35663",
+    "text": "1 added passive skill is Strong Arm"
+  },
+  {
+    "id": "enchant.stat_3599615742|35685",
+    "text": "1 added passive skill is Fearsome Force"
+  },
+  {
+    "id": "enchant.stat_3599615742|35894",
+    "text": "1 added passive skill is Trickery"
+  },
+  {
+    "id": "enchant.stat_3599615742|35958",
+    "text": "1 added passive skill is Faith and Steel"
+  },
+  {
+    "id": "enchant.stat_3599615742|36281",
+    "text": "1 added passive skill is Primeval Force"
+  },
+  {
     "id": "enchant.stat_3599615742|36490",
     "text": "1 added passive skill is Flaying"
+  },
+  {
+    "id": "enchant.stat_3599615742|36687",
+    "text": "1 added passive skill is Avatar of the Hunt"
+  },
+  {
+    "id": "enchant.stat_3599615742|36736",
+    "text": "1 added passive skill is Burning Brutality"
+  },
+  {
+    "id": "enchant.stat_3599615742|36859",
+    "text": "1 added passive skill is Steelwood Stance"
   },
   {
     "id": "enchant.stat_3599615742|36915",
     "text": "1 added passive skill is Sacrifice"
   },
   {
+    "id": "enchant.stat_3599615742|36949",
+    "text": "1 added passive skill is Devotion"
+  },
+  {
+    "id": "enchant.stat_3599615742|37078",
+    "text": "1 added passive skill is Path of the Savant"
+  },
+  {
+    "id": "enchant.stat_3599615742|37326",
+    "text": "1 added passive skill is Stamina"
+  },
+  {
     "id": "enchant.stat_3599615742|37403",
     "text": "1 added passive skill is Infused Flesh"
+  },
+  {
+    "id": "enchant.stat_3599615742|37425",
+    "text": "1 added passive skill is Practised Reapplication"
+  },
+  {
+    "id": "enchant.stat_3599615742|37504",
+    "text": "1 added passive skill is Intuition"
+  },
+  {
+    "id": "enchant.stat_3599615742|37512",
+    "text": "1 added passive skill is Bastion of Faith"
+  },
+  {
+    "id": "enchant.stat_3599615742|37647",
+    "text": "1 added passive skill is Dismembering"
+  },
+  {
+    "id": "enchant.stat_3599615742|38246",
+    "text": "1 added passive skill is Presage"
+  },
+  {
+    "id": "enchant.stat_3599615742|38516",
+    "text": "1 added passive skill is Righteous Decree"
+  },
+  {
+    "id": "enchant.stat_3599615742|38706",
+    "text": "1 added passive skill is Way of the Warrior"
+  },
+  {
+    "id": "enchant.stat_3599615742|38849",
+    "text": "1 added passive skill is Searing Heat"
+  },
+  {
+    "id": "enchant.stat_3599615742|38922",
+    "text": "1 added passive skill is Goliath"
+  },
+  {
+    "id": "enchant.stat_3599615742|39530",
+    "text": "1 added passive skill is Vitality Void"
+  },
+  {
+    "id": "enchant.stat_3599615742|39657",
+    "text": "1 added passive skill is Pain Forger"
+  },
+  {
+    "id": "enchant.stat_3599615742|39743",
+    "text": "1 added passive skill is Dark Arts"
+  },
+  {
+    "id": "enchant.stat_3599615742|39761",
+    "text": "1 added passive skill is Counterweight"
   },
   {
     "id": "enchant.stat_3599615742|39904",
     "text": "1 added passive skill is Brutal Skewering"
   },
   {
+    "id": "enchant.stat_3599615742|39986",
+    "text": "1 added passive skill is Defiled Forces"
+  },
+  {
+    "id": "enchant.stat_3599615742|40619",
+    "text": "1 added passive skill is Awe and Terror"
+  },
+  {
+    "id": "enchant.stat_3599615742|40645",
+    "text": "1 added passive skill is Bone Breaker"
+  },
+  {
+    "id": "enchant.stat_3599615742|40743",
+    "text": "1 added passive skill is Crystal Skin"
+  },
+  {
+    "id": "enchant.stat_3599615742|40849",
+    "text": "1 added passive skill is Persistence"
+  },
+  {
+    "id": "enchant.stat_3599615742|41119",
+    "text": "1 added passive skill is Lethality"
+  },
+  {
+    "id": "enchant.stat_3599615742|41137",
+    "text": "1 added passive skill is Field Medicine"
+  },
+  {
     "id": "enchant.stat_3599615742|41169",
     "text": "1 added passive skill is Jagged Wounds"
+  },
+  {
+    "id": "enchant.stat_3599615742|41305",
+    "text": "1 added passive skill is Crushing Reply"
+  },
+  {
+    "id": "enchant.stat_3599615742|41307",
+    "text": "1 added passive skill is Deadly Inclinations"
+  },
+  {
+    "id": "enchant.stat_3599615742|41420",
+    "text": "1 added passive skill is Natural Remedies"
+  },
+  {
+    "id": "enchant.stat_3599615742|41472",
+    "text": "1 added passive skill is Discipline and Training"
+  },
+  {
+    "id": "enchant.stat_3599615742|41476",
+    "text": "1 added passive skill is Elder Power"
   },
   {
     "id": "enchant.stat_3599615742|41595",
     "text": "1 added passive skill is Marked for Death"
   },
   {
+    "id": "enchant.stat_3599615742|4177",
+    "text": "1 added passive skill is Spiritual Aid"
+  },
+  {
+    "id": "enchant.stat_3599615742|41870",
+    "text": "1 added passive skill is Winter\u0027s Embrace"
+  },
+  {
+    "id": "enchant.stat_3599615742|41989",
+    "text": "1 added passive skill is Resourcefulness"
+  },
+  {
     "id": "enchant.stat_3599615742|42009",
     "text": "1 added passive skill is Soul of Steel"
+  },
+  {
+    "id": "enchant.stat_3599615742|42041",
+    "text": "1 added passive skill is Profane Chemistry"
+  },
+  {
+    "id": "enchant.stat_3599615742|4207",
+    "text": "1 added passive skill is Window of Opportunity"
+  },
+  {
+    "id": "enchant.stat_3599615742|42443",
+    "text": "1 added passive skill is Frenetic"
+  },
+  {
+    "id": "enchant.stat_3599615742|42649",
+    "text": "1 added passive skill is Snowforged"
+  },
+  {
+    "id": "enchant.stat_3599615742|42686",
+    "text": "1 added passive skill is Elemental Focus"
+  },
+  {
+    "id": "enchant.stat_3599615742|42720",
+    "text": "1 added passive skill is Heavy Draw"
+  },
+  {
+    "id": "enchant.stat_3599615742|42795",
+    "text": "1 added passive skill is Arcane Focus"
+  },
+  {
+    "id": "enchant.stat_3599615742|42804",
+    "text": "1 added passive skill is Mind Drinker"
+  },
+  {
+    "id": "enchant.stat_3599615742|42917",
+    "text": "1 added passive skill is Whirling Barrier"
+  },
+  {
+    "id": "enchant.stat_3599615742|43385",
+    "text": "1 added passive skill is Winter Spirit"
   },
   {
     "id": "enchant.stat_3599615742|4354",
@@ -16936,12 +17836,92 @@
     "text": "1 added passive skill is Spiritual Command"
   },
   {
+    "id": "enchant.stat_3599615742|44102",
+    "text": "1 added passive skill is Efficient Explosives"
+  },
+  {
+    "id": "enchant.stat_3599615742|44103",
+    "text": "1 added passive skill is Reflexes"
+  },
+  {
+    "id": "enchant.stat_3599615742|44191",
+    "text": "1 added passive skill is As The Mountain"
+  },
+  {
+    "id": "enchant.stat_3599615742|44207",
+    "text": "1 added passive skill is Testudo"
+  },
+  {
+    "id": "enchant.stat_3599615742|44347",
+    "text": "1 added passive skill is Divine Fury"
+  },
+  {
+    "id": "enchant.stat_3599615742|44562",
+    "text": "1 added passive skill is Shaman\u0027s Dominion"
+  },
+  {
+    "id": "enchant.stat_3599615742|44788",
+    "text": "1 added passive skill is Potent Connections"
+  },
+  {
+    "id": "enchant.stat_3599615742|4481",
+    "text": "1 added passive skill is Forces of Nature"
+  },
+  {
     "id": "enchant.stat_3599615742|44824",
     "text": "1 added passive skill is Mysticism"
   },
   {
+    "id": "enchant.stat_3599615742|44955",
+    "text": "1 added passive skill is Frost Walker"
+  },
+  {
     "id": "enchant.stat_3599615742|44988",
     "text": "1 added passive skill is Wasting"
+  },
+  {
+    "id": "enchant.stat_3599615742|45067",
+    "text": "1 added passive skill is Thrill Killer"
+  },
+  {
+    "id": "enchant.stat_3599615742|45283",
+    "text": "1 added passive skill is Cornered Prey"
+  },
+  {
+    "id": "enchant.stat_3599615742|45317",
+    "text": "1 added passive skill is Ash, Frost and Storm"
+  },
+  {
+    "id": "enchant.stat_3599615742|45329",
+    "text": "1 added passive skill is Trick Shot"
+  },
+  {
+    "id": "enchant.stat_3599615742|45350",
+    "text": "1 added passive skill is Glory of Command"
+  },
+  {
+    "id": "enchant.stat_3599615742|45608",
+    "text": "1 added passive skill is Successive Detonations"
+  },
+  {
+    "id": "enchant.stat_3599615742|45657",
+    "text": "1 added passive skill is Trial of the Faith"
+  },
+  {
+    "id": "enchant.stat_3599615742|45803",
+    "text": "1 added passive skill is Veteran Soldier"
+  },
+  {
+    "id": "enchant.stat_3599615742|45945",
+    "text": "1 added passive skill is Conjured Barrier"
+  },
+  {
+    "id": "enchant.stat_3599615742|46408",
+    "text": "1 added passive skill is Fangs of the Viper"
+  },
+  {
+    "id": "enchant.stat_3599615742|46471",
+    "text": "1 added passive skill is Powerful Bond"
   },
   {
     "id": "enchant.stat_3599615742|46842",
@@ -16952,6 +17932,34 @@
     "text": "1 added passive skill is Arcane Sanctuary"
   },
   {
+    "id": "enchant.stat_3599615742|46965",
+    "text": "1 added passive skill is Saboteur"
+  },
+  {
+    "id": "enchant.stat_3599615742|47065",
+    "text": "1 added passive skill is Master of Blades"
+  },
+  {
+    "id": "enchant.stat_3599615742|47306",
+    "text": "1 added passive skill is Throatseeker"
+  },
+  {
+    "id": "enchant.stat_3599615742|47471",
+    "text": "1 added passive skill is Overcharged"
+  },
+  {
+    "id": "enchant.stat_3599615742|47484",
+    "text": "1 added passive skill is Depth Perception"
+  },
+  {
+    "id": "enchant.stat_3599615742|47743",
+    "text": "1 added passive skill is Farsight"
+  },
+  {
+    "id": "enchant.stat_3599615742|48298",
+    "text": "1 added passive skill is Insightfulness"
+  },
+  {
     "id": "enchant.stat_3599615742|4833",
     "text": "1 added passive skill is Vigour"
   },
@@ -16960,40 +17968,368 @@
     "text": "1 added passive skill is Bravery"
   },
   {
+    "id": "enchant.stat_3599615742|4854",
+    "text": "1 added passive skill is Asylum"
+  },
+  {
+    "id": "enchant.stat_3599615742|48556",
+    "text": "1 added passive skill is Heart of Darkness"
+  },
+  {
+    "id": "enchant.stat_3599615742|48614",
+    "text": "1 added passive skill is Fervour"
+  },
+  {
+    "id": "enchant.stat_3599615742|48698",
+    "text": "1 added passive skill is Void Barrier"
+  },
+  {
+    "id": "enchant.stat_3599615742|48807",
+    "text": "1 added passive skill is Art of the Gladiator"
+  },
+  {
+    "id": "enchant.stat_3599615742|48823",
+    "text": "1 added passive skill is Deadly Draw"
+  },
+  {
+    "id": "enchant.stat_3599615742|4918",
+    "text": "1 added passive skill is Indiscriminate Revenge"
+  },
+  {
+    "id": "enchant.stat_3599615742|49254",
+    "text": "1 added passive skill is Retribution"
+  },
+  {
+    "id": "enchant.stat_3599615742|49318",
+    "text": "1 added passive skill is Wrecking Ball"
+  },
+  {
     "id": "enchant.stat_3599615742|49379",
     "text": "1 added passive skill is Hired Killer"
+  },
+  {
+    "id": "enchant.stat_3599615742|4940",
+    "text": "1 added passive skill is Cleaving"
+  },
+  {
+    "id": "enchant.stat_3599615742|49416",
+    "text": "1 added passive skill is Adamant"
+  },
+  {
+    "id": "enchant.stat_3599615742|49445",
+    "text": "1 added passive skill is Deep Breaths"
+  },
+  {
+    "id": "enchant.stat_3599615742|49459",
+    "text": "1 added passive skill is King of the Hill"
+  },
+  {
+    "id": "enchant.stat_3599615742|49538",
+    "text": "1 added passive skill is Defiance"
+  },
+  {
+    "id": "enchant.stat_3599615742|49621",
+    "text": "1 added passive skill is Acuity"
+  },
+  {
+    "id": "enchant.stat_3599615742|49645",
+    "text": "1 added passive skill is Cauterisation"
+  },
+  {
+    "id": "enchant.stat_3599615742|49772",
+    "text": "1 added passive skill is Utmost Might"
+  },
+  {
+    "id": "enchant.stat_3599615742|49969",
+    "text": "1 added passive skill is Courage"
   },
   {
     "id": "enchant.stat_3599615742|50029",
     "text": "1 added passive skill is Unnatural Calm"
   },
   {
+    "id": "enchant.stat_3599615742|50338",
+    "text": "1 added passive skill is Ballistics"
+  },
+  {
+    "id": "enchant.stat_3599615742|50690",
+    "text": "1 added passive skill is Replenishing Remedies"
+  },
+  {
+    "id": "enchant.stat_3599615742|50842",
+    "text": "1 added passive skill is Veteran\u0027s Wrath"
+  },
+  {
+    "id": "enchant.stat_3599615742|50858",
+    "text": "1 added passive skill is Admonisher"
+  },
+  {
+    "id": "enchant.stat_3599615742|51108",
+    "text": "1 added passive skill is Arcane Capacitor"
+  },
+  {
+    "id": "enchant.stat_3599615742|51212",
+    "text": "1 added passive skill is Entropy"
+  },
+  {
+    "id": "enchant.stat_3599615742|5126",
+    "text": "1 added passive skill is Spinecruncher"
+  },
+  {
+    "id": "enchant.stat_3599615742|51360",
+    "text": "1 added passive skill is Mixed Munitions"
+  },
+  {
+    "id": "enchant.stat_3599615742|51440",
+    "text": "1 added passive skill is Druidic Rite"
+  },
+  {
+    "id": "enchant.stat_3599615742|51559",
+    "text": "1 added passive skill is Smashing Strikes"
+  },
+  {
+    "id": "enchant.stat_3599615742|51748",
+    "text": "1 added passive skill is Last Rites"
+  },
+  {
     "id": "enchant.stat_3599615742|51881",
     "text": "1 added passive skill is Master Fletcher"
+  },
+  {
+    "id": "enchant.stat_3599615742|52030",
+    "text": "1 added passive skill is Burst of Energy"
+  },
+  {
+    "id": "enchant.stat_3599615742|52031",
+    "text": "1 added passive skill is Disintegration"
+  },
+  {
+    "id": "enchant.stat_3599615742|52090",
+    "text": "1 added passive skill is Feller of Foes"
+  },
+  {
+    "id": "enchant.stat_3599615742|52157",
+    "text": "1 added passive skill is Soul Siphon"
+  },
+  {
+    "id": "enchant.stat_3599615742|52230",
+    "text": "1 added passive skill is Weathered Hunter"
   },
   {
     "id": "enchant.stat_3599615742|52282",
     "text": "1 added passive skill is Tenacity"
   },
   {
+    "id": "enchant.stat_3599615742|52742",
+    "text": "1 added passive skill is Hasty Demise"
+  },
+  {
+    "id": "enchant.stat_3599615742|52789",
+    "text": "1 added passive skill is Circle of Life"
+  },
+  {
+    "id": "enchant.stat_3599615742|5289",
+    "text": "1 added passive skill is Battle Rouse"
+  },
+  {
+    "id": "enchant.stat_3599615742|529",
+    "text": "1 added passive skill is Poisonous Fangs"
+  },
+  {
+    "id": "enchant.stat_3599615742|53013",
+    "text": "1 added passive skill is Atrophy"
+  },
+  {
+    "id": "enchant.stat_3599615742|53042",
+    "text": "1 added passive skill is Exceptional Performance"
+  },
+  {
+    "id": "enchant.stat_3599615742|53114",
+    "text": "1 added passive skill is Revenge of the Hunted"
+  },
+  {
     "id": "enchant.stat_3599615742|53118",
     "text": "1 added passive skill is Barbarism"
+  },
+  {
+    "id": "enchant.stat_3599615742|53493",
+    "text": "1 added passive skill is Annihilation"
   },
   {
     "id": "enchant.stat_3599615742|53573",
     "text": "1 added passive skill is Arcane Expanse"
   },
   {
+    "id": "enchant.stat_3599615742|53652",
+    "text": "1 added passive skill is Steeped in the Profane"
+  },
+  {
+    "id": "enchant.stat_3599615742|53757",
+    "text": "1 added passive skill is Shamanistic Fury"
+  },
+  {
     "id": "enchant.stat_3599615742|53759",
     "text": "1 added passive skill is Cleansed Thoughts"
+  },
+  {
+    "id": "enchant.stat_3599615742|53802",
+    "text": "1 added passive skill is Essence Extraction"
+  },
+  {
+    "id": "enchant.stat_3599615742|53840",
+    "text": "1 added passive skill is Vengeance"
+  },
+  {
+    "id": "enchant.stat_3599615742|54142",
+    "text": "1 added passive skill is Finesse"
+  },
+  {
+    "id": "enchant.stat_3599615742|54268",
+    "text": "1 added passive skill is Blade Barrier"
+  },
+  {
+    "id": "enchant.stat_3599615742|5430",
+    "text": "1 added passive skill is Magmatic Strikes"
+  },
+  {
+    "id": "enchant.stat_3599615742|544",
+    "text": "1 added passive skill is Surveillance"
+  },
+  {
+    "id": "enchant.stat_3599615742|54629",
+    "text": "1 added passive skill is Inexorable"
+  },
+  {
+    "id": "enchant.stat_3599615742|54694",
+    "text": "1 added passive skill is Light of Divinity"
+  },
+  {
+    "id": "enchant.stat_3599615742|54713",
+    "text": "1 added passive skill is Force Shaper"
+  },
+  {
+    "id": "enchant.stat_3599615742|54776",
+    "text": "1 added passive skill is Mana Flows"
+  },
+  {
+    "id": "enchant.stat_3599615742|54791",
+    "text": "1 added passive skill is Claws of the Magpie"
+  },
+  {
+    "id": "enchant.stat_3599615742|55002",
+    "text": "1 added passive skill is Righteous Fury"
+  },
+  {
+    "id": "enchant.stat_3599615742|55027",
+    "text": "1 added passive skill is Shining Justice"
+  },
+  {
+    "id": "enchant.stat_3599615742|55114",
+    "text": "1 added passive skill is Utmost Intellect"
+  },
+  {
+    "id": "enchant.stat_3599615742|55194",
+    "text": "1 added passive skill is Settling Ash"
+  },
+  {
+    "id": "enchant.stat_3599615742|55380",
+    "text": "1 added passive skill is Clever Construction"
+  },
+  {
+    "id": "enchant.stat_3599615742|55381",
+    "text": "1 added passive skill is Arcane Retaliation"
   },
   {
     "id": "enchant.stat_3599615742|55485",
     "text": "1 added passive skill is Constitution"
   },
   {
+    "id": "enchant.stat_3599615742|5574",
+    "text": "1 added passive skill is Force of Darkness"
+  },
+  {
+    "id": "enchant.stat_3599615742|55772",
+    "text": "1 added passive skill is Blacksmith\u0027s Clout"
+  },
+  {
+    "id": "enchant.stat_3599615742|56094",
+    "text": "1 added passive skill is One with the River"
+  },
+  {
     "id": "enchant.stat_3599615742|56146",
     "text": "1 added passive skill is Deliberate Brutality"
+  },
+  {
+    "id": "enchant.stat_3599615742|56207",
+    "text": "1 added passive skill is Hardened Scars"
+  },
+  {
+    "id": "enchant.stat_3599615742|5624",
+    "text": "1 added passive skill is Crusader"
+  },
+  {
+    "id": "enchant.stat_3599615742|56274",
+    "text": "1 added passive skill is Lasting Tempest"
+  },
+  {
+    "id": "enchant.stat_3599615742|56276",
+    "text": "1 added passive skill is Nightstalker"
+  },
+  {
+    "id": "enchant.stat_3599615742|56330",
+    "text": "1 added passive skill is Flow of Battle"
+  },
+  {
+    "id": "enchant.stat_3599615742|56359",
+    "text": "1 added passive skill is Cannibalistic Rite"
+  },
+  {
+    "id": "enchant.stat_3599615742|56648",
+    "text": "1 added passive skill is Claws of the Falcon"
+  },
+  {
+    "id": "enchant.stat_3599615742|56716",
+    "text": "1 added passive skill is Heart of Thunder"
+  },
+  {
+    "id": "enchant.stat_3599615742|570",
+    "text": "1 added passive skill is Dazzling Strikes"
+  },
+  {
+    "id": "enchant.stat_3599615742|57006",
+    "text": "1 added passive skill is Vengeant Cascade"
+  },
+  {
+    "id": "enchant.stat_3599615742|57199",
+    "text": "1 added passive skill is Fangs of Frost"
+  },
+  {
+    "id": "enchant.stat_3599615742|57839",
+    "text": "1 added passive skill is Blade of Cunning"
+  },
+  {
+    "id": "enchant.stat_3599615742|57900",
+    "text": "1 added passive skill is Command of Steel"
+  },
+  {
+    "id": "enchant.stat_3599615742|58032",
+    "text": "1 added passive skill is Serpentine Spellslinger"
+  },
+  {
+    "id": "enchant.stat_3599615742|58168",
+    "text": "1 added passive skill is High Voltage"
+  },
+  {
+    "id": "enchant.stat_3599615742|58198",
+    "text": "1 added passive skill is Fingers of Frost"
+  },
+  {
+    "id": "enchant.stat_3599615742|58218",
+    "text": "1 added passive skill is Purity of Flesh"
+  },
+  {
+    "id": "enchant.stat_3599615742|5823",
+    "text": "1 added passive skill is Coordination"
   },
   {
     "id": "enchant.stat_3599615742|58382",
@@ -17004,28 +18340,148 @@
     "text": "1 added passive skill is Born to Fight"
   },
   {
+    "id": "enchant.stat_3599615742|58831",
+    "text": "1 added passive skill is Disemboweling"
+  },
+  {
     "id": "enchant.stat_3599615742|58851",
     "text": "1 added passive skill is Leader of the Pack"
+  },
+  {
+    "id": "enchant.stat_3599615742|58921",
+    "text": "1 added passive skill is Disciple of the Slaughter"
+  },
+  {
+    "id": "enchant.stat_3599615742|59151",
+    "text": "1 added passive skill is Brutal Blade"
+  },
+  {
+    "id": "enchant.stat_3599615742|59423",
+    "text": "1 added passive skill is Escalation"
+  },
+  {
+    "id": "enchant.stat_3599615742|59556",
+    "text": "1 added passive skill is Expeditious Munitions"
+  },
+  {
+    "id": "enchant.stat_3599615742|59605",
+    "text": "1 added passive skill is Unstable Munitions"
+  },
+  {
+    "id": "enchant.stat_3599615742|59766",
+    "text": "1 added passive skill is Dirty Techniques"
+  },
+  {
+    "id": "enchant.stat_3599615742|59866",
+    "text": "1 added passive skill is Entrench"
+  },
+  {
+    "id": "enchant.stat_3599615742|59976",
+    "text": "1 added passive skill is Careful Counterattack"
   },
   {
     "id": "enchant.stat_3599615742|6",
     "text": "1 added passive skill is Twin Terrors"
   },
   {
+    "id": "enchant.stat_3599615742|60002",
+    "text": "1 added passive skill is Fury Bolts"
+  },
+  {
+    "id": "enchant.stat_3599615742|60031",
+    "text": "1 added passive skill is Prismatic Skin"
+  },
+  {
+    "id": "enchant.stat_3599615742|60085",
+    "text": "1 added passive skill is Arcane Conservation"
+  },
+  {
+    "id": "enchant.stat_3599615742|60501",
+    "text": "1 added passive skill is Heart of Flame"
+  },
+  {
+    "id": "enchant.stat_3599615742|60619",
+    "text": "1 added passive skill is Galvanic Hammer"
+  },
+  {
+    "id": "enchant.stat_3599615742|60737",
+    "text": "1 added passive skill is Sleight of Hand"
+  },
+  {
+    "id": "enchant.stat_3599615742|60781",
+    "text": "1 added passive skill is Inspiring Bond"
+  },
+  {
+    "id": "enchant.stat_3599615742|61039",
+    "text": "1 added passive skill is Wild Hunger"
+  },
+  {
+    "id": "enchant.stat_3599615742|61190",
+    "text": "1 added passive skill is Rallying Icon"
+  },
+  {
     "id": "enchant.stat_3599615742|61198",
     "text": "1 added passive skill is Heart of the Warrior"
+  },
+  {
+    "id": "enchant.stat_3599615742|61308",
+    "text": "1 added passive skill is Amplify"
+  },
+  {
+    "id": "enchant.stat_3599615742|61689",
+    "text": "1 added passive skill is Explosive Elements"
   },
   {
     "id": "enchant.stat_3599615742|61981",
     "text": "1 added passive skill is Doom Cast"
   },
   {
+    "id": "enchant.stat_3599615742|61982",
+    "text": "1 added passive skill is Grave Intentions"
+  },
+  {
+    "id": "enchant.stat_3599615742|62094",
+    "text": "1 added passive skill is Taste for Blood"
+  },
+  {
+    "id": "enchant.stat_3599615742|6233",
+    "text": "1 added passive skill is Blast Waves"
+  },
+  {
+    "id": "enchant.stat_3599615742|6237",
+    "text": "1 added passive skill is Precision"
+  },
+  {
+    "id": "enchant.stat_3599615742|62577",
+    "text": "1 added passive skill is Essence Surge"
+  },
+  {
     "id": "enchant.stat_3599615742|62596",
     "text": "1 added passive skill is Mystic Talents"
   },
   {
+    "id": "enchant.stat_3599615742|62802",
+    "text": "1 added passive skill is Brink of Death"
+  },
+  {
+    "id": "enchant.stat_3599615742|62849",
+    "text": "1 added passive skill is Glacial Cage"
+  },
+  {
     "id": "enchant.stat_3599615742|6289",
     "text": "1 added passive skill is Bloodless"
+  },
+  {
+    "id": "enchant.stat_3599615742|63033",
+    "text": "1 added passive skill is Bannerman"
+  },
+  {
+    "id": "enchant.stat_3599615742|63150",
+    "text": "1 added passive skill is Ironwood"
+  },
+  {
+    "id": "enchant.stat_3599615742|63207",
+    "text": "1 added passive skill is Tempest Blast"
   },
   {
     "id": "enchant.stat_3599615742|63251",
@@ -17036,12 +18492,72 @@
     "text": "1 added passive skill is Lust for Carnage"
   },
   {
+    "id": "enchant.stat_3599615742|63453",
+    "text": "1 added passive skill is Excess Sustenance"
+  },
+  {
+    "id": "enchant.stat_3599615742|63635",
+    "text": "1 added passive skill is Primal Manifestation"
+  },
+  {
+    "id": "enchant.stat_3599615742|63727",
+    "text": "1 added passive skill is Gladiator\u0027s Perseverance"
+  },
+  {
+    "id": "enchant.stat_3599615742|63921",
+    "text": "1 added passive skill is Utmost Swiftness"
+  },
+  {
+    "id": "enchant.stat_3599615742|63933",
+    "text": "1 added passive skill is Totemic Zeal"
+  },
+  {
+    "id": "enchant.stat_3599615742|63944",
+    "text": "1 added passive skill is Prism Weave"
+  },
+  {
+    "id": "enchant.stat_3599615742|63976",
+    "text": "1 added passive skill is Shaper"
+  },
+  {
+    "id": "enchant.stat_3599615742|64077",
+    "text": "1 added passive skill is Warrior Training"
+  },
+  {
     "id": "enchant.stat_3599615742|64217",
     "text": "1 added passive skill is Aspect of Stone"
   },
   {
+    "id": "enchant.stat_3599615742|64226",
+    "text": "1 added passive skill is Roaring Challenge"
+  },
+  {
+    "id": "enchant.stat_3599615742|64355",
+    "text": "1 added passive skill is Brand Equity"
+  },
+  {
+    "id": "enchant.stat_3599615742|64395",
+    "text": "1 added passive skill is Blunt Trauma"
+  },
+  {
     "id": "enchant.stat_3599615742|64882",
     "text": "1 added passive skill is Disciple of the Unyielding"
+  },
+  {
+    "id": "enchant.stat_3599615742|65053",
+    "text": "1 added passive skill is Essence Sap"
+  },
+  {
+    "id": "enchant.stat_3599615742|65093",
+    "text": "1 added passive skill is Bladedancer"
+  },
+  {
+    "id": "enchant.stat_3599615742|65097",
+    "text": "1 added passive skill is Leadership"
+  },
+  {
+    "id": "enchant.stat_3599615742|65107",
+    "text": "1 added passive skill is Bastion Breaker"
   },
   {
     "id": "enchant.stat_3599615742|65108",
@@ -17052,12 +18568,132 @@
     "text": "1 added passive skill is Heart of Oak"
   },
   {
+    "id": "enchant.stat_3599615742|65224",
+    "text": "1 added passive skill is Aspect of the Eagle"
+  },
+  {
+    "id": "enchant.stat_3599615742|65273",
+    "text": "1 added passive skill is Enigmatic Reach"
+  },
+  {
     "id": "enchant.stat_3599615742|65308",
     "text": "1 added passive skill is Diamond Skin"
   },
   {
+    "id": "enchant.stat_3599615742|65502",
+    "text": "1 added passive skill is Heartseeker"
+  },
+  {
+    "id": "enchant.stat_3599615742|6615",
+    "text": "1 added passive skill is Arcing Blows"
+  },
+  {
+    "id": "enchant.stat_3599615742|6770",
+    "text": "1 added passive skill is Arcane Guarding"
+  },
+  {
+    "id": "enchant.stat_3599615742|6783",
+    "text": "1 added passive skill is Savage Skewering"
+  },
+  {
+    "id": "enchant.stat_3599615742|6799",
+    "text": "1 added passive skill is Charisma"
+  },
+  {
     "id": "enchant.stat_3599615742|6967",
     "text": "1 added passive skill is Safeguard"
+  },
+  {
+    "id": "enchant.stat_3599615742|7069",
+    "text": "1 added passive skill is Split Shot"
+  },
+  {
+    "id": "enchant.stat_3599615742|7085",
+    "text": "1 added passive skill is Weapon Artistry"
+  },
+  {
+    "id": "enchant.stat_3599615742|7136",
+    "text": "1 added passive skill is Master Sapper"
+  },
+  {
+    "id": "enchant.stat_3599615742|7263",
+    "text": "1 added passive skill is Swift Venoms"
+  },
+  {
+    "id": "enchant.stat_3599615742|7440",
+    "text": "1 added passive skill is Harvester of Foes"
+  },
+  {
+    "id": "enchant.stat_3599615742|7555",
+    "text": "1 added passive skill is Crackling Speed"
+  },
+  {
+    "id": "enchant.stat_3599615742|7688",
+    "text": "1 added passive skill is Enduring Bond"
+  },
+  {
+    "id": "enchant.stat_3599615742|7918",
+    "text": "1 added passive skill is Enigmatic Defence"
+  },
+  {
+    "id": "enchant.stat_3599615742|8001",
+    "text": "1 added passive skill is Clever Thief"
+  },
+  {
+    "id": "enchant.stat_3599615742|8135",
+    "text": "1 added passive skill is Practical Application"
+  },
+  {
+    "id": "enchant.stat_3599615742|8458",
+    "text": "1 added passive skill is Longshot"
+  },
+  {
+    "id": "enchant.stat_3599615742|861",
+    "text": "1 added passive skill is Aggressive Bastion"
+  },
+  {
+    "id": "enchant.stat_3599615742|8833",
+    "text": "1 added passive skill is Heart of Ice"
+  },
+  {
+    "id": "enchant.stat_3599615742|8920",
+    "text": "1 added passive skill is Backstabbing"
+  },
+  {
+    "id": "enchant.stat_3599615742|9015",
+    "text": "1 added passive skill is Dire Torment"
+  },
+  {
+    "id": "enchant.stat_3599615742|9055",
+    "text": "1 added passive skill is Volatile Mines"
+  },
+  {
+    "id": "enchant.stat_3599615742|9194",
+    "text": "1 added passive skill is Merciless Skewering"
+  },
+  {
+    "id": "enchant.stat_3599615742|9261",
+    "text": "1 added passive skill is Disciple of the Forbidden"
+  },
+  {
+    "id": "enchant.stat_3599615742|9432",
+    "text": "1 added passive skill is Mental Rapidity"
+  },
+  {
+    "id": "enchant.stat_3599615742|9535",
+    "text": "1 added passive skill is Hunter\u0027s Gambit"
+  },
+  {
+    "id": "enchant.stat_3599615742|9567",
+    "text": "1 added passive skill is Light Eater"
+  },
+  {
+    "id": "enchant.stat_3599615742|9788",
+    "text": "1 added passive skill is Nimbleness"
+  },
+  {
+    "id": "enchant.stat_3599615742|9864",
+    "text": "1 added passive skill is Growth and Decay"
   },
   {
     "id": "enchant.stat_3600749521",
@@ -17158,6 +18794,10 @@
   {
     "id": "enchant.stat_3655769732",
     "text": "\u002B#% to Quality of all Skill Gems"
+  },
+  {
+    "id": "enchant.stat_3661377675",
+    "text": "Rare monsters that are natural inhabitants are Calcified"
   },
   {
     "id": "enchant.stat_3664950032",
@@ -18076,6 +19716,10 @@
     "text": "Iron Will"
   },
   {
+    "id": "enchant.stat_4093253847",
+    "text": "# Monster Packs in Area are substituted with Packs that\nconvert dropped Equipment to Gold"
+  },
+  {
     "id": "enchant.stat_4095671657",
     "text": "\u002B#% to maximum Fire Resistance"
   },
@@ -18178,6 +19822,10 @@
   {
     "id": "enchant.stat_4148932984",
     "text": "#% chance to create Consecrated Ground when you Shatter an Enemy"
+  },
+  {
+    "id": "enchant.stat_4151275322",
+    "text": "# Monster Packs in Area are substituted with Doedre\u0027s Devoted"
   },
   {
     "id": "enchant.stat_4151555126",
@@ -18288,6 +19936,10 @@
     "text": "#% increased Ice Trap Damage"
   },
   {
+    "id": "enchant.stat_4224467226",
+    "text": "# Monster Packs in Area are substituted with Packs that do not drop items\nPack Monsters grant increased Item Rarity when slain, up to 400%, decaying over time"
+  },
+  {
     "id": "enchant.stat_4224588066",
     "text": "Bane has #% increased Area of Effect"
   },
@@ -18380,8 +20032,16 @@
     "text": "#% increased time before Lockdown"
   },
   {
+    "id": "enchant.stat_429929284",
+    "text": "# Monster Packs in Area are substituted with Packs led by a Pantheon-Touched Rare Monster"
+  },
+  {
     "id": "enchant.stat_430890565",
     "text": "#% increased Flame Surge Damage with Hits and Ailments against Burning Enemies"
+  },
+  {
+    "id": "enchant.stat_434437344",
+    "text": "# Monster Packs in Area are substituted with Syndicate Members\nPack Monsters revive after Final Map Boss has been slain"
   },
   {
     "id": "enchant.stat_435519320",
@@ -19072,6 +20732,10 @@
     "text": "Haste has #% increased Mana Reservation Efficiency"
   },
   {
+    "id": "enchant.stat_940539199",
+    "text": "# Monster Packs in Area are substituted with Wildwood Fiends\nPack Leaders Empower Map Bosses with Wildwood Wisps when slain"
+  },
+  {
     "id": "enchant.stat_942531362",
     "text": "Hits ignore Enemy Physical Damage Reduction"
   },
@@ -19144,28 +20808,112 @@
     "text": "Molten Strike fires an additional Projectile"
   },
   {
+    "id": "explicit.delirium_reward_armour",
+    "text": "Delirium Reward Type: Armour"
+  },
+  {
+    "id": "explicit.delirium_reward_blight",
+    "text": "Delirium Reward Type: Blight Items"
+  },
+  {
     "id": "explicit.delirium_reward_currency",
     "text": "Delirium Reward Type: Currency"
+  },
+  {
+    "id": "explicit.delirium_reward_divinationcards",
+    "text": "Delirium Reward Type: Divination Cards"
+  },
+  {
+    "id": "explicit.delirium_reward_essences",
+    "text": "Delirium Reward Type: Essences"
+  },
+  {
+    "id": "explicit.delirium_reward_gems",
+    "text": "Delirium Reward Type: Gems"
+  },
+  {
+    "id": "explicit.delirium_reward_maps",
+    "text": "Delirium Reward Type: Map Items"
+  },
+  {
+    "id": "explicit.delirium_reward_scarabs",
+    "text": "Delirium Reward Type: Threads"
   },
   {
     "id": "explicit.delirium_reward_trinkets",
     "text": "Delirium Reward Type: Jewellery"
   },
   {
+    "id": "explicit.delirium_reward_uniques",
+    "text": "Delirium Reward Type: Unique Items"
+  },
+  {
+    "id": "explicit.delirium_reward_weapon",
+    "text": "Delirium Reward Type: Weapons"
+  },
+  {
+    "id": "explicit.effect_1059201360",
+    "text": "Socketed Gems are Supported by Level # Physical to Lightning Support"
+  },
+  {
+    "id": "explicit.effect_1115172759",
+    "text": "Socketed Gems are Supported by Level # Swift Affliction Support"
+  },
+  {
+    "id": "explicit.effect_1134484173",
+    "text": "Socketed Gems are Supported by Level # Awakened Unbound Ailments Support"
+  },
+  {
+    "id": "explicit.effect_1149451356",
+    "text": "Grants Level # Vaal Impurity of Ice"
+  },
+  {
+    "id": "explicit.effect_115345895",
+    "text": "Socketed Gems are Supported by Level # Awakened Multistrike Support"
+  },
+  {
+    "id": "explicit.effect_1153652646",
+    "text": "Socketed Gems are Supported by Level # Multiple Projectiles Support"
+  },
+  {
     "id": "explicit.effect_1199731147",
     "text": "Socketed Gems are Supported by Level # Immolate Support"
+  },
+  {
+    "id": "explicit.effect_1200122555",
+    "text": "Socketed Gems are Supported by Level # Burning Damage Support"
   },
   {
     "id": "explicit.effect_1214076534",
     "text": "Socketed Gems are Supported by Level # Hypothermia Support"
   },
   {
+    "id": "explicit.effect_1243416714",
+    "text": "Socketed Gems are Supported by Level # Maim Support"
+  },
+  {
     "id": "explicit.effect_1255519432",
     "text": "Grants Level # Enduring Cry"
   },
   {
+    "id": "explicit.effect_1263906374",
+    "text": "Socketed Gems are Supported by Level # Guardian\u0027s Blessing Support"
+  },
+  {
+    "id": "explicit.effect_1276857842",
+    "text": "Socketed Gems are Supported by Level # Slower Projectiles Support"
+  },
+  {
+    "id": "explicit.effect_1303915392",
+    "text": "Socketed Gems are Supported by Level # Infused Channelling Support"
+  },
+  {
     "id": "explicit.effect_1306984944",
     "text": "Grants Level # Unhinge"
+  },
+  {
+    "id": "explicit.effect_1311270539",
+    "text": "Socketed Gems are Supported by Level # Awakened Chain Support"
   },
   {
     "id": "explicit.effect_1315696378",
@@ -19176,8 +20924,20 @@
     "text": "Socketed Gems are Supported by Level # Faster Casting Support"
   },
   {
+    "id": "explicit.effect_1329591193",
+    "text": "Socketed Gems are Supported by Level # Deadly Ailments Support"
+  },
+  {
     "id": "explicit.effect_1339810278",
     "text": "Socketed Gems are Supported by Level # Generosity Support"
+  },
+  {
+    "id": "explicit.effect_1355803435",
+    "text": "Socketed Gems are Supported by Level # Increased Critical Strikes Support"
+  },
+  {
+    "id": "explicit.effect_1380260970",
+    "text": "Socketed Gems are Supported by Level # Awakened Minion Damage Support"
   },
   {
     "id": "explicit.effect_1389174793",
@@ -19200,8 +20960,24 @@
     "text": "Grants Level # Aspect of the Spider"
   },
   {
+    "id": "explicit.effect_1505316781",
+    "text": "Socketed Gems are Supported by Level # Nightblade Support"
+  },
+  {
+    "id": "explicit.effect_153063788",
+    "text": "Socketed Gems are Supported by Level # Decay Support"
+  },
+  {
     "id": "explicit.effect_1543118831",
     "text": "Grants Level # Death Wish"
+  },
+  {
+    "id": "explicit.effect_1544569957",
+    "text": "Socketed Gems are Supported by Level # More Duration Support"
+  },
+  {
+    "id": "explicit.effect_155410994",
+    "text": "Socketed Gems are Supported by Level # Block Chance Reduction Support"
   },
   {
     "id": "explicit.effect_1561428496",
@@ -19212,6 +20988,10 @@
     "text": "Socketed Gems are Supported by Level # Added Fire Damage Support"
   },
   {
+    "id": "explicit.effect_1602381821",
+    "text": "Socketed Gems are Supported by Level # Close Combat Support"
+  },
+  {
     "id": "explicit.effect_1633788232",
     "text": "Grants Summon Greater Harbinger of Time"
   },
@@ -19220,8 +21000,16 @@
     "text": "Grants Level # Herald of Ice"
   },
   {
+    "id": "explicit.effect_1659734482",
+    "text": "Grants Summon Harbinger of Brutality"
+  },
+  {
     "id": "explicit.effect_1673391040",
     "text": "Socketed Gems are Supported by Level # Added Chaos Damage Support"
+  },
+  {
+    "id": "explicit.effect_1702053472",
+    "text": "Grants Level # Rallying Cry"
   },
   {
     "id": "explicit.effect_1708392771",
@@ -19236,12 +21024,40 @@
     "text": "Socketed Gems are Supported by Level # Cast while Channelling Support"
   },
   {
+    "id": "explicit.effect_1726066205",
+    "text": "Socketed Gems are Supported by Level # Devour Support"
+  },
+  {
+    "id": "explicit.effect_1733367133",
+    "text": "Socketed Gems are Supported by Level # Item Quantity Support"
+  },
+  {
+    "id": "explicit.effect_1740076026",
+    "text": "Socketed Gems are Supported by Level # Arrogance Support"
+  },
+  {
+    "id": "explicit.effect_174595432",
+    "text": "Socketed Gems are Supported by Level # Minion Damage Support"
+  },
+  {
+    "id": "explicit.effect_1749703704",
+    "text": "Socketed Gems are Supported by Level # Hextouch Support"
+  },
+  {
+    "id": "explicit.effect_1770376530",
+    "text": "Socketed Gems are Supported by Level # Faster Projectiles Support"
+  },
+  {
     "id": "explicit.effect_1787679190",
     "text": "Socketed Gems are Supported by Level # Manaforged Arrows Support"
   },
   {
     "id": "explicit.effect_1795027869",
     "text": "Grants Summon Greater Harbinger of Focus"
+  },
+  {
+    "id": "explicit.effect_1825763431",
+    "text": "Grants Level # Witchhunter\u0027s Pyre"
   },
   {
     "id": "explicit.effect_1854569159",
@@ -19256,8 +21072,40 @@
     "text": "Socketed Gems are Supported by Level # Greater Spell Cascade Support"
   },
   {
+    "id": "explicit.effect_1878151040",
+    "text": "Socketed Gems are Supported by Level # Stun Support"
+  },
+  {
+    "id": "explicit.effect_189485532",
+    "text": "Socketed Gems are Supported by Level # Controlled Blaze Support"
+  },
+  {
+    "id": "explicit.effect_1899953379",
+    "text": "Socketed Gems are Supported by Level # Awakened Fork Support"
+  },
+  {
+    "id": "explicit.effect_192206434",
+    "text": "Grants Level # Vaal Impurity of Fire"
+  },
+  {
     "id": "explicit.effect_1931234481",
     "text": "Grants Level # Thirst for Blood"
+  },
+  {
+    "id": "explicit.effect_1933760319",
+    "text": "Socketed Gems are Supported by Level # Meat Shield Support"
+  },
+  {
+    "id": "explicit.effect_1954139129",
+    "text": "Grants Summon Harbinger of the Arcane"
+  },
+  {
+    "id": "explicit.effect_1961292105",
+    "text": "Socketed Gems are Supported by Level # Culling Strike Support"
+  },
+  {
+    "id": "explicit.effect_1974816132",
+    "text": "Grants Level # Pacify"
   },
   {
     "id": "explicit.effect_1979264894",
@@ -19272,8 +21120,20 @@
     "text": "Grants Level # Anger"
   },
   {
+    "id": "explicit.effect_2052193809",
+    "text": "Socketed Gems are Supported by Level # Awakened Added Chaos Damage Support"
+  },
+  {
+    "id": "explicit.effect_2092916684",
+    "text": "Grants Level # Summon Bestial Ursa"
+  },
+  {
     "id": "explicit.effect_2100902429",
     "text": "Socketed Gems are Supported by Level # Multistrike Support"
+  },
+  {
+    "id": "explicit.effect_2107340112",
+    "text": "Socketed Gems are Supported by Level # Greater Multiple Projectiles Support"
   },
   {
     "id": "explicit.effect_2109649836",
@@ -19284,20 +21144,60 @@
     "text": "Grants Level # Herald of Thunder"
   },
   {
+    "id": "explicit.effect_2129634187",
+    "text": "Socketed Gems are Supported by Level # Swiftbrand Support"
+  },
+  {
     "id": "explicit.effect_2141384509",
     "text": "Socketed Gems are Supported by Level # Chance to Poison Support"
+  },
+  {
+    "id": "explicit.effect_2142007278",
+    "text": "Socketed Gems are Supported by Level # Swift Assembly Support"
+  },
+  {
+    "id": "explicit.effect_2142148729",
+    "text": "Socketed Gems are Supported by Level # Sadism Support"
   },
   {
     "id": "explicit.effect_2174769737",
     "text": "Grants Level # Purity of Elements"
   },
   {
+    "id": "explicit.effect_2190102120",
+    "text": "Grants Level # Clarity"
+  },
+  {
+    "id": "explicit.effect_222199368",
+    "text": "Socketed Gems are Supported by Level # Eternal Blessing Support"
+  },
+  {
     "id": "explicit.effect_2236653998",
     "text": "Grants Level # Envy"
   },
   {
+    "id": "explicit.effect_2242579123",
+    "text": "Socketed Gems are Supported by Level # Trinity Support"
+  },
+  {
+    "id": "explicit.effect_2251567057",
+    "text": "Socketed Gems are Supported by Level # Cruelty Support"
+  },
+  {
+    "id": "explicit.effect_2260732373",
+    "text": "Socketed Gems are Supported by Level # Awakened Melee Physical Damage Support"
+  },
+  {
+    "id": "explicit.effect_2264294898",
+    "text": "Socketed Gems are Supported by Level # Infernal Legion Support"
+  },
+  {
     "id": "explicit.effect_2282649307",
     "text": "Socketed Gems are Supported by Level # Snipe Support"
+  },
+  {
+    "id": "explicit.effect_2307564778",
+    "text": "Socketed Gems are Supported by Level # Awakened Spell Echo Support"
   },
   {
     "id": "explicit.effect_2338856567",
@@ -19308,12 +21208,48 @@
     "text": "Grants Level # Convocation"
   },
   {
+    "id": "explicit.effect_2343871202",
+    "text": "Socketed Gems are Supported by Level # Ignite Proliferation Support"
+  },
+  {
+    "id": "explicit.effect_2360840648",
+    "text": "Grants Level # Brandsurge"
+  },
+  {
+    "id": "explicit.effect_2367771894",
+    "text": "Socketed Gems are Supported by Level # Awakened Brutality Support"
+  },
+  {
+    "id": "explicit.effect_2377502094",
+    "text": "Grants Level # Summon Bestial Snake"
+  },
+  {
     "id": "explicit.effect_2409633913",
     "text": "Socketed Gems are Supported by Level # Ice Bite Support"
   },
   {
+    "id": "explicit.effect_2439286871",
+    "text": "Socketed Gems are Supported by Level # Summon Phantasm Support"
+  },
+  {
+    "id": "explicit.effect_2447178998",
+    "text": "Socketed Gems are Supported by Level # Greater Volley Support"
+  },
+  {
+    "id": "explicit.effect_2455845502",
+    "text": "Grants Level # Frostbite"
+  },
+  {
+    "id": "explicit.effect_2461314210",
+    "text": "Grants Level # Wrath"
+  },
+  {
     "id": "explicit.effect_2496940419",
     "text": "Grants Level # Precision"
+  },
+  {
+    "id": "explicit.effect_2513678384",
+    "text": "Socketed Gems are Supported by Level # Awakened Elemental Focus Support"
   },
   {
     "id": "explicit.effect_2559654739",
@@ -19324,8 +21260,40 @@
     "text": "Grants Level # Will of the Lords"
   },
   {
+    "id": "explicit.effect_2581493934",
+    "text": "Socketed Gems are Supported by Level # Cast when Damage Taken Support"
+  },
+  {
     "id": "explicit.effect_2589518277",
     "text": "Grants Level # Bear Trap"
+  },
+  {
+    "id": "explicit.effect_2594535436",
+    "text": "Socketed Gems are Supported by Level # Cast on Ward Break Support"
+  },
+  {
+    "id": "explicit.effect_2612646353",
+    "text": "Socketed Gems are Supported by Level # Excommunicate Support"
+  },
+  {
+    "id": "explicit.effect_2617381612",
+    "text": "Socketed Gems are Supported by Level # Minefield Support"
+  },
+  {
+    "id": "explicit.effect_2638439725",
+    "text": "Socketed Gems are Supported by Level # Charged Mines Support"
+  },
+  {
+    "id": "explicit.effect_2640673956",
+    "text": "Socketed Gems are Supported by Level # Cast on Melee Kill Support"
+  },
+  {
+    "id": "explicit.effect_2649350521",
+    "text": "Grants Level # Vitality"
+  },
+  {
+    "id": "explicit.effect_2653498431",
+    "text": "Socketed Gems are Supported by Level # Awakened Void Manipulation Support"
   },
   {
     "id": "explicit.effect_2653742489",
@@ -19334,6 +21302,10 @@
   {
     "id": "explicit.effect_265550805",
     "text": "Socketed Gems are Supported by Level # Lifetap Support"
+  },
+  {
+    "id": "explicit.effect_2686067790",
+    "text": "Socketed Gems are Supported by Level # Ballista Totem Support"
   },
   {
     "id": "explicit.effect_2698327786",
@@ -19348,8 +21320,16 @@
     "text": "Socketed Gems are Supported by Level # Returning Projectiles Support"
   },
   {
+    "id": "explicit.effect_2722476813",
+    "text": "Socketed Gems are Supported by Level # Elemental Focus Support"
+  },
+  {
     "id": "explicit.effect_273196120",
     "text": "Grants Level # Frostblink"
+  },
+  {
+    "id": "explicit.effect_2742501709",
+    "text": "Socketed Gems are Supported by Level # Void Manipulation Support"
   },
   {
     "id": "explicit.effect_2753888557",
@@ -19360,8 +21340,36 @@
     "text": "Grants Level # Crushing Fist"
   },
   {
+    "id": "explicit.effect_2795990092",
+    "text": "Socketed Gems are Supported by Level # Efficacy Support"
+  },
+  {
+    "id": "explicit.effect_2820548076",
+    "text": "Grants Level # Illusory Warp"
+  },
+  {
+    "id": "explicit.effect_2912209560",
+    "text": "Socketed Gems are Supported by Level # Awakened Added Cold Damage Support"
+  },
+  {
+    "id": "explicit.effect_2937199581",
+    "text": "Grants Level # Dash"
+  },
+  {
+    "id": "explicit.effect_2937933274",
+    "text": "Socketed Gems are Supported by Level # Mirage Archer Support"
+  },
+  {
     "id": "explicit.effect_293985888",
     "text": "Grants Summon Greater Harbinger of the Arcane"
+  },
+  {
+    "id": "explicit.effect_2959432267",
+    "text": "Grants Summon Harbinger of Directions"
+  },
+  {
+    "id": "explicit.effect_2963700146",
+    "text": "Socketed Gems are Supported by Level # Archmage Support"
   },
   {
     "id": "explicit.effect_299595248",
@@ -19372,8 +21380,20 @@
     "text": "Grants Level # Summon Stone Golem"
   },
   {
+    "id": "explicit.effect_3002947169",
+    "text": "Socketed Gems are Supported by Level # Awakened Increased Area of Effect Support"
+  },
+  {
     "id": "explicit.effect_3006785117",
     "text": "Socketed Gems are Supported by Level # Enhance Support"
+  },
+  {
+    "id": "explicit.effect_3009566559",
+    "text": "Socketed Gems are Supported by Level # Chain Support"
+  },
+  {
+    "id": "explicit.effect_3022937704",
+    "text": "Socketed Gems are Supported by Level # Volley Support"
   },
   {
     "id": "explicit.effect_3024539694",
@@ -19384,6 +21404,10 @@
     "text": "Grants Level # Hatred"
   },
   {
+    "id": "explicit.effect_3059751250",
+    "text": "Socketed Gems are Supported by Level # Awakened Empower Support"
+  },
+  {
     "id": "explicit.effect_3082206530",
     "text": "Socketed Gems are Supported by Level # Blastchain Mine Support"
   },
@@ -19392,8 +21416,20 @@
     "text": "Grants Level # Aspect of the Avian"
   },
   {
+    "id": "explicit.effect_3121158131",
+    "text": "Socketed Gems are Supported by Level # Invert the Rules Support"
+  },
+  {
+    "id": "explicit.effect_3124293229",
+    "text": "Socketed Gems are Supported by Level # Bloodlust Support"
+  },
+  {
     "id": "explicit.effect_3161048706",
     "text": "Socketed Gems are Supported by Level # Divine Blessing Support"
+  },
+  {
+    "id": "explicit.effect_3161142268",
+    "text": "Socketed Gems are Supported by Level # Fire Penetration Support"
   },
   {
     "id": "explicit.effect_3184099572",
@@ -19408,12 +21444,28 @@
     "text": "Socketed Gems are Supported by Level # Elemental Penetration Support"
   },
   {
+    "id": "explicit.effect_3257625635",
+    "text": "Socketed Gems are Supported by Level # Awakened Blasphemy Support"
+  },
+  {
     "id": "explicit.effect_3293595800",
     "text": "Socketed Gems are Supported by Level # Concentrated Effect Support"
   },
   {
+    "id": "explicit.effect_3311634296",
+    "text": "Socketed Gems are Supported by Level # Awakened Added Lightning Damage Support"
+  },
+  {
     "id": "explicit.effect_3318957131",
     "text": "Socketed Gems are Supported by Level # Chance to Flee Support"
+  },
+  {
+    "id": "explicit.effect_3334987531",
+    "text": "Socketed Gems are Supported by Level # Item Rarity Support"
+  },
+  {
+    "id": "explicit.effect_3337525114",
+    "text": "Grants Level # Intimidating Cry"
   },
   {
     "id": "explicit.effect_3362019776",
@@ -19424,6 +21476,14 @@
     "text": "Grants Level # Aspect of the Crab"
   },
   {
+    "id": "explicit.effect_338557223",
+    "text": "Socketed Gems are Supported by Level # Additional Accuracy Support"
+  },
+  {
+    "id": "explicit.effect_3419961156",
+    "text": "Socketed Gems are Supported by Level # Impale Support"
+  },
+  {
     "id": "explicit.effect_3431656752",
     "text": "Socketed Gems are Supported by Level # Controlled Destruction Support"
   },
@@ -19432,12 +21492,32 @@
     "text": "Socketed Gems are Supported by Level # Arcane Surge Support"
   },
   {
+    "id": "explicit.effect_3457811678",
+    "text": "Socketed Gems are Supported by Level # Pierce Support"
+  },
+  {
+    "id": "explicit.effect_3460970428",
+    "text": "Grants Level # Vaal Impurity of Lightning"
+  },
+  {
     "id": "explicit.effect_3467858890",
     "text": "Grants Call of Steel"
   },
   {
     "id": "explicit.effect_3474714415",
     "text": "Socketed Gems are Supported by Level # Cast when Stunned Support"
+  },
+  {
+    "id": "explicit.effect_3479500684",
+    "text": "Socketed Gems are Supported by Level # Advanced Traps Support"
+  },
+  {
+    "id": "explicit.effect_3482292969",
+    "text": "Socketed Gems are Supported by Level # High-Impact Mine Support"
+  },
+  {
+    "id": "explicit.effect_3498266457",
+    "text": "Socketed Gems are Supported by Level # Volatility Support"
   },
   {
     "id": "explicit.effect_3512123051",
@@ -19456,6 +21536,14 @@
     "text": "Socketed Gems are Supported by Level # Greater Spell Echo Support"
   },
   {
+    "id": "explicit.effect_3553187279",
+    "text": "Socketed Gems are Supported by Level # Fork Support"
+  },
+  {
+    "id": "explicit.effect_3568418482",
+    "text": "Grants Level # Grace"
+  },
+  {
     "id": "explicit.effect_360069007",
     "text": "Socketed Gems are Supported by Level # Empower Support"
   },
@@ -19464,16 +21552,52 @@
     "text": "Socketed Gems are Supported by Level # Added Lightning Damage Support"
   },
   {
+    "id": "explicit.effect_3628997762",
+    "text": "Socketed Gems are Supported by Level # Feeding Frenzy Support"
+  },
+  {
+    "id": "explicit.effect_3654111757",
+    "text": "Grants Level # Aspect of Solaris"
+  },
+  {
+    "id": "explicit.effect_3672428602",
+    "text": "Socketed Gems are Supported by Level # Ancestral Call Support"
+  },
+  {
+    "id": "explicit.effect_3676299820",
+    "text": "Grants Level # Aspect of Arakaali"
+  },
+  {
+    "id": "explicit.effect_3678242906",
+    "text": "Socketed Gems are Supported by Level # Spell Cascade Support"
+  },
+  {
     "id": "explicit.effect_369135889",
     "text": "Socketed Gems are Supported by Level # Melee Physical Damage Support"
+  },
+  {
+    "id": "explicit.effect_3737573678",
+    "text": "Socketed Gems are Supported by Level # Point Blank Support"
   },
   {
     "id": "explicit.effect_3737592146",
     "text": "Socketed Gems are Supported by Level # Increased Area of Effect Support"
   },
   {
+    "id": "explicit.effect_3745700985",
+    "text": "Socketed Gems are Supported by Level # Awakened Swift Affliction Support"
+  },
+  {
     "id": "explicit.effect_3756080110",
     "text": "Socketed Gems are Supported by Level # Cold to Fire Support"
+  },
+  {
+    "id": "explicit.effect_3805221392",
+    "text": "Socketed Gems are Supported by Level # Barrage Support"
+  },
+  {
+    "id": "explicit.effect_3808743835",
+    "text": "Socketed Gems are Supported by Level # Cluster Traps Support"
   },
   {
     "id": "explicit.effect_3828086965",
@@ -19488,8 +21612,44 @@
     "text": "Socketed Gems are Supported by Level # Cold Penetration Support"
   },
   {
+    "id": "explicit.effect_3858590323",
+    "text": "Socketed Gems are Supported by Level # Minion Life Support"
+  },
+  {
+    "id": "explicit.effect_3869346801",
+    "text": "Socketed Gems are Supported by Level # Brutality Support"
+  },
+  {
+    "id": "explicit.effect_3872728076",
+    "text": "Socketed Gems are Supported by Level # Charged Traps Support"
+  },
+  {
+    "id": "explicit.effect_3874278368",
+    "text": "Socketed Gems are Supported by Level # Awakened Lightning Penetration Support"
+  },
+  {
+    "id": "explicit.effect_3879545743",
+    "text": "Socketed Gems are Supported by Level # Awakened Deadly Ailments Support"
+  },
+  {
     "id": "explicit.effect_3880597684",
     "text": "Grants Level # Snipe"
+  },
+  {
+    "id": "explicit.effect_388828889",
+    "text": "Grants Level # Ravenous"
+  },
+  {
+    "id": "explicit.effect_3893320621",
+    "text": "Socketed Gems are Supported by Level # Momentum Support"
+  },
+  {
+    "id": "explicit.effect_3897784788",
+    "text": "Socketed Gems are Supported by Level # Behead Support"
+  },
+  {
+    "id": "explicit.effect_3921181872",
+    "text": "Socketed Gems are Supported by Level # Ruthless Support"
   },
   {
     "id": "explicit.effect_3947742455",
@@ -19500,6 +21660,14 @@
     "text": "Grants Level # Icestorm"
   },
   {
+    "id": "explicit.effect_3959464467",
+    "text": "Socketed Gems are Supported by Level # Eclipse Support"
+  },
+  {
+    "id": "explicit.effect_3960686014",
+    "text": "Socketed Gems are Supported by Level # Awakened Greater Multiple Projectiles Support"
+  },
+  {
     "id": "explicit.effect_3963374775",
     "text": "Grants Level # Aspect of the Brine King"
   },
@@ -19508,12 +21676,32 @@
     "text": "Socketed Gems are Supported by Level # Blind Support"
   },
   {
+    "id": "explicit.effect_3984157052",
+    "text": "Socketed Gems are Supported by Level # Cursed Ground Support"
+  },
+  {
+    "id": "explicit.effect_3985111281",
+    "text": "Socketed Gems are Supported by Level # Combustion Support"
+  },
+  {
     "id": "explicit.effect_3995245401",
     "text": "Socketed Gems are Supported by Level # Spell Echo Support"
   },
   {
+    "id": "explicit.effect_400129667",
+    "text": "Socketed Gems are Supported by Level # Elemental Army Support"
+  },
+  {
     "id": "explicit.effect_4004746559",
     "text": "Grants Level # Scorching Ray"
+  },
+  {
+    "id": "explicit.effect_4028786187",
+    "text": "Socketed Gems are Supported by Level # Awakened Burning Damage Support"
+  },
+  {
+    "id": "explicit.effect_4055657913",
+    "text": "Socketed Gems are Supported by Level # Spellblade Support"
   },
   {
     "id": "explicit.effect_405979710",
@@ -19524,6 +21712,14 @@
     "text": "Socketed Gems are Supported by Level # Multiple Totems Support"
   },
   {
+    "id": "explicit.effect_4119948431",
+    "text": "Socketed Gems are Supported by Level # Vicious Projectiles Support"
+  },
+  {
+    "id": "explicit.effect_4121000032",
+    "text": "Grants Summon Harbinger of Focus"
+  },
+  {
     "id": "explicit.effect_415209642",
     "text": "Grants Level # Herald of Ash"
   },
@@ -19532,8 +21728,24 @@
     "text": "Socketed Gems are Supported by Level # Frigid Bond Support"
   },
   {
+    "id": "explicit.effect_4154731776",
+    "text": "Grants Level # Purity of Ice"
+  },
+  {
+    "id": "explicit.effect_4174205387",
+    "text": "Socketed Gems are Supported by Level # Trap and Mine Damage Support"
+  },
+  {
+    "id": "explicit.effect_4185976903",
+    "text": "Socketed Gems are Supported by Level # Less Duration Support"
+  },
+  {
     "id": "explicit.effect_4195991223",
     "text": "Grants Level # Summon Bestial Rhoa"
+  },
+  {
+    "id": "explicit.effect_4211392390",
+    "text": "Grants Level # Lightning Warp"
   },
   {
     "id": "explicit.effect_426005818",
@@ -19548,8 +21760,20 @@
     "text": "Grants Level # Aspect of Lunaris"
   },
   {
+    "id": "explicit.effect_4278342035",
+    "text": "Socketed Gems are Supported by Level # Increased Critical Damage Support"
+  },
+  {
+    "id": "explicit.effect_4282732147",
+    "text": "Socketed Gems are Supported by Level # Life Gain on Hit Support"
+  },
+  {
     "id": "explicit.effect_4291787627",
     "text": "Socketed Gems are Supported by Level # Faster Attacks Support"
+  },
+  {
+    "id": "explicit.effect_429242364",
+    "text": "Socketed Gems are Supported by Level # Intensify Support"
   },
   {
     "id": "explicit.effect_434885230",
@@ -19560,12 +21784,44 @@
     "text": "Grants Level # Gluttony of Elements"
   },
   {
+    "id": "explicit.effect_459241192",
+    "text": "Grants Level # Affliction"
+  },
+  {
+    "id": "explicit.effect_468251502",
+    "text": "Socketed Gems are Supported by Level # Elemental Damage with Attacks Support"
+  },
+  {
     "id": "explicit.effect_476766308",
     "text": "Grants Level # Decoy Totem"
   },
   {
+    "id": "explicit.effect_482188560",
+    "text": "Socketed Gems are Supported by Level # Awakened Vicious Projectiles Support"
+  },
+  {
+    "id": "explicit.effect_540595610",
+    "text": "Socketed Gems are Supported by Level # Minion Speed Support"
+  },
+  {
+    "id": "explicit.effect_548051260",
+    "text": "Socketed Gems are Supported by Level # Hex Bloom Support"
+  },
+  {
+    "id": "explicit.effect_582742716",
+    "text": "Grants Level # Wintertide Brand"
+  },
+  {
     "id": "explicit.effect_599791292",
     "text": "Grants Level # Discipline"
+  },
+  {
+    "id": "explicit.effect_602297583",
+    "text": "Socketed Gems are Supported by Level # Withering Touch Support"
+  },
+  {
+    "id": "explicit.effect_602948540",
+    "text": "Socketed Gems are Supported by Level # Critical Strike Affliction Support"
   },
   {
     "id": "explicit.effect_603152644",
@@ -19576,6 +21832,18 @@
     "text": "Socketed Gems are Supported by Level # Cast on Death Support"
   },
   {
+    "id": "explicit.effect_668260863",
+    "text": "Grants Summon Harbinger of Storms"
+  },
+  {
+    "id": "explicit.effect_669480840",
+    "text": "Grants Level # Queen\u0027s Demand"
+  },
+  {
+    "id": "explicit.effect_672697655",
+    "text": "Socketed Gems are Supported by Level # Awakened Melee Splash Support"
+  },
+  {
     "id": "explicit.effect_682681978",
     "text": "Socketed Gems are Supported by Level # Melee Splash Support"
   },
@@ -19584,8 +21852,28 @@
     "text": "Grants Level # Approaching Flames"
   },
   {
+    "id": "explicit.effect_707288393",
+    "text": "Socketed Gems are Supported by Level # Overcharge Support"
+  },
+  {
+    "id": "explicit.effect_723113949",
+    "text": "Grants Level # Determination"
+  },
+  {
+    "id": "explicit.effect_724848072",
+    "text": "Socketed Gems are Supported by Level # Lightning Penetration Support"
+  },
+  {
     "id": "explicit.effect_771254875",
     "text": "Grants Level # Aspect of the Cat"
+  },
+  {
+    "id": "explicit.effect_786034009",
+    "text": "Socketed Gems are Supported by Level # Awakened Elemental Damage with Attacks Support"
+  },
+  {
+    "id": "explicit.effect_813521895",
+    "text": "Socketed Gems are Supported by Level # Fist of War Support"
   },
   {
     "id": "explicit.effect_838736469",
@@ -19596,16 +21884,48 @@
     "text": "Socketed Gems are Supported by Level # Inspiration Support"
   },
   {
+    "id": "explicit.effect_865121484",
+    "text": "Socketed Gems are Supported by Level # Iron Grip Support"
+  },
+  {
+    "id": "explicit.effect_876810709",
+    "text": "Socketed Gems are Supported by Level # Second Wind Support"
+  },
+  {
     "id": "explicit.effect_880096186",
     "text": "Socketed Gems are Supported by Level # Unbound Ailments Support"
+  },
+  {
+    "id": "explicit.effect_907088360",
+    "text": "Socketed Gems are Supported by Level # Greater Multistrike Support"
+  },
+  {
+    "id": "explicit.effect_918792330",
+    "text": "Socketed Gems are Supported by Level # Damage on Full Life Support"
+  },
+  {
+    "id": "explicit.effect_9279802",
+    "text": "Socketed Gems are Supported by Level # Energy Leech Support"
+  },
+  {
+    "id": "explicit.effect_949715883",
+    "text": "Socketed Gems are Supported by Level # Power Charge On Critical Support"
   },
   {
     "id": "explicit.effect_952649073",
     "text": "Socketed Gems are Supported by Level # Mana Leech Support"
   },
   {
+    "id": "explicit.effect_967395006",
+    "text": "Socketed Gems are Supported by Level # Fresh Meat Support"
+  },
+  {
     "id": "explicit.effect_971650107",
     "text": "Socketed Gems are Supported by Level # Pulverise Support"
+  },
+  {
+    "id": "explicit.effect_994349216",
+    "text": "Grants Level # Purity of Fire"
   },
   {
     "id": "explicit.effect_994816571",
@@ -20446,6 +22766,10 @@
   {
     "id": "explicit.indexable_skill_287",
     "text": "\u002B# to Level of all Mana-Infused Staff Gems"
+  },
+  {
+    "id": "explicit.indexable_skill_288",
+    "text": "\u002B# to Level of all Arcane Link Gems"
   },
   {
     "id": "explicit.indexable_skill_29",
@@ -21828,6 +24152,10 @@
     "text": "Your Maps that contain capturable Beasts have #% chance to contain an additional Red Beast"
   },
   {
+    "id": "explicit.stat_1045292082",
+    "text": "Minions convert #% of Physical Damage to Fire Damage"
+  },
+  {
     "id": "explicit.stat_1045438865",
     "text": "Can have # additional Runesmithing Enchantment"
   },
@@ -22306,6 +24634,10 @@
   {
     "id": "explicit.stat_1123291426",
     "text": "Damage with Weapons Penetrates #% Fire Resistance"
+  },
+  {
+    "id": "explicit.stat_1123294660",
+    "text": "#% increased Effect of Cruelty"
   },
   {
     "id": "explicit.stat_1123357133",
@@ -23804,6 +26136,10 @@
     "text": "Skills used by this Graft have #% chance to inflict Punishment on Hit"
   },
   {
+    "id": "explicit.stat_1248307887",
+    "text": "You are affected by Delirium Fog"
+  },
+  {
     "id": "explicit.stat_1248507170",
     "text": "With at least 40 Strength in Radius, Hits with Cleave Fortify"
   },
@@ -23966,6 +26302,10 @@
   {
     "id": "explicit.stat_1274200851",
     "text": "Damage with Hits from Socketed Vaal Skills is Lucky"
+  },
+  {
+    "id": "explicit.stat_1274429432",
+    "text": "Gain Added Spell Damage equal to #% of Damage of Equipped Wand\nIf two Wands are Equipped, each contributes half as much Added Damage"
   },
   {
     "id": "explicit.stat_1274505521",
@@ -24616,6 +26956,10 @@
     "text": "#% increased Engineering Experience gained"
   },
   {
+    "id": "explicit.stat_1373957102",
+    "text": "Regenerate #% of Life per Second if you\u0027ve Detonated a Mine Recently"
+  },
+  {
     "id": "explicit.stat_1375431760",
     "text": "#% increased Mana Cost of Skills for 2 seconds after Spending a total of 800 Mana"
   },
@@ -25250,6 +27594,10 @@
   {
     "id": "explicit.stat_1478305007",
     "text": "With 40 Intelligence in Radius, #% of Glacial Cascade Physical Damage\nConverted to Cold Damage"
+  },
+  {
+    "id": "explicit.stat_1478637533",
+    "text": "Granite Flasks applied to you have #% increased Effect"
   },
   {
     "id": "explicit.stat_1478653032",
@@ -25896,6 +28244,10 @@
     "text": "#% chance to gain a Frenzy Charge on Hit if 4 Redeemer Items are Equipped"
   },
   {
+    "id": "explicit.stat_1571797746",
+    "text": "Prevent \u002B#% of Reflected Damage"
+  },
+  {
     "id": "explicit.stat_1572854306",
     "text": "#% increased Effect of Non-Damaging Ailments you inflict with Critical Strikes per 100 Player Maximum Life"
   },
@@ -25958,6 +28310,10 @@
   {
     "id": "explicit.stat_1583498502",
     "text": "Summoned Holy Relics have #% reduced Cooldown Recovery Rate"
+  },
+  {
+    "id": "explicit.stat_1584440377",
+    "text": "#% increased Unarmed Attack Speed with Melee Skills"
   },
   {
     "id": "explicit.stat_158467587",
@@ -26066,6 +28422,10 @@
   {
     "id": "explicit.stat_159726667",
     "text": "Monsters Sacrificed at Ritual Altars in your Maps grant #% increased Tribute"
+  },
+  {
+    "id": "explicit.stat_1597503116",
+    "text": "Goreblossom has \u002B# maximum Bloom"
   },
   {
     "id": "explicit.stat_1599775597",
@@ -27084,6 +29444,10 @@
     "text": "#% reduced Mana Cost per Endurance Charge"
   },
   {
+    "id": "explicit.stat_1775318819",
+    "text": "Final Repeat of Spells has #% increased Area of Effect"
+  },
+  {
     "id": "explicit.stat_1776612984",
     "text": "#% of Physical Damage converted to a random Element"
   },
@@ -27324,6 +29688,10 @@
     "text": "Area is inhabited by Goatmen"
   },
   {
+    "id": "explicit.stat_181387736",
+    "text": "# Prefix Modifier cannot be changed"
+  },
+  {
     "id": "explicit.stat_1814782245",
     "text": "#% more Physical Damage with Unarmed Melee Attacks"
   },
@@ -27394,6 +29762,10 @@
   {
     "id": "explicit.stat_18234720",
     "text": "#% increased Intelligence Requirement"
+  },
+  {
+    "id": "explicit.stat_1823668305",
+    "text": "Blind you inflict is permanent"
   },
   {
     "id": "explicit.stat_1823903967",
@@ -27828,6 +30200,10 @@
     "text": "Bleeding cannot be inflicted on you"
   },
   {
+    "id": "explicit.stat_1901408736",
+    "text": "#% increased Armour from Equipped Boots and Gloves"
+  },
+  {
     "id": "explicit.stat_1901628087",
     "text": "Ultimatum Modifiers in your Maps start a Tier higher if possible"
   },
@@ -27866,6 +30242,10 @@
   {
     "id": "explicit.stat_1907260000",
     "text": "Hits with this Weapon have #% chance to ignore Enemy Physical Damage Reduction"
+  },
+  {
+    "id": "explicit.stat_1909401378",
+    "text": "\u002B#% to Critical Strike Chance"
   },
   {
     "id": "explicit.stat_1910157106",
@@ -27956,6 +30336,10 @@
     "text": "\u002B# to Evasion Rating while in Sand Stance"
   },
   {
+    "id": "explicit.stat_1923210508",
+    "text": "Projectiles deal #% increased Damage with Hits and Ailments for each time they have Chained"
+  },
+  {
     "id": "explicit.stat_1923879260",
     "text": "Attacks have #% chance to cause Bleeding"
   },
@@ -27992,8 +30376,16 @@
     "text": "#% increased Attack Damage per 450 Armour"
   },
   {
+    "id": "explicit.stat_1928468569",
+    "text": "Critical Strikes with Bows have a #% chance to Poison the Enemy"
+  },
+  {
     "id": "explicit.stat_1928796626",
     "text": "A Beyond Unique drops when the first Unique Monster from Beyond is slain"
+  },
+  {
+    "id": "explicit.stat_1930039303",
+    "text": "Attacks with this Weapon have #% chance to deal Triple Damage"
   },
   {
     "id": "explicit.stat_19313391",
@@ -28414,6 +30806,10 @@
   {
     "id": "explicit.stat_2001747092",
     "text": "#% increased Damage with Hits and Ailments against Marked Enemy"
+  },
+  {
+    "id": "explicit.stat_2001753918",
+    "text": "#% increased Spell Damage per Summoned Skeleton"
   },
   {
     "id": "explicit.stat_2002028881",
@@ -29022,6 +31418,10 @@
   {
     "id": "explicit.stat_2100196861",
     "text": "#% of Attack Damage Leeched as Life on Critical Strike"
+  },
+  {
+    "id": "explicit.stat_2100268747",
+    "text": "Every fourth time you cast each Spell, Damage of its Hits is Lucky"
   },
   {
     "id": "explicit.stat_210067635",
@@ -30084,6 +32484,10 @@
     "text": "Threads dropped in your Maps have #% increased chance to be Ultimatum Threads"
   },
   {
+    "id": "explicit.stat_2264031073",
+    "text": "Can Attack as though using a Claw while main hand is empty"
+  },
+  {
     "id": "explicit.stat_2264039874",
     "text": "Area contains additional packs of Restless Dead"
   },
@@ -30712,6 +33116,10 @@
     "text": "Curse Skills have #% increased Cast Speed"
   },
   {
+    "id": "explicit.stat_2378187488",
+    "text": "\u002B# to Level of all Movement Skill Gems"
+  },
+  {
     "id": "explicit.stat_2378288719",
     "text": "Area becomes fatal after some time"
   },
@@ -30818,6 +33226,10 @@
   {
     "id": "explicit.stat_2390273715",
     "text": "With at least 40 Intelligence in Radius, Raised Spectres have a #% chance to gain Soul Eater for 20 seconds on Kill"
+  },
+  {
+    "id": "explicit.stat_2390914662",
+    "text": "# Suffix Modifier cannot be changed"
   },
   {
     "id": "explicit.stat_2391255504",
@@ -32268,6 +34680,10 @@
     "text": "Minions Regenerate #% of Life per second"
   },
   {
+    "id": "explicit.stat_2480498143",
+    "text": "Skills Cost Life instead of #% of Mana Cost"
+  },
+  {
     "id": "explicit.stat_2480873346",
     "text": "Enemies within 6 metres are Chilled"
   },
@@ -33420,6 +35836,10 @@
     "text": "1 Added Passive Skill is Self-Fulfilling Prophecy"
   },
   {
+    "id": "explicit.stat_2644626772",
+    "text": "# to # Added Cold Damage with Unarmed Attacks"
+  },
+  {
     "id": "explicit.stat_264552782",
     "text": "Threads found in your Maps cannot be Ultimatum Threads"
   },
@@ -33564,6 +35984,10 @@
     "text": "Added Small Passive Skills also grant: \u002B#% to all Elemental Resistances"
   },
   {
+    "id": "explicit.stat_2670735758",
+    "text": "Your Linked targets deal #% increased Damage"
+  },
+  {
     "id": "explicit.stat_2670993553",
     "text": "Damage cannot be Reflected"
   },
@@ -33610,6 +36034,10 @@
   {
     "id": "explicit.stat_2678065384",
     "text": "#% increased Deception Experience gained"
+  },
+  {
+    "id": "explicit.stat_2680060124",
+    "text": "Convocation has #% increased Cooldown Recovery Rate"
   },
   {
     "id": "explicit.stat_2681416653",
@@ -33968,6 +36396,10 @@
     "text": "#% increased Light Radius during Effect"
   },
   {
+    "id": "explicit.stat_2746497881",
+    "text": "#% chance to Trigger Level 20 Moonfall on Melee Critical Strike"
+  },
+  {
     "id": "explicit.stat_274716455",
     "text": "\u002B#% to Critical Strike Multiplier for Spell Damage"
   },
@@ -34262,6 +36694,10 @@
   {
     "id": "explicit.stat_2792863714",
     "text": "#% increased effect of Explicit Modifiers on your Maps per Explicit Modifier"
+  },
+  {
+    "id": "explicit.stat_2795287443",
+    "text": "Brand Recall has #% increased Cooldown Recovery Rate"
   },
   {
     "id": "explicit.stat_2796308895",
@@ -35320,6 +37756,10 @@
     "text": "Projectiles can Chain from any number of additional targets in Close Range"
   },
   {
+    "id": "explicit.stat_2941183243",
+    "text": "#% increased Attack Damage per Raised Zombie"
+  },
+  {
     "id": "explicit.stat_294140055",
     "text": "Ultimatum Rewards in your Maps have #% increased chance to be Inscribed Ultimatums"
   },
@@ -35414,6 +37854,10 @@
   {
     "id": "explicit.stat_2961372685",
     "text": "Recharges # Charge when you deal a Critical Strike"
+  },
+  {
+    "id": "explicit.stat_2961618300",
+    "text": "#% chance to Avoid Blind"
   },
   {
     "id": "explicit.stat_2962020005",
@@ -35736,6 +38180,10 @@
     "text": "Monster Packs Influenced by The Shaper in your Maps have #% increased Pack Size"
   },
   {
+    "id": "explicit.stat_301822628",
+    "text": "You cannot Regenerate or Recoup Life"
+  },
+  {
     "id": "explicit.stat_3018691556",
     "text": "#% increased maximum Life and reduced Fire Resistance"
   },
@@ -35822,6 +38270,10 @@
   {
     "id": "explicit.stat_3034509000",
     "text": "Wild Rogue Exiles in your Maps have #% chance to be Possessed by a Tormented Spirit"
+  },
+  {
+    "id": "explicit.stat_3034695397",
+    "text": "Beyond Demons in your Maps have #% increased chance to be followers of Ghorr"
   },
   {
     "id": "explicit.stat_303527630",
@@ -37144,6 +39596,10 @@
     "text": "Summoned Golems have #% increased Cooldown Recovery Rate"
   },
   {
+    "id": "explicit.stat_3246496608",
+    "text": "The first # Mana Burn applied to you has no effect"
+  },
+  {
     "id": "explicit.stat_3247931236",
     "text": "Recover #% of Mana when you Kill an Enemy during Effect"
   },
@@ -37280,6 +39736,10 @@
     "text": "Socketed Movement Skills Cost no Mana"
   },
   {
+    "id": "explicit.stat_326480871",
+    "text": "Attacks with Axes or Swords grant # Rage on Hit"
+  },
+  {
     "id": "explicit.stat_3265124719",
     "text": "Metamorph Samples dropped in your Maps have #% increased chance to have a Reward"
   },
@@ -37306,6 +39766,10 @@
   {
     "id": "explicit.stat_3266609002",
     "text": "Non-Aura Hexes gain 20% increased Effect per second"
+  },
+  {
+    "id": "explicit.stat_3267026680",
+    "text": "#% increased Attack Speed if you\u0027ve used an Attack Movement Skill Recently"
   },
   {
     "id": "explicit.stat_3268519799",
@@ -37722,6 +40186,10 @@
   {
     "id": "explicit.stat_33348259",
     "text": "Gain #% of Elemental Damage as Extra Chaos Damage per Shaper Item Equipped"
+  },
+  {
+    "id": "explicit.stat_3334947764",
+    "text": "Every second time you cast each Spell, gain Mana equal to its Upfront Cost"
   },
   {
     "id": "explicit.stat_3336890334",
@@ -38480,6 +40948,10 @@
     "text": "All Magic and Normal Monsters in Area are in a Union of Souls"
   },
   {
+    "id": "explicit.stat_3459071185",
+    "text": "#% increased Attack Speed per Enemy in Close Range"
+  },
+  {
     "id": "explicit.stat_346029096",
     "text": "Avatar of Fire"
   },
@@ -38628,6 +41100,10 @@
     "text": "#% increased Block and Stun Recovery during Effect"
   },
   {
+    "id": "explicit.stat_3481254135",
+    "text": "Gain Added Spell Damage equal to #% of Damage of Equipped Dagger\nIf two Daggers are Equipped, each contributes 60% as much Added Damage"
+  },
+  {
     "id": "explicit.stat_3481736410",
     "text": "#% increased Area of Effect if you\u0027ve Killed Recently"
   },
@@ -38764,6 +41240,10 @@
     "text": "#% of Attack Damage Leeched as Mana"
   },
   {
+    "id": "explicit.stat_3500769326",
+    "text": "Trigger level 20 Temporal Mirage on using a Movement Attack"
+  },
+  {
     "id": "explicit.stat_3500911418",
     "text": "Regenerate #% of Life per second during any Flask Effect"
   },
@@ -38786,6 +41266,10 @@
   {
     "id": "explicit.stat_3507915723",
     "text": "Enemies take #% increased Elemental Damage from your Hits for\neach Withered you have inflicted on them"
+  },
+  {
+    "id": "explicit.stat_3509362078",
+    "text": "#% increased Evasion Rating from Equipped Body Armour"
   },
   {
     "id": "explicit.stat_3509724289",
@@ -38904,6 +41388,10 @@
     "text": "Players cannot gain Endurance Charges"
   },
   {
+    "id": "explicit.stat_3532157821",
+    "text": "#% chance to deal Double Damage with Attacks if Attack Time is longer than 1 second"
+  },
+  {
     "id": "explicit.stat_353291915",
     "text": "Number of Explosives is one"
   },
@@ -38962,6 +41450,10 @@
   {
     "id": "explicit.stat_3547189490",
     "text": "Enemies within 6 metres grant #% increased Flask Charges"
+  },
+  {
+    "id": "explicit.stat_3547436813",
+    "text": "\u002B#% to Off Hand Critical Strike Chance while Dual Wielding"
   },
   {
     "id": "explicit.stat_35476451",
@@ -39628,6 +42120,10 @@
     "text": "Unaffected by Chilled Ground"
   },
   {
+    "id": "explicit.stat_3653779134",
+    "text": "Gain a random Shrine Buff for # seconds when you Blind a\nnon-Blinded Rare or Unique Enemy"
+  },
+  {
     "id": "explicit.stat_3654074125",
     "text": "Attacks have #% chance to Poison while at maximum Frenzy Charges"
   },
@@ -39662,6 +42158,10 @@
   {
     "id": "explicit.stat_3663580344",
     "text": "#% increased Mirage Archer Duration"
+  },
+  {
+    "id": "explicit.stat_3664562804",
+    "text": "Maximum Bitterblood is equal to your Maximum Life"
   },
   {
     "id": "explicit.stat_3664778308",
@@ -41456,6 +43956,10 @@
     "text": "#% chance to gain a Power Charge when you Block"
   },
   {
+    "id": "explicit.stat_3945412713",
+    "text": "Gain Bitterblood equal to Life spent"
+  },
+  {
     "id": "explicit.stat_3945685369",
     "text": "Your Movement Speed is #% of its base value"
   },
@@ -42040,6 +44544,10 @@
     "text": "Deal no Non-Elemental Damage"
   },
   {
+    "id": "explicit.stat_4031934041",
+    "text": "Every sixth time you cast each Spell, All Hits are Critically Strikes\nThese effects do not apply to Reservation, Duration or Channelling Spells"
+  },
+  {
     "id": "explicit.stat_4033049853",
     "text": "Players have #% increased Character Size"
   },
@@ -42050,6 +44558,10 @@
   {
     "id": "explicit.stat_403369937",
     "text": "Strongboxes in your Maps have #% chance to be guarded by an additional Pack of Monsters"
+  },
+  {
+    "id": "explicit.stat_4034618287",
+    "text": "Trigger Level 20 Goreblossom after spending #% of your Maximum Life on Spells"
   },
   {
     "id": "explicit.stat_4036575250",
@@ -48084,6 +50596,10 @@
     "text": "Legion Encounters in your Maps have #% increased Duration"
   },
   {
+    "id": "explicit.stat_699502241",
+    "text": "Blinding a non-Blinded Pinnacle Atlas Boss with this Weapon will\nsteal a Modifier for this item (# Modifier remaining)"
+  },
+  {
     "id": "explicit.stat_699756626",
     "text": "Quicksilver Flasks you Use also apply to Allies within 6 metres"
   },
@@ -48444,6 +50960,10 @@
     "text": "Area contains The Feared"
   },
   {
+    "id": "explicit.stat_758685542",
+    "text": "Ruby Flasks applied to you have #% increased Effect"
+  },
+  {
     "id": "explicit.stat_759294825",
     "text": "Animated Guardian deals #% increased Damage per Animated Weapon"
   },
@@ -48554,6 +51074,10 @@
   {
     "id": "explicit.stat_771127912",
     "text": "Lose # Life per second"
+  },
+  {
+    "id": "explicit.stat_771469730",
+    "text": "Life Leech from Critical Strikes is instant"
   },
   {
     "id": "explicit.stat_773731062",
@@ -50084,6 +52608,10 @@
     "text": "1 Added Passive Skill is Storm\u0027s Hand"
   },
   {
+    "id": "fractured.stat_1123294660",
+    "text": "#% increased Effect of Cruelty"
+  },
+  {
     "id": "fractured.stat_1124657098",
     "text": "Performing Engineering during Lockdown doesn\u0027t take additional time"
   },
@@ -50580,6 +53108,10 @@
     "text": "#% increased Engineering Experience gained"
   },
   {
+    "id": "fractured.stat_1373957102",
+    "text": "Regenerate #% of Life per Second if you\u0027ve Detonated a Mine Recently"
+  },
+  {
     "id": "fractured.stat_1379411836",
     "text": "\u002B# to all Attributes"
   },
@@ -50896,6 +53428,10 @@
     "text": "1 Added Passive Skill is Unrestrained Focus"
   },
   {
+    "id": "fractured.stat_1571797746",
+    "text": "Prevent \u002B#% of Reflected Damage"
+  },
+  {
     "id": "fractured.stat_1572897579",
     "text": "You have Onslaught during Soul Gain Prevention"
   },
@@ -51088,6 +53624,10 @@
     "text": "#% increased Spell Damage while Dual Wielding"
   },
   {
+    "id": "fractured.stat_1678831767",
+    "text": "Recover # Life when you Block"
+  },
+  {
     "id": "fractured.stat_1681904129",
     "text": "Socketed Gems have \u002B#% Critical Strike Chance"
   },
@@ -51214,6 +53754,10 @@
   {
     "id": "fractured.stat_1773891268",
     "text": "Enemies have #% reduced Evasion if you have Hit them Recently"
+  },
+  {
+    "id": "fractured.stat_1775318819",
+    "text": "Final Repeat of Spells has #% increased Area of Effect"
   },
   {
     "id": "fractured.stat_1776945532",
@@ -51384,6 +53928,10 @@
     "text": "Heist Chests have a #% chance to Duplicate contained Delirium Orbs and Splinters"
   },
   {
+    "id": "fractured.stat_1870732546",
+    "text": "Skills that Summon a Totem have #% chance to Summon two Totems instead of one"
+  },
+  {
     "id": "fractured.stat_1871056256",
     "text": "#% of Physical Damage from Hits taken as Cold Damage"
   },
@@ -51426,6 +53974,10 @@
   {
     "id": "fractured.stat_1898978455",
     "text": "Monster Damage Penetrates #% Elemental Resistances"
+  },
+  {
+    "id": "fractured.stat_1901408736",
+    "text": "#% increased Armour from Equipped Boots and Gloves"
   },
   {
     "id": "fractured.stat_1902595112",
@@ -51490,6 +54042,10 @@
   {
     "id": "fractured.stat_1919892065",
     "text": "Enemies Intimidated by you have #% increased duration of stuns against them"
+  },
+  {
+    "id": "fractured.stat_1923210508",
+    "text": "Projectiles deal #% increased Damage with Hits and Ailments for each time they have Chained"
   },
   {
     "id": "fractured.stat_1923879260",
@@ -51562,6 +54118,10 @@
   {
     "id": "fractured.stat_1974445926",
     "text": "Minions have #% chance to Poison Enemies on Hit"
+  },
+  {
+    "id": "fractured.stat_1975119765",
+    "text": "Area contains the Viridian Wildwood"
   },
   {
     "id": "fractured.stat_1976069869",
@@ -51976,6 +54536,10 @@
     "text": "1 Added Passive Skill is Quick and Deadly"
   },
   {
+    "id": "fractured.stat_2171629017",
+    "text": "#% increased Charge Duration"
+  },
+  {
     "id": "fractured.stat_2174134106",
     "text": "Warcries cannot Exert Travel Skills"
   },
@@ -52372,6 +54936,10 @@
     "text": "\u002B#% to maximum Chance to Block Spell Damage"
   },
   {
+    "id": "fractured.stat_2390914662",
+    "text": "# Suffix Modifier cannot be changed"
+  },
+  {
     "id": "fractured.stat_2396755365",
     "text": "1 Added Passive Skill is Feast of Flesh"
   },
@@ -52390,6 +54958,10 @@
   {
     "id": "fractured.stat_2406605753",
     "text": "Recover #% of Energy Shield on Kill"
+  },
+  {
+    "id": "fractured.stat_240857668",
+    "text": "#% increased Elusive Effect"
   },
   {
     "id": "fractured.stat_2408625104",
@@ -52550,6 +55122,10 @@
   {
     "id": "fractured.stat_2479683456",
     "text": "Minions Regenerate #% of Life per second"
+  },
+  {
+    "id": "fractured.stat_2480498143",
+    "text": "Skills Cost Life instead of #% of Mana Cost"
   },
   {
     "id": "fractured.stat_2481353198",
@@ -52864,6 +55440,10 @@
     "text": "Added Small Passive Skills also grant: \u002B#% to all Elemental Resistances"
   },
   {
+    "id": "fractured.stat_2670735758",
+    "text": "Your Linked targets deal #% increased Damage"
+  },
+  {
     "id": "fractured.stat_2671663397",
     "text": "# to # Added Spell Cold Damage while holding a Shield"
   },
@@ -52882,6 +55462,10 @@
   {
     "id": "fractured.stat_2678065384",
     "text": "#% increased Deception Experience gained"
+  },
+  {
+    "id": "fractured.stat_2680060124",
+    "text": "Convocation has #% increased Cooldown Recovery Rate"
   },
   {
     "id": "fractured.stat_2692578539",
@@ -53058,6 +55642,10 @@
   {
     "id": "fractured.stat_279227559",
     "text": "#% increased Movement Speed if you\u0027ve Killed Recently"
+  },
+  {
+    "id": "fractured.stat_2795287443",
+    "text": "Brand Recall has #% increased Cooldown Recovery Rate"
   },
   {
     "id": "fractured.stat_2796704737",
@@ -53382,6 +55970,10 @@
   {
     "id": "fractured.stat_2961018200",
     "text": "Area is inhabited by Abominations"
+  },
+  {
+    "id": "fractured.stat_2961618300",
+    "text": "#% chance to Avoid Blind"
   },
   {
     "id": "fractured.stat_2964800094",
@@ -53860,6 +56452,10 @@
     "text": "Area has patches of Shocked Ground which increase Damage taken by #%"
   },
   {
+    "id": "fractured.stat_3246496608",
+    "text": "The first # Mana Burn applied to you has no effect"
+  },
+  {
     "id": "fractured.stat_3248691197",
     "text": "# to # Added Chaos Damage with Dagger Attacks"
   },
@@ -54272,6 +56868,10 @@
     "text": "All Magic and Normal Monsters in Area are in a Union of Souls"
   },
   {
+    "id": "fractured.stat_3459071185",
+    "text": "#% increased Attack Speed per Enemy in Close Range"
+  },
+  {
     "id": "fractured.stat_346029096",
     "text": "Avatar of Fire"
   },
@@ -54376,6 +56976,10 @@
     "text": "\u002B# metres to Weapon Range"
   },
   {
+    "id": "fractured.stat_3509362078",
+    "text": "#% increased Evasion Rating from Equipped Body Armour"
+  },
+  {
     "id": "fractured.stat_3509724289",
     "text": "1 Added Passive Skill is Pure Aptitude"
   },
@@ -54420,6 +57024,10 @@
     "text": "Players cannot gain Endurance Charges"
   },
   {
+    "id": "fractured.stat_3532157821",
+    "text": "#% chance to deal Double Damage with Attacks if Attack Time is longer than 1 second"
+  },
+  {
     "id": "fractured.stat_3533432197",
     "text": "Non-Aura Vaal Skills require #% reduced Souls Per Use"
   },
@@ -54430,6 +57038,10 @@
   {
     "id": "fractured.stat_3539175001",
     "text": "1 Added Passive Skill is Savour the Moment"
+  },
+  {
+    "id": "fractured.stat_3547436813",
+    "text": "\u002B#% to Off Hand Critical Strike Chance while Dual Wielding"
   },
   {
     "id": "fractured.stat_3550168289",
@@ -54602,6 +57214,10 @@
   {
     "id": "fractured.stat_365540634",
     "text": "\u002B#% Monster Chaos Resistance"
+  },
+  {
+    "id": "fractured.stat_3663580344",
+    "text": "#% increased Mirage Archer Duration"
   },
   {
     "id": "fractured.stat_3666934677",
@@ -56932,6 +59548,10 @@
     "text": "Supported by Level 1 Eternal Blessing"
   },
   {
+    "id": "imbued.pseudo_built_in_support|1452519409",
+    "text": "Supported by Level 1 Diminishment"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|1466145569",
     "text": "Supported by Level 1 Increased Area of Effect"
   },
@@ -57036,6 +59656,10 @@
     "text": "Supported by Level 1 Bloodlust"
   },
   {
+    "id": "imbued.pseudo_built_in_support|2082748837",
+    "text": "Supported by Level 1 Taxation"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|2096466553",
     "text": "Supported by Level 1 Frigid Bond"
   },
@@ -57046,6 +59670,10 @@
   {
     "id": "imbued.pseudo_built_in_support|21787019",
     "text": "Supported by Level 1 Summon Phantasm"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|2208650143",
+    "text": "Supported by Level 1 Destitution"
   },
   {
     "id": "imbued.pseudo_built_in_support|2222630080",
@@ -57074,6 +59702,10 @@
   {
     "id": "imbued.pseudo_built_in_support|2300092378",
     "text": "Supported by Level 1 Chain"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|2327564307",
+    "text": "Supported by Level 1 Poverty"
   },
   {
     "id": "imbued.pseudo_built_in_support|2342654864",
@@ -57132,6 +59764,10 @@
     "text": "Supported by Level 1 Advanced Traps"
   },
   {
+    "id": "imbued.pseudo_built_in_support|2642139747",
+    "text": "Supported by Level 1 Constriction"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|2679148081",
     "text": "Supported by Level 1 Vicious Projectiles"
   },
@@ -57158,6 +59794,10 @@
   {
     "id": "imbued.pseudo_built_in_support|282207976",
     "text": "Supported by Level 1 Inspiration"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|2842604691",
+    "text": "Supported by Level 1 Cast when Damage Taken"
   },
   {
     "id": "imbued.pseudo_built_in_support|2883596469",
@@ -57204,8 +59844,16 @@
     "text": "Supported by Level 1 Fresh Meat"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3186808105",
+    "text": "Supported by Level 1 Mediocrity"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|318949620",
     "text": "Supported by Level 1 Hex Bloom"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|3192305202",
+    "text": "Supported by Level 1 Disempower"
   },
   {
     "id": "imbued.pseudo_built_in_support|3226210172",
@@ -57292,6 +59940,10 @@
     "text": "Supported by Level 1 Momentum"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3435483009",
+    "text": "Supported by Level 1 Lethargy"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|344293939",
     "text": "Supported by Level 1 Minion Damage"
   },
@@ -57328,6 +59980,10 @@
     "text": "Supported by Level 1 Melee Physical Damage"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3674002686",
+    "text": "Supported by Level 1 Impotence"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|3676897366",
     "text": "Supported by Level 1 Overexertion"
   },
@@ -57348,12 +60004,20 @@
     "text": "Supported by Level 1 Elemental Army"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3870057454",
+    "text": "Supported by Level 1 Penance"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|3918067187",
     "text": "Supported by Level 1 Lifetap"
   },
   {
     "id": "imbued.pseudo_built_in_support|3950169394",
     "text": "Supported by Level 1 Greater Multiple Projectiles"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|3989015253",
+    "text": "Supported by Level 1 Encumbrance"
   },
   {
     "id": "imbued.pseudo_built_in_support|3990013913",
@@ -57414,6 +60078,10 @@
   {
     "id": "imbued.pseudo_built_in_support|578583560",
     "text": "Supported by Level 1 Impale"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|601991273",
+    "text": "Supported by Level 1 Nullification"
   },
   {
     "id": "imbued.pseudo_built_in_support|619178891",
@@ -57508,20 +60176,76 @@
     "text": "Socketed Gems are Supported by Level # Multiple Projectiles Support"
   },
   {
+    "id": "implicit.effect_120392055",
+    "text": "Grants Level # Vulnerability"
+  },
+  {
     "id": "implicit.effect_1270291096",
     "text": "Grants Level # Pride"
+  },
+  {
+    "id": "implicit.effect_1324938267",
+    "text": "Socketed Gems are Supported by Level # Faster Casting Support"
+  },
+  {
+    "id": "implicit.effect_1463464665",
+    "text": "Grants Level # Petrification Statue"
+  },
+  {
+    "id": "implicit.effect_149184016",
+    "text": "Grants Level # Aspect of the Spider"
+  },
+  {
+    "id": "implicit.effect_1571191461",
+    "text": "Socketed Gems are Supported by Level # Added Fire Damage Support"
+  },
+  {
+    "id": "implicit.effect_1576376285",
+    "text": "Grants Level # Assassin\u0027s Mark"
   },
   {
     "id": "implicit.effect_1673391040",
     "text": "Socketed Gems are Supported by Level # Added Chaos Damage Support"
   },
   {
+    "id": "implicit.effect_1710445055",
+    "text": "Socketed Gems are Supported by Level # Unleash Support"
+  },
+  {
     "id": "implicit.effect_1770376530",
     "text": "Socketed Gems are Supported by Level # Faster Projectiles Support"
   },
   {
+    "id": "implicit.effect_1795027869",
+    "text": "Grants Summon Greater Harbinger of Focus"
+  },
+  {
+    "id": "implicit.effect_1858870975",
+    "text": "Socketed Gems are Supported by Level # Spell Totem Support"
+  },
+  {
+    "id": "implicit.effect_1878151040",
+    "text": "Socketed Gems are Supported by Level # Stun Support"
+  },
+  {
     "id": "implicit.effect_2014162730",
     "text": "Grants Level # Anger"
+  },
+  {
+    "id": "implicit.effect_2092916684",
+    "text": "Grants Level # Summon Bestial Ursa"
+  },
+  {
+    "id": "implicit.effect_2100902429",
+    "text": "Socketed Gems are Supported by Level # Multistrike Support"
+  },
+  {
+    "id": "implicit.effect_2109649836",
+    "text": "Grants Level # Blood Offering"
+  },
+  {
+    "id": "implicit.effect_2141384509",
+    "text": "Socketed Gems are Supported by Level # Chance to Poison Support"
   },
   {
     "id": "implicit.effect_2174769737",
@@ -57532,6 +60256,18 @@
     "text": "Grants Level # Clarity"
   },
   {
+    "id": "implicit.effect_2251567057",
+    "text": "Socketed Gems are Supported by Level # Cruelty Support"
+  },
+  {
+    "id": "implicit.effect_2377502094",
+    "text": "Grants Level # Summon Bestial Snake"
+  },
+  {
+    "id": "implicit.effect_2455845502",
+    "text": "Grants Level # Frostbite"
+  },
+  {
     "id": "implicit.effect_2461314210",
     "text": "Grants Level # Wrath"
   },
@@ -57540,8 +60276,28 @@
     "text": "Grants Level # Haste"
   },
   {
+    "id": "implicit.effect_2579976590",
+    "text": "Grants Level # Will of the Lords"
+  },
+  {
+    "id": "implicit.effect_2649350521",
+    "text": "Grants Level # Vitality"
+  },
+  {
     "id": "implicit.effect_265550805",
     "text": "Socketed Gems are Supported by Level # Lifetap Support"
+  },
+  {
+    "id": "implicit.effect_2698327786",
+    "text": "Socketed Gems are Supported by Level # Vile Toxins Support"
+  },
+  {
+    "id": "implicit.effect_2713755048",
+    "text": "Socketed Gems are Supported by Level # Life Leech Support"
+  },
+  {
+    "id": "implicit.effect_2753888557",
+    "text": "Grants Level # Doryani\u0027s Touch"
   },
   {
     "id": "implicit.effect_2765861847",
@@ -57556,6 +60312,10 @@
     "text": "Grants Level # Conductivity"
   },
   {
+    "id": "implicit.effect_2890244883",
+    "text": "Grants Level # Sniper\u0027s Mark"
+  },
+  {
     "id": "implicit.effect_3009566559",
     "text": "Socketed Gems are Supported by Level # Chain Support"
   },
@@ -57564,8 +60324,20 @@
     "text": "Grants Level # Hatred"
   },
   {
+    "id": "implicit.effect_3115071909",
+    "text": "Grants Level # Aspect of the Avian"
+  },
+  {
     "id": "implicit.effect_3232631539",
     "text": "Socketed Gems are Supported by Level # Elemental Penetration Support"
+  },
+  {
+    "id": "implicit.effect_3293595800",
+    "text": "Socketed Gems are Supported by Level # Concentrated Effect Support"
+  },
+  {
+    "id": "implicit.effect_3362019776",
+    "text": "Socketed Gems are Supported by Level # Added Cold Damage Support"
   },
   {
     "id": "implicit.effect_338557223",
@@ -57574,6 +60346,14 @@
   {
     "id": "implicit.effect_3419961156",
     "text": "Socketed Gems are Supported by Level # Impale Support"
+  },
+  {
+    "id": "implicit.effect_3457811678",
+    "text": "Socketed Gems are Supported by Level # Pierce Support"
+  },
+  {
+    "id": "implicit.effect_3474714415",
+    "text": "Socketed Gems are Supported by Level # Cast when Stunned Support"
   },
   {
     "id": "implicit.effect_3512123051",
@@ -57592,6 +60372,30 @@
     "text": "Grants Level # Grace"
   },
   {
+    "id": "implicit.effect_3607696303",
+    "text": "Socketed Gems are Supported by Level # Added Lightning Damage Support"
+  },
+  {
+    "id": "implicit.effect_3636926002",
+    "text": "Grants Level # Temporal Chains"
+  },
+  {
+    "id": "implicit.effect_3737592146",
+    "text": "Socketed Gems are Supported by Level # Increased Area of Effect Support"
+  },
+  {
+    "id": "implicit.effect_3828086965",
+    "text": "Socketed Gems are Supported by Level # Elemental Proliferation Support"
+  },
+  {
+    "id": "implicit.effect_3850673820",
+    "text": "Grants Summon Greater Harbinger of Storms"
+  },
+  {
+    "id": "implicit.effect_388828889",
+    "text": "Grants Level # Ravenous"
+  },
+  {
     "id": "implicit.effect_3893320621",
     "text": "Socketed Gems are Supported by Level # Momentum Support"
   },
@@ -57600,20 +60404,60 @@
     "text": "Socketed Gems are Supported by Level # Blind Support"
   },
   {
+    "id": "implicit.effect_405979710",
+    "text": "Grants Level # Savage Barnacle"
+  },
+  {
+    "id": "implicit.effect_4121000032",
+    "text": "Grants Summon Harbinger of Focus"
+  },
+  {
     "id": "implicit.effect_4154731776",
     "text": "Grants Level # Purity of Ice"
+  },
+  {
+    "id": "implicit.effect_4195991223",
+    "text": "Grants Level # Summon Bestial Rhoa"
   },
   {
     "id": "implicit.effect_426005818",
     "text": "Grants Level # Purity of Lightning"
   },
   {
+    "id": "implicit.effect_4267977279",
+    "text": "Socketed Gems are Supported by Level # Cast On Critical Strike Support"
+  },
+  {
+    "id": "implicit.effect_4278342035",
+    "text": "Socketed Gems are Supported by Level # Increased Critical Damage Support"
+  },
+  {
     "id": "implicit.effect_4282732147",
     "text": "Socketed Gems are Supported by Level # Life Gain on Hit Support"
   },
   {
+    "id": "implicit.effect_4291787627",
+    "text": "Socketed Gems are Supported by Level # Faster Attacks Support"
+  },
+  {
+    "id": "implicit.effect_434885230",
+    "text": "Socketed Gems are Supported by Level # Blasphemy Support"
+  },
+  {
+    "id": "implicit.effect_468251502",
+    "text": "Socketed Gems are Supported by Level # Elemental Damage with Attacks Support"
+  },
+  {
+    "id": "implicit.effect_479399165",
+    "text": "Grants Level # Flammability"
+  },
+  {
     "id": "implicit.effect_599791292",
     "text": "Grants Level # Discipline"
+  },
+  {
+    "id": "implicit.effect_626699959",
+    "text": "Socketed Gems are Supported by Level # Cast on Death Support"
   },
   {
     "id": "implicit.effect_682681978",
@@ -57728,6 +60572,10 @@
     "text": "Your Lightning Damage can Freeze but not Shock"
   },
   {
+    "id": "implicit.stat_1012433600",
+    "text": "Curse Enemies with Frostbite on Hit if 5 Redeemer Items are Equipped"
+  },
+  {
     "id": "implicit.stat_1016130575",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Adds # to # Cold Damage to Attacks"
   },
@@ -57742,6 +60590,14 @@
   {
     "id": "implicit.stat_1018817416",
     "text": "While a Unique Enemy is in your Presence, Adds # to # Cold Damage to Spells"
+  },
+  {
+    "id": "implicit.stat_1019020209",
+    "text": "#% increased Damage per Curse on you"
+  },
+  {
+    "id": "implicit.stat_1019891080",
+    "text": "Arrows deal #% increased Damage with Hits and Ailments to Targets they Pierce"
   },
   {
     "id": "implicit.stat_1021552211",
@@ -57876,12 +60732,20 @@
     "text": "While a Unique Enemy is in your Presence, Herald of Ash has #% increased Buff Effect"
   },
   {
+    "id": "implicit.stat_1091613629",
+    "text": "Gain Shaper\u0027s Presence for 10 seconds when you kill a Rare or Unique Enemy"
+  },
+  {
     "id": "implicit.stat_1092987622",
     "text": "#% of Melee Physical Damage taken reflected to Attacker"
   },
   {
     "id": "implicit.stat_1101403182",
     "text": "#% reduced Damage taken from Damage Over Time"
+  },
+  {
+    "id": "implicit.stat_1107877645",
+    "text": "Regenerate #% of Life per second if you\u0027ve Consumed a corpse Recently"
   },
   {
     "id": "implicit.stat_1109700751",
@@ -57958,6 +60822,10 @@
   {
     "id": "implicit.stat_1139878780",
     "text": "Your Chaos Damage can Ignite"
+  },
+  {
+    "id": "implicit.stat_1144742318",
+    "text": "Pact Skills have #% increased Cooldown Recovery Rate"
   },
   {
     "id": "implicit.stat_1145451936",
@@ -58052,6 +60920,10 @@
     "text": "\u002B# to Maximum Rage"
   },
   {
+    "id": "implicit.stat_1183036145",
+    "text": "Skills that Cost Life have #% chance to deal Double Damage"
+  },
+  {
     "id": "implicit.stat_118398748",
     "text": "#% increased Trap Throwing Speed"
   },
@@ -58068,12 +60940,28 @@
     "text": "Flasks gain # Charges every 3 seconds"
   },
   {
+    "id": "implicit.stat_1195319608",
+    "text": "#% increased Energy Shield from Equipped Body Armour"
+  },
+  {
     "id": "implicit.stat_1211769158",
     "text": "Damage with Weapons Penetrates #% Cold Resistance"
   },
   {
     "id": "implicit.stat_1212083058",
     "text": "#% increased Mana Reservation Efficiency of Skills per 250 total Attributes"
+  },
+  {
+    "id": "implicit.stat_1214232297",
+    "text": "#% chance to Recover all Life when you Kill an Enemy"
+  },
+  {
+    "id": "implicit.stat_1214601201",
+    "text": "#% more Maximum Life"
+  },
+  {
+    "id": "implicit.stat_1217730254",
+    "text": "Enemies take #% increased Damage for each type of Ailment you have inflicted on them"
   },
   {
     "id": "implicit.stat_1217759839",
@@ -58090,6 +60978,10 @@
   {
     "id": "implicit.stat_1220361974",
     "text": "Enemies you Kill Explode, dealing #% of their Life as Physical Damage"
+  },
+  {
+    "id": "implicit.stat_1225383362",
+    "text": "\u002B# to maximum number of Skeletons"
   },
   {
     "id": "implicit.stat_122841557",
@@ -58136,12 +61028,20 @@
     "text": "Grant a Frenzy Charge to Allies within 4 metres on Kill"
   },
   {
+    "id": "implicit.stat_1244494473",
+    "text": "#% of Lightning Damage taken as Fire Damage"
+  },
+  {
     "id": "implicit.stat_1247498990",
     "text": "Adds # to # Cold Damage to Unarmed Attacks"
   },
   {
     "id": "implicit.stat_124859000",
     "text": "#% increased Evasion Rating (Local)"
+  },
+  {
+    "id": "implicit.stat_125218179",
+    "text": "\u002B# to maximum number of Spectres"
   },
   {
     "id": "implicit.stat_1253537227",
@@ -58158,6 +61058,10 @@
   {
     "id": "implicit.stat_1263695895",
     "text": "#% increased Light Radius"
+  },
+  {
+    "id": "implicit.stat_1264919148",
+    "text": "Skills supported by Unleash have \u002B# to maximum number of Seals"
   },
   {
     "id": "implicit.stat_1269219558",
@@ -58182,6 +61086,10 @@
   {
     "id": "implicit.stat_128585622",
     "text": "Minions are Aggressive"
+  },
+  {
+    "id": "implicit.stat_1289472451",
+    "text": "Curse Enemies with Conductivity on Hit if 5 Crusader Items are Equipped"
   },
   {
     "id": "implicit.stat_1290399200",
@@ -58216,8 +61124,16 @@
     "text": "\u002B#% to maximum Chaos Resistance"
   },
   {
+    "id": "implicit.stat_1302845655",
+    "text": "#% chance to gain a Frenzy Charge for each Enemy you hit with a Critical Strike"
+  },
+  {
     "id": "implicit.stat_1308467455",
     "text": "Eternal Youth"
+  },
+  {
+    "id": "implicit.stat_1309492287",
+    "text": "Regenerate #% of Mana per second if you\u0027ve Consumed a corpse Recently"
   },
   {
     "id": "implicit.stat_1309840354",
@@ -58228,8 +61144,16 @@
     "text": "#% increased Global Physical Damage"
   },
   {
+    "id": "implicit.stat_1311723478",
+    "text": "Ignore all Movement Penalties from Armour"
+  },
+  {
     "id": "implicit.stat_1313503107",
     "text": "#% of Cold Damage from Hits taken as Lightning Damage"
+  },
+  {
+    "id": "implicit.stat_1313678015",
+    "text": "#% increased Damage while in Blood Stance"
   },
   {
     "id": "implicit.stat_1314617696",
@@ -58308,6 +61232,10 @@
     "text": "While a Unique Enemy is in your Presence, #% Chance to Block Spell Damage"
   },
   {
+    "id": "implicit.stat_13590525",
+    "text": "\u002B# to maximum number of Sacred Wisps\n\u002B# to number of Sacred Wisps Summoned"
+  },
+  {
     "id": "implicit.stat_1360723495",
     "text": "#% increased Movement Speed for each Poison on you up to a maximum of 50%"
   },
@@ -58338,6 +61266,14 @@
   {
     "id": "implicit.stat_1373026185",
     "text": "While a Unique Enemy is in your Presence, Infernal Cry has #% increased Area of Effect"
+  },
+  {
+    "id": "implicit.stat_1373673887",
+    "text": "Debilitate Enemies you Hit that are on Full Life for 4 seconds"
+  },
+  {
+    "id": "implicit.stat_137377270",
+    "text": "#% more Maximum Life"
   },
   {
     "id": "implicit.stat_1379411836",
@@ -58376,6 +61312,10 @@
     "text": "Purity of Ice has #% increased Mana Reservation Efficiency"
   },
   {
+    "id": "implicit.stat_1400414838",
+    "text": "\u002B#% to Maximum Effect of Chill"
+  },
+  {
     "id": "implicit.stat_140429540",
     "text": "#% increased Critical Strike Chance for Spells while wielding a Staff"
   },
@@ -58386,6 +61326,10 @@
   {
     "id": "implicit.stat_1412947753",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Spell Critical Strike Chance"
+  },
+  {
+    "id": "implicit.stat_1417918566",
+    "text": "Every second, inflict Withered on Enemies within 6 metres for # seconds"
   },
   {
     "id": "implicit.stat_141810208",
@@ -58484,12 +61428,20 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, Enemies you\u0027ve Hit Recently have #% reduced Life Regeneration rate"
   },
   {
+    "id": "implicit.stat_1450081919",
+    "text": "#% more Damage against Undead Monsters"
+  },
+  {
     "id": "implicit.stat_1450978702",
     "text": "Purity of Lightning has #% increased Mana Reservation Efficiency"
   },
   {
     "id": "implicit.stat_1452809865",
     "text": "#% increased Flask Charges gained"
+  },
+  {
+    "id": "implicit.stat_1453197917",
+    "text": "#% chance to gain a Power Charge on Hit"
   },
   {
     "id": "implicit.stat_1455812442",
@@ -58536,6 +61488,10 @@
     "text": "#% reduced Effect of Chill on you"
   },
   {
+    "id": "implicit.stat_1480595847",
+    "text": "#% increased Effect of Impales inflicted with Spells"
+  },
+  {
     "id": "implicit.stat_1481249164",
     "text": "While a Unique Enemy is in your Presence, #% increased Life Recovery rate"
   },
@@ -58564,6 +61520,10 @@
     "text": "#% of Fire Damage from Hits taken as Lightning Damage"
   },
   {
+    "id": "implicit.stat_1504513372",
+    "text": "Skills Supported by Unleash have #% increased Seal gain frequency"
+  },
+  {
     "id": "implicit.stat_1504905117",
     "text": "Warcry Skills have \u002B# seconds to Cooldown"
   },
@@ -58586,6 +61546,10 @@
   {
     "id": "implicit.stat_1510714129",
     "text": "Attacks have #% chance to Maim on Hit"
+  },
+  {
+    "id": "implicit.stat_151300265",
+    "text": "Bow Attacks Sacrifice a random Damageable Minion to fire # additional Arrow"
   },
   {
     "id": "implicit.stat_1513279759",
@@ -58724,6 +61688,10 @@
     "text": "Minions deal #% increased Damage"
   },
   {
+    "id": "implicit.stat_1590183647",
+    "text": "#% increased bonuses gained from Equipped Boots"
+  },
+  {
     "id": "implicit.stat_1590336483",
     "text": "While a Unique Enemy is in your Presence, #% increased Fire Damage"
   },
@@ -58746,6 +61714,10 @@
   {
     "id": "implicit.stat_1604984482",
     "text": "Your Lightning Damage can Poison"
+  },
+  {
+    "id": "implicit.stat_1607193320",
+    "text": "Travel Skills have #% chance to not consume a Cooldown on use"
   },
   {
     "id": "implicit.stat_1609260458",
@@ -58812,12 +61784,24 @@
     "text": "#% chance to cause Bleeding with Melee Weapons"
   },
   {
+    "id": "implicit.stat_1631195850",
+    "text": "Damaging Retaliation Skills become Usable every # seconds"
+  },
+  {
+    "id": "implicit.stat_1633157811",
+    "text": "#% increased Armour from Equipped Helmet"
+  },
+  {
     "id": "implicit.stat_1633778432",
     "text": "Trigger Level # Flame Dash when you use a Socketed Skill"
   },
   {
     "id": "implicit.stat_1640259660",
     "text": "Shocks you inflict spread to other Enemies within 1.5 metres"
+  },
+  {
+    "id": "implicit.stat_1640937241",
+    "text": "#% of Physical Damage over Time taken as Chaos Damage"
   },
   {
     "id": "implicit.stat_1640965354",
@@ -58828,12 +61812,20 @@
     "text": "Your Maps contain #% increased number of Runic Monster Markers"
   },
   {
+    "id": "implicit.stat_1642347505",
+    "text": "#% of Cold Damage taken as Fire Damage"
+  },
+  {
     "id": "implicit.stat_1643688236",
     "text": "Unaffected by Burning Ground"
   },
   {
     "id": "implicit.stat_1645459191",
     "text": "\u002B# to Level of Socketed Cold Gems"
+  },
+  {
+    "id": "implicit.stat_1645957840",
+    "text": "Every 3 seconds, Consume a Corpse within 5 metres to Recover #% of Mana"
   },
   {
     "id": "implicit.stat_1648511635",
@@ -58870,6 +61862,10 @@
   {
     "id": "implicit.stat_1662974426",
     "text": "#% increased Temporal Chains Curse Effect"
+  },
+  {
+    "id": "implicit.stat_1666645630",
+    "text": "Enemies within 6 metres of corpses you spawned Recently\nhave #% reduced Life Regeneration Rate"
   },
   {
     "id": "implicit.stat_1668340466",
@@ -58936,6 +61932,10 @@
     "text": "While a Unique Enemy is in your Presence, Minions prevent \u002B#% of Reflected Damage they would take"
   },
   {
+    "id": "implicit.stat_1698276268",
+    "text": "Projectiles that have Chained gain #% of Non-Chaos Damage as extra Chaos Damage"
+  },
+  {
     "id": "implicit.stat_1698847655",
     "text": "While a Unique Enemy is in your Presence, Ignites you inflict spread to other Enemies within # metre"
   },
@@ -58962,6 +61962,10 @@
   {
     "id": "implicit.stat_1708506642",
     "text": "While a Unique Enemy is in your Presence, #% chance to Unnerve Enemies for 4 seconds on Hit"
+  },
+  {
+    "id": "implicit.stat_1710381148",
+    "text": "#% increased Stun Duration against Enemies that are on Full Life"
   },
   {
     "id": "implicit.stat_1712221299",
@@ -59124,6 +62128,14 @@
     "text": "#% more Physical Damage with Unarmed Melee Attacks"
   },
   {
+    "id": "implicit.stat_1816894864",
+    "text": "Enemies Chilled by your Hits have Damage taken increased by Chill Effect"
+  },
+  {
+    "id": "implicit.stat_1818773442",
+    "text": "#% increased Damage with Hits and Ailments per Curse on Enemy"
+  },
+  {
     "id": "implicit.stat_1825301877",
     "text": "While a Unique Enemy is in your Presence, #% increased Evasion Rating from Equipped Helmet and Boots"
   },
@@ -59168,6 +62180,10 @@
     "text": "#% increased Area of Effect for Attacks"
   },
   {
+    "id": "implicit.stat_1846105968",
+    "text": "Enemies you Blind while in Sand Stance take #% increased Damage"
+  },
+  {
     "id": "implicit.stat_1847660463",
     "text": "While a Unique Enemy is in your Presence, #% increased Area of Effect"
   },
@@ -59198,6 +62214,10 @@
   {
     "id": "implicit.stat_1869144397",
     "text": "Trigger Level # Void Gaze when you use a Skill"
+  },
+  {
+    "id": "implicit.stat_1870732546",
+    "text": "Skills that Summon a Totem have #% chance to Summon two Totems instead of one"
   },
   {
     "id": "implicit.stat_1870961528",
@@ -59296,6 +62316,10 @@
     "text": "Area contains #% increased number of Monster Markers"
   },
   {
+    "id": "implicit.stat_1916233589",
+    "text": "Increases and Reductions to Mana Regeneration Rate also apply to Energy Shield Recharge Rate"
+  },
+  {
     "id": "implicit.stat_1916706958",
     "text": "#% chance to Ignore Stuns while Casting"
   },
@@ -59330,6 +62354,10 @@
   {
     "id": "implicit.stat_1923210508",
     "text": "Projectiles deal #% increased Damage with Hits and Ailments for each time they have Chained"
+  },
+  {
+    "id": "implicit.stat_192371942",
+    "text": "Ignites you inflict spread to other Enemies within a Radius of 1.5 metres"
   },
   {
     "id": "implicit.stat_1923879260",
@@ -59406,6 +62434,10 @@
   {
     "id": "implicit.stat_1973340656",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Minions prevent \u002B#% of Reflected Damage they would take"
+  },
+  {
+    "id": "implicit.stat_1978899297",
+    "text": "\u002B#% to all maximum Elemental Resistances"
   },
   {
     "id": "implicit.stat_1980216452",
@@ -59552,6 +62584,10 @@
     "text": "\u002B# to maximum number of Summoned Holy Relics"
   },
   {
+    "id": "implicit.stat_2059097830",
+    "text": "Skills socketed in Equipped Boots have #% increased Mana Cost Efficiency"
+  },
+  {
     "id": "implicit.stat_2059771038",
     "text": "Attacks always inflict Bleeding while you have Cat\u0027s Stealth"
   },
@@ -59612,6 +62648,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Global Accuracy Rating"
   },
   {
+    "id": "implicit.stat_2087475423",
+    "text": "#% chance to gain an Endurance Charge on Hit"
+  },
+  {
     "id": "implicit.stat_2089652545",
     "text": "#% chance to Intimidate Enemies for 4 seconds on Hit"
   },
@@ -59642,6 +62682,10 @@
   {
     "id": "implicit.stat_2101383955",
     "text": "Damage Penetrates #% Elemental Resistances"
+  },
+  {
+    "id": "implicit.stat_2101631651",
+    "text": "Skills deal #% increased Projectile damage per Projectile created"
   },
   {
     "id": "implicit.stat_2102212273",
@@ -59684,6 +62728,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Warcry Speed"
   },
   {
+    "id": "implicit.stat_2118708619",
+    "text": "#% increased Damage if you have Consumed a corpse Recently"
+  },
+  {
     "id": "implicit.stat_2120297997",
     "text": "\u002B#% Chance to Block Spell Damage while wielding a Staff"
   },
@@ -59706,6 +62754,14 @@
   {
     "id": "implicit.stat_2137878565",
     "text": "#% increased Damage with Hits against Rare monsters"
+  },
+  {
+    "id": "implicit.stat_2138799639",
+    "text": "Arrows Pierce all Targets after Forking"
+  },
+  {
+    "id": "implicit.stat_2139660169",
+    "text": "\u002B#% to Fire Damage over Time Multiplier with Attack Skills"
   },
   {
     "id": "implicit.stat_2143647966",
@@ -59852,6 +62908,10 @@
     "text": "#% of Armour also applies to Lightning Damage taken from Hits"
   },
   {
+    "id": "implicit.stat_2201614328",
+    "text": "Regenerate #% of Life per second if you have been Hit Recently"
+  },
+  {
     "id": "implicit.stat_2204282073",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% of Physical Damage Converted to Chaos Damage"
   },
@@ -59872,6 +62932,10 @@
     "text": "Summoned Raging Spirits\u0027 Melee Strikes deal Fire-only Splash\nDamage to Surrounding Targets"
   },
   {
+    "id": "implicit.stat_2216127021",
+    "text": "#% increased Area of Effect while Unarmed"
+  },
+  {
     "id": "implicit.stat_221690080",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Purity of Elements has #% increased Aura Effect"
   },
@@ -59882,6 +62946,10 @@
   {
     "id": "implicit.stat_2218095219",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Shocks you inflict spread to other Enemies within # metre"
+  },
+  {
+    "id": "implicit.stat_2221035608",
+    "text": "Petrification on you expires #% faster"
   },
   {
     "id": "implicit.stat_2221570601",
@@ -60060,6 +63128,10 @@
     "text": "#% chance to Shock with Melee Weapons"
   },
   {
+    "id": "implicit.stat_2316295572",
+    "text": "Iron Flasks applied to you have #% increased Effect"
+  },
+  {
     "id": "implicit.stat_2316658489",
     "text": "\u002B# to Armour and Evasion Rating"
   },
@@ -60078,6 +63150,10 @@
   {
     "id": "implicit.stat_2324668473",
     "text": "#% increased Effect of Non-Damaging Ailments for each Blue Skill Gem you have socketed"
+  },
+  {
+    "id": "implicit.stat_2337295272",
+    "text": "Minions deal #% increased Damage if you\u0027ve Hit Recently"
   },
   {
     "id": "implicit.stat_2339757871",
@@ -60112,6 +63188,10 @@
     "text": "#% increased Melee Physical Damage per 10 Dexterity"
   },
   {
+    "id": "implicit.stat_2356684802",
+    "text": "Fire Exposure you inflict applies an extra \u002B#% to Fire Resistance"
+  },
+  {
     "id": "implicit.stat_2358015838",
     "text": "Evasion Rating is increased by Overcapped Cold Resistance"
   },
@@ -60124,12 +63204,20 @@
     "text": "While a Unique Enemy is in your Presence, #% increased Mana Reservation Efficiency of Skills"
   },
   {
+    "id": "implicit.stat_2360921519",
+    "text": "Enemies you Kill have a #% chance to Explode, dealing a tenth of their maximum Life as Damage of a Random Element"
+  },
+  {
     "id": "implicit.stat_2366356855",
     "text": "While a Unique Enemy is in your Presence, Determination has #% increased Aura Effect"
   },
   {
     "id": "implicit.stat_2367680009",
     "text": "#% chance to grant a Power Charge to Allies within 4 metres on Kill"
+  },
+  {
+    "id": "implicit.stat_2370748292",
+    "text": "Minions gain added Resistances equal to #% of your Resistances"
   },
   {
     "id": "implicit.stat_2374340020",
@@ -60142,6 +63230,10 @@
   {
     "id": "implicit.stat_2377438118",
     "text": "#% increased Empowerment"
+  },
+  {
+    "id": "implicit.stat_2378187488",
+    "text": "\u002B# to Level of all Movement Skill Gems"
   },
   {
     "id": "implicit.stat_2382196858",
@@ -60158,6 +63250,10 @@
   {
     "id": "implicit.stat_2388574377",
     "text": "\u002B#% to maximum Chance to Block Spell Damage"
+  },
+  {
+    "id": "implicit.stat_2390518055",
+    "text": "\u002B#% to Physical Damage over Time Multiplier while Bleeding"
   },
   {
     "id": "implicit.stat_2391109128",
@@ -60204,8 +63300,16 @@
     "text": "While a Unique Enemy is in your Presence, #% increased Elusive Effect"
   },
   {
+    "id": "implicit.stat_2414462207",
+    "text": "Minions created Recently have Onslaught"
+  },
+  {
     "id": "implicit.stat_2415020123",
     "text": "While a Unique Enemy is in your Presence, #% increased Damage per Frenzy Charge"
+  },
+  {
+    "id": "implicit.stat_2415497478",
+    "text": "#% chance to Avoid Physical Damage from Hits"
   },
   {
     "id": "implicit.stat_2419712247",
@@ -60236,6 +63340,10 @@
     "text": "\u002B#% to Quality of Socketed Projectile Gems"
   },
   {
+    "id": "implicit.stat_2428638878",
+    "text": "\u002B# to Minimum Rage"
+  },
+  {
     "id": "implicit.stat_2433754249",
     "text": "While a Unique Enemy is in your Presence, #% chance to Poison on Hit"
   },
@@ -60262,6 +63370,10 @@
   {
     "id": "implicit.stat_2446980928",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Attack Speed"
+  },
+  {
+    "id": "implicit.stat_2450413567",
+    "text": "#% chance for a Coin Shower on Kill"
   },
   {
     "id": "implicit.stat_2451060005",
@@ -60310,6 +63422,10 @@
   {
     "id": "implicit.stat_247168950",
     "text": "Minions gain #% of Elemental Damage as Extra Chaos Damage"
+  },
+  {
+    "id": "implicit.stat_2474564741",
+    "text": "Consecrated Ground you create applies #% increased Damage taken to Enemies"
   },
   {
     "id": "implicit.stat_2477636501",
@@ -60464,8 +63580,16 @@
     "text": "#% increased Attack Speed with Daggers"
   },
   {
+    "id": "implicit.stat_253956903",
+    "text": "#% increased Quantity of Gold Dropped by Slain Enemies"
+  },
+  {
     "id": "implicit.stat_2539726203",
     "text": "Purity of Fire has #% increased Aura Effect"
+  },
+  {
+    "id": "implicit.stat_2545584555",
+    "text": "#% increased Effect of Withered"
   },
   {
     "id": "implicit.stat_2545907302",
@@ -60532,6 +63656,10 @@
     "text": "Warcry Skills have #% increased Area of Effect"
   },
   {
+    "id": "implicit.stat_2567919918",
+    "text": "Utility Flasks gain # Charge every 3 seconds"
+  },
+  {
     "id": "implicit.stat_2570943032",
     "text": "Area contains a Strongbox"
   },
@@ -60560,6 +63688,10 @@
     "text": "Triggers Level # Elemental Aegis when Equipped"
   },
   {
+    "id": "implicit.stat_2602664175",
+    "text": "Minions Recover #% of Life on Killing a Poisoned Enemy"
+  },
+  {
     "id": "implicit.stat_2603798371",
     "text": "Trigger Level 30 Shade Form when Hit"
   },
@@ -60586,6 +63718,10 @@
   {
     "id": "implicit.stat_261654754",
     "text": "\u002B# Cold Damage taken from Hits"
+  },
+  {
+    "id": "implicit.stat_261712318",
+    "text": "#% more Maximum Lightning Damage"
   },
   {
     "id": "implicit.stat_2619970520",
@@ -60618,6 +63754,10 @@
   {
     "id": "implicit.stat_2634574895",
     "text": "While a Unique Enemy is in your Presence, \u002B#% to Chaos Damage over Time Multiplier"
+  },
+  {
+    "id": "implicit.stat_2635385320",
+    "text": "Melee Critical Strikes have #% chance to Poison the Enemy"
   },
   {
     "id": "implicit.stat_2638071469",
@@ -60736,6 +63876,10 @@
     "text": "#% chance to Aggravate Bleeding on targets you Hit with Attacks"
   },
   {
+    "id": "implicit.stat_2705969278",
+    "text": "Hits have #% chance to treat Enemy Monster Lightning Resistance values as inverted"
+  },
+  {
     "id": "implicit.stat_2706994884",
     "text": "Shocked Enemies you Kill Explode, dealing #% of\ntheir Life as Lightning Damage which cannot Shock"
   },
@@ -60784,6 +63928,10 @@
     "text": "While a Unique Enemy is in your Presence, Haste has #% increased Aura Effect"
   },
   {
+    "id": "implicit.stat_2736829661",
+    "text": "When you Kill a Rare Monster, #% chance to gain one of its Modifiers for 10 seconds"
+  },
+  {
     "id": "implicit.stat_2739830820",
     "text": "\u002B# to Level of all Raise Zombie Gems"
   },
@@ -60800,8 +63948,24 @@
     "text": "#% increased maximum Mana"
   },
   {
+    "id": "implicit.stat_2751374419",
+    "text": "When you Poison a non-Poisoned target, also inflict # Withered debuffs, lasting 2 seconds"
+  },
+  {
     "id": "implicit.stat_2752131673",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Discipline has #% increased Aura Effect"
+  },
+  {
+    "id": "implicit.stat_2755326667",
+    "text": "You cannot be Stunned if you\u0027ve been Stunned or Blocked\na Stunning Hit in the past 2 seconds"
+  },
+  {
+    "id": "implicit.stat_2759003954",
+    "text": "Minions have \u002B#% to Damage over Time Multiplier"
+  },
+  {
+    "id": "implicit.stat_2761237769",
+    "text": "#% of Melee Cold Damage taken reflected to Attacker"
   },
   {
     "id": "implicit.stat_2761472996",
@@ -60864,6 +64028,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Fire Damage"
   },
   {
+    "id": "implicit.stat_2783093471",
+    "text": "Strike Skills which target additional Enemies can do so from #% further away"
+  },
+  {
     "id": "implicit.stat_2787733863",
     "text": "# to # Added Lightning Damage with Wand Attacks"
   },
@@ -60904,12 +64072,24 @@
     "text": "Gain 1 Rage on Hit with Attacks"
   },
   {
+    "id": "implicit.stat_280530196",
+    "text": "Attacks have #% increased Ignite Duration"
+  },
+  {
+    "id": "implicit.stat_2805714016",
+    "text": "#% increased Damage with Hits against Chilled Enemies"
+  },
+  {
     "id": "implicit.stat_280731498",
     "text": "#% increased Area of Effect"
   },
   {
     "id": "implicit.stat_2809284200",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Damage per Power Charge"
+  },
+  {
+    "id": "implicit.stat_2809802678",
+    "text": "Skills fire an additional Projectile if you\u0027ve used a Movement Skill Recently"
   },
   {
     "id": "implicit.stat_2809900883",
@@ -61000,8 +64180,16 @@
     "text": "Hits have #% chance to ignore Enemy Physical Damage Reduction"
   },
   {
+    "id": "implicit.stat_2840285057",
+    "text": "#% increased Armour from Equipped Body Armour"
+  },
+  {
     "id": "implicit.stat_2841027131",
     "text": "Regenerate # Life per second while moving"
+  },
+  {
+    "id": "implicit.stat_2841618445",
+    "text": "Regenerate #% of Life per second for each Raised Zombie"
   },
   {
     "id": "implicit.stat_2843100721",
@@ -61022,6 +64210,10 @@
   {
     "id": "implicit.stat_284496119",
     "text": "Monster Level: #"
+  },
+  {
+    "id": "implicit.stat_2846448337",
+    "text": "#% reduced Enemy Chance to Block Sword Attacks"
   },
   {
     "id": "implicit.stat_2847548062",
@@ -61200,6 +64392,10 @@
     "text": "#% chance to gain Phasing for 4 seconds on Kill"
   },
   {
+    "id": "implicit.stat_2920230984",
+    "text": "#% chance for Slain monsters to drop an additional Scroll of Wisdom"
+  },
+  {
     "id": "implicit.stat_2922377850",
     "text": "Curse Enemies with Punishment when you Block their Melee Damage, ignoring Curse Limit"
   },
@@ -61268,6 +64464,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, \u002B#% to Critical Strike Multiplier for Spell Damage"
   },
   {
+    "id": "implicit.stat_2957407601",
+    "text": "Offering Skills have #% increased Duration"
+  },
+  {
     "id": "implicit.stat_2960338345",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Attacks have #% chance to cause Bleeding"
   },
@@ -61284,12 +64484,20 @@
     "text": "#% of Lightning Damage taken Recouped as Life"
   },
   {
+    "id": "implicit.stat_2973498992",
+    "text": "Your Chaos Damage can Freeze"
+  },
+  {
     "id": "implicit.stat_2974417149",
     "text": "#% increased Spell Damage"
   },
   {
     "id": "implicit.stat_298106626",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Melee Hits Fortify"
+  },
+  {
+    "id": "implicit.stat_298173317",
+    "text": "#% increased Impale Effect"
   },
   {
     "id": "implicit.stat_2986495340",
@@ -61306,6 +64514,10 @@
   {
     "id": "implicit.stat_2994708956",
     "text": "Can roll Minion Modifiers"
+  },
+  {
+    "id": "implicit.stat_2994988431",
+    "text": "#% more Maximum Physical Attack Damage"
   },
   {
     "id": "implicit.stat_2996280658",
@@ -61374,6 +64586,10 @@
   {
     "id": "implicit.stat_3019083030",
     "text": "While a Unique Enemy is in your Presence, #% increased Movement Speed"
+  },
+  {
+    "id": "implicit.stat_3019598671",
+    "text": "Projectiles Pierce, Fork or Chain an additional time at random"
   },
   {
     "id": "implicit.stat_3023957681",
@@ -61472,6 +64688,10 @@
     "text": "Minions have #% increased Attack and Cast Speed"
   },
   {
+    "id": "implicit.stat_3094222195",
+    "text": "#% chance to Impale on Spell Hit"
+  },
+  {
     "id": "implicit.stat_3095027077",
     "text": "#% increased Brute Force speed"
   },
@@ -61484,6 +64704,14 @@
     "text": "While a Unique Enemy is in your Presence, Drops Scorched Ground while moving, lasting # seconds"
   },
   {
+    "id": "implicit.stat_3098087057",
+    "text": "#% increased Damage on Burning Ground"
+  },
+  {
+    "id": "implicit.stat_3101897388",
+    "text": "#% increased Maximum Recovery per Life Leech"
+  },
+  {
     "id": "implicit.stat_310246444",
     "text": "#% increased Damage while Leeching"
   },
@@ -61492,8 +64720,20 @@
     "text": "\u002B#% to Critical Strike Multiplier with Swords"
   },
   {
+    "id": "implicit.stat_3115319277",
+    "text": "Gain #% of Lightning Damage as Extra Chaos Damage per Power Charge"
+  },
+  {
+    "id": "implicit.stat_3119292058",
+    "text": "Enemies Chilled by your Hits can be Shattered as though Frozen"
+  },
+  {
     "id": "implicit.stat_3120164895",
     "text": "# to # Added Fire Damage with Bow Attacks"
+  },
+  {
+    "id": "implicit.stat_3120620173",
+    "text": "Pact Skills have #% increased Cast Speed"
   },
   {
     "id": "implicit.stat_3123599008",
@@ -61608,6 +64848,10 @@
     "text": "Regenerate #% of Mana per second"
   },
   {
+    "id": "implicit.stat_3188898882",
+    "text": "Damaging Ailments inflicted by Minions deal damage #% Faster"
+  },
+  {
     "id": "implicit.stat_318953428",
     "text": "#% chance to Blind Enemies on Hit with Attacks"
   },
@@ -61618,6 +64862,10 @@
   {
     "id": "implicit.stat_3192966873",
     "text": "Purity of Ice has #% reduced Reservation"
+  },
+  {
+    "id": "implicit.stat_3193713651",
+    "text": "#% increased Life Recovery rate per 5% missing Unreserved Life"
   },
   {
     "id": "implicit.stat_3199183447",
@@ -61642,6 +64890,10 @@
   {
     "id": "implicit.stat_3209267362",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Effect of Onslaught on you"
+  },
+  {
+    "id": "implicit.stat_3209419976",
+    "text": "#% increased Armour from Equipped Helmet, Body Armour, Gloves, and Boots"
   },
   {
     "id": "implicit.stat_321077055",
@@ -61704,6 +64956,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, Inflict Fire Exposure on Hit, applying #% to Fire Resistance"
   },
   {
+    "id": "implicit.stat_32458272",
+    "text": "Trigger Level 20 Lesser Raise Spiders on Kill"
+  },
+  {
     "id": "implicit.stat_3250579936",
     "text": "Triggers Level # Abberath\u0027s Fury when Equipped"
   },
@@ -61728,12 +64984,24 @@
     "text": "\u002B# to Dexterity"
   },
   {
+    "id": "implicit.stat_3262016885",
+    "text": "Minions are Aggressive if you\u0027ve used a Minion Skill Recently"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "While a Unique Enemy is in your Presence, Withered you Inflict expires #% faster"
   },
   {
+    "id": "implicit.stat_3262991862",
+    "text": "Causes Bleeding on Melee Critical Strike"
+  },
+  {
     "id": "implicit.stat_3264420229",
     "text": "While a Unique Enemy is in your Presence, #% chance to Avoid Elemental Ailments"
+  },
+  {
+    "id": "implicit.stat_3266394681",
+    "text": "Attack Skills have \u002B# to maximum number of Summoned Totems"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -61840,6 +65108,10 @@
     "text": "\u002B#% Chance to Block Attack Damage from Cursed Enemies"
   },
   {
+    "id": "implicit.stat_3307066983",
+    "text": "Chance to Block Projectile Attack Damage is Lucky"
+  },
+  {
     "id": "implicit.stat_3309607228",
     "text": "#% reduced Damage taken if Corrupted"
   },
@@ -61854,6 +65126,10 @@
   {
     "id": "implicit.stat_3312732077",
     "text": "#% increased Lockpicking speed"
+  },
+  {
+    "id": "implicit.stat_3313028660",
+    "text": "\u002B#% to Chaos Damage over Time Multiplier while Poisoned"
   },
   {
     "id": "implicit.stat_331731406",
@@ -61956,6 +65232,10 @@
     "text": "Minions have #% increased Attack Speed"
   },
   {
+    "id": "implicit.stat_3376335115",
+    "text": "#% more Maximum Physical Attack Damage"
+  },
+  {
     "id": "implicit.stat_3377888098",
     "text": "#% increased Skill Effect Duration"
   },
@@ -62010,6 +65290,10 @@
   {
     "id": "implicit.stat_3401410854",
     "text": "While a Unique Enemy is in your Presence, #% increased Attack Speed"
+  },
+  {
+    "id": "implicit.stat_3402448478",
+    "text": "Hits have #% chance to treat Enemy Monster Cold Resistance values as inverted"
   },
   {
     "id": "implicit.stat_3407849389",
@@ -62076,6 +65360,10 @@
     "text": "\u002B# Physical Damage taken from Attack Hits"
   },
   {
+    "id": "implicit.stat_3442107889",
+    "text": "Gain Maddening Presence for 10 seconds when you Kill a Rare or Unique Enemy"
+  },
+  {
     "id": "implicit.stat_3444518809",
     "text": "Wrath has #% increased Mana Reservation Efficiency"
   },
@@ -62124,6 +65412,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% of Fire Damage Leeched as Life"
   },
   {
+    "id": "implicit.stat_3482421817",
+    "text": "#% increased Evasion Rating from Equipped Helmet, Body Armour Gloves and Boots"
+  },
+  {
     "id": "implicit.stat_3483999943",
     "text": "#% chance to Avoid being Chilled"
   },
@@ -62168,6 +65460,10 @@
     "text": "You have Phasing if you have Blocked Recently"
   },
   {
+    "id": "implicit.stat_3493440964",
+    "text": "Gain a random Shrine Buff for # seconds when you Kill a Rare or Unique Enemy"
+  },
+  {
     "id": "implicit.stat_3496944181",
     "text": "#% increased Spell Damage while wielding a Staff"
   },
@@ -62180,12 +65476,20 @@
     "text": "#% of Attack Damage Leeched as Mana"
   },
   {
+    "id": "implicit.stat_3503466234",
+    "text": "#% increased Damage with Hits and Ailments against Blinded Enemies"
+  },
+  {
     "id": "implicit.stat_3504652942",
     "text": "\u002B#% to Damage over Time Multiplier for Poison per Frenzy Charge"
   },
   {
     "id": "implicit.stat_350598685",
     "text": "\u002B# metres to Weapon Range"
+  },
+  {
+    "id": "implicit.stat_3509362078",
+    "text": "#% increased Evasion Rating from Equipped Body Armour"
   },
   {
     "id": "implicit.stat_3512432760",
@@ -62260,6 +65564,10 @@
     "text": "While a Unique Enemy is in your Presence, #% increased Conductivity Curse Effect"
   },
   {
+    "id": "implicit.stat_3548404923",
+    "text": "#% increased Action Speed while Ignited"
+  },
+  {
     "id": "implicit.stat_3548561213",
     "text": "#% increased Attack Speed per Frenzy Charge"
   },
@@ -62306,6 +65614,10 @@
   {
     "id": "implicit.stat_3562211447",
     "text": "#% chance to gain Unholy Might for 3 seconds on Kill"
+  },
+  {
+    "id": "implicit.stat_3565956680",
+    "text": "#% increased Damage with Hits and Ailments against Blinded Enemies"
   },
   {
     "id": "implicit.stat_3567752586",
@@ -62440,6 +65752,10 @@
     "text": "Damage of Enemies Hitting you is Unlucky while you are on Full Life"
   },
   {
+    "id": "implicit.stat_3633399302",
+    "text": "#% of Fire Damage Leeched as Life while Ignited"
+  },
+  {
     "id": "implicit.stat_3635566977",
     "text": "\u002B#% to all maximum Resistances while you have no Endurance Charges"
   },
@@ -62460,6 +65776,10 @@
     "text": "# to # Added Cold Damage per Frenzy Charge"
   },
   {
+    "id": "implicit.stat_3652380199",
+    "text": "\u002B# Physical Damage taken from Hits per Level"
+  },
+  {
     "id": "implicit.stat_3653191834",
     "text": "Unaffected by Chilled Ground"
   },
@@ -62468,8 +65788,20 @@
     "text": "Determination has #% increased Aura Effect"
   },
   {
+    "id": "implicit.stat_3655769732",
+    "text": "\u002B#% to Quality of all Skill Gems"
+  },
+  {
     "id": "implicit.stat_3657377047",
     "text": "#% chance to Trigger Socketed Curse Spell when you Cast a Curse Spell, with a 0.25 second Cooldown"
+  },
+  {
+    "id": "implicit.stat_3660138886",
+    "text": "Immune to Hinder"
+  },
+  {
+    "id": "implicit.stat_3660255193",
+    "text": "Consecrated Ground you create grants #% reduced damage taken to you and Allies"
   },
   {
     "id": "implicit.stat_3660450649",
@@ -62520,6 +65852,10 @@
     "text": "Recover Energy Shield equal to #% of Armour when you Block"
   },
   {
+    "id": "implicit.stat_3682839745",
+    "text": "#% chance to gain a Brine Charge instead of an Endurance Charge"
+  },
+  {
     "id": "implicit.stat_3683150361",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% chance to Aggravate Bleeding on targets you Hit with Attacks"
   },
@@ -62560,6 +65896,10 @@
     "text": "\u002B# to Minimum Endurance Charges"
   },
   {
+    "id": "implicit.stat_3708520172",
+    "text": "Increases and Reductions to Light Radius also apply to Life Regeneration Rate at #% value"
+  },
+  {
     "id": "implicit.stat_3710240762",
     "text": "While a Unique Enemy is in your Presence, #% increased Critical Strike Chance for Attacks"
   },
@@ -62578,6 +65918,10 @@
   {
     "id": "implicit.stat_3720627346",
     "text": "#% increased Attack Speed with Wands"
+  },
+  {
+    "id": "implicit.stat_3723063276",
+    "text": "Enemies Cursed by you cannot deal Critical Strikes"
   },
   {
     "id": "implicit.stat_3731630482",
@@ -62640,6 +65984,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, 1% less Damage Taken per # Dexterity"
   },
   {
+    "id": "implicit.stat_3750544543",
+    "text": "Poisons you inflict on non-Poisoned Enemies deal #% increased Damage"
+  },
+  {
     "id": "implicit.stat_3753703249",
     "text": "Gain #% of Physical Damage as Extra Damage of a random Element"
   },
@@ -62672,6 +66020,10 @@
     "text": "Regenerate # Mana per Second while holding a Shield"
   },
   {
+    "id": "implicit.stat_3764198549",
+    "text": "Every 3 seconds, Consume a Corpse within 5 metres to Recover #% of Life"
+  },
+  {
     "id": "implicit.stat_3764265320",
     "text": "#% of Physical Damage Leeched as Life"
   },
@@ -62682,6 +66034,10 @@
   {
     "id": "implicit.stat_3767873853",
     "text": "Reflects # Physical Damage to Melee Attackers"
+  },
+  {
+    "id": "implicit.stat_3769211656",
+    "text": "#% chance to gain a Frenzy Charge when you Block"
   },
   {
     "id": "implicit.stat_3771516363",
@@ -62940,6 +66296,10 @@
     "text": "You have Igniting, Chilling and Shocking Conflux while affected by Glorious Madness"
   },
   {
+    "id": "implicit.stat_3913936991",
+    "text": "#% of Damage taken from Stunning Hits is Recovered as Life"
+  },
+  {
     "id": "implicit.stat_3915702459",
     "text": "Gain # Life when you lose an Endurance Charge"
   },
@@ -62970,6 +66330,10 @@
   {
     "id": "implicit.stat_3927388937",
     "text": "#% chance for Impales on Enemies you Kill to Reflect Damage to Enemies within 2.2 metres"
+  },
+  {
+    "id": "implicit.stat_3931566161",
+    "text": "Curse Enemies with Despair on Hit if 5 Hunter Items are Equipped"
   },
   {
     "id": "implicit.stat_3935031607",
@@ -63040,6 +66404,10 @@
     "text": "Drops Scorched Ground while moving, lasting # seconds"
   },
   {
+    "id": "implicit.stat_396291184",
+    "text": "#% increased Damage while Blind"
+  },
+  {
     "id": "implicit.stat_3963657800",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Damage per 100 Strength"
   },
@@ -63056,12 +66424,20 @@
     "text": "#% increased Damage per 100 Intelligence"
   },
   {
+    "id": "implicit.stat_3966765615",
+    "text": "Curse Enemies with Flammability on Hit if 5 Warlord Items are Equipped"
+  },
+  {
     "id": "implicit.stat_3967028570",
     "text": "#% of Chaos Damage is taken from Mana before Life"
   },
   {
     "id": "implicit.stat_3967845372",
     "text": "Curse Enemies with Vulnerability on Hit"
+  },
+  {
+    "id": "implicit.stat_3971521684",
+    "text": "#% increased bonuses gained from Equipped Gloves"
   },
   {
     "id": "implicit.stat_3972229254",
@@ -63216,6 +66592,10 @@
     "text": "\u002B# to maximum Energy Shield (Local)"
   },
   {
+    "id": "implicit.stat_4052113003",
+    "text": "Kill Undead Enemies that have 15% or lower Life when Hit by your Skills"
+  },
+  {
     "id": "implicit.stat_4052117756",
     "text": "All Damage can Freeze"
   },
@@ -63240,6 +66620,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, Minions have #% increased maximum Life"
   },
   {
+    "id": "implicit.stat_4058190193",
+    "text": "#% increased Effect of Consecrated Ground you create"
+  },
+  {
     "id": "implicit.stat_40584863",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Punishment Curse Effect"
   },
@@ -63258,6 +66642,10 @@
   {
     "id": "implicit.stat_4067062424",
     "text": "Adds # to # Cold Damage to Attacks"
+  },
+  {
+    "id": "implicit.stat_4067960074",
+    "text": "#% chance to gain an Endurance Charge when you Stun an Enemy with a Melee Hit"
   },
   {
     "id": "implicit.stat_4070754804",
@@ -63290,6 +66678,10 @@
   {
     "id": "implicit.stat_4084536353",
     "text": "While a Pinnacle Atlas Boss is in your Presence, \u002B#% to Physical Damage over Time Multiplier"
+  },
+  {
+    "id": "implicit.stat_4088932395",
+    "text": "Banners also grant #% of Physical Damage gained as Extra Fire Damage to you and Allies"
   },
   {
     "id": "implicit.stat_4091694419",
@@ -63346,6 +66738,10 @@
   {
     "id": "implicit.stat_4108186648",
     "text": "\u002B#% chance to Suppress Spell Damage while Channelling"
+  },
+  {
+    "id": "implicit.stat_4113372195",
+    "text": "Effects of Consecrated Ground you create Linger for 1 second"
   },
   {
     "id": "implicit.stat_4116705863",
@@ -63452,6 +66848,10 @@
     "text": "Area contains # additional Chest Marker"
   },
   {
+    "id": "implicit.stat_4163360392",
+    "text": "Enemies near your Banner take #% increased Fire Damage"
+  },
+  {
     "id": "implicit.stat_4164361381",
     "text": "Enemies display their Monster Category"
   },
@@ -63462,6 +66862,10 @@
   {
     "id": "implicit.stat_4171615823",
     "text": "While a Unique Enemy is in your Presence, #% increased Punishment Curse Effect"
+  },
+  {
+    "id": "implicit.stat_417188801",
+    "text": "#% chance to gain an Endurance Charge when you Block"
   },
   {
     "id": "implicit.stat_4175197580",
@@ -63490,6 +66894,10 @@
   {
     "id": "implicit.stat_4202507508",
     "text": "#% increased Reservation Efficiency of Skills"
+  },
+  {
+    "id": "implicit.stat_420435377",
+    "text": "\u002B#% to Fire Damage over Time Multiplier while Ignited"
   },
   {
     "id": "implicit.stat_4206255461",
@@ -63552,6 +66960,10 @@
     "text": "Contains a Forge that can Combine Crucible Passive Skill Trees, including on Unique and Corrupted Items"
   },
   {
+    "id": "implicit.stat_4224978303",
+    "text": "#% chance to deal Double Damage if you have Stunned an Enemy Recently"
+  },
+  {
     "id": "implicit.stat_4226189338",
     "text": "\u002B# to Level of all Chaos Spell Skill Gems"
   },
@@ -63584,8 +66996,16 @@
     "text": "Shocks you inflict spread to other Enemies within # metre"
   },
   {
+    "id": "implicit.stat_4246915004",
+    "text": "Offerings you create also grant #% increased Damage"
+  },
+  {
     "id": "implicit.stat_4247488219",
     "text": "Pride has #% increased Aura Effect"
+  },
+  {
+    "id": "implicit.stat_4249220643",
+    "text": "#% increased Attack Speed while Dual Wielding"
   },
   {
     "id": "implicit.stat_4249521944",
@@ -63612,6 +67032,10 @@
     "text": "Glancing Blows"
   },
   {
+    "id": "implicit.stat_4268284087",
+    "text": "Banners also grant #% of Physical Damage gained as Extra Cold Damage to you and Allies"
+  },
+  {
     "id": "implicit.stat_4268321763",
     "text": "#% increased Attack Speed when on Full Life"
   },
@@ -63634,6 +67058,10 @@
   {
     "id": "implicit.stat_4274080377",
     "text": "#% increased Damage per 100 Strength"
+  },
+  {
+    "id": "implicit.stat_4276479762",
+    "text": "#% increased Damage against Beasts"
   },
   {
     "id": "implicit.stat_4277795662",
@@ -63676,8 +67104,16 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% reduced Effect of Shock on you"
   },
   {
+    "id": "implicit.stat_434725481",
+    "text": "#% chance to avoid Corrupted Blood"
+  },
+  {
     "id": "implicit.stat_438468314",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Effect of the Buff granted by your Stone Golems"
+  },
+  {
+    "id": "implicit.stat_440826461",
+    "text": "#% more Maximum Lightning Damage"
   },
   {
     "id": "implicit.stat_44159086",
@@ -63730,6 +67166,10 @@
   {
     "id": "implicit.stat_474294393",
     "text": "#% reduced Mana Cost of Skills"
+  },
+  {
+    "id": "implicit.stat_474853513",
+    "text": "#% of Damage from Hits is taken from your Damagable Minions\u0027 Life before you"
   },
   {
     "id": "implicit.stat_475684070",
@@ -63836,6 +67276,10 @@
     "text": "While a Pinnacle Atlas Boss is in your Presence, 1% less Damage Taken per # Strength"
   },
   {
+    "id": "implicit.stat_514698677",
+    "text": "#% chance to inflict an additional Poison on the same Target when you inflict Poison"
+  },
+  {
     "id": "implicit.stat_516565950",
     "text": "\u002B# to Level of Socketed Physical Gems"
   },
@@ -63892,6 +67336,10 @@
     "text": "While a Unique Enemy is in your Presence, #% increased Damage per 100 Intelligence"
   },
   {
+    "id": "implicit.stat_546701346",
+    "text": "#% increased Damage while Bleeding"
+  },
+  {
     "id": "implicit.stat_547412107",
     "text": "Vaal Skills have #% increased Skill Effect Duration"
   },
@@ -63910,6 +67358,10 @@
   {
     "id": "implicit.stat_55876295",
     "text": "#% of Physical Attack Damage Leeched as Life (Local)"
+  },
+  {
+    "id": "implicit.stat_560643297",
+    "text": "Hits have #% chance to treat Enemy Monster Fire Resistance values as inverted"
   },
   {
     "id": "implicit.stat_561307714",
@@ -63960,6 +67412,10 @@
     "text": "Gain Maximum Life instead of Maximum Energy Shield from Equipped Armour Items\nat #% of the value"
   },
   {
+    "id": "implicit.stat_581625445",
+    "text": "#% increased Movement Speed while Ignited"
+  },
+  {
     "id": "implicit.stat_585159631",
     "text": "Area contains a Silver Coin"
   },
@@ -63978,6 +67434,10 @@
   {
     "id": "implicit.stat_589489789",
     "text": "Can\u0027t use Flask in Fifth Slot"
+  },
+  {
+    "id": "implicit.stat_59033544",
+    "text": "#% chance to Eat a Soul when you Consume the corpse of a Rare Monster"
   },
   {
     "id": "implicit.stat_591105508",
@@ -64042,6 +67502,10 @@
   {
     "id": "implicit.stat_628716294",
     "text": "Action Speed cannot be modified to below Base Value"
+  },
+  {
+    "id": "implicit.stat_62884658",
+    "text": "#% chance to gain Phasing on Hit"
   },
   {
     "id": "implicit.stat_631097842",
@@ -64148,6 +67612,14 @@
     "text": "#% increased Attack Speed"
   },
   {
+    "id": "implicit.stat_683595855",
+    "text": "Area Skills have #% chance to deal Double Damage"
+  },
+  {
+    "id": "implicit.stat_683892962",
+    "text": "#% increased Damage per Minion, up to a maximum of 40%"
+  },
+  {
     "id": "implicit.stat_689723685",
     "text": "While a Pinnacle Atlas Boss is in your Presence, Bone Offering has #% increased Effect"
   },
@@ -64228,6 +67700,10 @@
     "text": "While a Unique Enemy is in your Presence, Bleeding you inflict deals Damage #% Faster"
   },
   {
+    "id": "implicit.stat_738897289",
+    "text": "#% increased Life Recovery rate while Recouping Life"
+  },
+  {
     "id": "implicit.stat_740797388",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Damage per Endurance Charge"
   },
@@ -64258,6 +67734,18 @@
   {
     "id": "implicit.stat_749219868",
     "text": "#% increased Armour per 100 Reserved Mana"
+  },
+  {
+    "id": "implicit.stat_752930724",
+    "text": "Items and Gems have #% increased Attribute Requirements"
+  },
+  {
+    "id": "implicit.stat_755922799",
+    "text": "Minions have #% chance to deal Double Damage"
+  },
+  {
+    "id": "implicit.stat_759530725",
+    "text": "Enemies Taunted by your Warcries have #% increased Action Speed"
   },
   {
     "id": "implicit.stat_760444887",
@@ -64298,6 +67786,10 @@
   {
     "id": "implicit.stat_768982451",
     "text": "\u002B#% to Quality of Socketed AoE Gems"
+  },
+  {
+    "id": "implicit.stat_769783486",
+    "text": "Adds # to # Cold Damage to Attacks per 10 Dexterity"
   },
   {
     "id": "implicit.stat_770672621",
@@ -64456,6 +67948,14 @@
     "text": "#% increased Life Recovery from Flasks"
   },
   {
+    "id": "implicit.stat_822106893",
+    "text": "Killing Blows Consume corpses to Recover #% of Mana"
+  },
+  {
+    "id": "implicit.stat_822568652",
+    "text": "#% of Damage taken Recouped as Energy Shield"
+  },
+  {
     "id": "implicit.stat_824762042",
     "text": "1% less Damage Taken per # Dexterity"
   },
@@ -64552,6 +68052,10 @@
     "text": "Chaos Damage taken does not bypass Energy Shield while not on Low Life"
   },
   {
+    "id": "implicit.stat_893038512",
+    "text": "Your chance to cause monsters to Flee on Hit is also chance to Terrify Monsters on Hit"
+  },
+  {
     "id": "implicit.stat_895264825",
     "text": "#% increased Area of Effect of Aura Skills"
   },
@@ -64588,8 +68092,16 @@
     "text": "\u002B# to Level of Socketed Strength Gems"
   },
   {
+    "id": "implicit.stat_922882178",
+    "text": "#% chance to gain Elusive on Kill"
+  },
+  {
     "id": "implicit.stat_92591094",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% increased Energy Shield Recovery rate"
+  },
+  {
+    "id": "implicit.stat_927817294",
+    "text": "Raised Zombies have #% increased maximum Life"
   },
   {
     "id": "implicit.stat_928477193",
@@ -64622,6 +68134,10 @@
   {
     "id": "implicit.stat_944522962",
     "text": "While a Pinnacle Atlas Boss is in your Presence, \u002B#% to maximum Chaos Resistance"
+  },
+  {
+    "id": "implicit.stat_947144250",
+    "text": "Enemies near your Banner take #% increased Cold Damage"
   },
   {
     "id": "implicit.stat_948600126",
@@ -64692,6 +68208,14 @@
     "text": "#% reduced Ignite Duration on you"
   },
   {
+    "id": "implicit.stat_986616727",
+    "text": "Hexes Transfer to all Enemies within 3 metres when Hexed Enemy dies"
+  },
+  {
+    "id": "implicit.stat_988207959",
+    "text": "Skills fire an additional Projectile if you\u0027ve been Hit Recently"
+  },
+  {
     "id": "implicit.stat_988575597",
     "text": "#% increased Energy Shield Recovery rate"
   },
@@ -64706,6 +68230,10 @@
   {
     "id": "implicit.stat_989948703",
     "text": "Modifiers to Item Quantity affect the amount of rewards dropped by the boss by #% of their value"
+  },
+  {
+    "id": "implicit.stat_990219738",
+    "text": "#% increased Lightning Damage per 10 Intelligence"
   },
   {
     "id": "implicit.stat_990377349",
@@ -69618,6 +73146,42 @@
   {
     "id": "sanctum.stat_889527415",
     "text": "Gain # Resolve when you kill a Boss"
+  },
+  {
+    "id": "scourge.effect_1659491511",
+    "text": "Grants Level # Herald of Ice"
+  },
+  {
+    "id": "scourge.effect_1673391040",
+    "text": "Socketed Gems are Supported by Level # Added Chaos Damage Support"
+  },
+  {
+    "id": "scourge.effect_2054781369",
+    "text": "Grants Level # Herald of Purity"
+  },
+  {
+    "id": "scourge.effect_2128724272",
+    "text": "Grants Level # Herald of Thunder"
+  },
+  {
+    "id": "scourge.effect_237745710",
+    "text": "Grants Level # Herald of Agony"
+  },
+  {
+    "id": "scourge.effect_2890244883",
+    "text": "Grants Level # Sniper\u0027s Mark"
+  },
+  {
+    "id": "scourge.effect_3362019776",
+    "text": "Socketed Gems are Supported by Level # Added Cold Damage Support"
+  },
+  {
+    "id": "scourge.effect_3607696303",
+    "text": "Socketed Gems are Supported by Level # Added Lightning Damage Support"
+  },
+  {
+    "id": "scourge.effect_415209642",
+    "text": "Grants Level # Herald of Ash"
   },
   {
     "id": "scourge.stat_1004011302",
