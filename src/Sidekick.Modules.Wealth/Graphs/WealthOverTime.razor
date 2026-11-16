@@ -8,7 +8,7 @@
 
 <div class="@(Series.Count == 0 ? "hidden" : "") relative">
     <FormFieldset Legend="@Resources["Total_Value"]">
-        <div class="h-[8rem] relative -m-3">
+        <div class="h-32 relative -m-3">
             <ApexChart @ref="Chart"
                        TItem="DataPoint"
                        Options="DataConstants.GetOptions()"

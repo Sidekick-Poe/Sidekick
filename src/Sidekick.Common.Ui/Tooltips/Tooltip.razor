@@ -4,7 +4,7 @@
                                          Id,
                                          Placement.GetValueAttribute(),
                                      })"
-                   class="leading-[0] *:leading-none">
+                   class="leading-0 *:leading-none">
     @if (ChildContent is not null)
     {
         @ChildContent
@@ -24,7 +24,7 @@
         }
         else
         {
-            <div class="text-center text-sm leading-4">@Text</div>
+            <div class="text-center text-sm/4">@Text</div>
         }
     </div>
 </BodySectionContent>

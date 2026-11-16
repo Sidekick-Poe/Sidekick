@@ -21,6 +21,8 @@
         <StartupObject>Sidekick.Avalonia.Program</StartupObject>
         <AssemblyName>Sidekick</AssemblyName>
         <ApplicationIcon>Assets/favicon.ico</ApplicationIcon>
+        <!-- Windows that need arguments are always created from code, never by the XAML loader or the previewer. -->
+        <NoWarn>$(NoWarn);AVLN3001</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>

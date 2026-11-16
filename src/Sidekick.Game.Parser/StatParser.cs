@@ -161,13 +161,13 @@ public class StatParser
         foreach (var definition in definitions)
         {
             // Single line stats
-            if (definition.Lines == 1 && definition.Pattern.IsMatch(lines.First()))
+            if (definition.Lines == 1 && definition.Pattern?.IsMatch(lines.First()) == true)
             {
                 yield return definition;
             }
 
             // Multiple line stats
-            if (definition.Lines > 1 && definition.Pattern.IsMatch(string.Join('\n', lines.Take(definition.Lines))))
+            if (definition.Lines > 1 && definition.Pattern?.IsMatch(string.Join('\n', lines.Take(definition.Lines))) == true)
             {
                 yield return definition;
             }
@@ -219,8 +219,8 @@ public class StatParser
 
             foreach (var definition in input.Definitions)
             {
-                var patternMatch = definition.Pattern.Match(input.Text);
-                if (!patternMatch.Success) continue;
+                var patternMatch = definition.Pattern?.Match(input.Text);
+                if (patternMatch is not { Success: true }) continue;
 
                 var hasValues = false;
                 foreach (Group group in patternMatch.Groups)
