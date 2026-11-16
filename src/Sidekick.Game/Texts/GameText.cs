@@ -91,6 +91,7 @@ public class GameText
 
     public string ItemPropertySplit { get; set; } = string.Empty;
     public string ItemPropertyCorrupted { get; set; } = string.Empty;
+    public string ItemPropertyTwiceCorrupted { get; set; } = string.Empty;
     public string ItemPropertyMirrored { get; set; } = string.Empty;
     public string ItemPropertyUnidentified { get; set; } = string.Empty;
 

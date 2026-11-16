@@ -31,6 +31,9 @@ public class ApiItem
 
     public bool Corrupted { get; set; }
 
+    [JsonPropertyName("doubleCorrupted")]
+    public bool TwiceCorrupted { get; set; }
+
     public bool Split { get; set; }
 
     public bool Mutated { get; set; }

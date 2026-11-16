@@ -122,6 +122,7 @@ public class PropertyParser
                                    new RedeemerProperty(game, gameTextProvider),
                                    new WarlordProperty(game, gameTextProvider),
                                    new CorruptedProperty(game, gameTextProvider),
+                                   new TwiceCorruptedProperty(game, gameTextProvider),
                                    new SplitProperty(game, gameTextProvider),
                                    new FracturedProperty(game, tradeFilterProvider),
                                    new DesecratedProperty(game, tradeFilterProvider),

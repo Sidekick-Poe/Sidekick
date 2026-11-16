@@ -55,11 +55,12 @@ Note: ~price 2 chaos
 ");
 
         var filters = await fixture.GetPropertyFilters(item);
-        Assert.Equal(4, filters.Count);
+        Assert.Equal(5, filters.Count);
         var index = -1;
         Assert.IsType<QualityFilter>(filters[++index]);
         Assert.IsType<GemLevelFilter>(filters[++index]);
         Assert.IsType<CorruptedFilter>(filters[++index]);
+        Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
         Assert.IsType<ImbuedGemFilter>(filters[++index]);
     }
 
@@ -89,10 +90,11 @@ Corrupted
 ");
 
         var filters = await fixture.GetPropertyFilters(item);
-        Assert.Equal(3, filters.Count);
+        Assert.Equal(4, filters.Count);
         var index = -1;
         Assert.IsType<QualityFilter>(filters[++index]);
         Assert.IsType<GemLevelFilter>(filters[++index]);
         Assert.IsType<CorruptedFilter>(filters[++index]);
+        Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
     }
 }

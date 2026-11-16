@@ -16,6 +16,9 @@ public class MiscFilters
 
     public SearchFilterOption? Corrupted { get; set; }
 
+    [JsonPropertyName("twice_corrupted")]
+    public SearchFilterOption? TwiceCorrupted { get; set; }
+
     public SearchFilterOption? Split { get; set; }
 
     [JsonPropertyName("elder_item")]

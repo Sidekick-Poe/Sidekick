@@ -93,6 +93,7 @@ public class AutoSelectPreferences
             AutoSelectConditionType.Quality => item.Properties.Quality,
             AutoSelectConditionType.Rarity => item.Properties.Rarity,
             AutoSelectConditionType.Corrupted => item.Properties.Corrupted,
+            AutoSelectConditionType.TwiceCorrupted => item.Properties.TwiceCorrupted,
             AutoSelectConditionType.Unidentified => item.Properties.Unidentified,
             AutoSelectConditionType.Spirit => item.Properties.Spirit,
             AutoSelectConditionType.Foulborn => item.Properties.Foulborn,
