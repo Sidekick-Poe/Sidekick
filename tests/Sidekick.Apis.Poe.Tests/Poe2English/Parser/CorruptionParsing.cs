@@ -63,7 +63,7 @@ Lavianga, Advisor to Kaom
         var filters = await fixture.GetPropertyFilters(actual);
         Assert.True(Assert.Single(filters.OfType<CorruptedFilter>()).Checked);
         var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
-        Assert.Null(twiceCorrupted.Checked);
+        Assert.False(twiceCorrupted.Checked);
 
         var query = new Query();
         twiceCorrupted.PrepareTradeRequest(query, actual);

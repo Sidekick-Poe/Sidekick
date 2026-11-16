@@ -69,6 +69,18 @@ public class TwiceCorruptedFilter : TriStatePropertyFilter
                 },
                 new()
                 {
+                    Checked = false,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.TwiceCorrupted,
+                            Comparison = AutoSelectComparisonType.False,
+                        },
+                    ],
+                },
+                new()
+                {
                     Checked = null,
                 },
             ],

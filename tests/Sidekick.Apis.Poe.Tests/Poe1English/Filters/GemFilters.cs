@@ -59,7 +59,6 @@ Note: ~price 2 chaos
         var index = -1;
         Assert.IsType<QualityFilter>(filters[++index]);
         Assert.IsType<GemLevelFilter>(filters[++index]);
-        Assert.IsType<CorruptedFilter>(filters[++index]);
         Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
         Assert.IsType<ImbuedGemFilter>(filters[++index]);
     }
@@ -94,7 +93,6 @@ Corrupted
         var index = -1;
         Assert.IsType<QualityFilter>(filters[++index]);
         Assert.IsType<GemLevelFilter>(filters[++index]);
-        Assert.IsType<CorruptedFilter>(filters[++index]);
         Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
     }
 }
