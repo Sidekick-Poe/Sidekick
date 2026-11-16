@@ -19,13 +19,13 @@
         }
 
         <div class="fixed top-0 left-0 size-full overflow-auto">
-            <div class="flex min-h-full items-center justify-center p-4">
-                <div class="w-full max-w-lg rounded-xl border border-stone-700 bg-stone-900 p-6 shadow-lg @(isLeftAligned ? "text-left" : "text-center")">
-                    <div class="mx-auto mb-4 flex size-20 items-center justify-center rounded-full bg-stone-800 @(context.IsCritical ? "text-red-500" : "text-orange-500")">
+            <div class="flex min-h-full items-center justify-center p-2">
+                <div class="w-full max-w-lg rounded-xl border border-stone-700 bg-stone-900 p-5 shadow-lg @(isLeftAligned ? "text-left" : "text-center")">
+                    <div class="mx-auto mb-3 flex size-16 items-center justify-center rounded-full bg-stone-800 @(context.IsCritical ? "text-red-500" : "text-orange-500")">
                         <Icon Svg="@(context.IsCritical ? UiIcons.Error : UiIcons.Warning)" Size="@UiIconSize.Large" />
                     </div>
 
-                    <Heading2 Class="text-white leading-snug text-center">@title</Heading2>
+                    <Heading3 Class="text-white leading-snug text-center">@title</Heading3>
 
                     @foreach (var detail in details)
                     {
@@ -40,7 +40,7 @@
                         </label>
                     }
 
-                    <div class="mt-6 flex items-center justify-center gap-2">
+                    <div class="mt-5 flex items-center justify-center gap-2">
                         @if (actions.HasFlag(ExceptionActions.ExitApplication))
                         {
                             <ButtonSecondary OnClick="ApplicationService.Shutdown">@Resources["Exit"]</ButtonSecondary>

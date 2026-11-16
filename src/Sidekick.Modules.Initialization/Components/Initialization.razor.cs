@@ -47,17 +47,15 @@ public partial class Initialization
 
     private int Percentage { get; set; }
 
-    public Task? InitializationTask { get; set; }
-
     private int Completed { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        InitializationTask = Handle();
         await base.OnInitializedAsync();
+        await Handle();
     }
 
-    public async Task Handle()
+    private async Task Handle()
     {
         try
         {
@@ -98,6 +96,15 @@ public partial class Initialization
             await SettingsService.Set(SettingKeys.LanguageParser, null);
             e.Actions = ExceptionActions.ExitApplication;
             throw;
+        }
+        catch (Exception e)
+        {
+            // Sidekick can't run without its services, so the error page offers to exit instead of closing the window.
+            Logger.LogError(e, "[Initialization] Failed to initialize.");
+            throw new SidekickException(Resources["Error_Title"], Resources["Error_Description"])
+            {
+                Actions = ExceptionActions.ExitApplication,
+            };
         }
     }
 
