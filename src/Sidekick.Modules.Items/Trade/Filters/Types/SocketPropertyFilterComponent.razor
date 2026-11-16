@@ -24,9 +24,10 @@
 
     @if (Filter.Checked)
     {
-        <div class="flex flex-nowrap items-center [&_.sockets_[contenteditable]]:leading-[14px] [&_.sockets~.sockets_[contenteditable]]:rounded-l-none! [&_.sockets_[contenteditable]]:rounded-r-none! [&_.sockets:last-child_[contenteditable]]:rounded-r-md!">
+        <div class="flex flex-nowrap items-center [&_.sockets_[contenteditable]]:leading-3.5 [&_.sockets~.sockets_[contenteditable]]:rounded-l-none! [&_.sockets_[contenteditable]]:rounded-r-none! [&_.sockets:last-child_[contenteditable]]:rounded-r-md!">
             <div @onwheel="OnRedWheel"
                  @oncontextmenu="ClearSockets"
+                 @oncontextmenu:preventDefault
                  class="sockets">
                 <FormContentEditable Placeholder="R"
                                      Class="border-red-800 bg-red-300/10 hover:bg-red-950 [&::selection]:bg-red-700 [&::selection]:text-red-200 hover:text-red-400 hover:border-red-600 text-red-500"
@@ -35,6 +36,7 @@
             </div>
             <div @onwheel="OnGreenWheel"
                  @oncontextmenu="ClearSockets"
+                 @oncontextmenu:preventDefault
                  class="sockets">
                 <FormContentEditable Placeholder="G"
                                      Class="border-green-800 bg-green-300/10 hover:bg-green-950 [&::selection]:bg-green-700 [&::selection]:text-green-200 hover:text-green-400 hover:border-green-600 text-green-500"
@@ -43,6 +45,7 @@
             </div>
             <div @onwheel="OnBlueWheel"
                  @oncontextmenu="ClearSockets"
+                 @oncontextmenu:preventDefault
                  class="sockets">
                 <FormContentEditable Placeholder="B"
                                      Class="border-blue-800 bg-blue-300/10 hover:bg-blue-950 [&::selection]:bg-blue-700 [&::selection]:text-blue-200 hover:text-blue-400 hover:border-blue-600 text-blue-500"
