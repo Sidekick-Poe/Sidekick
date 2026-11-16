@@ -36,7 +36,7 @@ Twice Corrupted
 ");
 
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.True(actual.Properties.Corrupted);
+        Assert.False(actual.Properties.Corrupted);
         Assert.True(actual.Properties.TwiceCorrupted);
         Assert.Equal(5, actual.Stats.Count);
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Anger has #% increased Aura Effect", 18);
