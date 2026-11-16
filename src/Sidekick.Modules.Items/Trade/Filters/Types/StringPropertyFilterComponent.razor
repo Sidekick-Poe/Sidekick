@@ -1,7 +1,7 @@
 @using Sidekick.Game.Parser.Filters.Types
 <FilterWrapper Filter="@Filter">
     <div class="grow">
-        <FormCheckbox @bind-Value="Filter.Checked">
+        <FormCheckbox @bind-Value="Filter.Checked" Readonly="Filter.Readonly">
             <div class="flex items-center gap-1">
                 <ItemPropertyText Label="@Filter.Text"
                                   Hint="@Filter.Hint"
