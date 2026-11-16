@@ -1,8 +1,8 @@
 @using Sidekick.Game.Parser.Items
 @using Sidekick.Game
 
-<div class="relative py-0 px-[7px] @BackgroundClass @(Game == GameType.Poe1 ? "" : "poe2")">
-    <div class="absolute top-0 bottom-0 flex items-center left-[2px]">
+<div class="relative py-0 px-1.75 @BackgroundClass @(Game == GameType.Poe1 ? "" : "poe2")">
+    <div class="absolute inset-y-0 flex items-center left-0.5">
         <ItemInfluencesComponent Influences="Influences"/>
     </div>
     @if (SingleLine)
@@ -34,7 +34,7 @@
             <div class="text-lg text-center font-caps @TypeClass @LabelClass">@Type</div>
         }
 
-        <div class="absolute top-0 bottom-0 flex items-center right-[2px]">
+        <div class="absolute inset-y-0 flex items-center right-0.5">
             <ItemInfluencesComponent Influences="Influences"/>
         </div>
     }
@@ -159,8 +159,8 @@
     {
         get
         {
-            if (Double) return "h-[27px] leading-[23px] pt-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
-            return "h-[34px] leading-[34px] whitespace-nowrap overflow-hidden text-ellipsis";
+            if (Double) return "h-6.75 leading-5.75 pt-1 whitespace-nowrap overflow-hidden text-ellipsis";
+            return "h-8.5 leading-8.5 whitespace-nowrap overflow-hidden text-ellipsis";
         }
     }
 
@@ -168,8 +168,8 @@
     {
         get
         {
-            if (Double) return "h-[27px] leading-[23px] pb-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
-            return "h-[34px] leading-[34px] whitespace-nowrap overflow-hidden text-ellipsis";
+            if (Double) return "h-6.75 leading-5.75 pb-1 whitespace-nowrap overflow-hidden text-ellipsis";
+            return "h-8.5 leading-8.5 whitespace-nowrap overflow-hidden text-ellipsis";
         }
     }
 

@@ -17,7 +17,7 @@
             <ChildContent>
                 <div
                     class="text-xs whitespace-nowrap text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1 cursor-help">
-                    <div class="@GetLimitBackground(ClosestLimit) rounded-full w-2 h-2 -my-0.5"></div>
+                    <div class="@GetLimitBackground(ClosestLimit) rounded-full size-2 -my-0.5"></div>
                     <div>
                         @Resources["Api_RateLimit"]: @ClosestLimit.Used/@ClosestLimit.MaxHitCount @Resources["Api_RateLimit_In"] @ClosestLimit.TimePeriod @Resources["Api_RateLimit_Seconds"]
                     </div>
@@ -28,16 +28,16 @@
                 <div class="flex flex-col gap-1">
                     <div class="flex flex-nowrap items-center gap-1">
                         <div class="font-bold">@Resources["Api_Status"]:</div>
-                        <div class="@StatusColor rounded-full w-4 h-4"></div>
+                        <div class="@StatusColor rounded-full size-4"></div>
                         <div class="text-neutral-400 text whitespace-nowrap">@StatusText</div>
                     </div>
-                    <div class="border-stone-700 border-t-1"></div>
+                    <div class="border-stone-700 border-t"></div>
                     <div class="font-bold">@Resources["Api_RateLimits"]</div>
                     @foreach (var rule in CurrentRules)
                     {
                         <div
                             class="text-xs font-mono whitespace-nowrap text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
-                            <div class="@GetLimitBackground(rule) rounded-full w-2 h-2 -my-0.5"></div>
+                            <div class="@GetLimitBackground(rule) rounded-full size-2 -my-0.5"></div>
                             <div>
                                 @rule.Policy: @rule.Used/@rule.MaxHitCount @Resources["Api_RateLimit_In"] @rule.TimePeriod @Resources["Api_RateLimit_Seconds"]
                             </div>

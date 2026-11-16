@@ -2,7 +2,7 @@
 
 @if (Data.Count == 0 || TotalChange == 0) return;
 
-<div class="rounded-lg flex flex-nowrap items-center gap-2 h-[35px] -my-1">
+<div class="rounded-lg flex flex-nowrap items-center gap-2 h-8.75 -my-1">
     @if (TotalChange != null)
     {
         @if (TotalChange > 0)
@@ -15,7 +15,7 @@
         }
     }
 
-    <div class="w-[40px]">
+    <div class="w-10">
         @if (Series != null)
         {
             <ApexChart TItem="DataPoint" Options="Options">

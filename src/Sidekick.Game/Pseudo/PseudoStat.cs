@@ -2,9 +2,9 @@ namespace Sidekick.Game.Pseudo;
 
 public class PseudoStat
 {
-    public string Id { get; init; }
+    public required string Id { get; init; }
 
-    public string Text { get; init; }
+    public required string Text { get; init; }
 
     public double Multiplier { get; init; }
 

@@ -5,7 +5,7 @@
     @if (SidekickConfiguration.Value.ApplicationType == SidekickApplicationType.Web)
     {
         <div class="flex justify-start items-center py-1 px-3">
-            <img src="@Assets["_content/Sidekick.Common.Ui/images/orbs/ExaltedOrb.png"]" class="w-6 h-6" alt="logo"/>
+            <img src="@Assets["_content/Sidekick.Common.Ui/images/orbs/ExaltedOrb.png"]" class="size-6" alt="logo"/>
             <Heading3 Class="font-caps ml-4 text-white">Sidekick</Heading3>
         </div>
     }
@@ -24,16 +24,16 @@
              class="relative min-w-80 max-w-140 overflow-auto @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "m-2" : string.Empty)"
              style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
             <div
-                class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden rounded-md dark:bg-stone-950">
+                class="absolute top-0 left-0 size-full overflow-y-auto overflow-x-hidden rounded-md dark:bg-stone-950">
                 @LeftContent
             </div>
         </div>
         <div
-            class="h-full flex flex-col grow @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "[&_.sidekick-container]:!pl-0" : string.Empty)">
+            class="h-full flex flex-col grow @(CurrentView.CurrentViewType == SidekickViewType.Standard ? "[&_.sidekick-container]:pl-0!" : string.Empty)">
             <AppUpdate/>
             <ConfigurationFlagError/>
             <div class="grow relative">
-                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
+                <div class="absolute top-0 left-0 size-full overflow-y-auto overflow-x-hidden">
                     @ChildContent
                 </div>
             </div>

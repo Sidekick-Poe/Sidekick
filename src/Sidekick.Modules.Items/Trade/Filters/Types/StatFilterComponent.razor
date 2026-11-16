@@ -28,7 +28,7 @@
 
     <OilAnointment Filter="Filter"/>
 
-    <div class="flex flex-col items-end justify-between gap-[2px]">
+    <div class="flex flex-col items-end justify-between gap-0.5">
         @if (Filter.Checked && Filter.Stat.Category.HasExplicitStat())
         {
             <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">

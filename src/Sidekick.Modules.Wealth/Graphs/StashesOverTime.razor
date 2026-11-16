@@ -7,7 +7,7 @@
 
 <div class="@(Series.Count == 0 ? "hidden" : "")">
     <FormFieldset Legend="@Resources["Stash_Value"]">
-        <div class="h-[128px] relative -m-3">
+        <div class="h-32 relative -m-3">
             <ApexChart @ref="Chart"
                        TItem="DataPoint"
                        Options="DataConstants.GetOptions()"

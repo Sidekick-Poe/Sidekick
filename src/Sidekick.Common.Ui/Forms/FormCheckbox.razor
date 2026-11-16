@@ -1,7 +1,7 @@
 <label @onclick="OnClick"
        @onkeydown="OnKeyDown"
        @onclick:preventDefault="true"
-       class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-[3px]" : "min-h-5 gap-1")">
+       class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-0.75" : "min-h-5 gap-1")">
     <input type="checkbox"
            disabled="@Readonly"
            checked="@Value"
