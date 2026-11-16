@@ -22,7 +22,7 @@
         @if (LeftContent != null)
         {
             <div class="relative w-60 overflow-auto dark:bg-stone-900">
-                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden p-3">
+                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden p-2">
                     @LeftContent
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <AppUpdate/>
             <ConfigurationFlagError/>
             <div class="grow relative">
-                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
+                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden @(LeftContent != null ? "[&_.sidekick-container]:!pl-0" : string.Empty)">
                     @ChildContent
                 </div>
             </div>

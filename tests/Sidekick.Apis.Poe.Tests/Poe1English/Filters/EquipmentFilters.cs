@@ -43,7 +43,7 @@ can deny that my work has made quite the splash...""
 ");
 
         var filters = await fixture.GetPropertyFilters(item);
-        Assert.Equal(14, filters.Count);
+        Assert.Equal(15, filters.Count);
         var index = -1;
         Assert.IsType<UniqueRarityFilter>(filters[++index]);
         Assert.IsType<QualityFilter>(filters[++index]);
@@ -58,6 +58,7 @@ can deny that my work has made quite the splash...""
         Assert.IsType<RequiresDexterityFilter>(filters[++index]);
         Assert.IsType<RequiresIntelligenceFilter>(filters[++index]);
         Assert.IsType<CorruptedFilter>(filters[++index]);
+        Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
         Assert.IsType<FoulbornFilter>(filters[++index]);
         Assert.IsType<UnidentifiedFilter>(filters[++index]);
     }

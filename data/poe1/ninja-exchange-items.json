@@ -20,6 +20,12 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "a-familiar-call",
+    "id": "a-familiar-call"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "a-fate-worse-than-death",
     "id": "a-fate-worse-than-death"
   },
@@ -28,6 +34,42 @@
     "url": "divination-cards",
     "detailsId": "a-modest-request",
     "id": "a-modest-request"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "a-mothers-parting-gift",
+    "id": "a-mothers-parting-gift"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "a-note-in-the-wind",
+    "id": "a-note-in-the-wind"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "a-sea-of-blue",
+    "id": "a-sea-of-blue"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "a-stone-perfected",
+    "id": "a-stone-perfected"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "abandoned-wealth",
+    "id": "abandoned-wealth"
+  },
+  {
+    "type": "Fossil",
+    "url": "fossils",
+    "detailsId": "aberrant-fossil",
+    "id": "aberrant-fossil"
   },
   {
     "type": "Currency",
@@ -72,6 +114,12 @@
     "id": "abyss-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "abyss-thread",
+    "id": "abyss-thread"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "accelerating-catalyst",
@@ -90,6 +138,12 @@
     "id": "aetheric-fossil"
   },
   {
+    "type": "EnshroudingCrystal",
+    "url": "enshrouding-crystals",
+    "detailsId": "afarud-enshrouding-crystal",
+    "id": "afarud-enshrouding-crystal"
+  },
+  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "akils-prophecy",
@@ -100,6 +154,12 @@
     "url": "fragments",
     "detailsId": "al-hezmins-crest",
     "id": "al-hezmins-crest"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "alivias-grace",
+    "id": "alivias-grace"
   },
   {
     "type": "AllflameEmber",
@@ -128,6 +188,18 @@
   {
     "type": "AllflameEmber",
     "url": "allflame-embers",
+    "detailsId": "allflame-ember-of-the-cloister",
+    "id": "allflame-ember-of-the-cloister"
+  },
+  {
+    "type": "AllflameEmber",
+    "url": "allflame-embers",
+    "detailsId": "allflame-ember-of-the-divine",
+    "id": "allflame-ember-of-the-divine"
+  },
+  {
+    "type": "AllflameEmber",
+    "url": "allflame-embers",
     "detailsId": "allflame-ember-of-the-ethereal",
     "id": "allflame-ember-of-the-ethereal"
   },
@@ -136,6 +208,18 @@
     "url": "allflame-embers",
     "detailsId": "allflame-ember-of-the-gilded",
     "id": "allflame-ember-of-the-gilded"
+  },
+  {
+    "type": "AllflameEmber",
+    "url": "allflame-embers",
+    "detailsId": "allflame-ember-of-the-multitude",
+    "id": "allflame-ember-of-the-multitude"
+  },
+  {
+    "type": "AllflameEmber",
+    "url": "allflame-embers",
+    "detailsId": "allflame-ember-of-the-wildwood",
+    "id": "allflame-ember-of-the-wildwood"
   },
   {
     "type": "AllflameEmber",
@@ -160,6 +244,12 @@
     "url": "divination-cards",
     "detailsId": "altered-perception",
     "id": "altered-perception"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "amber-oil",
+    "id": "amber-oil"
   },
   {
     "type": "Scarab",
@@ -192,6 +282,12 @@
     "id": "ambush-scarab-of-potency"
   },
   {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "an-audience-with-the-king",
+    "id": "an-audience-with-the-king"
+  },
+  {
     "type": "Scarab",
     "url": "scarabs",
     "detailsId": "anarchy-scarab",
@@ -222,10 +318,22 @@
     "id": "anarchys-price"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "ancient-orb",
+    "id": "ancient-orb"
+  },
+  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "apocalypse",
     "id": "apocalypse"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "armourers-scrap",
+    "id": "scrap"
   },
   {
     "type": "DeliriumOrb",
@@ -246,6 +354,48 @@
     "id": "assassins-favour"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "assassins-gift",
+    "id": "assassins-gift"
+  },
+  {
+    "type": "Artifact",
+    "url": "artifacts",
+    "detailsId": "astragali",
+    "id": "astragali"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "astral-protection",
+    "id": "astral-protection"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "atziris-arsenal",
+    "id": "atziris-arsenal"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "audacity",
+    "id": "audacity"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "auspicious-ambitions",
+    "id": "auspicious-ambitions"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "avian-pursuit",
+    "id": "avian-pursuit"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "awakeners-orb",
@@ -256,6 +406,18 @@
     "url": "fragments",
     "detailsId": "awakening-fragment",
     "id": "awakening-fragment"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "azure-oil",
+    "id": "azure-oil"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "azure-rage",
+    "id": "azure-rage"
   },
   {
     "type": "DivinationCard",
@@ -274,6 +436,12 @@
     "url": "fragments",
     "detailsId": "barans-crest",
     "id": "barans-crest"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "beauty-through-death",
+    "id": "beauty-through-death"
   },
   {
     "type": "Scarab",
@@ -296,6 +464,12 @@
   {
     "type": "Fragment",
     "url": "fragments",
+    "detailsId": "bestiary-thread",
+    "id": "bestiary-thread"
+  },
+  {
+    "type": "Thread",
+    "url": "threads",
     "detailsId": "bestiary-thread",
     "id": "bestiary-thread"
   },
@@ -330,6 +504,12 @@
     "id": "betrayal-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "betrayal-thread",
+    "id": "betrayal-thread"
+  },
+  {
     "type": "Scarab",
     "url": "scarabs",
     "detailsId": "beyond-scarab",
@@ -360,6 +540,12 @@
     "id": "bijoux"
   },
   {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "black-oil",
+    "id": "black-oil"
+  },
+  {
     "type": "DeliriumOrb",
     "url": "delirium-orbs",
     "detailsId": "blacksmiths-delirium-orb",
@@ -376,6 +562,12 @@
     "url": "fragments",
     "detailsId": "blazing-fragment",
     "id": "blazing-fragment"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "blessed-orb",
+    "id": "blessed"
   },
   {
     "type": "Scarab",
@@ -408,6 +600,18 @@
     "id": "blight-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "blight-thread",
+    "id": "blight-thread"
+  },
+  {
+    "type": "DeliriumOrb",
+    "url": "delirium-orbs",
+    "detailsId": "blighted-delirium-orb",
+    "id": "blighted-delirium-orb"
+  },
+  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "blind-venture",
@@ -428,6 +632,12 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "boon-of-the-first-ones",
+    "id": "boon-of-the-first-ones"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "bound-by-flame",
     "id": "bound-by-flame"
   },
@@ -436,6 +646,18 @@
     "url": "fossils",
     "detailsId": "bound-fossil",
     "id": "bound-fossil"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "boundless-realms",
+    "id": "boundless-realms"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "bowyers-dream",
+    "id": "bowyers-dream"
   },
   {
     "type": "Scarab",
@@ -474,6 +696,12 @@
     "id": "breach-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "breach-thread",
+    "id": "breach-thread"
+  },
+  {
     "type": "Ducat",
     "url": "ducats",
     "detailsId": "brinehooks-ducat",
@@ -506,8 +734,38 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "brush-paint-and-palette",
+    "id": "brush-paint-and-palette"
+  },
+  {
+    "type": "Artifact",
+    "url": "artifacts",
+    "detailsId": "burial-medallion",
+    "id": "burial-medallion"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "burning-blood",
+    "id": "burning-blood"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "call-to-the-first-ones",
+    "id": "call-to-the-first-ones"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "camerias-cut",
     "id": "camerias-cut"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "cartographers-delight",
+    "id": "cartographers-delight"
   },
   {
     "type": "DeliriumOrb",
@@ -576,16 +834,52 @@
     "id": "choking-guilt"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "chromatic-orb",
+    "id": "chrome"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "clear-oil",
+    "id": "clear-oil"
+  },
+  {
+    "type": "Fossil",
+    "url": "fossils",
+    "detailsId": "corroded-fossil",
+    "id": "corroded-fossil"
+  },
+  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "cosmic-fragment",
     "id": "cosmic-fragment"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "costly-curio",
+    "id": "costly-curio"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "council-of-cats",
+    "id": "council-of-cats"
+  },
+  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "crescent-splinter",
     "id": "crescent-splinter"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "crimson-oil",
+    "id": "crimson-oil"
   },
   {
     "type": "Currency",
@@ -598,6 +892,18 @@
     "url": "currency",
     "detailsId": "crystallised-rancour",
     "id": "sandswept-lifeforce"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "cursed-poppet",
+    "id": "cursed-poppet"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "cursed-words",
+    "id": "cursed-words"
   },
   {
     "type": "Ducat",
@@ -614,6 +920,18 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "dark-dreams",
+    "id": "dark-dreams"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "dark-temptation",
+    "id": "dark-temptation"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "darker-half",
     "id": "darker-half"
   },
@@ -624,10 +942,22 @@
     "id": "dead-mans-sulphur"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "deadly-joy",
+    "id": "deadly-joy"
+  },
+  {
     "type": "Essence",
     "url": "essences",
     "detailsId": "deafening-essence-of-anger",
     "id": "deafening-essence-of-anger"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-anguish",
+    "id": "deafening-essence-of-anguish"
   },
   {
     "type": "Essence",
@@ -638,8 +968,50 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "deafening-essence-of-doubt",
+    "id": "deafening-essence-of-doubt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-dread",
+    "id": "deafening-essence-of-dread"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-envy",
+    "id": "deafening-essence-of-envy"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "deafening-essence-of-fear",
     "id": "deafening-essence-of-fear"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-greed",
+    "id": "deafening-essence-of-greed"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-hatred",
+    "id": "deafening-essence-of-hatred"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-loathing",
+    "id": "deafening-essence-of-loathing"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-misery",
+    "id": "deafening-essence-of-misery"
   },
   {
     "type": "Essence",
@@ -652,6 +1024,12 @@
     "url": "essences",
     "detailsId": "deafening-essence-of-scorn",
     "id": "deafening-essence-of-scorn"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-sorrow",
+    "id": "deafening-essence-of-sorrow"
   },
   {
     "type": "Essence",
@@ -674,8 +1052,26 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "deafening-essence-of-woe",
+    "id": "deafening-essence-of-woe"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "deafening-essence-of-wrath",
     "id": "deafening-essence-of-wrath"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "deafening-essence-of-zeal",
+    "id": "deafening-essence-of-zeal"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "death",
+    "id": "death"
   },
   {
     "type": "DivinationCard",
@@ -750,10 +1146,22 @@
     "id": "demigods-wager"
   },
   {
+    "type": "Fossil",
+    "url": "fossils",
+    "detailsId": "dense-fossil",
+    "id": "dense-fossil"
+  },
+  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "desecrated-virtue",
     "id": "desecrated-virtue"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "desperate-crusade",
+    "id": "desperate-crusade"
   },
   {
     "type": "DivinationCard",
@@ -766,6 +1174,18 @@
     "url": "fragments",
     "detailsId": "devouring-fragment",
     "id": "devouring-fragment"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "dextral-catalyst",
+    "id": "dextral-catalyst"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "diallas-subjugation",
+    "id": "diallas-subjugation"
   },
   {
     "type": "DivinationCard",
@@ -794,6 +1214,12 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "divine-beauty",
+    "id": "divine-beauty"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "divine-justice",
     "id": "divine-justice"
   },
@@ -808,6 +1234,24 @@
     "url": "divination-cards",
     "detailsId": "divine-shard",
     "id": "divine-shard"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "divine-vessel",
+    "id": "divine-vessel"
+  },
+  {
+    "type": "DeliriumOrb",
+    "url": "delirium-orbs",
+    "detailsId": "diviners-delirium-orb",
+    "id": "diviners-delirium-orb"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "doedres-madness",
+    "id": "doedres-madness"
   },
   {
     "type": "Scarab",
@@ -836,6 +1280,12 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "doryanis-epiphany",
+    "id": "doryanis-epiphany"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "draped-in-dreams",
     "id": "draped-in-dreams"
   },
@@ -844,6 +1294,18 @@
     "url": "fragments",
     "detailsId": "droxs-crest",
     "id": "droxs-crest"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "duality",
+    "id": "duality"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "dying-anguish",
+    "id": "dying-anguish"
   },
   {
     "type": "DivinationCard",
@@ -868,6 +1330,12 @@
     "url": "fragments",
     "detailsId": "echo-of-trauma",
     "id": "echo-of-trauma"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "echoes-of-love",
+    "id": "echoes-of-love"
   },
   {
     "type": "Currency",
@@ -918,10 +1386,52 @@
     "id": "endless-night"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "energy-sword",
+    "id": "energy-sword"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "enkindling-orb",
+    "id": "enkindling-orb"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "essence-of-delirium",
+    "id": "essence-of-delirium"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "essence-of-desolation",
+    "id": "essence-of-desolation"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "essence-of-horror",
+    "id": "essence-of-horror"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "essence-of-hysteria",
+    "id": "essence-of-hysteria"
+  },
+  {
     "type": "Essence",
     "url": "essences",
     "detailsId": "essence-of-insanity",
     "id": "essence-of-insanity"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "essence-of-trickery",
+    "id": "essence-of-trickery"
   },
   {
     "type": "Scarab",
@@ -954,6 +1464,24 @@
     "id": "essence-scarab-of-stability"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "etched-in-blood",
+    "id": "etched-in-blood"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "eternal-bonds",
+    "id": "eternal-bonds"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "ever-changing",
+    "id": "ever-changing"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "exalted-orb",
@@ -970,6 +1498,12 @@
     "url": "currency",
     "detailsId": "exceptional-eldritch-ichor",
     "id": "exceptional-eldritch-ichor"
+  },
+  {
+    "type": "Artifact",
+    "url": "artifacts",
+    "detailsId": "exotic-coinage",
+    "id": "exotic-coinage"
   },
   {
     "type": "Scarab",
@@ -1008,16 +1542,46 @@
     "id": "expedition-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "expedition-thread",
+    "id": "expedition-thread"
+  },
+  {
     "type": "Fossil",
     "url": "fossils",
     "detailsId": "faceted-fossil",
     "id": "faceted-fossil"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "fateful-meeting",
+    "id": "fateful-meeting"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "fathers-love",
+    "id": "fathers-love"
+  },
+  {
+    "type": "Astrolabe",
+    "url": "astrolabes",
+    "detailsId": "feral-astrolabe",
+    "id": "feral-astrolabe"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "fertile-catalyst",
     "id": "fertile-catalyst"
+  },
+  {
+    "type": "DeliriumOrb",
+    "url": "delirium-orbs",
+    "detailsId": "fine-delirium-orb",
+    "id": "fine-delirium-orb"
   },
   {
     "type": "DivinationCard",
@@ -1030,6 +1594,12 @@
     "url": "currency",
     "detailsId": "flesh-of-xesht",
     "id": "flesh-of-xesht"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "forbidden-power",
+    "id": "forbidden-power"
   },
   {
     "type": "Currency",
@@ -1054,6 +1624,12 @@
     "url": "fossils",
     "detailsId": "fractured-fossil",
     "id": "fractured-fossil"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "fracturing-orb",
+    "id": "fracturing-orb"
   },
   {
     "type": "Currency",
@@ -1140,6 +1716,12 @@
     "id": "fragmented-delirium-orb"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "friendship",
+    "id": "friendship"
+  },
+  {
     "type": "Fossil",
     "url": "fossils",
     "detailsId": "frigid-fossil",
@@ -1158,16 +1740,52 @@
     "id": "fruiting-astrolabe"
   },
   {
+    "type": "Fossil",
+    "url": "fossils",
+    "detailsId": "fundamental-fossil",
+    "id": "fundamental-fossil"
+  },
+  {
     "type": "Astrolabe",
     "url": "astrolabes",
     "detailsId": "fungal-astrolabe",
     "id": "fungal-astrolabe"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "gemcutters-mercy",
+    "id": "gemcutters-mercy"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "gemcutters-prism",
     "id": "gcp"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "gemcutters-promise",
+    "id": "gemcutters-promise"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "gift-of-asenath",
+    "id": "gift-of-asenath"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "gift-of-the-gemling-queen",
+    "id": "gift-of-the-gemling-queen"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "gift-to-the-goddess",
+    "id": "offer-gift"
   },
   {
     "type": "Fossil",
@@ -1180,6 +1798,12 @@
     "url": "currency",
     "detailsId": "glassblowers-bauble",
     "id": "bauble"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "glimmer-of-hope",
+    "id": "glimmer-of-hope"
   },
   {
     "type": "Fossil",
@@ -1212,6 +1836,12 @@
     "id": "grasping-astrolabe"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "grave-knowledge",
+    "id": "grave-knowledge"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "greater-eldritch-ember",
@@ -1222,6 +1852,18 @@
     "url": "currency",
     "detailsId": "greater-eldritch-ichor",
     "id": "greater-eldritch-ichor"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "guardians-challenge",
+    "id": "guardians-challenge"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "harmony-of-souls",
+    "id": "harmony-of-souls"
   },
   {
     "type": "Scarab",
@@ -1246,6 +1888,12 @@
     "url": "divination-cards",
     "detailsId": "haunting-shadows",
     "id": "haunting-shadows"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "heterochromia",
+    "id": "heterochromia"
   },
   {
     "type": "Currency",
@@ -1276,6 +1924,12 @@
     "url": "divination-cards",
     "detailsId": "home",
     "id": "home"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "hope",
+    "id": "hope"
   },
   {
     "type": "Scarab",
@@ -1328,6 +1982,12 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "hubris",
+    "id": "hubris"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "humility",
     "id": "humility"
   },
@@ -1336,6 +1996,36 @@
     "url": "currency",
     "detailsId": "hunters-exalted-orb",
     "id": "hunters-exalted-orb"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "hunters-resolve",
+    "id": "hunters-resolve"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "hunters-reward",
+    "id": "hunters-reward"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "i-see-brothers",
+    "id": "i-see-brothers"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "imbued-catalyst",
+    "id": "imbued-catalyst"
+  },
+  {
+    "type": "Astrolabe",
+    "url": "astrolabes",
+    "detailsId": "immortal-astrolabe",
+    "id": "immortal-astrolabe"
   },
   {
     "type": "DivinationCard",
@@ -1354,6 +2044,12 @@
     "url": "enshrouding-crystals",
     "detailsId": "imperial-enshrouding-crystal",
     "id": "imperial-enshrouding-crystal"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "imperial-legacy",
+    "id": "imperial-legacy"
   },
   {
     "type": "Scarab",
@@ -1384,6 +2080,18 @@
     "url": "fragments",
     "detailsId": "incursion-thread",
     "id": "incursion-thread"
+  },
+  {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "incursion-thread",
+    "id": "incursion-thread"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "indigo-oil",
+    "id": "indigo-oil"
   },
   {
     "type": "Scarab",
@@ -1422,6 +2130,24 @@
     "id": "intrinsic-catalyst"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "jack-in-the-box",
+    "id": "jack-in-the-box"
+  },
+  {
+    "type": "Fossil",
+    "url": "fossils",
+    "detailsId": "jagged-fossil",
+    "id": "jagged-fossil"
+  },
+  {
+    "type": "DeliriumOrb",
+    "url": "delirium-orbs",
+    "detailsId": "jewellers-delirium-orb",
+    "id": "jewellers-delirium-orb"
+  },
+  {
     "type": "Currency",
     "url": "currency",
     "detailsId": "jewellers-orb",
@@ -1432,6 +2158,24 @@
     "url": "tattoos",
     "detailsId": "journey-tattoo-of-the-body",
     "id": "journey-tattoo-of-the-body"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "journey-tattoo-of-the-soul",
+    "id": "journey-tattoo-of-the-soul"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "judging-voices",
+    "id": "judging-voices"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "justified-ambition",
+    "id": "justified-ambition"
   },
   {
     "type": "Scarab",
@@ -1470,6 +2214,12 @@
     "id": "katakohis-ducat"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "keepers-corruption",
+    "id": "keepers-corruption"
+  },
+  {
     "type": "Ducat",
     "url": "ducats",
     "detailsId": "kisharas-ducat",
@@ -1478,8 +2228,32 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "lachrymal-necrosis",
+    "id": "lachrymal-necrosis"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "lantadors-lost-love",
+    "id": "lantadors-lost-love"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "last-hope",
     "id": "last-hope"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "last-stand",
+    "id": "last-stand"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "left-to-fate",
+    "id": "left-to-fate"
   },
   {
     "type": "Scarab",
@@ -1512,6 +2286,36 @@
     "id": "legion-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "legion-thread",
+    "id": "legion-thread"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "lesser-eldritch-ember",
+    "id": "lesser-eldritch-ember"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "lesser-eldritch-ichor",
+    "id": "lesser-eldritch-ichor"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "lethean-temptation",
+    "id": "lethean-temptation"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "light-and-truth",
+    "id": "light-and-truth"
+  },
+  {
     "type": "Astrolabe",
     "url": "astrolabes",
     "detailsId": "lightless-astrolabe",
@@ -1538,14 +2342,38 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "lost-worlds",
+    "id": "lost-worlds"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "love-through-ice",
     "id": "love-through-ice"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "loyalty",
+    "id": "loyalty"
   },
   {
     "type": "Fossil",
     "url": "fossils",
     "detailsId": "lucent-fossil",
     "id": "lucent-fossil"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "lucky-bastion",
+    "id": "lucky-bastion"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "lucky-connections",
+    "id": "lucky-connections"
   },
   {
     "type": "DivinationCard",
@@ -1558,6 +2386,12 @@
     "url": "divination-cards",
     "detailsId": "luminous-trove",
     "id": "luminous-trove"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "lysahs-respite",
+    "id": "lysahs-respite"
   },
   {
     "type": "DivinationCard",
@@ -1608,6 +2442,12 @@
     "id": "mavens-chisel-of-scarabs"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "mavens-chisel-of-threads",
+    "id": "mavens-chisel-of-threads"
+  },
+  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "mawr-blaidd",
@@ -1648,6 +2488,12 @@
     "url": "fragments",
     "detailsId": "message-in-a-bottle",
     "id": "message-in-a-bottle"
+  },
+  {
+    "type": "Fossil",
+    "url": "fossils",
+    "detailsId": "metallic-fossil",
+    "id": "metallic-fossil"
   },
   {
     "type": "DivinationCard",
@@ -1730,6 +2576,12 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "muttering-essence-of-fear",
+    "id": "muttering-essence-of-fear"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "muttering-essence-of-greed",
     "id": "muttering-essence-of-greed"
   },
@@ -1744,6 +2596,12 @@
     "url": "essences",
     "detailsId": "muttering-essence-of-sorrow",
     "id": "muttering-essence-of-sorrow"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "muttering-essence-of-torment",
+    "id": "muttering-essence-of-torment"
   },
   {
     "type": "Essence",
@@ -1768,6 +2626,24 @@
     "url": "currency",
     "detailsId": "noxious-catalyst",
     "id": "noxious-catalyst"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "offering-to-the-goddess",
+    "id": "offer"
+  },
+  {
+    "type": "Omen",
+    "url": "omens",
+    "detailsId": "omen-of-adrenaline",
+    "id": "omen-of-adrenaline"
+  },
+  {
+    "type": "Omen",
+    "url": "omens",
+    "detailsId": "omen-of-amelioration",
+    "id": "omen-of-amelioration"
   },
   {
     "type": "Omen",
@@ -1802,8 +2678,20 @@
   {
     "type": "Omen",
     "url": "omens",
+    "detailsId": "omen-of-refreshment",
+    "id": "omen-of-refreshment"
+  },
+  {
+    "type": "Omen",
+    "url": "omens",
     "detailsId": "omen-of-return",
     "id": "omen-of-return"
+  },
+  {
+    "type": "Omen",
+    "url": "omens",
+    "detailsId": "omen-of-the-jeweller",
+    "id": "omen-of-the-jeweller"
   },
   {
     "type": "Omen",
@@ -1824,6 +2712,12 @@
     "id": "one-last-score"
   },
   {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "opalescent-oil",
+    "id": "opalescent-oil"
+  },
+  {
     "type": "Fossil",
     "url": "fossils",
     "detailsId": "opulent-fossil",
@@ -1840,6 +2734,18 @@
     "url": "currency",
     "detailsId": "orb-of-alteration",
     "id": "alt"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "orb-of-annulment",
+    "id": "annul"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "orb-of-augmentation",
+    "id": "aug"
   },
   {
     "type": "Currency",
@@ -1904,6 +2810,12 @@
   {
     "type": "Currency",
     "url": "currency",
+    "detailsId": "orb-of-unmaking",
+    "id": "orb-of-unmaking"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
     "detailsId": "orb-of-unravelling",
     "id": "orb-of-unravelling"
   },
@@ -1920,10 +2832,52 @@
     "id": "peaceful-moments"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "pearls-before-swine",
+    "id": "pearls-before-swine"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "perfection",
+    "id": "perfection"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "poisoned-faith",
+    "id": "poisoned-faith"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "portal-scroll",
+    "id": "portal"
+  },
+  {
     "type": "Resonator",
     "url": "resonators",
     "detailsId": "potent-chaotic-resonator",
     "id": "potent-chaotic-resonator"
+  },
+  {
+    "type": "Resonator",
+    "url": "resonators",
+    "detailsId": "powerful-chaotic-resonator",
+    "id": "powerful-chaotic-resonator"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "prejudice",
+    "id": "prejudice"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "pride-before-the-fall",
+    "id": "pride-before-the-fall"
   },
   {
     "type": "DivinationCard",
@@ -1932,10 +2886,22 @@
     "id": "pride-of-the-first-ones"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "primal-crystallised-lifeforce",
+    "id": "primal-lifeforce"
+  },
+  {
     "type": "Resonator",
     "url": "resonators",
     "detailsId": "prime-chaotic-resonator",
     "id": "prime-chaotic-resonator"
+  },
+  {
+    "type": "Resonator",
+    "url": "resonators",
+    "detailsId": "primitive-chaotic-resonator",
+    "id": "primitive-chaotic-resonator"
   },
   {
     "type": "Currency",
@@ -1966,6 +2932,18 @@
     "url": "divination-cards",
     "detailsId": "prometheus-armoury",
     "id": "prometheus-armoury"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "rain-of-chaos",
+    "id": "rain-of-chaos"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "rats",
+    "id": "rats"
   },
   {
     "type": "Fragment",
@@ -2014,6 +2992,12 @@
     "url": "oils",
     "detailsId": "reflective-oil",
     "id": "reflective-oil"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "refracting-fog",
+    "id": "cluster-fog"
   },
   {
     "type": "Currency",
@@ -2070,6 +3054,12 @@
     "id": "ritual-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "ritual-thread",
+    "id": "ritual-thread"
+  },
+  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "ritual-vessel",
@@ -2086,6 +3076,18 @@
     "url": "ducats",
     "detailsId": "rotmothers-ducat",
     "id": "rotmothers-ducat"
+  },
+  {
+    "type": "Astrolabe",
+    "url": "astrolabes",
+    "detailsId": "royal-astrolabe",
+    "id": "royal-astrolabe"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "royal-visage",
+    "id": "royal-visage"
   },
   {
     "type": "Runegraft",
@@ -2108,8 +3110,26 @@
   {
     "type": "Runegraft",
     "url": "runegrafts",
+    "detailsId": "runegraft-of-consecration",
+    "id": "runegraft-of-consecration"
+  },
+  {
+    "type": "Runegraft",
+    "url": "runegrafts",
+    "detailsId": "runegraft-of-fury",
+    "id": "runegraft-of-fury"
+  },
+  {
+    "type": "Runegraft",
+    "url": "runegrafts",
     "detailsId": "runegraft-of-gemcraft",
     "id": "runegraft-of-gemcraft"
+  },
+  {
+    "type": "Runegraft",
+    "url": "runegrafts",
+    "detailsId": "runegraft-of-loyalty",
+    "id": "runegraft-of-loyalty"
   },
   {
     "type": "Runegraft",
@@ -2280,6 +3300,12 @@
     "id": "sacred-lifeforce"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "sacred-orb",
+    "id": "sacred-orb"
+  },
+  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "sacrifice-at-dawn",
@@ -2364,6 +3390,72 @@
     "id": "scarab-of-wisps"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "scholar-of-the-seas",
+    "id": "scholar-of-the-seas"
+  },
+  {
+    "type": "Fossil",
+    "url": "fossils",
+    "detailsId": "scorched-fossil",
+    "id": "scorched-fossil"
+  },
+  {
+    "type": "Artifact",
+    "url": "artifacts",
+    "detailsId": "scrap-metal",
+    "id": "scrap-metal"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-anger",
+    "id": "screaming-essence-of-anger"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-anguish",
+    "id": "screaming-essence-of-anguish"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-contempt",
+    "id": "screaming-essence-of-contempt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-doubt",
+    "id": "screaming-essence-of-doubt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-dread",
+    "id": "screaming-essence-of-dread"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-envy",
+    "id": "screaming-essence-of-envy"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-fear",
+    "id": "screaming-essence-of-fear"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-greed",
+    "id": "screaming-essence-of-greed"
+  },
+  {
     "type": "Essence",
     "url": "essences",
     "detailsId": "screaming-essence-of-hatred",
@@ -2378,8 +3470,56 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "screaming-essence-of-misery",
+    "id": "screaming-essence-of-misery"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-rage",
+    "id": "screaming-essence-of-rage"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-scorn",
+    "id": "screaming-essence-of-scorn"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-sorrow",
+    "id": "screaming-essence-of-sorrow"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-spite",
+    "id": "screaming-essence-of-spite"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-suffering",
+    "id": "screaming-essence-of-suffering"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "screaming-essence-of-torment",
     "id": "screaming-essence-of-torment"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-woe",
+    "id": "screaming-essence-of-woe"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "screaming-essence-of-wrath",
+    "id": "screaming-essence-of-wrath"
   },
   {
     "type": "Essence",
@@ -2388,10 +3528,28 @@
     "id": "screaming-essence-of-zeal"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "scroll-of-wisdom",
+    "id": "wisdom"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "sepia-oil",
+    "id": "sepia-oil"
+  },
+  {
     "type": "Fossil",
     "url": "fossils",
     "detailsId": "serrated-fossil",
     "id": "serrated-fossil"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "seven-years-bad-luck",
+    "id": "seven-years-bad-luck"
   },
   {
     "type": "Currency",
@@ -2408,8 +3566,74 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "shrieking-essence-of-anger",
+    "id": "shrieking-essence-of-anger"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-anguish",
+    "id": "shrieking-essence-of-anguish"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-contempt",
+    "id": "shrieking-essence-of-contempt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "shrieking-essence-of-doubt",
     "id": "shrieking-essence-of-doubt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-dread",
+    "id": "shrieking-essence-of-dread"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-envy",
+    "id": "shrieking-essence-of-envy"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-fear",
+    "id": "shrieking-essence-of-fear"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-greed",
+    "id": "shrieking-essence-of-greed"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-hatred",
+    "id": "shrieking-essence-of-hatred"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-loathing",
+    "id": "shrieking-essence-of-loathing"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-misery",
+    "id": "shrieking-essence-of-misery"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-rage",
+    "id": "shrieking-essence-of-rage"
   },
   {
     "type": "Essence",
@@ -2418,10 +3642,64 @@
     "id": "shrieking-essence-of-scorn"
   },
   {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-sorrow",
+    "id": "shrieking-essence-of-sorrow"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-spite",
+    "id": "shrieking-essence-of-spite"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-suffering",
+    "id": "shrieking-essence-of-suffering"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-torment",
+    "id": "shrieking-essence-of-torment"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-woe",
+    "id": "shrieking-essence-of-woe"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-wrath",
+    "id": "shrieking-essence-of-wrath"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "shrieking-essence-of-zeal",
+    "id": "shrieking-essence-of-zeal"
+  },
+  {
     "type": "Fossil",
     "url": "fossils",
     "detailsId": "shuddering-fossil",
     "id": "shuddering-fossil"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "silence-and-frost",
+    "id": "silence-and-frost"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "silver-oil",
+    "id": "silver-oil"
   },
   {
     "type": "Fragment",
@@ -2442,6 +3720,12 @@
     "id": "singular-delirium-orb"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "sinistral-catalyst",
+    "id": "sinistral-catalyst"
+  },
+  {
     "type": "DeliriumOrb",
     "url": "delirium-orbs",
     "detailsId": "skittering-delirium-orb",
@@ -2456,8 +3740,50 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "something-dark",
+    "id": "something-dark"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "soul-core-of-finesse",
+    "id": "soul-core-of-finesse"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "soul-core-of-instability",
+    "id": "soul-core-of-instability"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "soul-core-of-intellect",
+    "id": "soul-core-of-intellect"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "soul-core-of-might",
+    "id": "soul-core-of-might"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "squandered-prosperity",
     "id": "squandered-prosperity"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "stacked-deck",
+    "id": "stacked-deck"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "succor-of-the-sinless",
+    "id": "succor-of-the-sinless"
   },
   {
     "type": "Scarab",
@@ -2486,6 +3812,24 @@
   {
     "type": "Currency",
     "url": "currency",
+    "detailsId": "tailoring-orb",
+    "id": "tailoring-orb"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "tainted-armourers-scrap",
+    "id": "tainted-armourers-scrap"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "tainted-blacksmiths-whetstone",
+    "id": "tainted-blacksmiths-whetstone"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
     "detailsId": "tainted-catalyst",
     "id": "tainted-catalyst"
   },
@@ -2494,6 +3838,12 @@
     "url": "currency",
     "detailsId": "tainted-chaos-orb",
     "id": "tainted-chaos-orb"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "tainted-chromatic-orb",
+    "id": "tainted-chromatic-orb"
   },
   {
     "type": "Currency",
@@ -2508,10 +3858,28 @@
     "id": "tainted-exalted-orb"
   },
   {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "tainted-jewellers-orb",
+    "id": "tainted-jewellers-orb"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "tainted-mythic-orb",
+    "id": "tainted-mythic-orb"
+  },
+  {
     "type": "Oil",
     "url": "oils",
     "detailsId": "tainted-oil",
     "id": "tainted-oil"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "tainted-orb-of-fusing",
+    "id": "tainted-orb-of-fusing"
   },
   {
     "type": "Fossil",
@@ -2522,8 +3890,20 @@
   {
     "type": "Tattoo",
     "url": "tattoos",
+    "detailsId": "tattoo-of-the-arohongui-moonwarden",
+    "id": "tattoo-of-the-arohongui-moonwarden"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
     "detailsId": "tattoo-of-the-arohongui-scout",
     "id": "tattoo-of-the-arohongui-scout"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-arohongui-shaman",
+    "id": "tattoo-of-the-arohongui-shaman"
   },
   {
     "type": "Tattoo",
@@ -2534,8 +3914,44 @@
   {
     "type": "Tattoo",
     "url": "tattoos",
+    "detailsId": "tattoo-of-the-arohongui-warrior",
+    "id": "tattoo-of-the-arohongui-warrior"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
     "detailsId": "tattoo-of-the-hinekora-deathwarden",
     "id": "tattoo-of-the-hinekora-deathwarden"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-hinekora-shaman",
+    "id": "tattoo-of-the-hinekora-shaman"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-hinekora-storyteller",
+    "id": "tattoo-of-the-hinekora-storyteller"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-hinekora-warmonger",
+    "id": "tattoo-of-the-hinekora-warmonger"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-hinekora-warrior",
+    "id": "tattoo-of-the-hinekora-warrior"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-kitava-blood-drinker",
+    "id": "tattoo-of-the-kitava-blood-drinker"
   },
   {
     "type": "Tattoo",
@@ -2546,14 +3962,86 @@
   {
     "type": "Tattoo",
     "url": "tattoos",
+    "detailsId": "tattoo-of-the-kitava-rebel",
+    "id": "tattoo-of-the-kitava-rebel"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-kitava-shaman",
+    "id": "tattoo-of-the-kitava-shaman"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
     "detailsId": "tattoo-of-the-kitava-warrior",
     "id": "tattoo-of-the-kitava-warrior"
   },
   {
     "type": "Tattoo",
     "url": "tattoos",
+    "detailsId": "tattoo-of-the-ngamahu-firewalker",
+    "id": "tattoo-of-the-ngamahu-firewalker"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
     "detailsId": "tattoo-of-the-ngamahu-shaman",
     "id": "tattoo-of-the-ngamahu-shaman"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ngamahu-warmonger",
+    "id": "tattoo-of-the-ngamahu-warmonger"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ngamahu-warrior",
+    "id": "tattoo-of-the-ngamahu-warrior"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ngamahu-woodcarver",
+    "id": "tattoo-of-the-ngamahu-woodcarver"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ramako-archer",
+    "id": "tattoo-of-the-ramako-archer"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ramako-fleetfoot",
+    "id": "tattoo-of-the-ramako-fleetfoot"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ramako-scout",
+    "id": "tattoo-of-the-ramako-scout"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ramako-shaman",
+    "id": "tattoo-of-the-ramako-shaman"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-ramako-sniper",
+    "id": "tattoo-of-the-ramako-sniper"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-rongokurai-brute",
+    "id": "tattoo-of-the-rongokurai-brute"
   },
   {
     "type": "Tattoo",
@@ -2566,6 +4054,12 @@
     "url": "tattoos",
     "detailsId": "tattoo-of-the-rongokurai-guard",
     "id": "tattoo-of-the-rongokurai-guard"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-rongokurai-turtle",
+    "id": "tattoo-of-the-rongokurai-turtle"
   },
   {
     "type": "Tattoo",
@@ -2594,8 +4088,44 @@
   {
     "type": "Tattoo",
     "url": "tattoos",
+    "detailsId": "tattoo-of-the-tasalio-tideshifter",
+    "id": "tattoo-of-the-tasalio-tideshifter"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-tasalio-warrior",
+    "id": "tattoo-of-the-tasalio-warrior"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-tawhoa-herbalist",
+    "id": "tattoo-of-the-tawhoa-herbalist"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-tawhoa-naturalist",
+    "id": "tattoo-of-the-tawhoa-naturalist"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
     "detailsId": "tattoo-of-the-tawhoa-scout",
     "id": "tattoo-of-the-tawhoa-scout"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-tawhoa-shaman",
+    "id": "tattoo-of-the-tawhoa-shaman"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-tawhoa-warrior",
+    "id": "tattoo-of-the-tawhoa-warrior"
   },
   {
     "type": "Tattoo",
@@ -2606,14 +4136,62 @@
   {
     "type": "Tattoo",
     "url": "tattoos",
+    "detailsId": "tattoo-of-the-tukohama-shaman",
+    "id": "tattoo-of-the-tukohama-shaman"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-tukohama-warcaller",
+    "id": "tattoo-of-the-tukohama-warcaller"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
     "detailsId": "tattoo-of-the-tukohama-warmonger",
     "id": "tattoo-of-the-tukohama-warmonger"
   },
   {
     "type": "Tattoo",
     "url": "tattoos",
+    "detailsId": "tattoo-of-the-tukohama-warrior",
+    "id": "tattoo-of-the-tukohama-warrior"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-valako-scout",
+    "id": "tattoo-of-the-valako-scout"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
     "detailsId": "tattoo-of-the-valako-shaman",
     "id": "tattoo-of-the-valako-shaman"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-valako-shieldbearer",
+    "id": "tattoo-of-the-valako-shieldbearer"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-valako-stormrider",
+    "id": "tattoo-of-the-valako-stormrider"
+  },
+  {
+    "type": "Tattoo",
+    "url": "tattoos",
+    "detailsId": "tattoo-of-the-valako-warrior",
+    "id": "tattoo-of-the-valako-warrior"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "teal-oil",
+    "id": "teal-oil"
   },
   {
     "type": "Ducat",
@@ -2632,6 +4210,12 @@
     "url": "currency",
     "detailsId": "tempering-catalyst",
     "id": "tempering-catalyst"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "tempering-orb",
+    "id": "tempering-orb"
   },
   {
     "type": "Astrolabe",
@@ -2660,6 +4244,18 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-academic",
+    "id": "the-academic"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-admirer",
+    "id": "the-admirer"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-adventuring-spirit",
     "id": "the-adventuring-spirit"
   },
@@ -2678,6 +4274,18 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-arena-champion",
+    "id": "the-arena-champion"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-army-of-blood",
+    "id": "the-army-of-blood"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-artist",
     "id": "the-artist"
   },
@@ -2690,8 +4298,62 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-avenger",
+    "id": "the-avenger"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-awakened",
+    "id": "the-awakened"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-battle-born",
+    "id": "the-battle-born"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-bear-woman",
+    "id": "the-bear-woman"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-beast",
+    "id": "the-beast"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-betrayal",
+    "id": "the-betrayal"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-bitter-blossom",
+    "id": "the-bitter-blossom"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "the-black-barya",
+    "id": "the-black-barya"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-blazing-fire",
     "id": "the-blazing-fire"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-blessing-of-moosh",
+    "id": "the-blessing-of-moosh"
   },
   {
     "type": "DivinationCard",
@@ -2702,14 +4364,68 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-bones",
+    "id": "the-bones"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-brawny-battle-mage",
+    "id": "the-brawny-battle-mage"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-breach",
     "id": "the-breach"
   },
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-brittle-emperor",
+    "id": "the-brittle-emperor"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-cache",
+    "id": "the-cache"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-cacophony",
+    "id": "the-cacophony"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-calling",
+    "id": "the-calling"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-carrion-crow",
+    "id": "the-carrion-crow"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-cataclysm",
+    "id": "the-cataclysm"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-celestial-justicar",
     "id": "the-celestial-justicar"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-celestial-stone",
+    "id": "the-celestial-stone"
   },
   {
     "type": "DivinationCard",
@@ -2726,8 +4442,20 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-chosen",
+    "id": "the-chosen"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-coming-storm",
     "id": "the-coming-storm"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-craving",
+    "id": "the-craving"
   },
   {
     "type": "DivinationCard",
@@ -2740,6 +4468,12 @@
     "url": "divination-cards",
     "detailsId": "the-damned",
     "id": "the-damned"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-dapper-prodigy",
+    "id": "the-dapper-prodigy"
   },
   {
     "type": "DivinationCard",
@@ -2774,8 +4508,20 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-demoness",
+    "id": "the-demoness"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-destination",
     "id": "the-destination"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-doctor",
+    "id": "the-doctor"
   },
   {
     "type": "DivinationCard",
@@ -2792,6 +4538,12 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-dragons-heart",
+    "id": "the-dragons-heart"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-dreamer",
     "id": "the-dreamer"
   },
@@ -2804,8 +4556,32 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-drunken-aristocrat",
+    "id": "the-drunken-aristocrat"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-dungeon-master",
+    "id": "the-dungeon-master"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-easy-stroll",
+    "id": "the-easy-stroll"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-eldritch-decay",
     "id": "the-eldritch-decay"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-encroaching-darkness",
+    "id": "the-encroaching-darkness"
   },
   {
     "type": "DivinationCard",
@@ -2818,6 +4594,18 @@
     "url": "divination-cards",
     "detailsId": "the-endurance",
     "id": "the-endurance"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-enforcer",
+    "id": "the-enforcer"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-enlightened",
+    "id": "the-enlightened"
   },
   {
     "type": "DivinationCard",
@@ -2864,8 +4652,20 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-feast",
+    "id": "the-feast"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-fiend",
     "id": "the-fiend"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-finishing-touch",
+    "id": "the-finishing-touch"
   },
   {
     "type": "DivinationCard",
@@ -2876,14 +4676,56 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-fletcher",
+    "id": "the-fletcher"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-floras-gift",
+    "id": "the-floras-gift"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-fool",
+    "id": "the-fool"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-forbidden-fruit",
     "id": "the-forbidden-fruit"
   },
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-forgotten-treasure",
+    "id": "the-forgotten-treasure"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-formless-sea",
     "id": "the-formless-sea"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-forsaken",
+    "id": "the-forsaken"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-fortunate",
+    "id": "the-fortunate"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-forward-gaze",
+    "id": "the-forward-gaze"
   },
   {
     "type": "DivinationCard",
@@ -2898,10 +4740,34 @@
     "id": "the-fox-in-the-brambles"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-gambler",
+    "id": "the-gambler"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-garish-power",
+    "id": "the-garish-power"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-gemcutter",
+    "id": "the-gemcutter"
+  },
+  {
     "type": "Ducat",
     "url": "ducats",
     "detailsId": "the-genteels-ducat",
     "id": "the-genteels-ducat"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-gentleman",
+    "id": "the-gentleman"
   },
   {
     "type": "DivinationCard",
@@ -2912,8 +4778,26 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-golden-era",
+    "id": "the-golden-era"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-greatest-intentions",
+    "id": "the-greatest-intentions"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-gulf",
     "id": "the-gulf"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-hale-heart",
+    "id": "the-hale-heart"
   },
   {
     "type": "DivinationCard",
@@ -2924,14 +4808,32 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-hermit",
+    "id": "the-hermit"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-heroic-shot",
     "id": "the-heroic-shot"
   },
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-hive-of-knowledge",
+    "id": "the-hive-of-knowledge"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-hook",
     "id": "the-hook"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-hunger",
+    "id": "the-hunger"
   },
   {
     "type": "DivinationCard",
@@ -2948,8 +4850,20 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-inoculated",
+    "id": "the-inoculated"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-insane-cat",
     "id": "the-insane-cat"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-insatiable",
+    "id": "the-insatiable"
   },
   {
     "type": "DivinationCard",
@@ -2966,8 +4880,32 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-jewellers-boon",
+    "id": "the-jewellers-boon"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-journalist",
     "id": "the-journalist"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-journey",
+    "id": "the-journey"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-kings-blade",
+    "id": "the-kings-blade"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-kings-heart",
+    "id": "the-kings-heart"
   },
   {
     "type": "DivinationCard",
@@ -2978,14 +4916,74 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-last-laugh",
+    "id": "the-last-laugh"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-last-one-standing",
     "id": "the-last-one-standing"
   },
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-last-supper",
+    "id": "the-last-supper"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-leviathan",
     "id": "the-leviathan"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-life-thief",
+    "id": "the-life-thief"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-lion",
+    "id": "the-lion"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-long-con",
+    "id": "the-long-con"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-long-watch",
+    "id": "the-long-watch"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-lord-in-black",
+    "id": "the-lord-in-black"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-lord-of-celebration",
+    "id": "the-lord-of-celebration"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-lover",
+    "id": "the-lover"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-lunaris-priestess",
+    "id": "the-lunaris-priestess"
   },
   {
     "type": "DivinationCard",
@@ -3000,6 +4998,12 @@
     "id": "the-magma-crab"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-master-artisan",
+    "id": "the-master-artisan"
+  },
+  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "the-mavens-writ",
@@ -3010,6 +5014,12 @@
     "url": "divination-cards",
     "detailsId": "the-mayor",
     "id": "the-mayor"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-mercenary",
+    "id": "the-mercenary"
   },
   {
     "type": "DivinationCard",
@@ -3032,8 +5042,20 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-miracle",
+    "id": "the-miracle"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-mountain",
     "id": "the-mountain"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-nurse",
+    "id": "the-nurse"
   },
   {
     "type": "DivinationCard",
@@ -3044,8 +5066,38 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-offering",
+    "id": "the-offering"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-offspring",
     "id": "the-offspring"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-old-man",
+    "id": "the-old-man"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-one-that-got-away",
+    "id": "the-one-that-got-away"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-one-with-all",
+    "id": "the-one-with-all"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-opulent",
+    "id": "the-opulent"
   },
   {
     "type": "DivinationCard",
@@ -3062,8 +5114,32 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-patient",
+    "id": "the-patient"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-penitent",
+    "id": "the-penitent"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-poet",
     "id": "the-poet"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-polymath",
+    "id": "the-polymath"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-porcupine",
+    "id": "the-porcupine"
   },
   {
     "type": "DivinationCard",
@@ -3092,8 +5168,62 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-primordial",
+    "id": "the-primordial"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-prince-of-darkness",
+    "id": "the-prince-of-darkness"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-professor",
+    "id": "the-professor"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-progeny-of-lunaris",
     "id": "the-progeny-of-lunaris"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-queen",
+    "id": "the-queen"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-rabid-rhoa",
+    "id": "the-rabid-rhoa"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-realm",
+    "id": "the-realm"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-return-of-the-rat",
+    "id": "the-return-of-the-rat"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-risk",
+    "id": "the-risk"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-rite-of-elements",
+    "id": "the-rite-of-elements"
   },
   {
     "type": "DivinationCard",
@@ -3110,14 +5240,50 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-ruthless-ceinture",
+    "id": "the-ruthless-ceinture"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-sacrifice",
+    "id": "the-sacrifice"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-saints-treasure",
+    "id": "the-saints-treasure"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-samurais-eye",
+    "id": "the-samurais-eye"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-scholar",
     "id": "the-scholar"
   },
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-scout",
+    "id": "the-scout"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-seeker",
     "id": "the-seeker"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-sephirot",
+    "id": "the-sephirot"
   },
   {
     "type": "DivinationCard",
@@ -3134,8 +5300,20 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-shortcut",
+    "id": "the-shortcut"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-side-quest",
     "id": "the-side-quest"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-sigil",
+    "id": "the-sigil"
   },
   {
     "type": "DivinationCard",
@@ -3146,8 +5324,38 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-siren",
+    "id": "the-siren"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-skeleton",
+    "id": "the-skeleton"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-slumbering-beast",
     "id": "the-slumbering-beast"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-soul",
+    "id": "the-soul"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-spark-and-the-flame",
+    "id": "the-spark-and-the-flame"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-spoiled-prince",
+    "id": "the-spoiled-prince"
   },
   {
     "type": "DivinationCard",
@@ -3170,8 +5378,50 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-summoner",
+    "id": "the-summoner"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-sun",
     "id": "the-sun"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-surgeon",
+    "id": "the-surgeon"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-surveyor",
+    "id": "the-surveyor"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-survivalist",
+    "id": "the-survivalist"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-sword-kings-salute",
+    "id": "the-sword-kings-salute"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-thaumaturgist",
+    "id": "the-thaumaturgist"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-throne",
+    "id": "the-throne"
   },
   {
     "type": "DivinationCard",
@@ -3188,6 +5438,36 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-tower",
+    "id": "the-tower"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-traitor",
+    "id": "the-traitor"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-transformation",
+    "id": "the-transformation"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-tumbleweed",
+    "id": "the-tumbleweed"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-twilight-moon",
+    "id": "the-twilight-moon"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-tyrant",
     "id": "the-tyrant"
   },
@@ -3196,6 +5476,18 @@
     "url": "divination-cards",
     "detailsId": "the-undaunted",
     "id": "the-undaunted"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-undisputed",
+    "id": "the-undisputed"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-unexpected-prize",
+    "id": "the-unexpected-prize"
   },
   {
     "type": "DivinationCard",
@@ -3218,14 +5510,38 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-visionary",
+    "id": "the-visionary"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-void",
     "id": "the-void"
   },
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-warden",
+    "id": "the-warden"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-warlord",
+    "id": "the-warlord"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-watcher",
     "id": "the-watcher"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-web",
+    "id": "the-web"
   },
   {
     "type": "DivinationCard",
@@ -3242,8 +5558,56 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-whiteout",
+    "id": "the-whiteout"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "the-wilted-rose",
     "id": "the-wilted-rose"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-wind",
+    "id": "the-wind"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-wolf",
+    "id": "the-wolf"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-wolfs-legacy",
+    "id": "the-wolfs-legacy"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-wolfs-shadow",
+    "id": "the-wolfs-shadow"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-wolven-kings-bite",
+    "id": "the-wolven-kings-bite"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-wolverine",
+    "id": "the-wolverine"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "the-world-eater",
+    "id": "the-world-eater"
   },
   {
     "type": "DivinationCard",
@@ -3254,8 +5618,32 @@
   {
     "type": "DivinationCard",
     "url": "divination-cards",
+    "detailsId": "the-wretched",
+    "id": "the-wretched"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "thirst-for-knowledge",
+    "id": "thirst-for-knowledge"
+  },
+  {
+    "type": "DeliriumOrb",
+    "url": "delirium-orbs",
+    "detailsId": "threaded-delirium-orb",
+    "id": "threaded-delirium-orb"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
     "detailsId": "three-faces-in-the-dark",
     "id": "three-faces-in-the-dark"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "three-voices",
+    "id": "three-voices"
   },
   {
     "type": "DivinationCard",
@@ -3280,6 +5668,12 @@
     "url": "fragments",
     "detailsId": "timeless-eternal-emblem",
     "id": "timeless-eternal-emblem"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "timeless-eternal-empire-splinter",
+    "id": "timeless-eternal-empire-splinter"
   },
   {
     "type": "Fragment",
@@ -3372,6 +5766,12 @@
     "id": "toxic-tidings"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "tranquillity",
+    "id": "tranquillity"
+  },
+  {
     "type": "Scarab",
     "url": "scarabs",
     "detailsId": "trarthan-scarab",
@@ -3402,10 +5802,28 @@
     "id": "traumatic-fragment"
   },
   {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "treasure-hunter",
+    "id": "treasure-hunter"
+  },
+  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "tribute-to-the-goddess",
     "id": "offer-tribute"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "turbulent-catalyst",
+    "id": "turbulent-catalyst"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "turn-the-other-cheek",
+    "id": "turn-the-other-cheek"
   },
   {
     "type": "Ducat",
@@ -3456,6 +5874,12 @@
     "id": "ultimatum-thread"
   },
   {
+    "type": "Thread",
+    "url": "threads",
+    "detailsId": "ultimatum-thread",
+    "id": "ultimatum-thread"
+  },
+  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "unchained",
@@ -3492,6 +5916,12 @@
     "id": "vaal"
   },
   {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "valdos-puzzle-box",
+    "id": "valdos-puzzle-box"
+  },
+  {
     "type": "DivinationCard",
     "url": "divination-cards",
     "detailsId": "vanity",
@@ -3510,10 +5940,64 @@
     "id": "veiled-exalted-orb"
   },
   {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "verdant-oil",
+    "id": "verdant-oil"
+  },
+  {
     "type": "Fragment",
     "url": "fragments",
     "detailsId": "veritanias-crest",
     "id": "veritanias-crest"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "vile-power",
+    "id": "vile-power"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "vinias-token",
+    "id": "vinias-token"
+  },
+  {
+    "type": "Oil",
+    "url": "oils",
+    "detailsId": "violet-oil",
+    "id": "violet-oil"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "vivid-crystallised-lifeforce",
+    "id": "vivid-lifeforce"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "void-of-the-elements",
+    "id": "void-of-the-elements"
+  },
+  {
+    "type": "Fragment",
+    "url": "fragments",
+    "detailsId": "voidborn-reliquary-key",
+    "id": "voidborn-reliquary-key"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "volatile-power",
+    "id": "volatile-power"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "volatile-vaal-orb",
+    "id": "tainted-divine-orb"
   },
   {
     "type": "Essence",
@@ -3530,8 +6014,20 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "wailing-essence-of-contempt",
+    "id": "wailing-essence-of-contempt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "wailing-essence-of-doubt",
     "id": "wailing-essence-of-doubt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "wailing-essence-of-fear",
+    "id": "wailing-essence-of-fear"
   },
   {
     "type": "Essence",
@@ -3544,6 +6040,18 @@
     "url": "essences",
     "detailsId": "wailing-essence-of-hatred",
     "id": "wailing-essence-of-hatred"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "wailing-essence-of-loathing",
+    "id": "wailing-essence-of-loathing"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "wailing-essence-of-rage",
+    "id": "wailing-essence-of-rage"
   },
   {
     "type": "Essence",
@@ -3608,6 +6116,24 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "weeping-essence-of-contempt",
+    "id": "weeping-essence-of-contempt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "weeping-essence-of-fear",
+    "id": "weeping-essence-of-fear"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "weeping-essence-of-greed",
+    "id": "weeping-essence-of-greed"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "weeping-essence-of-hatred",
     "id": "weeping-essence-of-hatred"
   },
@@ -3616,6 +6142,12 @@
     "url": "essences",
     "detailsId": "weeping-essence-of-rage",
     "id": "weeping-essence-of-rage"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "weeping-essence-of-sorrow",
+    "id": "weeping-essence-of-sorrow"
   },
   {
     "type": "Essence",
@@ -3632,8 +6164,20 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "weeping-essence-of-woe",
+    "id": "weeping-essence-of-woe"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "weeping-essence-of-wrath",
     "id": "weeping-essence-of-wrath"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "when-currents-blaze",
+    "id": "when-currents-blaze"
   },
   {
     "type": "DeliriumOrb",
@@ -3644,8 +6188,38 @@
   {
     "type": "Essence",
     "url": "essences",
+    "detailsId": "whispering-essence-of-contempt",
+    "id": "whispering-essence-of-contempt"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "whispering-essence-of-greed",
+    "id": "whispering-essence-of-greed"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
     "detailsId": "whispering-essence-of-hatred",
     "id": "whispering-essence-of-hatred"
+  },
+  {
+    "type": "Essence",
+    "url": "essences",
+    "detailsId": "whispering-essence-of-woe",
+    "id": "whispering-essence-of-woe"
+  },
+  {
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "detailsId": "who-asked",
+    "id": "who-asked"
+  },
+  {
+    "type": "Currency",
+    "url": "currency",
+    "detailsId": "wild-crystallised-lifeforce",
+    "id": "wild-lifeforce"
   },
   {
     "type": "DivinationCard",

@@ -224,6 +224,10 @@
     "text": "#% de chance de ativar Invocar Lobo Espectral de n\u00EDvel 18 ao matar"
   },
   {
+    "id": "crafted.stat_181387736",
+    "text": "# modificador de prefixo n\u00E3o pode ser alterado"
+  },
+  {
     "id": "crafted.stat_1839076647",
     "text": "Dano de Proj\u00E9til aumentado em #%"
   },
@@ -426,6 +430,10 @@
   {
     "id": "crafted.stat_2387423236",
     "text": "Adiciona de # a # de dano de frio"
+  },
+  {
+    "id": "crafted.stat_2390914662",
+    "text": "# modificador de sufixo n\u00E3o pode ser alterado"
   },
   {
     "id": "crafted.stat_2402136583",
@@ -10796,6 +10804,10 @@
     "text": "Tipo de recompensa do Del\u00EDrio: Armas"
   },
   {
+    "id": "enchant.effect_2236653998",
+    "text": "Concede Inveja de n\u00EDvel #"
+  },
+  {
     "id": "enchant.stat_1000620493",
     "text": "Encontros de Infesta\u00E7\u00E3o cont\u00EAm at\u00E9 # Chefe da Infesta\u00E7\u00E3o adicional"
   },
@@ -11178,6 +11190,10 @@
   {
     "id": "enchant.stat_1239233415",
     "text": "\u002B# ao m\u00E1ximo de Alvos do Tiro"
+  },
+  {
+    "id": "enchant.stat_1240937795",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por Xam\u00E3s F\u00FAngicos\nMonstros de grupo que morrem ao serem raros espalham modificadores para outros monstros raros na \u00E1rea"
   },
   {
     "id": "enchant.stat_124131830",
@@ -11624,6 +11640,14 @@
     "text": "Impacto Tect\u00F4nico tem \u002B#% de chance de ramificar fissuras"
   },
   {
+    "id": "enchant.stat_1527404187",
+    "text": "A \u00E1rea est\u00E1 atormentada"
+  },
+  {
+    "id": "enchant.stat_1527404187",
+    "text": "A \u00E1rea est\u00E1 sendo atormentada"
+  },
+  {
     "id": "enchant.stat_1528965411",
     "text": "Efeito da Maldi\u00E7\u00E3o Marca do Senhor da Guerra aumentado em #%"
   },
@@ -12002,6 +12026,10 @@
   {
     "id": "enchant.stat_1765389199",
     "text": "Roubo de vida dos ataques com esta arma \u00E9 instant\u00E2neo"
+  },
+  {
+    "id": "enchant.stat_1776086971",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por um \u00FAnico monstro carnudo"
   },
   {
     "id": "enchant.stat_1778800422",
@@ -12846,6 +12874,10 @@
   {
     "id": "enchant.stat_2284801675",
     "text": "Efeito de b\u00F4nus concedido por seus Golens P\u00E9treos aumentado em #%"
+  },
+  {
+    "id": "enchant.stat_228481227",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por grupos que\nn\u00E3o podem largar equipamentos, frascos ou tinturas"
   },
   {
     "id": "enchant.stat_2287764959",
@@ -16716,6 +16748,10 @@
     "text": "Clamor S\u00EDsmico tem um m\u00EDnimo de # de poder"
   },
   {
+    "id": "enchant.stat_3552182293",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por grupos dif\u00EDceis e recompensadores\nque largam 300% mais mapas"
+  },
+  {
     "id": "enchant.stat_3554587210",
     "text": "#% do dano de frio e el\u00E9trico dos ataques \u00E9 sofrido como dano de fogo"
   },
@@ -16776,8 +16812,44 @@
     "text": "Usado quando voc\u00EA usar um Frasco de Vida"
   },
   {
+    "id": "enchant.stat_3599615742|10016",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Executor"
+  },
+  {
+    "id": "enchant.stat_3599615742|1006",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pot\u00EAncia da Vontade"
+  },
+  {
+    "id": "enchant.stat_3599615742|10115",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Perfei\u00E7\u00E3o Pr\u00F3diga"
+  },
+  {
     "id": "enchant.stat_3599615742|10511",
     "text": "1 das habilidades passivas adicionadas \u00E9 Toler\u00E2ncia"
+  },
+  {
+    "id": "enchant.stat_3599615742|10542",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Baluarte de Espinhos"
+  },
+  {
+    "id": "enchant.stat_3599615742|10835",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sonhador"
+  },
+  {
+    "id": "enchant.stat_3599615742|11420",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Dom\u00EDnio do Ocultista"
+  },
+  {
+    "id": "enchant.stat_3599615742|11645",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sopro Trovejante"
+  },
+  {
+    "id": "enchant.stat_3599615742|11730",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Toler\u00E2ncia"
+  },
+  {
+    "id": "enchant.stat_3599615742|11784",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vampirismo"
   },
   {
     "id": "enchant.stat_3599615742|11820",
@@ -16788,16 +16860,40 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Sopro Flamejante"
   },
   {
+    "id": "enchant.stat_3599615742|12033",
+    "text": "1 das habilidades passivas adicionadas \u00E9 L\u00E2mina Perversa"
+  },
+  {
     "id": "enchant.stat_3599615742|12143",
     "text": "1 das habilidades passivas adicionadas \u00E9 Influ\u00EAncia"
+  },
+  {
+    "id": "enchant.stat_3599615742|12702",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Caminho do Guerreiro"
+  },
+  {
+    "id": "enchant.stat_3599615742|12795",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Versatilidade"
   },
   {
     "id": "enchant.stat_3599615742|12809",
     "text": "1 das habilidades passivas adicionadas \u00E9 Freneticismo"
   },
   {
+    "id": "enchant.stat_3599615742|12878",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Retalia\u00E7\u00E3o"
+  },
+  {
     "id": "enchant.stat_3599615742|13164",
     "text": "1 das habilidades passivas adicionadas \u00E9 Julgamento Divino"
+  },
+  {
+    "id": "enchant.stat_3599615742|1325",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sangue do Golem"
+  },
+  {
+    "id": "enchant.stat_3599615742|13375",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Multi-tiro"
   },
   {
     "id": "enchant.stat_3599615742|1340",
@@ -16808,8 +16904,72 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Barreira do Conhecimento"
   },
   {
+    "id": "enchant.stat_3599615742|13703",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Postura Desafiadora"
+  },
+  {
+    "id": "enchant.stat_3599615742|13739",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sempre Furioso"
+  },
+  {
+    "id": "enchant.stat_3599615742|1382",
+    "text": "1 das habilidades passivas adicionadas \u00E9 V\u00E1cuo de Esp\u00EDrito"
+  },
+  {
+    "id": "enchant.stat_3599615742|13922",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Firme"
+  },
+  {
+    "id": "enchant.stat_3599615742|13935",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Calor da Batalha"
+  },
+  {
+    "id": "enchant.stat_3599615742|14001",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Invenc\u00EDvel"
+  },
+  {
+    "id": "enchant.stat_3599615742|1405",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vindo das Sombras"
+  },
+  {
     "id": "enchant.stat_3599615742|14079",
     "text": "1 das habilidades passivas adicionadas \u00E9 Madeira, Pedra e Magia"
+  },
+  {
+    "id": "enchant.stat_3599615742|14587",
+    "text": "1 das habilidades passivas adicionadas \u00E9 A\u00E7o Adapt\u00E1vel"
+  },
+  {
+    "id": "enchant.stat_3599615742|14606",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Carnificina"
+  },
+  {
+    "id": "enchant.stat_3599615742|14665",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ira Divina"
+  },
+  {
+    "id": "enchant.stat_3599615742|14813",
+    "text": "1 das habilidades passivas adicionadas \u00E9 P\u00E2ndega"
+  },
+  {
+    "id": "enchant.stat_3599615742|15046",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Reden\u00E7\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|15085",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ambidestria"
+  },
+  {
+    "id": "enchant.stat_3599615742|15226",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Retalia\u00E7\u00E3o Cruel"
+  },
+  {
+    "id": "enchant.stat_3599615742|15290",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Torres de Vig\u00EDlha"
+  },
+  {
+    "id": "enchant.stat_3599615742|15344",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Liberdade de Movimento"
   },
   {
     "id": "enchant.stat_3599615742|15400",
@@ -16820,28 +16980,280 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Deflex\u00E3o"
   },
   {
+    "id": "enchant.stat_3599615742|15614",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Garras do Gavi\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|1568",
+    "text": "1 das habilidades passivas adicionadas \u00E9 L\u00E2mina Fatal"
+  },
+  {
+    "id": "enchant.stat_3599615742|15711",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Raio da Explos\u00E3o"
+  },
+  {
     "id": "enchant.stat_3599615742|15842",
     "text": "1 das habilidades passivas adicionadas \u00E9 Um Com a Natureza"
+  },
+  {
+    "id": "enchant.stat_3599615742|15852",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Banquete Et\u00E9reo"
+  },
+  {
+    "id": "enchant.stat_3599615742|16236",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Golpes T\u00F3xicos"
+  },
+  {
+    "id": "enchant.stat_3599615742|16243",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fuzilaria"
   },
   {
     "id": "enchant.stat_3599615742|16246",
     "text": "1 das habilidades passivas adicionadas \u00E9 Tranquilidade"
   },
   {
+    "id": "enchant.stat_3599615742|16703",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Quebra-Cr\u00E2nio"
+  },
+  {
+    "id": "enchant.stat_3599615742|17171",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Congelamento Imediato"
+  },
+  {
+    "id": "enchant.stat_3599615742|17608",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Passos Silenciosos"
+  },
+  {
+    "id": "enchant.stat_3599615742|18174",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Basti\u00E3o M\u00EDstico"
+  },
+  {
+    "id": "enchant.stat_3599615742|18357",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Agilidade Felina"
+  },
+  {
+    "id": "enchant.stat_3599615742|18703",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ataque Gracioso"
+  },
+  {
+    "id": "enchant.stat_3599615742|18707",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Perfeccionista"
+  },
+  {
+    "id": "enchant.stat_3599615742|18769",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Escrito em Sangue"
+  },
+  {
+    "id": "enchant.stat_3599615742|18865",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fus\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|19069",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pele Grossa"
+  },
+  {
+    "id": "enchant.stat_3599615742|19103",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ex\u00E9rcito da Justi\u00E7a"
+  },
+  {
+    "id": "enchant.stat_3599615742|19144",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sentinela"
+  },
+  {
+    "id": "enchant.stat_3599615742|19506",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Caminho do Ca\u00E7ador"
+  },
+  {
+    "id": "enchant.stat_3599615742|19730",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Golpe Certeiro"
+  },
+  {
+    "id": "enchant.stat_3599615742|19794",
+    "text": "1 das habilidades passivas adicionadas \u00E9 For\u00E7a Concussiva"
+  },
+  {
+    "id": "enchant.stat_3599615742|19858",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Herborismo"
+  },
+  {
+    "id": "enchant.stat_3599615742|19897",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sintonia Mortal"
+  },
+  {
+    "id": "enchant.stat_3599615742|20261",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Medita\u00E7\u00E3o Contemplativa"
+  },
+  {
     "id": "enchant.stat_3599615742|203",
     "text": "1 das habilidades passivas adicionadas \u00E9 Estaca de Vinhas Cordiais"
+  },
+  {
+    "id": "enchant.stat_3599615742|20528",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Instabilidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|20605",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sem Perd\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|20832",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Santu\u00E1rio"
+  },
+  {
+    "id": "enchant.stat_3599615742|20835",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Diplomacia Arriscada"
+  },
+  {
+    "id": "enchant.stat_3599615742|21228",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tiros Perfurantes"
+  },
+  {
+    "id": "enchant.stat_3599615742|21297",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Altamente Explosivos"
+  },
+  {
+    "id": "enchant.stat_3599615742|21330",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Recupera\u00E7\u00E3o R\u00E1pida"
+  },
+  {
+    "id": "enchant.stat_3599615742|21389",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Forjador de Runas"
+  },
+  {
+    "id": "enchant.stat_3599615742|21413",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vigor de Combate"
+  },
+  {
+    "id": "enchant.stat_3599615742|21435",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pano e Malha"
+  },
+  {
+    "id": "enchant.stat_3599615742|21460",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sopro Glacial"
+  },
+  {
+    "id": "enchant.stat_3599615742|21602",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Aparato Destrutivo"
   },
   {
     "id": "enchant.stat_3599615742|21634",
     "text": "1 das habilidades passivas adicionadas \u00E9 Qu\u00EDmica Arcana"
   },
   {
+    "id": "enchant.stat_3599615742|21958",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Prepara\u00E7\u00E3o Cruel"
+  },
+  {
+    "id": "enchant.stat_3599615742|21973",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Prote\u00E7\u00E3o da Podrid\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|22133",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Chama Revigorante"
+  },
+  {
+    "id": "enchant.stat_3599615742|2225",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Olho de \u00C1guia"
+  },
+  {
+    "id": "enchant.stat_3599615742|22356",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Hematofagia"
+  },
+  {
+    "id": "enchant.stat_3599615742|22535",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sussurros da Ru\u00EDna"
+  },
+  {
     "id": "enchant.stat_3599615742|22702",
     "text": "1 das habilidades passivas adicionadas \u00E9 Postura da Serpente"
   },
   {
+    "id": "enchant.stat_3599615742|22706",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Intensidade Selvagem"
+  },
+  {
+    "id": "enchant.stat_3599615742|2275",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Composto da Natureza"
+  },
+  {
+    "id": "enchant.stat_3599615742|22972",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Defensor com Varinha"
+  },
+  {
+    "id": "enchant.stat_3599615742|23038",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Matan\u00E7a"
+  },
+  {
+    "id": "enchant.stat_3599615742|23066",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Selvageria"
+  },
+  {
+    "id": "enchant.stat_3599615742|23549",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Incorp\u00F3reo"
+  },
+  {
+    "id": "enchant.stat_3599615742|23690",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Infus\u00E3o de Ess\u00EAncia"
+  },
+  {
+    "id": "enchant.stat_3599615742|24050",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Friamente Calculado"
+  },
+  {
+    "id": "enchant.stat_3599615742|24067",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Instinto"
+  },
+  {
+    "id": "enchant.stat_3599615742|24133",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sobrevivencialista"
+  },
+  {
+    "id": "enchant.stat_3599615742|24256",
+    "text": "1 das habilidades passivas adicionadas \u00E9 D\u00EDnamo"
+  },
+  {
+    "id": "enchant.stat_3599615742|24324",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Impacto Explosivo"
+  },
+  {
+    "id": "enchant.stat_3599615742|24358",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Precis\u00E3o Seletiva"
+  },
+  {
+    "id": "enchant.stat_3599615742|24362",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pensamentos Profundos"
+  },
+  {
+    "id": "enchant.stat_3599615742|24383",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sangue do Guerreiro"
+  },
+  {
+    "id": "enchant.stat_3599615742|24716",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Transe de Batalha"
+  },
+  {
+    "id": "enchant.stat_3599615742|24721",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Esmagador de T\u00F3rax"
+  },
+  {
+    "id": "enchant.stat_3599615742|24858",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Lan\u00E7ador de Arp\u00E3o"
+  },
+  {
     "id": "enchant.stat_3599615742|25058",
     "text": "1 das habilidades passivas adicionadas \u00E9 Sif\u00E3o de Sangue"
+  },
+  {
+    "id": "enchant.stat_3599615742|25178",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Esp\u00EDrito Primitivo"
+  },
+  {
+    "id": "enchant.stat_3599615742|25367",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mestre da L\u00E2mina"
+  },
+  {
+    "id": "enchant.stat_3599615742|25409",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ex\u00E9rcito Indom\u00E1vel"
   },
   {
     "id": "enchant.stat_3599615742|25411",
@@ -16852,8 +17264,40 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Coveiro"
   },
   {
+    "id": "enchant.stat_3599615742|25456",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Dervixe"
+  },
+  {
+    "id": "enchant.stat_3599615742|2550",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Incendi\u00E1rio"
+  },
+  {
+    "id": "enchant.stat_3599615742|25738",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Persegui\u00E7\u00E3o Implac\u00E1vel"
+  },
+  {
     "id": "enchant.stat_3599615742|25970",
     "text": "1 das habilidades passivas adicionadas \u00E9 Amargor"
+  },
+  {
+    "id": "enchant.stat_3599615742|25989",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ensinamentos N\u00F4mades"
+  },
+  {
+    "id": "enchant.stat_3599615742|2599",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Resposta Pronta"
+  },
+  {
+    "id": "enchant.stat_3599615742|26023",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ferimentos Selvagens"
+  },
+  {
+    "id": "enchant.stat_3599615742|26096",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mestre da Machadinha"
+  },
+  {
+    "id": "enchant.stat_3599615742|26294",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sangria"
   },
   {
     "id": "enchant.stat_3599615742|26557",
@@ -16868,6 +17312,58 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Corrup\u00E7\u00E3o"
   },
   {
+    "id": "enchant.stat_3599615742|26763",
+    "text": "1 das habilidades passivas adicionadas \u00E9 F\u00F3rmula Aperfei\u00E7oada"
+  },
+  {
+    "id": "enchant.stat_3599615742|26866",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Santidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|26960",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Premedita\u00E7\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|27119",
+    "text": "1 das habilidades passivas adicionadas \u00E9 F\u00FAria Tribal"
+  },
+  {
+    "id": "enchant.stat_3599615742|27137",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Santu\u00E1rio do Pensamento"
+  },
+  {
+    "id": "enchant.stat_3599615742|2715",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Passo R\u00E1pido"
+  },
+  {
+    "id": "enchant.stat_3599615742|27163",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vontade Arcana"
+  },
+  {
+    "id": "enchant.stat_3599615742|27190",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Super Preparado"
+  },
+  {
+    "id": "enchant.stat_3599615742|27203",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cora\u00E7\u00E3o e Alma"
+  },
+  {
+    "id": "enchant.stat_3599615742|27301",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Experi\u00EAncia Marcial"
+  },
+  {
+    "id": "enchant.stat_3599615742|27308",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pacto da Sepultura"
+  },
+  {
+    "id": "enchant.stat_3599615742|27422",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Esp\u00EDrito da Guerra"
+  },
+  {
+    "id": "enchant.stat_3599615742|27611",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Senhor dos Mortos"
+  },
+  {
     "id": "enchant.stat_3599615742|27623",
     "text": "1 das habilidades passivas adicionadas \u00E9 Li\u00E7\u00F5es Duras"
   },
@@ -16876,16 +17372,116 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Adore o Cora\u00E7\u00E3o da Infesta\u00E7\u00E3o"
   },
   {
+    "id": "enchant.stat_3599615742|27788",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Bebedor de Sangue"
+  },
+  {
+    "id": "enchant.stat_3599615742|27806",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Como o Trov\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|27929",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sabedoria Profunda"
+  },
+  {
+    "id": "enchant.stat_3599615742|28034",
+    "text": "1 das habilidades passivas adicionadas \u00E9 V\u00EDnculo Maximizador"
+  },
+  {
+    "id": "enchant.stat_3599615742|28449",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Explos\u00E3o de Vigor"
+  },
+  {
     "id": "enchant.stat_3599615742|28503",
     "text": "1 das habilidades passivas adicionadas \u00E9 Sangria"
+  },
+  {
+    "id": "enchant.stat_3599615742|28754",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Assassinato"
+  },
+  {
+    "id": "enchant.stat_3599615742|28878",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Implac\u00E1vel"
   },
   {
     "id": "enchant.stat_3599615742|29049",
     "text": "1 das habilidades passivas adicionadas \u00E9 Fogo Sagrado"
   },
   {
+    "id": "enchant.stat_3599615742|29381",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Horda Faminta"
+  },
+  {
+    "id": "enchant.stat_3599615742|29522",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Dan\u00E7a das L\u00E2minas"
+  },
+  {
+    "id": "enchant.stat_3599615742|2959",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Temporada G\u00E9lida"
+  },
+  {
+    "id": "enchant.stat_3599615742|29861",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Runas Explosivas"
+  },
+  {
+    "id": "enchant.stat_3599615742|30160",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Defender-se"
+  },
+  {
+    "id": "enchant.stat_3599615742|30225",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Andarilho do Raio"
+  },
+  {
+    "id": "enchant.stat_3599615742|30302",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Caloroso"
+  },
+  {
+    "id": "enchant.stat_3599615742|30439",
+    "text": "1 das habilidades passivas adicionadas \u00E9 A\u00E7oite de Lava"
+  },
+  {
+    "id": "enchant.stat_3599615742|30471",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Golpe Certeiro"
+  },
+  {
+    "id": "enchant.stat_3599615742|30693",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Catalisar"
+  },
+  {
+    "id": "enchant.stat_3599615742|30974",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ca\u00E7ador Perito"
+  },
+  {
+    "id": "enchant.stat_3599615742|31033",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Robustez"
+  },
+  {
+    "id": "enchant.stat_3599615742|31257",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Autoridade Natural"
+  },
+  {
+    "id": "enchant.stat_3599615742|31359",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Toxinas Fatais"
+  },
+  {
+    "id": "enchant.stat_3599615742|31473",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mestre das Feridas"
+  },
+  {
+    "id": "enchant.stat_3599615742|31508",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Aspecto de Lince"
+  },
+  {
     "id": "enchant.stat_3599615742|31513",
     "text": "1 das habilidades passivas adicionadas \u00E9 Animosidade Adjacente"
+  },
+  {
+    "id": "enchant.stat_3599615742|31585",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Conservador Cuidadoso"
+  },
+  {
+    "id": "enchant.stat_3599615742|3195",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Legado da Selva"
   },
   {
     "id": "enchant.stat_3599615742|32059",
@@ -16896,6 +17492,22 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Ladr\u00E3o de Almas"
   },
   {
+    "id": "enchant.stat_3599615742|32227",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Toque da V\u00EDbora"
+  },
+  {
+    "id": "enchant.stat_3599615742|32455",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tecelagem da Tempestade"
+  },
+  {
+    "id": "enchant.stat_3599615742|32681",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Presa Marcada"
+  },
+  {
+    "id": "enchant.stat_3599615742|32738",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Parede de A\u00E7o"
+  },
+  {
     "id": "enchant.stat_3599615742|32853",
     "text": "1 das habilidades passivas adicionadas \u00E9 Ambi\u00E7\u00E3o de Sione"
   },
@@ -16904,8 +17516,28 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Soberania"
   },
   {
+    "id": "enchant.stat_3599615742|33082",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fio da Navalha"
+  },
+  {
+    "id": "enchant.stat_3599615742|3309",
+    "text": "1 das habilidades passivas adicionadas \u00E9 P\u00E9s Leves"
+  },
+  {
     "id": "enchant.stat_3599615742|33287",
     "text": "1 das habilidades passivas adicionadas \u00E9 Destruidor"
+  },
+  {
+    "id": "enchant.stat_3599615742|33435",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Elementalista"
+  },
+  {
+    "id": "enchant.stat_3599615742|33545",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Devastador"
+  },
+  {
+    "id": "enchant.stat_3599615742|33582",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Espetada For\u00E7ada"
   },
   {
     "id": "enchant.stat_3599615742|33718",
@@ -16920,8 +17552,16 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Presun\u00E7\u00E3o"
   },
   {
+    "id": "enchant.stat_3599615742|33777",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Dispositivos Devastadores"
+  },
+  {
     "id": "enchant.stat_3599615742|33903",
     "text": "1 das habilidades passivas adicionadas \u00E9 Vontade de L\u00E2minas"
+  },
+  {
+    "id": "enchant.stat_3599615742|34009",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mestre da Arena"
   },
   {
     "id": "enchant.stat_3599615742|34173",
@@ -16936,40 +17576,260 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Comandante dos Golens"
   },
   {
+    "id": "enchant.stat_3599615742|3452",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Previs\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|34591",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Inten\u00E7\u00E3o Maliciosa"
+  },
+  {
+    "id": "enchant.stat_3599615742|34661",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Andarilho do Fogo"
+  },
+  {
+    "id": "enchant.stat_3599615742|34666",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Destruidor"
+  },
+  {
     "id": "enchant.stat_3599615742|34973",
     "text": "1 das habilidades passivas adicionadas \u00E9 F\u00FAria Medida"
+  },
+  {
+    "id": "enchant.stat_3599615742|34978",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mistura Coloidal"
+  },
+  {
+    "id": "enchant.stat_3599615742|35233",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Artes\u00E3o da Disc\u00F3rdia"
+  },
+  {
+    "id": "enchant.stat_3599615742|35436",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Impactos Cin\u00E9ticos"
+  },
+  {
+    "id": "enchant.stat_3599615742|35663",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Bra\u00E7o Forte"
+  },
+  {
+    "id": "enchant.stat_3599615742|35685",
+    "text": "1 das habilidades passivas adicionadas \u00E9 For\u00E7a Destemida"
+  },
+  {
+    "id": "enchant.stat_3599615742|35894",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Trapa\u00E7a"
+  },
+  {
+    "id": "enchant.stat_3599615742|35958",
+    "text": "1 das habilidades passivas adicionadas \u00E9 F\u00E9 e A\u00E7o"
+  },
+  {
+    "id": "enchant.stat_3599615742|36281",
+    "text": "1 das habilidades passivas adicionadas \u00E9 For\u00E7a Primitiva"
   },
   {
     "id": "enchant.stat_3599615742|36490",
     "text": "1 das habilidades passivas adicionadas \u00E9 Esfola"
   },
   {
+    "id": "enchant.stat_3599615742|36687",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Avatar da Ca\u00E7ada"
+  },
+  {
+    "id": "enchant.stat_3599615742|36736",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Brutalidade Ardente"
+  },
+  {
+    "id": "enchant.stat_3599615742|36859",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Postura da Madeira-a\u00E7o"
+  },
+  {
     "id": "enchant.stat_3599615742|36915",
     "text": "1 das habilidades passivas adicionadas \u00E9 Pastorear o Rebanho"
+  },
+  {
+    "id": "enchant.stat_3599615742|36949",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Devo\u00E7\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|37078",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Caminho do S\u00E1bio"
+  },
+  {
+    "id": "enchant.stat_3599615742|37326",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sa\u00FAde"
   },
   {
     "id": "enchant.stat_3599615742|37403",
     "text": "1 das habilidades passivas adicionadas \u00E9 Carne Infundida"
   },
   {
+    "id": "enchant.stat_3599615742|37425",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Reaplica\u00E7\u00E3o Praticada"
+  },
+  {
+    "id": "enchant.stat_3599615742|37504",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Intui\u00E7\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|37512",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Basti\u00E3o da F\u00E9"
+  },
+  {
+    "id": "enchant.stat_3599615742|37647",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Desmembramento"
+  },
+  {
+    "id": "enchant.stat_3599615742|38246",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Press\u00E1gio"
+  },
+  {
+    "id": "enchant.stat_3599615742|38516",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Decreto Justo"
+  },
+  {
+    "id": "enchant.stat_3599615742|38706",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Caminho do Guerreiro"
+  },
+  {
+    "id": "enchant.stat_3599615742|38849",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Calor Cauterizante"
+  },
+  {
+    "id": "enchant.stat_3599615742|38922",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Golias"
+  },
+  {
+    "id": "enchant.stat_3599615742|39530",
+    "text": "1 das habilidades passivas adicionadas \u00E9 V\u00E1cuo da Vitalidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|39657",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Forjador da Dor"
+  },
+  {
+    "id": "enchant.stat_3599615742|39743",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Artes Sombrias"
+  },
+  {
+    "id": "enchant.stat_3599615742|39761",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Contrapeso"
+  },
+  {
     "id": "enchant.stat_3599615742|39904",
     "text": "1 das habilidades passivas adicionadas \u00E9 Espetos Brutais"
+  },
+  {
+    "id": "enchant.stat_3599615742|39986",
+    "text": "1 das habilidades passivas adicionadas \u00E9 For\u00E7as Profanadas"
+  },
+  {
+    "id": "enchant.stat_3599615742|40619",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Admira\u00E7\u00E3o e Terror"
+  },
+  {
+    "id": "enchant.stat_3599615742|40645",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Quebra-Osso"
+  },
+  {
+    "id": "enchant.stat_3599615742|40743",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pele de Cristal"
+  },
+  {
+    "id": "enchant.stat_3599615742|40849",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Persist\u00EAncia"
+  },
+  {
+    "id": "enchant.stat_3599615742|41119",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Letalidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|41137",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Medicina de Campo"
   },
   {
     "id": "enchant.stat_3599615742|41169",
     "text": "1 das habilidades passivas adicionadas \u00E9 Feridas Irregulares"
   },
   {
+    "id": "enchant.stat_3599615742|41305",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Resposta Esmagadora"
+  },
+  {
+    "id": "enchant.stat_3599615742|41307",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Inclina\u00E7\u00F5es Mortais"
+  },
+  {
     "id": "enchant.stat_3599615742|41420",
     "text": "1 das habilidades passivas adicionadas \u00E9 Rem\u00E9dios Naturais"
+  },
+  {
+    "id": "enchant.stat_3599615742|41472",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Disciplina e Treinamento"
+  },
+  {
+    "id": "enchant.stat_3599615742|41476",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Poder Anci\u00E3o"
   },
   {
     "id": "enchant.stat_3599615742|41595",
     "text": "1 das habilidades passivas adicionadas \u00E9 Marcado para Morrer"
   },
   {
+    "id": "enchant.stat_3599615742|4177",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ajuda Espiritual"
+  },
+  {
+    "id": "enchant.stat_3599615742|41870",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Abra\u00E7o Invernal"
+  },
+  {
+    "id": "enchant.stat_3599615742|41989",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Desenvoltura"
+  },
+  {
     "id": "enchant.stat_3599615742|42009",
     "text": "1 das habilidades passivas adicionadas \u00E9 Alma de A\u00E7o"
+  },
+  {
+    "id": "enchant.stat_3599615742|42041",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Qu\u00EDmica Profana"
+  },
+  {
+    "id": "enchant.stat_3599615742|4207",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Janela de Oportunidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|42443",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fren\u00E9tico"
+  },
+  {
+    "id": "enchant.stat_3599615742|42649",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Forjado em Neve"
+  },
+  {
+    "id": "enchant.stat_3599615742|42686",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Foco Elemental"
+  },
+  {
+    "id": "enchant.stat_3599615742|42720",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Puxada Pesada"
+  },
+  {
+    "id": "enchant.stat_3599615742|42795",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Foco Arcano"
+  },
+  {
+    "id": "enchant.stat_3599615742|42804",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Bebedor de Mentes"
+  },
+  {
+    "id": "enchant.stat_3599615742|42917",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Barreira Girat\u00F3ria"
+  },
+  {
+    "id": "enchant.stat_3599615742|43385",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Esp\u00EDrito Invernal"
   },
   {
     "id": "enchant.stat_3599615742|4354",
@@ -16980,6 +17840,34 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Comando Espiritual"
   },
   {
+    "id": "enchant.stat_3599615742|44102",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Explosivos Eficientes"
+  },
+  {
+    "id": "enchant.stat_3599615742|44103",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Reflexos"
+  },
+  {
+    "id": "enchant.stat_3599615742|44191",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Como a Montanha"
+  },
+  {
+    "id": "enchant.stat_3599615742|44207",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tartaruga"
+  },
+  {
+    "id": "enchant.stat_3599615742|44347",
+    "text": "1 das habilidades passivas adicionadas \u00E9 F\u00FAria Divina"
+  },
+  {
+    "id": "enchant.stat_3599615742|44562",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Dom\u00EDnio do Xam\u00E3"
+  },
+  {
+    "id": "enchant.stat_3599615742|44788",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Conex\u00F5es Potentes"
+  },
+  {
     "id": "enchant.stat_3599615742|4481",
     "text": "1 das habilidades passivas adicionadas \u00E9 For\u00E7as da Natureza"
   },
@@ -16988,12 +17876,56 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Misticismo"
   },
   {
+    "id": "enchant.stat_3599615742|44955",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Andarilho do Gelo"
+  },
+  {
     "id": "enchant.stat_3599615742|44988",
     "text": "1 das habilidades passivas adicionadas \u00E9 Assolador"
   },
   {
+    "id": "enchant.stat_3599615742|45067",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Assassino de Emo\u00E7\u00F5es"
+  },
+  {
+    "id": "enchant.stat_3599615742|45283",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Presa Encurralada"
+  },
+  {
+    "id": "enchant.stat_3599615742|45317",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cinza, Gelo e Tempestade"
+  },
+  {
     "id": "enchant.stat_3599615742|45329",
     "text": "1 das habilidades passivas adicionadas \u00E9 Tiro Ardil"
+  },
+  {
+    "id": "enchant.stat_3599615742|45350",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Gl\u00F3ria do Comando"
+  },
+  {
+    "id": "enchant.stat_3599615742|45608",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Detona\u00E7\u00F5es Sucessivas"
+  },
+  {
+    "id": "enchant.stat_3599615742|45657",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Prova\u00E7\u00E3o da F\u00E9"
+  },
+  {
+    "id": "enchant.stat_3599615742|45803",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Soldado Veterano"
+  },
+  {
+    "id": "enchant.stat_3599615742|45945",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Barreira Conjurada"
+  },
+  {
+    "id": "enchant.stat_3599615742|46408",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Presas da V\u00EDbora"
+  },
+  {
+    "id": "enchant.stat_3599615742|46471",
+    "text": "1 das habilidades passivas adicionadas \u00E9 V\u00EDnculo Poderoso"
   },
   {
     "id": "enchant.stat_3599615742|46842",
@@ -17004,6 +17936,34 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Santu\u00E1rio Arcano"
   },
   {
+    "id": "enchant.stat_3599615742|46965",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sabotador"
+  },
+  {
+    "id": "enchant.stat_3599615742|47065",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mestre das L\u00E2minas"
+  },
+  {
+    "id": "enchant.stat_3599615742|47306",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Engasgador"
+  },
+  {
+    "id": "enchant.stat_3599615742|47471",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sobrecarregado"
+  },
+  {
+    "id": "enchant.stat_3599615742|47484",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Percep\u00E7\u00E3o Profunda"
+  },
+  {
+    "id": "enchant.stat_3599615742|47743",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Perspic\u00E1cia"
+  },
+  {
+    "id": "enchant.stat_3599615742|48298",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Inspirador"
+  },
+  {
     "id": "enchant.stat_3599615742|4833",
     "text": "1 das habilidades passivas adicionadas \u00E9 Vigor"
   },
@@ -17012,28 +17972,180 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Coragem"
   },
   {
+    "id": "enchant.stat_3599615742|4854",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Hosp\u00EDcio"
+  },
+  {
+    "id": "enchant.stat_3599615742|48556",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cora\u00E7\u00E3o das Trevas"
+  },
+  {
+    "id": "enchant.stat_3599615742|48614",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fervor"
+  },
+  {
     "id": "enchant.stat_3599615742|48698",
     "text": "1 das habilidades passivas adicionadas \u00E9 Barreira de V\u00E1cuo"
+  },
+  {
+    "id": "enchant.stat_3599615742|48807",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Arte do Gladiador"
+  },
+  {
+    "id": "enchant.stat_3599615742|48823",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Puxada Mortal"
+  },
+  {
+    "id": "enchant.stat_3599615742|4918",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vingan\u00E7a Indiscriminada"
+  },
+  {
+    "id": "enchant.stat_3599615742|49254",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Retribui\u00E7\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|49318",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Bola de Demoli\u00E7\u00E3o"
   },
   {
     "id": "enchant.stat_3599615742|49379",
     "text": "1 das habilidades passivas adicionadas \u00E9 Assassino de Aluguel"
   },
   {
+    "id": "enchant.stat_3599615742|4940",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fendedor"
+  },
+  {
+    "id": "enchant.stat_3599615742|49416",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Inflex\u00EDvel"
+  },
+  {
+    "id": "enchant.stat_3599615742|49445",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Respira\u00E7\u00F5es Profundas"
+  },
+  {
     "id": "enchant.stat_3599615742|49459",
     "text": "1 das habilidades passivas adicionadas \u00E9 Rei da Colina"
+  },
+  {
+    "id": "enchant.stat_3599615742|49538",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Desafio"
+  },
+  {
+    "id": "enchant.stat_3599615742|49621",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Acuidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|49645",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cauteriza\u00E7\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|49772",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Poder Extremo"
+  },
+  {
+    "id": "enchant.stat_3599615742|49969",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Coragem"
   },
   {
     "id": "enchant.stat_3599615742|50029",
     "text": "1 das habilidades passivas adicionadas \u00E9 Calma Inatural"
   },
   {
+    "id": "enchant.stat_3599615742|50338",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Bal\u00EDstica"
+  },
+  {
+    "id": "enchant.stat_3599615742|50690",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Rem\u00E9dios Nutritivos"
+  },
+  {
+    "id": "enchant.stat_3599615742|50842",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ira do Veterano"
+  },
+  {
+    "id": "enchant.stat_3599615742|50858",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Admoestador"
+  },
+  {
+    "id": "enchant.stat_3599615742|51108",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Capacitor Arcano"
+  },
+  {
+    "id": "enchant.stat_3599615742|51212",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Entropia"
+  },
+  {
+    "id": "enchant.stat_3599615742|5126",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Triturador de Espinhas"
+  },
+  {
+    "id": "enchant.stat_3599615742|51360",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Muni\u00E7\u00F5es Mistas"
+  },
+  {
+    "id": "enchant.stat_3599615742|51440",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ritual Dru\u00EDdico"
+  },
+  {
+    "id": "enchant.stat_3599615742|51559",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Golpes Esmagadores"
+  },
+  {
+    "id": "enchant.stat_3599615742|51748",
+    "text": "1 das habilidades passivas adicionadas \u00E9 \u00DAltimos Ritos"
+  },
+  {
     "id": "enchant.stat_3599615742|51881",
     "text": "1 das habilidades passivas adicionadas \u00E9 Mestre Flecheiro"
   },
   {
+    "id": "enchant.stat_3599615742|52030",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Explos\u00E3o En\u00E9rgica"
+  },
+  {
+    "id": "enchant.stat_3599615742|52031",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Desintegra\u00E7\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|52090",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ladr\u00E3o de Inimigos"
+  },
+  {
+    "id": "enchant.stat_3599615742|52157",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sif\u00E3o d\u0027Alma"
+  },
+  {
+    "id": "enchant.stat_3599615742|52230",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ca\u00E7ador Veterano"
+  },
+  {
     "id": "enchant.stat_3599615742|52282",
     "text": "1 das habilidades passivas adicionadas \u00E9 Tenacidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|52742",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Morte Apressada"
+  },
+  {
+    "id": "enchant.stat_3599615742|52789",
+    "text": "1 das habilidades passivas adicionadas \u00E9 C\u00EDrculo da Vida"
+  },
+  {
+    "id": "enchant.stat_3599615742|5289",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Despertar de Batalha"
+  },
+  {
+    "id": "enchant.stat_3599615742|529",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Presas Venenosas"
+  },
+  {
+    "id": "enchant.stat_3599615742|53013",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Atrofia"
+  },
+  {
+    "id": "enchant.stat_3599615742|53042",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Performance Excepcional"
   },
   {
     "id": "enchant.stat_3599615742|53114",
@@ -17044,28 +18156,184 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Barbarismo"
   },
   {
+    "id": "enchant.stat_3599615742|53493",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Aniquila\u00E7\u00E3o"
+  },
+  {
     "id": "enchant.stat_3599615742|53573",
     "text": "1 das habilidades passivas adicionadas \u00E9 Extens\u00E3o Arcana"
+  },
+  {
+    "id": "enchant.stat_3599615742|53652",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mergulhado na Profanidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|53757",
+    "text": "1 das habilidades passivas adicionadas \u00E9 F\u00FAria Xam\u00E2nica"
   },
   {
     "id": "enchant.stat_3599615742|53759",
     "text": "1 das habilidades passivas adicionadas \u00E9 Pensamentos Limpos"
   },
   {
+    "id": "enchant.stat_3599615742|53802",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Extra\u00E7\u00E3o de Ess\u00EAncia"
+  },
+  {
+    "id": "enchant.stat_3599615742|53840",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vingan\u00E7a"
+  },
+  {
+    "id": "enchant.stat_3599615742|54142",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sutileza"
+  },
+  {
+    "id": "enchant.stat_3599615742|54268",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Barreira de L\u00E2mina"
+  },
+  {
+    "id": "enchant.stat_3599615742|5430",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Golpes Magm\u00E1ticos"
+  },
+  {
+    "id": "enchant.stat_3599615742|544",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vigil\u00E2ncia"
+  },
+  {
     "id": "enchant.stat_3599615742|54629",
     "text": "1 das habilidades passivas adicionadas \u00E9 Inexor\u00E1vel"
+  },
+  {
+    "id": "enchant.stat_3599615742|54694",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Luz da Divindade"
+  },
+  {
+    "id": "enchant.stat_3599615742|54713",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Modelador de For\u00E7a"
+  },
+  {
+    "id": "enchant.stat_3599615742|54776",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fluxo de Mana"
+  },
+  {
+    "id": "enchant.stat_3599615742|54791",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Garras da Gralha"
+  },
+  {
+    "id": "enchant.stat_3599615742|55002",
+    "text": "1 das habilidades passivas adicionadas \u00E9 F\u00FAria Justificada"
+  },
+  {
+    "id": "enchant.stat_3599615742|55027",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Justi\u00E7a Brilhante"
+  },
+  {
+    "id": "enchant.stat_3599615742|55114",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Intelecto Extremo"
+  },
+  {
+    "id": "enchant.stat_3599615742|55194",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cinzas Assentadas"
+  },
+  {
+    "id": "enchant.stat_3599615742|55380",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Constru\u00E7\u00E3o Inteligente"
+  },
+  {
+    "id": "enchant.stat_3599615742|55381",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Retalia\u00E7\u00E3o Arcana"
   },
   {
     "id": "enchant.stat_3599615742|55485",
     "text": "1 das habilidades passivas adicionadas \u00E9 Constitui\u00E7\u00E3o"
   },
   {
+    "id": "enchant.stat_3599615742|5574",
+    "text": "1 das habilidades passivas adicionadas \u00E9 For\u00E7a das Trevas"
+  },
+  {
+    "id": "enchant.stat_3599615742|55772",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Influ\u00EAncia do Ferreiro"
+  },
+  {
+    "id": "enchant.stat_3599615742|56094",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Um com o Rio"
+  },
+  {
     "id": "enchant.stat_3599615742|56146",
     "text": "1 das habilidades passivas adicionadas \u00E9 Brutalidade Deliberada"
   },
   {
+    "id": "enchant.stat_3599615742|56207",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cicatrizes Endurecidas"
+  },
+  {
+    "id": "enchant.stat_3599615742|5624",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cruzado"
+  },
+  {
+    "id": "enchant.stat_3599615742|56274",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tormenta Duradoura"
+  },
+  {
+    "id": "enchant.stat_3599615742|56276",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ca\u00E7ador Noturno"
+  },
+  {
+    "id": "enchant.stat_3599615742|56330",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fluxo da Batalha"
+  },
+  {
+    "id": "enchant.stat_3599615742|56359",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ritual Canibal\u00EDstico"
+  },
+  {
+    "id": "enchant.stat_3599615742|56648",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Garras do Falc\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|56716",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cora\u00E7\u00E3o Trovejante"
+  },
+  {
     "id": "enchant.stat_3599615742|570",
     "text": "1 das habilidades passivas adicionadas \u00E9 Golpes Ofuscantes"
+  },
+  {
+    "id": "enchant.stat_3599615742|57006",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cascata Vingativa"
+  },
+  {
+    "id": "enchant.stat_3599615742|57199",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Presas de Gelo"
+  },
+  {
+    "id": "enchant.stat_3599615742|57839",
+    "text": "1 das habilidades passivas adicionadas \u00E9 L\u00E2mina da Ast\u00FAcia"
+  },
+  {
+    "id": "enchant.stat_3599615742|57900",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Comando do A\u00E7o"
+  },
+  {
+    "id": "enchant.stat_3599615742|58032",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Feiticeiro Sinuoso"
+  },
+  {
+    "id": "enchant.stat_3599615742|58168",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Alta Voltagem"
+  },
+  {
+    "id": "enchant.stat_3599615742|58198",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Dedos de Gelo"
+  },
+  {
+    "id": "enchant.stat_3599615742|58218",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pureza da Carne"
+  },
+  {
+    "id": "enchant.stat_3599615742|5823",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Coordena\u00E7\u00E3o"
   },
   {
     "id": "enchant.stat_3599615742|58382",
@@ -17076,16 +18344,84 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Nascido para Lutar"
   },
   {
+    "id": "enchant.stat_3599615742|58831",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Estripar"
+  },
+  {
     "id": "enchant.stat_3599615742|58851",
     "text": "1 das habilidades passivas adicionadas \u00E9 L\u00EDder da Matilha"
+  },
+  {
+    "id": "enchant.stat_3599615742|58921",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Discipulo da Matan\u00E7a"
+  },
+  {
+    "id": "enchant.stat_3599615742|59151",
+    "text": "1 das habilidades passivas adicionadas \u00E9 L\u00E2mina Brutal"
+  },
+  {
+    "id": "enchant.stat_3599615742|59423",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Escalonamento"
+  },
+  {
+    "id": "enchant.stat_3599615742|59556",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Muni\u00E7\u00F5es R\u00E1pidas"
+  },
+  {
+    "id": "enchant.stat_3599615742|59605",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Muni\u00E7\u00F5es Inst\u00E1veis"
+  },
+  {
+    "id": "enchant.stat_3599615742|59766",
+    "text": "1 das habilidades passivas adicionadas \u00E9 T\u00E9cnicas Sujas"
+  },
+  {
+    "id": "enchant.stat_3599615742|59866",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Entrincheirar"
+  },
+  {
+    "id": "enchant.stat_3599615742|59976",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Contra-ataque Cuidadoso"
   },
   {
     "id": "enchant.stat_3599615742|6",
     "text": "1 das habilidades passivas adicionadas \u00E9 Terrores G\u00EAmeos"
   },
   {
+    "id": "enchant.stat_3599615742|60002",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Disparos da F\u00FAria"
+  },
+  {
+    "id": "enchant.stat_3599615742|60031",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pele Prism\u00E1tica"
+  },
+  {
+    "id": "enchant.stat_3599615742|60085",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Preserva\u00E7\u00E3o Arcana"
+  },
+  {
+    "id": "enchant.stat_3599615742|60501",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cora\u00E7\u00E3o Flamejante"
+  },
+  {
+    "id": "enchant.stat_3599615742|60619",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Martelo Galv\u00E2nico"
+  },
+  {
+    "id": "enchant.stat_3599615742|60737",
+    "text": "1 das habilidades passivas adicionadas \u00E9 M\u00E3os H\u00E1beis"
+  },
+  {
+    "id": "enchant.stat_3599615742|60781",
+    "text": "1 das habilidades passivas adicionadas \u00E9 V\u00EDnculo Inspirador"
+  },
+  {
     "id": "enchant.stat_3599615742|61039",
     "text": "1 das habilidades passivas adicionadas \u00E9 Voracidade Selvagem"
+  },
+  {
+    "id": "enchant.stat_3599615742|61190",
+    "text": "1 das habilidades passivas adicionadas \u00E9 \u00CDcone da Uni\u00E3o"
   },
   {
     "id": "enchant.stat_3599615742|61198",
@@ -17096,12 +18432,44 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Amplificar"
   },
   {
+    "id": "enchant.stat_3599615742|61689",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Elementos Explosivos"
+  },
+  {
     "id": "enchant.stat_3599615742|61981",
     "text": "1 das habilidades passivas adicionadas \u00E9 Conjuro da Ru\u00EDna"
   },
   {
+    "id": "enchant.stat_3599615742|61982",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Graves Inten\u00E7\u00F5es"
+  },
+  {
+    "id": "enchant.stat_3599615742|62094",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Fome de Sangue"
+  },
+  {
+    "id": "enchant.stat_3599615742|6233",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ondas Explosivas"
+  },
+  {
+    "id": "enchant.stat_3599615742|6237",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Precis\u00E3o"
+  },
+  {
+    "id": "enchant.stat_3599615742|62577",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pulso de Ess\u00EAncia"
+  },
+  {
     "id": "enchant.stat_3599615742|62596",
     "text": "1 das habilidades passivas adicionadas \u00E9 Talentos M\u00EDsticos"
+  },
+  {
+    "id": "enchant.stat_3599615742|62802",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Beira da Morte"
+  },
+  {
+    "id": "enchant.stat_3599615742|62849",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Jaula Glacial"
   },
   {
     "id": "enchant.stat_3599615742|6289",
@@ -17112,6 +18480,14 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Porta Estandarte"
   },
   {
+    "id": "enchant.stat_3599615742|63150",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Pau-Ferro"
+  },
+  {
+    "id": "enchant.stat_3599615742|63207",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Explos\u00E3o Tempestuosa"
+  },
+  {
     "id": "enchant.stat_3599615742|63251",
     "text": "1 das habilidades passivas adicionadas \u00E9 Inveterado"
   },
@@ -17120,16 +18496,72 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Lasc\u00EDvia por Carnificina"
   },
   {
+    "id": "enchant.stat_3599615742|63453",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Sustento Excessivo"
+  },
+  {
+    "id": "enchant.stat_3599615742|63635",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Manifesta\u00E7\u00E3o Primitiva"
+  },
+  {
+    "id": "enchant.stat_3599615742|63727",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Perseveran\u00E7a do Gladiador"
+  },
+  {
+    "id": "enchant.stat_3599615742|63921",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Rapidez Extrema"
+  },
+  {
+    "id": "enchant.stat_3599615742|63933",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Zelo Tot\u00EAmico"
+  },
+  {
+    "id": "enchant.stat_3599615742|63944",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tecel\u00E3o Prism\u00E1tico"
+  },
+  {
+    "id": "enchant.stat_3599615742|63976",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Modelador"
+  },
+  {
+    "id": "enchant.stat_3599615742|64077",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Treinamento de Guerreiro"
+  },
+  {
     "id": "enchant.stat_3599615742|64217",
     "text": "1 das habilidades passivas adicionadas \u00E9 Aspecto da Pedra"
+  },
+  {
+    "id": "enchant.stat_3599615742|64226",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Rugido Desafiador"
+  },
+  {
+    "id": "enchant.stat_3599615742|64355",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Equidade de Runas"
+  },
+  {
+    "id": "enchant.stat_3599615742|64395",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Contus\u00E3o"
   },
   {
     "id": "enchant.stat_3599615742|64882",
     "text": "1 das habilidades passivas adicionadas \u00E9 Discipulo do Inflex\u00EDvel"
   },
   {
+    "id": "enchant.stat_3599615742|65053",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Seiva da Ess\u00EAncia"
+  },
+  {
+    "id": "enchant.stat_3599615742|65093",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Dan\u00E7arino da L\u00E2mina"
+  },
+  {
     "id": "enchant.stat_3599615742|65097",
     "text": "1 das habilidades passivas adicionadas \u00E9 Lideran\u00E7a"
+  },
+  {
+    "id": "enchant.stat_3599615742|65107",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Quebra-basti\u00E3o"
   },
   {
     "id": "enchant.stat_3599615742|65108",
@@ -17140,6 +18572,14 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Cora\u00E7\u00E3o de Carvalho"
   },
   {
+    "id": "enchant.stat_3599615742|65224",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Aspecto da \u00C1guia"
+  },
+  {
+    "id": "enchant.stat_3599615742|65273",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Alcance Enigm\u00E1tico"
+  },
+  {
     "id": "enchant.stat_3599615742|65308",
     "text": "1 das habilidades passivas adicionadas \u00E9 Pele de Diamante"
   },
@@ -17148,12 +18588,116 @@
     "text": "1 das habilidades passivas adicionadas \u00E9 Perfurador"
   },
   {
+    "id": "enchant.stat_3599615742|6615",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Golpes Arqueados"
+  },
+  {
+    "id": "enchant.stat_3599615742|6770",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Guarda Arcana"
+  },
+  {
+    "id": "enchant.stat_3599615742|6783",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Espetos Selvagens"
+  },
+  {
+    "id": "enchant.stat_3599615742|6799",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Carisma"
+  },
+  {
     "id": "enchant.stat_3599615742|6967",
     "text": "1 das habilidades passivas adicionadas \u00E9 Garantia"
   },
   {
+    "id": "enchant.stat_3599615742|7069",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tiro Partido"
+  },
+  {
+    "id": "enchant.stat_3599615742|7085",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Arte da Arma"
+  },
+  {
+    "id": "enchant.stat_3599615742|7136",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Mestre Sabotador"
+  },
+  {
+    "id": "enchant.stat_3599615742|7263",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Venenos Velozes"
+  },
+  {
+    "id": "enchant.stat_3599615742|7440",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ceifador de Inimigos"
+  },
+  {
+    "id": "enchant.stat_3599615742|7555",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Velocidade Crepitante"
+  },
+  {
+    "id": "enchant.stat_3599615742|7688",
+    "text": "1 das habilidades passivas adicionadas \u00E9 V\u00EDnculo Duradouro"
+  },
+  {
+    "id": "enchant.stat_3599615742|7918",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Defesa Enigm\u00E1tica"
+  },
+  {
+    "id": "enchant.stat_3599615742|8001",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Ladr\u00E3o Intelig\u00EAnte"
+  },
+  {
+    "id": "enchant.stat_3599615742|8135",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Aplica\u00E7\u00E3o Pr\u00E1tica"
+  },
+  {
+    "id": "enchant.stat_3599615742|8458",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tiro Longo"
+  },
+  {
+    "id": "enchant.stat_3599615742|861",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Basti\u00E3o Agressivo"
+  },
+  {
+    "id": "enchant.stat_3599615742|8833",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Cora\u00E7\u00E3o de Gelo"
+  },
+  {
     "id": "enchant.stat_3599615742|8920",
     "text": "1 das habilidades passivas adicionadas \u00E9 Apunhalada"
+  },
+  {
+    "id": "enchant.stat_3599615742|9015",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Tormento Horr\u00EDvel"
+  },
+  {
+    "id": "enchant.stat_3599615742|9055",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Minas Vol\u00E1teis"
+  },
+  {
+    "id": "enchant.stat_3599615742|9194",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Espetada Impiedosa"
+  },
+  {
+    "id": "enchant.stat_3599615742|9261",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Disc\u00EDpulo do Proibido"
+  },
+  {
+    "id": "enchant.stat_3599615742|9432",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Rapidez Mental"
+  },
+  {
+    "id": "enchant.stat_3599615742|9535",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Estrat\u00E9gia do Ca\u00E7ador"
+  },
+  {
+    "id": "enchant.stat_3599615742|9567",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Devorador da Luz"
+  },
+  {
+    "id": "enchant.stat_3599615742|9788",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Vivacidade"
+  },
+  {
+    "id": "enchant.stat_3599615742|9864",
+    "text": "1 das habilidades passivas adicionadas \u00E9 Crescer e Apodrecer"
   },
   {
     "id": "enchant.stat_3600749521",
@@ -18176,6 +19720,10 @@
     "text": "Vontade de Ferro"
   },
   {
+    "id": "enchant.stat_4093253847",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por grupos que\nconvertem equipamentos largados em ouro"
+  },
+  {
     "id": "enchant.stat_4095671657",
     "text": "\u002B#% de Resist\u00EAncia a Fogo m\u00E1xima"
   },
@@ -18278,6 +19826,10 @@
   {
     "id": "enchant.stat_4148932984",
     "text": "#% de chance de criar Solo Sagrado ao Estilha\u00E7ar um Inimigo"
+  },
+  {
+    "id": "enchant.stat_4151275322",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por Devotos de Doedre"
   },
   {
     "id": "enchant.stat_4151555126",
@@ -18388,6 +19940,10 @@
     "text": "Dano de Armadilha de Gelo aumentado em #%"
   },
   {
+    "id": "enchant.stat_4224467226",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por grupos que n\u00E3o largam itens\nQuando morrem, os monstros do grupo concedem raridade de itens aumentada, at\u00E9 400%, que diminui gradualmente"
+  },
+  {
     "id": "enchant.stat_4224588066",
     "text": "Perdi\u00E7\u00E3o tem a \u00E1rea de efeito aumentada em #%"
   },
@@ -18480,8 +20036,16 @@
     "text": "Tempo antes do Confinamento aumentado em #%"
   },
   {
+    "id": "enchant.stat_429929284",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por grupos liderados por um monstro raro Tocado pelo Pante\u00E3o"
+  },
+  {
     "id": "enchant.stat_430890565",
     "text": "Dano do Chicote Flamejante com Acertos e Afec\u00E7\u00F5es aumentado em #% contra Inimigos Incendiados"
+  },
+  {
+    "id": "enchant.stat_434437344",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por Membros do Sindicato\nOs monstros do grupo revivem ap\u00F3s o chefe final do mapa ser morto"
   },
   {
     "id": "enchant.stat_435519320",
@@ -19172,6 +20736,10 @@
     "text": "Acelera\u00E7\u00E3o tem a efici\u00EAncia da reserva de mana aumentada em #%"
   },
   {
+    "id": "enchant.stat_940539199",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por criaturas da Selva\nQuando morrem, os l\u00EDderes de grupo fortalecem os chefes de mapa com L\u00FAmens Selvagens"
+  },
+  {
     "id": "enchant.stat_942531362",
     "text": "Acertos ignoram a Redu\u00E7\u00E3o de Dano F\u00EDsico dos Monstros Inimigos"
   },
@@ -19248,20 +20816,64 @@
     "text": "Tipo de recompensa do Del\u00EDrio: Armaduras"
   },
   {
+    "id": "explicit.delirium_reward_blight",
+    "text": "Tipo de recompensa do Del\u00EDrio: Itens Blight"
+  },
+  {
     "id": "explicit.delirium_reward_currency",
     "text": "Tipo de recompensa do Del\u00EDrio: Item Monet\u00E1rio"
+  },
+  {
+    "id": "explicit.delirium_reward_divinationcards",
+    "text": "Tipo de recompensa do Del\u00EDrio: Cartas de Adivinha\u00E7\u00E3o"
+  },
+  {
+    "id": "explicit.delirium_reward_essences",
+    "text": "Tipo de recompensa do Del\u00EDrio: Ess\u00EAncias"
+  },
+  {
+    "id": "explicit.delirium_reward_gems",
+    "text": "Tipo de recompensa do Del\u00EDrio: Gemas"
+  },
+  {
+    "id": "explicit.delirium_reward_maps",
+    "text": "Tipo de recompensa do Del\u00EDrio: Mapas"
+  },
+  {
+    "id": "explicit.delirium_reward_scarabs",
+    "text": "Tipo de recompensa do Del\u00EDrio: Segmentos"
   },
   {
     "id": "explicit.delirium_reward_trinkets",
     "text": "Tipo de recompensa do Del\u00EDrio: Acess\u00F3rios"
   },
   {
+    "id": "explicit.delirium_reward_uniques",
+    "text": "Tipo de recompensa do Del\u00EDrio: Itens \u00DAnicos"
+  },
+  {
     "id": "explicit.delirium_reward_weapon",
     "text": "Tipo de recompensa do Del\u00EDrio: Armas"
   },
   {
+    "id": "explicit.effect_1059201360",
+    "text": "Gemas encaixadas recebem refor\u00E7o de F\u00EDsico em El\u00E9trico (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1115172759",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Afli\u00E7\u00E3o R\u00E1pida (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1134484173",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Afec\u00E7\u00F5es Desvinculadas Despertas (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_1149451356",
     "text": "Concede Impureza Glacial Vaal de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_115345895",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ataques M\u00FAltiplos Desperto (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1153652646",
@@ -19270,6 +20882,10 @@
   {
     "id": "explicit.effect_1199731147",
     "text": "Gemas encaixadas recebem refor\u00E7o de Imola\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1200122555",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano Abrasador (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1214076534",
@@ -19284,8 +20900,24 @@
     "text": "Concede Clamor Fortalecedor de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_1263906374",
+    "text": "Gemas encaixadas recebem refor\u00E7o de B\u00EAn\u00E7\u00E3o do Guardi\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1276857842",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis Lentos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1303915392",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Canaliza\u00E7\u00E3o Infundida (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_1306984944",
     "text": "Concede Perturbar de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1311270539",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Propaga\u00E7\u00E3o Desperta (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1315696378",
@@ -19296,8 +20928,20 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Conjura\u00E7\u00E3o Acelerada (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_1329591193",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Afec\u00E7\u00F5es Mortais (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_1339810278",
     "text": "Gemas encaixadas recebem refor\u00E7o de Generosidade (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1355803435",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Golpes Cr\u00EDticos Aumentados (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1380260970",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Lacaio Desperto (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1389174793",
@@ -19320,8 +20964,24 @@
     "text": "Concede Aspecto da Aranha de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_1505316781",
+    "text": "Gemas encaixadas recebem refor\u00E7o de L\u00E2mina Noturna (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_153063788",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Podrid\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_1543118831",
     "text": "Concede Desejo Mortal de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1544569957",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Mais Dura\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_155410994",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Redu\u00E7\u00E3o de Chance de Bloqueio (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1561428496",
@@ -19330,6 +20990,10 @@
   {
     "id": "explicit.effect_1571191461",
     "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Fogo Adicionado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1602381821",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Combate Corpo a Corpo (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1633788232",
@@ -19364,8 +21028,28 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Conjurar ao Canalizar (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_1726066205",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Devorar (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1733367133",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Quantidade de Itens (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1740076026",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Arrog\u00E2ncia (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_174595432",
     "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Lacaio (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1749703704",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Toque Maldito (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1770376530",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis R\u00E1pidos (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1787679190",
@@ -19374,6 +21058,10 @@
   {
     "id": "explicit.effect_1795027869",
     "text": "Concede Convocar Emiss\u00E1rio Maior do Foco"
+  },
+  {
+    "id": "explicit.effect_1825763431",
+    "text": "Concede Pira do Ca\u00E7ador de Bruxas de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_1854569159",
@@ -19386,6 +21074,18 @@
   {
     "id": "explicit.effect_1865320540",
     "text": "Gemas encaixadas recebem refor\u00E7o de Sequ\u00EAncia M\u00E1gica Maior (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1878151040",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Atordoamento (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_189485532",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Inc\u00EAndio Controlado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1899953379",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ramifica\u00E7\u00E3o Desperta (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_192206434",
@@ -19404,6 +21104,14 @@
     "text": "Concede Convocar Emiss\u00E1rio do Arcano"
   },
   {
+    "id": "explicit.effect_1961292105",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Golpe Aniquilador (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_1974816132",
+    "text": "Concede Pacificar de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_1979264894",
     "text": "Gemas encaixadas recebem refor\u00E7o de Ilumina\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -19416,12 +21124,20 @@
     "text": "Concede C\u00F3lera de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2052193809",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Caos Adicionado Desperto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2092916684",
     "text": "Concede Convocar Marsupial Bestial de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2100902429",
     "text": "Gemas encaixadas recebem refor\u00E7o de Ataques M\u00FAltiplos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2107340112",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis M\u00FAltiplos Maior (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2109649836",
@@ -19432,8 +21148,20 @@
     "text": "Concede Arauto Trovejante de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2129634187",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Marca Repentina (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2141384509",
     "text": "Gemas encaixadas recebem refor\u00E7o de Chance de Envenenar (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2142007278",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Montagem R\u00E1pida (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2142148729",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Sadismo (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2174769737",
@@ -19444,8 +21172,24 @@
     "text": "Concede Clareza de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_222199368",
+    "text": "Gemas encaixadas recebem refor\u00E7o de B\u00EAn\u00E7\u00E3o Eterna (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2236653998",
     "text": "Concede Inveja de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2242579123",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Tr\u00EDade (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2251567057",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Crueldade (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2260732373",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano F\u00EDsico Corpo a Corpo Desperto (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2264294898",
@@ -19454,6 +21198,10 @@
   {
     "id": "explicit.effect_2282649307",
     "text": "Gemas encaixadas recebem refor\u00E7o de Tiro de Precis\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2307564778",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Eco M\u00E1gico Desperto (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2338856567",
@@ -19472,6 +21220,10 @@
     "text": "Concede Explos\u00E3o R\u00FAnica de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2367771894",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Brutalidade Desperta (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2377502094",
     "text": "Concede Convocar Cobra Bestial de n\u00EDvel #"
   },
@@ -19480,8 +21232,16 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Mordida Congelante (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2439286871",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Invocar Fantasma (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2447178998",
     "text": "Gemas encaixadas recebem refor\u00E7o de Saraivada Maior (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2455845502",
+    "text": "Concede Congelabilidade de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2461314210",
@@ -19490,6 +21250,10 @@
   {
     "id": "explicit.effect_2496940419",
     "text": "Concede Precis\u00E3o de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2513678384",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Foco Elemental Desperto (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2559654739",
@@ -19508,6 +21272,22 @@
     "text": "Concede Armadilha de Urso de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2594535436",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Conjurar ao Perder Salvaguarda (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2612646353",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Excomungar (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2617381612",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Campo Minado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2638439725",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Minas Carregadas (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2640673956",
     "text": "Gemas encaixadas recebem refor\u00E7o de Conjurar ao Matar Corpo a Corpo (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -19516,12 +21296,20 @@
     "text": "Concede Vitalidade de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2653498431",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Manipula\u00E7\u00E3o do Vazio Desperta (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2653742489",
     "text": "Gemas encaixadas recebem refor\u00E7o de Canaliza\u00E7\u00E3o Concentrada (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_265550805",
     "text": "Gemas encaixadas recebem refor\u00E7o de Fonte de Vida (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2686067790",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Totem Balista (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2698327786",
@@ -19536,8 +21324,16 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis Retornados (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2722476813",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Foco Elemental (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_273196120",
     "text": "Concede Teleporte G\u00E9lido de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2742501709",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Manipula\u00E7\u00E3o do Vazio (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_2753888557",
@@ -19548,12 +21344,24 @@
     "text": "Concede Punho Esmagador de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2795990092",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Efic\u00E1cia (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2820548076",
     "text": "Concede Teleporte Ilus\u00F3rio de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_2912209560",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Frio Adicionado Desperto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_2937199581",
     "text": "Concede Avan\u00E7o de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_2937933274",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Arqueiro Miragem (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_293985888",
@@ -19564,6 +21372,10 @@
     "text": "Concede Convocar Emiss\u00E1rio das Dire\u00E7\u00F5es"
   },
   {
+    "id": "explicit.effect_2963700146",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Arquimago (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_299595248",
     "text": "Concede Sacramento Sangu\u00EDneo de n\u00EDvel #"
   },
@@ -19572,8 +21384,20 @@
     "text": "Concede Convocar Golem Pedregulho de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3002947169",
+    "text": "Gemas encaixadas recebem refor\u00E7o de \u00C1rea de Efeito Aumentada Desperta (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3006785117",
     "text": "Gemas encaixadas recebem refor\u00E7o de Melhoria (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3009566559",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Propaga\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3022937704",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Saraivada (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3024539694",
@@ -19584,12 +21408,24 @@
     "text": "Concede \u00D3dio de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3059751250",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Fortalecer Desperto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3082206530",
     "text": "Gemas encaixadas recebem refor\u00E7o de Mina de Propaga\u00E7\u00E3o Explosiva (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3115071909",
     "text": "Concede Aspecto da Ave de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3121158131",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Invers\u00E3o de Regras (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3124293229",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Sede de Sangue (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3161048706",
@@ -19612,12 +21448,24 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Penetra\u00E7\u00E3o Elemental (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3257625635",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Blasf\u00EAmia Desperta (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3293595800",
     "text": "Gemas encaixadas recebem refor\u00E7o de Efeito Concentrado (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3311634296",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano El\u00E9trico Adicionado Desperto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3318957131",
     "text": "Gemas encaixadas recebem refor\u00E7o de Chance de Fugir (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3334987531",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Raridade de Itens (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3337525114",
@@ -19632,12 +21480,24 @@
     "text": "Concede Aspecto do Caranguejo de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_338557223",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Precis\u00E3o Adicional (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3419961156",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Empalamento (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3431656752",
     "text": "Gemas encaixadas recebem refor\u00E7o de Destrui\u00E7\u00E3o Controlada (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3438910899",
     "text": "Gemas encaixadas recebem refor\u00E7o de F\u00FAria Arcana (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3457811678",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Perfura\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3460970428",
@@ -19650,6 +21510,18 @@
   {
     "id": "explicit.effect_3474714415",
     "text": "Gemas encaixadas recebem refor\u00E7o de Conjurar quando Atordoado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3479500684",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Armadilhas Avan\u00E7adas (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3482292969",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Mina de Alto Impacto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3498266457",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Volatilidade (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3512123051",
@@ -19668,6 +21540,10 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Eco M\u00E1gico Maior (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3553187279",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ramifica\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3568418482",
     "text": "Concede Gra\u00E7a de n\u00EDvel #"
   },
@@ -19680,16 +21556,48 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Dano El\u00E9trico Adicionado (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3628997762",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Frenesi Voraz (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3654111757",
+    "text": "Concede Aspecto de Solaris de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3672428602",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Convoca\u00E7\u00E3o Ancestral (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3676299820",
+    "text": "Concede Aspecto de Arakaali de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3678242906",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Sequ\u00EAncia M\u00E1gica (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_369135889",
     "text": "Gemas encaixadas recebem refor\u00E7o de Dano F\u00EDsico Corpo a Corpo (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3737573678",
+    "text": "Gemas encaixadas recebem refor\u00E7o de \u00C0 Queima-roupa (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3737592146",
     "text": "Gemas encaixadas recebem refor\u00E7o de \u00C1rea de Efeito Aumentada (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3745700985",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Afli\u00E7\u00E3o R\u00E1pida Desperta (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3756080110",
     "text": "Gemas encaixadas recebem refor\u00E7o de Frio em Fogo (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3805221392",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Barragem (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3808743835",
@@ -19712,12 +21620,40 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Vida de Lacaio (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3869346801",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Brutalidade (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3872728076",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Armadilhas Carregadas (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3874278368",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Penetra\u00E7\u00E3o El\u00E9trica Desperta (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3879545743",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Afec\u00E7\u00F5es Mortais Despertas (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3880597684",
     "text": "Concede Atirador de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_388828889",
+    "text": "Concede Faminto de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3893320621",
     "text": "Gemas encaixadas recebem refor\u00E7o de Embalo (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3897784788",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Decapita\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3921181872",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Impiedade (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_3947742455",
@@ -19728,6 +21664,14 @@
     "text": "Concede Tempestade de Gelo de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3959464467",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Eclipse (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3960686014",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis M\u00FAltiplos Maior Despertos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3963374775",
     "text": "Concede Aspecto do Rei da Salmoura de n\u00EDvel #"
   },
@@ -19736,12 +21680,32 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Cegueira (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3984157052",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ch\u00E3o Amaldi\u00E7oado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_3985111281",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Combust\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3995245401",
     "text": "Gemas encaixadas recebem refor\u00E7o de Eco M\u00E1gico (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_400129667",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ex\u00E9rcito Elemental (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_4004746559",
     "text": "Concede Raio Escaldante de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_4028786187",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano Abrasador Desperto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_4055657913",
+    "text": "Gemas encaixadas recebem refor\u00E7o de L\u00E2mina M\u00E1gica (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_405979710",
@@ -19750,6 +21714,10 @@
   {
     "id": "explicit.effect_4083688802",
     "text": "Gemas encaixadas recebem refor\u00E7o de Totens M\u00FAltiplos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_4119948431",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis Perigosos (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_4121000032",
@@ -19780,6 +21748,10 @@
     "text": "Concede Convocar Rhoa Bestial de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_4211392390",
+    "text": "Concede Teleporte Relampejante de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_426005818",
     "text": "Concede Pureza El\u00E9trica de n\u00EDvel #"
   },
@@ -19790,6 +21762,14 @@
   {
     "id": "explicit.effect_4273541898",
     "text": "Concede Aspecto de Lunaris de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_4278342035",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano Cr\u00EDtico Aumentado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_4282732147",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ganhar Vida ao Atingir (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_4291787627",
@@ -19808,12 +21788,28 @@
     "text": "Concede Gula dos Elementos de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_459241192",
+    "text": "Concede Afli\u00E7\u00E3o de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_468251502",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano Elemental com Ataques (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_476766308",
     "text": "Concede Totem Chamariz de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_482188560",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis Perigosos Despertos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_540595610",
     "text": "Gemas encaixadas recebem refor\u00E7o de Velocidade de Lacaio (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_548051260",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Exuber\u00E2ncia M\u00E1gica (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_582742716",
@@ -19822,6 +21818,14 @@
   {
     "id": "explicit.effect_599791292",
     "text": "Concede Disciplina de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_602297583",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Toque Atrofiante (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_602948540",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Afli\u00E7\u00E3o do Golpe Cr\u00EDtico (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_603152644",
@@ -19840,6 +21844,10 @@
     "text": "Concede Exig\u00EAncia da Rainha de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_672697655",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Propagar Dano Corpo a Corpo Desperto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_682681978",
     "text": "Gemas encaixadas recebem refor\u00E7o de Propagar Dano Corpo a Corpo (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -19848,12 +21856,28 @@
     "text": "Concede Chamas Pr\u00F3ximas de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_707288393",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Sobrecarga (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_723113949",
     "text": "Concede Determina\u00E7\u00E3o de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_724848072",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Penetra\u00E7\u00E3o El\u00E9trica (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_771254875",
     "text": "Concede Aspecto do Gato de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_786034009",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano Elemental com Ataques Desperto (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_813521895",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Punho da Guerra (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_838736469",
@@ -19864,8 +21888,28 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Inspira\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_865121484",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Empunhadura de Ferro (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_876810709",
+    "text": "Gemas encaixadas recebem refor\u00E7o de F\u00F4lego Renovado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_880096186",
     "text": "Gemas encaixadas recebem refor\u00E7o de Afec\u00E7\u00F5es Desvinculadas (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_907088360",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ataques M\u00FAltiplos Maiores (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_918792330",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano em Vida Cheia (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_9279802",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Roubo de Energia (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_949715883",
@@ -19874,6 +21918,10 @@
   {
     "id": "explicit.effect_952649073",
     "text": "Gemas encaixadas recebem refor\u00E7o de Roubo de Mana (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_967395006",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Carne Fresca (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_971650107",
@@ -22108,6 +24156,10 @@
     "text": "Seus mapas contendo feras captur\u00E1veis t\u00EAm #% de chance de conter uma fera vermelha adicional"
   },
   {
+    "id": "explicit.stat_1045292082",
+    "text": "Lacaios convertem #% do Dano F\u00EDsico para Dano de Fogo"
+  },
+  {
     "id": "explicit.stat_1045438865",
     "text": "Pode ter # Encantamento R\u00FAnico adicional"
   },
@@ -22586,6 +24638,10 @@
   {
     "id": "explicit.stat_1123291426",
     "text": "Dano com armas ignora #% da resist\u00EAncia a dano de fogo"
+  },
+  {
+    "id": "explicit.stat_1123294660",
+    "text": "Efeito de Crueldade aumentado em #%"
   },
   {
     "id": "explicit.stat_1123357133",
@@ -24084,6 +26140,10 @@
     "text": "Habilidades usadas por este enxerto t\u00EAm #% de chance de infligir puni\u00E7\u00E3o ao atingir"
   },
   {
+    "id": "explicit.stat_1248307887",
+    "text": "Voc\u00EA \u00E9 afetado pela n\u00E9voa de Del\u00EDrio"
+  },
+  {
     "id": "explicit.stat_1248507170",
     "text": "Com ao menos 40 de For\u00E7a no Raio, Acertos com Cutilada Fortificam"
   },
@@ -24246,6 +26306,10 @@
   {
     "id": "explicit.stat_1274200851",
     "text": "Dano com ataques das habilidades vaal encaixadas \u00E9 Sortudo"
+  },
+  {
+    "id": "explicit.stat_1274429432",
+    "text": "Ganha dano m\u00E1gico adicionado equivalente a #% do dano da varinha equipada\nSe duas varinhas estiverem equipadas, cada uma contribuir\u00E1 com metade do dano adicionado"
   },
   {
     "id": "explicit.stat_1274505521",
@@ -24890,6 +26954,10 @@
   {
     "id": "explicit.stat_1372426763",
     "text": "Ganho de experi\u00EAncia de engenharia aumentado em #%"
+  },
+  {
+    "id": "explicit.stat_1373957102",
+    "text": "Regenera #% de Vida por Segundo se voc\u00EA Detonou uma Mina Recentemente"
   },
   {
     "id": "explicit.stat_1375431760",
@@ -26176,6 +28244,10 @@
     "text": "#% de chance de ganhar uma Carga de Frenesi ao Atingir se 4 Itens da Redentora estiverem equipados"
   },
   {
+    "id": "explicit.stat_1571797746",
+    "text": "Evita \u002B#% do dano refletido"
+  },
+  {
     "id": "explicit.stat_1572854306",
     "text": "Efeito de suas afec\u00E7\u00F5es n\u00E3o danosas infligidas com golpes cr\u00EDticos aumentado em #% por 100 de vida m\u00E1xima do jogador"
   },
@@ -26238,6 +28310,10 @@
   {
     "id": "explicit.stat_1583498502",
     "text": "Velocidade de recarga das Rel\u00EDquias Sagradas invocadas reduzida em #%"
+  },
+  {
+    "id": "explicit.stat_1584440377",
+    "text": "Velocidade de Ataque Desarmado com Habilidades Corpo a Corpo aumentada em #%"
   },
   {
     "id": "explicit.stat_158467587",
@@ -27612,6 +29688,10 @@
     "text": "\u00C1rea \u00E9 habitada por homens-cabra"
   },
   {
+    "id": "explicit.stat_181387736",
+    "text": "# modificador de prefixo n\u00E3o pode ser alterado"
+  },
+  {
     "id": "explicit.stat_1814782245",
     "text": "#% mais Dano F\u00EDsico com Ataques Corpo a Corpo Desarmados"
   },
@@ -27682,6 +29762,10 @@
   {
     "id": "explicit.stat_18234720",
     "text": "Requisito de Intelig\u00EAncia aumentado em #%"
+  },
+  {
+    "id": "explicit.stat_1823668305",
+    "text": "Cegueira infligida por voc\u00EA \u00E9 permanente"
   },
   {
     "id": "explicit.stat_1823903967",
@@ -28116,6 +30200,10 @@
     "text": "Voc\u00EA n\u00E3o pode sofrer sangramentos"
   },
   {
+    "id": "explicit.stat_1901408736",
+    "text": "Armadura das Botas e Luvas Equipadas aumentada em #%"
+  },
+  {
     "id": "explicit.stat_1901628087",
     "text": "Modificadores Ultimatum em seus Mapas come\u00E7am com um Tier acima, se poss\u00EDvel"
   },
@@ -28154,6 +30242,10 @@
   {
     "id": "explicit.stat_1907260000",
     "text": "Acertos com esta Arma t\u00EAm #% de chance de ignorar a Redu\u00E7\u00E3o de Dano F\u00EDsico Inimiga"
+  },
+  {
+    "id": "explicit.stat_1909401378",
+    "text": "\u002B#% de Chance de Golpe Cr\u00EDtico"
   },
   {
     "id": "explicit.stat_1910157106",
@@ -28244,6 +30336,10 @@
     "text": "\u002B# de Evas\u00E3o enquanto na Postura da Areia"
   },
   {
+    "id": "explicit.stat_1923210508",
+    "text": "Proj\u00E9teis causam Dano aumentado em #% com Acertos e Afec\u00E7\u00F5es para cada vez que Ricochetearam"
+  },
+  {
     "id": "explicit.stat_1923879260",
     "text": "Ataques t\u00EAm #% de chance de causar Sangramento"
   },
@@ -28280,8 +30376,16 @@
     "text": "Dano de Ataques aumentado em #% por cada 450 de Armadura"
   },
   {
+    "id": "explicit.stat_1928468569",
+    "text": "Acertos Cr\u00EDticos com Arcos tem #% de chance de Envenenar o Inimigo"
+  },
+  {
     "id": "explicit.stat_1928796626",
     "text": "Um item \u00FAnico do Al\u00E9m adicional \u00E9 largado quando o primeiro monstro \u00FAnico do Al\u00E9m \u00E9 morto"
+  },
+  {
+    "id": "explicit.stat_1930039303",
+    "text": "Ataques com esta arma t\u00EAm #% de chance de causar dano triplicado"
   },
   {
     "id": "explicit.stat_19313391",
@@ -31124,6 +33228,10 @@
     "text": "Com ao menos 40 de Intelig\u00EAncia no Raio, Espectros Erguidos tem #% de chance de ganhar Devorador de Almas por 20 segundos ao Matar"
   },
   {
+    "id": "explicit.stat_2390914662",
+    "text": "# modificador de sufixo n\u00E3o pode ser alterado"
+  },
+  {
     "id": "explicit.stat_2391255504",
     "text": "Voc\u00EA tem Juramento do Zelote caso n\u00E3o tenha sido acertado recentemente"
   },
@@ -33876,6 +35984,10 @@
     "text": "Pequenas Habilidades Passivas Adicionadas tamb\u00E9m concedem: \u002B#% de todas as Resist\u00EAncias Elementais"
   },
   {
+    "id": "explicit.stat_2670735758",
+    "text": "Seus Alvos Vinculados causam Dano aumentado em #%"
+  },
+  {
     "id": "explicit.stat_2670993553",
     "text": "Dano n\u00E3o pode ser Refletido"
   },
@@ -33922,6 +36034,10 @@
   {
     "id": "explicit.stat_2678065384",
     "text": "Ganho de experi\u00EAncia de trapa\u00E7a aumentado em #%"
+  },
+  {
+    "id": "explicit.stat_2680060124",
+    "text": "Convoca\u00E7\u00E3o tem a velocidade de recarga aumentada em #%"
   },
   {
     "id": "explicit.stat_2681416653",
@@ -34280,6 +36396,10 @@
     "text": "Raio aumentado em #% durante o Efeito"
   },
   {
+    "id": "explicit.stat_2746497881",
+    "text": "#% de chance de ativar Queda Lunar de n\u00EDvel 20 ao causar um golpe cr\u00EDtico corpo a corpo"
+  },
+  {
     "id": "explicit.stat_274716455",
     "text": "\u002B#% de Multiplicador de Golpe Cr\u00EDtico para Dano M\u00E1gico"
   },
@@ -34574,6 +36694,10 @@
   {
     "id": "explicit.stat_2792863714",
     "text": "Efeito dos Modificadores Expl\u00EDcitos em seus Mapas aumentada em #% por cada Modificador Expl\u00EDcito"
+  },
+  {
+    "id": "explicit.stat_2795287443",
+    "text": "Recupera\u00E7\u00E3o de Glifos tem a velocidade de recarga aumentada em #%"
   },
   {
     "id": "explicit.stat_2796308895",
@@ -35732,6 +37856,10 @@
     "text": "Recarrega # Carga quando voc\u00EA causar um Acerto Cr\u00EDtico"
   },
   {
+    "id": "explicit.stat_2961618300",
+    "text": "#% de chance de Evitar Cegueira"
+  },
+  {
     "id": "explicit.stat_2962020005",
     "text": "Jogadores t\u00EAm \u002B# de mana m\u00E1ximo para cada encaixe azul vazio em qualquer item equipado"
   },
@@ -36052,6 +38180,10 @@
     "text": "Grupos de monstros influenciados pelo Criador em seus mapas t\u00EAm seu tamanho aumentado em #%"
   },
   {
+    "id": "explicit.stat_301822628",
+    "text": "Voc\u00EA n\u00E3o pode regenerar ou recuperar vida"
+  },
+  {
     "id": "explicit.stat_3018691556",
     "text": "Vida m\u00E1xima aumentada e resist\u00EAncia a dano de fogo reduzida em #%"
   },
@@ -36138,6 +38270,10 @@
   {
     "id": "explicit.stat_3034509000",
     "text": "Exilados Renegados Selvagens em seus Mapas t\u00EAm #% de chance de serem Possu\u00EDdos por um Esp\u00EDrito Atormentado"
+  },
+  {
+    "id": "explicit.stat_3034695397",
+    "text": "Dem\u00F4nios do Al\u00E9m em seus Mapas t\u00EAm chance aumentada em #% de serem seguidores de Ghorr"
   },
   {
     "id": "explicit.stat_303527630",
@@ -37460,6 +39596,10 @@
     "text": "Velocidade de recarga dos Golens invocados aumentada em #%"
   },
   {
+    "id": "explicit.stat_3246496608",
+    "text": "A primeira # Queima de Mana aplicada em voc\u00EA n\u00E3o tem efeito"
+  },
+  {
     "id": "explicit.stat_3247931236",
     "text": "Recupera #% de Mana quando voc\u00EA Matar um inimigo durante o Efeito"
   },
@@ -37594,6 +39734,10 @@
   {
     "id": "explicit.stat_3263216405",
     "text": "Habilidades de deslocamento encaixadas n\u00E3o custam mana"
+  },
+  {
+    "id": "explicit.stat_326480871",
+    "text": "Ataques com Machados ou Espadas concedem # de F\u00FAria ao Acertar"
   },
   {
     "id": "explicit.stat_3265124719",
@@ -38956,6 +41100,10 @@
     "text": "Recupera\u00E7\u00E3o de Bloqueio e Atordoamento aumentada em #% durante o Efeito"
   },
   {
+    "id": "explicit.stat_3481254135",
+    "text": "Ganha dano m\u00E1gico adicionado equivalente a #% do dano da adaga equipada\nSe duas adagas estiverem equipadas, cada uma contribuir\u00E1 com 60% do dano adicionado"
+  },
+  {
     "id": "explicit.stat_3481736410",
     "text": "Efeito em \u00C1rea aumentado em #% se voc\u00EA Matou Recentemente"
   },
@@ -39120,6 +41268,10 @@
     "text": "Inimigos sofrem Dano Elemental dos seus Acertos aumentado em #%\npor cada Definhamento que tenha infligido neles"
   },
   {
+    "id": "explicit.stat_3509362078",
+    "text": "Evas\u00E3o do seu Peitoral aumentada em #%"
+  },
+  {
     "id": "explicit.stat_3509724289",
     "text": "1 das Habilidades Passivas Adicionadas \u00E9 Aptid\u00E3o Pura"
   },
@@ -39234,6 +41386,10 @@
   {
     "id": "explicit.stat_3532144131",
     "text": "Jogadores n\u00E3o podem ganhar cargas de toler\u00E2ncia"
+  },
+  {
+    "id": "explicit.stat_3532157821",
+    "text": "#% de chance de causar Dano Dobrado com Ataques se o Tempo de Ataque for maior que 1 segundo"
   },
   {
     "id": "explicit.stat_353291915",
@@ -39964,6 +42120,10 @@
     "text": "Inafetado por Solo Congelado"
   },
   {
+    "id": "explicit.stat_3653779134",
+    "text": "Ganha um b\u00F4nus de altar aleat\u00F3rio por # s ao cegar um\ninimigo raro ou \u00FAnico n\u00E3o cego"
+  },
+  {
     "id": "explicit.stat_3654074125",
     "text": "Ataques t\u00EAm #% de chance de Envenenar enquanto no m\u00E1ximo de Cargas de Frenesi"
   },
@@ -39998,6 +42158,10 @@
   {
     "id": "explicit.stat_3663580344",
     "text": "Dura\u00E7\u00E3o de Arqueiro Miragem aumentada em #%"
+  },
+  {
+    "id": "explicit.stat_3664562804",
+    "text": "A quantidade m\u00E1xima de Sangue Amargo corresponde \u00E0 sua vida m\u00E1xima"
   },
   {
     "id": "explicit.stat_3664778308",
@@ -41790,6 +43954,10 @@
   {
     "id": "explicit.stat_3945147290",
     "text": "#% de chance de ganhar 1 carga de poder ao bloquear"
+  },
+  {
+    "id": "explicit.stat_3945412713",
+    "text": "Ganhe Sangue Amargo equivalente \u00E0 vida gasta"
   },
   {
     "id": "explicit.stat_3945685369",
@@ -48428,6 +50596,10 @@
     "text": "Encontros da Legi\u00E3o em seus mapas t\u00EAm a dura\u00E7\u00E3o aumentada em #%"
   },
   {
+    "id": "explicit.stat_699502241",
+    "text": "Cegar um chefe supremo do Atlas n\u00E3o cego com esta arma\nroubar\u00E1 um modificador para este item (# modificador restante)"
+  },
+  {
     "id": "explicit.stat_699756626",
     "text": "Frascos de Merc\u00FArio utilizados por voc\u00EA tamb\u00E9m se aplicam aos aliados a at\u00E9 6 metros"
   },
@@ -48788,6 +50960,10 @@
     "text": "\u00C1rea cont\u00E9m O Temido"
   },
   {
+    "id": "explicit.stat_758685542",
+    "text": "Frascos de Rubi que afetam voc\u00EA t\u00EAm o efeito aumentado em #%"
+  },
+  {
     "id": "explicit.stat_759294825",
     "text": "Guardi\u00E3o Animado causa dano aumentado em #% por Arma Animada"
   },
@@ -48898,6 +51074,10 @@
   {
     "id": "explicit.stat_771127912",
     "text": "Perde # de vida por segundo"
+  },
+  {
+    "id": "explicit.stat_771469730",
+    "text": "Roubo de vida com golpes cr\u00EDticos \u00E9 instant\u00E2neo"
   },
   {
     "id": "explicit.stat_773731062",
@@ -50432,6 +52612,10 @@
     "text": "1 das Habilidades Passivas Adicionadas \u00E9 M\u00E3o da Tormenta"
   },
   {
+    "id": "fractured.stat_1123294660",
+    "text": "Efeito de Crueldade aumentado em #%"
+  },
+  {
     "id": "fractured.stat_1124657098",
     "text": "Executar engenharia durante o Confinamento n\u00E3o toma tempo adicional"
   },
@@ -50924,6 +53108,10 @@
     "text": "Ganho de experi\u00EAncia de engenharia aumentado em #%"
   },
   {
+    "id": "fractured.stat_1373957102",
+    "text": "Regenera #% de Vida por Segundo se voc\u00EA Detonou uma Mina Recentemente"
+  },
+  {
     "id": "fractured.stat_1379411836",
     "text": "\u002B# de todos Atributos"
   },
@@ -51240,6 +53428,10 @@
     "text": "1 das Passivas Adicionadas \u00E9 Foco Irrestrito"
   },
   {
+    "id": "fractured.stat_1571797746",
+    "text": "Evita \u002B#% do dano refletido"
+  },
+  {
     "id": "fractured.stat_1572897579",
     "text": "Voc\u00EA possui Agressividade durante a Anula\u00E7\u00E3o do Ganho de Almas"
   },
@@ -51432,6 +53624,10 @@
     "text": "Dano m\u00E1gico aumentado em #% ao usar duas armas"
   },
   {
+    "id": "fractured.stat_1678831767",
+    "text": "Recupere # de Vida quando voc\u00EA Bloquear"
+  },
+  {
     "id": "fractured.stat_1681904129",
     "text": "Gemas Encaixadas t\u00EAm \u002B#% de Chance de Cr\u00EDtico"
   },
@@ -51558,6 +53754,10 @@
   {
     "id": "fractured.stat_1773891268",
     "text": "Inimigos possuem #% de redu\u00E7\u00E3o da Evas\u00E3o caso vco\u00EA tenha os Acertado Recentemente"
+  },
+  {
+    "id": "fractured.stat_1775318819",
+    "text": "Repeti\u00E7\u00E3o Final das Magias t\u00EAm Efeito em \u00C1rea aumentado em #%"
   },
   {
     "id": "fractured.stat_1776945532",
@@ -51728,6 +53928,10 @@
     "text": "Ba\u00FAs do Assalto t\u00EAm #% de chance de duplicar os Orbes do Del\u00EDrio e fragmentos que largarem"
   },
   {
+    "id": "fractured.stat_1870732546",
+    "text": "Habilidades que invocam um Totem t\u00EAm #% de chance de invocar dois em vez de um"
+  },
+  {
     "id": "fractured.stat_1871056256",
     "text": "#% do dano f\u00EDsico dos ataques \u00E9 sofrido como dano de frio"
   },
@@ -51770,6 +53974,10 @@
   {
     "id": "fractured.stat_1898978455",
     "text": "Dano dos monstros ignora #% das resist\u00EAncias elementais"
+  },
+  {
+    "id": "fractured.stat_1901408736",
+    "text": "Armadura das Botas e Luvas Equipadas aumentada em #%"
   },
   {
     "id": "fractured.stat_1902595112",
@@ -51834,6 +54042,10 @@
   {
     "id": "fractured.stat_1919892065",
     "text": "Inimigos intimidados por voc\u00EA t\u00EAm a dura\u00E7\u00E3o dos atordoamentos contra eles aumentada em #%"
+  },
+  {
+    "id": "fractured.stat_1923210508",
+    "text": "Proj\u00E9teis causam Dano aumentado em #% com Acertos e Afec\u00E7\u00F5es para cada vez que Ricochetearam"
   },
   {
     "id": "fractured.stat_1923879260",
@@ -51906,6 +54118,10 @@
   {
     "id": "fractured.stat_1974445926",
     "text": "Lacaios t\u00EAm #% de chance de Envenenar ao Acertarem"
+  },
+  {
+    "id": "fractured.stat_1975119765",
+    "text": "\u00C1rea cont\u00E9m a Selva Viridiana"
   },
   {
     "id": "fractured.stat_1976069869",
@@ -52320,6 +54536,10 @@
     "text": "1 das Habilidades Passivas Adicionadas \u00E9 R\u00E1pido e Mortal"
   },
   {
+    "id": "fractured.stat_2171629017",
+    "text": "Dura\u00E7\u00E3o de carga aumentada em #%"
+  },
+  {
     "id": "fractured.stat_2174134106",
     "text": "Clamores n\u00E3o podem Impelir Habilidades de Deslocamento"
   },
@@ -52716,6 +54936,10 @@
     "text": "\u002B#% \u00E0 Chance m\u00E1xima de Bloquear Dano M\u00E1gico"
   },
   {
+    "id": "fractured.stat_2390914662",
+    "text": "# modificador de sufixo n\u00E3o pode ser alterado"
+  },
+  {
     "id": "fractured.stat_2396755365",
     "text": "1 das Habilidades Passivas Adicionadas \u00E9 Banquete de Carne"
   },
@@ -52898,6 +55122,10 @@
   {
     "id": "fractured.stat_2479683456",
     "text": "Lacaios Regeneram #% de Vida por segundo"
+  },
+  {
+    "id": "fractured.stat_2480498143",
+    "text": "Habilidades custam Vida ao inv\u00E9s de #% do seu Custo de Mana"
   },
   {
     "id": "fractured.stat_2481353198",
@@ -53212,6 +55440,10 @@
     "text": "Pequenas Habilidades Passivas Adicionadas tamb\u00E9m concedem: \u002B#% de todas as Resist\u00EAncias Elementais"
   },
   {
+    "id": "fractured.stat_2670735758",
+    "text": "Seus Alvos Vinculados causam Dano aumentado em #%"
+  },
+  {
     "id": "fractured.stat_2671663397",
     "text": "# a # de dano de frio m\u00E1gico adicionado ao usar um escudo"
   },
@@ -53230,6 +55462,10 @@
   {
     "id": "fractured.stat_2678065384",
     "text": "Ganho de experi\u00EAncia de trapa\u00E7a aumentado em #%"
+  },
+  {
+    "id": "fractured.stat_2680060124",
+    "text": "Convoca\u00E7\u00E3o tem a velocidade de recarga aumentada em #%"
   },
   {
     "id": "fractured.stat_2692578539",
@@ -53406,6 +55642,10 @@
   {
     "id": "fractured.stat_279227559",
     "text": "Velocidade de Movimento aumentada em #% se voc\u00EA Matou Recentemente"
+  },
+  {
+    "id": "fractured.stat_2795287443",
+    "text": "Recupera\u00E7\u00E3o de Glifos tem a velocidade de recarga aumentada em #%"
   },
   {
     "id": "fractured.stat_2796704737",
@@ -53730,6 +55970,10 @@
   {
     "id": "fractured.stat_2961018200",
     "text": "\u00C1rea \u00E9 habitada por Abomina\u00E7\u00F5es"
+  },
+  {
+    "id": "fractured.stat_2961618300",
+    "text": "#% de chance de Evitar Cegueira"
   },
   {
     "id": "fractured.stat_2964800094",
@@ -54206,6 +56450,10 @@
   {
     "id": "fractured.stat_3246076198",
     "text": "\u00C1rea possui po\u00E7as de Solo Eletrizado que aumenta o Dano sofrido em #%"
+  },
+  {
+    "id": "fractured.stat_3246496608",
+    "text": "A primeira # Queima de Mana aplicada em voc\u00EA n\u00E3o tem efeito"
   },
   {
     "id": "fractured.stat_3248691197",
@@ -54728,6 +56976,10 @@
     "text": "\u002B# metros ao Alcance da Arma"
   },
   {
+    "id": "fractured.stat_3509362078",
+    "text": "Evas\u00E3o do seu Peitoral aumentada em #%"
+  },
+  {
     "id": "fractured.stat_3509724289",
     "text": "1 das Habilidades Passivas Adicionadas \u00E9 Aptid\u00E3o Pura"
   },
@@ -54770,6 +57022,10 @@
   {
     "id": "fractured.stat_3532144131",
     "text": "Jogadores n\u00E3o podem ganhar cargas de toler\u00E2ncia"
+  },
+  {
+    "id": "fractured.stat_3532157821",
+    "text": "#% de chance de causar Dano Dobrado com Ataques se o Tempo de Ataque for maior que 1 segundo"
   },
   {
     "id": "fractured.stat_3533432197",
@@ -54958,6 +57214,10 @@
   {
     "id": "fractured.stat_365540634",
     "text": "\u3164\u002B#% de resist\u00EAncia a dano de caos para monstros"
+  },
+  {
+    "id": "fractured.stat_3663580344",
+    "text": "Dura\u00E7\u00E3o de Arqueiro Miragem aumentada em #%"
   },
   {
     "id": "fractured.stat_3666934677",
@@ -57288,6 +59548,10 @@
     "text": "Refor\u00E7ado por B\u00EAn\u00E7\u00E3o Eterna n\u00EDvel 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|1452519409",
+    "text": "Refor\u00E7ado por Diminui\u00E7\u00E3o n\u00EDvel 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|1466145569",
     "text": "Refor\u00E7ado por \u00C1rea de Efeito Aumentada n\u00EDvel 1"
   },
@@ -57406,6 +59670,10 @@
   {
     "id": "imbued.pseudo_built_in_support|21787019",
     "text": "Refor\u00E7ado por Convocar Fantasma n\u00EDvel 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|2208650143",
+    "text": "Refor\u00E7ado por Destitui\u00E7\u00E3o n\u00EDvel 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|2222630080",
@@ -57528,6 +59796,10 @@
     "text": "Refor\u00E7ado por Inspira\u00E7\u00E3o n\u00EDvel 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|2842604691",
+    "text": "Refor\u00E7ado por Conjurar ao Sofrer Dano n\u00EDvel 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|2883596469",
     "text": "Refor\u00E7ado por Toque Maldito n\u00EDvel 1"
   },
@@ -57578,6 +59850,10 @@
   {
     "id": "imbued.pseudo_built_in_support|318949620",
     "text": "Refor\u00E7ado por Propagar Feiti\u00E7o n\u00EDvel 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|3192305202",
+    "text": "Refor\u00E7ado por Priva\u00E7\u00E3o de Poder n\u00EDvel 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|3226210172",
@@ -57704,6 +59980,10 @@
     "text": "Refor\u00E7ado por Dano F\u00EDsico Corpo a Corpo n\u00EDvel 1"
   },
   {
+    "id": "imbued.pseudo_built_in_support|3674002686",
+    "text": "Refor\u00E7ado por Impot\u00EAncia n\u00EDvel 1"
+  },
+  {
     "id": "imbued.pseudo_built_in_support|3676897366",
     "text": "Refor\u00E7ado por Esfor\u00E7o Excessivo n\u00EDvel 1"
   },
@@ -57734,6 +60014,10 @@
   {
     "id": "imbued.pseudo_built_in_support|3950169394",
     "text": "Refor\u00E7ado por Proj\u00E9teis M\u00FAltiplos Melhorado n\u00EDvel 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|3989015253",
+    "text": "Refor\u00E7ado por Sobrecarga n\u00EDvel 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|3990013913",
@@ -57794,6 +60078,10 @@
   {
     "id": "imbued.pseudo_built_in_support|578583560",
     "text": "Refor\u00E7ado por Empalar n\u00EDvel 1"
+  },
+  {
+    "id": "imbued.pseudo_built_in_support|601991273",
+    "text": "Refor\u00E7ado por Anula\u00E7\u00E3o n\u00EDvel 1"
   },
   {
     "id": "imbued.pseudo_built_in_support|619178891",
@@ -57900,6 +60188,14 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Conjura\u00E7\u00E3o Acelerada (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_1463464665",
+    "text": "Concede Convocar Est\u00E1tua Petrificadora de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_149184016",
+    "text": "Concede Aspecto da Aranha de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_1571191461",
     "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Fogo Adicionado (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -57912,8 +60208,20 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Caos Adicionado (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_1710445055",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Desencadeamento (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_1770376530",
     "text": "Gemas encaixadas recebem refor\u00E7o de Proj\u00E9teis R\u00E1pidos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_1795027869",
+    "text": "Concede Convocar Emiss\u00E1rio Maior do Foco"
+  },
+  {
+    "id": "implicit.effect_1858870975",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Totem M\u00E1gico (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_1878151040",
@@ -57924,8 +60232,16 @@
     "text": "Concede C\u00F3lera de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_2092916684",
+    "text": "Concede Convocar Marsupial Bestial de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_2100902429",
     "text": "Gemas encaixadas recebem refor\u00E7o de Ataques M\u00FAltiplos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_2109649836",
+    "text": "Concede Oferenda de Sangue de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_2141384509",
@@ -57940,12 +60256,28 @@
     "text": "Concede Clareza de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_2251567057",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Crueldade (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_2377502094",
+    "text": "Concede Convocar Cobra Bestial de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_2455845502",
+    "text": "Concede Congelabilidade de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_2461314210",
     "text": "Concede Ira de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_2559654739",
     "text": "Concede \u00CDmpeto de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_2579976590",
+    "text": "Concede Vontade dos Lordes de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_2649350521",
@@ -57956,8 +60288,16 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Fonte de Vida (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_2698327786",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Toxinas Letais (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_2713755048",
     "text": "Gemas encaixadas recebem refor\u00E7o de Roubo de Vida (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_2753888557",
+    "text": "Concede Toque de Doryani de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_2765861847",
@@ -57984,8 +60324,20 @@
     "text": "Concede \u00D3dio de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_3115071909",
+    "text": "Concede Aspecto da Ave de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_3232631539",
     "text": "Gemas encaixadas recebem refor\u00E7o de Penetra\u00E7\u00E3o Elemental (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_3293595800",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Efeito Concentrado (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_3362019776",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Frio Adicionado (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_338557223",
@@ -57994,6 +60346,10 @@
   {
     "id": "implicit.effect_3419961156",
     "text": "Gemas encaixadas recebem refor\u00E7o de Empalamento (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_3457811678",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Perfura\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_3474714415",
@@ -58032,6 +60388,14 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Prolifera\u00E7\u00E3o Elemental (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_3850673820",
+    "text": "Concede Convocar Emiss\u00E1rio Maior das Tempestades"
+  },
+  {
+    "id": "implicit.effect_388828889",
+    "text": "Concede Faminto de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_3893320621",
     "text": "Gemas encaixadas recebem refor\u00E7o de Embalo (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -58040,8 +60404,20 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Cegueira (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_405979710",
+    "text": "Concede Craca Selvagem de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_4121000032",
+    "text": "Concede Convocar Emiss\u00E1rio do Foco"
+  },
+  {
     "id": "implicit.effect_4154731776",
     "text": "Concede Pureza Glacial de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_4195991223",
+    "text": "Concede Convocar Rhoa Bestial de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_426005818",
@@ -58060,6 +60436,14 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Ganhar Vida ao Atingir (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_4291787627",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Ataques Mais R\u00E1pidos (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_434885230",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Blasf\u00EAmia (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "implicit.effect_468251502",
     "text": "Gemas encaixadas recebem refor\u00E7o de Dano Elemental com Ataques (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -58070,6 +60454,10 @@
   {
     "id": "implicit.effect_599791292",
     "text": "Concede Disciplina de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_626699959",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Conjurar ao Morrer (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_682681978",
@@ -58184,6 +60572,10 @@
     "text": "Seu Dano de Raio pode Congelar, mas n\u00E3o Eletrizar"
   },
   {
+    "id": "implicit.stat_1012433600",
+    "text": "Amaldi\u00E7oa inimigos com enregelamento ao atingir, se 5 itens da Redentora estiverem equipados"
+  },
+  {
     "id": "implicit.stat_1016130575",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Adiciona # a # de Dano de Gelo em Ataques"
   },
@@ -58198,6 +60590,14 @@
   {
     "id": "implicit.stat_1018817416",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Adiciona de # a # de dano de frio a magias"
+  },
+  {
+    "id": "implicit.stat_1019020209",
+    "text": "Dano aumentado em #% por Maldi\u00E7\u00E3o em Voc\u00EA"
+  },
+  {
+    "id": "implicit.stat_1019891080",
+    "text": "Flechas causam #% de Dano aumentado com Acertos e Afec\u00E7\u00F5es em Alvos Perfurados"
   },
   {
     "id": "implicit.stat_1021552211",
@@ -58332,12 +60732,20 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Arauto Vulc\u00E2nico tem o efeito de b\u00F4nus aumentado em #%"
   },
   {
+    "id": "implicit.stat_1091613629",
+    "text": "Recebe Presen\u00E7a do Criador por 10 segundos ao matar um Inimigo Raro ou \u00DAnico"
+  },
+  {
     "id": "implicit.stat_1092987622",
     "text": "#% do Dano F\u00EDsico Corpo a Corpo recebido \u00E9 refletido aos Agressores"
   },
   {
     "id": "implicit.stat_1101403182",
     "text": "Dano sofrido de dano degenerativo reduzido em #%"
+  },
+  {
+    "id": "implicit.stat_1107877645",
+    "text": "Regenera #% de Vida por segundo se voc\u00EA Consumiu um cad\u00E1ver Recentemente"
   },
   {
     "id": "implicit.stat_1109700751",
@@ -58414,6 +60822,10 @@
   {
     "id": "implicit.stat_1139878780",
     "text": "Seu Dano de Caos pode Incendiar"
+  },
+  {
+    "id": "implicit.stat_1144742318",
+    "text": "Habilidades de pacto t\u00EAm a velocidade de recarga aumentada em #%"
   },
   {
     "id": "implicit.stat_1145451936",
@@ -58508,6 +60920,10 @@
     "text": "\u002B# \u00E0 F\u00FAria m\u00E1xima"
   },
   {
+    "id": "implicit.stat_1183036145",
+    "text": "Habilidades que custam vida t\u00EAm #% de chance de causar dano dobrado"
+  },
+  {
     "id": "implicit.stat_118398748",
     "text": "Velocidade de Arremesso da Armadilha aumentada em #%"
   },
@@ -58524,12 +60940,28 @@
     "text": "Frascos recebem # Cargas a cada 3 segundos"
   },
   {
+    "id": "implicit.stat_1195319608",
+    "text": "Escudo de Energia do Peitoral Equipado aumentado em #%"
+  },
+  {
     "id": "implicit.stat_1211769158",
     "text": "Dano com armas ignora #% da resist\u00EAncia a dano de frio"
   },
   {
     "id": "implicit.stat_1212083058",
     "text": "Efic\u00E1cia da Reserva de Mana das Habilidades aumentada em #% por cada 250 do total de Atributos"
+  },
+  {
+    "id": "implicit.stat_1214232297",
+    "text": "#% de chance de recuperar toda a vida ao matar um inimigo"
+  },
+  {
+    "id": "implicit.stat_1214601201",
+    "text": "\u3164\u002B#% de vida m\u00E1xima"
+  },
+  {
+    "id": "implicit.stat_1217730254",
+    "text": "Inimigos sofrem Dano aumentado em #% por cada tipo de Afec\u00E7\u00E3o que voc\u00EA infligiu neles"
   },
   {
     "id": "implicit.stat_1217759839",
@@ -58546,6 +60978,10 @@
   {
     "id": "implicit.stat_1220361974",
     "text": "Inimigos mortos por voc\u00EA explodem, causando #% da vida deles como dano f\u00EDsico"
+  },
+  {
+    "id": "implicit.stat_1225383362",
+    "text": "\u002B# ao n\u00FAmero m\u00E1ximo de Esqueletos"
   },
   {
     "id": "implicit.stat_122841557",
@@ -58592,12 +61028,20 @@
     "text": "Concede 1 carga de frenesi aos aliados a at\u00E9 4 metros ao matar"
   },
   {
+    "id": "implicit.stat_1244494473",
+    "text": "#% do Dano de Raio sofrido como Dano de Fogo"
+  },
+  {
     "id": "implicit.stat_1247498990",
     "text": "Adiciona de # a # de dano de frio aos ataques desarmados"
   },
   {
     "id": "implicit.stat_124859000",
     "text": "Evas\u00E3o aumentada em #% (Local)"
+  },
+  {
+    "id": "implicit.stat_125218179",
+    "text": "\u002B# \u00E0 quantidade m\u00E1xima de Espectros"
   },
   {
     "id": "implicit.stat_1253537227",
@@ -58614,6 +61058,10 @@
   {
     "id": "implicit.stat_1263695895",
     "text": "#% de aumento do Raio de Ilumina\u00E7\u00E3o"
+  },
+  {
+    "id": "implicit.stat_1264919148",
+    "text": "Habilidades suportadas por Liberar tem \u002B# ao n\u00FAmero m\u00E1ximo de Selos"
   },
   {
     "id": "implicit.stat_1269219558",
@@ -58638,6 +61086,10 @@
   {
     "id": "implicit.stat_128585622",
     "text": "Lacaios s\u00E3o Agressivos"
+  },
+  {
+    "id": "implicit.stat_1289472451",
+    "text": "Amaldi\u00E7oa inimigos com condutividade ao atingir, se 5 itens do Cruzado estiverem equipados"
   },
   {
     "id": "implicit.stat_1290399200",
@@ -58672,8 +61124,16 @@
     "text": "\u002B#% de Resist\u00EAncia a Caos m\u00E1xima"
   },
   {
+    "id": "implicit.stat_1302845655",
+    "text": "#% de chance ganhar uma Carga de Frenesi para cada Inimigo que voc\u00EA acertar com um Golpe Cr\u00EDtico"
+  },
+  {
     "id": "implicit.stat_1308467455",
     "text": "Juventude Eterna"
+  },
+  {
+    "id": "implicit.stat_1309492287",
+    "text": "Regenera #% de mana por segundo se voc\u00EA consumiu um cad\u00E1ver recentemente"
   },
   {
     "id": "implicit.stat_1309840354",
@@ -58684,8 +61144,16 @@
     "text": "#% de aumento do Dano F\u00EDsico Global"
   },
   {
+    "id": "implicit.stat_1311723478",
+    "text": "Penalidades de Movimento das Armaduras s\u00E3o Ignoradas"
+  },
+  {
     "id": "implicit.stat_1313503107",
     "text": "#% do dano de frio dos ataques \u00E9 sofrido como dano el\u00E9trico"
+  },
+  {
+    "id": "implicit.stat_1313678015",
+    "text": "Dano aumentado em #% enquanto na Postura de Sangue"
   },
   {
     "id": "implicit.stat_1314617696",
@@ -58764,6 +61232,10 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, #% de Chance de Bloquear o Dano M\u00E1gico"
   },
   {
+    "id": "implicit.stat_13590525",
+    "text": "\u002B# ao n\u00FAmero M\u00E1ximo de Esp\u00EDritos Sagrados\n\u002B# ao n\u00FAmero de Esp\u00EDritos Sagrados Convocados"
+  },
+  {
     "id": "implicit.stat_1360723495",
     "text": "Velocidade de Movimento aumentada em #% por cada Envenenamento em voc\u00EA at\u00E9 um m\u00E1ximo de 50%"
   },
@@ -58798,6 +61270,10 @@
   {
     "id": "implicit.stat_1373673887",
     "text": "Debilita inimigos atingidos por voc\u00EA e que estejam com a vida cheia por 4 segundos"
+  },
+  {
+    "id": "implicit.stat_137377270",
+    "text": "\u3164\u002B#% de vida m\u00E1xima"
   },
   {
     "id": "implicit.stat_1379411836",
@@ -58836,6 +61312,10 @@
     "text": "Pureza de Gelo tem a efici\u00EAncia da reserva de mana aumentada em #%"
   },
   {
+    "id": "implicit.stat_1400414838",
+    "text": "\u002B#% ao efeito de esfriamento m\u00E1ximo"
+  },
+  {
     "id": "implicit.stat_140429540",
     "text": "Chance de Acerto Cr\u00EDtico para Magias aumentada em #% enquanto Portando um Cajado"
   },
@@ -58846,6 +61326,10 @@
   {
     "id": "implicit.stat_1412947753",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Chance de Golpe Cr\u00EDtico com Magias aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_1417918566",
+    "text": "A cada segundo, causa Atrofia em inimigos a at\u00E9 6 metros por # s"
   },
   {
     "id": "implicit.stat_141810208",
@@ -58944,12 +61428,20 @@
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Inimigos que voc\u00EA Acertou Recentemente t\u00EAm Regenera\u00E7\u00E3o de Vida reduzida em #%"
   },
   {
+    "id": "implicit.stat_1450081919",
+    "text": "\u3164\u002B#% de dano contra monstros mortos-vivos"
+  },
+  {
     "id": "implicit.stat_1450978702",
     "text": "Pureza El\u00E9trica tem a efici\u00EAncia da reserva de mana aumentada em #%"
   },
   {
     "id": "implicit.stat_1452809865",
     "text": "Recarga de Frasco recebida aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_1453197917",
+    "text": "#% de chance de receber uma Carga de Poder ao Acertar"
   },
   {
     "id": "implicit.stat_1455812442",
@@ -58994,6 +61486,10 @@
   {
     "id": "implicit.stat_1478653032",
     "text": "Resfriamentos em Voc\u00EA tem Efeito reduzido em #%"
+  },
+  {
+    "id": "implicit.stat_1480595847",
+    "text": "Efeito dos Empalamentos infligidos por suas Magias aumentado em #%"
   },
   {
     "id": "implicit.stat_1481249164",
@@ -59050,6 +61546,10 @@
   {
     "id": "implicit.stat_1510714129",
     "text": "Ataques t\u00EAm #% de chance de Mutilar ao Acertar"
+  },
+  {
+    "id": "implicit.stat_151300265",
+    "text": "Ataques com arco sacrificam um lacaio aleat\u00F3rio que pode ser ferido para disparar # flecha adicional"
   },
   {
     "id": "implicit.stat_1513279759",
@@ -59188,6 +61688,10 @@
     "text": "Lacaios causam Dano aumentado em #%"
   },
   {
+    "id": "implicit.stat_1590183647",
+    "text": "#% mais b\u00F4nus recebidos das botas equipadas"
+  },
+  {
     "id": "implicit.stat_1590336483",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Dano de Fogo aumentado em #%"
   },
@@ -59210,6 +61714,10 @@
   {
     "id": "implicit.stat_1604984482",
     "text": "Seu Dano de Raio pode Envenenar"
+  },
+  {
+    "id": "implicit.stat_1607193320",
+    "text": "Habilidades de deslocamento t\u00EAm #% de chance de n\u00E3o consumir uma recarga ao usar"
   },
   {
     "id": "implicit.stat_1609260458",
@@ -59276,6 +61784,14 @@
     "text": "#% de chance de causar Sangramento com Armas Corpo a Corpo"
   },
   {
+    "id": "implicit.stat_1631195850",
+    "text": "Habilidades de retalia\u00E7\u00E3o se tornam us\u00E1veis a cada # segundos"
+  },
+  {
+    "id": "implicit.stat_1633157811",
+    "text": "Armadura de elmo equipado aumentada em #%"
+  },
+  {
     "id": "implicit.stat_1633778432",
     "text": "Impulso Ardente de n\u00EDvel {} ao usar uma Habilidade Encaixada]"
   },
@@ -59284,12 +61800,20 @@
     "text": "Eletriza\u00E7\u00F5es infligidas por voc\u00EA se espalham para outros Inimigos dentro de 1.5 metros"
   },
   {
+    "id": "implicit.stat_1640937241",
+    "text": "#% do dano f\u00EDsico degenerativo \u00E9 sofrido como dano de caos"
+  },
+  {
     "id": "implicit.stat_1640965354",
     "text": "\u00C1rea cont\u00E9m n\u00FAmero de Marcadores de Monstros R\u00FAnicos aumentado em #%"
   },
   {
     "id": "implicit.stat_1640965354",
     "text": "Seus Mapas t\u00EAm quantidade de Marcadores de Monstros R\u00FAnicos aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_1642347505",
+    "text": "#% do Dano de Gelo sofrido como Dano de Fogo"
   },
   {
     "id": "implicit.stat_1643688236",
@@ -59338,6 +61862,10 @@
   {
     "id": "implicit.stat_1662974426",
     "text": "Efeito da Maldi\u00E7\u00E3o Grilh\u00F5es Temporais aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_1666645630",
+    "text": "Inimigos a at\u00E9 6 metros de cad\u00E1veres gerados por voc\u00EA recentemente\nt\u00EAm a velocidade de regenera\u00E7\u00E3o de vida reduzida em #%"
   },
   {
     "id": "implicit.stat_1668340466",
@@ -59404,6 +61932,10 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Lacaios evitam \u002B#% do dano refletido que eles sofreriam"
   },
   {
+    "id": "implicit.stat_1698276268",
+    "text": "Proj\u00E9teis que Ricochetearam ganham #% de Dano N\u00E3o-Ca\u00F3tico como Dano de Caos extra"
+  },
+  {
     "id": "implicit.stat_1698847655",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Inc\u00EAndios infligidos por voc\u00EA se espalham para outros Inimigos dentro de # metro"
   },
@@ -59430,6 +61962,10 @@
   {
     "id": "implicit.stat_1708506642",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, #% de chance de Inervar Inimigos por 4 segundos ao Acertar"
+  },
+  {
+    "id": "implicit.stat_1710381148",
+    "text": "Dura\u00E7\u00E3o de atordoamentos contra inimigos em vida cheia aumentada em #%"
   },
   {
     "id": "implicit.stat_1712221299",
@@ -59592,6 +62128,14 @@
     "text": "#% mais Dano F\u00EDsico com Ataques Corpo a Corpo Desarmados"
   },
   {
+    "id": "implicit.stat_1816894864",
+    "text": "Inimigos Resfriados pelos seus Acertos t\u00EAm Dano sofrido aumentado pelo Efeito do Resfriamento"
+  },
+  {
+    "id": "implicit.stat_1818773442",
+    "text": "Dano com Acertos e Afec\u00E7\u00F5es aumentado em #% por Maldi\u00E7\u00E3o no Inimigo"
+  },
+  {
     "id": "implicit.stat_1825301877",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Evas\u00E3o do Elmo e Botas equipadas aumentada em #%"
   },
@@ -59636,6 +62180,10 @@
     "text": "Efeito em \u00C1rea de Ataques aumentado em #%"
   },
   {
+    "id": "implicit.stat_1846105968",
+    "text": "Inimigos cegados por voc\u00EA durante a Postura de Areia sofrem dano aumentado em #%"
+  },
+  {
     "id": "implicit.stat_1847660463",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, \u00C1rea de efeito aumentada em #%"
   },
@@ -59666,6 +62214,10 @@
   {
     "id": "implicit.stat_1869144397",
     "text": "Ativa Olhar Vazio de n\u00EDvel # quando voc\u00EA usar uma Habilidade"
+  },
+  {
+    "id": "implicit.stat_1870732546",
+    "text": "Habilidades que invocam um Totem t\u00EAm #% de chance de invocar dois em vez de um"
   },
   {
     "id": "implicit.stat_1870961528",
@@ -59804,6 +62356,10 @@
     "text": "Proj\u00E9teis causam Dano aumentado em #% com Acertos e Afec\u00E7\u00F5es para cada vez que Ricochetearam"
   },
   {
+    "id": "implicit.stat_192371942",
+    "text": "Inc\u00EAndios infligidos por voc\u00EA se espalham para outros Inimigos em um Raio de 1,5 metros"
+  },
+  {
     "id": "implicit.stat_1923879260",
     "text": "Ataques t\u00EAm #% de chance de causar Sangramento"
   },
@@ -59878,6 +62434,10 @@
   {
     "id": "implicit.stat_1973340656",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Lacaios evitam \u002B#% do dano refletido que eles sofreriam"
+  },
+  {
+    "id": "implicit.stat_1978899297",
+    "text": "\u002B#% de todas Resist\u00EAncias Elementais m\u00E1ximas"
   },
   {
     "id": "implicit.stat_1980216452",
@@ -60088,6 +62648,10 @@
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, #% de aumento da Precis\u00E3o Global"
   },
   {
+    "id": "implicit.stat_2087475423",
+    "text": "#% de chance de ganhar 1 carga de toler\u00E2ncia ao atingir"
+  },
+  {
     "id": "implicit.stat_2089652545",
     "text": "#% de chance de Intimidar Inimigos por 4 segundos ao Acertar"
   },
@@ -60118,6 +62682,10 @@
   {
     "id": "implicit.stat_2101383955",
     "text": "Dano Penetra #% de Resist\u00EAncias Elementais"
+  },
+  {
+    "id": "implicit.stat_2101631651",
+    "text": "Habilidades causam dano de proj\u00E9til aumentado em #% por proj\u00E9til criado"
   },
   {
     "id": "implicit.stat_2102212273",
@@ -60186,6 +62754,10 @@
   {
     "id": "implicit.stat_2137878565",
     "text": "Dano com ataques contra monstros raros aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_2138799639",
+    "text": "Flechas Perfuram todos os Alvos ap\u00F3s se Difundirem"
   },
   {
     "id": "implicit.stat_2139660169",
@@ -60336,6 +62908,10 @@
     "text": "#% da armadura tamb\u00E9m se aplica ao dano el\u00E9trico sofrido de ataques"
   },
   {
+    "id": "implicit.stat_2201614328",
+    "text": "#% de Vida Regenerada por segundo se voc\u00EA foi Acertado Recentemente"
+  },
+  {
     "id": "implicit.stat_2204282073",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, #% do Dano F\u00EDsico Convertido em Dano de Caos"
   },
@@ -60354,6 +62930,10 @@
   {
     "id": "implicit.stat_221328679",
     "text": "Golpe Corpo a Corpo dos Esp\u00EDritos Furiosos Convocados causam apenas Propaga\u00E7\u00E3o de Dano de Fogo\naos Inimigos ao Redor"
+  },
+  {
+    "id": "implicit.stat_2216127021",
+    "text": "\u00C1rea de Efeito aumentada em #% enquanto Desarmado"
   },
   {
     "id": "implicit.stat_221690080",
@@ -60548,6 +63128,10 @@
     "text": "#% de chance de Eletrizar com Armas Corpo a Corpo"
   },
   {
+    "id": "implicit.stat_2316295572",
+    "text": "Frascos de Ferro que afetam voc\u00EA t\u00EAm o efeito aumentado em #%"
+  },
+  {
     "id": "implicit.stat_2316658489",
     "text": "\u002B# de Armadura e Evas\u00E3o"
   },
@@ -60566,6 +63150,10 @@
   {
     "id": "implicit.stat_2324668473",
     "text": "Efeito de afec\u00E7\u00F5es n\u00E3o danosas aumentado em #% por gema de habilidade azul encaixada"
+  },
+  {
+    "id": "implicit.stat_2337295272",
+    "text": "Lacaios causam Dano aumentado em #% se voc\u00EA Acertou Recentemente"
   },
   {
     "id": "implicit.stat_2339757871",
@@ -60600,6 +63188,10 @@
     "text": "Dano F\u00EDsico Corpo a Corpo aumentado em #% a cada 10 de Destreza"
   },
   {
+    "id": "implicit.stat_2356684802",
+    "text": "Exposi\u00E7\u00E3o a Fogo infligida por voc\u00EA aplica \u002B#% extra de Resist\u00EAncia a Fogo"
+  },
+  {
     "id": "implicit.stat_2358015838",
     "text": "Evas\u00E3o \u00E9 aumentada pela Resist\u00EAncia a Gelo Excedente"
   },
@@ -60612,12 +63204,20 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Efici\u00EAncia da reserva de mana de habilidades aumentada em #%"
   },
   {
+    "id": "implicit.stat_2360921519",
+    "text": "Inimigos mortos por voc\u00EA t\u00EAm #% de chance de explodir e causarem um d\u00E9cimo da pr\u00F3pria vida m\u00E1xima como dano de um elemento aleat\u00F3rio"
+  },
+  {
     "id": "implicit.stat_2366356855",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Determina\u00E7\u00E3o tem o efeito de aura aumentado em #%"
   },
   {
     "id": "implicit.stat_2367680009",
     "text": "#% de chance de conceder 1 carga de poder aos aliados a at\u00E9 4 metros ao matar"
+  },
+  {
+    "id": "implicit.stat_2370748292",
+    "text": "Lacaios ganham resist\u00EAncias adicionadas equivalente a #% de suas resist\u00EAncias"
   },
   {
     "id": "implicit.stat_2374340020",
@@ -60630,6 +63230,10 @@
   {
     "id": "implicit.stat_2377438118",
     "text": "Maximiza\u00E7\u00E3o aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_2378187488",
+    "text": "\u002B# ao n\u00EDvel de todas as habilidades de deslocamento"
   },
   {
     "id": "implicit.stat_2382196858",
@@ -60646,6 +63250,10 @@
   {
     "id": "implicit.stat_2388574377",
     "text": "\u002B#% \u00E0 Chance m\u00E1xima de Bloquear Dano M\u00E1gico"
+  },
+  {
+    "id": "implicit.stat_2390518055",
+    "text": "\u002B#% ao multiplicador de dano f\u00EDsico degenerativo, se sangrando"
   },
   {
     "id": "implicit.stat_2391109128",
@@ -60692,8 +63300,16 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Efeito de Elusivo aumentado em #%"
   },
   {
+    "id": "implicit.stat_2414462207",
+    "text": "Lacaios criados recentemente t\u00EAm Agressividade"
+  },
+  {
     "id": "implicit.stat_2415020123",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Dano aumentado em #% por carga de frenesi"
+  },
+  {
+    "id": "implicit.stat_2415497478",
+    "text": "#% de chance de Evitar Dano F\u00EDsico de Acertos"
   },
   {
     "id": "implicit.stat_2419712247",
@@ -60756,6 +63372,10 @@
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Velocidade de Ataque aumentada em #%"
   },
   {
+    "id": "implicit.stat_2450413567",
+    "text": "#% de chance de uma Chuva de Moedas ao matar"
+  },
+  {
     "id": "implicit.stat_2451060005",
     "text": "Voc\u00EA pode pescar peixes corrompidos"
   },
@@ -60802,6 +63422,10 @@
   {
     "id": "implicit.stat_247168950",
     "text": "Lacaios ganham #% do Dano Elemental como Dano de Caos Extra"
+  },
+  {
+    "id": "implicit.stat_2474564741",
+    "text": "Seu ch\u00E3o consagrado aplica dano sofrido pelos inimigos aumentado em #%"
   },
   {
     "id": "implicit.stat_2477636501",
@@ -60964,6 +63588,10 @@
     "text": "Pureza de Fogo tem o efeito de aura aumentado em #%"
   },
   {
+    "id": "implicit.stat_2545584555",
+    "text": "Efeito do Definhamento aumentado em #%"
+  },
+  {
     "id": "implicit.stat_2545907302",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, #% de aumento do Dano F\u00EDsico Global"
   },
@@ -61028,6 +63656,10 @@
     "text": "Habilidades de Clamor t\u00EAm Efeito em \u00C1rea aumentado em #%"
   },
   {
+    "id": "implicit.stat_2567919918",
+    "text": "Frascos Utilit\u00E1rios ganham # Carga a cada 3 segundos"
+  },
+  {
     "id": "implicit.stat_2570943032",
     "text": "\u00C1rea cont\u00E9m 1 caixa-forte"
   },
@@ -61056,6 +63688,10 @@
     "text": "Ativa \u00C9gide Elemental de n\u00EDvel # quando equipado"
   },
   {
+    "id": "implicit.stat_2602664175",
+    "text": "Lacaios Recuperam #% de Vida ao Matar um Inimigo Envenenado"
+  },
+  {
     "id": "implicit.stat_2603798371",
     "text": "Ativa Forma Sombria de n\u00EDvel 30 quando Acertado"
   },
@@ -61082,6 +63718,10 @@
   {
     "id": "implicit.stat_261654754",
     "text": "\u002B# de dano de frio sofrido de ataques"
+  },
+  {
+    "id": "implicit.stat_261712318",
+    "text": "\u3164\u002B#% de dano el\u00E9trico m\u00E1ximo"
   },
   {
     "id": "implicit.stat_2619970520",
@@ -61236,6 +63876,10 @@
     "text": "#% de chance de Agravar o Sangramento em alvos que voc\u00EA Acertar com Ataques"
   },
   {
+    "id": "implicit.stat_2705969278",
+    "text": "Acertos t\u00EAm #% de chance de considerar os valores de resist\u00EAncia a dano el\u00E9trico dos monstros inimigos como invertidos"
+  },
+  {
     "id": "implicit.stat_2706994884",
     "text": "Inimigos eletrificados mortos por voc\u00EA explodem, causando #%\nda pr\u00F3pria vida como dano el\u00E9trico que n\u00E3o pode eletrificar"
   },
@@ -61284,6 +63928,10 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Acelera\u00E7\u00E3o tem o efeito de aura aumentado em #%"
   },
   {
+    "id": "implicit.stat_2736829661",
+    "text": "Ao matar um monstro raro, h\u00E1 #% de chance de ganhar um de seus modificadores por 10 segundos"
+  },
+  {
     "id": "implicit.stat_2739830820",
     "text": "\u002B# ao n\u00EDvel de todas as gemas de Invocar Zumbi"
   },
@@ -61300,12 +63948,24 @@
     "text": "Mana m\u00E1ximo aumentado em #%"
   },
   {
+    "id": "implicit.stat_2751374419",
+    "text": "Ao envenenar um alvo n\u00E3o envenenado, voc\u00EA tamb\u00E9m aplica # penalidades de Atrofia com dura\u00E7\u00E3o de 2 segundos"
+  },
+  {
     "id": "implicit.stat_2752131673",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Disciplina tem o efeito de aura aumentado em #%"
   },
   {
+    "id": "implicit.stat_2755326667",
+    "text": "Voc\u00EA n\u00E3o pode ser Atordoado se voc\u00EA foi Atordoado ou Bloqueou um Acerto Atordoante nos \u00FAltimos 2 segundos"
+  },
+  {
     "id": "implicit.stat_2759003954",
     "text": "Lacaios t\u00EAm \u002B#% de multiplicador de dano degenerativo"
+  },
+  {
+    "id": "implicit.stat_2761237769",
+    "text": "#% do dano de frio corpo a corpo sofrido \u00E9 refletido ao atacante"
   },
   {
     "id": "implicit.stat_2761472996",
@@ -61412,12 +64072,24 @@
     "text": "Ganhe 1 de F\u00FAria no Acerto com Ataques"
   },
   {
+    "id": "implicit.stat_280530196",
+    "text": "Ataques t\u00EAm a dura\u00E7\u00E3o do inc\u00EAndio aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_2805714016",
+    "text": "Dano com ataques contra inimigos esfriados aumentado em #%"
+  },
+  {
     "id": "implicit.stat_280731498",
     "text": "\u00C1rea de efeito aumentada em #%"
   },
   {
     "id": "implicit.stat_2809284200",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Dano aumentado em #% por Carga de Poder"
+  },
+  {
+    "id": "implicit.stat_2809802678",
+    "text": "Habilidades disparam um Proj\u00E9til adicional caso voc\u00EA tenha usado uma Habilidade de Movimento Recentemente"
   },
   {
     "id": "implicit.stat_2809900883",
@@ -61508,8 +64180,16 @@
     "text": "Acertos t\u00EAm #% de chance de ignorar a Redu\u00E7\u00E3o de Dano F\u00EDsico dos Monstros Inimigos"
   },
   {
+    "id": "implicit.stat_2840285057",
+    "text": "Armadura do peitoral equipado aumentada em #%"
+  },
+  {
     "id": "implicit.stat_2841027131",
     "text": "Regenera # de vida por segundo durante o movimento"
+  },
+  {
+    "id": "implicit.stat_2841618445",
+    "text": "#% de Vida Regenerada por segundo por Zumbi Erguido"
   },
   {
     "id": "implicit.stat_2843100721",
@@ -61530,6 +64210,10 @@
   {
     "id": "implicit.stat_284496119",
     "text": "N\u00EDvel dos monstros: #"
+  },
+  {
+    "id": "implicit.stat_2846448337",
+    "text": "Chance de Inimigos Bloquearem Ataques com Espada reduzida em #%"
   },
   {
     "id": "implicit.stat_2847548062",
@@ -61800,12 +64484,20 @@
     "text": "#% do Dano de Raio sofrido \u00E9 Recuperado como Vida"
   },
   {
+    "id": "implicit.stat_2973498992",
+    "text": "Seu Dano de Caos pode Congelar"
+  },
+  {
     "id": "implicit.stat_2974417149",
     "text": "Dano M\u00E1gico aumentado em #%"
   },
   {
     "id": "implicit.stat_298106626",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Acertos Corpo a Corpo Fortificam"
+  },
+  {
+    "id": "implicit.stat_298173317",
+    "text": "#% de aumento do Efeito de Empalamento"
   },
   {
     "id": "implicit.stat_2986495340",
@@ -61822,6 +64514,10 @@
   {
     "id": "implicit.stat_2994708956",
     "text": "Pode gerar modificadores de lacaio"
+  },
+  {
+    "id": "implicit.stat_2994988431",
+    "text": "#% mais Dano F\u00EDsico M\u00E1ximo de Ataques"
   },
   {
     "id": "implicit.stat_2996280658",
@@ -61890,6 +64586,10 @@
   {
     "id": "implicit.stat_3019083030",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Velocidade de movimento aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_3019598671",
+    "text": "Proj\u00E9teis perfuram, ramificam ou se propagam mais uma vez aleatoriamente"
   },
   {
     "id": "implicit.stat_3023957681",
@@ -62004,6 +64704,14 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Derruba Solo Cauterizado enquanto se move, durando # segundos"
   },
   {
+    "id": "implicit.stat_3098087057",
+    "text": "Dano em ch\u00E3o ardente aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_3101897388",
+    "text": "Recupera\u00E7\u00E3o M\u00E1xima por Dreno de Vida aumentada em #%"
+  },
+  {
     "id": "implicit.stat_310246444",
     "text": "Dano aumentado em #% enquanto Drenando"
   },
@@ -62012,8 +64720,20 @@
     "text": "\u002B#% ao Multiplicador de Cr\u00EDtico com Espadas"
   },
   {
+    "id": "implicit.stat_3115319277",
+    "text": "Recebe #% do Dano de Raio como Dano Extra de Caos por carga de Poder"
+  },
+  {
+    "id": "implicit.stat_3119292058",
+    "text": "Inimigos Resfriados pelos seus Acertos podem ser Despeda\u00E7ados como se fossem Congelados"
+  },
+  {
     "id": "implicit.stat_3120164895",
     "text": "Adiciona # a # de Dano de Fogo aos Ataques com Arco"
+  },
+  {
+    "id": "implicit.stat_3120620173",
+    "text": "Habilidades de pacto t\u00EAm a velocidade de conjura\u00E7\u00E3o aumentada em #%"
   },
   {
     "id": "implicit.stat_3123599008",
@@ -62128,6 +64848,10 @@
     "text": "#% de Mana Regenerada por segundo"
   },
   {
+    "id": "implicit.stat_3188898882",
+    "text": "Afec\u00E7\u00F5es danosas infligidas por lacaios causam dano #% mais r\u00E1pido"
+  },
+  {
     "id": "implicit.stat_318953428",
     "text": "#% de chance de Cegar Inimigos ao Acertar com Ataques"
   },
@@ -62138,6 +64862,10 @@
   {
     "id": "implicit.stat_3192966873",
     "text": "Pureza de Gelo tem a reserva reduzida em #%"
+  },
+  {
+    "id": "implicit.stat_3193713651",
+    "text": "Recupera\u00E7\u00E3o de Vida aumentada em #% por 5% de vida n\u00E3o reservada faltante"
   },
   {
     "id": "implicit.stat_3199183447",
@@ -62162,6 +64890,10 @@
   {
     "id": "implicit.stat_3209267362",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Efeito da Agressividade em voc\u00EA aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_3209419976",
+    "text": "Armadura de elmo, peitoral, luvas e botas equipados aumentada em #%"
   },
   {
     "id": "implicit.stat_321077055",
@@ -62224,6 +64956,10 @@
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Inflige Exposi\u00E7\u00E3o a Fogo ao Acertar, aplicando #% de Resist\u00EAncia a Fogo"
   },
   {
+    "id": "implicit.stat_32458272",
+    "text": "Ativa Invocar Aranhas Menor n\u00EDvel 20 ao matar"
+  },
+  {
     "id": "implicit.stat_3250579936",
     "text": "Ativa Furor de Abberath de n\u00EDvel # quando equipado"
   },
@@ -62248,12 +64984,24 @@
     "text": "\u002B# de Destreza"
   },
   {
+    "id": "implicit.stat_3262016885",
+    "text": "Lacaios s\u00E3o agressivos, se voc\u00EA usou uma habilidade de lacaio recentemente"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Definhamentos infligidos por voc\u00EA expiram #% mais rapidamente"
   },
   {
+    "id": "implicit.stat_3262991862",
+    "text": "Causa Sangramento com Golpes Cr\u00EDticos Corpo a Corpo"
+  },
+  {
     "id": "implicit.stat_3264420229",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, #% de chance de Evitar Afec\u00E7\u00F5es Elementais"
+  },
+  {
+    "id": "implicit.stat_3266394681",
+    "text": "Habilidades de Ataque possuem \u002B# ao n\u00FAmero m\u00E1ximo de Totens Convocados"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -62358,6 +65106,10 @@
   {
     "id": "implicit.stat_3304203764",
     "text": "\u002B#% de Chance de Bloquear o Dano de Ataques de Inimigos Amaldi\u00E7oados"
+  },
+  {
+    "id": "implicit.stat_3307066983",
+    "text": "A chance de bloquear o dano de ataque de proj\u00E9til \u00E9 Sortuda"
   },
   {
     "id": "implicit.stat_3309607228",
@@ -62480,6 +65232,10 @@
     "text": "Lacaios possuem um aumento de #% de Velocidade de Ataque"
   },
   {
+    "id": "implicit.stat_3376335115",
+    "text": "#% mais Dano F\u00EDsico M\u00E1ximo de Ataques"
+  },
+  {
     "id": "implicit.stat_3377888098",
     "text": "Dura\u00E7\u00E3o do efeito de habilidades aumentada em #%"
   },
@@ -62534,6 +65290,10 @@
   {
     "id": "implicit.stat_3401410854",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Velocidade de Ataque aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_3402448478",
+    "text": "Acertos t\u00EAm #% de chance de considerar os valores de resist\u00EAncia a dano de frio dos monstros inimigos como invertidos"
   },
   {
     "id": "implicit.stat_3407849389",
@@ -62600,6 +65360,10 @@
     "text": "\u002B# de Dano F\u00EDsico sofrido dos Acertos de Ataques"
   },
   {
+    "id": "implicit.stat_3442107889",
+    "text": "Recebe Presen\u00E7a Enlouquecedora por 10 segundos ao Matar um Inimigo Raro ou \u00DAnico"
+  },
+  {
     "id": "implicit.stat_3444518809",
     "text": "Ira tem a efici\u00EAncia da reserva de mana aumentada em #%"
   },
@@ -62648,6 +65412,10 @@
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, #% do Dano de Fogo \u00E9 Drenado como Vida"
   },
   {
+    "id": "implicit.stat_3482421817",
+    "text": "Evas\u00E3o de elmo, peitoral, luvas e botas equipados aumentada em #%"
+  },
+  {
     "id": "implicit.stat_3483999943",
     "text": "#% de chance de Evitar ser Resfriado"
   },
@@ -62692,6 +65460,10 @@
     "text": "Voc\u00EA tem Trespassar caso tenha Bloqueado Recentemente"
   },
   {
+    "id": "implicit.stat_3493440964",
+    "text": "Ganha um b\u00F4nus de altar aleat\u00F3rio por # segundos ao matar um inimigo raro ou \u00FAnico"
+  },
+  {
     "id": "implicit.stat_3496944181",
     "text": "Dano M\u00E1gico aumentado em #% enquanto empunhar um Cajado"
   },
@@ -62704,12 +65476,20 @@
     "text": "#% do Dano de Ataques \u00E9 Drenado como Mana"
   },
   {
+    "id": "implicit.stat_3503466234",
+    "text": "#% de aumento do Dano com Acertos e Afec\u00E7\u00F5es contra Inimigos Cegos"
+  },
+  {
     "id": "implicit.stat_3504652942",
     "text": "\u002B#% ao Multiplicador de Dano Degenerativo para Envenenamento por Carga de Frenesi"
   },
   {
     "id": "implicit.stat_350598685",
     "text": "\u002B# metros ao Alcance da Arma"
+  },
+  {
+    "id": "implicit.stat_3509362078",
+    "text": "Evas\u00E3o do seu Peitoral aumentada em #%"
   },
   {
     "id": "implicit.stat_3512432760",
@@ -62784,6 +65564,10 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Efeito da Maldi\u00E7\u00E3o Condutividade aumentado em #%"
   },
   {
+    "id": "implicit.stat_3548404923",
+    "text": "Velocidade de a\u00E7\u00E3o aumentada em #%, se incendiado"
+  },
+  {
     "id": "implicit.stat_3548561213",
     "text": "Velocidade de Ataque aumentada em #% por Carga de Frenesi"
   },
@@ -62830,6 +65614,10 @@
   {
     "id": "implicit.stat_3562211447",
     "text": "#% de chance de ganhar Poder Profano por 3 segundos ao Matar"
+  },
+  {
+    "id": "implicit.stat_3565956680",
+    "text": "#% de aumento do Dano com Acertos e Afec\u00E7\u00F5es contra Inimigos Cegos"
   },
   {
     "id": "implicit.stat_3567752586",
@@ -62964,6 +65752,10 @@
     "text": "O Dano dos Inimigos Acertando voc\u00EA \u00E9 Azarado enquanto voc\u00EA estiver em Vida Cheia"
   },
   {
+    "id": "implicit.stat_3633399302",
+    "text": "#% de Dano de Fogo Drenado como Vida enquanto Incendiado"
+  },
+  {
     "id": "implicit.stat_3635566977",
     "text": "\u002B#% de todas Resist\u00EAncias m\u00E1ximas quando voc\u00EA n\u00E3o tem Cargas de Toler\u00E2ncia"
   },
@@ -62984,6 +65776,10 @@
     "text": "# a # de Dano de Gelo Adicional por Carga de Frenesi"
   },
   {
+    "id": "implicit.stat_3652380199",
+    "text": "\u002B# de dano f\u00EDsico sofrido de ataques por n\u00EDvel"
+  },
+  {
     "id": "implicit.stat_3653191834",
     "text": "Inafetado por Solo Congelado"
   },
@@ -62992,12 +65788,20 @@
     "text": "Determina\u00E7\u00E3o tem o efeito de aura aumentado em #%"
   },
   {
+    "id": "implicit.stat_3655769732",
+    "text": "\u002B#% de Qualidade de todas as Gemas de Habilidade"
+  },
+  {
     "id": "implicit.stat_3657377047",
     "text": "#% de chance de Ativar uma Magia Maldi\u00E7\u00E3o Encaixada quando voc\u00EA conjurar uma Magia, com 0.25 segundo da Recarga"
   },
   {
     "id": "implicit.stat_3660138886",
     "text": "Imune a Desacelera\u00E7\u00E3o"
+  },
+  {
+    "id": "implicit.stat_3660255193",
+    "text": "Seu ch\u00E3o consagrado concede dano sofrido reduzido em #% a voc\u00EA e seus aliados"
   },
   {
     "id": "implicit.stat_3660450649",
@@ -63048,6 +65852,10 @@
     "text": "Recupera Escudo de Energia igual a #% da Armadura quando voc\u00EA Bloquear"
   },
   {
+    "id": "implicit.stat_3682839745",
+    "text": "#% de chance de ganhar 1 carga de salmoura em vez de 1 carga de toler\u00E2ncia"
+  },
+  {
     "id": "implicit.stat_3683150361",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, #% de chance de Agravar o Sangramento em alvos que voc\u00EA Acertar com Ataques"
   },
@@ -63088,6 +65896,10 @@
     "text": "\u002B# de cargas de toler\u00E2ncia m\u00EDnimas"
   },
   {
+    "id": "implicit.stat_3708520172",
+    "text": "Aumentos e redu\u00E7\u00F5es de campo de vis\u00E3o tamb\u00E9m se aplicam \u00E0 velocidade de regenera\u00E7\u00E3o de vida em #% de seu valor"
+  },
+  {
     "id": "implicit.stat_3710240762",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Chance de Acerto Cr\u00EDtico para Ataques aumentada em #%"
   },
@@ -63106,6 +65918,10 @@
   {
     "id": "implicit.stat_3720627346",
     "text": "Velocidade de Ataque com Varinhas aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_3723063276",
+    "text": "Inimigos amaldi\u00E7oados por voc\u00EA n\u00E3o podem causar golpes cr\u00EDticos"
   },
   {
     "id": "implicit.stat_3731630482",
@@ -63218,6 +66034,10 @@
   {
     "id": "implicit.stat_3767873853",
     "text": "Reflete # de Dano F\u00EDsico para Agressores Corpo a Corpo"
+  },
+  {
+    "id": "implicit.stat_3769211656",
+    "text": "#% de chance de ganhar 1 carga de frenesi ao bloquear"
   },
   {
     "id": "implicit.stat_3771516363",
@@ -63476,6 +66296,10 @@
     "text": "Voc\u00EA possui Confluxo de Inc\u00EAndio, Resfriamento e Eletriza\u00E7\u00E3o enquanto afetado por Loucura Gloriosa"
   },
   {
+    "id": "implicit.stat_3913936991",
+    "text": "#% do dano sofrido de ataques atordoantes \u00E9 recuperado como vida"
+  },
+  {
     "id": "implicit.stat_3915702459",
     "text": "Ganha # de vida ao perder uma carga de toler\u00E2ncia"
   },
@@ -63506,6 +66330,10 @@
   {
     "id": "implicit.stat_3927388937",
     "text": "#% de chance de os empalamentos em inimigos mortos por voc\u00EA refletirem o dano para os inimigos a at\u00E9 2,2 metros"
+  },
+  {
+    "id": "implicit.stat_3931566161",
+    "text": "Amaldi\u00E7oa inimigos com desespero ao atingir, se 5 itens do Ca\u00E7ador estiverem equipados"
   },
   {
     "id": "implicit.stat_3935031607",
@@ -63594,6 +66422,10 @@
   {
     "id": "implicit.stat_3966666111",
     "text": "#% de aumento de Dano por cada 100 de Intelig\u00EAncia"
+  },
+  {
+    "id": "implicit.stat_3966765615",
+    "text": "Amaldi\u00E7oa inimigos com inflamabilidade ao atingir, se 5 itens do Senhor da Guerra estiverem equipados"
   },
   {
     "id": "implicit.stat_3967028570",
@@ -63760,6 +66592,10 @@
     "text": "\u002B# de Escudo de Energia m\u00E1ximo (Local)"
   },
   {
+    "id": "implicit.stat_4052113003",
+    "text": "Mata inimigos mortos-vivos com 15% ou menos de vida ao serem atingidos por suas habilidades"
+  },
+  {
     "id": "implicit.stat_4052117756",
     "text": "Todo Dano pode Congelar"
   },
@@ -63782,6 +66618,10 @@
   {
     "id": "implicit.stat_4057257145",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Vida m\u00E1xima dos Lacaios aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_4058190193",
+    "text": "Efeito de Solos Sagrados Criados por voc\u00EA aumentado em #%"
   },
   {
     "id": "implicit.stat_40584863",
@@ -63840,6 +66680,10 @@
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, \u002B#% ao multiplicador de dano f\u00EDsico degenerativo"
   },
   {
+    "id": "implicit.stat_4088932395",
+    "text": "Estandartes tamb\u00E9m concedem #% do dano f\u00EDsico ganho como dano de fogo adicional a voc\u00EA e seus aliados"
+  },
+  {
     "id": "implicit.stat_4091694419",
     "text": "Aumentos e redu\u00E7\u00F5es \u00E0 sua evas\u00E3o tamb\u00E9m se aplicam ao seu dano m\u00E1gico"
   },
@@ -63894,6 +66738,10 @@
   {
     "id": "implicit.stat_4108186648",
     "text": "\u002B#% de chance de Suprimir o Dano M\u00E1gico enquanto Canalizando"
+  },
+  {
+    "id": "implicit.stat_4113372195",
+    "text": "Efeitos do Solo Sagrado criado por voc\u00EA Perduram por 1 segundo"
   },
   {
     "id": "implicit.stat_4116705863",
@@ -64016,6 +66864,10 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Efeito da Maldi\u00E7\u00E3o Puni\u00E7\u00E3o aumentado em #%"
   },
   {
+    "id": "implicit.stat_417188801",
+    "text": "#% de chance de ganhar 1 carga de toler\u00E2ncia ao bloquear"
+  },
+  {
     "id": "implicit.stat_4175197580",
     "text": "Malevol\u00EAncia tem o efeito de aura aumentado em #%"
   },
@@ -64042,6 +66894,10 @@
   {
     "id": "implicit.stat_4202507508",
     "text": "Efici\u00EAncia da reserva de habilidades aumentada em #%"
+  },
+  {
+    "id": "implicit.stat_420435377",
+    "text": "\u002B#% ao multiplicador de dano de fogo degenerativo, se incendiado"
   },
   {
     "id": "implicit.stat_4206255461",
@@ -64140,8 +66996,16 @@
     "text": "Eletriza\u00E7\u00F5es infligidas por voc\u00EA es espalham para outros Inimigos dentro de # metro"
   },
   {
+    "id": "implicit.stat_4246915004",
+    "text": "As oferendas criadas por voc\u00EA tamb\u00E9m concedem dano aumentado em #%"
+  },
+  {
     "id": "implicit.stat_4247488219",
     "text": "Orgulho tem o efeito de aura aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_4249220643",
+    "text": "Velocidade de Ataque com Dupla Empunhadura aumentada em #%"
   },
   {
     "id": "implicit.stat_4249521944",
@@ -64168,6 +67032,10 @@
     "text": "Golpes Reveladores"
   },
   {
+    "id": "implicit.stat_4268284087",
+    "text": "Estandartes tamb\u00E9m concedem #% do dano f\u00EDsico ganho como dano de frio adicional a voc\u00EA e seus aliados"
+  },
+  {
     "id": "implicit.stat_4268321763",
     "text": "Velocidade de Ataque aumentada em #% quando em Vida Cheia"
   },
@@ -64190,6 +67058,10 @@
   {
     "id": "implicit.stat_4274080377",
     "text": "#% de aumento de Dano por cada 100 de For\u00E7a"
+  },
+  {
+    "id": "implicit.stat_4276479762",
+    "text": "Dano contra feras aumentado em #%"
   },
   {
     "id": "implicit.stat_4277795662",
@@ -64238,6 +67110,10 @@
   {
     "id": "implicit.stat_438468314",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Efeito de b\u00F4nus concedido por seus Golens P\u00E9treos aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_440826461",
+    "text": "\u3164\u002B#% de dano el\u00E9trico m\u00E1ximo"
   },
   {
     "id": "implicit.stat_44159086",
@@ -64290,6 +67166,10 @@
   {
     "id": "implicit.stat_474294393",
     "text": "Custo de mana de habilidades reduzido em #%"
+  },
+  {
+    "id": "implicit.stat_474853513",
+    "text": "#% do dano dos ataques \u00E9 subtra\u00EDdo da vida dos seus lacaios que podem sofrer dano antes de atingir voc\u00EA"
   },
   {
     "id": "implicit.stat_475684070",
@@ -64396,6 +67276,10 @@
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, 1% menos Dano Sofrido por cada # de For\u00E7a"
   },
   {
+    "id": "implicit.stat_514698677",
+    "text": "#% de chance de infligir um envenenamento adicional no mesmo alvo ao envenenar"
+  },
+  {
     "id": "implicit.stat_516565950",
     "text": "\u002B# ao n\u00EDvel das gemas f\u00EDsicas encaixadas"
   },
@@ -64476,6 +67360,10 @@
     "text": "#% do Dano de Ataques F\u00EDsicos \u00E9 Drenado como Vida (Local)"
   },
   {
+    "id": "implicit.stat_560643297",
+    "text": "Acertos t\u00EAm #% de chance de considerar os valores de resist\u00EAncia a dano de fogo dos monstros inimigos como invertidos"
+  },
+  {
     "id": "implicit.stat_561307714",
     "text": "#% de Chance de Bloquear o Dano M\u00E1gico"
   },
@@ -64548,6 +67436,10 @@
     "text": "N\u00E3o pode usar Frascos no Quinto Espa\u00E7o"
   },
   {
+    "id": "implicit.stat_59033544",
+    "text": "#% de chance de devorar uma alma ao consumir o cad\u00E1ver de um monstro raro"
+  },
+  {
     "id": "implicit.stat_591105508",
     "text": "\u002B# ao N\u00EDvel de todas as Gemas Habilidades de Magias de Fogo"
   },
@@ -64610,6 +67502,10 @@
   {
     "id": "implicit.stat_628716294",
     "text": "Velocidade de A\u00E7\u00E3o n\u00E3o pode ser modificada para abaixo do valor base"
+  },
+  {
+    "id": "implicit.stat_62884658",
+    "text": "#% de chance de ganhar Forma Et\u00E9rea ao atingir"
   },
   {
     "id": "implicit.stat_631097842",
@@ -64716,6 +67612,10 @@
     "text": "Velocidade de Ataque aumentada em #%"
   },
   {
+    "id": "implicit.stat_683595855",
+    "text": "Habilidades de \u00E1rea t\u00EAm #% de chance de causar dano dobrado"
+  },
+  {
     "id": "implicit.stat_683892962",
     "text": "Dano aumentado em #% por lacaio, at\u00E9 40%"
   },
@@ -64800,6 +67700,10 @@
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Sangramentos infligidos por voc\u00EA causam Dano #% mais r\u00E1pido"
   },
   {
+    "id": "implicit.stat_738897289",
+    "text": "Velocidade de recupera\u00E7\u00E3o de vida aumentada em #% ao recuperar vida"
+  },
+  {
     "id": "implicit.stat_740797388",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, Dano aumentado em #% por carga de toler\u00E2ncia"
   },
@@ -64834,6 +67738,14 @@
   {
     "id": "implicit.stat_752930724",
     "text": "Itens e Gemas t\u00EAm o Requisito de Atributos aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_755922799",
+    "text": "Lacaios tem #% de chance de causar Dano Dobrado"
+  },
+  {
+    "id": "implicit.stat_759530725",
+    "text": "Inimigos provocados por seus clamores t\u00EAm a velocidade de a\u00E7\u00E3o aumentada em #%"
   },
   {
     "id": "implicit.stat_760444887",
@@ -64874,6 +67786,10 @@
   {
     "id": "implicit.stat_768982451",
     "text": "\u002B#% \u00E0 qualidade das gemas de \u00E1rea de efeito encaixadas"
+  },
+  {
+    "id": "implicit.stat_769783486",
+    "text": "Adiciona # a # de Dano de Gelo aos Ataques por cada 10 de Destreza"
   },
   {
     "id": "implicit.stat_770672621",
@@ -65032,6 +67948,14 @@
     "text": "Vida Recuperada de Frascos aumentada em #%"
   },
   {
+    "id": "implicit.stat_822106893",
+    "text": "Golpes Fatais consomem cad\u00E1veres para recuperar #% de mana"
+  },
+  {
+    "id": "implicit.stat_822568652",
+    "text": "#% do dano sofrido \u00E9 recuperado como escudo de energia"
+  },
+  {
     "id": "implicit.stat_824762042",
     "text": "1% menos Dano Sofrido por cada # de Destreza"
   },
@@ -65126,6 +68050,10 @@
   {
     "id": "implicit.stat_887556907",
     "text": "Dano de Caos sofrido n\u00E3o ultrapassa o Escudo de Energia enquanto n\u00E3o estiver em Vida Baixa"
+  },
+  {
+    "id": "implicit.stat_893038512",
+    "text": "Sua chance de fazer monstros fugirem ao atingi-los tamb\u00E9m \u00E9 uma chance de aterrorizar monstros ao atingi-los"
   },
   {
     "id": "implicit.stat_895264825",
@@ -65280,6 +68208,14 @@
     "text": "Dura\u00E7\u00E3o dos inc\u00EAndios em voc\u00EA reduzida em #%"
   },
   {
+    "id": "implicit.stat_986616727",
+    "text": "Feiti\u00E7os se Transferem para todos os Inimigos dentro de 3 metros quando o Inimigo Enfeiti\u00E7ado morrer"
+  },
+  {
+    "id": "implicit.stat_988207959",
+    "text": "Habilidades disparam um Proj\u00E9til adicional caso voc\u00EA tenha sido Acertado Recentemente"
+  },
+  {
     "id": "implicit.stat_988575597",
     "text": "Velocidade de Recupera\u00E7\u00E3o de Escudo de Energia aumentada em #%"
   },
@@ -65294,6 +68230,10 @@
   {
     "id": "implicit.stat_989948703",
     "text": "Modificadores de quantidade de itens afetam a quantidade de recompensas largadas pelo chefe em #% de seu valor"
+  },
+  {
+    "id": "implicit.stat_990219738",
+    "text": "Dano de Raio aumentado em #% a cada 10 de Intelig\u00EAncia"
   },
   {
     "id": "implicit.stat_990377349",
@@ -70210,6 +73150,10 @@
   {
     "id": "scourge.effect_1659491511",
     "text": "Concede Arauto Glacial de n\u00EDvel #"
+  },
+  {
+    "id": "scourge.effect_1673391040",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Dano de Caos Adicionado (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "scourge.effect_2054781369",

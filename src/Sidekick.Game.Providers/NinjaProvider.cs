@@ -10,17 +10,21 @@ public class NinjaProvider(
     ISettingsService settingsService
 ) : IInitializableService
 {
-    public Dictionary<string, NinjaExchangeItem> ExchangeItems { get; private set; } = [];
-    public Dictionary<string, NinjaStashItem> StashItems { get; private set; } = [];
+    public Dictionary<string, List<NinjaExchangeItem>> ExchangeItems { get; private set; } = [];
+    public Dictionary<string, List<NinjaStashItem>> StashItems { get; private set; } = [];
 
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
 
         var exchangeItems = await dataProvider.Read<List<NinjaExchangeItem>>(game, GameDataType.NinjaExchangeItems, currentGameLanguage.Language);
-        ExchangeItems = exchangeItems.ToDictionary(x => x.DetailsId);
+        ExchangeItems = exchangeItems
+            .GroupBy(x => x.DetailsId)
+            .ToDictionary(x => x.First().DetailsId, x => x.ToList());
 
         var stashItems = await dataProvider.Read<List<NinjaStashItem>>(game, GameDataType.NinjaStashItems, currentGameLanguage.Language);
-        StashItems = stashItems.ToDictionary(x => x.DetailsId);
+        StashItems = stashItems
+            .GroupBy(x => x.DetailsId)
+            .ToDictionary(x => x.First().DetailsId, x => x.ToList());
     }
 }

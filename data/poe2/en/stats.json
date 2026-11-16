@@ -894,6 +894,7 @@
   },
   {
     "text": "Abyssal Monsters have #% increased Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -903,8 +904,11 @@
   {
     "text": "Abyssal Monsters have #% increased Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Abyssal\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -1002,7 +1006,9 @@
     "text": "Abyssal Wasting also applies #% to Cold Resistance",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3979226081"
+    ],
     "pattern": "^Abyssal\\ Wasting\\ also\\ applies\\ ([-0-9,.]\u002B)%\\ to\\ Cold\\ Resistance$"
   },
   {
@@ -1017,7 +1023,9 @@
     "text": "Abyssal Wasting also applies #% to Fire Resistance",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2991563371"
+    ],
     "pattern": "^Abyssal\\ Wasting\\ also\\ applies\\ ([-0-9,.]\u002B)%\\ to\\ Fire\\ Resistance$"
   },
   {
@@ -1032,7 +1040,9 @@
     "text": "Abyssal Wasting also applies #% to Lightning Resistance",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1726353460"
+    ],
     "pattern": "^Abyssal\\ Wasting\\ also\\ applies\\ ([-0-9,.]\u002B)%\\ to\\ Lightning\\ Resistance$"
   },
   {
@@ -1143,6 +1153,7 @@
   },
   {
     "text": "Abysses have #% increased chance to lead to an Abyssal Depths",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2722831300"
@@ -1152,8 +1163,11 @@
   {
     "text": "Abysses have #% reduced chance to lead to an Abyssal Depths",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2722831300"
+    ],
     "pattern": "^Abysses\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ chance\\ to\\ lead\\ to\\ an\\ Abyssal\\ Depths$"
   },
   {
@@ -11934,7 +11948,8 @@
     "tradeIds": [
       "crafted.stat_2954116742|13489",
       "enchant.stat_2954116742|13489",
-      "explicit.stat_2954116742|13489"
+      "explicit.stat_2954116742|13489",
+      "fractured.stat_2954116742|13489"
     ],
     "pattern": "^Allocates\\ Unbreakable$"
   },
@@ -13172,6 +13187,7 @@
   },
   {
     "text": "Arc Chains an additional time",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -13182,8 +13198,12 @@
   },
   {
     "text": "Arc Chains an additional # times",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3868118796",
+      "explicit.stat_3868118796"
+    ],
     "pattern": "^Arc\\ Chains\\ an\\ additional\\ ([-0-9,.]\u002B)\\ times$"
   },
   {
@@ -13823,7 +13843,9 @@
   {
     "text": "Area contains a Summoning Circle\nArea contains # Reactivation Runes",
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2839545956"
+    ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ a\\ Summoning\\ Circle\\n(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ Reactivation\\ Runes$"
   },
   {
@@ -13937,6 +13959,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1468737867",
+      "explicit.stat_231864447",
       "explicit.stat_395808938"
     ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Breaches$"
@@ -13966,6 +13989,7 @@
   },
   {
     "text": "Area contains # additional Common Chest Marker",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -13975,8 +13999,11 @@
   },
   {
     "text": "Area contains # additional Common Chest Markers",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "implicit.stat_4160330571"
+    ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Common\\ Chest\\ Markers$"
   },
   {
@@ -14007,8 +14034,11 @@
   },
   {
     "text": "Area contains # additional Gloom Shrines",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1468737867"
+    ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Gloom\\ Shrines$"
   },
   {
@@ -14133,6 +14163,7 @@
   },
   {
     "text": "Area contains # additional Rare Chest Marker",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -14142,8 +14173,11 @@
   },
   {
     "text": "Area contains # additional Rare Chest Markers",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "implicit.stat_4160330571"
+    ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Rare\\ Chest\\ Markers$"
   },
   {
@@ -14284,6 +14318,7 @@
   },
   {
     "text": "Area contains # additional Uncommon Chest Marker",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -14293,8 +14328,11 @@
   },
   {
     "text": "Area contains # additional Uncommon Chest Markers",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "implicit.stat_4160330571"
+    ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ Uncommon\\ Chest\\ Markers$"
   },
   {
@@ -14311,6 +14349,7 @@
   },
   {
     "text": "Area contains # additional pack of Cleansed Monsters",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -14323,6 +14362,7 @@
   },
   {
     "text": "Area contains # additional pack of Corrupted Vaal Monsters",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -14351,14 +14391,24 @@
   },
   {
     "text": "Area contains # additional packs of Cleansed Monsters",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1689473577",
+      "desecrated.stat_3592067990",
+      "explicit.stat_1689473577",
+      "explicit.stat_3592067990"
+    ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ packs\\ of\\ Cleansed\\ Monsters$"
   },
   {
     "text": "Area contains # additional packs of Corrupted Vaal Monsters",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_4181857719",
+      "explicit.stat_4181857719"
+    ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ ([-0-9,.]\u002B)\\ additional\\ packs\\ of\\ Corrupted\\ Vaal\\ Monsters$"
   },
   {
@@ -14455,9 +14505,11 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1436812886",
       "desecrated.stat_3592067990",
       "desecrated.stat_4130878258",
       "desecrated.stat_4181857719",
+      "explicit.stat_1436812886",
       "explicit.stat_3592067990",
       "explicit.stat_4130878258",
       "explicit.stat_4181857719"
@@ -14729,6 +14781,7 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1468737867",
+      "explicit.stat_231864447",
       "explicit.stat_395808938"
     ],
     "pattern": "^(?:area|Area|map|Map)\\ contains\\ an\\ additional\\ Breach$"
@@ -14768,6 +14821,7 @@
   },
   {
     "text": "Area contains an additional Gloom Shrine",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -16093,14 +16147,18 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2162684861",
-      "explicit.stat_3040603554"
+      "explicit.stat_3040603554",
+      "explicit.stat_3042527515"
     ],
     "pattern": "^(?:area|Area|map|Map)s\\ with\\ Powerful\\ (?:area|Area|map|Map)\\ Bosses\\ contain\\ ([-0-9,.]\u002B)\\ additional\\ Rogue\\ Exiles$"
   },
   {
     "text": "Areas with Powerful Map Bosses contain # additional Shrines",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3042527515"
+    ],
     "pattern": "^(?:area|Area|map|Map)s\\ with\\ Powerful\\ (?:area|Area|map|Map)\\ Bosses\\ contain\\ ([-0-9,.]\u002B)\\ additional\\ Shrines$"
   },
   {
@@ -16136,12 +16194,14 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2162684861",
-      "explicit.stat_3040603554"
+      "explicit.stat_3040603554",
+      "explicit.stat_3042527515"
     ],
     "pattern": "^(?:area|Area|map|Map)s\\ with\\ Powerful\\ (?:area|Area|map|Map)\\ Bosses\\ contain\\ an\\ additional\\ Rogue\\ Exile$"
   },
   {
     "text": "Areas with Powerful Map Bosses contain an additional Shrine",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -22912,8 +22972,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
       "fractured.stat_429143663"
     ],
     "pattern": "^Bow\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:area|Area|map|Map)\\ of\\ Effect$"
@@ -22935,8 +22999,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
       "fractured.stat_429143663"
     ],
     "pattern": "^Bow\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ (?:area|Area|map|Map)\\ of\\ Effect$"
@@ -23089,12 +23157,16 @@
   },
   {
     "text": "Breach Hives have # additional waves of Hiveborn Monsters",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2734787892"
+    ],
     "pattern": "^Breach\\ Hives\\ have\\ ([-0-9,.]\u002B)\\ additional\\ waves\\ of\\ Hiveborn\\ Monsters$"
   },
   {
     "text": "Breach Hives have an additional wave of Hiveborn Monsters",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -23124,6 +23196,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "sanctum.stat_1890519597",
       "sanctum.stat_199414195"
     ],
     "pattern": "^Breach\\ Monsters\\ deal\\ ([-0-9,.]\u002B)%\\ increased\\ Damage$"
@@ -23134,12 +23207,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "sanctum.stat_1890519597",
       "sanctum.stat_199414195"
     ],
     "pattern": "^Breach\\ Monsters\\ deal\\ ([-0-9,.]\u002B)%\\ reduced\\ Damage$"
   },
   {
     "text": "Breach Monsters have #% increased Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -23149,8 +23224,11 @@
   {
     "text": "Breach Monsters have #% increased Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Breach\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -23593,6 +23671,7 @@
   },
   {
     "text": "Breaches in your Maps contain # additional Clasped Hand",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -23602,8 +23681,11 @@
   },
   {
     "text": "Breaches in your Maps contain # additional Clasped Hands",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2224050171"
+    ],
     "pattern": "^Breaches\\ in\\ your\\ (?:area|Area|map|Map)s\\ contain\\ ([-0-9,.]\u002B)\\ additional\\ Clasped\\ Hands$"
   },
   {
@@ -23740,12 +23822,16 @@
   },
   {
     "text": "Breaches in your Maps spawn # additional Rare Monsters",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1653625239"
+    ],
     "pattern": "^Breaches\\ in\\ your\\ (?:area|Area|map|Map)s\\ spawn\\ ([-0-9,.]\u002B)\\ additional\\ Rare\\ Monsters$"
   },
   {
     "text": "Breaches in your Maps spawn an additional Rare Monster",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -26192,8 +26278,16 @@
   },
   {
     "text": "Chaos Damage is taken from Mana before Life",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_458438597",
+      "desecrated.stat_458438597",
+      "explicit.stat_458438597",
+      "fractured.stat_458438597",
+      "implicit.stat_458438597",
+      "rune.stat_458438597"
+    ],
     "pattern": "^Chaos\\ Damage\\ is\\ taken\\ from\\ Mana\\ before\\ Life$"
   },
   {
@@ -26305,10 +26399,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_2567751411",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
       "explicit.stat_2567751411",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
       "fractured.stat_2567751411",
       "fractured.stat_429143663"
     ],
@@ -26331,10 +26429,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "desecrated.stat_1967040409",
       "desecrated.stat_2567751411",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
       "explicit.stat_2567751411",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
       "fractured.stat_2567751411",
       "fractured.stat_429143663"
     ],
@@ -27436,7 +27538,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1224838456"
+      "explicit.stat_1224838456",
+      "explicit.stat_4258251165"
     ],
     "pattern": "^Companions\\ in\\ your\\ Presence\\ Gain\\ ([-0-9,.]\u002B)%\\ of\\ Damage\\ as\\ Extra\\ Chaos\\ Damage$"
   },
@@ -28378,7 +28481,9 @@
   {
     "text": "Copy a random Modifier from each enemy in your Presence when\nyou Shapeshift to an Animal form\nModifiers gained this way are lost after # seconds or when you next Shapeshift",
     "lines": 3,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_885925163"
+    ],
     "pattern": "^Copy\\ a\\ random\\ Modifier\\ from\\ each\\ enemy\\ in\\ your\\ Presence\\ when\\nyou\\ Shapeshift\\ to\\ an\\ Animal\\ form\\nModifiers\\ gained\\ this\\ way\\ are\\ lost\\ after\\ ([-0-9,.]\u002B)\\ seconds\\ or\\ when\\ you\\ next\\ Shapeshift$"
   },
   {
@@ -29230,8 +29335,11 @@
   },
   {
     "text": "Current Energy Shield also grants Elemental Damage reduction",
+    "value": 100,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2342939473"
+    ],
     "pattern": "^Current\\ Energy\\ Shield\\ also\\ grants\\ Elemental\\ Damage\\ reduction$"
   },
   {
@@ -29607,6 +29715,7 @@
   },
   {
     "text": "DNT #% increased Movement Speed Penalty from using Chaos Skills while moving",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -29630,6 +29739,7 @@
   },
   {
     "text": "DNT #% increased Movement Speed Penalty from using Spells while moving",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -29655,8 +29765,14 @@
   {
     "text": "DNT #% reduced Movement Speed Penalty from using Chaos Skills while moving",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^DNT\\ ([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ Penalty\\ from\\ using\\ Chaos\\ Skills\\ while\\ moving$"
   },
   {
@@ -29675,8 +29791,14 @@
   {
     "text": "DNT #% reduced Movement Speed Penalty from using Spells while moving",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^DNT\\ ([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ Penalty\\ from\\ using\\ Spells\\ while\\ moving$"
   },
   {
@@ -30128,6 +30250,7 @@
   },
   {
     "text": "Damage of Enemies Hitting you is Lucky while you are on Full Life",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3753748365"
@@ -30167,8 +30290,11 @@
   {
     "text": "Damage of Enemies Hitting you is Unlucky while you are on Full Life",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3753748365"
+    ],
     "pattern": "^Damage\\ of\\ Enemies\\ Hitting\\ you\\ is\\ Unlucky\\ while\\ you\\ are\\ on\\ Full\\ Life$"
   },
   {
@@ -30885,6 +31011,7 @@
   },
   {
     "text": "Deferring Favours at Ritual Altars costs #% increased Tribute",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1345835998"
@@ -30894,8 +31021,11 @@
   {
     "text": "Deferring Favours at Ritual Altars costs #% reduced Tribute",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1345835998"
+    ],
     "pattern": "^Deferring\\ Favours\\ at\\ Ritual\\ Altars\\ costs\\ ([-0-9,.]\u002B)%\\ reduced\\ Tribute$"
   },
   {
@@ -31329,6 +31459,7 @@
   },
   {
     "text": "Delirium Fog in your Maps applies #% increased Deliriousness to Players",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1769611692"
@@ -31338,8 +31469,11 @@
   {
     "text": "Delirium Fog in your Maps applies #% reduced Deliriousness to Players",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1769611692"
+    ],
     "pattern": "^Delirium\\ Fog\\ in\\ your\\ (?:area|Area|map|Map)s\\ applies\\ ([-0-9,.]\u002B)%\\ reduced\\ Deliriousness\\ to\\ Players$"
   },
   {
@@ -31426,6 +31560,7 @@
   },
   {
     "text": "Delirium Monsters in your Maps have #% increased Pack Size",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3465791711"
@@ -31441,8 +31576,11 @@
   {
     "text": "Delirium Monsters in your Maps have #% reduced Pack Size",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3465791711"
+    ],
     "pattern": "^Delirium\\ Monsters\\ in\\ your\\ (?:area|Area|map|Map)s\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Pack\\ Size$"
   },
   {
@@ -33330,6 +33468,7 @@
   },
   {
     "text": "Enemies Hindered by you deal #% increased Chaos Damage",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1746561819",
@@ -33340,8 +33479,12 @@
   {
     "text": "Enemies Hindered by you deal #% reduced Chaos Damage",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1746561819",
+      "explicit.stat_1746561819"
+    ],
     "pattern": "^Enemies\\ Hindered\\ by\\ you\\ deal\\ ([-0-9,.]\u002B)%\\ reduced\\ Chaos\\ Damage$"
   },
   {
@@ -34838,6 +34981,7 @@
   },
   {
     "text": "Equipment has #% increased Attribute Requirements",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2480151124"
@@ -34856,14 +35000,19 @@
     "text": "Equipment has no Attribute Requirements",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2480151124"
+    ],
     "pattern": "^Equipment\\ has\\ no\\ Attribute\\ Requirements$"
   },
   {
     "text": "Equipment has #% reduced Attribute Requirements",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2480151124"
+    ],
     "pattern": "^Equipment\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Attribute\\ Requirements$"
   },
   {
@@ -35438,6 +35587,7 @@
   },
   {
     "text": "Every five Rage also grants you #% increased Movement Speed",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2291075173"
@@ -35454,8 +35604,11 @@
   {
     "text": "Every five Rage also grants you #% reduced Movement Speed",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_2291075173"
+    ],
     "pattern": "^Every\\ five\\ Rage\\ also\\ grants\\ you\\ ([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed$"
   },
   {
@@ -35748,6 +35901,7 @@
   },
   {
     "text": "Expeditions in your Maps have \u002B# Remnant",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -35757,8 +35911,11 @@
   },
   {
     "text": "Expeditions in your Maps have \u002B# Remnants",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3753446846"
+    ],
     "pattern": "^Expeditions\\ in\\ your\\ (?:area|Area|map|Map)s\\ have\\ \\\u002B([-0-9,.]\u002B)\\ Remnants$"
   },
   {
@@ -37025,12 +37182,18 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1004011302",
       "crafted.stat_1691403182",
+      "desecrated.stat_1004011302",
       "desecrated.stat_1691403182",
+      "enchant.stat_1004011302",
+      "explicit.stat_1004011302",
       "explicit.stat_1493485657",
       "explicit.stat_1691403182",
+      "fractured.stat_1004011302",
       "fractured.stat_1493485657",
-      "fractured.stat_1691403182"
+      "fractured.stat_1691403182",
+      "rune.stat_1004011302"
     ],
     "pattern": "^Focus\\ has\\ ([-0-9,.]\u002B)%\\ increased\\ Cooldown\\ Recovery\\ Rate$"
   },
@@ -37040,12 +37203,18 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1004011302",
       "crafted.stat_1691403182",
+      "desecrated.stat_1004011302",
       "desecrated.stat_1691403182",
+      "enchant.stat_1004011302",
+      "explicit.stat_1004011302",
       "explicit.stat_1493485657",
       "explicit.stat_1691403182",
+      "fractured.stat_1004011302",
       "fractured.stat_1493485657",
-      "fractured.stat_1691403182"
+      "fractured.stat_1691403182",
+      "rune.stat_1004011302"
     ],
     "pattern": "^Focus\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Cooldown\\ Recovery\\ Rate$"
   },
@@ -38566,6 +38735,7 @@
   },
   {
     "text": "Gain # Frenzy Charge on use",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -38581,8 +38751,11 @@
   },
   {
     "text": "Gain # Frenzy Charges on use",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_280890192"
+    ],
     "pattern": "^Gain\\ ([-0-9,.]\u002B)\\ Frenzy\\ Charges\\ on\\ use$"
   },
   {
@@ -38691,6 +38864,7 @@
   },
   {
     "text": "Gain # Life per Cursed Enemy Hit with Attacks",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2797971005",
@@ -38704,8 +38878,15 @@
   {
     "text": "Gain # Life per Cursed Enemy Hit with Attacks",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2797971005",
+      "explicit.stat_2797971005",
+      "fractured.stat_2797971005",
+      "implicit.stat_2797971005",
+      "rune.stat_2797971005"
+    ],
     "pattern": "^Gain\\ ([-0-9,.]\u002B)\\ Life\\ per\\ Cursed\\ Enemy\\ Hit\\ with\\ Attacks$"
   },
   {
@@ -38931,8 +39112,11 @@
   },
   {
     "text": "Gain Onslaught for 4 seconds on Kill",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1195849808"
+    ],
     "pattern": "^Gain\\ Onslaught\\ for\\ 4\\ seconds\\ on\\ Kill$"
   },
   {
@@ -38951,8 +39135,11 @@
   },
   {
     "text": "Gain Onslaught for # seconds on Kill",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1195849808"
+    ],
     "pattern": "^Gain\\ Onslaught\\ for\\ ([-0-9,.]\u002B)\\ seconds\\ on\\ Kill$"
   },
   {
@@ -39063,6 +39250,7 @@
   },
   {
     "text": "Gain # Power Charge on use",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -39072,8 +39260,11 @@
   },
   {
     "text": "Gain # Power Charges on use",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2566921799"
+    ],
     "pattern": "^Gain\\ ([-0-9,.]\u002B)\\ Power\\ Charges\\ on\\ use$"
   },
   {
@@ -46466,6 +46657,7 @@
   },
   {
     "text": "Humanoid Monsters have #% increased Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -46475,8 +46667,11 @@
   {
     "text": "Humanoid Monsters have #% increased Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Humanoid\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -46927,6 +47122,7 @@
   },
   {
     "text": "Ignites you inflict spread to other Enemies that stay within # metre for 1 second",
+    "matchedFuzzily": true,
     "value": 10,
     "lines": 1,
     "tradeIds": [
@@ -46936,8 +47132,11 @@
   },
   {
     "text": "Ignites you inflict spread to other Enemies that stay within # metres for 1 second",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3314057862"
+    ],
     "pattern": "^Ignites\\ you\\ inflict\\ spread\\ to\\ other\\ Enemies\\ that\\ stay\\ within\\ ([-0-9,.]\u002B)\\ metres\\ for\\ 1\\ second$"
   },
   {
@@ -47468,14 +47667,17 @@
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "desecrated.stat_363924732",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "explicit.stat_363924732",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302"
+      "fractured.stat_3574578302",
+      "fractured.stat_363924732"
     ],
     "pattern": "^Implicit\\ Modifier\\ magnitudes\\ are\\ doubled$"
   },
@@ -47489,14 +47691,17 @@
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "desecrated.stat_363924732",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "explicit.stat_363924732",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302"
+      "fractured.stat_3574578302",
+      "fractured.stat_363924732"
     ],
     "pattern": "^Implicit\\ Modifier\\ magnitudes\\ are\\ tripled$"
   },
@@ -47846,7 +48051,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1400313697",
       "crafted.stat_895564377",
+      "explicit.stat_1400313697",
       "explicit.stat_895564377"
     ],
     "pattern": "^Increases\\ and\\ Reductions\\ to\\ Cold\\ Damage\\ in\\ Radius\\ are\\ Transformed\\ to\\ apply\\ to\\ Physical\\ Damage$"
@@ -49599,6 +49806,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "sanctum.stat_1890519597",
       "sanctum.stat_199414195"
     ],
     "pattern": "^Labyrinth\\ Monsters\\ deal\\ ([-0-9,.]\u002B)%\\ increased\\ Damage$"
@@ -49609,6 +49817,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "sanctum.stat_1890519597",
       "sanctum.stat_199414195"
     ],
     "pattern": "^Labyrinth\\ Monsters\\ deal\\ ([-0-9,.]\u002B)%\\ reduced\\ Damage$"
@@ -50445,8 +50654,15 @@
   {
     "text": "#% Less Critical Hit Chance",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_518292764",
+      "desecrated.stat_518292764",
+      "explicit.stat_518292764",
+      "fractured.stat_518292764",
+      "rune.stat_518292764"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ Less\\ Critical\\ Hit\\ Chance$"
   },
   {
@@ -52122,6 +52338,7 @@
   },
   {
     "text": "Magic Monsters have #% increased Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -52131,8 +52348,11 @@
   {
     "text": "Magic Monsters have #% increased Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Magic\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -54164,9 +54384,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2101383955",
       "desecrated.stat_1898978455",
       "explicit.stat_1898978455",
-      "fractured.stat_1898978455"
+      "explicit.stat_2101383955",
+      "fractured.stat_1898978455",
+      "fractured.stat_2101383955"
     ],
     "pattern": "^Mine\\ Damage\\ Penetrates\\ ([-0-9,.]\u002B)%\\ Elemental\\ Resistances$"
   },
@@ -54340,8 +54563,11 @@
   },
   {
     "text": "Minions Intimidate Enemies for 4 seconds on Hit",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_78985352"
+    ],
     "pattern": "^Minions\\ Intimidate\\ Enemies\\ for\\ 4\\ seconds\\ on\\ Hit$"
   },
   {
@@ -54998,6 +55224,7 @@
   },
   {
     "text": "Minions have #% chance to Intimidate Enemies for 4 seconds on Hit",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_78985352"
@@ -55108,8 +55335,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3091578504",
       "desecrated.stat_666077204",
+      "explicit.stat_3091578504",
       "explicit.stat_666077204",
+      "fractured.stat_3091578504",
+      "rune.stat_3091578504",
       "rune.stat_666077204"
     ],
     "pattern": "^Minions\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Attack\\ Speed$"
@@ -55170,6 +55401,7 @@
   },
   {
     "text": "Minions have #% increased Cooldown Recovery Rate for Command Skills",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_1611856026"
@@ -55351,8 +55583,14 @@
   {
     "text": "Minions have #% less maximum Life",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_770672621",
+      "explicit.stat_770672621",
+      "fractured.stat_770672621",
+      "rune.stat_770672621"
+    ],
     "pattern": "^Minions\\ have\\ ([-0-9,.]\u002B)%\\ less\\ maximum\\ Life$"
   },
   {
@@ -55369,6 +55607,7 @@
   },
   {
     "text": "Minions have #% more maximum Life",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_770672621",
@@ -55415,8 +55654,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3091578504",
       "desecrated.stat_666077204",
+      "explicit.stat_3091578504",
       "explicit.stat_666077204",
+      "fractured.stat_3091578504",
+      "rune.stat_3091578504",
       "rune.stat_666077204"
     ],
     "pattern": "^Minions\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Attack\\ Speed$"
@@ -55484,8 +55727,11 @@
   {
     "text": "Minions have #% reduced Cooldown Recovery Rate for Command Skills",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1611856026"
+    ],
     "pattern": "^Minions\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Cooldown\\ Recovery\\ Rate\\ for\\ Command\\ Skills$"
   },
   {
@@ -56739,6 +56985,7 @@
   },
   {
     "text": "Monsters Sacrificed at Ritual Altars grant #% increased Tribute",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_159726667"
@@ -56748,8 +56995,11 @@
   {
     "text": "Monsters Sacrificed at Ritual Altars grant #% reduced Tribute",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_159726667"
+    ],
     "pattern": "^Monsters\\ Sacrificed\\ at\\ Ritual\\ Altars\\ grant\\ ([-0-9,.]\u002B)%\\ reduced\\ Tribute$"
   },
   {
@@ -56789,12 +57039,16 @@
   {
     "text": "Monsters Sacrificed at Ritual Altars in your Maps grant #% less Tribute",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_159726667"
+    ],
     "pattern": "^Monsters\\ Sacrificed\\ at\\ Ritual\\ Altars\\ in\\ your\\ (?:area|Area|map|Map)s\\ grant\\ ([-0-9,.]\u002B)%\\ less\\ Tribute$"
   },
   {
     "text": "Monsters Sacrificed at Ritual Altars in your Maps grant #% more Tribute",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_159726667"
@@ -57070,7 +57324,9 @@
     "text": "Monsters from Verisium Remnants drop #% increased Verisium",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3520418269"
+    ],
     "pattern": "^Monsters\\ from\\ Verisium\\ Remnants\\ drop\\ ([-0-9,.]\u002B)%\\ increased\\ Verisium$"
   },
   {
@@ -57558,7 +57814,9 @@
     "text": "Monsters have #% increased Effectiveness",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -57645,8 +57903,11 @@
   {
     "text": "Monsters have #% less Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Monsters\\ have\\ ([-0-9,.]\u002B)%\\ less\\ Effectiveness$"
   },
   {
@@ -57658,6 +57919,7 @@
   },
   {
     "text": "Monsters have #% more Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -58195,6 +58457,7 @@
   },
   {
     "text": "#% More Critical Hit Chance",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_518292764",
@@ -58822,8 +59085,13 @@
   },
   {
     "text": "No Intelligence Requirement",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2153364323",
+      "implicit.stat_2153364323",
+      "rune.stat_2153364323"
+    ],
     "pattern": "^No\\ Intelligence\\ Requirement$"
   },
   {
@@ -59292,6 +59560,7 @@
   },
   {
     "text": "Normal Monsters have #% increased Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -59301,8 +59570,11 @@
   {
     "text": "Normal Monsters have #% increased Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Normal\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -61335,8 +61607,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "crafted.stat_3191479793",
+      "desecrated.stat_1967040409",
+      "desecrated.stat_3191479793",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
+      "explicit.stat_3191479793",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
+      "fractured.stat_3191479793",
       "fractured.stat_429143663"
     ],
     "pattern": "^Offering\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ (?:area|Area|map|Map)\\ of\\ Effect$"
@@ -61368,8 +61648,16 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1967040409",
+      "crafted.stat_3191479793",
+      "desecrated.stat_1967040409",
+      "desecrated.stat_3191479793",
       "desecrated.stat_429143663",
+      "explicit.stat_1967040409",
+      "explicit.stat_3191479793",
       "explicit.stat_429143663",
+      "fractured.stat_1967040409",
+      "fractured.stat_3191479793",
       "fractured.stat_429143663"
     ],
     "pattern": "^Offering\\ Skills\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ (?:area|Area|map|Map)\\ of\\ Effect$"
@@ -62663,6 +62951,7 @@
   },
   {
     "text": "Physical Damage taken bypasses Energy Shield",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2448633171",
@@ -63171,8 +63460,12 @@
   },
   {
     "text": "Players are Marked for Death for # second\nafter killing a Rare or Unique monster",
+    "value": 1000,
     "lines": 2,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_436406826",
+      "explicit.stat_436406826"
+    ],
     "pattern": "^Players\\ are\\ Marked\\ for\\ Death\\ for\\ ([-0-9,.]\u002B)\\ second\\nafter\\ killing\\ a\\ Rare\\ or\\ Unique\\ monster$"
   },
   {
@@ -65270,10 +65563,13 @@
   },
   {
     "text": "Projectiles have #% increased Critical Damage Bonus against Enemies further than 6m",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2573406169",
-      "explicit.stat_2573406169"
+      "desecrated.stat_2706625504",
+      "explicit.stat_2573406169",
+      "explicit.stat_2706625504"
     ],
     "pattern": "^Projectiles\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Critical\\ Damage\\ Bonus\\ against\\ Enemies\\ further\\ than\\ 6m$"
   },
@@ -65318,8 +65614,14 @@
   {
     "text": "Projectiles have #% reduced Critical Damage Bonus against Enemies further than 6m",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2573406169",
+      "desecrated.stat_2706625504",
+      "explicit.stat_2573406169",
+      "explicit.stat_2706625504"
+    ],
     "pattern": "^Projectiles\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Damage\\ Bonus\\ against\\ Enemies\\ further\\ than\\ 6m$"
   },
   {
@@ -66465,6 +66767,7 @@
   },
   {
     "text": "Rare Monsters have #% increased Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -66474,8 +66777,11 @@
   {
     "text": "Rare Monsters have #% increased Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Rare\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -68359,7 +68665,12 @@
     "text": "Regenerate #% of maximum Life per second",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_836936635",
+      "explicit.stat_836936635",
+      "implicit.stat_836936635",
+      "rune.stat_836936635"
+    ],
     "pattern": "^Regenerate\\ ([-0-9,.]\u002B)%\\ of\\ maximum\\ Life\\ per\\ second$"
   },
   {
@@ -68519,7 +68830,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_302024054"
+      "explicit.stat_2002533190",
+      "explicit.stat_302024054",
+      "explicit.stat_3942946753"
     ],
     "pattern": "^Regenerate\\ ([-0-9,.]\u002B)%\\ of\\ maximum\\ Life\\ per\\ second\\ while\\ Fortified$"
   },
@@ -68529,7 +68842,8 @@
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2002533190",
-      "explicit.stat_302024054"
+      "explicit.stat_302024054",
+      "explicit.stat_3942946753"
     ],
     "pattern": "^Regenerate\\ ([-0-9,.]\u002B)%\\ of\\ maximum\\ Life\\ per\\ second\\ while\\ Frozen$"
   },
@@ -68572,7 +68886,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_302024054"
+      "explicit.stat_2002533190",
+      "explicit.stat_302024054",
+      "explicit.stat_3942946753"
     ],
     "pattern": "^Regenerate\\ ([-0-9,.]\u002B)%\\ of\\ maximum\\ Life\\ per\\ second\\ while\\ moving$"
   },
@@ -69177,6 +69493,7 @@
   },
   {
     "text": "Rerolling Favours at Ritual Altars costs #% increased Tribute",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2282052746"
@@ -69186,8 +69503,11 @@
   {
     "text": "Rerolling Favours at Ritual Altars costs #% reduced Tribute",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2282052746"
+    ],
     "pattern": "^Rerolling\\ Favours\\ at\\ Ritual\\ Altars\\ costs\\ ([-0-9,.]\u002B)%\\ reduced\\ Tribute$"
   },
   {
@@ -69407,6 +69727,7 @@
   },
   {
     "text": "Revived Monsters from Ritual Altars have #% increased chance to be Magic",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1031644647"
@@ -69415,6 +69736,7 @@
   },
   {
     "text": "Revived Monsters from Ritual Altars have #% increased chance to be Rare",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3979184174"
@@ -69424,15 +69746,21 @@
   {
     "text": "Revived Monsters from Ritual Altars have #% reduced chance to be Magic",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1031644647"
+    ],
     "pattern": "^Revived\\ Monsters\\ from\\ Ritual\\ Altars\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ chance\\ to\\ be\\ Magic$"
   },
   {
     "text": "Revived Monsters from Ritual Altars have #% reduced chance to be Rare",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3979184174"
+    ],
     "pattern": "^Revived\\ Monsters\\ from\\ Ritual\\ Altars\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ chance\\ to\\ be\\ Rare$"
   },
   {
@@ -69771,12 +70099,16 @@
   },
   {
     "text": "Ritual Altars allow rerolling Favours # additional times",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_120737942"
+    ],
     "pattern": "^Ritual\\ Altars\\ allow\\ rerolling\\ Favours\\ ([-0-9,.]\u002B)\\ additional\\ times$"
   },
   {
     "text": "Ritual Altars allow rerolling Favours an additional time",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -69924,6 +70256,7 @@
   },
   {
     "text": "Ritual Favours in your Maps have #% increased chance to be Omens",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4219853180"
@@ -69939,8 +70272,11 @@
   {
     "text": "Ritual Favours in your Maps have #% reduced chance to be Omens",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4219853180"
+    ],
     "pattern": "^Ritual\\ Favours\\ in\\ your\\ (?:area|Area|map|Map)s\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ chance\\ to\\ be\\ Omens$"
   },
   {
@@ -71115,8 +71451,14 @@
   },
   {
     "text": "Shapeshift Slam Skills you use yourself cause an additional Aftershock",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3950000557",
+      "explicit.stat_2045949233",
+      "explicit.stat_3950000557",
+      "rune.stat_2045949233"
+    ],
     "pattern": "^Shapeshift\\ Slam\\ Skills\\ you\\ use\\ yourself\\ cause\\ an\\ additional\\ Aftershock$"
   },
   {
@@ -71744,6 +72086,7 @@
   },
   {
     "text": "Skill Gems have #% increased Attribute Requirements",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
@@ -71753,12 +72096,16 @@
   {
     "text": "Skill Gems have #% less Attribute Requirements",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4245256219"
+    ],
     "pattern": "^Skill\\ Gems\\ have\\ ([-0-9,.]\u002B)%\\ less\\ Attribute\\ Requirements$"
   },
   {
     "text": "Skill Gems have #% more Attribute Requirements",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
@@ -71777,14 +72124,19 @@
     "text": "Skill Gems have no Attribute Requirements",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4245256219"
+    ],
     "pattern": "^Skill\\ Gems\\ have\\ no\\ Attribute\\ Requirements$"
   },
   {
     "text": "Skill Gems have #% reduced Attribute Requirements",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4245256219"
+    ],
     "pattern": "^Skill\\ Gems\\ have\\ ([-0-9,.]\u002B)%\\ reduced\\ Attribute\\ Requirements$"
   },
   {
@@ -72617,6 +72969,7 @@
   },
   {
     "text": "Slaying Monsters in your Maps pauses the Delirium Mirror Timer for 1 second",
+    "matchedFuzzily": true,
     "value": 1000,
     "lines": 1,
     "tradeIds": [
@@ -72626,8 +72979,11 @@
   },
   {
     "text": "Slaying Monsters in your Maps pauses the Delirium Mirror Timer for # seconds",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2323782229"
+    ],
     "pattern": "^Slaying\\ Monsters\\ in\\ your\\ (?:area|Area|map|Map)s\\ pauses\\ the\\ Delirium\\ Mirror\\ Timer\\ for\\ ([-0-9,.]\u002B)\\ seconds$"
   },
   {
@@ -72666,6 +73022,7 @@
   },
   {
     "text": "Slaying Rare Monsters in your Maps pauses the Delirium Mirror Timer for 1 second",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -72675,8 +73032,11 @@
   },
   {
     "text": "Slaying Rare Monsters in your Maps pauses the Delirium Mirror Timer for # seconds",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2323782229"
+    ],
     "pattern": "^Slaying\\ Rare\\ Monsters\\ in\\ your\\ (?:area|Area|map|Map)s\\ pauses\\ the\\ Delirium\\ Mirror\\ Timer\\ for\\ ([-0-9,.]\u002B)\\ seconds$"
   },
   {
@@ -80785,7 +81145,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2479683456",
       "enchant.stat_836936635",
+      "explicit.stat_2479683456",
       "explicit.stat_836936635",
       "implicit.stat_836936635",
       "rune.stat_1981392722",
@@ -80837,6 +81199,7 @@
   },
   {
     "text": "Totems fire # additional Projectile",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -80847,8 +81210,12 @@
   },
   {
     "text": "Totems fire # additional Projectiles",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1309819744",
+      "explicit.stat_1309819744"
+    ],
     "pattern": "^Totems\\ fire\\ ([-0-9,.]\u002B)\\ additional\\ Projectiles$"
   },
   {
@@ -82695,6 +83062,7 @@
   },
   {
     "text": "Unique Monsters have #% increased Effectiveness",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2065500219"
@@ -82704,8 +83072,11 @@
   {
     "text": "Unique Monsters have #% increased Effectiveness",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2065500219"
+    ],
     "pattern": "^Unique\\ Monsters\\ have\\ ([-0-9,.]\u002B)%\\ increased\\ Effectiveness$"
   },
   {
@@ -82736,6 +83107,7 @@
   },
   {
     "text": "Unique Monsters in your Maps have # additional Rare Modifier",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -82746,8 +83118,12 @@
   },
   {
     "text": "Unique Monsters in your Maps have # additional Rare Modifiers",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_3371085671",
+      "explicit.stat_3371085671"
+    ],
     "pattern": "^Unique\\ Monsters\\ in\\ your\\ (?:area|Area|map|Map)s\\ have\\ ([-0-9,.]\u002B)\\ additional\\ Rare\\ Modifiers$"
   },
   {
@@ -82905,12 +83281,16 @@
   },
   {
     "text": "Unstable Breaches spawn # additional Rare Monsters when Stabilised",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3762913035"
+    ],
     "pattern": "^Unstable\\ Breaches\\ spawn\\ ([-0-9,.]\u002B)\\ additional\\ Rare\\ Monsters\\ when\\ Stabilised$"
   },
   {
     "text": "Unstable Breaches spawn an additional Rare Monster when Stabilised",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -82920,12 +83300,16 @@
   },
   {
     "text": "Unstable Breaches take # additional seconds to collapse after timer is filled",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_4104094246"
+    ],
     "pattern": "^Unstable\\ Breaches\\ take\\ ([-0-9,.]\u002B)\\ additional\\ seconds\\ to\\ collapse\\ after\\ timer\\ is\\ filled$"
   },
   {
     "text": "Unstable Breaches take an additional second to collapse after timer is filled",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -84287,6 +84671,7 @@
   },
   {
     "text": "When Volatility on you explodes, you regain an equivalent amount of Volatility",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2248594298"
@@ -88823,6 +89208,7 @@
   },
   {
     "text": "Your Maps are inhabited by # additional Rogue Exile",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -88832,8 +89218,11 @@
   },
   {
     "text": "Your Maps are inhabited by # additional Rogue Exiles",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3550168289"
+    ],
     "pattern": "^Your\\ (?:area|Area|map|Map)s\\ are\\ inhabited\\ by\\ ([-0-9,.]\u002B)\\ additional\\ Rogue\\ Exiles$"
   },
   {
@@ -89046,8 +89435,11 @@
   },
   {
     "text": "Your Maps contain # additional Rare Chests",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_231864447"
+    ],
     "pattern": "^Your\\ (?:area|Area|map|Map)s\\ contain\\ ([-0-9,.]\u002B)\\ additional\\ Rare\\ Chests$"
   },
   {
@@ -89233,6 +89625,7 @@
   },
   {
     "text": "Your Maps contain an additional Rare Chest",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -89414,12 +89807,16 @@
   },
   {
     "text": "Your Maps have # additional random Modifier",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_588512487"
+    ],
     "pattern": "^Your\\ (?:area|Area|map|Map)s\\ have\\ ([-0-9,.]\u002B)\\ additional\\ random\\ Modifier$"
   },
   {
     "text": "Your Maps have # additional random Modifier",
+    "matchedFuzzily": true,
     "value": 1,
     "lines": 1,
     "tradeIds": [
@@ -89889,7 +90286,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466"
+      "explicit.stat_2440265466",
+      "explicit.stat_3049505189"
     ],
     "pattern": "^Your\\ (?:area|Area|map|Map)s\\ which\\ contain\\ Breaches\\ contain\\ ten\\ additional\\ Breaches$"
   },
@@ -89907,7 +90305,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466"
+      "explicit.stat_2440265466",
+      "explicit.stat_3049505189"
     ],
     "pattern": "^Your\\ (?:area|Area|map|Map)s\\ which\\ contain\\ Breaches\\ contain\\ two\\ additional\\ Breaches$"
   },
@@ -89925,7 +90324,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466"
+      "explicit.stat_2440265466",
+      "explicit.stat_3049505189"
     ],
     "pattern": "^Your\\ (?:area|Area|map|Map)s\\ which\\ contain\\ Breaches\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ contain\\ ten\\ additional\\ Breaches$"
   },
@@ -89943,7 +90343,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2440265466"
+      "explicit.stat_2440265466",
+      "explicit.stat_3049505189"
     ],
     "pattern": "^Your\\ (?:area|Area|map|Map)s\\ which\\ contain\\ Breaches\\ have\\ ([-0-9,.]\u002B)%\\ chance\\ to\\ contain\\ two\\ additional\\ Breaches$"
   },
@@ -91375,12 +91776,16 @@
   {
     "text": "#% chance for Damage of Enemies Hitting you to be Lucky",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_2134854700"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Damage\\ of\\ Enemies\\ Hitting\\ you\\ to\\ be\\ Lucky$"
   },
   {
     "text": "#% chance for Damage of Enemies Hitting you to be Unlucky",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2134854700"
@@ -91797,6 +92202,7 @@
   },
   {
     "text": "#% chance for Shapeshift Slam Skills you use yourself to cause an additional Aftershock",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3950000557",
@@ -92434,8 +92840,11 @@
   },
   {
     "text": "#% chance that when Volatility on you explodes, you regain an equivalent amount of Volatility",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_2248594298"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ that\\ when\\ Volatility\\ on\\ you\\ explodes,\\ you\\ regain\\ an\\ equivalent\\ amount\\ of\\ Volatility$"
   },
   {
@@ -92606,7 +93015,9 @@
     "text": "#% chance to Avoid Honour loss from Enemy Hits if you\u0027ve been Hit Recently",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "sanctum.stat_2284543592"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Avoid\\ Honour\\ loss\\ from\\ Enemy\\ Hits\\ if\\ you\u0027ve\\ been\\ Hit\\ Recently$"
   },
   {
@@ -95403,6 +95814,7 @@
   },
   {
     "text": "#% chance to gain Onslaught for 4 seconds on Kill",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1195849808"
@@ -95411,8 +95823,11 @@
   },
   {
     "text": "#% chance to gain Onslaught for # seconds on Kill",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1195849808"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ gain\\ Onslaught\\ for\\ ([-0-9,.]\u002B)\\ seconds\\ on\\ Kill$"
   },
   {
@@ -97050,8 +97465,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2843214518",
+      "crafted.stat_3962278098",
+      "desecrated.stat_2843214518",
+      "desecrated.stat_3962278098",
       "enchant.stat_2154246560",
-      "explicit.stat_2154246560"
+      "explicit.stat_2154246560",
+      "explicit.stat_2843214518",
+      "explicit.stat_3962278098",
+      "fractured.stat_2843214518",
+      "fractured.stat_3962278098",
+      "rune.stat_3962278098"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Arc\\ Damage$"
   },
@@ -97567,6 +97991,7 @@
   },
   {
     "text": "#% increased Armour and Evasion Rating when on Low Life",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_51757548"
@@ -97634,6 +98059,7 @@
   },
   {
     "text": "#% increased Armour if you haven\u0027t Dodge Rolled Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_851475033"
@@ -97660,6 +98086,7 @@
   },
   {
     "text": "#% increased Armour if you\u0027ve consumed an Endurance Charge Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_3037356641"
@@ -97888,6 +98315,7 @@
   },
   {
     "text": "#% increased Attack Damage against Maimed Enemies",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_1323874481"
@@ -98278,6 +98706,7 @@
   },
   {
     "text": "#% increased Attack Speed if you\u0027ve dealt a Critical Hit Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1174076861"
@@ -98679,8 +99108,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1165163804",
+      "desecrated.stat_3759735052",
       "explicit.stat_1165163804",
-      "fractured.stat_1165163804"
+      "explicit.stat_3759735052",
+      "fractured.stat_1165163804",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Attack\\ Speed\\ with\\ Wands$"
   },
@@ -99955,7 +100387,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1073942215"
+      "desecrated.stat_3485067555",
+      "explicit.stat_1073942215",
+      "explicit.stat_3485067555",
+      "fractured.stat_3485067555"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Chill\\ and\\ Freeze\\ Duration\\ on\\ Enemies$"
   },
@@ -100099,6 +100534,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
+      "desecrated.stat_3291658075",
+      "explicit.stat_3291658075",
+      "fractured.stat_3291658075",
       "implicit.stat_3691641145"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Cold\\ Damage\\ taken$"
@@ -100627,6 +101066,7 @@
   },
   {
     "text": "#% increased Critical Damage Bonus if you\u0027ve gained a Power Charge Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_23669307"
@@ -100769,6 +101209,7 @@
   },
   {
     "text": "#% increased Critical Hit Chance against Cursed Enemies",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1045789614",
@@ -100778,6 +101219,7 @@
   },
   {
     "text": "#% increased Critical Hit Chance against Dazed Enemies",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1045789614",
@@ -100848,6 +101290,7 @@
   },
   {
     "text": "#% increased Critical Hit Chance against Marked Enemy",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1045789614",
@@ -101109,6 +101552,7 @@
   },
   {
     "text": "#% increased Critical Hit Chance while Shapeshifted",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_3311629379"
@@ -101665,7 +102109,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_324210709",
       "desecrated.stat_3313255158",
+      "explicit.stat_324210709",
       "explicit.stat_3313255158"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ if\\ you\u0027ve\\ consumed\\ a\\ Frenzy\\ Charge\\ Recently$"
@@ -101831,6 +102277,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1791136590",
       "rune.stat_1524834794"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ per\\ 15\\ Strength$"
@@ -102046,6 +102493,7 @@
   },
   {
     "text": "#% increased Damage taken if you haven\u0027t been Hit Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_67637087"
@@ -102363,8 +102811,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ with\\ Axes$"
   },
@@ -102452,8 +102903,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ with\\ Daggers$"
   },
@@ -102484,11 +102938,17 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_1594812856",
       "desecrated.stat_2518900926",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
+      "explicit.stat_1594812856",
       "explicit.stat_2518900926",
+      "explicit.stat_2696027455",
       "fractured.stat_1181419800",
-      "fractured.stat_2518900926"
+      "fractured.stat_1594812856",
+      "fractured.stat_2518900926",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ with\\ Flails$"
   },
@@ -102857,8 +103317,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1241625305",
+      "desecrated.stat_1241625305",
       "desecrated.stat_2518900926",
+      "explicit.stat_1241625305",
       "explicit.stat_2518900926",
+      "fractured.stat_1241625305",
       "fractured.stat_2518900926"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ with\\ Vaal\\ Skills$"
@@ -102875,8 +103339,17 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_1594812856",
+      "desecrated.stat_2696027455",
+      "desecrated.stat_4188894176",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_1594812856",
+      "explicit.stat_2696027455",
+      "explicit.stat_4188894176",
+      "fractured.stat_1181419800",
+      "fractured.stat_1594812856",
+      "fractured.stat_2696027455",
+      "fractured.stat_4188894176"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Damage\\ with\\ Wands$"
   },
@@ -102944,7 +103417,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1365232741",
       "explicit.stat_1256719186",
+      "explicit.stat_1365232741",
       "explicit.stat_2541588185"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Daze\\ Duration$"
@@ -103477,6 +103952,7 @@
   },
   {
     "text": "#% increased Effect of Consecrated Ground you create",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_768779746"
@@ -104780,6 +105256,7 @@
   },
   {
     "text": "#% increased Evasion Rating if you haven\u0027t Dodge Rolled Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1040569494"
@@ -104788,8 +105265,11 @@
   },
   {
     "text": "#% increased Evasion Rating if you haven\u0027t been Hit Recently",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1073310669"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Evasion\\ Rating\\ if\\ you\\ haven\u0027t\\ been\\ Hit\\ Recently$"
   },
   {
@@ -104802,6 +105282,7 @@
   },
   {
     "text": "#% increased Evasion Rating if you\u0027ve consumed a Frenzy Charge Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2959554008"
@@ -104896,7 +105377,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1586136369"
+      "explicit.stat_1382805233",
+      "explicit.stat_1586136369",
+      "rune.stat_1382805233"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Evasion\\ Rating\\ while\\ moving$"
   },
@@ -105106,12 +105589,15 @@
       "desecrated.stat_231689132",
       "desecrated.stat_3196512240",
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "explicit.stat_231689132",
       "explicit.stat_3196512240",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
       "fractured.stat_231689132",
       "fractured.stat_3196512240",
-      "fractured.stat_3514984677"
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Caster\\ Damage\\ Modifier\\ magnitudes$"
   },
@@ -105151,8 +105637,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Damage\\ Modifier\\ magnitudes$"
   },
@@ -105198,6 +105687,7 @@
   },
   {
     "text": "#% increased Explicit Life Modifier magnitudes",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3574578302",
@@ -105231,9 +105721,18 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "desecrated.stat_3624940721",
+      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "explicit.stat_3624940721",
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Minion\\ Modifier\\ magnitudes$"
   },
@@ -105246,14 +105745,17 @@
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "desecrated.stat_363924732",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "explicit.stat_363924732",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302"
+      "fractured.stat_3574578302",
+      "fractured.stat_363924732"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Explicit\\ Modifier\\ magnitudes$"
   },
@@ -105438,7 +105940,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "implicit.stat_3691641145"
+      "crafted.stat_3962278098",
+      "desecrated.stat_3962278098",
+      "explicit.stat_3962278098",
+      "fractured.stat_3962278098",
+      "implicit.stat_3691641145",
+      "rune.stat_3962278098"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Fire\\ Damage\\ taken$"
   },
@@ -106723,14 +107230,17 @@
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "desecrated.stat_363924732",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "explicit.stat_363924732",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302"
+      "fractured.stat_3574578302",
+      "fractured.stat_363924732"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Implicit\\ Modifier\\ magnitudes$"
   },
@@ -106801,6 +107311,7 @@
   },
   {
     "text": "#% increased Intelligence Requirement",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2153364323",
@@ -106993,6 +107504,7 @@
   },
   {
     "text": "#% increased Life Recovery Rate while your Companion is in your Presence",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_1779262102",
@@ -107105,12 +107617,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2116424886",
+      "explicit.stat_2116424886",
       "explicit.stat_3084372306"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Life\\ Regeneration\\ rate\\ while\\ Ignited$"
   },
   {
     "text": "#% increased Life Regeneration rate while Shapeshifted",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_2410766865"
@@ -107749,6 +108264,7 @@
   },
   {
     "text": "#% increased Magnitude of Non-Damaging Ailments you inflict with Critical Hits",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_440490623",
@@ -107945,9 +108461,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_4101445926",
       "desecrated.stat_2653231923",
+      "desecrated.stat_4101445926",
       "explicit.stat_2653231923",
-      "fractured.stat_2653231923"
+      "explicit.stat_4101445926",
+      "fractured.stat_2653231923",
+      "fractured.stat_4101445926"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Mana\\ Cost\\ Efficiency\\ of\\ Marks$"
   },
@@ -107969,6 +108489,7 @@
   },
   {
     "text": "#% increased Mana Cost Efficiency while on Low Mana",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_532897212"
@@ -108361,6 +108882,7 @@
   },
   {
     "text": "#% increased Mana Reservation Efficiency of Herald Skills",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1697191405",
@@ -108371,8 +108893,12 @@
   {
     "text": "#% increased Mana Reservation Efficiency of Herald Skills",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1697191405",
+      "explicit.stat_1697191405"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Mana\\ Reservation\\ Efficiency\\ of\\ Herald\\ Skills$"
   },
   {
@@ -108380,10 +108906,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1805633363",
       "desecrated.stat_1697191405",
+      "desecrated.stat_1805633363",
       "desecrated.stat_53386210",
       "explicit.stat_1697191405",
-      "explicit.stat_53386210"
+      "explicit.stat_1805633363",
+      "explicit.stat_53386210",
+      "fractured.stat_1805633363",
+      "rune.stat_1805633363"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills$"
   },
@@ -108393,10 +108924,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1805633363",
       "desecrated.stat_1697191405",
+      "desecrated.stat_1805633363",
       "desecrated.stat_53386210",
       "explicit.stat_1697191405",
-      "explicit.stat_53386210"
+      "explicit.stat_1805633363",
+      "explicit.stat_53386210",
+      "fractured.stat_1805633363",
+      "rune.stat_1805633363"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills$"
   },
@@ -108597,9 +109133,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
       "desecrated.stat_1002362373",
+      "desecrated.stat_3291658075",
       "explicit.stat_1002362373",
-      "fractured.stat_1002362373"
+      "explicit.stat_3291658075",
+      "fractured.stat_1002362373",
+      "fractured.stat_3291658075"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Melee\\ Cold\\ Damage$"
   },
@@ -108745,9 +109285,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3962278098",
       "desecrated.stat_1002362373",
+      "desecrated.stat_3962278098",
       "explicit.stat_1002362373",
-      "fractured.stat_1002362373"
+      "explicit.stat_3962278098",
+      "fractured.stat_1002362373",
+      "fractured.stat_3962278098",
+      "rune.stat_3962278098"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Melee\\ Fire\\ Damage$"
   },
@@ -108762,9 +109307,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1509134228",
+      "desecrated.stat_1509134228",
       "desecrated.stat_2768835289",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
       "explicit.stat_2768835289",
-      "fractured.stat_2768835289"
+      "fractured.stat_1509134228",
+      "fractured.stat_2768835289",
+      "rune.stat_1509134228"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Melee\\ Physical\\ Damage$"
   },
@@ -109067,6 +109618,7 @@
   },
   {
     "text": "#% increased Movement Speed Penalty from using Cold Skills while moving",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -109078,6 +109630,7 @@
   },
   {
     "text": "#% increased Movement Speed Penalty from using Fire Skills while moving",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -110324,6 +110877,7 @@
   },
   {
     "text": "#% increased Quantity of Breach Splinters dropped by Breach Monsters in your Maps",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_624534143"
@@ -110724,6 +111278,7 @@
   },
   {
     "text": "#% increased Quantity of Waystones dropped by Map Bosses in Area",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1457896329"
@@ -111572,6 +112127,7 @@
   },
   {
     "text": "#% increased Reservation Efficiency of non-Minion Skills",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1805633363",
@@ -111654,8 +112210,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1890519597",
+      "desecrated.stat_3851254963",
       "explicit.stat_1890519597",
-      "fractured.stat_1890519597"
+      "explicit.stat_3851254963",
+      "fractured.stat_1890519597",
+      "fractured.stat_3851254963"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Riposte\\ Damage$"
   },
@@ -111710,8 +112269,10 @@
   },
   {
     "text": "#% increased Runic Ward Regeneration Rate if you\u0027ve dealt a Critical Hit Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1659564104",
       "rune.stat_1396011622"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Runic\\ Ward\\ Regeneration\\ Rate\\ if\\ you\u0027ve\\ dealt\\ a\\ Critical\\ Hit\\ Recently$"
@@ -112333,6 +112894,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1791136590",
       "explicit.stat_2412053423"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Spell\\ Damage\\ per\\ 10\\ Strength$"
@@ -112363,6 +112925,7 @@
   },
   {
     "text": "#% increased Spell Damage per 16 Intelligence",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2818518881"
@@ -112387,6 +112950,7 @@
   },
   {
     "text": "#% increased Spell Damage per 500 Maximum Mana",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1850249186",
@@ -112675,6 +113239,7 @@
   },
   {
     "text": "#% increased Stack size of Simulacrum Splinters found in your Maps",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3836551197",
@@ -112886,7 +113451,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1086147743"
+      "desecrated.stat_3485067555",
+      "explicit.stat_1086147743",
+      "explicit.stat_3485067555",
+      "fractured.stat_3485067555"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Stun\\ Duration\\ on\\ Enemies$"
   },
@@ -113520,7 +114088,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1365232741",
       "explicit.stat_1256719186",
+      "explicit.stat_1365232741",
       "explicit.stat_2541588185"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ Trap\\ Duration$"
@@ -113995,6 +114565,7 @@
   },
   {
     "text": "#% increased chance Vaal Beacons summon additional Monsters",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_632698321"
@@ -114028,6 +114599,7 @@
   },
   {
     "text": "#% increased chance for Abyssal monsters to have Abyssal Modifiers",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2789248444"
@@ -114330,7 +114902,9 @@
     "text": "#% increased chance to Avoid Resolve Loss from Enemy Projectile Hits",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "sanctum.stat_1798691236"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ increased\\ chance\\ to\\ Avoid\\ Resolve\\ Loss\\ from\\ Enemy\\ Projectile\\ Hits$"
   },
   {
@@ -114842,6 +115416,7 @@
   },
   {
     "text": "#% increased effect of Curses on Monsters",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3407849389",
@@ -115199,6 +115774,7 @@
   },
   {
     "text": "#% increased maximum Energy Shield if you\u0027ve consumed a Power Charge Recently",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_3745435177"
@@ -115565,8 +116141,12 @@
   {
     "text": "#% less Armour from Equipped Body Armour",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1015576579",
+      "explicit.stat_1015576579"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Armour\\ from\\ Equipped\\ Body\\ Armour$"
   },
   {
@@ -115700,15 +116280,30 @@
   {
     "text": "#% less Critical Damage Bonus",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2694482655",
+      "enchant.stat_2694482655",
+      "explicit.stat_2694482655",
+      "fractured.stat_2694482655",
+      "implicit.stat_2694482655",
+      "rune.stat_2694482655"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Critical\\ Damage\\ Bonus$"
   },
   {
     "text": "#% less Critical Hit Chance",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_518292764",
+      "desecrated.stat_518292764",
+      "explicit.stat_518292764",
+      "fractured.stat_518292764",
+      "rune.stat_518292764"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Critical\\ Hit\\ Chance$"
   },
   {
@@ -116007,8 +116602,16 @@
   {
     "text": "#% less Energy Shield Recharge Rate",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_2339757871",
+      "desecrated.stat_2339757871",
+      "explicit.stat_2339757871",
+      "fractured.stat_2339757871",
+      "implicit.stat_2339757871",
+      "rune.stat_2339757871"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Energy\\ Shield\\ Recharge\\ Rate$"
   },
   {
@@ -116157,8 +116760,14 @@
   {
     "text": "#% less Life Recovery from Flasks",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_821241191",
+      "explicit.stat_821241191",
+      "fractured.stat_821241191",
+      "implicit.stat_821241191"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Life\\ Recovery\\ from\\ Flasks$"
   },
   {
@@ -116178,8 +116787,11 @@
   {
     "text": "#% less Magnitude of Chill you inflict",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_828179689"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Magnitude\\ of\\ Chill\\ you\\ inflict$"
   },
   {
@@ -116199,8 +116811,11 @@
   {
     "text": "#% less Magnitude of Non-Damaging Ailments you inflict",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_782230869"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Magnitude\\ of\\ Non-Damaging\\ Ailments\\ you\\ inflict$"
   },
   {
@@ -116213,8 +116828,16 @@
   {
     "text": "#% less Magnitude of Shock you inflict",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2527686725",
+      "enchant.stat_2527686725",
+      "explicit.stat_2527686725",
+      "fractured.stat_2527686725",
+      "implicit.stat_2527686725",
+      "rune.stat_2527686725"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Magnitude\\ of\\ Shock\\ you\\ inflict$"
   },
   {
@@ -116305,8 +116928,14 @@
   {
     "text": "#% less Movement Speed Penalty from using Skills while moving",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Movement\\ Speed\\ Penalty\\ from\\ using\\ Skills\\ while\\ moving$"
   },
   {
@@ -116348,8 +116977,11 @@
   {
     "text": "#% less Physical Damage taken from Hits",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_321765853"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ Physical\\ Damage\\ taken\\ from\\ Hits$"
   },
   {
@@ -116564,8 +117196,20 @@
   {
     "text": "#% less maximum Energy Shield",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3489782002",
+      "desecrated.stat_4052037485",
+      "explicit.stat_3489782002",
+      "explicit.stat_4052037485",
+      "fractured.stat_3489782002",
+      "fractured.stat_4052037485",
+      "implicit.stat_3489782002",
+      "pseudo.pseudo_total_energy_shield",
+      "rune.stat_3489782002",
+      "rune.stat_4052037485"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ maximum\\ Energy\\ Shield$"
   },
   {
@@ -116606,8 +117250,17 @@
   {
     "text": "#% less maximum Runic Ward",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_3336230913",
+      "explicit.stat_3336230913",
+      "explicit.stat_774059442",
+      "fractured.stat_3336230913",
+      "implicit.stat_3336230913",
+      "implicit.stat_774059442",
+      "rune.stat_774059442"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ less\\ maximum\\ Runic\\ Ward$"
   },
   {
@@ -116724,8 +117377,11 @@
   },
   {
     "text": "\u002B# metre to Dodge Roll distance if you haven\u0027t Dodge Rolled Recently",
+    "value": -10,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3350232544"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metre\\ to\\ Dodge\\ Roll\\ distance\\ if\\ you\\ haven\u0027t\\ Dodge\\ Rolled\\ Recently$"
   },
   {
@@ -116739,8 +117395,11 @@
   },
   {
     "text": "\u002B# metre to Dodge Roll distance if you\u0027ve Dodge Rolled Recently",
+    "value": -10,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_57896763"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metre\\ to\\ Dodge\\ Roll\\ distance\\ if\\ you\u0027ve\\ Dodge\\ Rolled\\ Recently$"
   },
   {
@@ -116773,13 +117432,17 @@
   {
     "text": "\u002B# metres to Dodge Roll distance if you haven\u0027t Dodge Rolled Recently",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3350232544"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metres\\ to\\ Dodge\\ Roll\\ distance\\ if\\ you\\ haven\u0027t\\ Dodge\\ Rolled\\ Recently$"
   },
   {
     "text": "\u002B# metres to Dodge Roll distance if you\u0027ve Dodge Rolled Recently",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_57896763"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ metres\\ to\\ Dodge\\ Roll\\ distance\\ if\\ you\u0027ve\\ Dodge\\ Rolled\\ Recently$"
   },
   {
@@ -116929,6 +117592,7 @@
   },
   {
     "text": "#% more Armour from Equipped Body Armour",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1015576579",
@@ -117067,6 +117731,7 @@
   },
   {
     "text": "#% more Critical Damage Bonus",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2694482655",
@@ -117080,6 +117745,7 @@
   },
   {
     "text": "#% more Critical Hit Chance",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_518292764",
@@ -117380,6 +118046,7 @@
   },
   {
     "text": "#% more Energy Shield Recharge Rate",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_2339757871",
@@ -117520,6 +118187,7 @@
   },
   {
     "text": "#% more Life Recovery from Flasks",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_821241191",
@@ -117543,6 +118211,7 @@
   },
   {
     "text": "#% more Magnitude of Chill you inflict",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_828179689"
@@ -117563,6 +118232,7 @@
   },
   {
     "text": "#% more Magnitude of Non-Damaging Ailments you inflict",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "rune.stat_782230869"
@@ -117577,6 +118247,7 @@
   },
   {
     "text": "#% more Magnitude of Shock you inflict",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2527686725",
@@ -117683,6 +118354,7 @@
   },
   {
     "text": "#% more Movement Speed Penalty from using Skills while moving",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_2590797182",
@@ -117727,6 +118399,7 @@
   },
   {
     "text": "#% more Physical Damage taken from Hits",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_321765853"
@@ -117967,6 +118640,7 @@
   },
   {
     "text": "#% more maximum Energy Shield",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3489782002",
@@ -117976,6 +118650,7 @@
       "fractured.stat_3489782002",
       "fractured.stat_4052037485",
       "implicit.stat_3489782002",
+      "pseudo.pseudo_total_energy_shield",
       "rune.stat_3489782002",
       "rune.stat_4052037485"
     ],
@@ -118014,6 +118689,7 @@
   },
   {
     "text": "#% more maximum Runic Ward",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3336230913",
@@ -118149,6 +118825,7 @@
   },
   {
     "text": "#% of Chaos Damage is taken from Mana before Life",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_458438597",
@@ -118214,6 +118891,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1686824704",
       "explicit.stat_2295988214"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Cold\\ Damage\\ Converted\\ to\\ Chaos\\ Damage$"
@@ -118405,7 +119083,15 @@
     "text": "#% of Damage taken Recouped as Life",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_1444556985",
+      "desecrated.stat_1444556985",
+      "enchant.stat_1444556985",
+      "explicit.stat_1444556985",
+      "fractured.stat_1444556985",
+      "implicit.stat_1444556985",
+      "rune.stat_1444556985"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Damage\\ taken\\ Recouped\\ as\\ Life$"
   },
   {
@@ -118435,7 +119121,12 @@
     "text": "#% of Damage taken Recouped as Mana",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_472520716",
+      "enchant.stat_472520716",
+      "explicit.stat_472520716",
+      "fractured.stat_472520716"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Damage\\ taken\\ Recouped\\ as\\ Mana$"
   },
   {
@@ -118465,7 +119156,9 @@
     "text": "#% of Damage taken during effect Recouped as Life",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_3598623697"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Damage\\ taken\\ during\\ effect\\ Recouped\\ as\\ Life$"
   },
   {
@@ -119224,12 +119917,18 @@
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1444556985",
+      "crafted.stat_1742651309",
+      "crafted.stat_3679418014",
       "desecrated.stat_1374654984",
       "desecrated.stat_1444556985",
       "enchant.stat_1444556985",
       "explicit.stat_1374654984",
       "explicit.stat_1444556985",
+      "explicit.stat_1742651309",
+      "explicit.stat_3679418014",
       "fractured.stat_1444556985",
+      "fractured.stat_1742651309",
+      "fractured.stat_3679418014",
       "implicit.stat_1444556985",
       "rune.stat_1374654984",
       "rune.stat_1444556985"
@@ -119286,8 +119985,12 @@
   },
   {
     "text": "#% of Physical Damage taken bypasses Energy Shield",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2448633171",
+      "rune.stat_2448633171"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ of\\ Physical\\ Damage\\ taken\\ bypasses\\ Energy\\ Shield$"
   },
   {
@@ -119473,8 +120176,12 @@
   {
     "text": "#% redcued Spell Damage per 500 Maximum Mana",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1850249186",
+      "explicit.stat_1850249186"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ redcued\\ Spell\\ Damage\\ per\\ 500\\ Maximum\\ Mana$"
   },
   {
@@ -119859,8 +120566,17 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_2843214518",
+      "crafted.stat_3962278098",
+      "desecrated.stat_2843214518",
+      "desecrated.stat_3962278098",
       "enchant.stat_2154246560",
-      "explicit.stat_2154246560"
+      "explicit.stat_2154246560",
+      "explicit.stat_2843214518",
+      "explicit.stat_3962278098",
+      "fractured.stat_2843214518",
+      "fractured.stat_3962278098",
+      "rune.stat_3962278098"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Arc\\ Damage$"
   },
@@ -120402,8 +121118,11 @@
   {
     "text": "#% reduced Armour and Evasion Rating when on Low Life",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_51757548"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Armour\\ and\\ Evasion\\ Rating\\ when\\ on\\ Low\\ Life$"
   },
   {
@@ -120470,8 +121189,11 @@
   {
     "text": "#% reduced Armour if you haven\u0027t Dodge Rolled Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_851475033"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Armour\\ if\\ you\\ haven\u0027t\\ Dodge\\ Rolled\\ Recently$"
   },
   {
@@ -120498,8 +121220,11 @@
   {
     "text": "#% reduced Armour if you\u0027ve consumed an Endurance Charge Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_3037356641"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Armour\\ if\\ you\u0027ve\\ consumed\\ an\\ Endurance\\ Charge\\ Recently$"
   },
   {
@@ -120722,8 +121447,11 @@
   {
     "text": "#% reduced Attack Damage against Maimed Enemies",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1323874481"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Attack\\ Damage\\ against\\ Maimed\\ Enemies$"
   },
   {
@@ -121129,8 +121857,11 @@
   {
     "text": "#% reduced Attack Speed if you\u0027ve dealt a Critical Hit Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1174076861"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Attack\\ Speed\\ if\\ you\u0027ve\\ dealt\\ a\\ Critical\\ Hit\\ Recently$"
   },
   {
@@ -121541,8 +122272,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1165163804",
+      "desecrated.stat_3759735052",
       "explicit.stat_1165163804",
-      "fractured.stat_1165163804"
+      "explicit.stat_3759735052",
+      "fractured.stat_1165163804",
+      "fractured.stat_3759735052"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Attack\\ Speed\\ with\\ Wands$"
   },
@@ -122902,7 +123636,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1073942215"
+      "desecrated.stat_3485067555",
+      "explicit.stat_1073942215",
+      "explicit.stat_3485067555",
+      "fractured.stat_3485067555"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Chill\\ and\\ Freeze\\ Duration\\ on\\ Enemies$"
   },
@@ -123021,6 +123758,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
+      "desecrated.stat_3291658075",
+      "explicit.stat_3291658075",
+      "fractured.stat_3291658075",
       "implicit.stat_3691641145"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Cold\\ Damage\\ taken$"
@@ -123544,8 +124285,11 @@
   {
     "text": "#% reduced Critical Damage Bonus if you\u0027ve gained a Power Charge Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_23669307"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Damage\\ Bonus\\ if\\ you\u0027ve\\ gained\\ a\\ Power\\ Charge\\ Recently$"
   },
   {
@@ -123626,15 +124370,23 @@
   {
     "text": "#% reduced Critical Hit Chance against Cursed Enemies",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1045789614",
+      "explicit.stat_1045789614"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Hit\\ Chance\\ against\\ Cursed\\ Enemies$"
   },
   {
     "text": "#% reduced Critical Hit Chance against Dazed Enemies",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1045789614",
+      "explicit.stat_1045789614"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Hit\\ Chance\\ against\\ Dazed\\ Enemies$"
   },
   {
@@ -123703,8 +124455,12 @@
   {
     "text": "#% reduced Critical Hit Chance against Marked Enemy",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1045789614",
+      "explicit.stat_1045789614"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Hit\\ Chance\\ against\\ Marked\\ Enemy$"
   },
   {
@@ -123964,8 +124720,11 @@
   {
     "text": "#% reduced Critical Hit Chance while Shapeshifted",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_3311629379"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Critical\\ Hit\\ Chance\\ while\\ Shapeshifted$"
   },
   {
@@ -124562,7 +125321,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_324210709",
       "desecrated.stat_3313255158",
+      "explicit.stat_324210709",
       "explicit.stat_3313255158"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ if\\ you\u0027ve\\ consumed\\ a\\ Frenzy\\ Charge\\ Recently$"
@@ -124904,8 +125665,11 @@
   {
     "text": "#% reduced Damage taken if you haven\u0027t been Hit Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_67637087"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ taken\\ if\\ you\\ haven\u0027t\\ been\\ Hit\\ Recently$"
   },
   {
@@ -125257,8 +126021,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ with\\ Axes$"
   },
@@ -125348,8 +126115,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_2696027455",
+      "fractured.stat_1181419800",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ with\\ Daggers$"
   },
@@ -125383,11 +126153,17 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_1594812856",
       "desecrated.stat_2518900926",
+      "desecrated.stat_2696027455",
       "explicit.stat_1181419800",
+      "explicit.stat_1594812856",
       "explicit.stat_2518900926",
+      "explicit.stat_2696027455",
       "fractured.stat_1181419800",
-      "fractured.stat_2518900926"
+      "fractured.stat_1594812856",
+      "fractured.stat_2518900926",
+      "fractured.stat_2696027455"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ with\\ Flails$"
   },
@@ -125790,8 +126566,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1241625305",
+      "desecrated.stat_1241625305",
       "desecrated.stat_2518900926",
+      "explicit.stat_1241625305",
       "explicit.stat_2518900926",
+      "fractured.stat_1241625305",
       "fractured.stat_2518900926"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ with\\ Vaal\\ Skills$"
@@ -125810,8 +126590,17 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1181419800",
+      "desecrated.stat_1594812856",
+      "desecrated.stat_2696027455",
+      "desecrated.stat_4188894176",
       "explicit.stat_1181419800",
-      "fractured.stat_1181419800"
+      "explicit.stat_1594812856",
+      "explicit.stat_2696027455",
+      "explicit.stat_4188894176",
+      "fractured.stat_1181419800",
+      "fractured.stat_1594812856",
+      "fractured.stat_2696027455",
+      "fractured.stat_4188894176"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Damage\\ with\\ Wands$"
   },
@@ -125888,7 +126677,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1365232741",
       "explicit.stat_1256719186",
+      "explicit.stat_1365232741",
       "explicit.stat_2541588185"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Daze\\ Duration$"
@@ -126459,8 +127250,11 @@
   {
     "text": "#% reduced Effect of Consecrated Ground you create",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_768779746"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Effect\\ of\\ Consecrated\\ Ground\\ you\\ create$"
   },
   {
@@ -127874,13 +128668,17 @@
   {
     "text": "#% reduced Evasion Rating if you haven\u0027t Dodge Rolled Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1040569494"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Evasion\\ Rating\\ if\\ you\\ haven\u0027t\\ Dodge\\ Rolled\\ Recently$"
   },
   {
     "text": "#% reduced Evasion Rating if you haven\u0027t been Hit Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1073310669"
@@ -127899,8 +128697,11 @@
   {
     "text": "#% reduced Evasion Rating if you\u0027ve consumed a Frenzy Charge Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_2959554008"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Evasion\\ Rating\\ if\\ you\u0027ve\\ consumed\\ a\\ Frenzy\\ Charge\\ Recently$"
   },
   {
@@ -127973,7 +128774,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1586136369"
+      "explicit.stat_1382805233",
+      "explicit.stat_1586136369",
+      "rune.stat_1382805233"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Evasion\\ Rating\\ while\\ moving$"
   },
@@ -128164,12 +128967,15 @@
       "desecrated.stat_231689132",
       "desecrated.stat_3196512240",
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "explicit.stat_231689132",
       "explicit.stat_3196512240",
       "explicit.stat_3514984677",
+      "explicit.stat_3574578302",
       "fractured.stat_231689132",
       "fractured.stat_3196512240",
-      "fractured.stat_3514984677"
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Caster\\ Damage\\ Modifier\\ magnitudes$"
   },
@@ -128213,8 +129019,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Damage\\ Modifier\\ magnitudes$"
   },
@@ -128264,8 +129073,13 @@
   {
     "text": "#% reduced Explicit Life Modifier magnitudes",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3574578302",
+      "explicit.stat_3574578302",
+      "fractured.stat_3574578302"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Life\\ Modifier\\ magnitudes$"
   },
   {
@@ -128296,9 +129110,18 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
+      "desecrated.stat_3574578302",
+      "desecrated.stat_3624940721",
+      "explicit.stat_3206904707",
       "explicit.stat_3514984677",
-      "fractured.stat_3514984677"
+      "explicit.stat_3574578302",
+      "explicit.stat_3624940721",
+      "fractured.stat_3206904707",
+      "fractured.stat_3514984677",
+      "fractured.stat_3574578302",
+      "fractured.stat_3624940721"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Minion\\ Modifier\\ magnitudes$"
   },
@@ -128312,14 +129135,17 @@
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "desecrated.stat_363924732",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "explicit.stat_363924732",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302"
+      "fractured.stat_3574578302",
+      "fractured.stat_363924732"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Explicit\\ Modifier\\ magnitudes$"
   },
@@ -128517,7 +129343,12 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "implicit.stat_3691641145"
+      "crafted.stat_3962278098",
+      "desecrated.stat_3962278098",
+      "explicit.stat_3962278098",
+      "fractured.stat_3962278098",
+      "implicit.stat_3691641145",
+      "rune.stat_3962278098"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Fire\\ Damage\\ taken$"
   },
@@ -129883,14 +130714,17 @@
       "desecrated.stat_3206904707",
       "desecrated.stat_3514984677",
       "desecrated.stat_3574578302",
+      "desecrated.stat_363924732",
       "explicit.stat_3196512240",
       "explicit.stat_3206904707",
       "explicit.stat_3514984677",
       "explicit.stat_3574578302",
+      "explicit.stat_363924732",
       "fractured.stat_3196512240",
       "fractured.stat_3206904707",
       "fractured.stat_3514984677",
-      "fractured.stat_3574578302"
+      "fractured.stat_3574578302",
+      "fractured.stat_363924732"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Implicit\\ Modifier\\ magnitudes$"
   },
@@ -129971,8 +130805,13 @@
   },
   {
     "text": "#% reduced Intelligence Requirement",
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2153364323",
+      "implicit.stat_2153364323",
+      "rune.stat_2153364323"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Intelligence\\ Requirement$"
   },
   {
@@ -130186,8 +131025,12 @@
   {
     "text": "#% reduced Life Recovery Rate while your Companion is in your Presence",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_1779262102",
+      "rune.stat_2122116143"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Life\\ Recovery\\ Rate\\ while\\ your\\ Companion\\ is\\ in\\ your\\ Presence$"
   },
   {
@@ -130308,6 +131151,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_2116424886",
+      "explicit.stat_2116424886",
       "explicit.stat_3084372306"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Life\\ Regeneration\\ rate\\ while\\ Ignited$"
@@ -130315,8 +131160,11 @@
   {
     "text": "#% reduced Life Regeneration rate while Shapeshifted",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_2410766865"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Life\\ Regeneration\\ rate\\ while\\ Shapeshifted$"
   },
   {
@@ -130948,8 +131796,13 @@
   {
     "text": "#% reduced Magnitude of Non-Damaging Ailments you inflict with Critical Hits",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_440490623",
+      "explicit.stat_440490623",
+      "fractured.stat_440490623"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Magnitude\\ of\\ Non-Damaging\\ Ailments\\ you\\ inflict\\ with\\ Critical\\ Hits$"
   },
   {
@@ -131164,9 +132017,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_4101445926",
       "desecrated.stat_2653231923",
+      "desecrated.stat_4101445926",
       "explicit.stat_2653231923",
-      "fractured.stat_2653231923"
+      "explicit.stat_4101445926",
+      "fractured.stat_2653231923",
+      "fractured.stat_4101445926"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Cost\\ Efficiency\\ of\\ Marks$"
   },
@@ -131191,8 +132048,11 @@
   {
     "text": "#% reduced Mana Cost Efficiency while on Low Mana",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_532897212"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Cost\\ Efficiency\\ while\\ on\\ Low\\ Mana$"
   },
   {
@@ -131629,6 +132489,7 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Herald Skills",
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1697191405",
@@ -131639,8 +132500,12 @@
   {
     "text": "#% reduced Mana Reservation Efficiency of Herald Skills",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_1697191405",
+      "explicit.stat_1697191405"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Herald\\ Skills$"
   },
   {
@@ -131648,10 +132513,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1805633363",
       "desecrated.stat_1697191405",
+      "desecrated.stat_1805633363",
       "desecrated.stat_53386210",
       "explicit.stat_1697191405",
-      "explicit.stat_53386210"
+      "explicit.stat_1805633363",
+      "explicit.stat_53386210",
+      "fractured.stat_1805633363",
+      "rune.stat_1805633363"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills$"
   },
@@ -131661,10 +132531,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1805633363",
       "desecrated.stat_1697191405",
+      "desecrated.stat_1805633363",
       "desecrated.stat_53386210",
       "explicit.stat_1697191405",
-      "explicit.stat_53386210"
+      "explicit.stat_1805633363",
+      "explicit.stat_53386210",
+      "fractured.stat_1805633363",
+      "rune.stat_1805633363"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills$"
   },
@@ -131865,9 +132740,13 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3291658075",
       "desecrated.stat_1002362373",
+      "desecrated.stat_3291658075",
       "explicit.stat_1002362373",
-      "fractured.stat_1002362373"
+      "explicit.stat_3291658075",
+      "fractured.stat_1002362373",
+      "fractured.stat_3291658075"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Melee\\ Cold\\ Damage$"
   },
@@ -132019,9 +132898,14 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_3962278098",
       "desecrated.stat_1002362373",
+      "desecrated.stat_3962278098",
       "explicit.stat_1002362373",
-      "fractured.stat_1002362373"
+      "explicit.stat_3962278098",
+      "fractured.stat_1002362373",
+      "fractured.stat_3962278098",
+      "rune.stat_3962278098"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Melee\\ Fire\\ Damage$"
   },
@@ -132038,9 +132922,15 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "crafted.stat_1509134228",
+      "desecrated.stat_1509134228",
       "desecrated.stat_2768835289",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
       "explicit.stat_2768835289",
-      "fractured.stat_2768835289"
+      "fractured.stat_1509134228",
+      "fractured.stat_2768835289",
+      "rune.stat_1509134228"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Melee\\ Physical\\ Damage$"
   },
@@ -132325,15 +133215,27 @@
   {
     "text": "#% reduced Movement Speed Penalty from using Cold Skills while moving",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ Penalty\\ from\\ using\\ Cold\\ Skills\\ while\\ moving$"
   },
   {
     "text": "#% reduced Movement Speed Penalty from using Fire Skills while moving",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_2590797182",
+      "explicit.stat_2590797182",
+      "implicit.stat_2590797182",
+      "rune.stat_2590797182"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Movement\\ Speed\\ Penalty\\ from\\ using\\ Fire\\ Skills\\ while\\ moving$"
   },
   {
@@ -133600,8 +134502,11 @@
   {
     "text": "#% reduced Quantity of Breach Splinters dropped by Breach Monsters in your Maps",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_624534143"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Quantity\\ of\\ Breach\\ Splinters\\ dropped\\ by\\ Breach\\ Monsters\\ in\\ your\\ (?:area|Area|map|Map)s$"
   },
   {
@@ -133937,8 +134842,11 @@
   {
     "text": "#% reduced Quantity of Waystones dropped by Map Bosses in Area",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1457896329"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Quantity\\ of\\ Waystones\\ dropped\\ by\\ (?:area|Area|map|Map)\\ Bosses\\ in\\ (?:area|Area|map|Map)$"
   },
   {
@@ -134730,8 +135638,15 @@
   {
     "text": "#% reduced Reservation Efficiency of non-Minion Skills",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "crafted.stat_1805633363",
+      "desecrated.stat_1805633363",
+      "explicit.stat_1805633363",
+      "fractured.stat_1805633363",
+      "rune.stat_1805633363"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Reservation\\ Efficiency\\ of\\ non-Minion\\ Skills$"
   },
   {
@@ -134817,8 +135732,11 @@
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_1890519597",
+      "desecrated.stat_3851254963",
       "explicit.stat_1890519597",
-      "fractured.stat_1890519597"
+      "explicit.stat_3851254963",
+      "fractured.stat_1890519597",
+      "fractured.stat_3851254963"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Riposte\\ Damage$"
   },
@@ -134880,8 +135798,12 @@
   {
     "text": "#% reduced Runic Ward Regeneration Rate if you\u0027ve dealt a Critical Hit Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1659564104",
+      "rune.stat_1396011622"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Runic\\ Ward\\ Regeneration\\ Rate\\ if\\ you\u0027ve\\ dealt\\ a\\ Critical\\ Hit\\ Recently$"
   },
   {
@@ -135545,6 +136467,7 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1791136590",
       "explicit.stat_2412053423"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Spell\\ Damage\\ per\\ 10\\ Strength$"
@@ -135579,8 +136502,11 @@
   {
     "text": "#% reduced Spell Damage per 16 Intelligence",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2818518881"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Spell\\ Damage\\ per\\ 16\\ Intelligence$"
   },
   {
@@ -135871,8 +136797,12 @@
   {
     "text": "#% reduced Stack size of Simulacrum Splinters found in your Maps",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "enchant.stat_3836551197",
+      "explicit.stat_3836551197"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Stack\\ size\\ of\\ Simulacrum\\ Splinters\\ found\\ in\\ your\\ (?:area|Area|map|Map)s$"
   },
   {
@@ -136100,7 +137030,10 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1086147743"
+      "desecrated.stat_3485067555",
+      "explicit.stat_1086147743",
+      "explicit.stat_3485067555",
+      "fractured.stat_3485067555"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Stun\\ Duration\\ on\\ Enemies$"
   },
@@ -136793,7 +137726,9 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
+      "desecrated.stat_1365232741",
       "explicit.stat_1256719186",
+      "explicit.stat_1365232741",
       "explicit.stat_2541588185"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Trap\\ Duration$"
@@ -137308,8 +138243,11 @@
   {
     "text": "#% reduced chance Vaal Beacons summon additional Monsters",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_632698321"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ chance\\ Vaal\\ Beacons\\ summon\\ additional\\ Monsters$"
   },
   {
@@ -137334,8 +138272,11 @@
   {
     "text": "#% reduced chance for Abyssal monsters to have Abyssal Modifiers",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_2789248444"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ chance\\ for\\ Abyssal\\ monsters\\ to\\ have\\ Abyssal\\ Modifiers$"
   },
   {
@@ -138131,8 +139072,16 @@
   {
     "text": "#% reduced effect of Curses on Monsters",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_3407849389",
+      "desecrated.stat_3796523155",
+      "explicit.stat_3407849389",
+      "explicit.stat_3796523155",
+      "fractured.stat_3796523155",
+      "rune.stat_3407849389"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ effect\\ of\\ Curses\\ on\\ Monsters$"
   },
   {
@@ -138487,8 +139436,11 @@
   {
     "text": "#% reduced maximum Energy Shield if you\u0027ve consumed a Power Charge Recently",
     "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "rune.stat_3745435177"
+    ],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ maximum\\ Energy\\ Shield\\ if\\ you\u0027ve\\ consumed\\ a\\ Power\\ Charge\\ Recently$"
   },
   {
@@ -140472,7 +141424,9 @@
     "text": "\u002B#% to Fire Resistance while on Low Life",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_38301299"
+    ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ to\\ Fire\\ Resistance\\ while\\ on\\ Low\\ Life$"
   },
   {
@@ -142625,7 +143579,11 @@
     "text": "# to Level of all # Skills",
     "negate": true,
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "desecrated.stat_4283407333",
+      "enchant.stat_4283407333",
+      "explicit.stat_4283407333"
+    ],
     "pattern": "^([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ ([-0-9,.]\u002B)\\ Skills$"
   },
   {
@@ -142980,6 +143938,10 @@
     "tradeIds": [
       "rune.stat_1062190843",
       "rune.stat_1839315243",
+      "rune.stat_2296009672",
+      "rune.stat_2336703514",
+      "rune.stat_3148103963",
+      "rune.stat_3268281424",
       "rune.stat_776287420"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Trap\\ Skill\\ Gems$"
@@ -143014,6 +143976,9 @@
     "lines": 1,
     "tradeIds": [
       "rune.stat_1078570138",
+      "rune.stat_1839315243",
+      "rune.stat_2296009672",
+      "rune.stat_3148103963",
       "rune.stat_776287420"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)\\ to\\ Level\\ of\\ all\\ Vaal\\ Skill\\ Gems$"

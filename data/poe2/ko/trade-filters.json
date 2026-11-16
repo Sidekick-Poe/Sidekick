@@ -915,13 +915,6 @@
     "title": "\uC7A5\uBE44 \uD544\uD130",
     "filters": [
       {
-        "id": "total_augment_sockets",
-        "text": "Total Augment Sockets",
-        "option": {
-          "options": []
-        }
-      },
-      {
         "id": "ward",
         "text": "\uB8EC \uC218\uD638",
         "option": {
@@ -980,6 +973,13 @@
       {
         "id": "rune_sockets",
         "text": "\uC99D\uAC15 \uAC00\uB2A5\uD55C \uD648",
+        "option": {
+          "options": []
+        }
+      },
+      {
+        "id": "total_augment_sockets",
+        "text": "\uC99D\uAC15\uBB3C \uD648 \uCD1D \uAC1C\uC218",
         "option": {
           "options": []
         }

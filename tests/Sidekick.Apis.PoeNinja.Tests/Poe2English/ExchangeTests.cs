@@ -31,8 +31,7 @@ Place into an empty Augment Socket in a Helmet to apply its effect to that item.
 Shift click to unstack.
 ");
 
-        Assert.NotNull(item.InvariantDefinition?.NinjaExchangeItem);
-        Assert.Equal("voranas-carnage", item.InvariantDefinition?.NinjaExchangeItem?.Id);
+        item.AssertHasNinjaExchange("voranas-carnage");
     }
 
     [Fact]
@@ -49,7 +48,6 @@ It neither blooms nor withers.
 Right click this item then left click an Endgame World Area to apply it.
 ");
 
-        Assert.NotNull(item.InvariantDefinition?.NinjaExchangeItem);
-        Assert.Equal("sacred-bloom", item.InvariantDefinition?.NinjaExchangeItem?.Id);
+        item.AssertHasNinjaExchange("sacred-bloom");
     }
 }
