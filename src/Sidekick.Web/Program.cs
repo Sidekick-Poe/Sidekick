@@ -18,18 +18,21 @@ host.Start(services =>
     services.TryAddScoped<WebDialogsHandler>();
 });
 
-// Open the browser
-var applicationLifetime = host.Application.Services.GetRequiredService<IHostApplicationLifetime>();
-applicationLifetime.ApplicationStarted.Register(() =>
+// Open the browser, except in a container where there is none
+if (!ServerAppHost.IsRunningInContainer)
 {
-    var browserProvider = host.Application.Services.GetService<IBrowserProvider>();
-
-    // Get the first URL the app is listening on
-    var url = host.Application.Urls.FirstOrDefault();
-    if (!string.IsNullOrEmpty(url) && browserProvider != null)
+    var applicationLifetime = host.Application.Services.GetRequiredService<IHostApplicationLifetime>();
+    applicationLifetime.ApplicationStarted.Register(() =>
     {
-        browserProvider.OpenUri(new Uri(url));
-    }
-});
+        var browserProvider = host.Application.Services.GetService<IBrowserProvider>();
+
+        // Get the first URL the app is listening on
+        var url = host.Application.Urls.FirstOrDefault();
+        if (!string.IsNullOrEmpty(url) && browserProvider != null)
+        {
+            browserProvider.OpenUri(new Uri(url));
+        }
+    });
+}
 
 await host.RunTask;

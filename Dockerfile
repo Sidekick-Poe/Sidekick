@@ -14,4 +14,4 @@ RUN dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -o ./publish
 # Run
 EXPOSE 5000
 VOLUME /app/sidekick
-ENTRYPOINT ["/usr/bin/dotnet", "/app/publish/Sidekick.Web.dll", "--urls", "http://0.0.0.0:5000"]
+ENTRYPOINT ["/usr/bin/dotnet", "/app/publish/Sidekick.Web.dll"]
