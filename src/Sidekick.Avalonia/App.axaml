@@ -93,7 +93,7 @@
 
         <!-- Tray menu icon alignment bug from Avalonia, https://github.com/AvaloniaUI/Avalonia/issues/22837 -->
         <Style Selector="MenuFlyoutPresenter MenuItem /template/ ContentControl#PART_IconPresenter">
-            <Setter Property="RenderTransform" Value="translate(0px, 2px)" />
+            <Setter Property="RenderTransform" Value="translate(0px, 1px)" />
         </Style>
 
         <!-- Hide Fullscreen Button -->
