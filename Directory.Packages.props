@@ -4,11 +4,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="ApexCharts" Version="0.0.0" />
-    <PackageVersion Include="Avalonia" Version="12.1.0" />
-    <PackageVersion Include="Avalonia.Controls.WebView" Version="12.0.1" />
-    <PackageVersion Include="Avalonia.Desktop" Version="12.1.0" />
-    <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.1.0" />
-    <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.0" />
+    <PackageVersion Include="Avalonia" Version="12.1.6" />
+    <PackageVersion Include="Avalonia.Controls.WebView" Version="12.1.2" />
+    <PackageVersion Include="Avalonia.Desktop" Version="12.1.6" />
+    <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.1.6" />
+    <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.6" />
     <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" />
     <PackageVersion Include="Blazor-ApexCharts" Version="6.1.0" />
     <!-- Pinned above the version bunit.web brings in, to avoid a known vulnerability (GHSA-pgww-w46g-26qg). -->

@@ -12,6 +12,12 @@ public class SidekickWebView : NativeWebView
         Width = 0;
         Height = 0;
 
+        // The list is exhaustive, so setting it on Windows would leave no adapter there.
+        if (OperatingSystem.IsLinux())
+        {
+            AdapterPreference = [WebViewAdapterType.WebKitGtk];
+        }
+
         EnvironmentRequested += OnEnvironmentRequested;
         NavigationCompleted += OnNavigationCompleted;
     }
@@ -22,11 +28,6 @@ public class SidekickWebView : NativeWebView
         // Enable developer tools for all platforms
         args.EnableDevTools = true;
 #endif
-
-        if (args is LinuxWpeWebViewEnvironmentRequestedEventArgs wpeArgs)
-        {
-            wpeArgs.PreferWebKitGtkInstead = true;
-        }
 
         if (args is WindowsWebView2EnvironmentRequestedEventArgs webView2Args)
         {
