@@ -6,7 +6,7 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
 [Collection(Collections.Poe1EnglishFixture)]
-public class MapFragmentParsing(Poe1EnglishFixture fixture)
+public class FragmentParsing(Poe1EnglishFixture fixture)
 {
     private readonly ItemParser parser = fixture.Parser;
 

@@ -246,12 +246,6 @@ public class StatParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (item.Properties.Rarity != Rarity.Normal &&
-            item.Properties.Rarity != Rarity.Magic &&
-            item.Properties.Rarity != Rarity.Rare &&
-            item.Properties.Rarity != Rarity.Unique &&
-            item.Properties.Rarity != Rarity.Gem) return [];
-
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 
         var result = new List<TradeFilter>();
