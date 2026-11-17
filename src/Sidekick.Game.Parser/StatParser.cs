@@ -81,7 +81,8 @@ public class StatParser
 
     public void Parse(Item item)
     {
-        if (item.Properties.Rarity != Rarity.Normal &&
+        if (!IsViscera(item) &&
+            item.Properties.Rarity != Rarity.Normal &&
             item.Properties.Rarity != Rarity.Magic &&
             item.Properties.Rarity != Rarity.Rare &&
             item.Properties.Rarity != Rarity.Unique &&
@@ -121,6 +122,11 @@ public class StatParser
 
         item.Stats = item.Stats.OrderBy(x => x.BlockIndex).ThenBy(x => x.LineIndex).ToList();
     }
+
+    /// <summary>
+    /// Visceras have affixes but no rarity line, so they are recognized by their game item class id.
+    /// </summary>
+    private static bool IsViscera(Item item) => item.ItemClass.Id == "Viscera";
 
     private IEnumerable<StatDefinition> FilterDefinitions(Item item, StatCategory category)
     {
@@ -246,7 +252,8 @@ public class StatParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (item.Properties.Rarity != Rarity.Normal &&
+        if (!IsViscera(item) &&
+            item.Properties.Rarity != Rarity.Normal &&
             item.Properties.Rarity != Rarity.Magic &&
             item.Properties.Rarity != Rarity.Rare &&
             item.Properties.Rarity != Rarity.Unique &&

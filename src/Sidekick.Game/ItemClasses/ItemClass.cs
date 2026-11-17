@@ -304,4 +304,8 @@ public enum ItemClass
     [ItemClassTradeId(GameType.Poe1, "chart")]
     [ItemClassGameId(GameType.Poe1, "DeepwaterChart")]
     Chart,
+
+    [ItemClassTradeId(GameType.Poe1, "viscera")]
+    [ItemClassGameId(GameType.Poe1, "Viscera")]
+    Viscera,
 }
