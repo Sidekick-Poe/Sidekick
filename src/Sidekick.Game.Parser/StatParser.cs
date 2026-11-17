@@ -250,7 +250,8 @@ public class StatParser
             item.Properties.Rarity != Rarity.Magic &&
             item.Properties.Rarity != Rarity.Rare &&
             item.Properties.Rarity != Rarity.Unique &&
-            item.Properties.Rarity != Rarity.Gem) return [];
+            item.Properties.Rarity != Rarity.Gem &&
+            item.Properties.Rarity != Rarity.Currency) return [];
 
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 
