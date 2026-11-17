@@ -36,22 +36,25 @@ public class StatParser
     {
         var game = await settingsService.GetGame();
         var definitions = await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.Language);
+        var categorizedDefinitions = new Dictionary<StatCategory, List<StatDefinition>>();
         foreach (var definition in definitions)
         {
             if (definition.TradeIds == null || definition.TradeIds.Count == 0)
             {
-                Definitions.TryAdd(StatCategory.Undefined, []);
-                Definitions[StatCategory.Undefined].Add(definition);
+                categorizedDefinitions.TryAdd(StatCategory.Undefined, []);
+                categorizedDefinitions[StatCategory.Undefined].Add(definition);
                 continue;
             }
 
             foreach (var tradeId in definition.TradeIds)
             {
                 var category = tradeId.GetStatCategory();
-                Definitions.TryAdd(category, []);
-                Definitions[category].Add(definition);
+                categorizedDefinitions.TryAdd(category, []);
+                categorizedDefinitions[category].Add(definition);
             }
         }
+
+        Definitions = categorizedDefinitions;
 
         var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, GameDataType.TradeStats, currentGameLanguage.Language);
         TradeDefinitions = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
