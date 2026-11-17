@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.Imaging;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Avalonia.Services;
@@ -187,17 +188,22 @@ public partial class App : Application
 
         UpdateLabels();
 
+        var titleItem = new NativeMenuItem("Sidekick - " + RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
+        {
+            // Enabled so Linux trays don't grey out its icon.
+            Command = openHomeCommand,
+        };
+
         var trayIcon = new TrayIcon
         {
             Command = openHomeCommand,
             Menu = new NativeMenu
             {
-                new NativeMenuItem("Sidekick - " + RequiredServerAppHost.Application.Services.GetRequiredService<IApplicationService>().GetVersion())
-                {
-                    IsEnabled = false,
-                },
+                titleItem,
+                new NativeMenuItemSeparator(),
                 homeItem,
                 openWebsiteItem,
+                new NativeMenuItemSeparator(),
                 exitItem,
             }
         };
@@ -217,6 +223,7 @@ public partial class App : Application
         if (File.Exists(iconPath))
         {
             trayIcon.Icon = new WindowIcon(iconPath);
+            titleItem.Icon = new Bitmap(iconPath);
         }
 
         var tray = new TrayIcons
