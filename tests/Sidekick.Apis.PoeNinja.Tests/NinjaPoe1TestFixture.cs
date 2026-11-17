@@ -9,6 +9,7 @@ using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Apis.PoeNinja.Tests.Mocks;
 using Sidekick.Game.Parser;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Providers;
 using Xunit;
 
 namespace Sidekick.Apis.PoeNinja.Tests;
@@ -19,6 +20,7 @@ public class NinjaPoe1TestFixture : Poe1EnglishFixture
     public INinjaStashProvider NinjaStashProvider { get; private set; } = null!;
     public ItemDefinitionParser ItemDefinitionParser { get; private set; } = null!;
     public ILogger Logger { get; private set; } = null!;
+    public NinjaProvider NinjaProvider { get; private set; } = null!;
 
     public override async Task InitializeAsync()
     {
@@ -28,6 +30,7 @@ public class NinjaPoe1TestFixture : Poe1EnglishFixture
         NinjaStashProvider = TestContext.Services.GetRequiredService<INinjaStashProvider>();
         ItemDefinitionParser = TestContext.Services.GetRequiredService<ItemDefinitionParser>();
         Logger = TestContext.Services.GetRequiredService<ILogger<NinjaPoe1TestFixture>>();
+        NinjaProvider = TestContext.Services.GetRequiredService<NinjaProvider>();
     }
 
     protected override void RegisterServices(IServiceCollection services)
@@ -39,11 +42,15 @@ public class NinjaPoe1TestFixture : Poe1EnglishFixture
 
     public void AssertStash(Item item, string expectedDetailsId)
     {
-        if (item.InvariantDefinition?.NinjaStashItems == null || item.InvariantDefinition.NinjaStashItems.All(x => x.DetailsId != expectedDetailsId))
+        // poe.ninja drops items that are no longer traded, so only those are skipped. An item still on poe.ninja must be linked to its definition.
+        if (!NinjaProvider.StashItems.ContainsKey(expectedDetailsId))
         {
-            Logger.LogWarning($"Item {item.Name} {item.Type} does not have expected details id {expectedDetailsId}");
+            Logger.LogWarning($"Item {item.Name} {item.Type} is no longer on poe.ninja with the details id {expectedDetailsId}");
             return;
         }
+
+        Assert.True(item.InvariantDefinition?.NinjaStashItems?.Any(x => x.DetailsId == expectedDetailsId) == true,
+                    $"Item {item.Name} {item.Type} is on poe.ninja with the details id {expectedDetailsId}, but its definition is not linked to it.");
 
         var results = NinjaStashProvider.GetDefinitions(item);
         Assert.Single(results);
