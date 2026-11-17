@@ -56,7 +56,9 @@ public class StatParser
         var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, GameDataType.TradeStats, currentGameLanguage.Language);
         TradeDefinitions = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
 
-        InvariantDefinitions = await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.InvariantLanguage);
+        InvariantDefinitions = currentGameLanguage.IsEnglish()
+            ? definitions
+            : await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.InvariantLanguage);
 
         InvariantDetails = await dataProvider.Read<StatsInvariantDetails>(game, GameDataType.StatsInvariant);
     }

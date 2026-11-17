@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
@@ -43,8 +44,6 @@ public partial class Initialization
 
     private int Count { get; set; }
 
-    private string? Step { get; set; }
-
     private int Percentage { get; set; }
 
     private int Completed { get; set; }
@@ -72,18 +71,20 @@ public partial class Initialization
             // Report initial progress
             await ReportProgress();
 
+            var totalWatch = Stopwatch.StartNew();
             var resolver = new InitializationOrderResolver(ServiceProvider);
-            var orderedServices = resolver.GetOrderedServices(Configuration.Value.InitializableServices);
-            foreach (var service in orderedServices)
+            foreach (var service in resolver.GetOrderedServices(Configuration.Value.InitializableServices))
             {
-                Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
+                var watch = Stopwatch.StartNew();
                 await service.Initialize();
+                Logger.LogInformation("[Initialization] Initialized {Service} in {Elapsed}ms.", service.GetType().FullName, watch.ElapsedMilliseconds);
                 Completed++;
                 await ReportProgress();
             }
 
-            // If we have a successful initialization, we delay for half a second to show the
-            // "Ready" label on the UI before closing the view
+            Logger.LogInformation("[Initialization] Initialized {Count} services in {Elapsed}ms.", Count, totalWatch.ElapsedMilliseconds);
+
+            // Shows the full progress bar for a moment before closing the view.
             Completed = Count;
             ApplicationService.HasInitialized = true;
 
@@ -126,19 +127,8 @@ public partial class Initialization
     {
         return InvokeAsync(() =>
         {
-            Percentage = Count == 0 ? 0 : Completed * 100 / Count;
-            if (Percentage >= 100)
-            {
-                Step = Resources["Ready"];
-                Percentage = 100;
-            }
-            else
-            {
-                Step = Resources["Title", Completed, Count];
-            }
-
+            Percentage = Count == 0 ? 0 : Math.Min(Completed * 100 / Count, 100);
             StateHasChanged();
-            return Task.Delay(100);
         });
     }
 
