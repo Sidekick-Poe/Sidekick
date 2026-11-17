@@ -92,17 +92,14 @@ else
                 var completedTask = await Task.WhenAny(checkTask, Task.Delay(TimeSpan.FromSeconds(10)));
                 if (completedTask == checkTask)
                 {
-                    // Completed within timeout
                     UpdateInfo = await checkTask;
-                    StateHasChanged();
-
-                    // There's no available updates
                     if (UpdateInfo is null)
                     {
-                        if (IsInitialization) NavigationManager.NavigateTo("/setup");
-                        NoUpdates = true;
-                        StateHasChanged();
+                        ShowNoUpdates();
+                        return;
                     }
+
+                    StateHasChanged();
                 }
                 else
                 {
@@ -114,9 +111,7 @@ else
             else
             {
                 Logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
-                if (IsInitialization) NavigationManager.NavigateTo("/setup");
-                NoUpdates = true;
-                StateHasChanged();
+                ShowNoUpdates();
             }
         }
         catch (SidekickException e)
@@ -130,6 +125,19 @@ else
             Logger.LogError(e, "[AutoUpdater] Error while checking for updates.");
             StateHasChanged();
         }
+    }
+
+    private void ShowNoUpdates()
+    {
+        // At startup, the message would only flash before the setup page, so it goes straight there.
+        if (IsInitialization)
+        {
+            NavigationManager.NavigateTo("/setup");
+            return;
+        }
+
+        NoUpdates = true;
+        StateHasChanged();
     }
 
     public async Task Download()

@@ -20,7 +20,9 @@ public class InitializationOrderResolver(IServiceProvider serviceProvider)
         {
             var service = (IInitializableService)serviceProvider.GetRequiredService(serviceType);
             services[serviceType] = service;
-            dependencies[serviceType] = GetDependencies(serviceType, allServiceTypes);
+            // The registered type can be an interface, which has no constructor, so the dependencies come from the implementation.
+            dependencies[serviceType] = GetDependencies(service.GetType(), allServiceTypes);
+            dependencies[serviceType].Remove(serviceType);
         }
 
         // Perform topological sort

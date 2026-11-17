@@ -1,15 +1,17 @@
 @page "/initialize"
+@using Microsoft.Extensions.Localization
 @using Sidekick.Common.Ui.App
-@using Sidekick.Common.Ui.Typography
 @using Sidekick.Common.Ui.Progress
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Typography
 
 <LayoutSimple>
     <ChildContent>
         <AppContainer>
-        <Heading3 Class="mb-2 text-center">@Step</Heading3>
-        <ProgressBar Percent="Percentage"/>
+            <Heading3 Class="mb-2 text-center">@UiResources["Loading"]</Heading3>
+            <ProgressBar Percent="Percentage"/>
         </AppContainer>
     </ChildContent>
 
@@ -21,3 +23,5 @@
         </div>
     </BottomContent>
 </LayoutSimple>
+
+@inject IStringLocalizer<UiResources> UiResources
