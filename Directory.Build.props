@@ -1,0 +1,10 @@
+<Project>
+
+    <PropertyGroup>
+        <!-- Every warning fails the build, so no new warning gets merged. The Dockerfile turns this off, people build that image themselves with whatever SDK version it pulls. -->
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <!-- A newly published security advisory for a package should be visible, but not break every build until the package is updated. -->
+        <WarningsNotAsErrors>$(WarningsNotAsErrors);NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
+    </PropertyGroup>
+
+</Project>

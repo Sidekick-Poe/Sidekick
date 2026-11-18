@@ -1,5 +1,8 @@
 <Project>
 
+    <!-- MSBuild stops at the first Directory.Build.props it finds, so the one at the repository root has to be imported. -->
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
     <PropertyGroup>
         <!-- Resources other projects may use. The typed members of every other resources class are internal to its project. -->
         <SharedLocalizationResources>UiResources</SharedLocalizationResources>
