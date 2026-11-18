@@ -5,6 +5,22 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <!-- A newly published security advisory for a package should be visible, but not break every build until the package is updated. -->
         <WarningsNotAsErrors>$(WarningsNotAsErrors);NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
+        <!-- Resources other projects may use. The typed members of every other resources class are internal to its project. -->
+        <SharedLocalizationResources>UiResources</SharedLocalizationResources>
+        <!-- Every .resx should have a translation for each of these cultures, separated by commas (a semicolon would cut the list in the analyzer config). -->
+        <LocalizationCultures>fr,ko</LocalizationCultures>
     </PropertyGroup>
+
+    <!-- Every project gets typed members for the keys of its own .resx files, see Sidekick.Localization.Generators. The generator tests already reference the generator directly. -->
+    <ItemGroup Condition="'$(MSBuildProjectName)' != 'Sidekick.Localization.Generators' And '$(MSBuildProjectName)' != 'Sidekick.Localization.Generators.Tests'">
+        <ProjectReference Include="$(MSBuildThisFileDirectory)src\Sidekick.Localization.Generators\Sidekick.Localization.Generators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
+        <AdditionalFiles Include="**\*.resx" Exclude="bin\**;obj\**" />
+        <CompilerVisibleProperty Include="RootNamespace" />
+        <CompilerVisibleProperty Include="ProjectDir" />
+        <CompilerVisibleProperty Include="SharedLocalizationResources" />
+        <CompilerVisibleProperty Include="LocalizationCultures" />
+    </ItemGroup>
 
 </Project>
