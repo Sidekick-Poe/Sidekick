@@ -13,7 +13,6 @@ public static class ServiceCollectionExtensions
         services.SetSidekickDefaultSetting(SettingKeys.LanguageUi, "en");
         services.SetSidekickDefaultSetting(SettingKeys.Zoom, "1");
         services.SetSidekickDefaultSetting(SettingKeys.RetainClipboard, true);
-        services.SetSidekickDefaultSetting(SettingKeys.UseHardwareAcceleration, true);
 
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
