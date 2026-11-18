@@ -9,7 +9,8 @@ ENV HOME=/app
 # Sidekick stores its data in the ApplicationData folder, which is $XDG_CONFIG_HOME on Linux, so data lands in /app/sidekick.
 ENV XDG_CONFIG_HOME=/app
 COPY . .
-RUN dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -o ./publish
+# The SDK image floats, so a newer SDK can bring new warnings that people building the image can't fix.
+RUN dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -o ./publish -p:TreatWarningsAsErrors=false
 
 # Run
 EXPOSE 5000

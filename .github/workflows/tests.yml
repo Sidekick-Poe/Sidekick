@@ -22,5 +22,5 @@ jobs:
       shell: pwsh
       run: |
         dotnet restore
-        dotnet build --no-restore
-        dotnet test --no-build --verbosity normal
+        dotnet build --no-restore -c Release
+        dotnet test --no-build -c Release --verbosity normal
