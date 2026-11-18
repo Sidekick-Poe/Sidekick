@@ -23,9 +23,9 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
             return null;
         }
 
-        await using var stream = File.OpenRead(fileName);
         try
         {
+            await using var stream = File.OpenRead(fileName);
             var value = await JsonSerializer.DeserializeAsync<TModel>(stream);
             if (value == null) return null;
 
