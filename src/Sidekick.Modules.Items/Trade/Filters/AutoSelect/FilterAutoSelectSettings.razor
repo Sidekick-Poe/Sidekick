@@ -31,13 +31,13 @@
                 {
                     @if (ruleIndex > 0 && Filter.AutoSelect.Rules.Count > 0)
                     {
-                        <ButtonIcon Svg="@UiIcons.ChevronUp"
+                        <ButtonIcon Svg="@Lucide.ChevronUp"
                                     OnClick="() => MoveUp(rule)"/>
                     }
 
                     @if (ruleIndex < Filter.AutoSelect.Rules.Count - 1)
                     {
-                        <ButtonIcon Svg="@UiIcons.ChevronDown"
+                        <ButtonIcon Svg="@Lucide.ChevronDown"
                                     OnClick="() => MoveDown(rule)"/>
                     }
 
@@ -45,7 +45,7 @@
                     {
                         <Tooltip Text="@Resources.AutoSelect_RemoveRule">
                             <ButtonIcon Class="text-red-500! hover:text-red-300!"
-                                        Svg="@UiIcons.Close"
+                                        Svg="@Lucide.X"
                                         OnClick="() => RemoveRule(rule)"/>
                         </Tooltip>
                     }

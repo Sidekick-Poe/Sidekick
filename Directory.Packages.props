@@ -10,6 +10,8 @@
     <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.1.6" />
     <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.6" />
     <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" />
+    <PackageVersion Include="Blazicons.FontAwesome" Version="4.0.5" />
+    <PackageVersion Include="Blazicons.Lucide" Version="3.2.13" />
     <PackageVersion Include="Blazor-ApexCharts" Version="6.1.0" />
     <!-- Pinned above the version bunit.web brings in, to avoid a known vulnerability (GHSA-pgww-w46g-26qg). -->
     <PackageVersion Include="AngleSharp" Version="1.10.3" />

@@ -1,7 +1,7 @@
 @using Microsoft.Extensions.Localization
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
-@using Sidekick.Common.Ui.Icons
+@using Blazicons
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.General.Localization
@@ -15,7 +15,7 @@
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
-                        Svg="@UiIcons.Reset"
+                        Svg="@Lucide.RotateCcw"
                         Tooltip="@UiResources.Reset"/>
         }
     </AdornmentContent>

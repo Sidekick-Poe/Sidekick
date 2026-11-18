@@ -23,7 +23,7 @@
             <div class="flex min-h-full items-center justify-center p-2">
                 <div class="w-full max-w-lg rounded-xl border border-stone-700 bg-stone-900 p-5 shadow-lg @(isLeftAligned ? "text-left" : "text-center")">
                     <div class="mx-auto mb-3 flex size-16 items-center justify-center rounded-full bg-stone-800 @(context.IsCritical ? "text-red-500" : "text-orange-500")">
-                        <Icon Svg="@(context.IsCritical ? UiIcons.Error : UiIcons.Warning)" Size="@UiIconSize.Large" />
+                        <Icon Svg="@(context.IsCritical ? Lucide.CircleExclamationPoint : Lucide.TriangleExclamationPoint)" Size="@UiIconSize.Large" />
                     </div>
 
                     <Heading3 Class="text-white leading-snug text-center">@title</Heading3>
@@ -54,7 +54,7 @@
 
                     <div class="mt-4 flex justify-center text-sm text-stone-400">
                         <ButtonLink Class="gap-1.5" OnClick="FolderProvider.OpenDataFolderPath">
-                            <Icon Svg="@UiIcons.FolderOpen" Size="@UiIconSize.Small"/>
+                            <Icon Svg="@Lucide.FolderOpen" Size="@UiIconSize.Small"/>
                             @Resources.Open_Logs_Folder
                         </ButtonLink>
                     </div>

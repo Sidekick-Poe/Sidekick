@@ -9,7 +9,7 @@
             @onclick="() => Filter.Checked = !Filter.Checked"
             @onclick:preventDefault="true">
             <Icon Size="UiIconSize.Small"
-                  Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronRight)"/>
+                  Svg="@(Filter.Checked ? Lucide.ChevronDown : Lucide.ChevronRight)"/>
 
             @{
                 var label = Filter.Text;
@@ -26,7 +26,7 @@
                               OnlyShowLabel="true"/>
 
             <Icon Size="UiIconSize.Small"
-                  Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronLeft)"/>
+                  Svg="@(Filter.Checked ? Lucide.ChevronDown : Lucide.ChevronLeft)"/>
         </div>
     </FilterWrapper>
 
