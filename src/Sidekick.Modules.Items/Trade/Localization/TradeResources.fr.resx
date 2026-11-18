@@ -232,18 +232,6 @@ Cliquez sur le bouton pour l'ouvrir dans votre navigateur.</value>
   <data name="Normalize_Values" xml:space="preserve">
     <value>Normaliser les valeurs. Laisser à 0% pour les valeurs exactes.</value>
   </data>
-  <data name="Player_Status_OnlineLeague" xml:space="preserve">
-    <value>En ligne et dans la ligue</value>
-  </data>
-  <data name="Player_Status_Online" xml:space="preserve">
-      <value>Échange en personne</value>
-  </data>
-  <data name="Player_Status_Any" xml:space="preserve">
-    <value>Tous</value>
-  </data>
-  <data name="Player_Status" xml:space="preserve">
-    <value>Statut du joueur</value>
-  </data>
   <data name="Filter_Settings" xml:space="preserve">
       <value>Paramètres des filtres</value>
   </data>
@@ -259,25 +247,10 @@ Cliquez sur le bouton pour l'ouvrir dans votre navigateur.</value>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
       <value>Afficher les prédictions de poeprices.info (PoE1 seulement)</value>
   </data>
-  <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
-    <value>Charger automatiquement plus de résultats lors du défilement vers le bas</value>
-  </data>
-  <data name="PriceCheck_Automatically_Search" xml:space="preserve">
-    <value>Rechercher automatiquement lors de la vérification du prix</value>
-  </data>
-  <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
-    <value>Il est recommandé de laisser désactivé afin de ne pas dépasser la limite de taux de l'API.</value>
-  </data>
   <data name="Item_Trade" xml:space="preserve">
     <value>Item</value>
   </data>
   <data name="Clear_Filters" xml:space="preserve">
       <value>Retirer les filtres</value>
-  </data>
-  <data name="Player_Status_Available" xml:space="preserve">
-      <value>Achat instantané et Échange en personne</value>
-  </data>
-  <data name="Player_Status_Securable" xml:space="preserve">
-      <value>Achat instantané</value>
   </data>
 </root>

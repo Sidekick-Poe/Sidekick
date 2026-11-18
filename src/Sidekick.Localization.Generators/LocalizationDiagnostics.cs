@@ -36,5 +36,48 @@ internal static class LocalizationDiagnostics
         messageFormat: "{0} could not be read: {1}",
         category: Category,
         defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true,
+        customTags: WellKnownDiagnosticTags.CompilationEnd);
+
+    public static readonly DiagnosticDescriptor MissingEnumKeys = new(
+        id: "SKLOC010",
+        title: "Enum value has no resource key",
+        messageFormat: "{0} has no key for these {1} values: {2}. Add the keys, or map the values to typed members in a switch.",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
+
+    public static readonly DiagnosticDescriptor UnverifiableKey = new(
+        id: "SKLOC011",
+        title: "Resource key can't be verified",
+        messageFormat: "This resource key is computed at runtime and can't be verified, use the typed members instead (for example in a switch)",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true);
+
+    public static readonly DiagnosticDescriptor LiteralKey = new(
+        id: "SKLOC012",
+        title: "Use the typed resource member",
+        messageFormat: "Use the typed member {0} instead of the key string",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true);
+
+    public static readonly DiagnosticDescriptor MissingTranslation = new(
+        id: "SKLOC013",
+        title: "Resource has no translation",
+        messageFormat: "{0} has no {1} translation",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Info,
+        isEnabledByDefault: true,
+        customTags: WellKnownDiagnosticTags.CompilationEnd);
+
+    public static readonly DiagnosticDescriptor OrphanTranslation = new(
+        id: "SKLOC014",
+        title: "Translated key is not in the base resource file",
+        messageFormat: "The key '{0}' in {1} doesn't exist in {2}, remove it",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Info,
+        isEnabledByDefault: true,
+        customTags: WellKnownDiagnosticTags.CompilationEnd);
 }

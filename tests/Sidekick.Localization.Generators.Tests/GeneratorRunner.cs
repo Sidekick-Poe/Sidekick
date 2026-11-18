@@ -59,7 +59,7 @@ internal static class GeneratorRunner
                 """;
     }
 
-    private static IEnumerable<MetadataReference> GetReferences()
+    internal static IEnumerable<MetadataReference> GetReferences()
     {
         var platformAssemblies = ((string?)AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") ?? string.Empty).Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries);
         return platformAssemblies
@@ -68,20 +68,21 @@ internal static class GeneratorRunner
             .Select(x => MetadataReference.CreateFromFile(x));
     }
 
-    private sealed class InMemoryAdditionalText(string path, string content) : AdditionalText
+    internal sealed class InMemoryAdditionalText(string path, string content) : AdditionalText
     {
         public override string Path => path;
 
         public override SourceText GetText(CancellationToken cancellationToken = default) => SourceText.From(content);
     }
 
-    private sealed class TestOptionsProvider : AnalyzerConfigOptionsProvider
+    internal sealed class TestOptionsProvider : AnalyzerConfigOptionsProvider
     {
         private static readonly TestOptions Options = new(new Dictionary<string, string>
         {
             ["build_property.RootNamespace"] = RootNamespace,
             ["build_property.ProjectDir"] = ProjectDirectory,
             ["build_property.SharedLocalizationResources"] = SharedResources,
+            ["build_property.LocalizationCultures"] = "fr",
         });
 
         public override AnalyzerConfigOptions GlobalOptions => Options;

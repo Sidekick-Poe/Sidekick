@@ -49,7 +49,7 @@ public partial class LinuxDependenciesWindow : Window
                 FontSize = 16,
                 Foreground = Brushes.White,
                 TextWrapping = TextWrapping.Wrap,
-                Text = resources[dependency.ResourceKey],
+                Text = dependency.Description(resources),
             });
         }
 

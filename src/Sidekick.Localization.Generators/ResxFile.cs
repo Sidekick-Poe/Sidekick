@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
 
 namespace Sidekick.Localization.Generators;
 
@@ -34,6 +36,33 @@ internal sealed record ResxFile(string Path, string ClassName, EquatableArray<Re
 
         return !CultureSuffix.IsMatch(name.Substring(lastDot + 1));
     }
+
+    /// <summary>
+    /// For a translation like Folder/UiResources.fr.resx, gives its culture (fr) and the path of its base file (Folder/UiResources.resx).
+    /// </summary>
+    public static bool TryGetTranslation(string path, out string basePath, out string culture)
+    {
+        basePath = string.Empty;
+        culture = string.Empty;
+        if (!path.EndsWith(".resx", StringComparison.OrdinalIgnoreCase) || IsBase(path))
+        {
+            return false;
+        }
+
+        var name = System.IO.Path.GetFileNameWithoutExtension(path);
+        var lastDot = name.LastIndexOf('.');
+        culture = name.Substring(lastDot + 1);
+        basePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(path) ?? string.Empty, name.Substring(0, lastDot) + ".resx");
+        return true;
+    }
+
+    public Location GetLocation(ResxEntry entry)
+    {
+        var position = new LinePosition(Math.Max(entry.Line - 1, 0), Math.Max(entry.Column - 1, 0));
+        return Location.Create(Path, default, new LinePositionSpan(position, position));
+    }
+
+    public Location GetFileLocation() => Location.Create(Path, default, default);
 
     public static ResxFile Parse(string path, string? text)
     {

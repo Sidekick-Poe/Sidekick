@@ -1,12 +1,14 @@
 ﻿using System.Runtime.InteropServices;
+using Microsoft.Extensions.Localization;
+using Sidekick.Common.Ui.Localization;
 
 namespace Sidekick.Avalonia.Utilities;
 
 /// <summary>
 /// A package Sidekick needs on Linux, with its name in each supported distribution.
 /// </summary>
-/// <param name="ResourceKey">The key of the text that names the package and says what it is used for, in UiResources.</param>
-public record LinuxDependency(string ResourceKey, string ArchPackage, string DebianPackage, string FedoraPackage);
+/// <param name="Description">The text that names the package and says what it is used for.</param>
+public record LinuxDependency(Func<IStringLocalizer<UiResources>, string> Description, string ArchPackage, string DebianPackage, string FedoraPackage);
 
 /// <summary>
 /// The command that installs the missing packages on a family of distributions.
@@ -16,13 +18,13 @@ public record LinuxInstallCommand(string Distribution, string Command);
 public static class LinuxDependencyChecker
 {
     private static readonly LinuxDependency Xsel = new(
-        ResourceKey: "Linux_Dependencies_Xsel",
+        Description: resources => resources.Linux_Dependencies_Xsel,
         ArchPackage: "xsel",
         DebianPackage: "xsel",
         FedoraPackage: "xsel");
 
     private static readonly LinuxDependency WebKitGtk = new(
-        ResourceKey: "Linux_Dependencies_WebKitGtk",
+        Description: resources => resources.Linux_Dependencies_WebKitGtk,
         ArchPackage: "webkit2gtk-4.1",
         DebianPackage: "libwebkit2gtk-4.1-0",
         FedoraPackage: "webkit2gtk4.1");

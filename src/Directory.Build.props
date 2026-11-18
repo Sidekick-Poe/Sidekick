@@ -3,6 +3,8 @@
     <PropertyGroup>
         <!-- Resources other projects may use. The typed members of every other resources class are internal to its project. -->
         <SharedLocalizationResources>UiResources</SharedLocalizationResources>
+        <!-- Every .resx should have a translation for each of these cultures, separated by commas (a semicolon would cut the list in the analyzer config). -->
+        <LocalizationCultures>fr,ko</LocalizationCultures>
     </PropertyGroup>
 
     <!-- Every project gets typed members for the keys of its own .resx files, see Sidekick.Localization.Generators. -->
@@ -14,6 +16,7 @@
         <CompilerVisibleProperty Include="RootNamespace" />
         <CompilerVisibleProperty Include="ProjectDir" />
         <CompilerVisibleProperty Include="SharedLocalizationResources" />
+        <CompilerVisibleProperty Include="LocalizationCultures" />
     </ItemGroup>
 
 </Project>

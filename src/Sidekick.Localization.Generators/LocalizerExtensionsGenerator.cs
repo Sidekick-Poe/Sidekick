@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Text;
 
 namespace Sidekick.Localization.Generators;
 
@@ -16,12 +15,17 @@ public sealed class LocalizerExtensionsGenerator : IIncrementalGenerator
 {
     private const string LocalizerMetadataName = "Microsoft.Extensions.Localization.IStringLocalizer`1";
 
-    private static readonly string[] LocalizerMembers = ["GetAllStrings", "GetString", "WithCulture"];
+    internal static readonly string[] LocalizerMembers = ["GetAllStrings", "GetString", "WithCulture"];
 
     /// <summary>
     /// Instance members win over extension members, so a member with one of these names could never be called. Keys like these come from enum values (AutoSelectComparisonType.Equals) and are read with the indexer.
     /// </summary>
-    private static readonly string[] ObjectMembers = ["Equals", "GetHashCode", "GetType", "ToString"];
+    internal static readonly string[] ObjectMembers = ["Equals", "GetHashCode", "GetType", "ToString"];
+
+    /// <summary>
+    /// Whether the generator creates a typed member for this key, see the diagnostics reported in Generate.
+    /// </summary>
+    internal static bool HasTypedMember(string key) => SyntaxFacts.IsValidIdentifier(key) && !LocalizerMembers.Contains(key) && !ObjectMembers.Contains(key);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -117,19 +121,19 @@ public sealed class LocalizerExtensionsGenerator : IIncrementalGenerator
         {
             if (!SyntaxFacts.IsValidIdentifier(entry.Key))
             {
-                context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.InvalidKey, GetLocation(file, entry), entry.Key, fileName));
+                context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.InvalidKey, file.GetLocation(entry), entry.Key, fileName));
                 continue;
             }
 
             if (LocalizerMembers.Contains(entry.Key))
             {
-                context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.ConflictingKey, GetLocation(file, entry), entry.Key, fileName));
+                context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.ConflictingKey, file.GetLocation(entry), entry.Key, fileName));
                 continue;
             }
 
             if (ObjectMembers.Contains(entry.Key))
             {
-                context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.ObjectMemberKey, GetLocation(file, entry), entry.Key, fileName));
+                context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.ObjectMemberKey, file.GetLocation(entry), entry.Key, fileName));
                 continue;
             }
 
@@ -187,12 +191,6 @@ public sealed class LocalizerExtensionsGenerator : IIncrementalGenerator
             .Where(x => x.Length > 0);
 
         return string.Join(".", parts);
-    }
-
-    private static Location GetLocation(ResxFile file, ResxEntry entry)
-    {
-        var position = new LinePosition(Math.Max(entry.Line - 1, 0), Math.Max(entry.Column - 1, 0));
-        return Location.Create(file.Path, default, new LinePositionSpan(position, position));
     }
 
     private static string Escape(string text) => text.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;");
