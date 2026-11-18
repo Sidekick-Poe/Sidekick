@@ -19,14 +19,7 @@ else
                                                      @onclick="() => OnClick.InvokeAsync()"
                                                      @onclick:preventDefault="true"
                                                      class="disabled:opacity-50 dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses @Class @Icon.GetSizeClass(Size)">
-        <span class="relative fill-current inline-block @Icon.GetSizeClass(Size) @Class">
-            @((MarkupString)Svg)
-
-            @if (AddBadge)
-            {
-                <span class="absolute top-0 right-0 size-2 bg-red-700 rounded-full"></span>
-            }
-        </span>
+        <Icon Svg="Svg" Size="Size" Class="@Class" AddBadge="AddBadge"/>
     </button>;
 
     [Parameter]
@@ -36,7 +29,7 @@ else
     public EventCallback OnClick { get; set; }
 
     [Parameter]
-    public required string Svg { get; set; }
+    public required SvgIcon Svg { get; set; }
 
     [Parameter]
     public bool AddBadge { get; set; }

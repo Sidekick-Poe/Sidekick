@@ -1,9 +1,9 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="flex flex-wrap border-t gap-x-2 px-2 py-0.5 border-stone-700 dark:bg-stone-950">
-    @foreach (var item in Items)
+    @foreach (var entry in Items)
     {
-        if (item.IsSeparator)
+        if (entry is not NavigationItemProvider.NavigationItem item)
         {
             <div class="mx-auto"></div>
             continue;
@@ -25,7 +25,7 @@
 
 @code{
 
-    private List<NavigationItemProvider.NavigationItem> Items { get; set; } = [];
+    private List<NavigationItemProvider.NavigationEntry> Items { get; set; } = [];
 
     protected override void OnInitialized()
     {

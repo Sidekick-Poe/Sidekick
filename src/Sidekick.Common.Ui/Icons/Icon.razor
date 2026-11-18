@@ -1,5 +1,5 @@
-<span class="relative fill-current inline-block @GetSizeClass(Size) @Class">
-    @((MarkupString)Svg)
+<span class="relative inline-block @GetSizeClass(Size) @Class">
+    <Blazicon Svg="Svg" class="size-full"/>
 
     @if (AddBadge)
     {
@@ -12,7 +12,7 @@
     public bool AddBadge { get; set; }
 
     [Parameter]
-    public required string Svg { get; set; }
+    public required SvgIcon Svg { get; set; }
 
     [Parameter]
     public string Class { get; set; } = "";
