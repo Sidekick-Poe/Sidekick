@@ -19,6 +19,14 @@ public interface ISettingsService
     Task<bool> GetBool(string key);
 
     /// <summary>
+    /// Gets a setting by its key without waiting, for code that can't await, like keyboard and mouse hooks.
+    /// Settings are kept in memory, so this only reads the database if no setting was read before.
+    /// </summary>
+    /// <param name="key">The key of the setting to get.</param>
+    /// <returns>The value of the setting.</returns>
+    bool GetBoolNow(string key);
+
+    /// <summary>
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>

@@ -9,30 +9,25 @@ public class MouseWheelHandler
     ISettingsService settingsService,
     IInputProvider inputProvider,
     IProcessProvider processProvider
-) : ScrollWheelHandler(settingsService, inputProvider)
+) : ScrollWheelHandler(inputProvider)
 {
-    private readonly ISettingsService settingsService = settingsService;
     private readonly IInputProvider inputProvider = inputProvider;
 
-    private bool MouseWheelNavigateStashReverse { get; set; }
-
-    protected override async Task<bool> GetEnabled()
-    {
-        MouseWheelNavigateStashReverse = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStashReverse);
-        return await settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
-    }
+    protected override bool IsEnabled() => settingsService.GetBoolNow(SettingKeys.MouseWheelNavigateStash);
 
     protected override bool IsValid() => processProvider.IsPathOfExileInFocus;
 
     protected override Task OnScrollUp()
     {
-        inputProvider.PressKey(MouseWheelNavigateStashReverse ? "Left" : "Right");
+        inputProvider.PressKey(IsReversed() ? "Left" : "Right");
         return Task.CompletedTask;
     }
 
     protected override Task OnScrollDown()
     {
-        inputProvider.PressKey(MouseWheelNavigateStashReverse ? "Right" : "Left");
+        inputProvider.PressKey(IsReversed() ? "Right" : "Left");
         return Task.CompletedTask;
     }
+
+    private bool IsReversed() => settingsService.GetBoolNow(SettingKeys.MouseWheelNavigateStashReverse);
 }

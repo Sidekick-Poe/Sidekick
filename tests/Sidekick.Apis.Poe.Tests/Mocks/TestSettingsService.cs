@@ -35,6 +35,8 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult(GetDefault<bool>(key));
     }
 
+    public bool GetBoolNow(string key) => GetBool(key).Result;
+
     public Task<string?> GetString(string key)
     {
         if (store.TryGetValue(key, out var value))

@@ -8,36 +8,20 @@ namespace Sidekick.Common.Settings.Input;
 /// </summary>
 public abstract class ScrollWheelHandler : IInputHandler, IDisposable
 {
-    private readonly ISettingsService settingsService;
     private readonly IInputProvider inputProvider;
 
-    protected ScrollWheelHandler(ISettingsService settingsService, IInputProvider inputProvider)
+    protected ScrollWheelHandler(IInputProvider inputProvider)
     {
-        this.settingsService = settingsService;
         this.inputProvider = inputProvider;
-        settingsService.OnSettingsChanged += OnSettingsChanged;
         inputProvider.OnScrollDown += ScrollDownHandler;
         inputProvider.OnScrollUp += ScrollUpHandler;
     }
 
-    private void OnSettingsChanged(string[] keys)
-    {
-        _ = Task.Run(async () =>
-        {
-            Enabled = await GetEnabled();
-        });
-    }
-
     /// <summary>
-    /// Represents a property that determines whether the scroll wheel handler is enabled.
+    /// Determines whether the scroll wheel handler is enabled in the settings. Called on every scroll, so it must not wait.
     /// </summary>
-    public bool Enabled { get; set; }
-
-    /// <summary>
-    /// Determines whether the scroll wheel handler should be enabled based on the current settings.
-    /// </summary>
-    /// <returns>A task that resolves to true if the handler should be enabled; otherwise, false.</returns>
-    protected abstract Task<bool> GetEnabled();
+    /// <returns>True if the handler is enabled; otherwise, false.</returns>
+    protected abstract bool IsEnabled();
 
     /// <summary>
     ///     When an event occurs, check if this handler should be executed
@@ -58,14 +42,11 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
     protected abstract Task OnScrollDown();
 
     /// <inheritdoc />
-    public async Task Initialize()
-    {
-        Enabled = await GetEnabled();
-    }
+    public Task Initialize() => Task.CompletedTask;
 
     private void ScrollDownHandler(ScrollEventArgs args)
     {
-        if (!Enabled) return;
+        if (!IsEnabled()) return;
         if (args.Masks != "Ctrl") return;
         if (!IsValid()) return;
 
@@ -75,7 +56,7 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
 
     private void ScrollUpHandler(ScrollEventArgs args)
     {
-        if (!Enabled) return;
+        if (!IsEnabled()) return;
         if (args.Masks != "Ctrl") return;
         if (!IsValid()) return;
 
@@ -86,7 +67,6 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
     /// <inheritdoc />
     public void Dispose()
     {
-        settingsService.OnSettingsChanged -= OnSettingsChanged;
         inputProvider.OnScrollDown -= ScrollDownHandler;
         inputProvider.OnScrollUp -= ScrollUpHandler;
     }

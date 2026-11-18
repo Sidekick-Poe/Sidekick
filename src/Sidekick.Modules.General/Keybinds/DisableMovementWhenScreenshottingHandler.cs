@@ -25,23 +25,6 @@ public class DisableMovementWhenScreenshottingHandler : KeybindHandler
         this.processProvider = processProvider;
         this.transparentDialogProvider = transparentDialogProvider;
         this.inputProvider = inputProvider;
-        settingsService.OnSettingsChanged += OnSettingsChanged;
-        _ = UpdateIsValid();
-    }
-
-    private bool DisableMovementWhenScreenshotting { get; set; }
-
-    private async Task UpdateIsValid()
-    {
-        DisableMovementWhenScreenshotting = await settingsService.GetBool(SettingKey);
-    }
-
-    private void OnSettingsChanged(string[] keys)
-    {
-        if (keys.Contains(SettingKey))
-        {
-            _ = UpdateIsValid();
-        }
     }
 
     protected override Task<List<string?>> GetKeybinds() => Task.FromResult<List<string?>>(
@@ -49,7 +32,7 @@ public class DisableMovementWhenScreenshottingHandler : KeybindHandler
         "Meta+Shift+S",
     ]);
 
-    public override bool IsValid(string _) => DisableMovementWhenScreenshotting && processProvider.IsPathOfExileInFocus;
+    public override bool IsValid(string _) => settingsService.GetBoolNow(SettingKey) && processProvider.IsPathOfExileInFocus;
 
     public override async Task Execute(string keyPress)
     {

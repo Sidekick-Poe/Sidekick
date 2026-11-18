@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,6 +20,16 @@ public class SettingsService(
 {
     public event Action<string[]>? OnSettingsChanged;
 
+    /// <summary>
+    ///     Saved setting values, loaded once from the database. Only this service writes the settings table, so the cache stays in sync.
+    /// </summary>
+    private ConcurrentDictionary<string, string?>? cache;
+
+    /// <summary>
+    ///     Guards loading the cache and writing settings, so a write can't be lost while the cache loads.
+    /// </summary>
+    private readonly SemaphoreSlim cacheLock = new(1, 1);
+
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         Converters =
@@ -35,11 +46,19 @@ public class SettingsService(
 
     public async Task<bool> GetBool(string key)
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (dbSetting != null && bool.TryParse(dbSetting.Value, out var boolValue))
+        var (isSaved, savedValue) = GetSavedValue(key);
+        if (isSaved && bool.TryParse(savedValue, out var boolValue))
+        {
+            return boolValue;
+        }
+
+        return GetDefault<bool>(key);
+    }
+
+    public bool GetBoolNow(string key)
+    {
+        var settings = cache ?? LoadCache();
+        if (settings.TryGetValue(key, out var savedValue) && bool.TryParse(savedValue, out var boolValue))
         {
             return boolValue;
         }
@@ -49,13 +68,10 @@ public class SettingsService(
 
     public async Task<string?> GetString(string key)
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (dbSetting != null)
+        var (isSaved, savedValue) = GetSavedValue(key);
+        if (isSaved)
         {
-            return dbSetting.Value;
+            return savedValue;
         }
 
         return GetDefault<string>(key);
@@ -63,11 +79,8 @@ public class SettingsService(
 
     public async Task<int> GetInt(string key)
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (dbSetting != null && int.TryParse(dbSetting.Value, out var intValue))
+        var (isSaved, savedValue) = GetSavedValue(key);
+        if (isSaved && int.TryParse(savedValue, out var intValue))
         {
             return intValue;
         }
@@ -77,11 +90,8 @@ public class SettingsService(
 
     public async Task<double> GetDouble(string key)
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (dbSetting != null && double.TryParse(dbSetting.Value, out var doubleValue))
+        var (isSaved, savedValue) = GetSavedValue(key);
+        if (isSaved && double.TryParse(savedValue, out var doubleValue))
         {
             return doubleValue;
         }
@@ -91,11 +101,8 @@ public class SettingsService(
 
     public async Task<DateTimeOffset?> GetDateTime(string key)
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (dbSetting != null && DateTimeOffset.TryParse(dbSetting.Value, out var dateTimeValue))
+        var (isSaved, savedValue) = GetSavedValue(key);
+        if (isSaved && DateTimeOffset.TryParse(savedValue, out var dateTimeValue))
         {
             return dateTimeValue;
         }
@@ -106,15 +113,12 @@ public class SettingsService(
     public async Task<TValue?> GetObject<TValue>(string key)
         where TValue : class
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (dbSetting != null)
+        var (isSaved, savedValue) = GetSavedValue(key);
+        if (isSaved)
         {
             try
             {
-                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty, JsonSerializerOptions) ?? null;
+                return JsonSerializer.Deserialize<TValue>(savedValue ?? string.Empty, JsonSerializerOptions) ?? null;
             }
             catch (Exception e)
             {
@@ -136,16 +140,13 @@ public class SettingsService(
     public async Task<TEnum?> GetEnum<TEnum>(string key)
         where TEnum : struct, Enum
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (dbSetting != null && Enum.TryParse<TEnum>(dbSetting.Value, out var enumValue))
+        var (isSaved, savedValue) = GetSavedValue(key);
+        if (isSaved && Enum.TryParse<TEnum>(savedValue, out var enumValue))
         {
             return enumValue;
         }
 
-        var enumFromAttribute = dbSetting?.Value.GetEnumFromValue<TEnum>();
+        var enumFromAttribute = isSaved ? savedValue.GetEnumFromValue<TEnum>() : (TEnum?)null;
         if (enumFromAttribute != null)
         {
             return enumFromAttribute;
@@ -192,38 +193,50 @@ public class SettingsService(
             if (defaultValue == stringValue) stringValue = null;
         }
 
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-            .Settings.Where(x => x.Key == key)
-            .FirstOrDefaultAsync();
-        if (stringValue == null)
+        var settings = cache ?? LoadCache();
+        await cacheLock.WaitAsync();
+        try
         {
-            if (dbSetting == null)
+            await using var dbContext = new SidekickDbContext(dbContextOptions);
+            var dbSetting = await dbContext
+                .Settings.Where(x => x.Key == key)
+                .FirstOrDefaultAsync();
+            if (stringValue == null)
             {
-                return;
+                if (dbSetting == null)
+                {
+                    return;
+                }
+
+                dbContext.Settings.Remove(dbSetting);
+                await dbContext.SaveChangesAsync();
+                settings.TryRemove(key, out _);
             }
-
-            dbContext.Settings.Remove(dbSetting);
-            await dbContext.SaveChangesAsync();
-            OnSettingsChanged?.Invoke([key]);
-            return;
-        }
-
-        if (dbSetting == null)
-        {
-            dbSetting = new Setting()
+            else
             {
-                Key = key,
-                Value = stringValue,
-            };
-            dbContext.Add(dbSetting);
+                if (dbSetting == null)
+                {
+                    dbSetting = new Setting()
+                    {
+                        Key = key,
+                        Value = stringValue,
+                    };
+                    dbContext.Add(dbSetting);
+                }
+                else
+                {
+                    dbSetting.Value = stringValue;
+                }
+
+                await dbContext.SaveChangesAsync();
+                settings[key] = stringValue;
+            }
         }
-        else
+        finally
         {
-            dbSetting.Value = stringValue;
+            cacheLock.Release();
         }
 
-        await dbContext.SaveChangesAsync();
         OnSettingsChanged?.Invoke([key]);
     }
 
@@ -231,34 +244,63 @@ public class SettingsService(
     {
         if (keys.Length == 0) return false;
 
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        return await dbContext.Settings.Where(x => keys.Contains(x.Key)).AnyAsync();
+        var settings = cache ?? LoadCache();
+        return keys.Any(settings.ContainsKey);
     }
 
     public async Task DeleteSetting(params string[] keys)
     {
         if (keys.Length == 0) return;
 
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var changed = false;
-
-        var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
-
-        foreach (var key in keys)
+        var settings = cache ?? LoadCache();
+        await cacheLock.WaitAsync();
+        try
         {
-            var dbSetting = dbSettings.FirstOrDefault(x => x.Key == key);
-
-            if (dbSetting != null)
+            await using var dbContext = new SidekickDbContext(dbContextOptions);
+            var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
+            if (dbSettings.Count == 0)
             {
-                dbContext.Settings.Remove(dbSetting);
-                changed = true;
+                return;
+            }
+
+            dbContext.Settings.RemoveRange(dbSettings);
+            await dbContext.SaveChangesAsync();
+            foreach (var dbSetting in dbSettings)
+            {
+                settings.TryRemove(dbSetting.Key, out _);
             }
         }
-
-        if (changed)
+        finally
         {
-            await dbContext.SaveChangesAsync();
-            OnSettingsChanged?.Invoke(keys);
+            cacheLock.Release();
+        }
+
+        OnSettingsChanged?.Invoke(keys);
+    }
+
+    private (bool IsSaved, string? Value) GetSavedValue(string key)
+    {
+        var settings = cache ?? LoadCache();
+        var isSaved = settings.TryGetValue(key, out var value);
+        return (isSaved, value);
+    }
+
+    private ConcurrentDictionary<string, string?> LoadCache()
+    {
+        cacheLock.Wait();
+        try
+        {
+            if (cache == null)
+            {
+                using var dbContext = new SidekickDbContext(dbContextOptions);
+                cache = new ConcurrentDictionary<string, string?>(dbContext.Settings.ToDictionary(x => x.Key, x => x.Value));
+            }
+
+            return cache;
+        }
+        finally
+        {
+            cacheLock.Release();
         }
     }
 
