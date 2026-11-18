@@ -42,6 +42,11 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
     private bool disposed;
     private bool isHandlingUnobservedTaskExceptions;
 
+    /// <summary>
+    /// Set by the official .NET container images, which the Dockerfile builds from.
+    /// </summary>
+    public static bool IsRunningInContainer => Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+
     public Task RunTask => runTask ?? throw new InvalidOperationException("Server application has not been started.");
     public WebApplication Application => app ?? throw new InvalidOperationException("Server application has not been started.");
 
@@ -68,7 +73,15 @@ public class ServerAppHost(SidekickApplicationType applicationType) : IDisposabl
         var port = GetAvailablePort(DefaultPort);
         builder.WebHost.ConfigureKestrel(options =>
         {
-            options.ListenLocalhost(port);
+            // In a container, localhost is only reachable from inside the container itself, so the published port would never answer.
+            if (IsRunningInContainer)
+            {
+                options.ListenAnyIP(port);
+            }
+            else
+            {
+                options.ListenLocalhost(port);
+            }
         });
 
         #region Services

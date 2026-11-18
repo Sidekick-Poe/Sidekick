@@ -78,6 +78,8 @@ docker run -p 5000:5000 -v ./sidekick-data:/app/sidekick sidekickpoe:latest
 2. Build and run the project with `docker compose up` 
 3. Access through: http://localhost:5000
 
+Sidekick has no login, so anyone who can reach the published port can use it, including your settings. To keep it on your own machine only, publish the port as `127.0.0.1:5000:5000`. To use another port, change the first number, for example `8080:5000` for http://localhost:8080.
+
 ## Notice
 This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
 
