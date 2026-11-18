@@ -36,8 +36,6 @@ public abstract class BaseWindow : Window
         Title = "Sidekick";
         RequestedThemeVariant = ThemeVariant.Dark;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        ExtendClientAreaToDecorationsHint = true;
-        ExtendClientAreaTitleBarHeightHint = -1;
         Background = SolidColorBrush.Parse("#1C1917");
         Opened += BaseWindow_Opened;
         PositionChanged += BaseWindow_PositionChanged;
@@ -57,17 +55,25 @@ public abstract class BaseWindow : Window
     private void BaseWindow_Opened(object? sender, EventArgs e)
     {
 #if WINDOWS
-        // This code block is entirely omitted on Linux/macOS builds
         var platformHandle = TryGetPlatformHandle();
-        if (platformHandle != null)
+        if (platformHandle == null)
         {
-            IntPtr hWnd = platformHandle.Handle;
-            int useDarkMode = 1;
-            Win32Interop.DwmSetWindowAttribute(hWnd, 20, ref useDarkMode, sizeof(int));
-
-            int borderColor = unchecked((int)0xFFFFFFFE);
-            Win32Interop.DwmSetWindowAttribute(hWnd, 34, ref borderColor, sizeof(int));
+            return;
         }
+
+        var hWnd = platformHandle.Handle;
+        var useDarkMode = 1;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaUseImmersiveDarkMode, ref useDarkMode, sizeof(int));
+
+        var borderColor = Win32Interop.DwmwaColorNone;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaBorderColor, ref borderColor, sizeof(int));
+
+        // Colors are 0x00BBGGRR. Windows 10 ignores them and keeps its dark gray title bar.
+        var captionColor = 0x00090A0C;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaCaptionColor, ref captionColor, sizeof(int));
+
+        var textColor = 0x00FFFFFF;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaTextColor, ref textColor, sizeof(int));
 #endif
     }
 
