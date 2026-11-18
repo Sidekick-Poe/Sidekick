@@ -102,7 +102,7 @@ public partial class Initialization
         {
             // Sidekick can't run without its services, so the error page offers to exit instead of closing the window.
             Logger.LogError(e, "[Initialization] Failed to initialize.");
-            throw new SidekickException(Resources["Error_Title"], Resources["Error_Description"])
+            throw new SidekickException(Resources.Error_Title, Resources.Error_Description)
             {
                 Actions = ExceptionActions.ExitApplication,
             };

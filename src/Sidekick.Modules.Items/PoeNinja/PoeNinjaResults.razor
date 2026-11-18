@@ -10,7 +10,7 @@
 
 <div class="flex flex-col gap-2">
     <PoeNinjaHeader
-        Tooltip="@(Item.Properties.Rarity is Rarity.Normal or Rarity.Magic or Rarity.Rare ? Resources["BaseType_Description"] : string.Empty)"/>
+        Tooltip="@(Item.Properties.Rarity is Rarity.Normal or Rarity.Magic or Rarity.Rare ? Resources.BaseType_Description : string.Empty)"/>
 
     @if (Loading)
     {
@@ -18,7 +18,7 @@
     }
     else if (Currencies.Count == 0 && Stashes.Count == 0)
     {
-        <AlertInfo Flat="true">@Resources["NoData"]</AlertInfo>
+        <AlertInfo Flat="true">@Resources.NoData</AlertInfo>
     }
 
     @foreach (var currency in Currencies)

@@ -8,15 +8,15 @@
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@Resources["Zoom"]"
+            Label="@Resources.Zoom"
             Options="Options"
-            Tooltip="@Resources["Zoom_Hint"]">
+            Tooltip="@Resources.Zoom_Hint">
     <AdornmentContent>
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
                         Svg="@UiIcons.Reset"
-                        Tooltip="@UiResources["Reset"]"/>
+                        Tooltip="@UiResources.Reset"/>
         }
     </AdornmentContent>
 </FormSelect>

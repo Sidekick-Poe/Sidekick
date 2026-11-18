@@ -32,12 +32,12 @@
         {
             if (NewLeagues)
             {
-                <AlertInfo>@Resources["New_League_Alert"]</AlertInfo>
+                <AlertInfo>@Resources.New_League_Alert</AlertInfo>
             }
 
             @if (FormInvalid)
             {
-                <AlertError>@Resources["Valid_Language_Alert"]</AlertError>
+                <AlertError>@Resources.Valid_Language_Alert</AlertError>
             }
 
             <AppContainer>
@@ -50,7 +50,7 @@
         else
         {
             <AppContainer>
-                <Heading3 Class="mb-2 text-center">@UiResources["Loading"]</Heading3>
+                <Heading3 Class="mb-2 text-center">@UiResources.Loading</Heading3>
                 <ProgressBar Indeterminate="true"/>
             </AppContainer>
         }
@@ -63,7 +63,7 @@
                     @ExitLabel
                 </ButtonSecondary>
                 <ButtonPrimary OnClick="() => Save()">
-                    @Resources["Save"]
+                    @Resources.Save
                 </ButtonPrimary>
             </div>
         }
@@ -171,7 +171,7 @@
     /// </summary>
     private bool IsOpenedLater => !string.IsNullOrEmpty(NavigationManager.QueryString("back"));
 
-    private string ExitLabel => IsOpenedLater ? UiResources["Close"] : Resources["Exit"];
+    private string ExitLabel => IsOpenedLater ? UiResources.Close : UiResources.Exit;
 
     public void Exit()
     {

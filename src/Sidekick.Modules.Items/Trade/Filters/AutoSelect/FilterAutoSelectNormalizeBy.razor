@@ -3,12 +3,12 @@
 
 
 <div class="flex flex-nowrap gap-2">
-    <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_NormalizeBy"]</span>
+    <span class="mt-0.5 text-neutral-300">@Resources.AutoSelect_NormalizeBy</span>
     <FormSelectInline Value="@Value.ToString()"
                       ValueChanged="OnValueChanged"
                       Options="Options"
                       Readonly="@Readonly"/>
-    <Tooltip Text="@Resources["Normalize_Values"]"/>
+    <Tooltip Text="@Resources.Normalize_Values"/>
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources

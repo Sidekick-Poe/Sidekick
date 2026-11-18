@@ -17,32 +17,32 @@
     </LeftContent>
     <ChildContent>
         <AppContainer>
-            <FormFieldset Legend="@SettingsResources["General_Settings"]">
+            <FormFieldset Legend="@SettingsResources.General_Settings">
                 <InterfaceLanguageEditor/>
                 <ZoomEditor/>
                 @if (Configuration.Value.ApplicationType.SupportsKeybinds())
                 {
                     <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
-                                           Label="@Resources["General_RetainClipboard"]"/>
+                                           Label="@Resources.General_RetainClipboard"/>
                 }
-                <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources.SilentStart"/>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch"
-                                       Label="@SettingsResources["OpenHomeOnLaunch"]"
-                                       Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]"/>
+                                       Label="@SettingsResources.OpenHomeOnLaunch"
+                                       Tooltip="@SettingsResources.OpenHomeOnLaunch_Hint"/>
             </FormFieldset>
 
             @if (Configuration.Value.ApplicationType.SupportsDesktop())
             {
-                <FormFieldset Legend="@SettingsResources["Other"]">
+                <FormFieldset Legend="@SettingsResources.Other">
                     <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"
-                                           Label="@SettingsResources["UseHardwareAcceleration"]"
-                                           Tooltip="@SettingsResources["RestartRequired"]"/>
+                                           Label="@SettingsResources.UseHardwareAcceleration"
+                                           Tooltip="@SettingsResources.RestartRequired"/>
                 </FormFieldset>
             }
 
             <div class="flex justify-center mb-1">
                 <ButtonPrimary Disabled="!AreSettingsModified"
-                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+                               OnClick="RestoreDefaults">@UiResources.Restore_Defaults</ButtonPrimary>
             </div>
         </AppContainer>
     </ChildContent>

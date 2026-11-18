@@ -3,15 +3,18 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Settings.Extensions
 @using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Game
 @using Sidekick.Game.Providers
 
-<FormSelect Label="@Resources["Character_League"]"
+<FormSelect Label="@Resources.Character_League"
             Value="@LeagueId"
             ValueChanged="LeagueChanged"
             Options="Options"
-            Tooltip="@Resources["League_Hint"]"/>
+            Tooltip="@Resources.League_Hint"/>
 
 @inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject ISettingsService SettingsService
 @inject LeagueProvider LeagueProvider
 @inject NavigationManager NavigationManager
@@ -36,7 +39,12 @@
             {
                 Value = x.Value,
                 Label = x.Text,
-                Group = Resources[x.Game.ToString()]
+                Group = x.Game switch
+                {
+                    GameType.Poe1 => UiResources.Poe1,
+                    GameType.Poe2 => UiResources.Poe2,
+                    _ => null,
+                },
             })
             .ToList();
 

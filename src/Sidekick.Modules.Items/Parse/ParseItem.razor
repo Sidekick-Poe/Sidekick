@@ -14,24 +14,24 @@
             {
                 <div class="mx-auto text-center">
                     <TextBase>
-                        <TextWithKeybinds Text="@Resources["Price_Check_Tip"]" Keybinds="[KeyOpenPriceCheck]"/>
+                        <TextWithKeybinds Format="@Resources.Price_Check_Tip" Keybind="@KeyOpenPriceCheck"/>
                     </TextBase>
                     <TextBase Class="my-3">
-                        <TextWithKeybinds Text="@Resources["Close_Overlay_Tip"]" Keybinds="[KeyClose]"/>
+                        <TextWithKeybinds Format="@Resources.Close_Overlay_Tip" Keybind="@KeyClose"/>
                     </TextBase>
-                    <TextCaption>@Resources["Close_Notification"]</TextCaption>
+                    <TextCaption>@Resources.Close_Notification</TextCaption>
                 </div>
 
                 <LayoutDivider/>
             }
 
-            <FormFieldset Legend="@Resources["Item_Box_Legend"]">
+            <FormFieldset Legend="@Resources.Item_Box_Legend">
                 <TextBase Class="mb-1">
-                    @Resources["Item_Box_Text"]
+                    @Resources.Item_Box_Text
                 </TextBase>
                 <FormTextarea @bind-Value="ItemText"/>
                 <div class="*:w-full">
-                    <ButtonPrimary OnClick="GoToItem">@Resources["Item_Box_Submit"]</ButtonPrimary>
+                    <ButtonPrimary OnClick="GoToItem">@Resources.Item_Box_Submit</ButtonPrimary>
                 </div>
             </FormFieldset>
         </AppContainer>

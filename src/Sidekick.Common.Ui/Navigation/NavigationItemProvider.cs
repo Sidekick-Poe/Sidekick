@@ -16,22 +16,22 @@ public class NavigationItemProvider(
     {
         var result = new List<NavigationItem>();
 
-        result.Add(new(UiIcons.Sword, resources["Items"], "/item"));
+        result.Add(new(UiIcons.Sword, resources.Items, "/item"));
 
         if (configuration.Value.ApplicationType.SupportsAuthentication())
         {
-            result.Add(new NavigationItem(UiIcons.Wealth, resources["Wealth"], "/wealth"));
+            result.Add(new NavigationItem(UiIcons.Wealth, resources.Wealth, "/wealth"));
         }
 
         if (debugService.IsDeveloperMode)
         {
             result.Add(new NavigationItem("", "", "", true));
-            result.Add(new NavigationItem(UiIcons.Toolbox, resources["DevTools"], "/development"));
+            result.Add(new NavigationItem(UiIcons.Toolbox, resources.DevTools, "/development"));
         }
 
         result.Add(new NavigationItem("", "", "", true));
-        result.Add(new NavigationItem(UiIcons.Cog, resources["Settings"], "/settings"));
-        result.Add(new NavigationItem(UiIcons.Help, resources["Help"], "/help"));
+        result.Add(new NavigationItem(UiIcons.Cog, resources.Settings, "/settings"));
+        result.Add(new NavigationItem(UiIcons.Help, resources.Help, "/help"));
 
         return result;
     }

@@ -10,8 +10,8 @@
     </ChildContent>
     <ErrorContent>
         @{
-            var title = context.SidekickException?.Message ?? Resources["Error_Unexpected_Title"];
-            var details = context.SidekickException != null ? context.AdditionalInformation : [Resources["Error_Unexpected_Description"]];
+            var title = context.SidekickException?.Message ?? Resources.Error_Unexpected_Title;
+            var details = context.SidekickException != null ? context.AdditionalInformation : [Resources.Error_Unexpected_Description];
             var itemText = context.SidekickException?.ItemText;
             var isLeftAligned = !string.IsNullOrEmpty(itemText);
 
@@ -36,7 +36,7 @@
                     @if (!string.IsNullOrWhiteSpace(itemText))
                     {
                         <label class="mt-4 block">
-                            <TextBase Class="text-stone-300">@Resources["Error_Item_Text"]</TextBase>
+                            <TextBase Class="text-stone-300">@Resources.Error_Item_Text</TextBase>
                             <textarea readonly class="@UiClasses.FormInputClasses mt-2 h-48 w-full resize-none p-2 text-sm">@itemText</textarea>
                         </label>
                     }
@@ -44,18 +44,18 @@
                     <div class="mt-5 flex items-center justify-center gap-2">
                         @if (actions.HasFlag(ExceptionActions.ExitApplication))
                         {
-                            <ButtonSecondary OnClick="ApplicationService.Shutdown">@Resources["Exit"]</ButtonSecondary>
+                            <ButtonSecondary OnClick="ApplicationService.Shutdown">@Resources.Exit</ButtonSecondary>
                         }
                         @if (actions.HasFlag(ExceptionActions.CloseWindow))
                         {
-                            <ButtonPrimary OnClick="Close">@Resources["Close"]</ButtonPrimary>
+                            <ButtonPrimary OnClick="Close">@Resources.Close</ButtonPrimary>
                         }
                     </div>
 
                     <div class="mt-4 flex justify-center text-sm text-stone-400">
                         <ButtonLink Class="gap-1.5" OnClick="FolderProvider.OpenDataFolderPath">
                             <Icon Svg="@UiIcons.FolderOpen" Size="@UiIconSize.Small"/>
-                            @Resources["Open_Logs_Folder"]
+                            @Resources.Open_Logs_Folder
                         </ButtonLink>
                     </div>
                 </div>

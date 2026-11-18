@@ -24,13 +24,13 @@
 
 @if (TradeService.TradeItems.Count == 0)
 {
-    <AlertInfo>@Resources["NoResults"]</AlertInfo>
+    <AlertInfo>@Resources.NoResults</AlertInfo>
 }
 else if (!FullyLoaded)
 {
     <div class="flex justify-center">
         <IntersectionObserver Callback="LoadMoreData">
-            <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
+            <ButtonPrimary OnClick="LoadMoreData">@Resources.LoadMoreData</ButtonPrimary>
         </IntersectionObserver>
     </div>
 }

@@ -25,7 +25,7 @@ public class PlayerStatusFilterFactory(
 
             return Task.FromResult<TradeFilter?>(new PlayerStatusFilter()
             {
-                Text = resources["Player_Status"],
+                Text = resources.Player_Status,
                 Options = statusFilters.Option.Options
                     .Select(x => new OptionFilter.OptionFilterItem(x.Id, x.Text))
                     .ToList(),

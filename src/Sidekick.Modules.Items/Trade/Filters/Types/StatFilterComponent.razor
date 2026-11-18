@@ -10,13 +10,13 @@
             <div class="flex flex-nowrap items-center gap-1">
                 @if (!Filter.Stat.HasTradeSupport)
                 {
-                    <Tooltip Text="@Resources["Stat_NoTradeSupport"]">
+                    <Tooltip Text="@Resources.Stat_NoTradeSupport">
                         <Icon Svg="@UiIcons.Warning" Class="text-orange-500 flex self-center cursor-help"/>
                     </Tooltip>
                 }
                 else if (Filter.Stat.Definitions.All(x => x.MatchedFuzzily))
                 {
-                    <Tooltip Text="@Resources["Stat_Fuzzy"]">
+                    <Tooltip Text="@Resources.Stat_Fuzzy">
                         <Icon Svg="@UiIcons.Warning" Class="text-violet-500 flex self-center cursor-help"/>
                     </Tooltip>
                 }
@@ -31,7 +31,7 @@
     <div class="flex flex-col items-end justify-between gap-0.5">
         @if (Filter.Checked && Filter.Stat.Category.HasExplicitStat())
         {
-            <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
+            <Tooltip Text="@Resources.ForceCategoryHint" Placement="TooltipPlacement.Right">
                 <ItemStatCategoryChip Category="Filter.Stat.Category"
                                       Checked="Filter.UsePrimaryCategory"
                                       ShowCheckbox="true"

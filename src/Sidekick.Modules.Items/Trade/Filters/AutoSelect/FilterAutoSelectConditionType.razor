@@ -2,7 +2,6 @@
 @using Sidekick.Game.Parser.Properties.Definitions
 @using Sidekick.Game.Parser.Properties
 @using Sidekick.Game.Parser.Filters.AutoSelect
-@using Sidekick.Game.Parser.Localization
 @using Sidekick.Game.Providers
 @using Sidekick.Common.Settings
 
@@ -12,8 +11,7 @@
                   Readonly="Readonly"/>
 
 @inject PropertyParser PropertyParser
-@inject IStringLocalizer<AutoSelectConditionType> ConditionResources
-@inject IStringLocalizer<PoeResources> PoeResources
+@inject IStringLocalizer<AutoSelectConditionResources> ConditionResources
 @inject ISettingsService SettingsService
 @inject TradeFilterProvider TradeFilterProvider
 
@@ -70,6 +68,8 @@
                 AutoSelectConditionType.MapTier => PropertyParser.GetDefinition<MapTierProperty>().Label,
                 AutoSelectConditionType.ItemQuantity => PropertyParser.GetDefinition<ItemQuantityProperty>().Label,
                 AutoSelectConditionType.ItemRarity => PropertyParser.GetDefinition<ItemRarityProperty>().Label,
+                AutoSelectConditionType.Blighted => PropertyParser.GetDefinition<BlightedProperty>().Label,
+                AutoSelectConditionType.BlightRavaged => PropertyParser.GetDefinition<BlightRavagedProperty>().Label,
                 AutoSelectConditionType.MagicMonsters => PropertyParser.GetDefinition<MagicMonstersProperty>().Label,
                 AutoSelectConditionType.MonsterPackSize => PropertyParser.GetDefinition<MonsterPackSizeProperty>().Label,
                 AutoSelectConditionType.RareMonsters => PropertyParser.GetDefinition<RareMonstersProperty>().Label,
@@ -87,10 +87,10 @@
 
             var group = value switch
             {
-                AutoSelectConditionType.ItemClass => ConditionResources["Group_Properties"],
-                AutoSelectConditionType.ItemLevel => ConditionResources["Group_Properties"],
-                AutoSelectConditionType.Quality => ConditionResources["Group_Properties"],
-                AutoSelectConditionType.Rarity => ConditionResources["Group_Properties"],
+                AutoSelectConditionType.ItemClass => ConditionResources.Group_Properties,
+                AutoSelectConditionType.ItemLevel => ConditionResources.Group_Properties,
+                AutoSelectConditionType.Quality => ConditionResources.Group_Properties,
+                AutoSelectConditionType.Rarity => ConditionResources.Group_Properties,
                 AutoSelectConditionType.Corrupted => TradeFilterProvider.MiscellaneousCategory?.Title,
                 AutoSelectConditionType.TwiceCorrupted => TradeFilterProvider.MiscellaneousCategory?.Title,
                 AutoSelectConditionType.Unidentified => TradeFilterProvider.MiscellaneousCategory?.Title,
@@ -116,10 +116,10 @@
                 AutoSelectConditionType.PhysicalDps => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
                 AutoSelectConditionType.TotalDps => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
                 AutoSelectConditionType.GemLevel => TradeFilterProvider.MiscellaneousCategory?.Title,
-                AutoSelectConditionType.AnyStat => PoeResources["Stat_Filters"],
-                AutoSelectConditionType.Text => PoeResources["Stat_Filters"],
-                AutoSelectConditionType.StatCategory => PoeResources["Stat_Filters"],
-                AutoSelectConditionType.Value => ConditionResources["Group_Filter"],
+                AutoSelectConditionType.AnyStat => ConditionResources.Stat_Filters,
+                AutoSelectConditionType.Text => ConditionResources.Stat_Filters,
+                AutoSelectConditionType.StatCategory => ConditionResources.Stat_Filters,
+                AutoSelectConditionType.Value => ConditionResources.Group_Filter,
                 AutoSelectConditionType.Split => TradeFilterProvider.MiscellaneousCategory?.Title,
                 AutoSelectConditionType.Mirrored => TradeFilterProvider.MiscellaneousCategory?.Title,
                 AutoSelectConditionType.Fractured => TradeFilterProvider.MiscellaneousCategory?.Title,

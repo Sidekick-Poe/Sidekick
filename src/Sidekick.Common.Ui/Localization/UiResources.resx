@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All_Settings" xml:space="preserve">
-    <value>All Settings</value>
-  </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -128,9 +125,6 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
-  </data>
-  <data name="PoeApiDown" xml:space="preserve">
-    <value>The trade website appears to be down. Restart Sidekick when the trade website is back online.</value>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
     <value>Support Sidekick with buymeacoffee.com</value>
@@ -164,9 +158,6 @@
   </data>
   <data name="Age_Never" xml:space="preserve">
       <value>never</value>
-  </data>
-  <data name="WealthTracker" xml:space="preserve">
-    <value>Wealth Tracker</value>
   </data>
   <data name="About" xml:space="preserve">
     <value>About</value>
@@ -213,9 +204,6 @@
   <data name="Restore_Defaults" xml:space="preserve">
     <value>Restore Defaults</value>
   </data>
-  <data name="Keybindings" xml:space="preserve">
-    <value>Keybindings</value>
-  </data>
   <data name="Regex_Hint" xml:space="preserve">
     <value>Use the "|" character to separate modifiers. The modifier does not need to match exactly, and differences between uppercase and lowercase are ignored. It should match the game's language. E.g. "maximum life|resistance|regen"</value>
   </data>
@@ -261,12 +249,6 @@
   <data name="Cancel" xml:space="preserve">
       <value>Cancel</value>
   </data>
-  <data name="Maximize" xml:space="preserve">
-      <value>Maximize</value>
-  </data>
-  <data name="Minimize" xml:space="preserve">
-      <value>Minimize</value>
-  </data>
   <data name="Open_Settings" xml:space="preserve">
       <value>Open Settings</value>
   </data>
@@ -291,24 +273,6 @@
   <data name="Copy" xml:space="preserve">
       <value>Copy</value>
   </data>
-  <data name="Copied" xml:space="preserve">
-      <value>Copied</value>
-  </data>
-  <data name="Linux_Dependencies_Title" xml:space="preserve">
-      <value>Missing packages</value>
-  </data>
-  <data name="Linux_Dependencies_Introduction" xml:space="preserve">
-      <value>Sidekick needs these packages to run on Linux:</value>
-  </data>
-  <data name="Linux_Dependencies_Xsel" xml:space="preserve">
-      <value>xsel, which copies items from Path of Exile</value>
-  </data>
-  <data name="Linux_Dependencies_WebKitGtk" xml:space="preserve">
-      <value>WebKitGTK, which shows the Sidekick windows</value>
-  </data>
-  <data name="Linux_Dependencies_Instructions" xml:space="preserve">
-      <value>Install them in a terminal with the command for your distribution, then start Sidekick again:</value>
-  </data>
   <data name="Error_Unexpected_Title" xml:space="preserve">
       <value>Something went wrong.</value>
   </data>
@@ -320,5 +284,26 @@
   </data>
   <data name="Open_Logs_Folder" xml:space="preserve">
       <value>Open logs folder</value>
+  </data>
+  <data name="Poe1" xml:space="preserve">
+      <value>Path of Exile 1</value>
+  </data>
+  <data name="Poe2" xml:space="preserve">
+      <value>Path of Exile 2</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+      <value>OK</value>
+  </data>
+  <data name="Authenticated" xml:space="preserve">
+      <value>Authenticated</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+      <value>Authenticating</value>
+  </data>
+  <data name="Unauthenticated" xml:space="preserve">
+      <value>Unauthenticated</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+      <value>Last Updated</value>
   </data>
 </root>

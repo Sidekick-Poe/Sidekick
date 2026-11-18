@@ -26,7 +26,7 @@
         {
             <ButtonIcon OnClick="Clear"
                         Svg="@UiIcons.Clear"
-                        Tooltip="@Resources["Clear"]"/>
+                        Tooltip="@Resources.Clear"/>
         }
 
         @AdornmentContent
@@ -36,7 +36,7 @@
     {
         <label class="mt-1 text-base font-medium text-amber-500 flex items-center flex-nowrap gap-2">
             <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium"/>
-            <TextWithKeybinds Text="@Resources[Warning]" Keybinds="[WarningKeybind]"/>
+            <TextWithKeybinds Format="@Warning" Keybind="@WarningKeybind"/>
         </label>
     }
 </div>
@@ -76,9 +76,9 @@
     protected string Id { get; } = UiUtilities.GenerateId();
 
     /// <summary>
-    /// The resource key of the warning shown under the field when the pressed key can't be used.
+    /// The text of the warning shown under the field when the pressed key can't be used.
     /// </summary>
-    private string? Warning { get; set; }
+    private Func<object, string>? Warning { get; set; }
 
     private string? WarningKeybind { get; set; }
 
@@ -92,10 +92,10 @@
         {
             if (IsActive)
             {
-                return Resources["Keybind_Active"];
+                return Resources.Keybind_Active;
             }
 
-            return string.IsNullOrEmpty(Value) ? Resources["Keybind_Unset"] : Value;
+            return string.IsNullOrEmpty(Value) ? Resources.Keybind_Unset : Value;
         }
     }
 
@@ -169,11 +169,11 @@
                 }
                 else if (GameKeybinds.Reserved.Contains(key))
                 {
-                    Warning = "Keybind_Reserved";
+                    Warning = Resources.Keybind_Reserved;
                 }
                 else if (Input.UsedKeybinds.Contains(key))
                 {
-                    Warning = "Keybind_Already_In_Use";
+                    Warning = Resources.Keybind_Already_In_Use;
                 }
                 else
                 {
