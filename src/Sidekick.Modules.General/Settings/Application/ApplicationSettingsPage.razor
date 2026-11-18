@@ -31,15 +31,6 @@
                                        Tooltip="@SettingsResources.OpenHomeOnLaunch_Hint"/>
             </FormFieldset>
 
-            @if (Configuration.Value.ApplicationType.SupportsDesktop())
-            {
-                <FormFieldset Legend="@SettingsResources.Other">
-                    <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"
-                                           Label="@SettingsResources.UseHardwareAcceleration"
-                                           Tooltip="@SettingsResources.RestartRequired"/>
-                </FormFieldset>
-            }
-
             <div class="flex justify-center mb-1">
                 <ButtonPrimary Disabled="!AreSettingsModified"
                                OnClick="RestoreDefaults">@UiResources.Restore_Defaults</ButtonPrimary>
@@ -66,7 +57,6 @@
         SettingKeys.SilentStart,
         SettingKeys.OpenHomeOnLaunch,
         SettingKeys.Zoom,
-        SettingKeys.UseHardwareAcceleration,
     ];
 
     protected override async Task OnInitializedAsync()
