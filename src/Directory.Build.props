@@ -1,0 +1,19 @@
+<Project>
+
+    <PropertyGroup>
+        <!-- Resources other projects may use. The typed members of every other resources class are internal to its project. -->
+        <SharedLocalizationResources>UiResources</SharedLocalizationResources>
+    </PropertyGroup>
+
+    <!-- Every project gets typed members for the keys of its own .resx files, see Sidekick.Localization.Generators. -->
+    <ItemGroup Condition="'$(MSBuildProjectName)' != 'Sidekick.Localization.Generators'">
+        <ProjectReference Include="$(MSBuildThisFileDirectory)Sidekick.Localization.Generators\Sidekick.Localization.Generators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
+        <AdditionalFiles Include="**\*.resx" Exclude="bin\**;obj\**" />
+        <CompilerVisibleProperty Include="RootNamespace" />
+        <CompilerVisibleProperty Include="ProjectDir" />
+        <CompilerVisibleProperty Include="SharedLocalizationResources" />
+    </ItemGroup>
+
+</Project>

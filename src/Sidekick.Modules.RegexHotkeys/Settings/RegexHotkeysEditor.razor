@@ -8,13 +8,13 @@
     <div class="border border-solid dark:border-stone-800 p-3 mb-3">
         <div class="grid grid-cols-12 gap-2 mb-3">
             <div class="col-span-6">
-                <FormInput Label="@Resources["Regex"]"
+                <FormInput Label="@Resources.Regex"
                            Value="@regexHotkey.Regex"
                            ValueChanged="(x) => RegexChanged(regexHotkey, x)"
                            maxlength="250"/>
             </div>
             <div class="col-span-6">
-                <FormInput Label="@Resources["Regex_Hotkey_Description"]"
+                <FormInput Label="@Resources.Regex_Hotkey_Description"
                            Value="@regexHotkey.Description"
                            ValueChanged="(x) => RegexDescriptionChanged(regexHotkey, x)"/>
 
@@ -23,11 +23,11 @@
 
         <div class="flex justify-between items-end gap-2">
             <div class="w-1/2">
-                <KeybindEditor Label="@UiResources["Keybind"]"
+                <KeybindEditor Label="@UiResources.Keybind"
                                Value="@regexHotkey.Key"
                                ValueChanged="(x) => KeyChanged(regexHotkey, x)"/>
             </div>
-            <ButtonPrimary OnClick="() => Remove(regexHotkey)">@Resources["Regex_Hotkey_Remove"]</ButtonPrimary>
+            <ButtonPrimary OnClick="() => Remove(regexHotkey)">@Resources.Regex_Hotkey_Remove</ButtonPrimary>
         </div>
     </div>
 }
@@ -35,7 +35,7 @@
 <FormFieldset>
     <div class="flex justify-between">
         <ButtonPrimary OnClick="Add">
-            @Resources["Regex_Hotkey_Add"]
+            @Resources.Regex_Hotkey_Add
         </ButtonPrimary>
     </div>
 </FormFieldset>

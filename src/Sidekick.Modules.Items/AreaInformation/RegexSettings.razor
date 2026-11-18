@@ -13,24 +13,24 @@
         <div
             class="bg-stone-950 border border-stone-700 rounded-md px-2 py-1 gap-2 flex justify-between items-center text-neutral-400 duration-200 transition-colors hover:bg-stone-700 cursor-pointer">
             <div>
-                <TextCaption>@Resources["Regex"]</TextCaption>
+                <TextCaption>@Resources.Regex</TextCaption>
                 @if (!string.IsNullOrEmpty(Regex))
                 {
                     <TextBase Class="leading-4 line-clamp-1">@Regex</TextBase>
                 }
                 else
                 {
-                    <TextBase Class="leading-4 line-clamp-1 italic">@Resources["NoRegex"]</TextBase>
+                    <TextBase Class="leading-4 line-clamp-1 italic">@Resources.NoRegex</TextBase>
                 }
             </div>
             <Icon Svg="@UiIcons.Settings" Class="size-6 text-white"/>
         </div>
     </ActivatorContent>
     <HeaderContent>
-        <Heading3>@Resources["Area_Settings"]</Heading3>
+        <Heading3>@Resources.Area_Settings</Heading3>
     </HeaderContent>
     <ChildContent>
-        <TextBase>@Resources["Settings_Description"]</TextBase>
+        <TextBase>@Resources.Settings_Description</TextBase>
         @if (Item.Game == GameType.Poe1)
         {
             <ButtonLink OnClick="OpenPoeRe1">poe.re</ButtonLink>
@@ -42,16 +42,16 @@
 
         <LayoutDivider/>
 
-        <FormInput Label="@Resources["Regex"]"
+        <FormInput Label="@Resources.Regex"
                    Value="@Regex"
                    ValueChanged="RegexChanged"
-                   Tooltip="@UiResources["Regex_Hint"]"
+                   Tooltip="@UiResources.Regex_Hint"
                    maxlength="250"/>
 
         @if (Regexes.Any())
         {
             <LayoutDivider/>
-            @Resources["Use_Regex_Hotkeys"]
+            @Resources.Use_Regex_Hotkeys
             <div class="flex flex-col items-stretch gap-1">
                 @foreach (var regex in Regexes)
                 {
@@ -68,7 +68,7 @@
     </ChildContent>
     <FooterContent>
         <div class="flex justify-end gap-2">
-            <ButtonPrimary OnClick="context.Hide">@Resources["Close"]</ButtonPrimary>
+            <ButtonPrimary OnClick="context.Hide">@Resources.Close</ButtonPrimary>
         </div>
     </FooterContent>
 </Modal>

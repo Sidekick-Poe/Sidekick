@@ -5,14 +5,14 @@
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@Resources["Normalize_Values"]"
+            Label="@Resources.Normalize_Values"
             Options="Options">
     <AdornmentContent>
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
                         Svg="@UiIcons.Reset"
-                        Tooltip="@UiResources["Reset"]"/>
+                        Tooltip="@UiResources.Reset"/>
         }
     </AdornmentContent>
 </FormSelect>

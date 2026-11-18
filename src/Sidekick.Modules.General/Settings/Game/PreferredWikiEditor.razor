@@ -9,14 +9,14 @@
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@Resources["Wiki_Preferred"]"
+            Label="@Resources.Wiki_Preferred"
             Options="Options">
     <AdornmentContent>
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
                         Svg="@UiIcons.Reset"
-                        Tooltip="@UiResources["Reset"]"/>
+                        Tooltip="@UiResources.Reset"/>
         }
     </AdornmentContent>
 </FormSelect>

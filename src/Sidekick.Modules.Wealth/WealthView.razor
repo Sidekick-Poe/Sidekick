@@ -16,19 +16,19 @@
     <ChildContent>
         @if (Game == GameType.Poe2)
         {
-            <AlertError>@Resources["Not_Supported_Game"]</AlertError>
+            <AlertError>@Resources.Not_Supported_Game</AlertError>
             return;
         }
 
         @if (!Configuration.Value.ApplicationType.SupportsKeybinds() || !Configuration.Value.ApplicationType.SupportsAuthentication())
         {
-            <AlertError>@Resources["Not_Supported"]</AlertError>
+            <AlertError>@Resources.Not_Supported</AlertError>
             return;
         }
 
         <AppContainer>
             <div class="flex items-start gap-2 mb-3">
-                <Heading1>@Resources["Wealth_Tracker"]</Heading1>
+                <Heading1>@Resources.Wealth_Tracker</Heading1>
                 <div class="self-center ml-auto">
                     <div class="flex flex-nowrap items-center justify-center">
                         <AuthenticationButton/>

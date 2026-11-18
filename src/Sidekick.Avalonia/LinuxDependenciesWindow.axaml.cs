@@ -36,10 +36,10 @@ public partial class LinuxDependenciesWindow : Window
 
         InitializeComponent();
 
-        TitleTextBlock.Text = resources["Linux_Dependencies_Title"];
-        IntroductionTextBlock.Text = resources["Linux_Dependencies_Introduction"];
-        InstructionsTextBlock.Text = resources["Linux_Dependencies_Instructions"];
-        CloseButton.Content = resources["Close"];
+        TitleTextBlock.Text = resources.Linux_Dependencies_Title;
+        IntroductionTextBlock.Text = resources.Linux_Dependencies_Introduction;
+        InstructionsTextBlock.Text = resources.Linux_Dependencies_Instructions;
+        CloseButton.Content = resources.Close;
 
         foreach (var dependency in missingDependencies)
         {
@@ -91,7 +91,7 @@ public partial class LinuxDependenciesWindow : Window
 
         var copyButton = new Button
         {
-            Content = resources["Copy"],
+            Content = resources.Copy,
             FontFamily = (FontFamily)this.FindResource("FontinFont")!,
             Margin = new(8, 0, 0, 0),
             MinWidth = 80,
@@ -105,9 +105,9 @@ public partial class LinuxDependenciesWindow : Window
             if (Clipboard == null) return;
 
             await Clipboard.SetTextAsync(command);
-            copyButton.Content = resources["Copied"];
+            copyButton.Content = resources.Copied;
             await Task.Delay(TimeSpan.FromSeconds(2));
-            copyButton.Content = resources["Copy"];
+            copyButton.Content = resources.Copy;
         };
 
         var grid = new Grid { ColumnDefinitions = new ColumnDefinitions("*,Auto") };

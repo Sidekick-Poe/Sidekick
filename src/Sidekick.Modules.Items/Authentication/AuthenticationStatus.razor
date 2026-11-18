@@ -6,7 +6,7 @@
         <div class="bg-green-500 rounded-full size-2"></div>
         <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
                     Class="text-green-600! text-sm!">
-            @Resources["Authenticated"] (@TokenRemainingString)
+            @Resources.Authenticated (@TokenRemainingString)
         </ButtonLink>
     }
     else if (CurrentState == AuthenticationState.InProgress)
@@ -14,16 +14,16 @@
         <div class="bg-blue-500 rounded-full size-2"></div>
         <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
                     Class="text-blue-600! text-sm!">
-            @Resources["Authenticating"]
+            @Resources.Authenticating
         </ButtonLink>
     }
     else if (CurrentState == AuthenticationState.Unauthenticated)
     {
         <div class="bg-neutral-500 rounded-full size-2"></div>
-        <Tooltip Text="@Resources["Unauthenticated_Tooltip"]">
+        <Tooltip Text="@Resources.Unauthenticated_Tooltip">
             <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
                         Class="text-neutral-400! text-sm!">
-                @Resources["Unauthenticated"]
+                @Resources.Unauthenticated
             </ButtonLink>
         </Tooltip>
     }

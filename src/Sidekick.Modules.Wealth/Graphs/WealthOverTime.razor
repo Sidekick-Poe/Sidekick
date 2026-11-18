@@ -7,7 +7,7 @@
 @using Sidekick.Common.Settings
 
 <div class="@(Series.Count == 0 ? "hidden" : "") relative">
-    <FormFieldset Legend="@Resources["Total_Value"]">
+    <FormFieldset Legend="@Resources.Total_Value">
         <div class="h-32 relative -m-3">
             <ApexChart @ref="Chart"
                        TItem="DataPoint"

@@ -1,5 +1,6 @@
 @page "/initialize"
 @using Microsoft.Extensions.Localization
+@using Sidekick.Modules.Initialization.Localization
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Progress
 @using Sidekick.Common.Ui.Buttons
@@ -10,7 +11,7 @@
 <LayoutSimple>
     <ChildContent>
         <AppContainer>
-            <Heading3 Class="mb-2 text-center">@UiResources["Loading"]</Heading3>
+            <Heading3 Class="mb-2 text-center">@UiResources.Loading</Heading3>
             <ProgressBar Percent="Percentage"/>
         </AppContainer>
     </ChildContent>
@@ -18,7 +19,7 @@
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
             <ButtonSecondary OnClick="Exit">
-                @Resources["Exit"]
+                @Resources.Exit
             </ButtonSecondary>
         </div>
     </BottomContent>

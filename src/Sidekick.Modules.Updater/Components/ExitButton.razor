@@ -3,7 +3,7 @@
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Platform
 
-<ButtonSecondary OnClick="Exit">@(IsOpenedLater ? UiResources["Close"] : Resources["Exit"])</ButtonSecondary>
+<ButtonSecondary OnClick="Exit">@(IsOpenedLater ? UiResources.Close : Resources.Exit)</ButtonSecondary>
 
 @inject IStringLocalizer<UpdateResources> Resources
 @inject IStringLocalizer<UiResources> UiResources

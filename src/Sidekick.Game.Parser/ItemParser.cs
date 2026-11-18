@@ -61,7 +61,7 @@ public class ItemParser
 
     private UnparsableException CreateUnparsableException(string? text)
     {
-        return new UnparsableException(resources["Unparsable_Title"], resources["Unparsable_Settings"], resources["Unparsable_Mistakes"])
+        return new UnparsableException(resources.Unparsable_Title, resources.Unparsable_Settings, resources.Unparsable_Mistakes)
         {
             ItemText = text,
         };

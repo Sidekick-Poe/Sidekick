@@ -11,13 +11,13 @@
 
 <div class="flex justify-between">
     <ButtonLink OnClick="OpenWebsite">
-        <TextCaption>@Resources["Open_Website"]</TextCaption>
+        <TextCaption>@Resources.Open_Website</TextCaption>
     </ButtonLink>
 
     @if (LastLog != null)
     {
         <div class="flex items-center flex-nowrap gap-1">
-            <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+            <TextCaption>@Resources.Last_Updated:</TextCaption>
             <TextCaption>@LastLog.Time.ToString("g")</TextCaption>
         </div>
     }

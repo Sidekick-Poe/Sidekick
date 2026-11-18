@@ -2,14 +2,14 @@
 @using Microsoft.Extensions.Options
 
 <MenuContainer>
-    <MenuLegend Legend="@Resources["Settings"]"/>
-    <MenuItem Href="/settings">@Resources["Game"]</MenuItem>
-    <MenuItem Href="/settings/application">@Resources["Application"]</MenuItem>
+    <MenuLegend Legend="@Resources.Settings"/>
+    <MenuItem Href="/settings">@Resources.Game</MenuItem>
+    <MenuItem Href="/settings/application">@Resources.Application</MenuItem>
 
     @if (Configuration.Value.ApplicationType.SupportsKeybinds())
     {
-        <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
-        <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
+        <MenuItem Href="/settings/chat">@Resources.Chat_Commands</MenuItem>
+        <MenuItem Href="/settings/regexhotkeys">@Resources.Regex_Hotkeys</MenuItem>
     }
 </MenuContainer>
 

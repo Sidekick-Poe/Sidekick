@@ -7,11 +7,11 @@
         <div class="flex flex-wrap gap-x-2 gap-y-1 items-start leading-4">
             @if (First)
             {
-                <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_When"]</span>
+                <span class="mt-0.5 text-neutral-300">@Resources.AutoSelect_When</span>
             }
             else
             {
-                <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_And"]</span>
+                <span class="mt-0.5 text-neutral-300">@Resources.AutoSelect_And</span>
             }
             <FilterAutoSelectConditionType @ref="ConditionType"
                                            Condition="Condition"
@@ -31,7 +31,7 @@
     </div>
     @if (!Readonly)
     {
-        <Tooltip Text="@Resources["AutoSelect_RemoveCondition"]">
+        <Tooltip Text="@Resources.AutoSelect_RemoveCondition">
             <ButtonIcon Class="text-red-500! hover:text-red-300!"
                         Svg="@UiIcons.Close"
                         OnClick="OnRemoved"/>

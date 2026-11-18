@@ -181,9 +181,9 @@ public partial class App : Application
 
         void UpdateLabels()
         {
-            homeItem.Header = resources["Home"];
-            openWebsiteItem.Header = resources["Open_Website"];
-            exitItem.Header = resources["Exit"];
+            homeItem.Header = resources.Home;
+            openWebsiteItem.Header = resources.Open_Website;
+            exitItem.Header = resources.Exit;
         }
 
         UpdateLabels();
