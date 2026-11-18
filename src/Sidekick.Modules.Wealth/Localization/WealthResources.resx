@@ -18,17 +18,8 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Unauthenticated" xml:space="preserve">
-        <value>Unauthenticated</value>
-    </data>
     <data name="Item_Total_Minimum" xml:space="preserve">
         <value>Minimum Item Total Value</value>
-    </data>
-    <data name="Authenticated" xml:space="preserve">
-        <value>Authenticated</value>
-    </data>
-    <data name="Authenticating" xml:space="preserve">
-        <value>Authenticating</value>
     </data>
     <data name="Total_Value" xml:space="preserve">
         <value>Total Value</value>
@@ -48,29 +39,14 @@
     <data name="Stash_Tabs" xml:space="preserve">
         <value>Stash Tabs</value>
     </data>
-    <data name="Change" xml:space="preserve">
-        <value>Change</value>
-    </data>
-    <data name="Fetch_Tabs" xml:space="preserve">
-        <value>Fetch Tabs</value>
-    </data>
     <data name="Item_Settings" xml:space="preserve">
         <value>Item Settings</value>
-    </data>
-    <data name="Last_Updated" xml:space="preserve">
-        <value>Last Updated</value>
-    </data>
-    <data name="Completed" xml:space="preserve">
-        <value>Completed</value>
     </data>
     <data name="Running" xml:space="preserve">
         <value>Running</value>
     </data>
     <data name="Failed" xml:space="preserve">
         <value>Failed</value>
-    </data>
-    <data name="Stopped" xml:space="preserve">
-        <value>Stopped</value>
     </data>
     <data name="Refresh" xml:space="preserve">
         <value>Refresh</value>
@@ -89,9 +65,6 @@
     </data>
     <data name="No_Tabs_Selected" xml:space="preserve">
         <value>No Tabs Selected</value>
-    </data>
-    <data name="No_Stash_Selected" xml:space="preserve">
-        <value>No stash tabs found.</value>
     </data>
     <data name="Tabs_Selection" xml:space="preserve">
         <value>Tabs Selection</value>

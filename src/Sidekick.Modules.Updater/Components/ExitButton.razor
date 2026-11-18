@@ -1,11 +1,9 @@
-@using Sidekick.Modules.Updater.Localization
 @using Sidekick.Common.Ui.Extensions
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Platform
 
-<ButtonSecondary OnClick="Exit">@(IsOpenedLater ? UiResources.Close : Resources.Exit)</ButtonSecondary>
+<ButtonSecondary OnClick="Exit">@(IsOpenedLater ? UiResources.Close : UiResources.Exit)</ButtonSecondary>
 
-@inject IStringLocalizer<UpdateResources> Resources
 @inject IStringLocalizer<UiResources> UiResources
 @inject IApplicationService ApplicationService
 @inject NavigationManager NavigationManager

@@ -1,3 +1,5 @@
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Xunit;
 using static Sidekick.Localization.Generators.Tests.GeneratorRunner;
 
@@ -138,6 +140,118 @@ public class LocalizationAnalyzerTests
         Assert.Equal(2, missing.Count);
         Assert.Contains("The key 'Close' has no fr translation", missing);
         Assert.Contains("OtherResources.resx has no fr translation", missing);
+    }
+
+    [Fact]
+    public async Task UnusedKeyIsReported()
+    {
+        const string member = """
+                              public string Title => resources.Title;
+                              public System.Func<object, string> Count => resources.Count;
+                              public string Literal => resources["Equals"];
+                              """;
+
+        var diagnostics = await AnalyzerRunner.Run(
+            WithMember(member),
+            ("Localization/TestResources.resx", Resx(("Title", "Title"), ("Count", "{0} items"), ("Equals", "Equals"), ("Unused", "Unused"))));
+
+        var diagnostic = Assert.Single(diagnostics, x => x.Id == "SKLOC015");
+        Assert.Contains("'Unused'", diagnostic.GetMessage());
+    }
+
+    [Fact]
+    public async Task EnumValuesCountAsUsed()
+    {
+        var diagnostics = await AnalyzerRunner.Run(
+            WithMember("public string Text(Color color) => resources[color.ToString()];"),
+            ("Localization/TestResources.resx", Resx(("Red", "Red"), ("Green", "Green"), ("Blue", "Blue"))));
+
+        Assert.DoesNotContain(diagnostics, x => x.Id == "SKLOC015");
+    }
+
+    [Fact]
+    public async Task UnusedKeysAreNotReportedForComputedLookups()
+    {
+        var diagnostics = await AnalyzerRunner.Run(
+            WithMember("public string Text(string key) => resources[key];"),
+            ("Localization/TestResources.resx", Resx(("Unused", "Unused"))));
+
+        Assert.DoesNotContain(diagnostics, x => x.Id == "SKLOC015");
+    }
+
+    [Fact]
+    public async Task UnusedKeysAreNotReportedForSharedResources()
+    {
+        const string source = """
+                              namespace Test.App.Localization;
+
+                              public class SharedResources
+                              {
+                              }
+                              """;
+
+        var diagnostics = await AnalyzerRunner.Run(source, ("Localization/SharedResources.resx", Resx(("Unused", "Unused"))));
+
+        Assert.DoesNotContain(diagnostics, x => x.Id == "SKLOC015");
+    }
+
+    [Fact]
+    public async Task GetStringIsAnalyzedLikeTheIndexer()
+    {
+        const string member = """
+                              public string Literal => resources.GetString("Title");
+                              public string Computed(string key) => resources.GetString(key);
+                              """;
+
+        var diagnostics = await AnalyzerRunner.Run(WithMember(member), ("Localization/TestResources.resx", Resx(("Title", "Title"))));
+
+        Assert.Single(diagnostics, x => x.Id == "SKLOC012");
+        Assert.Single(diagnostics, x => x.Id == "SKLOC011");
+    }
+
+    [Fact]
+    public async Task EnumValuesHandledBeforeTheDiscardArmAreNotUsed()
+    {
+        const string member = """
+                              public string Text(Color color) => color switch
+                                  {
+                                      Color.Red => "Warm",
+                                      _ => resources[color.ToString()],
+                                  };
+                              """;
+
+        var diagnostics = await AnalyzerRunner.Run(
+            WithMember(member),
+            ("Localization/TestResources.resx", Resx(("Red", "Red"), ("Green", "Green"), ("Blue", "Blue"))));
+
+        Assert.Contains("'Red'", Assert.Single(diagnostics, x => x.Id == "SKLOC015").GetMessage());
+    }
+
+    [Fact]
+    public async Task ResourcesOfAnotherProjectAreReported()
+    {
+        var otherProject = CSharpCompilation.Create(
+                "OtherProject",
+                [CSharpSyntaxTree.ParseText("namespace Other; public class OtherResources { } public class SharedResources { }")],
+                GetReferences(),
+                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
+            .ToMetadataReference();
+
+        const string source = """
+                              using Microsoft.Extensions.Localization;
+
+                              namespace Test.App;
+
+                              public class Usage(IStringLocalizer<Other.OtherResources> other, IStringLocalizer<Other.SharedResources> shared)
+                              {
+                                  public string Other => other["Title"];
+                                  public string Shared => shared["Title"];
+                              }
+                              """;
+
+        var diagnostics = await AnalyzerRunner.Run(source, [otherProject]);
+
+        Assert.Contains("OtherResources", Assert.Single(diagnostics, x => x.Id == "SKLOC016").GetMessage());
     }
 
     [Fact]

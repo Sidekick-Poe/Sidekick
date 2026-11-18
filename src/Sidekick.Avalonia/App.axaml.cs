@@ -7,6 +7,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
+using Sidekick.Avalonia.Localization;
 using Sidekick.Avalonia.Services;
 using Sidekick.Avalonia.Utilities;
 using Sidekick.Common;
@@ -118,7 +119,7 @@ public partial class App : Application
         var uiLanguageProvider = services.GetRequiredService<IUiLanguageProvider>();
         CultureInfo.CurrentUICulture = Task.Run(uiLanguageProvider.Get).GetAwaiter().GetResult();
 
-        var window = new LinuxDependenciesWindow(missingDependencies, services.GetRequiredService<IStringLocalizer<UiResources>>());
+        var window = new LinuxDependenciesWindow(missingDependencies, services.GetRequiredService<IStringLocalizer<UiResources>>(), services.GetRequiredService<IStringLocalizer<AvaloniaResources>>());
         window.Closed += (_, _) => Environment.Exit(0);
         window.Show();
     }

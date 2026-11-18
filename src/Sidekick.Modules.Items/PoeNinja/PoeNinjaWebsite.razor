@@ -1,22 +1,22 @@
 ﻿@using Sidekick.Common.Browser
-@using Sidekick.Modules.Items.Trade.Localization
+@using Sidekick.Common.Ui.Localization
 
 <div class="flex flex-nowrap justify-between">
     @if (DetailsUrl != null)
     {
         <ButtonLink OnClick="OpenWebsite">
-            <TextCaption>@Resources.Open_Website</TextCaption>
+            <TextCaption>@UiResources.Open_Website</TextCaption>
         </ButtonLink>
     }
 
     <div class="flex items-center flex-nowrap gap-1">
-        <TextCaption>@Resources.Last_Updated:</TextCaption>
+        <TextCaption>@UiResources.Last_Updated:</TextCaption>
         <TextCaption>@LastUpdated.ToString("g")</TextCaption>
     </div>
 </div>
 
 @inject IBrowserProvider BrowserProvider
-@inject IStringLocalizer<TradeResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 
 @code {
 

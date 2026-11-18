@@ -26,6 +26,8 @@ public sealed class LocalizationAnalyzer : DiagnosticAnalyzer
         LocalizationDiagnostics.MissingTranslation,
         LocalizationDiagnostics.OrphanTranslation,
         LocalizationDiagnostics.UnreadableFile,
+        LocalizationDiagnostics.UnusedKey,
+        LocalizationDiagnostics.ForeignResources,
     ];
 
     public override void Initialize(AnalysisContext context)
@@ -42,12 +44,24 @@ public sealed class LocalizationAnalyzer : DiagnosticAnalyzer
                 return;
             }
 
-            var files = new Lazy<List<ResxFile>>(() => ReadBaseFiles(start.Options.AdditionalFiles, start.CancellationToken));
-            start.RegisterOperationAction(operation => AnalyzeIndexer(operation, localizerType, files), OperationKind.PropertyReference);
+            start.Options.AnalyzerConfigOptionsProvider.GlobalOptions.TryGetValue("build_property.SharedLocalizationResources", out var sharedList);
+            var state = new AnalysisState(
+                localizerType,
+                start.Compilation.Assembly,
+                new Lazy<List<ResxFile>>(() => ReadBaseFiles(start.Options.AdditionalFiles, start.CancellationToken)),
+                new KeyUsage(),
+                (sharedList ?? string.Empty).Split([';', ','], StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToList());
+
+            start.RegisterOperationAction(operation => AnalyzeIndexer(operation, state), OperationKind.PropertyReference);
+            start.RegisterOperationAction(operation => AnalyzeGetString(operation, state), OperationKind.Invocation);
+            start.RegisterOperationAction(operation => RecordTypedMemberUse(operation, state), OperationKind.PropertyReference, OperationKind.Invocation, OperationKind.MethodReference);
+            start.RegisterCompilationEndAction(end => ReportUnusedKeys(end, state));
         });
 
         context.RegisterCompilationAction(AnalyzeTranslations);
     }
+
+    private sealed record AnalysisState(INamedTypeSymbol LocalizerType, IAssemblySymbol Assembly, Lazy<List<ResxFile>> Files, KeyUsage Usage, List<string> Shared);
 
     private static List<ResxFile> ReadBaseFiles(ImmutableArray<AdditionalText> additionalFiles, CancellationToken cancellationToken)
     {
@@ -57,7 +71,7 @@ public sealed class LocalizationAnalyzer : DiagnosticAnalyzer
             .ToList();
     }
 
-    private static void AnalyzeIndexer(OperationAnalysisContext context, INamedTypeSymbol localizerType, Lazy<List<ResxFile>> files)
+    private static void AnalyzeIndexer(OperationAnalysisContext context, AnalysisState state)
     {
         var operation = (IPropertyReferenceOperation)context.Operation;
         if (!operation.Property.IsIndexer || operation.Arguments.Length == 0)
@@ -65,26 +79,57 @@ public sealed class LocalizationAnalyzer : DiagnosticAnalyzer
             return;
         }
 
-        if (operation.Instance?.Type is not INamedTypeSymbol { IsGenericType: true } instanceType
-            || !SymbolEqualityComparer.Default.Equals(instanceType.OriginalDefinition, localizerType))
+        AnalyzeLookup(context, state, operation, operation.Instance, operation.Arguments[0].Value, operation.Arguments.Length > 1);
+    }
+
+    /// <summary>
+    /// Resources.GetString("Key") reads a key like the indexer does.
+    /// </summary>
+    private static void AnalyzeGetString(OperationAnalysisContext context, AnalysisState state)
+    {
+        var operation = (IInvocationOperation)context.Operation;
+        if (operation.TargetMethod is not { Name: "GetString", IsExtensionMethod: true } method
+            || method.ContainingType.ToDisplayString() != "Microsoft.Extensions.Localization.StringLocalizerExtensions"
+            || operation.Arguments.Length < 2)
+        {
+            return;
+        }
+
+        AnalyzeLookup(context, state, operation, operation.Arguments[0].Value, operation.Arguments[1].Value, operation.Arguments.Length > 2);
+    }
+
+    private static void AnalyzeLookup(OperationAnalysisContext context, AnalysisState state, IOperation lookup, IOperation? receiver, IOperation key, bool hasArguments)
+    {
+        receiver = receiver == null ? null : Unwrap(receiver);
+        if (receiver?.Type is not INamedTypeSymbol { IsGenericType: true } instanceType
+            || !SymbolEqualityComparer.Default.Equals(instanceType.OriginalDefinition, state.LocalizerType))
         {
             return;
         }
 
         // The typed members are generated as localizer["Key"], they are the one place where the key string belongs.
-        if (operation.Syntax.SyntaxTree.FilePath.EndsWith(".Localization.g.cs", StringComparison.OrdinalIgnoreCase))
+        if (lookup.Syntax.SyntaxTree.FilePath.EndsWith(".Localization.g.cs", StringComparison.OrdinalIgnoreCase))
         {
             return;
         }
 
         var resourcesType = instanceType.TypeArguments[0];
-        var key = operation.Arguments[0].Value;
+
+        // The owning project can't see reads from other projects, it would report their keys as unused.
+        if (!SymbolEqualityComparer.Default.Equals(resourcesType.ContainingAssembly, state.Assembly) && !state.Shared.Contains(resourcesType.Name))
+        {
+            context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.ForeignResources, receiver.Syntax.GetLocation(), resourcesType.Name, string.Join(", ", state.Shared)));
+            return;
+        }
+
         if (key.ConstantValue is { HasValue: true, Value: string literal })
         {
+            state.Usage.Use(resourcesType.Name, literal);
+
             // Keys without a typed member (Equals, invalid identifiers) can only be read with the indexer.
             if (LocalizerExtensionsGenerator.HasTypedMember(literal))
             {
-                var member = $"{GetReceiverName(operation.Instance)}.{literal}{(operation.Arguments.Length > 1 ? "(...)" : string.Empty)}";
+                var member = $"{GetReceiverName(receiver)}.{literal}{(hasArguments ? "(...)" : string.Empty)}";
                 context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.LiteralKey, key.Syntax.GetLocation(), member));
             }
 
@@ -92,24 +137,74 @@ public sealed class LocalizationAnalyzer : DiagnosticAnalyzer
         }
 
         var enumValue = GetEnumToStringInstance(key);
-        var file = enumValue != null ? FindFile(files.Value, resourcesType) : null;
+        var file = enumValue != null ? FindFile(state.Files.Value, resourcesType) : null;
         if (enumValue == null || file == null)
         {
+            state.Usage.MarkUnverifiable(resourcesType.Name);
             context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.UnverifiableKey, key.Syntax.GetLocation()));
             return;
         }
 
-        var keys = new HashSet<string>(file.Entries.Select(x => x.Key));
-        var handled = GetValuesHandledBeforeDiscard(operation, enumValue);
-        var missing = ((INamedTypeSymbol)enumValue.Type!).GetMembers()
+        var handled = GetValuesHandledBeforeDiscard(lookup, enumValue);
+        var reachable = ((INamedTypeSymbol)enumValue.Type!).GetMembers()
             .OfType<IFieldSymbol>()
-            .Where(x => x.HasConstantValue && !handled.Contains(x.ConstantValue) && !keys.Contains(x.Name))
+            .Where(x => x.HasConstantValue && !handled.Contains(x.ConstantValue))
             .Select(x => x.Name)
             .ToList();
 
+        foreach (var name in reachable)
+        {
+            state.Usage.Use(resourcesType.Name, name);
+        }
+
+        var keys = new HashSet<string>(file.Entries.Select(x => x.Key));
+        var missing = reachable.Where(x => !keys.Contains(x)).ToList();
         if (missing.Count > 0)
         {
             context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.MissingEnumKeys, key.Syntax.GetLocation(), Path.GetFileName(file.Path), enumValue.Type!.Name, string.Join(", ", missing)));
+        }
+    }
+
+    /// <summary>
+    /// A typed member like Resources.Logs (read, called, or passed as a method) uses the key it is named after.
+    /// </summary>
+    private static void RecordTypedMemberUse(OperationAnalysisContext context, AnalysisState state)
+    {
+        ISymbol? member = context.Operation switch
+        {
+            IPropertyReferenceOperation property => property.Property,
+            IInvocationOperation invocation => invocation.TargetMethod,
+            IMethodReferenceOperation method => method.Method,
+            _ => null,
+        };
+
+        // Only this project's generated classes: StringLocalizerExtensions (GetString) ends with the same suffix.
+        for (var type = member?.ContainingType; type != null; type = type.ContainingType)
+        {
+            if (type.IsStatic
+                && SymbolEqualityComparer.Default.Equals(type.ContainingAssembly, state.Assembly)
+                && type.Name.EndsWith(LocalizerExtensionsGenerator.ExtensionsClassSuffix, StringComparison.Ordinal))
+            {
+                state.Usage.Use(type.Name.Substring(0, type.Name.Length - LocalizerExtensionsGenerator.ExtensionsClassSuffix.Length), member!.Name);
+                return;
+            }
+        }
+    }
+
+    private static void ReportUnusedKeys(CompilationAnalysisContext context, AnalysisState state)
+    {
+        var files = state.Files.Value.Where(x => x.Error == null).ToList();
+
+        // Usage is tracked by class name, so two classes with the same name can't be told apart: skip them rather than guess.
+        var duplicatedNames = files.GroupBy(x => x.ClassName).Where(x => x.Count() > 1).Select(x => x.Key).ToList();
+
+        // Shared resources (UiResources) are used from other projects, so this project alone can't tell which keys are unused.
+        foreach (var file in files.Where(x => !state.Shared.Contains(x.ClassName) && !duplicatedNames.Contains(x.ClassName) && !state.Usage.IsUnverifiable(x.ClassName)))
+        {
+            foreach (var entry in file.Entries.Where(x => !state.Usage.IsUsed(file.ClassName, x.Key)))
+            {
+                context.ReportDiagnostic(Diagnostic.Create(LocalizationDiagnostics.UnusedKey, file.GetLocation(entry), entry.Key, Path.GetFileName(file.Path)));
+            }
         }
     }
 

@@ -6,6 +6,7 @@ using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Microsoft.Extensions.Localization;
+using Sidekick.Avalonia.Localization;
 using Sidekick.Avalonia.Utilities;
 using Sidekick.Common.Ui.Localization;
 
@@ -21,9 +22,12 @@ public partial class LinuxDependenciesWindow : Window
 
     private readonly IStringLocalizer<UiResources> resources;
 
-    public LinuxDependenciesWindow(IReadOnlyList<LinuxDependency> missingDependencies, IStringLocalizer<UiResources> resources)
+    private readonly IStringLocalizer<AvaloniaResources> avaloniaResources;
+
+    public LinuxDependenciesWindow(IReadOnlyList<LinuxDependency> missingDependencies, IStringLocalizer<UiResources> resources, IStringLocalizer<AvaloniaResources> avaloniaResources)
     {
         this.resources = resources;
+        this.avaloniaResources = avaloniaResources;
 
         Title = "Sidekick";
         SizeToContent = SizeToContent.Height;
@@ -36,9 +40,9 @@ public partial class LinuxDependenciesWindow : Window
 
         InitializeComponent();
 
-        TitleTextBlock.Text = resources.Linux_Dependencies_Title;
-        IntroductionTextBlock.Text = resources.Linux_Dependencies_Introduction;
-        InstructionsTextBlock.Text = resources.Linux_Dependencies_Instructions;
+        TitleTextBlock.Text = avaloniaResources.Linux_Dependencies_Title;
+        IntroductionTextBlock.Text = avaloniaResources.Linux_Dependencies_Introduction;
+        InstructionsTextBlock.Text = avaloniaResources.Linux_Dependencies_Instructions;
         CloseButton.Content = resources.Close;
 
         foreach (var dependency in missingDependencies)
@@ -49,7 +53,7 @@ public partial class LinuxDependenciesWindow : Window
                 FontSize = 16,
                 Foreground = Brushes.White,
                 TextWrapping = TextWrapping.Wrap,
-                Text = dependency.Description(resources),
+                Text = dependency.Description(avaloniaResources),
             });
         }
 
@@ -105,7 +109,7 @@ public partial class LinuxDependenciesWindow : Window
             if (Clipboard == null) return;
 
             await Clipboard.SetTextAsync(command);
-            copyButton.Content = resources.Copied;
+            copyButton.Content = avaloniaResources.Copied;
             await Task.Delay(TimeSpan.FromSeconds(2));
             copyButton.Content = resources.Copy;
         };

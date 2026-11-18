@@ -1,9 +1,9 @@
 @using Sidekick.Common.Browser
-@using Sidekick.Modules.Updater.Localization
+@using Sidekick.Common.Ui.Localization
 
-<ButtonSecondary OnClick="OpenWebsite">@Resources.Open_Website</ButtonSecondary>
+<ButtonSecondary OnClick="OpenWebsite">@UiResources.Open_Website</ButtonSecondary>
 
-@inject IStringLocalizer<UpdateResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IBrowserProvider BrowserProvider
 
 @code {

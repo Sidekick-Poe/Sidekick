@@ -15,6 +15,11 @@ public sealed class LocalizerExtensionsGenerator : IIncrementalGenerator
 {
     private const string LocalizerMetadataName = "Microsoft.Extensions.Localization.IStringLocalizer`1";
 
+    /// <summary>
+    /// The typed members of UiResources live in UiResourcesLocalizerExtensions, the analyzer uses this to tell which class a member belongs to.
+    /// </summary>
+    internal const string ExtensionsClassSuffix = "LocalizerExtensions";
+
     internal static readonly string[] LocalizerMembers = ["GetAllStrings", "GetString", "WithCulture"];
 
     /// <summary>
@@ -111,7 +116,7 @@ public sealed class LocalizerExtensionsGenerator : IIncrementalGenerator
 
         builder.AppendLine($"/// <summary>Typed keys of {Escape(fileName)}.</summary>");
         var isPublic = target.IsPublic && project.IsShared(file.ClassName);
-        builder.AppendLine($"{(isPublic ? "public" : "internal")} static class {file.ClassName}LocalizerExtensions");
+        builder.AppendLine($"{(isPublic ? "public" : "internal")} static class {file.ClassName}{ExtensionsClassSuffix}");
         builder.AppendLine("{");
         builder.AppendLine($"    extension(global::Microsoft.Extensions.Localization.IStringLocalizer<{fullName}> localizer)");
         builder.AppendLine("    {");

@@ -1,3 +1,4 @@
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Apis.Poe.Trade.Authentication
 
 <div class="flex flex-nowrap items-center gap-2">
@@ -6,7 +7,7 @@
         <div class="bg-green-500 rounded-full size-2"></div>
         <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
                     Class="text-green-600! text-sm!">
-            @Resources.Authenticated (@TokenRemainingString)
+            @UiResources.Authenticated (@TokenRemainingString)
         </ButtonLink>
     }
     else if (CurrentState == AuthenticationState.InProgress)
@@ -14,7 +15,7 @@
         <div class="bg-blue-500 rounded-full size-2"></div>
         <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
                     Class="text-blue-600! text-sm!">
-            @Resources.Authenticating
+            @UiResources.Authenticating
         </ButtonLink>
     }
     else if (CurrentState == AuthenticationState.Unauthenticated)
@@ -23,7 +24,7 @@
         <Tooltip Text="@Resources.Unauthenticated_Tooltip">
             <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
                         Class="text-neutral-400! text-sm!">
-                @Resources.Unauthenticated
+                @UiResources.Unauthenticated
             </ButtonLink>
         </Tooltip>
     }
@@ -31,6 +32,7 @@
 
 @implements IDisposable
 @inject IStringLocalizer<AuthenticationResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IAuthenticationService AuthenticationService
 
 @code {

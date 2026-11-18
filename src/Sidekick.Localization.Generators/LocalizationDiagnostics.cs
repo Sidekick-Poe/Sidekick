@@ -72,6 +72,23 @@ internal static class LocalizationDiagnostics
         isEnabledByDefault: true,
         customTags: WellKnownDiagnosticTags.CompilationEnd);
 
+    public static readonly DiagnosticDescriptor UnusedKey = new(
+        id: "SKLOC015",
+        title: "Resource key is not used",
+        messageFormat: "The key '{0}' in {1} is not used, remove it from every language file",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true,
+        customTags: WellKnownDiagnosticTags.CompilationEnd);
+
+    public static readonly DiagnosticDescriptor ForeignResources = new(
+        id: "SKLOC016",
+        title: "Resources of another project",
+        messageFormat: "{0} belongs to another project, only {1} can be used from other projects: move the text to {1} or to this project's resources",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true);
+
     public static readonly DiagnosticDescriptor OrphanTranslation = new(
         id: "SKLOC014",
         title: "Translated key is not in the base resource file",

@@ -171,7 +171,7 @@
     /// </summary>
     private bool IsOpenedLater => !string.IsNullOrEmpty(NavigationManager.QueryString("back"));
 
-    private string ExitLabel => IsOpenedLater ? UiResources.Close : Resources.Exit;
+    private string ExitLabel => IsOpenedLater ? UiResources.Close : UiResources.Exit;
 
     public void Exit()
     {

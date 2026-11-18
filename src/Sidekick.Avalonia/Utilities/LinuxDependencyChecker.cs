@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using Microsoft.Extensions.Localization;
-using Sidekick.Common.Ui.Localization;
+using Sidekick.Avalonia.Localization;
 
 namespace Sidekick.Avalonia.Utilities;
 
@@ -8,7 +8,7 @@ namespace Sidekick.Avalonia.Utilities;
 /// A package Sidekick needs on Linux, with its name in each supported distribution.
 /// </summary>
 /// <param name="Description">The text that names the package and says what it is used for.</param>
-public record LinuxDependency(Func<IStringLocalizer<UiResources>, string> Description, string ArchPackage, string DebianPackage, string FedoraPackage);
+public record LinuxDependency(Func<IStringLocalizer<AvaloniaResources>, string> Description, string ArchPackage, string DebianPackage, string FedoraPackage);
 
 /// <summary>
 /// The command that installs the missing packages on a family of distributions.
