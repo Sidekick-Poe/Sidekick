@@ -85,6 +85,17 @@
                 _ => ConditionResources[value.ToString()],
             };
 
+            // Filter out properties whose label is empty because the current game doesn't support them, unless the rule already uses one.
+            if (string.IsNullOrWhiteSpace(label))
+            {
+                if (value != Condition.Type)
+                {
+                    continue;
+                }
+
+                label = value.ToString();
+            }
+
             var group = value switch
             {
                 AutoSelectConditionType.ItemClass => ConditionResources.Group_Properties,
