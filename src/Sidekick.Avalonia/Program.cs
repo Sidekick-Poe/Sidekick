@@ -1,4 +1,5 @@
 using Avalonia;
+using Sidekick.Avalonia.Utilities;
 using Velopack;
 
 namespace Sidekick.Avalonia;
@@ -10,9 +11,9 @@ sealed class Program
     {
         if (OperatingSystem.IsLinux())
         {
-            // Disable the modern hardware-accelerated buffer sharing layout
-            // This is the true culprit behind the black screen behavior
-            Environment.SetEnvironmentVariable("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+            // WebKitGTK's DMA-BUF renderer leaves every window blank on some drivers (NVIDIA among them).
+            // A value the user set themselves is kept.
+            LinuxNativeMethods.setenv("WEBKIT_DISABLE_DMABUF_RENDERER", "1", 0);
         }
 
         VelopackApp.Build().Run();
