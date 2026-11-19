@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Sidekick.Common.Settings;
 using Sidekick.Game.Enums;
+using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Parser.Stats;
@@ -29,6 +30,25 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
                             Value = JsonSerializer.Serialize(new List<StatCategory>()
                             {
                                 StatCategory.Fractured,
+                            }, AutoSelectPreferences.JsonSerializerOptions),
+                        },
+                    ],
+                },
+                // Viscera are priced by their affix and can't be modified, so the affix is searched from its exact roll.
+                new AutoSelectRule()
+                {
+                    Checked = true,
+                    FillMinRange = true,
+                    NormalizeBy = 0,
+                    Conditions =
+                    [
+                        new AutoSelectCondition()
+                        {
+                            Type = AutoSelectConditionType.ItemClass,
+                            Comparison = AutoSelectComparisonType.IsContainedIn,
+                            Value = JsonSerializer.Serialize(new List<ItemClass>()
+                            {
+                                ItemClass.Viscera,
                             }, AutoSelectPreferences.JsonSerializerOptions),
                         },
                     ],

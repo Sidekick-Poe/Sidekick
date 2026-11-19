@@ -42,6 +42,13 @@ public class ItemTradeService
 
             var query = GetQueryFromDefinition(item.TradeItem);
 
+            // The trade site only knows the regular viscera names, so lesser and greater ones are searched by their full name.
+            if (item.ItemClass.Id == "Viscera" && !string.IsNullOrEmpty(item.Type) && item.Type != item.TradeItem?.Type)
+            {
+                query.Term = item.Type;
+                query.Type = null;
+            }
+
             foreach (var filter in filters ?? [])
             {
                 filter.PrepareTradeRequest(query, item);

@@ -30,6 +30,8 @@ public class NinjaStashProvider(
         "Area is influenced by The Elder",
     ];
 
+    private const string VisceraItemClassId = "Viscera";
+
     private string GetCacheKey(string type)
     {
         return $"PoeNinjaStash_{leagueProvider.Current.Id}_{type}";
@@ -38,6 +40,13 @@ public class NinjaStashProvider(
     public List<NinjaStashItem> GetDefinitions(Item item)
     {
         if (item.InvariantDefinition == null) return [];
+
+        if (item.ItemClass.Id == VisceraItemClassId)
+        {
+            return FilterViscera(item.InvariantDefinition.NinjaStashItems,
+                                 item.Type != item.Definition.Name,
+                                 item.Stats);
+        }
 
         if (item.Properties.Rarity == Rarity.Unique)
         {
@@ -95,6 +104,13 @@ public class NinjaStashProvider(
         stats.AddRange(apiItem.EnchantMods.Select(x => statParser.ParseInvariant(StatCategory.Enchant, x.Description)!).ToList());
         stats.AddRange(apiItem.ImplicitMods.Select(x => statParser.ParseInvariant(StatCategory.Implicit, x.Description)!).ToList());
         stats = stats.Where(x => x != null!).ToList();
+
+        if (item.BaseItems.Any(x => x.ItemClassId == VisceraItemClassId))
+        {
+            return FilterViscera(item.NinjaStashItems,
+                                 apiItem.Type != item.Name,
+                                 stats);
+        }
 
         if (apiItem.Rarity == Rarity.Unique)
         {
@@ -293,6 +309,26 @@ public class NinjaStashProvider(
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// poe.ninja prices visceras by affix, so every entry whose stats are all on the item is returned, one per affix.
+    /// Only the regular tier is linked in the data for now, so lesser and greater visceras get no price instead of the regular one.
+    /// </summary>
+    private static List<NinjaStashItem> FilterViscera(List<NinjaStashItem>? items, bool isTiered, List<Stat>? stats)
+    {
+        if (items == null || isTiered || stats == null) return [];
+
+        var tradeIds = stats
+            .Where(x => x.Category == StatCategory.Implicit)
+            .SelectMany(x => x.Definitions)
+            .SelectMany(x => x.TradeIds ?? [])
+            .Where(x => x.StartsWith("implicit."))
+            .ToHashSet();
+
+        return items
+            .Where(x => x.Stats is { Count: > 0 } && x.Stats.All(stat => stat.Id != null && tradeIds.Contains(stat.Id)))
+            .ToList();
     }
 
     private List<NinjaStashItem> FilterBeastiaryMonsters(List<NinjaStashItem>? items)
