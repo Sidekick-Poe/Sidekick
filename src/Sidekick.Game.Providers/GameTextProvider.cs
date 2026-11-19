@@ -13,7 +13,7 @@ public class GameTextProvider(
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         Texts = await dataProvider.Read<GameText>(game, GameDataType.Texts, currentGameLanguage.Language);
     }
 }

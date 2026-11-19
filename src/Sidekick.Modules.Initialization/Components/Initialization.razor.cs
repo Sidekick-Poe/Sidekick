@@ -61,11 +61,11 @@ public partial class Initialization
             Completed = 0;
             Count = Configuration.Value.InitializableServices.Count;
             var version = ApplicationService.GetVersion();
-            var previousVersion = await SettingsService.GetString(SettingKeys.Version);
+            var previousVersion = await SettingsService.GetStringAsync(SettingKeys.Version);
             if (version != previousVersion)
             {
                 await CacheProvider.Clear();
-                await SettingsService.Set(SettingKeys.Version, version);
+                await SettingsService.SetAsync(SettingKeys.Version, version);
             }
 
             // Report initial progress
@@ -94,7 +94,7 @@ public partial class Initialization
         }
         catch (SidekickException e)
         {
-            await SettingsService.Set(SettingKeys.LanguageParser, null);
+            await SettingsService.SetAsync(SettingKeys.LanguageParser, null);
             e.Actions = ExceptionActions.ExitApplication;
             throw;
         }

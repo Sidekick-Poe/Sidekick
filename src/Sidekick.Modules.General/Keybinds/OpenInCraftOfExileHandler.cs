@@ -22,7 +22,7 @@ public class OpenInCraftOfExileHandler(
 
     protected override async Task<List<string?>> GetKeybinds() =>
     [
-        await settingsService.GetString(SettingKeys.KeyOpenInCraftOfExile)
+        await settingsService.GetStringAsync(SettingKeys.KeyOpenInCraftOfExile)
     ];
 
     public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
@@ -38,7 +38,7 @@ public class OpenInCraftOfExileHandler(
             return;
         }
 
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         var gameParam = game == GameType.Poe1 ? "poe1" : "poe2";
         var encodedItemText = Uri.EscapeDataString(itemText);
 

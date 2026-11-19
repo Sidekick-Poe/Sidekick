@@ -63,8 +63,8 @@
             return;
         }
 
-        KeyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
-        KeyClose = await SettingsService.GetString(SettingKeys.KeyClose);
+        KeyOpenPriceCheck = await SettingsService.GetStringAsync(SettingKeys.KeyOpenPriceCheck);
+        KeyClose = await SettingsService.GetStringAsync(SettingKeys.KeyClose);
         await base.OnInitializedAsync();
     }
 

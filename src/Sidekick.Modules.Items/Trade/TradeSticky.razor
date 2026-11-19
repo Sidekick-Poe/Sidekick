@@ -42,7 +42,7 @@
     private async void ToggleView()
     {
         IsCompact = !IsCompact;
-        await SettingsService.Set(SettingKeys.PriceCheckCompactMode, IsCompact);
+        await SettingsService.SetAsync(SettingKeys.PriceCheckCompactMode, IsCompact);
     }
 
     private async void OnSettingsChanged(string[] keys)

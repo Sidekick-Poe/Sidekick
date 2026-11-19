@@ -15,7 +15,7 @@ public class NinjaProvider(
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
 
         var exchangeItems = await dataProvider.Read<List<NinjaExchangeItem>>(game, GameDataType.NinjaExchangeItems, currentGameLanguage.Language);
         ExchangeItems = exchangeItems

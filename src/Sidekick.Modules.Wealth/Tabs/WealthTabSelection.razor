@@ -136,7 +136,7 @@
 
     private async Task UpdateTrackedTabs()
     {
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
         await using var dbContext = new SidekickDbContext(DbContextOptions);
         TrackedTabs = await dbContext.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
     }
@@ -152,7 +152,7 @@
 
         if (isChecked)
         {
-            var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+            var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
             if (leagueId == null) return;
 
             if (dbStash != null)

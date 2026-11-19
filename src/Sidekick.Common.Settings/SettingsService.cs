@@ -38,9 +38,9 @@ public class SettingsService(
         },
     };
 
-    public async Task<GameType> GetGame()
+    public async Task<GameType> GetGameAsync()
     {
-        var leagueId = await GetString(SettingKeys.LeagueId);
+        var leagueId = await GetStringAsync(SettingKeys.LeagueId);
         return leagueId.GetGameFromLeagueId();
     }
 
@@ -66,7 +66,7 @@ public class SettingsService(
         return GetDefault<bool>(key);
     }
 
-    public async Task<string?> GetString(string key)
+    public async Task<string?> GetStringAsync(string key)
     {
         var (isSaved, savedValue) = GetSavedValue(key);
         if (isSaved)
@@ -77,7 +77,7 @@ public class SettingsService(
         return GetDefault<string>(key);
     }
 
-    public async Task<int> GetInt(string key)
+    public async Task<int> GetIntAsync(string key)
     {
         var (isSaved, savedValue) = GetSavedValue(key);
         if (isSaved && int.TryParse(savedValue, out var intValue))
@@ -88,7 +88,7 @@ public class SettingsService(
         return GetDefault<int>(key);
     }
 
-    public async Task<double> GetDouble(string key)
+    public async Task<double> GetDoubleAsync(string key)
     {
         var (isSaved, savedValue) = GetSavedValue(key);
         if (isSaved && double.TryParse(savedValue, out var doubleValue))
@@ -99,7 +99,7 @@ public class SettingsService(
         return GetDefault<double>(key);
     }
 
-    public async Task<DateTimeOffset?> GetDateTime(string key)
+    public async Task<DateTimeOffset?> GetDateTimeAsync(string key)
     {
         var (isSaved, savedValue) = GetSavedValue(key);
         if (isSaved && DateTimeOffset.TryParse(savedValue, out var dateTimeValue))
@@ -110,7 +110,7 @@ public class SettingsService(
         return GetDefault<DateTimeOffset>(key);
     }
 
-    public async Task<TValue?> GetObject<TValue>(string key)
+    public async Task<TValue?> GetObjectAsync<TValue>(string key)
         where TValue : class
     {
         var (isSaved, savedValue) = GetSavedValue(key);
@@ -137,7 +137,7 @@ public class SettingsService(
         return defaultValue ?? null;
     }
 
-    public async Task<TEnum?> GetEnum<TEnum>(string key)
+    public async Task<TEnum?> GetEnumAsync<TEnum>(string key)
         where TEnum : struct, Enum
     {
         var (isSaved, savedValue) = GetSavedValue(key);
@@ -179,7 +179,7 @@ public class SettingsService(
         return null;
     }
 
-    public async Task Set(
+    public async Task SetAsync(
         string key,
         object? value)
     {
@@ -240,7 +240,7 @@ public class SettingsService(
         OnSettingsChanged?.Invoke([key]);
     }
 
-    public async Task<bool> IsSettingModified(params string[] keys)
+    public async Task<bool> IsSettingModifiedAsync(params string[] keys)
     {
         if (keys.Length == 0) return false;
 
@@ -248,7 +248,7 @@ public class SettingsService(
         return keys.Any(settings.ContainsKey);
     }
 
-    public async Task DeleteSetting(params string[] keys)
+    public async Task DeleteSettingAsync(params string[] keys)
     {
         if (keys.Length == 0) return;
 

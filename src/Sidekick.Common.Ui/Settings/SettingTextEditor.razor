@@ -44,8 +44,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
@@ -56,15 +56,15 @@
     {
         Value = value;
 
-        await SettingsService.Set(SettingKey, value);
+        await SettingsService.SetAsync(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
 
         await InvokeAsync(StateHasChanged);
     }
@@ -73,12 +73,12 @@
     {
         Value = string.Empty;
 
-        await SettingsService.Set(SettingKey, Value);
+        await SettingsService.SetAsync(SettingKey, Value);
     }
 
     private async Task Reset()
     {
-        await SettingsService.DeleteSetting(SettingKey);
+        await SettingsService.DeleteSettingAsync(SettingKey);
     }
 
     public void Dispose()

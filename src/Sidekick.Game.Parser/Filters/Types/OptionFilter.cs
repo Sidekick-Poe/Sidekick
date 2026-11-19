@@ -20,7 +20,7 @@ public class OptionFilter(string? settingKey) : TradeFilter
         Value = DefaultValue;
         if (!string.IsNullOrEmpty(settingKey))
         {
-            var settingValue = await settingsService.GetString(settingKey);
+            var settingValue = await settingsService.GetStringAsync(settingKey);
             if (settingValue != null) Value = settingValue;
         }
 
@@ -31,7 +31,7 @@ public class OptionFilter(string? settingKey) : TradeFilter
     {
         if (!string.IsNullOrEmpty(settingKey))
         {
-            await settingsService.Set(settingKey, Value);
+            await settingsService.SetAsync(settingKey, Value);
         }
     }
 }

@@ -120,7 +120,7 @@
         {
             var leagues = await LeagueProvider.GetLeagues();
             var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
-            var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
+            var settingsLeaguesHash = await SettingsService.GetIntAsync(SettingKeys.LeaguesHash);
             if (apiLeaguesHash != settingsLeaguesHash)
             {
                 NewLeagues = true;
@@ -131,8 +131,8 @@
             if (DebugService.IsDebug) NewLeagues = true;
 
             // Check to see if we should run Setup first before running the rest of the initialization process
-            var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-            var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
+            var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
+            var parserLanguage = await SettingsService.GetStringAsync(SettingKeys.LanguageParser);
             if (DebugService.IsDebug || string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Value != leagueId) || NewLeagues || parserLanguage == null)
             {
                 RequiresSetup = true;
@@ -186,7 +186,7 @@
 
     public async Task Save()
     {
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
         var leagues = await LeagueProvider.GetLeagues();
         if (leagues.All(x => x.Value != leagueId))
         {
@@ -195,7 +195,7 @@
         }
 
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
-        await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
+        await SettingsService.SetAsync(SettingKeys.LeaguesHash, apiLeaguesHash);
 
         // In debug mode, the app is already initialized, so the window only closes.
         if (DebugService.IsDebug)

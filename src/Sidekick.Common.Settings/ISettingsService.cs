@@ -3,7 +3,7 @@ namespace Sidekick.Common.Settings;
 
 public interface ISettingsService
 {
-    Task<GameType> GetGame();
+    Task<GameType> GetGameAsync();
 
     /// <summary>
     /// Event when any setting is changed.
@@ -31,35 +31,35 @@ public interface ISettingsService
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    Task<string?> GetString(string key);
+    Task<string?> GetStringAsync(string key);
 
     /// <summary>
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    Task<int> GetInt(string key);
+    Task<int> GetIntAsync(string key);
 
     /// <summary>
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    Task<double> GetDouble(string key);
+    Task<double> GetDoubleAsync(string key);
 
     /// <summary>
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    Task<DateTimeOffset?> GetDateTime(string key);
+    Task<DateTimeOffset?> GetDateTimeAsync(string key);
 
     /// <summary>
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    Task<TEnum?> GetEnum<TEnum>(string key)
+    Task<TEnum?> GetEnumAsync<TEnum>(string key)
         where TEnum : struct, Enum;
 
     /// <summary>
@@ -67,7 +67,7 @@ public interface ISettingsService
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    Task<TValue?> GetObject<TValue>(string key)
+    Task<TValue?> GetObjectAsync<TValue>(string key)
         where TValue : class;
 
     /// <summary>
@@ -75,7 +75,7 @@ public interface ISettingsService
     /// </summary>
     /// <param name="key">The key to update in the settings.</param>
     /// <param name="value">The value of the setting.</param>
-    Task Set(
+    Task SetAsync(
         string key,
         object? value);
 
@@ -84,11 +84,11 @@ public interface ISettingsService
     /// </summary>
     /// <param name="keys">The keys of the settings to check for modification.</param>
     /// <returns>True if any setting is modified.</returns>
-    Task<bool> IsSettingModified(params string[] keys);
+    Task<bool> IsSettingModifiedAsync(params string[] keys);
 
     /// <summary>
     /// Restores settings to their default value by removing them.
     /// </summary>
     /// <param name="keys">The keys of the settings to delete.</param>
-    Task DeleteSetting(params string[] keys);
+    Task DeleteSettingAsync(params string[] keys);
 }

@@ -31,15 +31,15 @@ internal class AuthenticationService
     {
         if (AuthenticateTask != null) return AuthenticationState.InProgress;
 
-        var bearerToken = await settingsService.GetString(SettingsTokenName);
-        var bearerExpiration = await settingsService.GetDateTime(SettingsExpirationName);
+        var bearerToken = await settingsService.GetStringAsync(SettingsTokenName);
+        var bearerExpiration = await settingsService.GetDateTimeAsync(SettingsExpirationName);
         if (bearerExpiration == null || string.IsNullOrEmpty(bearerToken)) return AuthenticationState.Unauthenticated;
         return DateTimeOffset.Now < bearerExpiration ? AuthenticationState.Authenticated : AuthenticationState.Unauthenticated;
     }
 
     public async Task<DateTimeOffset?> GetExpiration()
     {
-        return await settingsService.GetDateTime(SettingsExpirationName);
+        return await settingsService.GetDateTimeAsync(SettingsExpirationName);
     }
 
     private async Task<string?> GetToken()
@@ -49,7 +49,7 @@ internal class AuthenticationService
         var currentState = await GetCurrentState();
         if (currentState != AuthenticationState.Authenticated) return null;
 
-        return await settingsService.GetString(SettingsTokenName);
+        return await settingsService.GetStringAsync(SettingsTokenName);
     }
 
     public async Task InitializeHttpRequest(HttpRequestMessage request)
@@ -125,8 +125,8 @@ internal class AuthenticationService
             return;
         }
 
-        await settingsService.Set(SettingsTokenName, token.access_token);
-        await settingsService.Set(SettingsExpirationName, DateTimeOffset.Now.AddSeconds(token.expires_in));
+        await settingsService.SetAsync(SettingsTokenName, token.access_token);
+        await settingsService.SetAsync(SettingsExpirationName, DateTimeOffset.Now.AddSeconds(token.expires_in));
         AuthenticateTask = null;
         OnStateChanged?.Invoke();
     }

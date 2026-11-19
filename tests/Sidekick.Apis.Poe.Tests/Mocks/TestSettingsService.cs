@@ -15,13 +15,13 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
 
     public async Task<string?> GetLeague()
     {
-        var leagueId = await GetString(SettingKeys.LeagueId);
+        var leagueId = await GetStringAsync(SettingKeys.LeagueId);
         return leagueId?.Split('.', 2).ElementAtOrDefault(1);
     }
 
-    public async Task<GameType> GetGame()
+    public async Task<GameType> GetGameAsync()
     {
-        var leagueId = await GetString(SettingKeys.LeagueId);
+        var leagueId = await GetStringAsync(SettingKeys.LeagueId);
         return leagueId.GetGameFromLeagueId();
     }
 
@@ -37,7 +37,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
 
     public bool GetBool(string key) => GetBoolAsync(key).Result;
 
-    public Task<string?> GetString(string key)
+    public Task<string?> GetStringAsync(string key)
     {
         if (store.TryGetValue(key, out var value))
         {
@@ -47,7 +47,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult(GetDefault<string>(key));
     }
 
-    public Task<int> GetInt(string key)
+    public Task<int> GetIntAsync(string key)
     {
         if (store.TryGetValue(key, out var value) && int.TryParse(value, out var intValue))
         {
@@ -57,7 +57,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult(GetDefault<int>(key));
     }
 
-    public Task<double> GetDouble(string key)
+    public Task<double> GetDoubleAsync(string key)
     {
         if (store.TryGetValue(key, out var value) && double.TryParse(value, out var intValue))
         {
@@ -67,7 +67,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult(GetDefault<double>(key));
     }
 
-    public Task<DateTimeOffset?> GetDateTime(string key)
+    public Task<DateTimeOffset?> GetDateTimeAsync(string key)
     {
         if (store.TryGetValue(key, out var value) && DateTimeOffset.TryParse(value, out var dateValue))
         {
@@ -77,7 +77,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult<DateTimeOffset?>(GetDefault<DateTimeOffset>(key));
     }
 
-    public Task<TEnum?> GetEnum<TEnum>(string key) where TEnum : struct, Enum
+    public Task<TEnum?> GetEnumAsync<TEnum>(string key) where TEnum : struct, Enum
     {
         if (store.TryGetValue(key, out var value))
         {
@@ -112,7 +112,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult<TEnum?>(null);
     }
 
-    public Task<TValue?> GetObject<TValue>(string key)
+    public Task<TValue?> GetObjectAsync<TValue>(string key)
         where TValue : class
     {
         if (store.TryGetValue(key, out var value))
@@ -131,7 +131,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult(defaultValue ?? null);
     }
 
-    public Task Set(string key, object? value)
+    public Task SetAsync(string key, object? value)
     {
         var stringValue = GetStringValue(value);
 
@@ -170,7 +170,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.CompletedTask;
     }
 
-    public Task<bool> IsSettingModified(params string[] keys)
+    public Task<bool> IsSettingModifiedAsync(params string[] keys)
     {
         if (keys.Length == 0)
         {
@@ -194,7 +194,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult(false);
     }
 
-    public Task DeleteSetting(params string[] keys)
+    public Task DeleteSettingAsync(params string[] keys)
     {
         if (keys.Length == 0)
         {

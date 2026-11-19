@@ -189,6 +189,6 @@
     {
         if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey)) return;
 
-        await SettingsService.Set(Filter.AutoSelectSettingKey, Filter.CustomAutoSelect);
+        await SettingsService.SetAsync(Filter.AutoSelectSettingKey, Filter.CustomAutoSelect);
     }
 }

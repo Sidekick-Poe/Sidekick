@@ -15,7 +15,7 @@ public class CurrentGameLanguage(
     /// <inheritdoc />
     public async Task Initialize()
     {
-        var languageCode = await settingsService.GetString(SettingKeys.LanguageParser) ?? EnglishLanguageCode;
+        var languageCode = await settingsService.GetStringAsync(SettingKeys.LanguageParser) ?? EnglishLanguageCode;
         language = gameLanguageProvider.GetList()
             .FirstOrDefault(x => x.Code == languageCode);
     }
