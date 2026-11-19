@@ -1,8 +1,10 @@
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using Sidekick.Common.Platform;
+
 namespace Sidekick.Avalonia.Utilities;
 
-[SupportedOSPlatform("linux")]
+[SupportedOSPlatform(PlatformNames.Linux)]
 internal static class LinuxNativeMethods
 {
     /// <summary>

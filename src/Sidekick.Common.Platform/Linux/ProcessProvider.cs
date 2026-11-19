@@ -1,5 +1,8 @@
+using System.Runtime.Versioning;
+
 namespace Sidekick.Common.Platform.Linux;
 
+[SupportedOSPlatform(PlatformNames.Linux)]
 public class ProcessProvider() : IProcessProvider
 {
     public string? ClientLogPath

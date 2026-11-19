@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Text;
 
 namespace Sidekick.Common.Platform.Windows.Processes;
 
+[SupportedOSPlatform(PlatformNames.Windows)]
 public static class ProcessExtensions
 {
     [DllImport("Kernel32.dll")]
