@@ -17,15 +17,22 @@ public partial class OverlayWindow : BaseWindow
 
     public async Task OpenView(string url)
     {
+        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+        var keepGameFocus = settingsService.GetBoolNow(SettingKeys.OverlayKeepGameFocus);
+
         await Dispatcher.InvokeAsync(async () =>
         {
             if (IsVisible)
             {
                 _ = WebView.InvokeScript($"sidekick.app.navigationManager.navigateTo({JsonSerializer.Serialize(url)});");
-                Activate();
+                if (!keepGameFocus)
+                {
+                    Activate();
+                }
             }
             else
             {
+                ShowActivated = !keepGameFocus;
                 Show();
                 WebView.Navigate(new Uri(url));
             }
