@@ -126,8 +126,11 @@
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Save the positions of the overlays. If unchecked, they will be centered.</value>
   </data>
+  <data name="OverlayKeepGameFocus" xml:space="preserve">
+    <value>Keep the game focused when the overlay opens</value>
+  </data>
   <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>Close Overlay with Mouse Click</value>
+    <value>Close the overlay when it loses focus</value>
   </data>
   <data name="EscapeClosesOverlays" xml:space="preserve">
     <value>Close Overlay with Escape</value>

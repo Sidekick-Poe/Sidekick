@@ -19,7 +19,7 @@ public class NinjaUriProvider(
     {
         if (string.IsNullOrEmpty(item.Id)) return null;
 
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         var gamePath = game == GameType.Poe1 ? "" : "poe2/";
         var league = await GetLeague();
         return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.DetailsId}");
@@ -29,7 +29,7 @@ public class NinjaUriProvider(
     {
         if (string.IsNullOrEmpty(item.DetailsId)) return null;
 
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         var gamePath = game == GameType.Poe1 ? "" : "poe2/";
         var league = await GetLeague();
         return new Uri($"https://poe.ninja/{gamePath}economy/{league?.Url}/{item.Url}/{item.DetailsId}");
@@ -37,7 +37,7 @@ public class NinjaUriProvider(
 
     private async Task<string> GetCacheKey()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         return $"PoeNinjaIndexState_{game.GetValueAttribute()}";
     }
 
@@ -79,7 +79,7 @@ public class NinjaUriProvider(
 
         async Task<IndexStateModel> Fetch()
         {
-            var game = await settingsService.GetGame();
+            var game = await settingsService.GetGameAsync();
             var response = await ninjaClient.Fetch<IndexStateModel>(game, "data/index-state");
             if (response == null) return new();
 

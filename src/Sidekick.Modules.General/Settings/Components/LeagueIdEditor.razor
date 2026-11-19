@@ -31,7 +31,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        LeagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
 
         Options = (await LeagueProvider.GetLeagues())
             .Select(

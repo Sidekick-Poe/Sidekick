@@ -18,7 +18,7 @@ public class ScoutProvider(
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
 
         var exchangeItems = await dataProvider.Read<List<ScoutItem>>(game, GameDataType.ScoutItems, currentGameLanguage.Language);
         Items = exchangeItems.ToDictionary(x => x.ItemId);

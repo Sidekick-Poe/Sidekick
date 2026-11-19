@@ -91,13 +91,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Regex = await SettingsService.GetString(SettingKey);
+        Regex = await SettingsService.GetStringAsync(SettingKey);
         await base.OnInitializedAsync();
     }
 
     private async Task OnShow()
     {
-        var regexes = await SettingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys) ?? [];
+        var regexes = await SettingsService.GetObjectAsync<List<RegexHotkey>>(SettingKeys.RegexHotkeys) ?? [];
         Regexes = regexes;
     }
 
@@ -114,7 +114,7 @@
     private async Task RegexChanged(string? regex)
     {
         Regex = regex;
-        await SettingsService.Set(SettingKey, regex);
+        await SettingsService.SetAsync(SettingKey, regex);
     }
 
 }

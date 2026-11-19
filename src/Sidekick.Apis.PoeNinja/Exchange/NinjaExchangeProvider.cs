@@ -79,7 +79,7 @@ public class NinjaExchangeProvider(
             var cacheKey = GetCacheKey(type);
             return await cacheProvider.GetOrSet(cacheKey, async () =>
             {
-                var game = await settingsService.GetGame();
+                var game = await settingsService.GetGameAsync();
 
                 var query = new Dictionary<string, string?>()
                 {

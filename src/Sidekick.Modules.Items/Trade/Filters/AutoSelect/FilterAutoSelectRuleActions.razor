@@ -159,10 +159,10 @@
             });
         }
 
-        DefaultNormalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
-        DefaultFillMin = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMinSettingKey);
-        DefaultFillMax = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMaxSettingKey);
-        DefaultSelectCategories = await SettingsService.GetObject<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
+        DefaultNormalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        DefaultFillMin = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMinSettingKey);
+        DefaultFillMax = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMaxSettingKey);
+        DefaultSelectCategories = await SettingsService.GetObjectAsync<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
 
         await base.OnInitializedAsync();
     }
@@ -183,10 +183,10 @@
     {
         if (value)
         {
-            Rule.NormalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
-            Rule.FillMinRange = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMinSettingKey);
-            Rule.FillMaxRange = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMaxSettingKey);
-            Rule.SelectCategories = await SettingsService.GetObject<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
+            Rule.NormalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+            Rule.FillMinRange = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMinSettingKey);
+            Rule.FillMaxRange = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMaxSettingKey);
+            Rule.SelectCategories = await SettingsService.GetObjectAsync<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
         }
         else
         {

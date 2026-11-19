@@ -38,7 +38,7 @@
     {
         Options.Clear();
 
-        var game = await SettingsService.GetGame();
+        var game = await SettingsService.GetGameAsync();
 
         foreach (var value in Enum.GetValues<AutoSelectConditionType>())
         {

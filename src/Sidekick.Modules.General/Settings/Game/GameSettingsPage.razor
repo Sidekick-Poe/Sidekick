@@ -40,6 +40,8 @@
 
                 <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
                                        Label="@Resources.SaveWindowPositions"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayKeepGameFocus"
+                                       Label="@Resources.OverlayKeepGameFocus"/>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
                                        Label="@Resources.OverlayCloseWithMouse"/>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
@@ -104,6 +106,7 @@
         SettingKeys.KeyOpenInCraftOfExile,
         SettingKeys.KeyClose,
         SettingKeys.SaveWindowPositions,
+        SettingKeys.OverlayKeepGameFocus,
         SettingKeys.OverlayCloseWithMouse,
         SettingKeys.EscapeClosesOverlays,
     ];
@@ -124,13 +127,13 @@
             return;
         }
 
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        AreSettingsModified = await SettingsService.IsSettingModifiedAsync(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 
     private async void RestoreDefaults()
     {
-        await SettingsService.DeleteSetting(SettingKeysUsed);
+        await SettingsService.DeleteSettingAsync(SettingKeysUsed);
 
         AreSettingsModified = false;
 

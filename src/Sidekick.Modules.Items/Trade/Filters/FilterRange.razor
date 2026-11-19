@@ -111,14 +111,14 @@
 
     private async Task SetMin()
     {
-        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        var normalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
         await UpdateMaxValue(null);
     }
 
     private async Task SetMax()
     {
-        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        var normalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(null);
         await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }
@@ -131,7 +131,7 @@
 
     private async Task SetRange()
     {
-        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        var normalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
         await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }

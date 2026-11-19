@@ -82,7 +82,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Game = await SettingsService.GetGame();
+        Game = await SettingsService.GetGameAsync();
 
         await base.OnInitializedAsync();
     }

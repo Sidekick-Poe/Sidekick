@@ -51,13 +51,13 @@
             return;
         }
 
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        AreSettingsModified = await SettingsService.IsSettingModifiedAsync(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 
     private async void RestoreDefaults()
     {
-        await SettingsService.DeleteSetting(SettingKeysUsed);
+        await SettingsService.DeleteSettingAsync(SettingKeysUsed);
 
         AreSettingsModified = false;
 

@@ -126,8 +126,11 @@
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Conserver la position des fenêtres. Si désactivé, les fenêtres seront centrées.</value>
   </data>
+  <data name="OverlayKeepGameFocus" xml:space="preserve">
+    <value>Garder le focus sur le jeu à l'ouverture de la fenêtre</value>
+  </data>
   <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>Fermer la fenêtre sur un clic de la souris</value>
+    <value>Fermer la fenêtre lorsqu'elle perd le focus</value>
   </data>
   <data name="EscapeClosesOverlays" xml:space="preserve">
     <value>Fermer la fenêtre avec la touche Échapper</value>

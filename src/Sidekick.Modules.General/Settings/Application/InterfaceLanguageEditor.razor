@@ -22,7 +22,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Language = await SettingsService.GetString(SettingKeys.LanguageUi);
+        Language = await SettingsService.GetStringAsync(SettingKeys.LanguageUi);
         var languages = UiLanguageProvider.GetList();
         Options = languages
                   .Select(
@@ -39,7 +39,7 @@
     private async Task LanguageChanged(string? value)
     {
         Language = value;
-        await SettingsService.Set(SettingKeys.LanguageUi, value);
+        await SettingsService.SetAsync(SettingKeys.LanguageUi, value);
         await UiLanguageProvider.Initialize();
         NavigationManager.NavigateTo("/empty");
         NavigationManager.NavigateTo("/settings/application");

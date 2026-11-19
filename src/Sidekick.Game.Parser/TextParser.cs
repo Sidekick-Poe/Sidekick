@@ -34,7 +34,7 @@ public class TextParser
 
     public async Task Initialize()
     {
-        Game = await settingsService.GetGame();
+        Game = await settingsService.GetGameAsync();
 
         Fractured = GetKeyword(gameTextProvider.Texts.ModDescriptionFractured);
         Corrupted = GetKeyword(gameTextProvider.Texts.ModDescriptionCorrupted);

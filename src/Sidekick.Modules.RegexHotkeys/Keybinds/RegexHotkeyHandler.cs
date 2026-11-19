@@ -15,7 +15,7 @@ public class RegexHotkeyHandler(
 
     protected override async Task<List<string?>> GetKeybinds()
     {
-        var regexHotkeys = await settingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys);
+        var regexHotkeys = await settingsService.GetObjectAsync<List<RegexHotkey>>(SettingKeys.RegexHotkeys);
         return regexHotkeys?.Select(x => x.Key).ToList() ?? [];
     }
 
@@ -23,7 +23,7 @@ public class RegexHotkeyHandler(
 
     public override async Task Execute(string keybind)
     {
-        var regexHotkeys = await settingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys);
+        var regexHotkeys = await settingsService.GetObjectAsync<List<RegexHotkey>>(SettingKeys.RegexHotkeys);
         var regexHotkey = regexHotkeys?.FirstOrDefault(x => x.Key == keybind);
         if (regexHotkey == null || string.IsNullOrWhiteSpace(regexHotkey.Regex))
         {
@@ -31,7 +31,7 @@ public class RegexHotkeyHandler(
         }
 
         string? clipboardValue = null;
-        var retainClipboard = await settingsService.GetBool(SettingKeys.RetainClipboard);
+        var retainClipboard = await settingsService.GetBoolAsync(SettingKeys.RetainClipboard);
         if (retainClipboard)
         {
             clipboardValue = await clipboard.GetText();

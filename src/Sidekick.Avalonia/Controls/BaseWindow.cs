@@ -126,8 +126,8 @@ public abstract class BaseWindow : Window
         if (!string.IsNullOrEmpty(PositionPrefix))
         {
             // The size is always remembered. The setting only controls the position.
-            var savedWidth = await settingsService.GetDouble($"{PositionPrefix}_Width");
-            var savedHeight = await settingsService.GetDouble($"{PositionPrefix}_Height");
+            var savedWidth = await settingsService.GetDoubleAsync($"{PositionPrefix}_Width");
+            var savedHeight = await settingsService.GetDoubleAsync($"{PositionPrefix}_Height");
             if (savedWidth >= width && savedHeight >= height)
             {
                 width = savedWidth;
@@ -135,10 +135,10 @@ public abstract class BaseWindow : Window
             }
 
             // A saved width of 0 means that no placement was saved yet.
-            if (savedWidth > 0 && await settingsService.GetBool(SettingKeys.SaveWindowPositions))
+            if (savedWidth > 0 && await settingsService.GetBoolAsync(SettingKeys.SaveWindowPositions))
             {
-                var positionX = await settingsService.GetInt($"{PositionPrefix}_PositionX");
-                var positionY = await settingsService.GetInt($"{PositionPrefix}_PositionY");
+                var positionX = await settingsService.GetIntAsync($"{PositionPrefix}_PositionX");
+                var positionY = await settingsService.GetIntAsync($"{PositionPrefix}_PositionY");
                 savedPosition = new PixelPoint(positionX, positionY);
             }
         }
@@ -232,7 +232,7 @@ public abstract class BaseWindow : Window
     private async Task<double> GetZoom()
     {
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
+        var zoomString = await settingsService.GetStringAsync(SettingKeys.Zoom);
         return double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom) ? zoom : 1;
     }
 
@@ -337,10 +337,10 @@ public abstract class BaseWindow : Window
             if (placement == lastSavedPlacement) return;
 
             var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-            await settingsService.Set($"{PositionPrefix}_Width", placement.Width);
-            await settingsService.Set($"{PositionPrefix}_Height", placement.Height);
-            await settingsService.Set($"{PositionPrefix}_PositionX", placement.X);
-            await settingsService.Set($"{PositionPrefix}_PositionY", placement.Y);
+            await settingsService.SetAsync($"{PositionPrefix}_Width", placement.Width);
+            await settingsService.SetAsync($"{PositionPrefix}_Height", placement.Height);
+            await settingsService.SetAsync($"{PositionPrefix}_PositionX", placement.X);
+            await settingsService.SetAsync($"{PositionPrefix}_PositionY", placement.Y);
             lastSavedPlacement = placement;
         }
         catch (Exception e)

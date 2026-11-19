@@ -26,7 +26,7 @@ public class ItemParser
 
     public async Task Initialize()
     {
-        Game = await settingsService.GetGame();
+        Game = await settingsService.GetGameAsync();
     }
 
     public Item ParseItem(string? text)

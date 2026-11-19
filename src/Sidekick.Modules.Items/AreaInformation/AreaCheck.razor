@@ -73,7 +73,7 @@ else
     {
         BadLines.Clear();
 
-        var regexValue = await SettingsService.GetString(RegexSettings.SettingKey);
+        var regexValue = await SettingsService.GetStringAsync(RegexSettings.SettingKey);
         NoRegex = string.IsNullOrEmpty(regexValue);
         if (string.IsNullOrEmpty(regexValue)) return;
 

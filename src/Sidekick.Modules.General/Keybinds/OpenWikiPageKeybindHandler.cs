@@ -21,7 +21,7 @@ public class OpenWikiPageKeybindHandler(
 
     protected override async Task<List<string?>> GetKeybinds() =>
     [
-        await settingsService.GetString(SettingKeys.KeyOpenWiki)
+        await settingsService.GetStringAsync(SettingKeys.KeyOpenWiki)
     ];
 
     public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
@@ -37,7 +37,7 @@ public class OpenWikiPageKeybindHandler(
 
         var item = itemParser.ParseItem(text);
 
-        var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
+        var wikiPreferred = await settingsService.GetEnumAsync<WikiSetting>(SettingKeys.PreferredWiki);
         switch (wikiPreferred)
         {
             case WikiSetting.PoeWiki:
