@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Sidekick.Avalonia.Utilities;
 using Velopack;
 
@@ -17,10 +18,12 @@ sealed class Program
         }
 
         VelopackApp.Build().Run();
+
+        // Hidden windows are closed to free their web view, so closing the last one must not quit the app living in the tray.
         AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace()
-            .StartWithClassicDesktopLifetime(args);
+            .StartWithClassicDesktopLifetime(args, ShutdownMode.OnExplicitShutdown);
     }
 }

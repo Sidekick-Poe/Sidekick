@@ -96,15 +96,90 @@ public abstract class BaseWindow : Window
             RequestedWidth = null;
             RequestedHeight = null;
             _ = SavePlacement(placement);
+            ScheduleRelease();
         });
     }
 
     protected override void OnClosing(WindowClosingEventArgs e)
     {
+        if (isReleasing)
+        {
+            base.OnClosing(e);
+            return;
+        }
+
         CloseView();
         e.Cancel = true;
         base.OnClosing(e);
     }
+
+    #region Release
+
+    private CancellationTokenSource? releaseCancellation;
+
+    private bool isReleasing;
+
+    private bool isReleased;
+
+    protected override void OnClosed(EventArgs e)
+    {
+        isReleased = true;
+        CancelRelease();
+        base.OnClosed(e);
+    }
+
+    /// <summary>
+    /// How long the window stays hidden before it is closed for real, which frees its web view and the memory of the page.
+    /// Null keeps the hidden window for the lifetime of the app.
+    /// </summary>
+    protected virtual TimeSpan? ReleaseDelay => null;
+
+    /// <summary>
+    /// Keeps the hidden window alive, since it is about to be shown again. Must be called on the UI thread.
+    /// </summary>
+    public void CancelRelease()
+    {
+        releaseCancellation?.Cancel();
+        releaseCancellation = null;
+    }
+
+    private void ScheduleRelease()
+    {
+        if (ReleaseDelay == null)
+        {
+            return;
+        }
+
+        CancelRelease();
+        releaseCancellation = new CancellationTokenSource();
+        _ = ReleaseAfterDelay(ReleaseDelay.Value, releaseCancellation.Token);
+    }
+
+    private async Task ReleaseAfterDelay(TimeSpan delay, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(delay, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+
+        Dispatcher.Post(() =>
+        {
+            // The window may have been reopened while this was waiting for the UI thread.
+            if (cancellationToken.IsCancellationRequested || IsVisible)
+            {
+                return;
+            }
+
+            isReleasing = true;
+            Close();
+        });
+    }
+
+    #endregion
 
     /// <summary>
     /// Sizes and places the window after it is shown: always the saved size, and the saved position when the setting is enabled, otherwise centered on the screen.
@@ -142,6 +217,12 @@ public abstract class BaseWindow : Window
                 var positionY = await settingsService.GetIntAsync($"{PositionPrefix}_PositionY");
                 savedPosition = new PixelPoint(positionX, positionY);
             }
+        }
+
+        // The window may have been closed and released while the settings were read.
+        if (isReleased)
+        {
+            return;
         }
 
         var screen = (savedPosition != null ? Screens.ScreenFromPoint(savedPosition.Value) : null)
@@ -208,6 +289,11 @@ public abstract class BaseWindow : Window
         if (!IsPlaced || !IsVisible) return;
 
         var zoom = await GetZoom();
+        if (isReleased)
+        {
+            return;
+        }
+
         var screen = Screens.ScreenFromWindow(this) ?? Screens.Primary;
         if (screen == null) return;
 
