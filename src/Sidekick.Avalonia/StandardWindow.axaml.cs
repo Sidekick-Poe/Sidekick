@@ -16,11 +16,16 @@ public partial class StandardWindow : BaseWindow
         InitializeComponent();
     }
 
+    /// <summary>
+    /// The window is opened now and then (settings, wealth), so it is released as soon as it is hidden.
+    /// </summary>
+    protected override TimeSpan? ReleaseDelay => TimeSpan.Zero;
+
     public async Task OpenView(string url)
     {
         await Dispatcher.InvokeAsync(async () =>
         {
-            // Only the first open loads the page. Closing the window only hides it, so the page stays loaded.
+            // Only the first open loads the page. While the window is hidden and not yet released, the page stays loaded.
             if (!isLoaded)
             {
                 isLoaded = true;

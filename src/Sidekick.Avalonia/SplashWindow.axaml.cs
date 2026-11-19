@@ -21,6 +21,11 @@ public partial class SplashWindow : BaseWindow
         InitializeComponent();
     }
 
+    /// <summary>
+    /// The splash is only shown at launch and for updates, so it is released as soon as it is hidden.
+    /// </summary>
+    protected override TimeSpan? ReleaseDelay => TimeSpan.Zero;
+
     public async Task OpenView(string url)
     {
         await Dispatcher.Invoke(async () =>

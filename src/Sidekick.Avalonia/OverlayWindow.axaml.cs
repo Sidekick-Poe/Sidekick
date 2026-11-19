@@ -15,6 +15,11 @@ public partial class OverlayWindow : BaseWindow
         Deactivated += OverlayWindow_Deactivated;
     }
 
+    /// <summary>
+    /// Price checks need the overlay to open fast, so it is only released after a long break.
+    /// </summary>
+    protected override TimeSpan? ReleaseDelay => TimeSpan.FromMinutes(15);
+
     public async Task OpenView(string url)
     {
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
