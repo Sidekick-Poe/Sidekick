@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 
@@ -115,7 +114,7 @@ public class ClipboardProvider
             }
         });
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (OperatingSystem.IsWindows())
         {
             staThread.SetApartmentState(ApartmentState.STA);
         }
@@ -143,7 +142,7 @@ public class ClipboardProvider
             }
         });
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (OperatingSystem.IsWindows())
         {
             staThread.SetApartmentState(ApartmentState.STA);
         }

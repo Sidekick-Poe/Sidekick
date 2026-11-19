@@ -8,9 +8,7 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 
-#if WINDOWS
 using Win32Interop = Sidekick.Avalonia.Utilities.WindowsNativeMethods;
-#endif
 
 namespace Sidekick.Avalonia.Controls;
 
@@ -54,7 +52,11 @@ public abstract class BaseWindow : Window
 
     private void BaseWindow_Opened(object? sender, EventArgs e)
     {
-#if WINDOWS
+        if (!OperatingSystem.IsWindows())
+        {
+            return;
+        }
+
         var platformHandle = TryGetPlatformHandle();
         if (platformHandle == null)
         {
@@ -74,7 +76,6 @@ public abstract class BaseWindow : Window
 
         var textColor = 0x00FFFFFF;
         Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaTextColor, ref textColor, sizeof(int));
-#endif
     }
 
     public void CloseView()

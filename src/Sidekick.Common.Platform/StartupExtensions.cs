@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Platform.Clipboard;
@@ -24,11 +23,11 @@ public static class StartupExtensions
         services.TryAddTransient<IClipboardProvider, ClipboardProvider>();
         services.TryAddSingleton<IInterprocessService, InterprocessService>();
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (OperatingSystem.IsWindows())
         {
             services.AddSidekickInitializableService<IProcessProvider, Windows.Processes.ProcessProvider>();
         }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        else if (OperatingSystem.IsLinux())
         {
             services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
         }
