@@ -135,7 +135,7 @@ public abstract class BaseWindow : Window
             }
 
             // A saved width of 0 means that no placement was saved yet.
-            if (savedWidth > 0 && await settingsService.GetBool(SettingKeys.SaveWindowPositions))
+            if (savedWidth > 0 && await settingsService.GetBoolAsync(SettingKeys.SaveWindowPositions))
             {
                 var positionX = await settingsService.GetInt($"{PositionPrefix}_PositionX");
                 var positionY = await settingsService.GetInt($"{PositionPrefix}_PositionY");

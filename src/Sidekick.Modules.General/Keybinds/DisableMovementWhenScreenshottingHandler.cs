@@ -32,7 +32,7 @@ public class DisableMovementWhenScreenshottingHandler : KeybindHandler
         "Meta+Shift+S",
     ]);
 
-    public override bool IsValid(string _) => settingsService.GetBoolNow(SettingKey) && processProvider.IsPathOfExileInFocus;
+    public override bool IsValid(string _) => settingsService.GetBool(SettingKey) && processProvider.IsPathOfExileInFocus;
 
     public override async Task Execute(string keyPress)
     {

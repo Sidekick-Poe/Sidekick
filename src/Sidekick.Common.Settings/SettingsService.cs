@@ -44,7 +44,7 @@ public class SettingsService(
         return leagueId.GetGameFromLeagueId();
     }
 
-    public async Task<bool> GetBool(string key)
+    public async Task<bool> GetBoolAsync(string key)
     {
         var (isSaved, savedValue) = GetSavedValue(key);
         if (isSaved && bool.TryParse(savedValue, out var boolValue))
@@ -55,7 +55,7 @@ public class SettingsService(
         return GetDefault<bool>(key);
     }
 
-    public bool GetBoolNow(string key)
+    public bool GetBool(string key)
     {
         var settings = cache ?? LoadCache();
         if (settings.TryGetValue(key, out var savedValue) && bool.TryParse(savedValue, out var boolValue))

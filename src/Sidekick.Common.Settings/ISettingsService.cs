@@ -16,7 +16,7 @@ public interface ISettingsService
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    Task<bool> GetBool(string key);
+    Task<bool> GetBoolAsync(string key);
 
     /// <summary>
     /// Gets a setting by its key without waiting, for code that can't await, like keyboard and mouse hooks.
@@ -24,7 +24,7 @@ public interface ISettingsService
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
-    bool GetBoolNow(string key);
+    bool GetBool(string key);
 
     /// <summary>
     /// Gets a setting by its key.

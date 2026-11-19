@@ -56,7 +56,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Enabled = await SettingsService.GetBool(SettingKey);
+        Enabled = await SettingsService.GetBoolAsync(SettingKey);
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
@@ -75,7 +75,7 @@
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Enabled = await SettingsService.GetBool(SettingKey);
+        Enabled = await SettingsService.GetBoolAsync(SettingKey);
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
 
         await InvokeAsync(StateHasChanged);

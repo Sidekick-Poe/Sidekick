@@ -31,7 +31,7 @@ public class RegexHotkeyHandler(
         }
 
         string? clipboardValue = null;
-        var retainClipboard = await settingsService.GetBool(SettingKeys.RetainClipboard);
+        var retainClipboard = await settingsService.GetBoolAsync(SettingKeys.RetainClipboard);
         if (retainClipboard)
         {
             clipboardValue = await clipboard.GetText();

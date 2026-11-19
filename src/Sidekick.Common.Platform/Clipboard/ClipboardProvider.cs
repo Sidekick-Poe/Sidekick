@@ -22,7 +22,7 @@ public class ClipboardProvider
     public async Task<string?> Copy(bool? withAlt = false)
     {
         var clipboardText = string.Empty;
-        var retainClipboard = await settingsService.GetBool(SettingKeys.RetainClipboard);
+        var retainClipboard = await settingsService.GetBoolAsync(SettingKeys.RetainClipboard);
         if (retainClipboard)
         {
             clipboardText = await GetText();

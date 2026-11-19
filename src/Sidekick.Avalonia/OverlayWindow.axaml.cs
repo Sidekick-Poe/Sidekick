@@ -18,7 +18,7 @@ public partial class OverlayWindow : BaseWindow
     public async Task OpenView(string url)
     {
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        var keepGameFocus = settingsService.GetBoolNow(SettingKeys.OverlayKeepGameFocus);
+        var keepGameFocus = settingsService.GetBool(SettingKeys.OverlayKeepGameFocus);
 
         await Dispatcher.InvokeAsync(async () =>
         {
@@ -49,7 +49,7 @@ public partial class OverlayWindow : BaseWindow
         }
 
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        if (settingsService.GetBoolNow(SettingKeys.OverlayCloseWithMouse))
+        if (settingsService.GetBool(SettingKeys.OverlayCloseWithMouse))
         {
             CloseView();
         }

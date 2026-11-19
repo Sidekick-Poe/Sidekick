@@ -31,7 +31,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+        IsCompact = await SettingsService.GetBoolAsync(SettingKeys.PriceCheckCompactMode);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
         TradeService.Changed += StateHasChanged;
@@ -49,7 +49,7 @@
     {
         if (keys.Contains(SettingKeys.PriceCheckCompactMode))
         {
-            IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+            IsCompact = await SettingsService.GetBoolAsync(SettingKeys.PriceCheckCompactMode);
 
             await InvokeAsync(StateHasChanged);
         }

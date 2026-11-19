@@ -13,7 +13,7 @@ public class MouseWheelHandler
 {
     private readonly IInputProvider inputProvider = inputProvider;
 
-    protected override bool IsEnabled() => settingsService.GetBoolNow(SettingKeys.MouseWheelNavigateStash);
+    protected override bool IsEnabled() => settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
 
     protected override bool IsValid() => processProvider.IsPathOfExileInFocus;
 
@@ -29,5 +29,5 @@ public class MouseWheelHandler
         return Task.CompletedTask;
     }
 
-    private bool IsReversed() => settingsService.GetBoolNow(SettingKeys.MouseWheelNavigateStashReverse);
+    private bool IsReversed() => settingsService.GetBool(SettingKeys.MouseWheelNavigateStashReverse);
 }

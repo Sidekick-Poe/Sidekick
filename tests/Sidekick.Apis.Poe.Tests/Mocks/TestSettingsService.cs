@@ -25,7 +25,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return leagueId.GetGameFromLeagueId();
     }
 
-    public Task<bool> GetBool(string key)
+    public Task<bool> GetBoolAsync(string key)
     {
         if (store.TryGetValue(key, out var value) && bool.TryParse(value, out var boolValue))
         {
@@ -35,7 +35,7 @@ public class TestSettingsService(IOptions<SidekickConfiguration> configuration) 
         return Task.FromResult(GetDefault<bool>(key));
     }
 
-    public bool GetBoolNow(string key) => GetBool(key).Result;
+    public bool GetBool(string key) => GetBoolAsync(key).Result;
 
     public Task<string?> GetString(string key)
     {

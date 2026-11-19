@@ -140,7 +140,7 @@
             }
             else
             {
-                var silentStart = await SettingsService.GetBool(SettingKeys.SilentStart);
+                var silentStart = await SettingsService.GetBoolAsync(SettingKeys.SilentStart);
                 if (silentStart)
                 {
                     CurrentView.Close();
