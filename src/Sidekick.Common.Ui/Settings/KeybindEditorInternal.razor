@@ -103,8 +103,17 @@
     {
         Input.OnKeyDown += OnKeyDown;
         Input.OnRecordingKeybindStopped += OnRecordingKeybindStopped;
-        CurrentEditorChanged += StateHasChanged;
+        CurrentEditorChanged += OnCurrentEditorChanged;
         base.OnInitialized();
+    }
+
+    /// <summary>
+    /// The event is shared by the editors of every window, like the settings opened in the overlay and in the main
+    /// window, and each window renders on its own thread, so the editor switches to its own thread before rendering.
+    /// </summary>
+    private void OnCurrentEditorChanged()
+    {
+        _ = InvokeAsync(StateHasChanged);
     }
 
     private async Task Activate()
@@ -198,7 +207,7 @@
     {
         Input.OnKeyDown -= OnKeyDown;
         Input.OnRecordingKeybindStopped -= OnRecordingKeybindStopped;
-        CurrentEditorChanged -= StateHasChanged;
+        CurrentEditorChanged -= OnCurrentEditorChanged;
         await Deactivate();
         DotNetReference?.Dispose();
     }
