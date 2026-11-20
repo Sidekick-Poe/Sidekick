@@ -535,4 +535,52 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
 
         fixture.AssertHasStat(actual, StatCategory.RareOnly, "Area contains a buried Stalker Sentinel");
     }
+
+    [Fact]
+    public void DroxCitadel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Pernicious Solitude
+Map (Tier 16)
+--------
+Atlas Drops: +75% (augmented)
+Item Rarity: +45% (augmented)
+Monster Pack Size: +29% (augmented)
+--------
+Item Level: 83
+--------
+Monster Level: 83
+--------
+{ Implicit Modifier }
+Map contains Drox's Citadel(...) — Unscalable Value
+--------
+{ Prefix Modifier ""Feral"" (Tier: 1) }
+Area is inhabited by Animals — Unscalable Value
+{ Prefix Modifier ""Fecund"" (Tier: 1) — Life }
+41(40-49)% more Monster Life
+{ Prefix Modifier ""Unstoppable"" (Tier: 1) — Speed }
+Monsters cannot be Taunted — Unscalable Value
+Monsters' Action Speed cannot be modified to below Base Value
+Monsters' Movement Speed cannot be modified to below Base Value — Unscalable Value
+{ Suffix Modifier ""of Fatigue"" (Tier: 1) }
+Players have 40% less Cooldown Recovery Rate
+{ Suffix Modifier ""of Rust"" (Tier: 1) — Defences, Armour }
+Players have 30% less Armour
+Players have 40% reduced Chance to Block
+{ Suffix Modifier ""of Insulation"" (Tier: 1) — Elemental, Fire, Cold, Lightning, Ailment }
+Monsters have 70% chance to Avoid Elemental Ailments
+(Elemental Ailments are Ignited, Scorched, Chilled, Frozen, Brittle, Shocked, and Sapped)
+--------
+Travel to a Map of this tier or lower by using this in a personal Map Device. Maps can only be used once.
+");
+
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
+        Assert.Equal(16, actual.Properties.MapTier);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Map contains Drox's Citadel");
+    }
 }
