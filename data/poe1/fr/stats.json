@@ -19114,21 +19114,6 @@
     "pattern": "^Armure\\ arctique\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Armure arctique a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2351239732",
-      "enchant.stat_2605040931",
-      "explicit.stat_2351239732",
-      "explicit.stat_2605040931",
-      "fractured.stat_2351239732",
-      "fractured.stat_2605040931",
-      "implicit.stat_2351239732"
-    ],
-    "pattern": "^Armure\\ arctique\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Armure arctique a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -19137,20 +19122,6 @@
       "explicit.stat_2233726619"
     ],
     "pattern": "^Armure\\ arctique\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "Armure arctique a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2351239732",
-      "enchant.stat_2605040931",
-      "explicit.stat_2351239732",
-      "explicit.stat_2605040931",
-      "fractured.stat_2351239732",
-      "fractured.stat_2605040931",
-      "implicit.stat_2351239732"
-    ],
-    "pattern": "^Armure\\ arctique\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Armure arctique a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -28983,16 +28954,6 @@
     "pattern": "^Chair\\ et\\ pierre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Chair et pierre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1740848995",
-      "enchant.stat_3563089138"
-    ],
-    "pattern": "^Chair\\ et\\ pierre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Chair et pierre a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -29010,15 +28971,6 @@
       "implicit.stat_789978501"
     ],
     "pattern": "^Chair\\ et\\ pierre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ Zone\\ d\u0027effet$"
-  },
-  {
-    "text": "Chair et pierre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1740848995",
-      "enchant.stat_3563089138"
-    ],
-    "pattern": "^Chair\\ et\\ pierre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Chair et pierre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -29983,16 +29935,6 @@
     "pattern": "^Clart\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Clart\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2668611054",
-      "enchant.stat_453778214"
-    ],
-    "pattern": "^Clart\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Clart\u00E9 a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -30000,15 +29942,6 @@
       "enchant.stat_3738398726"
     ],
     "pattern": "^Clart\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "Clart\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2668611054",
-      "enchant.stat_453778214"
-    ],
-    "pattern": "^Clart\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Clart\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -30123,20 +30056,6 @@
     "pattern": "^Col\u00E8re\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Col\u00E8re a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2549369799",
-      "enchant.stat_2963485753",
-      "explicit.stat_2549369799",
-      "explicit.stat_2963485753",
-      "fractured.stat_2549369799",
-      "implicit.stat_2549369799"
-    ],
-    "pattern": "^Col\u00E8re\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Col\u00E8re a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -30163,19 +30082,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Col\u00E8re\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura\\ tant\\ que\\ vous\\ \u00EAtes\\ au\\ maximum\\ de\\ Charges\\ d\u0027endurance$"
-  },
-  {
-    "text": "Col\u00E8re a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2549369799",
-      "enchant.stat_2963485753",
-      "explicit.stat_2549369799",
-      "explicit.stat_2963485753",
-      "fractured.stat_2549369799",
-      "implicit.stat_2549369799"
-    ],
-    "pattern": "^Col\u00E8re\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Col\u00E8re a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -38443,20 +38349,6 @@
     "pattern": "^Discipline\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Discipline a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1692887998",
-      "enchant.stat_2081344089",
-      "explicit.stat_1692887998",
-      "explicit.stat_2081344089",
-      "implicit.stat_1692887998",
-      "implicit.stat_2081344089"
-    ],
-    "pattern": "^Discipline\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Discipline a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -40780,21 +40672,6 @@
     "pattern": "^D\u00E9termination\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "D\u00E9termination a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2721871046",
-      "enchant.stat_325889252",
-      "explicit.stat_2721871046",
-      "explicit.stat_325889252",
-      "fractured.stat_325889252",
-      "implicit.stat_2721871046",
-      "implicit.stat_325889252"
-    ],
-    "pattern": "^D\u00E9termination\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "D\u00E9termination a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -40820,20 +40697,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^D\u00E9termination\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura\\ tant\\ que\\ vous\\ \u00EAtes\\ au\\ minimum\\ de\\ Charges\\ d\u0027endurance$"
-  },
-  {
-    "text": "D\u00E9termination a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2721871046",
-      "enchant.stat_325889252",
-      "explicit.stat_2721871046",
-      "explicit.stat_325889252",
-      "fractured.stat_325889252",
-      "implicit.stat_2721871046",
-      "implicit.stat_325889252"
-    ],
-    "pattern": "^D\u00E9termination\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "D\u00E9termination a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -42253,20 +42116,6 @@
     "pattern": "^Fiert\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Fiert\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3484910620",
-      "enchant.stat_3993865658",
-      "explicit.stat_3484910620",
-      "explicit.stat_3993865658",
-      "fractured.stat_3993865658",
-      "implicit.stat_3993865658"
-    ],
-    "pattern": "^Fiert\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Fiert\u00E9 a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -42284,19 +42133,6 @@
       "implicit.stat_4247488219"
     ],
     "pattern": "^Fiert\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura$"
-  },
-  {
-    "text": "Fiert\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3484910620",
-      "enchant.stat_3993865658",
-      "explicit.stat_3484910620",
-      "explicit.stat_3993865658",
-      "fractured.stat_3993865658",
-      "implicit.stat_3993865658"
-    ],
-    "pattern": "^Fiert\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Fiert\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -44188,20 +44024,6 @@
     "pattern": "^Fureur\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Fureur a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1761642973",
-      "enchant.stat_3444518809",
-      "explicit.stat_1761642973",
-      "explicit.stat_3444518809",
-      "fractured.stat_3444518809",
-      "implicit.stat_3444518809"
-    ],
-    "pattern": "^Fureur\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Fureur a #% de R\u00E9duction d\u0027Effet d\u0027Aura tant que vous \u00EAtes au maximum de Charges de pouvoir",
     "negate": true,
     "lines": 1,
@@ -44228,19 +44050,6 @@
       "implicit.stat_2181791238"
     ],
     "pattern": "^Fureur\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura$"
-  },
-  {
-    "text": "Fureur a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1761642973",
-      "enchant.stat_3444518809",
-      "explicit.stat_1761642973",
-      "explicit.stat_3444518809",
-      "fractured.stat_3444518809",
-      "implicit.stat_3444518809"
-    ],
-    "pattern": "^Fureur\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Fureur a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -45160,21 +44969,6 @@
     "pattern": "^Gr\u00E2ce\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Gr\u00E2ce a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1803598623",
-      "enchant.stat_900639351",
-      "explicit.stat_1803598623",
-      "explicit.stat_900639351",
-      "fractured.stat_900639351",
-      "implicit.stat_1803598623",
-      "implicit.stat_900639351"
-    ],
-    "pattern": "^Gr\u00E2ce\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Gr\u00E2ce a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -45193,20 +44987,6 @@
       "implicit.stat_397427740"
     ],
     "pattern": "^Gr\u00E2ce\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura$"
-  },
-  {
-    "text": "Gr\u00E2ce a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1803598623",
-      "enchant.stat_900639351",
-      "explicit.stat_1803598623",
-      "explicit.stat_900639351",
-      "fractured.stat_900639351",
-      "implicit.stat_1803598623",
-      "implicit.stat_900639351"
-    ],
-    "pattern": "^Gr\u00E2ce\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Gr\u00E2ce a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -45432,20 +45212,6 @@
     "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Haine a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
-      "fractured.stat_2156140483",
-      "implicit.stat_2156140483"
-    ],
-    "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Haine a #% de Perte de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -45481,19 +45247,6 @@
       "implicit.stat_3742945352"
     ],
     "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura$"
-  },
-  {
-    "text": "Haine a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
-      "fractured.stat_2156140483",
-      "implicit.stat_2156140483"
-    ],
-    "pattern": "^Haine\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Haine a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -45732,16 +45485,6 @@
     "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "H\u00E2te a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_804667127",
-      "enchant.stat_939320550"
-    ],
-    "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "H\u00E2te a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -45749,15 +45492,6 @@
       "enchant.stat_91821600"
     ],
     "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "H\u00E2te a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_804667127",
-      "enchant.stat_939320550"
-    ],
-    "pattern": "^H\u00E2te\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "H\u00E2te a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -45852,18 +45586,6 @@
     "pattern": "^H\u00E9raut\\ de\\ l\u0027Agonie\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "H\u00E9raut de l\u0027Agonie a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1133703802",
-      "enchant.stat_1284151528",
-      "explicit.stat_1133703802",
-      "explicit.stat_1284151528"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ l\u0027Agonie\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "H\u00E9raut de l\u0027Agonie a #% d\u0027Augmentation de son Effet b\u00E9n\u00E9fique",
     "lines": 1,
     "tradeIds": [
@@ -45881,17 +45603,6 @@
       "explicit.stat_4253105373"
     ],
     "pattern": "^H\u00E9raut\\ de\\ l\u0027Agonie\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "H\u00E9raut de l\u0027Agonie a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1133703802",
-      "enchant.stat_1284151528",
-      "explicit.stat_1133703802",
-      "explicit.stat_1284151528"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ l\u0027Agonie\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "H\u00E9raut de l\u0027Agonie a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -45993,18 +45704,6 @@
     "pattern": "^H\u00E9raut\\ de\\ la\\ cendre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "H\u00E9raut de la cendre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2500442851",
-      "enchant.stat_3819451758",
-      "explicit.stat_2500442851",
-      "explicit.stat_3819451758"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ la\\ cendre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "H\u00E9raut de la cendre a #% d\u0027Augmentation de son Effet b\u00E9n\u00E9fique",
     "lines": 1,
     "tradeIds": [
@@ -46022,17 +45721,6 @@
       "explicit.stat_2328234364"
     ],
     "pattern": "^H\u00E9raut\\ de\\ la\\ cendre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "H\u00E9raut de la cendre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2500442851",
-      "enchant.stat_3819451758",
-      "explicit.stat_2500442851",
-      "explicit.stat_3819451758"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ la\\ cendre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "H\u00E9raut de la cendre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -46133,18 +45821,6 @@
     "pattern": "^H\u00E9raut\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "H\u00E9raut de la glace a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3059700363",
-      "enchant.stat_3395872960",
-      "explicit.stat_3059700363",
-      "explicit.stat_3395872960"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "H\u00E9raut de la glace a #% d\u0027Augmentation de son Effet b\u00E9n\u00E9fique",
     "lines": 1,
     "tradeIds": [
@@ -46162,17 +45838,6 @@
       "explicit.stat_3537762266"
     ],
     "pattern": "^H\u00E9raut\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "H\u00E9raut de la glace a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3059700363",
-      "enchant.stat_3395872960",
-      "explicit.stat_3059700363",
-      "explicit.stat_3395872960"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "H\u00E9raut de la glace a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -46225,18 +45890,6 @@
     "pattern": "^H\u00E9raut\\ de\\ la\\ puret\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "H\u00E9raut de la puret\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1542765265",
-      "enchant.stat_2189040439",
-      "explicit.stat_1542765265",
-      "explicit.stat_2189040439"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ la\\ puret\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "H\u00E9raut de la puret\u00E9 a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -46245,17 +45898,6 @@
       "explicit.stat_1730304831"
     ],
     "pattern": "^H\u00E9raut\\ de\\ la\\ puret\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "H\u00E9raut de la puret\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1542765265",
-      "enchant.stat_2189040439",
-      "explicit.stat_1542765265",
-      "explicit.stat_2189040439"
-    ],
-    "pattern": "^H\u00E9raut\\ de\\ la\\ puret\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "H\u00E9raut de la puret\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -46338,18 +45980,6 @@
     "pattern": "^H\u00E9raut\\ du\\ tonnerre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "H\u00E9raut du tonnerre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3817220109",
-      "enchant.stat_3959101898",
-      "explicit.stat_3817220109",
-      "explicit.stat_3959101898"
-    ],
-    "pattern": "^H\u00E9raut\\ du\\ tonnerre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "H\u00E9raut du tonnerre a #% d\u0027Augmentation de son Effet b\u00E9n\u00E9fique",
     "lines": 1,
     "tradeIds": [
@@ -46367,17 +45997,6 @@
       "explicit.stat_966400988"
     ],
     "pattern": "^H\u00E9raut\\ du\\ tonnerre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "H\u00E9raut du tonnerre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3817220109",
-      "enchant.stat_3959101898",
-      "explicit.stat_3817220109",
-      "explicit.stat_3959101898"
-    ],
-    "pattern": "^H\u00E9raut\\ du\\ tonnerre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "H\u00E9raut du tonnerre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -47366,16 +46985,6 @@
     "pattern": "^Invocation\\ d\u0027Arachnobots\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Invocation d\u0027Arachnobots a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1695754537",
-      "enchant.stat_3818053347"
-    ],
-    "pattern": "^Invocation\\ d\u0027Arachnobots\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Invocation d\u0027Arachnobots a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -47393,15 +47002,6 @@
       "enchant.stat_82475304"
     ],
     "pattern": "^Invocation\\ d\u0027Arachnobots\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ Vitesse\\ de\\ recharge$"
-  },
-  {
-    "text": "Invocation d\u0027Arachnobots a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1695754537",
-      "enchant.stat_3818053347"
-    ],
-    "pattern": "^Invocation\\ d\u0027Arachnobots\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Invocation d\u0027Arachnobots a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -47912,17 +47512,6 @@
     "pattern": "^Justesse\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Justesse a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3859865977",
-      "enchant.stat_658622139",
-      "explicit.stat_3859865977"
-    ],
-    "pattern": "^Justesse\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Justesse a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -47954,16 +47543,6 @@
       "implicit.stat_4247488219"
     ],
     "pattern": "^Justesse\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura$"
-  },
-  {
-    "text": "Justesse a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3859865977",
-      "enchant.stat_658622139",
-      "explicit.stat_3859865977"
-    ],
-    "pattern": "^Justesse\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Justesse a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -57892,14 +57471,6 @@
       "crucible.mod_13569"
     ],
     "pattern": "^Le\\ P\u00EAcheur\\ \u00E9pouvantable\\ ne\\ peut\\ pas\\ appara\u00EEtre$"
-  },
-  {
-    "text": "Le Rayon de Pi\u00E8ge siphonnant dirig\u00E9 vers vous octroie #% d\u0027Augmentation\ndes D\u00E9g\u00E2ts subis pour chaque Rayon d\u00E9bilitant actif",
-    "lines": 2,
-    "tradeIds": [
-      "enchant.stat_2673745094"
-    ],
-    "pattern": "^Le\\ Rayon\\ de\\ Pi\u00E8ge\\ siphonnant\\ dirig\u00E9\\ vers\\ vous\\ octroie\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ndes\\ D\u00E9g\u00E2ts\\ subis\\ pour\\ chaque\\ Rayon\\ d\u00E9bilitant\\ actif$"
   },
   {
     "text": "Le Rayon de Pi\u00E8ge siphonnant dirig\u00E9 vers vous octroie #% d\u0027Augmentation\ndes D\u00E9g\u00E2ts subis pour chaque Rayon d\u00E9bilitant actif",
@@ -71547,14 +71118,6 @@
   },
   {
     "text": "Les Chances de Bloquer les D\u00E9g\u00E2ts des Sorts sont Favorables",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3551025193"
-    ],
-    "pattern": "^Les\\ Chances\\ de\\ Bloquer\\ les\\ D\u00E9g\u00E2ts\\ des\\ Sorts\\ sont\\ Favorables$"
-  },
-  {
-    "text": "Les Chances de Bloquer les D\u00E9g\u00E2ts des Sorts sont Favorables",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -81438,14 +81001,6 @@
   },
   {
     "text": "Les Ennemis situ\u00E9s \u00E0 port\u00E9e de la Sph\u00E8re du N\u00E9ant ont jusqu\u0027\u00E0 #% d\u0027Augmentation des D\u00E9g\u00E2ts subis, en fonction de leur distance par rapport \u00E0 la Sph\u00E8re du N\u00E9ant",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_4271709087"
-    ],
-    "pattern": "^Les\\ Ennemis\\ situ\u00E9s\\ \u00E0\\ port\u00E9e\\ de\\ la\\ Sph\u00E8re\\ du\\ N\u00E9ant\\ ont\\ jusqu\u0027\u00E0\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ subis,\\ en\\ fonction\\ de\\ leur\\ distance\\ par\\ rapport\\ \u00E0\\ la\\ Sph\u00E8re\\ du\\ N\u00E9ant$"
-  },
-  {
-    "text": "Les Ennemis situ\u00E9s \u00E0 port\u00E9e de la Sph\u00E8re du N\u00E9ant ont jusqu\u0027\u00E0 #% d\u0027Augmentation des D\u00E9g\u00E2ts subis, en fonction de leur distance par rapport \u00E0 la Sph\u00E8re du N\u00E9ant",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -82565,12 +82120,6 @@
   },
   {
     "text": "Les Flammes sanctifiantes que vous infligez ont #% d\u0027Augmentation d\u0027amplitude tous les 2% de chances de Bloquer les Attaques",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Les\\ Flammes\\ sanctifiantes\\ que\\ vous\\ infligez\\ ont\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ d\u0027amplitude\\ tous\\ les\\ 2%\\ de\\ chances\\ de\\ Bloquer\\ les\\ Attaques$"
-  },
-  {
-    "text": "Les Flammes sanctifiantes que vous infligez ont #% d\u0027Augmentation d\u0027amplitude tous les 2% de chances de Bloquer les Attaques",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -82922,14 +82471,6 @@
       "fractured.stat_2788729902"
     ],
     "pattern": "^Les\\ Gemmes\\ Ench\u00E2ss\u00E9es\\ Ricochent\\ ([-0-9,.]\u002B)\\ fois\\ de\\ plus$"
-  },
-  {
-    "text": "Les Gemmes Ench\u00E2ss\u00E9es infligent #% Davantage de D\u00E9g\u00E2ts par Gemme d\u0027aptitude Ench\u00E2ss\u00E9e",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2876425796"
-    ],
-    "pattern": "^Les\\ Gemmes\\ Ench\u00E2ss\u00E9es\\ infligent\\ ([-0-9,.]\u002B)%\\ Davantage\\ de\\ D\u00E9g\u00E2ts\\ par\\ Gemme\\ d\u0027aptitude\\ Ench\u00E2ss\u00E9e$"
   },
   {
     "text": "Les Gemmes Ench\u00E2ss\u00E9es infligent #% Davantage de D\u00E9g\u00E2ts par Gemme d\u0027aptitude Ench\u00E2ss\u00E9e",
@@ -96284,12 +95825,6 @@
   },
   {
     "text": "Les Totems ancestraux R\u00E9g\u00E9n\u00E8rent #% de Vie par seconde",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Les\\ Totems\\ ancestraux\\ R\u00E9g\u00E9n\u00E8rent\\ ([-0-9,.]\u002B)%\\ de\\ Vie\\ par\\ seconde$"
-  },
-  {
-    "text": "Les Totems ancestraux R\u00E9g\u00E9n\u00E8rent #% de Vie par seconde",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -100793,19 +100328,6 @@
     "pattern": "^Malfaisance\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Malfaisance a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3266567165",
-      "enchant.stat_3383226338",
-      "explicit.stat_3266567165",
-      "explicit.stat_3383226338",
-      "implicit.stat_3383226338"
-    ],
-    "pattern": "^Malfaisance\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Malfaisance a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -100825,18 +100347,6 @@
       "implicit.stat_4175197580"
     ],
     "pattern": "^Malfaisance\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura$"
-  },
-  {
-    "text": "Malfaisance a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3266567165",
-      "enchant.stat_3383226338",
-      "explicit.stat_3266567165",
-      "explicit.stat_3383226338",
-      "implicit.stat_3383226338"
-    ],
-    "pattern": "^Malfaisance\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Malfaisance a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -105454,19 +104964,6 @@
     "pattern": "^Pas\\ de\\ D\u00E9g\u00E2ts\\ physiques$"
   },
   {
-    "text": "Pas de D\u00E9g\u00E2ts physiques",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_1509134228",
-      "enchant.stat_1509134228",
-      "explicit.stat_1509134228",
-      "fractured.stat_1509134228",
-      "implicit.stat_1509134228"
-    ],
-    "pattern": "^Pas\\ de\\ D\u00E9g\u00E2ts\\ physiques$"
-  },
-  {
     "text": "Pas de Force requise",
     "lines": 1,
     "tradeIds": [
@@ -107868,20 +107365,6 @@
     "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Puret\u00E9 de la foudre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1450978702",
-      "enchant.stat_3411256933",
-      "explicit.stat_1450978702",
-      "explicit.stat_3411256933",
-      "implicit.stat_1450978702",
-      "implicit.stat_3411256933"
-    ],
-    "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Puret\u00E9 de la foudre a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -107891,19 +107374,6 @@
       "implicit.stat_1285430327"
     ],
     "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "Puret\u00E9 de la foudre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1450978702",
-      "enchant.stat_3411256933",
-      "explicit.stat_1450978702",
-      "explicit.stat_3411256933",
-      "implicit.stat_1450978702",
-      "implicit.stat_3411256933"
-    ],
-    "pattern": "^Puret\u00E9\\ de\\ la\\ foudre\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Puret\u00E9 de la foudre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -107951,20 +107421,6 @@
     "pattern": "^Puret\u00E9\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Puret\u00E9 de la glace a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_139925400",
-      "enchant.stat_2665518524",
-      "explicit.stat_139925400",
-      "explicit.stat_2665518524",
-      "implicit.stat_139925400",
-      "implicit.stat_2665518524"
-    ],
-    "pattern": "^Puret\u00E9\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Puret\u00E9 de la glace a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -107974,19 +107430,6 @@
       "implicit.stat_3192966873"
     ],
     "pattern": "^Puret\u00E9\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "Puret\u00E9 de la glace a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_139925400",
-      "enchant.stat_2665518524",
-      "explicit.stat_139925400",
-      "explicit.stat_2665518524",
-      "implicit.stat_139925400",
-      "implicit.stat_2665518524"
-    ],
-    "pattern": "^Puret\u00E9\\ de\\ la\\ glace\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Puret\u00E9 de la glace a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -108020,19 +107463,6 @@
   },
   {
     "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1135152940",
-      "enchant.stat_3303293173",
-      "enchant.stat_491551762",
-      "explicit.stat_1135152940",
-      "implicit.stat_1135152940",
-      "implicit.stat_3303293173"
-    ],
-    "pattern": "^Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
-    "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -108053,19 +107483,6 @@
       "enchant.stat_1849664701"
     ],
     "pattern": "^Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1135152940",
-      "enchant.stat_3303293173",
-      "enchant.stat_491551762",
-      "explicit.stat_1135152940",
-      "implicit.stat_1135152940",
-      "implicit.stat_3303293173"
-    ],
-    "pattern": "^Puret\u00E9\\ des\\ \u00E9l\u00E9ments\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Puret\u00E9 des \u00E9l\u00E9ments a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -108131,26 +107548,19 @@
   },
   {
     "text": "Puret\u00E9 du feu a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1135152940",
-      "enchant.stat_3303293173",
-      "enchant.stat_491551762",
-      "explicit.stat_1135152940",
-      "implicit.stat_1135152940",
-      "implicit.stat_3303293173"
-    ],
-    "pattern": "^Puret\u00E9\\ du\\ feu\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
-    "text": "Puret\u00E9 du feu a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
     "negate": true,
     "lines": 1,
     "tradeIds": [
+      "enchant.stat_1135152940",
       "enchant.stat_3003688066",
+      "enchant.stat_3303293173",
+      "enchant.stat_491551762",
+      "explicit.stat_1135152940",
       "explicit.stat_3003688066",
       "fractured.stat_3003688066",
-      "implicit.stat_3003688066"
+      "implicit.stat_1135152940",
+      "implicit.stat_3003688066",
+      "implicit.stat_3303293173"
     ],
     "pattern": "^Puret\u00E9\\ du\\ feu\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
@@ -111408,117 +110818,6 @@
     "pattern": "^Sang\\ et\\ sable\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Sang et sable a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1233806203",
-      "enchant.stat_168308685",
-      "enchant.stat_1740848995",
-      "enchant.stat_1779904215",
-      "enchant.stat_1829483269",
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
-      "enchant.stat_2549369799",
-      "enchant.stat_2668611054",
-      "enchant.stat_2963485753",
-      "enchant.stat_3059700363",
-      "enchant.stat_3266567165",
-      "enchant.stat_3383226338",
-      "enchant.stat_3395872960",
-      "enchant.stat_3484910620",
-      "enchant.stat_3563089138",
-      "enchant.stat_3859865977",
-      "enchant.stat_3972739758",
-      "enchant.stat_3993865658",
-      "enchant.stat_4216444167",
-      "enchant.stat_453778214",
-      "enchant.stat_658622139",
-      "enchant.stat_804667127",
-      "enchant.stat_939320550",
-      "explicit.stat_168308685",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
-      "explicit.stat_2549369799",
-      "explicit.stat_2963485753",
-      "explicit.stat_3059700363",
-      "explicit.stat_3266567165",
-      "explicit.stat_3383226338",
-      "explicit.stat_3395872960",
-      "explicit.stat_3484910620",
-      "explicit.stat_3859865977",
-      "explicit.stat_3993865658",
-      "explicit.stat_4216444167",
-      "fractured.stat_2156140483",
-      "fractured.stat_2549369799",
-      "fractured.stat_3993865658",
-      "implicit.stat_1233806203",
-      "implicit.stat_168308685",
-      "implicit.stat_2156140483",
-      "implicit.stat_2549369799",
-      "implicit.stat_3383226338",
-      "implicit.stat_3972739758",
-      "implicit.stat_3993865658"
-    ],
-    "pattern": "^Sang\\ et\\ sable\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
-    "text": "Sang et sable a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1233806203",
-      "enchant.stat_168308685",
-      "enchant.stat_1740848995",
-      "enchant.stat_1779904215",
-      "enchant.stat_1829483269",
-      "enchant.stat_1920370417",
-      "enchant.stat_2156140483",
-      "enchant.stat_2549369799",
-      "enchant.stat_2668611054",
-      "enchant.stat_2963485753",
-      "enchant.stat_3059700363",
-      "enchant.stat_3266567165",
-      "enchant.stat_3383226338",
-      "enchant.stat_3395872960",
-      "enchant.stat_3484910620",
-      "enchant.stat_3563089138",
-      "enchant.stat_3859865977",
-      "enchant.stat_3972739758",
-      "enchant.stat_3993865658",
-      "enchant.stat_4216444167",
-      "enchant.stat_453778214",
-      "enchant.stat_658622139",
-      "enchant.stat_804667127",
-      "enchant.stat_939320550",
-      "explicit.stat_168308685",
-      "explicit.stat_1920370417",
-      "explicit.stat_2156140483",
-      "explicit.stat_2549369799",
-      "explicit.stat_2963485753",
-      "explicit.stat_3059700363",
-      "explicit.stat_3266567165",
-      "explicit.stat_3383226338",
-      "explicit.stat_3395872960",
-      "explicit.stat_3484910620",
-      "explicit.stat_3859865977",
-      "explicit.stat_3993865658",
-      "explicit.stat_4216444167",
-      "fractured.stat_2156140483",
-      "fractured.stat_2549369799",
-      "fractured.stat_3993865658",
-      "implicit.stat_1233806203",
-      "implicit.stat_168308685",
-      "implicit.stat_2156140483",
-      "implicit.stat_2549369799",
-      "implicit.stat_3383226338",
-      "implicit.stat_3972739758",
-      "implicit.stat_3993865658"
-    ],
-    "pattern": "^Sang\\ et\\ sable\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Sang et sable a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
     "negate": true,
     "matchedFuzzily": true,
@@ -111592,16 +110891,6 @@
     "pattern": "^Sang\\ p\u00E9trifi\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Sang p\u00E9trifi\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1779904215",
-      "enchant.stat_1829483269"
-    ],
-    "pattern": "^Sang\\ p\u00E9trifi\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Sang p\u00E9trifi\u00E9 a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -111609,15 +110898,6 @@
       "enchant.stat_4062159806"
     ],
     "pattern": "^Sang\\ p\u00E9trifi\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "Sang p\u00E9trifi\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1779904215",
-      "enchant.stat_1829483269"
-    ],
-    "pattern": "^Sang\\ p\u00E9trifi\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Sang p\u00E9trifi\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -111796,12 +111076,6 @@
       "explicit.stat_1945607273"
     ],
     "pattern": "^Si\\ cette\\ Zone\\ contient\\ des\\ Monstres\\ Uniques,\\ l\u0027un\\ d\u0027eux\\ est\\ Poss\u00E9d\u00E9$"
-  },
-  {
-    "text": "Si la Vie de votre Mercenaire est plus basse que la v\u00F4tre, #% des D\u00E9g\u00E2ts qu\u0027ils subissent sont Recouvr\u00E9s sous forme de Vie",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Si\\ la\\ Vie\\ de\\ votre\\ Mercenaire\\ est\\ plus\\ basse\\ que\\ la\\ v\u00F4tre,\\ ([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ qu\u0027ils\\ subissent\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie$"
   },
   {
     "text": "Si la Vie de votre Mercenaire est plus basse que la v\u00F4tre, #% des D\u00E9g\u00E2ts qu\u0027ils subissent sont Recouvr\u00E9s sous forme de Vie",
@@ -117632,14 +116906,6 @@
   },
   {
     "text": "Totem vorace a #% de chances de consommer un Cadavre suppl\u00E9mentaire",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_4189505564"
-    ],
-    "pattern": "^Totem\\ vorace\\ a\\ ([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ consommer\\ un\\ Cadavre\\ suppl\u00E9mentaire$"
-  },
-  {
-    "text": "Totem vorace a #% de chances de consommer un Cadavre suppl\u00E9mentaire",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -120691,18 +119957,6 @@
     "pattern": "^Vitalit\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Vitalit\u00E9 a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1233806203",
-      "enchant.stat_3972739758",
-      "implicit.stat_1233806203",
-      "implicit.stat_3972739758"
-    ],
-    "pattern": "^Vitalit\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Vitalit\u00E9 a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -120711,17 +119965,6 @@
       "implicit.stat_1122074043"
     ],
     "pattern": "^Vitalit\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ R\u00E9servation$"
-  },
-  {
-    "text": "Vitalit\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1233806203",
-      "enchant.stat_3972739758",
-      "implicit.stat_1233806203",
-      "implicit.stat_3972739758"
-    ],
-    "pattern": "^Vitalit\u00E9\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Vitalit\u00E9 a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -127148,12 +126391,6 @@
   },
   {
     "text": "Vous R\u00E9g\u00E9n\u00E9rez #% de Vie par seconde pendant que vous Bannissez un Totem ancestral",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^Vous\\ R\u00E9g\u00E9n\u00E9rez\\ ([-0-9,.]\u002B)%\\ de\\ Vie\\ par\\ seconde\\ pendant\\ que\\ vous\\ Bannissez\\ un\\ Totem\\ ancestral$"
-  },
-  {
-    "text": "Vous R\u00E9g\u00E9n\u00E9rez #% de Vie par seconde pendant que vous Bannissez un Totem ancestral",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -129085,14 +128322,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vous\\ et\\ vos\\ Alli\u00E9s\\ dans\\ un\\ rayon\\ de\\ 6\\ m\u00E8tres\\ avez\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ chaos$"
-  },
-  {
-    "text": "Vous et vos Alli\u00E9s dans un rayon de 6 m\u00E8tres avez \u002B#% \u00E0 toutes les R\u00E9sistances \u00E9l\u00E9mentaires",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_319842716"
-    ],
-    "pattern": "^Vous\\ et\\ vos\\ Alli\u00E9s\\ dans\\ un\\ rayon\\ de\\ 6\\ m\u00E8tres\\ avez\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ toutes\\ les\\ R\u00E9sistances\\ \u00E9l\u00E9mentaires$"
   },
   {
     "text": "Vous et vos Alli\u00E9s dans un rayon de 6 m\u00E8tres avez \u002B#% \u00E0 toutes les R\u00E9sistances \u00E9l\u00E9mentaires",
@@ -133181,17 +132410,6 @@
   },
   {
     "text": "Vous neutralisez \u002B#% des D\u00E9g\u00E2ts Renvoy\u00E9s",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1571797746",
-      "fractured.stat_1571797746",
-      "implicit.stat_1571797746",
-      "implicit.stat_2510655429"
-    ],
-    "pattern": "^Vous\\ neutralisez\\ \\\u002B([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ Renvoy\u00E9s$"
-  },
-  {
-    "text": "Vous neutralisez \u002B#% des D\u00E9g\u00E2ts Renvoy\u00E9s",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -133389,15 +132607,6 @@
   },
   {
     "text": "Vous perdez #% de Bouclier d\u0027\u00E9nergie en Tuant",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1699499433"
-    ],
-    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)%\\ de\\ Bouclier\\ d\u0027\u00E9nergie\\ en\\ Tuant$"
-  },
-  {
-    "text": "Vous perdez #% de Bouclier d\u0027\u00E9nergie en Tuant",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1699499433",
@@ -133622,15 +132831,6 @@
   },
   {
     "text": "Vous perdez #% de Vie en Tuant",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_751813227"
-    ],
-    "pattern": "^Vous\\ perdez\\ ([-0-9,.]\u002B)%\\ de\\ Vie\\ en\\ Tuant$"
-  },
-  {
-    "text": "Vous perdez #% de Vie en Tuant",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2023107756",
@@ -135417,19 +134617,6 @@
     "pattern": "^Z\u00E8le\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
-    "text": "Z\u00E8le a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_168308685",
-      "enchant.stat_4216444167",
-      "explicit.stat_168308685",
-      "explicit.stat_4216444167",
-      "implicit.stat_168308685"
-    ],
-    "pattern": "^Z\u00E8le\\ a\\ ([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
-  },
-  {
     "text": "Z\u00E8le a #% de R\u00E9duction de R\u00E9servation",
     "negate": true,
     "lines": 1,
@@ -135449,18 +134636,6 @@
       "implicit.stat_4096052153"
     ],
     "pattern": "^Z\u00E8le\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Effet\\ de\\ son\\ Aura$"
-  },
-  {
-    "text": "Z\u00E8le a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_168308685",
-      "enchant.stat_4216444167",
-      "explicit.stat_168308685",
-      "explicit.stat_4216444167",
-      "implicit.stat_168308685"
-    ],
-    "pattern": "^Z\u00E8le\\ a\\ ([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana$"
   },
   {
     "text": "Z\u00E8le a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
@@ -136376,14 +135551,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ au\\ Multiplicateur\\ de\\ critique\\ si\\ vous\\ avez\\ Canalis\u00E9\\ pendant\\ au\\ moins\\ 1\\ seconde$"
-  },
-  {
-    "text": "\u002B#% au Multiplicateur de critique si vous avez gagn\u00E9 une Charge de pouvoir R\u00E9cemment",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2865731079"
-    ],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ au\\ Multiplicateur\\ de\\ critique\\ si\\ vous\\ avez\\ gagn\u00E9\\ une\\ Charge\\ de\\ pouvoir\\ R\u00E9cemment$"
   },
   {
     "text": "\u002B#% au Multiplicateur de critique si vous avez gagn\u00E9 une Charge de pouvoir R\u00E9cemment",
@@ -141866,22 +141033,10 @@
   },
   {
     "text": "#% d\u0027Augmentation de Vie octroy\u00E9e aux membres du Groupe de Monstres en mourant",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ Vie\\ octroy\u00E9e\\ aux\\ membres\\ du\\ Groupe\\ de\\ Monstres\\ en\\ mourant$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de Vie octroy\u00E9e aux membres du Groupe de Monstres en mourant",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ Vie\\ octroy\u00E9e\\ aux\\ membres\\ du\\ Groupe\\ de\\ Monstres\\ en\\ mourant$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de Vie par Monstre vivant dans le Groupe",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ Vie\\ par\\ Monstre\\ vivant\\ dans\\ le\\ Groupe$"
   },
   {
     "text": "#% d\u0027Augmentation de Vie par Monstre vivant dans le Groupe",
@@ -142975,14 +142130,6 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Effet b\u00E9n\u00E9fique de Sang et sable",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_2471636515"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Effet\\ b\u00E9n\u00E9fique\\ de\\ Sang\\ et\\ sable$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de l\u0027Effet b\u00E9n\u00E9fique de Sang et sable",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -143937,21 +143084,6 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1269219558",
-      "explicit.stat_4237190083",
-      "fractured.stat_1269219558",
-      "fractured.stat_4237190083",
-      "implicit.stat_1269219558",
-      "implicit.stat_4237190083",
-      "scourge.stat_1269219558",
-      "scourge.stat_4237190083"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -143984,24 +143116,6 @@
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ d\u0027\u00C9tendard$"
   },
   {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes d\u0027\u00C9tendard",
-    "negate": true,
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1269219558",
-      "explicit.stat_3078295401",
-      "explicit.stat_4237190083",
-      "fractured.stat_1269219558",
-      "fractured.stat_4237190083",
-      "implicit.stat_1269219558",
-      "implicit.stat_4237190083",
-      "scourge.stat_1269219558",
-      "scourge.stat_4237190083"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ d\u0027\u00C9tendard$"
-  },
-  {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de H\u00E9raut",
     "lines": 1,
     "tradeIds": [
@@ -144010,26 +143124,7 @@
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ de\\ H\u00E9raut$"
   },
   {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de H\u00E9raut",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3078295401"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ de\\ H\u00E9raut$"
-  },
-  {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de Mal\u00E9diction projet\u00E9es sous forme d\u0027Aura",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_443165947",
-      "explicit.stat_714566414"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ de\\ Mal\u00E9diction\\ projet\u00E9es\\ sous\\ forme\\ d\u0027Aura$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de Mal\u00E9diction projet\u00E9es sous forme d\u0027Aura",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_443165947",
@@ -144066,26 +143161,6 @@
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Projection\\ de\\ sortil\u00E8ges$"
   },
   {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes modifi\u00E9es par Projection de sortil\u00E8ges",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1341061286",
-      "enchant.stat_3305838454",
-      "explicit.stat_3305838454",
-      "fractured.stat_3305838454"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Projection\\ de\\ sortil\u00E8ges$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes permettant de jeter des Mines",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2265342288"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ permettant\\ de\\ jeter\\ des\\ Mines$"
-  },
-  {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes permettant de jeter des Mines",
     "negate": true,
     "lines": 1,
@@ -144096,17 +143171,6 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes tous les 250 de total de vos Attributs",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1212083058",
-      "explicit.stat_2676451350",
-      "implicit.stat_1212083058"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ tous\\ les\\ 250\\ de\\ total\\ de\\ vos\\ Attributs$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes tous les 250 de total de vos Attributs",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1212083058",
@@ -144123,17 +143187,6 @@
       "fractured.stat_635485889"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Vie\\ des\\ Aptitudes$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation des Aptitudes",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2587176568",
-      "explicit.stat_4202507508",
-      "implicit.stat_2587176568",
-      "implicit.stat_4202507508"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ des\\ Aptitudes$"
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation des Aptitudes",
@@ -145920,12 +144973,6 @@
   },
   {
     "text": "#% d\u0027Augmentation de la Pr\u00E9cision avec les Aptitudes \u00E0 Zone d\u0027effet",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ Pr\u00E9cision\\ avec\\ les\\ Aptitudes\\ \u00E0\\ Zone\\ d\u0027effet$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de la Pr\u00E9cision avec les Aptitudes \u00E0 Zone d\u0027effet",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -146420,12 +145467,6 @@
       "explicit.stat_1439347620"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ R\u00E9cup\u00E9ration\\ de\\ Mana\\ tous\\ les\\ 10\\ d\u0027Intelligence\\ dans\\ les\\ Talents\\ passifs\\ non\\ attribu\u00E9s\\ dans\\ le\\ Rayon$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de la R\u00E9cup\u00E9ration de Vie, Mana et Bouclier d\u0027\u00E9nergie si vous avez Tu\u00E9 R\u00E9cemment un Ennemi affect\u00E9 par vos D\u00E9g\u00E2ts sur la dur\u00E9e",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ R\u00E9cup\u00E9ration\\ de\\ Vie,\\ Mana\\ et\\ Bouclier\\ d\u0027\u00E9nergie\\ si\\ vous\\ avez\\ Tu\u00E9\\ R\u00E9cemment\\ un\\ Ennemi\\ affect\u00E9\\ par\\ vos\\ D\u00E9g\u00E2ts\\ sur\\ la\\ dur\u00E9e$"
   },
   {
     "text": "#% d\u0027Augmentation de la R\u00E9cup\u00E9ration de Vie, Mana et Bouclier d\u0027\u00E9nergie si vous avez Tu\u00E9 R\u00E9cemment un Ennemi affect\u00E9 par vos D\u00E9g\u00E2ts sur la dur\u00E9e",
@@ -148711,16 +147752,6 @@
   },
   {
     "text": "#% d\u0027Augmentation de la Vitesse de jet de Mine d\u0027\u00E9clats de glace",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3162144587",
-      "enchant.stat_3976295500"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ de\\ la\\ Vitesse\\ de\\ jet\\ de\\ Mine\\ d\u0027\u00E9clats\\ de\\ glace$"
-  },
-  {
-    "text": "#% d\u0027Augmentation de la Vitesse de jet de Mine d\u0027\u00E9clats de glace",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3162144587",
@@ -154517,14 +153548,6 @@
   },
   {
     "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts physiques avec les Aptitudes de Sort",
-    "lines": 1,
-    "tradeIds": [
-      "implicit.stat_1430255627"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ physiques\\ avec\\ les\\ Aptitudes\\ de\\ Sort$"
-  },
-  {
-    "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts physiques avec les Aptitudes de Sort",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -154933,14 +153956,6 @@
   },
   {
     "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts physiques tant que Puissance impie vous affecte",
-    "lines": 1,
-    "tradeIds": [
-      "implicit.stat_1609570656"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ physiques\\ tant\\ que\\ Puissance\\ impie\\ vous\\ affecte$"
-  },
-  {
-    "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts physiques tant que Puissance impie vous affecte",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -155023,15 +154038,6 @@
       "explicit.stat_1064477264"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ si\\ vous\\ avez\\ Tu\u00E9\\ un\\ Ennemi\\ maudit\\ R\u00E9cemment$"
-  },
-  {
-    "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts si vous avez Tu\u00E9 un Ennemi qui Saigne R\u00E9cemment",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1064477264"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ des\\ D\u00E9g\u00E2ts\\ si\\ vous\\ avez\\ Tu\u00E9\\ un\\ Ennemi\\ qui\\ Saigne\\ R\u00E9cemment$"
   },
   {
     "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts si vous avez Tu\u00E9 un Ennemi qui Saigne R\u00E9cemment",
@@ -156675,14 +155681,6 @@
       "implicit.stat_3101897388"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ du\\ Drain\\ maximal\\ de\\ chaque\\ instance\\ de\\ Drain\\ de\\ Vie$"
-  },
-  {
-    "text": "#% d\u0027Augmentation du Drain maximal de chaque instance de Drain de Vie tous les 5% de Vie R\u00E9serv\u00E9e",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3389810339"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ d\u0027Augmentation\\ du\\ Drain\\ maximal\\ de\\ chaque\\ instance\\ de\\ Drain\\ de\\ Vie\\ tous\\ les\\ 5%\\ de\\ Vie\\ R\u00E9serv\u00E9e$"
   },
   {
     "text": "#% d\u0027Augmentation du Drain maximal de chaque instance de Drain de Vie tous les 5% de Vie R\u00E9serv\u00E9e",
@@ -159466,12 +158464,6 @@
   },
   {
     "text": "#% de Perte de D\u00E9g\u00E2ts subis tant que vous avez un Totem",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ Perte\\ de\\ D\u00E9g\u00E2ts\\ subis\\ tant\\ que\\ vous\\ avez\\ un\\ Totem$"
-  },
-  {
-    "text": "#% de Perte de D\u00E9g\u00E2ts subis tant que vous avez un Totem",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -159950,15 +158942,6 @@
       "implicit.stat_2023217031"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ Quantit\u00E9\\ d\u0027Objets$"
-  },
-  {
-    "text": "\u002B# de Rage maximale",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1181501418",
-      "implicit.stat_1181501418"
-    ],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ de\\ Rage\\ maximale$"
   },
   {
     "text": "\u002B# de Rage maximale",
@@ -161290,14 +160273,6 @@
       "explicit.stat_2448279015"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ Zone\\ d\u0027effet\\ par\\ Charge\\ d\u0027endurance$"
-  },
-  {
-    "text": "#% de R\u00E9duction de Zone d\u0027effet par Ennemi Tu\u00E9 R\u00E9cemment",
-    "lines": 1,
-    "tradeIds": [
-      "implicit.stat_250553316"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ Zone\\ d\u0027effet\\ par\\ Ennemi\\ Tu\u00E9\\ R\u00E9cemment$"
   },
   {
     "text": "#% de R\u00E9duction de Zone d\u0027effet par Ennemi Tu\u00E9 R\u00E9cemment",
@@ -162975,39 +161950,6 @@
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes$"
   },
   {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1269219558",
-      "explicit.stat_4237190083",
-      "fractured.stat_1269219558",
-      "fractured.stat_4237190083",
-      "implicit.stat_1269219558",
-      "implicit.stat_4237190083",
-      "scourge.stat_1269219558",
-      "scourge.stat_4237190083"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes$"
-  },
-  {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes d\u0027\u00C9tendard",
-    "matchedFuzzily": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1269219558",
-      "explicit.stat_3078295401",
-      "explicit.stat_4237190083",
-      "fractured.stat_1269219558",
-      "fractured.stat_4237190083",
-      "implicit.stat_1269219558",
-      "implicit.stat_4237190083",
-      "scourge.stat_1269219558",
-      "scourge.stat_4237190083"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ d\u0027\u00C9tendard$"
-  },
-  {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes d\u0027\u00C9tendard",
     "negate": true,
     "matchedFuzzily": true,
@@ -163027,29 +161969,12 @@
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de H\u00E9raut",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_3078295401"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ de\\ H\u00E9raut$"
-  },
-  {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de H\u00E9raut",
     "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3078295401"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ de\\ H\u00E9raut$"
-  },
-  {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de Mal\u00E9diction projet\u00E9es sous forme d\u0027Aura",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_443165947",
-      "explicit.stat_714566414"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ de\\ Mal\u00E9diction\\ projet\u00E9es\\ sous\\ forme\\ d\u0027Aura$"
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes de Mal\u00E9diction projet\u00E9es sous forme d\u0027Aura",
@@ -163081,17 +162006,6 @@
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes modifi\u00E9es par Projection de sortil\u00E8ges",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_1341061286",
-      "enchant.stat_3305838454",
-      "explicit.stat_3305838454",
-      "fractured.stat_3305838454"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ modifi\u00E9es\\ par\\ Projection\\ de\\ sortil\u00E8ges$"
-  },
-  {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes modifi\u00E9es par Projection de sortil\u00E8ges",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -163109,25 +162023,6 @@
       "explicit.stat_2265342288"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ permettant\\ de\\ jeter\\ des\\ Mines$"
-  },
-  {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes permettant de jeter des Mines",
-    "negate": true,
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2265342288"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ permettant\\ de\\ jeter\\ des\\ Mines$"
-  },
-  {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes tous les 250 de total de vos Attributs",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1212083058",
-      "explicit.stat_2676451350",
-      "implicit.stat_1212083058"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ de\\ Mana\\ des\\ Aptitudes\\ tous\\ les\\ 250\\ de\\ total\\ de\\ vos\\ Attributs$"
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes tous les 250 de total de vos Attributs",
@@ -163152,18 +162047,6 @@
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation des Aptitudes",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2587176568",
-      "explicit.stat_4202507508",
-      "implicit.stat_2587176568",
-      "implicit.stat_4202507508"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ l\u0027Efficacit\u00E9\\ de\\ la\\ R\u00E9servation\\ des\\ Aptitudes$"
-  },
-  {
-    "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation des Aptitudes",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2587176568",
@@ -167648,15 +166531,6 @@
       "explicit.stat_4169318921"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ de\\ d\u00E9placement\\ tous\\ les\\ 10\\ de\\ Dext\u00E9rit\u00E9\\ dans\\ les\\ Talents\\ passifs\\ non\\ attribu\u00E9s\\ dans\\ le\\ Rayon$"
-  },
-  {
-    "text": "#% de R\u00E9duction de la Vitesse de jet de Mine d\u0027\u00E9clats de glace",
-    "lines": 1,
-    "tradeIds": [
-      "enchant.stat_3162144587",
-      "enchant.stat_3976295500"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ R\u00E9duction\\ de\\ la\\ Vitesse\\ de\\ jet\\ de\\ Mine\\ d\u0027\u00E9clats\\ de\\ glace$"
   },
   {
     "text": "#% de R\u00E9duction de la Vitesse de jet de Mine d\u0027\u00E9clats de glace",
@@ -176987,23 +175861,6 @@
   },
   {
     "text": "#% de Vie R\u00E9g\u00E9n\u00E9r\u00E9e par seconde",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_3325883026",
-      "crafted.stat_836936635",
-      "enchant.stat_836936635",
-      "explicit.stat_3325883026",
-      "explicit.stat_836936635",
-      "fractured.stat_3325883026",
-      "fractured.stat_836936635",
-      "implicit.stat_3325883026",
-      "implicit.stat_836936635",
-      "scourge.stat_3325883026"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ Vie\\ R\u00E9g\u00E9n\u00E9r\u00E9e\\ par\\ seconde$"
-  },
-  {
-    "text": "#% de Vie R\u00E9g\u00E9n\u00E9r\u00E9e par seconde",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -178196,15 +177053,6 @@
   },
   {
     "text": "#% de chances d\u0027\u00C9craser au Toucher",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_2228892313",
-      "fractured.stat_2228892313"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ d\u0027\u00C9craser\\ au\\ Toucher$"
-  },
-  {
-    "text": "#% de chances d\u0027\u00C9craser au Toucher",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -179110,12 +177958,6 @@
       "scourge.stat_763611529"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ Perturber\\ les\\ Ennemis\\ au\\ Toucher\\ pendant\\ 4\\ secondes$"
-  },
-  {
-    "text": "#% de chances de Propagation du feu entre les Ennemis",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ Propagation\\ du\\ feu\\ entre\\ les\\ Ennemis$"
   },
   {
     "text": "#% de chances de Propagation du feu entre les Ennemis",
@@ -180440,12 +179282,6 @@
       "explicit.stat_3853996752"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ d\u00E9marrer\\ la\\ Recharge\\ du\\ Bouclier\\ d\u0027\u00E9nergie\\ lorsque\\ vous\\ utilisez\\ une\\ Aptitude$"
-  },
-  {
-    "text": "#% de chances de d\u00E9samorcer les Coffres Pi\u00E9g\u00E9s",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chances\\ de\\ d\u00E9samorcer\\ les\\ Coffres\\ Pi\u00E9g\u00E9s$"
   },
   {
     "text": "#% de chances de d\u00E9samorcer les Coffres Pi\u00E9g\u00E9s",
@@ -183863,16 +182699,6 @@
   },
   {
     "text": "#% des D\u00E9g\u00E2ts de feu au Toucher sont subis sous forme de D\u00E9g\u00E2ts physiques",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1029319062",
-      "explicit.stat_3205239847",
-      "implicit.stat_3205239847"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ de\\ feu\\ au\\ Toucher\\ sont\\ subis\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ physiques$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts de feu au Toucher sont subis sous forme de D\u00E9g\u00E2ts physiques",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -184262,14 +183088,6 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ des\\ Sorts\\ Drainent\\ du\\ Mana$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts des Sorts R\u00E9prim\u00E9s subis sont Recouvr\u00E9s sous forme de Bouclier d\u0027\u00E9nergie",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1993646143"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ des\\ Sorts\\ R\u00E9prim\u00E9s\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Bouclier\\ d\u0027\u00E9nergie$"
   },
   {
     "text": "#% des D\u00E9g\u00E2ts des Sorts R\u00E9prim\u00E9s subis sont Recouvr\u00E9s sous forme de Bouclier d\u0027\u00E9nergie",
@@ -185085,18 +183903,6 @@
   },
   {
     "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Mana",
-    "lines": 1,
-    "tradeIds": [
-      "crafted.stat_472520716",
-      "enchant.stat_472520716",
-      "explicit.stat_472520716",
-      "fractured.stat_472520716",
-      "implicit.stat_472520716"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Mana$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Mana",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -185107,17 +183913,6 @@
       "implicit.stat_472520716"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Mana$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Vie",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_1444556985",
-      "fractured.stat_1444556985",
-      "implicit.stat_1444556985",
-      "scourge.stat_1444556985"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie$"
   },
   {
     "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Vie",
@@ -185140,14 +183935,6 @@
       "implicit.stat_822568652"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie,\\ Mana\\ et\\ Bouclier\\ d\u0027\u00E9nergie$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Vie par Gemme rouge Ench\u00E2ss\u00E9e",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_902847342"
-    ],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie\\ par\\ Gemme\\ rouge\\ Ench\u00E2ss\u00E9e$"
   },
   {
     "text": "#% des D\u00E9g\u00E2ts subis sont Recouvr\u00E9s sous forme de Vie par Gemme rouge Ench\u00E2ss\u00E9e",
@@ -185245,12 +184032,6 @@
       "implicit.stat_2340750293"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ \u00E9l\u00E9mentaires\\ subis\\ au\\ Toucher\\ sont\\ subis\\ sous\\ forme\\ de\\ D\u00E9g\u00E2ts\\ physiques$"
-  },
-  {
-    "text": "#% des D\u00E9g\u00E2ts \u00E9manants de Coups critiques subis sont Recouvr\u00E9s sous forme de Vie",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ des\\ D\u00E9g\u00E2ts\\ \u00E9manants\\ de\\ Coups\\ critiques\\ subis\\ sont\\ Recouvr\u00E9s\\ sous\\ forme\\ de\\ Vie$"
   },
   {
     "text": "#% des D\u00E9g\u00E2ts \u00E9manants de Coups critiques subis sont Recouvr\u00E9s sous forme de Vie",
@@ -187605,14 +186386,6 @@
       "explicit.stat_2675641469"
     ],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ feu\\ tant\\ que\\ H\u00E9raut\\ de\\ la\\ cendre\\ vous\\ affecte$"
-  },
-  {
-    "text": "\u002B#% \u00E0 la R\u00E9sistance au feu tant que votre Vie est Basse",
-    "lines": 1,
-    "tradeIds": [
-      "explicit.stat_38301299"
-    ],
-    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ \u00E0\\ la\\ R\u00E9sistance\\ au\\ feu\\ tant\\ que\\ votre\\ Vie\\ est\\ Basse$"
   },
   {
     "text": "\u002B#% \u00E0 la R\u00E9sistance au feu tant que votre Vie est Basse",
