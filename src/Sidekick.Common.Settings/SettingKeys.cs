@@ -32,7 +32,6 @@ public static class SettingKeys
     public const string RegexHotkeys = nameof(RegexHotkeys);
 
     public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
-    public const string OverlayKeepGameFocus = nameof(OverlayKeepGameFocus);
 
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);

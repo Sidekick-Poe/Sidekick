@@ -26,24 +26,21 @@ public partial class OverlayWindow : BaseWindow
     /// </summary>
     protected override TimeSpan? ReleaseDelay => TimeSpan.FromMinutes(15);
 
+    /// <summary>
+    /// The game stays focused while the overlay is shown, so the player can keep playing while reading the prices.
+    /// Clicking inside the overlay focuses it, for typing in the filters.
+    /// </summary>
     public async Task OpenView(string url)
     {
-        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        var keepGameFocus = settingsService.GetBool(SettingKeys.OverlayKeepGameFocus);
-
         await Dispatcher.InvokeAsync(async () =>
         {
             if (IsVisible)
             {
                 _ = WebView.InvokeScript($"sidekick.app.navigationManager.navigateTo({JsonSerializer.Serialize(url)});");
-                if (!keepGameFocus)
-                {
-                    Activate();
-                }
             }
             else
             {
-                ShowActivated = !keepGameFocus;
+                ShowActivated = false;
                 Show();
                 WebView.Navigate(new Uri(url));
             }
@@ -73,14 +70,14 @@ public partial class OverlayWindow : BaseWindow
     }
 
     /// <summary>
-    /// Closes the overlay on a click outside it. Losing focus alone is not enough: the overlay never gets focus when the
-    /// game is kept focused, or when the desktop refuses to give it focus (KDE does while another Sidekick window is
-    /// open), so it could never lose it.
+    /// Closes the overlay on a click outside it. The Deactivated event only covers an overlay the user clicked into, since
+    /// the game keeps the focus until then.
     /// </summary>
     private void InputProvider_OnMouseDown(int x, int y)
     {
         Dispatcher.Post(() =>
-        {            if (!IsVisible || ContainsScreenPoint(x, y))
+        {
+            if (!IsVisible || ContainsScreenPoint(x, y))
             {
                 return;
             }
