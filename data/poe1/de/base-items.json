@@ -11472,6 +11472,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyAddModToRareOriginator",
+    "itemClassId": "StackableCurrency",
+    "name": "Originator\u0027s Exalted Orb",
+    "req": {
+      "lvl": 78
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyAddModToRareShaper",
     "itemClassId": "StackableCurrency",
     "name": "Erhabene Sph\u00E4re des Sch\u00F6pfers",
@@ -14212,7 +14220,7 @@
     "itemClassId": "StackableCurrency",
     "name": "F\u00E4ulnisgeborene Aufwertungssph\u00E4re",
     "req": {
-      "lvl": 68
+      "lvl": 75
     }
   },
   {
@@ -14228,7 +14236,7 @@
     "itemClassId": "StackableCurrency",
     "name": "F\u00E4ulnisgeborene Hoheitliche Sph\u00E4re",
     "req": {
-      "lvl": 68
+      "lvl": 75
     }
   },
   {
@@ -14533,6 +14541,14 @@
     "name": "Ungeschliffene Gemme",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyStackedExalt",
+    "itemClassId": "StackableCurrency",
+    "name": "Primordial Exalted Orb",
+    "req": {
+      "lvl": 81
     }
   },
   {

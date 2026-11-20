@@ -151,7 +151,7 @@ public class StatParser
                 .SelectMany(x => x.Value);
         }
 
-        if (category != StatCategory.Undefined)
+        if (category != StatCategory.Undefined && category != StatCategory.RareOnly)
         {
             return Definitions
                 .Where(x => x.Key == category)

@@ -497,4 +497,42 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
         Assert.True(actual.Properties.BlightRavaged);
         Assert.Equal(16, actual.Properties.MapTier);
     }
+
+    [Fact]
+    public void RareOnlyModifierMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Torture Direction
+Map (Tier 6)
+--------
+Atlas Drops: +52% (augmented)
+Item Rarity: +31% (augmented)
+Monster Pack Size: +20% (augmented)
+--------
+Item Level: 74
+--------
+Monster Level: 73
+--------
+{ Prefix Modifier ""Antagonist's"" (Tier: 1) }
+26(20-30)% increased number of Rare Monsters
+{ Prefix Modifier ""Overlord's"" (Tier: 1) — Attack, Caster, Speed }
+Unique Boss deals 20% increased Damage
+Unique Boss has 25% increased Attack and Cast Speed
+{ Rare-only (Tier: 1) }
+Area contains a buried Stalker Sentinel — Unscalable Value
+{ Suffix Modifier ""of Transience"" (Tier: 1) }
+Buffs on Players expire 50% faster
+--------
+Travel to a Map of this tier or lower by using this in a personal Map Device. Maps can only be used once.
+");
+
+        Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Map", actual.TradeItem?.Type);
+        Assert.Equal(6, actual.Properties.MapTier);
+
+        fixture.AssertHasStat(actual, StatCategory.RareOnly, "Area contains a buried Stalker Sentinel");
+    }
 }

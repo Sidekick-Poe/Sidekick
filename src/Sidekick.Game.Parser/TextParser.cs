@@ -15,13 +15,14 @@ public class TextParser
     GameTextProvider gameTextProvider
 ) : IInitializableService
 {
-    private Regex ParanthesesCategory { get; } = new(@"\s*\([a-z]+\)$");
     // Matches "174(135-156)" and also a fixed range like "+4(3)", which sanctified items can roll outside of.
+    private Regex ParanthesesCategory { get; } = new(@"\s*\([a-z]+\)$");
     private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+(?:\-[-+\d,.]+)?\)");
     private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\s?\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
 
     private GameType Game { get; set; }
 
+    private string? RareOnly { get; set; }
     private string? Fractured { get; set; }
     private string? Corrupted { get; set; }
     private string? Desecrated { get; set; }
@@ -36,6 +37,7 @@ public class TextParser
     {
         Game = await settingsService.GetGameAsync();
 
+        RareOnly = GetKeyword(gameTextProvider.Texts.ModDescriptionRareOnly);
         Fractured = GetKeyword(gameTextProvider.Texts.ModDescriptionFractured);
         Corrupted = GetKeyword(gameTextProvider.Texts.ModDescriptionCorrupted);
         Desecrated = GetKeyword(gameTextProvider.Texts.ModDescriptionDesecrated);
@@ -68,61 +70,61 @@ public class TextParser
         CombineLines(rawText);
         CleanupLines(rawText);
         return rawText;
+    }
 
-        void CombineLines(OriginalText input)
+    private void CombineLines(OriginalText input)
+    {
+        foreach (var block in input.Blocks)
         {
-            foreach (var block in input.Blocks)
+            var linesByKey = new Dictionary<(StatCategory Category, string Text), OriginalLine>();
+            var combinedLines = new List<OriginalLine>();
+
+            foreach (var line in block.Lines)
             {
-                var linesByKey = new Dictionary<(StatCategory Category, string Text), OriginalLine>();
-                var combinedLines = new List<OriginalLine>();
+                var key = (line.Category, AdvancedDigitsFormat.Replace(line.Text, "#"));
 
-                foreach (var line in block.Lines)
+                if (!linesByKey.TryGetValue(key, out var previousLine))
                 {
-                    var key = (line.Category, AdvancedDigitsFormat.Replace(line.Text, "#"));
+                    linesByKey[key] = line;
+                    combinedLines.Add(line);
+                    continue;
+                }
 
-                    if (!linesByKey.TryGetValue(key, out var previousLine))
+                try
+                {
+                    var prevMatches = AdvancedDigitsFormat.Matches(previousLine.Text);
+                    var currMatches = AdvancedDigitsFormat.Matches(line.Text);
+
+                    if (prevMatches.Count == 0 || prevMatches.Count != currMatches.Count)
                     {
-                        linesByKey[key] = line;
                         combinedLines.Add(line);
                         continue;
                     }
 
-                    try
+                    // Sum every value position, e.g. both min and max of "Adds # to # Fire Damage".
+                    var sums = prevMatches
+                        .Select((match, i) => decimal.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture)
+                                              + decimal.Parse(currMatches[i].Groups[1].Value, CultureInfo.InvariantCulture))
+                        .ToList();
+
+                    var index = 0;
+                    previousLine.Text = AdvancedDigitsFormat.Replace(previousLine.Text, _ =>
                     {
-                        var prevMatches = AdvancedDigitsFormat.Matches(previousLine.Text);
-                        var currMatches = AdvancedDigitsFormat.Matches(line.Text);
-
-                        if (prevMatches.Count == 0 || prevMatches.Count != currMatches.Count)
-                        {
-                            combinedLines.Add(line);
-                            continue;
-                        }
-
-                        // Sum every value position, e.g. both min and max of "Adds # to # Fire Damage".
-                        var sums = prevMatches
-                            .Select((match, i) => decimal.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture)
-                                                  + decimal.Parse(currMatches[i].Groups[1].Value, CultureInfo.InvariantCulture))
-                            .ToList();
-
-                        var index = 0;
-                        previousLine.Text = AdvancedDigitsFormat.Replace(previousLine.Text, _ =>
-                        {
-                            var sum = sums[index++];
-                            var sumText = sum % 1 == 0
-                                ? ((int)sum).ToString(CultureInfo.InvariantCulture)
-                                : sum.ToString(CultureInfo.InvariantCulture);
-                            return $"{sumText}(0-999)";
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        logger.LogWarning("Could not parse advanced digits format: {line}", line.Text);
-                        combinedLines.Add(line);
-                    }
+                        var sum = sums[index++];
+                        var sumText = sum % 1 == 0
+                            ? ((int)sum).ToString(CultureInfo.InvariantCulture)
+                            : sum.ToString(CultureInfo.InvariantCulture);
+                        return $"{sumText}(0-999)";
+                    });
                 }
-
-                block.Lines = combinedLines;
+                catch (Exception)
+                {
+                    logger.LogWarning("Could not parse advanced digits format: {line}", line.Text);
+                    combinedLines.Add(line);
+                }
             }
+
+            block.Lines = combinedLines;
         }
     }
 
@@ -162,7 +164,8 @@ public class TextParser
 
                 if (line.Text.StartsWith("{") && line.Text.EndsWith("}"))
                 {
-                    if (Implicit != null && line.Text.Contains(Implicit)) currentCategory = StatCategory.Implicit;
+                    if (RareOnly != null && line.Text.Contains(RareOnly)) currentCategory = StatCategory.RareOnly;
+                    else if (Implicit != null && line.Text.Contains(Implicit)) currentCategory = StatCategory.Implicit;
                     else if (Vestigial != null && line.Text.Contains(Vestigial)) currentCategory = StatCategory.Implicit;
                     else if (Fractured != null && line.Text.Contains(Fractured)) currentCategory = StatCategory.Fractured;
                     else if (Desecrated != null && line.Text.Contains(Desecrated)) currentCategory = StatCategory.Desecrated;

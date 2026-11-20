@@ -83,7 +83,8 @@
                                       Readonly="true">@Resources.AutoSelect_FillMin</FormCheckbox>
                         <FormCheckbox Value="@(Rule.FillMaxRange ?? false)"
                                       Readonly="true">@Resources.AutoSelect_FillMax</FormCheckbox>
-                        <FilterAutoSelectSelectCategories Filter="Filter" Value="Rule.SelectCategories"
+                        <FilterAutoSelectSelectCategories Filter="Filter"
+                                                          Value="Rule.SelectCategories"
                                                           Readonly="true"/>
                     }
                 }
@@ -193,7 +194,7 @@
             Rule.NormalizeBy = null;
             Rule.FillMinRange = null;
             Rule.FillMaxRange = null;
-            Rule.SelectCategories = null;
+            Rule.SelectCategories = [];
         }
 
         await OnChanged.InvokeAsync();
