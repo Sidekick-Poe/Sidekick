@@ -121,6 +121,36 @@ public abstract class BaseWindow : Window
 
     private bool isReleased;
 
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == IsVisibleProperty && IsVisible && OperatingSystem.IsLinux())
+        {
+            ReapplyWindowManagerState();
+        }
+    }
+
+    /// <summary>
+    /// The X11 window manager clears a window's state (keep above, skip taskbar) when the window is hidden, and Avalonia only
+    /// sends it again when the property changes. Without this, a window shown a second time loses Topmost: on KDE the
+    /// overlay then opens behind the game and shows up in the taskbar.
+    /// </summary>
+    private void ReapplyWindowManagerState()
+    {
+        if (Topmost)
+        {
+            Topmost = false;
+            Topmost = true;
+        }
+
+        if (!ShowInTaskbar)
+        {
+            ShowInTaskbar = true;
+            ShowInTaskbar = false;
+        }
+    }
+
     protected override void OnClosed(EventArgs e)
     {
         isReleased = true;
