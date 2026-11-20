@@ -48,6 +48,11 @@ public partial class Initialization
 
     private int Completed { get; set; }
 
+    /// <summary>
+    /// The page runs again after a league or language change, so the old data cleanup is only started by the first run of the process.
+    /// </summary>
+    private static int oldDataCleanupStarted;
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -88,6 +93,11 @@ public partial class Initialization
             Completed = Count;
             ApplicationService.HasInitialized = true;
 
+            if (Interlocked.Exchange(ref oldDataCleanupStarted, 1) == 0)
+            {
+                _ = Task.Run(DeleteOldDataCopy);
+            }
+
             await ReportProgress();
             await Task.Delay(200);
             await Complete();
@@ -106,6 +116,31 @@ public partial class Initialization
             {
                 Actions = ExceptionActions.ExitApplication,
             };
+        }
+    }
+
+    /// <summary>
+    /// Deletes the copy of the game data that versions from March to June 2026 made at every startup. Nothing reads it anymore.
+    /// A failed delete (locked files) is tried again at the next launch.
+    /// </summary>
+    private void DeleteOldDataCopy()
+    {
+        var path = "SidekickData";
+
+        try
+        {
+            path = SidekickPaths.GetDataFilePath(path);
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+
+            Directory.Delete(path, recursive: true);
+            Logger.LogInformation("[Initialization] Deleted the old data copy at {Path}.", path);
+        }
+        catch (Exception e)
+        {
+            Logger.LogWarning(e, "[Initialization] Could not delete the old data copy at {Path}.", path);
         }
     }
 
