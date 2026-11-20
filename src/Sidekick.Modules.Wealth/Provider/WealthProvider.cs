@@ -62,14 +62,14 @@ internal class WealthProvider
 
         try
         {
-            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            var leagueId = await settingsService.GetStringAsync(SettingKeys.LeagueId);
             if (leagueId == null)
             {
                 logger.LogError("[WealthProvider] The league id is not set.");
                 return;
             }
 
-            var game = await settingsService.GetGame();
+            var game = await settingsService.GetGameAsync();
 
             await using var database = new SidekickDbContext(dbContextOptions);
             var tabs = await database.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
@@ -275,7 +275,7 @@ internal class WealthProvider
 
     public async Task Clear()
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var leagueId = await settingsService.GetStringAsync(SettingKeys.LeagueId);
         if (leagueId == null)
         {
             logger.LogError("[WealthProvider] The league id is not set.");

@@ -5,14 +5,14 @@
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@Resources["Normalize_Values"]"
+            Label="@Resources.Normalize_Values"
             Options="Options">
     <AdornmentContent>
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
-                        Svg="@UiIcons.Reset"
-                        Tooltip="@UiResources["Reset"]"/>
+                        Svg="@Lucide.RotateCcw"
+                        Tooltip="@UiResources.Reset"/>
         }
     </AdornmentContent>
 </FormSelect>
@@ -44,8 +44,8 @@
             .25
         };
 
-        Value = (await SettingsService.GetDouble(SettingKey)).ToString();
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = (await SettingsService.GetDoubleAsync(SettingKey)).ToString();
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
@@ -63,21 +63,21 @@
     {
         Value = value;
 
-        await SettingsService.Set(SettingKey, value);
+        await SettingsService.SetAsync(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Value = (await SettingsService.GetDouble(SettingKey)).ToString();
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = (await SettingsService.GetDoubleAsync(SettingKey)).ToString();
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
         await InvokeAsync(StateHasChanged);
     }
 
     private async Task Reset()
     {
-        await SettingsService.DeleteSetting(SettingKey);
+        await SettingsService.DeleteSettingAsync(SettingKey);
     }
 
     public void Dispose()

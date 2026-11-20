@@ -16,8 +16,6 @@ public static class SettingKeys
     public const string LeagueId = nameof(LeagueId);
     public const string LeaguesHash = nameof(LeaguesHash);
 
-    public const string UseHardwareAcceleration = nameof(UseHardwareAcceleration);
-
     public const string KeyClose = nameof(KeyClose);
     public const string KeyFindItems = nameof(KeyFindItems);
     public const string KeyOpenPriceCheck = nameof(KeyOpenPriceCheck);
@@ -34,6 +32,7 @@ public static class SettingKeys
     public const string RegexHotkeys = nameof(RegexHotkeys);
 
     public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
+    public const string OverlayKeepGameFocus = nameof(OverlayKeepGameFocus);
 
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);

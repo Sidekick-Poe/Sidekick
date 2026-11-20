@@ -47,7 +47,7 @@ public class CloudflareService
         }
 
         logger.LogInformation("[CloudflareService] Setting user agent to: " + result.UserAgent);
-        await settingsService.Set(SettingKeys.CloudflareUserAgent, result.UserAgent);
+        await settingsService.SetAsync(SettingKeys.CloudflareUserAgent, result.UserAgent);
 
         await browserDialogProvider.SaveCookies(clientName, result, cancellationToken);
 
@@ -59,7 +59,7 @@ public class CloudflareService
     {
         request.Headers.UserAgent.Clear();
 
-        var userAgent = await settingsService.GetString(SettingKeys.CloudflareUserAgent);
+        var userAgent = await settingsService.GetStringAsync(SettingKeys.CloudflareUserAgent);
         request.Headers.UserAgent.ParseAdd(!string.IsNullOrEmpty(userAgent) ? userAgent : BrowserDialogProvider.DefaultUserAgent);
 
         var cookieString = await browserDialogProvider.GetCookieString(clientName, cancellationToken);

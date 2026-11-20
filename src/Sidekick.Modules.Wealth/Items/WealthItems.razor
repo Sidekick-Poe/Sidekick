@@ -82,10 +82,10 @@
 
     private async Task Refresh()
     {
-        var minimumTotal = await SettingsService.GetInt(SettingKeys.WealthItemTotalMinimum);
+        var minimumTotal = await SettingsService.GetIntAsync(SettingKeys.WealthItemTotalMinimum);
         if (minimumTotal < 1) minimumTotal = 1;
 
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
         await using var database = new SidekickDbContext(DbContextOptions);
         var stashIds = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).Select(x => x.Id).ToListAsync();
         var items = await database.WealthItems

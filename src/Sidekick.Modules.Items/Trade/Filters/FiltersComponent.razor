@@ -32,9 +32,9 @@
             <ButtonPrimary
                 Class="flex-1"
                 OnClick="() => TradeService.SearchItems(Item, Filters)"
-                Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
-            <ButtonIcon Svg="@UiIcons.Refresh"
-                        Title="@Resources["ResetFilters"]"
+                Disabled="TradeService.IsLoading">@Resources.Search</ButtonPrimary>
+            <ButtonIcon Svg="@Lucide.RefreshCw"
+                        Title="@Resources.ResetFilters"
                         OnClick="ResetFilters"
                         Disabled="TradeService.IsLoading"/>
         </div>

@@ -2,7 +2,7 @@
 @using Sidekick.Apis.Poe2Scout.Urls
 @using Sidekick.Common.Browser
 @using Sidekick.Game.Parser.Items
-@using Sidekick.Modules.Items.Trade.Localization
+@using Sidekick.Common.Ui.Localization
 
 @if (History == null || Uri == null)
 {
@@ -11,13 +11,13 @@
 
 <div class="flex justify-between">
     <ButtonLink OnClick="OpenWebsite">
-        <TextCaption>@Resources["Open_Website"]</TextCaption>
+        <TextCaption>@UiResources.Open_Website</TextCaption>
     </ButtonLink>
 
     @if (LastLog != null)
     {
         <div class="flex items-center flex-nowrap gap-1">
-            <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+            <TextCaption>@UiResources.Last_Updated:</TextCaption>
             <TextCaption>@LastLog.Time.ToString("g")</TextCaption>
         </div>
     }
@@ -25,7 +25,7 @@
 
 @inject IBrowserProvider BrowserProvider
 @inject ScoutUrlProvider ScoutUrlProvider
-@inject IStringLocalizer<TradeResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 
 @code {
 

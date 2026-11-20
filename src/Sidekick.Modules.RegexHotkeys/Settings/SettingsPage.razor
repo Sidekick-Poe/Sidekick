@@ -11,17 +11,17 @@
     </LeftContent>
     <ChildContent>
         <AppContainer>
-            <FormFieldset Legend="@Resources["Regex_Hotkeys"]">
+            <FormFieldset Legend="@UiResources.Regex_Hotkeys">
                 <div>
-                    <TextBase Class="whitespace-pre-wrap">@Resources["Regex_Hotkeys_Description"]</TextBase>
+                    <TextBase Class="whitespace-pre-wrap">@Resources.Regex_Hotkeys_Description</TextBase>
 
                     <div class="my-3 flex gap-2">
-                        <TextBase>@Resources["PathOfExile"] -</TextBase>
+                        <TextBase>@UiResources.Poe1 -</TextBase>
                         <ButtonLink
                             OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE1)">@PathOfRegexWebsitePoE1</ButtonLink>
                     </div>
                     <div class="flex gap-2">
-                        <TextBase>@Resources["PathOfExile2"] -</TextBase>
+                        <TextBase>@UiResources.Poe2 -</TextBase>
                         <ButtonLink
                             OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE2)">@PathOfRegexWebsitePoE2</ButtonLink>
                     </div>
@@ -32,7 +32,7 @@
 
             <div class="flex justify-center mb-1">
                 <ButtonPrimary Disabled="!AreSettingsModified"
-                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+                               OnClick="RestoreDefaults">@UiResources.Restore_Defaults</ButtonPrimary>
             </div>
         </AppContainer>
     </ChildContent>
@@ -73,13 +73,13 @@
             return;
         }
 
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        AreSettingsModified = await SettingsService.IsSettingModifiedAsync(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 
     private async void RestoreDefaults()
     {
-        await SettingsService.DeleteSetting(SettingKeysUsed);
+        await SettingsService.DeleteSettingAsync(SettingKeysUsed);
 
         AreSettingsModified = false;
 

@@ -7,7 +7,7 @@
 @using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
-@if (!IsCompact && (Result.Item.HasStats || Item.Properties.Rarity == Rarity.Gem))
+@if (!IsCompact && (Result.Item.HasStats || Result.Item.AdditionalProperties.Count > 0 || Item.Properties.Rarity == Rarity.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Result.Item.Name"
@@ -31,7 +31,7 @@
                 {
                     <ItemSeparator Rarity="Result.Item.Rarity"/>
                     <ItemStatText
-                        Category="StatCategory.Unidentified">@Resources["Unidentified"]</ItemStatText>
+                        Category="StatCategory.Unidentified">@Resources.Unidentified</ItemStatText>
                 }
                 @if (Result.Item.Sanctified)
                 {

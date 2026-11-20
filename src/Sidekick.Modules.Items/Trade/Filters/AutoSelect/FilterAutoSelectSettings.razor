@@ -9,13 +9,13 @@
     return;
 }
 
-<TextBase Class="text-neutral-400 mb-2">@Resources["AutoSelect_Description", Filter.Text]</TextBase>
-<TextBase Class="mb-2 text-neutral-400">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
+<TextBase Class="text-neutral-400 mb-2">@Resources.AutoSelect_Description(Filter.Text)</TextBase>
+<TextBase Class="mb-2 text-neutral-400">@Resources.AutoSelect_Rules_Description(Filter.Text)</TextBase>
 
 <div class="flex flex-nowrap items-center mb-2">
-    <TextBase Class="mr-2">@Resources["AutoSelect_Mode"]:</TextBase>
-    @ButtonContent(AutoSelectMode.Default, Resources["AutoSelect_Default"], true, false)
-    @ButtonContent(AutoSelectMode.Custom, Resources["AutoSelect_Custom"], false, true)
+    <TextBase Class="mr-2">@Resources.AutoSelect_Mode:</TextBase>
+    @ButtonContent(AutoSelectMode.Default, Resources.AutoSelect_Default, true, false)
+    @ButtonContent(AutoSelectMode.Custom, Resources.AutoSelect_Custom, false, true)
 </div>
 
 <div class="flex flex-col gap-2 mb-2">
@@ -26,26 +26,26 @@
              @key="@rule.Id">
             <div class="pl-2 pt-1 pr-1 flex flex-nowrap gap-2">
                 <div
-                    class="font-bold text-lg text-white grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
+                    class="font-bold text-lg text-white grow">@Resources.AutoSelect_Rule #@(ruleIndex + 1)</div>
                 @if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
                 {
                     @if (ruleIndex > 0 && Filter.AutoSelect.Rules.Count > 0)
                     {
-                        <ButtonIcon Svg="@UiIcons.ChevronUp"
+                        <ButtonIcon Svg="@Lucide.ChevronUp"
                                     OnClick="() => MoveUp(rule)"/>
                     }
 
                     @if (ruleIndex < Filter.AutoSelect.Rules.Count - 1)
                     {
-                        <ButtonIcon Svg="@UiIcons.ChevronDown"
+                        <ButtonIcon Svg="@Lucide.ChevronDown"
                                     OnClick="() => MoveDown(rule)"/>
                     }
 
                     @if (Filter.AutoSelect.Rules.Count > 1)
                     {
-                        <Tooltip Text="@Resources["AutoSelect_RemoveRule"]">
+                        <Tooltip Text="@Resources.AutoSelect_RemoveRule">
                             <ButtonIcon Class="text-red-500! hover:text-red-300!"
-                                        Svg="@UiIcons.Close"
+                                        Svg="@Lucide.X"
                                         OnClick="() => RemoveRule(rule)"/>
                         </Tooltip>
                     }
@@ -68,7 +68,7 @@
                 {
                     <div class="flex justify-center">
                         <ButtonSecondary OnClick="() => AddCondition(rule)"
-                                         Class="p-0!">- @Resources["AutoSelect_AddCondition"] -</ButtonSecondary>
+                                         Class="p-0!">- @Resources.AutoSelect_AddCondition -</ButtonSecondary>
                     </div>
                 }
 
@@ -83,7 +83,7 @@
 
 @if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
 {
-    <ButtonSecondary OnClick="AddRule" Class="p-0!">@Resources["AutoSelect_AddRule"]</ButtonSecondary>
+    <ButtonSecondary OnClick="AddRule" Class="p-0!">@Resources.AutoSelect_AddRule</ButtonSecondary>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -189,6 +189,6 @@
     {
         if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey)) return;
 
-        await SettingsService.Set(Filter.AutoSelectSettingKey, Filter.CustomAutoSelect);
+        await SettingsService.SetAsync(Filter.AutoSelectSettingKey, Filter.CustomAutoSelect);
     }
 }

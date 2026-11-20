@@ -13,7 +13,7 @@
 
     protected override void OnInitialized()
     {
-        throw new SidekickException(Resources["Copy_Failed"], IsKdeWayland ? Resources["Copy_Failed_Kde"] : Resources["Copy_Failed_Linux"])
+        throw new SidekickException(Resources.Copy_Failed, IsKdeWayland ? Resources.Copy_Failed_Kde : Resources.Copy_Failed_Linux)
         {
             IsCritical = false,
         };

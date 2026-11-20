@@ -34,7 +34,7 @@ public class StatParser
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         var definitions = await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.Language);
         var categorizedDefinitions = new Dictionary<StatCategory, List<StatDefinition>>();
         foreach (var definition in definitions)
@@ -264,7 +264,7 @@ public class StatParser
         }
 
         var expandableFilter =
-            new ExpandableFilter(resources["Stat_Filters"], true, result.ToArray())
+            new ExpandableFilter(resources.Stat_Filters, true, result.ToArray())
             {
                 AutoSelectSettingKey = autoSelectKey,
                 DefaultAutoSelect = StatFilter.GetDefault(item.Game),

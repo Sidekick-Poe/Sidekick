@@ -5,7 +5,7 @@
 @using Sidekick.Modules.Items.Trade.Localization
 
 <div class="flex flex-nowrap gap-x-2 leading-4">
-    <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_Then"]</span>
+    <span class="mt-0.5 text-neutral-300">@Resources.AutoSelect_Then</span>
 
     <div>
         <div class="flex flex-wrap gap-x-2 gap-y-1 items-start">
@@ -16,15 +16,15 @@
 
             @if (Rule.Checked == true)
             {
-                <Tooltip Text="@Resources["AutoSelect_Always_Description", Filter.Text]"/>
+                <Tooltip Text="@Resources.AutoSelect_Always_Description(Filter.Text)"/>
             }
             else if (Rule.Checked == false)
             {
-                <Tooltip Text="@Resources["AutoSelect_Never_Description", Filter.Text]"/>
+                <Tooltip Text="@Resources.AutoSelect_Never_Description(Filter.Text)"/>
             }
             else
             {
-                <Tooltip Text="@Resources["AutoSelect_Any_Description", Filter.Text]"/>
+                <Tooltip Text="@Resources.AutoSelect_Any_Description(Filter.Text)"/>
             }
         </div>
 
@@ -36,7 +36,7 @@
                 {
                     <FormCheckbox Dense="true"
                                   Value="OverrideDefaults"
-                                  ValueChanged="ToggleOverrideDefaults">@Resources["AutoSelect_OverrideDefaults"]
+                                  ValueChanged="ToggleOverrideDefaults">@Resources.AutoSelect_OverrideDefaults
                     </FormCheckbox>
                 }
 
@@ -57,14 +57,14 @@
                                                     Rule.FillMinRange = value;
                                                     await OnChanged.InvokeAsync();
                                                 })"
-                                  Readonly="Readonly">@Resources["AutoSelect_FillMin"]</FormCheckbox>
+                                  Readonly="Readonly">@Resources.AutoSelect_FillMin</FormCheckbox>
                     <FormCheckbox Value="@(Rule.FillMaxRange ?? false)"
                                   ValueChanged="@(async (bool value) =>
                                                 {
                                                     Rule.FillMaxRange = value;
                                                     await OnChanged.InvokeAsync();
                                                 })"
-                                  Readonly="Readonly">@Resources["AutoSelect_FillMax"]</FormCheckbox>
+                                  Readonly="Readonly">@Resources.AutoSelect_FillMax</FormCheckbox>
                     <FilterAutoSelectSelectCategories Filter="Filter"
                                                       ValueChanged="@(async (List<StatCategory> value) =>
                                                                     {
@@ -80,9 +80,9 @@
                     {
                         <FilterAutoSelectNormalizeBy Value="Rule.NormalizeBy" Readonly="true"/>
                         <FormCheckbox Value="@(Rule.FillMinRange ?? false)"
-                                      Readonly="true">@Resources["AutoSelect_FillMin"]</FormCheckbox>
+                                      Readonly="true">@Resources.AutoSelect_FillMin</FormCheckbox>
                         <FormCheckbox Value="@(Rule.FillMaxRange ?? false)"
-                                      Readonly="true">@Resources["AutoSelect_FillMax"]</FormCheckbox>
+                                      Readonly="true">@Resources.AutoSelect_FillMax</FormCheckbox>
                         <FilterAutoSelectSelectCategories Filter="Filter" Value="Rule.SelectCategories"
                                                           Readonly="true"/>
                     }
@@ -91,9 +91,9 @@
                 {
                     <FilterAutoSelectNormalizeBy Value="DefaultNormalizeBy" Readonly="true"/>
                     <FormCheckbox Value="DefaultFillMin"
-                                  Readonly="true">@Resources["AutoSelect_FillMin"]</FormCheckbox>
+                                  Readonly="true">@Resources.AutoSelect_FillMin</FormCheckbox>
                     <FormCheckbox Value="DefaultFillMax"
-                                  Readonly="true">@Resources["AutoSelect_FillMax"]</FormCheckbox>
+                                  Readonly="true">@Resources.AutoSelect_FillMax</FormCheckbox>
                     <FilterAutoSelectSelectCategories Filter="Filter" Value="DefaultSelectCategories" Readonly="true"/>
                 }
             </div>
@@ -140,13 +140,13 @@
 
         Options.Add(new SelectOption()
         {
-            Label = Resources["AutoSelect_Result_Checked"],
+            Label = Resources.AutoSelect_Result_Checked,
             Value = "true",
         });
 
         Options.Add(new SelectOption()
         {
-            Label = Resources["AutoSelect_Result_Unchecked"],
+            Label = Resources.AutoSelect_Result_Unchecked,
             Value = "false",
         });
 
@@ -154,15 +154,15 @@
         {
             Options.Add(new SelectOption()
             {
-                Label = Resources["AutoSelect_Result_Any"],
+                Label = Resources.AutoSelect_Result_Any,
                 Value = "null",
             });
         }
 
-        DefaultNormalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
-        DefaultFillMin = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMinSettingKey);
-        DefaultFillMax = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMaxSettingKey);
-        DefaultSelectCategories = await SettingsService.GetObject<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
+        DefaultNormalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        DefaultFillMin = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMinSettingKey);
+        DefaultFillMax = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMaxSettingKey);
+        DefaultSelectCategories = await SettingsService.GetObjectAsync<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
 
         await base.OnInitializedAsync();
     }
@@ -183,10 +183,10 @@
     {
         if (value)
         {
-            Rule.NormalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
-            Rule.FillMinRange = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMinSettingKey);
-            Rule.FillMaxRange = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMaxSettingKey);
-            Rule.SelectCategories = await SettingsService.GetObject<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
+            Rule.NormalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+            Rule.FillMinRange = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMinSettingKey);
+            Rule.FillMaxRange = await SettingsService.GetBoolAsync(AutoSelectPreferences.DefaultFillMaxSettingKey);
+            Rule.SelectCategories = await SettingsService.GetObjectAsync<List<StatCategory>>(AutoSelectPreferences.DefaultSelectCategoriesSettingKey) ?? [];
         }
         else
         {

@@ -120,9 +120,6 @@
   <data name="Base_Percentile" xml:space="preserve">
     <value>기본 백분위수</value>
   </data>
-  <data name="Corrupted" xml:space="preserve">
-    <value>타락된</value>
-  </data>
   <data name="CountString" xml:space="preserve">
     <value>{1} 중 {0}개의 아이템을 보여주는 중</value>
   </data>
@@ -147,26 +144,11 @@
   <data name="Requires" xml:space="preserve">
     <value>요구사항</value>
   </data>
-  <data name="Stock" xml:space="preserve">
-    <value>재고</value>
-  </data>
   <data name="Trade" xml:space="preserve">
     <value>거래</value>
   </data>
   <data name="Unidentified" xml:space="preserve">
     <value>미확인</value>
-  </data>
-  <data name="Item_Trade_Settings" xml:space="preserve">
-    <value>아이템 거래 세팅</value>
-  </data>
-  <data name="Bulk_Trade" xml:space="preserve">
-      <value>대량 교환 세팅</value>
-  </data>
-  <data name="Buyout_Price" xml:space="preserve">
-    <value>가격</value>
-  </data>
-  <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-      <value>poeprices.info에서 가져온 가격 예측 보여주기 (PoE1)</value>
   </data>
   <data name="ResetFilters" xml:space="preserve">
     <value>필터 초기화</value>

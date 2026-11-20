@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All_Settings" xml:space="preserve">
-    <value>Toutes les configurations</value>
-  </data>
   <data name="Close" xml:space="preserve">
     <value>Fermer</value>
   </data>
@@ -128,9 +125,6 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
-  </data>
-  <data name="PoeApiDown" xml:space="preserve">
-    <value>Le site d'échange ne répond pas. Redémarrez Sidekick lorsque le site revient en ligne.</value>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
     <value>Supportez Sidekick avec buymeacoffee.com</value>
@@ -207,9 +201,6 @@
   <data name="Restore_Defaults" xml:space="preserve">
     <value>Restaurer les valeurs par défaut</value>
   </data>
-  <data name="Keybindings" xml:space="preserve">
-    <value>Raccourcis clavier</value>
-  </data>
   <data name="Regex_Hint" xml:space="preserve">
     <value>Utilisez le caractère "|" pour séparer les modificateurs. Il n'est pas nécessaire de correspondre exactement au modificateur, et la distinction entre majuscules et minuscules est ignorée. Doit correspondre à la langue du jeu. Ex: "vie maximale|résistance|régénérée"</value>
   </data>
@@ -231,24 +222,6 @@
   <data name="Copy" xml:space="preserve">
       <value>Copier</value>
   </data>
-  <data name="Copied" xml:space="preserve">
-      <value>Copié</value>
-  </data>
-  <data name="Linux_Dependencies_Title" xml:space="preserve">
-      <value>Paquets manquants</value>
-  </data>
-  <data name="Linux_Dependencies_Introduction" xml:space="preserve">
-      <value>Sidekick a besoin de ces paquets pour fonctionner sous Linux :</value>
-  </data>
-  <data name="Linux_Dependencies_Xsel" xml:space="preserve">
-      <value>xsel, qui copie les items de Path of Exile</value>
-  </data>
-  <data name="Linux_Dependencies_WebKitGtk" xml:space="preserve">
-      <value>WebKitGTK, qui affiche les fenêtres de Sidekick</value>
-  </data>
-  <data name="Linux_Dependencies_Instructions" xml:space="preserve">
-      <value>Installez-les dans un terminal avec la commande de votre distribution, puis relancez Sidekick :</value>
-  </data>
   <data name="Error_Unexpected_Title" xml:space="preserve">
       <value>Une erreur est survenue.</value>
   </data>
@@ -257,5 +230,38 @@
   </data>
   <data name="Error_Item_Text" xml:space="preserve">
       <value>Texte de l'item</value>
+  </data>
+  <data name="Open_Logs_Folder" xml:space="preserve">
+      <value>Ouvrir le dossier des logs</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+      <value>Logs</value>
+  </data>
+  <data name="Api_Working" xml:space="preserve">
+      <value>Fonctionnel</value>
+  </data>
+  <data name="Api_Throttled" xml:space="preserve">
+      <value>Limité</value>
+  </data>
+  <data name="Api_Unknown" xml:space="preserve">
+      <value>Inconnu</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+      <value>OK</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+      <value>Mettre à jour</value>
+  </data>
+  <data name="Authenticated" xml:space="preserve">
+      <value>Authentifié</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+      <value>Authentification en cours</value>
+  </data>
+  <data name="Unauthenticated" xml:space="preserve">
+      <value>Non authentifié</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+      <value>Dernière mise à jour</value>
   </data>
 </root>

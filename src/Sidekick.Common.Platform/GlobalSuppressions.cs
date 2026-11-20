@@ -7,4 +7,3 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Design", "CA1069:Enums values should not be duplicated", Justification = "<Pending>", Scope = "type", Target = "~T:Sidekick.Common.Platform.Windows.DllImport.SystemMetric")]
 [assembly: SuppressMessage("Minor Code Smell", "S1939:Inheritance list should not be redundant", Justification = "<Pending>", Scope = "type", Target = "~T:Sidekick.Common.Platform.Windows.DllImport.SystemMetric")]
-[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:Sidekick.Common.Platform.Windows.Processes.ProcessProvider.IsUserRunAsAdmin~System.Boolean")]

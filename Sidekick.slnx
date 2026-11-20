@@ -44,6 +44,7 @@
     </Project>
     <Project Path="src/Sidekick.Common.Ui/Sidekick.Common.Ui.csproj" />
     <Project Path="src/Sidekick.Common/Sidekick.Common.csproj" />
+    <Project Path="src/Sidekick.Localization.Generators/Sidekick.Localization.Generators.csproj" />
   </Folder>
   <Folder Name="/Game/">
     <Project Path="src/Sidekick.Game.Parser/Sidekick.Game.Parser.csproj">
@@ -96,6 +97,7 @@
       <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
       <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
     </Project>
+    <Project Path="tests/Sidekick.Localization.Generators.Tests/Sidekick.Localization.Generators.Tests.csproj" />
     <Project Path="tests/Sidekick.Game.Parser.Tests/Sidekick.Game.Parser.Tests.csproj">
       <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
       <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
@@ -111,6 +113,7 @@
     <File Path=".github/workflows/tests.yml" />
     <File Path=".gitignore" />
     <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
     <File Path="LICENSE" />
     <File Path="README.md" />

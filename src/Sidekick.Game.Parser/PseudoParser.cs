@@ -25,7 +25,7 @@ public class PseudoParser
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         Definitions = await dataProvider.Read<List<PseudoDefinition>>(game, GameDataType.Pseudo, currentGameLanguage.Language);
     }
 
@@ -97,7 +97,7 @@ public class PseudoParser
 
         if (result.Count == 0) return result;
 
-        var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], true, result.ToArray())
+        var expandableFilter = new ExpandableFilter(resources.Pseudo_Filters, true, result.ToArray())
         {
             Checked = true,
         };

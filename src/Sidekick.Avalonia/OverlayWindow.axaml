@@ -7,11 +7,7 @@
         Topmost="True"
         ShowInTaskbar="False"
         CanResize="True">
-    <Grid RowDefinitions="Auto,*">
-        <controls:TitleBar Grid.Row="0" />
-        <Grid Grid.Row="1"
-              Name="Grid">
-            <controls:SidekickWebView Name="WebView" />
-        </Grid>
+    <Grid Name="Grid">
+        <controls:SidekickWebView Name="WebView" />
     </Grid>
 </Window>

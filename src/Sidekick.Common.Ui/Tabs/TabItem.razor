@@ -2,11 +2,11 @@
 {
     <li>
         <button type="button"
-                class="flex items-center flex-nowrap gap-1 px-2 py-1 text-violet-400 bg-stone-700 rounded-t-lg active @(string.IsNullOrEmpty(EndIcon) ? "" : "-mr-2")"
+                class="flex items-center flex-nowrap gap-1 px-2 py-1 text-violet-400 bg-stone-700 rounded-t-lg active @(EndIcon is null ? "" : "-mr-2")"
                 @onclick="SelectTab"
                 @onclick:preventDefault="true">
             <TextBase>@Text</TextBase>
-            @if (!string.IsNullOrEmpty(EndIcon))
+            @if (EndIcon is not null)
             {
                 <Icon Svg="@EndIcon" Size="UiIconSize.Small"/>
             }
@@ -17,11 +17,11 @@ else
 {
     <li>
         <button type="button"
-                class="flex items-center flex-nowrap gap-1 px-2 py-1 rounded-t-lg dark:hover:bg-stone-600 hover:text-gray-300 transition-colors duration-200 @(string.IsNullOrEmpty(EndIcon) ? "" : "-mr-2")"
+                class="flex items-center flex-nowrap gap-1 px-2 py-1 rounded-t-lg dark:hover:bg-stone-600 hover:text-gray-300 transition-colors duration-200 @(EndIcon is null ? "" : "-mr-2")"
                 @onclick="SelectTab"
                 @onclick:preventDefault="true">
             <TextBase>@Text</TextBase>
-            @if (!string.IsNullOrEmpty(EndIcon))
+            @if (EndIcon is not null)
             {
                 <Icon Svg="@EndIcon" Size="UiIconSize.Small"/>
             }
@@ -42,7 +42,7 @@ else
     public string? Id { get; set; }
 
     [Parameter]
-    public string? EndIcon { get; set; }
+    public SvgIcon? EndIcon { get; set; }
 
     private bool Active => TabList.SelectedTab == Id;
 

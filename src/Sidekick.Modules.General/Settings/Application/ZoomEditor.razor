@@ -1,22 +1,22 @@
 @using Microsoft.Extensions.Localization
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
-@using Sidekick.Common.Ui.Icons
+@using Blazicons
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.General.Localization
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@Resources["Zoom"]"
+            Label="@Resources.Zoom"
             Options="Options"
-            Tooltip="@Resources["Zoom_Hint"]">
+            Tooltip="@Resources.Zoom_Hint">
     <AdornmentContent>
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
-                        Svg="@UiIcons.Reset"
-                        Tooltip="@UiResources["Reset"]"/>
+                        Svg="@Lucide.RotateCcw"
+                        Tooltip="@UiResources.Reset"/>
         }
     </AdornmentContent>
 </FormSelect>
@@ -38,8 +38,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
@@ -90,21 +90,21 @@
     {
         Value = value;
 
-        await SettingsService.Set(SettingKey, value);
+        await SettingsService.SetAsync(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
         await InvokeAsync(StateHasChanged);
     }
 
     private async Task Reset()
     {
-        await SettingsService.DeleteSetting(SettingKey);
+        await SettingsService.DeleteSettingAsync(SettingKey);
     }
 
     public void Dispose()

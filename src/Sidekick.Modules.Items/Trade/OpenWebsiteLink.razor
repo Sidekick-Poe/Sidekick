@@ -13,11 +13,11 @@
         <button type="button"
                 @onclick="@OpenWebsite"
                 class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
-            <Icon Svg="@UiIcons.External" />
+            <Icon Svg="@Lucide.ExternalLink" />
         </button>
     </ActivatorContent>
     <ChildContent>
-        <TextBase Class="mb-2 whitespace-pre-wrap">@Resources["OpenQueryInWebsite"]</TextBase>
+        <TextBase Class="mb-2 whitespace-pre-wrap">@Resources.OpenQueryInWebsite</TextBase>
         <FormInput Value="@TradeUri?.ToString()" readonly />
     </ChildContent>
 </Popover>

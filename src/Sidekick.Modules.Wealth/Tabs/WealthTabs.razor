@@ -10,7 +10,7 @@
     return;
 }
 
-<FormFieldset Legend="@Resources["Stash_Tabs"]">
+<FormFieldset Legend="@Resources.Stash_Tabs">
     @if (Loading)
     {
         <ProgressBar Indeterminate="true"/>
@@ -51,7 +51,7 @@
         Loading = true;
         StateHasChanged();
 
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
         await using var database = new SidekickDbContext(DbContextOptions);
         StashTabs = await database.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
         StashTabs = StashTabs.OrderByDescending(x => x.Total).ToList();

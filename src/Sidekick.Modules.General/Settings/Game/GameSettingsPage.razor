@@ -19,62 +19,63 @@
     </LeftContent>
     <ChildContent>
         <AppContainer>
-            <FormFieldset Legend="@SettingResources["General_Settings"]">
+            <FormFieldset Legend="@SettingResources.General_Settings">
                 <LanguageParserEditor/>
                 <LeagueIdEditor/>
             </FormFieldset>
 
-            <FormFieldset Legend="@SettingResources["Item_Overlay"]">
+            <FormFieldset Legend="@UiResources.Item_Overlay">
                 @if (Configuration.Value.ApplicationType.SupportsKeybinds())
                 {
                     <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck"
-                                          Label="@SettingResources["Key_OpenItem"]"/>
-                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]"/>
+                                          Label="@SettingResources.Key_OpenItem"/>
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources.Key_Close"/>
                 }
 
                 @if (SidekickFlags.PoePricesEnabled)
                 {
                     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled"
-                                           Label="@SettingResources["ItemOverlay_Prediction_Enable"]"/>
+                                           Label="@SettingResources.ItemOverlay_Prediction_Enable"/>
                 }
 
                 <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
-                                       Label="@Resources["SaveWindowPositions"]"/>
+                                       Label="@Resources.SaveWindowPositions"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayKeepGameFocus"
+                                       Label="@Resources.OverlayKeepGameFocus"/>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
-                                       Label="@Resources["OverlayCloseWithMouse"]"/>
+                                       Label="@Resources.OverlayCloseWithMouse"/>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
-                                       Label="@Resources["EscapeClosesOverlays"]"/>
+                                       Label="@Resources.EscapeClosesOverlays"/>
             </FormFieldset>
 
             @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
-                <FormFieldset Legend="@Resources["Wiki"]">
-                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
+                <FormFieldset Legend="@Resources.Wiki">
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources.Wiki_Key_Open"/>
                     <PreferredWikiEditor/>
                 </FormFieldset>
             }
 
             @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
-                <FormFieldset Legend="@SettingResources["Other_Settings"]">
+                <FormFieldset Legend="@SettingResources.Other_Settings">
                     <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">
-                        <TextWithKeybinds Text="@Resources["MouseWheelNavigateStash"]"
-                                          Keybinds="@(["Ctrl+MWheel"])"/>
+                        <TextWithKeybinds Format="@Resources.MouseWheelNavigateStash" Keybind="Ctrl+MWheel"/>
                     </SettingCheckboxEditor>
                     <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse"
-                                           Label="@Resources["MouseWheelNavigateStashReverse"]"/>
+                                           Label="@Resources.MouseWheelNavigateStashReverse"/>
                     <SettingCheckboxEditor SettingKey="@DisableMovementWhenScreenshottingHandler.Key"
-                                           Label="@Resources["DisableMovementWhenScreenshotting"]"
-                                           Tooltip="@Resources["DisableMovementWhenScreenshotting_Tooltip"]"/>
-                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]"/>
+                                           Label="@Resources.DisableMovementWhenScreenshotting"
+                                           Tooltip="@Resources.DisableMovementWhenScreenshotting_Tooltip"/>
+                    <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources.Key_FindItems"/>
                     <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile"
-                                          Label="@Resources["Key_Open_In_Craft_Of_Exile"]"/>
+                                          Label="@Resources.Key_Open_In_Craft_Of_Exile"/>
                 </FormFieldset>
             }
 
             <div class="flex justify-center mb-1">
                 <ButtonPrimary Disabled="!AreSettingsModified"
-                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+                               OnClick="RestoreDefaults">@UiResources.Restore_Defaults</ButtonPrimary>
             </div>
         </AppContainer>
     </ChildContent>
@@ -105,6 +106,7 @@
         SettingKeys.KeyOpenInCraftOfExile,
         SettingKeys.KeyClose,
         SettingKeys.SaveWindowPositions,
+        SettingKeys.OverlayKeepGameFocus,
         SettingKeys.OverlayCloseWithMouse,
         SettingKeys.EscapeClosesOverlays,
     ];
@@ -125,13 +127,13 @@
             return;
         }
 
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        AreSettingsModified = await SettingsService.IsSettingModifiedAsync(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 
     private async void RestoreDefaults()
     {
-        await SettingsService.DeleteSetting(SettingKeysUsed);
+        await SettingsService.DeleteSettingAsync(SettingKeysUsed);
 
         AreSettingsModified = false;
 

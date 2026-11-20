@@ -24,17 +24,17 @@
     <data name="Key_Close" xml:space="preserve">
     <value>창 닫기</value>
   </data>
+    <data name="OverlayKeepGameFocus" xml:space="preserve">
+      <value>가격 검색창을 열 때 게임에 포커스 유지</value>
+    </data>
     <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>마우스를 클릭해 가격 검색창 닫기</value>
+    <value>가격 검색창이 포커스를 잃으면 닫기</value>
   </data>
     <data name="EscapeClosesOverlays" xml:space="preserve">
     <value>설정한 키로 현재창 닫기</value>
   </data>
     <data name="Language_UI" xml:space="preserve">
     <value>UI 언어</value>
-  </data>
-    <data name="UseInvariantForTradeResults" xml:space="preserve">
-    <value>영문 거래소를 이용하기</value>
   </data>
     <data name="Wiki_Key_Open" xml:space="preserve">
     <value>위키 열기</value>

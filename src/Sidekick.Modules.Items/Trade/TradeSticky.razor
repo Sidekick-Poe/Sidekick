@@ -31,7 +31,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+        IsCompact = await SettingsService.GetBoolAsync(SettingKeys.PriceCheckCompactMode);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
         TradeService.Changed += StateHasChanged;
@@ -42,14 +42,14 @@
     private async void ToggleView()
     {
         IsCompact = !IsCompact;
-        await SettingsService.Set(SettingKeys.PriceCheckCompactMode, IsCompact);
+        await SettingsService.SetAsync(SettingKeys.PriceCheckCompactMode, IsCompact);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
         if (keys.Contains(SettingKeys.PriceCheckCompactMode))
         {
-            IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+            IsCompact = await SettingsService.GetBoolAsync(SettingKeys.PriceCheckCompactMode);
 
             await InvokeAsync(StateHasChanged);
         }

@@ -33,14 +33,14 @@ internal class AuthenticationService
     {
         if (AuthenticateTask != null) return AuthenticationState.InProgress;
 
-        var bearerToken = await settingsService.GetString(SettingsTokenName);
+        var bearerToken = await settingsService.GetStringAsync(SettingsTokenName);
         if (bearerToken == null) return AuthenticationState.Unauthenticated;
         return !IsTokenExpired(bearerToken) ? AuthenticationState.Authenticated : AuthenticationState.Unauthenticated;
     }
 
     public async Task<DateTimeOffset?> GetExpiration()
     {
-        var token = await settingsService.GetString(SettingsTokenName);
+        var token = await settingsService.GetStringAsync(SettingsTokenName);
         var handler = new JwtSecurityTokenHandler();
         if (!handler.CanReadToken(token)) return null;
 
@@ -70,14 +70,14 @@ internal class AuthenticationService
         var result = await task;
         await browserDialogProvider.SaveCookies(TradeApiClient.ClientName, result, cancellationToken);
 
-        await settingsService.Set(SettingsTokenName, result.Cookies.GetValueOrDefault(CookieTokenName));
+        await settingsService.SetAsync(SettingsTokenName, result.Cookies.GetValueOrDefault(CookieTokenName));
         AuthenticateTask = null;
         OnStateChanged?.Invoke();
     }
 
     private async Task<BrowserDialogProvider.Result> OpenBrowserWindow()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         var url = game == GameType.Poe1 ? currentGameLanguage.Language.PoeTradeBaseUrl : currentGameLanguage.Language.Poe2TradeBaseUrl;
         var builder = new UriBuilder(url);
         var authenticationLink = builder.ToString();

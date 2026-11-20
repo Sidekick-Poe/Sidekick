@@ -22,11 +22,11 @@
 
     @if (Stash.ListingCount < 5)
     {
-        <AlertError IsCritical="true" Flat="true">@NinjaResources["LowConfidence"]</AlertError>
+        <AlertError IsCritical="true" Flat="true">@NinjaResources.LowConfidence</AlertError>
     }
     else if (Stash.ListingCount < 10)
     {
-        <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
+        <AlertError IsCritical="false" Flat="true">@NinjaResources.MediumConfidence</AlertError>
     }
 
     @if (Stash.Item.ItemLevel > 0)
@@ -74,7 +74,7 @@
     }
 
     <div class="flex flex-nowrap justify-between mt-1">
-        <TextCaption>@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
+        <TextCaption>@Stash.ListingCount @NinjaResources.Listings</TextCaption>
 
         @if (!string.IsNullOrEmpty(Stash.Item.Variant))
         {

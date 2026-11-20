@@ -6,6 +6,7 @@
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Ui.Menu
 @using Sidekick.Common.Ui.Typography
 
@@ -16,10 +17,10 @@
     <ChildContent>
         <AppContainer>
             <div class="mb-3 flex gap-3">
-                <Heading1>@Resources["Logs"]</Heading1>
+                <Heading1>@UiResources.Logs</Heading1>
                 <div class="ml-auto flex justify-end gap-3">
                     <ButtonSecondary
-                        OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Folder"]</ButtonSecondary>
+                        OnClick="@(() => FolderProvider.OpenDataFolderPath())">@UiResources.Open_Logs_Folder</ButtonSecondary>
                     @if (Configuration.Value.ApplicationType.SupportsKeybinds())
                     {
                         <LogCopy/>
@@ -33,5 +34,6 @@
 </LayoutMenu>
 
 @inject IStringLocalizer<LogResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IFolderProvider FolderProvider
 @inject IOptions<SidekickConfiguration> Configuration

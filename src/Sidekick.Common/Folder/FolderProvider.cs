@@ -23,9 +23,9 @@ public class FolderProvider(ILogger<FolderProvider> logger) : IFolderProvider
             };
             process.Start();
         }
-        catch
+        catch (Exception e)
         {
-            logger.LogError("[Folder] Failed to open data file path.");
+            logger.LogError(e, "[Folder] Failed to open the folder {Path}.", path);
         }
     }
 }

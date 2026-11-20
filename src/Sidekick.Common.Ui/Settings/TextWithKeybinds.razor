@@ -1,36 +1,39 @@
-@using System.Text.RegularExpressions
-
 @RenderText()
 
 @code {
 
+    /// <summary>
+    /// A typed resource with one placeholder, like Resources.Close_Overlay_Tip. The placeholder is shown as the keybind.
+    /// </summary>
     [Parameter]
-    public string Text { get; set; } = string.Empty;
+    [EditorRequired]
+    public Func<object, string> Format { get; set; } = null!;
 
     [Parameter]
-    public string?[] Keybinds { get; set; } = [];
+    public string? Keybind { get; set; }
+
+    /// <summary>
+    /// Passed as the placeholder value so the translated text can be split around it. Never shown.
+    /// </summary>
+    private const string Marker = "\u0001";
 
     private RenderFragment RenderText() => builder =>
     {
-        var matches = Regex.Matches(Text, @"\{(\d+)\}");
-        var lastIndex = 0;
+        var parts = Format(Marker).Split(Marker);
         var sequence = 0;
 
-        foreach (Match match in matches)
+        for (var i = 0; i < parts.Length; i++)
         {
-            var placeholderIndex = int.Parse(match.Groups[1].Value);
-            if (placeholderIndex >= Keybinds.Length) continue;
-
-            builder.AddContent(sequence++, Text.Substring(lastIndex, match.Index - lastIndex));
+            builder.AddContent(sequence++, parts[i]);
+            if (i == parts.Length - 1)
+            {
+                continue;
+            }
 
             builder.OpenComponent<KeybindDisplay>(sequence++);
-            builder.AddAttribute(sequence++, "Keybind", Keybinds[placeholderIndex]);
+            builder.AddAttribute(sequence++, "Keybind", Keybind);
             builder.CloseComponent();
-
-            lastIndex = match.Index + match.Length;
         }
-
-        builder.AddContent(sequence++, Text.Substring(lastIndex));
     };
 
 }

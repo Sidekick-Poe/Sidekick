@@ -20,8 +20,8 @@ public class LeagueProvider(
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var game = await settingsService.GetGameAsync();
+        var leagueId = await settingsService.GetStringAsync(SettingKeys.LeagueId);
         leagueId = leagueId?.Split('.', 2).ElementAtOrDefault(1);
         var leagues = await GetLeagues();
         Current = leagues.FirstOrDefault(l => l.Game == game && l.Id == leagueId) ?? throw new InvalidOperationException("Current league is not set");
@@ -45,6 +45,6 @@ public class LeagueProvider(
         var leagues = await GetLeagues();
         Current = leagues.FirstOrDefault(l => l.Game == game && l.Id == leagueId) ?? throw new InvalidOperationException("Current league is not set");
 
-        await settingsService.Set(SettingKeys.LeagueId, value);
+        await settingsService.SetAsync(SettingKeys.LeagueId, value);
     }
 }
