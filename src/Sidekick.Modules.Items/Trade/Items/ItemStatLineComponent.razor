@@ -38,6 +38,7 @@
             if (Modifier.Flags?.Fractured ?? false) return StatCategory.Fractured;
             if (Modifier.Flags?.Crafted ?? false) return StatCategory.Crafted;
             if (Modifier.Flags?.Desecrated ?? false) return StatCategory.Desecrated;
+            if (Modifier.Flags?.RareOnly ?? false) return StatCategory.RareOnly;
             return Category;
         }
     }

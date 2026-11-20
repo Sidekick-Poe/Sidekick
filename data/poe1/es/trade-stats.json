@@ -13740,6 +13740,10 @@
     "text": "Efecto de Maldici\u00F3n de Castigo aumentado un #%"
   },
   {
+    "id": "enchant.stat_2844829788",
+    "text": "# grupos de monstruos del \u00E1rea est\u00E1n sustituidos por sapos inofensivos"
+  },
+  {
     "id": "enchant.stat_2844839137",
     "text": "Los Robots escurridizos invocados tienen su \u00E1rea de efecto aumentada en un #%"
   },
@@ -20828,12 +20832,20 @@
     "text": "Tipo de recompensa de Delirium: Esencias"
   },
   {
+    "id": "explicit.delirium_reward_fossils",
+    "text": "Tipo de recompensa de Delirium: F\u00F3siles"
+  },
+  {
     "id": "explicit.delirium_reward_gems",
     "text": "Tipo de recompensa de Delirium: Gemas"
   },
   {
     "id": "explicit.delirium_reward_maps",
     "text": "Tipo de recompensa de Delirium: Objetos de mapa"
+  },
+  {
+    "id": "explicit.delirium_reward_metamorphosis",
+    "text": "Tipo de recompensa de Delirium: Catalizadores"
   },
   {
     "id": "explicit.delirium_reward_scarabs",
@@ -21424,6 +21436,10 @@
     "text": "Las gemas engarzadas est\u00E1n asistidas por Asistencia de Sed de sangre de nivel #"
   },
   {
+    "id": "explicit.effect_3136470162",
+    "text": "Las gemas engarzadas est\u00E1n asistidas por Asistencia de congregaci\u00F3n de nivel #"
+  },
+  {
     "id": "explicit.effect_3161048706",
     "text": "Las gemas engarzadas est\u00E1n asistidas por Asistencia de Bendici\u00F3n divina de nivel #"
   },
@@ -21822,6 +21838,10 @@
   {
     "id": "explicit.effect_602948540",
     "text": "Las gemas engarzadas est\u00E1n asistidas por Asistencia de Aflicci\u00F3n por golpe cr\u00EDtico de nivel #"
+  },
+  {
+    "id": "explicit.effect_603124590",
+    "text": "Las gemas engarzadas est\u00E1n asistidas por Asistencia de descarga superior de nivel #"
   },
   {
     "id": "explicit.effect_603152644",
@@ -28504,6 +28524,10 @@
     "text": "Con al menos 40 de inteligencia dentro del radio, Bola de magma\ntiene \u00E1rea de efecto aumentada un #% por cada encadenamiento"
   },
   {
+    "id": "explicit.stat_1609344921",
+    "text": "El da\u00F1o de los golpes es afortunado mientras tu mano secundaria sea m\u00E1gica"
+  },
+  {
     "id": "explicit.stat_161058250",
     "text": "Gana Devorador de Almas por # segundos cuando usas una Habilidad Vaal"
   },
@@ -30073,11 +30097,11 @@
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Los remanentes tienen un #% de probabilidad de tener un modificador de sufijo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Los remanentes de tus mapas tienen un #% de probabilidad de tener un modificador de sufijo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871938116",
@@ -31446,6 +31470,10 @@
   {
     "id": "explicit.stat_2105048696",
     "text": "Los Ataques disparan un proyectil adicional cuando est\u00E1 equipada en la Mano Secundaria"
+  },
+  {
+    "id": "explicit.stat_2105061711",
+    "text": "Los esbirros convierten el #% del da\u00F1o f\u00EDsico en da\u00F1o de rayo"
   },
   {
     "id": "explicit.stat_2105355711",
@@ -35096,6 +35124,10 @@
     "text": "\u002B#% al multiplicador de golpe cr\u00EDtico con minas"
   },
   {
+    "id": "explicit.stat_2529155377",
+    "text": "Da\u00F1o con garras aumentado un #% contra los enemigos que tienen la vida baja"
+  },
+  {
     "id": "explicit.stat_2530071726",
     "text": "El \u00C1rea contiene un Talism\u00E1n de Tres Ratas adicional"
   },
@@ -37245,7 +37277,7 @@
   },
   {
     "id": "explicit.stat_2876425796",
-    "text": "Socketed Gems deal #% more damage per Socketed Skill Gem"
+    "text": "Las gemas engarzadas infligen un #% m\u00E1s de da\u00F1o por cada gema de habilidad engarzada"
   },
   {
     "id": "explicit.stat_2877370216",
@@ -52500,6 +52532,10 @@
     "text": "Los monstruos no pueden ser aturdidos"
   },
   {
+    "id": "fractured.stat_1045292082",
+    "text": "Los esbirros convierten el #% del da\u00F1o f\u00EDsico en da\u00F1o de fuego"
+  },
+  {
     "id": "fractured.stat_1048879642",
     "text": "1 de las habilidades pasivas agregadas es Mentalidad de reba\u00F1o"
   },
@@ -52856,6 +52892,10 @@
     "text": "Da\u00F1o degenerativo aumentado un #% mientras portas un escudo"
   },
   {
+    "id": "fractured.stat_1248307887",
+    "text": "Te afecta la niebla del delirio"
+  },
+  {
     "id": "fractured.stat_1248507170",
     "text": "Con al menos 40 de fuerza dentro del radio, los golpes con Hendidura fortifican"
   },
@@ -52910,6 +52950,10 @@
   {
     "id": "fractured.stat_1273709603",
     "text": "Activas Artiller\u00EDa fantasmal de nivel # cuando atacas con esta arma"
+  },
+  {
+    "id": "fractured.stat_1274429432",
+    "text": "Ganas da\u00F1o de hechizos agregado equivalente al #% del da\u00F1o de la varita equipada\nSi tienes dos varitas equipadas, cada una aporta la mitad del da\u00F1o agregado"
   },
   {
     "id": "fractured.stat_1274505521",
@@ -53466,6 +53510,10 @@
   {
     "id": "fractured.stat_1583385065",
     "text": "Da\u00F1o aumentado un #% con habilidades que no sean vaal durante la prevenci\u00F3n de obtenci\u00F3n de almas"
+  },
+  {
+    "id": "fractured.stat_1584440377",
+    "text": "Velocidad de ataque desarmado aumentada un #% con habilidades cuerpo a cuerpo"
   },
   {
     "id": "fractured.stat_1585344030",
@@ -54060,6 +54108,10 @@
     "text": "Las habilidades pasivas peque\u00F1as agregadas tambi\u00E9n otorgan: \u002B#% al multiplicador de golpe cr\u00EDtico"
   },
   {
+    "id": "fractured.stat_1928468569",
+    "text": "Los golpes cr\u00EDticos con arcos tienen un #% de probabilidad de envenenar al enemigo"
+  },
+  {
     "id": "fractured.stat_1936135020",
     "text": "1 de las habilidades pasivas agregadas es Victimario"
   },
@@ -54374,6 +54426,10 @@
   {
     "id": "fractured.stat_2101383955",
     "text": "El da\u00F1o penetra el #% de las resistencias elementales"
+  },
+  {
+    "id": "fractured.stat_2105061711",
+    "text": "Los esbirros convierten el #% del da\u00F1o f\u00EDsico en da\u00F1o de rayo"
   },
   {
     "id": "fractured.stat_2106365538",
@@ -55252,6 +55308,10 @@
     "text": "\u002B#% al multiplicador de golpe cr\u00EDtico con minas"
   },
   {
+    "id": "fractured.stat_2529155377",
+    "text": "Da\u00F1o con garras aumentado un #% contra los enemigos que tienen la vida baja"
+  },
+  {
     "id": "fractured.stat_2530372417",
     "text": "#% de probabilidad de bloquear el da\u00F1o de ataques"
   },
@@ -55402,6 +55462,10 @@
   {
     "id": "fractured.stat_2633745731",
     "text": "Recuperaci\u00F3n total por segundo por absorci\u00F3n de vida aumentada un #%"
+  },
+  {
+    "id": "fractured.stat_264042266",
+    "text": "Los esbirros convierten el #% del da\u00F1o f\u00EDsico en da\u00F1o de hielo"
   },
   {
     "id": "fractured.stat_2642917409",
@@ -56508,6 +56572,10 @@
     "text": "Las habilidades de movimiento engarzadas no cuestan man\u00E1"
   },
   {
+    "id": "fractured.stat_326480871",
+    "text": "Los ataques con hachas o espadas otorgan # de furia con cada golpe"
+  },
+  {
     "id": "fractured.stat_3269060224",
     "text": "Ganas una carga de poder despu\u00E9s de gastar un total de 200 de man\u00E1"
   },
@@ -56922,6 +56990,10 @@
   {
     "id": "fractured.stat_3479987487",
     "text": "Recuperaci\u00F3n del bloqueo y del aturdimiento aumentada un #% durante su efecto"
+  },
+  {
+    "id": "fractured.stat_3481254135",
+    "text": "Ganas da\u00F1o de hechizos agregado equivalente al #% del da\u00F1o de la daga equipada\nSi tienes dos dagas equipadas, cada una aporta un 60% del da\u00F1o agregado"
   },
   {
     "id": "fractured.stat_3482587079",
@@ -60460,6 +60532,10 @@
     "text": "Otorga Disciplina de nivel #"
   },
   {
+    "id": "implicit.effect_603152644",
+    "text": "Otorga Invocar Heraldo superior de las direcciones"
+  },
+  {
     "id": "implicit.effect_626699959",
     "text": "Las gemas engarzadas est\u00E1n asistidas por Asistencia de Lanzar al morir de nivel #"
   },
@@ -60470,6 +60546,10 @@
   {
     "id": "implicit.effect_723113949",
     "text": "Otorga Determinaci\u00F3n de nivel #"
+  },
+  {
+    "id": "implicit.effect_771254875",
+    "text": "Otorga Aspecto del gato de nivel #"
   },
   {
     "id": "implicit.effect_859488427",
@@ -60946,6 +61026,10 @@
   {
     "id": "implicit.stat_1195319608",
     "text": "Escudo de energ\u00EDa de la armadura equipada aumentado un #%"
+  },
+  {
+    "id": "implicit.stat_1209237645",
+    "text": "M\u00E1ximo de cargas de vac\u00EDo: #"
   },
   {
     "id": "implicit.stat_1211769158",
@@ -62241,11 +62325,11 @@
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Los remanentes tienen un #% de probabilidad de tener un modificador de sufijo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Los remanentes de tus mapas tienen un #% de probabilidad de tener un modificador de sufijo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1873457881",
@@ -62288,6 +62372,10 @@
     "text": "No puedes sufrir Sangrado"
   },
   {
+    "id": "implicit.stat_190157226",
+    "text": "Los golpes mortales consumen cad\u00E1veres para recuperar un #% de vida"
+  },
+  {
     "id": "implicit.stat_190207599",
     "text": "Mientras un jefe final del Atlas est\u00E9 en tu presencia, El #% del da\u00F1o f\u00EDsico se absorbe como vida"
   },
@@ -62302,6 +62390,10 @@
   {
     "id": "implicit.stat_190932737",
     "text": "\u002B#% de rareza de objetos"
+  },
+  {
+    "id": "implicit.stat_1909401378",
+    "text": "\u002B#% a la probabilidad de golpe cr\u00EDtico"
   },
   {
     "id": "implicit.stat_1911037487",
@@ -62880,6 +62972,10 @@
     "text": "Da\u00F1o de hielo con habilidades de hechizos aumentado un #%"
   },
   {
+    "id": "implicit.stat_2188905761",
+    "text": "Velocidad de ataque aumentada un #% si has cambiado de Postura recientemente"
+  },
+  {
     "id": "implicit.stat_2192875806",
     "text": "Las habilidades engarzadas aplican exposici\u00F3n al fuego, al hielo y al rayo con cada golpe"
   },
@@ -63322,6 +63418,10 @@
   {
     "id": "implicit.stat_2420972973",
     "text": "Efecto del efecto beneficioso otorgado por tus G\u00F3lems carro\u00F1eros aumentado un #%"
+  },
+  {
+    "id": "implicit.stat_2421436896",
+    "text": "Las flechas se bifurcan"
   },
   {
     "id": "implicit.stat_2423625781",
@@ -64816,6 +64916,10 @@
     "text": "Probabilidad de golpe cr\u00EDtico de las habilidades vaal aumentada un #%"
   },
   {
+    "id": "implicit.stat_3168149399",
+    "text": "Agrega de # a # de da\u00F1o de rayo a los ataques por cada 10 de inteligencia"
+  },
+  {
     "id": "implicit.stat_3171354842",
     "text": "Mientras un enemigo \u00FAnico est\u00E9 en tu presencia, Ganas el #% del da\u00F1o f\u00EDsico como da\u00F1o de hielo extra"
   },
@@ -64992,6 +65096,10 @@
     "text": "Los esbirros son agresivos si has usado una habilidad de esbirro recientemente"
   },
   {
+    "id": "implicit.stat_3262369040",
+    "text": "Consume una Carga de vac\u00EDo para activar Disparo de vac\u00EDo de nivel # cuando disparas flechas con una habilidad que no sea de activaci\u00F3n"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "Mientras un enemigo \u00FAnico est\u00E9 en tu presencia, El marchitamiento que infliges expira un #% m\u00E1s r\u00E1pido"
   },
@@ -65006,6 +65114,10 @@
   {
     "id": "implicit.stat_3266394681",
     "text": "Las habilidades de ataque tienen \u002B# a la cantidad m\u00E1xima de t\u00F3tems que puedes invocar"
+  },
+  {
+    "id": "implicit.stat_3267026680",
+    "text": "Velocidad de ataque aumentada un #% si has usado una habilidad de movimiento de ataque recientemente"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -65162,6 +65274,10 @@
   {
     "id": "implicit.stat_3326567914",
     "text": "Mientras un jefe final del Atlas est\u00E9 en tu presencia, #% de probabilidad de bloquear el da\u00F1o de ataques"
+  },
+  {
+    "id": "implicit.stat_3334947764",
+    "text": "Cada cuarta vez que lanzas cada hechizo, ganas man\u00E1 equivalente a su costo inicial"
   },
   {
     "id": "implicit.stat_3336890334",
@@ -65346,6 +65462,10 @@
   {
     "id": "implicit.stat_342670903",
     "text": "Da\u00F1o aumentado un #% por cada 100 de destreza"
+  },
+  {
+    "id": "implicit.stat_34273389",
+    "text": "Ganas una carga de vac\u00EDo cada # segundos"
   },
   {
     "id": "implicit.stat_3433724931",
@@ -67622,6 +67742,10 @@
   {
     "id": "implicit.stat_683892962",
     "text": "Da\u00F1o aumentado un #% por cada esbirro, hasta un m\u00E1ximo de un 40%"
+  },
+  {
+    "id": "implicit.stat_68673913",
+    "text": "Agrega de # a # de da\u00F1o de fuego a los ataques por cada 10 de fuerza"
   },
   {
     "id": "implicit.stat_689723685",
@@ -71737,32 +71861,32 @@
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#1",
-    "text": "Tiene la sala: Sala de reuniones real (grado 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Sala abierta"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#2",
-    "text": "Tiene la sala: Sala de reuniones real (grado 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Sala cerrada"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#1",
-    "text": "Tiene la sala: Sal\u00F3n de los se\u00F1ores (grado 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Sala abierta"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#2",
-    "text": "Tiene la sala: Sal\u00F3n de los se\u00F1ores (grado 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Sala cerrada"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#1",
-    "text": "Tiene la sala: Trono de Atziri (grado 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Sala abierta"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#2",
-    "text": "Tiene la sala: Trono de Atziri (grado 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Sala cerrada"
   },
   {

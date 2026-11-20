@@ -151,7 +151,7 @@ public class StatParser
                 .SelectMany(x => x.Value);
         }
 
-        if (category != StatCategory.Undefined)
+        if (category != StatCategory.Undefined && category != StatCategory.RareOnly)
         {
             return Definitions
                 .Where(x => x.Key == category)
@@ -246,13 +246,6 @@ public class StatParser
 
     public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        if (item.Properties.Rarity != Rarity.Normal &&
-            item.Properties.Rarity != Rarity.Magic &&
-            item.Properties.Rarity != Rarity.Rare &&
-            item.Properties.Rarity != Rarity.Unique &&
-            item.Properties.Rarity != Rarity.Gem &&
-            item.Properties.Rarity != Rarity.Currency) return [];
-
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 
         var result = new List<TradeFilter>();

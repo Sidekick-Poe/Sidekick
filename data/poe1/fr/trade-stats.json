@@ -13740,6 +13740,10 @@
     "text": "#% d\u0027Augmentation de l\u0027Effet de la Mal\u00E9diction Punition"
   },
   {
+    "id": "enchant.stat_2844829788",
+    "text": "Dans la Zone, # Groupes de Monstres sont remplac\u00E9s par des Crapauds inoffensifs"
+  },
+  {
     "id": "enchant.stat_2844839137",
     "text": "Les Arachnobots Invoqu\u00E9s ont #% d\u0027Augmentation de Zone d\u0027effet"
   },
@@ -20828,12 +20832,20 @@
     "text": "Type de R\u00E9compense du D\u00E9lire : Essences"
   },
   {
+    "id": "explicit.delirium_reward_fossils",
+    "text": "Type de R\u00E9compense du D\u00E9lire : Fossiles"
+  },
+  {
     "id": "explicit.delirium_reward_gems",
     "text": "Type de R\u00E9compense du D\u00E9lire : Gemmes"
   },
   {
     "id": "explicit.delirium_reward_maps",
     "text": "Type de R\u00E9compense du D\u00E9lire : Objets de Carte"
+  },
+  {
+    "id": "explicit.delirium_reward_metamorphosis",
+    "text": "Type de R\u00E9compense du D\u00E9lire : Catalyseurs"
   },
   {
     "id": "explicit.delirium_reward_scarabs",
@@ -21424,6 +21436,10 @@
     "text": "Les Gemmes ench\u00E2ss\u00E9es sont modifi\u00E9es par Soutien : Soif de sang (Niv. #) "
   },
   {
+    "id": "explicit.effect_3136470162",
+    "text": "Les Gemmes ench\u00E2ss\u00E9es sont modifi\u00E9es par Soutien : Congr\u00E9gation  (Niv. #) "
+  },
+  {
     "id": "explicit.effect_3161048706",
     "text": "Les Gemmes ench\u00E2ss\u00E9es sont modifi\u00E9es par Soutien : B\u00E9n\u00E9diction divine (Niv. #) "
   },
@@ -21822,6 +21838,10 @@
   {
     "id": "explicit.effect_602948540",
     "text": "Les Gemmes ench\u00E2ss\u00E9es sont modifi\u00E9es par Soutien : Affliction critique (Niv. #) "
+  },
+  {
+    "id": "explicit.effect_603124590",
+    "text": "Les Gemmes ench\u00E2ss\u00E9es sont modifi\u00E9es par Soutien : D\u00E9cha\u00EEnement majeur (Niv. #) "
   },
   {
     "id": "explicit.effect_603152644",
@@ -28504,6 +28524,10 @@
     "text": "Avec au moins 40 d\u0027Intelligence dans le Rayon, Magma d\u00E9ferlant\nA #% d\u0027Augmentation de Zone d\u0027effet par Ricochet"
   },
   {
+    "id": "explicit.stat_1609344921",
+    "text": "Vos D\u00E9g\u00E2ts au Toucher sont Favorables tant que votre Main secondaire est Magique"
+  },
+  {
     "id": "explicit.stat_161058250",
     "text": "Vous gagnez Mangeur d\u0027\u00E2mes pendant # secondes lorsque vous utilisez une Aptitude vaal"
   },
@@ -30073,11 +30097,11 @@
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Les Vestiges ont #% de chances d\u0027avoir un Suffixe suppl\u00E9mentaire"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Dans vos Cartes, les Vestiges ont #% de chances d\u0027avoir un Suffixe suppl\u00E9mentaire"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871938116",
@@ -31446,6 +31470,10 @@
   {
     "id": "explicit.stat_2105048696",
     "text": "Les Attaques avec la main secondaire tirent un Projectile suppl\u00E9mentaire"
+  },
+  {
+    "id": "explicit.stat_2105061711",
+    "text": "Les Cr\u00E9atures Convertissent #% de leurs D\u00E9g\u00E2ts physiques en D\u00E9g\u00E2ts de foudre"
   },
   {
     "id": "explicit.stat_2105355711",
@@ -35096,6 +35124,10 @@
     "text": "\u002B#% au Multiplicateur de coup critique avec les Mines"
   },
   {
+    "id": "explicit.stat_2529155377",
+    "text": "Les griffes ont #% d\u0027Augmentation de D\u00E9g\u00E2ts contre les Ennemis dont la Vie est Basse"
+  },
+  {
     "id": "explicit.stat_2530071726",
     "text": "La Zone contient un Talisman des Trois rats suppl\u00E9mentaire"
   },
@@ -37245,7 +37277,7 @@
   },
   {
     "id": "explicit.stat_2876425796",
-    "text": "Socketed Gems deal #% more damage per Socketed Skill Gem"
+    "text": "Les Gemmes Ench\u00E2ss\u00E9es infligent #% Davantage de D\u00E9g\u00E2ts par Gemme d\u0027aptitude Ench\u00E2ss\u00E9e"
   },
   {
     "id": "explicit.stat_2877370216",
@@ -40189,7 +40221,7 @@
   },
   {
     "id": "explicit.stat_3334947764",
-    "text": "Toutes les quatre incantations d\u0027un m\u00EAme Sort, vous gagnez un montant de Mana \u00E9quivalent \u00E0 son Co\u00FBt fixe"
+    "text": "Toutes les deux incantations d\u0027un m\u00EAme Sort, vous gagnez un montant de Mana \u00E9quivalent \u00E0 son Co\u00FBt fixe"
   },
   {
     "id": "explicit.stat_3336890334",
@@ -52500,6 +52532,10 @@
     "text": "Les Monstres ne peuvent pas \u00EAtre \u00C9tourdis"
   },
   {
+    "id": "fractured.stat_1045292082",
+    "text": "Les Cr\u00E9atures Convertissent #% de leurs D\u00E9g\u00E2ts physiques en D\u00E9g\u00E2ts de feu"
+  },
+  {
     "id": "fractured.stat_1048879642",
     "text": "L\u0027un des Talents passifs ajout\u00E9s est Instinct gr\u00E9gaire"
   },
@@ -52856,6 +52892,10 @@
     "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts sur la dur\u00E9e en tenant un bouclier"
   },
   {
+    "id": "fractured.stat_1248307887",
+    "text": "Vous \u00EAtes affect\u00E9 par les Brumes du D\u00E9lire"
+  },
+  {
     "id": "fractured.stat_1248507170",
     "text": "Avec au moins 40 de Force dans le Rayon, Taillade vous Renforce au Toucher"
   },
@@ -52910,6 +52950,10 @@
   {
     "id": "fractured.stat_1273709603",
     "text": "D\u00E9clenche Artillerie spectrale (Niveau #) lorsque vous Attaquez avec cette Arme"
+  },
+  {
+    "id": "fractured.stat_1274429432",
+    "text": "Vous gagnez des D\u00E9g\u00E2ts des Sorts suppl\u00E9mentaires \u00E9quivalents \u00E0 #% des D\u00E9g\u00E2ts de la Baguette \u00C9quip\u00E9e\nSi deux Baguettes sont \u00C9quip\u00E9es, chacune contribue de moiti\u00E9 \u00E0 ces D\u00E9g\u00E2ts suppl\u00E9mentaires"
   },
   {
     "id": "fractured.stat_1274505521",
@@ -53466,6 +53510,10 @@
   {
     "id": "fractured.stat_1583385065",
     "text": "#% d\u0027Augmentation de D\u00E9g\u00E2ts avec les Aptitudes non vaal pendant l\u0027Emp\u00EAchement de gain d\u0027\u00C2mes"
+  },
+  {
+    "id": "fractured.stat_1584440377",
+    "text": "#% d\u0027Augmentation de la Vitesse d\u0027attaque \u00E0 mains nues avec les Aptitudes de m\u00EAl\u00E9e"
   },
   {
     "id": "fractured.stat_1585344030",
@@ -54060,6 +54108,10 @@
     "text": "Les Talents passifs mineurs ajout\u00E9s octroient \u00E9galement \u002B#% au Multiplicateur de critique"
   },
   {
+    "id": "fractured.stat_1928468569",
+    "text": "Les Coups critiques avec les arcs ont #% de chances d\u0027Empoisonner l\u0027Ennemi"
+  },
+  {
     "id": "fractured.stat_1936135020",
     "text": "L\u0027un des Talents passifs ajout\u00E9s est Tortionnaire"
   },
@@ -54374,6 +54426,10 @@
   {
     "id": "fractured.stat_2101383955",
     "text": "Les D\u00E9g\u00E2ts ont #% de P\u00E9n\u00E9tration des R\u00E9sistances \u00E9l\u00E9mentaires"
+  },
+  {
+    "id": "fractured.stat_2105061711",
+    "text": "Les Cr\u00E9atures Convertissent #% de leurs D\u00E9g\u00E2ts physiques en D\u00E9g\u00E2ts de foudre"
   },
   {
     "id": "fractured.stat_2106365538",
@@ -55252,6 +55308,10 @@
     "text": "\u002B#% au Multiplicateur de coup critique avec les Mines"
   },
   {
+    "id": "fractured.stat_2529155377",
+    "text": "Les griffes ont #% d\u0027Augmentation de D\u00E9g\u00E2ts contre les Ennemis dont la Vie est Basse"
+  },
+  {
     "id": "fractured.stat_2530372417",
     "text": "#% de Chances de Bloquer les D\u00E9g\u00E2ts d\u0027Attaque"
   },
@@ -55402,6 +55462,10 @@
   {
     "id": "fractured.stat_2633745731",
     "text": "#% d\u0027Augmentation du Drain de Vie par seconde"
+  },
+  {
+    "id": "fractured.stat_264042266",
+    "text": "Les Cr\u00E9atures Convertissent #% de leurs D\u00E9g\u00E2ts physiques en D\u00E9g\u00E2ts de froid"
   },
   {
     "id": "fractured.stat_2642917409",
@@ -56508,6 +56572,10 @@
     "text": "Les Aptitudes de d\u00E9placement ne Co\u00FBtent pas de Mana"
   },
   {
+    "id": "fractured.stat_326480871",
+    "text": "Les Attaques avec les haches et \u00E9p\u00E9es octroient # de Rage au Toucher"
+  },
+  {
     "id": "fractured.stat_3269060224",
     "text": "Vous gagnez une Charge de pouvoir lorsque vous d\u00E9pensez un total de 200 de Mana"
   },
@@ -56922,6 +56990,10 @@
   {
     "id": "fractured.stat_3479987487",
     "text": "#% d\u0027Augmentation de la R\u00E9cup\u00E9ration d\u0027\u00C9tourdissement et de Blocage pendant cet Effet"
+  },
+  {
+    "id": "fractured.stat_3481254135",
+    "text": "Vous gagnez des D\u00E9g\u00E2ts des Sorts suppl\u00E9mentaires \u00E9quivalents \u00E0 #% des D\u00E9g\u00E2ts de la Dague \u00C9quip\u00E9e\nSi deux Dagues sont \u00C9quip\u00E9es, chacune contribue \u00E0 ces D\u00E9g\u00E2ts suppl\u00E9mentaires \u00E0 hauteur de 60%"
   },
   {
     "id": "fractured.stat_3482587079",
@@ -60460,6 +60532,10 @@
     "text": "Octroie Discipline (Niv. #) "
   },
   {
+    "id": "implicit.effect_603152644",
+    "text": "Octroie Invocation de Pr\u00E9curseur majeur des Directions"
+  },
+  {
     "id": "implicit.effect_626699959",
     "text": "Les Gemmes ench\u00E2ss\u00E9es sont modifi\u00E9es par Soutien : D\u00E9clenchement en mourant (Niv. #) "
   },
@@ -60470,6 +60546,10 @@
   {
     "id": "implicit.effect_723113949",
     "text": "Octroie D\u00E9termination (Niv. #) "
+  },
+  {
+    "id": "implicit.effect_771254875",
+    "text": "Octroie Aspect du F\u00E9lin (Niv. #) "
   },
   {
     "id": "implicit.effect_859488427",
@@ -60946,6 +61026,10 @@
   {
     "id": "implicit.stat_1195319608",
     "text": "#% d\u0027Augmentation du Bouclier d\u0027\u00E9nergie octroy\u00E9 par l\u0027armure de torse \u00C9quip\u00E9e"
+  },
+  {
+    "id": "implicit.stat_1209237645",
+    "text": "# Charges du N\u00E9ant maximum"
   },
   {
     "id": "implicit.stat_1211769158",
@@ -62241,11 +62325,11 @@
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Les Vestiges ont #% de chances d\u0027avoir un Suffixe suppl\u00E9mentaire"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Dans vos Cartes, les Vestiges ont #% de chances d\u0027avoir un Suffixe suppl\u00E9mentaire"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1873457881",
@@ -62288,6 +62372,10 @@
     "text": "Le Saignement ne peut vous \u00EAtre inflig\u00E9"
   },
   {
+    "id": "implicit.stat_190157226",
+    "text": "Vous consommez les Cadavres des monstres que vous Tuez afin de R\u00E9cup\u00E9rer #% de Vie"
+  },
+  {
     "id": "implicit.stat_190207599",
     "text": "Tant qu\u0027un Boss final de l\u0027Atlas est dans votre Pr\u00E9sence, #% des D\u00E9g\u00E2ts physiques Drainent de la Vie"
   },
@@ -62302,6 +62390,10 @@
   {
     "id": "implicit.stat_190932737",
     "text": "\u002B#% de Raret\u00E9 des Objets"
+  },
+  {
+    "id": "implicit.stat_1909401378",
+    "text": "\u002B#% aux Chances de Coup critique"
   },
   {
     "id": "implicit.stat_1911037487",
@@ -62880,6 +62972,10 @@
     "text": "#% d\u0027Augmentation des D\u00E9g\u00E2ts de froid avec les Aptitudes de Sort"
   },
   {
+    "id": "implicit.stat_2188905761",
+    "text": "#% d\u0027Augmentation de Vitesse d\u0027attaque si vous avez chang\u00E9 de Posture R\u00E9cemment"
+  },
+  {
     "id": "implicit.stat_2192875806",
     "text": "Lorsqu\u0027elles Touchent, les Aptitudes ench\u00E2ss\u00E9es appliquent Exposition au feu, au froid et \u00E0 la foudre"
   },
@@ -63322,6 +63418,10 @@
   {
     "id": "implicit.stat_2420972973",
     "text": "#% d\u0027Augmentation de l\u0027Effet b\u00E9n\u00E9fique octroy\u00E9 par vos Golems de charogne"
+  },
+  {
+    "id": "implicit.stat_2421436896",
+    "text": "Les Fl\u00E8ches se Scindent"
   },
   {
     "id": "implicit.stat_2423625781",
@@ -64816,6 +64916,10 @@
     "text": "#% d\u0027Augmentation des Chances de Coup critique des Aptitudes vaal"
   },
   {
+    "id": "implicit.stat_3168149399",
+    "text": "Ajoutez # \u00E0 # D\u00E9g\u00E2ts de foudre aux Attaques tous les 10 d\u0027Intelligence"
+  },
+  {
     "id": "implicit.stat_3171354842",
     "text": "Tant qu\u0027un Ennemi unique est dans votre Pr\u00E9sence, Rajoutez #% des D\u00E9g\u00E2ts physiques sous forme de D\u00E9g\u00E2ts de froid"
   },
@@ -64992,6 +65096,10 @@
     "text": "Les Cr\u00E9atures sont Aggressives si vous avez utilis\u00E9 une Aptitude de Cr\u00E9ature R\u00E9cemment"
   },
   {
+    "id": "implicit.stat_3262369040",
+    "text": "Consomme une Charge du N\u00E9ant afin de d\u00E9clencher Tir du N\u00E9ant (Niveau #) lorsque vous tirez des fl\u00E8ches avec des Aptitudes non d\u00E9clench\u00E9es"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "Tant qu\u0027un Ennemi unique est dans votre Pr\u00E9sence, Les Fl\u00E9trissements que vous infligez expirent #% plus rapidement"
   },
@@ -65006,6 +65114,10 @@
   {
     "id": "implicit.stat_3266394681",
     "text": "Les Aptitudes d\u0027Attaque ont \u002B# au nombre maximum de Totems Invoqu\u00E9s"
+  },
+  {
+    "id": "implicit.stat_3267026680",
+    "text": "#% d\u0027Augmentation de Vitesse d\u0027attaque si vous avez utilis\u00E9 une Aptitude d\u0027Attaque de d\u00E9placement R\u00E9cemment"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -65162,6 +65274,10 @@
   {
     "id": "implicit.stat_3326567914",
     "text": "Tant qu\u0027un Boss final de l\u0027Atlas est dans votre Pr\u00E9sence, #% de Chances de Bloquer les D\u00E9g\u00E2ts d\u0027Attaque"
+  },
+  {
+    "id": "implicit.stat_3334947764",
+    "text": "Toutes les deux incantations d\u0027un m\u00EAme Sort, vous gagnez un montant de Mana \u00E9quivalent \u00E0 son Co\u00FBt fixe"
   },
   {
     "id": "implicit.stat_3336890334",
@@ -65346,6 +65462,10 @@
   {
     "id": "implicit.stat_342670903",
     "text": "#% d\u0027Augmentation de D\u00E9g\u00E2ts tous les 100 de Dext\u00E9rit\u00E9"
+  },
+  {
+    "id": "implicit.stat_34273389",
+    "text": "Gagnez une Charge du N\u00E9ant toutes les # secondes"
   },
   {
     "id": "implicit.stat_3433724931",
@@ -67622,6 +67742,10 @@
   {
     "id": "implicit.stat_683892962",
     "text": "#% d\u0027Augmentation de D\u00E9g\u00E2ts par Cr\u00E9ature, jusqu\u0027\u00E0 un maximum de 40%"
+  },
+  {
+    "id": "implicit.stat_68673913",
+    "text": "Ajoute # \u00E0 # D\u00E9g\u00E2ts de feu aux Attaques tous les 10 de Force"
   },
   {
     "id": "implicit.stat_689723685",
@@ -71737,32 +71861,32 @@
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#1",
-    "text": "Contient : Salle de r\u00E9union royale (Palier 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Salle ouverte"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#2",
-    "text": "Contient : Salle de r\u00E9union royale (Palier 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Salle obstru\u00E9e"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#1",
-    "text": "Contient : Salle des Seigneurs (Palier 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Salle ouverte"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#2",
-    "text": "Contient : Salle des Seigneurs (Palier 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Salle obstru\u00E9e"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#1",
-    "text": "Contient : Tr\u00F4ne d\u0027Atziri (Palier 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Salle ouverte"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#2",
-    "text": "Contient : Tr\u00F4ne d\u0027Atziri (Palier 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Salle obstru\u00E9e"
   },
   {

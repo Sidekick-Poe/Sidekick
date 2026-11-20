@@ -118,6 +118,12 @@ public abstract class ParserFixture : IAsyncLifetime
         return filters.Flatten();
     }
 
+    public async Task<List<TradeFilter>> GetStatFilters(Item item)
+    {
+        var filters = await StatParser.GetFilters(item);
+        return filters.Flatten();
+    }
+
     public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
         return AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
