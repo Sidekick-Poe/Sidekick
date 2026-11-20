@@ -148,4 +148,42 @@ reduced it to ruins and bones.
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Unarmed Melee Hits", 190, 550);
     }
 
+    [Fact]
+    public void DragonTalons()
+    {
+        var actual = parser.ParseItem(@"Item Class: Gloves
+Rarity: Rare
+Dragon Talons
+Vaal Gauntlets
+--------
+Armour: 234
+--------
+Requirements:
+Level: 68
+Str: 100 (unmet)
+--------
+Sockets: R-W-W 
+--------
+Item Level: 85
+--------
+{ Prefix Modifier ""Arcing"" (Tier: 1) — Damage, Elemental, Lightning, Attack }
+Adds 2(1-4) to 41(40-43) Lightning Damage to Attacks
+{ Suffix Modifier ""of the Elder"" (Tier: 2) — Attack, Gem }
+Socketed Gems are Supported by Level 18 Additional Accuracy Support — Unscalable Value
+15(11-15)% increased Global Accuracy Rating
+{ Suffix Modifier ""of the Maelstrom"" (Tier: 3) — Elemental, Lightning, Resistance }
++38(36-41)% to Lightning Resistance
+{ Suffix Modifier ""of the Elder"" (Tier: 1) — Attack, Caster, Speed }
+14(13-14)% increased Attack and Cast Speed
+--------
+Elder Item
+");
+
+        Assert.Equal(ItemClass.Gloves, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Vaal Gauntlets", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Socketed Gems are Supported by Level # Additional Accuracy Support", 18);
+    }
+
 }
