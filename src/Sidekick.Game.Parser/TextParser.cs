@@ -19,6 +19,7 @@ public class TextParser
     private Regex ParanthesesCategory { get; } = new(@"\s*\([a-z]+\)$");
     private Regex AdvancedDigitsFormat { get; } = new(@"([-\d,.]+)\([-+\d,.]+(?:\-[-+\d,.]+)?\)");
     private Regex AdvancedOptionFormat { get; } = new(@"([-a-zA-Z]+)\s?\([-a-zA-Z\s]+\-[-a-zA-Z\s]+\)");
+    private Regex TrimRegex { get; } = new(@"\(\.\.\.\)");
 
     private GameType Game { get; set; }
 
@@ -63,6 +64,7 @@ public class TextParser
 
         text = StandardizeLineBreaks(text);
         text = RemoveUnusableLine(text);
+        text = TrimRegex.Replace(text, "");
 
         var rawText = new OriginalText(text);
         AppendCategoryFromAdvancedLines(rawText);
