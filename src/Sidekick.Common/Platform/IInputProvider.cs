@@ -14,6 +14,12 @@ public interface IInputProvider : IInitializableService
     event Action<string> OnKeyDown;
 
     /// <summary>
+    /// Event triggered when a mouse button is pressed anywhere on the screen, with the position in screen pixels.
+    /// Raised on the hook thread. On Linux, only presses in X11 windows are seen.
+    /// </summary>
+    event Action<int, int> OnMouseDown;
+
+    /// <summary>
     /// Event triggered when the user scrolls down.
     /// </summary>
     event Action<ScrollEventArgs> OnScrollDown;
