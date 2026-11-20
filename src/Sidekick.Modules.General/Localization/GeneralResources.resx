@@ -130,7 +130,7 @@
     <value>Keep the game focused when the overlay opens</value>
   </data>
   <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>Close the overlay when it loses focus</value>
+    <value>Close the overlay when clicking outside it</value>
   </data>
   <data name="EscapeClosesOverlays" xml:space="preserve">
     <value>Close Overlay with Escape</value>
