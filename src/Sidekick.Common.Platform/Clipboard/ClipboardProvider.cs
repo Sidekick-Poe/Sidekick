@@ -9,6 +9,7 @@ public class ClipboardProvider
 (
     ISettingsService settingsService,
     IInputProvider input,
+    ISystemClipboard systemClipboard,
     ILogger<ClipboardProvider> logger
 ) : IClipboardProvider
 {
@@ -98,57 +99,8 @@ public class ClipboardProvider
     }
 
     /// <inheritdoc/>
-    public Task<string?> GetText()
-    {
-        var tcs = new TaskCompletionSource<string?>();
-        var staThread = new Thread(() =>
-        {
-            try
-            {
-                tcs.SetResult(TextCopy.ClipboardService.GetText());
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "[Clipboard] Failed to get the text value from the clipboard.");
-                tcs.SetException(ex);
-            }
-        });
-
-        if (OperatingSystem.IsWindows())
-        {
-            staThread.SetApartmentState(ApartmentState.STA);
-        }
-
-        staThread.Start();
-
-        return tcs.Task;
-    }
+    public Task<string?> GetText() => systemClipboard.GetText();
 
     /// <inheritdoc/>
-    public Task SetText(string? text)
-    {
-        var tcs = new TaskCompletionSource();
-        var staThread = new Thread(() =>
-        {
-            try
-            {
-                TextCopy.ClipboardService.SetText(text ?? string.Empty);
-                tcs.SetResult();
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "[Clipboard] Failed to set the text value to the clipboard.");
-                tcs.SetException(ex);
-            }
-        });
-
-        if (OperatingSystem.IsWindows())
-        {
-            staThread.SetApartmentState(ApartmentState.STA);
-        }
-
-        staThread.Start();
-
-        return tcs.Task;
-    }
+    public Task SetText(string? text) => systemClipboard.SetText(text);
 }

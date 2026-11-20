@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Microsoft.Extensions.Localization;
 using Sidekick.Avalonia.Localization;
+using Sidekick.Common.Platform;
 
 namespace Sidekick.Avalonia.Utilities;
 
@@ -17,12 +18,21 @@ public record LinuxInstallCommand(string Distribution, string Command);
 
 public static class LinuxDependencyChecker
 {
+    /// <summary>
+    /// Reads and writes the clipboard, through the TextCopy library. Sidekick copies an item by pressing Ctrl+C in the
+    /// game, then reads the item text from the clipboard. Required in every session: wl-clipboard, used instead on KDE
+    /// Wayland when installed, is optional, so a missing wl-clipboard never blocks Sidekick from starting.
+    /// </summary>
     private static readonly LinuxDependency Xsel = new(
         Description: resources => resources.Linux_Dependencies_Xsel,
         ArchPackage: "xsel",
         DebianPackage: "xsel",
         FedoraPackage: "xsel");
 
+    /// <summary>
+    /// Shows the content of every Sidekick window. The windows are web pages (Blazor), and on Linux Avalonia's web view
+    /// uses the system's WebKitGTK instead of shipping its own browser engine.
+    /// </summary>
     private static readonly LinuxDependency WebKitGtk = new(
         Description: resources => resources.Linux_Dependencies_WebKitGtk,
         ArchPackage: "webkit2gtk-4.1",
@@ -36,7 +46,7 @@ public static class LinuxDependencyChecker
             yield break;
         }
 
-        if (!IsCommandAvailable("xsel"))
+        if (!LinuxCommand.IsAvailable("xsel"))
         {
             yield return Xsel;
         }
@@ -86,27 +96,6 @@ public static class LinuxDependencyChecker
         }
 
         return ids;
-    }
-
-    private static bool IsCommandAvailable(string command)
-    {
-        var pathEnv = Environment.GetEnvironmentVariable("PATH");
-        if (string.IsNullOrEmpty(pathEnv))
-        {
-            return false;
-        }
-
-        var paths = pathEnv.Split(':');
-        foreach (var path in paths)
-        {
-            var fullPath = Path.Combine(path, command);
-            if (File.Exists(fullPath))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private static bool IsWebKitGtkAvailable()

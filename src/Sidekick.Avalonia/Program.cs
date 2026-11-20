@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Sidekick.Avalonia.Utilities;
+using Sidekick.Common.Platform;
 using Velopack;
 
 namespace Sidekick.Avalonia;
@@ -15,6 +16,8 @@ sealed class Program
             // WebKitGTK's DMA-BUF renderer leaves every window blank on some drivers (NVIDIA among them).
             // A value the user set themselves is kept.
             LinuxNativeMethods.setenv("WEBKIT_DISABLE_DMABUF_RENDERER", "1", 0);
+
+            WaylandSession.Initialize();
         }
 
         VelopackApp.Build().Run();
