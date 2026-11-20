@@ -443,7 +443,7 @@ And Ventor met his latest trophy.
 
         Assert.Equal(79, actual.Properties.ItemLevel);
 
-        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "#% reduced Mana Reservation Efficiency of Skills");
+        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Mana Reservation Efficiency of Skills", -7);
         Assert.NotNull(stat);
         var definition = stat.Definitions.First();
         Assert.True(definition.Negate);
