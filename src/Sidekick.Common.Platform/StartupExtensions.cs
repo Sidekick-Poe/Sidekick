@@ -21,6 +21,16 @@ public static class StartupExtensions
     public static IServiceCollection AddSidekickCommonPlatform(this IServiceCollection services)
     {
         services.TryAddTransient<IClipboardProvider, ClipboardProvider>();
+
+        if (WaylandSession.IsKde && WaylandClipboard.IsInstalled)
+        {
+            services.TryAddTransient<ISystemClipboard, WaylandClipboard>();
+        }
+        else
+        {
+            services.TryAddTransient<ISystemClipboard, TextCopyClipboard>();
+        }
+
         services.TryAddSingleton<IInterprocessService, InterprocessService>();
 
         if (OperatingSystem.IsWindows())
