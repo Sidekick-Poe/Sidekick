@@ -97,58 +97,6 @@ Note: ~price 1 chaos
     }
 
     [Fact]
-    public void ParseTheDarkMonarch()
-    {
-        var actual = parser.ParseItem(@"Item Class: Helmets
-Rarity: Unique
-The Dark Monarch
-Lich's Circlet
---------
-Energy Shield: 189 (augmented)
---------
-Requirements:
-Level: 84
-Int: 224 (unmet)
---------
-Sockets: W 
---------
-Item Level: 85
---------
-{ Unique Modifier — Defences, Energy Shield }
-+60(50-100) to maximum Energy Shield
-{ Unique Modifier — Minion, Gem }
-+1 to Level of all Minion Skill Gems
-{ Unique Modifier — Chaos, Resistance }
-+36(27-37)% to Chaos Resistance
-{ Unique Modifier }
-50% reduced Light Radius
-{ Unique Modifier }
-Maximum number of Raised Spiders (Animated Weapons-Holy Armaments) is Doubled
-Cannot have Minions other than Raised Spiders (Animated Weapons-Holy Armaments)
---------
-""Hate? You speak to me of hate? You have no idea what your persecution inflicts.
-How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
-- Saresh, last words, to Sekhema Orbala
-");
-
-        Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
-        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("The Dark Monarch", actual.TradeItem?.Name);
-        Assert.Equal("Lich's Circlet", actual.TradeItem?.Type);
-
-        Assert.False(actual.Properties.Unidentified);
-        Assert.Equal(85, actual.Properties.ItemLevel);
-        Assert.Equal(189, actual.Properties.EnergyShield);
-
-        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "Maximum number of Raised Spiders is Doubled\nCannot have Minions other than Raised Spiders");
-        Assert.NotNull(stat);
-        Assert.Single(stat.Definitions
-                          .Where(x => x.TradeIds != null)
-                          .SelectMany(x => x.TradeIds!));
-        Assert.False(stat.HasValues);
-    }
-
-    [Fact]
     public void VestigialSecutorHelm()
     {
         var actual = parser.ParseItem(@"Item Class: Helmets
@@ -201,5 +149,57 @@ Corrupted
         Assert.Equal(0, actual.Properties.EnergyShield);
 
         fixture.AssertHasStat(actual, StatCategory.Implicit, "Your Fire Damage can Shock but not Ignite");
+    }
+
+    [Fact]
+    public void TheDarkMonarch()
+    {
+        var actual = parser.ParseItem(@"Item Class: Helmets
+Rarity: Unique
+The Dark Monarch
+Lich's Circlet
+--------
+Energy Shield: 195 (augmented)
+--------
+Requirements:
+Level: 84
+Int: 224
+--------
+Sockets: B 
+--------
+Item Level: 85
+--------
+{ Unique Modifier — Defences, Energy Shield }
++77(50-100) to maximum Energy Shield
+{ Unique Modifier — Minion, Gem }
++1 to Level of all Minion Skill Gems
+{ Unique Modifier — Chaos, Resistance }
++34(27-37)% to Chaos Resistance
+{ Unique Modifier }
+50% reduced Light Radius
+{ Unique Modifier }
+Maximum number of Summoned Skeletons(...) is Doubled
+Cannot have Minions other than Summoned Skeletons(...) — Unscalable Value
+--------
+""Hate? You speak to me of hate? You have no idea what your persecution inflicts.
+How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
+- Saresh, last words, to Sekhema Orbala
+");
+
+        Assert.Equal(ItemClass.Helmet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("The Dark Monarch", actual.TradeItem?.Name);
+        Assert.Equal("Lich's Circlet", actual.TradeItem?.Type);
+
+        Assert.False(actual.Properties.Corrupted);
+        Assert.Equal(85, actual.Properties.ItemLevel);
+        Assert.Equal(195, actual.Properties.EnergyShield);
+
+        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "Maximum number of Summoned Skeletons is Doubled\nCannot have Minions other than Summoned Skeletons");
+        Assert.NotNull(stat);
+        Assert.Single(stat.Definitions
+                          .Where(x => x.TradeIds != null)
+                          .SelectMany(x => x.TradeIds!));
+        Assert.False(stat.HasValues);
     }
 }
