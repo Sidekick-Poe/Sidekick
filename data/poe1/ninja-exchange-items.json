@@ -1888,6 +1888,7 @@
     "tradeId": "glimmer-of-hope"
   },
   {
+    "active": true,
     "detailsId": "grave-knowledge",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2047,7 +2048,6 @@
     "tradeId": "justified-ambition"
   },
   {
-    "active": true,
     "detailsId": "keepers-corruption",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2199,7 +2199,6 @@
     "tradeId": "merciless-armament"
   },
   {
-    "active": true,
     "detailsId": "might-is-right",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2303,7 +2302,6 @@
     "tradeId": "pride-of-the-first-ones"
   },
   {
-    "active": true,
     "detailsId": "prometheus-armoury",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2526,6 +2524,7 @@
     "tradeId": "the-arena-champion"
   },
   {
+    "active": true,
     "detailsId": "the-army-of-blood",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2722,6 +2721,14 @@
     "url": "divination-cards",
     "name": "The Celestial Justicar",
     "tradeId": "the-celestial-justicar"
+  },
+  {
+    "active": true,
+    "detailsId": "the-celestial-stone",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The Celestial Stone",
+    "tradeId": "the-celestial-stone"
   },
   {
     "active": true,
@@ -3787,7 +3794,6 @@
     "tradeId": "the-ruthless-ceinture"
   },
   {
-    "active": true,
     "detailsId": "the-saints-treasure",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4067,7 +4073,6 @@
     "tradeId": "the-twilight-moon"
   },
   {
-    "active": true,
     "detailsId": "the-twins",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4153,6 +4158,14 @@
     "url": "divination-cards",
     "name": "The Warlord",
     "tradeId": "the-warlord"
+  },
+  {
+    "active": true,
+    "detailsId": "the-watcher",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The Watcher",
+    "tradeId": "the-watcher"
   },
   {
     "active": true,
@@ -4698,7 +4711,6 @@
     "tradeId": "muttering-essence-of-anger"
   },
   {
-    "active": true,
     "detailsId": "muttering-essence-of-contempt",
     "type": "Essence",
     "url": "essences",
@@ -5202,7 +5214,6 @@
     "tradeId": "wailing-essence-of-zeal"
   },
   {
-    "active": true,
     "detailsId": "weeping-essence-of-anger",
     "type": "Essence",
     "url": "essences",

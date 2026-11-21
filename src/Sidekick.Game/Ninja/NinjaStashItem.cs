@@ -19,6 +19,12 @@ public class NinjaStashItem
     [JsonIgnore]
     public bool Foulborn => Name?.StartsWith("Foulborn ", StringComparison.InvariantCultureIgnoreCase) ?? false;
 
+    [JsonIgnore]
+    public bool Blighted => Name?.StartsWith("Blighted ", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
+    [JsonIgnore]
+    public bool BlightRavaged => Name?.StartsWith("Blight-ravaged ", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
     public bool? Corrupted { get; set; }
 
     public int? GemLevel { get; set; }

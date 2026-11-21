@@ -69422,6 +69422,22 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "Machado com Gancho",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETO Machado com Gancho",
+        "name": "INCOMPLETO",
+        "type": "Machado com Gancho",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETO$"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -69434,22 +69450,6 @@
         "text": "INCOMPLETO Machadinha Cega",
         "name": "INCOMPLETO",
         "type": "Machadinha Cega",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETO$"
-  },
-  {
-    "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "Machado com Gancho",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETO Machado com Gancho",
-        "name": "INCOMPLETO",
-        "type": "Machado com Gancho",
         "cat": "weapon"
       }
     ],
@@ -69505,22 +69505,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
-    ],
-    "ninjaExchange": [],
-    "name": "Mangual Estilha\u00E7ado",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETO Mangual Estilha\u00E7ado",
-        "name": "INCOMPLETO",
-        "type": "Mangual Estilha\u00E7ado",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETO$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
     ],
     "ninjaExchange": [],
@@ -69530,6 +69514,22 @@
         "text": "INCOMPLETO Espada Grande de Ferro",
         "name": "INCOMPLETO",
         "type": "Espada Grande de Ferro",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETO$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
+    ],
+    "ninjaExchange": [],
+    "name": "Mangual Estilha\u00E7ado",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETO Mangual Estilha\u00E7ado",
+        "name": "INCOMPLETO",
+        "type": "Mangual Estilha\u00E7ado",
         "cat": "weapon"
       }
     ],

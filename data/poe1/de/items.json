@@ -30319,12 +30319,7 @@
     ],
     "ninjaExchange": [],
     "name": "Heiliges Emblem",
-    "tradeItems": [
-      {
-        "type": "Heiliges Emblem",
-        "cat": "viscera"
-      }
-    ],
+    "tradeItems": [],
     "typePattern": "(?\u003C!\\p{L})Heiliges\\ Emblem(?!\\p{L})"
   },
   {
@@ -42525,18 +42520,8 @@
       "Metadata/Items/Currency/CurrencyAddModToRareOriginator"
     ],
     "ninjaExchange": [],
-    "scout": [
-      15721
-    ],
-    "exchangeId": "originators-exalted-orb",
     "name": "Originator\u0027s Exalted Orb",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2VjcmV0c29mdGhlQXRsYXMvT3JpZ2luYXRvcnNFeGFsdGVkT3JiIiwic2NhbGUiOjF9XQ/49732248b0/OriginatorsExaltedOrb.png",
-    "tradeItems": [
-      {
-        "type": "Originator\u0027s Exalted Orb",
-        "cat": "currency"
-      }
-    ],
+    "tradeItems": [],
     "typePattern": "(?\u003C!\\p{L})Originator\u0027s\\ Exalted\\ Orb(?!\\p{L})"
   },
   {
@@ -43958,18 +43943,8 @@
       "Metadata/Items/Currency/CurrencyStackedExalt"
     ],
     "ninjaExchange": [],
-    "scout": [
-      15719
-    ],
-    "exchangeId": "primordial-exalted-orb",
     "name": "Primordial Exalted Orb",
-    "image": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU3Ryb25naG9sZHMvUHJpbW9yZGlhbEV4YWx0ZWRPcmIiLCJzY2FsZSI6MX1d/e885112ad7/PrimordialExaltedOrb.png",
-    "tradeItems": [
-      {
-        "type": "Primordial Exalted Orb",
-        "cat": "currency"
-      }
-    ],
+    "tradeItems": [],
     "typePattern": "(?\u003C!\\p{L})Primordial\\ Exalted\\ Orb(?!\\p{L})"
   },
   {
@@ -58109,12 +58084,7 @@
     ],
     "ninjaExchange": [],
     "name": "Ummantelter K\u00F6cher",
-    "tradeItems": [
-      {
-        "type": "Ummantelter K\u00F6cher",
-        "cat": "enshrouded"
-      }
-    ],
+    "tradeItems": [],
     "typePattern": "(?\u003C!\\p{L})Ummantelter\\ K\u00F6cher(?!\\p{L})"
   },
   {
@@ -83624,23 +83594,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Quivers/Quiver14"
-    ],
-    "ninjaExchange": [],
-    "name": "Verzierter K\u00F6cher",
-    "tradeItems": [
-      {
-        "text": "Das balancierte Prisma Verzierter K\u00F6cher (Legacy)",
-        "name": "Das balancierte Prisma",
-        "type": "Verzierter K\u00F6cher",
-        "cat": "armour",
-        "disc": "legacy"
-      }
-    ],
-    "namePattern": "^Das\\ balancierte\\ Prisma$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Armours/Boots/BootsStr9"
     ],
     "ninjaExchange": [],
@@ -87439,22 +87392,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Armours/Boots/BootsInt11"
-    ],
-    "ninjaExchange": [],
-    "name": "Hexenmeister-Stiefel",
-    "tradeItems": [
-      {
-        "text": "Doryanis Verblendung Hexenmeister-Stiefel",
-        "name": "Doryanis Verblendung",
-        "type": "Hexenmeister-Stiefel",
-        "cat": "armour"
-      }
-    ],
-    "namePattern": "^Doryanis\\ Verblendung$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Armours/Boots/BootsDex11"
     ],
     "ninjaExchange": [],
@@ -87464,6 +87401,22 @@
         "text": "Doryanis Verblendung Velourstiefel",
         "name": "Doryanis Verblendung",
         "type": "Velourstiefel",
+        "cat": "armour"
+      }
+    ],
+    "namePattern": "^Doryanis\\ Verblendung$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Armours/Boots/BootsInt11"
+    ],
+    "ninjaExchange": [],
+    "name": "Hexenmeister-Stiefel",
+    "tradeItems": [
+      {
+        "text": "Doryanis Verblendung Hexenmeister-Stiefel",
+        "name": "Doryanis Verblendung",
+        "type": "Hexenmeister-Stiefel",
         "cat": "armour"
       }
     ],
@@ -94090,23 +94043,6 @@
         "name": "Hyrris Entschluss",
         "type": "Haizahnpfeilk\u00F6cher",
         "cat": "armour"
-      }
-    ],
-    "namePattern": "^Hyrris\\ Entschluss$"
-  },
-  {
-    "baseItemIds": [
-      "Metadata/Items/Quivers/Quiver14"
-    ],
-    "ninjaExchange": [],
-    "name": "Verzierter K\u00F6cher",
-    "tradeItems": [
-      {
-        "text": "Hyrris Entschluss Verzierter K\u00F6cher (Legacy)",
-        "name": "Hyrris Entschluss",
-        "type": "Verzierter K\u00F6cher",
-        "cat": "armour",
-        "disc": "legacy"
       }
     ],
     "namePattern": "^Hyrris\\ Entschluss$"

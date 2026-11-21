@@ -68165,6 +68165,22 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "Hache \u00E0 crochet",
+    "tradeItems": [
+      {
+        "text": "INCOMPLET Hache \u00E0 crochet",
+        "name": "INCOMPLET",
+        "type": "Hache \u00E0 crochet",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLET$"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -68177,22 +68193,6 @@
         "text": "INCOMPLET Hachette \u00E9mouss\u00E9e",
         "name": "INCOMPLET",
         "type": "Hachette \u00E9mouss\u00E9e",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLET$"
-  },
-  {
-    "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "Hache \u00E0 crochet",
-    "tradeItems": [
-      {
-        "text": "INCOMPLET Hache \u00E0 crochet",
-        "name": "INCOMPLET",
-        "type": "Hache \u00E0 crochet",
         "cat": "weapon"
       }
     ],
@@ -68248,22 +68248,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
-    ],
-    "ninjaExchange": [],
-    "name": "Fl\u00E9au d\u0027armes esquilleux",
-    "tradeItems": [
-      {
-        "text": "INCOMPLET Fl\u00E9au d\u0027armes esquilleux",
-        "name": "INCOMPLET",
-        "type": "Fl\u00E9au d\u0027armes esquilleux",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLET$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
     ],
     "ninjaExchange": [],
@@ -68273,6 +68257,22 @@
         "text": "INCOMPLET Espadon en fer",
         "name": "INCOMPLET",
         "type": "Espadon en fer",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLET$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
+    ],
+    "ninjaExchange": [],
+    "name": "Fl\u00E9au d\u0027armes esquilleux",
+    "tradeItems": [
+      {
+        "text": "INCOMPLET Fl\u00E9au d\u0027armes esquilleux",
+        "name": "INCOMPLET",
+        "type": "Fl\u00E9au d\u0027armes esquilleux",
         "cat": "weapon"
       }
     ],

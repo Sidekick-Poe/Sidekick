@@ -70750,6 +70750,22 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "\uAC08\uACE0\uB9AC \uB3C4\uB07C",
+    "tradeItems": [
+      {
+        "text": "\uBBF8\uC644\uC131 \uAC08\uACE0\uB9AC \uB3C4\uB07C",
+        "name": "\uBBF8\uC644\uC131",
+        "type": "\uAC08\uACE0\uB9AC \uB3C4\uB07C",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^\uBBF8\uC644\uC131$"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -70762,22 +70778,6 @@
         "text": "\uBBF8\uC644\uC131 \uBB34\uB518 \uC190\uB3C4\uB07C",
         "name": "\uBBF8\uC644\uC131",
         "type": "\uBB34\uB518 \uC190\uB3C4\uB07C",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^\uBBF8\uC644\uC131$"
-  },
-  {
-    "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "\uAC08\uACE0\uB9AC \uB3C4\uB07C",
-    "tradeItems": [
-      {
-        "text": "\uBBF8\uC644\uC131 \uAC08\uACE0\uB9AC \uB3C4\uB07C",
-        "name": "\uBBF8\uC644\uC131",
-        "type": "\uAC08\uACE0\uB9AC \uB3C4\uB07C",
         "cat": "weapon"
       }
     ],
@@ -70833,22 +70833,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
-    ],
-    "ninjaExchange": [],
-    "name": "\uCABC\uAC1C\uC9C4 \uB3C4\uB9AC\uAE68",
-    "tradeItems": [
-      {
-        "text": "\uBBF8\uC644\uC131 \uCABC\uAC1C\uC9C4 \uB3C4\uB9AC\uAE68",
-        "name": "\uBBF8\uC644\uC131",
-        "type": "\uCABC\uAC1C\uC9C4 \uB3C4\uB9AC\uAE68",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^\uBBF8\uC644\uC131$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
     ],
     "ninjaExchange": [],
@@ -70858,6 +70842,22 @@
         "text": "\uBBF8\uC644\uC131 \uCCA0 \uB300\uAC80",
         "name": "\uBBF8\uC644\uC131",
         "type": "\uCCA0 \uB300\uAC80",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^\uBBF8\uC644\uC131$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
+    ],
+    "ninjaExchange": [],
+    "name": "\uCABC\uAC1C\uC9C4 \uB3C4\uB9AC\uAE68",
+    "tradeItems": [
+      {
+        "text": "\uBBF8\uC644\uC131 \uCABC\uAC1C\uC9C4 \uB3C4\uB9AC\uAE68",
+        "name": "\uBBF8\uC644\uC131",
+        "type": "\uCABC\uAC1C\uC9C4 \uB3C4\uB9AC\uAE68",
         "cat": "weapon"
       }
     ],

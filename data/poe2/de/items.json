@@ -70187,6 +70187,22 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "Hakenaxt",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Hakenaxt",
+        "name": "INCOMPLETE",
+        "type": "Hakenaxt",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -70199,22 +70215,6 @@
         "text": "INCOMPLETE Stumpfes Kriegsbeil",
         "name": "INCOMPLETE",
         "type": "Stumpfes Kriegsbeil",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "Hakenaxt",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Hakenaxt",
-        "name": "INCOMPLETE",
-        "type": "Hakenaxt",
         "cat": "weapon"
       }
     ],
@@ -70270,22 +70270,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
-    ],
-    "ninjaExchange": [],
-    "name": "Splitterflegel",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Splitterflegel",
-        "name": "INCOMPLETE",
-        "type": "Splitterflegel",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
     ],
     "ninjaExchange": [],
@@ -70295,6 +70279,22 @@
         "text": "INCOMPLETE Eisernes Gro\u00DFschwert",
         "name": "INCOMPLETE",
         "type": "Eisernes Gro\u00DFschwert",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
+    ],
+    "ninjaExchange": [],
+    "name": "Splitterflegel",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Splitterflegel",
+        "name": "INCOMPLETE",
+        "type": "Splitterflegel",
         "cat": "weapon"
       }
     ],

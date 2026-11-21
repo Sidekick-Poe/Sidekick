@@ -7427,7 +7427,9 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/SoulCoreSpecial13"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "cholotls-soul-core-of-war"
+    ],
     "scout": [
       4115
     ],
@@ -10856,7 +10858,9 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneFire"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "desert-rune"
+    ],
     "scout": [
       322
     ],
@@ -13369,7 +13373,9 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceFire"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "essence-of-flames"
+    ],
     "scout": [
       361
     ],
@@ -13649,7 +13655,9 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyEssenceLife"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "essence-of-the-body"
+    ],
     "scout": [
       357
     ],
@@ -18528,7 +18536,9 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyGreaterEssenceAttack"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "greater-essence-of-battle"
+    ],
     "scout": [
       377
     ],
@@ -23589,7 +23599,9 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneSpecial22"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "lady-hestras-rune-of-winter"
+    ],
     "scout": [
       4069
     ],
@@ -25285,7 +25297,9 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceDefences"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "lesser-essence-of-enhancement"
+    ],
     "scout": [
       4405
     ],
@@ -25344,7 +25358,9 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceSpeed"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "lesser-essence-of-haste"
+    ],
     "scout": [
       4429
     ],
@@ -25458,7 +25474,9 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyLesserEssenceCaster"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "lesser-essence-of-sorcery"
+    ],
     "scout": [
       4427
     ],
@@ -25798,7 +25816,9 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneAccuracyLesser"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "lesser-vision-rune"
+    ],
     "scout": [
       321
     ],
@@ -31488,7 +31508,9 @@
     "baseItemIds": [
       "Metadata/Items/Currency/CurrencyPerfectEssenceAlly"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "perfect-essence-of-command"
+    ],
     "scout": [
       4493
     ],
@@ -36048,7 +36070,9 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneIntelligence"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "resolve-rune"
+    ],
     "scout": [
       4027
     ],
@@ -36601,7 +36625,9 @@
     "baseItemIds": [
       "Metadata/Items/MapFragments/VaultKeyRitual"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "ritualistic-reliquary-key"
+    ],
     "scout": [
       473
     ],
@@ -36694,7 +36720,9 @@
     "baseItemIds": [
       "Metadata/Items/SoulCores/RuneStrength"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "robust-rune"
+    ],
     "scout": [
       4023
     ],
@@ -58003,7 +58031,9 @@
     "baseItemIds": [
       "Metadata/Items/Gem/SupportGemVarashtasBlessing"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "varashtas-blessing"
+    ],
     "scout": [
       4667
     ],
@@ -61331,7 +61361,9 @@
     "baseItemIds": [
       "Metadata/Items/MapFragments/VaultKeySanctumRelic2"
     ],
-    "ninjaExchange": [],
+    "ninjaExchange": [
+      "zarokhs-reliquary-key:-against-the-darkness"
+    ],
     "scout": [
       477
     ],
@@ -69397,6 +69429,22 @@
   },
   {
     "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "Hook Axe",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Hook Axe",
+        "name": "INCOMPLETE",
+        "type": "Hook Axe",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -69409,22 +69457,6 @@
         "text": "INCOMPLETE Dull Hatchet",
         "name": "INCOMPLETE",
         "type": "Dull Hatchet",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "Hook Axe",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Hook Axe",
-        "name": "INCOMPLETE",
-        "type": "Hook Axe",
         "cat": "weapon"
       }
     ],
@@ -69480,22 +69512,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
-    ],
-    "ninjaExchange": [],
-    "name": "Splintered Flail",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Splintered Flail",
-        "name": "INCOMPLETE",
-        "type": "Splintered Flail",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
     ],
     "ninjaExchange": [],
@@ -69505,6 +69521,22 @@
         "text": "INCOMPLETE Iron Greatsword",
         "name": "INCOMPLETE",
         "type": "Iron Greatsword",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
+    ],
+    "ninjaExchange": [],
+    "name": "Splintered Flail",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Splintered Flail",
+        "name": "INCOMPLETE",
+        "type": "Splintered Flail",
         "cat": "weapon"
       }
     ],

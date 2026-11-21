@@ -1,8 +1,8 @@
+using System.Text.RegularExpressions;
 using Sidekick.Game.Enums;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Filters.Types;
 using Sidekick.Game.Parser.Items;
-using Sidekick.Game.Parser.Stats;
 using Sidekick.Game.Parser.Trade.Requests;
 using Sidekick.Game.Parser.Trade.Requests.Filters;
 using Sidekick.Game.Providers;
@@ -10,13 +10,15 @@ namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class FoulbornProperty(
     GameType game,
-    TradeFilterProvider tradeFilterProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    public override string Label => tradeFilterProvider.Foulborn?.Text ?? "Foulborn";
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemFoulborn.ToRegexStringProperty();
 
-    public override void ParseAfterStats(Item item)
+    public override string Label => gameTextProvider.Texts.ItemFoulborn.CleanWildcard();
+
+    public override void Parse(Item item)
     {
-        item.Properties.Foulborn = item.Stats.Any(x => x.Category == StatCategory.Mutated);
+        item.Properties.Foulborn = GetBool(Pattern, item.Text.Blocks[0]);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)

@@ -53,6 +53,8 @@ public class NinjaStashProvider(
             return FilterMapItems(item.InvariantDefinition.NinjaStashItems,
                                   item.InvariantDefinition.Name,
                                   item.Properties.MapTier,
+                                  item.Properties.Blighted,
+                                  item.Properties.BlightRavaged,
                                   item.Stats);
         }
 
@@ -136,6 +138,8 @@ public class NinjaStashProvider(
             return FilterMapItems(item.NinjaStashItems,
                                   item.Name,
                                   apiItem.MapTier,
+                                  false,
+                                  false,
                                   stats);
         }
 
@@ -174,12 +178,14 @@ public class NinjaStashProvider(
         return itemClassId == "Map" || itemClassId == "MapKey" || itemClassId == "InstanceLocalItem";
     }
 
-    private List<NinjaStashItem> FilterMapItems(List<NinjaStashItem>? items, string? type, int? mapTier, List<Stat>? stats)
+    private List<NinjaStashItem> FilterMapItems(List<NinjaStashItem>? items, string? type, int? mapTier, bool blighted, bool blightRavaged, List<Stat>? stats)
     {
         if (items == null) return [];
         if (string.IsNullOrEmpty(type)) return [];
 
         var query = ValidateNinjaStats(items.AsEnumerable(), stats, StatCategory.Implicit);
+
+        query = query.Where(x => x.Blighted == blighted && x.BlightRavaged == blightRavaged);
 
         if (mapTier.HasValue)
         {
