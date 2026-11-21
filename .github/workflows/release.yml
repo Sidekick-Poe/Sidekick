@@ -3,6 +3,10 @@ name: Release
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -77,16 +81,17 @@ jobs:
 
       - name: Velopack (Windows)
         shell: pwsh
+        env:
+          RELEASE_BODY: ${{ needs.setup.outputs.release_body }}
         run: |
           $version = "${{ needs.setup.outputs.version }}"
           Write-Output "Version: $version"
 
-          $body = "${{ needs.setup.outputs.release_body }}"
-          Write-Output "Body: $body"
+          Write-Output "Body: $env:RELEASE_BODY"
 
           # Output the body to a .md file
           $releaseNotesPath = "release-notes.md"
-          Set-Content -Path $releaseNotesPath -Value $body
+          Set-Content -Path $releaseNotesPath -Value $env:RELEASE_BODY
           Write-Output "Release notes saved to $releaseNotesPath"
 
           dotnet tool install -g vpk
@@ -153,16 +158,17 @@ jobs:
 
       - name: Velopack (Linux)
         shell: bash
+        env:
+          RELEASE_BODY: ${{ needs.setup.outputs.release_body }}
         run: |
           version="${{ needs.setup.outputs.version }}"
           echo "Version: $version"
 
-          body="${{ needs.setup.outputs.release_body }}"
-          echo "Body: $body"
+          echo "Body: $RELEASE_BODY"
 
           # Output the body to a .md file
           releaseNotesPath="release-notes.md"
-          echo "$body" > "$releaseNotesPath"
+          printf '%s\n' "$RELEASE_BODY" > "$releaseNotesPath"
           echo "Release notes saved to $releaseNotesPath"
 
           dotnet tool install -g vpk
