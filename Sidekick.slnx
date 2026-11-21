@@ -88,7 +88,6 @@
     <Project Path="src/Sidekick.Modules.Wealth/Sidekick.Modules.Wealth.csproj" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="tests/Sidekick.Apis.Poe.Tests/Sidekick.Apis.Poe.Tests.csproj" />
     <Project Path="tests/Sidekick.Common.Tests/Sidekick.Common.Tests.csproj">
       <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
       <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
