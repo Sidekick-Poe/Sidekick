@@ -13,7 +13,7 @@ public class MouseWheelHandler
 {
     private readonly IInputProvider inputProvider = inputProvider;
 
-    protected override bool IsEnabled() => settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
+    public override bool IsEnabled() => settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
 
     protected override bool IsValid() => processProvider.IsPathOfExileInFocus;
 

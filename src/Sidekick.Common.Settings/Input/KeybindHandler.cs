@@ -26,14 +26,8 @@ public abstract class KeybindHandler : IInputHandler, IDisposable
         _ = Task.Run(async () =>
         {
             Keybinds = await GetKeybinds();
-            KeybindsChanged?.Invoke();
         });
     }
-
-    /// <summary>
-    /// Raised after <see cref="Keybinds"/> is loaded or changed.
-    /// </summary>
-    public event Action? KeybindsChanged;
 
     /// <summary>
     /// Gets the keybinds that this handler handles.
@@ -47,7 +41,6 @@ public abstract class KeybindHandler : IInputHandler, IDisposable
     public async Task Initialize()
     {
         Keybinds = await GetKeybinds();
-        KeybindsChanged?.Invoke();
     }
 
     /// <summary>

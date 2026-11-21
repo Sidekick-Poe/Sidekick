@@ -2,6 +2,7 @@ using System.Runtime.Versioning;
 using System.Text.Json;
 using Sidekick.Avalonia.Controls;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Linux;
 using Sidekick.Common.Platform.Linux.X11;
 using Sidekick.Common.Settings;
 
@@ -58,7 +59,7 @@ public partial class OverlayWindow : BaseWindow
 
     /// <summary>
     /// The overlay opens without focus, and KDE keeps a focused fullscreen game above it unless the overlay is one of
-    /// the game's dialogs.
+    /// the game's dialogs. While the game doesn't have focus, the mark is removed.
     /// </summary>
     [SupportedOSPlatform(PlatformNames.Linux)]
     private void StackAboveGame()
@@ -69,7 +70,8 @@ public partial class OverlayWindow : BaseWindow
             return;
         }
 
-        ServiceProvider.GetService<X11Session>()?.SetTransientForGame(handle.Handle);
+        var gameWindow = ServiceProvider.GetRequiredService<ProcessProvider>().GameWindow;
+        ServiceProvider.GetRequiredService<X11Connection>().SetTransientFor(handle.Handle, gameWindow);
     }
 
     protected override void OnClosed(EventArgs e)
