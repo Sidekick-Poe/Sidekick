@@ -24,7 +24,10 @@ public class GameText
     public string ModDescriptionLevel { get; set; } = string.Empty;
     public string ModDescriptionTierLevel { get; set; } = string.Empty;
     public string ModDescriptionRankLevel { get; set; } = string.Empty;
+    public string ModDescriptionRareOnly { get; set; } = string.Empty;
     public string ModDescriptionUnscalableValue { get; set; } = string.Empty;
+    public string ModDescriptionIncursionOpenedRooms { get; set; } = string.Empty;
+    public string ModDescriptionIncursionClosedRooms { get; set; } = string.Empty;
 
     #endregion
 
