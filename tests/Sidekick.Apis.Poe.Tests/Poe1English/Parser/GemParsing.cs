@@ -260,4 +260,54 @@ Imbued
 
         fixture.AssertHasStat(actual, StatCategory.Imbued, "Supported by Level 1 Knockback");
     }
+
+    [Fact]
+    public void ImbuedBloodlust()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
+Rarity: Gem
+Static Strike
+--------
+Attack, Melee, Strike, AoE, Duration, Lightning, Chaining
+Level: 20 (Max)
+Cost: 10 Mana
+Attack Damage: 346% of base
+Effectiveness of Added Damage: 346%
+Quality: +20% (augmented)
+--------
+Requirements:
+Level: 70
+Str: 98
+Int: 68
+--------
+Attack with a melee weapon, gaining static energy for a duration if you hit an enemy. While you have static energy, you'll frequently hit a number of nearby enemies with beams, dealing attack damage.
+--------
+Beams Hit Enemies every 0.32 seconds
+50% of Physical Damage Converted to Lightning Damage
+Base duration is 4.00 seconds
+Chains +1 Times
+Beams deal 30% less Damage
+6 maximum Beam Targets
+
+Additional Effects From Quality:
+20(0-20)% increased Beam frequency
+--------
+Supported by Level 1 ​Bloodlust
+--------
+Place into an item socket to gain this skill. Right click to remove from a socket.
+--------
+Corrupted
+--------
+Imbued
+");
+
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Text);
+        Assert.Equal("Static Strike", actual.TradeItem?.Type);
+
+        Assert.True(actual.Properties.Imbued);
+
+        fixture.AssertHasStat(actual, StatCategory.Imbued, "Supported by Level 1 Bloodlust");
+    }
 }
