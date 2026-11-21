@@ -27476,7 +27476,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2436559047",
-      "explicit.stat_2436559047"
+      "explicit.stat_2436559047",
+      "fractured.stat_2436559047"
     ],
     "pattern": "^\u0E14\u0E48\u0E32\u0E19\u0E21\u0E35\\ \u0E21\u0E34\u0E23\u0E32\u0E08$"
   },
@@ -116784,6 +116785,7 @@
   },
   {
     "text": "\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E25\u0E14\u0E25\u0E07 #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -116797,7 +116799,6 @@
   },
   {
     "text": "\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E25\u0E14\u0E25\u0E07 #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -116811,7 +116812,6 @@
   },
   {
     "text": "\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -116825,6 +116825,7 @@
   },
   {
     "text": "\u0E2A\u0E32\u0E22\u0E1F\u0E49\u0E32\u0E1E\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -132280,7 +132281,6 @@
   },
   {
     "text": "\u0E40\u0E01\u0E25\u0E35\u0E22\u0E14\u0E0A\u0E31\u0E07  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E25\u0E14\u0E25\u0E07 #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -132294,6 +132294,7 @@
   },
   {
     "text": "\u0E40\u0E01\u0E25\u0E35\u0E22\u0E14\u0E0A\u0E31\u0E07  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E25\u0E14\u0E25\u0E07 #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -132307,6 +132308,7 @@
   },
   {
     "text": "\u0E40\u0E01\u0E25\u0E35\u0E22\u0E14\u0E0A\u0E31\u0E07  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #%",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -132320,7 +132322,6 @@
   },
   {
     "text": "\u0E40\u0E01\u0E25\u0E35\u0E22\u0E14\u0E0A\u0E31\u0E07  \u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E2A\u0E33\u0E23\u0E2D\u0E07\u0E21\u0E32\u0E19\u0E32 \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E02\u0E36\u0E49\u0E19 #%",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",

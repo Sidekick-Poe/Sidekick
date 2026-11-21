@@ -426,7 +426,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
-        Assert.Null(actual.TradeItem?.Type);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Blighted);
         Assert.False(actual.Properties.BlightRavaged);
         Assert.Equal(13, actual.Properties.MapTier);
@@ -458,7 +458,7 @@ Note: ~b/o 1 chaos
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
-        Assert.Null(actual.TradeItem?.Type);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Blighted);
         Assert.False(actual.Properties.BlightRavaged);
         Assert.Equal(3, actual.Properties.MapTier);
@@ -492,7 +492,7 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
         Assert.Equal(ItemClass.Map, actual.ItemClass.Type);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
-        Assert.Null(actual.TradeItem?.Type);
+        Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.False(actual.Properties.Blighted);
         Assert.True(actual.Properties.BlightRavaged);
         Assert.Equal(16, actual.Properties.MapTier);
@@ -535,7 +535,7 @@ Note: ~price 1.29 exalted
         Assert.Equal("Chronicle of Atzoatl", actual.TradeItem?.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
 
-        fixture.AssertHasPseudoStat(actual, "Has Room: Locus of Corruption");
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
     }
 
     [Fact]

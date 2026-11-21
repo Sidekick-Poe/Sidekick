@@ -16,7 +16,7 @@ public static class AssertExtensions
     public static void AssertHasNinjaExchange(this Item item, string expectedId)
     {
         Assert.NotNull(item.InvariantDefinition?.NinjaExchangeItems);
-        Assert.Contains(item.InvariantDefinition.NinjaExchangeItems, x => x.Id == expectedId);
+        Assert.Contains(item.InvariantDefinition.NinjaExchangeItems, x => x.TradeId == expectedId);
     }
 
     public static void AssertHasNinjaStash(this Item item, string expectedId)

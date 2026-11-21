@@ -1,19 +1,43 @@
-﻿namespace Sidekick.Game.Ninja;
+﻿using System.Text.Json.Serialization;
+
+namespace Sidekick.Game.Ninja;
 
 public class NinjaStashItem
 {
-    public required string Type { get; init; }
-    public required string Url { get; init; }
+    public bool Active { get; set; }
+
     public required string DetailsId { get; init; }
 
-    public bool Corrupted { get; init; }
-    public bool Foulborn { get; init; }
-    public int? GemLevel { get; init; }
-    public int? GemQuality { get; init; }
-    public int? Links { get; init; }
-    public int? ItemLevel { get; init; }
-    public int? MapTier { get; init; }
-    public string? Variant { get; init; }
+    public required string Type { get; init; }
+
+    public string? Url { get; set; }
+
+    public string? Name { get; set; }
+
+    public string? BaseType { get; set; }
+
+    [JsonIgnore]
+    public bool Foulborn => Name?.StartsWith("Foulborn ", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
+    [JsonIgnore]
+    public bool Blighted => Name?.StartsWith("Blighted ", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
+    [JsonIgnore]
+    public bool BlightRavaged => Name?.StartsWith("Blight-ravaged ", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
+    public bool? Corrupted { get; set; }
+
+    public int? GemLevel { get; set; }
+
+    public int? GemQuality { get; set; }
+
+    public int? Links { get; set; }
+
+    public int? ItemLevel { get; set; }
+
+    public int? MapTier { get; set; }
+
+    public string? Variant { get; set; }
 
     public List<NinjaStashItemStat>? Stats { get; set; }
 

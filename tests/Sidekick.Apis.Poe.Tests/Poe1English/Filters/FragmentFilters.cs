@@ -52,8 +52,6 @@ Note: ~price 1.29 exalted
         Assert.IsType<StatFilter>(filters[++index]);
         Assert.IsType<StatFilter>(filters[++index]);
         Assert.IsType<StatFilter>(filters[++index]);
-        Assert.IsType<StatFilter>(filters[++index]);
-        Assert.IsType<StatFilter>(filters[++index]);
 
         Assert.Contains(filters, x => x.Text == "Locus of Corruption (Tier 3)");
         Assert.DoesNotContain(filters, x => x.Text == "Apex of Atzoatl");

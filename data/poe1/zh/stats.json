@@ -13187,7 +13187,9 @@
   {
     "text": "\u4F60\u53D7\u5230\u8B6B\u5984\u8FF7\u9727\u5F71\u97FF",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1248307887"
+    ],
     "pattern": "^\u4F60\u53D7\u5230\u8B6B\u5984\u8FF7\u9727\u5F71\u97FF$"
   },
   {
@@ -73741,7 +73743,6 @@
   },
   {
     "text": "\u618E\u6068\u589E\u52A0 #% \u9B54\u529B\u4FDD\u7559\u6548\u7528",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -73754,6 +73755,7 @@
   },
   {
     "text": "\u618E\u6068\u589E\u52A0 #% \u9B54\u529B\u4FDD\u7559\u6548\u7528",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -73804,6 +73806,7 @@
   },
   {
     "text": "\u618E\u6068\u6E1B\u5C11 #% \u9B54\u529B\u4FDD\u7559\u6548\u7528",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -73816,7 +73819,6 @@
   },
   {
     "text": "\u618E\u6068\u6E1B\u5C11 #% \u9B54\u529B\u4FDD\u7559\u6548\u7528",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -95948,7 +95950,8 @@
     "text": "#% \u6A5F\u7387\u907F\u514D\u81F4\u76F2",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_2961618300"
+      "explicit.stat_2961618300",
+      "fractured.stat_2961618300"
     ],
     "pattern": "^([-0-9,.]\u002B)%\\ \u6A5F\u7387\u907F\u514D\u81F4\u76F2$"
   },
@@ -138088,7 +138091,8 @@
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1019891080"
+      "explicit.stat_1019891080",
+      "implicit.stat_1019891080"
     ],
     "pattern": "^\u7BAD\u77E2\u5C0D\u7A7F\u900F\u7684\u76EE\u6A19\u589E\u52A0\\ 50%\\ \u64CA\u4E2D\u548C\u7570\u5E38\u72C0\u614B\u50B7\u5BB3$"
   },
@@ -138096,7 +138100,8 @@
     "text": "\u7BAD\u77E2\u5C0D\u7A7F\u900F\u7684\u76EE\u6A19\u589E\u52A0 #% \u64CA\u4E2D\u548C\u7570\u5E38\u72C0\u614B\u50B7\u5BB3",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1019891080"
+      "explicit.stat_1019891080",
+      "implicit.stat_1019891080"
     ],
     "pattern": "^\u7BAD\u77E2\u5C0D\u7A7F\u900F\u7684\u76EE\u6A19\u589E\u52A0\\ ([-0-9,.]\u002B)%\\ \u64CA\u4E2D\u548C\u7570\u5E38\u72C0\u614B\u50B7\u5BB3$"
   },
@@ -138105,7 +138110,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1019891080"
+      "explicit.stat_1019891080",
+      "implicit.stat_1019891080"
     ],
     "pattern": "^\u7BAD\u77E2\u5C0D\u7A7F\u900F\u7684\u76EE\u6A19\u6E1B\u5C11\\ ([-0-9,.]\u002B)%\\ \u64CA\u4E2D\u548C\u7570\u5E38\u72C0\u614B\u50B7\u5BB3$"
   },
@@ -141091,7 +141097,9 @@
   {
     "text": "\u82E5\u4F60\u7684\u526F\u624B\u7269\u54C1\u70BA\u9B54\u6CD5\uFF0C\u5247\u64CA\u4E2D\u50B7\u5BB3\u5F88\u5E78\u904B",
     "lines": 1,
-    "tradeIds": [],
+    "tradeIds": [
+      "explicit.stat_1609344921"
+    ],
     "pattern": "^\u82E5\u4F60\u7684\u526F\u624B\u7269\u54C1\u70BA\u9B54\u6CD5\uFF0C\u5247\u64CA\u4E2D\u50B7\u5BB3\u5F88\u5E78\u904B$"
   },
   {
@@ -160755,7 +160763,8 @@
     "text": "\u8FD1\u6230\u6280\u80FD\u589E\u52A0 #% \u7A7A\u624B\u653B\u64CA\u901F\u5EA6",
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1584440377"
+      "explicit.stat_1584440377",
+      "fractured.stat_1584440377"
     ],
     "pattern": "^\u8FD1\u6230\u6280\u80FD\u589E\u52A0\\ ([-0-9,.]\u002B)%\\ \u7A7A\u624B\u653B\u64CA\u901F\u5EA6$"
   },
@@ -160775,7 +160784,8 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "explicit.stat_1584440377"
+      "explicit.stat_1584440377",
+      "fractured.stat_1584440377"
     ],
     "pattern": "^\u8FD1\u6230\u6280\u80FD\u6E1B\u5C11\\ ([-0-9,.]\u002B)%\\ \u7A7A\u624B\u653B\u64CA\u901F\u5EA6$"
   },

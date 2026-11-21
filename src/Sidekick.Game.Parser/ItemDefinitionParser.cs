@@ -1,5 +1,7 @@
+using System.Text.RegularExpressions;
 using FuzzySharp;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Initialization;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Parser.Items;
@@ -11,9 +13,31 @@ public class ItemDefinitionParser(
     ICurrentGameLanguage currentGameLanguage,
     ItemClassProvider itemClassProvider,
     BaseItemProvider baseItemProvider,
-    ItemDefinitionProvider itemDefinitionProvider
-)
+    ItemDefinitionProvider itemDefinitionProvider,
+    GameTextProvider gameTextProvider
+) : IInitializableService
 {
+    private List<Regex> TrimNameRegexes { get; set; } = [];
+    private List<Regex> TrimTypeRegexes { get; set; } = [];
+
+    public Task Initialize()
+    {
+        TrimNameRegexes = [];
+        TryAddTrimRegex(TrimNameRegexes, gameTextProvider.Texts.ItemFoulborn);
+        TryAddTrimRegex(TrimTypeRegexes, gameTextProvider.Texts.ItemBlighted);
+        TryAddTrimRegex(TrimTypeRegexes, gameTextProvider.Texts.ItemBlightRavaged);
+
+        return Task.CompletedTask;
+
+        void TryAddTrimRegex(List<Regex> regexes, string? gameText)
+        {
+            if (string.IsNullOrEmpty(gameText)) return;
+
+            var replaceRegex = gameText.Replace("#", @"(.*)");
+            regexes.Add(new Regex(replaceRegex));
+        }
+    }
+
     public void Parse(Item item)
     {
         item.Type = item.Text.Blocks[0].Lines[^1].Text;
@@ -77,6 +101,22 @@ public class ItemDefinitionParser(
     private ItemDefinition? GetDefinition(List<ItemDefinition> definitions, Rarity rarity, string? itemClassId, string? type, string? name)
     {
         List<ItemDefinition> results = [];
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            foreach (var trimNameRegex in TrimNameRegexes)
+            {
+                name = trimNameRegex.Replace(name, "$1");
+            }
+        }
+
+        if (!string.IsNullOrEmpty(type))
+        {
+            foreach (var trimTypeRegex in TrimTypeRegexes)
+            {
+                type = trimTypeRegex.Replace(type, "$1");
+            }
+        }
 
         if (rarity == Rarity.Unique && !string.IsNullOrEmpty(name))
         {

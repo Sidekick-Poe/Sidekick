@@ -55156,7 +55156,8 @@
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2436559047",
-      "explicit.stat_2436559047"
+      "explicit.stat_2436559047",
+      "fractured.stat_2436559047"
     ],
     "pattern": "^La\\ Zone\\ contient\\ un\\ Mirage$"
   },
@@ -107856,6 +107857,7 @@
   },
   {
     "text": "Puret\u00E9 de la foudre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -107869,7 +107871,6 @@
   },
   {
     "text": "Puret\u00E9 de la foudre a #% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -107894,7 +107895,6 @@
   },
   {
     "text": "Puret\u00E9 de la foudre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -107908,6 +107908,7 @@
   },
   {
     "text": "Puret\u00E9 de la foudre a #% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -143937,6 +143938,7 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1269219558",
@@ -143952,7 +143954,6 @@
   },
   {
     "text": "#% d\u0027Augmentation de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1269219558",
@@ -162961,7 +162962,6 @@
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1269219558",
@@ -162977,6 +162977,7 @@
   },
   {
     "text": "#% de R\u00E9duction de l\u0027Efficacit\u00E9 de la R\u00E9servation de Mana des Aptitudes",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1269219558",

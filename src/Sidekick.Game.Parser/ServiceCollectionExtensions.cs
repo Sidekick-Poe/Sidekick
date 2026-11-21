@@ -21,10 +21,10 @@ public static class ServiceCollectionExtensions
 
         services.TryAddSingleton<LeagueProvider>();
         services.TryAddSingleton<ItemClassParser>();
-        services.TryAddSingleton<ItemDefinitionParser>();
         services.TryAddSingleton<TradeFilterParser>();
 
         services.AddSidekickInitializableService<ItemParser>();
+        services.AddSidekickInitializableService<ItemDefinitionParser>();
         services.AddSidekickInitializableService<PropertyParser>();
         services.AddSidekickInitializableService<StatParser, StatParser>();
         services.AddSidekickInitializableService<PseudoParser, PseudoParser>();

@@ -128,7 +128,7 @@ public class PropertyParser
                                    new DesecratedProperty(game, tradeFilterProvider),
                                    new SanctifiedProperty(game, tradeFilterProvider),
                                    new MirroredProperty(game, gameTextProvider),
-                                   new FoulbornProperty(game, tradeFilterProvider),
+                                   new FoulbornProperty(game, gameTextProvider),
                                    new ImbuedGemProperty(game, tradeFilterProvider),
                                    new UnidentifiedProperty(game, gameTextProvider)),
         ]);

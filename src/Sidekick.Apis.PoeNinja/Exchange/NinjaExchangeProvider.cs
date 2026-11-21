@@ -43,15 +43,15 @@ public class NinjaExchangeProvider(
         var result = await GetExchangeResult(exchange.Type);
         if (result?.Core == null) return null;
 
-        var line = result.Lines.FirstOrDefault(x => x.Id == exchange.Id);
+        var line = result.Lines.FirstOrDefault(x => x.Id == exchange.TradeId);
 
         // In some cases, the currency is not listed in the exchange overview, but is the primary currency.
         // This is the case for Path of Exile 1's Chaos Orb. It is the main comparison currency, but is absent from the lines.
-        if (line == null && exchange.Type == "Currency" && result.Core.Primary == exchange.Id)
+        if (line == null && exchange.Type == "Currency" && result.Core.Primary == exchange.TradeId)
         {
             line = new ApiExchangeLine()
             {
-                Id = exchange.Id,
+                Id = exchange.TradeId,
                 PrimaryValue = 1,
             };
         }
@@ -107,5 +107,4 @@ public class NinjaExchangeProvider(
         cacheProvider.Delete(cacheKey);
         return false;
     }
-
 }

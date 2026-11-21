@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Sidekick.Game.Enums;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Filters.Types;
@@ -9,19 +10,15 @@ namespace Sidekick.Game.Parser.Properties.Definitions;
 
 public class BlightedProperty(
     GameType game,
-    GameTextProvider dataTextProvider) : PropertyDefinition
+    GameTextProvider gameTextProvider) : PropertyDefinition
 {
-    public override string Label => dataTextProvider.Texts.ItemBlighted.CleanWildcard();
+    private Regex Pattern { get; } = gameTextProvider.Texts.ItemBlighted.ToRegexStringProperty();
+
+    public override string Label => gameTextProvider.Texts.ItemBlighted.CleanWildcard();
 
     public override void Parse(Item item)
     {
-        item.Properties.Blighted = item.Definition.BaseItemIds?.Contains("Metadata/Items/TradeProxy/BlightedMap") ?? false;
-
-        if (item.Properties.Blighted)
-        {
-            item.TradeItem = null;
-            item.InvariantTradeItem = null;
-        }
+        item.Properties.Blighted = GetBool(Pattern, item.Text.Blocks[0]);
     }
 
     public override Task<TradeFilter?> GetFilter(Item item)
