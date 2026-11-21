@@ -535,7 +535,7 @@ Note: ~price 1.29 exalted
         Assert.Equal("Chronicle of Atzoatl", actual.TradeItem?.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
 
-        fixture.AssertHasPseudoStat(actual, "Has Room: Locus of Corruption");
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
     }
 
     [Fact]
