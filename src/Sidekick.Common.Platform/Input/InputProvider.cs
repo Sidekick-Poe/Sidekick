@@ -16,6 +16,7 @@ public class InputProvider
     ILogger<InputProvider> logger,
     IServiceProvider serviceProvider,
     IProcessProvider processProvider,
+    IHotkeyBlocker hotkeyBlocker,
     IOptions<SidekickConfiguration> configuration) : IInputProvider, IDisposable
 {
     private readonly EventSimulator simulator = new();
@@ -408,7 +409,14 @@ public class InputProvider
 
     public event Action<ScrollEventArgs>? OnScrollUp;
 
-    private List<KeybindHandler> KeybindHandlers { get; init; } =
+    /// <summary>
+    /// Replaced as a whole by <see cref="RegisterHooks"/>, never changed in place, since the hook and the hotkey blocker
+    /// read it from other threads.
+    /// </summary>
+    private IReadOnlyList<KeybindHandler> KeybindHandlers { get; set; } =
+        [];
+
+    private IReadOnlyList<ScrollWheelHandler> ScrollWheelHandlers { get; set; } =
         [];
 
     public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
@@ -459,7 +467,18 @@ public class InputProvider
         }
 
         RegisterHooks();
+        hotkeyBlocker.SetSource(() => KeybindHandlers.SelectMany(handler => handler.Keybinds).OfType<string>(), IsKeybindUsed, IsCtrlScrollUsed);
+
         return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// The handlers load their hotkeys after startup and reload them when the settings change, possibly while the
+    /// game has focus, so the blocked hotkeys are refreshed then.
+    /// </summary>
+    private void OnKeybindsChanged()
+    {
+        hotkeyBlocker.Refresh();
     }
 
     public void Enable()
@@ -477,13 +496,30 @@ public class InputProvider
     public void RegisterHooks()
     {
         // Initialize keybindings
-        KeybindHandlers.Clear();
-        foreach (var keybindType in configuration.Value.InputHandlers)
+        foreach (var keybindHandler in KeybindHandlers)
         {
-            var keybindHandler = serviceProvider.GetRequiredService(keybindType) as KeybindHandler;
-            if (keybindHandler == null) continue;
-            KeybindHandlers.Add(keybindHandler);
+            keybindHandler.KeybindsChanged -= OnKeybindsChanged;
         }
+
+        var keybindHandlers = new List<KeybindHandler>();
+        var scrollWheelHandlers = new List<ScrollWheelHandler>();
+        foreach (var handlerType in configuration.Value.InputHandlers)
+        {
+            switch (serviceProvider.GetRequiredService(handlerType))
+            {
+                case KeybindHandler keybindHandler:
+                    keybindHandler.KeybindsChanged += OnKeybindsChanged;
+                    keybindHandlers.Add(keybindHandler);
+                    break;
+
+                case ScrollWheelHandler scrollWheelHandler:
+                    scrollWheelHandlers.Add(scrollWheelHandler);
+                    break;
+            }
+        }
+
+        KeybindHandlers = keybindHandlers;
+        ScrollWheelHandlers = scrollWheelHandlers;
 
         // We can't initialize twice
         if (HasInitialized)
@@ -655,6 +691,24 @@ public class InputProvider
         }
     }
 
+    /// <summary>
+    /// Whether a hotkey handler would run for this hotkey now. Asked by the hotkey blocker, to give unused keys back to the game.
+    /// </summary>
+    private bool IsKeybindUsed(string keybind)
+    {
+        return KeybindHandlers.Any(handler => handler.Keybinds.Contains(keybind) && handler.IsValid(keybind));
+    }
+
+    /// <summary>
+    /// Whether a scroll handler uses Ctrl+scroll (stash scrolling is on). Asked by the hotkey blocker, which only grabs
+    /// Ctrl+scroll then, so the game keeps its own Ctrl+scroll when the setting is off. Not used on Windows, where the
+    /// mouse hook blocks the scroll itself.
+    /// </summary>
+    private bool IsCtrlScrollUsed()
+    {
+        return ScrollWheelHandlers.Any(handler => handler.IsCtrlScrollEnabled());
+    }
+
     public Task PressKey(params string[] keyStrokes)
     {
         if (Hook != null)
@@ -662,41 +716,53 @@ public class InputProvider
             Hook.KeyPressed -= OnKeyPressed;
         }
 
-        foreach (var stroke in keyStrokes)
+        var suspended = hotkeyBlocker.Suspend(keyStrokes);
+
+        try
         {
-            logger.LogDebug("[Keyboard] Sending " + stroke);
-
-            var (modifiers, keys) = FetchKeys(stroke);
-
-            if (keys.Count == 0)
+            foreach (var stroke in keyStrokes)
             {
-                continue;
-            }
+                logger.LogDebug("[Keyboard] Sending " + stroke);
 
-            foreach (var modifierKey in modifiers)
-            {
-                simulator.SimulateKeyPress(modifierKey);
-            }
+                var (modifiers, keys) = FetchKeys(stroke);
 
-            foreach (var key in keys)
-            {
-                simulator.SimulateKeyPress(key);
-            }
+                if (keys.Count == 0)
+                {
+                    continue;
+                }
 
-            foreach (var key in keys)
-            {
-                simulator.SimulateKeyRelease(key);
-            }
+                foreach (var modifierKey in modifiers)
+                {
+                    simulator.SimulateKeyPress(modifierKey);
+                }
 
-            foreach (var modifierKey in modifiers)
-            {
-                simulator.SimulateKeyRelease(modifierKey);
+                foreach (var key in keys)
+                {
+                    simulator.SimulateKeyPress(key);
+                }
+
+                foreach (var key in keys)
+                {
+                    simulator.SimulateKeyRelease(key);
+                }
+
+                foreach (var modifierKey in modifiers)
+                {
+                    simulator.SimulateKeyRelease(modifierKey);
+                }
             }
         }
-
-        if (Hook != null)
+        finally
         {
-            Hook.KeyPressed += OnKeyPressed;
+            if (suspended)
+            {
+                hotkeyBlocker.Resume();
+            }
+
+            if (Hook != null)
+            {
+                Hook.KeyPressed += OnKeyPressed;
+            }
         }
 
         return Task.CompletedTask;

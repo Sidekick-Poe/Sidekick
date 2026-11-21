@@ -41,6 +41,11 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
     /// <returns>A task representing the asynchronous operation.</returns>
     protected abstract Task OnScrollDown();
 
+    /// <summary>
+    /// Gets a value indicating whether this handler uses Ctrl+scroll, the only scroll it reacts to.
+    /// </summary>
+    public bool IsCtrlScrollEnabled() => IsEnabled();
+
     /// <inheritdoc />
     public Task Initialize() => Task.CompletedTask;
 

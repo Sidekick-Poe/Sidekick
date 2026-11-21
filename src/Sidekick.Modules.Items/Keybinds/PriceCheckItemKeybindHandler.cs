@@ -30,14 +30,14 @@ public class PriceCheckItemKeybindHandler
         var text = await clipboardProvider.Copy();
         if (text == null)
         {
-            // On Linux, the game already received the key since it is not blocked, so pressing it again is pointless.
+            await input.PressKey(keybind);
+
+            // Copy failures on Linux usually come from the setup (like KDE's Remote Control permission), so the page explains them.
             if (OperatingSystem.IsLinux())
             {
                 viewLocator.Open(SidekickViewType.Overlay, "/item/copy-failed");
-                return;
             }
 
-            await input.PressKey(keybind);
             return;
         }
 
