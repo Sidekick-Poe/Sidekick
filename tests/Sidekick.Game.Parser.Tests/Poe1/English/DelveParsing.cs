@@ -1,0 +1,78 @@
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Xunit;
+namespace Sidekick.Game.Parser.Tests.Poe1.English;
+
+[Collection(Collections.Poe1EnglishFixture)]
+public class DelveParsing(Poe1EnglishFixture fixture)
+{
+    private readonly ItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParsePotentChaoticResonator()
+    {
+        var actual = parser.ParseItem(@"Item Class: Delve Stackable Socketable Currency
+Rarity: Currency
+Potent Chaotic Resonator
+--------
+Stack Size: 1/10
+Requires 2 Socketed Fossils
+--------
+Sockets: D D 
+--------
+Reforges a rare item with new random modifiers
+--------
+All sockets must be filled with Fossils before this item can be used.
+--------
+Note: ~price 1 chaos
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Potent Chaotic Resonator", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void PowerfulChaoticResonator()
+    {
+        var actual = parser.ParseItem(@"Item Class: Delve Stackable Socketable Currency
+Rarity: Currency
+Powerful Chaotic Resonator
+--------
+Stack Size: 1/10
+Requires 3 Socketed Fossils
+--------
+Sockets: D D D 
+--------
+Reforges a rare item with new random modifiers
+--------
+All sockets must be filled with Fossils before this item can be used.
+--------
+Note: ~price 4 chaos
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Powerful Chaotic Resonator", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void PerfectFossil()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Opulent Fossil
+--------
+Stack Size: 1/20
+--------
+More Drop modifiers
+No Tagless modifiers
+--------
+Place in a Resonator to influence item crafting.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Opulent Fossil", actual.TradeItem?.Type);
+    }
+}

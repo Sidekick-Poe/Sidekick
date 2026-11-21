@@ -9,8 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AngleSharp"/>
-        <PackageReference Include="bunit.web"/>
         <PackageReference Include="coverlet.collector">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,8 +17,6 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk"/>
         <PackageReference Include="xunit"/>
         <PackageReference Include="xunit.runner.visualstudio">
@@ -30,9 +26,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Sidekick.Apis.PoeNinja\Sidekick.Apis.PoeNinja.csproj"/>
-        <ProjectReference Include="..\..\src\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj"/>
         <ProjectReference Include="..\..\src\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj"/>
-        <ProjectReference Include="..\..\src\Sidekick.Common\Sidekick.Common.csproj"/>
     </ItemGroup>
 </Project>

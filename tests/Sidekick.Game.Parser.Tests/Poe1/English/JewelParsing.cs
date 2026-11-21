@@ -1,0 +1,379 @@
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
+using Xunit;
+namespace Sidekick.Game.Parser.Tests.Poe1.English;
+
+[Collection(Collections.Poe1EnglishFixture)]
+public class JewelParsing(Poe1EnglishFixture fixture)
+{
+    private readonly ItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseJewelBlightCut()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Rare
+Blight Cut
+Cobalt Jewel
+--------
+Item Level: 68
+--------
++8 to Strength and Intelligence
+14% increased Spell Damage while Dual Wielding
+19% increased Burning Damage
+15% increased Damage with Wands
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to remove from the Socket.
+");
+
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Cobalt Jewel", actual.TradeItem?.Type);
+        Assert.Equal("Blight Cut", actual.Name);
+        Assert.Equal(68, actual.Properties.ItemLevel);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Strength and Intelligence", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Spell Damage while Dual Wielding", 14);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Burning Damage", 19);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Damage with Wands", 15);
+    }
+
+    [Fact]
+    public void ChimericSliver()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Rare
+Chimeric Sliver
+Large Cluster Jewel
+--------
+Requirements:
+Level: 54
+--------
+Item Level: 69
+--------
+Adds 11 Passive Skills (enchant)
+2 Added Passive Skills are Jewel Sockets (enchant)
+Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments (enchant)
+Added Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments (enchant)
+--------
+Added Small Passive Skills also grant: +7 to Maximum Mana
+Added Small Passive Skills also grant: Regenerate 0.1% of Life per Second
+1 Added Passive Skill is Heavy Hitter
+--------
+Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
+--------
+Note: ~b/o 1 chaos
+");
+
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Large Cluster Jewel", actual.TradeItem?.Type);
+        Assert.Equal("Chimeric Sliver", actual.Name);
+        Assert.Equal(69, actual.Properties.ItemLevel);
+
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments");
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "# Added Passive Skills are Jewel Sockets", 2);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Adds # Passive Skills", 11);
+    }
+
+    [Fact]
+    public void ViridianJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Rare
+Phoenix Thirst
+Viridian Jewel
+--------
+Item Level: 85
+--------
+8% increased Damage
+15% increased Damage with Axes
+7% increased Attack Speed with Axes
+14% increased Global Accuracy Rating
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Viridian Jewel", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void Twwt()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+That Which Was Taken
+Crimson Jewel
+--------
+Limited to: 1
+--------
+Requirements:
+Level: 48
+--------
+Item Level: 86
+--------
+8% increased Strength
+16% chance to gain Onslaught for 4 seconds on Kill
+Enemies you Kill that are affected by Elemental Ailments
+grant 32% increased Flask Charges
+Cannot take Reflected Elemental Damage
+--------
+Faith given under false pretenses still carries the same power.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Crimson Jewel", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Strength", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Enemies you Kill that are affected by Elemental Ailments\ngrant #% increased Flask Charges", 32);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Cannot take Reflected Elemental Damage");
+    }
+
+    [Fact]
+    public void ConvertWatcherEyeMod()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Watcher's Eye
+Prismatic Jewel
+--------
+Limited to: 1
+--------
+Item Level: 85
+--------
+6% increased maximum Energy Shield
+6% increased maximum Life
+6% increased maximum Mana
+32% of Physical Damage Converted to Cold Damage while affected by Hatred
++6% chance to Evade Attack Hits while affected by Grace
+--------
+One by one, they stood their ground against a creature 
+they had no hope of understanding, let alone defeating,
+and one by one, they became a part of it.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Prismatic Jewel", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Energy Shield", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Mana", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% of Physical Damage Converted to Cold Damage while affected by Hatred", 32);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% chance to Evade Attack Hits while affected by Grace", 6);
+    }
+
+    [Fact]
+    public void AbyssJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Whispering Leer
+Hypnotic Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 52
+--------
+Item Level: 69
+--------
+Adds 12 to 18 Fire Damage to Spells
+Adds 16 to 23 Cold Damage to Spells
+2 to 20 Added Spell Lightning Damage while wielding a Two Handed Weapon
+9 to 15 Added Spell Physical Damage while wielding a Two Handed Weapon
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Note: ~price 1 alch
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Hypnotic Eye Jewel", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void NoAbyssStat()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Hollow Gaze
+Ghastly Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 59
+--------
+Item Level: 80
+--------
++31 to maximum Life
++14% to Fire Resistance
+Minions have 15% chance to Poison Enemies on Hit
+Minions deal 2 to 53 additional Lightning Damage
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ghastly Eye Jewel", actual.TradeItem?.Type);
+
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Explicit, "Abyss");
+    }
+
+    [Fact]
+    public void GrimGaze()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+Rarity: Rare
+Grim Gaze
+Ghastly Eye Jewel
+--------
+Abyss
+--------
+Requirements:
+Level: 57
+--------
+Item Level: 85
+--------
+{ Prefix Modifier ""Tempered"" (Tier: 2) — Damage, Physical, Minion }
+Minions deal 20(18-21) to 24(24-27) additional Physical Damage
+{ Prefix Modifier ""Polar"" (Tier: 2) — Damage, Elemental, Cold, Minion }
+Minions deal 26(24-27) to 36(33-36) additional Cold Damage
+{ Fractured Suffix Modifier ""of Delaying"" (Tier: 2) — Caster, Minion }
+Minions have 4(3-5)% chance to Hinder Enemies on Hit with Spells
+(Hinder reduces movement speed by 30% for 4 seconds)
+--------
+Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Fractured Item
+");
+
+        Assert.Equal(ItemClass.AbyssJewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ghastly Eye Jewel", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Minions deal # to # additional Physical Damage");
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Minions deal # to # additional Cold Damage");
+        fixture.AssertHasStat(actual, StatCategory.Fractured, "Minions have #% chance to Hinder Enemies on Hit with Spells");
+    }
+
+    [Fact]
+    public void ElegantHubris()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Elegant Hubris
+Timeless Jewel
+--------
+Limited to: 1 Historic
+Radius: Large
+--------
+Item Level: 82
+--------
+{ Unique Modifier }
+Commissioned 65560(2000-160000) coins to commemorate Cadiro(Cadiro-Victario)
+Passives in radius are Conquered by the Eternal Empire
+(Conquered Passive Skills cannot be modified by other Jewels)
+Historic
+--------
+They believed themselves better than the past, but that confidence brought about nightmare.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Timeless Jewel", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Commissioned # coins to commemorate Cadiro");
+    }
+
+    [Fact]
+    public void WatchersEye()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Watcher's Eye
+Prismatic Jewel
+--------
+Limited to: 1
+--------
+Item Level: 84
+--------
+{ Unique Modifier — Life }
+6(4-6)% increased maximum Life
+{ Unique Modifier — Defences, Energy Shield }
+4(4-6)% increased maximum Energy Shield
+{ Unique Modifier — Mana }
+6(4-6)% increased maximum Mana
+{ Unique Modifier — Elemental, Resistance }
++1% to all maximum Elemental Resistances while affected by Purity of Elements
+{ Unique Modifier — Damage, Elemental, Cold }
+55(40-60)% increased Cold Damage while affected by Hatred
+--------
+One by one, they stood their ground against a creature 
+they had no hope of understanding, let alone defeating,
+and one by one, they became a part of it.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Foil Unique (Celestial Aureate)
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Watcher's Eye", actual.TradeItem?.Name);
+        Assert.Equal("Prismatic Jewel", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Energy Shield", 4);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Mana", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all maximum Elemental Resistances while affected by Purity of Elements", 1);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Cold Damage while affected by Hatred", 55);
+    }
+
+    [Fact]
+    public void KrakenCut()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Rare
+Kraken Cut
+Cobalt Jewel
+--------
+Item Level: 80
+--------
+{ Prefix Modifier ""Vivid"" (Tier: 1) — Life }
+7(5-7)% increased maximum Life
+{ Prefix Modifier ""Cerebral"" (Tier: 1) — Mana }
+3(2-3)% increased Mana Reservation Efficiency of Skills
+{ Suffix Modifier ""of Burning"" (Tier: 1) — Elemental, Fire, Ailment }
+6(6-8)% increased Ignite Duration on Enemies
+5(3-5)% chance to Ignite
+(Ignite deals Fire Damage over time, based on the base Fire Damage of the Skill, for 4 seconds)
+{ Suffix Modifier ""of Menace"" (Tier: 1) — Critical }
+10(8-12)% increased Global Critical Strike Chance
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Cobalt Jewel", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased maximum Life", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Mana Reservation Efficiency of Skills", 3);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Ignite Duration on Enemies", 6);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Global Critical Strike Chance", 10);
+    }
+}

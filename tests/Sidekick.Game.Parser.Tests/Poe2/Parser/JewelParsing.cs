@@ -1,0 +1,155 @@
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
+using Xunit;
+namespace Sidekick.Game.Parser.Tests.Poe2.Parser;
+
+[Collection(Collections.Poe2EnglishFixture)]
+public class JewelParsing(Poe2EnglishFixture fixture)
+{
+    private readonly ItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseEmerald()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Jewels
+Rarity: Rare
+Soul Bliss
+Emerald
+--------
+Item Level: 26
+--------
+3% increased Attack Speed
+Damage Penetrates 5% Lightning Resistance
+7% increased Magnitude of Ailments you inflict
+14% increased Pin Buildup
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal("Emerald", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal(26, actual.Properties.ItemLevel);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Attack Speed", 3);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Damage Penetrates #% Lightning Resistance", 5);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Magnitude of Ailments you inflict", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Pin Buildup", 14);
+    }
+
+    [Fact]
+    public void ParseTimeLost()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Jewels
+Rarity: Rare
+Fulgent Shard
+Time-Lost Ruby
+--------
+Radius: Small
+--------
+Item Level: 64
+--------
+Small Passive Skills in Radius also grant 2% increased Totem Damage
+Notable Passive Skills in Radius also grant 4% increased Magnitude of Bleeding you inflict
+Notable Passive Skills in Radius also grant 7% increased Stun Buildup with Maces
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Time-Lost Ruby", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal(64, actual.Properties.ItemLevel);
+    }
+
+    [Fact]
+    public void ParseDragonIchor()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Jewels
+Rarity: Rare
+Dragon Ichor
+Emerald
+--------
+Item Level: 24
+--------
+8% increased Damage with Crossbows
+9% increased Duration of Ignite, Shock and Chill on Enemies
+7% increased Magnitude of Poison you inflict
+13% increased Crossbow Reload Speed
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Emerald", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal(24, actual.Properties.ItemLevel);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Damage with Crossbows", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Duration of Ignite, Shock and Chill on Enemies", 9);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Magnitude of Poison you inflict", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Crossbow Reload Speed", 13);
+    }
+
+    [Fact]
+    public void ParseClashingRuby()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Jewels
+Rarity: Magic
+Clashing Ruby of Valour
+--------
+Item Level: 26
+--------
+12% increased Melee Damage
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Ruby", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal(26, actual.Properties.ItemLevel);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Melee Damage", 12);
+    }
+
+    [Fact]
+    public void Megalomaniac()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Jewels
+Rarity: Unique
+Megalomaniac
+Diamond
+--------
+Limited to: 1
+--------
+Item Level: 79
+--------
+{ Enhancement }
+Allocates Incendiary() — Unscalable Value
+{ Enhancement }
+Allocates Exposed to the Storm() — Unscalable Value
+--------
+If you're going to act like you're better
+than everyone else, make sure you are.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Corrupted");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Diamond", actual.TradeItem?.Type);
+        Assert.Equal("Megalomaniac", actual.TradeItem?.Name);
+        Assert.Equal(79, actual.Properties.ItemLevel);
+
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Allocates Incendiary");
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Allocates Exposed to the Storm");
+    }
+}

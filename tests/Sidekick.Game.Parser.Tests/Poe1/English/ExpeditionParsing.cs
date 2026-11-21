@@ -1,0 +1,181 @@
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
+using Xunit;
+namespace Sidekick.Game.Parser.Tests.Poe1.English;
+
+[Collection(Collections.Poe1EnglishFixture)]
+public class ExpeditionParsing(Poe1EnglishFixture fixture)
+{
+    private readonly ItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseMagicLogbook()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+Rarity: Magic
+Chaining Expedition Logbook
+--------
+Item Quantity: +16% (augmented)
+Item Rarity: +9% (augmented)
+Monster Pack Size: +6% (augmented)
+Area Level: 69
+--------
+Item Level: 69
+--------
+Rotting Temple
+Druids of the Broken Circle
+32% increased quantity of Artifacts dropped by Monsters (implicit)
+35% increased Explosive Radius (implicit)
+Area contains an additional Underground Area (implicit)
+--------
+Sarn Slums
+Druids of the Broken Circle
+29% increased Explosive Radius (implicit)
+Area contains 17% increased number of Monster Markers (implicit)
+Area contains 36% increased number of Remnants (implicit)
+--------
+Scrublands
+Order of the Chalice
+Area contains 8 additional Chest Markers (implicit)
+31% increased Explosive Placement Range (implicit)
+Area contains 30% increased number of Monster Markers (implicit)
+--------
+Monsters' skills Chain 2 additional times
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.
+");
+
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
+    }
+
+    [Fact]
+    public void ParseRareLogbook()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+Rarity: Rare
+Bleak Myth
+Expedition Logbook
+--------
+Item Quantity: +80% (augmented)
+Item Rarity: +46% (augmented)
+Monster Pack Size: +30% (augmented)
+Area Level: 83
+--------
+Item Level: 83
+--------
+Battleground Graves
+Druids of the Broken Circle
+35% increased Explosive Radius (implicit)
+32% increased number of Explosives (implicit)
+22% increased Explosive Placement Range (implicit)
+--------
+Scrublands
+Druids of the Broken Circle
+11% increased quantity of Artifacts dropped by Monsters (implicit)
+13% increased Explosive Radius (implicit)
+Area contains an additional Underground Area (implicit)
+--------
+Players have -12% to all maximum Resistances
+Monsters have 396% increased Critical Strike Chance
++44% to Monster Critical Strike Multiplier
+25% increased Monster Damage
+Monsters deal 107% extra Physical Damage as Fire
+Monsters Hinder on Hit with Spells
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.
+");
+
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
+    }
+
+    [Fact]
+    public void OlrothStat()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+Rarity: Normal
+Expedition Logbook
+--------
+Area Level: 83
+--------
+Item Level: 83
+--------
+Shipwreck Reef
+Druids of the Broken Circle
+22% increased quantity of Artifacts dropped by Monsters (implicit)
+25% increased number of Explosives (implicit)
+36% increased Explosive Placement Range (implicit)
+Area contains 11% increased number of Monster Markers (implicit)
+--------
+Dried Riverbed
+Knights of the Sun
+40% increased Explosive Radius (implicit)
+42% increased Explosive Placement Range (implicit)
+Area contains 34% increased number of Monster Markers (implicit)
+Area contains Olroth, Origin of the Fall (implicit)
+--------
+Rotting Temple
+Druids of the Broken Circle
+22% increased quantity of Artifacts dropped by Monsters (implicit)
+Area contains 39% increased number of Runic Monster Markers (implicit)
+35% increased Explosive Radius (implicit)
+Remnants have 39% chance to have an additional Suffix Modifier (implicit)
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.
+--------
+Split
+--------
+Note: ~b/o 14 divine
+");
+
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Area contains Olroth, Origin of the Fall");
+        fixture.AssertDoesNotHaveStat(actual, StatCategory.Implicit, "Area contains Medved, Feller of Heroes");
+    }
+
+    [Fact]
+    public void NormalLogbook()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+Rarity: Normal
+Expedition Logbook
+--------
+Area Level: 83
+--------
+Item Level: 83
+--------
+Rotting Temple
+Black Scythe Mercenaries
+18(10-40)% increased quantity of Artifacts dropped by Monsters (implicit)
+17(10-40)% increased number of Explosives (implicit)
+Area contains 38(10-40)% increased number of Remnants (implicit)
+--------
+Forest Ruins
+Druids of the Broken Circle
+39(10-40)% increased quantity of Artifacts dropped by Monsters (implicit)
+Excavated Chests have a 17(5-20)% chance to contain twice as many Items (implicit)
+35(10-40)% increased Explosive Radius (implicit)
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.
+");
+
+        Assert.Equal(ItemClass.ExpeditionLogbook, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Expedition Logbook", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Black Scythe Mercenaries");
+        fixture.AssertHasStat(actual, StatCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
+    }
+}

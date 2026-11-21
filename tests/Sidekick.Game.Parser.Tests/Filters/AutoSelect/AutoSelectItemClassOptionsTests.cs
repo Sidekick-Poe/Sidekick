@@ -1,4 +1,3 @@
-using Sidekick.Game;
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Xunit;
