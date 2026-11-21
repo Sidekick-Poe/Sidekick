@@ -134,4 +134,47 @@ Can be used in a personal Map Device to add content to a Map.
         Assert.Equal("Ultimatum Thread", actual.TradeItem?.Type);
         actual.AssertHasNinjaExchange("ultimatum-thread");
     }
+
+    [Fact]
+    public void SplinterOfTul()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Splinter of Tul
+--------
+Stack Size: 9/100
+--------
+Combine 100 Splinters to create Tul's Breachstone.
+Shift click to unstack.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Splinter of Tul", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void Wombgift()
+    {
+        var actual = parser.ParseItem(@"Item Class: Wombgifts
+Rarity: Currency
+Provisioning Wombgift
+--------
+Item Level: 83
+Requires 1239 Hiveblood
+--------
+Can grow into an Armour or Jewellery item on the Genesis Tree
+--------
+Place this item into an allocated equipment item womb on the Genesis Tree. Right click to retrieve from the Genesis Tree.
+");
+
+        Assert.Equal(ItemClass.Wombgift, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Provisioning Wombgift", actual.TradeItem?.Type);
+
+        Assert.Equal(83, actual.Properties.ItemLevel);
+        Assert.True(actual.InvariantDefinition?.SupportsTrade);
+
+        actual.AssertHasNinjaStash("provisioning-wombgift-75");
+    }
 }

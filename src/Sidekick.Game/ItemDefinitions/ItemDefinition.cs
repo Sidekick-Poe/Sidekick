@@ -69,6 +69,7 @@ public class ItemDefinition
     {
         get
         {
+            if (NinjaStashItems != null && NinjaStashItems.Any()) return true;
             if (NinjaExchangeItems != null && NinjaExchangeItems.Any()) return false;
             if (ScoutItems != null && ScoutItems.All(x => x.IsCurrency)) return false;
 

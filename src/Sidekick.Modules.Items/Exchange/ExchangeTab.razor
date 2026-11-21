@@ -19,6 +19,7 @@
     {
         get
         {
+            if (Item.Definition.NinjaStashItems?.Any() ?? false) return false;
             if (Item.Definition.NinjaExchangeItems?.Any() ?? false) return true;
             if (Item.Definition.ScoutItems?.Any(x => x.IsCurrency) ?? false) return true;
 

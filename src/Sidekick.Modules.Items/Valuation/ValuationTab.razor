@@ -5,7 +5,7 @@
 @using Sidekick.Game.Providers.Languages
 @using Sidekick.Common.Ui.Tabs
 
-@if (Valid)
+@if (SupportsValuation)
 {
     <TabItem Id="valuation"
              Text="@Resources.Valuation"/>
@@ -19,34 +19,20 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    private bool Valid { get; set; }
-
-    protected override void OnInitialized()
+    private bool SupportsValuation
     {
-        Valid = CheckNinja();
-        Valid |= CheckPrediction();
-        Valid |= CheckScout();
+        get
+        {
+            if (Item.Definition.NinjaExchangeItems?.Any() ?? false) return false;
+            if (Item.Definition.NinjaStashItems?.Any() ?? false) return true;
+            if (Item.Definition.ScoutItems?.Any(x => x.IsCurrency) ?? false) return true;
+            if (Item.Definition.ScoutItems != null && Item.Definition.ScoutItems.Any(x => !x.IsCurrency)) return true;
 
-        base.OnInitialized();
-    }
+            if (!SidekickFlags.PoePricesEnabled) return false;
 
-    private bool CheckNinja()
-    {
-        if (Item.InvariantDefinition?.NinjaExchangeItems is { Count: > 0 }) return false;
-        return Item.InvariantDefinition?.NinjaStashItems is { Count: > 0 };
-    }
-
-    private bool CheckPrediction()
-    {
-        if (!SidekickFlags.PoePricesEnabled) return false;
-
-        return Item.Game == GameType.Poe1
-               && Item.Properties.Rarity == Rarity.Rare
-               && CurrentGameLanguage.IsEnglish();
-    }
-
-    private bool CheckScout()
-    {
-        return Item.Definition.ScoutItems != null && Item.Definition.ScoutItems.Any(x => !x.IsCurrency);
+            return Item.Game == GameType.Poe1
+                   && Item.Properties.Rarity == Rarity.Rare
+                   && CurrentGameLanguage.IsEnglish();
+        }
     }
 }

@@ -6,6 +6,7 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
 using Sidekick.Game;
 using Sidekick.Game.Enums;
+using Sidekick.Game.ItemClasses;
 using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Ninja;
 using Sidekick.Game.Parser;
@@ -71,6 +72,11 @@ public class NinjaStashProvider(
 
         }
 
+        if (item.InvariantDefinition.BaseItems.Any(x => x.ItemClass?.Type == ItemClass.Wombgift))
+        {
+            return FilterCurrencies(item.InvariantDefinition.NinjaStashItems, item.Properties.ItemLevel);
+        }
+
         if (item.InvariantDefinition.TradeItems?.FirstOrDefault()?.Category == "monster")
         {
             return FilterBeastiaryMonsters(item.InvariantDefinition.NinjaStashItems);
@@ -118,6 +124,11 @@ public class NinjaStashProvider(
                                        apiItem.ItemLevel,
                                        stats);
 
+        }
+
+        if (item.BaseItems.Any(x => x.ItemClass?.Type == ItemClass.Wombgift))
+        {
+            return FilterCurrencies(item.NinjaStashItems, apiItem.ItemLevel);
         }
 
         if (apiItem.MapTier > 0 || item.BaseItems.Any(x => IsMap(x.ItemClassId)))
@@ -222,6 +233,23 @@ public class NinjaStashProvider(
 
         var query = items.Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel);
         query = ValidateNinjaStats(query, stats, StatCategory.Enchant);
+        return query.ToList();
+    }
+
+    private List<NinjaStashItem> FilterCurrencies(List<NinjaStashItem>? items, int itemLevel)
+    {
+        if (items == null) return [];
+
+        itemLevel = itemLevel switch
+        {
+            < 40 => 1,
+            < 68 => 40,
+            < 75 => 68,
+            < 84 => 75,
+            _ => 84,
+        };
+
+        var query = items.Where(x => x.ItemLevel.GetValueOrDefault() == itemLevel);
         return query.ToList();
     }
 
