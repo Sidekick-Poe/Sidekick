@@ -360,8 +360,8 @@ public class NinjaStashProvider(
             var valid = true;
             foreach (var expectedStat in ninjaItem.Stats)
             {
-                var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.Id);
-                foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.Id?.Replace('#', '|'));
+                var foundStat = stats.FirstOrDefault(stat => stat.Id == expectedStat.TradeStatId);
+                foundStat ??= stats.FirstOrDefault(stat => stat.Id == expectedStat.TradeStatId?.Replace('#', '|'));
                 if (foundStat == null)
                 {
                     valid = false;

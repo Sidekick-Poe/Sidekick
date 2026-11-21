@@ -17,7 +17,7 @@ public class NinjaUriProvider(
 {
     public async Task<Uri?> GetDetailsUri(NinjaExchangeItem item)
     {
-        if (string.IsNullOrEmpty(item.Id)) return null;
+        if (string.IsNullOrEmpty(item.TradeId)) return null;
 
         var game = await settingsService.GetGameAsync();
         var gamePath = game == GameType.Poe1 ? "" : "poe2/";

@@ -13,13 +13,13 @@
   },
   {
     "text": "\u0027Aasfresser-Totem\u0027 hat #% Chance, eine zus\u00E4tzliche Leiche zu verbrauchen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Aasfresser-Totem\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ Chance,\\ eine\\ zus\u00E4tzliche\\ Leiche\\ zu\\ verbrauchen$"
   },
   {
     "text": "\u0027Aasfresser-Totem\u0027 hat #% Chance, eine zus\u00E4tzliche Leiche zu verbrauchen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Aasfresser-Totem\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ Chance,\\ eine\\ zus\u00E4tzliche\\ Leiche\\ zu\\ verbrauchen$"
@@ -83,13 +83,13 @@
   },
   {
     "text": "\u0027Anmut\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Anmut\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Anmut\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Anmut\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -122,13 +122,13 @@
   },
   {
     "text": "\u0027Arachnobots beschw\u00F6ren\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Arachnobots\\ beschw\u00F6ren\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Arachnobots beschw\u00F6ren\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Arachnobots\\ beschw\u00F6ren\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -179,13 +179,13 @@
   },
   {
     "text": "\u0027Arktische R\u00FCstung\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Arktische\\ R\u00FCstung\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Arktische R\u00FCstung\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Arktische\\ R\u00FCstung\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -620,13 +620,13 @@
   },
   {
     "text": "\u0027Blut und Sand\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Blut\\ und\\ Sand\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Blut und Sand\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Blut\\ und\\ Sand\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -684,13 +684,13 @@
   },
   {
     "text": "\u0027Boshaftigkeit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Boshaftigkeit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Boshaftigkeit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Boshaftigkeit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -792,13 +792,13 @@
   },
   {
     "text": "\u0027Disziplin\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Disziplin\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Disziplin\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Disziplin\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -1174,13 +1174,13 @@
   },
   {
     "text": "\u0027Entschlossenheit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Entschlossenheit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Entschlossenheit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Entschlossenheit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -1289,13 +1289,13 @@
   },
   {
     "text": "\u0027Erstarrtes Blut\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Erstarrtes\\ Blut\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Erstarrtes Blut\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Erstarrtes\\ Blut\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -1795,13 +1795,13 @@
   },
   {
     "text": "\u0027Fleisch und Stein\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Fleisch\\ und\\ Stein\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Fleisch und Stein\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Fleisch\\ und\\ Stein\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2428,13 +2428,13 @@
   },
   {
     "text": "\u0027Glaubenseifer\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Glaubenseifer\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Glaubenseifer\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Glaubenseifer\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2511,13 +2511,13 @@
   },
   {
     "text": "\u0027Hass\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Hass\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Hass\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Hass\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2576,13 +2576,13 @@
   },
   {
     "text": "\u0027Hast\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Hast\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Hast\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Hast\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2671,13 +2671,13 @@
   },
   {
     "text": "\u0027Herold der Agonie\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ der\\ Agonie\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Herold der Agonie\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ der\\ Agonie\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2717,13 +2717,13 @@
   },
   {
     "text": "\u0027Herold der Asche\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ der\\ Asche\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Herold der Asche\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ der\\ Asche\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2762,13 +2762,13 @@
   },
   {
     "text": "\u0027Herold der Reinheit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ der\\ Reinheit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Herold der Reinheit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ der\\ Reinheit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2814,13 +2814,13 @@
   },
   {
     "text": "\u0027Herold des Donners\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ des\\ Donners\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Herold des Donners\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ des\\ Donners\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -2853,13 +2853,13 @@
   },
   {
     "text": "\u0027Herold des Eises\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ des\\ Eises\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Herold des Eises\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Herold\\ des\\ Eises\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -3036,13 +3036,13 @@
   },
   {
     "text": "\u0027Klarheit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Klarheit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Klarheit\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Klarheit\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -3685,13 +3685,13 @@
   },
   {
     "text": "\u0027Pr\u00E4zision\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Pr\u00E4zision\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Pr\u00E4zision\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Pr\u00E4zision\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -3768,13 +3768,13 @@
   },
   {
     "text": "\u0027Reinheit der Elemente\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ der\\ Elemente\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Reinheit der Elemente\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ der\\ Elemente\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -3826,13 +3826,13 @@
   },
   {
     "text": "\u0027Reinheit des Blitzes\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ des\\ Blitzes\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Reinheit des Blitzes\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ des\\ Blitzes\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -3884,13 +3884,13 @@
   },
   {
     "text": "\u0027Reinheit des Eises\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ des\\ Eises\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Reinheit des Eises\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ des\\ Eises\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -3942,13 +3942,13 @@
   },
   {
     "text": "\u0027Reinheit des Feuers\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ des\\ Feuers\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Reinheit des Feuers\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Reinheit\\ des\\ Feuers\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -4726,13 +4726,13 @@
   },
   {
     "text": "\u0027Stolz\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Stolz\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Stolz\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Stolz\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -5424,13 +5424,13 @@
   },
   {
     "text": "\u0027Vitalit\u00E4t\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Vitalit\u00E4t\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Vitalit\u00E4t\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Vitalit\u00E4t\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -5666,13 +5666,13 @@
   },
   {
     "text": "\u0027Wut\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Wut\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Wut\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Wut\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -6036,13 +6036,13 @@
   },
   {
     "text": "\u0027Zorn\u0027 hat #% verringerte Mana-Reservierungseffizienz",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Zorn\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
   },
   {
     "text": "\u0027Zorn\u0027 hat #% verringerte Mana-Reservierungseffizienz",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u0027Zorn\u0027\\ hat\\ ([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz$"
@@ -9569,6 +9569,7 @@
   },
   {
     "text": "Ausr\u00FCstung hat keine Attributanforderungen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2480151124"
@@ -9577,7 +9578,6 @@
   },
   {
     "text": "Ausr\u00FCstung hat keine Attributanforderungen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2480151124"
@@ -15435,6 +15435,7 @@
   },
   {
     "text": "#% Chance, Ehre-Verlust von gegnerischen Treffern zu vermeiden, wenn Ihr k\u00FCrzlich getroffen wurdet",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "sanctum.stat_2284543592"
@@ -15443,7 +15444,6 @@
   },
   {
     "text": "#% Chance, Ehre-Verlust von gegnerischen Treffern zu vermeiden, wenn Ihr k\u00FCrzlich getroffen wurdet",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "sanctum.stat_2284543592"
@@ -17021,6 +17021,7 @@
   },
   {
     "text": "#% Chance, bei Treffer zu zermalmen",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -17031,7 +17032,6 @@
   },
   {
     "text": "#% Chance, bei Treffer zu zermalmen",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -18114,13 +18114,13 @@
   },
   {
     "text": "#% Chance, dass Dornen einen Gegenschlag gegen Treffer  ausf\u00FChren, wenn Ihr \u00FCber mindestens 200 Tribut verf\u00FCgt",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Chance,\\ dass\\ Dornen\\ einen\\ Gegenschlag\\ gegen\\ Treffer\\ \\ ausf\u00FChren,\\ wenn\\ Ihr\\ \u00FCber\\ mindestens\\ 200\\ Tribut\\ verf\u00FCgt$"
   },
   {
     "text": "#% Chance, dass Dornen einen Gegenschlag gegen Treffer  ausf\u00FChren, wenn Ihr \u00FCber mindestens 200 Tribut verf\u00FCgt",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Chance,\\ dass\\ Dornen\\ einen\\ Gegenschlag\\ gegen\\ Treffer\\ \\ ausf\u00FChren,\\ wenn\\ Ihr\\ \u00FCber\\ mindestens\\ 200\\ Tribut\\ verf\u00FCgt$"
@@ -18839,13 +18839,13 @@
   },
   {
     "text": "#% Chance, dass das Feuer sich zwischen Gegnern ausbreitet",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Chance,\\ dass\\ das\\ Feuer\\ sich\\ zwischen\\ Gegnern\\ ausbreitet$"
   },
   {
     "text": "#% Chance, dass das Feuer sich zwischen Gegnern ausbreitet",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Chance,\\ dass\\ das\\ Feuer\\ sich\\ zwischen\\ Gegnern\\ ausbreitet$"
@@ -20443,13 +20443,13 @@
   },
   {
     "text": "#% Chance, manipulierte Truhen zu entsch\u00E4rfen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Chance,\\ manipulierte\\ Truhen\\ zu\\ entsch\u00E4rfen$"
   },
   {
     "text": "#% Chance, manipulierte Truhen zu entsch\u00E4rfen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ Chance,\\ manipulierte\\ Truhen\\ zu\\ entsch\u00E4rfen$"
@@ -27531,6 +27531,7 @@
   },
   {
     "text": "Erhaltet # Leben pro verfluchtem Gegner, der mit Angriffen getroffen wird",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -27544,7 +27545,6 @@
   },
   {
     "text": "Erhaltet # Leben pro verfluchtem Gegner, der mit Angriffen getroffen wird",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -29946,6 +29946,7 @@
   },
   {
     "text": "Erleidet #% des Feuerschadens von Treffern als physischen Schaden",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3205239847"
@@ -29954,7 +29955,6 @@
   },
   {
     "text": "Erleidet #% des Feuerschadens von Treffern als physischen Schaden",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3205239847"
@@ -35387,6 +35387,7 @@
   },
   {
     "text": "Fertigkeitengemmen haben keine Attributanforderungen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
@@ -35395,7 +35396,6 @@
   },
   {
     "text": "Fertigkeitengemmen haben keine Attributanforderungen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
@@ -50192,13 +50192,13 @@
   },
   {
     "text": "Ihr und Verb\u00FCndete im Umkreis habt \u002B#% zu Elementarwiderst\u00E4nden",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ihr\\ und\\ Verb\u00FCndete\\ im\\ Umkreis\\ habt\\ \\\u002B([-0-9,.]\u002B)%\\ zu\\ Elementarwiderst\u00E4nden$"
   },
   {
     "text": "Ihr und Verb\u00FCndete im Umkreis habt \u002B#% zu Elementarwiderst\u00E4nden",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ihr\\ und\\ Verb\u00FCndete\\ im\\ Umkreis\\ habt\\ \\\u002B([-0-9,.]\u002B)%\\ zu\\ Elementarwiderst\u00E4nden$"
@@ -58734,13 +58734,13 @@
   },
   {
     "text": "Legion-Gener\u00E4le in Euren Karten lassen #% mehr Immerw\u00E4hrende Splitter fallen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Legion-Gener\u00E4le\\ in\\ Euren\\ Karten\\ lassen\\ ([-0-9,.]\u002B)%\\ mehr\\ Immerw\u00E4hrende\\ Splitter\\ fallen$"
   },
   {
     "text": "Legion-Gener\u00E4le in Euren Karten lassen #% mehr Immerw\u00E4hrende Splitter fallen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Legion-Gener\u00E4le\\ in\\ Euren\\ Karten\\ lassen\\ ([-0-9,.]\u002B)%\\ mehr\\ Immerw\u00E4hrende\\ Splitter\\ fallen$"
@@ -66993,6 +66993,7 @@
   },
   {
     "text": "Regeneriert #% des maximalen Lebens pro Sekunde",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_836936635",
@@ -67004,7 +67005,6 @@
   },
   {
     "text": "Regeneriert #% des maximalen Lebens pro Sekunde",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_836936635",
@@ -98139,6 +98139,7 @@
   },
   {
     "text": "#% des erlittenen Schadens werden als Leben wiedergewonnen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1444556985",
@@ -98153,7 +98154,6 @@
   },
   {
     "text": "#% des erlittenen Schadens werden als Leben wiedergewonnen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1444556985",
@@ -98189,6 +98189,7 @@
   },
   {
     "text": "#% des erlittenen Schadens werden als Mana wiedergewonnen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_472520716",
@@ -98200,7 +98201,6 @@
   },
   {
     "text": "#% des erlittenen Schadens werden als Mana wiedergewonnen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_472520716",
@@ -98540,6 +98540,7 @@
   },
   {
     "text": "#% des w\u00E4hrend der Wirkung erlittenen Schadens werden als Leben wiedergewonnen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3598623697"
@@ -98548,7 +98549,6 @@
   },
   {
     "text": "#% des w\u00E4hrend der Wirkung erlittenen Schadens werden als Leben wiedergewonnen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3598623697"
@@ -125298,6 +125298,7 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Banner-Fertigkeiten",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -125318,7 +125319,6 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Banner-Fertigkeiten",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -125339,6 +125339,7 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -125351,7 +125352,6 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -125364,45 +125364,46 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten, die Minen werfen",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz\\ von\\ Fertigkeiten,\\ die\\ Minen\\ werfen$"
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten, die Minen werfen",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz\\ von\\ Fertigkeiten,\\ die\\ Minen\\ werfen$"
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten, die durch \u0027Zauberschwinger\u0027 unterst\u00FCtzt werden",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz\\ von\\ Fertigkeiten,\\ die\\ durch\\ \u0027Zauberschwinger\u0027\\ unterst\u00FCtzt\\ werden$"
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten, die durch \u0027Zauberschwinger\u0027 unterst\u00FCtzt werden",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz\\ von\\ Fertigkeiten,\\ die\\ durch\\ \u0027Zauberschwinger\u0027\\ unterst\u00FCtzt\\ werden$"
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten pro 250 Gesamtattribute",
-    "lines": 1,
-    "tradeIds": [],
-    "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz\\ von\\ Fertigkeiten\\ pro\\ 250\\ Gesamtattribute$"
-  },
-  {
-    "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten pro 250 Gesamtattribute",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz\\ von\\ Fertigkeiten\\ pro\\ 250\\ Gesamtattribute$"
   },
   {
+    "text": "#% verringerte Mana-Reservierungseffizienz von Fertigkeiten pro 250 Gesamtattribute",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ verringerte\\ Mana-Reservierungseffizienz\\ von\\ Fertigkeiten\\ pro\\ 250\\ Gesamtattribute$"
+  },
+  {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fluchaura-Fertigkeiten",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -125416,7 +125417,6 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Fluchaura-Fertigkeiten",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -125446,6 +125446,7 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Herold-Fertigkeiten",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -125456,7 +125457,6 @@
   },
   {
     "text": "#% verringerte Mana-Reservierungseffizienz von Herold-Fertigkeiten",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -126849,6 +126849,7 @@
   },
   {
     "text": "#% verringerte Reservierungseffizienz von Fertigkeiten",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -126861,7 +126862,6 @@
   },
   {
     "text": "#% verringerte Reservierungseffizienz von Fertigkeiten",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -139279,13 +139279,13 @@
   },
   {
     "text": "\u002B#% zu Chaoswiderstand im Stand",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ zu\\ Chaoswiderstand\\ im\\ Stand$"
   },
   {
     "text": "\u002B#% zu Chaoswiderstand im Stand",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ zu\\ Chaoswiderstand\\ im\\ Stand$"
@@ -139450,6 +139450,7 @@
   },
   {
     "text": "\u002B#% zu Feuerwiderstand bei niedrigem Leben",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_38301299"
@@ -139458,7 +139459,6 @@
   },
   {
     "text": "\u002B#% zu Feuerwiderstand bei niedrigem Leben",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_38301299"
