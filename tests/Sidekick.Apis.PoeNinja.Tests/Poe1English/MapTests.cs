@@ -163,7 +163,7 @@ Monsters steal Power, Frenzy and Endurance charges on Hit
 Travel to a Map by using this in a personal Map Device. Maps can only be used once.
 ");
 
-        fixture.AssertStash(item, $"drox-map-tier-16-t0--{Collections.PoeNinjaMapSuffix}");
+        fixture.AssertStash(item, $"drox-map-tier-16-t0-{Collections.PoeNinjaMapSuffix}");
     }
 
     [Fact]
