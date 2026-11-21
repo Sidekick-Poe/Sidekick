@@ -9,7 +9,7 @@ public class CurrencyParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseEssence()
+    public void EssenceofEnhancement()
     {
         var actual = parser.ParseItem(
             @"Item Class: Stackable Currency
@@ -30,7 +30,7 @@ Right click this item then left click a normal item to apply it.
     }
 
     [Fact]
-    public void ParseAlloy()
+    public void SwiftAlloy()
     {
         var actual = parser.ParseItem(
             @"Item Class: Stackable Currency

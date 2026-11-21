@@ -10,7 +10,7 @@ public class FlaskParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseLifeFlask()
+    public void SimmeringUltimateLifeFlaskoftheDistiller()
     {
         var actual = parser.ParseItem(
             @"Item Class: Life Flasks
@@ -43,7 +43,7 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
     }
 
     [Fact]
-    public void ParseCharm()
+    public void AnalystsStoneCharmofthePractitioner()
     {
         var actual = parser.ParseItem(
             @"Item Class: Charms

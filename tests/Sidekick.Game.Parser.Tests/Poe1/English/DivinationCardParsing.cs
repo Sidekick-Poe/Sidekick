@@ -9,7 +9,7 @@ public class DivinationCardParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseSaintTreasure()
+    public void TheSaintsTreasure()
     {
         var actual = parser.ParseItem(@"Item Class: Divination Cards
 Rarity: Divination Card
@@ -29,7 +29,7 @@ Publicly, he lived a pious and chaste life of poverty. Privately, tithes and tri
     }
 
     [Fact]
-    public void ParseLordOfCelebration()
+    public void TheLordofCelebration()
     {
         var actual = parser.ParseItem(@"Item Class: Divination Cards
 Rarity: Divination Card

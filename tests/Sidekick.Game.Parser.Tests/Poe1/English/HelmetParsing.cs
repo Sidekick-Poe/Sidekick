@@ -10,7 +10,7 @@ public class HelmetParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseBlightGuardian()
+    public void BlightGuardian()
     {
         var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Rare
@@ -46,7 +46,7 @@ Hunter Item
     }
 
     [Fact]
-    public void ParseStarkonjaHead()
+    public void StarkonjasHead()
     {
         var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Unique
@@ -96,7 +96,7 @@ Note: ~price 1 chaos
     }
 
     [Fact]
-    public void VestigialSecutorHelm()
+    public void HavocWard()
     {
         var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Rare

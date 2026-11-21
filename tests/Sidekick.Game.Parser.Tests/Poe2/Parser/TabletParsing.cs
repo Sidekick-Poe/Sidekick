@@ -10,7 +10,7 @@ public class TabletParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseRitualTablet()
+    public void VoidtouchedInvocation()
     {
         var actual = parser.ParseItem(
             @"Item Class: Tablet
@@ -50,7 +50,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
     }
 
      [Fact]
-     public void ParseRitualTabletWithAdditionalRareChests()
+     public void TranscendentalJudgment()
      {
          var actual = parser.ParseItem(
              @"Item Class: Tablet
@@ -91,7 +91,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
      [InlineData("Expeditions contain 2(1-2) buried Strongboxes in Map", "Expeditions contain 1 buried Strongbox in Map", 2)]
      [InlineData("Expeditions contain 2(1-2) Additional Verisium Sentries in Map", "Expeditions contain 1 Additional Verisium Sentry in Map", 2)]
      [InlineData("The first 2(1-2) unearthed Runic Monsters will be Rare Monsters in Map", "The first unearthed Runic Monster will be a Rare Monster in Map", 2)]
-     public void ParsePluralMapModifiers(string line, string expectedStat, double expectedValue)
+     public void TranscendentalJudgmentPluralMapModifiers(string line, string expectedStat, double expectedValue)
      {
          var actual = parser.ParseItem(
              $@"Item Class: Tablet
@@ -114,7 +114,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
      }
 
      [Fact]
-     public void ParseOverseerTabletEssencesUsesTabletTradeId()
+     public void TranscendentalMyth()
      {
          var actual = parser.ParseItem(
              @"Item Class: Tablet
@@ -144,7 +144,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
      }
 
      [Fact]
-     public void ParseFreedomOfFaith()
+     public void FreedomofFaith()
      {
          var actual = parser.ParseItem(
              @"Item Class: Tablet
@@ -182,7 +182,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
      }
 
      [Fact]
-     public void ParseIrradiatedTablet()
+     public void EerieSecrets()
      {
          var actual = parser.ParseItem(
              @"Item Class: Tablet
@@ -221,7 +221,7 @@ Can be used in a personal Map Device to add modifiers to a Map.");
      }
 
      [Fact]
-     public void ParseBreachTablet()
+     public void MythicAnthem()
      {
          var actual = parser.ParseItem(
              @"Item Class: Tablet

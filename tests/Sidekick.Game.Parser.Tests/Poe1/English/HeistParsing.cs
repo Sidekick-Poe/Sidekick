@@ -9,7 +9,7 @@ public class HeistParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void HeistTool()
+    public void SkillfulBasicDisguiseKit()
     {
         var actual = parser.ParseItem(@"Item Class: Heist Tools
 Rarity: Magic
@@ -37,7 +37,7 @@ Can only be equipped to Heist members.
     }
 
     [Fact]
-    public void HeistCloak()
+    public void TornCloak()
     {
         var actual = parser.ParseItem(@"Item Class: Heist Cloaks
 Rarity: Normal
@@ -61,7 +61,7 @@ Can only be equipped to Heist members.
     }
 
     [Fact]
-    public void HeistBrooch()
+    public void SilverBrooch()
     {
         var actual = parser.ParseItem(@"Item Class: Heist Brooches
 Rarity: Normal
@@ -85,7 +85,7 @@ Can only be equipped to Heist members.
     }
 
     [Fact]
-    public void HeistGear()
+    public void MiracleEquipment()
     {
         var actual = parser.ParseItem(@"Item Class: Heist Gear
 Rarity: Rare
@@ -116,7 +116,7 @@ Can only be equipped to Heist members.
     }
 
     [Fact]
-    public void HeistTarget()
+    public void GoldenNapuatzlIdol()
     {
         var actual = parser.ParseItem(@"Item Class: Heist Targets
 Rarity: Currency
@@ -135,7 +135,7 @@ Can be exchanged with Faustus, the Fence in The Rogue Harbour
     }
 
     [Fact]
-    public void ThiefTrinket()
+    public void ArmageddonLure()
     {
         var actual = parser.ParseItem(@"Item Class: Trinkets
 Rarity: Rare
@@ -163,7 +163,7 @@ Corrupted
     }
 
     [Fact]
-    public void HeistBlueprint()
+    public void BlueprintRepository()
     {
         var actual = parser.ParseItem(@"Item Class: Blueprints
 Rarity: Normal
@@ -197,7 +197,7 @@ Use Intelligence to Reveal additional Wings and Rooms by talking to certain NPCs
     }
 
     [Fact]
-    public void HeistContract()
+    public void ContractRecordsOffice()
     {
         var actual = parser.ParseItem(@"Item Class: Contracts
 Rarity: Normal

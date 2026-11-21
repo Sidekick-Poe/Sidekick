@@ -8,7 +8,7 @@ public class GemParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseUncutSpirit16()
+    public void UncutSpiritGemLevel16()
     {
         var actual = parser.ParseItem(
             @"Item Class: Uncut Spirit Gems
@@ -26,7 +26,7 @@ Right Click to engrave a Persistent Buff Skill Gem.
     }
 
     [Fact]
-    public void ParseSupport3()
+    public void UncutSupportGemLevel3()
     {
         var actual = parser.ParseItem(
             @"Item Class: Uncut Support Gems
@@ -44,7 +44,7 @@ Right Click to engrave a Support Gem.
     }
 
     [Fact]
-    public void ParseSkill9()
+    public void UncutSkillGemLevel9()
     {
         var actual = parser.ParseItem(
             @"Item Class: Uncut Skill Gems
@@ -62,7 +62,7 @@ Right Click to engrave a Skill Gem.
     }
 
     [Fact]
-    public void ParseLightningArrow()
+    public void HeraldoIce()
     {
         var actual = parser.ParseItem(
             @"Item Class: Skill Gems
@@ -104,7 +104,7 @@ Skills can be managed in the Skills Panel.
     }
 
     [Fact]
-    public void ParseCorruptedLightningArrow()
+    public void CastonCritical()
     {
         var actual = parser.ParseItem(
             @"Rarity: Gem

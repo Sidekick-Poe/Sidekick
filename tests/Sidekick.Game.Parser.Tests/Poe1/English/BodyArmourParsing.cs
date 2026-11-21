@@ -11,7 +11,7 @@ public class BodyArmourParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task ParseSixLinkUniqueBodyArmor()
+    public async Task CarcassJack()
     {
         var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
@@ -130,7 +130,7 @@ Note: ~price 2 chaos
     }
 
     [Fact]
-    public void Foulborn()
+    public void SkinoftheLoyal()
     {
         var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
@@ -160,7 +160,7 @@ A net woven to keep safe the bones of the Lords.
     }
 
     [Fact]
-    public void SacredChainmail()
+    public void TempestSanctuary()
     {
         var actual = parser.ParseItem(@"Rarity: Rare
 Tempest Sanctuary
@@ -202,7 +202,7 @@ Fractured Item
     }
 
     [Fact]
-    public void FoulbornGhostwrithe()
+    public void Ghostwrithe()
     {
         var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique

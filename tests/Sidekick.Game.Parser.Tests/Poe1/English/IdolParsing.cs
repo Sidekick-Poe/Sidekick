@@ -10,7 +10,7 @@ public class IdolParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void MinorIdol()
+    public void EssenceMinorIdolofBeasts()
     {
         var actual = parser.ParseItem(@"Item Class: Idols
 Rarity: Magic
@@ -38,7 +38,7 @@ Unmodifiable");
     }
 
     [Fact]
-    public void UniqueIdol()
+    public void LovedbytheSun()
     {
         var actual = parser.ParseItem(@"Item Class: Idols
 Rarity: Unique

@@ -10,7 +10,7 @@ public class FlaskParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseSanctifiedManaFlask()
+    public void SanctifiedManaFlaskofStaunching()
     {
         var actual = parser.ParseItem(@"Item Class: Mana Flasks
 Rarity: Magic
@@ -64,7 +64,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
     }
 
     [Fact]
-    public void SacredHybridFlask()
+    public void SuperiorSacredHybridFlask()
     {
         var actual = parser.ParseItem(@"Item Class: Hybrid Flasks
 Rarity: Normal
@@ -91,7 +91,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
     }
 
     [Fact]
-    public void Tincture()
+    public void PoisonberryTincture()
     {
         var actual = parser.ParseItem(@"Item Class: Tinctures
 Rarity: Normal
@@ -117,7 +117,7 @@ Right click to activate. Only one Tincture in your belt can be active at a time.
     }
 
     [Fact]
-    public void FlagellantMod()
+    public void FlagellantsBismuthFlaskoftheRabbit()
     {
         var actual = parser.ParseItem(@"Item Class: Utility Flasks
 Rarity: Magic

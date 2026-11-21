@@ -93,7 +93,7 @@ Shift click to unstack.
     }
 
     [Fact]
-    public void Ducat()
+    public void TheChangelingsDucat()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
@@ -153,7 +153,7 @@ Shift click to unstack.
     }
 
     [Fact]
-    public void Wombgift()
+    public void ProvisioningWombgift()
     {
         var actual = parser.ParseItem(@"Item Class: Wombgifts
 Rarity: Currency

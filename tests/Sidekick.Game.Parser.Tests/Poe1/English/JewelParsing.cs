@@ -10,7 +10,7 @@ public class JewelParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseJewelBlightCut()
+    public void BlightCut()
     {
         var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Rare
@@ -76,7 +76,7 @@ Note: ~b/o 1 chaos
     }
 
     [Fact]
-    public void ViridianJewel()
+    public void PhoenixThirst()
     {
         var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Rare
@@ -99,7 +99,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
     }
 
     [Fact]
-    public void Twwt()
+    public void ThatWhichWasTaken()
     {
         var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Unique
@@ -135,7 +135,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
     }
 
     [Fact]
-    public void ConvertWatcherEyeMod()
+    public void WatchersEyeConvert()
     {
         var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Unique
@@ -171,7 +171,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
     }
 
     [Fact]
-    public void AbyssJewel()
+    public void WhisperingLeer()
     {
         var actual = parser.ParseItem(@"Item Class: Abyss Jewels
 Rarity: Rare
@@ -201,7 +201,7 @@ Note: ~price 1 alch
     }
 
     [Fact]
-    public void NoAbyssStat()
+    public void HollowGaze()
     {
         var actual = parser.ParseItem(@"Item Class: Abyss Jewels
 Rarity: Rare
@@ -378,7 +378,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
     }
 
     [Fact]
-    public void SmallClusterJewel()
+    public void BlightRuin()
     {
         var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Rare

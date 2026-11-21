@@ -10,7 +10,7 @@ public class GloveParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseRareGloves()
+    public void DeathNails()
     {
         var actual = parser.ParseItem(@"Item Class: Gloves
 Rarity: Rare
@@ -49,7 +49,7 @@ Item Level: 61
     }
 
     [Fact]
-    public void ParseCurseOnHit()
+    public void AsenathsGentleTouch()
     {
         var actual = parser.ParseItem(@"Item Class: Gloves
 Rarity: Unique

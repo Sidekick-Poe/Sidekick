@@ -10,7 +10,7 @@ public class ExpeditionParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseMagicLogbook()
+    public void ChainingExpeditionLogbook()
     {
         var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
 Rarity: Magic
@@ -55,7 +55,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
     }
 
     [Fact]
-    public void ParseRareLogbook()
+    public void BleakMyth()
     {
         var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
 Rarity: Rare
@@ -99,7 +99,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
     }
 
     [Fact]
-    public void OlrothStat()
+    public void ExpeditionLogbookOlroth()
     {
         var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
 Rarity: Normal
@@ -146,7 +146,7 @@ Note: ~b/o 14 divine
     }
 
     [Fact]
-    public void NormalLogbook()
+    public void ExpeditionLogbook()
     {
         var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
 Rarity: Normal

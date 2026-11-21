@@ -9,7 +9,7 @@ public class EssenceParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseWeepingEssenceOfAnger()
+    public void WeepingEssenceofAnger()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency

@@ -11,7 +11,7 @@ public class WeaponParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseStaff()
+    public void ChalybeousAshenStaffoftheAugur()
     {
         var actual = parser.ParseItem(
         @"Item Class: Staves
@@ -38,7 +38,7 @@ Item Level: 60
     }
 
     [Fact]
-    public void ParseColdBow()
+    public void BroodFletch()
     {
         var actual = parser.ParseItem(
         @"Item Class: Bows
@@ -95,7 +95,7 @@ Leeches 4.02% of Physical Damage as Mana
     }
 
     [Fact]
-    public void ParseElementalCrossbow()
+    public void BloodCore()
     {
         var actual = parser.ParseItem(@"Item Class: Crossbows
 Rarity: Rare
@@ -143,7 +143,7 @@ Grants 3 Life per Enemy Hit
     }
 
     [Fact]
-    public void ParseChaosDamageWeapon()
+    public void AdvancedCultistBowoftheParched()
     {
         var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Magic
@@ -177,7 +177,7 @@ Leeches 5.82% of Physical Damage as Mana");
     }
 
     [Fact]
-    public void ParseSpirit()
+    public void BurningRattlingSceptre()
     {
         var actual = parser.ParseItem(@"Item Class: Sceptres
 Rarity: Magic
@@ -203,7 +203,7 @@ Allies in your Presence deal 9 to 13 additional Attack Fire Damage
     }
 
     [Fact]
-    public void ParseSpear()
+    public void PreciseIronheadSpear()
     {
         var actual = parser.ParseItem(@"Item Class: Spears
 Rarity: Magic
@@ -232,7 +232,7 @@ Grants Skill: Spear Throw
     }
 
     [Fact]
-    public void ParseElementalSpear()
+    public void HypnoticEdge()
     {
         var actual = parser.ParseItem(@"Item Class: Spears
 Rarity: Rare
@@ -286,7 +286,7 @@ Grants 3 Life per Enemy Hit
     }
 
     [Fact]
-    public async Task ParseElementalQuarterstaff()
+    public async Task KrakenPillar()
     {
         var actual = parser.ParseItem(@"Item Class: Quarterstaves
 Rarity: Rare
@@ -350,7 +350,7 @@ Corrupted
     }
 
     [Fact]
-    public async Task ParseThousandDamage()
+    public async Task DragonCore()
     {
         var actual = parser.ParseItem(@"Item Class: Crossbows
 Rarity: Rare
@@ -428,7 +428,7 @@ Note: ~price 1 mirror");
     }
 
     [Fact]
-    public void ParseTalisman()
+    public void LumberingTalismanofConsumption()
     {
         var actual = parser.ParseItem(@"Item Class: Talismans
 Rarity: Magic
@@ -464,7 +464,7 @@ Gain 19 Mana per enemy killed
     }
 
     [Fact]
-    public void ParseSanctifiedCrossbowWithCombinedModsAndFixedRangeValue()
+    public void GloomCore()
     {
         var actual = parser.ParseItem(
         @"Item Class: Crossbows

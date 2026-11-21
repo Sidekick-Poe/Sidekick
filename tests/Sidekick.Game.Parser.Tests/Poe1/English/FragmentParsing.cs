@@ -37,7 +37,7 @@ Note: ~price 1 chaos
     }
 
     [Fact]
-    public async Task LocusOfCorruption()
+    public async Task ChronicleofAtzoatl()
     {
         var actual = parser.ParseItem(@"Item Class: Misc Map Items
 Rarity: Currency
@@ -94,7 +94,7 @@ Note: ~price 1.29 exalted
     }
 
     [Fact]
-    public void VaalAspect()
+    public void Curiosity()
     {
         var actual = parser.ParseItem(@"Item Class: Pieces
 Rarity: Unique
@@ -118,7 +118,7 @@ This item will transform when correctly arranged with other items.
     }
 
     [Fact]
-    public async Task RoomFilters()
+    public async Task ChronicleofAtzoatlRoomFilters()
     {
         var item = parser.ParseItem(@"Item Class: Misc Map Items
 Rarity: Currency

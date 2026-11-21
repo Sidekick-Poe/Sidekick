@@ -11,7 +11,7 @@ public class GemParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public async Task ParseVaalGem()
+    public async Task VaalDoubleStrike()
     {
         var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
@@ -144,7 +144,7 @@ Place into an item socket of the right colour to gain this skill. Right click to
     }
 
     [Fact]
-    public void TransfiguredGem()
+    public void KineticBlastofClustering()
     {
         var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
@@ -227,7 +227,7 @@ Transfigured
     }
 
     [Fact]
-    public void ImbuedEarthshatter()
+    public void Earthshatter()
     {
         var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
@@ -271,7 +271,7 @@ Imbued
     }
 
     [Fact]
-    public void ImbuedBloodlust()
+    public void StaticStrike()
     {
         var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
@@ -321,7 +321,7 @@ Imbued
     }
 
     [Fact]
-    public async Task Enlighten_Filters()
+    public async Task EnlightenSupport()
     {
         var item = parser.ParseItem(@"Item Class: Support Gems
 Rarity: Gem

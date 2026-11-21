@@ -10,7 +10,7 @@ public class BootParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseFracturedItem()
+    public void InvasionTrack()
     {
         var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Rare
@@ -40,7 +40,7 @@ Fractured Item
     }
 
     [Fact]
-    public void BulbonicTrail()
+    public void BubonicTrail()
     {
         var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Unique
@@ -77,7 +77,7 @@ Even the dead serve the Lightless.
     }
 
     [Fact]
-    public void MemoryStrands()
+    public void SorcererBoots()
     {
         var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Normal

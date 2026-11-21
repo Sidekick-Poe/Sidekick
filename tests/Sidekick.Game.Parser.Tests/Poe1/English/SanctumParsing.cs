@@ -10,7 +10,7 @@ public class SanctumParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseFloor()
+    public void ForbiddenTome()
     {
         var actual = parser.ParseItem(@"Item Class: Sanctum Research
 Rarity: Currency
@@ -33,7 +33,7 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
     }
 
     [Fact]
-    public void ParseRelic()
+    public void SteadfastUrnRelicofAchievement()
     {
         var actual = parser.ParseItem(@"Item Class: Relics
 Rarity: Magic

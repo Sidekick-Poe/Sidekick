@@ -50,7 +50,7 @@ Note: ~price 8 chaos
     }
 
     [Fact]
-    public void Corpse()
+    public void PerfectNeedleHorror()
     {
         var actual = parser.ParseItem(@"Item Class: Corpses
 Rarity: Currency

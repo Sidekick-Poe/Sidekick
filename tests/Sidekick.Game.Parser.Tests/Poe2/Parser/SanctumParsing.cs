@@ -10,7 +10,7 @@ public class SanctumParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseRelic()
+    public void RevitalisingUrnRelicofFlowing()
     {
         var actual = parser.ParseItem(
             @"Item Class: Relics
@@ -35,7 +35,7 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas
     }
 
     [Fact]
-    public void ParseDodgeRelic()
+    public void LayeredUrnRelicofEluding()
     {
         var actual = parser.ParseItem(
             @"Item Class: Relics

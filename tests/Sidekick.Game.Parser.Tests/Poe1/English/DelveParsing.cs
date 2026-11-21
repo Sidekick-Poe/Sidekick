@@ -9,7 +9,7 @@ public class DelveParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParsePotentChaoticResonator()
+    public void PotentChaoticResonator()
     {
         var actual = parser.ParseItem(@"Item Class: Delve Stackable Socketable Currency
 Rarity: Currency
@@ -57,7 +57,7 @@ Note: ~price 4 chaos
     }
 
     [Fact]
-    public void PerfectFossil()
+    public void OpulentFossil()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency

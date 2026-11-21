@@ -10,7 +10,7 @@ public class AscendancyParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseEnchantWithAdditionalProjectiles()
+    public void CorruptionCrown()
     {
         var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Rare

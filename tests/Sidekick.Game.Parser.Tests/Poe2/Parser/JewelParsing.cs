@@ -10,7 +10,7 @@ public class JewelParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseEmerald()
+    public void SoulBliss()
     {
         var actual = parser.ParseItem(
             @"Item Class: Jewels
@@ -40,7 +40,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
     }
 
     [Fact]
-    public void ParseTimeLost()
+    public void FulgentShard()
     {
         var actual = parser.ParseItem(
             @"Item Class: Jewels
@@ -66,7 +66,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
     }
 
     [Fact]
-    public void ParseDragonIchor()
+    public void DragonIchor()
     {
         var actual = parser.ParseItem(
             @"Item Class: Jewels
@@ -96,7 +96,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
     }
 
     [Fact]
-    public void ParseClashingRuby()
+    public void ClashingRubyofValour()
     {
         var actual = parser.ParseItem(
             @"Item Class: Jewels

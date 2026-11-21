@@ -30,7 +30,7 @@ Note: ~price .5 chaos
     }
 
     [Fact]
-    public void SmallClusterJewel()
+    public void OblivionRuin()
     {
         var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Rare

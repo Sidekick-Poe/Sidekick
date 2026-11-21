@@ -10,7 +10,7 @@ public class WeaponParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseUnidentifiedUnique()
+    public void JadeHatchet()
     {
         var actual = parser.ParseItem(@"Item Class: One Hand Axes
 Rarity: Unique
@@ -38,7 +38,7 @@ Unidentified
     }
 
     [Fact]
-    public void ParseInfluencedWeapon()
+    public void MiracleChant()
     {
         var actual = parser.ParseItem(@"Item Class: Wands
 Rarity: Rare
@@ -79,7 +79,7 @@ Crusader Item
     }
 
     [Fact]
-    public void ParseMagicWeapon()
+    public void ShadowAxeoftheBoxer()
     {
         var actual = parser.ParseItem(@"Item Class: One Hand Axes
 Rarity: Magic
@@ -113,7 +113,7 @@ Item Level: 50
     /// This unique item can have multiple possible bases.
     /// </summary>
     [Fact]
-    public void ParseUniqueItemWithDifferentBases()
+    public void WingsofEntropy()
     {
         var actual = parser.ParseItem(@"Item Class: Two Hand Axes
 Rarity: Unique
@@ -157,7 +157,7 @@ Fire and Anarchy are the most reliable agents of change.");
     }
 
     [Fact]
-    public void ParseDaressoPassion()
+    public void DaressosPassion()
     {
         var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
 Rarity: Unique
@@ -246,7 +246,7 @@ Note: ~price 40 chaos
     }
 
     [Fact]
-    public void UnidentifiedHunterItem()
+    public void OrnateMace()
     {
         var actual = parser.ParseItem(@"Item Class: One Hand Maces
 Rarity: Rare
@@ -278,7 +278,7 @@ Hunter Item");
     }
 
     [Fact]
-    public void TriggerWeapon()
+    public void CarrionStinger()
     {
         var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
 Rarity: Rare
@@ -321,7 +321,7 @@ Spells Triggered this way have 150% more Cost (crafted)
     }
 
     [Fact]
-    public void PhysEleWeapon()
+    public void PhoenixBane()
     {
         var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
 Rarity: Rare
@@ -363,7 +363,7 @@ Adds 10 to 175 Lightning Damage
     }
 
     [Fact]
-    public void Staff()
+    public void ArmageddonSpire()
     {
         var actual = parser.ParseItem(@"Item Class: Staves
 Rarity: Rare
@@ -406,7 +406,7 @@ Note: ~price 30 chaos
     }
 
     [Fact]
-    public void FortifyMod()
+    public void RelentlessFury()
     {
         var actual = parser.ParseItem(@"Item Class: One Hand Axes
 Rarity: Unique
@@ -452,7 +452,7 @@ Corrupted");
     }
 
     [Fact]
-    public void PerXModifiers()
+    public void DamnationCall()
     {
         var actual = parser.ParseItem(@"Item Class: Wands
 Rarity: Rare
@@ -493,7 +493,7 @@ Elder Item");
     }
 
     [Fact]
-    public void ElementalDamage()
+    public void BroodButcher()
     {
         var actual = parser.ParseItem(@"Item Class: Two Hand Axes
 Rarity: Rare
@@ -593,7 +593,7 @@ The brightest flames cast the darkest shadows.
     }
 
     [Fact]
-    public void VaalAxe()
+    public void FrostedVaalAxeofRecuperation()
     {
         var actual = parser.ParseItem(@"Item Class: Two Hand Axes
 Rarity: Magic

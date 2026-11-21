@@ -9,7 +9,7 @@ public class BeastParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseRareBeast()
+    public void Shadowchew()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Rare
@@ -37,7 +37,7 @@ Right-click to add this to your bestiary.
     }
 
     [Fact]
-    public void ParseUniqueBeast()
+    public void SaqawalFirstoftheSky()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Unique
@@ -59,7 +59,7 @@ Right-click to add this to your bestiary.");
     }
 
     [Fact]
-    public void FarricChieftain()
+    public void Duskkiller()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Rare
@@ -88,7 +88,7 @@ Right-click to add this to your bestiary.
     }
 
     [Fact]
-    public void VividVulture()
+    public void Hairyjoint()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Rare

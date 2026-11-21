@@ -9,7 +9,7 @@ public class AllflameParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseRareChart()
+    public void CoralForestChart()
     {
         var actual = parser.ParseItem(@"Item Class: Chart
 Rarity: Rare

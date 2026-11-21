@@ -10,7 +10,7 @@ public class OffhandParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void AdvancedStatParsing()
+    public void GloomSpell()
     {
         var actual = parser.ParseItem(@"Item Class: Shields
 Rarity: Rare

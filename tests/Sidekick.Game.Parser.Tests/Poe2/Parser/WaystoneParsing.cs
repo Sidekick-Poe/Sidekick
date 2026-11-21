@@ -11,7 +11,7 @@ public class WaystoneParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseWaystoneProperties()
+    public void ForsakenBearings()
     {
         var actual = parser.ParseItem(
         @"Item Class: Waystones
@@ -56,7 +56,7 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
     }
 
     [Fact]
-    public void ParseWaystoneTier13()
+    public void PutridNavigation()
     {
         var actual = parser.ParseItem(
         @"Item Class: Waystones
@@ -151,7 +151,7 @@ Corrupted
     }
 
     [Fact]
-    public async Task MonsterRarity()
+    public async Task BarrenFrontier()
     {
         var actual = parser.ParseItem(
         @"Item Class: Waystones

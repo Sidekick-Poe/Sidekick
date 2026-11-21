@@ -10,7 +10,7 @@ public class MapParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void Tier2()
+    public void ArmouredMap()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Magic
@@ -77,7 +77,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void MoreProperties()
+    public void MalevolentSecrets()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -127,7 +127,7 @@ Corrupted
     }
 
     [Fact]
-    public void QualityCurrency()
+    public void MapQualityCurrency()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -154,7 +154,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void QualityScarabs()
+    public void MapQualityScarabs()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -181,7 +181,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void QualityCards()
+    public void MapQualityCards()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -208,7 +208,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void QualityPackSize()
+    public void MapQualityPackSize()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -235,7 +235,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void QualityRarity()
+    public void MapQualityRarity()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -262,7 +262,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void NightmareMap()
+    public void TerrorGrind()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -308,7 +308,7 @@ Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
     }
 
     [Fact]
-    public void OriginatorMap()
+    public void FoePortent()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -358,7 +358,7 @@ Corrupted
     }
 
     [Fact]
-    public void ValdoMap()
+    public void FilthyAbode()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -402,7 +402,7 @@ Foil (Celestial Amethyst)
     }
 
     [Fact]
-    public void BlightedMap()
+    public void BlightedMapTier13()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -432,7 +432,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void BlightedMapTier3()
+    public void BlightedMapTier3Map()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -464,7 +464,7 @@ Note: ~b/o 1 chaos
     }
 
     [Fact]
-    public void BlightRavagedMap()
+    public void BlightRavagedMapTier16()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -498,7 +498,7 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
     }
 
     [Fact]
-    public void Atzoatl()
+    public void ChronicleofAtzoatl()
     {
         var actual = parser.ParseItem(@"Item Class: Misc Map Items
 Rarity: Currency
@@ -538,7 +538,7 @@ Note: ~price 1.29 exalted
     }
 
     [Fact]
-    public void RareOnlyModifierMap()
+    public void TortureDirection()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -576,7 +576,7 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
     }
 
     [Fact]
-    public void DroxCitadel()
+    public void PerniciousSolitude()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -624,7 +624,7 @@ Travel to a Map of this tier or lower by using this in a personal Map Device. Ma
     }
 
     [Fact]
-    public void Tier16()
+    public void HiddenRealm()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -664,7 +664,7 @@ Corrupted
     }
 
     [Fact]
-    public void NightmareMap2()
+    public void CruelStone()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -708,7 +708,7 @@ Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
     }
 
     [Fact]
-    public void BlightRavagedMap2()
+    public void BlightRavagedMapRelicChambers()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
@@ -742,7 +742,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void DroxMap()
+    public void BloodBearings()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
@@ -778,7 +778,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
     }
 
     [Fact]
-    public void ShaperGuardian()
+    public void ArcaneArtifice()
     {
         var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare

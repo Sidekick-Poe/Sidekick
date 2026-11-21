@@ -10,7 +10,7 @@ public class ArmourParsing(Poe2EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseThunderstep()
+    public void Thunderstep()
     {
         var actual = parser.ParseItem(
             @"Item Class: Boots
@@ -67,7 +67,7 @@ Corrupted
     }
 
     [Fact]
-    public void ParseBuckler()
+    public void HaleWoodenBuckler()
     {
         var actual = parser.ParseItem(
             @"Item Class: Bucklers
@@ -101,7 +101,7 @@ Grants Skill: Parry
     }
 
     [Fact]
-    public void ParseUnusableQuiver()
+    public void FireQuiver()
     {
         var actual = parser.ParseItem(
             @"Item Class: Quivers
@@ -128,7 +128,7 @@ Can only be equipped if you are wielding a Bow.
     }
 
     [Fact]
-    public void ParseDesecratedBoots()
+    public void VictoryHoof()
     {
         var actual = parser.ParseItem(
             @"Item Class: Boots
@@ -171,7 +171,7 @@ Item Level: 66
     }
 
     [Fact]
-    public void ParseAtziriStep()
+    public void AtzirisStep()
     {
         var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Unique
@@ -218,7 +218,7 @@ Note: ~b/o 980 divine
     }
 
     [Fact]
-    public void ParsePainGuardian()
+    public void PainGuardian()
     {
         var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Rare
@@ -279,7 +279,7 @@ Hits against you have 43(40-50)% reduced Critical Damage Bonus
     }
 
     [Fact]
-    public void ParseIronride()
+    public void Ironride()
     {
         var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Unique
@@ -378,7 +378,7 @@ Item Level: 82
     }
 
     [Fact]
-    public void TheKnightErrantRunemastered()
+    public void TheKnightErrantRunemasteredBase()
     {
         var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Unique
