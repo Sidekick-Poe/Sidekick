@@ -13740,6 +13740,10 @@
     "text": "#% increased Punishment Curse Effect"
   },
   {
+    "id": "enchant.stat_2844829788",
+    "text": "# Monster Packs in Area are substituted with harmless Toads"
+  },
+  {
     "id": "enchant.stat_2844839137",
     "text": "Summoned Skitterbots have #% increased Area of Effect"
   },
@@ -20828,12 +20832,20 @@
     "text": "Delirium Reward Type: Essences"
   },
   {
+    "id": "explicit.delirium_reward_fossils",
+    "text": "Delirium Reward Type: Fossils"
+  },
+  {
     "id": "explicit.delirium_reward_gems",
     "text": "Delirium Reward Type: Gems"
   },
   {
     "id": "explicit.delirium_reward_maps",
     "text": "Delirium Reward Type: Map Items"
+  },
+  {
+    "id": "explicit.delirium_reward_metamorphosis",
+    "text": "Delirium Reward Type: Catalysts"
   },
   {
     "id": "explicit.delirium_reward_scarabs",
@@ -21424,6 +21436,10 @@
     "text": "Socketed Gems are Supported by Level # Bloodlust Support"
   },
   {
+    "id": "explicit.effect_3136470162",
+    "text": "Socketed Gems are Supported by Level # Congregation Support"
+  },
+  {
     "id": "explicit.effect_3161048706",
     "text": "Socketed Gems are Supported by Level # Divine Blessing Support"
   },
@@ -21822,6 +21838,10 @@
   {
     "id": "explicit.effect_602948540",
     "text": "Socketed Gems are Supported by Level # Critical Strike Affliction Support"
+  },
+  {
+    "id": "explicit.effect_603124590",
+    "text": "Socketed Gems are Supported by Level # Greater Unleash Support"
   },
   {
     "id": "explicit.effect_603152644",
@@ -28504,6 +28524,10 @@
     "text": "With at least 40 Intelligence in Radius, Rolling Magma\nhas #% increased Area of Effect per Chain"
   },
   {
+    "id": "explicit.stat_1609344921",
+    "text": "Damage with Hits is Lucky while your Offhand is Magic"
+  },
+  {
     "id": "explicit.stat_161058250",
     "text": "Gain Soul Eater for # seconds when you use a Vaal Skill"
   },
@@ -30073,11 +30097,11 @@
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Remnants have #% chance to have an additional Suffix Modifier"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Remnants in your Maps have #% chance to have an additional Suffix Modifier"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871938116",
@@ -31446,6 +31470,10 @@
   {
     "id": "explicit.stat_2105048696",
     "text": "Attacks fire an additional Projectile when in Off Hand"
+  },
+  {
+    "id": "explicit.stat_2105061711",
+    "text": "Minions convert #% of Physical Damage to Lightning Damage"
   },
   {
     "id": "explicit.stat_2105355711",
@@ -35094,6 +35122,10 @@
   {
     "id": "explicit.stat_2529112796",
     "text": "\u002B#% to Critical Strike Multiplier with Mines"
+  },
+  {
+    "id": "explicit.stat_2529155377",
+    "text": "#% increased Damage with Claws against Enemies that are on Low Life"
   },
   {
     "id": "explicit.stat_2530071726",
@@ -52496,6 +52528,10 @@
     "text": "Monsters cannot be Stunned"
   },
   {
+    "id": "fractured.stat_1045292082",
+    "text": "Minions convert #% of Physical Damage to Fire Damage"
+  },
+  {
     "id": "fractured.stat_1048879642",
     "text": "1 Added Passive Skill is Mob Mentality"
   },
@@ -52852,6 +52888,10 @@
     "text": "#% increased Damage over Time while holding a Shield"
   },
   {
+    "id": "fractured.stat_1248307887",
+    "text": "You are affected by Delirium Fog"
+  },
+  {
     "id": "fractured.stat_1248507170",
     "text": "With at least 40 Strength in Radius, Hits with Cleave Fortify"
   },
@@ -52906,6 +52946,10 @@
   {
     "id": "fractured.stat_1273709603",
     "text": "Trigger level # Ghostly Artillery when you Attack with this Weapon"
+  },
+  {
+    "id": "fractured.stat_1274429432",
+    "text": "Gain Added Spell Damage equal to #% of Damage of Equipped Wand\nIf two Wands are Equipped, each contributes half as much Added Damage"
   },
   {
     "id": "fractured.stat_1274505521",
@@ -53462,6 +53506,10 @@
   {
     "id": "fractured.stat_1583385065",
     "text": "#% increased Damage with Non-Vaal Skills during Soul Gain Prevention"
+  },
+  {
+    "id": "fractured.stat_1584440377",
+    "text": "#% increased Unarmed Attack Speed with Melee Skills"
   },
   {
     "id": "fractured.stat_1585344030",
@@ -54056,6 +54104,10 @@
     "text": "Added Small Passive Skills also grant: \u002B#% to Critical Strike Multiplier"
   },
   {
+    "id": "fractured.stat_1928468569",
+    "text": "Critical Strikes with Bows have a #% chance to Poison the Enemy"
+  },
+  {
     "id": "fractured.stat_1936135020",
     "text": "1 Added Passive Skill is Victim Maker"
   },
@@ -54370,6 +54422,10 @@
   {
     "id": "fractured.stat_2101383955",
     "text": "Damage Penetrates #% Elemental Resistances"
+  },
+  {
+    "id": "fractured.stat_2105061711",
+    "text": "Minions convert #% of Physical Damage to Lightning Damage"
   },
   {
     "id": "fractured.stat_2106365538",
@@ -55020,6 +55076,10 @@
     "text": "#% increased time before Lockdown"
   },
   {
+    "id": "fractured.stat_2436559047",
+    "text": "Area contains a Mirage"
+  },
+  {
     "id": "fractured.stat_2438099615",
     "text": "#% chance to not Activate Lockdown in Grand Heists"
   },
@@ -55248,6 +55308,10 @@
     "text": "\u002B#% to Critical Strike Multiplier with Mines"
   },
   {
+    "id": "fractured.stat_2529155377",
+    "text": "#% increased Damage with Claws against Enemies that are on Low Life"
+  },
+  {
     "id": "fractured.stat_2530372417",
     "text": "#% Chance to Block Attack Damage"
   },
@@ -55398,6 +55462,10 @@
   {
     "id": "fractured.stat_2633745731",
     "text": "#% increased total Recovery per second from Life Leech"
+  },
+  {
+    "id": "fractured.stat_264042266",
+    "text": "Minions convert #% of Physical Damage to Cold Damage"
   },
   {
     "id": "fractured.stat_2642917409",
@@ -56504,6 +56572,10 @@
     "text": "Socketed Movement Skills Cost no Mana"
   },
   {
+    "id": "fractured.stat_326480871",
+    "text": "Attacks with Axes or Swords grant # Rage on Hit"
+  },
+  {
     "id": "fractured.stat_3269060224",
     "text": "Gain a Power Charge after Spending a total of 200 Mana"
   },
@@ -56918,6 +56990,10 @@
   {
     "id": "fractured.stat_3479987487",
     "text": "#% increased Block and Stun Recovery during Effect"
+  },
+  {
+    "id": "fractured.stat_3481254135",
+    "text": "Gain Added Spell Damage equal to #% of Damage of Equipped Dagger\nIf two Daggers are Equipped, each contributes 60% as much Added Damage"
   },
   {
     "id": "fractured.stat_3482587079",
@@ -60456,6 +60532,10 @@
     "text": "Grants Level # Discipline"
   },
   {
+    "id": "implicit.effect_603152644",
+    "text": "Grants Summon Greater Harbinger of Directions"
+  },
+  {
     "id": "implicit.effect_626699959",
     "text": "Socketed Gems are Supported by Level # Cast on Death Support"
   },
@@ -60466,6 +60546,10 @@
   {
     "id": "implicit.effect_723113949",
     "text": "Grants Level # Determination"
+  },
+  {
+    "id": "implicit.effect_771254875",
+    "text": "Grants Level # Aspect of the Cat"
   },
   {
     "id": "implicit.effect_859488427",
@@ -60942,6 +61026,10 @@
   {
     "id": "implicit.stat_1195319608",
     "text": "#% increased Energy Shield from Equipped Body Armour"
+  },
+  {
+    "id": "implicit.stat_1209237645",
+    "text": "# Maximum Void Charges"
   },
   {
     "id": "implicit.stat_1211769158",
@@ -62237,11 +62325,11 @@
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Remnants have #% chance to have an additional Suffix Modifier"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Remnants in your Maps have #% chance to have an additional Suffix Modifier"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1873457881",
@@ -62284,6 +62372,10 @@
     "text": "Bleeding cannot be inflicted on you"
   },
   {
+    "id": "implicit.stat_190157226",
+    "text": "Killing Blows Consume corpses to Recover #% of Life"
+  },
+  {
     "id": "implicit.stat_190207599",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% of Physical Damage Leeched as Life"
   },
@@ -62298,6 +62390,10 @@
   {
     "id": "implicit.stat_190932737",
     "text": "\u002B#% Item Rarity"
+  },
+  {
+    "id": "implicit.stat_1909401378",
+    "text": "\u002B#% to Critical Strike Chance"
   },
   {
     "id": "implicit.stat_1911037487",
@@ -62876,6 +62972,10 @@
     "text": "#% increased Cold Damage with Spell Skills"
   },
   {
+    "id": "implicit.stat_2188905761",
+    "text": "#% increased Attack Speed if you\u0027ve changed Stance Recently"
+  },
+  {
     "id": "implicit.stat_2192875806",
     "text": "Socketed Skills apply Fire, Cold and Lightning Exposure on Hit"
   },
@@ -63318,6 +63418,10 @@
   {
     "id": "implicit.stat_2420972973",
     "text": "#% increased Effect of the Buff granted by your Carrion Golems"
+  },
+  {
+    "id": "implicit.stat_2421436896",
+    "text": "Arrows Fork"
   },
   {
     "id": "implicit.stat_2423625781",
@@ -64812,6 +64916,10 @@
     "text": "#% increased Vaal Skill Critical Strike Chance"
   },
   {
+    "id": "implicit.stat_3168149399",
+    "text": "Adds # to # Lightning Damage to Attacks per 10 Intelligence"
+  },
+  {
     "id": "implicit.stat_3171354842",
     "text": "While a Unique Enemy is in your Presence, Gain #% of Physical Damage as Extra Cold Damage"
   },
@@ -64988,6 +65096,10 @@
     "text": "Minions are Aggressive if you\u0027ve used a Minion Skill Recently"
   },
   {
+    "id": "implicit.stat_3262369040",
+    "text": "Consumes a Void Charge to Trigger Level # Void Shot when you fire Arrows with a Non-Triggered Skill"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "While a Unique Enemy is in your Presence, Withered you Inflict expires #% faster"
   },
@@ -65002,6 +65114,10 @@
   {
     "id": "implicit.stat_3266394681",
     "text": "Attack Skills have \u002B# to maximum number of Summoned Totems"
+  },
+  {
+    "id": "implicit.stat_3267026680",
+    "text": "#% increased Attack Speed if you\u0027ve used an Attack Movement Skill Recently"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -65158,6 +65274,10 @@
   {
     "id": "implicit.stat_3326567914",
     "text": "While a Pinnacle Atlas Boss is in your Presence, #% Chance to Block Attack Damage"
+  },
+  {
+    "id": "implicit.stat_3334947764",
+    "text": "Every second time you cast each Spell, gain Mana equal to its Upfront Cost"
   },
   {
     "id": "implicit.stat_3336890334",
@@ -65342,6 +65462,10 @@
   {
     "id": "implicit.stat_342670903",
     "text": "#% increased Damage per 100 Dexterity"
+  },
+  {
+    "id": "implicit.stat_34273389",
+    "text": "Gain a Void Charge every # seconds"
   },
   {
     "id": "implicit.stat_3433724931",
@@ -67618,6 +67742,10 @@
   {
     "id": "implicit.stat_683892962",
     "text": "#% increased Damage per Minion, up to a maximum of 40%"
+  },
+  {
+    "id": "implicit.stat_68673913",
+    "text": "Adds # to # Fire Damage to Attacks per 10 Strength"
   },
   {
     "id": "implicit.stat_689723685",
@@ -71733,32 +71861,32 @@
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#1",
-    "text": "Has Room: Royal Meeting Room (Tier 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Open Room"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#2",
-    "text": "Has Room: Royal Meeting Room (Tier 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Closed Room"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#1",
-    "text": "Has Room: Hall of Lords (Tier 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Open Room"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#2",
-    "text": "Has Room: Hall of Lords (Tier 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Closed Room"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#1",
-    "text": "Has Room: Throne of Atziri (Tier 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Open Room"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#2",
-    "text": "Has Room: Throne of Atziri (Tier 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Closed Room"
   },
   {

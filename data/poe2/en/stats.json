@@ -12974,13 +12974,13 @@
   },
   {
     "text": "Anger has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Anger\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Anger has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Anger\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -13358,13 +13358,13 @@
   },
   {
     "text": "Arctic Armour has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Arctic\\ Armour\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Arctic Armour has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Arctic\\ Armour\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -19826,13 +19826,13 @@
   },
   {
     "text": "Blood and Sand has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Blood\\ and\\ Sand\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Blood and Sand has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Blood\\ and\\ Sand\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -26854,13 +26854,13 @@
   },
   {
     "text": "Clarity has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Clarity\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Clarity has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Clarity\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -31940,13 +31940,13 @@
   },
   {
     "text": "Determination has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Determination\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Determination has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Determination\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -32010,13 +32010,13 @@
   },
   {
     "text": "Devouring Totem has #% Chance to Consume an additional corpse",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Devouring\\ Totem\\ has\\ ([-0-9,.]\u002B)%\\ Chance\\ to\\ Consume\\ an\\ additional\\ corpse$"
   },
   {
     "text": "Devouring Totem has #% Chance to Consume an additional corpse",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Devouring\\ Totem\\ has\\ ([-0-9,.]\u002B)%\\ Chance\\ to\\ Consume\\ an\\ additional\\ corpse$"
@@ -32158,13 +32158,13 @@
   },
   {
     "text": "Discipline has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Discipline\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Discipline has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Discipline\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -34990,6 +34990,7 @@
   },
   {
     "text": "Equipment has no Attribute Requirements",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2480151124"
@@ -34998,7 +34999,6 @@
   },
   {
     "text": "Equipment has no Attribute Requirements",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2480151124"
@@ -37134,13 +37134,13 @@
   },
   {
     "text": "Flesh and Stone has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Flesh and Stone has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Flesh\\ and\\ Stone\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -38864,6 +38864,7 @@
   },
   {
     "text": "Gain # Life per Cursed Enemy Hit with Attacks",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -38877,7 +38878,6 @@
   },
   {
     "text": "Gain # Life per Cursed Enemy Hit with Attacks",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -41702,13 +41702,13 @@
   },
   {
     "text": "Grace has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Grace\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Grace has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Grace\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -45159,13 +45159,13 @@
   },
   {
     "text": "Haste has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Haste\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Haste has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Haste\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -45230,13 +45230,13 @@
   },
   {
     "text": "Hatred has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Hatred\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Hatred has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Hatred\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -45725,13 +45725,13 @@
   },
   {
     "text": "Herald of Agony has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Agony\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Herald of Agony has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Agony\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -45777,13 +45777,13 @@
   },
   {
     "text": "Herald of Ash has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Ash\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Herald of Ash has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Ash\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -45829,13 +45829,13 @@
   },
   {
     "text": "Herald of Ice has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Ice\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Herald of Ice has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Ice\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -45881,13 +45881,13 @@
   },
   {
     "text": "Herald of Purity has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Purity\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Herald of Purity has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Purity\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -45939,13 +45939,13 @@
   },
   {
     "text": "Herald of Thunder has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Thunder\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Herald of Thunder has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Herald\\ of\\ Thunder\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -50565,13 +50565,13 @@
   },
   {
     "text": "Legion Generals in your Maps drop #% more Timeless Splinters",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Legion\\ Generals\\ in\\ your\\ (?:area|Area|map|Map)s\\ drop\\ ([-0-9,.]\u002B)%\\ more\\ Timeless\\ Splinters$"
   },
   {
     "text": "Legion Generals in your Maps drop #% more Timeless Splinters",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Legion\\ Generals\\ in\\ your\\ (?:area|Area|map|Map)s\\ drop\\ ([-0-9,.]\u002B)%\\ more\\ Timeless\\ Splinters$"
@@ -52126,7 +52126,7 @@
   },
   {
     "text": "Lose #% of maximum Life on Kill",
-    "matchedFuzzily": true,
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_2023107756",
@@ -52139,7 +52139,7 @@
   },
   {
     "text": "Lose #% of maximum Life on Kill",
-    "negate": true,
+    "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_2023107756",
@@ -52484,13 +52484,13 @@
   },
   {
     "text": "Malevolence has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Malevolence\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Malevolence has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Malevolence\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -62821,13 +62821,13 @@
   },
   {
     "text": "Petrified Blood has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Petrified\\ Blood\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Petrified Blood has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Petrified\\ Blood\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -64810,13 +64810,13 @@
   },
   {
     "text": "Precision has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Precision\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Precision has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Precision\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -64979,13 +64979,13 @@
   },
   {
     "text": "Pride has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Pride\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Pride has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Pride\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -65779,13 +65779,13 @@
   },
   {
     "text": "Purity of Elements has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Elements\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Purity of Elements has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Elements\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -65837,13 +65837,13 @@
   },
   {
     "text": "Purity of Fire has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Fire\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Purity of Fire has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Fire\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -65895,13 +65895,13 @@
   },
   {
     "text": "Purity of Ice has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Ice\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Purity of Ice has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Ice\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -65953,13 +65953,13 @@
   },
   {
     "text": "Purity of Lightning has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Lightning\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Purity of Lightning has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Purity\\ of\\ Lightning\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -68652,6 +68652,7 @@
   },
   {
     "text": "Regenerate #% of maximum Life per second",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_836936635",
@@ -68663,7 +68664,6 @@
   },
   {
     "text": "Regenerate #% of maximum Life per second",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_836936635",
@@ -72114,6 +72114,7 @@
   },
   {
     "text": "Skill Gems have no Attribute Requirements",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
@@ -72122,7 +72123,6 @@
   },
   {
     "text": "Skill Gems have no Attribute Requirements",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4245256219"
@@ -78238,13 +78238,13 @@
   },
   {
     "text": "Summon Skitterbots has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Summon\\ Skitterbots\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Summon Skitterbots has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Summon\\ Skitterbots\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -84046,13 +84046,13 @@
   },
   {
     "text": "Vitality has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vitality\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Vitality has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vitality\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -86235,13 +86235,13 @@
   },
   {
     "text": "Wrath has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Wrath\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Wrath has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Wrath\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -86496,13 +86496,13 @@
   },
   {
     "text": "You and nearby Allies have \u002B#% to Elemental Resistances",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^You\\ and\\ nearby\\ Allies\\ have\\ \\\u002B([-0-9,.]\u002B)%\\ to\\ Elemental\\ Resistances$"
   },
   {
     "text": "You and nearby Allies have \u002B#% to Elemental Resistances",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^You\\ and\\ nearby\\ Allies\\ have\\ \\\u002B([-0-9,.]\u002B)%\\ to\\ Elemental\\ Resistances$"
@@ -91237,13 +91237,13 @@
   },
   {
     "text": "Zealotry has #% reduced Mana Reservation Efficiency",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Zealotry\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
   },
   {
     "text": "Zealotry has #% reduced Mana Reservation Efficiency",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Zealotry\\ has\\ ([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency$"
@@ -92340,13 +92340,13 @@
   },
   {
     "text": "#% chance for Thorns to Retaliate against Non-Melee Hits if you have at least 200 Tribute",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Thorns\\ to\\ Retaliate\\ against\\ Non-Melee\\ Hits\\ if\\ you\\ have\\ at\\ least\\ 200\\ Tribute$"
   },
   {
     "text": "#% chance for Thorns to Retaliate against Non-Melee Hits if you have at least 200 Tribute",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ for\\ Thorns\\ to\\ Retaliate\\ against\\ Non-Melee\\ Hits\\ if\\ you\\ have\\ at\\ least\\ 200\\ Tribute$"
@@ -92716,26 +92716,26 @@
   },
   {
     "text": "#% chance of Defusing Trapped Chests",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ of\\ Defusing\\ Trapped\\ Chests$"
   },
   {
     "text": "#% chance of Defusing Trapped Chests",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ of\\ Defusing\\ Trapped\\ Chests$"
   },
   {
     "text": "#% chance of Fire Spreading between Enemies",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ of\\ Fire\\ Spreading\\ between\\ Enemies$"
   },
   {
     "text": "#% chance of Fire Spreading between Enemies",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ of\\ Fire\\ Spreading\\ between\\ Enemies$"
@@ -93005,6 +93005,7 @@
   },
   {
     "text": "#% chance to Avoid Honour loss from Enemy Hits if you\u0027ve been Hit Recently",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "sanctum.stat_2284543592"
@@ -93013,7 +93014,6 @@
   },
   {
     "text": "#% chance to Avoid Honour loss from Enemy Hits if you\u0027ve been Hit Recently",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "sanctum.stat_2284543592"
@@ -93397,13 +93397,13 @@
   },
   {
     "text": "#% chance to Crush on Hit",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Crush\\ on\\ Hit$"
   },
   {
     "text": "#% chance to Crush on Hit",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Crush\\ on\\ Hit$"
@@ -93816,13 +93816,13 @@
   },
   {
     "text": "#% chance to Poison on Hit against Enemies that are not Poisoned",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Poison\\ on\\ Hit\\ against\\ Enemies\\ that\\ are\\ not\\ Poisoned$"
   },
   {
     "text": "#% chance to Poison on Hit against Enemies that are not Poisoned",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ chance\\ to\\ Poison\\ on\\ Hit\\ against\\ Enemies\\ that\\ are\\ not\\ Poisoned$"
@@ -119067,6 +119067,7 @@
   },
   {
     "text": "#% of Damage taken Recouped as Life",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1444556985",
@@ -119081,7 +119082,6 @@
   },
   {
     "text": "#% of Damage taken Recouped as Life",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1444556985",
@@ -119108,6 +119108,7 @@
   },
   {
     "text": "#% of Damage taken Recouped as Mana",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_472520716",
@@ -119119,7 +119120,6 @@
   },
   {
     "text": "#% of Damage taken Recouped as Mana",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "desecrated.stat_472520716",
@@ -119146,6 +119146,7 @@
   },
   {
     "text": "#% of Damage taken during effect Recouped as Life",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3598623697"
@@ -119154,7 +119155,6 @@
   },
   {
     "text": "#% of Damage taken during effect Recouped as Life",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3598623697"
@@ -119346,6 +119346,7 @@
   },
   {
     "text": "#% of Fire Damage from Hits taken as Physical Damage",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3205239847"
@@ -119354,7 +119355,6 @@
   },
   {
     "text": "#% of Fire Damage from Hits taken as Physical Damage",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3205239847"
@@ -132431,6 +132431,7 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Banner Skills",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132449,7 +132450,6 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Banner Skills",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132468,6 +132468,7 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Curse Aura Skills",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132478,7 +132479,6 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Curse Aura Skills",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132489,6 +132489,7 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Herald Skills",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132499,7 +132500,6 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Herald Skills",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132510,6 +132510,7 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132527,7 +132528,6 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -132545,39 +132545,39 @@
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills Supported by Spellslinger",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills\\ Supported\\ by\\ Spellslinger$"
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills Supported by Spellslinger",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills\\ Supported\\ by\\ Spellslinger$"
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills per 250 total Attributes",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills\\ per\\ 250\\ total\\ Attributes$"
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills per 250 total Attributes",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills\\ per\\ 250\\ total\\ Attributes$"
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills that throw Mines",
+    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills\\ that\\ throw\\ Mines$"
   },
   {
     "text": "#% reduced Mana Reservation Efficiency of Skills that throw Mines",
-    "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ reduced\\ Mana\\ Reservation\\ Efficiency\\ of\\ Skills\\ that\\ throw\\ Mines$"
@@ -135570,6 +135570,7 @@
   },
   {
     "text": "#% reduced Reservation Efficiency of Skills",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -135588,7 +135589,6 @@
   },
   {
     "text": "#% reduced Reservation Efficiency of Skills",
-    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -141414,6 +141414,7 @@
   },
   {
     "text": "\u002B#% to Fire Resistance while on Low Life",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_38301299"
@@ -141422,7 +141423,6 @@
   },
   {
     "text": "\u002B#% to Fire Resistance while on Low Life",
-    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_38301299"

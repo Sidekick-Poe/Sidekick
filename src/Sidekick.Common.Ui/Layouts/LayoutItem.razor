@@ -94,7 +94,7 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        LeftContentWidth = await SettingsService.GetInt(WidthKey);
+        LeftContentWidth = await SettingsService.GetIntAsync(WidthKey);
     }
 
     private string LeftContentId { get; } = UiUtilities.GenerateId();
@@ -113,7 +113,7 @@
     {
         if (width != 0)
         {
-            await SettingsService.Set(WidthKey, width);
+            await SettingsService.SetAsync(WidthKey, width);
         }
     }
 

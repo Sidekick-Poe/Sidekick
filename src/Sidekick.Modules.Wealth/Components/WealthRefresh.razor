@@ -8,25 +8,25 @@
         {
             <ButtonCustom Class="border border-blue-500 bg-transparent"
                           Disabled="true">
-                <div class="text-blue-400">@Resources["Running"]</div>
+                <div class="text-blue-400">@Resources.Running</div>
             </ButtonCustom>
         }
         else if (WealthProvider.Status == WealthRunStatus.Failed)
         {
             <ButtonCustom Class="border border-red-500 bg-transparent"
                           OnClick="WealthProvider.Start">
-                <div class="text-red-400">@Resources["Failed"]</div>
+                <div class="text-red-400">@Resources.Failed</div>
             </ButtonCustom>
         }
         else
         {
-            <ButtonPrimary OnClick="WealthProvider.Start">@Resources["Refresh"]</ButtonPrimary>
+            <ButtonPrimary OnClick="WealthProvider.Start">@Resources.Refresh</ButtonPrimary>
         }
     </ChildContent>
     <UnauthenticatedContent>
         <ButtonCustom Class="border border-neutral-500 bg-transparent"
                       Disabled="true">
-            <div class="text-neutral-400">@Resources["Refresh"]</div>
+            <div class="text-neutral-400">@Resources.Refresh</div>
         </ButtonCustom>
     </UnauthenticatedContent>
 </HideIfUnauthenticated>

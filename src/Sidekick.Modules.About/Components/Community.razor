@@ -5,9 +5,9 @@
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Modules.About.Localization
 
-<FormFieldset Legend="@Resources["Community"]" Class="flex flex-col justify-start">
+<FormFieldset Legend="@Resources.Community" Class="flex flex-col justify-start">
     <div class="flex items-center gap-3">
-        <TextBase>@Resources["Discord_Server"]</TextBase>
+        <TextBase>@Resources.Discord_Server</TextBase>
         <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.DiscordServer))"
                     Class="text-sm text-neutral-400">@BrowserProvider.DiscordServer</ButtonLink>
     </div>

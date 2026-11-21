@@ -68531,22 +68531,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "Hook Axe",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Hook Axe",
-        "name": "INCOMPLETE",
-        "type": "Hook Axe",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -68559,6 +68543,22 @@
         "text": "INCOMPLETE Dull Hatchet",
         "name": "INCOMPLETE",
         "type": "Dull Hatchet",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "Hook Axe",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Hook Axe",
+        "name": "INCOMPLETE",
+        "type": "Hook Axe",
         "cat": "weapon"
       }
     ],
@@ -68614,22 +68614,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
-    ],
-    "ninjaExchange": [],
-    "name": "Iron Greatsword",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Iron Greatsword",
-        "name": "INCOMPLETE",
-        "type": "Iron Greatsword",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
     ],
     "ninjaExchange": [],
@@ -68639,6 +68623,22 @@
         "text": "INCOMPLETE Splintered Flail",
         "name": "INCOMPLETE",
         "type": "Splintered Flail",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
+    ],
+    "ninjaExchange": [],
+    "name": "Iron Greatsword",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Iron Greatsword",
+        "name": "INCOMPLETE",
+        "type": "Iron Greatsword",
         "cat": "weapon"
       }
     ],

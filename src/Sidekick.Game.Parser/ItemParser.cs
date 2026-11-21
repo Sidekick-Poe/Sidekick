@@ -26,7 +26,7 @@ public class ItemParser
 
     public async Task Initialize()
     {
-        Game = await settingsService.GetGame();
+        Game = await settingsService.GetGameAsync();
     }
 
     public Item ParseItem(string? text)
@@ -61,7 +61,7 @@ public class ItemParser
 
     private UnparsableException CreateUnparsableException(string? text)
     {
-        return new UnparsableException(resources["Unparsable_Title"], resources["Unparsable_Settings"], resources["Unparsable_Mistakes"])
+        return new UnparsableException(resources.Unparsable_Title, resources.Unparsable_Settings, resources.Unparsable_Mistakes)
         {
             ItemText = text,
         };

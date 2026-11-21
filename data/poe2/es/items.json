@@ -70180,22 +70180,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "Hacha ganchuda",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Hacha ganchuda",
-        "name": "INCOMPLETE",
-        "type": "Hacha ganchuda",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -70208,6 +70192,22 @@
         "text": "INCOMPLETE Hachuela opaca",
         "name": "INCOMPLETE",
         "type": "Hachuela opaca",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "Hacha ganchuda",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Hacha ganchuda",
+        "name": "INCOMPLETE",
+        "type": "Hacha ganchuda",
         "cat": "weapon"
       }
     ],
@@ -70263,22 +70263,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
-    ],
-    "ninjaExchange": [],
-    "name": "Espada larga de hierro",
-    "tradeItems": [
-      {
-        "text": "INCOMPLETE Espada larga de hierro",
-        "name": "INCOMPLETE",
-        "type": "Espada larga de hierro",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^INCOMPLETE$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
     ],
     "ninjaExchange": [],
@@ -70288,6 +70272,22 @@
         "text": "INCOMPLETE Mangual astillado",
         "name": "INCOMPLETE",
         "type": "Mangual astillado",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^INCOMPLETE$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
+    ],
+    "ninjaExchange": [],
+    "name": "Espada larga de hierro",
+    "tradeItems": [
+      {
+        "text": "INCOMPLETE Espada larga de hierro",
+        "name": "INCOMPLETE",
+        "type": "Espada larga de hierro",
         "cat": "weapon"
       }
     ],

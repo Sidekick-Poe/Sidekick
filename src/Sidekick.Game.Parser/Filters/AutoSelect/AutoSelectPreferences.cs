@@ -44,9 +44,9 @@ public class AutoSelectPreferences
 
     public async Task<AutoSelectResult> GetResult(Item item, TradeFilter filter, ISettingsService settingsService)
     {
-        var normalizeBy = await settingsService.GetDouble(DefaultNormalizeBySettingKey);
-        var fillMin = await settingsService.GetBool(DefaultFillMinSettingKey);
-        var fillMax = await settingsService.GetBool(DefaultFillMaxSettingKey);
+        var normalizeBy = await settingsService.GetDoubleAsync(DefaultNormalizeBySettingKey);
+        var fillMin = await settingsService.GetBoolAsync(DefaultFillMinSettingKey);
+        var fillMax = await settingsService.GetBoolAsync(DefaultFillMaxSettingKey);
 
         var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.Count == 0 || rule.Conditions.All(c => ConditionMatches(c, item, filter)));
         AutoSelectResult result;
@@ -73,7 +73,7 @@ public class AutoSelectPreferences
 
         if (filter is StatFilter statFilter)
         {
-            var selectCategories = await settingsService.GetObject<List<StatCategory>>(DefaultSelectCategoriesSettingKey) ?? [];
+            var selectCategories = await settingsService.GetObjectAsync<List<StatCategory>>(DefaultSelectCategoriesSettingKey) ?? [];
             if (matchingRule?.SelectCategories != null) selectCategories = matchingRule.SelectCategories;
             result.SelectCategory = statFilter.Stat.Category.HasExplicitStat() && selectCategories.Contains(statFilter.Stat.Category);
         }

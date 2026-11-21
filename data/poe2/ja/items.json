@@ -76597,22 +76597,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
-    ],
-    "ninjaExchange": [],
-    "name": "\u9264\u4ED8\u304D\u65A7",
-    "tradeItems": [
-      {
-        "text": "\u672A\u5B8C \u9264\u4ED8\u304D\u65A7",
-        "name": "\u672A\u5B8C",
-        "type": "\u9264\u4ED8\u304D\u65A7",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^\u672A\u5B8C$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe1"
     ],
     "ninjaExchange": [],
@@ -76625,6 +76609,22 @@
         "text": "\u672A\u5B8C \u306A\u307E\u304F\u3089\u306A\u624B\u65A7",
         "name": "\u672A\u5B8C",
         "type": "\u306A\u307E\u304F\u3089\u306A\u624B\u65A7",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^\u672A\u5B8C$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/OneHandWeapons/OneHandAxes/FourOneHandAxe2"
+    ],
+    "ninjaExchange": [],
+    "name": "\u9264\u4ED8\u304D\u65A7",
+    "tradeItems": [
+      {
+        "text": "\u672A\u5B8C \u9264\u4ED8\u304D\u65A7",
+        "name": "\u672A\u5B8C",
+        "type": "\u9264\u4ED8\u304D\u65A7",
         "cat": "weapon"
       }
     ],
@@ -76680,22 +76680,6 @@
   },
   {
     "baseItemIds": [
-      "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
-    ],
-    "ninjaExchange": [],
-    "name": "\u9244\u306E\u30B0\u30EC\u30FC\u30C8\u30BD\u30FC\u30C9",
-    "tradeItems": [
-      {
-        "text": "\u672A\u5B8C \u9244\u306E\u30B0\u30EC\u30FC\u30C8\u30BD\u30FC\u30C9",
-        "name": "\u672A\u5B8C",
-        "type": "\u9244\u306E\u30B0\u30EC\u30FC\u30C8\u30BD\u30FC\u30C9",
-        "cat": "weapon"
-      }
-    ],
-    "namePattern": "^\u672A\u5B8C$"
-  },
-  {
-    "baseItemIds": [
       "Metadata/Items/Weapons/OneHandWeapons/Flails/FourFlail1"
     ],
     "ninjaExchange": [],
@@ -76705,6 +76689,22 @@
         "text": "\u672A\u5B8C \u5272\u308C\u305F\u30D5\u30EC\u30A4\u30EB",
         "name": "\u672A\u5B8C",
         "type": "\u5272\u308C\u305F\u30D5\u30EC\u30A4\u30EB",
+        "cat": "weapon"
+      }
+    ],
+    "namePattern": "^\u672A\u5B8C$"
+  },
+  {
+    "baseItemIds": [
+      "Metadata/Items/Weapons/TwoHandWeapons/TwoHandSwords/FourTwoHandSword2"
+    ],
+    "ninjaExchange": [],
+    "name": "\u9244\u306E\u30B0\u30EC\u30FC\u30C8\u30BD\u30FC\u30C9",
+    "tradeItems": [
+      {
+        "text": "\u672A\u5B8C \u9244\u306E\u30B0\u30EC\u30FC\u30C8\u30BD\u30FC\u30C9",
+        "name": "\u672A\u5B8C",
+        "type": "\u9244\u306E\u30B0\u30EC\u30FC\u30C8\u30BD\u30FC\u30C9",
         "cat": "weapon"
       }
     ],

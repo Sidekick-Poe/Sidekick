@@ -21,7 +21,7 @@ public class ItemDefinitionProvider(
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
 
         Definitions = await dataProvider.Read<List<ItemDefinition>>(game, GameDataType.Items, currentGameLanguage.Language);
         AssignBaseItems(Definitions);

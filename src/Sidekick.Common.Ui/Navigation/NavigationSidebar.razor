@@ -3,9 +3,9 @@
 <div class="relative overflow-hidden w-20 z-10">
     <div class="absolute top-0 left-0 size-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
         <div class="h-full flex flex-col p-1">
-            @foreach (var item in Items)
+            @foreach (var entry in Items)
             {
-                if (item.IsSeparator)
+                if (entry is not NavigationItemProvider.NavigationItem item)
                 {
                     <LayoutDivider/>
                     continue;
@@ -37,7 +37,7 @@
 
 @code{
 
-    private List<NavigationItemProvider.NavigationItem> Items { get; set; } = [];
+    private List<NavigationItemProvider.NavigationEntry> Items { get; set; } = [];
 
     protected override void OnInitialized()
     {

@@ -5,15 +5,15 @@
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Modules.About.Localization
 
-<FormFieldset Legend="@Resources["Websites"]" Class="flex flex-col justify-start">
+<FormFieldset Legend="@Resources.Websites" Class="flex flex-col justify-start">
     <div class="flex items-center gap-3">
-        <TextBase>@Resources["Official_Website"]</TextBase>
+        <TextBase>@Resources.Official_Website</TextBase>
         <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.SidekickWebsite))"
                     Class="text-sm text-neutral-400">@BrowserProvider.SidekickWebsite</ButtonLink>
     </div>
 
     <div class="flex items-center gap-3">
-        <TextBase>@Resources["GitHub_Repository"]</TextBase>
+        <TextBase>@Resources.GitHub_Repository</TextBase>
         <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.GitHubRepository))"
                     Class="text-sm text-neutral-400">@BrowserProvider.GitHubRepository</ButtonLink>
     </div>

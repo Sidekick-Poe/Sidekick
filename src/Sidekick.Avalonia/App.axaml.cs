@@ -7,6 +7,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
+using Sidekick.Avalonia.Localization;
 using Sidekick.Avalonia.Services;
 using Sidekick.Avalonia.Utilities;
 using Sidekick.Common;
@@ -26,6 +27,7 @@ public partial class App : Application
     public static ServerAppHost RequiredServerAppHost => ServerAppHost ?? throw new Exception("ServerAppHost not initialized.");
 
     private int isHandlingFatalException;
+    private volatile bool isShuttingDown;
 
     public override void Initialize()
     {
@@ -60,7 +62,18 @@ public partial class App : Application
                         services.TryAddSingleton<AvaloniaTransparentDialogProvider>();
                     });
                     tcs.TrySetResult();
+
+                    // Resolved now, since the services are disposed once the server stops.
+                    var logger = ServerAppHost.Application.Services.GetRequiredService<ILogger<App>>();
                     await ServerAppHost.RunTask;
+
+                    // The host also stops by itself when the system or a terminal asks the process to quit (SIGTERM at Linux shutdown, Ctrl+C),
+                    // and cancels the default termination, so the windows would keep an empty process alive.
+                    if (!isShuttingDown)
+                    {
+                        logger.LogInformation("[App] The server stopped on its own, exiting.");
+                        Environment.Exit(0);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -92,6 +105,7 @@ public partial class App : Application
 
             desktop.ShutdownRequested += (_, _) =>
             {
+                isShuttingDown = true;
                 RequiredServerAppHost.Dispose();
             };
 
@@ -118,7 +132,7 @@ public partial class App : Application
         var uiLanguageProvider = services.GetRequiredService<IUiLanguageProvider>();
         CultureInfo.CurrentUICulture = Task.Run(uiLanguageProvider.Get).GetAwaiter().GetResult();
 
-        var window = new LinuxDependenciesWindow(missingDependencies, services.GetRequiredService<IStringLocalizer<UiResources>>());
+        var window = new LinuxDependenciesWindow(missingDependencies, services.GetRequiredService<IStringLocalizer<UiResources>>(), services.GetRequiredService<IStringLocalizer<AvaloniaResources>>());
         window.Closed += (_, _) => Environment.Exit(0);
         window.Show();
     }
@@ -181,9 +195,9 @@ public partial class App : Application
 
         void UpdateLabels()
         {
-            homeItem.Header = resources["Home"];
-            openWebsiteItem.Header = resources["Open_Website"];
-            exitItem.Header = resources["Exit"];
+            homeItem.Header = resources.Home;
+            openWebsiteItem.Header = resources.Open_Website;
+            exitItem.Header = resources.Exit;
         }
 
         UpdateLabels();

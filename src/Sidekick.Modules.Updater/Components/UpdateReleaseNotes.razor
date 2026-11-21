@@ -1,10 +1,11 @@
+@using Sidekick.Common.Ui.Localization
 @using Velopack
 @using Sidekick.Modules.Updater.Localization
 
 <LayoutSimple>
     <ChildContent>
         <AppContainer>
-            <Heading1 Class="mb-4 text-center">@Resources["New_Update_Alert"]</Heading1>
+            <Heading1 Class="mb-4 text-center">@Resources.New_Update_Alert</Heading1>
             @if (UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
             {
                 <div class="text-left">
@@ -23,7 +24,7 @@
             else
             {
                 <div class="mb-3 text-center">
-                    @Resources["NoChangelog"]
+                    @Resources.NoChangelog
                 </div>
             }
         </AppContainer>
@@ -34,12 +35,13 @@
             <ExitButton/>
             <OpenWebsiteButton/>
             <SkipButton/>
-            <ButtonPrimary OnClick="OnDownload">@Resources["Update"]</ButtonPrimary>
+            <ButtonPrimary OnClick="OnDownload">@UiResources.Update</ButtonPrimary>
         </div>
     </BottomContent>
 </LayoutSimple>
 
 @inject IStringLocalizer<UpdateResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject CurrentView CurrentView
 @implements IDisposable
 

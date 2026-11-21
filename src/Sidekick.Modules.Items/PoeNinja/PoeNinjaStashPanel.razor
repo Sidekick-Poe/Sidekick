@@ -22,11 +22,11 @@
 
     @if (Stash.ListingCount < 5)
     {
-        <AlertError IsCritical="true" Flat="true">@NinjaResources["LowConfidence"]</AlertError>
+        <AlertError IsCritical="true" Flat="true">@NinjaResources.LowConfidence</AlertError>
     }
     else if (Stash.ListingCount < 10)
     {
-        <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
+        <AlertError IsCritical="false" Flat="true">@NinjaResources.MediumConfidence</AlertError>
     }
 
     @if (Stash.Item.ItemLevel > 0)
@@ -54,27 +54,27 @@
     {
         foreach (var stat in Stash.Item.Stats)
         {
-            if (string.IsNullOrEmpty(stat.Id)) continue;
+            if (string.IsNullOrEmpty(stat.TradeStatId)) continue;
 
-            var tradeStats = StatParser.TradeDefinitions.GetValueOrDefault(stat.Id);
+            var tradeStats = StatParser.TradeDefinitions.GetValueOrDefault(stat.TradeStatId);
             if (tradeStats == null) continue;
 
             var category = StatCategory.Explicit;
-            if (stat.Id.StartsWith("explicit")) category = StatCategory.Mutated;
-            if (stat.Id.StartsWith("enchant")) category = StatCategory.Enchant;
+            if (stat.TradeStatId.StartsWith("explicit")) category = StatCategory.Mutated;
+            if (stat.TradeStatId.StartsWith("enchant")) category = StatCategory.Enchant;
 
             <ItemStatText Category="category" Class="text-center">@tradeStats.FirstOrDefault()?.Text</ItemStatText>
         }
     }
 
-    @if (Stash.Item.Corrupted)
+    @if (Stash.Item.Corrupted ?? false)
     {
         <ItemStatText Category="StatCategory.Corrupted"
                       Class="text-center">@(PropertyParser.GetDefinition<CorruptedProperty>().Label)</ItemStatText>
     }
 
     <div class="flex flex-nowrap justify-between mt-1">
-        <TextCaption>@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
+        <TextCaption>@Stash.ListingCount @NinjaResources.Listings</TextCaption>
 
         @if (!string.IsNullOrEmpty(Stash.Item.Variant))
         {

@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Platform.Clipboard;
@@ -22,13 +21,23 @@ public static class StartupExtensions
     public static IServiceCollection AddSidekickCommonPlatform(this IServiceCollection services)
     {
         services.TryAddTransient<IClipboardProvider, ClipboardProvider>();
+
+        if (WaylandSession.IsKde && WaylandClipboard.IsInstalled)
+        {
+            services.TryAddTransient<ISystemClipboard, WaylandClipboard>();
+        }
+        else
+        {
+            services.TryAddTransient<ISystemClipboard, TextCopyClipboard>();
+        }
+
         services.TryAddSingleton<IInterprocessService, InterprocessService>();
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (OperatingSystem.IsWindows())
         {
             services.AddSidekickInitializableService<IProcessProvider, Windows.Processes.ProcessProvider>();
         }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        else if (OperatingSystem.IsLinux())
         {
             services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
         }

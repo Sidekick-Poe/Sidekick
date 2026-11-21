@@ -23,6 +23,6 @@ public class AutoSelectRule
     public double? NormalizeBy { get; set; }
 
     [JsonPropertyName("selectCategories")]
-    public List<StatCategory>? SelectCategories { get; set; }
+    public List<StatCategory> SelectCategories { get; set; } = [];
 
 }

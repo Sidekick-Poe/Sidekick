@@ -16,25 +16,25 @@
     <ChildContent>
         @if (Game == GameType.Poe2)
         {
-            <AlertError>@Resources["Not_Supported_Game"]</AlertError>
+            <AlertError>@Resources.Not_Supported_Game</AlertError>
             return;
         }
 
         @if (!Configuration.Value.ApplicationType.SupportsKeybinds() || !Configuration.Value.ApplicationType.SupportsAuthentication())
         {
-            <AlertError>@Resources["Not_Supported"]</AlertError>
+            <AlertError>@Resources.Not_Supported</AlertError>
             return;
         }
 
         <AppContainer>
             <div class="flex items-start gap-2 mb-3">
-                <Heading1>@Resources["Wealth_Tracker"]</Heading1>
+                <Heading1>@Resources.Wealth_Tracker</Heading1>
                 <div class="self-center ml-auto">
                     <div class="flex flex-nowrap items-center justify-center">
                         <AuthenticationButton/>
-                        <Icon Svg="@UiIcons.ArrowForward" Class="text-stone-700"/>
+                        <Icon Svg="@Lucide.ArrowRight" Class="text-stone-700"/>
                         <WealthTabSelection/>
-                        <Icon Svg="@UiIcons.ArrowForward" Class="text-stone-700"/>
+                        <Icon Svg="@Lucide.ArrowRight" Class="text-stone-700"/>
                         <WealthRefresh/>
                         <div class="ml-3">
                             <WealthSettings/>
@@ -82,7 +82,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Game = await SettingsService.GetGame();
+        Game = await SettingsService.GetGameAsync();
 
         await base.OnInitializedAsync();
     }

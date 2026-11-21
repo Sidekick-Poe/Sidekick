@@ -1,7 +1,7 @@
 #pragma warning disable CA1806// Do not ignore method results
-#pragma warning disable CA1416// Validate platform compatibility
 
 using System.Diagnostics;
+using System.Runtime.Versioning;
 using System.Security.Principal;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
@@ -12,6 +12,7 @@ using Sidekick.Common.Platform.Windows.DllImport;
 
 namespace Sidekick.Common.Platform.Windows.Processes;
 
+[SupportedOSPlatform(PlatformNames.Windows)]
 public class ProcessProvider
 (
     ILogger<ProcessProvider> logger,
@@ -196,7 +197,7 @@ public class ProcessProvider
 
     private async Task RestartAsAdmin()
     {
-        if (!await dialogProvider.OpenConfirmationModal(resources["RestartAsAdminText"]))
+        if (!await dialogProvider.OpenConfirmationModal(resources.RestartAsAdminText))
         {
             return;
         }

@@ -127,7 +127,7 @@
     <value>Conserver la position des fenêtres. Si désactivé, les fenêtres seront centrées.</value>
   </data>
   <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>Fermer la fenêtre sur un clic de la souris</value>
+    <value>Fermer la fenêtre en cliquant à l'extérieur</value>
   </data>
   <data name="EscapeClosesOverlays" xml:space="preserve">
     <value>Fermer la fenêtre avec la touche Échapper</value>
@@ -161,8 +161,5 @@
   </data>
   <data name="Wiki_Preferred" xml:space="preserve">
     <value>Wiki de préférence</value>
-  </data>
-  <data name="Data_Folder" xml:space="preserve">
-      <value>Répertoire des données Sidekick</value>
   </data>
 </root>

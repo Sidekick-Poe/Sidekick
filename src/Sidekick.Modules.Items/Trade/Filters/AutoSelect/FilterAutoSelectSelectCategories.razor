@@ -8,7 +8,7 @@
 }
 
 <div class="flex flex-nowrap gap-2">
-    <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_SelectCategories"]</span>
+    <span class="mt-0.5 text-neutral-300">@Resources.AutoSelect_SelectCategories</span>
     @foreach (var value in Enum.GetValues<StatCategory>())
     {
         if (!value.HasExplicitStat()) continue;
@@ -19,7 +19,7 @@
                               Readonly="Readonly"
                               OnClick="() => Toggle(value)"/>
     }
-    <Tooltip Text="@Resources["ForceCategoryHint"]"/>
+    <Tooltip Text="@Resources.ForceCategoryHint"/>
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources

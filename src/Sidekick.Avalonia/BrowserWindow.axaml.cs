@@ -28,6 +28,11 @@ public partial class BrowserWindow : BaseWindow
         WebView.NavigationCompleted += WebView_NavigationCompleted;
     }
 
+    /// <summary>
+    /// A new window is created for each login, so it is released as soon as it is hidden.
+    /// </summary>
+    protected override TimeSpan? ReleaseDelay => TimeSpan.Zero;
+
     protected override void OnOpened(EventArgs e)
     {
         _ = Dispatcher.InvokeAsync(async () =>

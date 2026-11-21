@@ -30,7 +30,7 @@
                  Readonly="Readonly"/>
 
 @inject GameTextProvider GameTextProvider
-@inject IStringLocalizer<StatCategory> StatCategoryResources
+@inject IStringLocalizer<StatCategoryResources> StatCategoryResources
 @inject ItemClassProvider ItemClassProvider
 
 @code {
@@ -137,31 +137,31 @@
         {
             var results = new List<SelectOption>()
             {
-                CreateStatCategory(StatCategory.Implicit),
-                CreateStatCategory(StatCategory.Explicit),
-                CreateStatCategory(StatCategory.Fractured),
+                CreateStatCategory(StatCategory.Implicit, StatCategoryResources.Implicit),
+                CreateStatCategory(StatCategory.Explicit, StatCategoryResources.Explicit),
+                CreateStatCategory(StatCategory.Fractured, StatCategoryResources.Fractured),
             };
 
             if (Item.Game == GameType.Poe2)
             {
-                results.Add(CreateStatCategory(StatCategory.Desecrated));
-                results.Add(CreateStatCategory(StatCategory.Rune));
-                results.Add(CreateStatCategory(StatCategory.Skill));
+                results.Add(CreateStatCategory(StatCategory.Desecrated, StatCategoryResources.Desecrated));
+                results.Add(CreateStatCategory(StatCategory.Rune, StatCategoryResources.Rune));
+                results.Add(CreateStatCategory(StatCategory.Skill, StatCategoryResources.Skill));
             }
 
             if (Item.Game == GameType.Poe1)
             {
-                results.Add(CreateStatCategory(StatCategory.Crafted));
-                results.Add(CreateStatCategory(StatCategory.Mutated));
+                results.Add(CreateStatCategory(StatCategory.Crafted, StatCategoryResources.Crafted));
+                results.Add(CreateStatCategory(StatCategory.Mutated, StatCategoryResources.Mutated));
             }
 
             return results;
 
-            SelectOption CreateStatCategory(StatCategory statCategory)
+            SelectOption CreateStatCategory(StatCategory statCategory, string label)
             {
                 return new SelectOption()
                 {
-                    Label = StatCategoryResources[statCategory.ToString()],
+                    Label = label,
                     Value = statCategory.ToString(),
                 };
             }

@@ -14,8 +14,8 @@
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
-                        Svg="@UiIcons.Reset"
-                        Tooltip="@Resources["Reset"]"/>
+                        Svg="@Lucide.RotateCcw"
+                        Tooltip="@Resources.Reset"/>
         }
     </AdornmentContent>
 </KeybindEditorInternal>
@@ -40,8 +40,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
@@ -51,22 +51,22 @@
     private async Task ValueChanged(string? value)
     {
         Value = value;
-        await SettingsService.Set(SettingKey, value);
+        await SettingsService.SetAsync(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
 
         await InvokeAsync(StateHasChanged);
     }
 
     private async Task Reset()
     {
-        await SettingsService.DeleteSetting(SettingKey);
+        await SettingsService.DeleteSettingAsync(SettingKey);
     }
 
     public void Dispose()

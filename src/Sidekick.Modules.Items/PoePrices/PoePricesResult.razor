@@ -43,7 +43,7 @@
 
         if (!SidekickFlags.PoePricesEnabled) return;
 
-        if (!await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled)) return;
+        if (!await SettingsService.GetBoolAsync(SettingKeys.PriceCheckPredictionEnabled)) return;
 
         Loading = true;
         StateHasChanged();

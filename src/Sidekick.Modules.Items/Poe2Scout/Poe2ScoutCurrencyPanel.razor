@@ -41,7 +41,7 @@
 
     private List<ScoutHistoryLog>? Logs { get; set; }
 
-    private string ListingsLabel => History.Item.IsCurrency ? NinjaResources["Listings"] : NinjaResources["VolumeTraded"];
+    private string ListingsLabel => History.Item.IsCurrency ? NinjaResources.Listings : NinjaResources.VolumeTraded;
 
     private decimal? ChaosValue => History.Chaos?.FirstOrDefault()?.Price;
     private decimal? ExaltedValue => History.Exalted?.FirstOrDefault()?.Price;
@@ -67,7 +67,7 @@
                        Currency="@currency"
                        Small="true"/>
                    <Icon
-                       Svg="@UiIcons.ArrowForward"
+                       Svg="@Lucide.ArrowRight"
                        Class="mx-1 text-[#a38d6d]"/>
                    <PriceDisplay
                        Value="@(1 / value)"

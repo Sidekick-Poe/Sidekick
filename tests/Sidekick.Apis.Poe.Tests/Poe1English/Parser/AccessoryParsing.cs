@@ -400,4 +400,52 @@ Fractured Item
         Assert.True(actual.Properties.Split);
         Assert.True(actual.Properties.Fractured);
     }
+
+    [Fact]
+    public void VentorGamble()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Ventor's Gamble
+Gold Ring
+--------
+Requirements:
+Level: 65
+--------
+Item Level: 79
+--------
+{ Implicit Modifier — Drop }
++13(6-15)% to Item Rarity
+--------
+{ Unique Modifier — Life }
++4(0-60) to maximum Life
+{ Unique Modifier — Elemental, Fire, Resistance }
++14(-25-50)% to Fire Resistance
+{ Unique Modifier — Elemental, Cold, Resistance }
++48(-25-50)% to Cold Resistance
+{ Unique Modifier — Elemental, Lightning, Resistance }
++33(-25-50)% to Lightning Resistance
+{ Unique Modifier — Drop }
++21(-40-40)% to Item Rarity
+{ Unique Modifier — Mana }
+7(15--15)% reduced Mana Reservation Efficiency of Skills
+--------
+In a blaze of glory,
+An anomaly defying all odds
+The ""unkillable"" beast met the divine
+And Ventor met his latest trophy.
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Ventor's Gamble", actual.TradeItem?.Name);
+        Assert.Equal("Gold Ring", actual.TradeItem?.Type);
+
+        Assert.Equal(79, actual.Properties.ItemLevel);
+
+        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Mana Reservation Efficiency of Skills", -7);
+        Assert.NotNull(stat);
+        var definition = stat.Definitions.First();
+        Assert.True(definition.Negate);
+    }
 }

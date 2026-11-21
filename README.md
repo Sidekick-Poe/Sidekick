@@ -78,6 +78,8 @@ docker run -p 5000:5000 -v ./sidekick-data:/app/sidekick sidekickpoe:latest
 2. Build and run the project with `docker compose up` 
 3. Access through: http://localhost:5000
 
+Sidekick has no login, so anyone who can reach the published port can use it, including your settings. To keep it on your own machine only, publish the port as `127.0.0.1:5000:5000`. To use another port, change the first number, for example `8080:5000` for http://localhost:8080.
+
 ## Notice
 This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
 
@@ -86,4 +88,4 @@ This product isn't affiliated with or endorsed by Grinding Gear Games in any way
 [Contributors](https://github.com/Sidekick-Poe/Sidekick/graphs/contributors), [Path of Exile Trade](https://www.pathofexile.com/trade), [poe2scout.com](https://poe2scout.com/), [poe.ninja](https://poe.ninja/), [poeprices.info](https://www.poeprices.info/), [poewiki.net](https://www.poewiki.net/), [poedb.tw](https://poedb.tw/us/), [Awakened PoE Trade](https://github.com/SnosMe/awakened-poe-trade), [POE-TradeMacro (Original Idea)](https://github.com/PoE-TradeMacro/POE-TradeMacro)
 
 #### Technology
-[FuzzySharp](https://github.com/JakeBayer/FuzzySharp), [NotificationIcon.NET](https://github.com/Bip901/NotificationIcon.NET), [SharpHook](https://github.com/TolikPylypchuk/SharpHook), [TextCopy](https://github.com/CopyText/TextCopy)
+[FuzzySharp](https://github.com/JakeBayer/FuzzySharp), [NotificationIcon.NET](https://github.com/Bip901/NotificationIcon.NET), [SharpHook](https://github.com/TolikPylypchuk/SharpHook), [TextCopy](https://github.com/CopyText/TextCopy), [Blazicons](https://github.com/kyleherzog/Blazicons), [Lucide](https://lucide.dev/), [Font Awesome](https://fontawesome.com/)

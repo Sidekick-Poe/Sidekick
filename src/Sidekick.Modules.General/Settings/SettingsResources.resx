@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="Character_League" xml:space="preserve">
     <value>League</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
     <value>General Settings</value>
-  </data>
-  <data name="General" xml:space="preserve">
-    <value>General</value>
   </data>
   <data name="Other_Settings" xml:space="preserve">
     <value>Other Settings</value>
@@ -135,34 +129,11 @@
   <data name="Language_Parser" xml:space="preserve">
     <value>Game Language</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="Poe1" xml:space="preserve">
-    <value>Path of Exile 1</value>
-    <comment>Used in LeagueIdEditor.razor</comment>
-  </data>
-  <data name="Poe2" xml:space="preserve">
-    <value>Path of Exile 2</value>
-    <comment>Used in LeagueIdEditor.razor</comment>
-  </data>
   <data name="League_Hint" xml:space="preserve">
     <value>For convenience, Sidekick supports both Path of Exile 2 and Path of Exile 1, simply choose the appropriate league when playing either of them.</value>
   </data>
   <data name="OpenHomeOnLaunch" xml:space="preserve">
     <value>Open home view on launch</value>
-  </data>
-  <data name="Clear_Filters" xml:space="preserve">
-    <value>Clear filters</value>
-  </data>
-  <data name="Regex_Hotkeys" xml:space="preserve">
-      <value>Regex Hotkeys</value>
-  </data>
-  <data name="Overlay_Settings" xml:space="preserve">
-    <value>Overlay Settings</value>
   </data>
   <data name="SilentStart" xml:space="preserve">
     <value>Initialize in background when starting Sidekick</value>
@@ -170,25 +141,10 @@
   <data name="OpenHomeOnLaunch_Hint" xml:space="preserve">
     <value>Ignored if initializing in background is enabled</value>
   </data>
-  <data name="Other" xml:space="preserve">
-      <value>Other</value>
-  </data>
-  <data name="UseHardwareAcceleration" xml:space="preserve">
-      <value>Use Hardware Acceleration</value>
-  </data>
-  <data name="RestartRequired" xml:space="preserve">
-      <value>A Sidekick restart is required for changes to this setting to take effect.</value>
-  </data>
-  <data name="Item_Overlay" xml:space="preserve">
-      <value>Item Overlay</value>
-  </data>
   <data name="Key_OpenItem" xml:space="preserve">
       <value>Open Item Overlay</value>
   </data>
   <data name="ItemOverlay_Prediction_Enable" xml:space="preserve">
       <value>Show price prediction from poeprices.info (PoE1 only)</value>
-  </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
   </data>
 </root>

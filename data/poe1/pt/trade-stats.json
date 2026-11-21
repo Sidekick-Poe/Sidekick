@@ -13744,6 +13744,10 @@
     "text": "Efeito da Maldi\u00E7\u00E3o Puni\u00E7\u00E3o aumentado em #%"
   },
   {
+    "id": "enchant.stat_2844829788",
+    "text": "# grupos de monstros na \u00E1rea s\u00E3o substitu\u00EDdos por sapos inofensivos"
+  },
+  {
     "id": "enchant.stat_2844839137",
     "text": "Rob\u00F4s Rastejantes invocados t\u00EAm a \u00E1rea de efeito aumentada em #%"
   },
@@ -20832,12 +20836,20 @@
     "text": "Tipo de recompensa do Del\u00EDrio: Ess\u00EAncias"
   },
   {
+    "id": "explicit.delirium_reward_fossils",
+    "text": "Tipo de recompensa do Del\u00EDrio: F\u00F3sseis"
+  },
+  {
     "id": "explicit.delirium_reward_gems",
     "text": "Tipo de recompensa do Del\u00EDrio: Gemas"
   },
   {
     "id": "explicit.delirium_reward_maps",
     "text": "Tipo de recompensa do Del\u00EDrio: Mapas"
+  },
+  {
+    "id": "explicit.delirium_reward_metamorphosis",
+    "text": "Tipo de recompensa do Del\u00EDrio: Catalisadores"
   },
   {
     "id": "explicit.delirium_reward_scarabs",
@@ -21428,6 +21440,10 @@
     "text": "Gemas encaixadas recebem refor\u00E7o de Sede de Sangue (Refor\u00E7o) de n\u00EDvel #"
   },
   {
+    "id": "explicit.effect_3136470162",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Congrega\u00E7\u00E3o (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
     "id": "explicit.effect_3161048706",
     "text": "Gemas encaixadas recebem refor\u00E7o de B\u00EAn\u00E7\u00E3o Divina (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -21826,6 +21842,10 @@
   {
     "id": "explicit.effect_602948540",
     "text": "Gemas encaixadas recebem refor\u00E7o de Afli\u00E7\u00E3o do Golpe Cr\u00EDtico (Refor\u00E7o) de n\u00EDvel #"
+  },
+  {
+    "id": "explicit.effect_603124590",
+    "text": "Gemas encaixadas recebem refor\u00E7o de Desencadeamento Maior (Refor\u00E7o) de n\u00EDvel #"
   },
   {
     "id": "explicit.effect_603152644",
@@ -27905,7 +27925,7 @@
   },
   {
     "id": "explicit.stat_1521791684",
-    "text": "Socketed Support Gems have no effect"
+    "text": "Gemas de refor\u00E7o encaixadas n\u00E3o t\u00EAm efeito"
   },
   {
     "id": "explicit.stat_1521863824",
@@ -28502,6 +28522,10 @@
   {
     "id": "explicit.stat_160933750",
     "text": "Com ao menos 40 de Intelig\u00EAncia em Alcance, Bola de Magma\ntem Efeito em \u00C1rea aumentado em #% por Salto"
+  },
+  {
+    "id": "explicit.stat_1609344921",
+    "text": "Dano com ataques \u00E9 Sortudo enquanto sua m\u00E3o secund\u00E1ria for m\u00E1gica"
   },
   {
     "id": "explicit.stat_161058250",
@@ -30073,11 +30097,11 @@
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Vest\u00EDgios t\u00EAm #% de chance de ter um modificador de sufixo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Vest\u00EDgios em seus mapas t\u00EAm #% de chance de ter um modificador de sufixo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871938116",
@@ -31446,6 +31470,10 @@
   {
     "id": "explicit.stat_2105048696",
     "text": "Ataques disparam um Proj\u00E9til adicional quando na M\u00E3o Secund\u00E1ria"
+  },
+  {
+    "id": "explicit.stat_2105061711",
+    "text": "Lacaios convertem #% do dano f\u00EDsico em dano el\u00E9trico"
   },
   {
     "id": "explicit.stat_2105355711",
@@ -35096,6 +35124,10 @@
     "text": "\u002B#% ao Multiplicador de Cr\u00EDtico com Minas"
   },
   {
+    "id": "explicit.stat_2529155377",
+    "text": "Dano com Garras contra Inimigos em Vida Baixa aumentado em #%"
+  },
+  {
     "id": "explicit.stat_2530071726",
     "text": "\u00C1rea cont\u00E9m um Talism\u00E3 dos Tr\u00EAs Ratos adicional"
   },
@@ -37245,7 +37277,7 @@
   },
   {
     "id": "explicit.stat_2876425796",
-    "text": "Socketed Gems deal #% more damage per Socketed Skill Gem"
+    "text": "Gemas encaixadas causam \u002B#% de dano por gema de habilidade encaixada"
   },
   {
     "id": "explicit.stat_2877370216",
@@ -43045,7 +43077,7 @@
   },
   {
     "id": "explicit.stat_3806798486",
-    "text": "You can have an additional Tincture active"
+    "text": "Voc\u00EA pode ter uma tintura adicional ativa"
   },
   {
     "id": "explicit.stat_3807518091",
@@ -51005,7 +51037,7 @@
   },
   {
     "id": "explicit.stat_764329137",
-    "text": "#% chance to Trigger Explosive Toad when you kill an Enemy"
+    "text": "#% de chance de ativar Sapo Explosivo ao matar um inimigo"
   },
   {
     "id": "explicit.stat_764545335",
@@ -52500,6 +52532,10 @@
     "text": "Monstros n\u00E3o podem ser atordoados"
   },
   {
+    "id": "fractured.stat_1045292082",
+    "text": "Lacaios convertem #% do Dano F\u00EDsico para Dano de Fogo"
+  },
+  {
     "id": "fractured.stat_1048879642",
     "text": "1 das Habilidades Passivas Adicionadas \u00E9 Mentalidade da Multid\u00E3o"
   },
@@ -52856,6 +52892,10 @@
     "text": "Dano degenerativo aumentado em #% ao usar um escudo"
   },
   {
+    "id": "fractured.stat_1248307887",
+    "text": "Voc\u00EA \u00E9 afetado pela n\u00E9voa de Del\u00EDrio"
+  },
+  {
     "id": "fractured.stat_1248507170",
     "text": "Com ao menos 40 de For\u00E7a no Raio, Acertos com Cutilada Fortificam"
   },
@@ -52910,6 +52950,10 @@
   {
     "id": "fractured.stat_1273709603",
     "text": "Ativa Artilharia Fantasmag\u00F3rica de n\u00EDvel # ao atacar com esta arma"
+  },
+  {
+    "id": "fractured.stat_1274429432",
+    "text": "Ganha dano m\u00E1gico adicionado equivalente a #% do dano da varinha equipada\nSe duas varinhas estiverem equipadas, cada uma contribuir\u00E1 com metade do dano adicionado"
   },
   {
     "id": "fractured.stat_1274505521",
@@ -53462,6 +53506,10 @@
   {
     "id": "fractured.stat_1583385065",
     "text": "Dano com habilidades n\u00E3o vaal aumentado em #% durante o impedimento de ganho de almas"
+  },
+  {
+    "id": "fractured.stat_1584440377",
+    "text": "Velocidade de Ataque Desarmado com Habilidades Corpo a Corpo aumentada em #%"
   },
   {
     "id": "fractured.stat_1585344030",
@@ -54056,6 +54104,10 @@
     "text": "Pequenas Habilidades Passivas Adicionadas tamb\u00E9m concedem: \u002B#% de Multiplicador de Golpes Cr\u00EDticos"
   },
   {
+    "id": "fractured.stat_1928468569",
+    "text": "Acertos Cr\u00EDticos com Arcos tem #% de chance de Envenenar o Inimigo"
+  },
+  {
     "id": "fractured.stat_1936135020",
     "text": "1 das Habilidades Passivas Adicionadas \u00E9 Criador de V\u00EDtimas"
   },
@@ -54370,6 +54422,10 @@
   {
     "id": "fractured.stat_2101383955",
     "text": "Dano Penetra #% de Resist\u00EAncias Elementais"
+  },
+  {
+    "id": "fractured.stat_2105061711",
+    "text": "Lacaios convertem #% do dano f\u00EDsico em dano el\u00E9trico"
   },
   {
     "id": "fractured.stat_2106365538",
@@ -55020,6 +55076,10 @@
     "text": "Tempo antes do Confinamento aumentado em #%"
   },
   {
+    "id": "fractured.stat_2436559047",
+    "text": "\u00C1rea cont\u00E9m uma Miragem"
+  },
+  {
     "id": "fractured.stat_2438099615",
     "text": "#% de chance de n\u00E3o ativar o Confinamento em Grandes Assaltos"
   },
@@ -55248,6 +55308,10 @@
     "text": "\u002B#% ao Multiplicador de Cr\u00EDtico com Minas"
   },
   {
+    "id": "fractured.stat_2529155377",
+    "text": "Dano com Garras contra Inimigos em Vida Baixa aumentado em #%"
+  },
+  {
     "id": "fractured.stat_2530372417",
     "text": "#% de Chance de Bloquear o Dano de Ataques"
   },
@@ -55398,6 +55462,10 @@
   {
     "id": "fractured.stat_2633745731",
     "text": "Recupera\u00E7\u00E3o total por segundo do Dreno de Vida aumentada em #%"
+  },
+  {
+    "id": "fractured.stat_264042266",
+    "text": "Lacaios convertem #% do dano f\u00EDsico em dano de frio"
   },
   {
     "id": "fractured.stat_2642917409",
@@ -56504,6 +56572,10 @@
     "text": "Habilidades de deslocamento encaixadas n\u00E3o custam mana"
   },
   {
+    "id": "fractured.stat_326480871",
+    "text": "Ataques com Machados ou Espadas concedem # de F\u00FAria ao Acertar"
+  },
+  {
     "id": "fractured.stat_3269060224",
     "text": "Ganha 1 carga de poder ap\u00F3s gastar um total de 200 de mana"
   },
@@ -56918,6 +56990,10 @@
   {
     "id": "fractured.stat_3479987487",
     "text": "Recupera\u00E7\u00E3o de Bloqueio e Atordoamento aumentada em #% durante o Efeito"
+  },
+  {
+    "id": "fractured.stat_3481254135",
+    "text": "Ganha dano m\u00E1gico adicionado equivalente a #% do dano da adaga equipada\nSe duas adagas estiverem equipadas, cada uma contribuir\u00E1 com 60% do dano adicionado"
   },
   {
     "id": "fractured.stat_3482587079",
@@ -60456,6 +60532,10 @@
     "text": "Concede Disciplina de n\u00EDvel #"
   },
   {
+    "id": "implicit.effect_603152644",
+    "text": "Concede Convocar Emiss\u00E1rio Maior das Dire\u00E7\u00F5es"
+  },
+  {
     "id": "implicit.effect_626699959",
     "text": "Gemas encaixadas recebem refor\u00E7o de Conjurar ao Morrer (Refor\u00E7o) de n\u00EDvel #"
   },
@@ -60466,6 +60546,10 @@
   {
     "id": "implicit.effect_723113949",
     "text": "Concede Determina\u00E7\u00E3o de n\u00EDvel #"
+  },
+  {
+    "id": "implicit.effect_771254875",
+    "text": "Concede Aspecto do Gato de n\u00EDvel #"
   },
   {
     "id": "implicit.effect_859488427",
@@ -60942,6 +61026,10 @@
   {
     "id": "implicit.stat_1195319608",
     "text": "Escudo de Energia do Peitoral Equipado aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_1209237645",
+    "text": "# de cargas do vazio m\u00E1ximas"
   },
   {
     "id": "implicit.stat_1211769158",
@@ -62237,11 +62325,11 @@
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Vest\u00EDgios t\u00EAm #% de chance de ter um modificador de sufixo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Vest\u00EDgios em seus mapas t\u00EAm #% de chance de ter um modificador de sufixo adicional"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1873457881",
@@ -62284,6 +62372,10 @@
     "text": "Voc\u00EA n\u00E3o pode sofrer sangramentos"
   },
   {
+    "id": "implicit.stat_190157226",
+    "text": "Golpes Finais Consomem cad\u00E1veres para Recuperar #% de Vida"
+  },
+  {
     "id": "implicit.stat_190207599",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, #% do Dano F\u00EDsico \u00E9 Drenado como Vida"
   },
@@ -62298,6 +62390,10 @@
   {
     "id": "implicit.stat_190932737",
     "text": "\u002B#% de Raridade de Itens"
+  },
+  {
+    "id": "implicit.stat_1909401378",
+    "text": "\u002B#% de Chance de Golpe Cr\u00EDtico"
   },
   {
     "id": "implicit.stat_1911037487",
@@ -62876,6 +62972,10 @@
     "text": "Dano de frio com habilidades de magia aumentado em #%"
   },
   {
+    "id": "implicit.stat_2188905761",
+    "text": "Velocidade de Ataque aumentada em #% caso tenha mudado de Postura Recentemente"
+  },
+  {
     "id": "implicit.stat_2192875806",
     "text": "Habilidades Encaixadas aplicam Exposi\u00E7\u00E3o a Fogo, Gelo e Raio ao Acertarem"
   },
@@ -63318,6 +63418,10 @@
   {
     "id": "implicit.stat_2420972973",
     "text": "Efeito de b\u00F4nus concedido por seus Golens Carniceiros aumentado em #%"
+  },
+  {
+    "id": "implicit.stat_2421436896",
+    "text": "Flechas Difundem"
   },
   {
     "id": "implicit.stat_2423625781",
@@ -64812,6 +64916,10 @@
     "text": "Chance de Cr\u00EDtico de Habilidades Vaal aumentada em #%"
   },
   {
+    "id": "implicit.stat_3168149399",
+    "text": "Adiciona # a # de Dano de Raio aos Ataques por cada 10 de Intelig\u00EAncia"
+  },
+  {
     "id": "implicit.stat_3171354842",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Receba #% do Dano F\u00EDsico como Dano de Gelo Extra"
   },
@@ -64988,6 +65096,10 @@
     "text": "Lacaios s\u00E3o agressivos, se voc\u00EA usou uma habilidade de lacaio recentemente"
   },
   {
+    "id": "implicit.stat_3262369040",
+    "text": "Consome uma Carga do Vazio para Ativar Disparo do Vazio de n\u00EDvel # ao disparar Flechas com uma Habilidade n\u00E3o ativada"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "Enquanto um Inimigo \u00DAnico estiver em sua presen\u00E7a, Definhamentos infligidos por voc\u00EA expiram #% mais rapidamente"
   },
@@ -65002,6 +65114,10 @@
   {
     "id": "implicit.stat_3266394681",
     "text": "Habilidades de Ataque possuem \u002B# ao n\u00FAmero m\u00E1ximo de Totens Convocados"
+  },
+  {
+    "id": "implicit.stat_3267026680",
+    "text": "Velocidade de ataque aumentada em #%, se voc\u00EA usou uma habilidade de deslocamento de ataque recentemente"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -65158,6 +65274,10 @@
   {
     "id": "implicit.stat_3326567914",
     "text": "Enquanto o Chefe Final do Atlas estiver em sua presen\u00E7a, #% de Chance de Bloquear o Dano de Ataques"
+  },
+  {
+    "id": "implicit.stat_3334947764",
+    "text": "A cada quatro vezes que voc\u00EA conjura cada magia, ganha-se mana equivalente ao seu custo inicial"
   },
   {
     "id": "implicit.stat_3336890334",
@@ -65342,6 +65462,10 @@
   {
     "id": "implicit.stat_342670903",
     "text": "#% de aumento de Dano por cada 100 de Destreza"
+  },
+  {
+    "id": "implicit.stat_34273389",
+    "text": "Ganha 1 carga do vazio a cada # segundos"
   },
   {
     "id": "implicit.stat_3433724931",
@@ -67618,6 +67742,10 @@
   {
     "id": "implicit.stat_683892962",
     "text": "Dano aumentado em #% por lacaio, at\u00E9 40%"
+  },
+  {
+    "id": "implicit.stat_68673913",
+    "text": "Adiciona # a # de Dano de Fogo aos Ataques por 10 de For\u00E7a"
   },
   {
     "id": "implicit.stat_689723685",
@@ -71733,32 +71861,32 @@
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#1",
-    "text": "Possui Sal\u00E3o: Sal\u00E3o Real de Reuni\u00F5es (Tier 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Abrir Sal\u00E3o"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#2",
-    "text": "Possui Sal\u00E3o: Sal\u00E3o Real de Reuni\u00F5es (Tier 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Fechar Sal\u00E3o"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#1",
-    "text": "Possui Sal\u00E3o: Sal\u00E3o dos Lordes (Tier 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Abrir Sal\u00E3o"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#2",
-    "text": "Possui Sal\u00E3o: Sal\u00E3o dos Lordes (Tier 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Fechar Sal\u00E3o"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#1",
-    "text": "Possui Sal\u00E3o: Trono de Atziri (Tier 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Abrir Sal\u00E3o"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#2",
-    "text": "Possui Sal\u00E3o: Trono de Atziri (Tier 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Fechar Sal\u00E3o"
   },
   {

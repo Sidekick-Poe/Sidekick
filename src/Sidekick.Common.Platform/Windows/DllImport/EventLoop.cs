@@ -1,5 +1,8 @@
+using System.Runtime.Versioning;
+
 namespace Sidekick.Common.Platform.Windows.DllImport;
 
+[SupportedOSPlatform(PlatformNames.Windows)]
 internal static class EventLoop
 {
     public static CancellationTokenSource Run(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, User32.WinEventDelegate eventDelegate, uint idProcess, uint idThread, uint dwFlags)

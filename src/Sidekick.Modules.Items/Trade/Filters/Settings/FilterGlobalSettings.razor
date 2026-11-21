@@ -8,15 +8,15 @@
 <div class="flex flex-col items-stretch gap-2 mb-4">
     <DefaultNormalizeByEditor/>
     <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMinSettingKey"
-                           Label="@Resources["PriceCheck_FillDefault_Min"]"/>
+                           Label="@Resources.PriceCheck_FillDefault_Min"/>
     <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMaxSettingKey"
-                           Label="@Resources["PriceCheck_FillDefault_Max"]"/>
+                           Label="@Resources.PriceCheck_FillDefault_Max"/>
     <DefaultSelectCategoriesEditor/>
 </div>
 
 <div class="text-center">
     <ButtonSecondary Disabled="!AreSettingsModified"
-                     OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonSecondary>
+                     OnClick="RestoreDefaults">@UiResources.Restore_Defaults</ButtonSecondary>
 </div>
 
 @inject IStringLocalizer<UiResources> UiResources
@@ -51,13 +51,13 @@
             return;
         }
 
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        AreSettingsModified = await SettingsService.IsSettingModifiedAsync(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 
     private async void RestoreDefaults()
     {
-        await SettingsService.DeleteSetting(SettingKeysUsed);
+        await SettingsService.DeleteSettingAsync(SettingKeysUsed);
 
         AreSettingsModified = false;
 

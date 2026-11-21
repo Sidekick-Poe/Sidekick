@@ -48,6 +48,11 @@ public partial class Initialization
 
     private int Completed { get; set; }
 
+    /// <summary>
+    /// The page runs again after a league or language change, so the old data cleanup is only started by the first run of the process.
+    /// </summary>
+    private static int oldDataCleanupStarted;
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -61,11 +66,11 @@ public partial class Initialization
             Completed = 0;
             Count = Configuration.Value.InitializableServices.Count;
             var version = ApplicationService.GetVersion();
-            var previousVersion = await SettingsService.GetString(SettingKeys.Version);
+            var previousVersion = await SettingsService.GetStringAsync(SettingKeys.Version);
             if (version != previousVersion)
             {
                 await CacheProvider.Clear();
-                await SettingsService.Set(SettingKeys.Version, version);
+                await SettingsService.SetAsync(SettingKeys.Version, version);
             }
 
             // Report initial progress
@@ -88,13 +93,18 @@ public partial class Initialization
             Completed = Count;
             ApplicationService.HasInitialized = true;
 
+            if (Interlocked.Exchange(ref oldDataCleanupStarted, 1) == 0)
+            {
+                _ = Task.Run(DeleteOldDataCopy);
+            }
+
             await ReportProgress();
             await Task.Delay(200);
             await Complete();
         }
         catch (SidekickException e)
         {
-            await SettingsService.Set(SettingKeys.LanguageParser, null);
+            await SettingsService.SetAsync(SettingKeys.LanguageParser, null);
             e.Actions = ExceptionActions.ExitApplication;
             throw;
         }
@@ -102,16 +112,41 @@ public partial class Initialization
         {
             // Sidekick can't run without its services, so the error page offers to exit instead of closing the window.
             Logger.LogError(e, "[Initialization] Failed to initialize.");
-            throw new SidekickException(Resources["Error_Title"], Resources["Error_Description"])
+            throw new SidekickException(Resources.Error_Title, Resources.Error_Description)
             {
                 Actions = ExceptionActions.ExitApplication,
             };
         }
     }
 
+    /// <summary>
+    /// Deletes the copy of the game data that versions from March to June 2026 made at every startup. Nothing reads it anymore.
+    /// A failed delete (locked files) is tried again at the next launch.
+    /// </summary>
+    private void DeleteOldDataCopy()
+    {
+        var path = "SidekickData";
+
+        try
+        {
+            path = SidekickPaths.GetDataFilePath(path);
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+
+            Directory.Delete(path, recursive: true);
+            Logger.LogInformation("[Initialization] Deleted the old data copy at {Path}.", path);
+        }
+        catch (Exception e)
+        {
+            Logger.LogWarning(e, "[Initialization] Could not delete the old data copy at {Path}.", path);
+        }
+    }
+
     private async Task Complete()
     {
-        var redirectToHome = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
+        var redirectToHome = await SettingsService.GetBoolAsync(SettingKeys.OpenHomeOnLaunch);
         if (redirectToHome)
         {
             ViewLocator.Close(SidekickViewType.Splash);

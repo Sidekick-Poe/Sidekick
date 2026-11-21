@@ -32,6 +32,7 @@ public sealed class StatFilter : TradeFilter, INormalizableFilter
                             }, AutoSelectPreferences.JsonSerializerOptions),
                         },
                     ],
+                    SelectCategories = [StatCategory.Fractured],
                 },
             ],
         };
