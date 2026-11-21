@@ -447,4 +447,75 @@ And Ventor met his latest trophy.
         var definition = stat.Definitions.First();
         Assert.True(definition.Negate);
     }
+
+    [Fact]
+    public void AtzirisFoible()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Unique
+Atziri's Foible
+Paua Amulet
+--------
+Requirements:
+Level: 16
+--------
+Item Level: 83
+--------
+Allocates Mind Drinker (enchant)
+--------
+30% increased Mana Regeneration Rate (implicit)
+--------
++100 to maximum Mana
+22% increased maximum Mana
+83% increased Mana Regeneration Rate
+Items and Gems have 25% reduced Attribute Requirements
+--------
+The world is but a piece of parchment, blank and symmetric. 
+We label each side: one Good, one Evil; one Black, one White. 
+The divine truth, however, is that both are one and the same. 
+-Jaetai, Vaal Advisor
+
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Atziri's Foible", actual.TradeItem?.Name);
+        Assert.Equal("Paua Amulet", actual.TradeItem?.Type);
+        actual.AssertHasNinjaStash("atziris-foible-paua-amulet");
+    }
+
+    [Fact]
+    public void FoulbornKhatalWeeping()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Unique
+Foulborn Khatal's Weeping
+Lapis Amulet
+--------
+Requirements:
+Level: 56
+--------
+Item Level: 85
+--------
++21 to Intelligence (implicit)
+--------
+Life Flasks gain 3 Charges every 3 seconds (mutated)
++88 to maximum Life
+Can't use Mana Flasks
+On non-channelling Attack, set a Life Flask with greater than 50% of maximum Charges remaining to 50%
+For each Charge removed this way, that Attack gains +2% to Damage over time Multiplier
+--------
+""We fought the Abyssals, too. That's the part they leave out.
+Khatal was Faridun... and for saving all their lives, the Maraketh
+made him drink the enemy's blood. He melted from the inside out.""
+- Toryal, of the Afarud
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Khatal's Weeping", actual.TradeItem?.Name);
+        Assert.Equal("Lapis Amulet", actual.TradeItem?.Type);
+        Assert.True(actual.Properties.Foulborn);
+        actual.AssertHasNinjaStash("foulborn-khatals-weeping-life-flask-charge-lapis-amulet");
+    }
 }

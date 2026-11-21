@@ -158,4 +158,83 @@ A net woven to keep safe the bones of the Lords.
 
         fixture.AssertHasStat(actual, StatCategory.Mutated, "+#% to Quality of Socketed Gems", 20);
     }
+
+    [Fact]
+    public void SacredChainmail()
+    {
+        var actual = parser.ParseItem(@"Rarity: Rare
+Tempest Sanctuary
+Sacred Chainmail
+--------
+Item Level: 86
+--------
+Quality: +20%
+Armour: 985
+Energy Shield: 198
+--------
+Requirements:
+Level: 84
+Str: 173
+Int: 173
+--------
+Sockets: B-B-B-B-B-R
+--------
+--------
+5% Chance to Block Attack Damage (implicit)
+17% increased Lightning Damage (implicit)
+--------
++73 to maximum Mana (fractured)
++148 to maximum Life
++47% to Lightning Resistance
++32% to Chaos Resistance
+7% additional Physical Damage Reduction
+7% increased maximum Life (crafted)
+8% increased maximum Mana (crafted)
+--------
+Fractured Item
+");
+
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Sacred Chainmail", actual.TradeItem?.Type);
+
+        Assert.Equal(985, actual.Properties.ArmourWithQuality);
+    }
+
+    [Fact]
+    public void FoulbornGhostwrithe()
+    {
+        var actual = parser.ParseItem(@"Item Class: Body Armours
+Rarity: Unique
+Foulborn Ghostwrithe
+Silken Vest
+--------
+Quality: +20% (augmented)
+Energy Shield: 160 (augmented)
+--------
+Requirements:
+Level: 11
+Int: 37
+--------
+Sockets: B-B-B-B-B-B 
+--------
+Item Level: 83
+--------
++101 to maximum Energy Shield
++79 to maximum Life
+50% of Chaos Damage taken Recouped as Life (mutated)
+Your Maximum Energy Shield is Equal to 40% of Your Maximum Life (mutated)
+--------
+Faith springs abundant at the edge of death.
+--------
+Note: ~b/o 400 chaos
+");
+
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Ghostwrithe", actual.TradeItem?.Name);
+        Assert.Equal("Silken Vest", actual.TradeItem?.Type);
+        Assert.True(actual.Properties.Foulborn);
+        actual.AssertHasNinjaStash("foulborn-ghostwrithe-chaos-recoup-life-to-shield-silken-vest-6l");
+    }
 }

@@ -376,4 +376,64 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Ignite Duration on Enemies", 6);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Global Critical Strike Chance", 10);
     }
+
+    [Fact]
+    public void SmallClusterJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Rare
+Blight Ruin
+Small Cluster Jewel
+--------
+Requirements:
+Level: 62
+--------
+Item Level: 83
+--------
+Adds 3 Passive Skills (enchant)
+Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills (enchant)
+--------
+Added Small Passive Skills also grant: +6% to Fire Resistance
+Added Small Passive Skills also grant: 8% increased Mana Regeneration Rate
+Added Small Passive Skills also grant: +7 to Maximum Life
+--------
+Place into an allocated Small, Medium or Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Small Cluster Jewel", actual.TradeItem?.Type);
+        actual.AssertHasNinjaStash("6-increased-mana-reservation-efficiency-of-skills-3-passives-75");
+    }
+
+    [Fact]
+    public void FoulbornBlueDream()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Foulborn The Blue Dream
+Cobalt Jewel
+--------
+Limited to: 1
+Radius: Large
+--------
+Item Level: 83
+--------
++3% to Critical Strike Multiplier per Power Charge (mutated)
+Passives granting Lightning Resistance or all Elemental Resistances in Radius
+also grant an equal chance to gain a Power Charge on Kill
+--------
+We crash against Chayula's body,
+and fall like rain into the place we cannot go.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal(ItemClass.Jewel, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("The Blue Dream", actual.TradeItem?.Name);
+        Assert.Equal("Cobalt Jewel", actual.TradeItem?.Type);
+        Assert.True(actual.Properties.Foulborn);
+        actual.AssertHasNinjaStash("foulborn-the-blue-dream-crit-multi-cobalt-jewel");
+    }
 }

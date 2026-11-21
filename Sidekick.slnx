@@ -89,10 +89,6 @@
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/Sidekick.Apis.Poe.Tests/Sidekick.Apis.Poe.Tests.csproj" />
-    <Project Path="tests/Sidekick.Apis.PoeNinja.Tests/Sidekick.Apis.PoeNinja.Tests.csproj">
-      <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
-      <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />
-    </Project>
     <Project Path="tests/Sidekick.Common.Tests/Sidekick.Common.Tests.csproj">
       <BuildType Solution="Linux-Debug|Any CPU" Project="Debug" />
       <BuildType Solution="Linux-Release|Any CPU" Project="Debug" />

@@ -86,4 +86,38 @@ Right-click to add this to your bestiary.
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Farric Chieftain", actual.TradeItem?.Type);
     }
+
+    [Fact]
+    public void VividVulture()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Rare
+Hairyjoint
+Vivid Vulture
+--------
+Genus: Vultures
+Group: Avians
+Family: The Sands
+--------
+Item Level: 83
+--------
+Saqawine Presence
+Crimson Flock
+Raven Caller
+Heals Allies and Suppresses Foe Recovery
+Temporarily Revives
+Hasted
+Cannot be Stunned
+10% chance not to be consumed when sacrificed at the Blood Altar
+--------
+Right-click to add this to your bestiary.
+--------
+Note: ~b/o 450 chaos
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Vivid Vulture", actual.TradeItem?.Type);
+        actual.AssertHasNinjaStash("vivid-vulture");
+    }
 }

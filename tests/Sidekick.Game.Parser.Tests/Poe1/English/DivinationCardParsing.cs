@@ -74,4 +74,22 @@ Note: ~price 1 blessed
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
         Assert.Equal("Boon of Justice", actual.TradeItem?.Type);
     }
+
+    [Fact]
+    public void TheVoid()
+    {
+        var actual = parser.ParseItem(@"Item Class: Divination Cards
+Rarity: Divination Card
+The Void
+--------
+ 
+--------
+Reach into the Void and claim your prize.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
+        Assert.Equal("The Void", actual.TradeItem?.Type);
+        actual.AssertHasNinjaExchange("the-void");
+    }
 }

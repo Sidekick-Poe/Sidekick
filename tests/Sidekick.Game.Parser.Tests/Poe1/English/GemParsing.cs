@@ -353,4 +353,49 @@ Corrupted
         Assert.IsType<CorruptedFilter>(filters[++index]);
         Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
     }
+
+    [Fact]
+    public void ShockNovaOfProcession()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
+Rarity: Gem
+Shock Nova of Procession
+--------
+Spell, AoE, Lightning, Nova
+Level: 20 (Max)
+Cost: 23 Mana
+Cast Time: 0.25 sec
+Critical Strike Chance: 6.00%
+Effectiveness of Added Damage: 95%
+Quality: +20% (augmented)
+--------
+Requirements:
+Level: 70
+Int: 155
+--------
+Casts a ring of Lightning around you, followed by a larger Lightning nova. Each effect hits enemies caught in their area with Lightning Damage. This then repeats, with each repeat offset from the previous in the direction you target.
+--------
+Deals 263 to 790 Lightning Damage
+Repeats 2 times
+10% more Cast Speed
+30% less Area of Effect
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+--------
+Corrupted
+--------
+Imbued
+--------
+Transfigured
+");
+
+        Assert.Equal(ItemClass.ActiveSkillGem, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Equal("Shock Nova of Procession", actual.TradeItem?.Text);
+        Assert.Equal("Shock Nova", actual.TradeItem?.Type);
+        Assert.Equal("alt_x", actual.TradeItem?.Discriminator);
+        Assert.True(actual.Properties.Corrupted);
+        Assert.True(actual.Properties.Imbued);
+        actual.AssertHasNinjaStash("shock-nova-of-procession-20-20c");
+    }
 }
