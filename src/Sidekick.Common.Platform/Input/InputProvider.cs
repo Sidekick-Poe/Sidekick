@@ -402,6 +402,8 @@ public class InputProvider
 
     public event Action<string>? OnKeyDown;
 
+    public event Action<int, int>? OnMouseDown;
+
     public event Action<ScrollEventArgs>? OnScrollDown;
 
     public event Action<ScrollEventArgs>? OnScrollUp;
@@ -767,6 +769,7 @@ public class InputProvider
     {
         MousePositionX = e.Data.X;
         MousePositionY = e.Data.Y;
+        OnMouseDown?.Invoke(e.Data.X, e.Data.Y);
     }
 
     private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)

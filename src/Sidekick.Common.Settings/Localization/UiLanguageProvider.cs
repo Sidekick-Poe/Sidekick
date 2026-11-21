@@ -21,7 +21,7 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
     /// <inheritdoc />
     public async Task Initialize()
     {
-        var language = await settingsService.GetString(SettingKeys.LanguageUi);
+        var language = await settingsService.GetStringAsync(SettingKeys.LanguageUi);
         Set(language ?? "en");
     }
 
@@ -37,7 +37,7 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
     /// <inheritdoc />
     public async Task<CultureInfo> Get()
     {
-        var language = await settingsService.GetString(SettingKeys.LanguageUi);
+        var language = await settingsService.GetStringAsync(SettingKeys.LanguageUi);
         var cultureInfo = CultureInfo.GetCultureInfo(language ?? "en");
 
         return cultureInfo;

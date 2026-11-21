@@ -7,7 +7,7 @@
 @using Sidekick.Common.Settings
 
 <div class="@(Series.Count == 0 ? "hidden" : "") relative">
-    <FormFieldset Legend="@Resources["Total_Value"]">
+    <FormFieldset Legend="@Resources.Total_Value">
         <div class="h-32 relative -m-3">
             <ApexChart @ref="Chart"
                        TItem="DataPoint"
@@ -76,7 +76,7 @@
     {
         Series.Clear();
 
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
         await using var database = new SidekickDbContext(DbContextOptions);
         var stashes = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).ToListAsync();
         var stashIds = stashes.Select(x => x.Id).ToList();

@@ -82,6 +82,7 @@ public enum StatCategory
     WhiteText = 103,
     GrayText = 104,
     Mutated = 105,
+    RareOnly = 106,
 
     // Logbook modifiers
     DruidsOfTheBrokenCircle = 201,

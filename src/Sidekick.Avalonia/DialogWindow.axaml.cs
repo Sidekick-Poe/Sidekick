@@ -46,13 +46,13 @@ public partial class DialogWindow : Window
         {
             case DialogProvider.Type.Ok:
                 CancelButton.IsVisible = false;
-                ConfirmButton.Content = resources?["Ok"] ?? "Ok";
+                ConfirmButton.Content = resources?.Ok ?? "Ok";
                 break;
 
             case DialogProvider.Type.Confirmation:
                 CancelButton.IsVisible = true;
-                CancelButton.Content = resources?["Cancel"] ?? "Cancel";
-                ConfirmButton.Content = resources?["Confirm"] ?? "Confirm";
+                CancelButton.Content = resources?.Cancel ?? "Cancel";
+                ConfirmButton.Content = resources?.Confirm ?? "Confirm";
                 break;
         }
 

@@ -38,7 +38,7 @@ public class TradeFilterProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         Filters = await dataProvider.Read<List<TradeFilterCategory>>(game, GameDataType.TradeFilters, currentGameLanguage.Language);
     }
 

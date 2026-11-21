@@ -17,10 +17,10 @@
     <ChildContent>
         <AppContainer>
             <div class="mb-3 flex gap-3">
-                <Heading1>@Resources["Logs"]</Heading1>
+                <Heading1>@UiResources.Logs</Heading1>
                 <div class="ml-auto flex justify-end gap-3">
                     <ButtonSecondary
-                        OnClick="@(() => FolderProvider.OpenDataFolderPath())">@UiResources["Open_Logs_Folder"]</ButtonSecondary>
+                        OnClick="@(() => FolderProvider.OpenDataFolderPath())">@UiResources.Open_Logs_Folder</ButtonSecondary>
                     @if (Configuration.Value.ApplicationType.SupportsKeybinds())
                     {
                         <LogCopy/>

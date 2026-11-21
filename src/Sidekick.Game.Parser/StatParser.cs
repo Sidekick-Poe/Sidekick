@@ -35,7 +35,7 @@ public class StatParser
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         var definitions = await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.Language);
 
         Definitions = new Dictionary<StatCategory, List<StatDefinition>>();
@@ -147,7 +147,7 @@ public class StatParser
                 .SelectMany(x => x.Value);
         }
 
-        if (category != StatCategory.Undefined)
+        if (category != StatCategory.Undefined && category != StatCategory.RareOnly)
         {
             return Definitions
                 .Where(x => x.Key == category)
@@ -260,7 +260,7 @@ public class StatParser
         }
 
         var expandableFilter =
-            new ExpandableFilter(resources["Stat_Filters"], true, result.ToArray())
+            new ExpandableFilter(resources.Stat_Filters, true, result.ToArray())
             {
                 AutoSelectSettingKey = autoSelectKey,
                 DefaultAutoSelect = StatFilter.GetDefault(item.Game),

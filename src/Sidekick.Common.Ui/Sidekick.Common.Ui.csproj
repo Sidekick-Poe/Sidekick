@@ -8,17 +8,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly"/>
+        <PackageReference Include="Blazicons.FontAwesome" />
+        <PackageReference Include="Blazicons.Lucide" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
     </ItemGroup>
 
     <ItemGroup>
-        <SupportedPlatform Include="browser"/>
+        <SupportedPlatform Include="browser" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Sidekick.Apis.GitHub\Sidekick.Apis.GitHub.csproj"/>
-        <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj"/>
+        <ProjectReference Include="..\Sidekick.Apis.GitHub\Sidekick.Apis.GitHub.csproj" />
+        <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,11 +28,11 @@
     </ItemGroup>
 
     <Target Name="NpmBuild" BeforeTargets="ResolveProjectStaticWebAssets">
-        <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)"/>
+        <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)" />
 
         <!-- The files are created after MSBuild lists the wwwroot content, so a clean build would leave them out. -->
         <ItemGroup>
-            <Content Include="wwwroot\css\sidekick.css;wwwroot\js\sidekick.js" Exclude="@(Content)"/>
+            <Content Include="wwwroot\css\sidekick.css;wwwroot\js\sidekick.js" Exclude="@(Content)" />
         </ItemGroup>
     </Target>
 

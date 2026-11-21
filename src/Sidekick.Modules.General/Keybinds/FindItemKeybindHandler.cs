@@ -16,7 +16,7 @@ public class FindItemKeybindHandler(
 
     protected override async Task<List<string?>> GetKeybinds() =>
     [
-        await settingsService.GetString(SettingKeys.KeyFindItems)
+        await settingsService.GetStringAsync(SettingKeys.KeyFindItems)
     ];
 
     public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;

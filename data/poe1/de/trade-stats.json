@@ -13740,6 +13740,10 @@
     "text": "#% erh\u00F6hte Fluchwirkung von \u0027Bestrafung\u0027"
   },
   {
+    "id": "enchant.stat_2844829788",
+    "text": "# Monstergruppen im Gebiet werden durch harmlose Kr\u00F6ten ersetzt"
+  },
+  {
     "id": "enchant.stat_2844839137",
     "text": "Beschworene Arachnobots haben #% vergr\u00F6\u00DFerten Wirkungsbereich"
   },
@@ -20828,12 +20832,20 @@
     "text": "Delirium-Belohnungstyp: Essenzen"
   },
   {
+    "id": "explicit.delirium_reward_fossils",
+    "text": "Delirium-Belohnungstyp: Fossilien"
+  },
+  {
     "id": "explicit.delirium_reward_gems",
     "text": "Delirium-Belohnungstyp: Gemmen"
   },
   {
     "id": "explicit.delirium_reward_maps",
     "text": "Delirium-Belohnungstyp: Kartengegenst\u00E4nde"
+  },
+  {
+    "id": "explicit.delirium_reward_metamorphosis",
+    "text": "Delirium-Belohnungstyp: Katalysatoren"
   },
   {
     "id": "explicit.delirium_reward_scarabs",
@@ -21424,6 +21436,10 @@
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Blutlust\u0022 Stufe #"
   },
   {
+    "id": "explicit.effect_3136470162",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zusammenkunft\u0022 Stufe #"
+  },
+  {
     "id": "explicit.effect_3161048706",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: G\u00F6ttliche Segnung\u0022 Stufe #"
   },
@@ -21822,6 +21838,10 @@
   {
     "id": "explicit.effect_602948540",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Kritische Beeintr\u00E4chtigungen\u0022 Stufe #"
+  },
+  {
+    "id": "explicit.effect_603124590",
+    "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Gr\u00F6\u00DFeres Entfesseln\u0022 Stufe #"
   },
   {
     "id": "explicit.effect_603152644",
@@ -28504,6 +28524,10 @@
     "text": "Bei mindestens 40 Intelligenz im Radius hat \u0027Magmakugel\u0027\n#% vergr\u00F6\u00DFerten Wirkungsbereich pro Verkettung"
   },
   {
+    "id": "explicit.stat_1609344921",
+    "text": "Schaden mit Treffern ist g\u00FCnstig, w\u00E4hrend Eure Nebenhandwaffe magisch ist"
+  },
+  {
     "id": "explicit.stat_161058250",
     "text": "Erhaltet f\u00FCr # Sekunden Seelenfresser, wenn Ihr eine Vaal-Fertigkeit benutzt"
   },
@@ -30073,11 +30097,11 @@
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Relikte haben #% Chance, einen zus\u00E4tzlichen Suffix-Modifikator zu haben"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871805225",
-    "text": "Relikte in Euren Karten haben #% Chance, einen zus\u00E4tzlichen Suffix-Modifikator zu haben"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "explicit.stat_1871938116",
@@ -31446,6 +31470,10 @@
   {
     "id": "explicit.stat_2105048696",
     "text": "Angriffe feuern ein zus\u00E4tzliches Projektil, wenn in der Nebenhand"
+  },
+  {
+    "id": "explicit.stat_2105061711",
+    "text": "Kreaturen wandeln #% des physischen Schadens in Blitzschaden um"
   },
   {
     "id": "explicit.stat_2105355711",
@@ -35096,6 +35124,10 @@
     "text": "\u002B#% zu Multiplikator f\u00FCr kritische Treffer mit Minen"
   },
   {
+    "id": "explicit.stat_2529155377",
+    "text": "#% erh\u00F6hter Schaden mit Klauen gegen Gegner mit niedrigem Leben"
+  },
+  {
     "id": "explicit.stat_2530071726",
     "text": "Gebiet enth\u00E4lt einen zus\u00E4tzlichen Talisman der drei Ratten"
   },
@@ -37245,7 +37277,7 @@
   },
   {
     "id": "explicit.stat_2876425796",
-    "text": "Socketed Gems deal #% more damage per Socketed Skill Gem"
+    "text": "Eingefasste Gemmen verursachen #% mehr Schaden pro eingefasster Fertigkeitengemme"
   },
   {
     "id": "explicit.stat_2877370216",
@@ -52496,6 +52528,10 @@
     "text": "Monster k\u00F6nnen nicht bet\u00E4ubt werden"
   },
   {
+    "id": "fractured.stat_1045292082",
+    "text": "Kreaturen wandeln #% des physischen Schadens in Feuerschaden um"
+  },
+  {
     "id": "fractured.stat_1048879642",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Bandenmentalit\u00E4t"
   },
@@ -52852,6 +52888,10 @@
     "text": "#% erh\u00F6hter Schaden \u00FCber Zeit beim Tragen eines Schilds"
   },
   {
+    "id": "fractured.stat_1248307887",
+    "text": "Ihr seid von Delirium-Nebel betroffen"
+  },
+  {
     "id": "fractured.stat_1248507170",
     "text": "Bei mindestens 40 St\u00E4rke im Radius verst\u00E4rken Treffer mit \u0027Spalten\u0027"
   },
@@ -52906,6 +52946,10 @@
   {
     "id": "fractured.stat_1273709603",
     "text": "L\u00F6st Geisterhafte Artillerie Stufe # aus, wenn Ihr mit dieser Waffe angreift"
+  },
+  {
+    "id": "fractured.stat_1274429432",
+    "text": "Verursacht zus\u00E4tzlichen Zauberschaden in H\u00F6he von #% des Schadens des ausger\u00FCsteten Zauberstabs\nBei zwei ausger\u00FCsteten Zauberst\u00E4ben wird jede Waffe zu 60% auf den zus\u00E4tzlichen Schaden angerechnet"
   },
   {
     "id": "fractured.stat_1274505521",
@@ -53462,6 +53506,10 @@
   {
     "id": "fractured.stat_1583385065",
     "text": "#% erh\u00F6hter Schaden mit Fertigkeiten (Vaal-Fertigkeiten ausgenommen) w\u00E4hrend der \u0027Kein Seelenerhalt\u0027-Dauer"
+  },
+  {
+    "id": "fractured.stat_1584440377",
+    "text": "#% erh\u00F6hte unbewaffnete Angriffsgeschwindigkeit mit Nahkampf-Fertigkeiten"
   },
   {
     "id": "fractured.stat_1585344030",
@@ -54056,6 +54104,10 @@
     "text": "Hinzugef\u00FCgte kleine passive Fertigkeiten gew\u00E4hren auch: \u002B#% zu Multiplikator f\u00FCr kritische Treffer"
   },
   {
+    "id": "fractured.stat_1928468569",
+    "text": "Kritische Treffer mit B\u00F6gen haben #% Chance, den Gegner zu vergiften"
+  },
+  {
     "id": "fractured.stat_1936135020",
     "text": "1 hinzugef\u00FCgte passive Fertigkeit ist: Leichte Opfer"
   },
@@ -54370,6 +54422,10 @@
   {
     "id": "fractured.stat_2101383955",
     "text": "Schaden durchdringt #% Elementarwiderst\u00E4nde"
+  },
+  {
+    "id": "fractured.stat_2105061711",
+    "text": "Kreaturen wandeln #% des physischen Schadens in Blitzschaden um"
   },
   {
     "id": "fractured.stat_2106365538",
@@ -55248,6 +55304,10 @@
     "text": "\u002B#% zu Multiplikator f\u00FCr kritische Treffer mit Minen"
   },
   {
+    "id": "fractured.stat_2529155377",
+    "text": "#% erh\u00F6hter Schaden mit Klauen gegen Gegner mit niedrigem Leben"
+  },
+  {
     "id": "fractured.stat_2530372417",
     "text": "#% Chance, Angriffsschaden zu blocken"
   },
@@ -55398,6 +55458,10 @@
   {
     "id": "fractured.stat_2633745731",
     "text": "#% erh\u00F6hte Gesamtwiederherstellung pro Sekunde, die durch Lebensraub erfolgt"
+  },
+  {
+    "id": "fractured.stat_264042266",
+    "text": "Kreaturen wandeln #% des physischen Schadens in K\u00E4lteschaden um"
   },
   {
     "id": "fractured.stat_2642917409",
@@ -56504,6 +56568,10 @@
     "text": "Eingefasste Bewegungsfertigkeiten kosten kein Mana"
   },
   {
+    "id": "fractured.stat_326480871",
+    "text": "Angriffe mit \u00C4xten oder Schwertern gew\u00E4hren # Rausch bei Treffer"
+  },
+  {
     "id": "fractured.stat_3269060224",
     "text": "Erhaltet eine Energie-Ladung, nachdem Ihr insgesamt 200 Mana verbraucht habt"
   },
@@ -56918,6 +56986,10 @@
   {
     "id": "fractured.stat_3479987487",
     "text": "#% beschleunigte Bet\u00E4ubungs- und Blockerholung w\u00E4hrend der Wirkung"
+  },
+  {
+    "id": "fractured.stat_3481254135",
+    "text": "Verursacht zus\u00E4tzlichen Zauberschaden in H\u00F6he von #% des Schadens des ausger\u00FCsteten Dolchs\nBei zwei ausger\u00FCsteten Dolchen wird jede Waffe zu 60% auf den zus\u00E4tzlichen Schaden angerechnet"
   },
   {
     "id": "fractured.stat_3482587079",
@@ -60456,6 +60528,10 @@
     "text": "Gew\u00E4hrt \u0022Disziplin\u0022 Stufe #"
   },
   {
+    "id": "implicit.effect_603152644",
+    "text": "Gew\u00E4hrt \u0022Gro\u00DFen Vorboten der Richtungen beschw\u00F6ren\u0022"
+  },
+  {
     "id": "implicit.effect_626699959",
     "text": "Eingefasste Gemmen werden unterst\u00FCtzt durch \u0022Unterst\u00FCtzung: Zaubern bei Tod\u0022 Stufe #"
   },
@@ -60466,6 +60542,10 @@
   {
     "id": "implicit.effect_723113949",
     "text": "Gew\u00E4hrt \u0022Entschlossenheit\u0022 Stufe #"
+  },
+  {
+    "id": "implicit.effect_771254875",
+    "text": "Gew\u00E4hrt \u0022Aspekt der Katze\u0022 Stufe #"
   },
   {
     "id": "implicit.effect_859488427",
@@ -60942,6 +61022,10 @@
   {
     "id": "implicit.stat_1195319608",
     "text": "#% erh\u00F6hter Energieschild von ausger\u00FCsteter K\u00F6rperr\u00FCstung"
+  },
+  {
+    "id": "implicit.stat_1209237645",
+    "text": "Maximal # Leerenladungen"
   },
   {
     "id": "implicit.stat_1211769158",
@@ -62237,11 +62321,11 @@
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Relikte haben #% Chance, einen zus\u00E4tzlichen Suffix-Modifikator zu haben"
+    "text": "\u002B#% Surpassing Chance for Remnants to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1871805225",
-    "text": "Relikte in Euren Karten haben #% Chance, einen zus\u00E4tzlichen Suffix-Modifikator zu haben"
+    "text": "\u002B#% Surpassing Chance for Remnants in your Maps to have an additional Suffix Modifier"
   },
   {
     "id": "implicit.stat_1873457881",
@@ -62284,6 +62368,10 @@
     "text": "Ihr k\u00F6nnt nicht von Bluten betroffen werden"
   },
   {
+    "id": "implicit.stat_190157226",
+    "text": "T\u00F6dliche Schl\u00E4ge verbrauchen Leichen und stellen #% des Lebens wieder her"
+  },
+  {
     "id": "implicit.stat_190207599",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% des physischen Schadens werden als Leben geraubt"
   },
@@ -62298,6 +62386,10 @@
   {
     "id": "implicit.stat_190932737",
     "text": "\u002B#% Gegenstandsseltenheit"
+  },
+  {
+    "id": "implicit.stat_1909401378",
+    "text": "\u002B#% zu kritischer Trefferchance"
   },
   {
     "id": "implicit.stat_1911037487",
@@ -62876,6 +62968,10 @@
     "text": "#% erh\u00F6hter K\u00E4lteschaden mit Zauberfertigkeiten"
   },
   {
+    "id": "implicit.stat_2188905761",
+    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit, wenn Ihr k\u00FCrzlich die Haltung ge\u00E4ndert habt"
+  },
+  {
     "id": "implicit.stat_2192875806",
     "text": "Eingefasste Fertigkeiten wenden bei Treffer Feuer-, K\u00E4lte- und Blitz-Anf\u00E4lligkeit an"
   },
@@ -63318,6 +63414,10 @@
   {
     "id": "implicit.stat_2420972973",
     "text": "#% erh\u00F6hte Wirkung von durch Aasgolems gew\u00E4hrten St\u00E4rkungen"
+  },
+  {
+    "id": "implicit.stat_2421436896",
+    "text": "Pfeile gabeln sich auf"
   },
   {
     "id": "implicit.stat_2423625781",
@@ -64812,6 +64912,10 @@
     "text": "#% erh\u00F6hte kritische Trefferchance von Vaal-Fertigkeiten"
   },
   {
+    "id": "implicit.stat_3168149399",
+    "text": "F\u00FCgt Angriffen # bis # Blitzschaden pro 10 Intelligenz hinzu"
+  },
+  {
     "id": "implicit.stat_3171354842",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: Verursacht #% des physischen Schadens als extra K\u00E4lteschaden"
   },
@@ -64988,6 +65092,10 @@
     "text": "Kreaturen sind aggressiv, wenn Ihr k\u00FCrzlich eine Kreaturen-Fertigkeit benutzt habt"
   },
   {
+    "id": "implicit.stat_3262369040",
+    "text": "Verbraucht eine Leerenladung, um Leerenschuss Stufe # auszul\u00F6sen, wenn Ihr Pfeile mit einer nicht ausgel\u00F6sten Fertigkeit feuert"
+  },
+  {
     "id": "implicit.stat_3262721796",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines einzigartigen Gegners: Von Euch verursachte Verk\u00FCmmerung klingt #% schneller ab"
   },
@@ -65002,6 +65110,10 @@
   {
     "id": "implicit.stat_3266394681",
     "text": "Angriffsfertigkeiten haben \u002B# zu maximaler Anzahl beschworener Totems"
+  },
+  {
+    "id": "implicit.stat_3267026680",
+    "text": "#% erh\u00F6hte Angriffsgeschwindigkeit, wenn Ihr k\u00FCrzliche eine Angriffs-Bewegungsfertigkeit benutzt habt"
   },
   {
     "id": "implicit.stat_3268519799",
@@ -65158,6 +65270,10 @@
   {
     "id": "implicit.stat_3326567914",
     "text": "W\u00E4hrend in der Pr\u00E4senz eines Endgame-Atlasbosses: #% Chance, Angriffsschaden zu blocken"
+  },
+  {
+    "id": "implicit.stat_3334947764",
+    "text": "Bei jedem vierten Mal, das Ihr einen Zauber wirkt, erhaltet Ihr Mana in H\u00F6he seiner Vorauskosten"
   },
   {
     "id": "implicit.stat_3336890334",
@@ -65342,6 +65458,10 @@
   {
     "id": "implicit.stat_342670903",
     "text": "#% erh\u00F6hter Schaden pro 100 Geschick"
+  },
+  {
+    "id": "implicit.stat_34273389",
+    "text": "Erhaltet alle # Sekunden eine Leerenladung"
   },
   {
     "id": "implicit.stat_3433724931",
@@ -67618,6 +67738,10 @@
   {
     "id": "implicit.stat_683892962",
     "text": "#% erh\u00F6hter Schaden pro Kreatur, bis zu einem Maximum von 40%"
+  },
+  {
+    "id": "implicit.stat_68673913",
+    "text": "F\u00FCgt Angriffen # bis # Feuerschaden pro 10 St\u00E4rke hinzu"
   },
   {
     "id": "implicit.stat_689723685",
@@ -71733,32 +71857,32 @@
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#1",
-    "text": "Hat Raum: K\u00F6niglicher Empfangssaal (Level 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Offener Raum"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_1#2",
-    "text": "Hat Raum: K\u00F6niglicher Empfangssaal (Level 1)",
+    "text": "Has Room: Cradle of Creation (Tier 1)",
     "optionText": "Geschlossener Raum"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#1",
-    "text": "Hat Raum: Herrschersaal (Level 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Offener Raum"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_2#2",
-    "text": "Hat Raum: Herrschersaal (Level 2)",
+    "text": "Has Room: Cradle of Creation (Tier 2)",
     "optionText": "Geschlossener Raum"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#1",
-    "text": "Hat Raum: Thron von Atziri (Level 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Offener Raum"
   },
   {
     "id": "pseudo.pseudo_temple_queens_chambers_3#2",
-    "text": "Hat Raum: Thron von Atziri (Level 3)",
+    "text": "Has Room: Cradle of Creation (Tier 3)",
     "optionText": "Geschlossener Raum"
   },
   {

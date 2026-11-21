@@ -1,7 +1,7 @@
 @using Microsoft.Extensions.Localization
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
-@using Sidekick.Common.Ui.Icons
+@using Blazicons
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Game.Enums
@@ -9,14 +9,14 @@
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@Resources["Wiki_Preferred"]"
+            Label="@Resources.Wiki_Preferred"
             Options="Options">
     <AdornmentContent>
         @if (ShowResetButton)
         {
             <ButtonIcon OnClick="Reset"
-                        Svg="@UiIcons.Reset"
-                        Tooltip="@UiResources["Reset"]"/>
+                        Svg="@Lucide.RotateCcw"
+                        Tooltip="@UiResources.Reset"/>
         }
     </AdornmentContent>
 </FormSelect>
@@ -38,8 +38,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
@@ -47,7 +47,12 @@
             .Select(x => new SelectOption()
             {
                 Value = x.GetValueAttribute().ToString(),
-                Label = Resources[x.GetValueAttribute()],
+                Label = x switch
+                {
+                    WikiSetting.PoeWiki => Resources.poewiki,
+                    WikiSetting.PoeDb => Resources.poedb,
+                    _ => x.ToString(),
+                },
             })
             .ToList();
 
@@ -57,21 +62,21 @@
     private async Task ValueChanged(string? value)
     {
         Value = value;
-        await SettingsService.Set(SettingKey, Value);
+        await SettingsService.SetAsync(SettingKey, Value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Value = await SettingsService.GetString(SettingKey);
-        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        Value = await SettingsService.GetStringAsync(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModifiedAsync(SettingKey);
         await InvokeAsync(StateHasChanged);
     }
 
     private async Task Reset()
     {
-        await SettingsService.DeleteSetting(SettingKey);
+        await SettingsService.DeleteSettingAsync(SettingKey);
     }
 
     public void Dispose()

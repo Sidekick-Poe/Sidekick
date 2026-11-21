@@ -67,12 +67,12 @@ public abstract class ParserFixture : IAsyncLifetime
         RegisterServices(TestContext.Services);
 
         SettingsService = TestContext.Services.GetRequiredService<ISettingsService>();
-        await SettingsService.Set(SettingKeys.LanguageParser, Language);
-        await SettingsService.Set(SettingKeys.LanguageUi, Language);
-        await SettingsService.Set(AutoSelectPreferences.DefaultFillMinSettingKey, true);
-        await SettingsService.Set(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
-        if (GameType == GameType.Poe1) await SettingsService.Set(SettingKeys.LeagueId, "poe1.Standard");
-        else if (GameType == GameType.Poe2) await SettingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
+        await SettingsService.SetAsync(SettingKeys.LanguageParser, Language);
+        await SettingsService.SetAsync(SettingKeys.LanguageUi, Language);
+        await SettingsService.SetAsync(AutoSelectPreferences.DefaultFillMinSettingKey, true);
+        await SettingsService.SetAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
+        if (GameType == GameType.Poe1) await SettingsService.SetAsync(SettingKeys.LeagueId, "poe1.Standard");
+        else if (GameType == GameType.Poe2) await SettingsService.SetAsync(SettingKeys.LeagueId, "poe2.Standard");
 
         if (initializationTask == null)
         {

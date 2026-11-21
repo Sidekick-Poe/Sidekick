@@ -16,7 +16,7 @@ public class ItemClassProvider(
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
         Definitions = await dataProvider.Read<List<ItemClassDefinition>>(game, GameDataType.ItemClasses, currentGameLanguage.Language);
         Dictionary = Definitions.ToDictionary(x => x.Id);
     }

@@ -2,17 +2,17 @@
 @using Sidekick.Common.Database
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Wealth.Provider
-@using Sidekick.Modules.Wealth.Localization
+@using Sidekick.Common.Ui.Localization
 
 @if (LastUpdated != null && LastUpdated != DateTimeOffset.MinValue)
 {
     <div class="flex items-center flex-nowrap justify-end gap-1">
-        <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+        <TextCaption>@UiResources.Last_Updated:</TextCaption>
         <TextAge Date="LastUpdated"/>
     </div>
 }
 
-@inject IStringLocalizer<WealthResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject WealthProvider WealthProvider
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
@@ -24,7 +24,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var leagueId = await SettingsService.GetStringAsync(SettingKeys.LeagueId);
         await using var database = new SidekickDbContext(DbContextOptions);
         LastUpdated = await database.WealthFullSnapshots.Where(x => x.League == leagueId).Select(x => x.Date).OrderByDescending(x => x).FirstOrDefaultAsync();
 

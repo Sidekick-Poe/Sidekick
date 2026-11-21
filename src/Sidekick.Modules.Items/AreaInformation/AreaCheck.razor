@@ -9,8 +9,8 @@
 @if (BadLines.Any())
 {
     <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2 my-2">
-        <Icon Svg="@UiIcons.ThumbDown"/>
-        @Resources["Bad"]
+        <Icon Svg="@Lucide.ThumbsDown"/>
+        @Resources.Bad
     </Heading1>
     <ItemSeparator Rarity="Item.Properties.Rarity"/>
 
@@ -18,7 +18,7 @@
         @foreach (var badLine in BadLines)
         {
             <div class="flex items-center justify-center flex-nowrap gap-2">
-                <Icon Svg="@UiIcons.ThumbDown" Class="text-red-500"/>
+                <Icon Svg="@Lucide.ThumbsDown" Class="text-red-500"/>
                 <TextBase Class="font-caps text-red-500">@badLine</TextBase>
             </div>
         }
@@ -27,8 +27,8 @@
 else
 {
     <Heading1 Class="text-green-500 flex flex-nowrap items-center justify-center gap-2 my-2">
-        <Icon Svg="@UiIcons.ThumbUp"/>
-        @Resources["Good"]
+        <Icon Svg="@Lucide.ThumbsUp"/>
+        @Resources.Good
     </Heading1>
 }
 
@@ -73,7 +73,7 @@ else
     {
         BadLines.Clear();
 
-        var regexValue = await SettingsService.GetString(RegexSettings.SettingKey);
+        var regexValue = await SettingsService.GetStringAsync(RegexSettings.SettingKey);
         NoRegex = string.IsNullOrEmpty(regexValue);
         if (string.IsNullOrEmpty(regexValue)) return;
 

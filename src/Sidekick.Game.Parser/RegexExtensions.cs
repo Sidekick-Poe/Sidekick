@@ -16,13 +16,6 @@ public static class RegexExtensions
 
     public static Regex ToRegexIsAugmented(this string input) => new($@"^{Regex.Escape(input)}.*\)$");
 
-    public static Regex ToRegexAffix(this string input)
-    {
-        input = Regex.Escape(input);
-        input = input.Replace(@"\#", @"([a-zA-Z\s]+)?");
-        return new(input);
-    }
-
     public static Regex ToRegexEndOfLine(this string input) => new($"^.*{Regex.Escape(input)}$");
 
     public static Regex ToRegexLine(this string input) => new($"^{Regex.Escape(input)}$");

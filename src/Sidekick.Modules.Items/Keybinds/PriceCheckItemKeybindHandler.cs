@@ -20,7 +20,7 @@ public class PriceCheckItemKeybindHandler
 
     protected override async Task<List<string?>> GetKeybinds() =>
     [
-        await settingsService.GetString(SettingKeys.KeyOpenPriceCheck)
+        await settingsService.GetStringAsync(SettingKeys.KeyOpenPriceCheck)
     ];
 
     public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;

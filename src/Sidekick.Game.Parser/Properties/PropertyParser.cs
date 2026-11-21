@@ -24,7 +24,7 @@ public class PropertyParser
 
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
+        var game = await settingsService.GetGameAsync();
 
         Definitions.Clear();
         Definitions.AddRange([

@@ -141,9 +141,6 @@
   <data name="Tab" xml:space="preserve">
       <value>Area Info</value>
   </data>
-  <data name="Close" xml:space="preserve">
-      <value>Close</value>
-  </data>
   <data name="Area_Settings" xml:space="preserve">
       <value>Area Settings</value>
   </data>
@@ -152,12 +149,6 @@
   </data>
   <data name="Settings_Description" xml:space="preserve">
       <value>If the regex passes, the area will be marked as 'Good'. It is recommended to use the website below to generate regexes for your areas.</value>
-  </data>
-  <data name="Regex_Token_Invalid" xml:space="preserve">
-      <value>Invalid regex token</value>
-  </data>
-  <data name="Regex_Token_Missing" xml:space="preserve">
-      <value>Missing regex for</value>
   </data>
   <data name="Use_Regex_Hotkeys" xml:space="preserve">
       <value>You can also select one of your regex hotkeys below.</value>

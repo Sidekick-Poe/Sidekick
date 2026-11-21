@@ -17,32 +17,23 @@
     </LeftContent>
     <ChildContent>
         <AppContainer>
-            <FormFieldset Legend="@SettingsResources["General_Settings"]">
+            <FormFieldset Legend="@SettingsResources.General_Settings">
                 <InterfaceLanguageEditor/>
                 <ZoomEditor/>
                 @if (Configuration.Value.ApplicationType.SupportsKeybinds())
                 {
                     <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
-                                           Label="@Resources["General_RetainClipboard"]"/>
+                                           Label="@Resources.General_RetainClipboard"/>
                 }
-                <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources.SilentStart"/>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch"
-                                       Label="@SettingsResources["OpenHomeOnLaunch"]"
-                                       Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]"/>
+                                       Label="@SettingsResources.OpenHomeOnLaunch"
+                                       Tooltip="@SettingsResources.OpenHomeOnLaunch_Hint"/>
             </FormFieldset>
-
-            @if (Configuration.Value.ApplicationType.SupportsDesktop())
-            {
-                <FormFieldset Legend="@SettingsResources["Other"]">
-                    <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"
-                                           Label="@SettingsResources["UseHardwareAcceleration"]"
-                                           Tooltip="@SettingsResources["RestartRequired"]"/>
-                </FormFieldset>
-            }
 
             <div class="flex justify-center mb-1">
                 <ButtonPrimary Disabled="!AreSettingsModified"
-                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+                               OnClick="RestoreDefaults">@UiResources.Restore_Defaults</ButtonPrimary>
             </div>
         </AppContainer>
     </ChildContent>
@@ -66,7 +57,6 @@
         SettingKeys.SilentStart,
         SettingKeys.OpenHomeOnLaunch,
         SettingKeys.Zoom,
-        SettingKeys.UseHardwareAcceleration,
     ];
 
     protected override async Task OnInitializedAsync()
@@ -81,13 +71,13 @@
     {
         if (!keys.Any(key => SettingKeysUsed.Contains(key))) return;
 
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        AreSettingsModified = await SettingsService.IsSettingModifiedAsync(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 
     private async void RestoreDefaults()
     {
-        await SettingsService.DeleteSetting(SettingKeysUsed);
+        await SettingsService.DeleteSettingAsync(SettingKeysUsed);
         AreSettingsModified = false;
         StateHasChanged();
     }

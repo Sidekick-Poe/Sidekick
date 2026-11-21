@@ -8,9 +8,7 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 
-#if WINDOWS
 using Win32Interop = Sidekick.Avalonia.Utilities.WindowsNativeMethods;
-#endif
 
 namespace Sidekick.Avalonia.Controls;
 
@@ -36,8 +34,6 @@ public abstract class BaseWindow : Window
         Title = "Sidekick";
         RequestedThemeVariant = ThemeVariant.Dark;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        ExtendClientAreaToDecorationsHint = true;
-        ExtendClientAreaTitleBarHeightHint = -1;
         Background = SolidColorBrush.Parse("#1C1917");
         Opened += BaseWindow_Opened;
         PositionChanged += BaseWindow_PositionChanged;
@@ -56,19 +52,30 @@ public abstract class BaseWindow : Window
 
     private void BaseWindow_Opened(object? sender, EventArgs e)
     {
-#if WINDOWS
-        // This code block is entirely omitted on Linux/macOS builds
-        var platformHandle = TryGetPlatformHandle();
-        if (platformHandle != null)
+        if (!OperatingSystem.IsWindows())
         {
-            IntPtr hWnd = platformHandle.Handle;
-            int useDarkMode = 1;
-            Win32Interop.DwmSetWindowAttribute(hWnd, 20, ref useDarkMode, sizeof(int));
-
-            int borderColor = unchecked((int)0xFFFFFFFE);
-            Win32Interop.DwmSetWindowAttribute(hWnd, 34, ref borderColor, sizeof(int));
+            return;
         }
-#endif
+
+        var platformHandle = TryGetPlatformHandle();
+        if (platformHandle == null)
+        {
+            return;
+        }
+
+        var hWnd = platformHandle.Handle;
+        var useDarkMode = 1;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaUseImmersiveDarkMode, ref useDarkMode, sizeof(int));
+
+        var borderColor = Win32Interop.DwmwaColorNone;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaBorderColor, ref borderColor, sizeof(int));
+
+        // Colors are 0x00BBGGRR. Windows 10 ignores them and keeps its dark gray title bar.
+        var captionColor = 0x00090A0C;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaCaptionColor, ref captionColor, sizeof(int));
+
+        var textColor = 0x00FFFFFF;
+        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaTextColor, ref textColor, sizeof(int));
     }
 
     public void CloseView()
@@ -89,15 +96,120 @@ public abstract class BaseWindow : Window
             RequestedWidth = null;
             RequestedHeight = null;
             _ = SavePlacement(placement);
+            ScheduleRelease();
         });
     }
 
     protected override void OnClosing(WindowClosingEventArgs e)
     {
+        if (isReleasing)
+        {
+            base.OnClosing(e);
+            return;
+        }
+
         CloseView();
         e.Cancel = true;
         base.OnClosing(e);
     }
+
+    #region Release
+
+    private CancellationTokenSource? releaseCancellation;
+
+    private bool isReleasing;
+
+    private bool isReleased;
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == IsVisibleProperty && IsVisible && OperatingSystem.IsLinux())
+        {
+            ReapplyWindowManagerState();
+        }
+    }
+
+    /// <summary>
+    /// The X11 window manager clears a window's state (keep above, skip taskbar) when the window is hidden, and Avalonia only
+    /// sends it again when the property changes. Without this, a window shown a second time loses Topmost: on KDE the
+    /// overlay then opens behind the game and shows up in the taskbar.
+    /// </summary>
+    private void ReapplyWindowManagerState()
+    {
+        if (Topmost)
+        {
+            Topmost = false;
+            Topmost = true;
+        }
+
+        if (!ShowInTaskbar)
+        {
+            ShowInTaskbar = true;
+            ShowInTaskbar = false;
+        }
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+        isReleased = true;
+        CancelRelease();
+        base.OnClosed(e);
+    }
+
+    /// <summary>
+    /// How long the window stays hidden before it is closed for real, which frees its web view and the memory of the page.
+    /// Null keeps the hidden window for the lifetime of the app.
+    /// </summary>
+    protected virtual TimeSpan? ReleaseDelay => null;
+
+    /// <summary>
+    /// Keeps the hidden window alive, since it is about to be shown again. Must be called on the UI thread.
+    /// </summary>
+    public void CancelRelease()
+    {
+        releaseCancellation?.Cancel();
+        releaseCancellation = null;
+    }
+
+    private void ScheduleRelease()
+    {
+        if (ReleaseDelay == null)
+        {
+            return;
+        }
+
+        CancelRelease();
+        releaseCancellation = new CancellationTokenSource();
+        _ = ReleaseAfterDelay(ReleaseDelay.Value, releaseCancellation.Token);
+    }
+
+    private async Task ReleaseAfterDelay(TimeSpan delay, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(delay, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+
+        Dispatcher.Post(() =>
+        {
+            // The window may have been reopened while this was waiting for the UI thread.
+            if (cancellationToken.IsCancellationRequested || IsVisible)
+            {
+                return;
+            }
+
+            isReleasing = true;
+            Close();
+        });
+    }
+
+    #endregion
 
     /// <summary>
     /// Sizes and places the window after it is shown: always the saved size, and the saved position when the setting is enabled, otherwise centered on the screen.
@@ -120,8 +232,8 @@ public abstract class BaseWindow : Window
         if (!string.IsNullOrEmpty(PositionPrefix))
         {
             // The size is always remembered. The setting only controls the position.
-            var savedWidth = await settingsService.GetDouble($"{PositionPrefix}_Width");
-            var savedHeight = await settingsService.GetDouble($"{PositionPrefix}_Height");
+            var savedWidth = await settingsService.GetDoubleAsync($"{PositionPrefix}_Width");
+            var savedHeight = await settingsService.GetDoubleAsync($"{PositionPrefix}_Height");
             if (savedWidth >= width && savedHeight >= height)
             {
                 width = savedWidth;
@@ -129,12 +241,18 @@ public abstract class BaseWindow : Window
             }
 
             // A saved width of 0 means that no placement was saved yet.
-            if (savedWidth > 0 && await settingsService.GetBool(SettingKeys.SaveWindowPositions))
+            if (savedWidth > 0 && await settingsService.GetBoolAsync(SettingKeys.SaveWindowPositions))
             {
-                var positionX = await settingsService.GetInt($"{PositionPrefix}_PositionX");
-                var positionY = await settingsService.GetInt($"{PositionPrefix}_PositionY");
+                var positionX = await settingsService.GetIntAsync($"{PositionPrefix}_PositionX");
+                var positionY = await settingsService.GetIntAsync($"{PositionPrefix}_PositionY");
                 savedPosition = new PixelPoint(positionX, positionY);
             }
+        }
+
+        // The window may have been closed and released while the settings were read.
+        if (isReleased)
+        {
+            return;
         }
 
         var screen = (savedPosition != null ? Screens.ScreenFromPoint(savedPosition.Value) : null)
@@ -201,6 +319,11 @@ public abstract class BaseWindow : Window
         if (!IsPlaced || !IsVisible) return;
 
         var zoom = await GetZoom();
+        if (isReleased)
+        {
+            return;
+        }
+
         var screen = Screens.ScreenFromWindow(this) ?? Screens.Primary;
         if (screen == null) return;
 
@@ -226,7 +349,7 @@ public abstract class BaseWindow : Window
     private async Task<double> GetZoom()
     {
         var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
+        var zoomString = await settingsService.GetStringAsync(SettingKeys.Zoom);
         return double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom) ? zoom : 1;
     }
 
@@ -331,10 +454,10 @@ public abstract class BaseWindow : Window
             if (placement == lastSavedPlacement) return;
 
             var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-            await settingsService.Set($"{PositionPrefix}_Width", placement.Width);
-            await settingsService.Set($"{PositionPrefix}_Height", placement.Height);
-            await settingsService.Set($"{PositionPrefix}_PositionX", placement.X);
-            await settingsService.Set($"{PositionPrefix}_PositionY", placement.Y);
+            await settingsService.SetAsync($"{PositionPrefix}_Width", placement.Width);
+            await settingsService.SetAsync($"{PositionPrefix}_Height", placement.Height);
+            await settingsService.SetAsync($"{PositionPrefix}_PositionX", placement.X);
+            await settingsService.SetAsync($"{PositionPrefix}_PositionY", placement.Y);
             lastSavedPlacement = placement;
         }
         catch (Exception e)

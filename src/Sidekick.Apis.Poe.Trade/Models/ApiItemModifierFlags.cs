@@ -14,4 +14,7 @@ public class ApiItemModifierFlags
 
     [JsonPropertyName("mutated")]
     public bool Mutated { get; set; }
+
+    [JsonPropertyName("rareonly")]
+    public bool RareOnly { get; set; }
 }

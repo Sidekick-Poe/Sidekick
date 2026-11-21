@@ -1,8 +1,10 @@
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Text;
 
 namespace Sidekick.Common.Platform.Windows.DllImport;
 
+[SupportedOSPlatform(PlatformNames.Windows)]
 public static class User32
 {
     [DllImport("user32.dll")]

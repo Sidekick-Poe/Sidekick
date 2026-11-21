@@ -39,7 +39,7 @@
     {
         if (ZoomHandler != null)
         {
-            var zoom = await SettingsService.GetString(SettingKeys.Zoom);
+            var zoom = await SettingsService.GetStringAsync(SettingKeys.Zoom);
             await ZoomHandler.InvokeVoidAsync("update", zoom);
         }
     }

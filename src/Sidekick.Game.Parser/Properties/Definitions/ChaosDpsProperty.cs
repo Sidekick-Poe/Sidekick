@@ -12,7 +12,7 @@ public class ChaosDpsProperty(
     GameType game,
     Microsoft.Extensions.Localization.IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
-    public override string Label => resources["ChaosDps"];
+    public override string Label => resources.ChaosDps;
 
     public override void Parse(Item item) {}
 

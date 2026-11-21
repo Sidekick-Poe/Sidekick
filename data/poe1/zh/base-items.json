@@ -11472,6 +11472,14 @@
     }
   },
   {
+    "id": "Metadata/Items/Currency/CurrencyAddModToRareOriginator",
+    "itemClassId": "StackableCurrency",
+    "name": "Originator\u0027s Exalted Orb",
+    "req": {
+      "lvl": 78
+    }
+  },
+  {
     "id": "Metadata/Items/Currency/CurrencyAddModToRareShaper",
     "itemClassId": "StackableCurrency",
     "name": "\u5851\u754C\u8005\u7684\u5D07\u9AD8\u77F3",
@@ -14212,7 +14220,7 @@
     "itemClassId": "StackableCurrency",
     "name": "\u7A62\u751F\u589E\u5E45\u77F3",
     "req": {
-      "lvl": 68
+      "lvl": 75
     }
   },
   {
@@ -14228,7 +14236,7 @@
     "itemClassId": "StackableCurrency",
     "name": "\u7A62\u751F\u5BCC\u8C6A\u77F3",
     "req": {
-      "lvl": 68
+      "lvl": 75
     }
   },
   {
@@ -14533,6 +14541,14 @@
     "name": "\u672A\u96D5\u523B\u5BF6\u77F3",
     "req": {
       "lvl": 1
+    }
+  },
+  {
+    "id": "Metadata/Items/Currency/CurrencyStackedExalt",
+    "itemClassId": "StackableCurrency",
+    "name": "Primordial Exalted Orb",
+    "req": {
+      "lvl": 81
     }
   },
   {

@@ -15,7 +15,7 @@
                  @oncontextmenu="Clear"
                  @oncontextmenu:preventDefault
                  class="range">
-                <FormContentEditable Placeholder="@Resources["Filters_Min"]"
+                <FormContentEditable Placeholder="@Resources.Filters_Min"
                                      DoubleValue="Min"
                                      DoubleValueChanged="UpdateMinValue"/>
             </div>
@@ -23,7 +23,7 @@
                  @oncontextmenu="Clear"
                  @oncontextmenu:preventDefault
                  class="range">
-                <FormContentEditable Placeholder="@Resources["Filters_Max"]"
+                <FormContentEditable Placeholder="@Resources.Filters_Max"
                                      DoubleValue="Max"
                                      DoubleValueChanged="UpdateMaxValue"/>
             </div>
@@ -32,13 +32,13 @@
     <ChildContent>
         <div class="flex flex-nowrap gap-1">
             <ButtonIcon OnClick="SetMin"
-                        Svg="@UiIcons.FilterGreaterThan"/>
+                        Svg="@FontAwesomeSolidIcon.GreaterThanEqual"/>
             <ButtonIcon OnClick="SetMax"
-                        Svg="@UiIcons.FilterLessThan"/>
+                        Svg="@FontAwesomeSolidIcon.LessThanEqual"/>
             <ButtonIcon OnClick="SetEquals"
-                        Svg="@UiIcons.FilterEquals"/>
+                        Svg="@FontAwesomeSolidIcon.Equals"/>
             <ButtonIcon OnClick="SetRange"
-                        Svg="@UiIcons.FilterRange"/>
+                        Svg="@Lucide.Braces"/>
         </div>
     </ChildContent>
 </Popover>
@@ -111,14 +111,14 @@
 
     private async Task SetMin()
     {
-        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        var normalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
         await UpdateMaxValue(null);
     }
 
     private async Task SetMax()
     {
-        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        var normalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(null);
         await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }
@@ -131,7 +131,7 @@
 
     private async Task SetRange()
     {
-        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        var normalizeBy = await SettingsService.GetDoubleAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
         await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }

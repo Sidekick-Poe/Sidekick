@@ -17,38 +17,38 @@
     </LeftContent>
     <ChildContent>
         <AppContainer>
-            <FormFieldset Legend="@UiResources["Chat_Commands"]">
+            <FormFieldset Legend="@UiResources.Chat_Commands">
                 <div>
                     <ButtonLink OnClick="OpenWikiChatCommands">@WikiChatCommands.ToString()</ButtonLink>
 
                     <div class="my-3">
-                        <TextBase>@Resources["Chat_Common_Commands"]</TextBase>
+                        <TextBase>@Resources.Chat_Common_Commands</TextBase>
                     </div>
 
                     <div class="flex gap-3 mb-1">
                         <code class="bg-stone-950 px-1 min-w-[8em]">/hideout</code>
-                        <TextBase>@Resources["Chat_Commands_Hideout"]</TextBase>
+                        <TextBase>@Resources.Chat_Commands_Hideout</TextBase>
                     </div>
                     <div class="flex gap-3 mb-1">
                         <code class="bg-stone-950 px-1 min-w-[8em]">/leave</code>
-                        <TextBase>@Resources["Chat_Commands_Leave"]</TextBase>
+                        <TextBase>@Resources.Chat_Commands_Leave</TextBase>
                     </div>
                     <div class="flex gap-3 mb-1">
                         <code class="bg-stone-950 px-1 min-w-[8em]">/exit</code>
-                        <TextBase>@Resources["Chat_Commands_Exit"]</TextBase>
+                        <TextBase>@Resources.Chat_Commands_Exit</TextBase>
                     </div>
                     <div class="flex gap-3 mb-1">
                         <code class="bg-stone-950 px-1 min-w-[8em]">/invite @@last</code>
-                        <TextBase>@Resources["Chat_Commands_Invite"]</TextBase>
+                        <TextBase>@Resources.Chat_Commands_Invite</TextBase>
                     </div>
                     <div class="flex gap-3 mb-3">
                         <code class="bg-stone-950 px-1 min-w-[8em]">/kick @@last</code>
-                        <TextBase>@Resources["Chat_Commands_Kick"]</TextBase>
+                        <TextBase>@Resources.Chat_Commands_Kick</TextBase>
                     </div>
 
                     <div class="flex gap-3">
                         <code class="bg-stone-950 px-1 min-w-[8em]">@@last</code>
-                        <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
+                        <TextBase>@Resources.Chat_Wildcard_LastWhisper_CharacterName</TextBase>
                     </div>
                 </div>
             </FormFieldset>
@@ -57,7 +57,7 @@
 
             <div class="flex justify-center mb-1">
                 <ButtonPrimary Disabled="!AreSettingsModified"
-                               OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+                               OnClick="RestoreDefaults">@UiResources.Restore_Defaults</ButtonPrimary>
             </div>
         </AppContainer>
     </ChildContent>
@@ -100,13 +100,13 @@
             return;
         }
 
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        AreSettingsModified = await SettingsService.IsSettingModifiedAsync(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 
     private async void RestoreDefaults()
     {
-        await SettingsService.DeleteSetting(SettingKeysUsed);
+        await SettingsService.DeleteSettingAsync(SettingKeysUsed);
 
         AreSettingsModified = false;
 
