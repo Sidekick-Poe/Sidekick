@@ -66,6 +66,9 @@ public class TextParser
         text = RemoveUnusableLine(text);
         text = TrimRegex.Replace(text, "");
 
+        // Removes zero width space - found in front of imbued stats
+        text = text.Replace("\u200B", string.Empty);;
+
         var rawText = new OriginalText(text);
         AppendCategoryFromAdvancedLines(rawText);
         RemoveAdvancedMetaLines(rawText);
