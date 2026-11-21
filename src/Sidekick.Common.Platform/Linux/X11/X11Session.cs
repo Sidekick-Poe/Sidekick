@@ -91,6 +91,11 @@ public sealed class X11Session(ILogger<X11Session> logger) : IHotkeyBlocker, IDi
 
     private nint netWmNameAtom;
 
+    /// <summary>
+    /// The game window while it has focus, or 0.
+    /// </summary>
+    private nint gameWindow;
+
     private readonly int[] wakePipe = [-1, -1];
 
     private Thread? thread;
@@ -208,6 +213,34 @@ public sealed class X11Session(ILogger<X11Session> logger) : IHotkeyBlocker, IDi
         }
 
         Wake();
+    }
+
+    /// <summary>
+    /// Marks a Sidekick window as a dialog of the game while the game has focus, and removes the mark otherwise. KDE
+    /// keeps a focused fullscreen window above every other window, even "keep above" ones, except its own dialogs: this
+    /// shows the overlay above a fullscreen game without taking the focus from it. Call it before showing the window.
+    /// </summary>
+    /// <param name="window">The X11 id of the Sidekick window.</param>
+    public void SetTransientForGame(nint window)
+    {
+        lock (sync)
+        {
+            if (display == 0 || loopStopped)
+            {
+                return;
+            }
+
+            if (gameWindow != 0)
+            {
+                Xlib.XSetTransientForHint(display, window, gameWindow);
+            }
+            else
+            {
+                Xlib.XDeleteProperty(display, window, Xlib.WmTransientForAtom);
+            }
+
+            Xlib.XSync(display, false);
+        }
     }
 
     /// <inheritdoc/>
@@ -419,6 +452,7 @@ public sealed class X11Session(ILogger<X11Session> logger) : IHotkeyBlocker, IDi
 
         IsActiveWindowKnown = window != 0;
         IsPathOfExileActive = window != 0 && IsGameWindow(window);
+        gameWindow = IsPathOfExileActive ? window : 0;
         IsSidekickActive = window != 0 && ReadWindowProperty(window, pidAtom) == Environment.ProcessId;
 
         if (wasGame != IsPathOfExileActive)
