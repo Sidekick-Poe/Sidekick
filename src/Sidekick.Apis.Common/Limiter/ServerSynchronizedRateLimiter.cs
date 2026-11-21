@@ -179,7 +179,7 @@ public sealed class ServerSynchronizedRateLimiter : RateLimiter
         // IMPORTANT: OnChangeSafe is always called while holding _lock (from
         // RefreshWindow, AttemptAcquireCore, IdleDuration and the timer callback).
         // Subscribers (e.g. the ApiStatusAndLimits Blazor component) marshal to the
-        // UI thread synchronously via Photino's InvokeAsync/PhotinoWindow.Invoke, and
+        // UI thread synchronously via the Blazor renderer's InvokeAsync, and
         // the UI render reads lock-protected state (CurrentHitCount/MaxHitCount).
         // Invoking the event under _lock therefore deadlocks: the timer thread holds
         // _lock and waits for the UI thread, while the UI thread waits for _lock.
