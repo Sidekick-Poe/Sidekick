@@ -812,7 +812,7 @@ public class InputProvider
         if (eventArgs.Suppress) args.SuppressEvent = true;
     }
 
-    public async Task WiggleMouse()
+    public Task WiggleMouse()
     {
         var x = MousePositionX;
         var y = MousePositionY;
@@ -820,11 +820,13 @@ public class InputProvider
         var wiggleX = (short)(x > 600 ? x - 300 : x + 300);
         var wiggleY = (short)(y > 600 ? y - 300 : y + 300);
 
-        await SmoothMoveMouse(x, y, wiggleX, wiggleY);
-        await SmoothMoveMouse(wiggleX, wiggleY, x, y);
+        SmoothMoveMouse(x, y, wiggleX, wiggleY);
+        SmoothMoveMouse(wiggleX, wiggleY, x, y);
+
+        return Task.CompletedTask;
     }
 
-    private async Task SmoothMoveMouse(short fromX, short fromY, short toX, short toY, int steps = 12, int delay = 1)
+    private void SmoothMoveMouse(short fromX, short fromY, short toX, short toY, int steps = 12)
     {
         for (var i = 1; i <= steps; i++)
         {
