@@ -33,7 +33,7 @@ public class LimitHandler(ILogger logger)
         };
     }
 
-    public void HandleResponse(HttpResponseMessage response, CancellationToken cancellationToken = default)
+    public void HandleResponse(HttpResponseMessage response)
     {
         var headerRules = GetRulesFromHeader().ToList();
         foreach (var headerRule in headerRules)

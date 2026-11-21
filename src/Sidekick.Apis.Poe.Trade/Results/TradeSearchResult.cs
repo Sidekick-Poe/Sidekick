@@ -7,6 +7,4 @@ public class TradeSearchResult<T>
     public string? Id { get; set; }
 
     public int Total { get; set; }
-
-    public Error? Error { get; set; }
 }

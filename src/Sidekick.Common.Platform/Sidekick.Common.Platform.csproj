@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PipeMethodCalls" />
-    <PackageReference Include="PipeMethodCalls.NetJson" />
     <PackageReference Include="SharpHook" />
     <PackageReference Include="TextCopy" />
   </ItemGroup>
