@@ -23,7 +23,8 @@ public class StatParser
     ISettingsService settingsService,
     ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources,
-    DataProvider dataProvider
+    DataProvider dataProvider,
+    GameTextProvider gameTextProvider
 ) : IInitializableService
 {
     public StatsInvariantDetails InvariantDetails { get; private set; } = new();
@@ -36,25 +37,24 @@ public class StatParser
     {
         var game = await settingsService.GetGameAsync();
         var definitions = await dataProvider.Read<List<StatDefinition>>(game, GameDataType.Stats, currentGameLanguage.Language);
-        var categorizedDefinitions = new Dictionary<StatCategory, List<StatDefinition>>();
+
+        Definitions = new Dictionary<StatCategory, List<StatDefinition>>();
         foreach (var definition in definitions)
         {
             if (definition.TradeIds == null || definition.TradeIds.Count == 0)
             {
-                categorizedDefinitions.TryAdd(StatCategory.Undefined, []);
-                categorizedDefinitions[StatCategory.Undefined].Add(definition);
+                Definitions.TryAdd(StatCategory.Undefined, []);
+                Definitions[StatCategory.Undefined].Add(definition);
                 continue;
             }
 
             foreach (var tradeId in definition.TradeIds)
             {
                 var category = tradeId.GetStatCategory();
-                categorizedDefinitions.TryAdd(category, []);
-                categorizedDefinitions[category].Add(definition);
+                Definitions.TryAdd(category, []);
+                Definitions[category].Add(definition);
             }
         }
-
-        Definitions = categorizedDefinitions;
 
         var tradeDefinitions = await dataProvider.Read<List<TradeStatDefinition>>(game, GameDataType.TradeStats, currentGameLanguage.Language);
         TradeDefinitions = tradeDefinitions.GroupBy(x => x.Id).ToDictionary(x => x.Key, x => x.ToList());
@@ -81,13 +81,6 @@ public class StatParser
 
     public void Parse(Item item)
     {
-        if (item.Properties.Rarity != Rarity.Normal &&
-            item.Properties.Rarity != Rarity.Magic &&
-            item.Properties.Rarity != Rarity.Rare &&
-            item.Properties.Rarity != Rarity.Unique &&
-            item.Properties.Rarity != Rarity.Gem &&
-            item.Properties.Rarity != Rarity.Currency) return;
-
         foreach (var block in item.Text.Blocks)
         {
             if (block.AnyParsed) continue;
@@ -100,6 +93,9 @@ public class StatParser
 
                 for (var lineIndex = 0; lineIndex < lines.Count; lineIndex++)
                 {
+                    // When we reach the Closed rooms text, we stop parsing the unavailable rooms.
+                    if (lines[lineIndex] == gameTextProvider.Texts.ModDescriptionIncursionClosedRooms) return;
+
                     var definitions = MatchDefinitions(FilterDefinitions(item, category), lines.Skip(lineIndex))
                         .Distinct()
                         .ToList();
