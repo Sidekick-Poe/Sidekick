@@ -7,6 +7,7 @@ using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Platform.Linux;
 using Sidekick.Common.Platform.Linux.X11;
+using Sidekick.Common.Platform.Windows;
 
 namespace Sidekick.Common.Platform;
 
@@ -38,24 +39,25 @@ public static class StartupExtensions
         if (OperatingSystem.IsWindows())
         {
             services.AddSidekickInitializableService<IProcessProvider, Windows.Processes.ProcessProvider>();
+            services.AddSidekickInitializableService<IHotkeyBlocker, WindowsHotkeyBlocker>();
         }
         else if (OperatingSystem.IsLinux())
         {
-            services.TryAddSingleton<X11Session>();
-            services.TryAddSingleton<IHotkeyBlocker>(GetX11Session);
+            services.TryAddSingleton<X11Connection>();
+
+            // The hotkey blocker follows the game focus through the same process provider instance.
+            services.TryAddSingleton<ProcessProvider>();
+            services.TryAddSingleton<IProcessProvider>(GetLinuxProcessProvider);
             services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
+            services.AddSidekickInitializableService<IHotkeyBlocker, LinuxHotkeyBlocker>();
         }
 
-        services.TryAddSingleton<IHotkeyBlocker, NoHotkeyBlocker>();
         services.AddSidekickInitializableService<IInputProvider, InputProvider>();
         services.TryAddSingleton<IGameLogProvider, GameLogProvider>();
 
         return services;
     }
 
-    /// <summary>
-    /// The process provider and the hotkey blocker share the same X11 session.
-    /// </summary>
     [SupportedOSPlatform(PlatformNames.Linux)]
-    private static X11Session GetX11Session(IServiceProvider provider) => provider.GetRequiredService<X11Session>();
+    private static ProcessProvider GetLinuxProcessProvider(IServiceProvider provider) => provider.GetRequiredService<ProcessProvider>();
 }
