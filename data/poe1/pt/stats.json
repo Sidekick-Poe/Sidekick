@@ -11215,8 +11215,27 @@
     "pattern": "^Acelera\u00E7\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Acelera\u00E7\u00E3o tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_804667127",
+      "enchant.stat_939320550"
+    ],
+    "pattern": "^Acelera\u00E7\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Acelera\u00E7\u00E3o tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_804667127",
+      "enchant.stat_939320550"
+    ],
+    "pattern": "^Acelera\u00E7\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Acelera\u00E7\u00E3o tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_804667127",
@@ -11737,6 +11756,14 @@
       "implicit.stat_2705969278"
     ],
     "pattern": "^Acertos\\ consideram\\ os\\ valores\\ de\\ resist\u00EAncia\\ a\\ dano\\ el\u00E9trico\\ dos\\ monstros\\ inimigos\\ como\\ invertidos$"
+  },
+  {
+    "text": "Acertos contra Inimigos Inervados por voc\u00EA t\u00EAm Chance de Golpe Cr\u00EDtico com Magias aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2090693207"
+    ],
+    "pattern": "^Acertos\\ contra\\ Inimigos\\ Inervados\\ por\\ voc\u00EA\\ t\u00EAm\\ Chance\\ de\\ Golpe\\ Cr\u00EDtico\\ com\\ Magias\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Acertos contra Inimigos Inervados por voc\u00EA t\u00EAm Chance de Golpe Cr\u00EDtico com Magias aumentada em #%",
@@ -20437,8 +20464,31 @@
     "pattern": "^Arauto\\ Glacial\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Arauto Glacial tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3059700363",
+      "enchant.stat_3395872960",
+      "explicit.stat_3059700363",
+      "explicit.stat_3395872960"
+    ],
+    "pattern": "^Arauto\\ Glacial\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Arauto Glacial tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3059700363",
+      "enchant.stat_3395872960",
+      "explicit.stat_3059700363",
+      "explicit.stat_3395872960"
+    ],
+    "pattern": "^Arauto\\ Glacial\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Arauto Glacial tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3059700363",
@@ -20487,8 +20537,31 @@
     "pattern": "^Arauto\\ Purificador\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Arauto Purificador tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1542765265",
+      "enchant.stat_2189040439",
+      "explicit.stat_1542765265",
+      "explicit.stat_2189040439"
+    ],
+    "pattern": "^Arauto\\ Purificador\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Arauto Purificador tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1542765265",
+      "enchant.stat_2189040439",
+      "explicit.stat_1542765265",
+      "explicit.stat_2189040439"
+    ],
+    "pattern": "^Arauto\\ Purificador\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Arauto Purificador tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1542765265",
@@ -20779,8 +20852,31 @@
     "pattern": "^Arauto\\ Trovejante\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Arauto Trovejante tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3817220109",
+      "enchant.stat_3959101898",
+      "explicit.stat_3817220109",
+      "explicit.stat_3959101898"
+    ],
+    "pattern": "^Arauto\\ Trovejante\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Arauto Trovejante tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3817220109",
+      "enchant.stat_3959101898",
+      "explicit.stat_3817220109",
+      "explicit.stat_3959101898"
+    ],
+    "pattern": "^Arauto\\ Trovejante\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Arauto Trovejante tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3817220109",
@@ -20830,8 +20926,31 @@
     "pattern": "^Arauto\\ Vulc\u00E2nico\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Arauto Vulc\u00E2nico tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2500442851",
+      "enchant.stat_3819451758",
+      "explicit.stat_2500442851",
+      "explicit.stat_3819451758"
+    ],
+    "pattern": "^Arauto\\ Vulc\u00E2nico\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Arauto Vulc\u00E2nico tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2500442851",
+      "enchant.stat_3819451758",
+      "explicit.stat_2500442851",
+      "explicit.stat_3819451758"
+    ],
+    "pattern": "^Arauto\\ Vulc\u00E2nico\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Arauto Vulc\u00E2nico tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2500442851",
@@ -20872,8 +20991,31 @@
     "pattern": "^Arauto\\ da\\ Agonia\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Arauto da Agonia tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1133703802",
+      "enchant.stat_1284151528",
+      "explicit.stat_1133703802",
+      "explicit.stat_1284151528"
+    ],
+    "pattern": "^Arauto\\ da\\ Agonia\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Arauto da Agonia tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1133703802",
+      "enchant.stat_1284151528",
+      "explicit.stat_1133703802",
+      "explicit.stat_1284151528"
+    ],
+    "pattern": "^Arauto\\ da\\ Agonia\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Arauto da Agonia tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1133703802",
@@ -22457,6 +22599,12 @@
   },
   {
     "text": "Armadura aumentada em #% por segundo que voc\u00EA tenha ficado parado, m\u00E1ximo de 100%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Armadura\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ segundo\\ que\\ voc\u00EA\\ tenha\\ ficado\\ parado,\\ m\u00E1ximo\\ de\\ 100%$"
+  },
+  {
+    "text": "Armadura aumentada em #% por segundo que voc\u00EA tenha ficado parado, m\u00E1ximo de 100%",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -22924,8 +23072,37 @@
     "pattern": "^Armadura\\ \u00C1rtica\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Armadura \u00C1rtica tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2351239732",
+      "enchant.stat_2605040931",
+      "explicit.stat_2351239732",
+      "explicit.stat_2605040931",
+      "fractured.stat_2351239732",
+      "fractured.stat_2605040931",
+      "implicit.stat_2351239732"
+    ],
+    "pattern": "^Armadura\\ \u00C1rtica\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Armadura \u00C1rtica tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2351239732",
+      "enchant.stat_2605040931",
+      "explicit.stat_2351239732",
+      "explicit.stat_2605040931",
+      "fractured.stat_2351239732",
+      "fractured.stat_2605040931",
+      "implicit.stat_2351239732"
+    ],
+    "pattern": "^Armadura\\ \u00C1rtica\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Armadura \u00C1rtica tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2351239732",
@@ -23789,6 +23966,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ataque\\ de\\ Impacto\\ de\\ Zumbis\\ Evocados\\ tem\\ a\\ Velocidade\\ de\\ Recarga\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Ataque de Impacto dos Zumbis Erguidos tem Efeito em \u00C1rea aumentado em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ataque\\ de\\ Impacto\\ dos\\ Zumbis\\ Erguidos\\ tem\\ Efeito\\ em\\ \u00C1rea\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Ataque de Impacto dos Zumbis Erguidos tem Efeito em \u00C1rea aumentado em #%",
@@ -24992,10 +25175,22 @@
   },
   {
     "text": "Ataques de Garras ou Adagas causam Dano com Acertos e Afec\u00E7\u00F5es aumentado em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ataques\\ de\\ Garras\\ ou\\ Adagas\\ causam\\ Dano\\ com\\ Acertos\\ e\\ Afec\u00E7\u00F5es\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Ataques de Garras ou Adagas causam Dano com Acertos e Afec\u00E7\u00F5es aumentado em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Ataques\\ de\\ Garras\\ ou\\ Adagas\\ causam\\ Dano\\ com\\ Acertos\\ e\\ Afec\u00E7\u00F5es\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Ataques de Garras ou Adagas causam Dano com Afec\u00E7\u00F5es aumentado em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ataques\\ de\\ Garras\\ ou\\ Adagas\\ causam\\ Dano\\ com\\ Afec\u00E7\u00F5es\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Ataques de Garras ou Adagas causam Dano com Afec\u00E7\u00F5es aumentado em #%",
@@ -37106,8 +37301,27 @@
     "pattern": "^Carne\\ e\\ Pedra\\ tem\\ Efic\u00E1cia\\ de\\ Reserva\\ de\\ Mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Carne e Pedra tem Efic\u00E1cia de Reserva de Mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_3563089138"
+    ],
+    "pattern": "^Carne\\ e\\ Pedra\\ tem\\ Efic\u00E1cia\\ de\\ Reserva\\ de\\ Mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Carne e Pedra tem Efic\u00E1cia de Reserva de Mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_3563089138"
+    ],
+    "pattern": "^Carne\\ e\\ Pedra\\ tem\\ Efic\u00E1cia\\ de\\ Reserva\\ de\\ Mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Carne e Pedra tem Efic\u00E1cia de Reserva de Mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1740848995",
@@ -37829,6 +38043,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Chama\\ Purificadora\\ tem\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ tamb\u00E9m\\ criar\\ um\\ ch\u00E3o\\ consagrado\\ ao\\ seu\\ redor$"
+  },
+  {
+    "text": "Chama Santificada infligida por voc\u00EA tem a intensidade aumentada em #% por 2% de chance de bloquear ataques",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Chama\\ Santificada\\ infligida\\ por\\ voc\u00EA\\ tem\\ a\\ intensidade\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ 2%\\ de\\ chance\\ de\\ bloquear\\ ataques$"
   },
   {
     "text": "Chama Santificada infligida por voc\u00EA tem a intensidade aumentada em #% por 2% de chance de bloquear ataques",
@@ -39752,6 +39972,14 @@
       "implicit.stat_3775574601"
     ],
     "pattern": "^Chance\\ de\\ Golpe\\ Cr\u00EDtico\\ com\\ Magias\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 100\\ de\\ Vida\\ M\u00E1xima\\ do\\ Jogador$"
+  },
+  {
+    "text": "Chance de Golpe Cr\u00EDtico com Magias que removem o n\u00FAmero m\u00E1ximo de Selos aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2897207025"
+    ],
+    "pattern": "^Chance\\ de\\ Golpe\\ Cr\u00EDtico\\ com\\ Magias\\ que\\ removem\\ o\\ n\u00FAmero\\ m\u00E1ximo\\ de\\ Selos\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Chance de Golpe Cr\u00EDtico com Magias que removem o n\u00FAmero m\u00E1ximo de Selos aumentada em #%",
@@ -42317,8 +42545,27 @@
     "pattern": "^Clareza\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Clareza tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2668611054",
+      "enchant.stat_453778214"
+    ],
+    "pattern": "^Clareza\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Clareza tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2668611054",
+      "enchant.stat_453778214"
+    ],
+    "pattern": "^Clareza\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Clareza tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2668611054",
@@ -57941,6 +58188,14 @@
   },
   {
     "text": "Dano de fogo com habilidades de magia aumentado em #%",
+    "lines": 1,
+    "tradeIds": [
+      "implicit.stat_361162316"
+    ],
+    "pattern": "^Dano\\ de\\ fogo\\ com\\ habilidades\\ de\\ magia\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Dano de fogo com habilidades de magia aumentado em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -64095,13 +64350,20 @@
     "negate": true,
     "lines": 1,
     "tradeIds": [
-      "enchant.stat_2721871046",
       "enchant.stat_325889252",
-      "explicit.stat_2721871046",
       "explicit.stat_325889252",
       "fractured.stat_325889252",
-      "implicit.stat_2721871046",
       "implicit.stat_325889252"
+    ],
+    "pattern": "^Determina\u00E7\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Determina\u00E7\u00E3o tem a efici\u00EAncia da reserva de mana reduzida em #%",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2721871046",
+      "explicit.stat_2721871046",
+      "implicit.stat_2721871046"
     ],
     "pattern": "^Determina\u00E7\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
@@ -64373,8 +64635,35 @@
     "pattern": "^Disciplina\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Disciplina tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1692887998",
+      "enchant.stat_2081344089",
+      "explicit.stat_1692887998",
+      "explicit.stat_2081344089",
+      "implicit.stat_1692887998",
+      "implicit.stat_2081344089"
+    ],
+    "pattern": "^Disciplina\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Disciplina tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1692887998",
+      "enchant.stat_2081344089",
+      "explicit.stat_1692887998",
+      "explicit.stat_2081344089",
+      "implicit.stat_1692887998",
+      "implicit.stat_2081344089"
+    ],
+    "pattern": "^Disciplina\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Disciplina tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1692887998",
@@ -73136,6 +73425,21 @@
   },
   {
     "text": "Efici\u00EAncia da reserva de mana de habilidades aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1269219558",
+      "explicit.stat_4237190083",
+      "fractured.stat_1269219558",
+      "fractured.stat_4237190083",
+      "implicit.stat_1269219558",
+      "implicit.stat_4237190083",
+      "scourge.stat_1269219558",
+      "scourge.stat_4237190083"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades aumentada em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -73159,8 +73463,25 @@
     "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ de\\ arauto\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades de arauto aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3078295401"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ de\\ arauto\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Efici\u00EAncia da reserva de mana de habilidades de arauto reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3078295401"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ de\\ arauto\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades de arauto reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3078295401"
@@ -73177,6 +73498,16 @@
     "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ de\\ estandarte\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades de estandarte aumentada em #%",
+    "negate": true,
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3078295401"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ de\\ estandarte\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Efici\u00EAncia da reserva de mana de habilidades de estandarte reduzida em #%",
     "negate": true,
     "matchedFuzzily": true,
@@ -73185,6 +73516,31 @@
       "explicit.stat_3078295401"
     ],
     "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ de\\ estandarte\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades de estandarte reduzida em #%",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3078295401"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ de\\ estandarte\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades reduzida em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1269219558",
+      "explicit.stat_4237190083",
+      "fractured.stat_1269219558",
+      "fractured.stat_4237190083",
+      "implicit.stat_1269219558",
+      "implicit.stat_4237190083",
+      "scourge.stat_1269219558",
+      "scourge.stat_4237190083"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Efici\u00EAncia da reserva de mana de habilidades reduzida em #%",
@@ -73213,8 +73569,31 @@
     "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ refor\u00E7adas\\ por\\ Lan\u00E7a-magias\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades refor\u00E7adas por Lan\u00E7a-magias aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1341061286",
+      "enchant.stat_3305838454",
+      "explicit.stat_3305838454",
+      "fractured.stat_3305838454"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ refor\u00E7adas\\ por\\ Lan\u00E7a-magias\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Efici\u00EAncia da reserva de mana de habilidades refor\u00E7adas por Lan\u00E7a-magias reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1341061286",
+      "enchant.stat_3305838454",
+      "explicit.stat_3305838454",
+      "fractured.stat_3305838454"
+    ],
+    "pattern": "^Efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ de\\ habilidades\\ refor\u00E7adas\\ por\\ Lan\u00E7a-magias\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Efici\u00EAncia da reserva de mana de habilidades refor\u00E7adas por Lan\u00E7a-magias reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1341061286",
@@ -73727,8 +74106,27 @@
     "pattern": "^Efic\u00E1cia\\ da\\ Reserva\\ de\\ Mana\\ das\\ Habilidades\\ Aura\\ de\\ Maldi\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Efic\u00E1cia da Reserva de Mana das Habilidades Aura de Maldi\u00E7\u00E3o aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_443165947",
+      "explicit.stat_714566414"
+    ],
+    "pattern": "^Efic\u00E1cia\\ da\\ Reserva\\ de\\ Mana\\ das\\ Habilidades\\ Aura\\ de\\ Maldi\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Efic\u00E1cia da Reserva de Mana das Habilidades Aura de Maldi\u00E7\u00E3o reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_443165947",
+      "explicit.stat_714566414"
+    ],
+    "pattern": "^Efic\u00E1cia\\ da\\ Reserva\\ de\\ Mana\\ das\\ Habilidades\\ Aura\\ de\\ Maldi\u00E7\u00E3o\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Efic\u00E1cia da Reserva de Mana das Habilidades Aura de Maldi\u00E7\u00E3o reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_443165947",
@@ -84482,6 +84880,17 @@
     "pattern": "^Evita\\ \\\u002B([-0-9,.]\u002B)%\\ do\\ dano\\ refletido$"
   },
   {
+    "text": "Evita \u002B#% do dano refletido",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1571797746",
+      "fractured.stat_1571797746",
+      "implicit.stat_1571797746",
+      "implicit.stat_2510655429"
+    ],
+    "pattern": "^Evita\\ \\\u002B([-0-9,.]\u002B)%\\ do\\ dano\\ refletido$"
+  },
+  {
     "text": "Evita \u002B#% do dano refletido durante o efeito",
     "negate": true,
     "lines": 1,
@@ -85330,8 +85739,33 @@
     "pattern": "^Fanatismo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Fanatismo tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_168308685",
+      "enchant.stat_4216444167",
+      "explicit.stat_168308685",
+      "explicit.stat_4216444167",
+      "implicit.stat_168308685"
+    ],
+    "pattern": "^Fanatismo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Fanatismo tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_168308685",
+      "enchant.stat_4216444167",
+      "explicit.stat_168308685",
+      "explicit.stat_4216444167",
+      "implicit.stat_168308685"
+    ],
+    "pattern": "^Fanatismo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Fanatismo tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_168308685",
@@ -90298,6 +90732,12 @@
     "pattern": "^Ganha\\ ([-0-9,.]\u002B)\\ de\\ Vida\\ por\\ Inimigo\\ Acertado\\ com\\ Ataques\\ de\\ Garras\\ na\\ M\u00E3o\\ Principal$"
   },
   {
+    "text": "Ganha # de Vida por Inimigo Acertado com Ataques de Garras na M\u00E3o Principal",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Ganha\\ ([-0-9,.]\u002B)\\ de\\ Vida\\ por\\ Inimigo\\ Acertado\\ com\\ Ataques\\ de\\ Garras\\ na\\ M\u00E3o\\ Principal$"
+  },
+  {
     "text": "Ganha # de Vida por Inimigo Acertado se voc\u00EA usou uma Habilidade Vaal Recentemente",
     "lines": 1,
     "tradeIds": [
@@ -93419,6 +93859,14 @@
   {
     "text": "Gemas encaixadas causam \u002B#% de dano por gema de habilidade encaixada",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2876425796"
+    ],
+    "pattern": "^Gemas\\ encaixadas\\ causam\\ \\\u002B([-0-9,.]\u002B)%\\ de\\ dano\\ por\\ gema\\ de\\ habilidade\\ encaixada$"
+  },
+  {
+    "text": "Gemas encaixadas causam \u002B#% de dano por gema de habilidade encaixada",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2876425796"
@@ -101112,8 +101560,37 @@
     "pattern": "^Gra\u00E7a\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Gra\u00E7a tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1803598623",
+      "enchant.stat_900639351",
+      "explicit.stat_1803598623",
+      "explicit.stat_900639351",
+      "fractured.stat_900639351",
+      "implicit.stat_1803598623",
+      "implicit.stat_900639351"
+    ],
+    "pattern": "^Gra\u00E7a\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Gra\u00E7a tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1803598623",
+      "enchant.stat_900639351",
+      "explicit.stat_1803598623",
+      "explicit.stat_900639351",
+      "fractured.stat_900639351",
+      "implicit.stat_1803598623",
+      "implicit.stat_900639351"
+    ],
+    "pattern": "^Gra\u00E7a\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Gra\u00E7a tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1803598623",
@@ -113343,8 +113820,27 @@
     "pattern": "^Invocar\\ Rob\u00F4s\\ Rastejantes\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Invocar Rob\u00F4s Rastejantes tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1695754537",
+      "enchant.stat_3818053347"
+    ],
+    "pattern": "^Invocar\\ Rob\u00F4s\\ Rastejantes\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Invocar Rob\u00F4s Rastejantes tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1695754537",
+      "enchant.stat_3818053347"
+    ],
+    "pattern": "^Invocar\\ Rob\u00F4s\\ Rastejantes\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Invocar Rob\u00F4s Rastejantes tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1695754537",
@@ -113564,8 +114060,35 @@
     "pattern": "^Ira\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Ira tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1761642973",
+      "enchant.stat_3444518809",
+      "explicit.stat_1761642973",
+      "explicit.stat_3444518809",
+      "fractured.stat_3444518809",
+      "implicit.stat_3444518809"
+    ],
+    "pattern": "^Ira\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Ira tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1761642973",
+      "enchant.stat_3444518809",
+      "explicit.stat_1761642973",
+      "explicit.stat_3444518809",
+      "fractured.stat_3444518809",
+      "implicit.stat_3444518809"
+    ],
+    "pattern": "^Ira\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Ira tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1761642973",
@@ -116920,6 +117443,12 @@
   },
   {
     "text": "Lacaios causam Dano Corpo a Corpo aumentado em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Lacaios\\ causam\\ Dano\\ Corpo\\ a\\ Corpo\\ aumentado\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Lacaios causam Dano Corpo a Corpo aumentado em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -117286,6 +117815,14 @@
       "fractured.stat_412745376"
     ],
     "pattern": "^Lacaios\\ causam\\ Dano\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ caso\\ voc\u00EA\\ tenha\\ usado\\ uma\\ Habilidade\\ Lacaios\\ Recentemente$"
+  },
+  {
+    "text": "Lacaios causam Dano aumentado em #% por cada 10 de Destreza",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_4187741589"
+    ],
+    "pattern": "^Lacaios\\ causam\\ Dano\\ aumentado\\ em\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 10\\ de\\ Destreza$"
   },
   {
     "text": "Lacaios causam Dano aumentado em #% por cada 10 de Destreza",
@@ -119580,6 +120117,14 @@
       "enchant.stat_1378482149"
     ],
     "pattern": "^Lacaios\\ invocados\\ por\\ suas\\ Torres\\ Invocadoras\\ t\u00EAm\\ a\\ velocidade\\ de\\ movimento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Lacaios invocados por suas Torres Invocadoras t\u00EAm a vida aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3651039490"
+    ],
+    "pattern": "^Lacaios\\ invocados\\ por\\ suas\\ Torres\\ Invocadoras\\ t\u00EAm\\ a\\ vida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Lacaios invocados por suas Torres Invocadoras t\u00EAm a vida aumentada em #%",
@@ -124909,8 +125454,33 @@
     "pattern": "^Malevol\u00EAncia\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Malevol\u00EAncia tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3266567165",
+      "enchant.stat_3383226338",
+      "explicit.stat_3266567165",
+      "explicit.stat_3383226338",
+      "implicit.stat_3383226338"
+    ],
+    "pattern": "^Malevol\u00EAncia\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Malevol\u00EAncia tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3266567165",
+      "enchant.stat_3383226338",
+      "explicit.stat_3266567165",
+      "explicit.stat_3383226338",
+      "implicit.stat_3383226338"
+    ],
+    "pattern": "^Malevol\u00EAncia\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Malevol\u00EAncia tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3266567165",
@@ -129386,6 +129956,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Monstros\\ do\\ Labirinto\\ t\u00EAm\\ a\\ velocidade\\ de\\ ataque,\\ de\\ conjura\u00E7\u00E3o\\ e\\ de\\ movimento\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Monstros do Labirinto t\u00EAm a vida m\u00E1xima aumentada em #%",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Monstros\\ do\\ Labirinto\\ t\u00EAm\\ a\\ vida\\ m\u00E1xima\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "Monstros do Labirinto t\u00EAm a vida m\u00E1xima aumentada em #%",
@@ -135197,8 +135773,35 @@
     "pattern": "^Orgulho\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Orgulho tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3484910620",
+      "enchant.stat_3993865658",
+      "explicit.stat_3484910620",
+      "explicit.stat_3993865658",
+      "fractured.stat_3993865658",
+      "implicit.stat_3993865658"
+    ],
+    "pattern": "^Orgulho\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Orgulho tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3484910620",
+      "enchant.stat_3993865658",
+      "explicit.stat_3484910620",
+      "explicit.stat_3993865658",
+      "fractured.stat_3993865658",
+      "implicit.stat_3993865658"
+    ],
+    "pattern": "^Orgulho\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Orgulho tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3484910620",
@@ -139743,6 +140346,17 @@
     "pattern": "^Precis\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Precis\u00E3o tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3859865977",
+      "enchant.stat_658622139",
+      "explicit.stat_3859865977"
+    ],
+    "pattern": "^Precis\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Precis\u00E3o tem a efici\u00EAncia da reserva de mana aumentada em 100%",
     "lines": 1,
     "tradeIds": [
@@ -139753,6 +140367,16 @@
   {
     "text": "Precis\u00E3o tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3859865977",
+      "enchant.stat_658622139",
+      "explicit.stat_3859865977"
+    ],
+    "pattern": "^Precis\u00E3o\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Precis\u00E3o tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3859865977",
@@ -141334,8 +141958,29 @@
     "pattern": "^Pureza\\ Elemental\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Pureza Elemental tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3303293173",
+      "enchant.stat_491551762",
+      "implicit.stat_3303293173"
+    ],
+    "pattern": "^Pureza\\ Elemental\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Pureza Elemental tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3303293173",
+      "enchant.stat_491551762",
+      "implicit.stat_3303293173"
+    ],
+    "pattern": "^Pureza\\ Elemental\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Pureza Elemental tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3303293173",
@@ -141459,8 +142104,35 @@
     "pattern": "^Pureza\\ El\u00E9trica\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Pureza El\u00E9trica tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1450978702",
+      "enchant.stat_3411256933",
+      "explicit.stat_1450978702",
+      "explicit.stat_3411256933",
+      "implicit.stat_1450978702",
+      "implicit.stat_3411256933"
+    ],
+    "pattern": "^Pureza\\ El\u00E9trica\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Pureza El\u00E9trica tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1450978702",
+      "enchant.stat_3411256933",
+      "explicit.stat_1450978702",
+      "explicit.stat_3411256933",
+      "implicit.stat_1450978702",
+      "implicit.stat_3411256933"
+    ],
+    "pattern": "^Pureza\\ El\u00E9trica\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Pureza El\u00E9trica tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -141600,8 +142272,37 @@
     "pattern": "^Pureza\\ de\\ Fogo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Pureza de Fogo tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1135152940",
+      "enchant.stat_3003688066",
+      "explicit.stat_1135152940",
+      "explicit.stat_3003688066",
+      "fractured.stat_3003688066",
+      "implicit.stat_1135152940",
+      "implicit.stat_3003688066"
+    ],
+    "pattern": "^Pureza\\ de\\ Fogo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Pureza de Fogo tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1135152940",
+      "enchant.stat_3003688066",
+      "explicit.stat_1135152940",
+      "explicit.stat_3003688066",
+      "fractured.stat_3003688066",
+      "implicit.stat_1135152940",
+      "implicit.stat_3003688066"
+    ],
+    "pattern": "^Pureza\\ de\\ Fogo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Pureza de Fogo tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1135152940",
@@ -141725,8 +142426,35 @@
     "pattern": "^Pureza\\ de\\ Gelo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Pureza de Gelo tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_139925400",
+      "enchant.stat_2665518524",
+      "explicit.stat_139925400",
+      "explicit.stat_2665518524",
+      "implicit.stat_139925400",
+      "implicit.stat_2665518524"
+    ],
+    "pattern": "^Pureza\\ de\\ Gelo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Pureza de Gelo tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_139925400",
+      "enchant.stat_2665518524",
+      "explicit.stat_139925400",
+      "explicit.stat_2665518524",
+      "implicit.stat_139925400",
+      "implicit.stat_2665518524"
+    ],
+    "pattern": "^Pureza\\ de\\ Gelo\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Pureza de Gelo tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_139925400",
@@ -142687,6 +143415,14 @@
   },
   {
     "text": "Quantidade dos Di\u00E1rios de Bordo Expedition derrubados por Monstros R\u00FAnicos aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1083387327"
+    ],
+    "pattern": "^Quantidade\\ dos\\ Di\u00E1rios\\ de\\ Bordo\\ Expedition\\ derrubados\\ por\\ Monstros\\ R\u00FAnicos\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Quantidade dos Di\u00E1rios de Bordo Expedition derrubados por Monstros R\u00FAnicos aumentada em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -143105,8 +143841,35 @@
     "pattern": "^Raiva\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Raiva tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
+      "fractured.stat_2549369799",
+      "implicit.stat_2549369799"
+    ],
+    "pattern": "^Raiva\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Raiva tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
+      "fractured.stat_2549369799",
+      "implicit.stat_2549369799"
+    ],
+    "pattern": "^Raiva\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Raiva tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2549369799",
@@ -146637,6 +147400,14 @@
       "explicit.stat_1439347620"
     ],
     "pattern": "^Recupera\u00E7\u00E3o\\ de\\ Mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ 10\\ de\\ Intelig\u00EAncia\\ em\\ Passivas\\ N\u00E3o\\ Alocadas\\ no\\ Raio$"
+  },
+  {
+    "text": "Recupera\u00E7\u00E3o de Mana aumentada em #% se voc\u00EA n\u00E3o Matou Recentemente",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_630994130"
+    ],
+    "pattern": "^Recupera\u00E7\u00E3o\\ de\\ Mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ se\\ voc\u00EA\\ n\u00E3o\\ Matou\\ Recentemente$"
   },
   {
     "text": "Recupera\u00E7\u00E3o de Mana aumentada em #% se voc\u00EA n\u00E3o Matou Recentemente",
@@ -150205,6 +150976,12 @@
     "pattern": "^Regenera\\ ([-0-9,.]\u002B)%\\ de\\ Vida\\ por\\ segundo\\ enquanto\\ Banindo\\ um\\ Totem\\ Ancestral$"
   },
   {
+    "text": "Regenera #% de Vida por segundo enquanto Banindo um Totem Ancestral",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Regenera\\ ([-0-9,.]\u002B)%\\ de\\ Vida\\ por\\ segundo\\ enquanto\\ Banindo\\ um\\ Totem\\ Ancestral$"
+  },
+  {
     "text": "Regenera #% de Vida por segundo enquanto Canalizando",
     "lines": 1,
     "tradeIds": [],
@@ -151281,6 +152058,14 @@
   },
   {
     "text": "Reserva de Habilidades de Aura de Maldi\u00E7\u00E3o aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3292930705"
+    ],
+    "pattern": "^Reserva\\ de\\ Habilidades\\ de\\ Aura\\ de\\ Maldi\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Reserva de Habilidades de Aura de Maldi\u00E7\u00E3o aumentada em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -152220,6 +153005,14 @@
   },
   {
     "text": "Ruptura tem Velocidade de Ataque aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1999307054"
+    ],
+    "pattern": "^Ruptura\\ tem\\ Velocidade\\ de\\ Ataque\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Ruptura tem Velocidade de Ataque aumentada em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -152531,8 +153324,27 @@
     "pattern": "^Sangue\\ Petrificado\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Sangue Petrificado tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1779904215",
+      "enchant.stat_1829483269"
+    ],
+    "pattern": "^Sangue\\ Petrificado\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Sangue Petrificado tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1779904215",
+      "enchant.stat_1829483269"
+    ],
+    "pattern": "^Sangue\\ Petrificado\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Sangue Petrificado tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1779904215",
@@ -152568,8 +153380,29 @@
     "pattern": "^Sangue\\ e\\ Areia\\ t\u00EAm\\ Efic\u00E1cia\\ da\\ Reserva\\ de\\ Mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Sangue e Areia t\u00EAm Efic\u00E1cia da Reserva de Mana aumentada em #%",
+    "negate": true,
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_3563089138"
+    ],
+    "pattern": "^Sangue\\ e\\ Areia\\ t\u00EAm\\ Efic\u00E1cia\\ da\\ Reserva\\ de\\ Mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Sangue e Areia t\u00EAm Efic\u00E1cia da Reserva de Mana reduzida em #%",
     "negate": true,
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_3563089138"
+    ],
+    "pattern": "^Sangue\\ e\\ Areia\\ t\u00EAm\\ Efic\u00E1cia\\ da\\ Reserva\\ de\\ Mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Sangue e Areia t\u00EAm Efic\u00E1cia da Reserva de Mana reduzida em #%",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -152634,6 +153467,12 @@
   {
     "text": "Se a vida do seu mercen\u00E1rio for menor que a sua, #% do dano sofrido por ele \u00E9 recuperado como vida",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Se\\ a\\ vida\\ do\\ seu\\ mercen\u00E1rio\\ for\\ menor\\ que\\ a\\ sua,\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ por\\ ele\\ \u00E9\\ recuperado\\ como\\ vida$"
+  },
+  {
+    "text": "Se a vida do seu mercen\u00E1rio for menor que a sua, #% do dano sofrido por ele \u00E9 recuperado como vida",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Se\\ a\\ vida\\ do\\ seu\\ mercen\u00E1rio\\ for\\ menor\\ que\\ a\\ sua,\\ ([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ por\\ ele\\ \u00E9\\ recuperado\\ como\\ vida$"
@@ -153131,6 +153970,19 @@
   },
   {
     "text": "Sem Dano F\u00EDsico",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_1509134228",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "fractured.stat_1509134228",
+      "implicit.stat_1509134228"
+    ],
+    "pattern": "^Sem\\ Dano\\ F\u00EDsico$"
+  },
+  {
+    "text": "Sem Dano F\u00EDsico",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "crafted.stat_1509134228",
@@ -161018,6 +161870,14 @@
     "pattern": "^Totem\\ Devorador\\ tem\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ consumir\\ um\\ cad\u00E1ver\\ adicional$"
   },
   {
+    "text": "Totem Devorador tem #% de chance de consumir um cad\u00E1ver adicional",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_4189505564"
+    ],
+    "pattern": "^Totem\\ Devorador\\ tem\\ ([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ consumir\\ um\\ cad\u00E1ver\\ adicional$"
+  },
+  {
     "text": "Totem Explode ao Morrer, causando #% de sua Vida como Dano F\u00EDsico",
     "lines": 1,
     "tradeIds": [],
@@ -161199,6 +162059,12 @@
   {
     "text": "Totens Ancestrais regeneram #% de Vida por segundo",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Totens\\ Ancestrais\\ regeneram\\ ([-0-9,.]\u002B)%\\ de\\ Vida\\ por\\ segundo$"
+  },
+  {
+    "text": "Totens Ancestrais regeneram #% de Vida por segundo",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Totens\\ Ancestrais\\ regeneram\\ ([-0-9,.]\u002B)%\\ de\\ Vida\\ por\\ segundo$"
@@ -165603,6 +166469,12 @@
   },
   {
     "text": "Velocidade de Movimento aumentada em #% se nenhuma Gema for Encaixada em suas Botas Equipadas",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Velocidade\\ de\\ Movimento\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ se\\ nenhuma\\ Gema\\ for\\ Encaixada\\ em\\ suas\\ Botas\\ Equipadas$"
+  },
+  {
+    "text": "Velocidade de Movimento aumentada em #% se nenhuma Gema for Encaixada em suas Botas Equipadas",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -166509,6 +167381,14 @@
       "implicit.stat_3393547195"
     ],
     "pattern": "^Velocidade\\ de\\ conjura\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ em\\ vida\\ cheia$"
+  },
+  {
+    "text": "Velocidade de conjura\u00E7\u00E3o aumentada em #% enquanto sob efeito de Fanatismo",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2444534954"
+    ],
+    "pattern": "^Velocidade\\ de\\ conjura\u00E7\u00E3o\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ enquanto\\ sob\\ efeito\\ de\\ Fanatismo$"
   },
   {
     "text": "Velocidade de conjura\u00E7\u00E3o aumentada em #% enquanto sob efeito de Fanatismo",
@@ -168862,10 +169742,22 @@
   },
   {
     "text": "Vida aumentada em #% concedida aos membros do Grupo ao morrer",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Vida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ concedida\\ aos\\ membros\\ do\\ Grupo\\ ao\\ morrer$"
+  },
+  {
+    "text": "Vida aumentada em #% concedida aos membros do Grupo ao morrer",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^Vida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ concedida\\ aos\\ membros\\ do\\ Grupo\\ ao\\ morrer$"
+  },
+  {
+    "text": "Vida aumentada em #% por cada Monstro vivo do Grupo",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^Vida\\ aumentada\\ em\\ ([-0-9,.]\u002B)%\\ por\\ cada\\ Monstro\\ vivo\\ do\\ Grupo$"
   },
   {
     "text": "Vida aumentada em #% por cada Monstro vivo do Grupo",
@@ -169540,8 +170432,31 @@
     "pattern": "^Vitalidade\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
+    "text": "Vitalidade tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1233806203",
+      "enchant.stat_3972739758",
+      "implicit.stat_1233806203",
+      "implicit.stat_3972739758"
+    ],
+    "pattern": "^Vitalidade\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "Vitalidade tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1233806203",
+      "enchant.stat_3972739758",
+      "implicit.stat_1233806203",
+      "implicit.stat_3972739758"
+    ],
+    "pattern": "^Vitalidade\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "Vitalidade tem a efici\u00EAncia da reserva de mana reduzida em #%",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1233806203",
@@ -169883,6 +170798,14 @@
   {
     "text": "Voc\u00EA e aliados a at\u00E9 6 metros t\u00EAm \u002B#% \u00E0s resist\u00EAncias elementais",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_319842716"
+    ],
+    "pattern": "^Voc\u00EA\\ e\\ aliados\\ a\\ at\u00E9\\ 6\\ metros\\ t\u00EAm\\ \\\u002B([-0-9,.]\u002B)%\\ \u00E0s\\ resist\u00EAncias\\ elementais$"
+  },
+  {
+    "text": "Voc\u00EA e aliados a at\u00E9 6 metros t\u00EAm \u002B#% \u00E0s resist\u00EAncias elementais",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_319842716"
@@ -178192,6 +179115,14 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ Multiplicador\\ de\\ Dano\\ Cr\u00EDtico\\ se\\ voc\u00EA\\ ganhou\\ uma\\ Carga\\ de\\ Poder\\ Recentemente$"
   },
   {
+    "text": "\u002B#% de Multiplicador de Dano Cr\u00EDtico se voc\u00EA ganhou uma Carga de Poder Recentemente",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2865731079"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ Multiplicador\\ de\\ Dano\\ Cr\u00EDtico\\ se\\ voc\u00EA\\ ganhou\\ uma\\ Carga\\ de\\ Poder\\ Recentemente$"
+  },
+  {
     "text": "\u002B#% de Multiplicador de Dano Degenerativo com Afec\u00E7\u00F5es por Item Anci\u00E3o Equipado",
     "lines": 1,
     "tradeIds": [
@@ -178835,6 +179766,14 @@
     "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ Resist\u00EAncia\\ a\\ Fogo\\ enquanto\\ em\\ Vida\\ Baixa$"
   },
   {
+    "text": "\u002B#% de Resist\u00EAncia a Fogo enquanto em Vida Baixa",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_38301299"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)%\\ de\\ Resist\u00EAncia\\ a\\ Fogo\\ enquanto\\ em\\ Vida\\ Baixa$"
+  },
+  {
     "text": "\u002B#% de Resist\u00EAncia a Fogo m\u00E1xima",
     "lines": 1,
     "tradeIds": [
@@ -179055,6 +179994,23 @@
   {
     "text": "#% de Vida Regenerada por segundo",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_3325883026",
+      "crafted.stat_836936635",
+      "enchant.stat_836936635",
+      "explicit.stat_3325883026",
+      "explicit.stat_836936635",
+      "fractured.stat_3325883026",
+      "fractured.stat_836936635",
+      "implicit.stat_3325883026",
+      "implicit.stat_836936635",
+      "scourge.stat_3325883026"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ Vida\\ Regenerada\\ por\\ segundo$"
+  },
+  {
+    "text": "#% de Vida Regenerada por segundo",
     "lines": 1,
     "tradeIds": [
       "crafted.stat_3325883026",
@@ -179332,6 +180288,14 @@
   {
     "text": "#% de aumento da Precis\u00E3o caso tenha causado um Acerto Cr\u00EDtico nos \u00FAltimos 8 segundos",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1381557885"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ aumento\\ da\\ Precis\u00E3o\\ caso\\ tenha\\ causado\\ um\\ Acerto\\ Cr\u00EDtico\\ nos\\ \u00FAltimos\\ 8\\ segundos$"
+  },
+  {
+    "text": "#% de aumento da Precis\u00E3o caso tenha causado um Acerto Cr\u00EDtico nos \u00FAltimos 8 segundos",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1381557885"
@@ -181678,6 +182642,15 @@
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ Esmagar\\ ao\\ Acertar$"
   },
   {
+    "text": "#% de chance de Esmagar ao Acertar",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2228892313",
+      "fractured.stat_2228892313"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ Esmagar\\ ao\\ Acertar$"
+  },
+  {
     "text": "#% de chance de Esmagar por 2 segundos ao Acertar",
     "lines": 1,
     "tradeIds": [],
@@ -183562,6 +184535,12 @@
   {
     "text": "#% de chance de desarmar ba\u00FAs com armadilhas",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ desarmar\\ ba\u00FAs\\ com\\ armadilhas$"
+  },
+  {
+    "text": "#% de chance de desarmar ba\u00FAs com armadilhas",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ desarmar\\ ba\u00FAs\\ com\\ armadilhas$"
@@ -185827,6 +186806,12 @@
   {
     "text": "#% de chance de o fogo se alastrar entre os inimigos",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ o\\ fogo\\ se\\ alastrar\\ entre\\ os\\ inimigos$"
+  },
+  {
+    "text": "#% de chance de o fogo se alastrar entre os inimigos",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ de\\ chance\\ de\\ o\\ fogo\\ se\\ alastrar\\ entre\\ os\\ inimigos$"
@@ -189685,6 +190670,18 @@
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ Dano\\ sofrido\\ \u00E9\\ Recuperado\\ como\\ Mana$"
   },
   {
+    "text": "#% do Dano sofrido \u00E9 Recuperado como Mana",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_472520716",
+      "enchant.stat_472520716",
+      "explicit.stat_472520716",
+      "fractured.stat_472520716",
+      "implicit.stat_472520716"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ Dano\\ sofrido\\ \u00E9\\ Recuperado\\ como\\ Mana$"
+  },
+  {
     "text": "#% do Dano sofrido \u00E9 Recuperado como Mana se voc\u00EA Clamou Recentemente",
     "lines": 1,
     "tradeIds": [],
@@ -189693,6 +190690,17 @@
   {
     "text": "#% do Dano sofrido \u00E9 Recuperado como Vida",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1444556985",
+      "fractured.stat_1444556985",
+      "implicit.stat_1444556985",
+      "scourge.stat_1444556985"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ Dano\\ sofrido\\ \u00E9\\ Recuperado\\ como\\ Vida$"
+  },
+  {
+    "text": "#% do Dano sofrido \u00E9 Recuperado como Vida",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1444556985",
@@ -189794,6 +190802,17 @@
   {
     "text": "#% do Escudo de Energia Recarregado por segundo",
     "negate": true,
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3594640492",
+      "fractured.stat_3594640492",
+      "implicit.stat_3594640492"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ Escudo\\ de\\ Energia\\ Recarregado\\ por\\ segundo$"
+  },
+  {
+    "text": "#% do Escudo de Energia Recarregado por segundo",
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -190304,8 +191323,22 @@
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ m\u00E1gico\\ sofrido\\ suprimido\\ \u00E9\\ recuperado\\ como\\ escudo\\ de\\ energia$"
   },
   {
+    "text": "#% do dano m\u00E1gico sofrido suprimido \u00E9 recuperado como escudo de energia",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1993646143"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ m\u00E1gico\\ sofrido\\ suprimido\\ \u00E9\\ recuperado\\ como\\ escudo\\ de\\ energia$"
+  },
+  {
     "text": "#% do dano recebido de golpes cr\u00EDticos \u00E9 convertido em vida",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ recebido\\ de\\ golpes\\ cr\u00EDticos\\ \u00E9\\ convertido\\ em\\ vida$"
+  },
+  {
+    "text": "#% do dano recebido de golpes cr\u00EDticos \u00E9 convertido em vida",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ recebido\\ de\\ golpes\\ cr\u00EDticos\\ \u00E9\\ convertido\\ em\\ vida$"
@@ -190349,6 +191382,14 @@
   {
     "text": "#% do dano sofrido \u00E9 recuperado como vida por gema vermelha encaixada",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_902847342"
+    ],
+    "pattern": "^([-0-9,.]\u002B)%\\ do\\ dano\\ sofrido\\ \u00E9\\ recuperado\\ como\\ vida\\ por\\ gema\\ vermelha\\ encaixada$"
+  },
+  {
+    "text": "#% do dano sofrido \u00E9 recuperado como vida por gema vermelha encaixada",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_902847342"
@@ -197908,6 +198949,19 @@
   },
   {
     "text": "\u00D3dio tem a efici\u00EAncia da reserva de mana aumentada em #%",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1920370417",
+      "enchant.stat_2156140483",
+      "explicit.stat_1920370417",
+      "explicit.stat_2156140483",
+      "fractured.stat_2156140483",
+      "implicit.stat_2156140483"
+    ],
+    "pattern": "^\u00D3dio\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u00D3dio tem a efici\u00EAncia da reserva de mana aumentada em #%",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -197919,6 +198973,20 @@
       "implicit.stat_2156140483"
     ],
     "pattern": "^\u00D3dio\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ aumentada\\ em\\ ([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u00D3dio tem a efici\u00EAncia da reserva de mana reduzida em #%",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1920370417",
+      "enchant.stat_2156140483",
+      "explicit.stat_1920370417",
+      "explicit.stat_2156140483",
+      "fractured.stat_2156140483",
+      "implicit.stat_2156140483"
+    ],
+    "pattern": "^\u00D3dio\\ tem\\ a\\ efici\u00EAncia\\ da\\ reserva\\ de\\ mana\\ reduzida\\ em\\ ([-0-9,.]\u002B)%$"
   },
   {
     "text": "\u00D3dio tem a efici\u00EAncia da reserva de mana reduzida em #%",
@@ -198257,6 +199325,15 @@
   {
     "text": "\u002B# \u00E0 F\u00FAria m\u00E1xima",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1181501418",
+      "implicit.stat_1181501418"
+    ],
+    "pattern": "^\\\u002B([-0-9,.]\u002B)\\ \u00E0\\ F\u00FAria\\ m\u00E1xima$"
+  },
+  {
+    "text": "\u002B# \u00E0 F\u00FAria m\u00E1xima",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1181501418",
@@ -200153,6 +201230,12 @@
   {
     "text": "\u3164-#% de dano sofrido se voc\u00EA tiver um totem",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ dano\\ sofrido\\ se\\ voc\u00EA\\ tiver\\ um\\ totem$"
+  },
+  {
+    "text": "\u3164-#% de dano sofrido se voc\u00EA tiver um totem",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u3164-([-0-9,.]\u002B)%\\ de\\ dano\\ sofrido\\ se\\ voc\u00EA\\ tiver\\ um\\ totem$"

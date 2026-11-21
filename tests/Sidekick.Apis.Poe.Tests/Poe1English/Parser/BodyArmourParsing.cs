@@ -108,4 +108,34 @@ Note: ~price 2 chaos
         Assert.Equal("Daresso's Defiance", actual.TradeItem?.Name);
         Assert.Equal("Full Dragonscale", actual.TradeItem?.Type);
     }
+
+    [Fact]
+    public void Foulborn()
+    {
+        var actual = parser.ParseItem(@"Item Class: Body Armours
+Rarity: Unique
+Foulborn Skin of the Loyal
+Simple Robe
+--------
+Sockets: R-B-R-R-R-B 
+--------
+Item Level: 74
+--------
+Sockets cannot be modified
+100% increased Global Defences
++20% to Quality of Socketed Gems (mutated)
+--------
+We happily give our limbs.
+A net woven to keep safe the bones of the Lords.
+");
+
+        Assert.Equal(ItemClass.BodyArmour, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Simple Robe", actual.TradeItem?.Type);
+        Assert.Equal("Skin of the Loyal", actual.TradeItem?.Name);
+        Assert.Equal("Foulborn Skin of the Loyal", actual.Name);
+        Assert.True(actual.Properties.Foulborn);
+
+        fixture.AssertHasStat(actual, StatCategory.Mutated, "+#% to Quality of Socketed Gems", 20);
+    }
 }

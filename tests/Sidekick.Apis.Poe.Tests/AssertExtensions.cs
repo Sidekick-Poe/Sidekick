@@ -19,6 +19,12 @@ public static class AssertExtensions
         Assert.Contains(item.InvariantDefinition.NinjaExchangeItems, x => x.Id == expectedId);
     }
 
+    public static void AssertHasNinjaStash(this Item item, string expectedId)
+    {
+        Assert.NotNull(item.InvariantDefinition?.NinjaStashItems);
+        Assert.Contains(item.InvariantDefinition.NinjaStashItems, x => x.DetailsId == expectedId);
+    }
+
     public static List<TradeFilter> Flatten(this List<TradeFilter> filters)
     {
         var results = new List<TradeFilter>();

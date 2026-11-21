@@ -8485,7 +8485,28 @@
     "pattern": "^\u80FD\u529B\u5024\u306E\u5408\u8A08250\u3054\u3068\u306B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u80FD\u529B\u5024\u306E\u5408\u8A08250\u3054\u3068\u306B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1212083058",
+      "explicit.stat_2676451350",
+      "implicit.stat_1212083058"
+    ],
+    "pattern": "^\u80FD\u529B\u5024\u306E\u5408\u8A08250\u3054\u3068\u306B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u80FD\u529B\u5024\u306E\u5408\u8A08250\u3054\u3068\u306B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1212083058",
+      "explicit.stat_2676451350",
+      "implicit.stat_1212083058"
+    ],
+    "pattern": "^\u80FD\u529B\u5024\u306E\u5408\u8A08250\u3054\u3068\u306B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u80FD\u529B\u5024\u306E\u5408\u8A08250\u3054\u3068\u306B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1212083058",
@@ -15352,6 +15373,14 @@
     "pattern": "^\u4F4E\u30E9\u30A4\u30D5\u6642\u306B\u706B\u8010\u6027\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
+    "text": "\u4F4E\u30E9\u30A4\u30D5\u6642\u306B\u706B\u8010\u6027 \u002B#%",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_38301299"
+    ],
+    "pattern": "^\u4F4E\u30E9\u30A4\u30D5\u6642\u306B\u706B\u8010\u6027\\ \\\u002B([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "\u4F4E\u30E9\u30A4\u30D5\u6642\u306B\u547D\u4E2D\u529B\u304C#%\u6E1B\u5C11\u3059\u308B",
     "negate": true,
     "lines": 1,
@@ -17495,6 +17524,15 @@
   {
     "text": "\u61A4\u6012\u306E\u6700\u5927\u5024 \u002B#",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1181501418",
+      "implicit.stat_1181501418"
+    ],
+    "pattern": "^\u61A4\u6012\u306E\u6700\u5927\u5024\\ \\\u002B([-0-9,.]\u002B)$"
+  },
+  {
+    "text": "\u61A4\u6012\u306E\u6700\u5927\u5024 \u002B#",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1181501418",
@@ -24326,6 +24364,12 @@
   },
   {
     "text": "\u5805\u7262\u5316\u3092\u4E0E\u3048\u308B\u30D2\u30C3\u30C8\u304C\u4ED8\u4E0E\u3059\u308B\u5805\u7262\u5316\u306E\u30B9\u30BF\u30C3\u30AF\u6570\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u5805\u7262\u5316\u3092\u4E0E\u3048\u308B\u30D2\u30C3\u30C8\u304C\u4ED8\u4E0E\u3059\u308B\u5805\u7262\u5316\u306E\u30B9\u30BF\u30C3\u30AF\u6570\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u5805\u7262\u5316\u3092\u4E0E\u3048\u308B\u30D2\u30C3\u30C8\u304C\u4ED8\u4E0E\u3059\u308B\u5805\u7262\u5316\u306E\u30B9\u30BF\u30C3\u30AF\u6570\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -25175,6 +25219,15 @@
       "implicit.stat_13172430"
     ],
     "pattern": "^\u6575\u306B\u4ED8\u4E0E\u3057\u305F\u611F\u96FB\u52B9\u679C2%\u3054\u3068\u306B\u96F7\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u8FFD\u52A0\u51B7\u6C17\u30C0\u30E1\u30FC\u30B8\u3068\u3057\u3066\u7372\u5F97\u3059\u308B$"
+  },
+  {
+    "text": "\u6575\u306B\u4ED8\u4E0E\u3057\u305F\u72B6\u614B\u7570\u5E38\u306E\u7A2E\u985E1\u500B\u3054\u3068\u306B\u6575\u304C\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1217730254",
+      "implicit.stat_1217730254"
+    ],
+    "pattern": "^\u6575\u306B\u4ED8\u4E0E\u3057\u305F\u72B6\u614B\u7570\u5E38\u306E\u7A2E\u985E1\u500B\u3054\u3068\u306B\u6575\u304C\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u6575\u306B\u4ED8\u4E0E\u3057\u305F\u72B6\u614B\u7570\u5E38\u306E\u7A2E\u985E1\u500B\u3054\u3068\u306B\u6575\u304C\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
@@ -26468,6 +26521,15 @@
     "text": "\u6575\u3092\u5012\u3057\u305F\u6642\u306B\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u306E#%\u3092\u5931\u3046",
     "lines": 1,
     "tradeIds": [
+      "explicit.stat_1699499433"
+    ],
+    "pattern": "^\u6575\u3092\u5012\u3057\u305F\u6642\u306B\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u306E([-0-9,.]\u002B)%\u3092\u5931\u3046$"
+  },
+  {
+    "text": "\u6575\u3092\u5012\u3057\u305F\u6642\u306B\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u306E#%\u3092\u5931\u3046",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
       "explicit.stat_1699499433",
       "explicit.stat_2406605753",
       "fractured.stat_2406605753",
@@ -26573,6 +26635,15 @@
   },
   {
     "text": "\u6575\u3092\u5012\u3057\u305F\u6642\u306B\u30E9\u30A4\u30D5\u306E#%\u3092\u5931\u3046",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_751813227"
+    ],
+    "pattern": "^\u6575\u3092\u5012\u3057\u305F\u6642\u306B\u30E9\u30A4\u30D5\u306E([-0-9,.]\u002B)%\u3092\u5931\u3046$"
+  },
+  {
+    "text": "\u6575\u3092\u5012\u3057\u305F\u6642\u306B\u30E9\u30A4\u30D5\u306E#%\u3092\u5931\u3046",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2023107756",
@@ -41794,6 +41865,19 @@
     "pattern": "^\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3092\u6301\u305F\u306A\u3044$"
   },
   {
+    "text": "\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3092\u6301\u305F\u306A\u3044",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_1509134228",
+      "enchant.stat_1509134228",
+      "explicit.stat_1509134228",
+      "fractured.stat_1509134228",
+      "implicit.stat_1509134228"
+    ],
+    "pattern": "^\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3092\u6301\u305F\u306A\u3044$"
+  },
+  {
     "text": "\u7269\u7406\u30E2\u30C3\u30C9\u304C\u51FA\u73FE\u3057\u306A\u3044",
     "lines": 1,
     "tradeIds": [
@@ -45570,6 +45654,12 @@
   },
   {
     "text": "\u76F4\u8FD1\u5BFE\u8C61\u306B\u30EA\u30F3\u30AF\u3057\u3066\u3044\u308C\u3070\u30EA\u30F3\u30AF\u30B9\u30AD\u30EB\u306E\u30D0\u30D5\u306E\u52B9\u679C\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u76F4\u8FD1\u5BFE\u8C61\u306B\u30EA\u30F3\u30AF\u3057\u3066\u3044\u308C\u3070\u30EA\u30F3\u30AF\u30B9\u30AD\u30EB\u306E\u30D0\u30D5\u306E\u52B9\u679C\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u76F4\u8FD1\u5BFE\u8C61\u306B\u30EA\u30F3\u30AF\u3057\u3066\u3044\u308C\u3070\u30EA\u30F3\u30AF\u30B9\u30AD\u30EB\u306E\u30D0\u30D5\u306E\u52B9\u679C\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -47615,6 +47705,16 @@
   },
   {
     "text": "\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u546A\u3044\u72B6\u614B\u306E\u6575\u3092\u5012\u3057\u3066\u3044\u308C\u3070\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1072119541",
+      "fractured.stat_1072119541"
+    ],
+    "pattern": "^\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u546A\u3044\u72B6\u614B\u306E\u6575\u3092\u5012\u3057\u3066\u3044\u308C\u3070\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u546A\u3044\u72B6\u614B\u306E\u6575\u3092\u5012\u3057\u3066\u3044\u308C\u3070\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
@@ -47717,6 +47817,12 @@
       "fractured.stat_4222857095"
     ],
     "pattern": "^\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u5012\u3057\u305F\u611F\u96FB\u72B6\u614B\u306E\u65751\u4F53\u3054\u3068\u306B([-0-9,.]\u002B)\u304B\u3089([-0-9,.]\u002B)\u306E\u96F7\u30C0\u30E1\u30FC\u30B8\u8FFD\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u7D99\u7D9A\u30C0\u30E1\u30FC\u30B8\u306E\u5F71\u97FF\u3092\u53D7\u3051\u3066\u3044\u308B\u6575\u3092\u5012\u3057\u3066\u3044\u308C\u3070\u30E9\u30A4\u30D5\u3001\u30DE\u30CA\u304A\u3088\u3073\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u306E\u56DE\u5FA9\u30EC\u30FC\u30C8\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u7D99\u7D9A\u30C0\u30E1\u30FC\u30B8\u306E\u5F71\u97FF\u3092\u53D7\u3051\u3066\u3044\u308B\u6575\u3092\u5012\u3057\u3066\u3044\u308C\u3070\u30E9\u30A4\u30D5\u3001\u30DE\u30CA\u304A\u3088\u3073\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u306E\u56DE\u5FA9\u30EC\u30FC\u30C8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u7D99\u7D9A\u30C0\u30E1\u30FC\u30B8\u306E\u5F71\u97FF\u3092\u53D7\u3051\u3066\u3044\u308B\u6575\u3092\u5012\u3057\u3066\u3044\u308C\u3070\u30E9\u30A4\u30D5\u3001\u30DE\u30CA\u304A\u3088\u3073\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u306E\u56DE\u5FA9\u30EC\u30FC\u30C8\u304C#%\u5897\u52A0\u3059\u308B",
@@ -48480,6 +48586,14 @@
   {
     "text": "\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B8\u3092\u7372\u5F97\u3057\u3066\u3044\u308C\u3070\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30C0\u30E1\u30FC\u30B8\u500D\u7387 \u002B#%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2865731079"
+    ],
+    "pattern": "^\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B8\u3092\u7372\u5F97\u3057\u3066\u3044\u308C\u3070\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30C0\u30E1\u30FC\u30B8\u500D\u7387\\ \\\u002B([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u76F4\u8FD1\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B8\u3092\u7372\u5F97\u3057\u3066\u3044\u308C\u3070\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30C0\u30E1\u30FC\u30B8\u500D\u7387 \u002B#%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2865731079"
@@ -52880,7 +52994,26 @@
     "pattern": "^\u546A\u3044\u30AA\u30FC\u30E9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u546A\u3044\u30AA\u30FC\u30E9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_443165947",
+      "explicit.stat_714566414"
+    ],
+    "pattern": "^\u546A\u3044\u30AA\u30FC\u30E9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u546A\u3044\u30AA\u30FC\u30E9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_443165947",
+      "explicit.stat_714566414"
+    ],
+    "pattern": "^\u546A\u3044\u30AA\u30FC\u30E9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u546A\u3044\u30AA\u30FC\u30E9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_443165947",
@@ -54177,6 +54310,14 @@
   {
     "text": "\u6291\u5236\u3057\u305F\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u304B\u3089\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1993646143"
+    ],
+    "pattern": "^\u6291\u5236\u3057\u305F\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u304B\u3089\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
+  },
+  {
+    "text": "\u6291\u5236\u3057\u305F\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u304B\u3089\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1993646143"
@@ -55955,8 +56096,20 @@
     "pattern": "^\u5148\u7956\u306E\u30C8\u30FC\u30C6\u30E0\u306F\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E([-0-9,.]\u002B)%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B$"
   },
   {
+    "text": "\u5148\u7956\u306E\u30C8\u30FC\u30C6\u30E0\u306F\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E#%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u5148\u7956\u306E\u30C8\u30FC\u30C6\u30E0\u306F\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E([-0-9,.]\u002B)%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B$"
+  },
+  {
     "text": "\u5148\u7956\u306E\u30C8\u30FC\u30C6\u30E0\u3092\u8FFD\u653E\u4E2D\u306B\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E#%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u5148\u7956\u306E\u30C8\u30FC\u30C6\u30E0\u3092\u8FFD\u653E\u4E2D\u306B\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E([-0-9,.]\u002B)%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B$"
+  },
+  {
+    "text": "\u5148\u7956\u306E\u30C8\u30FC\u30C6\u30E0\u3092\u8FFD\u653E\u4E2D\u306B\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E#%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u5148\u7956\u306E\u30C8\u30FC\u30C6\u30E0\u3092\u8FFD\u653E\u4E2D\u306B\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E([-0-9,.]\u002B)%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B$"
@@ -56790,10 +56943,22 @@
   },
   {
     "text": "\u6B7B\u4EA1\u6642\u306B\u30D1\u30C3\u30AF\u30E1\u30F3\u30D0\u30FC\u306B\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3068\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9#%\u5897\u52A0\u3092\u4ED8\u4E0E\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u6B7B\u4EA1\u6642\u306B\u30D1\u30C3\u30AF\u30E1\u30F3\u30D0\u30FC\u306B\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3068\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9([-0-9,.]\u002B)%\u5897\u52A0\u3092\u4ED8\u4E0E\u3059\u308B$"
+  },
+  {
+    "text": "\u6B7B\u4EA1\u6642\u306B\u30D1\u30C3\u30AF\u30E1\u30F3\u30D0\u30FC\u306B\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3068\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9#%\u5897\u52A0\u3092\u4ED8\u4E0E\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u6B7B\u4EA1\u6642\u306B\u30D1\u30C3\u30AF\u30E1\u30F3\u30D0\u30FC\u306B\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u3068\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9([-0-9,.]\u002B)%\u5897\u52A0\u3092\u4ED8\u4E0E\u3059\u308B$"
+  },
+  {
+    "text": "\u6B7B\u4EA1\u6642\u306B\u30D1\u30C3\u30AF\u30E1\u30F3\u30D0\u30FC\u306B\u30E9\u30A4\u30D5#%\u5897\u52A0\u3092\u4ED8\u4E0E\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u6B7B\u4EA1\u6642\u306B\u30D1\u30C3\u30AF\u30E1\u30F3\u30D0\u30FC\u306B\u30E9\u30A4\u30D5([-0-9,.]\u002B)%\u5897\u52A0\u3092\u4ED8\u4E0E\u3059\u308B$"
   },
   {
     "text": "\u6B7B\u4EA1\u6642\u306B\u30D1\u30C3\u30AF\u30E1\u30F3\u30D0\u30FC\u306B\u30E9\u30A4\u30D5#%\u5897\u52A0\u3092\u4ED8\u4E0E\u3059\u308B",
@@ -56939,6 +57104,15 @@
       "implicit.stat_1109700751"
     ],
     "pattern": "^\u5831\u5FA9\u30B9\u30AD\u30EB\u306B([-0-9,.]\u002B)\u304B\u3089([-0-9,.]\u002B)\u306E\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3092\u8FFD\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u5831\u5FA9\u30B9\u30AD\u30EB\u306B\u3088\u308A\u4ED8\u4E0E\u3055\u308C\u305F\u72B6\u614B\u7570\u5E38\u306E\u6301\u7D9A\u6642\u9593\u304C#%\u5897\u52A0\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2184130410"
+    ],
+    "pattern": "^\u5831\u5FA9\u30B9\u30AD\u30EB\u306B\u3088\u308A\u4ED8\u4E0E\u3055\u308C\u305F\u72B6\u614B\u7570\u5E38\u306E\u6301\u7D9A\u6642\u9593\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u5831\u5FA9\u30B9\u30AD\u30EB\u306B\u3088\u308A\u4ED8\u4E0E\u3055\u308C\u305F\u72B6\u614B\u7570\u5E38\u306E\u6301\u7D9A\u6642\u9593\u304C#%\u5897\u52A0\u3059\u308B",
@@ -59565,6 +59739,17 @@
   {
     "text": "\u53CD\u5C04\u30C0\u30E1\u30FC\u30B8\u306E\u002B#%\u3092\u9632\u3050",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1571797746",
+      "fractured.stat_1571797746",
+      "implicit.stat_1571797746",
+      "implicit.stat_2510655429"
+    ],
+    "pattern": "^\u53CD\u5C04\u30C0\u30E1\u30FC\u30B8\u306E\\\u002B([-0-9,.]\u002B)%\u3092\u9632\u3050$"
+  },
+  {
+    "text": "\u53CD\u5C04\u30C0\u30E1\u30FC\u30B8\u306E\u002B#%\u3092\u9632\u3050",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1571797746",
@@ -69113,6 +69298,15 @@
     "pattern": "^\u4E0A\u6607\u306E\u9802(?:\\ \\([^\\)]\u002B\\))?"
   },
   {
+    "text": "\u6B21\u306E\u90E8\u5C4B\u3092\u6301\u3064 : \u4E0A\u6607\u306E\u9802",
+    "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "pseudo.pseudo_temple_sacrifice_room_3#1"
+    ],
+    "pattern": "^\u4E0A\u6607\u306E\u9802(?:\\ \\([^\\)]\u002B\\))?"
+  },
+  {
     "text": "\u6B21\u306E\u90E8\u5C4B\u3092\u6301\u3064 : \u683D\u57F9\u5BA4",
     "lines": 1,
     "tradeIds": [
@@ -70587,6 +70781,18 @@
     "pattern": "^\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E([-0-9,.]\u002B)%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B$"
   },
   {
+    "text": "\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E#%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_836936635",
+      "enchant.stat_836936635",
+      "explicit.stat_836936635",
+      "fractured.stat_836936635",
+      "implicit.stat_836936635"
+    ],
+    "pattern": "^\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E([-0-9,.]\u002B)%\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B$"
+  },
+  {
     "text": "\u6BCE\u79D2\u30E9\u30A4\u30D5\u306E#%\u3092\u5931\u3046",
     "lines": 1,
     "tradeIds": [
@@ -71758,6 +71964,18 @@
     "pattern": "^\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30DE\u30CA\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
   },
   {
+    "text": "\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30DE\u30CA\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_472520716",
+      "enchant.stat_472520716",
+      "explicit.stat_472520716",
+      "fractured.stat_472520716",
+      "implicit.stat_472520716"
+    ],
+    "pattern": "^\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30DE\u30CA\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
+  },
+  {
     "text": "\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3001\u30DE\u30CA\u304A\u3088\u3073\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "matchedFuzzily": true,
     "lines": 1,
@@ -71770,6 +71988,17 @@
   {
     "text": "\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1444556985",
+      "fractured.stat_1444556985",
+      "implicit.stat_1444556985",
+      "scourge.stat_1444556985"
+    ],
+    "pattern": "^\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
+  },
+  {
+    "text": "\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1444556985",
@@ -81638,6 +81867,12 @@
     "pattern": "^([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u6575\u306E\u9593\u306B\u706B\u304C\u5E83\u304C\u308B$"
   },
   {
+    "text": "#%\u306E\u78BA\u7387\u3067\u6575\u306E\u9593\u306B\u706B\u304C\u5E83\u304C\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u6575\u306E\u9593\u306B\u706B\u304C\u5E83\u304C\u308B$"
+  },
+  {
     "text": "#%\u306E\u78BA\u7387\u3067\u6575\u306E\u30D2\u30C3\u30C8\u306B\u5BFE\u3059\u308B\u5143\u7D20\u8010\u6027\u304C90%\u306E\u6570\u5024\u3067\u3042\u308B\u3068\u307F\u306A\u3055\u308C\u308B",
     "lines": 1,
     "tradeIds": [
@@ -82342,6 +82577,12 @@
   {
     "text": "#%\u306E\u78BA\u7387\u3067\u30C1\u30A7\u30B9\u30C8\u306E\u7F60\u3092\u89E3\u9664\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u30C1\u30A7\u30B9\u30C8\u306E\u7F60\u3092\u89E3\u9664\u3059\u308B$"
+  },
+  {
+    "text": "#%\u306E\u78BA\u7387\u3067\u30C1\u30A7\u30B9\u30C8\u306E\u7F60\u3092\u89E3\u9664\u3059\u308B",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u30C1\u30A7\u30B9\u30C8\u306E\u7F60\u3092\u89E3\u9664\u3059\u308B$"
@@ -83214,7 +83455,26 @@
     "pattern": "^\u30A2\u30A4\u30B7\u30AF\u30EB\u30DE\u30A4\u30F3\u306E\u6295\u64F2\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30A2\u30A4\u30B7\u30AF\u30EB\u30DE\u30A4\u30F3\u306E\u6295\u64F2\u30B9\u30D4\u30FC\u30C9\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3162144587",
+      "enchant.stat_3976295500"
+    ],
+    "pattern": "^\u30A2\u30A4\u30B7\u30AF\u30EB\u30DE\u30A4\u30F3\u306E\u6295\u64F2\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30A2\u30A4\u30B7\u30AF\u30EB\u30DE\u30A4\u30F3\u306E\u6295\u64F2\u30B9\u30D4\u30FC\u30C9\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3162144587",
+      "enchant.stat_3976295500"
+    ],
+    "pattern": "^\u30A2\u30A4\u30B7\u30AF\u30EB\u30DE\u30A4\u30F3\u306E\u6295\u64F2\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30A2\u30A4\u30B7\u30AF\u30EB\u30DE\u30A4\u30F3\u306E\u6295\u64F2\u30B9\u30D4\u30FC\u30C9\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3162144587",
@@ -84965,6 +85225,14 @@
   {
     "text": "\u30A2\u30BF\u30C3\u30AF\u3067\u30D2\u30C3\u30C8\u3092\u4E0E\u3048\u305F\u546A\u308F\u308C\u305F\u65751\u4F53\u3054\u3068\u306B#\u306E\u30E9\u30A4\u30D5\u3092\u7372\u5F97\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3072303874"
+    ],
+    "pattern": "^\u30A2\u30BF\u30C3\u30AF\u3067\u30D2\u30C3\u30C8\u3092\u4E0E\u3048\u305F\u546A\u308F\u308C\u305F\u65751\u4F53\u3054\u3068\u306B([-0-9,.]\u002B)\u306E\u30E9\u30A4\u30D5\u3092\u7372\u5F97\u3059\u308B$"
+  },
+  {
+    "text": "\u30A2\u30BF\u30C3\u30AF\u3067\u30D2\u30C3\u30C8\u3092\u4E0E\u3048\u305F\u546A\u308F\u308C\u305F\u65751\u4F53\u3054\u3068\u306B#\u306E\u30E9\u30A4\u30D5\u3092\u7372\u5F97\u3059\u308B",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3072303874"
@@ -91190,7 +91458,34 @@
     "pattern": "^\u30A2\u30F3\u30AC\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30A2\u30F3\u30AC\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
+      "fractured.stat_2549369799",
+      "implicit.stat_2549369799"
+    ],
+    "pattern": "^\u30A2\u30F3\u30AC\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30A2\u30F3\u30AC\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
+      "fractured.stat_2549369799",
+      "implicit.stat_2549369799"
+    ],
+    "pattern": "^\u30A2\u30F3\u30AC\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30A2\u30F3\u30AC\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2549369799",
@@ -91900,7 +92195,36 @@
     "pattern": "^\u30A2\u30FC\u30AF\u30C6\u30A3\u30C3\u30AF\u30A2\u30FC\u30DE\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30A2\u30FC\u30AF\u30C6\u30A3\u30C3\u30AF\u30A2\u30FC\u30DE\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2351239732",
+      "enchant.stat_2605040931",
+      "explicit.stat_2351239732",
+      "explicit.stat_2605040931",
+      "fractured.stat_2351239732",
+      "fractured.stat_2605040931",
+      "implicit.stat_2351239732"
+    ],
+    "pattern": "^\u30A2\u30FC\u30AF\u30C6\u30A3\u30C3\u30AF\u30A2\u30FC\u30DE\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30A2\u30FC\u30AF\u30C6\u30A3\u30C3\u30AF\u30A2\u30FC\u30DE\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2351239732",
+      "enchant.stat_2605040931",
+      "explicit.stat_2351239732",
+      "explicit.stat_2605040931",
+      "fractured.stat_2351239732",
+      "fractured.stat_2605040931",
+      "implicit.stat_2351239732"
+    ],
+    "pattern": "^\u30A2\u30FC\u30AF\u30C6\u30A3\u30C3\u30AF\u30A2\u30FC\u30DE\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30A2\u30FC\u30AF\u30C6\u30A3\u30C3\u30AF\u30A2\u30FC\u30DE\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2351239732",
@@ -103146,6 +103470,12 @@
     "pattern": "^\u30AA\u30D5\u30CF\u30F3\u30C9\u306E\u9264\u722A\u30A2\u30BF\u30C3\u30AF\u306B\u3088\u308A\u6575\u30921\u4F53\u30D2\u30C3\u30C8\u3059\u308B\u3054\u3068\u306B([-0-9,.]\u002B)\u306E\u30DE\u30CA\u3092\u7372\u5F97\u3059\u308B$"
   },
   {
+    "text": "\u30AA\u30D5\u30CF\u30F3\u30C9\u306E\u9264\u722A\u30A2\u30BF\u30C3\u30AF\u306B\u3088\u308A\u6575\u30921\u4F53\u30D2\u30C3\u30C8\u3059\u308B\u3054\u3068\u306B#\u306E\u30DE\u30CA\u3092\u7372\u5F97\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u30AA\u30D5\u30CF\u30F3\u30C9\u306E\u9264\u722A\u30A2\u30BF\u30C3\u30AF\u306B\u3088\u308A\u6575\u30921\u4F53\u30D2\u30C3\u30C8\u3059\u308B\u3054\u3068\u306B([-0-9,.]\u002B)\u306E\u30DE\u30CA\u3092\u7372\u5F97\u3059\u308B$"
+  },
+  {
     "text": "\u30AA\u30D5\u30CF\u30F3\u30C9\u306E\u30A2\u30BF\u30C3\u30AF\u30B9\u30D4\u30FC\u30C9\u304C#%\u4F4E\u4E0B\u3059\u308B",
     "negate": true,
     "matchedFuzzily": true,
@@ -105443,7 +105773,26 @@
     "pattern": "^\u30AF\u30E9\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30AF\u30E9\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2668611054",
+      "enchant.stat_453778214"
+    ],
+    "pattern": "^\u30AF\u30E9\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30AF\u30E9\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2668611054",
+      "enchant.stat_453778214"
+    ],
+    "pattern": "^\u30AF\u30E9\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30AF\u30E9\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2668611054",
@@ -106173,6 +106522,12 @@
   {
     "text": "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30B9\u30C8\u30E9\u30A4\u30AF\u304B\u3089\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30B9\u30C8\u30E9\u30A4\u30AF\u304B\u3089\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
+  },
+  {
+    "text": "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30B9\u30C8\u30E9\u30A4\u30AF\u304B\u3089\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u30B9\u30C8\u30E9\u30A4\u30AF\u304B\u3089\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
@@ -107861,7 +108216,36 @@
     "pattern": "^\u30B0\u30EC\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30B0\u30EC\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1803598623",
+      "enchant.stat_900639351",
+      "explicit.stat_1803598623",
+      "explicit.stat_900639351",
+      "fractured.stat_900639351",
+      "implicit.stat_1803598623",
+      "implicit.stat_900639351"
+    ],
+    "pattern": "^\u30B0\u30EC\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30B0\u30EC\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1803598623",
+      "enchant.stat_900639351",
+      "explicit.stat_1803598623",
+      "explicit.stat_900639351",
+      "fractured.stat_900639351",
+      "implicit.stat_1803598623",
+      "implicit.stat_900639351"
+    ],
+    "pattern": "^\u30B0\u30EC\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30B0\u30EC\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1803598623",
@@ -110918,6 +111302,14 @@
   },
   {
     "text": "\u30B5\u30A4\u30BA\u30DF\u30C3\u30AF\u30BF\u30EF\u30FC\u306E\u30B9\u30BF\u30F3\u6301\u7D9A\u6642\u9593\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3006815533"
+    ],
+    "pattern": "^\u30B5\u30A4\u30BA\u30DF\u30C3\u30AF\u30BF\u30EF\u30FC\u306E\u30B9\u30BF\u30F3\u6301\u7D9A\u6642\u9593\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30B5\u30A4\u30BA\u30DF\u30C3\u30AF\u30BF\u30EF\u30FC\u306E\u30B9\u30BF\u30F3\u6301\u7D9A\u6642\u9593\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -111347,6 +111739,14 @@
       "enchant.stat_850390248"
     ],
     "pattern": "^\u30B5\u30E2\u30CB\u30F3\u30B0\u30BF\u30EF\u30FC\u306B\u3088\u308A\u53EC\u559A\u3055\u308C\u305F\u30DF\u30CB\u30AA\u30F3\u306E\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30B5\u30E2\u30CB\u30F3\u30B0\u30BF\u30EF\u30FC\u306B\u3088\u308A\u53EC\u559A\u3055\u308C\u305F\u30DF\u30CB\u30AA\u30F3\u306E\u30E9\u30A4\u30D5\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3651039490"
+    ],
+    "pattern": "^\u30B5\u30E2\u30CB\u30F3\u30B0\u30BF\u30EF\u30FC\u306B\u3088\u308A\u53EC\u559A\u3055\u308C\u305F\u30DF\u30CB\u30AA\u30F3\u306E\u30E9\u30A4\u30D5\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30B5\u30E2\u30CB\u30F3\u30B0\u30BF\u30EF\u30FC\u306B\u3088\u308A\u53EC\u559A\u3055\u308C\u305F\u30DF\u30CB\u30AA\u30F3\u306E\u30E9\u30A4\u30D5\u304C#%\u5897\u52A0\u3059\u308B",
@@ -114249,7 +114649,26 @@
     "pattern": "^\u30B9\u30AD\u30C3\u30BF\u30FC\u30DC\u30C3\u30C8\u53EC\u559A\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30B9\u30AD\u30C3\u30BF\u30FC\u30DC\u30C3\u30C8\u53EC\u559A\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1695754537",
+      "enchant.stat_3818053347"
+    ],
+    "pattern": "^\u30B9\u30AD\u30C3\u30BF\u30FC\u30DC\u30C3\u30C8\u53EC\u559A\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30B9\u30AD\u30C3\u30BF\u30FC\u30DC\u30C3\u30C8\u53EC\u559A\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1695754537",
+      "enchant.stat_3818053347"
+    ],
+    "pattern": "^\u30B9\u30AD\u30C3\u30BF\u30FC\u30DC\u30C3\u30C8\u53EC\u559A\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30B9\u30AD\u30C3\u30BF\u30FC\u30DC\u30C3\u30C8\u53EC\u559A\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1695754537",
@@ -114947,6 +115366,7 @@
   },
   {
     "text": "\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1269219558",
@@ -114959,6 +115379,36 @@
       "scourge.stat_4237190083"
     ],
     "pattern": "^\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1269219558",
+      "explicit.stat_4237190083",
+      "fractured.stat_1269219558",
+      "fractured.stat_4237190083",
+      "implicit.stat_1269219558",
+      "implicit.stat_4237190083",
+      "scourge.stat_1269219558",
+      "scourge.stat_4237190083"
+    ],
+    "pattern": "^\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1269219558",
+      "explicit.stat_4237190083",
+      "fractured.stat_1269219558",
+      "fractured.stat_4237190083",
+      "implicit.stat_1269219558",
+      "implicit.stat_4237190083",
+      "scourge.stat_1269219558",
+      "scourge.stat_4237190083"
+    ],
+    "pattern": "^\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
@@ -115129,6 +115579,7 @@
   },
   {
     "text": "\u30B9\u30AD\u30EB\u306E\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2587176568",
@@ -115137,6 +115588,28 @@
       "implicit.stat_4202507508"
     ],
     "pattern": "^\u30B9\u30AD\u30EB\u306E\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30B9\u30AD\u30EB\u306E\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2587176568",
+      "explicit.stat_4202507508",
+      "implicit.stat_2587176568",
+      "implicit.stat_4202507508"
+    ],
+    "pattern": "^\u30B9\u30AD\u30EB\u306E\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30B9\u30AD\u30EB\u306E\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2587176568",
+      "explicit.stat_4202507508",
+      "implicit.stat_2587176568",
+      "implicit.stat_4202507508"
+    ],
+    "pattern": "^\u30B9\u30AD\u30EB\u306E\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30B9\u30AD\u30EB\u306E\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
@@ -119305,7 +119778,30 @@
     "pattern": "^\u30B9\u30DA\u30EB\u30B9\u30EA\u30F3\u30AC\u30FC\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30B9\u30DA\u30EB\u30B9\u30EA\u30F3\u30AC\u30FC\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1341061286",
+      "enchant.stat_3305838454",
+      "explicit.stat_3305838454",
+      "fractured.stat_3305838454"
+    ],
+    "pattern": "^\u30B9\u30DA\u30EB\u30B9\u30EA\u30F3\u30AC\u30FC\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30B9\u30DA\u30EB\u30B9\u30EA\u30F3\u30AC\u30FC\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1341061286",
+      "enchant.stat_3305838454",
+      "explicit.stat_3305838454",
+      "fractured.stat_3305838454"
+    ],
+    "pattern": "^\u30B9\u30DA\u30EB\u30B9\u30EA\u30F3\u30AC\u30FC\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30B9\u30DA\u30EB\u30B9\u30EA\u30F3\u30AC\u30FC\u306B\u3088\u308A\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1341061286",
@@ -119352,6 +119848,16 @@
   {
     "text": "\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u6291\u5236\u91CF \u002B#%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_4116705863",
+      "fractured.stat_4116705863",
+      "implicit.stat_4116705863"
+    ],
+    "pattern": "^\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u6291\u5236\u91CF\\ \\\u002B([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u6291\u5236\u91CF \u002B#%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_4116705863",
@@ -121088,6 +121594,14 @@
   },
   {
     "text": "\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u5F71\u97FF\u3092\u53D7\u3051\u3066\u3044\u308B\u6642\u306B\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2444534954"
+    ],
+    "pattern": "^\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u5F71\u97FF\u3092\u53D7\u3051\u3066\u3044\u308B\u6642\u306B\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u5F71\u97FF\u3092\u53D7\u3051\u3066\u3044\u308B\u6642\u306B\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -121291,7 +121805,32 @@
     "pattern": "^\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_168308685",
+      "enchant.stat_4216444167",
+      "explicit.stat_168308685",
+      "explicit.stat_4216444167",
+      "implicit.stat_168308685"
+    ],
+    "pattern": "^\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_168308685",
+      "enchant.stat_4216444167",
+      "explicit.stat_168308685",
+      "explicit.stat_4216444167",
+      "implicit.stat_168308685"
+    ],
+    "pattern": "^\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30BC\u30ED\u30C8\u30EA\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_168308685",
@@ -121504,6 +122043,14 @@
   {
     "text": "\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u8D64\u30B8\u30A7\u30E0\u3054\u3068\u306B\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_902847342"
+    ],
+    "pattern": "^\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u8D64\u30B8\u30A7\u30E0\u3054\u3068\u306B\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
+  },
+  {
+    "text": "\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u8D64\u30B8\u30A7\u30E0\u3054\u3068\u306B\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_902847342"
@@ -122700,6 +123247,14 @@
   {
     "text": "\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B8\u30A7\u30E0\u306F\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u30B8\u30A7\u30E0\u306E\u6570\u3054\u3068\u306B\u30C0\u30E1\u30FC\u30B8\u304C#%\u4E0A\u6607\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2876425796"
+    ],
+    "pattern": "^\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B8\u30A7\u30E0\u306F\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u30B8\u30A7\u30E0\u306E\u6570\u3054\u3068\u306B\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u4E0A\u6607\u3059\u308B$"
+  },
+  {
+    "text": "\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B8\u30A7\u30E0\u306F\u30BD\u30B1\u30C3\u30C8\u3055\u308C\u305F\u30B9\u30AD\u30EB\u30B8\u30A7\u30E0\u306E\u6570\u3054\u3068\u306B\u30C0\u30E1\u30FC\u30B8\u304C#%\u4E0A\u6607\u3059\u308B",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2876425796"
@@ -128934,7 +129489,34 @@
     "pattern": "^\u30C7\u30A3\u30B7\u30D7\u30EA\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30C7\u30A3\u30B7\u30D7\u30EA\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1692887998",
+      "enchant.stat_2081344089",
+      "explicit.stat_1692887998",
+      "explicit.stat_2081344089",
+      "implicit.stat_1692887998",
+      "implicit.stat_2081344089"
+    ],
+    "pattern": "^\u30C7\u30A3\u30B7\u30D7\u30EA\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30C7\u30A3\u30B7\u30D7\u30EA\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1692887998",
+      "enchant.stat_2081344089",
+      "explicit.stat_1692887998",
+      "explicit.stat_2081344089",
+      "implicit.stat_1692887998",
+      "implicit.stat_2081344089"
+    ],
+    "pattern": "^\u30C7\u30A3\u30B7\u30D7\u30EA\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30C7\u30A3\u30B7\u30D7\u30EA\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1692887998",
@@ -129830,7 +130412,36 @@
     "pattern": "^\u30C7\u30BF\u30FC\u30DF\u30CD\u30FC\u30B7\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30C7\u30BF\u30FC\u30DF\u30CD\u30FC\u30B7\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2721871046",
+      "enchant.stat_325889252",
+      "explicit.stat_2721871046",
+      "explicit.stat_325889252",
+      "fractured.stat_325889252",
+      "implicit.stat_2721871046",
+      "implicit.stat_325889252"
+    ],
+    "pattern": "^\u30C7\u30BF\u30FC\u30DF\u30CD\u30FC\u30B7\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30C7\u30BF\u30FC\u30DF\u30CD\u30FC\u30B7\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2721871046",
+      "enchant.stat_325889252",
+      "explicit.stat_2721871046",
+      "explicit.stat_325889252",
+      "fractured.stat_325889252",
+      "implicit.stat_2721871046",
+      "implicit.stat_325889252"
+    ],
+    "pattern": "^\u30C7\u30BF\u30FC\u30DF\u30CD\u30FC\u30B7\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30C7\u30BF\u30FC\u30DF\u30CD\u30FC\u30B7\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2721871046",
@@ -130299,6 +130910,14 @@
   {
     "text": "\u30C7\u30F4\u30A1\u30EF\u30EA\u30F3\u30B0\u30C8\u30FC\u30C6\u30E0\u306F#%\u306E\u78BA\u7387\u3067\u6B7B\u4F53\u3092\u8FFD\u52A0\u30671\u4F53\u6D88\u8CBB\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_4189505564"
+    ],
+    "pattern": "^\u30C7\u30F4\u30A1\u30EF\u30EA\u30F3\u30B0\u30C8\u30FC\u30C6\u30E0\u306F([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u6B7B\u4F53\u3092\u8FFD\u52A0\u30671\u4F53\u6D88\u8CBB\u3059\u308B$"
+  },
+  {
+    "text": "\u30C7\u30F4\u30A1\u30EF\u30EA\u30F3\u30B0\u30C8\u30FC\u30C6\u30E0\u306F#%\u306E\u78BA\u7387\u3067\u6B7B\u4F53\u3092\u8FFD\u52A0\u30671\u4F53\u6D88\u8CBB\u3059\u308B",
     "lines": 1,
     "tradeIds": [
       "enchant.stat_4189505564"
@@ -132334,6 +132953,12 @@
   {
     "text": "\u30C8\u30FC\u30C6\u30E0\u3092\u4F7F\u5F79\u3057\u3066\u3044\u308B\u9593\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C#%\u4F4E\u4E0B\u3059\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u30C8\u30FC\u30C6\u30E0\u3092\u4F7F\u5F79\u3057\u3066\u3044\u308B\u9593\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u4F4E\u4E0B\u3059\u308B$"
+  },
+  {
+    "text": "\u30C8\u30FC\u30C6\u30E0\u3092\u4F7F\u5F79\u3057\u3066\u3044\u308B\u9593\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C#%\u4F4E\u4E0B\u3059\u308B",
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u30C8\u30FC\u30C6\u30E0\u3092\u4F7F\u5F79\u3057\u3066\u3044\u308B\u9593\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u4F4E\u4E0B\u3059\u308B$"
@@ -135000,7 +135625,30 @@
     "pattern": "^\u30D0\u30A4\u30BF\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D0\u30A4\u30BF\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1233806203",
+      "enchant.stat_3972739758",
+      "implicit.stat_1233806203",
+      "implicit.stat_3972739758"
+    ],
+    "pattern": "^\u30D0\u30A4\u30BF\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D0\u30A4\u30BF\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1233806203",
+      "enchant.stat_3972739758",
+      "implicit.stat_1233806203",
+      "implicit.stat_3972739758"
+    ],
+    "pattern": "^\u30D0\u30A4\u30BF\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D0\u30A4\u30BF\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1233806203",
@@ -135482,7 +136130,40 @@
     "pattern": "^\u30D0\u30CA\u30FC\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D0\u30CA\u30FC\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1269219558",
+      "explicit.stat_4237190083",
+      "fractured.stat_1269219558",
+      "fractured.stat_4237190083",
+      "implicit.stat_1269219558",
+      "implicit.stat_4237190083",
+      "scourge.stat_1269219558",
+      "scourge.stat_4237190083"
+    ],
+    "pattern": "^\u30D0\u30CA\u30FC\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D0\u30CA\u30FC\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1269219558",
+      "explicit.stat_4237190083",
+      "fractured.stat_1269219558",
+      "fractured.stat_4237190083",
+      "implicit.stat_1269219558",
+      "implicit.stat_4237190083",
+      "scourge.stat_1269219558",
+      "scourge.stat_4237190083"
+    ],
+    "pattern": "^\u30D0\u30CA\u30FC\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D0\u30CA\u30FC\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -135936,6 +136617,12 @@
     "lines": 1,
     "tradeIds": [],
     "pattern": "^\u30D1\u30C3\u30AF\u4E2D\u306E\u751F\u5B58\u3057\u3066\u308B\u30E2\u30F3\u30B9\u30BF\u30FC\u6570\u3054\u3068\u306B\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u4E0A\u6607\u3059\u308B$"
+  },
+  {
+    "text": "\u30D1\u30C3\u30AF\u306E\u751F\u5B58\u3057\u3066\u3044\u308B\u30E2\u30F3\u30B9\u30BF\u30FC\u3054\u3068\u306B\u30E9\u30A4\u30D5\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u30D1\u30C3\u30AF\u306E\u751F\u5B58\u3057\u3066\u3044\u308B\u30E2\u30F3\u30B9\u30BF\u30FC\u3054\u3068\u306B\u30E9\u30A4\u30D5\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30D1\u30C3\u30AF\u306E\u751F\u5B58\u3057\u3066\u3044\u308B\u30E2\u30F3\u30B9\u30BF\u30FC\u3054\u3068\u306B\u30E9\u30A4\u30D5\u304C#%\u5897\u52A0\u3059\u308B",
@@ -144242,6 +144929,15 @@
   },
   {
     "text": "\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B81\u500B\u3054\u3068\u306B\u4F4E\u30E9\u30A4\u30D5\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u30D2\u30C3\u30C8\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1696792323"
+    ],
+    "pattern": "^\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B81\u500B\u3054\u3068\u306B\u4F4E\u30E9\u30A4\u30D5\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u30D2\u30C3\u30C8\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B81\u500B\u3054\u3068\u306B\u4F4E\u30E9\u30A4\u30D5\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u30D2\u30C3\u30C8\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
@@ -144629,6 +145325,17 @@
       "explicit.stat_1325047894"
     ],
     "pattern": "^\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B81\u500B\u3054\u3068\u306B\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u3088\u308A\u5148\u306B\u30DE\u30CA\u3067\u53D7\u3051\u308B$"
+  },
+  {
+    "text": "\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B81\u500B\u3054\u3068\u306B\u30D5\u30EB\u30E9\u30A4\u30D5\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u30D2\u30C3\u30C8\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1696792323",
+      "explicit.stat_3708045494",
+      "fractured.stat_3708045494"
+    ],
+    "pattern": "^\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B81\u500B\u3054\u3068\u306B\u30D5\u30EB\u30E9\u30A4\u30D5\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u30D2\u30C3\u30C8\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30D1\u30EF\u30FC\u30C1\u30E3\u30FC\u30B81\u500B\u3054\u3068\u306B\u30D5\u30EB\u30E9\u30A4\u30D5\u72B6\u614B\u306E\u6575\u306B\u5BFE\u3059\u308B\u30D2\u30C3\u30C8\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
@@ -146633,6 +147340,15 @@
     "pattern": "^\u30D2\u30C3\u30C8\u6642\u306B([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u7834\u7815\u3059\u308B$"
   },
   {
+    "text": "\u30D2\u30C3\u30C8\u6642\u306B#%\u306E\u78BA\u7387\u3067\u7834\u7815\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2228892313",
+      "fractured.stat_2228892313"
+    ],
+    "pattern": "^\u30D2\u30C3\u30C8\u6642\u306B([-0-9,.]\u002B)%\u306E\u78BA\u7387\u3067\u7834\u7815\u3059\u308B$"
+  },
+  {
     "text": "\u30D2\u30C3\u30C8\u6642\u306B#%\u306E\u78BA\u7387\u3067\u30A8\u30F3\u30C7\u30E5\u30E9\u30F3\u30B9\u30C1\u30E3\u30FC\u30B8\u30921\u500B\u7372\u5F97\u3059\u308B",
     "lines": 1,
     "tradeIds": [
@@ -147243,6 +147959,16 @@
   {
     "text": "\u30D2\u30C3\u30C8\u306B\u3088\u308B\u706B\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3068\u3057\u3066\u53D7\u3051\u308B",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1029319062",
+      "explicit.stat_3205239847",
+      "implicit.stat_3205239847"
+    ],
+    "pattern": "^\u30D2\u30C3\u30C8\u306B\u3088\u308B\u706B\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3068\u3057\u3066\u53D7\u3051\u308B$"
+  },
+  {
+    "text": "\u30D2\u30C3\u30C8\u306B\u3088\u308B\u706B\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u7269\u7406\u30C0\u30E1\u30FC\u30B8\u3068\u3057\u3066\u53D7\u3051\u308B",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_1029319062",
@@ -148779,7 +149505,34 @@
     "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_139925400",
+      "enchant.stat_2665518524",
+      "explicit.stat_139925400",
+      "explicit.stat_2665518524",
+      "implicit.stat_139925400",
+      "implicit.stat_2665518524"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_139925400",
+      "enchant.stat_2665518524",
+      "explicit.stat_139925400",
+      "explicit.stat_2665518524",
+      "implicit.stat_139925400",
+      "implicit.stat_2665518524"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_139925400",
@@ -148956,7 +149709,28 @@
     "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A8\u30EC\u30E1\u30F3\u30C4\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A8\u30EC\u30E1\u30F3\u30C4\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3303293173",
+      "enchant.stat_491551762",
+      "implicit.stat_3303293173"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A8\u30EC\u30E1\u30F3\u30C4\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A8\u30EC\u30E1\u30F3\u30C4\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3303293173",
+      "enchant.stat_491551762",
+      "implicit.stat_3303293173"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A8\u30EC\u30E1\u30F3\u30C4\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30A8\u30EC\u30E1\u30F3\u30C4\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3303293173",
@@ -149149,7 +149923,36 @@
     "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30D5\u30A1\u30A4\u30E4\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30D5\u30A1\u30A4\u30E4\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1135152940",
+      "enchant.stat_3003688066",
+      "explicit.stat_1135152940",
+      "explicit.stat_3003688066",
+      "fractured.stat_3003688066",
+      "implicit.stat_1135152940",
+      "implicit.stat_3003688066"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30D5\u30A1\u30A4\u30E4\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30D5\u30A1\u30A4\u30E4\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1135152940",
+      "enchant.stat_3003688066",
+      "explicit.stat_1135152940",
+      "explicit.stat_3003688066",
+      "fractured.stat_3003688066",
+      "implicit.stat_1135152940",
+      "implicit.stat_3003688066"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30D5\u30A1\u30A4\u30E4\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30D5\u30A1\u30A4\u30E4\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1135152940",
@@ -149317,6 +150120,7 @@
   },
   {
     "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1450978702",
@@ -149327,6 +150131,32 @@
       "implicit.stat_3411256933"
     ],
     "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1450978702",
+      "enchant.stat_3411256933",
+      "explicit.stat_1450978702",
+      "explicit.stat_3411256933",
+      "implicit.stat_1450978702",
+      "implicit.stat_3411256933"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1450978702",
+      "enchant.stat_3411256933",
+      "explicit.stat_1450978702",
+      "explicit.stat_3411256933",
+      "implicit.stat_1450978702",
+      "implicit.stat_3411256933"
+    ],
+    "pattern": "^\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30D4\u30E5\u30EA\u30C6\u30A3\u30AA\u30D6\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
@@ -151699,6 +152529,14 @@
     "pattern": "^\u30D5\u30EB\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u6642\u306E\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u6291\u5236\u91CF\\ \\\u002B([-0-9,.]\u002B)%$"
   },
   {
+    "text": "\u30D5\u30EB\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u6642\u306E\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u6291\u5236\u91CF \u002B#%",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1493325653"
+    ],
+    "pattern": "^\u30D5\u30EB\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u6642\u306E\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u6291\u5236\u91CF\\ \\\u002B([-0-9,.]\u002B)%$"
+  },
+  {
     "text": "\u30D5\u30EB\u30A8\u30CA\u30B8\u30FC\u30B7\u30FC\u30EB\u30C9\u3067\u306A\u3044\u6642\u306B\u30A2\u30BF\u30C3\u30AF\u306B\u3088\u308B\u30D2\u30C3\u30C8\u3092\u56DE\u907F\u3059\u308B\u78BA\u7387\u304C#%\u4F4E\u4E0B\u3059\u308B",
     "negate": true,
     "lines": 1,
@@ -152272,6 +153110,14 @@
   },
   {
     "text": "\u30D5\u30EC\u30A4\u30E0\u30B9\u30ED\u30EF\u30FC\u30BF\u30EF\u30FC\u306E\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_4039396512"
+    ],
+    "pattern": "^\u30D5\u30EC\u30A4\u30E0\u30B9\u30ED\u30EF\u30FC\u30BF\u30EF\u30FC\u306E\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D5\u30EC\u30A4\u30E0\u30B9\u30ED\u30EF\u30FC\u30BF\u30EF\u30FC\u306E\u30AD\u30E3\u30B9\u30C8\u30B9\u30D4\u30FC\u30C9\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [
@@ -152672,7 +153518,26 @@
     "pattern": "^\u30D5\u30EC\u30C3\u30B7\u30E5\u30A2\u30F3\u30C9\u30B9\u30C8\u30FC\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D5\u30EC\u30C3\u30B7\u30E5\u30A2\u30F3\u30C9\u30B9\u30C8\u30FC\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_3563089138"
+    ],
+    "pattern": "^\u30D5\u30EC\u30C3\u30B7\u30E5\u30A2\u30F3\u30C9\u30B9\u30C8\u30FC\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D5\u30EC\u30C3\u30B7\u30E5\u30A2\u30F3\u30C9\u30B9\u30C8\u30FC\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_3563089138"
+    ],
+    "pattern": "^\u30D5\u30EC\u30C3\u30B7\u30E5\u30A2\u30F3\u30C9\u30B9\u30C8\u30FC\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D5\u30EC\u30C3\u30B7\u30E5\u30A2\u30F3\u30C9\u30B9\u30C8\u30FC\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1740848995",
@@ -154782,7 +155647,72 @@
     "pattern": "^\u30D6\u30E9\u30C3\u30C9\u30A2\u30F3\u30C9\u30B5\u30F3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D6\u30E9\u30C3\u30C9\u30A2\u30F3\u30C9\u30B5\u30F3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_1761642973",
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
+      "enchant.stat_3444518809",
+      "enchant.stat_3484910620",
+      "enchant.stat_3563089138",
+      "enchant.stat_3817220109",
+      "enchant.stat_3959101898",
+      "enchant.stat_3993865658",
+      "explicit.stat_1761642973",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
+      "explicit.stat_3444518809",
+      "explicit.stat_3484910620",
+      "explicit.stat_3817220109",
+      "explicit.stat_3959101898",
+      "explicit.stat_3993865658",
+      "fractured.stat_2549369799",
+      "fractured.stat_3444518809",
+      "fractured.stat_3993865658",
+      "implicit.stat_2549369799",
+      "implicit.stat_3444518809",
+      "implicit.stat_3993865658"
+    ],
+    "pattern": "^\u30D6\u30E9\u30C3\u30C9\u30A2\u30F3\u30C9\u30B5\u30F3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D6\u30E9\u30C3\u30C9\u30A2\u30F3\u30C9\u30B5\u30F3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1740848995",
+      "enchant.stat_1761642973",
+      "enchant.stat_2549369799",
+      "enchant.stat_2963485753",
+      "enchant.stat_3444518809",
+      "enchant.stat_3484910620",
+      "enchant.stat_3563089138",
+      "enchant.stat_3817220109",
+      "enchant.stat_3959101898",
+      "enchant.stat_3993865658",
+      "explicit.stat_1761642973",
+      "explicit.stat_2549369799",
+      "explicit.stat_2963485753",
+      "explicit.stat_3444518809",
+      "explicit.stat_3484910620",
+      "explicit.stat_3817220109",
+      "explicit.stat_3959101898",
+      "explicit.stat_3993865658",
+      "fractured.stat_2549369799",
+      "fractured.stat_3444518809",
+      "fractured.stat_3993865658",
+      "implicit.stat_2549369799",
+      "implicit.stat_3444518809",
+      "implicit.stat_3993865658"
+    ],
+    "pattern": "^\u30D6\u30E9\u30C3\u30C9\u30A2\u30F3\u30C9\u30B5\u30F3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D6\u30E9\u30C3\u30C9\u30A2\u30F3\u30C9\u30B5\u30F3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "matchedFuzzily": true,
     "lines": 1,
     "tradeIds": [
@@ -157292,7 +158222,34 @@
     "pattern": "^\u30D7\u30E9\u30A4\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D7\u30E9\u30A4\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3484910620",
+      "enchant.stat_3993865658",
+      "explicit.stat_3484910620",
+      "explicit.stat_3993865658",
+      "fractured.stat_3993865658",
+      "implicit.stat_3993865658"
+    ],
+    "pattern": "^\u30D7\u30E9\u30A4\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D7\u30E9\u30A4\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3484910620",
+      "enchant.stat_3993865658",
+      "explicit.stat_3484910620",
+      "explicit.stat_3993865658",
+      "fractured.stat_3993865658",
+      "implicit.stat_3993865658"
+    ],
+    "pattern": "^\u30D7\u30E9\u30A4\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D7\u30E9\u30A4\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3484910620",
@@ -159715,6 +160672,12 @@
   },
   {
     "text": "\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u4ED8\u4E0E\u3057\u305F\u8056\u5225\u306E\u708E\u306F\u30A2\u30BF\u30C3\u30AF\u30D6\u30ED\u30C3\u30AF\u73872%\u3054\u3068\u306B\u5F37\u5EA6\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u4ED8\u4E0E\u3057\u305F\u8056\u5225\u306E\u708E\u306F\u30A2\u30BF\u30C3\u30AF\u30D6\u30ED\u30C3\u30AF\u73872%\u3054\u3068\u306B\u5F37\u5EA6\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u4ED8\u4E0E\u3057\u305F\u8056\u5225\u306E\u708E\u306F\u30A2\u30BF\u30C3\u30AF\u30D6\u30ED\u30C3\u30AF\u73872%\u3054\u3068\u306B\u5F37\u5EA6\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -161592,6 +162555,14 @@
   {
     "text": "\u30D7\u30EC\u30A4\u30E4\u30FC\u30686m\u4EE5\u5185\u306E\u5473\u65B9\u306F\u5143\u7D20\u8010\u6027 \u002B#%",
     "negate": true,
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_319842716"
+    ],
+    "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u30686m\u4EE5\u5185\u306E\u5473\u65B9\u306F\u5143\u7D20\u8010\u6027\\ \\\u002B([-0-9,.]\u002B)%$"
+  },
+  {
+    "text": "\u30D7\u30EC\u30A4\u30E4\u30FC\u30686m\u4EE5\u5185\u306E\u5473\u65B9\u306F\u5143\u7D20\u8010\u6027 \u002B#%",
     "lines": 1,
     "tradeIds": [
       "explicit.stat_319842716"
@@ -164599,6 +165570,12 @@
     "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306E\u30E9\u30A4\u30D5\u304C\u30D7\u30EC\u30A4\u30E4\u30FC\u81EA\u8EAB\u306E\u30E9\u30A4\u30D5\u3088\u308A\u4F4E\u3051\u308C\u3070\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306F\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
   },
   {
+    "text": "\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306E\u30E9\u30A4\u30D5\u304C\u30D7\u30EC\u30A4\u30E4\u30FC\u81EA\u8EAB\u306E\u30E9\u30A4\u30D5\u3088\u308A\u4F4E\u3051\u308C\u3070\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306F\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306E\u30E9\u30A4\u30D5\u304C\u30D7\u30EC\u30A4\u30E4\u30FC\u81EA\u8EAB\u306E\u30E9\u30A4\u30D5\u3088\u308A\u4F4E\u3051\u308C\u3070\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306F\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E([-0-9,.]\u002B)%\u3092\u30E9\u30A4\u30D5\u3068\u3057\u3066\u56DE\u53CE\u3059\u308B$"
+  },
+  {
     "text": "\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306E\u30E9\u30A4\u30D5\u304C\u30D7\u30EC\u30A4\u30E4\u30FC\u81EA\u8EAB\u306E\u30E9\u30A4\u30D5\u3088\u308A\u591A\u3051\u308C\u3070\u30D2\u30C3\u30C8\u304B\u3089\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u306E#%\u3092\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u524D\u306B\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC\u306E\u30E9\u30A4\u30D5\u3067\u53D7\u3051\u308B",
     "lines": 1,
     "tradeIds": [],
@@ -165992,7 +166969,28 @@
     "pattern": "^\u30D7\u30EC\u30B7\u30B8\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D7\u30EC\u30B7\u30B8\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3859865977",
+      "enchant.stat_658622139",
+      "explicit.stat_3859865977"
+    ],
+    "pattern": "^\u30D7\u30EC\u30B7\u30B8\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D7\u30EC\u30B7\u30B8\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3859865977",
+      "enchant.stat_658622139",
+      "explicit.stat_3859865977"
+    ],
+    "pattern": "^\u30D7\u30EC\u30B7\u30B8\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D7\u30EC\u30B7\u30B8\u30E7\u30F3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3859865977",
@@ -166371,7 +167369,26 @@
     "pattern": "^\u30D8\u30A4\u30B9\u30C8\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D8\u30A4\u30B9\u30C8\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_804667127",
+      "enchant.stat_939320550"
+    ],
+    "pattern": "^\u30D8\u30A4\u30B9\u30C8\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D8\u30A4\u30B9\u30C8\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_804667127",
+      "enchant.stat_939320550"
+    ],
+    "pattern": "^\u30D8\u30A4\u30B9\u30C8\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30A4\u30B9\u30C8\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_804667127",
@@ -166602,6 +167619,7 @@
   },
   {
     "text": "\u30D8\u30A4\u30C8\u30EC\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1920370417",
@@ -166612,6 +167630,32 @@
       "implicit.stat_2156140483"
     ],
     "pattern": "^\u30D8\u30A4\u30C8\u30EC\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30A4\u30C8\u30EC\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1920370417",
+      "enchant.stat_2156140483",
+      "explicit.stat_1920370417",
+      "explicit.stat_2156140483",
+      "fractured.stat_2156140483",
+      "implicit.stat_2156140483"
+    ],
+    "pattern": "^\u30D8\u30A4\u30C8\u30EC\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30A4\u30C8\u30EC\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1920370417",
+      "enchant.stat_2156140483",
+      "explicit.stat_1920370417",
+      "explicit.stat_2156140483",
+      "fractured.stat_2156140483",
+      "implicit.stat_2156140483"
+    ],
+    "pattern": "^\u30D8\u30A4\u30C8\u30EC\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30D8\u30A4\u30C8\u30EC\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
@@ -166953,7 +167997,30 @@
     "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3059700363",
+      "enchant.stat_3395872960",
+      "explicit.stat_3059700363",
+      "explicit.stat_3395872960"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3059700363",
+      "enchant.stat_3395872960",
+      "explicit.stat_3059700363",
+      "explicit.stat_3395872960"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30A4\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3059700363",
@@ -167243,7 +168310,30 @@
     "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30B4\u30CB\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30B4\u30CB\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1133703802",
+      "enchant.stat_1284151528",
+      "explicit.stat_1133703802",
+      "explicit.stat_1284151528"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30B4\u30CB\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30B4\u30CB\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1133703802",
+      "enchant.stat_1284151528",
+      "explicit.stat_1133703802",
+      "explicit.stat_1284151528"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30B4\u30CB\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30B4\u30CB\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1133703802",
@@ -167372,7 +168462,30 @@
     "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30C3\u30B7\u30E5\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30C3\u30B7\u30E5\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2500442851",
+      "enchant.stat_3819451758",
+      "explicit.stat_2500442851",
+      "explicit.stat_3819451758"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30C3\u30B7\u30E5\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30C3\u30B7\u30E5\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_2500442851",
+      "enchant.stat_3819451758",
+      "explicit.stat_2500442851",
+      "explicit.stat_3819451758"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30C3\u30B7\u30E5\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30A2\u30C3\u30B7\u30E5\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_2500442851",
@@ -167619,7 +168732,30 @@
     "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30B5\u30F3\u30C0\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30B5\u30F3\u30C0\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3817220109",
+      "enchant.stat_3959101898",
+      "explicit.stat_3817220109",
+      "explicit.stat_3959101898"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30B5\u30F3\u30C0\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30B5\u30F3\u30C0\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3817220109",
+      "enchant.stat_3959101898",
+      "explicit.stat_3817220109",
+      "explicit.stat_3959101898"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30B5\u30F3\u30C0\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30B5\u30F3\u30C0\u30FC\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3817220109",
@@ -167946,7 +169082,30 @@
     "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30D4\u30E5\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30D4\u30E5\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1542765265",
+      "enchant.stat_2189040439",
+      "explicit.stat_1542765265",
+      "explicit.stat_2189040439"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30D4\u30E5\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30D4\u30E5\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1542765265",
+      "enchant.stat_2189040439",
+      "explicit.stat_1542765265",
+      "explicit.stat_2189040439"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30D4\u30E5\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30AA\u30D6\u30D4\u30E5\u30EA\u30C6\u30A3\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1542765265",
@@ -168018,6 +169177,28 @@
       "implicit.stat_895264825"
     ],
     "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u52B9\u679C\u7BC4\u56F2\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u7D99\u7D9A\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
+    "matchedFuzzily": true,
+    "lines": 1,
+    "tradeIds": [
+      "crafted.stat_967627487",
+      "crucible.mod_26817",
+      "crucible.mod_29817",
+      "crucible.mod_39435",
+      "crucible.mod_40471",
+      "crucible.mod_4268",
+      "crucible.mod_44265",
+      "crucible.mod_46628",
+      "crucible.mod_49233",
+      "crucible.mod_52142",
+      "crucible.mod_63889",
+      "explicit.stat_967627487",
+      "fractured.stat_967627487",
+      "implicit.stat_967627487"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u7D99\u7D9A\u30C0\u30E1\u30FC\u30B8\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u7D99\u7D9A\u30C0\u30E1\u30FC\u30B8\u304C#%\u5897\u52A0\u3059\u308B",
@@ -168099,7 +169280,24 @@
     "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3078295401"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_3078295401"
+    ],
+    "pattern": "^\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30D8\u30E9\u30EB\u30C9\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_3078295401"
@@ -168495,7 +169693,26 @@
     "pattern": "^\u30DA\u30C8\u30EA\u30D5\u30A1\u30A4\u30C9\u30D6\u30E9\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30DA\u30C8\u30EA\u30D5\u30A1\u30A4\u30C9\u30D6\u30E9\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1779904215",
+      "enchant.stat_1829483269"
+    ],
+    "pattern": "^\u30DA\u30C8\u30EA\u30D5\u30A1\u30A4\u30C9\u30D6\u30E9\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30DA\u30C8\u30EA\u30D5\u30A1\u30A4\u30C9\u30D6\u30E9\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1779904215",
+      "enchant.stat_1829483269"
+    ],
+    "pattern": "^\u30DA\u30C8\u30EA\u30D5\u30A1\u30A4\u30C9\u30D6\u30E9\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30DA\u30C8\u30EA\u30D5\u30A1\u30A4\u30C9\u30D6\u30E9\u30C3\u30C9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1779904215",
@@ -169714,11 +170931,28 @@
   },
   {
     "text": "\u30DE\u30A4\u30F3\u3092\u6295\u3052\u308B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "explicit.stat_2265342288"
     ],
     "pattern": "^\u30DE\u30A4\u30F3\u3092\u6295\u3052\u308B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30DE\u30A4\u30F3\u3092\u6295\u3052\u308B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2265342288"
+    ],
+    "pattern": "^\u30DE\u30A4\u30F3\u3092\u6295\u3052\u308B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
+    "text": "\u30DE\u30A4\u30F3\u3092\u6295\u3052\u308B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_2265342288"
+    ],
+    "pattern": "^\u30DE\u30A4\u30F3\u3092\u6295\u3052\u308B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
   },
   {
     "text": "\u30DE\u30A4\u30F3\u3092\u6295\u3052\u308B\u30B9\u30AD\u30EB\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
@@ -178353,7 +179587,32 @@
     "pattern": "^\u30DE\u30EC\u30F4\u30A9\u30EC\u30F3\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30DE\u30EC\u30F4\u30A9\u30EC\u30F3\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3266567165",
+      "enchant.stat_3383226338",
+      "explicit.stat_3266567165",
+      "explicit.stat_3383226338",
+      "implicit.stat_3383226338"
+    ],
+    "pattern": "^\u30DE\u30EC\u30F4\u30A9\u30EC\u30F3\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30DE\u30EC\u30F4\u30A9\u30EC\u30F3\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_3266567165",
+      "enchant.stat_3383226338",
+      "explicit.stat_3266567165",
+      "explicit.stat_3383226338",
+      "implicit.stat_3383226338"
+    ],
+    "pattern": "^\u30DE\u30EC\u30F4\u30A9\u30EC\u30F3\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30DE\u30EC\u30F4\u30A9\u30EC\u30F3\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_3266567165",
@@ -185391,6 +186650,14 @@
     "pattern": "^\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u6291\u5236\u3057\u305F\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u304B\u3089\u9632\u3050\u30C0\u30E1\u30FC\u30B8\u304C\\\u002B([-0-9,.]\u002B)%\u3055\u308C\u308B$"
   },
   {
+    "text": "\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u6291\u5236\u3057\u305F\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u304B\u3089\u9632\u3050\u30C0\u30E1\u30FC\u30B8\u304C\u002B#%\u3055\u308C\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "explicit.stat_1260060682"
+    ],
+    "pattern": "^\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u6291\u5236\u3057\u305F\u30B9\u30DA\u30EB\u30C0\u30E1\u30FC\u30B8\u304B\u3089\u9632\u3050\u30C0\u30E1\u30FC\u30B8\u304C\\\u002B([-0-9,.]\u002B)%\u3055\u308C\u308B$"
+  },
+  {
     "text": "\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u5831\u916C\u3092\u6301\u3064\u78BA\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
     "negate": true,
     "lines": 1,
@@ -190181,6 +191448,12 @@
   },
   {
     "text": "\u30E6\u30CB\u30FC\u30AF\u306E\u6575\u306B\u5BFE\u3059\u308B\u5805\u7262\u5316\u3092\u4E0E\u3048\u308B\u30D2\u30C3\u30C8\u304C\u4ED8\u4E0E\u3059\u308B\u5805\u7262\u5316\u306E\u30B9\u30BF\u30C3\u30AF\u6570\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [],
+    "pattern": "^\u30E6\u30CB\u30FC\u30AF\u306E\u6575\u306B\u5BFE\u3059\u308B\u5805\u7262\u5316\u3092\u4E0E\u3048\u308B\u30D2\u30C3\u30C8\u304C\u4ED8\u4E0E\u3059\u308B\u5805\u7262\u5316\u306E\u30B9\u30BF\u30C3\u30AF\u6570\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30E6\u30CB\u30FC\u30AF\u306E\u6575\u306B\u5BFE\u3059\u308B\u5805\u7262\u5316\u3092\u4E0E\u3048\u308B\u30D2\u30C3\u30C8\u304C\u4ED8\u4E0E\u3059\u308B\u5805\u7262\u5316\u306E\u30B9\u30BF\u30C3\u30AF\u6570\u304C#%\u5897\u52A0\u3059\u308B",
     "negate": true,
     "lines": 1,
     "tradeIds": [],
@@ -193283,7 +194556,34 @@
     "pattern": "^\u30E9\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
   },
   {
+    "text": "\u30E9\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u6E1B\u5C11\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1761642973",
+      "enchant.stat_3444518809",
+      "explicit.stat_1761642973",
+      "explicit.stat_3444518809",
+      "fractured.stat_3444518809",
+      "implicit.stat_3444518809"
+    ],
+    "pattern": "^\u30E9\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u6E1B\u5C11\u3059\u308B$"
+  },
+  {
     "text": "\u30E9\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "lines": 1,
+    "tradeIds": [
+      "enchant.stat_1761642973",
+      "enchant.stat_3444518809",
+      "explicit.stat_1761642973",
+      "explicit.stat_3444518809",
+      "fractured.stat_3444518809",
+      "implicit.stat_3444518809"
+    ],
+    "pattern": "^\u30E9\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C([-0-9,.]\u002B)%\u5897\u52A0\u3059\u308B$"
+  },
+  {
+    "text": "\u30E9\u30FC\u30B9\u306E\u30DE\u30CA\u30EA\u30B6\u30FC\u30D6\u52B9\u7387\u304C#%\u5897\u52A0\u3059\u308B",
+    "negate": true,
     "lines": 1,
     "tradeIds": [
       "enchant.stat_1761642973",
