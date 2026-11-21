@@ -1,5 +1,6 @@
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties.Definitions;
 using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Game.Parser.Tests.Poe1.English;
@@ -10,7 +11,7 @@ public class BodyArmourParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseSixLinkUniqueBodyArmor()
+    public async Task ParseSixLinkUniqueBodyArmor()
     {
         var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
@@ -62,6 +63,26 @@ can deny that my work has made quite the splash...""
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Area of Effect", 44);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Area Damage", 47);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "Extra gore");
+
+        var filters = await fixture.GetPropertyFilters(actual);
+        Assert.Equal(15, filters.Count);
+        var index = -1;
+        Assert.IsType<UniqueRarityFilter>(filters[++index]);
+        Assert.IsType<QualityFilter>(filters[++index]);
+        Assert.IsType<EvasionRatingFilter>(filters[++index]);
+        Assert.IsType<EnergyShieldFilter>(filters[++index]);
+        Assert.IsType<ItemLevelFilter>(filters[++index]);
+        Assert.IsType<Poe1SocketCountFilter>(filters[++index]);
+        Assert.IsType<SocketLinkFilter>(filters[++index]);
+        Assert.Equal(6, ((SocketLinkFilter)filters[index]).Value);
+        Assert.IsType<RequiresLevelFilter>(filters[++index]);
+        Assert.IsType<RequiresStrengthFilter>(filters[++index]);
+        Assert.IsType<RequiresDexterityFilter>(filters[++index]);
+        Assert.IsType<RequiresIntelligenceFilter>(filters[++index]);
+        Assert.IsType<CorruptedFilter>(filters[++index]);
+        Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
+        Assert.IsType<FoulbornFilter>(filters[++index]);
+        Assert.IsType<UnidentifiedFilter>(filters[++index]);
     }
 
     [Fact]

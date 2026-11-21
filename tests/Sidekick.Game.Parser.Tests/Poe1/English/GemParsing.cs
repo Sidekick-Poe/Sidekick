@@ -1,5 +1,6 @@
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties.Definitions;
 using Sidekick.Game.Parser.Stats;
 using Xunit;
 namespace Sidekick.Game.Parser.Tests.Poe1.English;
@@ -10,7 +11,7 @@ public class GemParsing(Poe1EnglishFixture fixture)
     private readonly ItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseVaalGem()
+    public async Task ParseVaalGem()
     {
         var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
@@ -61,6 +62,15 @@ Note: ~price 2 chaos
         Assert.Equal(1, actual.Properties.GemLevel);
         Assert.Equal(0, actual.Properties.Quality);
         Assert.True(actual.Properties.Corrupted);
+
+        var filters = await fixture.GetPropertyFilters(actual);
+        Assert.Equal(5, filters.Count);
+        var index = -1;
+        Assert.IsType<QualityFilter>(filters[++index]);
+        Assert.IsType<GemLevelFilter>(filters[++index]);
+        Assert.IsType<CorruptedFilter>(filters[++index]);
+        Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
+        Assert.IsType<ImbuedGemFilter>(filters[++index]);
     }
 
     [Fact]
@@ -308,5 +318,39 @@ Imbued
         Assert.True(actual.Properties.Imbued);
 
         fixture.AssertHasStat(actual, StatCategory.Imbued, "Supported by Level 1 Bloodlust");
+    }
+
+    [Fact]
+    public async Task Enlighten_Filters()
+    {
+        var item = parser.ParseItem(@"Item Class: Support Gems
+Rarity: Gem
+Enlighten Support
+--------
+Exceptional, Support
+Level: 4 (Max)
+Cost & Reservation Multiplier: 88%
+Quality: +20% (augmented)
+--------
+Requirements:
+Level: 60
+Int: 96
+--------
+Supports any skill gem. Once this gem reaches level 2 or above, will apply a cost & reservation multiplier to supported gems. Cannot support skills that don't come from gems.
+--------
+This Gem gains 100% increased Experience
+--------
+This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Skill Gem you wish to augment. Right click to remove from a socket.
+--------
+Corrupted
+");
+
+        var filters = await fixture.GetPropertyFilters(item);
+        Assert.Equal(4, filters.Count);
+        var index = -1;
+        Assert.IsType<QualityFilter>(filters[++index]);
+        Assert.IsType<GemLevelFilter>(filters[++index]);
+        Assert.IsType<CorruptedFilter>(filters[++index]);
+        Assert.IsType<TwiceCorruptedFilter>(filters[++index]);
     }
 }
