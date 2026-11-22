@@ -17,7 +17,7 @@ public class TradeService
 
     public string? ResultError { get; private set; }
 
-    public TradeSearchResult<string>? ItemTradeResult { get; private set; }
+    public TradeSearchResult? ItemTradeResult { get; private set; }
 
     public List<Apis.Poe.Trade.Results.TradeResult> TradeItems { get; private set; } = [];
 

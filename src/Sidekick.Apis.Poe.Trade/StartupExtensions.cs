@@ -11,10 +11,9 @@ public static class StartupExtensions
     {
         services.TryAddTransient<TradeApiHandler>();
 
-        services.AddHttpClient(TradeApiClient.ClientName)
+        services.AddHttpClient(TradeApiHandler.ClientName)
             .AddHttpMessageHandler<TradeApiHandler>();
 
-        services.TryAddTransient<ITradeApiClient, TradeApiClient>();
         services.TryAddSingleton<IItemTradeService, ItemTradeService>();
         services.TryAddSingleton<IAuthenticationService, AuthenticationService>();
 

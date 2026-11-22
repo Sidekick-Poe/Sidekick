@@ -5,6 +5,7 @@ public class ApiItemModifier
 {
     public string? Description { get; set; }
     public string? Hash { get; set; }
+    public string? Domain { get; set; }
 
     [JsonPropertyName("mods")]
     public List<ApiItemModifierDetail> Details { get; set; } = [];
