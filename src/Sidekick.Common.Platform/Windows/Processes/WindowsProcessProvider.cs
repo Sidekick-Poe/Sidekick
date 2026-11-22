@@ -13,9 +13,9 @@ using Sidekick.Common.Platform.Windows.DllImport;
 namespace Sidekick.Common.Platform.Windows.Processes;
 
 [SupportedOSPlatform(PlatformNames.Windows)]
-public class ProcessProvider
+public class WindowsProcessProvider
 (
-    ILogger<ProcessProvider> logger,
+    ILogger<WindowsProcessProvider> logger,
     IApplicationService applicationService,
     DialogProvider dialogProvider,
     IStringLocalizer<PlatformResources> resources,

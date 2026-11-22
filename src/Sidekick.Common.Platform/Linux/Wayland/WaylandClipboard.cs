@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
-
-namespace Sidekick.Common.Platform.Clipboard;
+using Sidekick.Common.Platform.Clipboard;
+namespace Sidekick.Common.Platform.Linux.Wayland;
 
 /// <summary>
 /// The clipboard on KDE Wayland, through wl-clipboard. KDE does not sync a copy made in a native Wayland window (like a
@@ -14,7 +14,7 @@ public class WaylandClipboard(ILogger<WaylandClipboard> logger) : ISystemClipboa
     /// Gets a value indicating whether wl-clipboard is installed. It is optional: without it, Sidekick uses xsel, which
     /// works for every game except one running as a native Wayland window on KDE.
     /// </summary>
-    public static bool IsInstalled => LinuxCommand.IsAvailable("wl-paste") && LinuxCommand.IsAvailable("wl-copy");
+    public static bool IsInstalled => PathHelper.IsAvailable("wl-paste") && PathHelper.IsAvailable("wl-copy");
 
     /// <summary>
     /// How long to wait for wl-paste or wl-copy before giving up, so a stuck command can't block a price check.
@@ -125,3 +125,4 @@ public class WaylandClipboard(ILogger<WaylandClipboard> logger) : ISystemClipboa
         return startInfo;
     }
 }
+

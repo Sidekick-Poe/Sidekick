@@ -4,8 +4,8 @@ using System.Runtime.Versioning;
 namespace Sidekick.Common.Platform.Linux.X11;
 
 /// <summary>
-/// The parts of libX11 and libc used to follow the active window and grab hotkeys. Window, Atom, KeySym and Time are
-/// C longs in Xlib, so they are nint here (Sidekick only runs on 64-bit Linux).
+/// P/Invoke wrappers for libX11 functions used to follow the active window and grab hotkeys. Window, Atom, KeySym and
+/// Time are C longs in Xlib, so they are nint here (Sidekick only runs on 64-bit Linux).
 /// </summary>
 [SupportedOSPlatform(PlatformNames.Linux)]
 internal static class Xlib
@@ -119,31 +119,6 @@ internal static class Xlib
 
     [DllImport(LibX11)]
     public static extern nint XSetErrorHandler(ErrorHandler? handler);
-
-    [DllImport("libc", SetLastError = true)]
-    public static extern int poll([In, Out] PollFd[] fds, nuint nfds, int timeout);
-
-    [DllImport("libc", SetLastError = true)]
-    public static extern int pipe([Out] int[] fds);
-
-    [DllImport("libc", SetLastError = true)]
-    public static extern nint read(int fd, byte[] buffer, nint count);
-
-    [DllImport("libc", SetLastError = true)]
-    public static extern nint write(int fd, byte[] buffer, nint count);
-
-    [DllImport("libc", SetLastError = true)]
-    public static extern int close(int fd);
-
-    public const short POLLIN = 1;
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct PollFd
-    {
-        public int Fd;
-        public short Events;
-        public short Revents;
-    }
 
     [StructLayout(LayoutKind.Sequential)]
     public struct XClassHint

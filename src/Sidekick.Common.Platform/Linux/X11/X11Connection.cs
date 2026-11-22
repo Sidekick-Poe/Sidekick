@@ -12,7 +12,7 @@ public readonly record struct X11Key(nint KeySymbol, uint Modifiers);
 /// <summary>
 /// Sidekick's own connection to the X11 display (XWayland on Wayland sessions), with a thread for its events. It
 /// follows the active window, reads window properties and grabs keys. It knows nothing about the game or hotkeys:
-/// <see cref="ProcessProvider"/> and <see cref="LinuxHotkeyBlocker"/> decide what to do with it.
+/// <see cref="LinuxProcessProvider"/> and <see cref="LinuxHotkeyBlocker"/> decide what to do with it.
 /// </summary>
 [SupportedOSPlatform(PlatformNames.Linux)]
 public sealed class X11Connection(ILogger<X11Connection> logger) : IDisposable

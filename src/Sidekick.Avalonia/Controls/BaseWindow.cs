@@ -6,9 +6,8 @@ using Avalonia.Platform;
 using Avalonia.Styling;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Settings;
-
-using Win32Interop = Sidekick.Avalonia.Utilities.WindowsNativeMethods;
 
 namespace Sidekick.Avalonia.Controls;
 
@@ -65,17 +64,17 @@ public abstract class BaseWindow : Window
 
         var hWnd = platformHandle.Handle;
         var useDarkMode = 1;
-        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaUseImmersiveDarkMode, ref useDarkMode, sizeof(int));
+        Dwmapi.DwmSetWindowAttribute(hWnd, Dwmapi.DwmwaUseImmersiveDarkMode, ref useDarkMode, sizeof(int));
 
-        var borderColor = Win32Interop.DwmwaColorNone;
-        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaBorderColor, ref borderColor, sizeof(int));
+        var borderColor = Dwmapi.DwmwaColorNone;
+        Dwmapi.DwmSetWindowAttribute(hWnd, Dwmapi.DwmwaBorderColor, ref borderColor, sizeof(int));
 
         // Colors are 0x00BBGGRR. Windows 10 ignores them and keeps its dark gray title bar.
         var captionColor = 0x00090A0C;
-        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaCaptionColor, ref captionColor, sizeof(int));
+        Dwmapi.DwmSetWindowAttribute(hWnd, Dwmapi.DwmwaCaptionColor, ref captionColor, sizeof(int));
 
         var textColor = 0x00FFFFFF;
-        Win32Interop.DwmSetWindowAttribute(hWnd, Win32Interop.DwmwaTextColor, ref textColor, sizeof(int));
+        Dwmapi.DwmSetWindowAttribute(hWnd, Dwmapi.DwmwaTextColor, ref textColor, sizeof(int));
     }
 
     public void CloseView()

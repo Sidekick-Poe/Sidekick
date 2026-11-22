@@ -18,7 +18,7 @@ namespace Sidekick.Common.Platform.Linux;
 [SupportedOSPlatform(PlatformNames.Linux)]
 public class LinuxHotkeyBlocker(
     X11Connection x11,
-    ProcessProvider processProvider,
+    LinuxProcessProvider linuxProcessProvider,
     IServiceProvider serviceProvider,
     IOptions<SidekickConfiguration> configuration,
     ILogger<LinuxHotkeyBlocker> logger) : IHotkeyBlocker
@@ -157,7 +157,7 @@ public class LinuxHotkeyBlocker(
 
         // The hotkeys are read each time the game gains focus. Changing them happens in Sidekick's own windows, so the
         // game gains focus again afterwards.
-        processProvider.GameFocusChanged += ApplyGrabs;
+        linuxProcessProvider.GameFocusChanged += ApplyGrabs;
         ApplyGrabs();
         return Task.CompletedTask;
     }
@@ -195,7 +195,7 @@ public class LinuxHotkeyBlocker(
 
     private void ApplyGrabs()
     {
-        if (processProvider.GameWindow == 0 || Volatile.Read(ref suspendCount) > 0)
+        if (linuxProcessProvider.GameWindow == 0 || Volatile.Read(ref suspendCount) > 0)
         {
             x11.ClearGrabs();
             return;

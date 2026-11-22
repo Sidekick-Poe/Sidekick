@@ -70,7 +70,7 @@ public partial class OverlayWindow : BaseWindow
             return;
         }
 
-        var gameWindow = ServiceProvider.GetRequiredService<ProcessProvider>().GameWindow;
+        var gameWindow = ServiceProvider.GetRequiredService<LinuxProcessProvider>().GameWindow;
         ServiceProvider.GetRequiredService<X11Connection>().SetTransientFor(handle.Handle, gameWindow);
     }
 

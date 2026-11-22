@@ -14,6 +14,8 @@ using Sidekick.Common;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Dialogs;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Linux;
+using Sidekick.Common.Platform.Linux.Dependencies;
 using Sidekick.Common.Settings.Localization;
 using Sidekick.Common.Ui.Localization;
 using Sidekick.Common.Ui.Views;
@@ -84,7 +86,8 @@ public partial class App : Application
             tcs.Task.GetAwaiter().GetResult();
 
             // Checked once the services are started, so that the message can be translated.
-            var missingDependencies = LinuxDependencyChecker.GetMissingDependencies().ToList();
+            var checker = ServerAppHost.Application.Services.GetService<LinuxDependencyChecker>();
+            var missingDependencies = checker?.GetMissingDependencies().ToList() ?? new List<IDependency>();
             if (missingDependencies.Count > 0)
             {
                 ShowLinuxDependencies(missingDependencies);
@@ -124,7 +127,7 @@ public partial class App : Application
         }
     }
 
-    private static void ShowLinuxDependencies(IReadOnlyList<LinuxDependency> missingDependencies)
+    private static void ShowLinuxDependencies(IReadOnlyList<IDependency> missingDependencies)
     {
         var services = RequiredServerAppHost.Application.Services;
 

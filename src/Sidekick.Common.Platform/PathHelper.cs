@@ -1,9 +1,10 @@
 namespace Sidekick.Common.Platform;
 
 /// <summary>
-/// Checks for command line programs on Linux.
+/// Helpers for searching the PATH environment variable to find installed command-line tools.
+/// Works on both Windows (semicolon separator) and Linux (colon separator).
 /// </summary>
-public static class LinuxCommand
+public static class PathHelper
 {
     /// <summary>
     /// Gets a value indicating whether the command is installed in one of the folders of the PATH.
@@ -16,7 +17,7 @@ public static class LinuxCommand
             return false;
         }
 
-        foreach (var path in pathEnv.Split(':'))
+        foreach (var path in pathEnv.Split(Path.PathSeparator))
         {
             if (File.Exists(Path.Combine(path, command)))
             {
