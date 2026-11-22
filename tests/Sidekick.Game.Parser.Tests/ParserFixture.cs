@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Game.Parser.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -59,7 +58,6 @@ public abstract class ParserFixture : IAsyncLifetime
             .AddSidekickPoeWikiApi();
 
         // Override the Trade API client in tests to always use local fallback data files
-        TestContext.Services.AddTransient<ITradeApiClient, TestTradeApiClient>();
         TestContext.Services.AddSingleton<ISettingsService, TestSettingsService>();
 
         RegisterServices(TestContext.Services);

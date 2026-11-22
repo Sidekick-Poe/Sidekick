@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Trade;
 
 public interface IItemTradeService
 {
-    Task<TradeSearchResult<string>> Search(Item item, List<TradeFilter>? filters = null);
+    Task<TradeSearchResult> Search(Item item, List<TradeFilter>? filters = null);
 
     Task<List<TradeResult>> GetResults(GameType game, string queryId, List<string> ids);
 

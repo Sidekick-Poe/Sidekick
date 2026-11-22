@@ -34,7 +34,7 @@ public class ItemTradeService
         }
     };
 
-    public async Task<TradeSearchResult<string>> Search(Item item, List<TradeFilter>? filters = null)
+    public async Task<TradeSearchResult> Search(Item item, List<TradeFilter>? filters = null)
     {
         try
         {
@@ -56,15 +56,12 @@ public class ItemTradeService
             var json = JsonSerializer.Serialize(request, JsonSerializerOptions);
 
             using var body = new StringContent(json, Encoding.UTF8, "application/json");
-            using var httpClient = httpClientFactory.CreateClient(TradeApiClient.ClientName);
+            using var httpClient = httpClientFactory.CreateClient(TradeApiHandler.ClientName);
             var response = await httpClient.PostAsync(uri, body);
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, JsonSerializerOptions);
-            if (result != null)
-            {
-                return result;
-            }
+            var result = await JsonSerializer.DeserializeAsync<TradeSearchResult?>(content, JsonSerializerOptions);
+            if (result != null) return result;
         }
         catch (SidekickException)
         {
@@ -114,7 +111,7 @@ public class ItemTradeService
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
-            using var httpClient = httpClientFactory.CreateClient(TradeApiClient.ClientName);
+            using var httpClient = httpClientFactory.CreateClient(TradeApiHandler.ClientName);
             var response = await httpClient.GetAsync(currentGameLanguage.Language.GetTradeApiBaseUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {
