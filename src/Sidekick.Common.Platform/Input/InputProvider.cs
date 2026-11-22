@@ -16,6 +16,7 @@ public class InputProvider
     ILogger<InputProvider> logger,
     IServiceProvider serviceProvider,
     IProcessProvider processProvider,
+    IHotkeyBlocker hotkeyBlocker,
     IOptions<SidekickConfiguration> configuration) : IInputProvider, IDisposable
 {
     private readonly EventSimulator simulator = new();
@@ -662,41 +663,54 @@ public class InputProvider
             Hook.KeyPressed -= OnKeyPressed;
         }
 
-        foreach (var stroke in keyStrokes)
+        // On Linux, the hotkeys are grabbed while the game has focus, which would also catch these simulated keys.
+        var suspended = hotkeyBlocker.Suspend(keyStrokes);
+
+        try
         {
-            logger.LogDebug("[Keyboard] Sending " + stroke);
-
-            var (modifiers, keys) = FetchKeys(stroke);
-
-            if (keys.Count == 0)
+            foreach (var stroke in keyStrokes)
             {
-                continue;
-            }
+                logger.LogDebug("[Keyboard] Sending " + stroke);
 
-            foreach (var modifierKey in modifiers)
-            {
-                simulator.SimulateKeyPress(modifierKey);
-            }
+                var (modifiers, keys) = FetchKeys(stroke);
 
-            foreach (var key in keys)
-            {
-                simulator.SimulateKeyPress(key);
-            }
+                if (keys.Count == 0)
+                {
+                    continue;
+                }
 
-            foreach (var key in keys)
-            {
-                simulator.SimulateKeyRelease(key);
-            }
+                foreach (var modifierKey in modifiers)
+                {
+                    simulator.SimulateKeyPress(modifierKey);
+                }
 
-            foreach (var modifierKey in modifiers)
-            {
-                simulator.SimulateKeyRelease(modifierKey);
+                foreach (var key in keys)
+                {
+                    simulator.SimulateKeyPress(key);
+                }
+
+                foreach (var key in keys)
+                {
+                    simulator.SimulateKeyRelease(key);
+                }
+
+                foreach (var modifierKey in modifiers)
+                {
+                    simulator.SimulateKeyRelease(modifierKey);
+                }
             }
         }
-
-        if (Hook != null)
+        finally
         {
-            Hook.KeyPressed += OnKeyPressed;
+            if (suspended)
+            {
+                hotkeyBlocker.Resume();
+            }
+
+            if (Hook != null)
+            {
+                Hook.KeyPressed += OnKeyPressed;
+            }
         }
 
         return Task.CompletedTask;

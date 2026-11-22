@@ -21,7 +21,7 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
     /// Determines whether the scroll wheel handler is enabled in the settings. Called on every scroll, so it must not wait.
     /// </summary>
     /// <returns>True if the handler is enabled; otherwise, false.</returns>
-    protected abstract bool IsEnabled();
+    public abstract bool IsEnabled();
 
     /// <summary>
     ///     When an event occurs, check if this handler should be executed

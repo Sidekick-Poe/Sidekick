@@ -16,6 +16,16 @@ public class AvaloniaViewLocator(
     private OverlayWindow? OverlayWindow { get; set; }
     private SplashWindow? SplashWindow { get; set; }
 
+    /// <summary>
+    /// Window visibility, kept up to date on the UI thread, so <see cref="IsOpened"/> answers from any thread without
+    /// waiting on the UI thread. Hotkey checks run from the keyboard hook and, on Linux, while the keyboard is frozen.
+    /// </summary>
+    private volatile bool isStandardVisible;
+
+    private volatile bool isOverlayVisible;
+
+    private volatile bool isSplashVisible;
+
     private Application GetApplication() => Application.Current ?? throw new Exception("Application is not initialized.");
 
     public void Open(SidekickViewType type, string url)
@@ -36,17 +46,17 @@ public class AvaloniaViewLocator(
             switch (type)
             {
                 case SidekickViewType.Overlay:
-                    OverlayWindow ??= Track(new OverlayWindow(), window => OverlayWindow = window);
+                    OverlayWindow ??= Track(new OverlayWindow(), window => OverlayWindow = window, visible => isOverlayVisible = visible);
                     OverlayWindow.CancelRelease();
                     await OverlayWindow.OpenView(uri.ToString());
                     break;
                 case SidekickViewType.Splash:
-                    SplashWindow ??= Track(new SplashWindow(), window => SplashWindow = window);
+                    SplashWindow ??= Track(new SplashWindow(), window => SplashWindow = window, visible => isSplashVisible = visible);
                     SplashWindow.CancelRelease();
                     await SplashWindow.OpenView(uri.ToString());
                     break;
                 default:
-                    StandardWindow ??= Track(new StandardWindow(), window => StandardWindow = window);
+                    StandardWindow ??= Track(new StandardWindow(), window => StandardWindow = window, visible => isStandardVisible = visible);
                     StandardWindow.CancelRelease();
                     await StandardWindow.OpenView(uri.ToString());
                     break;
@@ -55,13 +65,21 @@ public class AvaloniaViewLocator(
     }
 
     /// <summary>
-    /// Forgets the window once it is released, so that the next open creates a new one.
+    /// Follows the window's visibility, and forgets the window once it is released, so that the next open creates a new one.
     /// </summary>
-    private TWindow Track<TWindow>(TWindow window, Action<TWindow?> setWindow)
+    private TWindow Track<TWindow>(TWindow window, Action<TWindow?> setWindow, Action<bool> setVisible)
         where TWindow : BaseWindow
     {
+        window.PropertyChanged += (_, e) =>
+        {
+            if (e.Property == Visual.IsVisibleProperty)
+            {
+                setVisible(window.IsVisible);
+            }
+        };
         window.Closed += (_, _) =>
         {
+            setVisible(false);
             setWindow(null);
             ScheduleMemoryTrim();
         };
@@ -129,15 +147,12 @@ public class AvaloniaViewLocator(
 
     public bool IsOpened(SidekickViewType type)
     {
-        return GetApplication().Dispatcher.Invoke(() =>
+        return type switch
         {
-            return type switch
-            {
-                SidekickViewType.Overlay => OverlayWindow?.IsVisible ?? false,
-                SidekickViewType.Splash => SplashWindow?.IsVisible ?? false,
-                _ => StandardWindow?.IsVisible ?? false,
-            };
-        });
+            SidekickViewType.Overlay => isOverlayVisible,
+            SidekickViewType.Splash => isSplashVisible,
+            _ => isStandardVisible,
+        };
     }
 
     public void SetSize(SidekickViewType type, int width, int height, object owner)

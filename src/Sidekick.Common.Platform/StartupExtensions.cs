@@ -1,3 +1,4 @@
+using System.Runtime.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Platform.Clipboard;
@@ -5,6 +6,8 @@ using Sidekick.Common.Platform.GameLogs;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Platform.Linux;
+using Sidekick.Common.Platform.Linux.X11;
+using Sidekick.Common.Platform.Windows;
 
 namespace Sidekick.Common.Platform;
 
@@ -36,10 +39,17 @@ public static class StartupExtensions
         if (OperatingSystem.IsWindows())
         {
             services.AddSidekickInitializableService<IProcessProvider, Windows.Processes.ProcessProvider>();
+            services.AddSidekickInitializableService<IHotkeyBlocker, WindowsHotkeyBlocker>();
         }
         else if (OperatingSystem.IsLinux())
         {
+            services.TryAddSingleton<X11Connection>();
+
+            // The hotkey blocker follows the game focus through the same process provider instance.
+            services.TryAddSingleton<ProcessProvider>();
+            services.TryAddSingleton<IProcessProvider>(GetLinuxProcessProvider);
             services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
+            services.AddSidekickInitializableService<IHotkeyBlocker, LinuxHotkeyBlocker>();
         }
 
         services.AddSidekickInitializableService<IInputProvider, InputProvider>();
@@ -47,4 +57,7 @@ public static class StartupExtensions
 
         return services;
     }
+
+    [SupportedOSPlatform(PlatformNames.Linux)]
+    private static ProcessProvider GetLinuxProcessProvider(IServiceProvider provider) => provider.GetRequiredService<ProcessProvider>();
 }
