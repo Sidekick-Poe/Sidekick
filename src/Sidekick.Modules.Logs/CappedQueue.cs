@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Logs;
+namespace Sidekick.Modules.Logs;
 
 public class CappedQueue<T>
 {

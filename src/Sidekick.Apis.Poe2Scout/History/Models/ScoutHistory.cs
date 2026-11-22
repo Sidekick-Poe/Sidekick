@@ -1,4 +1,4 @@
-﻿using Sidekick.Game.Scout;
+using Sidekick.Game.Scout;
 namespace Sidekick.Apis.Poe2Scout.History.Models;
 
 public class ScoutHistory

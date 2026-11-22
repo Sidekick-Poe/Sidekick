@@ -1,4 +1,4 @@
-﻿using Microsoft.JSInterop;
+using Microsoft.JSInterop;
 using Sidekick.Common.Dialogs;
 
 namespace Sidekick.Web.Services;

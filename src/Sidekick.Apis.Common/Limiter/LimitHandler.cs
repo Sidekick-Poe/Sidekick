@@ -1,4 +1,4 @@
-﻿using System.Threading.RateLimiting;
+using System.Threading.RateLimiting;
 using Microsoft.Extensions.Logging;
 
 namespace Sidekick.Apis.Common.Limiter;

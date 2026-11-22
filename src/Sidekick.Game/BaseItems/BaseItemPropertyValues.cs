@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Game.BaseItems;
+namespace Sidekick.Game.BaseItems;
 
 public class BaseItemPropertyValues
 {

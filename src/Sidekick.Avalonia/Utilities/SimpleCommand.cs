@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 namespace Sidekick.Avalonia.Utilities;
 
 public class SimpleCommand(Action execute) : ICommand

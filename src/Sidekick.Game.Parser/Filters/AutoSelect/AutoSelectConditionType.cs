@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Game.Parser.Filters.AutoSelect;
+namespace Sidekick.Game.Parser.Filters.AutoSelect;
 
 public enum AutoSelectConditionType
 {

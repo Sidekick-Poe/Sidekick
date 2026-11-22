@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Initialization;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Common.Platform.Input;
 

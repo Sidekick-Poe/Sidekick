@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Platform;
+using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Settings.Input;
 

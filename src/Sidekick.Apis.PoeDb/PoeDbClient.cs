@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Browser;
+using Sidekick.Common.Browser;
 using Sidekick.Game;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Providers.Languages;

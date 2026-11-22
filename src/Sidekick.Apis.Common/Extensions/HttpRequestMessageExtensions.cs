@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Common.Extensions;
+namespace Sidekick.Apis.Common.Extensions;
 
 public static class HttpRequestMessageExtensions
 {

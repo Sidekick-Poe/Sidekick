@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Game.Scout;
+namespace Sidekick.Game.Scout;
 
 public class ScoutItem
 {

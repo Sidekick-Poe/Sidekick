@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Platform.Linux.X11;
 using Sidekick.Common.Settings.Input;
+using X11Key = Sidekick.Common.Platform.Linux.X11.X11Key;
 
 namespace Sidekick.Common.Platform.Linux;
 
@@ -33,6 +34,114 @@ public class LinuxHotkeyBlocker(
     private IReadOnlyList<ScrollWheelHandler> scrollWheelHandlers = [];
 
     private int suspendCount;
+
+    /// <summary>
+    /// Key symbols from X11/keysymdef.h for the key names of the input provider.
+    /// </summary>
+    private static readonly Dictionary<string, nint> KeySymbols = CreateKeySymbols();
+
+    private static readonly (string Name, uint Mask)[] ModifierMap =
+    [
+        ("Meta+", Xlib.Mod4Mask),
+        ("Ctrl+", Xlib.ControlMask),
+        ("Shift+", Xlib.ShiftMask),
+        ("Alt+", Xlib.Mod1Mask),
+    ];
+
+    /// <summary>
+    /// Reads a hotkey text. The modifiers come first, in any order, and the key name is the rest, which can itself
+    /// contain a plus sign, like "Ctrl+Num+".
+    /// </summary>
+    /// <returns>False when the key has no X11 key symbol.</returns>
+    private static bool TryParseHotkey(string keybind, out nint keySymbol, out uint modifiers)
+    {
+        modifiers = 0;
+        var rest = keybind;
+        var found = true;
+        while (found)
+        {
+            found = false;
+            foreach (var (name, mask) in ModifierMap)
+            {
+                if (rest.Length > name.Length && rest.StartsWith(name, StringComparison.Ordinal))
+                {
+                    modifiers |= mask;
+                    rest = rest[name.Length..];
+                    found = true;
+                }
+            }
+        }
+
+        return KeySymbols.TryGetValue(rest, out keySymbol);
+    }
+
+    private static Dictionary<string, nint> CreateKeySymbols()
+    {
+        var symbols = new Dictionary<string, nint>(StringComparer.Ordinal)
+        {
+            { "Esc", 0xff1b },
+            { "`", 0x60 },
+            { "-", 0x2d },
+            { "=", 0x3d },
+            { "Backspace", 0xff08 },
+            { "Tab", 0xff09 },
+            { "CapsLock", 0xffe5 },
+            { "[", 0x5b },
+            { "]", 0x5d },
+            { "\\", 0x5c },
+            { ";", 0x3b },
+            { "'", 0x27 },
+            { "Enter", 0xff0d },
+            { ",", 0x2c },
+            { ".", 0x2e },
+            { "/", 0x2f },
+            { "Space", 0x20 },
+            { "<>", 0x3c },
+            { "PrintScreen", 0xff61 },
+            { "ScrollLock", 0xff14 },
+            { "Pause", 0xff13 },
+            { "Cancel", 0xff69 },
+            { "Help", 0xff6a },
+            { "Insert", 0xff63 },
+            { "Delete", 0xffff },
+            { "Home", 0xff50 },
+            { "End", 0xff57 },
+            { "PageUp", 0xff55 },
+            { "PageDown", 0xff56 },
+            { "Up", 0xff52 },
+            { "Left", 0xff51 },
+            { "Right", 0xff53 },
+            { "Down", 0xff54 },
+            { "NumLock", 0xff7f },
+            { "NumClear", 0xff9d },
+            { "Num/", 0xffaf },
+            { "Num*", 0xffaa },
+            { "Num-", 0xffad },
+            { "Num=", 0xffbd },
+            { "Num+", 0xffab },
+            { "NumEnter", 0xff8d },
+            { "Num.", 0xffae },
+            { "Num,", 0xffac },
+        };
+
+        for (var i = 0; i < 26; i++)
+        {
+            symbols.Add(((char)('A' + i)).ToString(), 'a' + i);
+        }
+
+        for (var i = 0; i <= 9; i++)
+        {
+            symbols.Add(i.ToString(), '0' + i);
+            symbols.Add($"Num{i}", 0xffb0 + i);
+        }
+
+        for (var i = 1; i <= 24; i++)
+        {
+            symbols.Add($"F{i}", 0xffbe + i - 1);
+        }
+
+        return symbols;
+    }
 
     /// <inheritdoc/>
     public Task Initialize()
@@ -64,7 +173,7 @@ public class LinuxHotkeyBlocker(
     {
         x11.ReleaseActiveKeyboardGrab();
 
-        var release = keyStrokes.Any(stroke => X11KeySymbols.TryParse(stroke, out var keySymbol, out var modifiers) && x11.IsGrabbed(new X11Key(keySymbol, modifiers)));
+        var release = keyStrokes.Any(stroke => TryParseHotkey(stroke, out var keySymbol, out var modifiers) && x11.IsGrabbed(new X11Key(keySymbol, modifiers)));
         if (!release)
         {
             return false;
@@ -98,7 +207,7 @@ public class LinuxHotkeyBlocker(
         var keys = new Dictionary<X11Key, List<string>>();
         foreach (var keybind in keybindHandlers.SelectMany(handler => handler.Keybinds).OfType<string>().Distinct())
         {
-            if (!X11KeySymbols.TryParse(keybind, out var keySymbol, out var modifiers))
+            if (!TryParseHotkey(keybind, out var keySymbol, out var modifiers))
             {
                 logger.LogDebug("[HotkeyBlocker] No X11 key for the hotkey {Keybind}.", keybind);
                 continue;

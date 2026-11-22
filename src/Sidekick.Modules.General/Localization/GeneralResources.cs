@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.General.Localization;
+namespace Sidekick.Modules.General.Localization;
 
 public class GeneralResources
 {

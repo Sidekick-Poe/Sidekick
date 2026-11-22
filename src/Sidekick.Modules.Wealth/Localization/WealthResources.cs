@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Wealth.Localization;
+namespace Sidekick.Modules.Wealth.Localization;
 
 public class WealthResources
 {

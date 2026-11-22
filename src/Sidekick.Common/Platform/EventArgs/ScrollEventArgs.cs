@@ -1,4 +1,4 @@
-﻿
+
 namespace Sidekick.Common.Platform.EventArgs;
 
 public class ScrollEventArgs

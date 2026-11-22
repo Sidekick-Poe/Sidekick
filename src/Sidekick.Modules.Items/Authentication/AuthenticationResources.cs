@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Items.Authentication;
+namespace Sidekick.Modules.Items.Authentication;
 
 public class AuthenticationResources
 {
