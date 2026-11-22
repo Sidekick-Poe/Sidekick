@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Game.Texts;
+namespace Sidekick.Game.Texts;
 
 public class GameText
 {

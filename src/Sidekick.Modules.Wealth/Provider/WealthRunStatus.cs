@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Wealth.Provider;
+namespace Sidekick.Modules.Wealth.Provider;
 
 public enum WealthRunStatus
 {

@@ -1,4 +1,4 @@
-﻿using ApexCharts;
+using ApexCharts;
 
 namespace Sidekick.Modules.Wealth.Graphs;
 

@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Wealth.Graphs;
+namespace Sidekick.Modules.Wealth.Graphs;
 
 public class DataPoint
 {

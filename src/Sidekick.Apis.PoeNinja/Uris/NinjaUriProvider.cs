@@ -1,4 +1,4 @@
-﻿using Sidekick.Apis.PoeNinja.Clients;
+using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Uris.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;

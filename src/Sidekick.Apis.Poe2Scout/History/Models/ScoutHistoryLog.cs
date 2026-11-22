@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Poe2Scout.History.Models;
+namespace Sidekick.Apis.Poe2Scout.History.Models;
 
 public class ScoutHistoryLog
 {

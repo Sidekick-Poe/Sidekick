@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Platform;
+namespace Sidekick.Common.Platform.Linux;
 
 /// <summary>
 /// Checks for command line programs on Linux.

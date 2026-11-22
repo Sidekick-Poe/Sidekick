@@ -1,4 +1,4 @@
-﻿using Sidekick.Game;
+using Sidekick.Game;
 using Sidekick.Game.Parser.Items;
 using Sidekick.Game.Providers;
 namespace Sidekick.Apis.Poe2Scout.Urls;

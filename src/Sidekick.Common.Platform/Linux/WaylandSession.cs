@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Platform;
+namespace Sidekick.Common.Platform.Linux;
 
 /// <summary>
 /// Detects a Wayland session on Linux and its desktop. KDE does not sync copies made in native Wayland windows (like a
@@ -37,3 +37,4 @@ public static class WaylandSession
         IsKde = IsActive && desktops.Contains("KDE", StringComparer.OrdinalIgnoreCase);
     }
 }
+

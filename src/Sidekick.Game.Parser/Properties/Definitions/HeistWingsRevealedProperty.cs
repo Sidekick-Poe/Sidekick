@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Sidekick.Game.Enums;
 using Sidekick.Game.Parser.Filters.AutoSelect;
 using Sidekick.Game.Parser.Filters.Types;

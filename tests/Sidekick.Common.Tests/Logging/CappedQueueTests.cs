@@ -1,4 +1,4 @@
-﻿using Sidekick.Modules.Logs;
+using Sidekick.Modules.Logs;
 using Xunit;
 
 namespace Sidekick.Common.Tests.Logging;

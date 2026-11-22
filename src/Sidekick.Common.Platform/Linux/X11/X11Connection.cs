@@ -134,7 +134,7 @@ public sealed class X11Connection(ILogger<X11Connection> logger) : IDisposable
                 return;
             }
 
-            if (Xlib.pipe(wakePipe) != 0)
+            if (Libc.pipe(wakePipe) != 0)
             {
                 logger.LogWarning("[X11] Could not create the wake pipe.");
                 Xlib.XCloseDisplay(display);
@@ -368,17 +368,17 @@ public sealed class X11Connection(ILogger<X11Connection> logger) : IDisposable
 
     private void Run()
     {
-        var fds = new Xlib.PollFd[]
+        var fds = new Libc.PollFd[]
         {
             new()
             {
                 Fd = Xlib.XConnectionNumber(display),
-                Events = Xlib.POLLIN,
+                Events = Libc.POLLIN,
             },
             new()
             {
                 Fd = wakePipe[0],
-                Events = Xlib.POLLIN,
+                Events = Libc.POLLIN,
             },
         };
         var wakeBuffer = new byte[64];
@@ -412,10 +412,10 @@ public sealed class X11Connection(ILogger<X11Connection> logger) : IDisposable
 
                 fds[0].Revents = 0;
                 fds[1].Revents = 0;
-                Xlib.poll(fds, 2, -1);
-                if ((fds[1].Revents & Xlib.POLLIN) != 0)
+                Libc.poll(fds, 2, -1);
+                if ((fds[1].Revents & Libc.POLLIN) != 0)
                 {
-                    Xlib.read(wakePipe[0], wakeBuffer, wakeBuffer.Length);
+                    Libc.read(wakePipe[0], wakeBuffer, wakeBuffer.Length);
                 }
             }
         }
@@ -590,7 +590,7 @@ public sealed class X11Connection(ILogger<X11Connection> logger) : IDisposable
         {
             if (wakePipe[1] >= 0 && !loopStopped)
             {
-                Xlib.write(wakePipe[1], [1], 1);
+                Libc.write(wakePipe[1], [1], 1);
             }
         }
     }
@@ -661,7 +661,7 @@ public sealed class X11Connection(ILogger<X11Connection> logger) : IDisposable
 
             foreach (var fd in wakePipe.Where(fd => fd >= 0))
             {
-                Xlib.close(fd);
+                Libc.close(fd);
             }
 
             wakePipe[0] = -1;

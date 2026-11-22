@@ -1,4 +1,4 @@
-﻿using Serilog;
+using Serilog;
 using Serilog.Events;
 using Sidekick.Common;
 namespace Sidekick.Modules.Logs;

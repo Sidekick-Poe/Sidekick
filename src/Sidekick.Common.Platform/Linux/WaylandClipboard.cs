@@ -1,7 +1,8 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Platform.Clipboard;
 
-namespace Sidekick.Common.Platform.Clipboard;
+namespace Sidekick.Common.Platform.Linux;
 
 /// <summary>
 /// The clipboard on KDE Wayland, through wl-clipboard. KDE does not sync a copy made in a native Wayland window (like a
@@ -125,3 +126,4 @@ public class WaylandClipboard(ILogger<WaylandClipboard> logger) : ISystemClipboa
         return startInfo;
     }
 }
+

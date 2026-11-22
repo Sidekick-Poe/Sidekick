@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Poe.Account.Authentication;
+namespace Sidekick.Apis.Poe.Account.Authentication;
 
 public static class AuthenticationConfig
 {
