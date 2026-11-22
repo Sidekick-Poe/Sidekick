@@ -92,7 +92,7 @@ Note: ~b/o 280 divine
         Assert.Equal("The Squire", actual.TradeItem?.Name);
         Assert.Equal("Elegant Round Shield", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Foulborn);
-        actual.AssertHasNinjaStash("foulborn-the-squire-gem-level-no-requirements-elegant-round-shield");
+        actual.AssertHasNinjaStash("foulborn-the-squire-gem-level-elegant-round-shield");
     }
 
     [Fact]

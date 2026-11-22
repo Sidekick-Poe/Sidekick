@@ -621,7 +621,7 @@ Corrupted
         Assert.Null(actual.TradeItem?.Name);
         Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
-        actual.AssertHasNinjaStash("map-tier-16-t0");
+        actual.AssertHasNinjaStash("map-tier-16-t0-gen-24");
     }
 
     [Fact]
@@ -665,7 +665,7 @@ Modifiable only with Chaos Orbs, Vaal Orbs, Delirium Orbs and Chisels
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
         Assert.Equal("Nightmare Map", actual.TradeItem?.Type);
-        actual.AssertHasNinjaStash("nightmare-map-t0");
+        actual.AssertHasNinjaStash("nightmare-map-t0-gen-24");
     }
 
     [Fact]
@@ -699,7 +699,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.False(actual.Properties.Blighted);
         Assert.True(actual.Properties.BlightRavaged);
         Assert.Equal(16, actual.Properties.MapTier);
-        actual.AssertHasNinjaStash("blight-ravaged-map-tier-16-t0");
+        actual.AssertHasNinjaStash("blight-ravaged-map-tier-16-t0-gen-24");
     }
 
     [Fact]
@@ -735,7 +735,7 @@ Travel to a Map by using this in a personal Map Device. Maps can only be used on
         Assert.Null(actual.TradeItem?.Name);
         Assert.Equal("Map", actual.TradeItem?.Type);
         Assert.Equal(16, actual.Properties.MapTier);
-        actual.AssertHasNinjaStash("drox-map-tier-16-t0");
+        actual.AssertHasNinjaStash("drox-map-tier-16-t0-gen-24");
     }
 
     [Fact]
@@ -775,7 +775,7 @@ Corrupted
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Null(actual.TradeItem?.Name);
         Assert.Equal("Shaper Guardian Map", actual.TradeItem?.Type);
-        actual.AssertHasNinjaStash("shaper-guardian-map-t0");
+        actual.AssertHasNinjaStash("shaper-guardian-map-t0-gen-24");
     }
 
     [Fact]
