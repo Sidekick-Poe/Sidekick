@@ -60,4 +60,147 @@ Note: ~b/o 2 divine
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to Fire Resistance", 29);
         fixture.AssertHasStat(actual, StatCategory.Explicit, "#% to Chaos Resistance", 13);
     }
+
+    [Fact]
+    public void LumberingTalismanofConsumption()
+    {
+        var actual = parser.ParseItem(@"Item Class: Talismans
+Rarity: Magic
+Lumbering Talisman of Consumption
+--------
+Physical Damage: 71-107
+Critical Hit Chance: 5.00%
+Attacks per Second: 1.10
+--------
+Requires: Level 52, 60 Str, 43 Int
+--------
+Item Level: 77
+--------
+Gain 19 Mana per enemy killed
+");
+
+        Assert.Equal(ItemClass.Talisman, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Lumbering Talisman", actual.TradeItem?.Type);
+        Assert.Null(actual.Name);
+
+        Assert.Equal(77, actual.Properties.ItemLevel);
+
+        Assert.Equal(71, actual.Properties.PhysicalDamage?.Min);
+        Assert.Equal(107, actual.Properties.PhysicalDamage?.Max);
+        Assert.Equal(5, actual.Properties.CriticalHitChance);
+        Assert.Equal(1.1, actual.Properties.AttacksPerSecond);
+
+        Assert.Equal(0, actual.Properties.RequiresDexterity);
+        Assert.Equal(43, actual.Properties.RequiresIntelligence);
+        Assert.Equal(60, actual.Properties.RequiresStrength);
+        Assert.Equal(52, actual.Properties.RequiresLevel);
+    }
+
+    [Fact]
+    public async Task CorruptedHeadhunter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Belts
+Rarity: Unique
+Headhunter
+Heavy Belt
+--------
+Requires: Level 50
+--------
+Item Level: 82
+--------
++25% to Lightning Resistance (enchant)
+--------
+{ Implicit Modifier }
+23(20-30)% increased Stun Threshold
+{ Implicit Modifier — Charm }
+Has 2(1-3) Charm Slots
+--------
+{ Unique Modifier — Attribute }
++37(20-40) to Strength
+{ Unique Modifier — Attribute }
++25(20-40) to Dexterity
+{ Unique Modifier — Life }
++60(40-60) to maximum Life
+{ Unique Modifier }
+When you kill a Rare monster, you gain its Modifiers for 60 seconds
+--------
+""A man's soul rules from a cavern of bone, learns and
+judges through flesh-born windows. The heart is meat.
+The head is where the Man is.""
+Lavianga, Advisor to Kaom
+--------
+Corrupted
+--------
+Note: ~b/o 119 divine
+");
+
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.True(actual.Properties.Corrupted);
+        Assert.False(actual.Properties.TwiceCorrupted);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "#% to Lightning Resistance", 25);
+
+        var filters = await fixture.GetPropertyFilters(actual);
+        Assert.True(Assert.Single(filters.OfType<Sidekick.Game.Parser.Properties.Definitions.CorruptedFilter>()).Checked);
+        var twiceCorrupted = Assert.Single(filters.OfType<Sidekick.Game.Parser.Properties.Definitions.TwiceCorruptedFilter>());
+        Assert.Null(twiceCorrupted.Checked);
+    }
+
+    [Fact]
+    public async Task TwiceCorruptedHeadhunter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Belts
+Rarity: Unique
+Headhunter
+Heavy Belt
+--------
+Requires: Level 50
+--------
+Item Level: 82
+--------
++25% to Lightning Resistance (enchant)
+--------
+{ Implicit Modifier }
+23(20-30)% increased Stun Threshold
+{ Implicit Modifier — Charm }
+Has 2(1-3) Charm Slots
+--------
+{ Unique Modifier — Attribute }
++37(20-40) to Strength
+{ Unique Modifier — Attribute }
++25(20-40) to Dexterity
+{ Unique Modifier — Life }
++60(40-60) to maximum Life
+{ Unique Modifier }
+When you kill a Rare monster, you gain its Modifiers for 60 seconds
+--------
+""A man's soul rules from a cavern of bone, learns and
+judges through flesh-born windows. The heart is meat.
+The head is where the Man is.""
+Lavianga, Advisor to Kaom
+--------
+Twice Corrupted
+--------
+Note: ~b/o 119 divine
+");
+
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.False(actual.Properties.Corrupted);
+        Assert.True(actual.Properties.TwiceCorrupted);
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "#% to Lightning Resistance", 25);
+
+        var filters = await fixture.GetPropertyFilters(actual);
+        var corrupted = Assert.Single(filters.OfType<Sidekick.Game.Parser.Properties.Definitions.CorruptedFilter>());
+        Assert.True(corrupted.Checked);
+        var twiceCorrupted = Assert.Single(filters.OfType<Sidekick.Game.Parser.Properties.Definitions.TwiceCorruptedFilter>());
+        Assert.Null(twiceCorrupted.Checked);
+        Assert.Equal("Twice Corrupted", twiceCorrupted.Text);
+
+        var query = new Sidekick.Game.Parser.Trade.Requests.Query();
+        corrupted.PrepareTradeRequest(query, actual);
+        twiceCorrupted.PrepareTradeRequest(query, actual);
+        var miscFilters = query.Filters.GetOrCreateMiscFilters().Filters;
+        Assert.Equal("true", miscFilters.Corrupted?.Option);
+        Assert.Null(miscFilters.TwiceCorrupted?.Option);
+    }
 }

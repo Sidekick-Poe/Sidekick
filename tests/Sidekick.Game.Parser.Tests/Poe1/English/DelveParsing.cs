@@ -55,24 +55,4 @@ Note: ~price 4 chaos
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Powerful Chaotic Resonator", actual.TradeItem?.Type);
     }
-
-    [Fact]
-    public void OpulentFossil()
-    {
-        var actual = parser.ParseItem(@"Item Class: Stackable Currency
-Rarity: Currency
-Opulent Fossil
---------
-Stack Size: 1/20
---------
-More Drop modifiers
-No Tagless modifiers
---------
-Place in a Resonator to influence item crafting.
-");
-
-        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
-        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Opulent Fossil", actual.TradeItem?.Type);
-    }
 }

@@ -428,42 +428,6 @@ Note: ~price 1 mirror");
     }
 
     [Fact]
-    public void LumberingTalismanofConsumption()
-    {
-        var actual = parser.ParseItem(@"Item Class: Talismans
-Rarity: Magic
-Lumbering Talisman of Consumption
---------
-Physical Damage: 71-107
-Critical Hit Chance: 5.00%
-Attacks per Second: 1.10
---------
-Requires: Level 52, 60 Str, 43 Int
---------
-Item Level: 77
---------
-Gain 19 Mana per enemy killed
-");
-
-        Assert.Equal(ItemClass.Talisman, actual.ItemClass.Type);
-        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Lumbering Talisman", actual.TradeItem?.Type);
-        Assert.Null(actual.Name);
-
-        Assert.Equal(77, actual.Properties.ItemLevel);
-
-        Assert.Equal(71, actual.Properties.PhysicalDamage?.Min);
-        Assert.Equal(107, actual.Properties.PhysicalDamage?.Max);
-        Assert.Equal(5, actual.Properties.CriticalHitChance);
-        Assert.Equal(1.1, actual.Properties.AttacksPerSecond);
-
-        Assert.Equal(0, actual.Properties.RequiresDexterity);
-        Assert.Equal(43, actual.Properties.RequiresIntelligence);
-        Assert.Equal(60, actual.Properties.RequiresStrength);
-        Assert.Equal(52, actual.Properties.RequiresLevel);
-    }
-
-    [Fact]
     public void GloomCore()
     {
         var actual = parser.ParseItem(

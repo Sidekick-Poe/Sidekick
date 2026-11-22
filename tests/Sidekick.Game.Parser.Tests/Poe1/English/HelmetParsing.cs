@@ -201,4 +201,36 @@ How it chokes the heart. Withers the soul. Judge me, and you judge yourself.""
                           .SelectMany(x => x.TradeIds!));
         Assert.False(stat.HasValues);
     }
+
+    [Fact]
+    public void CorruptionCrown()
+    {
+        var actual = parser.ParseItem(@"Item Class: Helmets
+Rarity: Rare
+Corruption Crown
+Regicide Mask
+--------
+Evasion Rating: 234 (augmented)
+Energy Shield: 57 (augmented)
+--------
+Requirements:
+Level: 63
+Dex: 58
+Int: 58
+--------
+Sockets: G
+--------
+Item Level: 83
+--------
+Split Arrow fires 2 additional Projectiles (enchant)
+--------
++10 to Dexterity
++83 to Evasion Rating
++26 to maximum Energy Shield
+14% increased Rarity of Items found
+27% increased Stun and Block Recovery
+");
+
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "Split Arrow fires an additional Projectile", 2);
+    }
 }

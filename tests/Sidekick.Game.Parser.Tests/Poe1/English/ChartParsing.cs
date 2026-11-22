@@ -4,7 +4,7 @@ using Xunit;
 namespace Sidekick.Game.Parser.Tests.Poe1.English;
 
 [Collection(Collections.Poe1EnglishFixture)]
-public class AllflameParsing(Poe1EnglishFixture fixture)
+public class ChartParsing(Poe1EnglishFixture fixture)
 {
     private readonly ItemParser parser = fixture.Parser;
 

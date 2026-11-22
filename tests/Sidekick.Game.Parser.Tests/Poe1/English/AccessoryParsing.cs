@@ -1,6 +1,8 @@
 using Sidekick.Game.ItemClasses;
 using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties.Definitions;
 using Sidekick.Game.Parser.Stats;
+using Sidekick.Game.Parser.Trade.Requests;
 using Xunit;
 namespace Sidekick.Game.Parser.Tests.Poe1.English;
 
@@ -517,5 +519,48 @@ made him drink the enemy's blood. He melted from the inside out.""
         Assert.Equal("Lapis Amulet", actual.TradeItem?.Type);
         Assert.True(actual.Properties.Foulborn);
         actual.AssertHasNinjaStash("foulborn-khatals-weeping-life-flask-charge-lapis-amulet");
+    }
+
+    [Fact]
+    public async Task TwiceCorruptedRing()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Rare
+Brood Circle
+Ruby Ring
+--------
+Requirements:
+Level: 36
+--------
+Item Level: 76
+--------
+Anger has 18% increased Aura Effect (implicit)
+--------
++16 to all Attributes
++31 to Intelligence
+Adds 8 to 13 Physical Damage to Attacks
+31% increased Mana Regeneration Rate
+--------
+Twice Corrupted
+");
+
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.False(actual.Properties.Corrupted);
+        Assert.True(actual.Properties.TwiceCorrupted);
+        Assert.Equal(5, actual.Stats.Count);
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Anger has #% increased Aura Effect", 18);
+
+        var filters = await fixture.GetPropertyFilters(actual);
+        var corrupted = Assert.Single(filters.OfType<CorruptedFilter>());
+        Assert.True(corrupted.Checked);
+        var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
+        Assert.Null(twiceCorrupted.Checked);
+
+        var query = new Query();
+        corrupted.PrepareTradeRequest(query, actual);
+        twiceCorrupted.PrepareTradeRequest(query, actual);
+        var miscFilters = query.Filters.GetOrCreateMiscFilters().Filters;
+        Assert.Equal("true", miscFilters.Corrupted?.Option);
+        Assert.Null(miscFilters.TwiceCorrupted?.Option);
     }
 }

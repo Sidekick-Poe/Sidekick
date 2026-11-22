@@ -115,26 +115,6 @@ Can be used as part of Allflame Crafting aboard The Sovereign.
     }
 
     [Fact]
-    public void UltimatumThread()
-    {
-        var actual = parser.ParseItem(@"Item Class: Map Fragments
-Rarity: Normal
-Ultimatum Thread
---------
-Stack Size: 34/100
---------
-Threads an Ultimatum Encounter into an Area
---------
-Can be used in a personal Map Device to add content to a Map.
-");
-
-        Assert.Equal(ItemClass.MapFragments, actual.ItemClass.Type);
-        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Ultimatum Thread", actual.TradeItem?.Type);
-        actual.AssertHasNinjaExchange("ultimatum-thread");
-    }
-
-    [Fact]
     public void SplinterOfTul()
     {
         var actual = parser.ParseItem(@"Item Class: Stackable Currency
@@ -153,27 +133,246 @@ Shift click to unstack.
     }
 
     [Fact]
-    public void ProvisioningWombgift()
+    public void OpulentFossil()
     {
-        var actual = parser.ParseItem(@"Item Class: Wombgifts
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
-Provisioning Wombgift
+Opulent Fossil
 --------
-Item Level: 83
-Requires 1239 Hiveblood
+Stack Size: 1/20
 --------
-Can grow into an Armour or Jewellery item on the Genesis Tree
+More Drop modifiers
+No Tagless modifiers
 --------
-Place this item into an allocated equipment item womb on the Genesis Tree. Right click to retrieve from the Genesis Tree.
+Place in a Resonator to influence item crafting.
 ");
 
-        Assert.Equal(ItemClass.Wombgift, actual.ItemClass.Type);
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Provisioning Wombgift", actual.TradeItem?.Type);
+        Assert.Equal("Opulent Fossil", actual.TradeItem?.Type);
+    }
 
-        Assert.Equal(83, actual.Properties.ItemLevel);
-        Assert.True(actual.InvariantDefinition?.SupportsTrade);
+    [Fact]
+    public void WeepingEssenceofAnger()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Weeping Essence of Anger
+--------
+Stack Size: 5/9
+--------
+Upgrades a normal item to rare with one guaranteed property
+Properties restricted to level 60 and below
 
-        actual.AssertHasNinjaStash("provisioning-wombgift-75");
+Two Handed Melee Weapon: Adds (31-41) to (61-72) Fire Damage
+Other Weapon: Adds (17-22) to (33-39) Fire Damage
+Armour: (18-23)% to Fire Resistance
+Quiver: (18-23)% to Fire Resistance
+Belt: (18-23)% to Fire Resistance
+Other Jewellery: (15-18)% increased Fire Damage
+--------
+Right click this item then left click a normal item to apply it.
+Shift click to unstack.
+--------
+Note: ~price 1 fusing
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Weeping Essence of Anger", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void RitualSplinter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Ritual Splinter
+--------
+Stack Size: 17/100
+--------
+Combine 100 Splinters to create a Ritual Vessel.
+Shift click to unstack.
+--------
+Note: ~price 1 alch
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Ritual Splinter", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void RitualVessel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Ritual Vessel
+--------
+Stack Size: 1/10
+--------
+Stores the monsters slain for the first time from a completed Ritual Altar for future use
+--------
+Right-click this item then left-click a Ritual Altar to store the monsters from the completed Ritual in this item. Cannot be used on a Ritual in a map opened with a Blood-Filled Vessel.
+--------
+Note: ~price 8 chaos
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Ritual Vessel", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void NoxiousCatalyst()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Noxious Catalyst
+--------
+Stack Size: 1/10
+--------
+Adds quality that enhances Physical and Chaos Damage modifiers on a ring, amulet or belt
+Replaces other quality types
+--------
+Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Noxious Catalyst", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void Shadowchew()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Rare
+Shadowchew
+Farric Flame Hellion Alpha
+--------
+Genus: Hellions
+Group: Felines
+Family: The Wilds
+--------
+Item Level: 82
+--------
+Burning Ground on Death
+Hasted
+Fertile Presence
+Aspect of the Hellion
+--------
+Right-click to add this to your bestiary.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Farric Flame Hellion Alpha", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void SaqawalFirstoftheSky()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Unique
+Saqawal, First of the Sky
+--------
+Genus: Rhexes
+Group: Avians
+Family: The Sands
+--------
+Item Level: 70
+--------
+Cannot be fully Slowed
+--------
+Right-click to add this to your bestiary.");
+
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Saqawal, First of the Sky", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+    }
+
+    [Fact]
+    public void Duskkiller()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Rare
+Duskkiller
+Farric Chieftain
+--------
+Genus: Ape Chieftains
+Group: Primates
+Family: The Wilds
+--------
+Item Level: 81
+--------
+Fertile Presence
+Farric Presence
+Allies Deal Substantial Extra Physical Damage
+Armoured
+Leeches Life
+Summons Apes from Trees
+--------
+Right-click to add this to your bestiary.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Farric Chieftain", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void Hairyjoint()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Rare
+Hairyjoint
+Vivid Vulture
+--------
+Genus: Vultures
+Group: Avians
+Family: The Sands
+--------
+Item Level: 83
+--------
+Saqawine Presence
+Crimson Flock
+Raven Caller
+Heals Allies and Suppresses Foe Recovery
+Temporarily Revives
+Hasted
+Cannot be Stunned
+10% chance not to be consumed when sacrificed at the Blood Altar
+--------
+Right-click to add this to your bestiary.
+--------
+Note: ~b/o 450 chaos
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Vivid Vulture", actual.TradeItem?.Type);
+        actual.AssertHasNinjaStash("vivid-vulture");
+    }
+
+    [Fact]
+    public void SimulacrumSplinter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
+Rarity: Currency
+Simulacrum Splinter
+--------
+Stack Size: 40/300
+--------
+Combine 300 Splinters to create a Simulacrum.
+Shift click to unstack.
+--------
+Note: ~price .5 chaos
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Simulacrum Splinter", actual.TradeItem?.Type);
     }
 }
