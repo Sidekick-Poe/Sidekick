@@ -1,0 +1,206 @@
+using Bunit;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sidekick.Apis.Common;
+using Sidekick.Game.Parser.Tests.Mocks;
+using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Clients;
+using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoeWiki;
+using Sidekick.Common;
+using Sidekick.Common.Database;
+using Sidekick.Common.Initialization;
+using Sidekick.Common.Settings;
+using Sidekick.Game.Parser.Filters.AutoSelect;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties;
+using Sidekick.Game.Parser.Stats;
+using Sidekick.Game.Providers;
+using Sidekick.Game.Providers.Languages;
+using Xunit;
+using TradeFilter=Sidekick.Game.Parser.Filters.Types.TradeFilter;
+
+namespace Sidekick.Game.Parser.Tests;
+
+public abstract class ParserFixture : IAsyncLifetime
+{
+    protected abstract GameType GameType { get; }
+    protected abstract string Language { get; }
+
+    private Task? initializationTask;
+
+    public ItemParser Parser { get; private set; } = null!;
+    public ICurrentGameLanguage CurrentGameLanguage { get; private set; } = null!;
+    public TradeFilterProvider TradeFilterProvider { get; private set; } = null!;
+    public PropertyParser PropertyParser { get; private set; } = null!;
+    public ISettingsService SettingsService { get; private set; } = null!;
+    public StatParser StatParser { get; private set; } = null!;
+    protected TestContext TestContext { get; set; } = null!;
+
+    public virtual async Task InitializeAsync()
+    {
+        TestContext = new TestContext();
+        TestContext.Services.AddLocalization();
+
+        TestContext.Services
+            // Building blocks
+            .AddSidekickCommon(SidekickApplicationType.Test)
+            .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickCommonSettings()
+
+            .AddSidekickGameParser()
+            .AddSidekickGameProviders()
+
+            // Apis
+            .AddSidekickCommonApi()
+            .AddSidekickPoeTradeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoeWikiApi();
+
+        // Override the Trade API client in tests to always use local fallback data files
+        TestContext.Services.AddTransient<ITradeApiClient, TestTradeApiClient>();
+        TestContext.Services.AddSingleton<ISettingsService, TestSettingsService>();
+
+        RegisterServices(TestContext.Services);
+
+        SettingsService = TestContext.Services.GetRequiredService<ISettingsService>();
+        await SettingsService.SetAsync(SettingKeys.LanguageParser, Language);
+        await SettingsService.SetAsync(SettingKeys.LanguageUi, Language);
+        await SettingsService.SetAsync(AutoSelectPreferences.DefaultFillMinSettingKey, true);
+        await SettingsService.SetAsync(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
+        if (GameType == GameType.Poe1) await SettingsService.SetAsync(SettingKeys.LeagueId, "poe1.Standard");
+        else if (GameType == GameType.Poe2) await SettingsService.SetAsync(SettingKeys.LeagueId, "poe2.Standard");
+
+        if (initializationTask == null)
+        {
+            var serviceProvider = TestContext.Services.GetRequiredService<IServiceProvider>();
+            initializationTask = Initialize(serviceProvider);
+        }
+
+        await initializationTask;
+
+        Parser = TestContext.Services.GetRequiredService<ItemParser>();
+        CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
+        PropertyParser = TestContext.Services.GetRequiredService<PropertyParser>();
+        TradeFilterProvider = TestContext.Services.GetRequiredService<TradeFilterProvider>();
+        StatParser = TestContext.Services.GetRequiredService<StatParser>();
+    }
+
+    public Task DisposeAsync()
+    {
+        TestContext.Dispose();
+        return Task.CompletedTask;
+    }
+
+    protected virtual void RegisterServices(IServiceCollection services) {}
+
+    private static async Task Initialize(IServiceProvider serviceProvider)
+    {
+        var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
+        var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
+
+        var resolver = new InitializationOrderResolver(serviceProvider);
+        var orderedServices = resolver.GetOrderedServices(configuration.Value.InitializableServices);
+
+        foreach (var service in orderedServices)
+        {
+            logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
+            await service.Initialize();
+        }
+    }
+
+    public async Task<List<TradeFilter>> GetPropertyFilters(Item item)
+    {
+        var filters = await PropertyParser.GetFilters(item);
+        return filters.Flatten();
+    }
+
+    public async Task<List<TradeFilter>> GetStatFilters(Item item)
+    {
+        var filters = await StatParser.GetFilters(item);
+        return filters.Flatten();
+    }
+
+    public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
+    {
+        return AssertHasStat(actual, expectedCategory, expectedText, null, expectedValues);
+    }
+
+    public Stat? AssertHasStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText, params double[] expectedValues)
+    {
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
+        if (actualStat == null)
+        {
+            if (expectedOptionText != null)
+            {
+                Assert.Fail("The actual stat does not exist.\nExpected: " + expectedText + " - " + expectedOptionText);
+                return null;
+            }
+
+            Assert.Fail("The actual stat does not exist.\nExpected: " + expectedText);
+            return null;
+        }
+
+        if (expectedValues.Length == 0) return actualStat;
+
+        for (var i = 0; i < expectedValues.Length; i++)
+        {
+            if (actualStat?.Values.Count <= i) Assert.Fail("The actual stat does not have enough values");
+            AssertExtensions.AssertCloseEnough(expectedValues[i], actualStat?.Values[i]);
+        }
+
+        AssertExtensions.AssertCloseEnough(expectedValues.Average(), actualStat?.AverageValue);
+
+        return actualStat;
+    }
+
+    private Stat? FindStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText)
+    {
+        foreach (var stat in actual.Stats)
+        {
+            if (stat.Category != expectedCategory) continue;
+
+            var tradeStatDefinitions = stat.Definitions
+                .Where(x => x.TradeIds != null)
+                .SelectMany(x => x.TradeIds!)
+                .Distinct()
+                .Select(x => StatParser.TradeDefinitions.GetValueOrDefault(x))
+                .Where(x => x != null)
+                .SelectMany(x => x!)
+                .ToList();
+            foreach (var tradeStatDefinition in tradeStatDefinitions)
+            {
+                if (tradeStatDefinition.Text != expectedText) continue;
+                if (expectedOptionText == null) return stat;
+
+                if (tradeStatDefinition.OptionText == null) continue;
+                if (tradeStatDefinition.OptionText == expectedOptionText) return stat;
+            }
+
+            foreach (var gameStat in stat.Definitions
+                         .Where(x => x.TradeIds == null))
+            {
+                if (gameStat.Text != expectedText) continue;
+                if (expectedOptionText == null) return stat;
+            }
+        }
+
+        return null;
+    }
+
+    public void AssertDoesNotHaveStat(Item actual, StatCategory expectedCategory, string expectedText, string? expectedOptionText = null)
+    {
+        var actualStat = FindStat(actual, expectedCategory, expectedText, expectedOptionText);
+        Assert.Null(actualStat);
+    }
+
+    public void AssertHasPseudoStat(Item actual, string expectedText, double? expectedValue = null)
+    {
+        var actualStat = actual.PseudoStats.FirstOrDefault(x => expectedText == x.Text);
+        Assert.NotNull(actualStat);
+        Assert.Equal(expectedText, actualStat.Text);
+
+        if (expectedValue != null) AssertExtensions.AssertCloseEnough(expectedValue.Value, actualStat.Value);
+    }
+}

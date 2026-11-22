@@ -1,0 +1,566 @@
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Properties.Definitions;
+using Sidekick.Game.Parser.Stats;
+using Sidekick.Game.Parser.Trade.Requests;
+using Xunit;
+namespace Sidekick.Game.Parser.Tests.Poe1.English;
+
+[Collection(Collections.Poe1EnglishFixture)]
+public class AccessoryParsing(Poe1EnglishFixture fixture)
+{
+    private readonly ItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseBroodCircle()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Rare
+Brood Circle
+Ruby Ring
+--------
+Requirements:
+Level: 36
+--------
+Item Level: 76
+--------
+Anger has 18% increased Aura Effect (implicit)
+--------
++16 to all Attributes
++31 to Intelligence
+Adds 8 to 13 Physical Damage to Attacks
+31% increased Mana Regeneration Rate
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ruby Ring", actual.TradeItem?.Type);
+
+        Assert.Equal(76, actual.Properties.ItemLevel);
+        Assert.False(actual.Properties.Unidentified);
+        Assert.True(actual.Properties.Corrupted);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Anger has #% increased Aura Effect", 18);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to all Attributes", 16);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Intelligence", 31);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 13);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Mana Regeneration Rate", 31);
+    }
+
+    [Fact]
+    public void ParseBerekGrip()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Berek's Grip
+Two-Stone Ring
+--------
+Requirements:
+Level: 20
+--------
+Item Level: 84
+--------
++13% to Cold and Lightning Resistances (implicit)
+--------
+28% increased Cold Damage
+Adds 1 to 67 Lightning Damage to Spells and Attacks
++30 to maximum Life
+1% of Damage Leeched as Life against Shocked Enemies
+1% of Damage Leeched as Energy Shield against Frozen Enemies
+--------
+""Berek hid from Storm's lightning wrath
+In the embrace of oblivious Frost
+Repelled by ice, blinded by blizzards
+Storm raged in vain
+While Berek slept.""
+- Berek and the Untamed
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.False(actual.Properties.Unidentified);
+    }
+
+    [Fact]
+    public void ParsePrecursorEmblemRuby()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Precursor's Emblem
+Ruby Ring
+--------
+Requirements:
+Level: 49
+--------
+Item Level: 85
+--------
++23% to Fire Resistance (implicit)
+--------
++20 to Strength
+5% increased maximum Energy Shield
+5% increased maximum Life
+Regenerate 0.3% of Life per second per Endurance Charge
+You cannot be Stunned while at maximum Endurance Charges
+1% increased Movement Speed per Endurance Charge
+--------
+History teaches humility.
+--------
+Note: ~b/o 2 chaos
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Precursor's Emblem", actual.TradeItem?.Name);
+        Assert.Equal("Ruby Ring", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void ParsePrecursorEmblemSapphire()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Precursor's Emblem
+Sapphire Ring
+--------
+Requirements:
+Level: 49
+--------
+Item Level: 85
+--------
++29% to Cold Resistance (implicit)
+--------
++20 to Dexterity
+8% increased Evasion Rating per Frenzy Charge
+5% increased maximum Energy Shield
+5% increased maximum Life
+20% increased Frenzy Charge Duration
+5% increased Damage per Frenzy Charge
+--------
+History teaches humility.
+--------
+Note: ~b/o 20 chaos
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Precursor's Emblem", actual.TradeItem?.Name);
+        Assert.Equal("Sapphire Ring", actual.TradeItem?.Type);
+    }
+
+    [Fact]
+    public void KalandraTouch()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Kalandra's Touch
+Ring
+--------
+Item Level: 85
+--------
+Reflects opposite Ring
+--------
+On one hand, you have a choice.
+On the other, you have its twin.
+--------
+Mirrored
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Kalandra's Touch", actual.TradeItem?.Name);
+        Assert.Equal("Ring", actual.TradeItem?.Type);
+        Assert.True(actual.Properties.Mirrored);
+    }
+
+    [Fact]
+    public void PearlescentAmulet()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Rare
+Maelström Charm
+Pearlescent Amulet
+--------
+Requirements:
+Level: 35
+--------
+Item Level: 72
+--------
+{ Implicit Modifier — Elemental, Resistance }
++10(8-10)% to all Elemental Resistances
+--------
+{ Prefix Modifier ""Annealed"" (Tier: 4) — Damage, Physical, Attack }
+Adds 8(6-9) to 15(13-15) Physical Damage to Attacks
+{ Prefix Modifier ""Magpie's"" (Tier: 4) — Drop }
+9(8-12)% increased Rarity of Items found
+{ Suffix Modifier ""of the Brute"" (Tier: 9) — Attribute }
++8(8-12) to Strength
+{ Suffix Modifier ""of the Prism"" (Tier: 5) — Elemental, Resistance }
++6(6-8)% to all Elemental Resistances
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Pearlescent Amulet", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 15);
+        // Removed in 3.30 // fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Rarity of Items found", 9);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Strength", 8);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to all Elemental Resistances", 6);
+    }
+
+    [Fact]
+    public void VictoryEye()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Rare
+Victory Eye
+Paua Ring
+--------
+Requirements:
+Level: 40
+--------
+Item Level: 85
+--------
+{ Corruption Implicit Modifier — Mana, Aura }
+Hatred has 22(20-30)% increased Mana Reservation Efficiency
+--------
+{ Prefix Modifier ""Annealed"" (Tier: 1) — Damage, Physical, Attack }
+Adds 9(6-9) to 15(13-15) Physical Damage to Attacks
+{ Prefix Modifier ""Arcing"" (Tier: 4) — Damage, Elemental, Lightning, Attack }
+Adds 2(1-4) to 41(40-43) Lightning Damage to Attacks
+{ Suffix Modifier ""of Talent"" (Tier: 3) — Caster, Speed }
+7(5-8)% increased Cast Speed
+{ Suffix Modifier ""of the Walrus"" (Tier: 4) — Elemental, Cold, Resistance }
++35(30-35)% to Cold Resistance
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Paua Ring", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Hatred has #% increased Mana Reservation Efficiency", 22);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Physical Damage to Attacks", 9, 15);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Adds # to # Lightning Damage to Attacks", 2, 41);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Cast Speed", 7);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+#% to Cold Resistance", 35);
+    }
+
+    [Fact]
+    public void UrsaTalisman()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Rare
+Miracle Gorget
+Ursa Talisman
+--------
+Requirements:
+Level: 61
+--------
+Item Level: 85
+--------
+30% increased Effect of your Marks (enchant)
+--------
+{ Prefix Modifier ""Dragon's"" (Tier: 2) — Drop }
+19(19-24)% increased Rarity of Items found
+{ Prefix Modifier ""Unassailable"" (Tier: 1) — Defences, Energy Shield }
+21(20-22)% increased maximum Energy Shield
+{ Suffix Modifier ""of the Storm"" (Tier: 6) — Elemental, Lightning, Resistance }
++18(18-23)% to Lightning Resistance
+{ Suffix Modifier ""of the Goliath"" (Tier: 4) — Attribute }
++35(33-37) to Strength
+--------
+""With the Hag's daughters easing the climate,
+an age of plenty and bounty began. Lysanda
+revived the Phaaryl tradition of the hunt,
+so the people never forgot their roots.""
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Ursa Talisman", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Enchant, "#% increased Effect of your Marks", 30);
+    }
+
+    [Fact]
+    public void ReplicaDragonfangsFlight()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Unique
+Replica Dragonfang's Flight
+Onyx Amulet
+--------
+Requirements:
+Level: 56
+--------
+Item Level: 77
+--------
++12 to all Attributes (implicit)
+(Attributes are Strength, Dexterity, and Intelligence) (implicit)
+--------
++3 to Level of all Defiance Banner(Fireball-Mana-Infused Staff) Gems
++5% to all Elemental Resistances
+5% increased Reservation Efficiency of Skills
+Items and Gems have 6% reduced Attribute Requirements
+(Attributes are Strength, Dexterity, and Intelligence)
+--------
+""Did we make this? Why do we have no record of it?
+We were warned that there would be consequences...""
+- Administrator Qotra
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Replica Dragonfang's Flight", actual.TradeItem?.Name);
+        Assert.Equal("Onyx Amulet", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "+# to Level of all Defiance Banner Gems", 3);
+    }
+
+    [Fact]
+    public void PandemoniumIdol()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Rare
+Pandemonium Idol
+Citrine Amulet
+--------
+Requirements:
+Level: 44
+--------
+Item Level: 80
+--------
+{ Corruption Implicit Modifier — Attribute }
+4(4-6)% increased Strength
+4(4-6)% increased Intelligence
+--------
+{ Prefix Modifier ""Burning"" (Tier: 6) — Damage, Elemental, Fire, Attack }
+Adds 8(7-10) to 18(15-18) Fire Damage to Attacks
+{ Prefix Modifier ""Thaumaturgist's"" (Tier: 4) — Damage, Caster }
+20(18-22)% increased Spell Damage
+{ Suffix Modifier ""of the Heavens"" (Tier: 5) — Attribute }
++17(17-20) to all Attributes
+(Attributes are Strength, Dexterity, and Intelligence)
+{ Suffix Modifier ""of Sleet"" (Tier: 4) — Damage, Elemental, Cold }
+15(13-15)% increased Cold Damage
+--------
+Corrupted
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Citrine Amulet", actual.TradeItem?.Type);
+
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Strength", 4);
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "#% increased Intelligence", 4);
+    }
+
+    [Fact]
+    public void HonourLeash()
+    {
+        var actual = parser.ParseItem(@"Item Class: Belts
+Rarity: Rare
+Honour Leash
+Cord Belt
+--------
+Quality (Resistance Modifiers): +20% (augmented)
+--------
+Requirements:
+Level: 67
+--------
+Item Level: 83
+--------
+Allocates As The Mountain (enchant)
+--------
+Can be Anointed (implicit)
+--------
++33% to Chaos Resistance (fractured)
++25 to Strength
++136 to maximum Life
++66 to maximum Mana
++56% to Fire Resistance
+17% increased Damage (crafted)
+--------
+Split
+--------
+Fractured Item
+");
+
+        Assert.Equal(ItemClass.Belt, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Cord Belt", actual.TradeItem?.Type);
+
+        Assert.Equal(83, actual.Properties.ItemLevel);
+        Assert.True(actual.Properties.Split);
+        Assert.True(actual.Properties.Fractured);
+    }
+
+    [Fact]
+    public void VentorGamble()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Unique
+Ventor's Gamble
+Gold Ring
+--------
+Requirements:
+Level: 65
+--------
+Item Level: 79
+--------
+{ Implicit Modifier — Drop }
++13(6-15)% to Item Rarity
+--------
+{ Unique Modifier — Life }
++4(0-60) to maximum Life
+{ Unique Modifier — Elemental, Fire, Resistance }
++14(-25-50)% to Fire Resistance
+{ Unique Modifier — Elemental, Cold, Resistance }
++48(-25-50)% to Cold Resistance
+{ Unique Modifier — Elemental, Lightning, Resistance }
++33(-25-50)% to Lightning Resistance
+{ Unique Modifier — Drop }
++21(-40-40)% to Item Rarity
+{ Unique Modifier — Mana }
+7(15--15)% reduced Mana Reservation Efficiency of Skills
+--------
+In a blaze of glory,
+An anomaly defying all odds
+The ""unkillable"" beast met the divine
+And Ventor met his latest trophy.
+");
+
+        Assert.Equal(ItemClass.Ring, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Ventor's Gamble", actual.TradeItem?.Name);
+        Assert.Equal("Gold Ring", actual.TradeItem?.Type);
+
+        Assert.Equal(79, actual.Properties.ItemLevel);
+
+        var stat = fixture.AssertHasStat(actual, StatCategory.Explicit, "#% increased Mana Reservation Efficiency of Skills", -7);
+        Assert.NotNull(stat);
+        var definition = stat.Definitions.First();
+        Assert.True(definition.Negate);
+    }
+
+    [Fact]
+    public void AtzirisFoible()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Unique
+Atziri's Foible
+Paua Amulet
+--------
+Requirements:
+Level: 16
+--------
+Item Level: 83
+--------
+Allocates Mind Drinker (enchant)
+--------
+30% increased Mana Regeneration Rate (implicit)
+--------
++100 to maximum Mana
+22% increased maximum Mana
+83% increased Mana Regeneration Rate
+Items and Gems have 25% reduced Attribute Requirements
+--------
+The world is but a piece of parchment, blank and symmetric. 
+We label each side: one Good, one Evil; one Black, one White. 
+The divine truth, however, is that both are one and the same. 
+-Jaetai, Vaal Advisor
+
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Atziri's Foible", actual.TradeItem?.Name);
+        Assert.Equal("Paua Amulet", actual.TradeItem?.Type);
+        actual.AssertHasNinjaStash("atziris-foible-paua-amulet");
+    }
+
+    [Fact]
+    public void FoulbornKhatalWeeping()
+    {
+        var actual = parser.ParseItem(@"Item Class: Amulets
+Rarity: Unique
+Foulborn Khatal's Weeping
+Lapis Amulet
+--------
+Requirements:
+Level: 56
+--------
+Item Level: 85
+--------
++21 to Intelligence (implicit)
+--------
+Life Flasks gain 3 Charges every 3 seconds (mutated)
++88 to maximum Life
+Can't use Mana Flasks
+On non-channelling Attack, set a Life Flask with greater than 50% of maximum Charges remaining to 50%
+For each Charge removed this way, that Attack gains +2% to Damage over time Multiplier
+--------
+""We fought the Abyssals, too. That's the part they leave out.
+Khatal was Faridun... and for saving all their lives, the Maraketh
+made him drink the enemy's blood. He melted from the inside out.""
+- Toryal, of the Afarud
+");
+
+        Assert.Equal(ItemClass.Amulet, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Khatal's Weeping", actual.TradeItem?.Name);
+        Assert.Equal("Lapis Amulet", actual.TradeItem?.Type);
+        Assert.True(actual.Properties.Foulborn);
+        actual.AssertHasNinjaStash("foulborn-khatals-weeping-life-flask-charge-lapis-amulet");
+    }
+
+    [Fact]
+    public async Task TwiceCorruptedRing()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
+Rarity: Rare
+Brood Circle
+Ruby Ring
+--------
+Requirements:
+Level: 36
+--------
+Item Level: 76
+--------
+Anger has 18% increased Aura Effect (implicit)
+--------
++16 to all Attributes
++31 to Intelligence
+Adds 8 to 13 Physical Damage to Attacks
+31% increased Mana Regeneration Rate
+--------
+Twice Corrupted
+");
+
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.False(actual.Properties.Corrupted);
+        Assert.True(actual.Properties.TwiceCorrupted);
+        Assert.Equal(5, actual.Stats.Count);
+        fixture.AssertHasStat(actual, StatCategory.Implicit, "Anger has #% increased Aura Effect", 18);
+
+        var filters = await fixture.GetPropertyFilters(actual);
+        var corrupted = Assert.Single(filters.OfType<CorruptedFilter>());
+        Assert.True(corrupted.Checked);
+        var twiceCorrupted = Assert.Single(filters.OfType<TwiceCorruptedFilter>());
+        Assert.Null(twiceCorrupted.Checked);
+
+        var query = new Query();
+        corrupted.PrepareTradeRequest(query, actual);
+        twiceCorrupted.PrepareTradeRequest(query, actual);
+        var miscFilters = query.Filters.GetOrCreateMiscFilters().Filters;
+        Assert.Equal("true", miscFilters.Corrupted?.Option);
+        Assert.Null(miscFilters.TwiceCorrupted?.Option);
+    }
+}

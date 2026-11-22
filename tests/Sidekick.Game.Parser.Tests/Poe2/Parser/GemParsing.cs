@@ -1,0 +1,149 @@
+using Sidekick.Game.ItemClasses;
+using Xunit;
+namespace Sidekick.Game.Parser.Tests.Poe2.Parser;
+
+[Collection(Collections.Poe2EnglishFixture)]
+public class GemParsing(Poe2EnglishFixture fixture)
+{
+    private readonly ItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void UncutSpiritGemLevel16()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Uncut Spirit Gems
+Rarity: Currency
+Uncut Spirit Gem (Level 16)
+--------
+Creates a Persistent Buff Skill Gem or Level an existing gem to Level 16
+--------
+Right Click to engrave a Persistent Buff Skill Gem.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal("Uncut Spirit Gem (Level 16)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+    }
+
+    [Fact]
+    public void UncutSupportGemLevel3()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Uncut Support Gems
+Rarity: Currency
+Uncut Support Gem (Level 3)
+--------
+Creates a Support Gem
+--------
+Right Click to engrave a Support Gem.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal("Uncut Support Gem (Level 3)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+    }
+
+    [Fact]
+    public void UncutSkillGemLevel9()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Uncut Skill Gems
+Rarity: Currency
+Uncut Skill Gem (Level 9)
+--------
+Creates a Skill Gem or Level an existing gem to level 9
+--------
+Right Click to engrave a Skill Gem.
+");
+
+        Assert.Equal(ItemClass.Unknown, actual.ItemClass.Type);
+        Assert.Equal("Uncut Skill Gem (Level 9)", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+    }
+
+    [Fact]
+    public void HeraldoIce()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Skill Gems
+Rarity: Gem
+Herald of Ice
+--------
+Buff, Attack, Persistent, AoE, Cold, Herald, Payoff
+Level: 18
+Quality: +20% (augmented)
+Attack Damage: 247%
+--------
+Requires: Level 78, 97 Dex, 97 Int
+Requires: Any Martial Weapon
+--------
+Sockets: G G G G 
+--------
+While active, Shattering an enemy with an Attack Hit will cause an icy explosion that deals Attack damage to surrounding enemies.
+--------
+Explosion
+--------
+Explosion radius is 2.2 metres
+100% of Explosion Physical Damage
+Converted to Cold Damage
+--------
+Buff
+--------
+Reservation: 30 Spirit
+--------
+Enemies you Shatter explode
+--------
+Skills can be managed in the Skills Panel.
+");
+
+        Assert.Equal("Herald of Ice", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal(18, actual.Properties.GemLevel);
+        Assert.NotNull(actual.Properties.Sockets);
+        Assert.Equal(4, actual.Properties.Sockets.Count);
+    }
+
+    [Fact]
+    public void CastonCritical()
+    {
+        var actual = parser.ParseItem(
+            @"Rarity: Gem
+Cast on Critical
+--------
+Buff, Persistent, Trigger, Meta
+Level: 20 (augmented)
+19 Levels from Gem
++1 Level from Corruption (augmented)
+Quality: +20% (augmented)
+Reservation: 100 Spirit
+--------
+Requires: Level 84, 147 Int
+--------
+Sockets: G G G G G 
+--------
+While active, gains Energy when you Critically Hit enemies and triggers socketed Spells on reaching maximum Energy.
+--------
+10% increased Reservation Efficiency
+Gains 1 Energy per Power of enemies you
+Critically Hit with Skills, modified by the percentage of the enemy's Ailment Threshold the Critical Hit will deal
+57% increased Energy gained
+Triggers all Socketed Spells and loses all Energy on reaching maximum Energy
+--------
+Support
+--------
+Has 10 maximum Energy per 0.1 seconds of base cast time of Socketed Spells
+Socketed Skills deal 20% less Damage
+--------
+Place one or more Skill Gems into this Meta Gem's sockets in the Skills Panel. The socketed Skills will be incorporated into the Meta Gem's effect.
+--------
+Corrupted
+");
+
+        Assert.Equal("Cast on Critical", actual.TradeItem?.Type);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal(20, actual.Properties.GemLevel);
+        Assert.NotNull(actual.Properties.Sockets);
+        Assert.Equal(5, actual.Properties.Sockets.Count);
+        Assert.True(actual.Properties.Corrupted);
+    }
+}

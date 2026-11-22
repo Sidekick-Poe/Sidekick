@@ -217,6 +217,22 @@
   },
   {
     "active": true,
+    "detailsId": "alchemy-shard",
+    "type": "Currency",
+    "url": "currency",
+    "name": "Alchemy Shard",
+    "tradeId": "alchemy-shard"
+  },
+  {
+    "active": true,
+    "detailsId": "alteration-shard",
+    "type": "Currency",
+    "url": "currency",
+    "name": "Alteration Shard",
+    "tradeId": "alteration-shard"
+  },
+  {
+    "active": true,
     "detailsId": "ancient-orb",
     "type": "Currency",
     "url": "currency",
@@ -969,6 +985,14 @@
   },
   {
     "active": true,
+    "detailsId": "transmutation-shard",
+    "type": "Currency",
+    "url": "currency",
+    "name": "Transmutation Shard",
+    "tradeId": "transmutation-shard"
+  },
+  {
+    "active": true,
     "detailsId": "turbulent-catalyst",
     "type": "Currency",
     "url": "currency",
@@ -1265,6 +1289,14 @@
   },
   {
     "active": true,
+    "detailsId": "ambitious-obsession",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "Ambitious Obsession",
+    "tradeId": "ambitious-obsession"
+  },
+  {
+    "active": true,
     "detailsId": "anarchys-price",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -1369,6 +1401,14 @@
   },
   {
     "active": true,
+    "detailsId": "beauty-through-death",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "Beauty Through Death",
+    "tradeId": "beauty-through-death"
+  },
+  {
+    "active": true,
     "detailsId": "bijoux",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -1408,7 +1448,6 @@
     "tradeId": "bound-by-flame"
   },
   {
-    "active": true,
     "detailsId": "boundless-realms",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -1416,7 +1455,6 @@
     "tradeId": "boundless-realms"
   },
   {
-    "active": true,
     "detailsId": "bowyers-dream",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -1473,6 +1511,14 @@
   },
   {
     "active": true,
+    "detailsId": "cartographers-delight",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "Cartographer\u0027s Delight",
+    "tradeId": "cartographers-delight"
+  },
+  {
+    "active": true,
     "detailsId": "chaotic-disposition",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -1520,7 +1566,6 @@
     "tradeId": "council-of-cats"
   },
   {
-    "active": true,
     "detailsId": "coveted-possession",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -1712,7 +1757,6 @@
     "tradeId": "dying-anguish"
   },
   {
-    "active": true,
     "detailsId": "dying-light",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -1846,6 +1890,14 @@
     "url": "divination-cards",
     "name": "From Bone to Ashes",
     "tradeId": "from-bone-to-ashes"
+  },
+  {
+    "active": true,
+    "detailsId": "further-invention",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "Further Invention",
+    "tradeId": "further-invention"
   },
   {
     "active": true,
@@ -2048,6 +2100,7 @@
     "tradeId": "justified-ambition"
   },
   {
+    "active": true,
     "detailsId": "keepers-corruption",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2061,6 +2114,14 @@
     "url": "divination-cards",
     "name": "Lachrymal Necrosis",
     "tradeId": "lachrymal-necrosis"
+  },
+  {
+    "active": true,
+    "detailsId": "lantadors-lost-love",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "Lantador\u0027s Lost Love",
+    "tradeId": "lantadors-lost-love"
   },
   {
     "active": true,
@@ -2111,7 +2172,6 @@
     "tradeId": "lonely-warrior"
   },
   {
-    "active": true,
     "detailsId": "lost-worlds",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2143,7 +2203,6 @@
     "tradeId": "lucky-bastion"
   },
   {
-    "active": true,
     "detailsId": "lucky-connections",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2199,6 +2258,7 @@
     "tradeId": "merciless-armament"
   },
   {
+    "active": true,
     "detailsId": "might-is-right",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2239,6 +2299,14 @@
   },
   {
     "active": true,
+    "detailsId": "nooks-crown",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "Nook\u0027s Crown",
+    "tradeId": "nooks-crown"
+  },
+  {
+    "active": true,
     "detailsId": "one-last-score",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2268,6 +2336,14 @@
     "url": "divination-cards",
     "name": "Pearls Before Swine",
     "tradeId": "pearls-before-swine"
+  },
+  {
+    "active": true,
+    "detailsId": "perfection",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "Perfection",
+    "tradeId": "perfection"
   },
   {
     "active": true,
@@ -2317,7 +2393,6 @@
     "tradeId": "rain-of-chaos"
   },
   {
-    "active": true,
     "detailsId": "rain-tempter",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2437,6 +2512,7 @@
     "tradeId": "squandered-prosperity"
   },
   {
+    "active": true,
     "detailsId": "struck-by-lightning",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2660,6 +2736,7 @@
     "tradeId": "the-breach"
   },
   {
+    "active": true,
     "detailsId": "the-brittle-emperor",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -2673,6 +2750,14 @@
     "url": "divination-cards",
     "name": "The Cache",
     "tradeId": "the-cache"
+  },
+  {
+    "active": true,
+    "detailsId": "the-cacophony",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The Cacophony",
+    "tradeId": "the-cacophony"
   },
   {
     "active": true,
@@ -3147,7 +3232,6 @@
     "tradeId": "the-forward-gaze"
   },
   {
-    "active": true,
     "detailsId": "the-fox",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -3187,7 +3271,6 @@
     "tradeId": "the-gentleman"
   },
   {
-    "active": true,
     "detailsId": "the-gladiator",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -3339,6 +3422,14 @@
   },
   {
     "active": true,
+    "detailsId": "the-jewellers-boon",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The Jeweller\u0027s Boon",
+    "tradeId": "the-jewellers-boon"
+  },
+  {
+    "active": true,
     "detailsId": "the-journalist",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -3432,6 +3523,14 @@
     "url": "divination-cards",
     "name": "The Lion",
     "tradeId": "the-lion"
+  },
+  {
+    "active": true,
+    "detailsId": "the-long-con",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The Long Con",
+    "tradeId": "the-long-con"
   },
   {
     "active": true,
@@ -3587,6 +3686,14 @@
   },
   {
     "active": true,
+    "detailsId": "the-one-that-got-away",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The One That Got Away",
+    "tradeId": "the-one-that-got-away"
+  },
+  {
+    "active": true,
     "detailsId": "the-one-with-all",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -3730,7 +3837,6 @@
     "tradeId": "the-queen"
   },
   {
-    "active": true,
     "detailsId": "the-rabid-rhoa",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -3794,6 +3900,7 @@
     "tradeId": "the-ruthless-ceinture"
   },
   {
+    "active": true,
     "detailsId": "the-saints-treasure",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -3817,7 +3924,6 @@
     "tradeId": "the-scarred-meadow"
   },
   {
-    "active": true,
     "detailsId": "the-scavenger",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -3831,6 +3937,14 @@
     "url": "divination-cards",
     "name": "The Scholar",
     "tradeId": "the-scholar"
+  },
+  {
+    "active": true,
+    "detailsId": "the-scout",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The Scout",
+    "tradeId": "the-scout"
   },
   {
     "active": true,
@@ -3994,6 +4108,14 @@
   },
   {
     "active": true,
+    "detailsId": "the-survivalist",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The Survivalist",
+    "tradeId": "the-survivalist"
+  },
+  {
+    "active": true,
     "detailsId": "the-thaumaturgist",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4073,6 +4195,7 @@
     "tradeId": "the-twilight-moon"
   },
   {
+    "active": true,
     "detailsId": "the-twins",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4128,7 +4251,6 @@
     "tradeId": "the-vast"
   },
   {
-    "active": true,
     "detailsId": "the-visionary",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4185,6 +4307,14 @@
   },
   {
     "active": true,
+    "detailsId": "the-white-knight",
+    "type": "DivinationCard",
+    "url": "divination-cards",
+    "name": "The White Knight",
+    "tradeId": "the-white-knight"
+  },
+  {
+    "active": true,
     "detailsId": "the-whiteout",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4208,7 +4338,6 @@
     "tradeId": "the-wind"
   },
   {
-    "active": true,
     "detailsId": "the-witch",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4216,7 +4345,6 @@
     "tradeId": "the-witch"
   },
   {
-    "active": true,
     "detailsId": "the-wolf",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4296,7 +4424,6 @@
     "tradeId": "three-voices"
   },
   {
-    "active": true,
     "detailsId": "thunderous-skies",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -4384,6 +4511,7 @@
     "tradeId": "vanity"
   },
   {
+    "active": true,
     "detailsId": "vile-power",
     "type": "DivinationCard",
     "url": "divination-cards",
@@ -5214,6 +5342,7 @@
     "tradeId": "wailing-essence-of-zeal"
   },
   {
+    "active": true,
     "detailsId": "weeping-essence-of-anger",
     "type": "Essence",
     "url": "essences",
@@ -5230,6 +5359,13 @@
   },
   {
     "active": true,
+    "detailsId": "weeping-essence-of-doubt",
+    "type": "Essence",
+    "url": "essences",
+    "name": "Weeping Essence of Doubt",
+    "tradeId": "weeping-essence-of-doubt"
+  },
+  {
     "detailsId": "weeping-essence-of-fear",
     "type": "Essence",
     "url": "essences",
@@ -5237,6 +5373,7 @@
     "tradeId": "weeping-essence-of-fear"
   },
   {
+    "active": true,
     "detailsId": "weeping-essence-of-greed",
     "type": "Essence",
     "url": "essences",
@@ -5253,6 +5390,14 @@
   },
   {
     "active": true,
+    "detailsId": "weeping-essence-of-rage",
+    "type": "Essence",
+    "url": "essences",
+    "name": "Weeping Essence of Rage",
+    "tradeId": "weeping-essence-of-rage"
+  },
+  {
+    "active": true,
     "detailsId": "weeping-essence-of-sorrow",
     "type": "Essence",
     "url": "essences",
@@ -5260,7 +5405,6 @@
     "tradeId": "weeping-essence-of-sorrow"
   },
   {
-    "active": true,
     "detailsId": "weeping-essence-of-suffering",
     "type": "Essence",
     "url": "essences",

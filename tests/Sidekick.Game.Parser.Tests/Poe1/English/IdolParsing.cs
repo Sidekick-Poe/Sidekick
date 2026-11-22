@@ -1,0 +1,73 @@
+using Sidekick.Game.ItemClasses;
+using Sidekick.Game.Parser.Items;
+using Sidekick.Game.Parser.Stats;
+using Xunit;
+namespace Sidekick.Game.Parser.Tests.Poe1.English;
+
+[Collection(Collections.Poe1EnglishFixture)]
+public class IdolParsing(Poe1EnglishFixture fixture)
+{
+    private readonly ItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void EssenceMinorIdolofBeasts()
+    {
+        var actual = parser.ParseItem(@"Item Class: Idols
+Rarity: Magic
+Essence Minor Idol of Beasts
+--------
+Item Level: 68
+--------
+2% increased Maps found in Area (implicit)
+--------
+Your Maps have 46% chance to contain an additional Imprisoned Monster
+Red Beasts in your Maps have 56% increased chance to be from The Sands
+--------
+Place this item into the Idol inventory at a Map Device to affect Maps you open. Idols are not consumed when opening Maps.
+--------
+Unmodifiable");
+
+        Assert.Equal(ItemClass.Idol, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Null(actual.TradeItem?.Name);
+        Assert.Equal("Minor Idol", actual.TradeItem?.Type);
+
+        // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
+        // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);
+        fixture.AssertHasStat(actual, StatCategory.Explicit, "Red Beasts in your Maps have #% increased chance to be from The Sands", 56);
+    }
+
+    [Fact]
+    public void LovedbytheSun()
+    {
+        var actual = parser.ParseItem(@"Item Class: Idols
+Rarity: Unique
+Loved by the Sun
+Minor Idol
+--------
+Limited to: 1
+--------
+Item Level: 70
+--------
+2% increased Maps found in Area (implicit)
+--------
+Your Maps have no chance to contain Abysses
+Scarabs found in your Maps cannot be Abyss Scarabs
+Your Maps have +5% chance to contain other Extra Content that can
+be turned off through Atlas Passives
+--------
+Place this item into the Idol inventory at a Map Device to affect Maps you open. Idols are not consumed when opening Maps.
+--------
+Unmodifiable
+");
+
+        Assert.Equal(ItemClass.Idol, actual.ItemClass.Type);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Loved by the Sun", actual.TradeItem?.Name);
+        Assert.Equal("Minor Idol", actual.TradeItem?.Type);
+
+        // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
+        // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);
+        // actual.AssertHasModifier(ModifierCategory.Explicit, "Red Beasts in your Maps have 56% increased chance to be from The Sands", 56);
+    }
+}

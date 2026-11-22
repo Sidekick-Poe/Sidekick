@@ -2,9 +2,9 @@
 
 public class ScoutItem
 {
-    public int ItemId { get; set; }
+    public required int ItemId { get; set; }
 
-    public required string CategoryApiId { get; set; }
+    public string? CategoryApiId { get; set; }
 
     public string? Type { get; set; }
 
