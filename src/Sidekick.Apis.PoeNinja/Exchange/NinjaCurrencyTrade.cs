@@ -1,4 +1,4 @@
-﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
+using Sidekick.Apis.PoeNinja.Exchange.Models;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 
 public class NinjaCurrencyTrade

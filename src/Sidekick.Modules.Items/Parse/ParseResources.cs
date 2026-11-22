@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Items.Parse;
+namespace Sidekick.Modules.Items.Parse;
 
 public class ParseResources
 {

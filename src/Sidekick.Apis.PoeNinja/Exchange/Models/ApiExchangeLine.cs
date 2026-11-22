@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.PoeNinja.Exchange.Models;
+namespace Sidekick.Apis.PoeNinja.Exchange.Models;
 
 public class ApiExchangeLine
 {

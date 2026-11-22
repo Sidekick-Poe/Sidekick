@@ -1,4 +1,4 @@
-﻿using ApexCharts;
+using ApexCharts;
 namespace Sidekick.Modules.Items.Poe2Scout;
 
 public static class DataConstants

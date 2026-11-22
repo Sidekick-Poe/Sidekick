@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 namespace Sidekick.Apis.Poe2Scout.History.Models;
 
 public class ApiHistoryResult

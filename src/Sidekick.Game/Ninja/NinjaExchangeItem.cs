@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Game.Ninja;
+namespace Sidekick.Game.Ninja;
 
 public class NinjaExchangeItem
 {

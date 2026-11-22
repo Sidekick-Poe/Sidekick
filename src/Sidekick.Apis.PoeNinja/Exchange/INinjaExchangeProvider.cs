@@ -1,4 +1,4 @@
-﻿using Sidekick.Game.ItemDefinitions;
+using Sidekick.Game.ItemDefinitions;
 using Sidekick.Game.Parser.Items;
 namespace Sidekick.Apis.PoeNinja.Exchange;
 

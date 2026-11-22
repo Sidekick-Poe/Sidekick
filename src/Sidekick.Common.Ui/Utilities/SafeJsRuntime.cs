@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 namespace Sidekick.Common.Ui.Utilities;
 

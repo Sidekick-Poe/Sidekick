@@ -1,4 +1,4 @@
-﻿using Sidekick.Game.BaseItems;
+using Sidekick.Game.BaseItems;
 
 namespace Sidekick.Modules.Items.Tools.Chromatic;
 

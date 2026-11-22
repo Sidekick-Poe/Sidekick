@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.PoeNinja.Stash.Models;
+namespace Sidekick.Apis.PoeNinja.Stash.Models;
 
 public class ApiStashOverview
 {

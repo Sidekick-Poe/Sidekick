@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Initialization;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Game.Providers.Languages;
 using Sidekick.Game.Texts;

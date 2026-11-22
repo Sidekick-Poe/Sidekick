@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Common.Ui.Sections;
+namespace Sidekick.Common.Ui.Sections;
 
 public class SectionService
 {

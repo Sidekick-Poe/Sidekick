@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using Sidekick.Game.Parser.Stats;
 namespace Sidekick.Game.Parser.Filters.AutoSelect;
 

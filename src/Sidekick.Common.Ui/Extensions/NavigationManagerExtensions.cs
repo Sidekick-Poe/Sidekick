@@ -1,4 +1,4 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 using System.Web;
 using Microsoft.AspNetCore.Components;
 namespace Sidekick.Common.Ui.Extensions;

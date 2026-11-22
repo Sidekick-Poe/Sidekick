@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Sidekick.Common.Dialogs;
 
 namespace Sidekick.Avalonia.Services;

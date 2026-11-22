@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Chat.Localization;
+namespace Sidekick.Modules.Chat.Localization;
 
 public class ChatResources
 {
