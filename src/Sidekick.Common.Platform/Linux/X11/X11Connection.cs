@@ -223,6 +223,32 @@ public sealed class X11Connection(ILogger<X11Connection> logger) : IDisposable
     }
 
     /// <summary>
+    /// Marks a window as a dialog of another (WM_TRANSIENT_FOR), or removes the mark when <paramref name="parent"/> is 0.
+    /// Window managers keep a dialog above its parent window.
+    /// </summary>
+    public void SetTransientFor(nint window, nint parent)
+    {
+        lock (sync)
+        {
+            if (display == 0)
+            {
+                return;
+            }
+
+            if (parent != 0)
+            {
+                Xlib.XSetTransientForHint(display, window, parent);
+            }
+            else
+            {
+                Xlib.XDeleteProperty(display, window, Xlib.WmTransientForAtom);
+            }
+
+            Xlib.XSync(display, false);
+        }
+    }
+
+    /// <summary>
     /// Grabs keys on the whole display, replacing the previous grabs. The X server then waits for
     /// <paramref name="keyUsed"/> on each press: a used key is kept from the window that has focus, any other goes on to it.
     /// </summary>

@@ -76,6 +76,17 @@ internal static class Xlib
     [DllImport(LibX11)]
     public static extern int XFree(nint data);
 
+    /// <summary>
+    /// The predefined WM_TRANSIENT_FOR atom.
+    /// </summary>
+    public const nint WmTransientForAtom = 68;
+
+    [DllImport(LibX11)]
+    public static extern int XSetTransientForHint(nint display, nint window, nint propWindow);
+
+    [DllImport(LibX11)]
+    public static extern int XDeleteProperty(nint display, nint window, nint property);
+
     [DllImport(LibX11)]
     public static extern byte XKeysymToKeycode(nint display, nint keysym);
 
