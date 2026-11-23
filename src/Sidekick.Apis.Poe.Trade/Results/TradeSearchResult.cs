@@ -1,10 +1,12 @@
 namespace Sidekick.Apis.Poe.Trade.Results;
 
-public class TradeSearchResult<T>
+public class TradeSearchResult
 {
-    public List<T>? Result { get; set; }
+    public List<string>? Result { get; set; }
 
     public string? Id { get; set; }
 
     public int Total { get; set; }
+
+    public int Complexity { get; set; }
 }

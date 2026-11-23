@@ -21,6 +21,12 @@
     }
 }
 
+@if (Result.Item.BuiltInSupport!=null)
+{
+    <ItemSeparator Rarity="Result.Item.Rarity"/>
+    <ItemStatLineComponent Category="StatCategory.Enchant" Modifier="Result.Item.BuiltInSupport"/>
+}
+
 @foreach (var modifier in Result.Item.EnchantMods)
 {
     <ItemStatLineComponent Category="StatCategory.Enchant" Modifier="modifier"/>

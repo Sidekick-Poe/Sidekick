@@ -50,7 +50,7 @@ internal class AuthenticationService
 
     public async Task InitializeHttpRequest(HttpRequestMessage request, CancellationToken cancellationToken = default)
     {
-        var cookieString = await browserDialogProvider.GetCookieString(TradeApiClient.ClientName, cancellationToken);
+        var cookieString = await browserDialogProvider.GetCookieString(TradeApiHandler.ClientName, cancellationToken);
         request.AddOrUpdateCookie(cookieString);
     }
 
@@ -68,7 +68,7 @@ internal class AuthenticationService
         OnStateChanged?.Invoke();
 
         var result = await task;
-        await browserDialogProvider.SaveCookies(TradeApiClient.ClientName, result, cancellationToken);
+        await browserDialogProvider.SaveCookies(TradeApiHandler.ClientName, result, cancellationToken);
 
         await settingsService.SetAsync(SettingsTokenName, result.Cookies.GetValueOrDefault(CookieTokenName));
         AuthenticateTask = null;

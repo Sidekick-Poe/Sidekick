@@ -155,10 +155,12 @@ public class LinuxHotkeyBlocker(
         keybindHandlers = configuration.Value.InputHandlers.Select(serviceProvider.GetRequiredService).OfType<KeybindHandler>().ToList();
         scrollWheelHandlers = configuration.Value.InputHandlers.Select(serviceProvider.GetRequiredService).OfType<ScrollWheelHandler>().ToList();
 
+        // Turned off until we find a reliable solution: under Proton, the grabbed keys given back (like Esc) never
+        // reached the game (#1401, #1402).
         // The hotkeys are read each time the game gains focus. Changing them happens in Sidekick's own windows, so the
         // game gains focus again afterwards.
-        linuxProcessProvider.GameFocusChanged += ApplyGrabs;
-        ApplyGrabs();
+        // linuxProcessProvider.GameFocusChanged += ApplyGrabs;
+        // ApplyGrabs();
         return Task.CompletedTask;
     }
 

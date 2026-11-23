@@ -66,18 +66,25 @@ jobs:
         with:
           dotnet-version: 10.x
 
+      - name: .NET - Restore
+        shell: pwsh
+        run: dotnet restore
+
+      - name: .NET - Build
+        shell: pwsh
+        run: dotnet build --no-restore
+
       - name: .NET - Test
         shell: pwsh
-        run: |
-          dotnet restore
-          dotnet build --no-restore
-          dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal
 
-      - name: .NET - Publish (Windows)
+      - name: .NET - Publish Avalonia (Windows)
         shell: pwsh
-        run: |
-          dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r win-x64 -o ./Publish --self-contained true
-          dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web --self-contained true
+        run: dotnet publish src/Sidekick.Avalonia/Sidekick.Avalonia.csproj -c Release -r win-x64 -o ./Publish --self-contained true
+
+      - name: .NET - Publish Web (Windows)
+        shell: pwsh
+        run: dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web --self-contained true
 
       - name: Velopack (Windows)
         shell: pwsh
