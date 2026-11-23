@@ -7,7 +7,8 @@ using Avalonia.Styling;
 using Avalonia.Threading;
 using Microsoft.Extensions.Localization;
 using Sidekick.Avalonia.Localization;
-using Sidekick.Avalonia.Utilities;
+using Sidekick.Common.Platform.Linux;
+using Sidekick.Common.Platform.Linux.Dependencies;
 using Sidekick.Common.Ui.Localization;
 
 namespace Sidekick.Avalonia;
@@ -24,7 +25,7 @@ public partial class LinuxDependenciesWindow : Window
 
     private readonly IStringLocalizer<AvaloniaResources> avaloniaResources;
 
-    public LinuxDependenciesWindow(IReadOnlyList<LinuxDependency> missingDependencies, IStringLocalizer<UiResources> resources, IStringLocalizer<AvaloniaResources> avaloniaResources)
+    public LinuxDependenciesWindow(IReadOnlyList<IDependency> missingDependencies, IStringLocalizer<UiResources> resources, IStringLocalizer<AvaloniaResources> avaloniaResources)
     {
         this.resources = resources;
         this.avaloniaResources = avaloniaResources;
@@ -53,7 +54,7 @@ public partial class LinuxDependenciesWindow : Window
                 FontSize = 16,
                 Foreground = Brushes.White,
                 TextWrapping = TextWrapping.Wrap,
-                Text = dependency.Description(avaloniaResources),
+                Text = dependency.Description,
             });
         }
 

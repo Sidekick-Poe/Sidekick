@@ -10,7 +10,7 @@ namespace Sidekick.Common.Platform.Linux;
 /// X11 window (through XWayland on Wayland sessions).
 /// </summary>
 [SupportedOSPlatform(PlatformNames.Linux)]
-public class ProcessProvider(X11Connection x11, DebugService debugService, ILogger<ProcessProvider> logger) : IProcessProvider
+public class LinuxProcessProvider(X11Connection x11, DebugService debugService, ILogger<LinuxProcessProvider> logger) : IProcessProvider
 {
     /// <summary>
     /// The window class Wine gives to the game windows: the lowercase name of the executable, like
