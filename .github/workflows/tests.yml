@@ -18,9 +18,11 @@ jobs:
       with:
         dotnet-version: 10.x
 
-    - name: Test
-      shell: pwsh
-      run: |
-        dotnet restore
-        dotnet build --no-restore -c Release
-        dotnet test --no-build -c Release --verbosity normal
+    - name: .NET - Restore
+      run: dotnet restore
+
+    - name: .NET - Build
+      run: dotnet build --no-restore -c Release
+
+    - name: .NET - Test
+      run: dotnet test --no-build -c Release --verbosity normal
