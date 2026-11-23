@@ -1,5 +1,5 @@
 using System.Windows.Input;
-namespace Sidekick.Avalonia.Utilities;
+namespace Sidekick.Avalonia.Controls;
 
 public class SimpleCommand(Action execute) : ICommand
 {
